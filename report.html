@@ -1,0 +1,246 @@
+<title>An IRW for Ecology?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one 64rem column, rules not boxes; IRW Report tokens */
+:root{
+  --paper:#fbfbf9; --panel:#f3f3f0; --ink:#17181c; --ink-2:#55575f; --ink-3:#8a8c94;
+  --line:#dededa; --line-strong:#b9b9b4; --pos:#4038c9; --neg:#b0522a;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14161a; --panel:#1b1e23; --ink:#e9e9e6; --ink-2:#a6a8b0; --ink-3:#7a7d85;
+  --line:#2a2e35; --line-strong:#3d424b; --pos:#7f78ea; --neg:#cf7138; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#14161a; --panel:#1b1e23; --ink:#e9e9e6; --ink-2:#a6a8b0; --ink-3:#7a7d85;
+  --line:#2a2e35; --line-strong:#3d424b; --pos:#7f78ea; --neg:#cf7138; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.62;
+  padding-block:56px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:64rem;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.14;font-weight:600;margin:8px 0 0;text-wrap:balance;max-width:24ch}
+h2{font-size:21px;line-height:1.3;font-weight:600;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line-strong);text-wrap:balance}
+h3{font-size:15px;font-weight:600;margin:24px 0 8px}
+p{max-width:72ch;margin:0 0 12px}
+.lede{font-size:17.5px;line-height:1.6;color:var(--ink-2);max-width:72ch;margin-top:16px}
+code,.mono{font-family:var(--mono);font-size:.88em}
+pre{font-family:var(--mono);font-size:13px;line-height:1.5;background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:16px;overflow-x:auto;margin:12px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong)}
+.stat{padding:16px 16px 16px 0;border-right:1px solid var(--line);min-width:0}
+.stat:last-child{border-right:0}
+.stat .fig{font-family:var(--mono);font-size:26px;font-weight:500;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .lab{font-size:14px;color:var(--ink-2);margin-top:6px;line-height:1.4}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:24px;min-width:0}
+.panel h3{margin-top:0}
+.panel p:last-child,.panel ul:last-child{margin-bottom:0}
+ul,ol{max-width:72ch;padding-left:1.3em;margin:0 0 12px}
+li{margin-bottom:6px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong)}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);text-align:left;font-weight:400;padding:10px 12px 8px 0;border-bottom:1px solid var(--line-strong);vertical-align:bottom}
+td{padding:9px 12px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num,td.mono{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ok{color:var(--pos);font-family:var(--mono);font-size:13px}
+.q{counter-reset:none}
+.q li{margin-bottom:14px}
+.q strong{display:block}
+.cap{font-size:14px;color:var(--ink-2);max-width:78ch}
+a{color:var(--pos)}
+.small{font-size:14px;color:var(--ink-2)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">2026-10-30 · exploratory study · ben-domingue / eco</div>
+  <h1>Could an IRW-style warehouse work for ecological detection data?</h1>
+  <p class="lede">Yes. The hierarchical models fit with NIMBLE (occupancy, N-mixture, capture–recapture, community models) share the IRW's structure: a unit with a latent state, observed imperfectly through repeated probes. A draft standard keeps <code>id, item, resp</code>, round-trips six textbook datasets with identical model estimates, and the public data it would hold is plentiful and mostly CC0. Five design decisions are open and are yours to make.</p>
+</header>
+
+<section class="stats" aria-label="Headline figures">
+  <div class="stat"><div class="fig">51 / 51</div><div class="lab">round-trip checks passed on 6 datasets</div></div>
+  <div class="stat"><div class="fig">500–800</div><div class="lab">usable Dryad deposits (est.), nearly all CC0</div></div>
+  <div class="stat"><div class="fig">39%</div><div class="lab">of top-ranked Dryad hits are real detection data</div></div>
+  <div class="stat"><div class="fig">5</div><div class="lab">open design decisions</div></div>
+</section>
+
+<section>
+  <h2>Why the two fit</h2>
+  <p>In an item response model a person has a latent trait and answers items with item-specific parameters. In an occupancy model a site has a latent state (occupied or not) and is visited repeatedly with a detection probability. A community occupancy model, with species-level random effects on detection, is a random-item IRT model with species as items. The table below is the mapping that carries the whole proposal.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Model family (AHM / NIMBLE)</th><th>Latent state per unit</th><th>Probe</th><th>IRT analogue</th></tr></thead>
+    <tbody>
+      <tr><td>Single-season occupancy</td><td>z<sub>i</sub> ∈ {0,1}</td><td>visit j</td><td>one dichotomous item, repeated trials</td></tr>
+      <tr><td>N-mixture</td><td>N<sub>i</sub> (abundance)</td><td>visit j, binomial count</td><td>count item, repeated trials</td></tr>
+      <tr><td>Multinomial N-mixture (removal, double-observer)</td><td>N<sub>i</sub></td><td>pass or observer cell</td><td>nominal item</td></tr>
+      <tr><td>Cormack–Jolly–Seber</td><td>alive<sub>it</sub></td><td>capture session t</td><td>longitudinal 0/1 item with an absorbing state</td></tr>
+      <tr><td>Dynamic occupancy</td><td>z<sub>it</sub></td><td>visit j in season t</td><td>longitudinal item, HMM over waves</td></tr>
+      <tr><td>Community occupancy</td><td>z<sub>ik</sub> (site × species)</td><td>species k × visit j</td><td><strong>multilevel IRT: species are items</strong></td></tr>
+      <tr><td>Spatial capture–recapture</td><td>activity centre s<sub>i</sub></td><td>trap k × occasion j</td><td>traps as items with coordinates</td></tr>
+      <tr><td>Distance sampling</td><td>N<sub>i</sub> and detection by distance</td><td>detected individual + distance</td><td>awkward: rows are individuals, not probes</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>The draft standard</h2>
+  <p>One CSV in long format, one row per survey observation of one unit for one taxon. It validates under IRW v1.0 (C1–C7) unchanged.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Column</th><th>Required</th><th>Meaning</th><th>IRW status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">id</td><td>yes</td><td>The unit carrying the latent state: a site, point, camera station; or an individual animal for capture–recapture</td><td>C2</td></tr>
+      <tr><td class="mono">item</td><td>yes</td><td>The taxon probed for. Always, even when there is one. Resolved to a GBIF/ITIS id in a side table</td><td>C3</td></tr>
+      <tr><td class="mono">resp</td><td>yes</td><td>0/1 detection, a count, or a coded multinomial cell (label in <code>resp_raw</code>). Never a missing code, never an aggregate</td><td>C4</td></tr>
+      <tr><td class="mono">period</td><td>conditional</td><td>Primary period (season, year, session): the latent state may change between them</td><td>a C5 occasion column</td></tr>
+      <tr><td class="mono">occasion</td><td>conditional</td><td>Secondary replicate within a period (visit, trap night, removal pass): closure assumed across them</td><td>a C5 occasion column</td></tr>
+      <tr><td class="mono">date, rater</td><td>no</td><td>Survey time in Unix seconds; observer id. IRW semantics, unchanged</td><td>optional elements</td></tr>
+      <tr><td class="mono">cov_*</td><td>no</td><td>Constant within <code>id</code>: elevation, forest cover, coordinates, sex</td><td>optional element</td></tr>
+      <tr><td class="mono">periodcov_*</td><td>no</td><td>Constant within <code>id × period</code>: yearly site covariates, age class at a session (unmarked's <code>yearlySiteCovs</code>)</td><td>new</td></tr>
+      <tr><td class="mono">obs_*</td><td>no</td><td>Varies row by row: wind, duration, effort, distance (unmarked's <code>obsCovs</code>)</td><td>new</td></tr>
+      <tr><td class="mono">itemcov_*</td><td>no</td><td>Species traits (body mass, guild)</td><td>optional element</td></tr>
+    </tbody>
+  </table></div>
+  <h3>A crossbill row, as written by the converter</h3>
+<pre>id,item,resp,period,occasion,cov_ele,cov_forest,periodcov_year,obs_date
+1,LOXCUR,0,1,1,450,3,1999,-0.92
+2,LOXCUR,0,1,1,450,21,1999,-1.69
+4,LOXCUR,0,1,1,950,9,1999,-1.15</pre>
+  <p class="cap">Site 3 has no row for 1999, visit 1: it was not surveyed. That is the rule that does the most work.</p>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>The explicit-zero rule</h3>
+      <p>A row exists if and only if a survey was conducted for that (<code>id, item, period, occasion</code>). A <code>resp</code> of 0 means surveyed and not detected. A missing row means not surveyed. No row ever carries an empty <code>resp</code>.</p>
+      <p>Unbalanced designs are encoded by row count, not NA padding. Multi-species tables carry a 0 row for every species on the list at every survey, so the species list is <code>unique(item)</code>. Treating an unvisited site-occasion as a non-detection biases detection probability downward; it is the most consequential encoding error in this domain.</p>
+    </div>
+    <div class="panel">
+      <h3>Side tables, borrowed not invented</h3>
+      <ul>
+        <li><code>items</code>: <code>scientificName</code>, <code>taxonRank</code>, <code>taxonID</code>, <code>vernacularName</code> (Darwin Core), plus traits. The analogue of IRW item text.</li>
+        <li><code>units</code>: <code>decimalLatitude</code>, <code>decimalLongitude</code>, <code>coordinateUncertaintyInMeters</code> (Darwin Core, WGS84); holds units in the sampling frame that were never surveyed.</li>
+        <li><code>dataset</code>: title, creator, licence, citation (EML); <code>samplingProtocol</code>, <code>samplingEffort</code> (Darwin Core); <code>responseType</code>, <code>unitKind</code>, <code>itemKind</code>, <code>closure</code>, <code>multinomialType</code>, <code>distanceBreaks</code> (new).</li>
+        <li><code>periods</code>: covariates constant across all units within a period.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Scope</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Fits as written</th><th>Fits with stretched semantics</th><th>Out of scope</th></tr></thead>
+    <tbody><tr>
+      <td>Single-season occupancy · N-mixture (incl. ZIP, multi-season) · dynamic occupancy · CJS, Jolly–Seber, robust design, multi-state CR · community occupancy and N-mixture · removal sampling · binned distance sampling</td>
+      <td>Double-observer multinomial (<code>occasion</code> indexes a category, not a replicate) · spatial capture–recapture (<code>item</code> = trap, with <code>itemKind = trap</code>) · per-detection covariates</td>
+      <td>Continuous-distance sampling as canonical form · telemetry (Movebank) · occurrence-only / presence-only data (most of GBIF): no survey rows, so no non-detections</td>
+    </tr></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>What round-tripped</h2>
+  <p>Each dataset went native structure → standard → native, then the textbook model was fit on both. "Identical" means <code>all.equal</code> on the coefficient vectors at 10<sup>−6</sup>, and the same posterior means from the same seed for NIMBLE. The checks are collated in <code>converters/output/roundtrip_results.csv</code>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Dataset</th><th>Family</th><th>Native shape</th><th>Rows</th><th>Fit compared</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td><code>widewt</code> (unmarked) willow tit</td><td>single-season occupancy</td><td class="num">237 × 3, 46 NA</td><td class="num">665</td><td><code>occu</code>; NIMBLE <code>dOcc_s</code></td><td class="ok">identical</td></tr>
+      <tr><td><code>mallard</code> (unmarked)</td><td>N-mixture</td><td class="num">239 × 3, 58 NA</td><td class="num">659</td><td><code>pcount</code></td><td class="ok">identical</td></tr>
+      <tr><td><code>alfl</code> (unmarked) Alder Flycatcher</td><td>removal / multinomial</td><td class="num">50 × 3 cells</td><td class="num">150</td><td><code>multinomPois</code></td><td class="ok">identical</td></tr>
+      <tr><td><code>dipper</code> (marked)</td><td>CJS</td><td class="num">294 × 7, sex</td><td class="num">2,058</td><td><code>marked::crm</code></td><td class="ok">identical</td></tr>
+      <tr><td><code>crossbill</code> (unmarked)</td><td>dynamic occupancy</td><td class="num">267 × 9 × 3, 567 NA</td><td class="num">6,642</td><td><code>colext</code></td><td class="ok">identical</td></tr>
+      <tr><td><code>MHB2014</code> (AHMbook) 158 species</td><td>community occupancy</td><td class="num">267 × 3 × 158</td><td class="num">118,658</td><td>arrays, covariates, traits</td><td class="ok">identical (fit opt-in)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>What does not survive, and why that is acceptable</h3>
+  <ul>
+    <li><strong>Covariate values at unsurveyed cells.</strong> <code>widewt</code> carries 4 and <code>mallard</code> 22 observation-covariate values where <code>y</code> is NA. unmarked stores them; a file whose rows are surveys cannot. They enter no likelihood.</li>
+    <li><strong>Covariates of never-surveyed units.</strong> <code>mallard</code> has 4 sites and <code>MHB2014</code> 1 site with no surveys. Their site covariates leave the core file. The sampling frame is what is lost, hence the <code>units</code> side table.</li>
+    <li><strong>Period-level covariates at unsurveyed site × period.</strong> <code>crossbill</code>'s <code>year</code> is absent at 48 of 2,403 site-years, and <code>colext</code> will not fit with NA there. A covariate that is a function of <code>period</code> alone belongs in the <code>periods</code> table.</li>
+    <li><strong>Multinomial cell structure.</strong> <code>alfl</code>'s removal design is not recoverable from the table; <code>dataset.multinomialType</code> is required.</li>
+  </ul>
+  <p class="cap">What felt forced: the community table is 95% zeros and 7.6 MB from a 0.3 MB array; CJS tables have <code>period</code> but no <code>occasion</code>; the level of a covariate is a property of the design as deposited, not of the variable.</p>
+</section>
+
+<section>
+  <h2>Where the data lives</h2>
+  <p>Ten query terms against each repository's public search API; counts are word-match upper bounds and overlap across sources. The dominant deposited shape is a wide site × occasion matrix with NA for unsurveyed occasions plus a separate site-covariate file: exactly the shape the standard targets. The hard part is not licensing but recovering the survey design from deposits that ship only the analysed matrix.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Source</th><th>Signal</th><th>Licence</th><th>Reading</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dryad</strong></td><td class="num">1,254 "detection/non-detection" · 1,063 "detection history" · 606 "occupancy model" · 533 "capture history" · 482 "camera trap" · 401 "capture-recapture"</td><td>CC0 by policy</td><td>Richest by far. 39% precision on top-ranked hits; ~2,000 unique hits × 25–40% ≈ 500–800 usable deposits. Anonymous API download is 401; the Zenodo mirror (same DOI) serves files.</td></tr>
+      <tr><td><strong>Zenodo</strong></td><td class="num">18–391 per term</td><td>CC0 / CC-BY-4.0</td><td>Largely Dryad mirrors (dedupe by DOI). Native deposits add MARK <code>.inp</code> files and zipped R projects.</td></tr>
+      <tr><td><strong>USGS ScienceBase</strong></td><td class="num">3–99 per term</td><td>Public domain</td><td>Clean small survey releases with FGDC metadata; about half the "occupancy" hits are prediction rasters. Hosts the Breeding Bird Survey 1966–2021 (route × year × species × 50 stops, observer and weather tables).</td></tr>
+      <tr><td><strong>DataONE / EDI / KNB</strong></td><td class="num">3–357 per term</td><td>CC0 / CC-BY</td><td>DataONE's index is 73% Dryad. EDI and KNB add long-term series in EML (Hubbard Brook valleywide bird survey). EDI's own search API is 403 to anonymous users.</td></tr>
+      <tr><td><strong>GBIF sampling-event</strong></td><td class="num">5,319 datasets; 12–103 per term</td><td>CC0 / CC-BY / some NC</td><td>Darwin Core event core is our surveys table; non-detections are implicit and need zero-filling against a species list. Swedish Bird Survey: 490k + 900k records, CC0.</td></tr>
+      <tr><td><strong>NEON</strong></td><td class="num">26 organismal products</td><td>CC0</td><td>Long tables, every survey event recorded. Landbird point counts (47 sites, distance and time bands); small-mammal trapping with tag IDs and every trap-night, including empty traps.</td></tr>
+      <tr><td>Dataverses</td><td class="num">1–57 per term</td><td>CC0</td><td>Thin; mostly replication packages. A few long series (fish detection histories per HUC-year, 77 years).</td></tr>
+      <tr><td>Figshare</td><td class="num">no totals from API</td><td>CC-BY via journal</td><td>Journal supplementary tables, individually small, collectively numerous.</td></tr>
+      <tr><td>OSF</td><td class="num">0–21</td><td>varies</td><td>Few ecology deposits. Low priority.</td></tr>
+      <tr><td>eBird</td><td>not queried</td><td>gated, bespoke terms</td><td>Complete checklists plus the sampling-event file give true non-detections. Not requested.</td></tr>
+      <tr><td>R packages</td><td class="num">~80 datasets</td><td>GPL</td><td><code>unmarked</code>, <code>AHMbook</code>, <code>spOccupancy</code>, <code>marked</code>, <code>secr</code>: every family, model-ready. The seed corpus.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Volume</h3>
+      <ul>
+        <li><strong>Seed corpus (weeks):</strong> 50–100 tables from R packages, ScienceBase, EDI and the cleanest Dryad deposits.</li>
+        <li><strong>Harvested corpus (months):</strong> on the order of 1,000 tables with a Dryad→Zenodo harvester and a journal-supplement sweep. Most have 20–300 units and 2–12 occasions.</li>
+        <li><strong>Big integrations (each a project):</strong> BBS, NEON, GBIF sampling-event, eBird. A handful of tables with 10<sup>5</sup>–10<sup>7</sup> rows that would dominate by volume.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Pitfalls seen in the sample</h3>
+      <ul>
+        <li>Deposits that pad unsurveyed occasions with 0 instead of NA; only the README tells.</li>
+        <li>Counts pooled over k days with an effort column: the occasion structure is gone.</li>
+        <li>Design encoded in column names (<code>point1.fall2</code>, <code>det991</code>); species as rows.</li>
+        <li>Model outputs mislabelled as data: 30–50% false positives on "occupancy".</li>
+        <li>Raw lat/long for threatened taxa (tapir, large carnivores) in small deposits.</li>
+        <li>xlsx workbooks with one sheet per species; rar archives; MARK <code>.inp</code>.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small">Licensing is far friendlier than psychology: no ND and no "contact author" deposits in the sample. IRW's intake rules can be adopted unchanged.</p>
+</section>
+
+<section>
+  <h2>Five decisions that are yours</h2>
+  <ol class="q">
+    <li><strong>What is <code>item</code>?</strong> The draft puts the species on <code>item</code>, so single-species tables look like IRW's repeated-trial family (one item, many occasions) and community tables are species-as-items. The alternative, visit on <code>item</code>, makes every table a person × item matrix an IRT model can fit directly but does not generalise to multi-species data. It is a one-line pivot either way; the choice is about what the canonical corpus looks like.</li>
+    <li><strong>Dense zeros or a surveys table?</strong> The explicit-zero rule makes community tables large (MHB2014: 118,658 rows, 95% zeros) and repeats observation covariates across species. The alternative is Darwin Core's event-core model: a sparse detections table plus a <code>surveys</code> table. The draft recommends dense for IRW-likeness and self-containment.</li>
+    <li><strong>Sample floor.</strong> IRW's 100 ids would exclude most of ecology. The draft proposes ≥ 30 units and ≥ 2 occasions (≥ 2 periods for capture–recapture).</li>
+    <li><strong>Sensitive-species coordinates.</strong> Coarsen by rule (0.1° / 10 km grid, <code>coordinateUncertaintyInMeters</code> set, never finer than the source) versus drop coordinates for any flagged taxon.</li>
+    <li><strong>How far to stretch.</strong> Double-observer and binned distance sampling use <code>occasion</code> for a category; SCR puts traps on <code>item</code>. Accept with a declared <code>itemKind</code>/<code>responseType</code>, or keep v1 to the families where the format is unforced.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>What could be done next</h2>
+  <ol>
+    <li>A Darwin Core event-core converter, because that is the shape of the largest public sources (GBIF, Swedish Bird Survey, NEON).</li>
+    <li>A Dryad→Zenodo harvester adapted from the IRW discovery scripts, with a per-deposit "is 0 a non-detection?" gate that refuses deposits where it cannot tell.</li>
+    <li>One BBS table as the first large integration: id = route, item = species, period = year, occasion = stop, rater = observer.</li>
+    <li>A validator distributed like <code>irw-validate</code>, with the explicit-zero and covariate-level checks the R prototype already runs.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Files</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Path (in <code>~/Dropbox/projects/eco</code>)</th><th>What</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">standard_draft.md</td><td>The proposed standard (v0.2): core table, mapping tables per family, missingness rule, side tables, scope, what is lost, open questions, changelog</td></tr>
+      <tr><td class="mono">converters/eco_standard.R</td><td>Converters array ↔ long, unmarked frames, multinomial frames, capture histories; validator; writer</td></tr>
+      <tr><td class="mono">converters/rt_0*_*.R · run_all.R</td><td>Round-trip tests; <code>output/roundtrip_results.csv</code></td></tr>
+      <tr><td class="mono">roundtrip_report.md</td><td>What matched, what did not, what changed</td></tr>
+      <tr><td class="mono">discovery/eco_discover.py</td><td>Repository search with cached responses; connectors adapted from <code>ben-domingue/irw</code></td></tr>
+      <tr><td class="mono">discovery_log.csv · discovery_summary.md</td><td>Per-source hit counts, 45 curated candidates with difficulty scores, narrative</td></tr>
+      <tr><td class="mono">README.md</td><td>One-page summary and the five decisions</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Rerun: <code>cd converters &amp;&amp; Rscript run_all.R</code> (needs unmarked, AHMbook, marked, nimble, nimbleEcology, data.table, jsonlite). The community MCMC is opt-in with <code>ECO_FIT_COMMUNITY=1</code>.</p>
+</section>
+</div>
