@@ -1,0 +1,11 @@
+dataset,check,ok,detail
+crossbill_dynocc,validate_eco,TRUE,""
+crossbill_dynocc,rows == non-NA cells,TRUE,"6642 rows, 567 NA cells"
+crossbill_dynocc,"period 1..9, occasion 1..3",TRUE,""
+crossbill_dynocc,y identical,TRUE,""
+crossbill_dynocc,siteCovs identical at surveyed sites,TRUE,""
+crossbill_dynocc,yearlySiteCovs identical at surveyed site-periods,TRUE,""
+crossbill_dynocc,yearlySiteCovs lost at unsurveyed site-periods,TRUE,48 site-periods; 'year' is a function of period and belongs in the periods side table
+crossbill_dynocc,sites with no surveys at all,TRUE,0 sites; their siteCovs are lost
+crossbill_dynocc,obsCovs identical at surveyed cells,TRUE,""
+crossbill_dynocc,colext estimates identical,TRUE,psi(ele)=0.0012

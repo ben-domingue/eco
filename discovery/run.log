@@ -1,0 +1,90 @@
+dataverse            detection history         3
+dataverse            occupancy model           10
+dataverse            capture history           5
+dataverse            capture-recapture         14
+dataverse            N-mixture                 0
+dataverse            repeated counts           1
+dataverse            point count               24
+dataverse            camera trap               57
+dataverse            detection/non-detection   1
+dataverse            encounter history         2
+zenodo               detection history         18
+zenodo               occupancy model           140
+zenodo               capture history           39
+zenodo               capture-recapture         238
+zenodo               N-mixture                 82
+zenodo               repeated counts           5
+zenodo               point count               92
+zenodo               camera trap               391
+zenodo               detection/non-detection   37
+zenodo               encounter history         21
+dryad                detection history         1063
+dryad                occupancy model           606
+dryad                capture history           533
+dryad                capture-recapture         401
+dryad                N-mixture                 132
+dryad                repeated counts           76
+dryad                point count               188
+dryad                camera trap               482
+dryad                detection/non-detection   1254
+dryad                encounter history         134
+figshare             detection history         20
+figshare             occupancy model           20
+figshare             capture history           20
+figshare             capture-recapture         20
+figshare             N-mixture                 20
+figshare             repeated counts           20
+figshare             point count               20
+figshare             camera trap               20
+figshare             detection/non-detection   20
+figshare             encounter history         20
+osf                  detection history         0
+osf                  occupancy model           2
+osf                  capture history           0
+osf                  capture-recapture         6
+osf                  N-mixture                 0
+osf                  repeated counts           0
+osf                  point count               2
+osf                  camera trap               21
+osf                  detection/non-detection   0
+osf                  encounter history         0
+edi                  detection history         0
+edi                  occupancy model           12
+edi                  capture history           1
+edi                  capture-recapture         1
+edi                  N-mixture                 0
+edi                  repeated counts           0
+edi                  point count               10
+edi                  camera trap               2
+edi                  detection/non-detection   0
+edi                  encounter history         0
+dataone              detection history         11
+dataone              occupancy model           117
+dataone              capture history           30
+dataone              capture-recapture         188
+dataone              N-mixture                 50
+dataone              repeated counts           3
+dataone              point count               357
+dataone              camera trap               335
+dataone              detection/non-detection   20
+dataone              encounter history         14
+sciencebase          detection history         3
+sciencebase          occupancy model           29
+sciencebase          capture history           79
+sciencebase          capture-recapture         99
+sciencebase          N-mixture                 3
+sciencebase          repeated counts           0
+sciencebase          point count               21
+sciencebase          camera trap               13
+sciencebase          detection/non-detection   11
+sciencebase          encounter history         5
+gbif_sampling_event  detection history         15
+gbif_sampling_event  occupancy model           0
+gbif_sampling_event  capture history           12
+gbif_sampling_event  capture-recapture         59
+gbif_sampling_event  N-mixture                 18
+gbif_sampling_event  repeated counts           90
+gbif_sampling_event  point count               103
+gbif_sampling_event  camera trap               22
+gbif_sampling_event  detection/non-detection   57
+gbif_sampling_event  encounter history         0

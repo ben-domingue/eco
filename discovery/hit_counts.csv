@@ -1,0 +1,92 @@
+source,query,hit_count,status
+dataverse,detection history,3,ok
+dataverse,occupancy model,10,ok
+dataverse,capture history,5,ok
+dataverse,capture-recapture,14,ok
+dataverse,N-mixture,0,ok
+dataverse,repeated counts,1,ok
+dataverse,point count,24,ok
+dataverse,camera trap,57,ok
+dataverse,detection/non-detection,1,ok
+dataverse,encounter history,2,ok
+zenodo,detection history,18,ok
+zenodo,occupancy model,140,ok
+zenodo,capture history,39,ok
+zenodo,capture-recapture,238,ok
+zenodo,N-mixture,82,ok
+zenodo,repeated counts,5,ok
+zenodo,point count,92,ok
+zenodo,camera trap,391,ok
+zenodo,detection/non-detection,37,ok
+zenodo,encounter history,21,ok
+dryad,detection history,1063,ok
+dryad,occupancy model,606,ok
+dryad,capture history,533,ok
+dryad,capture-recapture,401,ok
+dryad,N-mixture,132,ok
+dryad,repeated counts,76,ok
+dryad,point count,188,ok
+dryad,camera trap,482,ok
+dryad,detection/non-detection,1254,ok
+dryad,encounter history,134,ok
+figshare,detection history,20,ok
+figshare,occupancy model,20,ok
+figshare,capture history,20,ok
+figshare,capture-recapture,20,ok
+figshare,N-mixture,20,ok
+figshare,repeated counts,20,ok
+figshare,point count,20,ok
+figshare,camera trap,20,ok
+figshare,detection/non-detection,20,ok
+figshare,encounter history,20,ok
+osf,detection history,0,ok
+osf,occupancy model,2,ok
+osf,capture history,0,ok
+osf,capture-recapture,6,ok
+osf,N-mixture,0,ok
+osf,repeated counts,0,ok
+osf,point count,2,ok
+osf,camera trap,21,ok
+osf,detection/non-detection,0,ok
+osf,encounter history,0,ok
+edi,detection history,0,ok
+edi,occupancy model,12,ok
+edi,capture history,1,ok
+edi,capture-recapture,1,ok
+edi,N-mixture,0,ok
+edi,repeated counts,0,ok
+edi,point count,10,ok
+edi,camera trap,2,ok
+edi,detection/non-detection,0,ok
+edi,encounter history,0,ok
+dataone,detection history,11,ok
+dataone,occupancy model,117,ok
+dataone,capture history,30,ok
+dataone,capture-recapture,188,ok
+dataone,N-mixture,50,ok
+dataone,repeated counts,3,ok
+dataone,point count,357,ok
+dataone,camera trap,335,ok
+dataone,detection/non-detection,20,ok
+dataone,encounter history,14,ok
+sciencebase,detection history,3,ok
+sciencebase,occupancy model,29,ok
+sciencebase,capture history,79,ok
+sciencebase,capture-recapture,99,ok
+sciencebase,N-mixture,3,ok
+sciencebase,repeated counts,0,ok
+sciencebase,point count,21,ok
+sciencebase,camera trap,13,ok
+sciencebase,detection/non-detection,11,ok
+sciencebase,encounter history,5,ok
+gbif_sampling_event,detection history,15,ok
+gbif_sampling_event,occupancy model,0,ok
+gbif_sampling_event,capture history,12,ok
+gbif_sampling_event,capture-recapture,59,ok
+gbif_sampling_event,N-mixture,18,ok
+gbif_sampling_event,repeated counts,90,ok
+gbif_sampling_event,point count,103,ok
+gbif_sampling_event,camera trap,22,ok
+gbif_sampling_event,detection/non-detection,57,ok
+gbif_sampling_event,encounter history,0,ok
+neon,"(product catalogue, organismal products)",26,ok

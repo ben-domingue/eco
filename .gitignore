@@ -1,0 +1,7 @@
+.cache/
+discovery/cache/
+converters/output/*.csv
+converters/output/*.json
+converters/output/log_*.txt
+!converters/output/roundtrip_results.csv
+!converters/output/results_*.csv

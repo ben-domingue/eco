@@ -1,0 +1,52 @@
+dataset,check,ok,detail
+alfl_removal,validate_eco,TRUE,""
+alfl_removal,resp_raw carries cell label,TRUE,""
+alfl_removal,y identical,TRUE,""
+alfl_removal,siteCovs identical,TRUE,""
+alfl_removal,multinomialType needed from metadata,TRUE,cell-probability function not recoverable from the table
+alfl_removal,multinomPois estimates identical,TRUE,lam(woody)=2.5848
+crossbill_dynocc,validate_eco,TRUE,""
+crossbill_dynocc,rows == non-NA cells,TRUE,"6642 rows, 567 NA cells"
+crossbill_dynocc,"period 1..9, occasion 1..3",TRUE,""
+crossbill_dynocc,y identical,TRUE,""
+crossbill_dynocc,siteCovs identical at surveyed sites,TRUE,""
+crossbill_dynocc,yearlySiteCovs identical at surveyed site-periods,TRUE,""
+crossbill_dynocc,yearlySiteCovs lost at unsurveyed site-periods,TRUE,48 site-periods; 'year' is a function of period and belongs in the periods side table
+crossbill_dynocc,sites with no surveys at all,TRUE,0 sites; their siteCovs are lost
+crossbill_dynocc,obsCovs identical at surveyed cells,TRUE,""
+crossbill_dynocc,colext estimates identical,TRUE,psi(ele)=0.0012
+dipper_cjs,validate_eco,TRUE,""
+dipper_cjs,rows == N x T,TRUE,""
+dipper_cjs,"period present, occasion absent",TRUE,""
+dipper_cjs,ch identical (same order),TRUE,""
+dipper_cjs,sex identical,TRUE,""
+dipper_cjs,crm estimates identical,TRUE,Phi(sexMale)=0.0793
+mallard_nmix,all-NA sites have no rows,TRUE,"sites 12,69,118,146"
+mallard_nmix,validate_eco,TRUE,""
+mallard_nmix,rows == non-NA cells,TRUE,"659 rows, 58 NA cells"
+mallard_nmix,resp is count (max > 1),TRUE,max=12
+mallard_nmix,y identical,TRUE,""
+mallard_nmix,siteCovs identical at surveyed sites,TRUE,""
+mallard_nmix,siteCovs lost for all-NA sites,TRUE,expected: a unit with no surveys has no rows
+mallard_nmix,obsCovs identical at surveyed cells,TRUE,""
+mallard_nmix,obsCovs values at unsurveyed cells (lost),TRUE,22 values not representable
+mallard_nmix,pcount estimates identical,TRUE,lam(elev)=-1.5034
+mhb2014_community,validate_eco,TRUE,""
+mhb2014_community,rows == surveys x species,TRUE,118658 rows = 751 surveys x 158 species
+mhb2014_community,all-NA site has no rows,TRUE,""
+mhb2014_community,resp_raw keeps counts,TRUE,""
+mhb2014_community,file size (MB),TRUE,7.6
+mhb2014_community,y array identical (incl. NA pattern),TRUE,""
+mhb2014_community,siteCovs identical for surveyed sites,TRUE,""
+mhb2014_community,siteCovs lost for the never-surveyed site,TRUE,expected: core table cannot carry a unit with no surveys
+mhb2014_community,obsCovs identical at surveyed cells,TRUE,""
+mhb2014_community,itemCovs identical,TRUE,""
+mhb2014_community,nimble community model fit,TRUE,skipped (set ECO_FIT_COMMUNITY=1); arrays identical so fits would be
+willowtit_occu,validate_eco,TRUE,""
+willowtit_occu,rows == non-NA cells,TRUE,"665 rows, 46 NA cells"
+willowtit_occu,y identical,TRUE,""
+willowtit_occu,siteCovs identical,TRUE,""
+willowtit_occu,obsCovs identical at surveyed cells,TRUE,""
+willowtit_occu,obsCovs values at unsurveyed cells (lost),TRUE,4 values not representable
+willowtit_occu,occu estimates identical,TRUE,psi(elev)=1.3803
+willowtit_occu,nimble dOcc posterior means identical,TRUE,p=0.752

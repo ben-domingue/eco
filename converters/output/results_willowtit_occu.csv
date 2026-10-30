@@ -1,0 +1,9 @@
+dataset,check,ok,detail
+willowtit_occu,validate_eco,TRUE,""
+willowtit_occu,rows == non-NA cells,TRUE,"665 rows, 46 NA cells"
+willowtit_occu,y identical,TRUE,""
+willowtit_occu,siteCovs identical,TRUE,""
+willowtit_occu,obsCovs identical at surveyed cells,TRUE,""
+willowtit_occu,obsCovs values at unsurveyed cells (lost),TRUE,4 values not representable
+willowtit_occu,occu estimates identical,TRUE,psi(elev)=1.3803
+willowtit_occu,nimble dOcc posterior means identical,TRUE,p=0.752

@@ -1,0 +1,7 @@
+dataset,check,ok,detail
+dipper_cjs,validate_eco,TRUE,""
+dipper_cjs,rows == N x T,TRUE,""
+dipper_cjs,"period present, occasion absent",TRUE,""
+dipper_cjs,ch identical (same order),TRUE,""
+dipper_cjs,sex identical,TRUE,""
+dipper_cjs,crm estimates identical,TRUE,Phi(sexMale)=0.0793

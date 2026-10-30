@@ -1,0 +1,7 @@
+dataset,check,ok,detail
+alfl_removal,validate_eco,TRUE,""
+alfl_removal,resp_raw carries cell label,TRUE,""
+alfl_removal,y identical,TRUE,""
+alfl_removal,siteCovs identical,TRUE,""
+alfl_removal,multinomialType needed from metadata,TRUE,cell-probability function not recoverable from the table
+alfl_removal,multinomPois estimates identical,TRUE,lam(woody)=2.5848
