@@ -441,7 +441,9 @@ support from the standard.
 
 ## 11. Storage: one dataset, tables typed by structure
 
-*Added 2026-10-31 after the first upload.* The IRW keeps response tables and taxon
+*Added 2026-10-31 after the first upload; confirmed as a ruling 2026-11-01, with one
+addition: the pipeline's metadata tables (metadata, biblio, tags) go in a second
+dataset, `eco_meta`, so that `LIKE` queries over `eco` see only data tables.* The IRW keeps response tables and taxon
 text in separate Redivis datasets and separate shard lists. For eco the side tables
 (`__items`, `__periods`, `__units`) are small, there are several kinds, and every one
 of them is meaningless without its core table, so the simplest rule is adopted:
@@ -465,7 +467,8 @@ text and routes it away from the core dataset.
 
 ## 12. Open questions for Ben
 
-1. **Species as the probe versus visit as the probe.** The draft makes `taxon` the required probe column,
+1. ~~**Species as the probe versus visit as the probe.**~~ Ruled 2026-11-01: species on `taxon`,
+   as drafted; the visit-as-probe view is the derived pivot in §9. Original text: The draft makes `taxon` the required probe column,
    which makes single-species tables look like IRW's repeated-trial family (one
    taxon, many `occasion`s). The psychometric payoff of the warehouse comes from the
    multi-species tables. Is a corpus in which most tables have a single `taxon`
@@ -478,8 +481,9 @@ text and routes it away from the core dataset.
    the core file holding only non-zero rows. The dense form is IRW-like and
    self-contained; the sparse form is Darwin Core's event-core model. Draft
    recommends dense.
-4. **Should `obs_` covariates live in the core file** (flat, IRW-like, duplicated
-   across species) or only in a `surveys` side table? Same tradeoff as (3).
+4. ~~**Should `obs_` covariates live in the core file**~~ Ruled 2026-11-01: in the core file,
+   as drafted (the `unmarked` three-level split in one frame). A `__surveys` table is
+   not a second home for them. Whether `__surveys` is ever *required* is deferred with (3).
 5. **Sensitive-species policy**: coarsen by rule (draft) versus exclude
    coordinates entirely for any flagged taxon.
 6. **Multinomial / distance families**: accept the stretched `occasion` semantics,
@@ -489,6 +493,11 @@ text and routes it away from the core dataset.
 
 ## Changelog
 
+- **v0.3.1 (2026-11-01)**, also: open questions 1 (species on `taxon`) and 4 (`obs_` in
+  the core file) ruled as drafted; §11 storage confirmed, plus `eco_meta`. Questions 3
+  (dense zeros), 5 (coordinates), 6 (stretched families) and the `__surveys` question are
+  held open until the next batch of deposits has been through the pipeline; see
+  `design_landscape.md` for the designs to watch for.
 - **v0.3.1 (2026-11-01)**: the sample floor is a published, filterable attribute
   (`sample_floor` = `meets` / `below (reason)`), not an intake gate (§10, closes open
   question 2). The two tables previously tagged `hold` (`schank_2015_tapir_occ`,
