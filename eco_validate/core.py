@@ -103,6 +103,12 @@ _DEFAULT_IRW_SRC = Path.home() / "Dropbox" / "projects" / "irw" / "src"
 
 def eco_to_irw(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
+    # SCR: IRW has no trap key, so a trap becomes part of the item (traps as items,
+    # the reading standard_draft.md gives SCR): item = "<taxon>:<trap>", and the
+    # key (id, item, period, occasion) is unique again.
+    if "trap" in out.columns:
+        out["taxon"] = out["taxon"].astype(str) + ":" + out["trap"].astype(str)
+        out = out.drop(columns=["trap"])
     ren = {"unit": "id", "taxon": "item", "y": "resp", "y_raw": "resp_raw", "observer": "rater"}
     out = out.rename(columns={k: v for k, v in ren.items() if k in out.columns})
     out.columns = [c.replace("unit_", "cov_", 1) if c.startswith("unit_") else
@@ -116,7 +122,7 @@ def eco_to_irw(df: pd.DataFrame) -> pd.DataFrame:
         # Seconds since the epoch; resolution-independent (pandas 3 parses to microseconds).
         secs = (ts - pd.Timestamp(0, tz="UTC")) // pd.Timedelta(seconds=1)
         out["date"] = secs.astype("Int64")
-    first = [c for c in ("id", "item", "resp", "resp_raw", "trap", "period", "occasion",
+    first = [c for c in ("id", "item", "resp", "resp_raw", "period", "occasion",
                          "date", "rater", "treat", "cluster_id") if c in out.columns]
     return out[first + [c for c in out.columns if c not in first]]
 

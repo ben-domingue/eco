@@ -438,7 +438,7 @@ eco_to_unmarked <- function(long, family = NULL, ...) {
 # the irw R/Python packages' readers) can consume it. unit->id, taxon->item, y->resp,
 # y_raw->resp_raw, observer->rater, unit_->cov_, taxon_->itemcov_, period_->periodcov_,
 # obs_ kept (an IRW-unknown prefix, warned not blocked), date -> Unix seconds (UTC),
-# trap -> a C5 occasion column named trap.
+# trap -> folded into item as taxon:trap (IRW has no trap key).
 # ---------------------------------------------------------------------------
 #' The IRW view of a table
 #'
@@ -446,7 +446,8 @@ eco_to_unmarked <- function(long, family = NULL, ...) {
 #' tooling can read it: `unit` becomes `id`, `taxon` `item`, `y` `resp`,
 #' `y_raw` `resp_raw`, `observer` `rater`; `unit_` becomes `cov_`, `taxon_`
 #' `itemcov_`, `period_` `periodcov_` (`obs_` is kept); `date` becomes Unix
-#' seconds in UTC.
+#' seconds in UTC. IRW has no trap key, so in a spatial capture-recapture table
+#' `item` is `"<taxon>:<trap>"` (traps as items) and `trap` is dropped.
 #'
 #' @param long A table in the eco format.
 #' @return A data.table.
@@ -455,6 +456,11 @@ eco_to_unmarked <- function(long, family = NULL, ...) {
 #' @export
 eco_to_irw <- function(long) {
   long <- copy(as.data.table(long))
+  # SCR: IRW has no trap key; traps become part of the item (item = "<taxon>:<trap>")
+  if ("trap" %in% names(long)) {
+    long[, taxon := paste0(taxon, ":", trap)]
+    long[, trap := NULL]
+  }
   ren <- c(unit = "id", taxon = "item", y = "resp", y_raw = "resp_raw", observer = "rater")
   for (nm in intersect(names(ren), names(long))) setnames(long, nm, ren[[nm]])
   nn <- names(long)
@@ -469,7 +475,7 @@ eco_to_irw <- function(long) {
     dt <- suppressWarnings(as.POSIXct(d, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC"))
     long[, date := as.integer(round(as.numeric(dt)))]
   }
-  first <- intersect(c("id", "item", "resp", "resp_raw", "trap", "period", "occasion", "date", "rater", "treat", "cluster_id"), names(long))
+  first <- intersect(c("id", "item", "resp", "resp_raw", "period", "occasion", "date", "rater", "treat", "cluster_id"), names(long))
   setcolorder(long, c(first, setdiff(names(long), first)))
   long[]
 }

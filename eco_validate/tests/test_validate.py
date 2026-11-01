@@ -285,6 +285,17 @@ def test_strict_turns_warnings_into_exit_1(tmp_path):
     assert main([str(tmp_path), "--strict"]) == 1
 
 
+def test_eco_to_irw_folds_trap_into_item():
+    from eco_validate import eco_to_irw
+    import pandas as pd
+    scr = pd.DataFrame({"unit": ["a", "a", "b"], "taxon": "RAT", "y": [0, 1, 0],
+                        "trap": ["t1", "t2", "t1"], "period": 1, "occasion": 1})
+    v = eco_to_irw(scr)
+    assert "trap" not in v.columns
+    assert list(v["item"]) == ["RAT:t1", "RAT:t2", "RAT:t1"]
+    assert not v.duplicated(["id", "item", "period", "occasion"]).any()
+
+
 def test_eco_to_irw_view():
     from eco_validate import eco_to_irw
     v = eco_to_irw(good_frame())

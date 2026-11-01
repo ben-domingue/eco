@@ -17,7 +17,8 @@ The same table under the Item Response Warehouse's v1.0 names, so IRW
 tooling can read it: \code{unit} becomes \code{id}, \code{taxon} \code{item}, \code{y} \code{resp},
 \code{y_raw} \code{resp_raw}, \code{observer} \code{rater}; \code{unit_} becomes \code{cov_}, \code{taxon_}
 \code{itemcov_}, \code{period_} \code{periodcov_} (\code{obs_} is kept); \code{date} becomes Unix
-seconds in UTC.
+seconds in UTC. IRW has no trap key, so in a spatial capture-recapture table
+\code{item} is \code{"<taxon>:<trap>"} (traps as items) and \code{trap} is dropped.
 }
 \examples{
 head(eco_to_irw(schank_2015_tapir_occ))

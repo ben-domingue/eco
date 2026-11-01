@@ -92,7 +92,7 @@ conformance as a *view*:
 | `y` | `resp` | the observation: 0/1, count, or state code |
 | `y_raw`, `observer` | `resp_raw`, `rater` | |
 | `unit_*`, `period_*`, `obs_*`, `taxon_*` | `cov_*`, `periodcov_*`, (none), `itemcov_*` | covariate at the level where it is constant |
-| `trap` | (none) | SCR trap index; `__traps` side table |
+| `trap` | folded into `item` as `taxon:trap` | SCR trap index; `__traps` side table; IRW has no trap key, so traps become items in the view |
 | `date` ISO 8601 | `date` Unix seconds | |
 | `__taxa`, `__periods`, `__units`, `__traps` | item text | side tables, typed by key column |
 

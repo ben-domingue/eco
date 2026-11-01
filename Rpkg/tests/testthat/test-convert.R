@@ -71,6 +71,15 @@ test_that("eco_to_irw renames and converts dates", {
   expect_equal(v$date[3] - v$date[2], 15L)
 })
 
+test_that("eco_to_irw folds trap into item", {
+  scr <- data.frame(unit = c("a", "a", "b"), taxon = "RAT", y = c(0, 1, 0), trap = c("t1", "t2", "t1"),
+                    period = 1L, occasion = 1L, stringsAsFactors = FALSE)
+  v <- eco_to_irw(scr)
+  expect_false("trap" %in% names(v))
+  expect_equal(v$item, c("RAT:t1", "RAT:t2", "RAT:t1"))
+  expect_false(anyDuplicated(v[, c("id", "item", "period", "occasion")]) > 0)
+})
+
 test_that("order_eco puts fixed columns first", {
   shuffled <- tapir[, rev(names(tapir))]
   expect_equal(names(order_eco(shuffled))[1:3], c("unit", "taxon", "y"))
