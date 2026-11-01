@@ -101,6 +101,22 @@ the same code the `eco` R package ships) over hand-rolled reshapes:
 period and taxon covariates; the `unmarked` frame converters; `ch_to_eco()` for
 capture histories. They produce the right column order and the explicit-zero rows.
 
+**Dependencies.** `data.table` and `jsonlite` through `lib/eco_common.R`; `readxl`
+is accepted for `.xlsx` deposits (`galvez_2021_araucania_comm` uses it). Anything
+else (a format reader, a package that ships the data) is a question for the batch
+log before it goes in a script.
+
+**Row layout by family.** Site tables: one row per taxon per survey (E4). Capture
+histories (`cjs`): one row per individual per `period` from first capture on, the
+full rectangle the deposit's history strings give. Spatial capture-recapture
+(`scr`): a row per individual x `trap` x `period` x `occasion` for every trap-night
+the trap was operated, since an operating trap surveys every individual in the
+population; trap usage comes from the deposit (`__traps` usage) or, if it is not
+deposited, from a stated rule declared in `surveyEvidence`. Sessions with no
+capture of an individual keep their rows. A `secr` user filters to the captured
+individual-sessions; the table does not pre-filter for them. The IRW view folds
+`trap` into `item` as `taxon:trap`.
+
 Covariates go at the level where they are constant (E5): `unit_` (elevation,
 habitat, coordinates, an individual's sex), `period_` (habitat in year t),
 `obs_` (wind, effort, duration, date offset, trap dependence; may vary across taxa
