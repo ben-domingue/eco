@@ -29,6 +29,12 @@ Assert the licence in the script where the download helper exposes it
 (`download_dryad()` returns it as an attribute), so a relicensed deposit fails the
 rebuild.
 
+**The paper.** When a deposit cannot be read without its paper (column meanings,
+the survey design, which file is which) and the paper is paywalled, set the queue
+row to `blocked: paper` with the DOI and move on. Ben drops the PDF into
+`queue/papers/`; a file there whose name matches the author and year unblocks the
+row. Cite what the paper supplied in the script header.
+
 **Duplicates.** Search `dictionary/dictionary_auto.csv` by DOI (paper and data) and
 by author-year. A deposit mirrored on Dryad and Zenodo is one table. The same
 survey published as two files with different response types (counts and a calling
