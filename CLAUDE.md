@@ -26,6 +26,7 @@ Rscript data/run_all.R                       # rebuild every table
 python3 -m eco_validate.cli output/          # the gate: every core table, clause ids, exit 0/1/2
 python3 -m eco_validate.cli output/<table>.csv -v --irw   # one table, every affected case, plus the IRW view
 python3 -m pytest eco_validate/tests -q      # validator tests; the corpus test covers every table in output/
+python3 tools/check_coverage.py             # every core table has __taxa, __dataset.json, dictionary, tags and metadata rows (CI runs this)
 Rscript validate/validate_all.R              # eco-validate --irw over output/, writes validate/report.csv (the site reads it)
 metadata/run_pipeline.sh                     # metadata.csv, biblio.csv, tags.csv, status.json from output/, dictionary/, tags/
 python3 metadata/upload_meta.py --dry-run    # ship those three to Redivis eco_meta (draft)

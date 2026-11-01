@@ -18,6 +18,13 @@ contributor runs before depositing a table.
 
 Exit codes: 0 ok, 1 something blocks, 2 bad input.
 
+CI runs `eco-validate output/` and these tests on every pull request
+(`.github/workflows/tests.yml`). To release the package: bump `version` in
+`pyproject.toml` and `__version__` in `__init__.py` in one commit on main, then
+`git tag eco-validate-vX.Y.Z && git push origin eco-validate-vX.Y.Z`;
+`release-eco-validate.yml` builds the wheel, smoke-tests it in a bare venv and
+attaches it to a GitHub release. PyPI is not wired (see that workflow's header).
+
 ## What is validated
 
 A *core table* is `<name>.csv` with `unit, taxon, y` as its first columns. Its

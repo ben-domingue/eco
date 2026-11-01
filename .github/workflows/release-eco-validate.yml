@@ -1,0 +1,97 @@
+# Publishes eco_validate from a tag as a GitHub release with the wheel and
+# sdist attached. That is enough for `pip install <wheel url>` and for the
+# browser validator (issue #8), which loads the wheel; PyPI is optional and
+# deliberately not wired: Trusted Publishing needs a pending publisher created
+# on pypi.org first, and a publish job that fails for want of one would turn
+# every release red. To add it later, copy the `publish` job from
+# irw/src/.github/workflows/release-irw-validate.yml.
+#
+# This repository holds many things; only eco_validate/ is a distributable
+# package, so the tag is namespaced -- `eco-validate-vX.Y.Z`, not `vX.Y.Z` --
+# and this workflow ignores every other tag.
+#
+# Release procedure: bump `version` in eco_validate/pyproject.toml AND
+# `__version__` in eco_validate/__init__.py in one commit, merge to main, then
+#     git tag eco-validate-v0.2.0 && git push origin eco-validate-v0.2.0
+#
+# workflow_dispatch runs everything except the release step, to check the
+# build and the smoke test before burning a version number.
+name: release eco-validate
+
+on:
+  push:
+    tags: ["eco-validate-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Before building, not after: a mismatch means the artifact would carry a
+      # version that disagrees with the tag people cite.
+      - name: Tag, pyproject and __init__ agree on the version
+        run: python .github/scripts/check_eco_validate_version.py "${{ github.ref_type == 'tag' && github.ref_name || '' }}"
+
+      - run: python -m pip install --upgrade pip build twine
+      - run: python -m build --outdir dist eco_validate
+      - run: python -m twine check dist/*
+
+      # The package must import and run with nothing but its declared
+      # dependencies, from outside the repository. Installing the wheel into a
+      # bare venv and validating a file from a scratch directory proves it; in
+      # the checkout the repo would be sitting there satisfying imports.
+      - name: The wheel works with no repository around it
+        run: |
+          set -euo pipefail
+          python -m venv "$RUNNER_TEMP/vv"
+          "$RUNNER_TEMP/vv/bin/pip" install --quiet dist/*.whl
+          mkdir -p "$RUNNER_TEMP/smoke" && cd "$RUNNER_TEMP/smoke"
+          # Empty y (E4), duplicate key (E3), no __taxa (E6), no __dataset.json (E10).
+          printf 'unit,taxon,y\n1,sp1,\n1,sp1,1\n' > bad.csv
+          # Exit 1 on a blocking finding is the contract the gate depends on.
+          if "$RUNNER_TEMP/vv/bin/eco-validate" bad.csv; then
+            echo "expected a nonzero exit for a table with empty y"; exit 1
+          fi
+          "$RUNNER_TEMP/vv/bin/python" -c "
+          import eco_validate
+          report = eco_validate.validate_file('bad.csv')
+          assert not report.ok, 'empty y should block'
+          assert eco_validate.exit_code([report]) == 1
+          assert eco_validate.__version__, 'no __version__'
+          print('ok:', eco_validate.__version__, sorted({f.check for f in report.errors}))
+          "
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  release:
+    needs: build
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write   # to create the release and attach the files
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: GitHub release with wheel and sdist
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --title "$GITHUB_REF_NAME" \
+            --notes "eco-validate ${GITHUB_REF_NAME#eco-validate-v}: pip install the attached wheel, or from the repo root \`pip install ./eco_validate\`. Clauses and exit codes are in eco_validate/README.md; the standard is standard.md."

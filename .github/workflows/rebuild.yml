@@ -1,0 +1,73 @@
+# Rebuild every table from its source deposit and check that output/ does not
+# change (issue #4, item 3).
+#
+# Decision: NOT run on push or PR. `Rscript data/run_all.R` downloads every
+# deposit (Dryad, Zenodo, figshare, USGS, ...) and resolves taxa against the
+# GBIF API, so it is bound by third parties' uptime and would make the gate in
+# tests.yml flaky for reasons unrelated to the change under review. It runs on
+# demand (workflow_dispatch) and monthly, so a deposit that moved or was
+# re-versioned under us is noticed within weeks rather than when a user asks.
+# IRW records the same decision in its drift-report.yml header.
+#
+# What a red run means: either a source changed (a script's assertions about
+# row counts and value sets fail loudly, by design, see CLAUDE.md), or a script
+# is no longer reproducible from its download. Either way the table on Redivis
+# is unchanged; this is a report, not a release step. Nothing here publishes.
+#
+# Raw downloads are cached under .cache/raw/ with actions/cache so a re-run
+# after a transient outage does not fetch everything again.
+name: rebuild from source
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 1 * *"   # 06:17 UTC on the 1st of each month
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      # Everything the data/ scripts and lib/eco_common.R load. unmarked,
+      # AHMbook and marked are where the textbook datasets (Kery, Lebreton,
+      # Chandler) come from; readxl is the accepted xlsx reader (CLAUDE.md).
+      - name: R packages
+        run: Rscript -e 'install.packages(c("data.table", "jsonlite", "readxl", "unmarked", "AHMbook", "marked"))'
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            .cache/raw
+            .cache/gbif
+          key: eco-raw-${{ hashFiles('data/*.R') }}
+          restore-keys: eco-raw-
+
+      - name: Rscript data/run_all.R
+        run: Rscript data/run_all.R
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pandas
+
+      - name: Rebuilt tables pass the gate
+        run: python -m eco_validate.cli output/
+
+      - name: Rebuilt tables match the committed ones
+        run: |
+          git status --short output/
+          if ! git diff --quiet --stat -- output/; then
+            echo "::error::output/ differs after rebuild; a source changed or a script is not reproducible"
+            git diff --stat -- output/
+            exit 1
+          fi
+          echo "output/ unchanged by rebuild"
