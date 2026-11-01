@@ -55,21 +55,26 @@ most with 20 to 300 units and 2 to 12 occasions, is months. The corpus is one
 of small tables, which is where IRW's floor of 100 ids would exclude most of
 ecology.
 
-## Open decisions
+## The decisions, and how they were ruled
 
-These are the design choices the draft takes a position on. Four are still
-open; the third was settled on 2026-11-01.
+These are the design choices the draft left open. All were ruled on
+2026-11-01, after twelve public deposits had been through the pipeline, and
+the standard was frozen as v1.0-draft. The ruling follows each item.
 
 1. **What plays the role of the item?** The draft puts the species on
    `taxon`, so single-species tables look like IRW's repeated-trial family and
    community tables are species-as-items. Putting the visit there instead
    makes every table a person-by-item matrix an IRT model can read directly,
-   but does not generalise to multi-species data.
+   but does not generalise to multi-species data. *Ruled: species on `taxon`;
+   the visit view is a derived pivot.*
 2. **Dense zeros or a surveys table?** The explicit-zero rule makes community
    tables large and repeats observation covariates across species. The
    alternative is Darwin Core's event-core model: a sparse detections table
    plus a surveys table. The draft recommends dense for IRW-likeness and
-   self-containment.
+   self-containment. *Ruled: dense. Each table must also declare what the
+   survey set rests on (`surveyEvidence`), because three of the second batch's
+   deposits were record tables with no survey list and the set had to be
+   inferred.*
 3. **The sample floor** (settled). It is a reported attribute, not an intake
    rule: every table carries `sample_floor`, `meets` at 30 or more units and 2
    or more occasions, otherwise `below` with the reason, and users filter on
@@ -79,11 +84,16 @@ open; the third was settled on 2026-11-01.
    ship when they come.
 4. **Sensitive-species coordinates.** Coarsen by rule to a 0.1-degree grid
    with the uncertainty recorded, or drop coordinates for any flagged taxon.
+   *Ruled: coarsen, never drop; a taxon is flagged by the source, by IUCN
+   CR/EN/VU, or by a cited national red list.*
 5. **How far to stretch.** Double-observer and binned distance sampling fit by
    using `occasion` for a category rather than a time-ordered replicate;
    spatial capture-recapture adds a `trap` index. Accept the stretched
    semantics with a declared unit kind and response type, or keep
-   version 1 to the families where the format is unforced.
+   version 1 to the families where the format is unforced. *Ruled: three lists.
+   Removal, double-observer and binned distance sampling are in as declared
+   stretches with their metadata required; spatial capture-recapture,
+   multi-scale and per-detection designs are experimental.*
 
 ## People and code
 

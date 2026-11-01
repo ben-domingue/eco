@@ -64,7 +64,7 @@ dataset <- list(
   abstract = "Species detection histories spanning 77 years (1938-2014) compiled from online databases and authors' collections. Covariate data used for occupancy models include number of collections per HUC per year and the median year of each 3-yr primary sampling period.",
   samplingProtocol = "Compiled fish collection records (museum databases and authors' collections); a HUC-year counts as surveyed when at least one collection exists; number of collections is the effort covariate.",
   samplingProtocolCode = "compiled_collections", effortColumn = "obs_effort",
-  responseType = "detection", unitKind = "site",
+  surveyEvidence = "effort_table", responseType = "detection", unitKind = "site",
   closure = "occasion (years within a 3-year primary period)",
   geographicCoverage = "Upper and Middle New River drainage, Virginia and North Carolina, USA (HUC12 codes; no coordinates deposited)",
   temporalCoverage = "1938/2014", coordinatesCoarsened = NA)

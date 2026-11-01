@@ -47,6 +47,7 @@ from red_up.targets import load_registry
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "output"
 TAGS = ROOT / "tags" / "tags_auto.csv"
+STANDARD_PREFIX = "eco v1.0"   # standard.md; a table built under an older draft is rebuilt, not shipped
 DATASET = "eco"
 DATASET_DESCRIPTION = (
     "Ecological detection data (occupancy, counts, capture histories, community "
@@ -168,6 +169,16 @@ def main(argv=None) -> int:
         errors, warnings = run_validator(view)
         r.errors.extend(errors); r.warnings.extend(warnings)
     blocked = {} if args.allow_hold else blocked_by_tags()
+    for r in core:
+        meta_p = OUT / f"{r.table}__dataset.json"
+        if not meta_p.exists():
+            r.errors.append("no __dataset.json"); continue
+        m = json.loads(meta_p.read_text())
+        ver = str(m.get("standardVersion", ""))
+        if not ver.startswith(STANDARD_PREFIX):
+            r.errors.append(f"built under `{ver or 'unknown'}`, not {STANDARD_PREFIX}: rerun its data/ script")
+        if not m.get("surveyEvidence"):
+            r.errors.append("standard E4: surveyEvidence missing from __dataset.json")
     for r in reports:
         base = r.table.split("__")[0]
         if base in blocked:

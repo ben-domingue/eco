@@ -56,7 +56,7 @@ dataset <- list(
   intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
   abstract = "The input file for analysing the detection history of 175 adult Plain-crested Elaenia (Elaenia cristata) throughout nine sessions between 2010 and 2014 in the northeastern Brazil.",
   samplingProtocol = "Mist-net capture-mark-recapture of banded adults; Program MARK input format (CJS).",
-  samplingProtocolCode = "mist_net", responseType = "detection", unitKind = "individual",
+  samplingProtocolCode = "mist_net", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
   closure = "period (one capture occasion per session; state may change between sessions)",
   lossesOnCapture = "4 individuals; encoded as obs_removed = 1 on the last row, no later rows",
   geographicCoverage = "northeastern Brazil (no coordinates deposited)", temporalCoverage = "2010/2014",

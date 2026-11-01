@@ -1,9 +1,10 @@
 # eco_common.R -- shared harness for the per-dataset processing scripts in ../data/.
 #
 # Mirrors the division of labour in ben-domingue/irw: a data/ script reads one
-# source and writes one or more tables in the draft standard (../standard_draft.md);
+# source and writes one or more tables in the standard (../standard.md, v1.0-draft);
 # this file supplies what every script needs and nothing dataset-specific:
 #   * download_cached()  fetch a source file once into .cache/raw/<table>/
+#   * download_dryad()    fetch and unzip a whole Dryad deposit (the only anonymous route)
 #   * gbif_taxon()       resolve a scientific name to a GBIF usage key (cached)
 #   * coarsen_coords()   the sensitive-species coordinate rule (standard section 6)
 #   * write_table()      core CSV + __taxa / __periods / __units / __traps side tables + dataset.json
@@ -46,6 +47,30 @@ download_cached <- function(url, table, filename = NULL, quiet = TRUE) {
       stop("download failed: ", url)
   }
   dest
+}
+
+# Dryad: anonymous per-file downloads return 401/403, and most deposits have no
+# Zenodo mirror. The version "download" endpoint (a zip of the whole deposit) is
+# served anonymously. Fetch it once into .cache/raw/<table>/dryad_<version>/ and
+# return that directory; the caller asserts on the file names it expects.
+download_dryad <- function(doi, table) {
+  doi <- sub("^doi:", "", doi)
+  api <- "https://datadryad.org/api/v2"
+  meta_f <- file.path(RAW_DIR, table, "dryad_dataset.json"); dir.create(dirname(meta_f), showWarnings = FALSE, recursive = TRUE)
+  if (!file.exists(meta_f))
+    download.file(paste0(api, "/datasets/doi%3A", URLencode(doi, reserved = TRUE)), meta_f, quiet = TRUE,
+                  headers = c("User-Agent" = UA))
+  meta <- fromJSON(meta_f)
+  ver <- basename(meta[["_links"]][["stash:version"]][["href"]])
+  lic <- meta$license %||% NA_character_
+  dir <- file.path(RAW_DIR, table, paste0("dryad_", ver))
+  if (!dir.exists(dir) || !length(list.files(dir))) {
+    zip <- download_cached(paste0(api, "/versions/", ver, "/download"), table, filename = paste0("dryad_", ver, ".zip"))
+    dir.create(dir, showWarnings = FALSE); unzip(zip, exdir = dir)
+  }
+  message(sprintf("  Dryad %s: version %s, licence %s, %d file(s)", doi, ver, lic, length(list.files(dir, recursive = TRUE))))
+  attr(dir, "license") <- lic; attr(dir, "version") <- ver
+  dir
 }
 
 # ---------------------------------------------------------------------------
@@ -122,8 +147,37 @@ floor_status <- function(s) {
   if (length(reasons)) paste0("below (", paste(reasons, collapse = "; "), ")") else "meets"
 }
 
+RESPONSE_TYPES  <- c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event")
+SURVEY_EVIDENCE <- c("sample_table", "effort_table", "deposited_matrix", "row_presence", "inferred")
+STANDARD_VERSION <- "eco v1.0-draft (2026-11-01)"
+
+# The metadata contract of standard E10: required fields, controlled vocabularies,
+# conditional fields. Returns a character vector of problems (empty when fine).
+check_dataset_meta <- function(dataset, long) {
+  p <- character()
+  req <- c("title", "creator", "pubDate", "citation", "sourceURL", "intellectualRights",
+           "samplingProtocol", "samplingProtocolCode", "responseType", "unitKind", "closure",
+           "surveyEvidence", "temporalCoverage", "geographicCoverage")
+  miss <- setdiff(req, names(dataset)); if (length(miss)) p <- c(p, paste("E10: missing", paste(miss, collapse = ", ")))
+  rt <- dataset$responseType; se <- dataset$surveyEvidence
+  if (!is.null(rt) && !rt %in% RESPONSE_TYPES) p <- c(p, sprintf("E2: responseType `%s` not in {%s}", rt, paste(RESPONSE_TYPES, collapse = ", ")))
+  if (!is.null(se) && !se %in% SURVEY_EVIDENCE) p <- c(p, sprintf("E4: surveyEvidence `%s` not in {%s}", se, paste(SURVEY_EVIDENCE, collapse = ", ")))
+  if (identical(se, "inferred") && is.null(dataset$surveyEvidenceNote)) p <- c(p, "E4: surveyEvidence = inferred needs surveyEvidenceNote")
+  if (!is.null(rt) && rt %in% c("state", "ordinal") && is.null(dataset$stateCodes)) p <- c(p, sprintf("E2: responseType %s needs stateCodes", rt))
+  if (identical(rt, "multinomial_cell") && is.null(dataset$multinomialType) && is.null(dataset$distanceBreaks))
+    p <- c(p, "E2/E9: multinomial_cell needs multinomialType or distanceBreaks")
+  if (identical(rt, "detection") && !all(long$y %in% c(0, 1))) p <- c(p, "E2: responseType detection but y is not 0/1")
+  if (identical(rt, "count") && any(long$y < 0 | long$y != round(long$y))) p <- c(p, "E2: responseType count but y is not a non-negative integer")
+  if (!is.null(dataset$unitKind) && !dataset$unitKind %in% c("site", "individual")) p <- c(p, "E10: unitKind must be site or individual")
+  has_coords <- any(grepl("^unit_(decimalLatitude|x)$", names(long)))
+  if (has_coords && is.null(dataset$coordinatesCoarsened)) p <- c(p, "E7: coordinates present but coordinatesCoarsened not declared")
+  p
+}
+
 write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units = NULL, traps = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name))
+  mp <- check_dataset_meta(dataset, long)
+  if (length(mp)) stop(sprintf("%s fails the metadata contract: %s", name, paste(mp, collapse = "; ")))
   long <- order_eco(long)
   v <- validate_eco(long)
   if (!v$ok) stop(sprintf("%s fails validate_eco: %s", name, paste(v$problems, collapse = "; ")))
@@ -138,7 +192,7 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s),
                     columns = names(long),
-                    standardVersion = "eco draft v0.3 (2026-10-31)",
+                    standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
                     buildDate = format(Sys.Date())))
   write_json(dataset, file.path(OUT_DIR, paste0(name, "__dataset.json")), auto_unbox = TRUE, pretty = TRUE, na = "null")

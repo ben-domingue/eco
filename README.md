@@ -22,7 +22,8 @@ latent state observed imperfectly across repeated surveys?
   IRW C5 occasion columns), covariates prefixed by the level at which they are
   constant (`unit_`, `period_`, `obs_`, `taxon_` — exactly `unmarked`'s
   three covariate levels). A community occupancy model is literally a
-  random-item IRT model with species as items. See `standard_draft.md`.
+  random-item IRT model with species as items. See `standard.md` (v1.0-draft, the
+  normative clauses) and `standard_draft.md` (the reasoning).
 - **It round-trips.** Six bundled datasets covering single-season occupancy,
   N-mixture, removal/multinomial, CJS, dynamic occupancy and a 158-species
   community dataset convert to the format, validate, convert back to identical

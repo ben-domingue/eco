@@ -1,4 +1,4 @@
-# Validates every table in output/ twice: against the draft standard (validate_eco,
+# Validates every table in output/ twice: against standard.md (validate_eco + check_dataset_meta,
 # converters/eco_standard.R) and, through its IRW view (eco_to_irw(): id/item/resp
 # names, Unix-second dates, written to .cache/irw_view/<table>.csv), against IRW v1.0
 # with irw-validate from ben-domingue/irw (skipped if that checkout is absent).
@@ -14,6 +14,9 @@ for (t in tables) {
   view_dir <- file.path(ECO_ROOT, ".cache", "irw_view"); dir.create(view_dir, showWarnings = FALSE, recursive = TRUE)
   view_path <- file.path(view_dir, paste0(t, ".csv")); fwrite(eco_to_irw(long), view_path)
   ds <- fromJSON(file.path(OUT_DIR, paste0(t, "__dataset.json")))
+  mp <- check_dataset_meta(ds, long)                       # standard E10 (and E2/E4/E7 via metadata)
+  if (length(mp)) { v$ok <- FALSE; v$problems <- c(v$problems, mp) }
+  if (identical(ds$surveyEvidence, "inferred")) irw_warn_extra <- "surveyEvidence = inferred" else irw_warn_extra <- NULL
   taxa_ok <- file.exists(file.path(OUT_DIR, paste0(t, "__taxa.csv"))) &&
     setequal(fread(file.path(OUT_DIR, paste0(t, "__taxa.csv")))$taxon, unique(long$taxon))
   irw <- NA_character_; irw_warn <- NA_character_
@@ -35,6 +38,7 @@ for (t in tables) {
   rows[[t]] <- data.table(table = t, rows = nrow(long), units = uniqueN(long$unit), taxa = uniqueN(long$taxon),
                           eco_valid = v$ok, eco_problems = paste(v$problems, collapse = "; "),
                           taxa_table_matches = taxa_ok, sample_floor = ds$sampleFloor,
+                          survey_evidence = ds$surveyEvidence %||% "", standard = ds$standardVersion %||% "",
                           irw_v1 = irw, irw_warnings = irw_warn)  # irw_v1 refers to the IRW view of the table
 }
 rep <- rbindlist(rows)

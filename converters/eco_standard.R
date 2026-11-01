@@ -1,5 +1,5 @@
 # eco_standard.R — converters between native ecological data structures and the
-# draft "IRW-for-ecology" long format (see ../standard_draft.md).
+# eco long format (see ../standard.md, clauses E1-E10; ../standard_draft.md has the history).
 #
 # Core columns: unit, taxon, y [, y_raw, trap, period, occasion, date, observer,
 #               treat, cluster_id, unit_*, period_*, obs_*, taxon_*]
@@ -249,36 +249,36 @@ validate_eco <- function(long) {
   long <- as.data.table(long)
   problems <- character()
   req <- c("unit", "taxon", "y")
-  if (!all(req %in% names(long))) problems <- c(problems, "C1: missing required column(s)")
-  if (!is.numeric(long$y)) problems <- c(problems, "C4: y not numeric")
-  if (anyNA(long$y)) problems <- c(problems, "C4/explicit-zero: NA in y (a missing row, not an NA, encodes 'not surveyed')")
+  if (!all(req %in% names(long))) problems <- c(problems, "E1: missing required column(s) unit, taxon, y")
+  if (!is.numeric(long$y)) problems <- c(problems, "E2: y not numeric")
+  if (anyNA(long$y)) problems <- c(problems, "E4: NA in y (a missing row, not an NA, encodes 'not surveyed')")
   key <- intersect(KEY_COLS, names(long))
-  if (anyDuplicated(long, by = key)) problems <- c(problems, sprintf("C5: duplicate (%s)", paste(key, collapse = ",")))
+  if (anyDuplicated(long, by = key)) problems <- c(problems, sprintf("E3: duplicate key (%s)", paste(key, collapse = ",")))
   bad <- setdiff(names(long), CORE_FIXED)
   bad <- bad[!grepl(PREFIX_RE, bad)]
-  if (length(bad)) problems <- c(problems, paste("C6: undefined column(s):", paste(bad, collapse = ", ")))
+  if (length(bad)) problems <- c(problems, paste("E1/E5: undefined column(s):", paste(bad, collapse = ", ")))
   if ("date" %in% names(long)) {
     d <- as.character(long$date); d <- d[!is.na(d) & nzchar(d)]
-    if (!all(grepl(ISO_DATE_RE, d))) problems <- c(problems, "date: not ISO 8601 (YYYY-MM-DD[Thh:mm[:ss]Z])")
+    if (!all(grepl(ISO_DATE_RE, d))) problems <- c(problems, "E8: date not ISO 8601 (YYYY-MM-DD[Thh:mm[:ss]Z])")
   }
   for (cc in intersect(c("period", "occasion", "trap"), names(long)))
-    if (!is.numeric(long[[cc]]) && cc != "trap") problems <- c(problems, sprintf("%s must be an integer index", cc))
+    if (!is.numeric(long[[cc]]) && cc != "trap") problems <- c(problems, sprintf("E8: %s must be an integer index", cc))
   # covariate level checks
   for (cc in grep("^unit_", names(long), value = TRUE))
     if (nrow(unique(long[, c("unit", cc), with = FALSE])) > uniqueN(long$unit))
-      problems <- c(problems, sprintf("%s varies within unit (should be obs_ or period_)", cc))
+      problems <- c(problems, sprintf("E5: %s varies within unit (should be obs_ or period_)", cc))
   for (cc in grep("^taxon_", names(long), value = TRUE))
     if (nrow(unique(long[, c("taxon", cc), with = FALSE])) > uniqueN(long$taxon))
-      problems <- c(problems, sprintf("%s varies within taxon", cc))
+      problems <- c(problems, sprintf("E5: %s varies within taxon", cc))
   if ("period" %in% names(long)) for (cc in grep("^period_", names(long), value = TRUE))
     if (nrow(unique(long[, c("unit", "period", cc), with = FALSE])) > nrow(unique(long[, .(unit, period)])))
-      problems <- c(problems, sprintf("%s varies within unit x period", cc))
+      problems <- c(problems, sprintf("E5: %s varies within unit x period", cc))
   # explicit-zero for multi-species: every surveyed (unit,trap,period,occasion) has all taxa
   if (uniqueN(long$taxon) > 1) {
     occ <- intersect(c("unit", "trap", "period", "occasion"), names(long))
     per_survey <- long[, .N, by = occ]
     if (any(per_survey$N != uniqueN(long$taxon)))
-      problems <- c(problems, "explicit-zero: some surveys lack rows for some taxa")
+      problems <- c(problems, "E4: some surveys lack rows for some taxa (explicit-zero rule)")
   }
   list(ok = length(problems) == 0, problems = problems,
        n_rows = nrow(long), n_units = uniqueN(long$unit), n_taxa = uniqueN(long$taxon))

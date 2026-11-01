@@ -1,4 +1,8 @@
-# An IRW-style data standard for ecological detection data — draft v0.3
+# An IRW-style data standard for ecological detection data — draft v0.3 (superseded)
+
+> **Superseded 2026-11-01 by [`standard.md`](standard.md), v1.0-draft**, which carries the
+> numbered clauses E1–E10 the validator cites and the rulings on every question in §12.
+> This file is kept as the record of the reasoning and the per-family mapping tables (§3).
 
 *Status: exploratory draft, v0.3 of 2026-10-31 (v0.2: 2026-10-30). Written against the IRW Data Standard v1.0
 (beta, 2026-09-19, clauses C1–C7) and the data structures used by `unmarked`,

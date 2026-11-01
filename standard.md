@@ -1,0 +1,296 @@
+# The eco data standard, v1.0-draft
+
+*2026-11-01. Supersedes `standard_draft.md` (v0.1–v0.3.1), which is kept as the
+record of how the clauses were arrived at and still holds the per-family mapping
+tables and the discussion of alternatives. This file is the normative text: ten
+numbered clauses, `E1`–`E10`, which the validator cites, followed by the intake
+policy and the metadata contract. Where this file and the draft disagree, this file
+governs.*
+
+*The standard is written against the IRW Data Standard v1.0 (clauses C1–C7) and the
+data structures of `unmarked`, `AHMbook`, `nimbleEcology`, `spOccupancy` and
+`marked`. It was frozen after twelve public deposits across five model families had
+been through the pipeline (`BATCH_LOG.md`), and the six textbook datasets had been
+round-tripped (`roundtrip_report.md`).*
+
+---
+
+## The one-paragraph version
+
+One CSV per table, long format, one row per **survey observation** of one unit for
+one taxon. `unit` is the thing that carries the latent ecological state (a site, or an
+individual animal); `taxon` is the species probed for, always, even when there is one;
+`y` is the numeric observation. `period` (primary period, across which the state may
+change) and `occasion` (replicate survey within a period, across which closure is
+assumed) make the key unique; spatial capture–recapture adds `trap`. Covariates are
+prefixed by the level at which they are constant: `unit_`, `period_`, `obs_`,
+`taxon_`. **A row exists if and only if a survey happened; a missing row is not a
+zero.** Taxa, periods, units and traps have side tables; licence, protocol, response
+type and the evidence for the survey set are in a `__dataset.json`. `eco_to_irw()`
+renames the columns to IRW's `id`/`item`/`resp` and the table validates under IRW v1.0.
+
+---
+
+## E1. Core columns
+
+A core table MUST have `unit`, `taxon` and `y`, in that order, as its first three
+columns. It MAY have the optional columns below and no others (E5 governs prefixed
+columns).
+
+| Column | Required | Definition |
+|---|---|---|
+| `unit` | yes | Identifier of the unit carrying the latent state: a site, point, transect, camera station, pond or territory for occupancy, N-mixture and community data; an individual animal for capture–recapture. Unique per unit, not per row. |
+| `taxon` | yes | Identifier of the taxon probed for: a short stable code (`CHAFFINCH`, `TAPBAI`, the source's species code), resolved in `__taxa` (E6). Single-species tables have one value. |
+| `y` | yes | The observation, numeric, per E2. Never a missing code, never an aggregate. |
+| `y_raw` | no | The observation as recorded when `y` is a recode: the uncollapsed count behind a 0/1 `y`, a multinomial cell label, a state letter. |
+| `trap` | conditional | Trap identifier in spatial capture–recapture; a key column (E3) with a `__traps` side table. |
+| `period` | conditional | Primary period (season, year, session): integer, ordered in time. Required whenever the latent state may change between surveys (dynamic occupancy, capture–recapture, robust design). |
+| `occasion` | conditional | Secondary occasion: the replicate survey within a period (visit, trapping night, week, removal pass, distance bin). Integer, ordered in time where time is meaningful. Required whenever a `(unit, taxon, trap, period)` combination has more than one row. |
+| `date` | no | Survey date of the row, ISO 8601 (`YYYY-MM-DD`, or `YYYY-MM-DDThh:mm[:ss]Z`). Never a bare year or day-of-year (E8). |
+| `observer` | no | Observer identifier for the row. |
+| `treat` | no | Experimental manipulation indicator, 1/0, in manipulative field experiments. |
+| `cluster_id` | no | A design grouping above `unit`: transect for points on transects, plot for sub-plots, site for samples in multi-scale designs, trapping grid for individuals. |
+| `unit_*`, `period_*`, `obs_*`, `taxon_*` | no | Covariates, per E5. |
+
+Column order: `unit, taxon, y, y_raw, trap, period, occasion, date, observer, treat,
+cluster_id, unit_*, period_*, obs_*, taxon_*`.
+
+**Ruling (Q1, 2026-11-01).** The species is on `taxon`. Single-species tables have one
+`taxon` and many occasions, like IRW's repeated-trial family; community tables are
+species-as-items, which is the psychometric payoff of the warehouse. The
+visit-as-item view is a derived pivot (`taxon := paste(taxon, period, occasion)`) and
+needs no support from the standard.
+
+## E2. Encoding of `y`
+
+`y` MUST be numeric. Its meaning is declared by `responseType` in `__dataset.json`
+(E10), which MUST take one of these values:
+
+| `responseType` | `y` | `y_raw` | Notes |
+|---|---|---|---|
+| `detection` | 0 or 1 | the count, if `y` was collapsed from one | Detection / non-detection, capture histories. Rows before an individual's first capture are kept as 0 if a session happened. |
+| `count` | integer ≥ 0 | — | Repeated counts (N-mixture), removal counts, trap counts. |
+| `state` | integer state code, 0 = not detected | the source's label | Multi-state occupancy or capture–recapture: breeding status, disease state, false-positive certainty. `stateCodes` required in metadata. |
+| `ordinal` | integer index, 0 = none | the source's label | An ordered index that is neither a count nor a latent state: an anuran calling index 0–3, an abundance class. `stateCodes` required. *Added v1.0 after `glorioso_2025_atchafalaya_calls`.* |
+| `multinomial_cell` | count in the cell | the cell label (`"10"`, `"01"`, `"11"`; a removal interval; a distance bin) | `occasion` indexes the cell (E9). `multinomialType` or `distanceBreaks` required. |
+| `detection_event` | 1 | — | One row per detection with `obs_*` (distance, classifier score) plus one `y = 0` row per survey with no detections. Experimental (E9). |
+
+Counts that were imputed or interpolated MUST be removed. A quantity the source
+authors *estimated* from the same observations (a model-based occupancy estimate, a
+predicted density) is a model output, not a covariate or a `y`, and MUST NOT be
+shipped; the omission is recorded in `notShipped`.
+
+## E3. Uniqueness
+
+The key is `(unit, taxon, trap, period, occasion)`, with absent columns treated as a
+single level. A duplicate key is a defect. Two observers' results for one visit are two
+`occasion`s with `observer` giving the identity, never duplicate rows.
+
+## E4. The explicit-zero rule
+
+**A row exists if and only if a survey was conducted for that key. A `y` of 0 means
+surveyed and not detected. A missing row means not surveyed. No row carries an empty
+`y`.**
+
+Consequences:
+
+1. Unbalanced designs are encoded by row count, not by `NA` padding; the converter
+   back to the native matrix pads with `NA`.
+2. A multi-species table MUST carry a row for every taxon on the list at every
+   conducted survey, so `unique(taxon)` is the species list and "surveyed, not
+   detected" is distinguishable from "not surveyed". The validator checks that every
+   survey has the same number of taxon rows.
+3. A unit never surveyed has no rows; if the sampling frame matters it belongs in
+   `__units`.
+4. Capture–recapture: a session at which an individual was not at risk (removed,
+   outside the trapped area) has no row; a loss on capture is `obs_removed = 1` on the
+   last row.
+
+**Ruling (Q3, 2026-11-01).** Dense explicit zeros are the only canonical form. A sparse
+detections-only table is not accepted as a core table. Across twelve deposits the
+rule was never ambiguous once the survey set was fixed; its cost is size (a 267 × 3 ×
+158 array becomes 118k rows, 95% zeros), which is trivial at the scale seen. A table
+that would exceed about five million rows MAY be split by `period` into several core
+tables under one `__dataset.json`.
+
+**The survey set is evidence, not assumption (Q7).** Because the rows *are* the
+record of which surveys happened, the standard requires each table to say what that
+record rests on. `surveyEvidence` in `__dataset.json` (E10) MUST be one of:
+
+| `surveyEvidence` | Meaning |
+|---|---|
+| `sample_table` | The source deposited a list of conducted surveys (a samples or events table). |
+| `effort_table` | The source deposited effort per unit × occasion, and a survey exists where effort > 0. |
+| `deposited_matrix` | The source deposited a unit × occasion matrix in which not-surveyed (`NA`, blank) and not-detected (0) are distinct. |
+| `row_presence` | The source is a record table and a survey exists where it has at least one row, including explicit zero-count rows. |
+| `inferred` | The survey set was reconstructed by a rule the script states in `surveyEvidenceNote` (for example, first-to-last detection span per camera-year). |
+
+`inferred` is a warning in the validator and a filterable fact for users. A
+`__surveys` side table is NOT required: the core table already lists every survey as
+`distinct(unit, trap, period, occasion)`. Where the source's own record of surveys
+disagrees with its detections (deployment dates that contradict detection dates),
+the script MUST say which was believed and why.
+
+## E5. Covariates and their levels
+
+A covariate column MUST carry the prefix of the level at which it is constant, and
+the validator checks the constancy:
+
+| Prefix | Constant within | `unmarked` analogue | Examples |
+|---|---|---|---|
+| `unit_` | `unit` | `siteCovs` | elevation, forest cover, coordinates, sex, stratum, treatment arm |
+| `period_` | `unit` × `period` | `yearlySiteCovs` | habitat in year t, age class at session t |
+| `obs_` | nothing (varies by row) | `obsCovs` | wind, temperature, duration, effort, time of day, trap-dependence, removal flag |
+| `taxon_` | `taxon` | — | body mass, guild, IUCN category; prefer the `__taxa` table and copy into the core only when convenient |
+
+An `obs_` column that happens to be constant within a unit is not a defect. An `obs_`
+column MAY vary across taxa within one survey (a per-species index recorded at the
+survey, such as the calling index outside the plot); that is allowed by the
+definition and should be noted in the column's description. IRW's `cov_`,
+`itemcov_` and `periodcov_` MUST NOT appear; `eco_to_irw()` produces them.
+
+**Ruling (Q4, 2026-11-01).** Observation covariates live in the core file, repeated
+across taxa in community tables. The three-level split is exactly the one `unmarked`,
+`spOccupancy` and the AHM code take as separate inputs, and one file that is complete
+for modelling is the IRW's position too.
+
+## E6. Side tables
+
+Side tables share the core table's name plus a suffix, and are typed by their key
+column, not by the suffix.
+
+| Table | Key | Required | Columns |
+|---|---|---|---|
+| `__taxa` | `taxon` | yes | `scientificName`, `taxonRank`, `taxonID` (a GBIF species URL or ITIS TSN), `vernacularName` (Darwin Core), `taxon_*` traits, `taxon_iucnCategory` where known. Every `taxon` in the core table MUST appear; every row MUST appear in the core table. |
+| `__periods` | `period` | when `period` exists | Calendar bounds and any covariate constant across all units within a period (session effort, year-level climate). |
+| `__units` | `unit` | no | The sampling frame: `unit_*`, coordinates, including units never surveyed. |
+| `__traps` | `trap` | when `trap` exists | Trap coordinates, `crs`, usage. |
+
+## E7. Spatial information
+
+Coordinates go in `unit_decimalLatitude` / `unit_decimalLongitude` (WGS84) with
+`unit_coordinateUncertaintyInMeters`; a projected pair `unit_x` / `unit_y` is allowed
+when `crs` in `__dataset.json` names the EPSG code. Converters do not reproject.
+
+**Ruling (Q5, 2026-11-01).** Never publish finer than the source did. A taxon is
+*flagged* when (a) the source says so, (b) its IUCN category is CR, EN or VU, which is
+checkable from the GBIF key the pipeline resolves, or (c) a national red list the
+source cites lists it. For a flagged taxon with coordinates finer than 0.1°, generalise
+to the 0.1° grid-cell centre, set `unit_coordinateUncertaintyInMeters` to the cell
+half-diagonal, set `coordinatesCoarsened` with the method, and say so in the tags.
+Coordinates are coarsened, not dropped: spatial occupancy and SCR need them, and a
+10 km cell is what GBIF publishes for sensitive taxa. Coordinates a government
+agency released for a flagged taxon on public land are kept as published; the agency
+is the authority on what it publishes. Trap coordinates follow the same rule.
+
+## E8. Time
+
+`period` and `occasion` are integers ordered in time (an `occasion` that indexes a
+category rather than a time is E9's stretch). `date` is ISO 8601 per row where known;
+when only a day-of-year exists it goes in `obs_date_doy` and `date` is left empty, not
+fabricated. A calendar year is a property of a `period` and belongs in `__periods`.
+Closure is assumed across `occasion` within a `period`; where a source violates that,
+`closure` in `__dataset.json` says so. Robust design is both columns present.
+
+## E9. Scope
+
+**Ruling (Q6, 2026-11-01).** Three lists. The test for the second is that the
+likelihood can still be written from the key and `y` plus one metadata field, and a
+converter back to the native frame exists.
+
+**Core, unforced semantics:** single-season occupancy (incl. Royle–Nichols),
+dynamic occupancy, N-mixture (incl. open), community occupancy and abundance (incl.
+dynamic and with interactions), multi-state occupancy (incl. false positives),
+ordinal indices, CJS / Jolly–Seber / Pradel, closed-population capture–recapture,
+robust design, multi-state and dead-recovery capture–recapture, repeated-count
+indices with within-route replication.
+
+**Declared stretch, `responseType = multinomial_cell`:** removal and time-removal
+sampling (`multinomialType = removal`), double-observer and dependent
+double-observer (`multinomialType = double_observer | dep_double_observer`),
+binned and hierarchical distance sampling (`distanceBreaks`), camera-trap distance
+sampling (`distanceBreaks` and `snapshotInterval`). `occasion` indexes the cell.
+
+**Experimental:** spatial capture–recapture (`trap`, `__traps`), multi-scale
+occupancy and eDNA (`cluster_id` = site, `unit` = sample, `occasion` = replicate),
+per-detection rows with scores (`detection_event`). A table in this list is tagged
+`experimental` and may be restructured between versions.
+
+**Out of scope:** presence-only occurrence records, telemetry and movement,
+used–available resource selection, aggregated indices without unit-level data, model
+outputs. A deposit that fits none of the three lists is logged against the matching
+row of `design_landscape.md` table C and held; three deposits on one row open a
+family issue.
+
+## E10. Metadata and storage
+
+Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
+`pubDate`, `citation`, `sourceURL`, `intellectualRights` (`spdx`, `url`),
+`samplingProtocol`, `samplingProtocolCode`, `responseType` (E2), `unitKind` (`site` |
+`individual`), `closure`, `surveyEvidence` (E4), `temporalCoverage`,
+`geographicCoverage`. Conditional: `stateCodes` (for `state` and `ordinal`),
+`multinomialType` or `distanceBreaks` (for `multinomial_cell`),
+`coordinatesCoarsened` (when coordinates exist), `surveyEvidenceNote` (when
+`surveyEvidence = inferred`), `crs`, `effortColumn`. Recommended: `abstract`,
+`notShipped` (what was in the source and not shipped, with the reason). The
+pipeline adds `summary`, `sampleFloor`, `columns`, `standardVersion`, `script`,
+`buildDate`.
+
+**Ruling (Q8, 2026-11-01).** One Redivis dataset, `datapages.eco`, holds every core
+table and its side tables, next to each other. A table's kind is defined by its key
+column, not by where it lives. Per-table metadata travels as the Redivis table
+description, generated from `__dataset.json`. The pipeline's own tables (metadata,
+biblio, tags, collections) go in a second dataset, `eco_meta`, so a `LIKE` query over
+`eco` sees only data. Sharding is not a concern at the expected scale.
+
+---
+
+## Intake policy
+
+These rules govern what enters the corpus; they are not part of the format and
+`eco-validate` reports them under a separate intake profile.
+
+**Licence.** Verify on the source page before writing a script. CC0, CC BY, CC BY-SA,
+public domain: proceed. CC BY-NC, ODbL, GPL and other licences with a propagating
+clause: proceed, and `derived_license` carries the clause so a reuser can exclude the
+table. No licence, an unresolvable licence UUID, or "contact the author": stop and ask
+by email (IRW's template, `processing_notes/Licensing.txt` in `ben-domingue/irw`);
+process only once permission is written. ND: stop; reshaping is a derivative.
+**Conflicts (ruled 2026-11-01):** when the repository's metadata and the deposited
+files disagree (Dryad says CC0, the readme says ODbL), the stricter licence governs
+and propagates, because the originator's terms govern over a repository default;
+record both in the dictionary row. Scraped or re-uploaded third-party data: do not
+host under any licence.
+
+**Sample floor (ruled 2026-11-01, #1).** `sample_floor` is a reported, filterable
+attribute, not an admission rule: `meets` at ≥ 30 units and ≥ 2 occasions (or ≥ 2
+periods for capture–recapture), otherwise `below (reason)`. Small tables ship when
+they come and are not prioritised; for community tables the per-unit count
+understates the information, which is one reason the floor is a filter.
+
+**Replication.** A table with `n_occasions = 1` and `n_periods = 1` (a single-visit
+community matrix) fits the format but supports none of the models in E9's core list.
+It is admitted with that fact filterable; the pipeline does not seek such tables out.
+
+**Naming.** `author_year_taxonOrPlace_type`, lower case, ≤ 40 characters; type
+suffixes `occ`, `count` / `nmix`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`, `scr`,
+`state`, `calls` and the like. One table per survey design × response type.
+
+**Duplicates.** Search the dictionary by DOI before processing; a deposit mirrored on
+two repositories is one table.
+
+**Processing record.** The `data/` script is the record: its header states the source,
+licence, files as deposited, the mapping, the survey-evidence rule, and what was not
+shipped and why. Facts about the source are assertions, not comments.
+
+---
+
+## Changelog
+
+- **v1.0-draft (2026-11-01).** First frozen version: ten numbered clauses. Rulings on
+  all open questions of the v0.3 draft, in the clauses marked *Ruling*. New since
+  v0.3.1: `surveyEvidence` required (E4), `ordinal` added to `responseType` (E2), the
+  licence-conflict rule and the replication note (intake), `obs_` may vary across taxa
+  within a survey (E5), the IUCN trigger for coarsening (E7), the three-list scope with
+  `experimental` (E9), `eco_meta` as the second dataset (E10).
+- **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

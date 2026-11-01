@@ -63,6 +63,7 @@ dataset <- list(
   abstract = "Camera-trap survey of a fragmented native-forest / pasture landscape in the central valley-Andean foothills transition of Los Lagos, Chile. Single-species occupancy models for culpeo, chilla and guigna with domestic-dog occupancy and habitat destruction as covariates.",
   samplingProtocol = "Camera traps; detection histories built from trigger histories with a 30-minute quiet period between triggers of the same species; each occasion is 7 camera-days.",
   samplingProtocolCode = "camera_trap", occasionLength = "7 days", effortColumn = "unit_trapnights",
+  surveyEvidence = "deposited_matrix",
   responseType = "detection", unitKind = "site", closure = "occasion",
   geographicCoverage = "Los Lagos Region, Chile (no coordinates deposited)", temporalCoverage = "2019",
   coordinatesCoarsened = NA, notShipped = list(Dog_occu = "model-derived covariate"))

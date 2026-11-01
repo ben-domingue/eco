@@ -14,6 +14,7 @@
   "abstract": "The input file for analysing the detection history of 175 adult Plain-crested Elaenia (Elaenia cristata) throughout nine sessions between 2010 and 2014 in the northeastern Brazil.",
   "samplingProtocol": "Mist-net capture-mark-recapture of banded adults; Program MARK input format (CJS).",
   "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
   "closure": "period (one capture occasion per session; state may change between sessions)",
@@ -33,7 +34,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "obs_removed"],
-  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/toledolima_2024_elaenia_cjs.R",
   "buildDate": "2026-10-31"

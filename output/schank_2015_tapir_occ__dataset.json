@@ -15,6 +15,7 @@
   "samplingProtocolCode": "camera_trap",
   "occasionLength": "1 day",
   "effortColumn": "unit_trapdays",
+  "surveyEvidence": "effort_table",
   "responseType": "detection",
   "unitKind": "site",
   "closure": "occasion",
@@ -47,7 +48,7 @@
   },
   "sampleFloor": "below (22 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "unit_trapdays", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
-  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/schank_2015_tapir_occ.R",
   "buildDate": "2026-10-31"

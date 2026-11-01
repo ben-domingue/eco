@@ -17,6 +17,7 @@
   "samplingProtocolCode": "camera_trap",
   "occasionLength": "7 days",
   "effortColumn": "unit_trapnights",
+  "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
   "closure": "occasion",
@@ -38,7 +39,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_trapnights", "unit_understory_10m", "unit_smallmammal_rate", "unit_forest", "unit_isolation", "unit_edge"],
-  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/malhotra_2021_loslagos_comm.R",
   "buildDate": "2026-10-31"

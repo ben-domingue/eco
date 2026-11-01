@@ -54,7 +54,7 @@ survey happened; a missing row is never a zero. A one-line rename gives the
 IRW view, and that view validates under IRW v1.0 unchanged.
 
 ::: {.eco-cards}
-<div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>Draft v0.3: the core table, a mapping for each model family, the missingness rule, side tables borrowed from Darwin Core and EML.</p></div>
+<div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>v1.0-draft: ten numbered clauses covering the core table, the explicit-zero rule and its evidence, covariate levels, side tables, coordinates, scope and storage, plus the intake policy.</p></div>
 <div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>Six public deposits, from a 22-camera tapir survey to 77 years of fish collections, converted, validated and staged on Redivis.</p></div>
 <div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort, and a capture history.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
@@ -70,9 +70,9 @@ identical model estimates on either side. Then six real deposits from Dryad,
 Zenodo, Dataverse and ScienceBase were run through an IRW-style pipeline to
 see the standard meet messy data. All six validate.
 
-The first version of the dataset is published on Redivis. Four design
-decisions remain open and are listed on the [about](about.html) page; until
-they are settled the standard is a draft and tables may be renamed or
-restructured between versions.
+The first version of the dataset is published on Redivis. The design
+decisions the draft left open were ruled on 2026-11-01 and the standard was
+frozen as v1.0-draft; the [about](about.html) page records each ruling.
+Tables tagged experimental may still be restructured between versions.
 
 *Tables last built `r s$built`.*

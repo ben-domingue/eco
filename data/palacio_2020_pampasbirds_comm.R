@@ -80,7 +80,7 @@ dataset <- list(
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
   abstract = "Multi-species occupancy data used to obtain detection-corrected functional diversity metrics for bird communities in east-central Argentina; detection related to body mass, diet and foraging stratum.",
   samplingProtocol = "Point counts, five visits per season in each of four seasons; presence/absence per species per visit.",
-  samplingProtocolCode = "point_count", responseType = "detection", unitKind = "site",
+  samplingProtocolCode = "point_count", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "site",
   closure = "occasion (visits within a season); state may change between seasons (period)",
   itemCovariates = "19 functional traits in the taxa side table (body mass; diet, foraging stratum and foraging behaviour as 0/1)",
   geographicCoverage = "east-central Argentina (Pampas; no coordinates deposited)", temporalCoverage = "not stated in deposit",

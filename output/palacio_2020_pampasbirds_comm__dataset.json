@@ -15,6 +15,7 @@
   "abstract": "Multi-species occupancy data used to obtain detection-corrected functional diversity metrics for bird communities in east-central Argentina; detection related to body mass, diet and foraging stratum.",
   "samplingProtocol": "Point counts, five visits per season in each of four seasons; presence/absence per species per visit.",
   "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
   "closure": "occasion (visits within a season); state may change between seasons (period)",
@@ -34,7 +35,7 @@
   },
   "sampleFloor": "below (10 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion"],
-  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/palacio_2020_pampasbirds_comm.R",
   "buildDate": "2026-10-31"

@@ -50,6 +50,7 @@ dataset <- list(
   abstract = "Camera trap detection histories from June-August 2014 (deposit description in full).",
   samplingProtocol = "Camera traps; daily detection/non-detection per camera; camera-days of effort in unit_trapdays.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day", effortColumn = "unit_trapdays",
+  surveyEvidence = "effort_table",
   responseType = "detection", unitKind = "site", closure = "occasion",
   geographicCoverage = list(description = "Rio Indio, southeastern Nicaragua",
                             boundingBox = list(west = min(cc$lon), east = max(cc$lon), south = min(cc$lat), north = max(cc$lat))),
