@@ -114,3 +114,49 @@ point-year, no within-season replication), Iowa herptiles (day columns unlabelle
 year boundaries not recoverable without the paper's survey calendar), water snake
 CJS (no licence; needs permission by email), puma range-wide (CC0, 100 MB; its own
 project, like BBS).
+
+## Batch 5 — 2026-11-01 (first SCR and distance-sampling tables, from three public deposits)
+
+Discovery pass for the four families the corpus lacked (closed capture-recapture,
+double-observer / distance sampling, eDNA multi-scale, SCR): Dryad and Zenodo searches
+plus the installed packages. Built from the processing guide and the
+`eco-convert-deposit` skill. Validated with `eco-validate`: 27/27 tables pass; the IRW
+view conforms after eco-ff's fix to `eco_to_irw()` (below). Uploaded to the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| lazenby_2021_tasmania_swamprat_scr | spatial capture-recapture (Elliott traps) | Dryad CC0 | 277,200 | 154 individuals x 60 traps x 6 sessions x 5 nights, 4 grids (`cluster_id`), `__traps` in UTM 55S; survey set inferred (trap usage not deposited); first E9 experimental SCR table |
+| lazenby_2021_tasmania_ltmouse_scr | spatial capture-recapture (Elliott traps) | Dryad CC0 | 178,200 | 99 individuals, same grids and sessions; sibling table (one species per table, see below) |
+| hamm_2013_satyr_ds | line-transect distance sampling, 1 m bins | Dryad CC0 | 625 | 125 transect walks on 5 days; transects not matched across days so each walk is a unit; endangered taxon, no coordinates deposited; first `distanceBreaks` table |
+| raman_2024_nilgiris_birds_ds | community line-transect distance sampling, 7 bands | Zenodo CC0 | 15,295 | 8 transects x 1-4 visits (`period`), 115 taxa; sample table; coordinates coarsened (Vulnerable taxa); 5 of 1,491 detections dropped (beyond 100 m or no usable band); below floor |
+
+What this batch says about the standard:
+
+- **The IRW view needed a rule for `trap`.** E3 puts `trap` in the key but `eco_to_irw()`
+  only renamed unit/taxon/y, so the first SCR table was blocked by irw-validate
+  (`dup_id_item`) while conforming to the eco standard. Reported, not patched; eco-ff
+  changed the view to `item = taxon:trap` (the "traps as items" reading) in both the
+  Python and R copies. The standard should state this mapping in E9/E10.
+- **E4.2 is written for site-unit tables.** With `unitKind = individual` every survey
+  has one taxon row, so a two-species SCR table from one trapping grid fails
+  `check_explicit_zero_taxa`. Split into one table per species; issue #20 asks for a
+  clause note that E4.2 applies to `unitKind = site`.
+- **SCR rows.** Each individual carries the full rectangle of its grid's traps x nights
+  for all six sessions, including sessions without a capture, following the CJS
+  tables' convention; a `secr` user filters to captured individual-sessions. The
+  alternative (rows only for sessions with a capture) is cheaper and closer to a
+  `capthist`; worth a ruling before more SCR tables.
+- **Distance sampling fits the declared stretch as written.** `occasion` = bin,
+  `y_raw` = the band label, `distanceBreaks` in metadata; nothing else needed. A
+  community DS table (Nilgiris) is just the community rule applied to bins.
+- **Two deposits are buildable only with the paper.** Smith & Goldberg (eDNA
+  multi-scale, 168 sites x 3 samples x 3 qPCR reps) and Roy et al. (dependent
+  double-observer, 28 attributed plots x 15 species) have no readme and no years;
+  both papers are CC BY but the publisher returns 403 to the agent. Held with the
+  exact questions in `queue/human_review.csv`; a PDF in hand unblocks both.
+- **First design-landscape C hit:** Alisauskas & Conn (one transect, observer history
+  x distance bin per group), row "two categorical axes on observation".
+
+Held this batch (`queue/human_review.csv`): Lazenby camera-trap devils and cats
+(camera effort not deposited, devil coordinates masked), Smith & Goldberg eDNA, Roy
+dependent double-observer, Alisauskas & Conn double-observer.

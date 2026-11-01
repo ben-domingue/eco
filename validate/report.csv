@@ -8,16 +8,20 @@ galvez_2021_araucania_comm,9135,180,5,TRUE,"","",TRUE,"",TRUE,meets,effort_table
 glorioso_2025_atchafalaya_calls,31024,70,14,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; item_scale_outlier; sample_floor
 glorioso_2025_atchafalaya_ves,104152,70,47,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 hamer_2024_hungary_amph_comm,2691,100,9,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
+hamm_2013_satyr_ds,625,125,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*
 kery_2005_mallard_count,659,235,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 kery_2008_willowtit_occ,665,237,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 kery_2010_crossbill_dynocc,6642,267,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 kery_2014_mhb_comm,118658,266,158,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
 kleiven_2020_varanger_dynocc,115294,46,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
+lazenby_2021_tasmania_ltmouse_scr,178200,99,1,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; multi_scale*; resp_scale_nested_support; sample_floor
+lazenby_2021_tasmania_swamprat_scr,277200,154,1,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; multi_scale*; resp_scale_nested_support
 lebreton_1992_dipper_cjs,2058,294,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*
 malhotra_2021_loslagos_comm,1944,48,4,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 margenau_2021_rowsongbirds_nmix,135072,260,112,TRUE,"","",TRUE,"",TRUE,meets,row_presence,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support
 mctigue_2023_nwarkansas_comm,46746,355,18,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 palacio_2020_pampasbirds_comm,8600,10,43,TRUE,"",sample_floor,TRUE,"",TRUE,below (10 units < 30),deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
+raman_2024_nilgiris_birds_ds,15295,8,115,TRUE,"",sample_floor,TRUE,"",TRUE,below (8 units < 30),sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 schank_2015_tapir_occ,1008,22,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (22 units < 30),effort_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 tleimat_2023_ecuador_capuchin_occ,573,21,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (21 units < 30),deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 toledolima_2024_elaenia_cjs,1559,175,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*

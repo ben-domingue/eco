@@ -1,0 +1,48 @@
+{
+  "table": "lazenby_2021_tasmania_ltmouse_scr",
+  "title": "Spatial capture-recapture of Long-tailed mouse (Pseudomys higginsi) in 60-trap Elliott grids at four Tasmanian forest sites, 6 sessions 2009-2011",
+  "creator": "Lazenby, Billie; Mooney, Nicholas; Dickman, Christopher",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.crjdfn337",
+  "sourceURL": "https://doi.org/10.5061/dryad.crjdfn337",
+  "citation": "Lazenby, B., Mooney, N., & Dickman, C. (2021). Spatially explicit capture histories for small mammals and predators in a Tasmanian forest system [Data set]. Dryad. https://doi.org/10.5061/dryad.crjdfn337",
+  "paperDOI": "10.1002/eap.2362",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Three years of capture-recapture records of individually marked Long-tailed mouse from four spatially independent cool temperate forest sites in southern Tasmania (Southwest, Mt Field, Wellington Ranges, Tasman Peninsula), trapped in Elliott live traps in six sessions (March and May of 2009, 2010 and 2011) of five nights. Part of a study of feral cat impacts on small mammals; the co-occurring species (lazenby_2021_tasmania_swamprat_scr) is the companion table, and the camera-trap captures of Tasmanian devils and feral cats in the same deposit are not shipped.",
+  "samplingProtocol": "Elliott live capture-and-release traps, 60 per site, checked over five successive 24 h trap nights per session; individuals ear-marked. Detection history is individual x trap x night.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited. Every one of the 60 Elliott traps at a site is taken as set on all five nights of every session; the capture files record nights 1-5 and trap numbers 1-60 at every site, and no failures are recorded. Each individual carries rows for all six sessions at its site.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (population closed within a 5-night session; open between sessions)",
+  "geographicCoverage": "Four forest sites in southern Tasmania, Australia: Southwest (SW), Mt Field (MtF), Wellington Ranges (WR), Tasman Peninsula (TP); Elliott trap coordinates in __traps",
+  "temporalCoverage": "2009-03/2011-05",
+  "crs": "EPSG:32755",
+  "coordinatesCoarsened": null,
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and a __traps side table (easting/northing, WGS 84 / UTM zone 55S as the readme states WGS 84 and the coordinate range places). cluster_id = site is the trapping grid. One species per table because E4.2 reads an individual-unit table with two taxa as a community table.",
+  "notShipped": {
+    "TD_capt_FC_capt": "camera-trap captures of Sarcophilus harrisii and Felis catus: camera-night usage per session not deposited (recorded nights per site-session span 2-20), coordinates masked by the source; held for a predator table once effort is known",
+    "Camera_coords_masked": "with the camera captures",
+    "prose_rows": "2 LTM rows that are notes ('no LTM during third session'), not captures"
+  },
+  "summary": {
+    "n_rows": 178200,
+    "n_units": 99,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 5,
+    "n_surveys": 2970,
+    "y_values": "0,1",
+    "prop_zero": 0.999
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lazenby_2021_tasmania_smallmammal_scr.R",
+  "buildDate": "2026-11-01"
+}
