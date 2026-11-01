@@ -64,10 +64,14 @@ jobs:
 
       - name: Rebuilt tables match the committed ones
         run: |
+          # write_table() stamps __dataset.json with buildDate = today, so that
+          # one line differs on every rebuild and is ignored (-I); everything
+          # else in output/ must be byte-identical. The first run (2026-11-01)
+          # rebuilt all 30 tables identically and failed on buildDate alone.
           git status --short output/
-          if ! git diff --quiet --stat -- output/; then
+          if ! git diff --quiet -I '"buildDate"' -- output/; then
             echo "::error::output/ differs after rebuild; a source changed or a script is not reproducible"
-            git diff --stat -- output/
+            git diff --stat -I '"buildDate"' -- output/
             exit 1
           fi
           echo "output/ unchanged by rebuild"
