@@ -2,7 +2,7 @@ dataset,check,ok,detail
 mhb2014_community,validate_eco,TRUE,""
 mhb2014_community,rows == surveys x species,TRUE,118658 rows = 751 surveys x 158 species
 mhb2014_community,all-NA site has no rows,TRUE,""
-mhb2014_community,resp_raw keeps counts,TRUE,""
+mhb2014_community,y_raw keeps counts,TRUE,""
 mhb2014_community,file size (MB),TRUE,7.6
 mhb2014_community,y array identical (incl. NA pattern),TRUE,""
 mhb2014_community,siteCovs identical for surveyed sites,TRUE,""

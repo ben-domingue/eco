@@ -1,0 +1,3 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
+GAVPAC,Gavia pacifica,Pacific Loon,species,https://www.gbif.org/species/2481955,EXACT,
+GAVADA,Gavia adamsii,Yellow-billed Loon,species,https://www.gbif.org/species/2481957,EXACT,

@@ -6,6 +6,8 @@ converters/output/log_*.txt
 !converters/output/roundtrip_results.csv
 !converters/output/results_*.csv
 __pycache__/
+.cache/raw/
+.cache/gbif/
 site/_site/
 site/.quarto/
 site/data/site_stats.json

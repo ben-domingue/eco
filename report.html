@@ -2,19 +2,22 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one 64rem column, rules not boxes; IRW Report tokens */
+/* Layout: one 64rem column, rules not boxes; IRW Report tokens. Series: --c1 malhotra, --c2 palacio, --c3 frimpong */
 :root{
   --paper:#fbfbf9; --panel:#f3f3f0; --ink:#17181c; --ink-2:#55575f; --ink-3:#8a8c94;
   --line:#dededa; --line-strong:#b9b9b4; --pos:#4038c9; --neg:#b0522a;
+  --c1:#4038c9; --c2:#b0522a; --c3:#2a7f62; --grid:#e6e6e2;
   --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#14161a; --panel:#1b1e23; --ink:#e9e9e6; --ink-2:#a6a8b0; --ink-3:#7a7d85;
-  --line:#2a2e35; --line-strong:#3d424b; --pos:#7f78ea; --neg:#cf7138; color-scheme:dark}}
+  --line:#2a2e35; --line-strong:#3d424b; --pos:#7f78ea; --neg:#cf7138;
+  --c1:#7f78ea; --c2:#cf7138; --c3:#4fae8a; --grid:#242830; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#14161a; --panel:#1b1e23; --ink:#e9e9e6; --ink-2:#a6a8b0; --ink-3:#7a7d85;
-  --line:#2a2e35; --line-strong:#3d424b; --pos:#7f78ea; --neg:#cf7138; color-scheme:dark}
+  --line:#2a2e35; --line-strong:#3d424b; --pos:#7f78ea; --neg:#cf7138;
+  --c1:#7f78ea; --c2:#cf7138; --c3:#4fae8a; --grid:#242830; color-scheme:dark}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.62;
   padding-block:56px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .wrap{max-width:64rem;margin:0 auto;display:flex;flex-direction:column;gap:44px}
@@ -44,203 +47,316 @@ td{padding:9px 12px 9px 0;border-bottom:1px solid var(--line);vertical-align:top
 tr:last-child td{border-bottom:0}
 td.num,td.mono{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ok{color:var(--pos);font-family:var(--mono);font-size:13px}
-.q{counter-reset:none}
+.warn{color:var(--neg);font-family:var(--mono);font-size:13px}
 .q li{margin-bottom:14px}
 .q strong{display:block}
 .cap{font-size:14px;color:var(--ink-2);max-width:78ch}
 a{color:var(--pos)}
 .small{font-size:14px;color:var(--ink-2)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.links .panel .eyebrow{margin-bottom:6px}
+.links .panel a{font-weight:600;text-decoration:none;word-break:break-word}
+.links .panel a:hover{text-decoration:underline}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.figure{min-width:0}
+.figure svg{width:100%;height:auto;display:block;font-family:var(--sans)}
+.figure .cap{margin-top:8px}
+.figure .ttl{font-size:15px;font-weight:600;margin:0 0 4px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:13px;color:var(--ink-2);margin:0 0 6px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--sw)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+details summary{cursor:pointer;color:var(--pos);font-size:14px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--pos);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 
 <div class="wrap">
 <header>
-  <div class="eyebrow">2026-10-30 · exploratory study · ben-domingue / eco</div>
-  <h1>Could an IRW-style warehouse work for ecological detection data?</h1>
-  <p class="lede">Yes. The hierarchical models fit with NIMBLE (occupancy, N-mixture, capture–recapture, community models) share the IRW's structure: a unit with a latent state, observed imperfectly through repeated probes. A draft standard keeps <code>id, item, resp</code>, round-trips six textbook datasets with identical model estimates, and the public data it would hold is plentiful and mostly CC0. Five design decisions are open and are yours to make.</p>
+  <div class="eyebrow">2026-10-31 · standard draft v0.3 · ben-domingue / eco</div>
+  <h1>An IRW-style warehouse for ecological detection data</h1>
+  <p class="lede">The Item Response Warehouse's long format carries occupancy, count, capture-history and community data unchanged, under local names: <code>unit</code> is the site or animal with a latent state, <code>taxon</code> is the species probed for, <code>y</code> is what the survey recorded, and <code>period</code> and <code>occasion</code> index the repeated surveys. This page codifies the draft standard, points at the repository and the Redivis dataset, lists the deposits collaborators can take next, and shows the first six tables doing something.</p>
 </header>
 
 <section class="stats" aria-label="Headline figures">
-  <div class="stat"><div class="fig">51 / 51</div><div class="lab">round-trip checks passed on 6 datasets</div></div>
-  <div class="stat"><div class="fig">500–800</div><div class="lab">usable Dryad deposits (est.), nearly all CC0</div></div>
-  <div class="stat"><div class="fig">39%</div><div class="lab">of top-ranked Dryad hits are real detection data</div></div>
-  <div class="stat"><div class="fig">5</div><div class="lab">open design decisions</div></div>
+  <div class="stat"><div class="fig">6</div><div class="lab">public deposits converted, both validators pass</div></div>
+  <div class="stat"><div class="fig">88,589</div><div class="lab">survey rows across 16 Redivis tables (draft)</div></div>
+  <div class="stat"><div class="fig">32</div><div class="lab">inspected deposits available to claim</div></div>
+  <div class="stat"><div class="fig">7</div><div class="lab">open questions, one provisionally settled, one closed by the rename</div></div>
 </section>
 
 <section>
-  <h2>Why the two fit</h2>
-  <p>In an item response model a person has a latent trait and answers items with item-specific parameters. In an occupancy model a site has a latent state (occupied or not) and is visited repeatedly with a detection probability. A community occupancy model, with species-level random effects on detection, is a random-item IRT model with species as items. The table below is the mapping that carries the whole proposal.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Model family (AHM / NIMBLE)</th><th>Latent state per unit</th><th>Probe</th><th>IRT analogue</th></tr></thead>
-    <tbody>
-      <tr><td>Single-season occupancy</td><td>z<sub>i</sub> ∈ {0,1}</td><td>visit j</td><td>one dichotomous item, repeated trials</td></tr>
-      <tr><td>N-mixture</td><td>N<sub>i</sub> (abundance)</td><td>visit j, binomial count</td><td>count item, repeated trials</td></tr>
-      <tr><td>Multinomial N-mixture (removal, double-observer)</td><td>N<sub>i</sub></td><td>pass or observer cell</td><td>nominal item</td></tr>
-      <tr><td>Cormack–Jolly–Seber</td><td>alive<sub>it</sub></td><td>capture session t</td><td>longitudinal 0/1 item with an absorbing state</td></tr>
-      <tr><td>Dynamic occupancy</td><td>z<sub>it</sub></td><td>visit j in season t</td><td>longitudinal item, HMM over waves</td></tr>
-      <tr><td>Community occupancy</td><td>z<sub>ik</sub> (site × species)</td><td>species k × visit j</td><td><strong>multilevel IRT: species are items</strong></td></tr>
-      <tr><td>Spatial capture–recapture</td><td>activity centre s<sub>i</sub></td><td>trap k × occasion j</td><td>traps as items with coordinates</td></tr>
-      <tr><td>Distance sampling</td><td>N<sub>i</sub> and detection by distance</td><td>detected individual + distance</td><td>awkward: rows are individuals, not probes</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<section>
-  <h2>The draft standard</h2>
-  <p>One CSV in long format, one row per survey observation of one unit for one taxon. It validates under IRW v1.0 (C1–C7) unchanged.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Column</th><th>Required</th><th>Meaning</th><th>IRW status</th></tr></thead>
-    <tbody>
-      <tr><td class="mono">id</td><td>yes</td><td>The unit carrying the latent state: a site, point, camera station; or an individual animal for capture–recapture</td><td>C2</td></tr>
-      <tr><td class="mono">item</td><td>yes</td><td>The taxon probed for. Always, even when there is one. Resolved to a GBIF/ITIS id in a side table</td><td>C3</td></tr>
-      <tr><td class="mono">resp</td><td>yes</td><td>0/1 detection, a count, or a coded multinomial cell (label in <code>resp_raw</code>). Never a missing code, never an aggregate</td><td>C4</td></tr>
-      <tr><td class="mono">period</td><td>conditional</td><td>Primary period (season, year, session): the latent state may change between them</td><td>a C5 occasion column</td></tr>
-      <tr><td class="mono">occasion</td><td>conditional</td><td>Secondary replicate within a period (visit, trap night, removal pass): closure assumed across them</td><td>a C5 occasion column</td></tr>
-      <tr><td class="mono">date, rater</td><td>no</td><td>Survey time in Unix seconds; observer id. IRW semantics, unchanged</td><td>optional elements</td></tr>
-      <tr><td class="mono">cov_*</td><td>no</td><td>Constant within <code>id</code>: elevation, forest cover, coordinates, sex</td><td>optional element</td></tr>
-      <tr><td class="mono">periodcov_*</td><td>no</td><td>Constant within <code>id × period</code>: yearly site covariates, age class at a session (unmarked's <code>yearlySiteCovs</code>)</td><td>new</td></tr>
-      <tr><td class="mono">obs_*</td><td>no</td><td>Varies row by row: wind, duration, effort, distance (unmarked's <code>obsCovs</code>)</td><td>new</td></tr>
-      <tr><td class="mono">itemcov_*</td><td>no</td><td>Species traits (body mass, guild)</td><td>optional element</td></tr>
-    </tbody>
-  </table></div>
-  <h3>A crossbill row, as written by the converter</h3>
-<pre>id,item,resp,period,occasion,cov_ele,cov_forest,periodcov_year,obs_date
-1,LOXCUR,0,1,1,450,3,1999,-0.92
-2,LOXCUR,0,1,1,450,21,1999,-1.69
-4,LOXCUR,0,1,1,950,9,1999,-1.15</pre>
-  <p class="cap">Site 3 has no row for 1999, visit 1: it was not surveyed. That is the rule that does the most work.</p>
-
-  <div class="grid2">
-    <div class="panel">
-      <h3>The explicit-zero rule</h3>
-      <p>A row exists if and only if a survey was conducted for that (<code>id, item, period, occasion</code>). A <code>resp</code> of 0 means surveyed and not detected. A missing row means not surveyed. No row ever carries an empty <code>resp</code>.</p>
-      <p>Unbalanced designs are encoded by row count, not NA padding. Multi-species tables carry a 0 row for every species on the list at every survey, so the species list is <code>unique(item)</code>. Treating an unvisited site-occasion as a non-detection biases detection probability downward; it is the most consequential encoding error in this domain.</p>
-    </div>
-    <div class="panel">
-      <h3>Side tables, borrowed not invented</h3>
-      <ul>
-        <li><code>items</code>: <code>scientificName</code>, <code>taxonRank</code>, <code>taxonID</code>, <code>vernacularName</code> (Darwin Core), plus traits. The analogue of IRW item text.</li>
-        <li><code>units</code>: <code>decimalLatitude</code>, <code>decimalLongitude</code>, <code>coordinateUncertaintyInMeters</code> (Darwin Core, WGS84); holds units in the sampling frame that were never surveyed.</li>
-        <li><code>dataset</code>: title, creator, licence, citation (EML); <code>samplingProtocol</code>, <code>samplingEffort</code> (Darwin Core); <code>responseType</code>, <code>unitKind</code>, <code>itemKind</code>, <code>closure</code>, <code>multinomialType</code>, <code>distanceBreaks</code> (new).</li>
-        <li><code>periods</code>: covariates constant across all units within a period.</li>
-      </ul>
-    </div>
+  <h2>Where things are</h2>
+  <div class="links">
+    <div class="panel"><div class="eyebrow">Code and standard · GitHub</div>
+      <a href="https://github.com/ben-domingue/eco">github.com/ben-domingue/eco</a>
+      <p class="small">The standard (<code>standard_draft.md</code>), one processing script per deposit (<code>data/</code>), converters and validator (<code>converters/</code>), the uploader (<code>upload/</code>), dictionary and tag rows, and the claim queue (<code>queue/candidates.csv</code>).</p></div>
+    <div class="panel"><div class="eyebrow">Data · Redivis</div>
+      <a href="https://redivis.com/datasets/4j5q">datapages.eco</a>
+      <p class="small">Reference <code>eco:4j5q</code>. Sixteen tables on an unreleased draft: six core tables, each with <code>__taxa</code> and, where there are primary periods, <code>__periods</code>. Each table's description carries its citation, licence and counts. Publishing the version is a human step.</p></div>
+    <div class="panel"><div class="eyebrow">Borrowed from the IRW</div>
+      <a href="https://github.com/ben-domingue/irw">ben-domingue/irw</a>
+      <p class="small">The <code>red_up</code> uploader (true-replace, row-count verified), <code>irw-validate</code> as the second gate, the dictionary row format, and the tags-as-CSV convention. <a href="https://itemresponsewarehouse.org/standard.html">IRW Data Standard v1.0</a> is the base: every table conforms to it through the <code>eco_to_irw()</code> view, which renames the columns to IRW's.</p></div>
   </div>
-
-  <h3>Scope</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>Fits as written</th><th>Fits with stretched semantics</th><th>Out of scope</th></tr></thead>
-    <tbody><tr>
-      <td>Single-season occupancy · N-mixture (incl. ZIP, multi-season) · dynamic occupancy · CJS, Jolly–Seber, robust design, multi-state CR · community occupancy and N-mixture · removal sampling · binned distance sampling</td>
-      <td>Double-observer multinomial (<code>occasion</code> indexes a category, not a replicate) · spatial capture–recapture (<code>item</code> = trap, with <code>itemKind = trap</code>) · per-detection covariates</td>
-      <td>Continuous-distance sampling as canonical form · telemetry (Movebank) · occurrence-only / presence-only data (most of GBIF): no survey rows, so no non-detections</td>
-    </tr></tbody>
-  </table></div>
 </section>
 
 <section>
-  <h2>What round-tripped</h2>
-  <p>Each dataset went native structure → standard → native, then the textbook model was fit on both. "Identical" means <code>all.equal</code> on the coefficient vectors at 10<sup>−6</sup>, and the same posterior means from the same seed for NIMBLE. The checks are collated in <code>converters/output/roundtrip_results.csv</code>.</p>
+  <h2>The standard, codified</h2>
+  <p>One CSV in long format, one row per <em>survey observation</em> of one unit for one taxon. Column order: <code>unit, taxon, y, y_raw, trap, period, occasion, date, observer, treat, cluster_id, unit_*, period_*, obs_*, taxon_*</code>. The names are local as of v0.3; the IRW's <code>id</code>, <code>item</code>, <code>resp</code> were kept through v0.2 to show the format validates under IRW v1.0, and that is now the job of a one-line rename view, <code>eco_to_irw()</code>, which the validator and the uploader run.</p>
   <div class="tbl"><table>
-    <thead><tr><th>Dataset</th><th>Family</th><th>Native shape</th><th>Rows</th><th>Fit compared</th><th>Result</th></tr></thead>
+    <thead><tr><th>Column</th><th>Required</th><th>Definition</th><th>IRW v1.0</th></tr></thead>
     <tbody>
-      <tr><td><code>widewt</code> (unmarked) willow tit</td><td>single-season occupancy</td><td class="num">237 × 3, 46 NA</td><td class="num">665</td><td><code>occu</code>; NIMBLE <code>dOcc_s</code></td><td class="ok">identical</td></tr>
-      <tr><td><code>mallard</code> (unmarked)</td><td>N-mixture</td><td class="num">239 × 3, 58 NA</td><td class="num">659</td><td><code>pcount</code></td><td class="ok">identical</td></tr>
-      <tr><td><code>alfl</code> (unmarked) Alder Flycatcher</td><td>removal / multinomial</td><td class="num">50 × 3 cells</td><td class="num">150</td><td><code>multinomPois</code></td><td class="ok">identical</td></tr>
-      <tr><td><code>dipper</code> (marked)</td><td>CJS</td><td class="num">294 × 7, sex</td><td class="num">2,058</td><td><code>marked::crm</code></td><td class="ok">identical</td></tr>
-      <tr><td><code>crossbill</code> (unmarked)</td><td>dynamic occupancy</td><td class="num">267 × 9 × 3, 567 NA</td><td class="num">6,642</td><td><code>colext</code></td><td class="ok">identical</td></tr>
-      <tr><td><code>MHB2014</code> (AHMbook) 158 species</td><td>community occupancy</td><td class="num">267 × 3 × 158</td><td class="num">118,658</td><td>arrays, covariates, traits</td><td class="ok">identical (fit opt-in)</td></tr>
-    </tbody>
-  </table></div>
-  <h3>What does not survive, and why that is acceptable</h3>
-  <ul>
-    <li><strong>Covariate values at unsurveyed cells.</strong> <code>widewt</code> carries 4 and <code>mallard</code> 22 observation-covariate values where <code>y</code> is NA. unmarked stores them; a file whose rows are surveys cannot. They enter no likelihood.</li>
-    <li><strong>Covariates of never-surveyed units.</strong> <code>mallard</code> has 4 sites and <code>MHB2014</code> 1 site with no surveys. Their site covariates leave the core file. The sampling frame is what is lost, hence the <code>units</code> side table.</li>
-    <li><strong>Period-level covariates at unsurveyed site × period.</strong> <code>crossbill</code>'s <code>year</code> is absent at 48 of 2,403 site-years, and <code>colext</code> will not fit with NA there. A covariate that is a function of <code>period</code> alone belongs in the <code>periods</code> table.</li>
-    <li><strong>Multinomial cell structure.</strong> <code>alfl</code>'s removal design is not recoverable from the table; <code>dataset.multinomialType</code> is required.</li>
-  </ul>
-  <p class="cap">What felt forced: the community table is 95% zeros and 7.6 MB from a 0.3 MB array; CJS tables have <code>period</code> but no <code>occasion</code>; the level of a covariate is a property of the design as deposited, not of the variable.</p>
-</section>
-
-<section>
-  <h2>Where the data lives</h2>
-  <p>Ten query terms against each repository's public search API; counts are word-match upper bounds and overlap across sources. The dominant deposited shape is a wide site × occasion matrix with NA for unsurveyed occasions plus a separate site-covariate file: exactly the shape the standard targets. The hard part is not licensing but recovering the survey design from deposits that ship only the analysed matrix.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Source</th><th>Signal</th><th>Licence</th><th>Reading</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Dryad</strong></td><td class="num">1,254 "detection/non-detection" · 1,063 "detection history" · 606 "occupancy model" · 533 "capture history" · 482 "camera trap" · 401 "capture-recapture"</td><td>CC0 by policy</td><td>Richest by far. 39% precision on top-ranked hits; ~2,000 unique hits × 25–40% ≈ 500–800 usable deposits. Anonymous API download is 401; the Zenodo mirror (same DOI) serves files.</td></tr>
-      <tr><td><strong>Zenodo</strong></td><td class="num">18–391 per term</td><td>CC0 / CC-BY-4.0</td><td>Largely Dryad mirrors (dedupe by DOI). Native deposits add MARK <code>.inp</code> files and zipped R projects.</td></tr>
-      <tr><td><strong>USGS ScienceBase</strong></td><td class="num">3–99 per term</td><td>Public domain</td><td>Clean small survey releases with FGDC metadata; about half the "occupancy" hits are prediction rasters. Hosts the Breeding Bird Survey 1966–2021 (route × year × species × 50 stops, observer and weather tables).</td></tr>
-      <tr><td><strong>DataONE / EDI / KNB</strong></td><td class="num">3–357 per term</td><td>CC0 / CC-BY</td><td>DataONE's index is 73% Dryad. EDI and KNB add long-term series in EML (Hubbard Brook valleywide bird survey). EDI's own search API is 403 to anonymous users.</td></tr>
-      <tr><td><strong>GBIF sampling-event</strong></td><td class="num">5,319 datasets; 12–103 per term</td><td>CC0 / CC-BY / some NC</td><td>Darwin Core event core is our surveys table; non-detections are implicit and need zero-filling against a species list. Swedish Bird Survey: 490k + 900k records, CC0.</td></tr>
-      <tr><td><strong>NEON</strong></td><td class="num">26 organismal products</td><td>CC0</td><td>Long tables, every survey event recorded. Landbird point counts (47 sites, distance and time bands); small-mammal trapping with tag IDs and every trap-night, including empty traps.</td></tr>
-      <tr><td>Dataverses</td><td class="num">1–57 per term</td><td>CC0</td><td>Thin; mostly replication packages. A few long series (fish detection histories per HUC-year, 77 years).</td></tr>
-      <tr><td>Figshare</td><td class="num">no totals from API</td><td>CC-BY via journal</td><td>Journal supplementary tables, individually small, collectively numerous.</td></tr>
-      <tr><td>OSF</td><td class="num">0–21</td><td>varies</td><td>Few ecology deposits. Low priority.</td></tr>
-      <tr><td>eBird</td><td>not queried</td><td>gated, bespoke terms</td><td>Complete checklists plus the sampling-event file give true non-detections. Not requested.</td></tr>
-      <tr><td>R packages</td><td class="num">~80 datasets</td><td>GPL</td><td><code>unmarked</code>, <code>AHMbook</code>, <code>spOccupancy</code>, <code>marked</code>, <code>secr</code>: every family, model-ready. The seed corpus.</td></tr>
+      <tr><td class="mono">unit</td><td>yes</td><td>The thing carrying the latent state: site, point, camera, lake, watershed; or an individual animal for capture–recapture. Whatever the NIMBLE code indexes with <em>i</em>. <code>unitKind</code> in the metadata says which. Unique per unit, not per row.</td><td>C2 <code>id</code></td></tr>
+      <tr><td class="mono">taxon</td><td>yes</td><td>The taxon probed for, as a short stable code (<code>GUIGNA</code>, <code>AMBRUP</code>), always present even for one species. Resolved in the <code>__taxa</code> table to a scientific name and a GBIF taxon key.</td><td>C3 <code>item</code></td></tr>
+      <tr><td class="mono">y</td><td>yes</td><td>Numeric observation: 0/1 detection, a count ≥ 0, or an integer state or cell code with the label in <code>y_raw</code>. The name every occupancy and N-mixture model gives its data. Never a missing code, never an aggregate.</td><td>C4 <code>resp</code></td></tr>
+      <tr><td class="mono">period</td><td>conditional</td><td>Primary period (season, year, capture session), integer ordered in time. Required when the latent state may change between surveys.</td><td>a C5 occasion column</td></tr>
+      <tr><td class="mono">occasion</td><td>conditional</td><td>Secondary replicate within a period (visit, trap night, 7-day block, removal pass). Required when an <code>id × item (× period)</code> has more than one row. Closure is assumed across occasions.</td><td>a C5 occasion column</td></tr>
+      <tr><td class="mono">y_raw</td><td>no</td><td>The observation as recorded when <code>y</code> is a recode: a multinomial cell label, a source state code, a count collapsed to 0/1.</td><td>optional</td></tr>
+      <tr><td class="mono">date, observer</td><td>no</td><td>ISO 8601 date (<code>YYYY-MM-DD</code>, with time when known); observer identifier. A year or day-of-year is not a <code>date</code>: it goes to <code>__periods</code> or <code>obs_date_doy</code>.</td><td><code>date</code> as seconds, <code>rater</code></td></tr>
+      <tr><td class="mono">trap</td><td>conditional</td><td>Trap or detector index, spatial capture–recapture only: individual as <code>unit</code>, trap as a second probe beside <code>occasion</code>; coordinates in <code>__traps</code>.</td><td>a C5 occasion column</td></tr>
+      <tr><td class="mono">unit_*</td><td>no</td><td>Constant within <code>unit</code>: elevation, trap-nights, coordinates, sex.</td><td><code>cov_*</code></td></tr>
+      <tr><td class="mono">period_*</td><td>no</td><td>Constant within <code>unit × period</code>: yearly site covariates, age class at a session. unmarked's <code>yearlySiteCovs</code>.</td><td><code>periodcov_*</code> in the view</td></tr>
+      <tr><td class="mono">obs_*</td><td>no</td><td>Varies row by row: effort, wind, duration, distance, <code>obs_removed</code> for a loss on capture. unmarked's <code>obsCovs</code>.</td><td>new prefix (warned, not blocked)</td></tr>
+      <tr><td class="mono">taxon_*</td><td>no</td><td>Species traits. Kept in the <code>__taxa</code> table; copied into the core file only when convenient.</td><td><code>itemcov_*</code></td></tr>
     </tbody>
   </table></div>
 
   <div class="grid2">
     <div class="panel">
-      <h3>Volume</h3>
+      <h3>Rule 1 · The explicit-zero rule</h3>
+      <p>A row exists if and only if a survey was conducted for that (<code>unit, taxon, trap, period, occasion</code>). A <code>y</code> of 0 means surveyed and not detected; a missing row means not surveyed; no row ever carries an empty <code>y</code>. Multi-species tables carry a 0 row for every species on the list at every survey, so the species list is <code>unique(taxon)</code>. The converter back to a matrix pads with NA.</p>
+    </div>
+    <div class="panel">
+      <h3>Rule 2 · Covariates sit at the level where they are constant</h3>
+      <p>The prefix says which sub-model a covariate belongs to without reading documentation: <code>unit_</code> state, <code>obs_</code> observation, <code>period_</code> dynamics. A value that is a function of <code>period</code> alone (the calendar year, the season) is not a column at all; it lives in <code>__periods</code>. A model output estimated from the same detections is not a covariate and is dropped.</p>
+    </div>
+    <div class="panel">
+      <h3>Rule 3 · Side tables, named by structure</h3>
       <ul>
-        <li><strong>Seed corpus (weeks):</strong> 50–100 tables from R packages, ScienceBase, EDI and the cleanest Dryad deposits.</li>
-        <li><strong>Harvested corpus (months):</strong> on the order of 1,000 tables with a Dryad→Zenodo harvester and a journal-supplement sweep. Most have 20–300 units and 2–12 occasions.</li>
-        <li><strong>Big integrations (each a project):</strong> BBS, NEON, GBIF sampling-event, eBird. A handful of tables with 10<sup>5</sup>–10<sup>7</sup> rows that would dominate by volume.</li>
+        <li><code>&lt;t&gt;__taxa</code>: key <code>taxon</code>; <code>scientificName</code>, <code>taxonRank</code>, <code>taxonID</code> (GBIF URL), <code>vernacularName</code>, <code>gbifMatchType</code>, traits as <code>taxon_*</code>.</li>
+        <li><code>&lt;t&gt;__periods</code>: key <code>period</code>; calendar bounds, season, session notes.</li>
+        <li><code>&lt;t&gt;__units</code> (optional): key <code>unit</code>; coordinates and every unit in the sampling frame, surveyed or not. <code>&lt;t&gt;__traps</code> (SCR): key <code>trap</code>; coordinates and usage.</li>
+        <li><code>&lt;t&gt;__dataset.json</code>: EML and Darwin Core fields (title, creator, citation, <code>intellectualRights</code> as SPDX, <code>samplingProtocol</code>, coverage) plus <code>responseType</code>, <code>unitKind</code>, <code>closure</code>, <code>stateCodes</code>, <code>multinomialType</code>, <code>coordinatesCoarsened</code>, counts and the floor status. It becomes the Redivis table description.</li>
       </ul>
     </div>
     <div class="panel">
-      <h3>Pitfalls seen in the sample</h3>
+      <h3>Rule 4 · Intake</h3>
       <ul>
-        <li>Deposits that pad unsurveyed occasions with 0 instead of NA; only the README tells.</li>
-        <li>Counts pooled over k days with an effort column: the occasion structure is gone.</li>
-        <li>Design encoded in column names (<code>point1.fall2</code>, <code>det991</code>); species as rows.</li>
-        <li>Model outputs mislabelled as data: 30–50% false positives on "occupancy".</li>
-        <li>Raw lat/long for threatened taxa (tapir, large carnivores) in small deposits.</li>
-        <li>xlsx workbooks with one sheet per species; rar archives; MARK <code>.inp</code>.</li>
+        <li>Names: <code>author_year_placeOrTaxon_type</code>, lower case, ≤ 40 characters; types <code>occ, count, cjs, dynocc, comm, removal, dobs, ds, scr, state</code>.</li>
+        <li>One table per survey design × response type.</li>
+        <li>Licences as the IRW: CC0, BY, BY-SA, NC and GPL hosted with the licence propagated; ND and unlicensed not hosted.</li>
+        <li>Coordinates never finer than the source; taxa flagged sensitive are coarsened to a 0.1° cell centre with <code>cov_coordinateUncertaintyInMeters</code> set.</li>
+        <li>Proposed floor: ≥ 30 units and ≥ 2 occasions or periods. Tables below it are built but held (open question 3).</li>
       </ul>
     </div>
   </div>
-  <p class="small">Licensing is far friendlier than psychology: no ND and no "contact author" deposits in the sample. IRW's intake rules can be adopted unchanged.</p>
+
+  <h3>Encoding by data type</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Data type</th><th><code>y</code></th><th><code>period</code> / <code>occasion</code></th><th>Built example</th></tr></thead>
+    <tbody>
+      <tr><td>Detection / non-detection</td><td class="mono">0, 1</td><td>occasion = visit, block or day</td><td class="mono">malhotra_2021_loslagos_comm</td></tr>
+      <tr><td>Repeated counts (N-mixture)</td><td class="mono">integer ≥ 0</td><td>occasion = visit</td><td class="small">round-tripped: unmarked <code>mallard</code></td></tr>
+      <tr><td>Capture history (CJS, robust design)</td><td class="mono">0, 1</td><td>period = session; occasion only with secondary sessions; <code>obs_removed = 1</code> ends a history</td><td class="mono">toledolima_2024_elaenia_cjs</td></tr>
+      <tr><td>Dynamic occupancy</td><td class="mono">0, 1</td><td>period = season or year, occasion = visit within it</td><td class="mono">frimpong_2017_newriver_dynocc</td></tr>
+      <tr><td>Multi-state</td><td class="mono">state code, 0 = not detected</td><td>as above; <code>stateCodes</code> in dataset.json, source code in <code>y_raw</code></td><td class="mono">uherkoch_2021_npraloon_dynocc</td></tr>
+      <tr><td>Multinomial cell (removal, double observer)</td><td class="mono">count in cell</td><td>occasion = cell, label in <code>y_raw</code>; <code>multinomialType</code> required</td><td class="small">round-tripped: unmarked <code>alfl</code></td></tr>
+      <tr><td>Binned distance</td><td class="mono">count in bin</td><td>occasion = bin; <code>distanceBreaks</code> required</td><td class="small">not yet built</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">The full text, with the per-family mapping tables, what is lost versus moved, and the changelog, is <code>standard_draft.md</code> in the repository.</p>
 </section>
 
 <section>
-  <h2>Five decisions that are yours</h2>
+  <h2>What is built</h2>
+  <p>Each table came from a public deposit through one self-contained R script that downloads the source, asserts what the README says about it, reshapes, validates against the draft and against IRW v1.0, writes the side tables, and stages a dictionary row and a tags row. The scripts are the processing record.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Table</th><th>Family</th><th>Units × items × periods × occasions</th><th>Rows</th><th>Source, licence</th><th>Floor</th></tr></thead>
+    <tbody>
+<tr><td class="mono"><a href="https://doi.org/10.5061/dryad.3xsj3txfv">malhotra_2021_loslagos_comm</a></td><td>community occupancy, camera traps</td><td class="num">48 × 4 × 1 × 11</td><td class="num">1,944</td><td>Dryad, CC0-1.0</td><td><span class="ok">meets</span></td></tr>
+<tr><td class="mono"><a href="https://doi.org/10.5281/zenodo.17602">schank_2015_tapir_occ</a></td><td>single-season occupancy, coordinates coarsened</td><td class="num">22 × 1 × 1 × 72</td><td class="num">1,008</td><td>Zenodo, CC0-1.0</td><td><span class="warn">below (22 units &lt; 30)</span></td></tr>
+<tr><td class="mono"><a href="https://doi.org/10.5281/zenodo.11300767">toledolima_2024_elaenia_cjs</a></td><td>CJS from a MARK .inp, 4 losses on capture</td><td class="num">175 × 1 × 9 × 1</td><td class="num">1,559</td><td>Zenodo, CC-BY-4.0</td><td><span class="ok">meets</span></td></tr>
+<tr><td class="mono"><a href="https://doi.org/10.5061/dryad.cvdncjt22">palacio_2020_pampasbirds_comm</a></td><td>multi-season community occupancy, 19 traits</td><td class="num">10 × 43 × 4 × 5</td><td class="num">8,600</td><td>Dryad, CC0-1.0</td><td><span class="warn">below (10 units &lt; 30)</span></td></tr>
+<tr><td class="mono"><a href="https://doi.org/10.7910/DVN/KS4HIR">frimpong_2017_newriver_dynocc</a></td><td>multi-species dynamic occupancy, 1938 to 2014</td><td class="num">100 × 74 × 25 × 3</td><td class="num">74,592</td><td>Harvard Dataverse, CC0-1.0</td><td><span class="ok">meets</span></td></tr>
+<tr><td class="mono"><a href="https://doi.org/10.5066/P9Z3AGXS">uherkoch_2021_npraloon_dynocc</a></td><td>multi-state (breeding status) dynamic occupancy</td><td class="num">117 × 2 × 4 × 1</td><td class="num">886</td><td>USGS ScienceBase, CC0-1.0</td><td><span class="ok">meets</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Six textbook datasets from <code>unmarked</code>, <code>marked</code> and <code>AHMbook</code> were round-tripped earlier (51 of 51 checks, identical model estimates) and are not in the Redivis dataset yet.</p>
+</section>
+
+<section>
+  <h2>A first look at the data</h2>
+  <p>Nothing here is a finding about ecology. The point is that once the tables share a format, the same few lines of code run across all of them, and the species behave like items: each has a prevalence (how many units hold it) and a detectability (how often a survey finds it where it is).</p>
+  <div class="figs">
+    <div class="figure">
+      <p class="ttl">Species as items</p>
+      <div class="legend"><span style="--sw:var(--c1)">Los Lagos carnivores (4)</span><span style="--sw:var(--c2)">Pampas birds (43)</span><span style="--sw:var(--c3)">New River fish (74)</span></div>
+      <svg id="f1" viewBox="0 0 520 340" role="img" aria-labelledby="f1t"><title id="f1t">Scatter of per-survey detection rate against naive occupancy for 121 species across three tables</title></svg>
+      <p class="cap">Each dot is one species in one community table. Naive occupancy is the share of units with at least one detection; detection rate is the share of surveys that detected it. Fish species are found in 8% of surveys on average but a third of watersheds; the Pampas birds are rarer per survey still.</p>
+    </div>
+    <div class="figure">
+      <p class="ttl">What a detection model adds</p>
+      <div class="legend"><span style="--sw:var(--c1)">Los Lagos carnivores</span><span style="--sw:var(--c2)">Pampas birds, first season</span><span style="--sw:var(--ink-3)">Baird's tapir</span></div>
+      <svg id="f2" viewBox="0 0 520 340" role="img" aria-labelledby="f2t"><title id="f2t">Estimated occupancy against naive occupancy for 24 species; every point lies above the identity line</title></svg>
+      <p class="cap">A constant-probability occupancy model (<code>unmarked::occu</code>, ψ ~ 1, p ~ 1) fit to each species. Estimated occupancy exceeds naive occupancy for all 24 species, by 0.11 at the median. Dot size is per-survey detection probability p. The Pampas estimates sit at 1.0 because ten sites and p near 0.1 cannot pin ψ down; that is the sample-floor question in one picture.</p>
+    </div>
+    <div class="figure">
+      <p class="ttl">Effort is a covariate, not a nuisance</p>
+      <svg id="f3" viewBox="0 0 520 340" role="img" aria-labelledby="f3t"><title id="f3t">Median number of fish species detected per watershed-year by number of collections, with interquartile band</title></svg>
+      <p class="cap">New River fish: species detected in a watershed-year against the number of collections that year (<code>obs_effort</code>). The median climbs from 7 species at one collection to about 17 at four or more. A HUC-year with one collection is a survey with low p, not a depauperate watershed.</p>
+    </div>
+    <div class="figure">
+      <p class="ttl">A capture history read as a longitudinal item</p>
+      <div class="legend"><span style="--sw:var(--c1)">first capture</span><span style="--sw:var(--c2)">recapture</span></div>
+      <svg id="f4" viewBox="0 0 520 340" role="img" aria-labelledby="f4t"><title id="f4t">Captures of Plain-crested Elaenia per session, split into first captures and recaptures</title></svg>
+      <p class="cap">Plain-crested Elaenia, nine sessions. The <code>period</code> column is the CJS time axis; recaptures accumulate as marked birds survive, and four histories end early with <code>obs_removed = 1</code>. The same table feeds <code>marked::crm</code> or NIMBLE's <code>dCJS</code> after one pivot.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Open questions</h2>
   <ol class="q">
-    <li><strong>What is <code>item</code>?</strong> The draft puts the species on <code>item</code>, so single-species tables look like IRW's repeated-trial family (one item, many occasions) and community tables are species-as-items. The alternative, visit on <code>item</code>, makes every table a person × item matrix an IRT model can fit directly but does not generalise to multi-species data. It is a one-line pivot either way; the choice is about what the canonical corpus looks like.</li>
-    <li><strong>Dense zeros or a surveys table?</strong> The explicit-zero rule makes community tables large (MHB2014: 118,658 rows, 95% zeros) and repeats observation covariates across species. The alternative is Darwin Core's event-core model: a sparse detections table plus a <code>surveys</code> table. The draft recommends dense for IRW-likeness and self-containment.</li>
-    <li><strong>Sample floor.</strong> IRW's 100 ids would exclude most of ecology. The draft proposes ≥ 30 units and ≥ 2 occasions (≥ 2 periods for capture–recapture).</li>
-    <li><strong>Sensitive-species coordinates.</strong> Coarsen by rule (0.1° / 10 km grid, <code>coordinateUncertaintyInMeters</code> set, never finer than the source) versus drop coordinates for any flagged taxon.</li>
-    <li><strong>How far to stretch.</strong> Double-observer and binned distance sampling use <code>occasion</code> for a category; SCR puts traps on <code>item</code>. Accept with a declared <code>itemKind</code>/<code>responseType</code>, or keep v1 to the families where the format is unforced.</li>
+    <li><strong>Is the species the right probe?</strong> <code>taxon</code> is the required probe column in the draft. Single-species tables then look like IRW's repeated-trial family (one item, many occasions) and community tables are species-as-items, which is where the psychometric payoff is. Visit-as-probe is a one-line pivot and is documented as a derived view.</li>
+    <li><strong>Dense zeros or a surveys table?</strong> The explicit-zero rule multiplies rows by the species count (MHB2014: 118,658 rows, 95% zeros; New River: 74,592 rows, 85% zeros). The alternative is Darwin Core's event core plus a sparse detections table. Dense is self-contained and IRW-like; the draft keeps it.</li>
+    <li><strong>Sample floor.</strong> Two of six built tables fall under the proposed 30 units. The Pampas table has 10 points but 43 species × 20 surveys each, and the figure above shows what 10 sites do to ψ. A floor on units alone measures the wrong axis for community data; a floor on surveys × species, or on identifiability, may be better.</li>
+    <li><strong>Sensitive-species coordinates.</strong> The tapir table coarsened exact camera coordinates to a 0.1° cell; the loon table kept coordinates as the USGS published them. Coarsen by rule (draft) or drop coordinates for any flagged taxon?</li>
+    <li><strong>How far to stretch.</strong> Double-observer and binned distance sampling use <code>occasion</code> for a category. SCR is settled by the rename: with <code>taxon</code> fixed, traps get their own <code>trap</code> key column. Accept the category reading of <code>occasion</code> with a declared <code>responseType</code>, or keep v1 to the unforced families?</li>
+    <li><strong>Where side tables live.</strong> Provisionally settled on 2026-10-31: one Redivis dataset holds core and side tables together, and a table's kind is defined by its structure (its key column and suffix), not by which dataset it sits in. The IRW's separate item-text datasets exist because of a 1000-table cap that eco is nowhere near. Recorded as section 12 of the draft; reversible.</li>
+    <li><strong>Effort and the survey design.</strong> Deposits rarely ship an explicit list of conducted surveys. The rule so far is to infer it from the NA pattern and cross-check against an effort table where one exists (it did for the fish and the tapir). Should a <code>__surveys</code> side table be required whenever the inference is not checkable?</li>
   </ol>
 </section>
 
 <section>
-  <h2>What could be done next</h2>
-  <ol>
-    <li>A Darwin Core event-core converter, because that is the shape of the largest public sources (GBIF, Swedish Bird Survey, NEON).</li>
-    <li>A Dryad→Zenodo harvester adapted from the IRW discovery scripts, with a per-deposit "is 0 a non-detection?" gate that refuses deposits where it cannot tell.</li>
-    <li>One BBS table as the first large integration: id = route, item = species, period = year, occasion = stop, rater = observer.</li>
-    <li>A validator distributed like <code>irw-validate</code>, with the explicit-zero and covariate-level checks the R prototype already runs.</li>
-  </ol>
-</section>
-
-<section>
-  <h2>Files</h2>
+  <h2>Deposits collaborators can take</h2>
+  <p>These were inspected in the discovery pass, have recoverable non-detections, and nobody has claimed them. Difficulty is 1 (a clean matrix plus a covariate file) to 4 (an R project to reverse-engineer). The live list is <code>queue/candidates.csv</code> in the repository; to claim one, open an issue on <code>ben-domingue/eco</code> with the table name you intend, set the row to <code>claimed</code> in the same pull request as your <code>data/</code> script, and flip it to <code>built</code> when the output lands. The six tables above are marked <code>built</code> there already.</p>
   <div class="tbl"><table>
-    <thead><tr><th>Path (in <code>~/Dropbox/projects/eco</code>)</th><th>What</th></tr></thead>
+    <thead><tr><th>Diff.</th><th>Deposit</th><th>Source</th><th>Structure</th><th>Licence</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td class="mono">standard_draft.md</td><td>The proposed standard (v0.2): core table, mapping tables per family, missingness rule, side tables, scope, what is lost, open questions, changelog</td></tr>
-      <tr><td class="mono">converters/eco_standard.R</td><td>Converters array ↔ long, unmarked frames, multinomial frames, capture histories; validator; writer</td></tr>
-      <tr><td class="mono">converters/rt_0*_*.R · run_all.R</td><td>Round-trip tests; <code>output/roundtrip_results.csv</code></td></tr>
-      <tr><td class="mono">roundtrip_report.md</td><td>What matched, what did not, what changed</td></tr>
-      <tr><td class="mono">discovery/eco_discover.py</td><td>Repository search with cached responses; connectors adapted from <code>ben-domingue/irw</code></td></tr>
-      <tr><td class="mono">discovery_log.csv · discovery_summary.md</td><td>Per-source hit counts, 45 curated candidates with difficulty scores, narrative</td></tr>
-      <tr><td class="mono">README.md</td><td>One-page summary and the five decisions</td></tr>
+<tr><td class="num">1</td><td><a href="https://cran.r-project.org/package=AHMbook">AHMbook datasets: SwissSquirrels, SwissTits, MHB2014, crossbillAHM, wigglyOcc, BerneseOberland, ...</a></td><td>r_packages</td><td>all AHM families</td><td>GPL-3</td><td class="small">round-tripped: SwissSquirrels, MHB2014</td></tr>
+<tr><td class="num">1</td><td><a href="https://cran.r-project.org/package=marked">dipper (CJS), and MARK example .inp files distributed with MARK</a></td><td>r_packages</td><td>CJS capture histories</td><td>GPL-2+ (MARK examples: no stated licence)</td><td class="small">round-tripped: dipper</td></tr>
+<tr><td class="num">1</td><td><a href="https://cran.r-project.org/package=spOccupancy">hbef2015, hbefElev, neon2015, hbefTrends</a></td><td>r_packages</td><td>multi-species occupancy with coords</td><td>GPL-3</td><td class="small"></td></tr>
+<tr><td class="num">1</td><td><a href="https://cran.r-project.org/package=unmarked">unmarked datasets: mallard, crossbill, frogs, alfl, ovendata, jay, issj, linetran, pointtran, gf, MesoCarnivores, Switzerland, birds, ...</a></td><td>r_packages</td><td>occupancy, N-mixture, multinomial, distance, dynamic occupancy, multi-species</td><td>GPL-3</td><td class="small">round-tripped in Phase 2: mallard, crossbill, alfl</td></tr>
+<tr><td class="num">2</td><td><a href="https://portal.edirepository.org/nis/mapbrowse?packageid=edi.556.1">Annual Point Count Breeding Bird Survey, Pepperwood Preserve, CA</a></td><td>edi</td><td>multi-species point counts</td><td>CC0/CC-BY (EDI)</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.5061/dryad.gb5mkkwqr">Bayesian N-mixture and occupancy modeling code for songbirds</a></td><td>dryad</td><td>N-mixture + occupancy (songbirds)</td><td>CC0-1.0</td><td class="small">file head not inspected (Dryad download requires auth; no Zenodo mirror found)</td></tr>
+<tr><td class="num">2</td><td><a href="https://data.neonscience.org/data-products/DP1.10003.001">Breeding landbird point counts (DP1.10003.001)</a></td><td>neon</td><td>multi-species point counts, 6-min, distance bands, repeated within season at 47 sites</td><td>CC0</td><td class="small">distance and time-band per detection -&gt; binned DS or occupancy; large</td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.6084/m9.figshare.22626790.v1">Capuchin Detection History</a></td><td>figshare</td><td>single-species occupancy</td><td>(unknown)</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.5683/SP4/KDEB13">Collaborative camera-trap data set for evaluating the status of a rangewide carnivore (puma)</a></td><td>dataverse</td><td>single-species camera-trap detection with effort</td><td>CC0 1.0</td><td class="small">large; Borealis (Canada)</td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.5066/P9T71JCO">Data from time-constrained visual encounter surveys and acoustic surveys for amphibians</a></td><td>sciencebase</td><td>multi-species, multi-method occupancy</td><td>Public domain (USGS)</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.5061/dryad.7m0cfxq1r">Data from: Nine-banded Armadillo occupancy and density across an urban to rural gradient</a></td><td>dryad</td><td>single-species camera-trap occupancy + density</td><td>CC0-1.0</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.5061/dryad.5qfttdz3h">Detection histories of mesocarnivores in agricultural areas of Southern Chile</a></td><td>dryad</td><td>multi-species camera-trap occupancy</td><td>CC0-1.0</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.6084/m9.figshare.16441422.v1">Marten detection history</a></td><td>figshare</td><td>single-species occupancy</td><td>(unknown)</td><td class="small">figshare: many PLOS/Frontiers supplementary tables; licence often CC-BY via journal</td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.5061/dryad.70rxwdc6w">Multi-species occupancy model for estimating the probability of detecting amphibian species in Hungary</a></td><td>dryad</td><td>multi-species occupancy with survey covariates</td><td>CC0-1.0</td><td class="small">R script documents the array layout</td></tr>
+<tr><td class="num">2</td><td><a href="https://www.sciencebase.gov/catalog/item/625f151ed34e85fa62b7f926">North American Breeding Bird Survey Dataset 1966-2021 (2022 release)</a></td><td>sciencebase</td><td>multi-species route counts (50 stops) x year</td><td>Public domain (USGS)</td><td class="small">the single largest structured source; id=route, item=species, period=year, occasion=stop(1-50) or 10-stop block; observer in rater</td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.15468/23qhtm">Powdermill Nature Reserve Bird Point Count Surveys</a></td><td>gbif_sampling_event</td><td>multi-species point counts</td><td>CC-BY-4.0</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.6084/m9.figshare.31257466.v2">Rocky Mountain Amphibian Project occupancy data and analyses</a></td><td>figshare</td><td>multi-species occupancy</td><td>(unknown)</td><td class="small"></td></tr>
+<tr><td class="num">2</td><td><a href="https://data.neonscience.org/data-products/DP1.10072.001">Small mammal box trapping (DP1.10072.001)</a></td><td>neon</td><td>individual capture-recapture (tag IDs) across nights/bouts</td><td>CC0</td><td class="small">robust design: bout=period, night=occasion; also SCR-able (trap coords)</td></tr>
+<tr><td class="num">2</td><td><a href="https://doi.org/10.15468/2aajk9">Swedish Bird Survey: Summer point count routes</a></td><td>gbif_sampling_event</td><td>multi-species point-count counts, yearly</td><td>CC0</td><td class="small">DwC event core = our surveys side table</td></tr>
+<tr><td class="num">2</td><td><a href="https://portal.edirepository.org/nis/mapbrowse?packageid=edi.348.2">Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016</a></td><td>edi</td><td>multi-species point counts, repeated within season</td><td>CC0/CC-BY (EDI)</td><td class="small">EML gives column semantics; long-term</td></tr>
+<tr><td class="num">2</td><td><a href="https://ebird.org/data/download">eBird Basic Dataset + Sampling Event Data</a></td><td>ebird</td><td>multi-species checklists with complete-checklist flag</td><td>custom terms; access request required</td><td class="small">GATED: requires request; not requested per guardrails</td></tr>
+<tr><td class="num">3</td><td><a href="https://www.gbif.org/dataset/search?type=SAMPLING_EVENT">All GBIF SAMPLING_EVENT datasets</a></td><td>gbif_sampling_event</td><td>mixed</td><td>CC0/CC-BY/CC-BY-NC</td><td class="small">occurrence-only datasets excluded by the type filter</td></tr>
+<tr><td class="num">3</td><td><a href="https://doi.org/10.5061/dryad.2jm63xsnp">Assessing mammal species richness and occupancy in a NE Asian temperate forest shared by cattle</a></td><td>dryad</td><td>multi-species camera-trap counts (collapsed 14-day occasions)</td><td>CC0-1.0</td><td class="small">species table is the items side table; occasion structure lost in deposit</td></tr>
+<tr><td class="num">3</td><td><a href="https://osf.io/8rw4t/">Camera trap insights into black lion tamarins and sympatric mammals</a></td><td>osf</td><td>camera trap</td><td>(unknown)</td><td class="small">OSF title search is weak; few ecology deposits</td></tr>
+<tr><td class="num">3</td><td><a href="https://doi.org/10.5683/SP4/FH7WY6">Contrast between adjoining stands drives timber harvest edge effects (boreal birds)</a></td><td>dataverse</td><td>multi-species point counts (prepared)</td><td>CC0 1.0</td><td class="small">analysis-ready, not raw</td></tr>
+<tr><td class="num">3</td><td><a href="https://doi.org/10.5281/zenodo.10391650">Data for White-tailed Deer Detection Intensity Increases When Coyotes Are Present</a></td><td>zenodo</td><td>multi-species camera trap</td><td>CC-BY-4.0</td><td class="small"></td></tr>
+<tr><td class="num">3</td><td><a href="https://data.neonscience.org/data-products/DP1.10022.001">Ground beetles sampled from pitfall traps (DP1.10022.001)</a></td><td>neon</td><td>multi-species counts per trap per bout</td><td>CC0</td><td class="small"></td></tr>
+<tr><td class="num">3</td><td><a href="https://doi.org/10.5061/dryad.xwdbrv1nm">Iowa herptile detection histories and landcover metrics</a></td><td>dryad</td><td>multi-species occupancy (herptiles), multi-method</td><td>CC0-1.0</td><td class="small">single large xlsx; sheet layout unknown</td></tr>
+<tr><td class="num">3</td><td><a href="https://doi.org/10.5061/dryad.0gb5mkm6w">Myanmar mammal occupancy baseline assessment dataset</a></td><td>dryad</td><td>multi-species camera-trap occupancy</td><td>CC0-1.0</td><td class="small">rar needs unrar</td></tr>
+<tr><td class="num">3</td><td><a href="https://doi.org/10.5683/SP3/OBWLPU">Water snake recapture and morphometric data</a></td><td>dataverse</td><td>CJS/individual captures</td><td>(not shown in search)</td><td class="small"></td></tr>
+<tr><td class="num">4</td><td><a href="https://osf.io/y3w6f/">Data and Code for: Optimizing Camera-Trap Survey Designs for Multi-Species Density Estimation</a></td><td>osf</td><td>SCR</td><td>(unknown)</td><td class="small"></td></tr>
+<tr><td class="num">4</td><td><a href="https://doi.org/10.18710/ZLW59W">Data and code: A dynamic occupancy model for interacting species with two spatial scales</a></td><td>dataverse</td><td>dynamic two-species occupancy</td><td>CC0 1.0</td><td class="small">dataverse.no</td></tr>
     </tbody>
   </table></div>
-  <p class="small">Rerun: <code>cd converters &amp;&amp; Rscript run_all.R</code> (needs unmarked, AHMbook, marked, nimble, nimbleEcology, data.table, jsonlite). The community MCMC is opt-in with <code>ECO_FIT_COMMUNITY=1</code>.</p>
+  <p class="small">Beyond this list: Dryad holds an estimated 500 to 800 usable deposits (anonymous API downloads return 401; the Zenodo mirror of the same DOI serves the files), and the Breeding Bird Survey, NEON and the GBIF sampling-event datasets are each a project of their own. Dryad to Zenodo harvesting and a Darwin Core event-core converter are the two pieces of tooling that would open the volume.</p>
+</section>
+
+<section>
+  <h2>How a table gets built</h2>
+  <ol>
+    <li>Check <code>queue/candidates.csv</code> and the dictionary, then claim the deposit.</li>
+    <li>Write <code>data/&lt;table&gt;.R</code>: header comment with source, licence, paper, deposited layout, mapping and what is not shipped; assertions for every fact the README states; <code>array_to_eco()</code> or a hand pivot; <code>make_taxa()</code> for the taxa; <code>write_table()</code>, which validates and writes the side files; <code>stage_dict_row()</code> and <code>stage_tag_row()</code>.</li>
+    <li>Run <code>Rscript validate/validate_all.R</code>: the draft validator on every table and <code>irw-validate</code> on its IRW view.</li>
+    <li>Ship with <code>python3 upload/red_up_eco.py</code>, which wraps IRW's <code>red_up</code>: true replace, <code>count(*)</code> against the draft, descriptions from <code>__dataset.json</code>. Nothing publishes; releasing the Redivis version is a human click.</li>
+  </ol>
 </section>
 </div>
+
+<script>
+(function(){
+const D = {"taxa":[{"taxon":"CHILLA","naive_occ":0.5833,"det_rate":0.249,"n_surveys":486,"n_det":121,"table":"malhotra_2021_loslagos_comm"},{"taxon":"CULPEO","naive_occ":0.1667,"det_rate":0.0432,"n_surveys":486,"n_det":21,"table":"malhotra_2021_loslagos_comm"},{"taxon":"DOG","naive_occ":0.4167,"det_rate":0.0988,"n_surveys":486,"n_det":48,"table":"malhotra_2021_loslagos_comm"},{"taxon":"GUIGNA","naive_occ":0.5208,"det_rate":0.0967,"n_surveys":486,"n_det":47,"table":"malhotra_2021_loslagos_comm"},{"taxon":"AGEBAD","naive_occ":0.7,"det_rate":0.085,"n_surveys":200,"n_det":17,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"AMABRA","naive_occ":0.1,"det_rate":0.01,"n_surveys":200,"n_det":2,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"BASCUL","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"CARPLA","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"CHLLUC","naive_occ":0.5,"det_rate":0.03,"n_surveys":200,"n_det":6,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"COLMEL","naive_occ":0.8,"det_rate":0.1,"n_surveys":200,"n_det":20,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"CYCGUJ","naive_occ":0.3,"det_rate":0.015,"n_surveys":200,"n_det":3,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"ELAPAR","naive_occ":0.4,"det_rate":0.08,"n_surveys":200,"n_det":16,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"FURRUF","naive_occ":1,"det_rate":0.18,"n_surveys":200,"n_det":36,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"GEOAEQ","naive_occ":0.7,"det_rate":0.06,"n_surveys":200,"n_det":12,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"GUIGUI","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"ICTPYR","naive_occ":0.4,"det_rate":0.03,"n_surveys":200,"n_det":6,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"LEPANG","naive_occ":0.7,"det_rate":0.06,"n_surveys":200,"n_det":12,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MACRIX","naive_occ":0.2,"det_rate":0.01,"n_surveys":200,"n_det":2,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MICMEL","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MILCHI","naive_occ":0.2,"det_rate":0.015,"n_surveys":200,"n_det":3,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MIMSAT","naive_occ":0.3,"det_rate":0.03,"n_surveys":200,"n_det":6,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MOLBON","naive_occ":0.5,"det_rate":0.035,"n_surveys":200,"n_det":7,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MYIMAC","naive_occ":0.3,"det_rate":0.015,"n_surveys":200,"n_det":3,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"MYIMON","naive_occ":0.3,"det_rate":0.015,"n_surveys":200,"n_det":3,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"PACPOL","naive_occ":0.3,"det_rate":0.03,"n_surveys":200,"n_det":6,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"PARCOR","naive_occ":0.2,"det_rate":0.01,"n_surveys":200,"n_det":2,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"PATPIC","naive_occ":0.7,"det_rate":0.08,"n_surveys":200,"n_det":16,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"PHASTR","naive_occ":0.4,"det_rate":0.03,"n_surveys":200,"n_det":6,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"PITSUL","naive_occ":1,"det_rate":0.26,"n_surveys":200,"n_det":52,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"POLDUM","naive_occ":0.3,"det_rate":0.02,"n_surveys":200,"n_det":4,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"POONIG","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"ROSSOC","naive_occ":0.4,"det_rate":0.045,"n_surveys":200,"n_det":9,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"RUPMAG","naive_occ":0.4,"det_rate":0.07,"n_surveys":200,"n_det":14,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SCHPHR","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SERSUB","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SICFLA","naive_occ":0.1,"det_rate":0.015,"n_surveys":200,"n_det":3,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SICLUT","naive_occ":0.4,"det_rate":0.05,"n_surveys":200,"n_det":10,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SPIMAG","naive_occ":0.4,"det_rate":0.03,"n_surveys":200,"n_det":6,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SPOCAE","naive_occ":0.5,"det_rate":0.085,"n_surveys":200,"n_det":17,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"SYNSPI","naive_occ":0.3,"det_rate":0.035,"n_surveys":200,"n_det":7,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"TROAED","naive_occ":0.8,"det_rate":0.19,"n_surveys":200,"n_det":38,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"TURAMA","naive_occ":0.1,"det_rate":0.005,"n_surveys":200,"n_det":1,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"TURRUF","naive_occ":1,"det_rate":0.14,"n_surveys":200,"n_det":28,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"VANCHI","naive_occ":0.3,"det_rate":0.025,"n_surveys":200,"n_det":5,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"VIROLI","naive_occ":0.3,"det_rate":0.035,"n_surveys":200,"n_det":7,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"ZENAUR","naive_occ":0.9,"det_rate":0.175,"n_surveys":200,"n_det":35,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"ZONCAP","naive_occ":1,"det_rate":0.43,"n_surveys":200,"n_det":86,"table":"palacio_2020_pampasbirds_comm"},{"taxon":"AMBRUP","naive_occ":0.9,"det_rate":0.4762,"n_surveys":1008,"n_det":480,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"AMEMEL","naive_occ":0.04,"det_rate":0.004,"n_surveys":1008,"n_det":4,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"AMENAT","naive_occ":0.06,"det_rate":0.0079,"n_surveys":1008,"n_det":8,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"AMENEB","naive_occ":0.12,"det_rate":0.0139,"n_surveys":1008,"n_det":14,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"AMICAL","naive_occ":0.02,"det_rate":0.002,"n_surveys":1008,"n_det":2,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CAMANO","naive_occ":0.97,"det_rate":0.6726,"n_surveys":1008,"n_det":678,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CARAUR","naive_occ":0.02,"det_rate":0.002,"n_surveys":1008,"n_det":2,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CATCOM","naive_occ":0.88,"det_rate":0.4365,"n_surveys":1008,"n_det":440,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CHRORE","naive_occ":0.83,"det_rate":0.375,"n_surveys":1008,"n_det":378,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CLIFUN","naive_occ":0.85,"det_rate":0.4306,"n_surveys":1008,"n_det":434,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"COTBAI","naive_occ":0.82,"det_rate":0.4167,"n_surveys":1008,"n_det":420,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"COTKAN","naive_occ":0.37,"det_rate":0.1042,"n_surveys":1008,"n_det":105,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CYPCAR","naive_occ":0.13,"det_rate":0.0238,"n_surveys":1008,"n_det":24,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CYPGAL","naive_occ":0.34,"det_rate":0.1002,"n_surveys":1008,"n_det":101,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"CYPSPI","naive_occ":0.28,"det_rate":0.0506,"n_surveys":1008,"n_det":51,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ESONIG","naive_occ":0.02,"det_rate":0.003,"n_surveys":1008,"n_det":3,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHBLE","naive_occ":0.6,"det_rate":0.2103,"n_surveys":1008,"n_det":212,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHCAE","naive_occ":0.08,"det_rate":0.0139,"n_surveys":1008,"n_det":14,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHFLA","naive_occ":0.96,"det_rate":0.6835,"n_surveys":1008,"n_det":689,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHKAN","naive_occ":0.52,"det_rate":0.255,"n_surveys":1008,"n_det":257,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHNIG","naive_occ":0.11,"det_rate":0.0317,"n_surveys":1008,"n_det":32,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHOLM","naive_occ":0.06,"det_rate":0.0208,"n_surveys":1008,"n_det":21,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHOSB","naive_occ":0.11,"det_rate":0.0446,"n_surveys":1008,"n_det":45,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ETHSIM","naive_occ":0.12,"det_rate":0.0308,"n_surveys":1008,"n_det":31,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"EXOLAU","naive_occ":0.54,"det_rate":0.1736,"n_surveys":1008,"n_det":175,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"EXOMAX","naive_occ":0.14,"det_rate":0.0298,"n_surveys":1008,"n_det":30,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"HYPNIG","naive_occ":0.95,"det_rate":0.5853,"n_surveys":1008,"n_det":590,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ICTPUN","naive_occ":0.04,"det_rate":0.005,"n_surveys":1008,"n_det":5,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LEPAUR","naive_occ":0.61,"det_rate":0.1875,"n_surveys":1008,"n_det":189,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LEPCYA","naive_occ":0.44,"det_rate":0.0873,"n_surveys":1008,"n_det":88,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LEPGIB","naive_occ":0.22,"det_rate":0.0417,"n_surveys":1008,"n_det":42,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LEPMAC","naive_occ":0.55,"det_rate":0.1349,"n_surveys":1008,"n_det":136,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LEPMEG","naive_occ":0.03,"det_rate":0.003,"n_surveys":1008,"n_det":3,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LEPMIC","naive_occ":0.03,"det_rate":0.003,"n_surveys":1008,"n_det":3,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LUXALB","naive_occ":0.66,"det_rate":0.2688,"n_surveys":1008,"n_det":271,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LUXCER","naive_occ":0.38,"det_rate":0.1806,"n_surveys":1008,"n_det":182,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LUXCHR","naive_occ":0.14,"det_rate":0.0198,"n_surveys":1008,"n_det":20,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LUXCOC","naive_occ":0.12,"det_rate":0.0397,"n_surveys":1008,"n_det":40,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"LYTARD","naive_occ":0.47,"det_rate":0.1796,"n_surveys":1008,"n_det":181,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"MICDOL","naive_occ":0.8,"det_rate":0.3333,"n_surveys":1008,"n_det":336,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"MICPUN","naive_occ":0.12,"det_rate":0.0159,"n_surveys":1008,"n_det":16,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"MICSAL","naive_occ":0.34,"det_rate":0.0565,"n_surveys":1008,"n_det":57,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"MOXCER","naive_occ":0.05,"det_rate":0.0089,"n_surveys":1008,"n_det":9,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOCLEP","naive_occ":0.93,"det_rate":0.496,"n_surveys":1008,"n_det":500,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOCPLA","naive_occ":0.63,"det_rate":0.2034,"n_surveys":1008,"n_det":205,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTCHI","naive_occ":0.15,"det_rate":0.0496,"n_surveys":1008,"n_det":50,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTCRY","naive_occ":0.07,"det_rate":0.0069,"n_surveys":1008,"n_det":7,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTHUD","naive_occ":0.15,"det_rate":0.0228,"n_surveys":1008,"n_det":23,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTINS","naive_occ":0.52,"det_rate":0.2173,"n_surveys":1008,"n_det":219,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTLEU","naive_occ":0.07,"det_rate":0.0089,"n_surveys":1008,"n_det":9,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTPHO","naive_occ":0.6,"det_rate":0.1895,"n_surveys":1008,"n_det":191,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTPRO","naive_occ":0.06,"det_rate":0.0079,"n_surveys":1008,"n_det":8,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTRUB1","naive_occ":0.64,"det_rate":0.2014,"n_surveys":1008,"n_det":203,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTRUB2","naive_occ":0.47,"det_rate":0.127,"n_surveys":1008,"n_det":128,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTSCA","naive_occ":0.54,"det_rate":0.1994,"n_surveys":1008,"n_det":201,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTTEL","naive_occ":0.32,"det_rate":0.121,"n_surveys":1008,"n_det":122,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"NOTVOL","naive_occ":0.35,"det_rate":0.0675,"n_surveys":1008,"n_det":68,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"ONCMYK","naive_occ":0.64,"det_rate":0.1845,"n_surveys":1008,"n_det":186,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PERCAP","naive_occ":0.05,"det_rate":0.005,"n_surveys":1008,"n_det":5,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PERFLA","naive_occ":0.03,"det_rate":0.004,"n_surveys":1008,"n_det":4,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PERGYM","naive_occ":0.47,"det_rate":0.1657,"n_surveys":1008,"n_det":167,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PEROXY","naive_occ":0.16,"det_rate":0.0377,"n_surveys":1008,"n_det":38,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PERROA","naive_occ":0.15,"det_rate":0.0337,"n_surveys":1008,"n_det":34,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PHETER","naive_occ":0.44,"det_rate":0.2044,"n_surveys":1008,"n_det":206,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PIMNOT","naive_occ":0.6,"det_rate":0.1885,"n_surveys":1008,"n_det":190,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"PIMPRO","naive_occ":0.09,"det_rate":0.0099,"n_surveys":1008,"n_det":10,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"POMANN","naive_occ":0.02,"det_rate":0.002,"n_surveys":1008,"n_det":2,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"POMNIG","naive_occ":0.03,"det_rate":0.004,"n_surveys":1008,"n_det":4,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"RHIATR","naive_occ":0.92,"det_rate":0.5437,"n_surveys":1008,"n_det":548,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"RHICAT","naive_occ":0.81,"det_rate":0.37,"n_surveys":1008,"n_det":373,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"SALFON","naive_occ":0.5,"det_rate":0.131,"n_surveys":1008,"n_det":132,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"SALTRU","naive_occ":0.51,"det_rate":0.1488,"n_surveys":1008,"n_det":150,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"SEMATR","naive_occ":0.79,"det_rate":0.2708,"n_surveys":1008,"n_det":273,"table":"frimpong_2017_newriver_dynocc"},{"taxon":"THORHO","naive_occ":0.08,"det_rate":0.0119,"n_surveys":1008,"n_det":12,"table":"frimpong_2017_newriver_dynocc"}],"est":[{"table":"malhotra_2021_loslagos_comm","taxon":"CHILLA","n_units":48,"n_surveys":486,"n_detections":121,"naive_occ":0.5833,"det_rate":0.249,"psi":0.5857,"p":0.4229},{"table":"malhotra_2021_loslagos_comm","taxon":"CULPEO","n_units":48,"n_surveys":486,"n_detections":21,"naive_occ":0.1667,"det_rate":0.0432,"psi":0.1766,"p":0.2476},{"table":"malhotra_2021_loslagos_comm","taxon":"DOG","n_units":48,"n_surveys":486,"n_detections":48,"naive_occ":0.4167,"det_rate":0.0988,"psi":0.4533,"p":0.2194},{"table":"malhotra_2021_loslagos_comm","taxon":"GUIGNA","n_units":48,"n_surveys":486,"n_detections":47,"naive_occ":0.5208,"det_rate":0.0967,"psi":0.6456,"p":0.1499},{"table":"schank_2015_tapir_occ","taxon":"TAPBAI","n_units":22,"n_surveys":1008,"n_detections":11,"naive_occ":0.2727,"det_rate":0.0109,"psi":0.3757,"p":0.0318},{"table":"palacio_2020_pampasbirds_comm","taxon":"AGEBAD","n_units":10,"n_surveys":50,"n_detections":4,"naive_occ":0.2,"det_rate":0.08,"psi":0.225,"p":0.3555},{"table":"palacio_2020_pampasbirds_comm","taxon":"COLMEL","n_units":10,"n_surveys":50,"n_detections":2,"naive_occ":0.2,"det_rate":0.04,"psi":0.9992,"p":0.04},{"table":"palacio_2020_pampasbirds_comm","taxon":"FURRUF","n_units":10,"n_surveys":50,"n_detections":9,"naive_occ":0.8,"det_rate":0.18,"psi":0.9999,"p":0.18},{"table":"palacio_2020_pampasbirds_comm","taxon":"ICTPYR","n_units":10,"n_surveys":50,"n_detections":2,"naive_occ":0.2,"det_rate":0.04,"psi":0.9992,"p":0.04},{"table":"palacio_2020_pampasbirds_comm","taxon":"LEPANG","n_units":10,"n_surveys":50,"n_detections":2,"naive_occ":0.2,"det_rate":0.04,"psi":0.9992,"p":0.04},{"table":"palacio_2020_pampasbirds_comm","taxon":"MACRIX","n_units":10,"n_surveys":50,"n_detections":1,"naive_occ":0.1,"det_rate":0.02,"psi":0.993,"p":0.0202},{"table":"palacio_2020_pampasbirds_comm","taxon":"MICMEL","n_units":10,"n_surveys":50,"n_detections":1,"naive_occ":0.1,"det_rate":0.02,"psi":0.993,"p":0.0202},{"table":"palacio_2020_pampasbirds_comm","taxon":"MILCHI","n_units":10,"n_surveys":50,"n_detections":1,"naive_occ":0.1,"det_rate":0.02,"psi":0.993,"p":0.0202},{"table":"palacio_2020_pampasbirds_comm","taxon":"MIMSAT","n_units":10,"n_surveys":50,"n_detections":2,"naive_occ":0.2,"det_rate":0.04,"psi":0.9992,"p":0.04},{"table":"palacio_2020_pampasbirds_comm","taxon":"PATPIC","n_units":10,"n_surveys":50,"n_detections":3,"naive_occ":0.3,"det_rate":0.06,"psi":0.9989,"p":0.06},{"table":"palacio_2020_pampasbirds_comm","taxon":"PITSUL","n_units":10,"n_surveys":50,"n_detections":9,"naive_occ":0.7,"det_rate":0.18,"psi":0.9997,"p":0.18},{"table":"palacio_2020_pampasbirds_comm","taxon":"POLDUM","n_units":10,"n_surveys":50,"n_detections":3,"naive_occ":0.2,"det_rate":0.06,"psi":0.2935,"p":0.2043},{"table":"palacio_2020_pampasbirds_comm","taxon":"ROSSOC","n_units":10,"n_surveys":50,"n_detections":4,"naive_occ":0.3,"det_rate":0.08,"psi":0.5541,"p":0.1444},{"table":"palacio_2020_pampasbirds_comm","taxon":"RUPMAG","n_units":10,"n_surveys":50,"n_detections":3,"naive_occ":0.2,"det_rate":0.06,"psi":0.2935,"p":0.2043},{"table":"palacio_2020_pampasbirds_comm","taxon":"SYNSPI","n_units":10,"n_surveys":50,"n_detections":2,"naive_occ":0.1,"det_rate":0.04,"psi":0.1125,"p":0.3555},{"table":"palacio_2020_pampasbirds_comm","taxon":"TROAED","n_units":10,"n_surveys":50,"n_detections":8,"naive_occ":0.3,"det_rate":0.16,"psi":0.3079,"p":0.5198},{"table":"palacio_2020_pampasbirds_comm","taxon":"TURRUF","n_units":10,"n_surveys":50,"n_detections":5,"naive_occ":0.3,"det_rate":0.1,"psi":0.3865,"p":0.2587},{"table":"palacio_2020_pampasbirds_comm","taxon":"VANCHI","n_units":10,"n_surveys":50,"n_detections":3,"naive_occ":0.2,"det_rate":0.06,"psi":0.2935,"p":0.2043},{"table":"palacio_2020_pampasbirds_comm","taxon":"ZONCAP","n_units":10,"n_surveys":50,"n_detections":5,"naive_occ":0.3,"det_rate":0.1,"psi":0.3865,"p":0.2587}],"fish_effort":[{"effort":1,"n":520,"median_species":7,"q1":4,"q3":13},{"effort":2,"n":247,"median_species":11,"q1":6,"q3":16},{"effort":3,"n":91,"median_species":13,"q1":8,"q3":18},{"effort":4,"n":50,"median_species":17,"q1":9,"q3":21},{"effort":5,"n":31,"median_species":16,"q1":13,"q3":21},{"effort":6,"n":23,"median_species":17,"q1":13,"q3":24.5},{"effort":7,"n":11,"median_species":17,"q1":13.5,"q3":22.5},{"effort":8,"n":35,"median_species":15,"q1":11,"q3":21}],"cjs":[{"period":1,"captured":54,"new":54,"recaptured":0},{"period":2,"captured":23,"new":16,"recaptured":7},{"period":3,"captured":32,"new":19,"recaptured":13},{"period":4,"captured":33,"new":21,"recaptured":12},{"period":5,"captured":38,"new":16,"recaptured":22},{"period":6,"captured":28,"new":15,"recaptured":13},{"period":7,"captured":18,"new":6,"recaptured":12},{"period":8,"captured":20,"new":9,"recaptured":11},{"period":9,"captured":37,"new":19,"recaptured":18}]};
+const ns = "http://www.w3.org/2000/svg";
+const el = (t, a, parent) => { const e = document.createElementNS(ns, t); for (const k in a) e.setAttribute(k, a[k]); if (parent) parent.appendChild(e); return e; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const col = { malhotra_2021_loslagos_comm: "var(--c1)", palacio_2020_pampasbirds_comm: "var(--c2)", frimpong_2017_newriver_dynocc: "var(--c3)", schank_2015_tapir_occ: "var(--ink-3)" };
+const W = 520, H = 340, m = { l: 56, r: 16, t: 12, b: 48 };
+function frame(svg, xl, yl, xt, yt, xf, yf, fmt) {
+  // axes, grid, labels; xt/yt tick values; xf/yf scale functions
+  yt.forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: yf(v), y2: yf(v), stroke: "var(--grid)", "stroke-width": 1 }, svg);
+    const t = el("text", { x: m.l - 8, y: yf(v) + 4, "text-anchor": "end", "font-size": 11, fill: "var(--ink-3)" }, svg); t.textContent = fmt(v); });
+  el("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, stroke: "var(--line-strong)" }, svg);
+  xt.forEach(v => { const t = el("text", { x: xf(v), y: H - m.b + 16, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-3)" }, svg); t.textContent = fmt(v); });
+  const xl_ = el("text", { x: (m.l + W - m.r) / 2, y: H - 8, "text-anchor": "middle", "font-size": 12, fill: "var(--ink-2)" }, svg); xl_.textContent = xl;
+  const yl_ = el("text", { x: 14, y: (m.t + H - m.b) / 2, "text-anchor": "middle", "font-size": 12, fill: "var(--ink-2)", transform: `rotate(-90 14 ${(m.t + H - m.b) / 2})` }, svg); yl_.textContent = yl;
+}
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0) * (r1 - r0);
+const pct = v => Math.round(v * 100) + "%";
+// Figure 1: species as items
+(function(){
+  const svg = document.getElementById("f1"); if (!svg) return;
+  const ymax = 0.5;
+  const xf = lin(0, 1, m.l, W - m.r), yf = lin(0, ymax, H - m.b, m.t);
+  frame(svg, "naive occupancy (share of units with a detection)", "detection rate per survey", [0, .25, .5, .75, 1], [0, .1, .2, .3, .4, .5], xf, yf, pct);
+  D.taxa.forEach(d => {
+    const c = el("circle", { cx: xf(d.naive_occ), cy: yf(Math.min(d.det_rate, ymax)), r: 4.5, fill: col[d.table], "fill-opacity": .75, stroke: "var(--paper)", "stroke-width": 1.5 }, svg);
+    const t = el("title", {}, c); t.textContent = `${d.taxon} (${d.table.split("_")[0]}): naive occupancy ${pct(d.naive_occ)}, detected in ${pct(d.det_rate)} of ${d.n_surveys.toLocaleString()} surveys`;
+  });
+})();
+// Figure 2: estimated vs naive occupancy
+(function(){
+  const svg = document.getElementById("f2"); if (!svg) return;
+  const xf = lin(0, 1, m.l, W - m.r), yf = lin(0, 1, H - m.b, m.t);
+  frame(svg, "naive occupancy", "estimated occupancy ψ", [0, .25, .5, .75, 1], [0, .25, .5, .75, 1], xf, yf, pct);
+  el("line", { x1: xf(0), y1: yf(0), x2: xf(1), y2: yf(1), stroke: "var(--line-strong)", "stroke-dasharray": "4 4" }, svg);
+  const lab = el("text", { x: xf(.78), y: yf(.72), "font-size": 11, fill: "var(--ink-3)" }, svg); lab.textContent = "ψ = naive";
+  const sorted = D.est.slice().sort((a, b) => b.p - a.p);
+  sorted.forEach(d => {
+    const r = 3 + 14 * Math.sqrt(d.p);
+    const c = el("circle", { cx: xf(d.naive_occ), cy: yf(d.psi), r, fill: col[d.table], "fill-opacity": .6, stroke: "var(--paper)", "stroke-width": 1.5 }, svg);
+    const t = el("title", {}, c); t.textContent = `${d.taxon}: naive ${pct(d.naive_occ)}, ψ ${pct(d.psi)}, p ${pct(d.p)} (${d.n_units} units)`;
+  });
+})();
+// Figure 3: fish species detected vs effort
+(function(){
+  const svg = document.getElementById("f3"); if (!svg) return;
+  const xs = D.fish_effort.map(d => d.effort), ymax = 25;
+  const xf = lin(0.5, 8.5, m.l, W - m.r), yf = lin(0, ymax, H - m.b, m.t);
+  frame(svg, "collections in the watershed-year (obs_effort; 8 = 8 or more)", "fish species detected", xs, [0, 5, 10, 15, 20, 25], xf, yf, v => String(v));
+  const band = D.fish_effort.map(d => `${xf(d.effort)},${yf(d.q3)}`).concat(D.fish_effort.slice().reverse().map(d => `${xf(d.effort)},${yf(d.q1)}`)).join(" ");
+  el("polygon", { points: band, fill: "var(--c3)", "fill-opacity": .15 }, svg);
+  el("polyline", { points: D.fish_effort.map(d => `${xf(d.effort)},${yf(d.median_species)}`).join(" "), fill: "none", stroke: "var(--c3)", "stroke-width": 2 }, svg);
+  D.fish_effort.forEach(d => {
+    const c = el("circle", { cx: xf(d.effort), cy: yf(d.median_species), r: 4.5, fill: "var(--c3)", stroke: "var(--paper)", "stroke-width": 1.5 }, svg);
+    const t = el("title", {}, c); t.textContent = `${d.effort} collection(s): median ${d.median_species} species (IQR ${d.q1}–${d.q3}) across ${d.n} watershed-years`;
+    const n = el("text", { x: xf(d.effort), y: yf(d.q3) - 6, "text-anchor": "middle", "font-size": 10, fill: "var(--ink-3)" }, svg); n.textContent = "n=" + d.n;
+  });
+  const lg = el("text", { x: W - m.r, y: m.t + 10, "text-anchor": "end", "font-size": 11, fill: "var(--ink-2)" }, svg); lg.textContent = "median and interquartile range";
+})();
+// Figure 4: CJS captures per session
+(function(){
+  const svg = document.getElementById("f4"); if (!svg) return;
+  const ymax = 60, n = D.cjs.length, bw = (W - m.l - m.r) / n;
+  const xf = i => m.l + bw * (i - 0.5), yf = lin(0, ymax, H - m.b, m.t);
+  frame(svg, "capture session (period)", "birds captured", D.cjs.map(d => d.period), [0, 20, 40, 60], xf, yf, v => String(v));
+  D.cjs.forEach((d, i) => {
+    const x = xf(d.period) - bw * 0.3, w = bw * 0.6;
+    const y0 = yf(0), yNew = yf(d.new), yRe = yf(d.new + d.recaptured);
+    const r1 = el("rect", { x, width: w, y: yNew, height: y0 - yNew, fill: "var(--c1)" }, svg);
+    el("title", {}, r1).textContent = `session ${d.period}: ${d.new} first captures`;
+    if (d.recaptured > 0) {
+      const r2 = el("rect", { x, width: w, y: yRe, height: yNew - yRe - 2, fill: "var(--c2)" }, svg);
+      el("title", {}, r2).textContent = `session ${d.period}: ${d.recaptured} recaptures`;
+    }
+    const t = el("text", { x: xf(d.period), y: yRe - 6, "text-anchor": "middle", "font-size": 11, fill: "var(--ink-2)" }, svg); t.textContent = d.captured;
+  });
+})();
+})();
+</script>

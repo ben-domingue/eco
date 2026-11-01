@@ -1,0 +1,54 @@
+{
+  "table": "schank_2015_tapir_occ",
+  "title": "Baird's tapir camera-trap detection histories, Rio Indio, Nicaragua, June-August 2014",
+  "creator": "Schank, Cody",
+  "pubDate": "2015",
+  "doi": "10.5281/zenodo.17602",
+  "sourceURL": "https://doi.org/10.5281/zenodo.17602",
+  "citation": "Schank, C. (2015). Tapir detection histories (Tapirus bairdii) from Rio Indio, Nicaragua [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17602",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera trap detection histories from June-August 2014 (deposit description in full).",
+  "samplingProtocol": "Camera traps; daily detection/non-detection per camera; camera-days of effort in unit_trapdays.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "1 day",
+  "effortColumn": "unit_trapdays",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": {
+    "description": "Rio Indio, southeastern Nicaragua",
+    "boundingBox": {
+      "west": -84.05,
+      "east": -83.85,
+      "south": 11.05,
+      "north": 11.15
+    }
+  },
+  "temporalCoverage": "2014-06/2014-08",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "0.1-degree grid cell centre; IUCN Endangered taxon; source coordinates were exact camera locations"
+  },
+  "notShipped": {
+    "Provider": "constant (data provider, not an observer)"
+  },
+  "summary": {
+    "n_rows": 1008,
+    "n_units": 22,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 72,
+    "n_surveys": 1008,
+    "y_values": "0,1",
+    "prop_zero": 0.989
+  },
+  "sampleFloor": "below (22 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_trapdays", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/schank_2015_tapir_occ.R",
+  "buildDate": "2026-10-31"
+}

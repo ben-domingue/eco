@@ -51,7 +51,7 @@ with model fits on both. Scripts in `converters/rt_0*_*.R`; collated checks in
 
 - `alfl`: survey-level covariates (`time.1`, `date.1`) are site covariates in the
   vignette's frame because only survey 1 is used; in the standard they are
-  `cov_` with a `.1` suffix. Harmless here, but it shows that the level of a
+  `unit_` with a `.1` suffix. Harmless here, but it shows that the level of a
   covariate is a property of the *design as deposited*, not of the variable.
 - The community table is 95% zeros and 7.6 MB from a 0.3 MB array. Dense zeros
   are honest and IRW-like; they are also the obvious thing to question (README
@@ -63,7 +63,7 @@ with model fits on both. Scripts in `converters/rt_0*_*.R`; collated checks in
 ## Changes made to the standard as a result
 
 See the v0.2 changelog in `standard_draft.md`: `season`/`visit` → `period`/
-`occasion`; `periodcov_` and the `periods` side table; the §9 rows on
+`occasion`; `period_` and the `periods` side table; the §9 rows on
 unsurveyed cells and units; `multinomialType` required; `freq` expansion rule.
 
 ## Not tested

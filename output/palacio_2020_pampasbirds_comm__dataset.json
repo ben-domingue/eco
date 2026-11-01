@@ -1,0 +1,41 @@
+{
+  "table": "palacio_2020_pampasbirds_comm",
+  "title": "Bird community point counts, 10 points x 4 seasons x 5 visits, east-central Argentina (Palacio et al. 2020)",
+  "creator": "Palacio, Facundo X.; Maragliano, Rene E.; Montalti, Diego",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.cvdncjt22",
+  "sourceURL": "https://doi.org/10.5061/dryad.cvdncjt22",
+  "mirrorURL": "https://zenodo.org/records/4728255",
+  "citation": "Palacio, F. X., Maragliano, R. E., & Montalti, D. (2020). The costs of ignoring species detectability on functional diversity estimation. The Auk, 137(4), ukaa057. https://doi.org/10.1093/auk/ukaa057",
+  "paperDOI": "10.1093/auk/ukaa057",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Multi-species occupancy data used to obtain detection-corrected functional diversity metrics for bird communities in east-central Argentina; detection related to body mass, diet and foraging stratum.",
+  "samplingProtocol": "Point counts, five visits per season in each of four seasons; presence/absence per species per visit.",
+  "samplingProtocolCode": "point_count",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion (visits within a season); state may change between seasons (period)",
+  "itemCovariates": "19 functional traits in the taxa side table (body mass; diet, foraging stratum and foraging behaviour as 0/1)",
+  "geographicCoverage": "east-central Argentina (Pampas; no coordinates deposited)",
+  "temporalCoverage": "not stated in deposit",
+  "coordinatesCoarsened": null,
+  "summary": {
+    "n_rows": 8600,
+    "n_units": 10,
+    "n_taxa": 43,
+    "n_periods": 4,
+    "n_occasions": 5,
+    "n_surveys": 200,
+    "y_values": "0,1",
+    "prop_zero": 0.94
+  },
+  "sampleFloor": "below (10 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/palacio_2020_pampasbirds_comm.R",
+  "buildDate": "2026-10-31"
+}

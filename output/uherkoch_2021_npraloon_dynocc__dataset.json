@@ -1,0 +1,63 @@
+{
+  "table": "uherkoch_2021_npraloon_dynocc",
+  "title": "Loon territory occupancy and breeding status in freshwater lakes, National Petroleum Reserve-Alaska, 2011-2014",
+  "creator": "Uher-Koch, Brian D.",
+  "pubDate": "2021",
+  "doi": "10.5066/P9Z3AGXS",
+  "sourceURL": "https://doi.org/10.5066/P9Z3AGXS",
+  "citation": "Uher-Koch, B.D., 2021, Survey data for loon occupancy in freshwater lakes, National Petroleum Reserve-Alaska, 2011-2014: U.S. Geological Survey data release, https://doi.org/10.5066/P9Z3AGXS.",
+  "paperDOI": "10.14430/arctic71533",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; public domain"
+  },
+  "abstract": "Territory occupancy data for Pacific and Yellow-billed Loons and presence/absence of five fish species from freshwater lakes on the Arctic Coastal Plain, northern Alaska, 2011-2014, collected to understand how fish communities affect loon occupancy and breeding success.",
+  "samplingProtocol": "Annual lake surveys of loon territories; status recorded once per year.",
+  "samplingProtocolCode": "territory_survey",
+  "responseType": "state",
+  "unitKind": "site",
+  "closure": "period (one survey per year; territory status may change between years)",
+  "stateCodes": {
+    "0": "species does not hold the territory",
+    "1": "territorial pair",
+    "2": "territorial pair with reproduction (chicks >= 3 weeks)"
+  },
+  "respRawCodes": {
+    "0": "Unoccupied",
+    "1": "Pacific Loon pair",
+    "2": "Pacific Loon pair with reproduction",
+    "3": "Yellow-billed Loon pair",
+    "4": "Yellow-billed Loon pair with reproduction"
+  },
+  "geographicCoverage": {
+    "description": "National Petroleum Reserve-Alaska, Arctic Coastal Plain",
+    "boundingBox": {
+      "west": -155.53,
+      "east": -155.16,
+      "south": 70.36,
+      "north": 70.72
+    }
+  },
+  "temporalCoverage": "2011/2014",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by the source"
+  },
+  "summary": {
+    "n_rows": 886,
+    "n_units": 117,
+    "n_taxa": 2,
+    "n_periods": 4,
+    "n_occasions": 1,
+    "n_surveys": 443,
+    "y_values": "0,1,2",
+    "prop_zero": 0.528
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_decimalLatitude", "unit_decimalLongitude", "unit_fish_least_cisco", "unit_fish_broad_whitefish", "unit_fish_arctic_grayling", "unit_fish_alaska_blackfish", "unit_fish_ninespine_stickleback", "unit_fish_n_species"],
+  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/uherkoch_2021_npraloon_dynocc.R",
+  "buildDate": "2026-10-31"
+}

@@ -7,27 +7,27 @@ y <- MHB2014$counts; y[y > 1] <- 1               # detection/non-detection, as i
 raw <- MHB2014$counts
 dimnames(y)[[3]] <- MHB2014$species$latabb
 sites <- MHB2014$sites; rownames(sites) <- NULL
-site_covs <- sites[, c("coordx", "coordy", "elev", "rlength", "forest")]   # nsurvey/obs14 are design/observer; keep obs14 as rater
+site_covs <- sites[, c("coordx", "coordy", "elev", "rlength", "forest")]   # nsurvey/obs14 are design/observer; keep obs14 as observer
 obs_covs <- list(date = MHB2014$date, dur = MHB2014$dur)
-item_covs <- MHB2014$species[, c("body.length", "body.mass", "wing.span")]
-long <- array_to_eco(y, site_ids = sites$siteID, site_covs = site_covs, obs_covs = obs_covs, item_covs = item_covs,
-                     resp_raw = raw)
-long[, rater := sites$obs14[match(id, sites$siteID)]]
+taxon_covs <- MHB2014$species[, c("body.length", "body.mass", "wing.span")]
+long <- array_to_eco(y, site_ids = sites$siteID, site_covs = site_covs, obs_covs = obs_covs, taxon_covs = taxon_covs,
+                     y_raw = raw)
+long[, observer := sites$obs14[match(unit, sites$siteID)]]
 long <- order_eco(long)
 v <- validate_eco(long); record(DS, "validate_eco", v$ok, paste(v$problems, collapse = "; "))
 n_surveys <- sum(!is.na(y[, , 1]))
 record(DS, "rows == surveys x species", nrow(long) == n_surveys * dim(y)[3], sprintf("%d rows = %d surveys x %d species", nrow(long), n_surveys, dim(y)[3]))
-record(DS, "all-NA site has no rows", !(sites$siteID[which(rowSums(!is.na(y[, , 1])) == 0)] %in% long$id))
-record(DS, "resp_raw keeps counts", max(long$resp_raw, na.rm = TRUE) > 1)
-items <- data.frame(item = MHB2014$species$latabb, scientificName = MHB2014$species$latname, vernacularName = MHB2014$species$engname,
+record(DS, "all-NA site has no rows", !(sites$siteID[which(rowSums(!is.na(y[, , 1])) == 0)] %in% long$unit))
+record(DS, "y_raw keeps counts", max(long$y_raw, na.rm = TRUE) > 1)
+taxa <- data.frame(taxon = MHB2014$species$latabb, scientificName = MHB2014$species$latname, vernacularName = MHB2014$species$engname,
                     taxonRank = "species", specid = MHB2014$species$specid)
-write_eco(long, "kery_2014_mhb_community", OUT, items = items,
+write_eco(long, "kery_2014_mhb_community", OUT, taxa = taxa,
           dataset = list(title = "Swiss MHB 2014 community detection data (AHMbook::MHB2014)", responseType = "detection",
-                         unitKind = "site", itemKind = "taxon", closure = "occasion", crs = "EPSG:21781 (CH1903/LV03) in cov_coordx/cov_coordy",
+                         unitKind = "site", closure = "occasion", crs = "EPSG:21781 (CH1903/LV03) in unit_coordx/unit_coordy",
                          intellectualRights = "GPL-3 (bundled with AHMbook)"))
 back <- read_eco(file.path(OUT, "kery_2014_mhb_community.csv"))
 record(DS, "file size (MB)", TRUE, sprintf("%.1f", file.size(file.path(OUT, "kery_2014_mhb_community.csv")) / 1e6))
-a <- eco_to_array(back, site_ids = sites$siteID, items = MHB2014$species$latabb)
+a <- eco_to_array(back, site_ids = sites$siteID, taxa = MHB2014$species$latabb)
 # the all-NA site drops out of the table; eco_to_array pads it back because site_ids is supplied
 y2 <- a$y
 record(DS, "y array identical (incl. NA pattern)", identical(dim(y2), dim(y)) && identical(unname(is.na(y2)), unname(is.na(y))) && isTRUE(all.equal(unname(y2), unname(y))))
@@ -35,7 +35,7 @@ sc2 <- a$site_covs
 record(DS, "siteCovs identical for surveyed sites", same_df(site_covs[rowSums(!is.na(y[, , 1])) > 0, ], sc2[rowSums(!is.na(y2[, , 1])) > 0, ]))
 record(DS, "siteCovs lost for the never-surveyed site", all(is.na(sc2[rowSums(!is.na(y2[, , 1])) == 0, ])), "expected: core table cannot carry a unit with no surveys")
 record(DS, "obsCovs identical at surveyed cells", same_matrix(obs_covs$date, a$obs_covs$date) && same_matrix(obs_covs$dur, a$obs_covs$dur))
-record(DS, "itemCovs identical", same_df(item_covs, a$item_covs))
+record(DS, "itemCovs identical", same_df(taxon_covs, a$taxon_covs))
 # textbook model: AHM 11.6.1 simplest community occupancy model (species random effects, no augmentation)
 fit_comm <- function(y, seed = 1, niter = 600) {
   nsite <- dim(y)[1]; nrep <- dim(y)[2]; nspec <- dim(y)[3]

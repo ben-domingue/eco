@@ -1,0 +1,45 @@
+{
+  "table": "malhotra_2021_loslagos_comm",
+  "title": "Camera-trap detection histories of three native carnivores and domestic dogs, Los Lagos, Chile, 2019",
+  "creator": "Malhotra, Rumaan; Jimenez, Jaime; Harris, Nyeema",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.3xsj3txfv",
+  "sourceURL": "https://doi.org/10.5061/dryad.3xsj3txfv",
+  "mirrorURL": "https://zenodo.org/records/5106824",
+  "citation": "Malhotra, R., Jimenez, J., & Harris, N. (2021). Patch characteristics and domestic dogs differentially affect carnivore space use in fragmented landscapes in southern Chile. Diversity and Distributions, 27(12). https://doi.org/10.1111/ddi.13391",
+  "paperDOI": "10.1111/ddi.13391",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap survey of a fragmented native-forest / pasture landscape in the central valley-Andean foothills transition of Los Lagos, Chile. Single-species occupancy models for culpeo, chilla and guigna with domestic-dog occupancy and habitat destruction as covariates.",
+  "samplingProtocol": "Camera traps; detection histories built from trigger histories with a 30-minute quiet period between triggers of the same species; each occasion is 7 camera-days.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "7 days",
+  "effortColumn": "unit_trapnights",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Los Lagos Region, Chile (no coordinates deposited)",
+  "temporalCoverage": "2019",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "Dog_occu": "model-derived covariate"
+  },
+  "summary": {
+    "n_rows": 1944,
+    "n_units": 48,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 11,
+    "n_surveys": 486,
+    "y_values": "0,1",
+    "prop_zero": 0.878
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_trapnights", "unit_understory_10m", "unit_smallmammal_rate", "unit_forest", "unit_isolation", "unit_edge"],
+  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/malhotra_2021_loslagos_comm.R",
+  "buildDate": "2026-10-31"
+}

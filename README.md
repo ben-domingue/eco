@@ -1,6 +1,6 @@
 # eco — an IRW-style warehouse for ecological detection data?
 
-*Exploratory study, 2026-10-30. Everything here is a draft for Ben to react to;
+*Exploratory study, 2026-10-30, extended 2026-10-31 with six built tables on Redivis (`datapages.eco`). Everything here is a draft for Ben to react to;
 nothing is production.*
 
 *Website: <https://ben-domingue.github.io/eco/> (source in `site/`, rendered by
@@ -8,19 +8,19 @@ nothing is production.*
 
 ## The question
 
-The IRW harmonises item-response data into one long-format table (`id`, `item`,
-`resp`) so psychometric methods can be benchmarked at scale. Could the same move
+The IRW harmonises item-response data into one long-format table (`unit`, `taxon`,
+`y`) so psychometric methods can be benchmarked at scale. Could the same move
 work for the hierarchical ecological models fit with NIMBLE — occupancy,
 N-mixture, capture–recapture, community models — where a site or animal has a
 latent state observed imperfectly across repeated surveys?
 
 ## Short answer: yes, and more cheaply than for psychology
 
-- **The structure maps.** `id` = the unit carrying the latent state (site or
-  individual), `item` = the taxon probed for, `resp` = detection / count,
+- **The structure maps.** `unit` = the unit carrying the latent state (site or
+  individual), `taxon` = the taxon probed for, `y` = detection / count,
   `period` + `occasion` = primary / secondary survey indices (both already legal
   IRW C5 occasion columns), covariates prefixed by the level at which they are
-  constant (`cov_`, `periodcov_`, `obs_`, `itemcov_` — exactly `unmarked`'s
+  constant (`unit_`, `period_`, `obs_`, `taxon_` — exactly `unmarked`'s
   three covariate levels). A community occupancy model is literally a
   random-item IRT model with species as items. See `standard_draft.md`.
 - **It round-trips.** Six bundled datasets covering single-season occupancy,
@@ -52,9 +52,9 @@ latent state observed imperfectly across repeated surveys?
 
 ## The five decisions that are Ben's to make
 
-1. **What is `item`?** The draft puts the *species* on `item`, so single-species
+1. **What is `taxon`?** The draft puts the *species* on `taxon`, so single-species
    tables look like IRW's repeated-trial family (one item, many occasions) and
-   community tables are species-as-items. The alternative — visit on `item` —
+   community tables are species-as-items. The alternative — visit on `taxon` —
    makes every table a person × item matrix an IRT model can eat directly, but
    does not generalise to multi-species data. It is a one-line pivot either way;
    the choice is about what the canonical corpus looks like.
@@ -72,9 +72,67 @@ latent state observed imperfectly across repeated surveys?
    raw lat/long.
 5. **How far to stretch.** Multinomial (double-observer) and binned distance
    sampling fit by using `occasion` for a *category* rather than a time-ordered
-   replicate; SCR fits by putting *traps* on `item`. Accept the stretched
+   replicate; SCR fits by putting *traps* on `taxon`. Accept the stretched
    semantics with a declared `itemKind`/`responseType`, or keep v1 to the
    detection/count/capture-history families where the format is unforced.
+
+## Nomenclature (v0.3, 2026-10-31)
+
+The IRW's `id`/`item`/`resp` were kept through v0.2 to show the tables validate
+under IRW v1.0 unchanged. From v0.3 the standard uses local names and keeps IRW
+conformance as a *view*:
+
+| eco | IRW | meaning |
+|---|---|---|
+| `unit` | `id` | the thing with the latent state: a site, or an individual animal |
+| `taxon` | `item` | the species probed for |
+| `y` | `resp` | the observation: 0/1, count, or state code |
+| `y_raw`, `observer` | `resp_raw`, `rater` | |
+| `unit_*`, `period_*`, `obs_*`, `taxon_*` | `cov_*`, `periodcov_*`, (none), `itemcov_*` | covariate at the level where it is constant |
+| `trap` | (none) | SCR trap index; `__traps` side table |
+| `date` ISO 8601 | `date` Unix seconds | |
+| `__taxa`, `__periods`, `__units`, `__traps` | item text | side tables, typed by key column |
+
+`eco_to_irw()` in `converters/eco_standard.R` produces the IRW view; the validator
+and the uploader run `irw-validate` on it.
+
+## Worked tables (2026-10-31)
+
+Six public deposits were run through an IRW-style pipeline (one processing
+script per source, a dictionary row, a tags row, a clean CSV plus side tables),
+to see the standard meet real deposits rather than package data. All six pass
+the draft validator and `irw-validate` (IRW v1.0 upload gate; the only warnings
+are IRW's own 100-id floor and the `obs_` prefix it does not know).
+
+| Table | Family | Units x items x periods x occasions | Rows | Source, licence |
+|---|---|---|---|---|
+| `malhotra_2021_loslagos_comm` | community occupancy (camera traps) | 48 x 4 x 1 x 11 | 1,944 | Dryad, CC0 |
+| `schank_2015_tapir_occ` | single-season occupancy; coordinates coarsened | 22 x 1 x 1 x 72 | 1,008 | Zenodo, CC0 |
+| `toledolima_2024_elaenia_cjs` | CJS from a MARK `.inp`, 4 losses on capture | 175 x 1 x 9 x 1 | 1,559 | Zenodo, CC BY 4.0 |
+| `palacio_2020_pampasbirds_comm` | multi-season community occupancy, 19 traits | 10 x 43 x 4 x 5 | 8,600 | Dryad, CC0 |
+| `frimpong_2017_newriver_dynocc` | multi-species dynamic occupancy, 1938-2014, effort | 100 x 74 x 25 x 3 | 74,592 | Harvard Dataverse, CC0 |
+| `uherkoch_2021_npraloon_dynocc` | multi-state (breeding status) dynamic occupancy | 117 x 2 x 4 x 1 | 886 | USGS ScienceBase, CC0 |
+
+What the real deposits added to the round-trip findings:
+
+- **The explicit-zero rule was never ambiguous**: every deposit used `NA`/blank
+  for "not surveyed" and 0 for "not detected", and in two of them the survey
+  pattern could be cross-checked against an effort table (fish: blank iff
+  effort 0; tapir: filled cells = effort + 1 or 2 days).
+- **Two tables fall below the proposed 30-unit floor** (tapir, 22 cameras;
+  Argentine birds, 10 points). Both are staged with `Status = hold`. The bird
+  table is the interesting case: 10 sites but 43 species x 20 surveys each, so
+  the floor measures the wrong axis for community data (decision 3).
+- **Coarsening was needed once** (Endangered tapir, exact camera coordinates
+  deposited) and exercised the section 6 rule; the loon table keeps coordinates
+  as the USGS published them (decision 4).
+- **Multi-state data fit with `y` = species-specific state and `y_raw` =
+  source code**; a territory held by one loon species is a 0 for the other.
+  Suggests adding `state` to the section 10 type suffixes.
+- **Losses on capture** (MARK `freq = -1`) exercised the `obs_removed`
+  encoding, which the round trips had not.
+- **A model output posing as a covariate** (Malhotra's dog-occupancy estimate)
+  is the ecological version of IRW's composite-score rule and was dropped.
 
 ## Contents
 
@@ -85,7 +143,19 @@ latent state observed imperfectly across repeated surveys?
 | `converters/rt_0*_*.R`, `run_all.R` | Round-trip tests for six datasets; `converters/output/` holds the converted tables and `roundtrip_results.csv` |
 | `roundtrip_report.md` | What matched, what did not, what changed in the standard |
 | `discovery/eco_discover.py` | Repository search (connectors adapted from `ben-domingue/irw`), with cached responses in `discovery/cache/` |
+| `data/*.R`, `data/run_all.R` | One processing script per public deposit (download, reshape, validate, stage rows); see `data/README.md` |
+| `lib/eco_common.R` | Shared harness: cached downloads, GBIF taxon lookup, coordinate coarsening, `write_table()`, dictionary and tag staging |
+| `converters/eco_standard.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` and the uploader check |
+| `output/` | Clean CSV per table plus `__taxa.csv`, `__periods.csv`, `__dataset.json` side files |
+| `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
+| `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |
+| `validate/validate_all.R`, `validate/report.csv` | Draft validator + `irw-validate` over every output |
+| `upload/red_up_eco.py` | Ships `output/` to Redivis `datapages.eco` (reference `eco:4j5q`) with IRW's `red_up`: true replace, row counts verified, descriptions from `__dataset.json`; draft only |
+| `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built`) |
+| `analysis/*.R`, `analysis/build_report.py` | The illustrative figures and the assembly of `report.html` from the repo's own files |
 | `discovery_log.csv`, `discovery_summary.md` | Per-source hit counts, curated candidates with difficulty scores, and the narrative |
 
-To rerun the tests: `cd converters && Rscript run_all.R` (needs `unmarked`,
+To rebuild the tables: `Rscript data/run_all.R && Rscript validate/validate_all.R` (from the repo root; needs `data.table`, `jsonlite`, network access for the first run, and the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or `IRW_SRC` for the IRW check).
+
+To rerun the round-trip tests: `cd converters && Rscript run_all.R` (needs `unmarked`,
 `AHMbook`, `marked`, `nimble`, `nimbleEcology`, `data.table`, `jsonlite`).

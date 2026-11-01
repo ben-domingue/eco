@@ -9,15 +9,15 @@ DATE <- (DATE - mean.DATE) / sd.DATE
 years <- as.character(1999:2007); years <- matrix(years, nrow(crossbill), 9, byrow = TRUE)
 umf <- unmarkedMultFrame(y = y.cross, siteCovs = crossbill[, 2:3], yearlySiteCovs = list(year = years),
                          obsCovs = list(date = DATE), numPrimary = 9)
-long <- umf_to_eco(umf, item = "LOXCUR", site_ids = crossbill$id)
+long <- umf_to_eco(umf, taxon = "LOXCUR", site_ids = crossbill$id)
 v <- validate_eco(long); record(DS, "validate_eco", v$ok, paste(v$problems, collapse = "; "))
 record(DS, "rows == non-NA cells", nrow(long) == sum(!is.na(y.cross)), sprintf("%d rows, %d NA cells", nrow(long), sum(is.na(y.cross))))
 record(DS, "period 1..9, occasion 1..3", identical(sort(unique(long$period)), 1:9) && identical(sort(unique(long$occasion)), 1:3))
 write_eco(long, "kery_2010_crossbill_dynocc", OUT,
-          items = data.frame(item = "LOXCUR", scientificName = "Loxia curvirostra", vernacularName = "Red Crossbill", taxonRank = "species",
+          taxa = data.frame(taxon = "LOXCUR", scientificName = "Loxia curvirostra", vernacularName = "Red Crossbill", taxonRank = "species",
                              taxonID = "https://www.gbif.org/species/2494686"),
           dataset = list(title = "European crossbill detections, Swiss MHB 1999-2007 (unmarked::crossbill)", responseType = "detection",
-                         unitKind = "site", itemKind = "taxon", closure = "occasion", intellectualRights = "GPL-3 (bundled with unmarked)"))
+                         unitKind = "site", closure = "occasion", intellectualRights = "GPL-3 (bundled with unmarked)"))
 back <- read_eco(file.path(OUT, "kery_2010_crossbill_dynocc.csv"))
 umf2 <- eco_to_umf(back, "colext", site_ids = crossbill$id)
 record(DS, "y identical", same_matrix(getY(umf), getY(umf2)))

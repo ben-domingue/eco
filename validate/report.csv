@@ -1,0 +1,7 @@
+table,rows,units,taxa,eco_valid,eco_problems,taxa_table_matches,sample_floor,irw_v1,irw_warnings
+frimpong_2017_newriver_dynocc,74592,100,74,TRUE,"",TRUE,meets,passes (conforms to v1.0),cov_prefix; imputed_values*
+malhotra_2021_loslagos_comm,1944,48,4,TRUE,"",TRUE,meets,passes (conforms to v1.0),imputed_values*; sample_floor
+palacio_2020_pampasbirds_comm,8600,10,43,TRUE,"",TRUE,below (10 units < 30),passes (conforms to v1.0),imputed_values*; sample_floor
+schank_2015_tapir_occ,1008,22,1,TRUE,"",TRUE,below (22 units < 30),passes (conforms to v1.0),imputed_values*; sample_floor
+toledolima_2024_elaenia_cjs,1559,175,1,TRUE,"",TRUE,meets,passes (conforms to v1.0),cov_prefix; imputed_values*
+uherkoch_2021_npraloon_dynocc,886,117,2,TRUE,"",TRUE,meets,passes (conforms to v1.0),""

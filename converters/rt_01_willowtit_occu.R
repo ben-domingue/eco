@@ -7,14 +7,14 @@ umf <- unmarkedFrameOccu(y = y, siteCovs = w[, c("elev", "forest", "length")],
                          obsCovs = list(date = as.matrix(w[, c("date.1", "date.2", "date.3")]),
                                         ivel = as.matrix(w[, c("ivel.1", "ivel.2", "ivel.3")])))
 # --- native -> standard
-long <- umf_to_eco(umf, item = "POEMON", site_ids = w$site)
+long <- umf_to_eco(umf, taxon = "POEMON", site_ids = w$site)
 v <- validate_eco(long); record(DS, "validate_eco", v$ok, paste(v$problems, collapse = "; "))
 record(DS, "rows == non-NA cells", nrow(long) == sum(!is.na(y)), sprintf("%d rows, %d NA cells", nrow(long), sum(is.na(y))))
-items <- data.frame(item = "POEMON", scientificName = "Poecile montanus", vernacularName = "Willow Tit", taxonRank = "species",
+taxa <- data.frame(taxon = "POEMON", scientificName = "Poecile montanus", vernacularName = "Willow Tit", taxonRank = "species",
                     taxonID = "https://www.gbif.org/species/2487885")
-write_eco(long, "kery_2008_willowtit_occ", OUT, items = items,
+write_eco(long, "kery_2008_willowtit_occ", OUT, taxa = taxa,
           dataset = list(title = "Swiss willow tit detection/non-detection, MHB 2004-ish (unmarked widewt.csv)",
-                         responseType = "detection", unitKind = "site", itemKind = "taxon", closure = "occasion",
+                         responseType = "detection", unitKind = "site", closure = "occasion",
                          samplingProtocolCode = "line_transect", intellectualRights = "GPL-3 (bundled with unmarked)",
                          sourceURL = "https://cran.r-project.org/package=unmarked"))
 # --- standard -> native

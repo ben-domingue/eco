@@ -1,0 +1,40 @@
+{
+  "table": "toledolima_2024_elaenia_cjs",
+  "title": "Capture histories of 175 adult Plain-crested Elaenia over nine sessions, northeastern Brazil, 2010-2014",
+  "creator": "Toledo-Lima, Guilherme; Pichorim, Mauro",
+  "pubDate": "2024",
+  "doi": "10.5281/zenodo.11300767",
+  "sourceURL": "https://doi.org/10.5281/zenodo.11300767",
+  "citation": "Toledo-Lima, G., & Pichorim, M. (2024). Detection history of 175 adult Plain-crested Elaenia (Elaenia cristata) throughout nine sessions between 2010 and 2014 in the northeastern Brazil [Data set]. Zenodo. https://doi.org/10.5281/zenodo.11300767",
+  "paperDOI": "10.1080/01650521.2026.2646579",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "The input file for analysing the detection history of 175 adult Plain-crested Elaenia (Elaenia cristata) throughout nine sessions between 2010 and 2014 in the northeastern Brazil.",
+  "samplingProtocol": "Mist-net capture-mark-recapture of banded adults; Program MARK input format (CJS).",
+  "samplingProtocolCode": "mist_net",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one capture occasion per session; state may change between sessions)",
+  "lossesOnCapture": "4 individuals; encoded as obs_removed = 1 on the last row, no later rows",
+  "geographicCoverage": "northeastern Brazil (no coordinates deposited)",
+  "temporalCoverage": "2010/2014",
+  "coordinatesCoarsened": null,
+  "summary": {
+    "n_rows": 1559,
+    "n_units": 175,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 1,
+    "n_surveys": 1559,
+    "y_values": "0,1",
+    "prop_zero": 0.818
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "obs_removed"],
+  "standardVersion": "eco draft v0.3 (2026-10-31)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/toledolima_2024_elaenia_cjs.R",
+  "buildDate": "2026-10-31"
+}

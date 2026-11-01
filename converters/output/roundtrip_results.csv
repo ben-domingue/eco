@@ -1,6 +1,6 @@
 dataset,check,ok,detail
 alfl_removal,validate_eco,TRUE,""
-alfl_removal,resp_raw carries cell label,TRUE,""
+alfl_removal,y_raw carries cell label,TRUE,""
 alfl_removal,y identical,TRUE,""
 alfl_removal,siteCovs identical,TRUE,""
 alfl_removal,multinomialType needed from metadata,TRUE,cell-probability function not recoverable from the table
@@ -24,7 +24,7 @@ dipper_cjs,crm estimates identical,TRUE,Phi(sexMale)=0.0793
 mallard_nmix,all-NA sites have no rows,TRUE,"sites 12,69,118,146"
 mallard_nmix,validate_eco,TRUE,""
 mallard_nmix,rows == non-NA cells,TRUE,"659 rows, 58 NA cells"
-mallard_nmix,resp is count (max > 1),TRUE,max=12
+mallard_nmix,y is count (max > 1),TRUE,max=12
 mallard_nmix,y identical,TRUE,""
 mallard_nmix,siteCovs identical at surveyed sites,TRUE,""
 mallard_nmix,siteCovs lost for all-NA sites,TRUE,expected: a unit with no surveys has no rows
@@ -34,7 +34,7 @@ mallard_nmix,pcount estimates identical,TRUE,lam(elev)=-1.5034
 mhb2014_community,validate_eco,TRUE,""
 mhb2014_community,rows == surveys x species,TRUE,118658 rows = 751 surveys x 158 species
 mhb2014_community,all-NA site has no rows,TRUE,""
-mhb2014_community,resp_raw keeps counts,TRUE,""
+mhb2014_community,y_raw keeps counts,TRUE,""
 mhb2014_community,file size (MB),TRUE,7.6
 mhb2014_community,y array identical (incl. NA pattern),TRUE,""
 mhb2014_community,siteCovs identical for surveyed sites,TRUE,""

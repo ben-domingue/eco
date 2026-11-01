@@ -1,0 +1,1396 @@
+{
+  "taxa": [
+    {
+      "taxon": "CHILLA",
+      "naive_occ": 0.5833,
+      "det_rate": 0.249,
+      "n_surveys": 486,
+      "n_det": 121,
+      "table": "malhotra_2021_loslagos_comm"
+    },
+    {
+      "taxon": "CULPEO",
+      "naive_occ": 0.1667,
+      "det_rate": 0.0432,
+      "n_surveys": 486,
+      "n_det": 21,
+      "table": "malhotra_2021_loslagos_comm"
+    },
+    {
+      "taxon": "DOG",
+      "naive_occ": 0.4167,
+      "det_rate": 0.0988,
+      "n_surveys": 486,
+      "n_det": 48,
+      "table": "malhotra_2021_loslagos_comm"
+    },
+    {
+      "taxon": "GUIGNA",
+      "naive_occ": 0.5208,
+      "det_rate": 0.0967,
+      "n_surveys": 486,
+      "n_det": 47,
+      "table": "malhotra_2021_loslagos_comm"
+    },
+    {
+      "taxon": "AGEBAD",
+      "naive_occ": 0.7,
+      "det_rate": 0.085,
+      "n_surveys": 200,
+      "n_det": 17,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "AMABRA",
+      "naive_occ": 0.1,
+      "det_rate": 0.01,
+      "n_surveys": 200,
+      "n_det": 2,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "BASCUL",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "CARPLA",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "CHLLUC",
+      "naive_occ": 0.5,
+      "det_rate": 0.03,
+      "n_surveys": 200,
+      "n_det": 6,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "COLMEL",
+      "naive_occ": 0.8,
+      "det_rate": 0.1,
+      "n_surveys": 200,
+      "n_det": 20,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "CYCGUJ",
+      "naive_occ": 0.3,
+      "det_rate": 0.015,
+      "n_surveys": 200,
+      "n_det": 3,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "ELAPAR",
+      "naive_occ": 0.4,
+      "det_rate": 0.08,
+      "n_surveys": 200,
+      "n_det": 16,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "FURRUF",
+      "naive_occ": 1,
+      "det_rate": 0.18,
+      "n_surveys": 200,
+      "n_det": 36,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "GEOAEQ",
+      "naive_occ": 0.7,
+      "det_rate": 0.06,
+      "n_surveys": 200,
+      "n_det": 12,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "GUIGUI",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "ICTPYR",
+      "naive_occ": 0.4,
+      "det_rate": 0.03,
+      "n_surveys": 200,
+      "n_det": 6,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "LEPANG",
+      "naive_occ": 0.7,
+      "det_rate": 0.06,
+      "n_surveys": 200,
+      "n_det": 12,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MACRIX",
+      "naive_occ": 0.2,
+      "det_rate": 0.01,
+      "n_surveys": 200,
+      "n_det": 2,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MICMEL",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MILCHI",
+      "naive_occ": 0.2,
+      "det_rate": 0.015,
+      "n_surveys": 200,
+      "n_det": 3,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MIMSAT",
+      "naive_occ": 0.3,
+      "det_rate": 0.03,
+      "n_surveys": 200,
+      "n_det": 6,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MOLBON",
+      "naive_occ": 0.5,
+      "det_rate": 0.035,
+      "n_surveys": 200,
+      "n_det": 7,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MYIMAC",
+      "naive_occ": 0.3,
+      "det_rate": 0.015,
+      "n_surveys": 200,
+      "n_det": 3,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "MYIMON",
+      "naive_occ": 0.3,
+      "det_rate": 0.015,
+      "n_surveys": 200,
+      "n_det": 3,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "PACPOL",
+      "naive_occ": 0.3,
+      "det_rate": 0.03,
+      "n_surveys": 200,
+      "n_det": 6,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "PARCOR",
+      "naive_occ": 0.2,
+      "det_rate": 0.01,
+      "n_surveys": 200,
+      "n_det": 2,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "PATPIC",
+      "naive_occ": 0.7,
+      "det_rate": 0.08,
+      "n_surveys": 200,
+      "n_det": 16,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "PHASTR",
+      "naive_occ": 0.4,
+      "det_rate": 0.03,
+      "n_surveys": 200,
+      "n_det": 6,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "PITSUL",
+      "naive_occ": 1,
+      "det_rate": 0.26,
+      "n_surveys": 200,
+      "n_det": 52,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "POLDUM",
+      "naive_occ": 0.3,
+      "det_rate": 0.02,
+      "n_surveys": 200,
+      "n_det": 4,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "POONIG",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "ROSSOC",
+      "naive_occ": 0.4,
+      "det_rate": 0.045,
+      "n_surveys": 200,
+      "n_det": 9,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "RUPMAG",
+      "naive_occ": 0.4,
+      "det_rate": 0.07,
+      "n_surveys": 200,
+      "n_det": 14,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SCHPHR",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SERSUB",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SICFLA",
+      "naive_occ": 0.1,
+      "det_rate": 0.015,
+      "n_surveys": 200,
+      "n_det": 3,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SICLUT",
+      "naive_occ": 0.4,
+      "det_rate": 0.05,
+      "n_surveys": 200,
+      "n_det": 10,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SPIMAG",
+      "naive_occ": 0.4,
+      "det_rate": 0.03,
+      "n_surveys": 200,
+      "n_det": 6,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SPOCAE",
+      "naive_occ": 0.5,
+      "det_rate": 0.085,
+      "n_surveys": 200,
+      "n_det": 17,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "SYNSPI",
+      "naive_occ": 0.3,
+      "det_rate": 0.035,
+      "n_surveys": 200,
+      "n_det": 7,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "TROAED",
+      "naive_occ": 0.8,
+      "det_rate": 0.19,
+      "n_surveys": 200,
+      "n_det": 38,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "TURAMA",
+      "naive_occ": 0.1,
+      "det_rate": 0.005,
+      "n_surveys": 200,
+      "n_det": 1,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "TURRUF",
+      "naive_occ": 1,
+      "det_rate": 0.14,
+      "n_surveys": 200,
+      "n_det": 28,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "VANCHI",
+      "naive_occ": 0.3,
+      "det_rate": 0.025,
+      "n_surveys": 200,
+      "n_det": 5,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "VIROLI",
+      "naive_occ": 0.3,
+      "det_rate": 0.035,
+      "n_surveys": 200,
+      "n_det": 7,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "ZENAUR",
+      "naive_occ": 0.9,
+      "det_rate": 0.175,
+      "n_surveys": 200,
+      "n_det": 35,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "ZONCAP",
+      "naive_occ": 1,
+      "det_rate": 0.43,
+      "n_surveys": 200,
+      "n_det": 86,
+      "table": "palacio_2020_pampasbirds_comm"
+    },
+    {
+      "taxon": "AMBRUP",
+      "naive_occ": 0.9,
+      "det_rate": 0.4762,
+      "n_surveys": 1008,
+      "n_det": 480,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "AMEMEL",
+      "naive_occ": 0.04,
+      "det_rate": 0.004,
+      "n_surveys": 1008,
+      "n_det": 4,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "AMENAT",
+      "naive_occ": 0.06,
+      "det_rate": 0.0079,
+      "n_surveys": 1008,
+      "n_det": 8,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "AMENEB",
+      "naive_occ": 0.12,
+      "det_rate": 0.0139,
+      "n_surveys": 1008,
+      "n_det": 14,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "AMICAL",
+      "naive_occ": 0.02,
+      "det_rate": 0.002,
+      "n_surveys": 1008,
+      "n_det": 2,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CAMANO",
+      "naive_occ": 0.97,
+      "det_rate": 0.6726,
+      "n_surveys": 1008,
+      "n_det": 678,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CARAUR",
+      "naive_occ": 0.02,
+      "det_rate": 0.002,
+      "n_surveys": 1008,
+      "n_det": 2,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CATCOM",
+      "naive_occ": 0.88,
+      "det_rate": 0.4365,
+      "n_surveys": 1008,
+      "n_det": 440,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CHRORE",
+      "naive_occ": 0.83,
+      "det_rate": 0.375,
+      "n_surveys": 1008,
+      "n_det": 378,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CLIFUN",
+      "naive_occ": 0.85,
+      "det_rate": 0.4306,
+      "n_surveys": 1008,
+      "n_det": 434,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "COTBAI",
+      "naive_occ": 0.82,
+      "det_rate": 0.4167,
+      "n_surveys": 1008,
+      "n_det": 420,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "COTKAN",
+      "naive_occ": 0.37,
+      "det_rate": 0.1042,
+      "n_surveys": 1008,
+      "n_det": 105,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CYPCAR",
+      "naive_occ": 0.13,
+      "det_rate": 0.0238,
+      "n_surveys": 1008,
+      "n_det": 24,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CYPGAL",
+      "naive_occ": 0.34,
+      "det_rate": 0.1002,
+      "n_surveys": 1008,
+      "n_det": 101,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "CYPSPI",
+      "naive_occ": 0.28,
+      "det_rate": 0.0506,
+      "n_surveys": 1008,
+      "n_det": 51,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ESONIG",
+      "naive_occ": 0.02,
+      "det_rate": 0.003,
+      "n_surveys": 1008,
+      "n_det": 3,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHBLE",
+      "naive_occ": 0.6,
+      "det_rate": 0.2103,
+      "n_surveys": 1008,
+      "n_det": 212,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHCAE",
+      "naive_occ": 0.08,
+      "det_rate": 0.0139,
+      "n_surveys": 1008,
+      "n_det": 14,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHFLA",
+      "naive_occ": 0.96,
+      "det_rate": 0.6835,
+      "n_surveys": 1008,
+      "n_det": 689,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHKAN",
+      "naive_occ": 0.52,
+      "det_rate": 0.255,
+      "n_surveys": 1008,
+      "n_det": 257,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHNIG",
+      "naive_occ": 0.11,
+      "det_rate": 0.0317,
+      "n_surveys": 1008,
+      "n_det": 32,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHOLM",
+      "naive_occ": 0.06,
+      "det_rate": 0.0208,
+      "n_surveys": 1008,
+      "n_det": 21,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHOSB",
+      "naive_occ": 0.11,
+      "det_rate": 0.0446,
+      "n_surveys": 1008,
+      "n_det": 45,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ETHSIM",
+      "naive_occ": 0.12,
+      "det_rate": 0.0308,
+      "n_surveys": 1008,
+      "n_det": 31,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "EXOLAU",
+      "naive_occ": 0.54,
+      "det_rate": 0.1736,
+      "n_surveys": 1008,
+      "n_det": 175,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "EXOMAX",
+      "naive_occ": 0.14,
+      "det_rate": 0.0298,
+      "n_surveys": 1008,
+      "n_det": 30,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "HYPNIG",
+      "naive_occ": 0.95,
+      "det_rate": 0.5853,
+      "n_surveys": 1008,
+      "n_det": 590,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ICTPUN",
+      "naive_occ": 0.04,
+      "det_rate": 0.005,
+      "n_surveys": 1008,
+      "n_det": 5,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LEPAUR",
+      "naive_occ": 0.61,
+      "det_rate": 0.1875,
+      "n_surveys": 1008,
+      "n_det": 189,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LEPCYA",
+      "naive_occ": 0.44,
+      "det_rate": 0.0873,
+      "n_surveys": 1008,
+      "n_det": 88,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LEPGIB",
+      "naive_occ": 0.22,
+      "det_rate": 0.0417,
+      "n_surveys": 1008,
+      "n_det": 42,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LEPMAC",
+      "naive_occ": 0.55,
+      "det_rate": 0.1349,
+      "n_surveys": 1008,
+      "n_det": 136,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LEPMEG",
+      "naive_occ": 0.03,
+      "det_rate": 0.003,
+      "n_surveys": 1008,
+      "n_det": 3,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LEPMIC",
+      "naive_occ": 0.03,
+      "det_rate": 0.003,
+      "n_surveys": 1008,
+      "n_det": 3,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LUXALB",
+      "naive_occ": 0.66,
+      "det_rate": 0.2688,
+      "n_surveys": 1008,
+      "n_det": 271,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LUXCER",
+      "naive_occ": 0.38,
+      "det_rate": 0.1806,
+      "n_surveys": 1008,
+      "n_det": 182,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LUXCHR",
+      "naive_occ": 0.14,
+      "det_rate": 0.0198,
+      "n_surveys": 1008,
+      "n_det": 20,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LUXCOC",
+      "naive_occ": 0.12,
+      "det_rate": 0.0397,
+      "n_surveys": 1008,
+      "n_det": 40,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "LYTARD",
+      "naive_occ": 0.47,
+      "det_rate": 0.1796,
+      "n_surveys": 1008,
+      "n_det": 181,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "MICDOL",
+      "naive_occ": 0.8,
+      "det_rate": 0.3333,
+      "n_surveys": 1008,
+      "n_det": 336,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "MICPUN",
+      "naive_occ": 0.12,
+      "det_rate": 0.0159,
+      "n_surveys": 1008,
+      "n_det": 16,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "MICSAL",
+      "naive_occ": 0.34,
+      "det_rate": 0.0565,
+      "n_surveys": 1008,
+      "n_det": 57,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "MOXCER",
+      "naive_occ": 0.05,
+      "det_rate": 0.0089,
+      "n_surveys": 1008,
+      "n_det": 9,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOCLEP",
+      "naive_occ": 0.93,
+      "det_rate": 0.496,
+      "n_surveys": 1008,
+      "n_det": 500,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOCPLA",
+      "naive_occ": 0.63,
+      "det_rate": 0.2034,
+      "n_surveys": 1008,
+      "n_det": 205,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTCHI",
+      "naive_occ": 0.15,
+      "det_rate": 0.0496,
+      "n_surveys": 1008,
+      "n_det": 50,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTCRY",
+      "naive_occ": 0.07,
+      "det_rate": 0.0069,
+      "n_surveys": 1008,
+      "n_det": 7,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTHUD",
+      "naive_occ": 0.15,
+      "det_rate": 0.0228,
+      "n_surveys": 1008,
+      "n_det": 23,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTINS",
+      "naive_occ": 0.52,
+      "det_rate": 0.2173,
+      "n_surveys": 1008,
+      "n_det": 219,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTLEU",
+      "naive_occ": 0.07,
+      "det_rate": 0.0089,
+      "n_surveys": 1008,
+      "n_det": 9,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTPHO",
+      "naive_occ": 0.6,
+      "det_rate": 0.1895,
+      "n_surveys": 1008,
+      "n_det": 191,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTPRO",
+      "naive_occ": 0.06,
+      "det_rate": 0.0079,
+      "n_surveys": 1008,
+      "n_det": 8,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTRUB1",
+      "naive_occ": 0.64,
+      "det_rate": 0.2014,
+      "n_surveys": 1008,
+      "n_det": 203,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTRUB2",
+      "naive_occ": 0.47,
+      "det_rate": 0.127,
+      "n_surveys": 1008,
+      "n_det": 128,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTSCA",
+      "naive_occ": 0.54,
+      "det_rate": 0.1994,
+      "n_surveys": 1008,
+      "n_det": 201,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTTEL",
+      "naive_occ": 0.32,
+      "det_rate": 0.121,
+      "n_surveys": 1008,
+      "n_det": 122,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "NOTVOL",
+      "naive_occ": 0.35,
+      "det_rate": 0.0675,
+      "n_surveys": 1008,
+      "n_det": 68,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "ONCMYK",
+      "naive_occ": 0.64,
+      "det_rate": 0.1845,
+      "n_surveys": 1008,
+      "n_det": 186,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PERCAP",
+      "naive_occ": 0.05,
+      "det_rate": 0.005,
+      "n_surveys": 1008,
+      "n_det": 5,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PERFLA",
+      "naive_occ": 0.03,
+      "det_rate": 0.004,
+      "n_surveys": 1008,
+      "n_det": 4,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PERGYM",
+      "naive_occ": 0.47,
+      "det_rate": 0.1657,
+      "n_surveys": 1008,
+      "n_det": 167,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PEROXY",
+      "naive_occ": 0.16,
+      "det_rate": 0.0377,
+      "n_surveys": 1008,
+      "n_det": 38,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PERROA",
+      "naive_occ": 0.15,
+      "det_rate": 0.0337,
+      "n_surveys": 1008,
+      "n_det": 34,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PHETER",
+      "naive_occ": 0.44,
+      "det_rate": 0.2044,
+      "n_surveys": 1008,
+      "n_det": 206,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PIMNOT",
+      "naive_occ": 0.6,
+      "det_rate": 0.1885,
+      "n_surveys": 1008,
+      "n_det": 190,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "PIMPRO",
+      "naive_occ": 0.09,
+      "det_rate": 0.0099,
+      "n_surveys": 1008,
+      "n_det": 10,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "POMANN",
+      "naive_occ": 0.02,
+      "det_rate": 0.002,
+      "n_surveys": 1008,
+      "n_det": 2,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "POMNIG",
+      "naive_occ": 0.03,
+      "det_rate": 0.004,
+      "n_surveys": 1008,
+      "n_det": 4,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "RHIATR",
+      "naive_occ": 0.92,
+      "det_rate": 0.5437,
+      "n_surveys": 1008,
+      "n_det": 548,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "RHICAT",
+      "naive_occ": 0.81,
+      "det_rate": 0.37,
+      "n_surveys": 1008,
+      "n_det": 373,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "SALFON",
+      "naive_occ": 0.5,
+      "det_rate": 0.131,
+      "n_surveys": 1008,
+      "n_det": 132,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "SALTRU",
+      "naive_occ": 0.51,
+      "det_rate": 0.1488,
+      "n_surveys": 1008,
+      "n_det": 150,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "SEMATR",
+      "naive_occ": 0.79,
+      "det_rate": 0.2708,
+      "n_surveys": 1008,
+      "n_det": 273,
+      "table": "frimpong_2017_newriver_dynocc"
+    },
+    {
+      "taxon": "THORHO",
+      "naive_occ": 0.08,
+      "det_rate": 0.0119,
+      "n_surveys": 1008,
+      "n_det": 12,
+      "table": "frimpong_2017_newriver_dynocc"
+    }
+  ],
+  "est": [
+    {
+      "table": "malhotra_2021_loslagos_comm",
+      "taxon": "CHILLA",
+      "n_units": 48,
+      "n_surveys": 486,
+      "n_detections": 121,
+      "naive_occ": 0.5833,
+      "det_rate": 0.249,
+      "psi": 0.5857,
+      "p": 0.4229
+    },
+    {
+      "table": "malhotra_2021_loslagos_comm",
+      "taxon": "CULPEO",
+      "n_units": 48,
+      "n_surveys": 486,
+      "n_detections": 21,
+      "naive_occ": 0.1667,
+      "det_rate": 0.0432,
+      "psi": 0.1766,
+      "p": 0.2476
+    },
+    {
+      "table": "malhotra_2021_loslagos_comm",
+      "taxon": "DOG",
+      "n_units": 48,
+      "n_surveys": 486,
+      "n_detections": 48,
+      "naive_occ": 0.4167,
+      "det_rate": 0.0988,
+      "psi": 0.4533,
+      "p": 0.2194
+    },
+    {
+      "table": "malhotra_2021_loslagos_comm",
+      "taxon": "GUIGNA",
+      "n_units": 48,
+      "n_surveys": 486,
+      "n_detections": 47,
+      "naive_occ": 0.5208,
+      "det_rate": 0.0967,
+      "psi": 0.6456,
+      "p": 0.1499
+    },
+    {
+      "table": "schank_2015_tapir_occ",
+      "taxon": "TAPBAI",
+      "n_units": 22,
+      "n_surveys": 1008,
+      "n_detections": 11,
+      "naive_occ": 0.2727,
+      "det_rate": 0.0109,
+      "psi": 0.3757,
+      "p": 0.0318
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "AGEBAD",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 4,
+      "naive_occ": 0.2,
+      "det_rate": 0.08,
+      "psi": 0.225,
+      "p": 0.3555
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "COLMEL",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 2,
+      "naive_occ": 0.2,
+      "det_rate": 0.04,
+      "psi": 0.9992,
+      "p": 0.04
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "FURRUF",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 9,
+      "naive_occ": 0.8,
+      "det_rate": 0.18,
+      "psi": 0.9999,
+      "p": 0.18
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "ICTPYR",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 2,
+      "naive_occ": 0.2,
+      "det_rate": 0.04,
+      "psi": 0.9992,
+      "p": 0.04
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "LEPANG",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 2,
+      "naive_occ": 0.2,
+      "det_rate": 0.04,
+      "psi": 0.9992,
+      "p": 0.04
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "MACRIX",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 1,
+      "naive_occ": 0.1,
+      "det_rate": 0.02,
+      "psi": 0.993,
+      "p": 0.0202
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "MICMEL",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 1,
+      "naive_occ": 0.1,
+      "det_rate": 0.02,
+      "psi": 0.993,
+      "p": 0.0202
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "MILCHI",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 1,
+      "naive_occ": 0.1,
+      "det_rate": 0.02,
+      "psi": 0.993,
+      "p": 0.0202
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "MIMSAT",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 2,
+      "naive_occ": 0.2,
+      "det_rate": 0.04,
+      "psi": 0.9992,
+      "p": 0.04
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "PATPIC",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 3,
+      "naive_occ": 0.3,
+      "det_rate": 0.06,
+      "psi": 0.9989,
+      "p": 0.06
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "PITSUL",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 9,
+      "naive_occ": 0.7,
+      "det_rate": 0.18,
+      "psi": 0.9997,
+      "p": 0.18
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "POLDUM",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 3,
+      "naive_occ": 0.2,
+      "det_rate": 0.06,
+      "psi": 0.2935,
+      "p": 0.2043
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "ROSSOC",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 4,
+      "naive_occ": 0.3,
+      "det_rate": 0.08,
+      "psi": 0.5541,
+      "p": 0.1444
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "RUPMAG",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 3,
+      "naive_occ": 0.2,
+      "det_rate": 0.06,
+      "psi": 0.2935,
+      "p": 0.2043
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "SYNSPI",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 2,
+      "naive_occ": 0.1,
+      "det_rate": 0.04,
+      "psi": 0.1125,
+      "p": 0.3555
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "TROAED",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 8,
+      "naive_occ": 0.3,
+      "det_rate": 0.16,
+      "psi": 0.3079,
+      "p": 0.5198
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "TURRUF",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 5,
+      "naive_occ": 0.3,
+      "det_rate": 0.1,
+      "psi": 0.3865,
+      "p": 0.2587
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "VANCHI",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 3,
+      "naive_occ": 0.2,
+      "det_rate": 0.06,
+      "psi": 0.2935,
+      "p": 0.2043
+    },
+    {
+      "table": "palacio_2020_pampasbirds_comm",
+      "taxon": "ZONCAP",
+      "n_units": 10,
+      "n_surveys": 50,
+      "n_detections": 5,
+      "naive_occ": 0.3,
+      "det_rate": 0.1,
+      "psi": 0.3865,
+      "p": 0.2587
+    }
+  ],
+  "fish_effort": [
+    {
+      "effort": 1,
+      "n": 520,
+      "median_species": 7,
+      "q1": 4,
+      "q3": 13
+    },
+    {
+      "effort": 2,
+      "n": 247,
+      "median_species": 11,
+      "q1": 6,
+      "q3": 16
+    },
+    {
+      "effort": 3,
+      "n": 91,
+      "median_species": 13,
+      "q1": 8,
+      "q3": 18
+    },
+    {
+      "effort": 4,
+      "n": 50,
+      "median_species": 17,
+      "q1": 9,
+      "q3": 21
+    },
+    {
+      "effort": 5,
+      "n": 31,
+      "median_species": 16,
+      "q1": 13,
+      "q3": 21
+    },
+    {
+      "effort": 6,
+      "n": 23,
+      "median_species": 17,
+      "q1": 13,
+      "q3": 24.5
+    },
+    {
+      "effort": 7,
+      "n": 11,
+      "median_species": 17,
+      "q1": 13.5,
+      "q3": 22.5
+    },
+    {
+      "effort": 8,
+      "n": 35,
+      "median_species": 15,
+      "q1": 11,
+      "q3": 21
+    }
+  ],
+  "loon_transitions": [
+    {
+      "from": "Pacific",
+      "to": "Pacific",
+      "N": 158,
+      "p": 0.98
+    },
+    {
+      "from": "Pacific",
+      "to": "empty",
+      "N": 3,
+      "p": 0.02
+    },
+    {
+      "from": "Yellow-billed",
+      "to": "Yellow-billed",
+      "N": 137,
+      "p": 0.99
+    },
+    {
+      "from": "Yellow-billed",
+      "to": "empty",
+      "N": 1,
+      "p": 0.01
+    },
+    {
+      "from": "empty",
+      "to": "Pacific",
+      "N": 6,
+      "p": 0.32
+    },
+    {
+      "from": "empty",
+      "to": "Yellow-billed",
+      "N": 5,
+      "p": 0.26
+    },
+    {
+      "from": "empty",
+      "to": "empty",
+      "N": 8,
+      "p": 0.42
+    }
+  ],
+  "cjs": [
+    {
+      "period": 1,
+      "captured": 54,
+      "new": 54,
+      "recaptured": 0
+    },
+    {
+      "period": 2,
+      "captured": 23,
+      "new": 16,
+      "recaptured": 7
+    },
+    {
+      "period": 3,
+      "captured": 32,
+      "new": 19,
+      "recaptured": 13
+    },
+    {
+      "period": 4,
+      "captured": 33,
+      "new": 21,
+      "recaptured": 12
+    },
+    {
+      "period": 5,
+      "captured": 38,
+      "new": 16,
+      "recaptured": 22
+    },
+    {
+      "period": 6,
+      "captured": 28,
+      "new": 15,
+      "recaptured": 13
+    },
+    {
+      "period": 7,
+      "captured": 18,
+      "new": 6,
+      "recaptured": 12
+    },
+    {
+      "period": 8,
+      "captured": 20,
+      "new": 9,
+      "recaptured": 11
+    },
+    {
+      "period": 9,
+      "captured": 37,
+      "new": 19,
+      "recaptured": 18
+    }
+  ]
+}

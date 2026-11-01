@@ -14,14 +14,14 @@ y <- cbind(rowSums(alfl.H1[, c("100", "101", "110", "111")]),
            rowSums(alfl.H1[, c("010", "011")]), alfl.H1[, "001"])
 colnames(y) <- c("int1", "int2", "int3")
 umf <- unmarkedFrameMPois(y = y, siteCovs = covs[, c("woody", "struct", "time.1", "date.1")], type = "removal")
-long <- mpois_to_eco(umf, item = "EMPALN")
+long <- mpois_to_eco(umf, taxon = "EMPALN")
 v <- validate_eco(long); record(DS, "validate_eco", v$ok, paste(v$problems, collapse = "; "))
-record(DS, "resp_raw carries cell label", all(c("int1", "int2", "int3") %in% long$resp_raw))
+record(DS, "y_raw carries cell label", all(c("int1", "int2", "int3") %in% long$y_raw))
 write_eco(long, "chandler_2009_alfl_removal", OUT,
-          items = data.frame(item = "EMPALN", scientificName = "Empidonax alnorum", vernacularName = "Alder Flycatcher", taxonRank = "species",
+          taxa = data.frame(taxon = "EMPALN", scientificName = "Empidonax alnorum", vernacularName = "Alder Flycatcher", taxonRank = "species",
                              taxonID = "https://www.gbif.org/species/2483057"),
           dataset = list(title = "Alder Flycatcher removal counts, survey 1 (unmarked alfl)", responseType = "multinomial_cell",
-                         multinomialType = "removal", unitKind = "site", itemKind = "taxon", closure = "occasion",
+                         multinomialType = "removal", unitKind = "site", closure = "occasion",
                          intellectualRights = "GPL-3 (bundled with unmarked)"))
 back <- read_eco(file.path(OUT, "chandler_2009_alfl_removal.csv"))
 umf2 <- eco_to_mpois(back, type = "removal")
