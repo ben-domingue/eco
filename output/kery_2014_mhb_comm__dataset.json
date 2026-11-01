@@ -1,0 +1,45 @@
+{
+  "table": "kery_2014_mhb_comm",
+  "title": "Swiss breeding bird survey MHB 2014: counts of 158 species on up to 3 surveys of 267 quadrats (AHMbook::MHB2014)",
+  "creator": "Schweizerische Vogelwarte (Swiss Ornithological Institute); Kery, Marc; Royle, J. Andrew (package)",
+  "pubDate": "2016",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "citation": "Kery, M. & Royle, J. A. (2016). Applied Hierarchical Modeling in Ecology: Analysis of distribution, abundance and species richness in R and BUGS. Volume 1. Academic Press. Chapter 11. Data: AHMbook::MHB2014 (Kery, Royle & Meredith), from the Swiss breeding bird survey MHB, Schweizerische Vogelwarte.",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "Textbook community dataset: counts of 158 bird species (13 never recorded that year) on up to three territory-mapping surveys of 267 1-km2 MHB quadrats in 2014, with quadrat coordinates (unspecified CRS), elevation, route length, forest cover, survey date and duration, observer, and three species traits. AHM1 chapter 11 collapses the counts to detection/non-detection for community occupancy; the counts are shipped.",
+  "samplingProtocol": "Simplified territory mapping along a fixed 4-6 km transect in each 1-km2 quadrat, three surveys per breeding season (two above ~2000 m); count of territories/individuals per species per survey.",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Switzerland, 267 MHB 1-km2 quadrats on a national grid",
+  "temporalCoverage": "2014",
+  "crs": "unspecified: the package states the coordinate reference system is intentionally not given; values are metres in a Swiss projected grid",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published in AHMbook (quadrat centres, unspecified CRS); common species, none flagged"
+  },
+  "notShipped": {
+    "unsurveyed_quadrat": "1 quadrat with no survey in 2014 has no rows"
+  },
+  "summary": {
+    "n_rows": 118658,
+    "n_units": 266,
+    "n_taxa": 158,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 751,
+    "y_values": "0-299 (93 distinct)",
+    "prop_zero": 0.825
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "observer", "unit_x", "unit_y", "unit_elev", "unit_rlength", "unit_forest", "unit_nsurvey_planned", "obs_date_doy", "obs_dur_min", "taxon_body_length_cm", "taxon_body_mass_g", "taxon_wing_span_cm", "taxon_specid"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kery_2014_mhb_comm.R",
+  "buildDate": "2026-10-31"
+}

@@ -1,0 +1,40 @@
+{
+  "table": "lebreton_1992_dipper_cjs",
+  "title": "European dipper capture-recapture histories, eastern France, 1981-1987 (marked::dipper)",
+  "creator": "Marzolin, Gilbert (data); Lebreton, Jean-Dominique; Burnham, Kenneth P.; Clobert, Jean; Anderson, David R.",
+  "pubDate": "1992",
+  "sourceURL": "https://cran.r-project.org/package=marked",
+  "citation": "Lebreton, J.-D., Burnham, K. P., Clobert, J. & Anderson, D. R. (1992). Modeling survival and testing biological hypotheses using marked animals: a unified approach with case studies. Ecological Monographs 62(1), 67-118. https://doi.org/10.2307/2937171. Data as bundled in marked (Laake, Johnson & Conn 2013).",
+  "paperDOI": "10.2307/2937171",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-2.0.html"
+  },
+  "abstract": "Textbook CJS dataset: 294 European dippers captured and recaptured over seven annual occasions (1981-1987) along streams in eastern France, with sex. A flood in 1983 is the classic covariate on survival.",
+  "samplingProtocol": "Annual capture-mark-recapture of dippers along streams; one capture occasion per year.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period",
+  "geographicCoverage": "Eastern France (streams; no coordinates in the package)",
+  "temporalCoverage": "1981/1987",
+  "coordinatesCoarsened": null,
+  "notShipped": [],
+  "summary": {
+    "n_rows": 2058,
+    "n_units": 294,
+    "n_taxa": 1,
+    "n_periods": 7,
+    "n_occasions": 1,
+    "n_surveys": 2058,
+    "y_values": "0,1",
+    "prop_zero": 0.748
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lebreton_1992_dipper_cjs.R",
+  "buildDate": "2026-10-31"
+}

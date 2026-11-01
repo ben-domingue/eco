@@ -1,0 +1,42 @@
+{
+  "table": "kery_2010_crossbill_dynocc",
+  "title": "European crossbill detection/non-detection, Swiss MHB, 267 quadrats x 3 surveys x 9 years, 1999-2007 (unmarked::crossbill)",
+  "creator": "Kery, Marc; Swiss Ornithological Institute (data); Fiske, Ian; Chandler, Richard (package)",
+  "pubDate": "2011",
+  "sourceURL": "https://cran.r-project.org/package=unmarked",
+  "citation": "Fiske, I. & Chandler, R. (2011). unmarked: An R package for fitting hierarchical models of wildlife occurrence and abundance. Journal of Statistical Software 43(10). https://doi.org/10.18637/jss.v043.i10. Data: Swiss breeding bird survey MHB (Schweizerische Vogelwarte), unmarked::crossbill; analysed in the colext vignette and in Kery & Royle, AHM2 chapter 4.",
+  "paperDOI": "10.18637/jss.v043.i10",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "Textbook dynamic-occupancy dataset: crossbill detection/non-detection on up to three surveys per year over nine years at 267 MHB quadrats, with elevation, forest cover and survey date.",
+  "samplingProtocol": "Simplified territory mapping along a fixed transect in each 1-km2 quadrat, two (above the tree line) or three surveys per breeding season, every year 1999-2007; collapsed to detection/non-detection per survey.",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Switzerland, MHB 1-km2 quadrats (no coordinates in the package)",
+  "temporalCoverage": "1999/2007",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "unsurveyed_site_years": "site-years with no survey have no rows (48 in the round trip); the year is in __periods so nothing is lost"
+  },
+  "summary": {
+    "n_rows": 6642,
+    "n_units": 267,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 3,
+    "n_surveys": 6642,
+    "y_values": "0,1",
+    "prop_zero": 0.795
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_ele", "unit_forest", "unit_surveys_planned", "obs_date_doy"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kery_2010_crossbill_dynocc.R",
+  "buildDate": "2026-10-31"
+}

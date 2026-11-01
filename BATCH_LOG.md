@@ -55,3 +55,25 @@ Things this batch strained in the v0.3 standard, each now ruled in v1.0-draft:
 - No multinomial, distance-sampling or SCR deposit in this batch; no sensitive
   taxon with exact coordinates (USGS sites are on public management units and are
   published by the agency; kept as published); largest table 135k rows.
+
+## Batch 3 — 2026-11-01 (six textbook tables, issue #18)
+
+The six datasets of the Phase 2 round-trip tests (`converters/rt_0*`), routed
+through `data/` as ordinary tables: loaded from R package data (`unmarked`,
+`marked`, `AHMbook`; GPL carried through as `derived_license`), validated under
+v1.0-draft (18/18 eco_valid, 18/18 IRW view conforms) and uploaded to the Redivis
+draft. They add the first `multinomial_cell` table (E9 declared stretch), a second
+N-mixture table, a second CJS table and the largest community table so far.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| kery_2008_willowtit_occ | single-season occupancy | unmarked widewt.csv, GPL-3 | 665 | 237 quadrats x 3 surveys; 46 unsurveyed cells; covariates standardised in the source |
+| kery_2005_mallard_count | N-mixture | unmarked::mallard, GPL-3 | 659 | 239 quadrats (4 never surveyed, no rows); covariates standardised |
+| chandler_2009_alfl_removal | multinomial N-mixture (removal) | unmarked alfl.csv, GPL-3 | 150 | `occasion` = 5-min removal interval, `y_raw` = interval label, `multinomialType = removal`; survey 1 of 3 only |
+| lebreton_1992_dipper_cjs | CJS | marked::dipper, GPL-2 | 2,058 | 294 individuals x 7 years; `__periods` carries the years |
+| kery_2010_crossbill_dynocc | dynamic occupancy | unmarked::crossbill, GPL-3 | 6,642 | 267 quadrats x 3 x 9 years; raw Julian dates shipped (the vignette standardises) |
+| kery_2014_mhb_comm | community counts | AHMbook::MHB2014, GPL-3 | 118,658 | 158 species (13 never recorded, all-zero); counts shipped, the book collapses to 0/1; quadrat coordinates in an unspecified CRS; one GBIF match fuzzy (Phylloscopus sibilatrix) |
+
+Strains: none on the format. Two source-quality notes for `data_notes` when #6
+exists: the MHB covariate scales in `widewt`/`mallard` are standardised and not
+recoverable; the AHMbook coordinates deliberately omit their CRS.

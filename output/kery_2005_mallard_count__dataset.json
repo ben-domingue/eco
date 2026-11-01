@@ -1,0 +1,43 @@
+{
+  "table": "kery_2005_mallard_count",
+  "title": "Mallard repeated counts, Swiss MHB, 239 quadrats x 3 surveys (unmarked::mallard)",
+  "creator": "Kery, Marc; Royle, J. Andrew; Schmid, Hans",
+  "pubDate": "2005",
+  "sourceURL": "https://cran.r-project.org/package=unmarked",
+  "citation": "Kery, M., Royle, J. A. & Schmid, H. (2005). Modeling avian abundance from replicated counts using binomial mixture models. Ecological Applications 15(4), 1450-1461. https://doi.org/10.1890/04-1120. Data as bundled in unmarked (Fiske & Chandler 2011).",
+  "paperDOI": "10.1890/04-1120",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "Textbook N-mixture dataset: mallard counts on up to three surveys of 239 MHB quadrats, with standardised elevation, transect length and forest cover, and standardised survey intensity and date.",
+  "samplingProtocol": "Simplified territory mapping along a fixed transect in each 1-km2 quadrat, up to three surveys per breeding season; count of individuals per survey.",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Switzerland, MHB 1-km2 quadrats (no coordinates in the package)",
+  "temporalCoverage": "one breeding season (2002 per Kery, Royle & Schmid 2005)",
+  "coordinatesCoarsened": null,
+  "covariateNote": "All covariates are standardised in the package; the raw scales are not recoverable.",
+  "notShipped": {
+    "unsurveyed_quadrats": "4 quadrats with no survey have no rows; their covariates are not in the core table"
+  },
+  "summary": {
+    "n_rows": 659,
+    "n_units": 235,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 659,
+    "y_values": "0,1,2,3,4,7,10,12",
+    "prop_zero": 0.874
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_elev", "unit_length", "unit_forest", "obs_ivel_std", "obs_date_doy_std"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kery_2005_mallard_count.R",
+  "buildDate": "2026-10-31"
+}

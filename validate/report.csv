@@ -1,9 +1,15 @@
 table,rows,units,taxa,eco_valid,eco_problems,taxa_table_matches,sample_floor,survey_evidence,standard,irw_v1,irw_warnings
+chandler_2009_alfl_removal,150,50,1,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 frimpong_2017_newriver_dynocc,74592,100,74,TRUE,"",TRUE,meets,effort_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 galvez_2021_araucania_comm,9135,180,5,TRUE,"",TRUE,meets,effort_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 glorioso_2025_atchafalaya_calls,31024,70,14,TRUE,"",TRUE,meets,sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; item_scale_outlier; sample_floor
 glorioso_2025_atchafalaya_ves,104152,70,47,TRUE,"",TRUE,meets,sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 hamer_2024_hungary_amph_comm,2691,100,9,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
+kery_2005_mallard_count,659,235,1,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
+kery_2008_willowtit_occ,665,237,1,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
+kery_2010_crossbill_dynocc,6642,267,1,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
+kery_2014_mhb_comm,118658,266,158,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
+lebreton_1992_dipper_cjs,2058,294,1,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*
 malhotra_2021_loslagos_comm,1944,48,4,TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 margenau_2021_rowsongbirds_nmix,135072,260,112,TRUE,"",TRUE,meets,row_presence,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support
 mctigue_2023_nwarkansas_comm,46746,355,18,TRUE,"",TRUE,meets,inferred,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
