@@ -106,6 +106,13 @@ Consequences:
    outside the trapped area) has no row; a loss on capture is `obs_removed = 1` on the
    last row.
 
+**Ruling (#20, 2026-11-01).** Consequence 2 applies to `unitKind = site`. When the
+unit is an individual (`cjs`, `scr`, closed captures) the taxon is a property of the
+unit, so an individual's surveys can carry only its own taxon's rows. A deposit with
+several species of individuals ships as one table per taxon (E9: one table per
+survey design × response type); a multi-taxon table with `unitKind = individual` is
+rejected.
+
 **Ruling (Q3, 2026-11-01).** Dense explicit zeros are the only canonical form. A sparse
 detections-only table is not accepted as a core table. Across twelve deposits the
 rule was never ambiguous once the survey set was fixed; its cost is size (a 267 × 3 ×
@@ -293,4 +300,6 @@ shipped and why. Facts about the source are assertions, not comments.
   licence-conflict rule and the replication note (intake), `obs_` may vary across taxa
   within a survey (E5), the IUCN trigger for coarsening (E7), the three-list scope with
   `experimental` (E9), `eco_meta` as the second dataset (E10).
+- **v1.0-draft, ruling #20 (2026-11-01).** E4.2 applies to site units; individual-unit
+  deposits with several species ship as one table per taxon.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

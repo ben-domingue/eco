@@ -263,6 +263,12 @@ def check_explicit_zero_taxa(t: Table):
     n_taxa = t.df["taxon"].nunique()
     if n_taxa < 2:
         return []
+    if (t.dataset or {}).get("unitKind") == "individual":
+        # Ruling #20: the taxon is a property of an individual, so E4.2 cannot hold;
+        # the stated form is one table per taxon.
+        return [_f("explicit_zero_taxa", "error",
+                   f"unitKind = individual with {n_taxa} taxa; an individual carries only "
+                   f"its own taxon, so a multi-species deposit ships as one table per taxon (E4 ruling #20)", t)]
     cols = _survey_cols(t.df)
     per = t.df.groupby(cols, sort=False, dropna=False).size()
     short = per[per != n_taxa]

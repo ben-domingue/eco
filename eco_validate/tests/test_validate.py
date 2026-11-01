@@ -162,6 +162,17 @@ def test_dup_key_and_explicit_zero():
     assert "E4" in r.nonconforming
 
 
+def test_individual_units_one_taxon_per_table():
+    # Ruling #20: a multi-taxon table whose units are individuals is rejected as such,
+    # even when every survey has every taxon; a single-taxon one is fine.
+    df = good_frame()
+    r = run(df, good_meta(unitKind="individual"))
+    msgs = [f.message for f in r.findings if f.check == "explicit_zero_taxa"]
+    assert msgs and "one table per taxon" in msgs[0]
+    one = df[df["taxon"] == df["taxon"].iloc[0]]
+    assert "explicit_zero_taxa" not in checks_of(run(one, good_meta(unitKind="individual")))
+
+
 def test_covariate_level():
     df = good_frame(); df["unit_elev"] = range(len(df))
     assert "covariate_level" in checks_of(run(df), "error")
