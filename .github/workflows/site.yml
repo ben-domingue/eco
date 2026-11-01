@@ -12,8 +12,7 @@ on:
     paths:
       - "site/**"
       - "standard_draft.md"
-      - "tags/**"
-      - "dictionary/**"
+      - "metadata/**"
       - "validate/report.csv"
       - "output/*__dataset.json"
       - "queue/**"

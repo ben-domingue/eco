@@ -27,6 +27,8 @@ python3 -m eco_validate.cli output/          # the gate: every core table, claus
 python3 -m eco_validate.cli output/<table>.csv -v --irw   # one table, every affected case, plus the IRW view
 python3 -m pytest eco_validate/tests -q      # validator tests; the corpus test covers every table in output/
 Rscript validate/validate_all.R              # eco-validate --irw over output/, writes validate/report.csv (the site reads it)
+metadata/run_pipeline.sh                     # metadata.csv, biblio.csv, tags.csv, status.json from output/, dictionary/, tags/
+python3 metadata/upload_meta.py --dry-run    # ship those three to Redivis eco_meta (draft)
 python3 upload/red_up_eco.py --dry-run       # what would ship; never publishes
 python3 upload/red_up_eco.py                 # upload to the Redivis draft (confirms first)
 cd site && quarto render                     # the website (GitHub Pages builds it on push)
@@ -85,7 +87,8 @@ the name plus `__taxa` (required), `__periods`, `__units`, `__traps`; metadata i
 - **One table per survey design x response type.** Name
   `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer.
 - Every script ends with `write_table()`, `stage_dict_row()` and `stage_tag_row()`
-  from `lib/eco_common.R`. `write_table()` runs the R twin of the validator and
+  from `lib/eco_common.R`. After a batch, run `metadata/run_pipeline.sh` and commit
+  `metadata/` too: the site reads it, not `tags/` or `dictionary/`. `write_table()` runs the R twin of the validator and
   refuses a bad table; the Python gate is the authority.
 - Scripts are self-contained apart from `lib/eco_common.R`. The table name is the
   script name: `data/<table>.R` builds `output/<table>.csv`; there is no separate

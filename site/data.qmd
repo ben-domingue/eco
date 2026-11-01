@@ -5,18 +5,21 @@ title: "The tables"
 ```{r}
 #| label: load
 library(data.table)
-tags <- as.data.table(read.csv("../tags/tags_auto.csv", check.names = FALSE, stringsAsFactors = FALSE))
-dict <- as.data.table(read.csv("../dictionary/dictionary_auto.csv", check.names = FALSE, stringsAsFactors = FALSE))
+# Everything on this page comes from the metadata pipeline's outputs
+# (metadata/run_pipeline.sh) plus the validator report. Only samplingProtocol
+# and temporalCoverage are still read from __dataset.json, as prose.
+tags <- as.data.table(read.csv("../metadata/tags.csv", check.names = FALSE, stringsAsFactors = FALSE))
+bib  <- as.data.table(read.csv("../metadata/biblio.csv", check.names = FALSE, stringsAsFactors = FALSE))
+num  <- as.data.table(read.csv("../metadata/metadata.csv", stringsAsFactors = FALSE))
 val  <- as.data.table(read.csv("../validate/report.csv", stringsAsFactors = FALSE))
-meta <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names = TRUE), function(f) {
+prose <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names = TRUE), function(f) {
   j <- jsonlite::read_json(f)
-  data.table(table = j$table, title = j$title, citation = j$citation,
-             licence = j$intellectualRights$spdx, sourceURL = j$sourceURL,
-             protocol = j$samplingProtocol, coverage = j$temporalCoverage,
-             columns = paste(unlist(j$columns), collapse = ", "),
-             coarsened = isTRUE(j$coordinatesCoarsened$value))
+  data.table(table = j$table, protocol = j$samplingProtocol, coverage = j$temporalCoverage)
 }))
-d <- merge(merge(tags, dict[, .(table, description)], by = "table"), meta, by = "table")
+d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url)], by = "table")
+d <- merge(d, num[, .(table, n_units, n_taxa, n_periods, n_occasions, n_rows, sample_floor,
+                      columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened)], by = "table")
+d <- merge(d, prose, by = "table")
 d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
 setorder(d, table)
 redivis <- "https://redivis.com/datasets/4j5q"

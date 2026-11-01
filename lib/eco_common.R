@@ -213,9 +213,10 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
 # ---------------------------------------------------------------------------
 DICT_COLS <- c("table", "description", "source_url", "reference", "doi_paper", "doi_data",
                "original_license", "derived_license", "notes", "contributor", "date", "source_via")
+# Counts and sample_floor are NOT tag columns: metadata/01_metadata.R computes them
+# from output/, so the two can never disagree (ARCHITECTURE.md, rule 1).
 TAG_COLS <- c("table", "rater", "taxon_group", "response_type", "model_family", "unit_kind",
-              "sampling_protocol", "design", "realm", "country", "coordinates", "sample_floor",
-              "n_units", "n_taxa", "n_periods", "n_occasions", "n_rows", "notes", "status")
+              "sampling_protocol", "design", "realm", "country", "coordinates", "notes", "status")
 
 .upsert_row <- function(file, cols, row) {
   row <- as.list(row)
@@ -244,12 +245,9 @@ stage_dict_row <- function(table, description, url, reference = "", doi_paper = 
 
 stage_tag_row <- function(table, dataset, taxon_group, model_family, sampling_protocol, design, realm,
                           country, coordinates, notes = "", status = "tagged") {
-  s <- dataset$summary
   .upsert_row(TAGS_FILE, TAG_COLS, list(
     table = table, rater = "claude-auto", taxon_group = taxon_group,
     response_type = dataset$responseType, model_family = model_family, unit_kind = dataset$unitKind,
     sampling_protocol = sampling_protocol, design = design, realm = realm, country = country,
-    coordinates = coordinates, sample_floor = dataset$sampleFloor,
-    n_units = s$n_units, n_taxa = s$n_taxa, n_periods = s$n_periods,
-    n_occasions = s$n_occasions, n_rows = s$n_rows, notes = notes, status = status))
+    coordinates = coordinates, notes = notes, status = status))
 }
