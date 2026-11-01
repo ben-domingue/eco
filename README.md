@@ -96,7 +96,7 @@ conformance as a *view*:
 | `date` ISO 8601 | `date` Unix seconds | |
 | `__taxa`, `__periods`, `__units`, `__traps` | item text | side tables, typed by key column |
 
-`eco_to_irw()` (in `converters/eco_standard.R` and `eco_validate/core.py`) produces the IRW
+`eco_to_irw()` (in `Rpkg/R/convert.R` and `eco_validate/core.py`) produces the IRW
 view; `eco-validate --irw` and the uploader run `irw-validate` on it.
 
 ## Worked tables (2026-10-31)
@@ -146,14 +146,15 @@ What the real deposits added to the round-trip findings:
 | `CLAUDE.md`, `ARCHITECTURE.md`, `PRIORITIES.md`, `processing_guide.md`, `.claude/skills/eco-convert-deposit/` | Agent-facing docs (issue #9): how to run things and which document wins; the project map; what kind of work to do next; the deposit-conversion checklist; the step order a session follows for one queue row |
 | `standard.md` | **The standard**, v1.0-draft: clauses E1-E10, intake policy, changelog |
 | `standard_draft.md` | History of the standard: core table, mapping tables per model family, missingness rule, side tables (Darwin Core / EML borrowings), scope, what is lost, open questions, changelog |
-| `converters/eco_standard.R` | R converters: array ↔ long, `unmarked` frames ↔ long, multinomial frames, capture histories; validator; writer |
+| `Rpkg/` | **The R package `eco`**: `eco_list_tables()`, `eco_filter()`, `eco_fetch()`, `eco_to_unmarked()`, `eco_set_version()`, over Redivis' anonymous CSV endpoint; no login. `remotes::install_github("ben-domingue/eco", subdir = "Rpkg")` |
+| `converters/eco_standard.R` | Shim over `Rpkg/R/convert.R`: array ↔ long, `unmarked` frames ↔ long, multinomial frames, capture histories; validator twin; writer |
 | `converters/rt_0*_*.R`, `run_all.R` | Round-trip tests for six datasets; `converters/output/` holds the converted tables and `roundtrip_results.csv` |
 | `roundtrip_report.md` | What matched, what did not, what changed in the standard |
 | `discovery/eco_discover.py` | Repository search (connectors adapted from `ben-domingue/irw`), with cached responses in `discovery/cache/` |
 | `data/*.R`, `data/run_all.R` | One processing script per public deposit (download, reshape, validate, stage rows); see `data/README.md` |
 | `lib/eco_common.R` | Shared harness: cached downloads, GBIF taxon lookup, coordinate coarsening, `write_table()`, dictionary and tag staging |
 | `eco_validate/` | **The validator**: `eco-validate`, one pandas package with clause ids (E1-E10), intake profile, `--irw` for the IRW view, exit codes, `--json`; gates the uploader; `pytest eco_validate/tests` |
-| `converters/eco_standard.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` checks; mirrored in `eco_validate.eco_to_irw` |
+| `Rpkg/R/convert.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` checks; mirrored in `eco_validate.eco_to_irw` |
 | `output/` | Clean CSV per table plus `__taxa.csv`, `__periods.csv`, `__dataset.json` side files |
 | `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
 | `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |

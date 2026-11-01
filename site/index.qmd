@@ -57,6 +57,7 @@ IRW view, and that view validates under IRW v1.0 unchanged.
 
 ::: {.eco-cards}
 <div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>v1.0-draft: ten numbered clauses covering the core table, the explicit-zero rule and its evidence, covariate levels, side tables, coordinates, scope and storage, plus the intake policy.</p></div>
+<div class="card"><h3><a href="r.html">Read it from R</a></h3><p>No account needed: <code>eco_filter()</code>, <code>eco_fetch()</code>, <code>eco_to_unmarked()</code> over Redivis' public CSV endpoint, with version pinning.</p></div>
 <div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>Six public deposits, from a 22-camera tapir survey to 77 years of fish collections, converted, validated and staged on Redivis.</p></div>
 <div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort, and a capture history.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>

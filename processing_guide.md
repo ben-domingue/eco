@@ -95,7 +95,8 @@ explanation.
 
 ## Building the table
 
-Prefer the converters in `converters/eco_standard.R` over hand-rolled reshapes:
+Prefer the converters in `Rpkg/R/convert.R` (sourced through `converters/eco_standard.R`;
+the same code the `eco` R package ships) over hand-rolled reshapes:
 `array_to_eco()` for site x occasion (x species) arrays with site, observation,
 period and taxon covariates; the `unmarked` frame converters; `ch_to_eco()` for
 capture histories. They produce the right column order and the explicit-zero rows.

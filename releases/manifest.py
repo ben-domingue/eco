@@ -61,9 +61,14 @@ def released_versions(name: str) -> list[dict]:
 
 
 def build(core: list[dict], meta: list[dict]) -> list[dict]:
+    # An eco version's metadata is the last eco_meta release before the *next* eco
+    # release (the metadata pipeline runs after the tables ship, so eco_meta for
+    # version i is released after eco version i). The latest eco version takes the
+    # latest eco_meta, so this column can change for that row; diverges() allows it.
     rows = []
     for i, c in enumerate(core, 1):
-        live_meta = [m for m in meta if m["released_at"] <= c["released_at"]]
+        until = core[i]["released_at"] if i < len(core) else "9999"
+        live_meta = [m for m in meta if m["released_at"] < until]
         rows.append({"eco_version": str(i), "date": c["released_at"], "eco_redivis_version": c["tag"],
                      "eco_meta_redivis_version": live_meta[-1]["tag"] if live_meta else "",
                      "n_tables": str(c["n_tables"]), "note": ""})
@@ -85,7 +90,7 @@ def write(rows: list[dict]) -> None:
 
 
 def diverges(existing: list[dict], fresh: list[dict]) -> str | None:
-    keys = [c for c in COLUMNS if c != "note"]
+    keys = [c for c in COLUMNS if c not in ("note", "eco_meta_redivis_version")]
     for e, f in zip(existing, fresh):
         for k in keys:
             if e[k] != f[k]:
@@ -116,6 +121,10 @@ def main(argv=None) -> int:
         f["note"] = e["note"]
     new = fresh[len(existing):]
     if args.check:
+        changed = [e["eco_version"] for e, f in zip(existing, fresh)
+                   if e["eco_meta_redivis_version"] != f["eco_meta_redivis_version"]]
+        if changed:
+            print(f"manifest: stale, eco_meta version changed for eco version(s) {', '.join(changed)}"); return 1
         if new:
             print(f"manifest: stale, {len(new)} new release(s): " + ", ".join(r["eco_redivis_version"] for r in new)); return 1
         print(f"manifest: up to date ({len(existing)} eco version(s))"); return 0

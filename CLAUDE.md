@@ -33,6 +33,7 @@ python3 releases/manifest.py --check         # is releases/manifest.csv up to da
 python3 upload/red_up_eco.py --dry-run       # what would ship; never publishes
 python3 upload/red_up_eco.py                 # upload to the Redivis draft (confirms first)
 cd site && quarto render                     # the website (GitHub Pages builds it on push)
+R CMD INSTALL Rpkg && Rscript -e 'testthat::test_dir("Rpkg/tests/testthat")'   # the R package (reads Redivis anonymously)
 ```
 
 Needs R with `data.table` and `jsonlite`, python3 with `pandas`, and for the IRW
@@ -92,6 +93,9 @@ the name plus `__taxa` (required), `__periods`, `__units`, `__traps`; metadata i
   from `lib/eco_common.R`. After a batch, run `metadata/run_pipeline.sh` and commit
   `metadata/` too: the site reads it, not `tags/` or `dictionary/`. `write_table()` runs the R twin of the validator and
   refuses a bad table; the Python gate is the authority.
+- The converters (`array_to_eco()`, `ch_to_eco()`, `eco_to_irw()`, `eco_check()`, ...) live
+  in `Rpkg/R/convert.R`; `converters/eco_standard.R` only sources that file. A change
+  there changes the installed package too: run its tests.
 - Scripts are self-contained apart from `lib/eco_common.R`. The table name is the
   script name: `data/<table>.R` builds `output/<table>.csv`; there is no separate
   table-to-script map.

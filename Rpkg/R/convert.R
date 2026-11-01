@@ -1,0 +1,476 @@
+# The converters between native ecological data structures and the eco long
+# format (standard clauses E1-E10; https://ben-domingue.github.io/eco/standard.html).
+# This file is also sourced directly by the repository's converters/eco_standard.R
+# shim, so the data/ build scripts and the package share one implementation.
+#
+# Core columns: unit, taxon, y [, y_raw, trap, period, occasion, date, observer,
+#               treat, cluster_id, unit_*, period_*, obs_*, taxon_*]
+# Key: (unit, taxon, trap, period, occasion), absent columns treated as 1.
+# Rule: a row exists iff a survey happened. NA in a native matrix -> no row.
+
+KEY_COLS <- c("unit", "taxon", "trap", "period", "occasion")
+CORE_FIXED <- c("unit", "taxon", "y", "y_raw", "trap", "period", "occasion", "date", "observer", "treat", "cluster_id")
+PREFIX_RE <- "^(unit_|period_|obs_|taxon_)"
+ISO_DATE_RE <- "^[0-9]{4}-[0-9]{2}-[0-9]{2}(T[0-9]{2}:[0-9]{2}(:[0-9]{2})?Z?)?$"
+
+# ---------------------------------------------------------------------------
+# Generic: array -> long
+# ---------------------------------------------------------------------------
+
+# y: M x J (single species) or M x J x K (species on 3rd dim).
+# site_covs: data.frame with M rows (-> unit_*)
+# obs_covs: named list of M x J matrices (-> obs_*)
+# period: optional integer vector of length J giving the primary period of each
+#   column (for M x (T*J) layouts); occasion within period is computed.
+# period_covs: named list of M x T matrices (-> period_*)
+# taxon_covs: data.frame with K rows (-> taxon_*)
+#' Native arrays to the long format and back
+#'
+#' `array_to_eco()` takes a site x occasion (x taxon) array as `unmarked` and
+#' the Bayesian model code expect it, with `NA` for cells never surveyed, and
+#' returns the long table: one row per surveyed cell, no `NA` in `y`.
+#' `eco_to_array()` is its inverse: unsurveyed cells come back as `NA`, and
+#' `site_ids` / `taxa` fix the order (and pad units or taxa that have no rows).
+#'
+#' @param y Numeric matrix M x J, or array M x J x K with taxa on the third
+#'   dimension (dimnames supply unit ids and taxon codes when present).
+#' @param taxon Taxon code(s) when `y` has no third dimnames.
+#' @param site_ids Unit ids, length M (default rownames or 1..M).
+#' @param site_covs data.frame with M rows, becomes `unit_*`.
+#' @param obs_covs Named list of M x J matrices, becomes `obs_*`.
+#' @param period Integer vector of length J: the primary period of each column
+#'   of `y` (for M x (T*J) layouts); occasion within period is computed.
+#' @param period_covs Named list of M x T matrices, becomes `period_*`.
+#' @param taxon_covs data.frame with K rows, becomes `taxon_*`.
+#' @param y_raw Optional array like `y` of the recorded values behind a recode.
+#' @return `array_to_eco()`: a data.table in the eco format. `eco_to_array()`:
+#'   a list with `y` (M x J, or M x J x K when there are several taxa and
+#'   `drop_species` is `FALSE` or K > 1), `site_ids`, `taxa`, `period` and
+#'   `occasion` (per column of `y`), `obs_covs`, `site_covs`, `period_covs`,
+#'   `taxon_covs`.
+#' @examples
+#' a <- eco_to_array(schank_2015_tapir_occ)
+#' dim(a$y)
+#' back <- array_to_eco(a$y, taxon = a$taxa, site_ids = a$site_ids, site_covs = a$site_covs)
+#' nrow(back) == nrow(schank_2015_tapir_occ)
+#' @export
+array_to_eco <- function(y, taxon = "SP1", site_ids = NULL, site_covs = NULL,
+                         obs_covs = NULL, period = NULL, period_covs = NULL,
+                         taxon_covs = NULL, y_raw = NULL) {
+  if (length(dim(y)) == 2) y <- array(y, dim = c(dim(y), 1),
+                                      dimnames = list(rownames(y), colnames(y), taxon))
+  M <- dim(y)[1]; J <- dim(y)[2]; K <- dim(y)[3]
+  taxa <- if (!is.null(dimnames(y)[[3]])) dimnames(y)[[3]] else
+    if (length(taxon) == K) taxon else paste0(taxon, seq_len(K))
+  if (is.null(site_ids)) site_ids <- if (!is.null(rownames(y))) rownames(y) else seq_len(M)
+  if (is.null(period)) period <- rep(1L, J)
+  occasion <- ave(seq_len(J), period, FUN = seq_along)
+
+  long <- data.table(
+    unit       = rep(site_ids, times = J * K),
+    taxon     = rep(taxa, each = M * J),
+    y     = as.vector(y),
+    period   = rep(rep(period,   each = M), times = K),
+    occasion = rep(rep(occasion, each = M), times = K),
+    .site    = rep(seq_len(M), times = J * K),
+    .col     = rep(rep(seq_len(J), each = M), times = K)
+  )
+  if (!is.null(y_raw)) long[, y_raw := as.vector(y_raw)]
+  long <- long[!is.na(y)]                      # the explicit-zero rule
+
+  if (!is.null(site_covs)) {
+    sc <- as.data.table(site_covs); setnames(sc, paste0("unit_", names(sc)))
+    sc[, .site := seq_len(M)]
+    long <- merge(long, sc, by = ".site", sort = FALSE)
+  }
+  if (!is.null(obs_covs)) for (nm in names(obs_covs)) {
+    m <- obs_covs[[nm]]
+    long[, (paste0("obs_", nm)) := m[cbind(.site, .col)]]
+  }
+  if (!is.null(period_covs)) for (nm in names(period_covs)) {
+    m <- period_covs[[nm]]
+    long[, (paste0("period_", nm)) := m[cbind(.site, period)]]
+  }
+  if (!is.null(taxon_covs)) {
+    ic <- as.data.table(taxon_covs); setnames(ic, paste0("taxon_", names(ic)))
+    ic[, taxon := taxa]
+    long <- merge(long, ic, by = "taxon", sort = FALSE)
+  }
+  long[, c(".site", ".col") := NULL]
+  if (all(long$period == 1L)) long[, period := NULL]
+  order_eco(long)
+}
+
+# long -> array (M x J x K), padding unsurveyed cells with NA.
+# Returns list(y, site_ids, taxa, period (per column), obs_covs, site_covs, ...)
+#' @param long A table in the eco format (data.frame or data.table).
+#' @param taxa Taxon codes in the order wanted on the third dimension.
+#' @param drop_species Drop the third dimension when there is one taxon.
+#' @rdname array_to_eco
+#' @export
+eco_to_array <- function(long, site_ids = NULL, taxa = NULL, drop_species = TRUE) {
+  long <- as.data.table(long)
+  if (!"period" %in% names(long)) long[, period := 1L]
+  if (!"occasion" %in% names(long)) long[, occasion := 1L]
+  if (is.null(site_ids)) site_ids <- unique(long$unit)
+  if (is.null(taxa)) taxa <- unique(long$taxon)
+  cols <- unique(long[, .(period, occasion)])[order(period, occasion)]
+  cols[, .col := .I]
+  long <- merge(long, cols, by = c("period", "occasion"))
+  long[, .site := match(unit, site_ids)]
+  long[, .k := match(taxon, taxa)]
+  M <- length(site_ids); J <- nrow(cols); K <- length(taxa)
+  y <- array(NA_real_, dim = c(M, J, K), dimnames = list(site_ids, NULL, taxa))
+  y[cbind(long$.site, long$.col, long$.k)] <- long$y
+
+  pull_matrix <- function(col, by_cols = c(".site", ".col")) {
+    m <- matrix(NA, M, J)
+    v <- long[[col]]
+    m[cbind(long$.site, long$.col)] <- v
+    if (is.character(v) || is.factor(v)) { mm <- matrix(NA_character_, M, J); mm[cbind(long$.site, long$.col)] <- as.character(v); m <- mm }
+    m
+  }
+  obs_names <- grep("^obs_", names(long), value = TRUE)
+  obs_covs <- setNames(lapply(obs_names, pull_matrix), sub("^obs_", "", obs_names))
+  unit_names <- grep("^unit_", names(long), value = TRUE)
+  site_covs <- NULL
+  if (length(unit_names)) {
+    u <- unique(long[, c(".site", unit_names), with = FALSE])
+    stopifnot(!anyDuplicated(u$.site))          # unit_ must be constant within unit
+    site_covs <- as.data.frame(matrix(NA, M, length(unit_names), dimnames = list(NULL, unit_names)))
+    for (cc in unit_names) site_covs[[cc]] <- u[[cc]][match(seq_len(M), u$.site)]   # NA for units with no rows
+    names(site_covs) <- sub("^unit_", "", unit_names)
+  }
+  pc_names <- grep("^period_", names(long), value = TRUE)
+  period_covs <- NULL
+  if (length(pc_names)) {
+    Tn <- max(cols$period)
+    period_covs <- setNames(lapply(pc_names, function(nm) {
+      m <- matrix(NA, M, Tn); m[cbind(long$.site, long$period)] <- long[[nm]]; m
+    }), sub("^period_", "", pc_names))
+  }
+  ic_names <- grep("^taxon_", names(long), value = TRUE)
+  taxon_covs <- NULL
+  if (length(ic_names)) {
+    taxon_covs <- unique(long[, c(".k", ic_names), with = FALSE])[order(.k)]
+    taxon_covs <- as.data.frame(taxon_covs[, ic_names, with = FALSE])
+    names(taxon_covs) <- sub("^taxon_", "", ic_names)
+  }
+  if (drop_species && K == 1) y <- y[, , 1, drop = TRUE]
+  list(y = y, site_ids = site_ids, taxa = taxa, period = cols$period,
+       occasion = cols$occasion, obs_covs = obs_covs, site_covs = site_covs,
+       period_covs = period_covs, taxon_covs = taxon_covs)
+}
+
+# ---------------------------------------------------------------------------
+# unmarked frames
+# ---------------------------------------------------------------------------
+
+# unmarkedFrameOccu / unmarkedFramePCount / unmarkedMultFrame -> long
+#' `unmarked` frames to the long format and back
+#'
+#' `eco_to_unmarked()` builds the frame a single-taxon table calls for:
+#' `unmarkedFrameOccu` for detections in one period, `unmarkedFramePCount` for
+#' counts, `unmarkedMultFrame` when there are several primary periods,
+#' `unmarkedFrameMPois` for `multinomial_cell` tables. Pass `family` to
+#' choose. A table with several taxa must be split by `taxon` first (or use
+#' [eco_to_array()], which keeps the taxon dimension). `umf_to_eco()` and
+#' `mpois_to_eco()` go the other way.
+#'
+#' @param umf An `unmarkedFrameOccu`, `unmarkedFramePCount`, `unmarkedMultFrame`
+#'   or (for `mpois_to_eco`) `unmarkedFrameMPois`.
+#' @param taxon Taxon code for the single species in the frame.
+#' @param site_ids Unit ids for the rows of the frame.
+#' @return `eco_to_unmarked()`, `eco_to_umf()`, `eco_to_mpois()`: an `unmarked`
+#'   frame. `umf_to_eco()`, `mpois_to_eco()`: a data.table in the eco format.
+#' @examples
+#' umf <- eco_to_unmarked(schank_2015_tapir_occ)
+#' umf
+#' if (requireNamespace("unmarked", quietly = TRUE)) unmarked::occu(~1 ~1, umf)
+#' @export
+umf_to_eco <- function(umf, taxon = "SP1", site_ids = NULL) {
+  y <- unmarked::getY(umf)
+  M <- nrow(y); J <- ncol(y)
+  sc <- unmarked::siteCovs(umf)
+  oc <- unmarked::obsCovs(umf)      # data.frame, M*J rows, site-major (site varies slowest)
+  obs_list <- NULL
+  if (!is.null(oc)) obs_list <- lapply(oc, function(v) matrix(v, M, J, byrow = TRUE))
+  period <- NULL; period_covs <- NULL
+  if (methods::is(umf, "unmarkedMultFrame")) {
+    Tn <- umf@numPrimary
+    period <- rep(seq_len(Tn), each = J / Tn)
+    ysc <- unmarked::yearlySiteCovs(umf)
+    if (!is.null(ysc)) period_covs <- lapply(ysc, function(v) matrix(v, M, Tn, byrow = TRUE))
+  }
+  array_to_eco(y, taxon = taxon, site_ids = site_ids, site_covs = sc,
+               obs_covs = obs_list, period = period, period_covs = period_covs)
+}
+
+# long -> unmarked frame of the requested type
+#' @param long A table in the eco format.
+#' @param type For `eco_to_umf()`: `"occu"`, `"pcount"` or `"colext"`
+#'   (multi-period). For `eco_to_mpois()`: `"removal"`, `"double"` or
+#'   `"depDouble"`, as `unmarked::unmarkedFrameMPois()` takes it.
+#' @rdname umf_to_eco
+#' @export
+eco_to_umf <- function(long, type = c("occu", "pcount", "colext"), site_ids = NULL) {
+  type <- match.arg(type)
+  a <- eco_to_array(long, site_ids = site_ids)
+  y <- a$y; M <- nrow(y); J <- ncol(y)
+  obsCovs <- NULL
+  if (length(a$obs_covs)) obsCovs <- as.data.frame(lapply(a$obs_covs, function(m) as.vector(t(m))))
+  if (type == "occu")   return(unmarked::unmarkedFrameOccu(y = y, siteCovs = a$site_covs, obsCovs = obsCovs))
+  if (type == "pcount") return(unmarked::unmarkedFramePCount(y = y, siteCovs = a$site_covs, obsCovs = obsCovs))
+  Tn <- max(a$period)
+  ysc <- NULL
+  if (length(a$period_covs)) ysc <- as.data.frame(lapply(a$period_covs, function(m) as.vector(t(m))))
+  unmarked::unmarkedMultFrame(y = y, siteCovs = a$site_covs, obsCovs = obsCovs,
+                              yearlySiteCovs = ysc, numPrimary = Tn)
+}
+
+# ---------------------------------------------------------------------------
+# Multinomial N-mixture (unmarkedFrameMPois): cells on `occasion`, label in y_raw
+# ---------------------------------------------------------------------------
+#' @rdname umf_to_eco
+#' @export
+mpois_to_eco <- function(umf, taxon = "SP1") {
+  y <- unmarked::getY(umf); M <- nrow(y); C <- ncol(y)
+  labs <- if (!is.null(colnames(y))) colnames(y) else as.character(seq_len(C))
+  oc <- unmarked::obsCovs(umf)
+  obs_list <- if (!is.null(oc)) lapply(oc, function(v) matrix(v, M, C, byrow = TRUE)) else NULL
+  raw <- matrix(labs, M, C, byrow = TRUE)
+  long <- array_to_eco(y, taxon = taxon, site_covs = unmarked::siteCovs(umf),
+                       obs_covs = obs_list, y_raw = raw)
+  attr(long, "multinomialType") <- umf@piFun
+  long
+}
+#' @param obsToY For `eco_to_mpois()`: passed to `unmarked::unmarkedFrameMPois()`.
+#' @rdname umf_to_eco
+#' @export
+eco_to_mpois <- function(long, type, obsToY = NULL) {
+  a <- eco_to_array(long)
+  y <- a$y
+  colnames(y) <- as.data.table(long)[order(occasion), unique(y_raw)]
+  obsCovs <- NULL
+  if (length(a$obs_covs)) obsCovs <- as.data.frame(lapply(a$obs_covs, function(m) as.vector(t(m))))
+  unmarked::unmarkedFrameMPois(y = y, siteCovs = a$site_covs, obsCovs = obsCovs,
+                               type = type, obsToY = obsToY)
+}
+
+# ---------------------------------------------------------------------------
+# Capture histories (marked / RMark style data.frame with ch, freq, covariates)
+# ---------------------------------------------------------------------------
+#' Capture histories to the long format and back
+#'
+#' `ch_to_eco()` expands a `marked` / `RMark` style data.frame (a `ch` string per
+#' row, optional `freq`, covariates) into one row per individual per occasion,
+#' with the occasion on `period` (capture-recapture primary periods).
+#' `eco_to_ch()` collapses it back.
+#'
+#' @param df data.frame with a capture-history column and optional frequency.
+#' @param taxon Taxon code.
+#' @param ch_col,freq_col Names of the capture-history and frequency columns.
+#' @param long A table in the eco format with `period` as the occasion index.
+#' @param collapse_freq Aggregate identical histories into a `freq` column.
+#' @return `ch_to_eco()`: a data.table in the eco format. `eco_to_ch()`: a
+#'   data.frame with `ch`, the unit covariates, and `freq` when collapsed.
+#' @examples
+#' d <- data.frame(ch = c("1011", "0101", "1011"), sex = c("f", "m", "f"))
+#' long <- ch_to_eco(d, taxon = "CINCIN")
+#' eco_to_ch(long)
+#' @export
+ch_to_eco <- function(df, taxon = "SP1", ch_col = "ch", freq_col = "freq") {
+  df <- as.data.frame(df)
+  ch <- as.character(df[[ch_col]])
+  Tn <- unique(nchar(ch)); stopifnot(length(Tn) == 1)
+  freq <- if (freq_col %in% names(df)) df[[freq_col]] else rep(1L, nrow(df))
+  if (any(freq < 0)) stop("negative freq (losses on capture) not handled in this converter")
+  # expand frequency-aggregated histories into individuals
+  idx <- rep(seq_len(nrow(df)), times = freq)
+  covs <- df[idx, setdiff(names(df), c(ch_col, freq_col)), drop = FALSE]
+  CH <- do.call(rbind, strsplit(ch[idx], ""))
+  storage.mode(CH) <- "integer"
+  long <- array_to_eco(CH, taxon = taxon, site_ids = seq_along(idx), site_covs = covs,
+                       period = seq_len(Tn))
+  # with one secondary occasion per primary period, occasion is redundant
+  long[, occasion := NULL]
+  long
+}
+#' @rdname ch_to_eco
+#' @export
+eco_to_ch <- function(long, collapse_freq = TRUE) {
+  long <- as.data.table(long)
+  if (!"occasion" %in% names(long)) long[, occasion := 1L]
+  a <- eco_to_array(long)
+  CH <- a$y
+  if (any(is.na(CH))) stop("capture history has unsurveyed cells; marked cannot represent this")
+  ch <- apply(CH, 1, paste, collapse = "")
+  out <- data.frame(ch = ch, stringsAsFactors = FALSE)
+  if (!is.null(a$site_covs)) out <- cbind(out, a$site_covs)
+  if (collapse_freq) {
+    out <- as.data.table(out)[, .(freq = .N), by = names(out)]
+    out <- as.data.frame(out)
+  }
+  out
+}
+
+# ---------------------------------------------------------------------------
+# Validation and I/O
+# ---------------------------------------------------------------------------
+#' Put a table in the standard's column and row order
+#'
+#' Fixed columns first (`unit`, `taxon`, `y`, `y_raw`, `trap`, `period`,
+#' `occasion`, `date`, `observer`, `treat`, `cluster_id`), then `unit_*`,
+#' `period_*`, `obs_*`, `taxon_*`; rows sorted by taxon, trap, period,
+#' occasion, unit.
+#'
+#' @param long A table in the eco format.
+#' @return A data.table.
+#' @export
+order_eco <- function(long) {
+  long <- as.data.table(long)
+  first <- intersect(CORE_FIXED, names(long))
+  rest <- c(grep("^unit_", names(long), value = TRUE),
+            grep("^period_", names(long), value = TRUE),
+            grep("^obs_", names(long), value = TRUE),
+            grep("^taxon_", names(long), value = TRUE))
+  other <- setdiff(names(long), c(first, rest))
+  setcolorder(long, c(first, rest, other))
+  keycols <- intersect(c("taxon", "trap", "period", "occasion", "unit"), names(long))
+  setorderv(long, keycols)
+  long[]
+}
+
+# R twin of eco_validate/checks.py, kept so write_table() can refuse a table before it
+# is written. The gate is `eco-validate` (eco_validate/); add a rule there first, here
+# second, and keep the clause ids in the messages aligned.
+#' Check a table against the standard
+#'
+#' The R twin of `eco-validate`, the repository's Python gate: required
+#' columns (E1), numeric `y` (E2), unique key (E3), no `NA` in `y` and the
+#' explicit-zero rule for multi-taxon tables (E4), covariates constant at their
+#' level (E5), ISO 8601 dates and integer indices (E8). The Python validator is
+#' the authority and checks more (side tables, `__dataset.json`); this is the
+#' quick check for a table you built or edited yourself.
+#'
+#' @param long A table in the eco format.
+#' @return A list: `ok`, `problems` (character, each starting with its clause
+#'   id), `n_rows`, `n_units`, `n_taxa`.
+#' @examples
+#' eco_check(schank_2015_tapir_occ)$ok
+#' bad <- schank_2015_tapir_occ; bad$y[1] <- NA
+#' eco_check(bad)$problems
+#' @export
+eco_check <- function(long) {
+  long <- as.data.table(long)
+  problems <- character()
+  req <- c("unit", "taxon", "y")
+  if (!all(req %in% names(long))) problems <- c(problems, "E1: missing required column(s) unit, taxon, y")
+  if (!is.numeric(long$y)) problems <- c(problems, "E2: y not numeric")
+  if (anyNA(long$y)) problems <- c(problems, "E4: NA in y (a missing row, not an NA, encodes 'not surveyed')")
+  key <- intersect(KEY_COLS, names(long))
+  if (anyDuplicated(long, by = key)) problems <- c(problems, sprintf("E3: duplicate key (%s)", paste(key, collapse = ",")))
+  bad <- setdiff(names(long), CORE_FIXED)
+  bad <- bad[!grepl(PREFIX_RE, bad)]
+  if (length(bad)) problems <- c(problems, paste("E1/E5: undefined column(s):", paste(bad, collapse = ", ")))
+  if ("date" %in% names(long)) {
+    d <- as.character(long$date); d <- d[!is.na(d) & nzchar(d)]
+    if (!all(grepl(ISO_DATE_RE, d))) problems <- c(problems, "E8: date not ISO 8601 (YYYY-MM-DD[Thh:mm[:ss]Z])")
+  }
+  for (cc in intersect(c("period", "occasion", "trap"), names(long)))
+    if (!is.numeric(long[[cc]]) && cc != "trap") problems <- c(problems, sprintf("E8: %s must be an integer index", cc))
+  # covariate level checks
+  for (cc in grep("^unit_", names(long), value = TRUE))
+    if (nrow(unique(long[, c("unit", cc), with = FALSE])) > uniqueN(long$unit))
+      problems <- c(problems, sprintf("E5: %s varies within unit (should be obs_ or period_)", cc))
+  for (cc in grep("^taxon_", names(long), value = TRUE))
+    if (nrow(unique(long[, c("taxon", cc), with = FALSE])) > uniqueN(long$taxon))
+      problems <- c(problems, sprintf("E5: %s varies within taxon", cc))
+  if ("period" %in% names(long)) for (cc in grep("^period_", names(long), value = TRUE))
+    if (nrow(unique(long[, c("unit", "period", cc), with = FALSE])) > nrow(unique(long[, .(unit, period)])))
+      problems <- c(problems, sprintf("E5: %s varies within unit x period", cc))
+  # explicit-zero for multi-species: every surveyed (unit,trap,period,occasion) has all taxa
+  if (uniqueN(long$taxon) > 1) {
+    occ <- intersect(c("unit", "trap", "period", "occasion"), names(long))
+    per_survey <- long[, .N, by = occ]
+    if (any(per_survey$N != uniqueN(long$taxon)))
+      problems <- c(problems, "E4: some surveys lack rows for some taxa (explicit-zero rule)")
+  }
+  list(ok = length(problems) == 0, problems = problems,
+       n_rows = nrow(long), n_units = uniqueN(long$unit), n_taxa = uniqueN(long$taxon))
+}
+
+
+#' @param family For `eco_to_unmarked()`: `"occu"`, `"pcount"`, `"colext"` or
+#'   `"mpois"`; `NULL` infers it from the table (several periods: colext;
+#'   `y` beyond 0/1: pcount; `y_raw` category labels on `occasion`: mpois;
+#'   otherwise occu).
+#' @param ... For `eco_to_unmarked()`: passed on to `eco_to_umf()` or
+#'   `eco_to_mpois()` (`site_ids`, `type`, `obsToY`).
+#' @rdname umf_to_eco
+#' @export
+eco_to_unmarked <- function(long, family = NULL, ...) {
+  if (is.list(long) && !is.data.frame(long))
+    return(lapply(long, eco_to_unmarked, family = family, ...))
+  long <- as.data.table(long)
+  nt <- uniqueN(long$taxon)
+  if (nt > 1)
+    stop("this table has ", nt, " taxa; unmarked frames hold one. Split it, e.g. ",
+         "eco_to_unmarked(long[long$taxon == long$taxon[1], ]), or use eco_to_array() to keep the taxon dimension.",
+         call. = FALSE)
+  if (is.null(family)) {
+    multi_period <- "period" %in% names(long) && uniqueN(long$period) > 1
+    family <- if ("y_raw" %in% names(long) && "occasion" %in% names(long) &&
+                  is.character(long$y_raw) && all(long[, uniqueN(y_raw), by = occasion]$V1 == 1) &&
+                  uniqueN(long$y_raw) == uniqueN(long$occasion) && uniqueN(long$occasion) > 1 &&
+                  any(long$y > 1)) "mpois"
+              else if (multi_period) "colext"
+              else if (any(long$y > 1)) "pcount"
+              else "occu"
+    message("eco_to_unmarked: family = \"", family, "\" (pass family= to override)")
+  }
+  if (family == "mpois") return(eco_to_mpois(long, ...))
+  eco_to_umf(long, type = family, ...)
+}
+
+# ---------------------------------------------------------------------------
+# IRW view: the same table under the IRW v1.0 names, so IRW tooling (irw-validate,
+# the irw R/Python packages' readers) can consume it. unit->id, taxon->item, y->resp,
+# y_raw->resp_raw, observer->rater, unit_->cov_, taxon_->itemcov_, period_->periodcov_,
+# obs_ kept (an IRW-unknown prefix, warned not blocked), date -> Unix seconds (UTC),
+# trap -> a C5 occasion column named trap.
+# ---------------------------------------------------------------------------
+#' The IRW view of a table
+#'
+#' The same table under the Item Response Warehouse's v1.0 names, so IRW
+#' tooling can read it: `unit` becomes `id`, `taxon` `item`, `y` `resp`,
+#' `y_raw` `resp_raw`, `observer` `rater`; `unit_` becomes `cov_`, `taxon_`
+#' `itemcov_`, `period_` `periodcov_` (`obs_` is kept); `date` becomes Unix
+#' seconds in UTC.
+#'
+#' @param long A table in the eco format.
+#' @return A data.table.
+#' @examples
+#' head(eco_to_irw(schank_2015_tapir_occ))
+#' @export
+eco_to_irw <- function(long) {
+  long <- copy(as.data.table(long))
+  ren <- c(unit = "id", taxon = "item", y = "resp", y_raw = "resp_raw", observer = "rater")
+  for (nm in intersect(names(ren), names(long))) setnames(long, nm, ren[[nm]])
+  nn <- names(long)
+  nn <- sub("^unit_", "cov_", nn); nn <- sub("^taxon_", "itemcov_", nn); nn <- sub("^period_", "periodcov_", nn)
+  setnames(long, nn)
+  if ("date" %in% names(long)) {
+    # YYYY-MM-DD, YYYY-MM-DDThh:mm[Z], YYYY-MM-DDThh:mm:ss[Z]; the most specific
+    # format is tried first because as.POSIXct ignores trailing characters.
+    d <- sub("Z$", "", as.character(long$date))
+    d <- ifelse(nchar(d) == 10, paste0(d, "T00:00:00"), d)
+    d <- ifelse(nchar(d) == 16, paste0(d, ":00"), d)
+    dt <- suppressWarnings(as.POSIXct(d, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC"))
+    long[, date := as.integer(round(as.numeric(dt)))]
+  }
+  first <- intersect(c("id", "item", "resp", "resp_raw", "trap", "period", "occasion", "date", "rater", "treat", "cluster_id"), names(long))
+  setcolorder(long, c(first, setdiff(names(long), first)))
+  long[]
+}
+

@@ -1,2 +1,2 @@
 eco_version,date,eco_redivis_version,eco_meta_redivis_version,n_tables,note
-1,2026-11-01T00:09:30Z,v1.0,,16,first release: batch 1 (six deposits) under standard v0.3; side tables __taxa and __periods
+1,2026-11-01T00:09:30Z,v1.0,v1.0,16,first release: batch 1 (six deposits) under standard v0.3; side tables __taxa and __periods

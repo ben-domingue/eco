@@ -28,6 +28,8 @@ website:
         text: Home
       - href: data.qmd
         text: Data
+      - href: r.qmd
+        text: R package
       - href: standard.qmd
         text: Standard
       - href: firstlook.qmd

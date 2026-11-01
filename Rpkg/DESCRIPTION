@@ -1,0 +1,34 @@
+Package: eco
+Type: Package
+Title: Access Ecological Detection Data from the eco Warehouse
+Version: 0.1.0
+Authors@R: c(
+  person("Ben", "Domingue", email = "ben.domingue@gmail.com", role = c("aut", "cre", "cph"))
+  )
+Description: Find, download and reshape tables from eco, an IRW-style warehouse
+    of ecological detection data (occupancy, repeated counts, capture histories,
+    community surveys) in one long format with columns unit, taxon and y. Tables
+    are read from the public Redivis dataset 'datapages.eco' over its anonymous
+    CSV endpoint, so no account or token is needed. Converters turn a long table
+    into the site-by-occasion arrays, 'unmarked' frames and capture-history
+    strings the ecological model packages expect, and back.
+Depends: R (>= 4.1.0)
+Imports:
+    data.table,
+    jsonlite,
+    methods,
+    tools,
+    utils
+Suggests:
+    curl,
+    knitr,
+    testthat (>= 3.0.0),
+    unmarked
+URL: https://ben-domingue.github.io/eco/, https://github.com/ben-domingue/eco
+BugReports: https://github.com/ben-domingue/eco/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
