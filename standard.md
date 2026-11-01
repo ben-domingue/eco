@@ -205,6 +205,11 @@ Closure is assumed across `occasion` within a `period`; where a source violates 
 likelihood can still be written from the key and `y` plus one metadata field, and a
 converter back to the native frame exists.
 
+**Ruling (#22, #23, 2026-11-01).** A fourth nesting level is a `unit_<group>` covariate,
+not a second grouping column or a reuse of `period`. Confirmation surveys by a second
+method take one of the two forms stated under *Experimental* and are declared in
+`detectionCertainty`.
+
 **Core, unforced semantics:** single-season occupancy (incl. Royle–Nichols),
 dynamic occupancy, N-mixture (incl. open), community occupancy and abundance (incl.
 dynamic and with interactions), multi-state occupancy (incl. false positives),
@@ -219,7 +224,14 @@ binned and hierarchical distance sampling (`distanceBreaks`), camera-trap distan
 sampling (`distanceBreaks` and `snapshotInterval`). `occasion` indexes the cell.
 
 **Experimental:** spatial capture–recapture (`trap`, `__traps`), multi-scale
-occupancy and eDNA (`cluster_id` = site, `unit` = sample, `occasion` = replicate),
+occupancy and eDNA (`cluster_id` = site, `unit` = sample, `occasion` = replicate;
+a fourth level above `cluster_id`, such as the watershed of an eDNA site, is a
+`unit_<group>` covariate, constant within the unit as E5 requires, so the deposit stays
+one table), false-positive designs with a confirmation survey by a second method
+(`detectionCertainty` in `__dataset.json` names the certain method and where it sits:
+a `unit_` covariate when the certain method is at a coarser level than the rows, or an
+`obs_method` value when both methods share a level and each survey has one row set per
+method; `y_raw` keeps the method's own code),
 per-detection rows with scores (`detection_event`). A table in this list is tagged
 `experimental` and may be restructured between versions.
 
@@ -238,7 +250,8 @@ Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
 `geographicCoverage`. Conditional: `stateCodes` (for `state` and `ordinal`),
 `multinomialType` or `distanceBreaks` (for `multinomial_cell`),
 `coordinatesCoarsened` (when coordinates exist), `surveyEvidenceNote` (when
-`surveyEvidence = inferred`), `crs`, `effortColumn`. Recommended: `abstract`,
+`surveyEvidence = inferred`), `crs`, `effortColumn`, `detectionCertainty` (when a
+second, certain detection method is carried; E9). Recommended: `abstract`,
 `notShipped` (what was in the source and not shipped, with the reason). The
 pipeline adds `summary`, `sampleFloor`, `columns`, `standardVersion`, `script`,
 `buildDate`.

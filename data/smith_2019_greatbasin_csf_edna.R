@@ -37,7 +37,7 @@
 #          site-level visual/dipnet survey detected the frog (deposited code 2), 0 otherwise.
 #          The confirmation survey is an observation of the same species by another method,
 #          carried as a covariate because it sits at a different level (site) from the rows
-#          (qPCR replicate); logged in BATCH_LOG as a question for the standard.
+#          (qPCR replicate); declared in detectionCertainty (E9 false-positive form 1, #23).
 #   Survey evidence = deposited_matrix for both (the matrices code not-surveyed as "." and
 #   non-detection as 0; the qPCR file is rectangular).
 #   NOT shipped: the MARK .inp copies; the 30 false-positive resamples (final_dcomp*,
@@ -133,7 +133,9 @@ ds2 <- write_table(long2, T2, c(list(
   abstract = "The qPCR-replicate level of the same Great Basin Columbia spotted frog eDNA survey: each of three filter samples per site was run in triplicate qPCR (1 = exponential amplification of the target, 0 = none). The site-level visual and dipnet survey, treated by the authors as an unambiguous detection method in the Miller et al. (2011) false-positive occupancy model (unmarked occuFP coding 2), is carried as the site covariate unit_visual_dipnet_detected. 31 of 168 sites had a visual/dipnet detection, 64 had at least one positive qPCR; the paper estimates a false-positive rate of 0.023 per qPCR replicate.",
   samplingProtocol = "Species-specific qPCR of eDNA filter samples in triplicate (3 ul extract in 15 ul, 50 cycles); visual survey of the whole site by two biologists followed by dipnetting along the shoreline about every 1 m.",
   closure = "occasion (three qPCR replicates of one extract)",
-  designNote = "Experimental list of E9 (multi-scale / eDNA): cluster_id = site, unit = filter sample, occasion = qPCR replicate. The visual/dipnet result is a second detection method at the site level carried as a covariate because the rows are qPCR replicates; the standard has no multi-method rule yet (BATCH_LOG, batch 6).",
+  detectionCertainty = list(column = "unit_visual_dipnet_detected", method = "visual and dipnet survey of the whole site", level = "unit (site)",
+                            note = "1 = the certain method detected the frog at the site (deposited occuFP code 2); qPCR rows are the ambiguous method"),
+  designNote = "Experimental list of E9 (multi-scale / eDNA): cluster_id = site, unit = filter sample, occasion = qPCR replicate. The visual/dipnet result is a second, certain detection method at the site level carried as a unit_ covariate (E9 false-positive form 1; ruling #23) because the rows are qPCR replicates.",
   notShipped = list(watershed = "the watershed of each site is only in the other deposited file, which cannot be joined to this one",
                     MARK_inp_copies = "MARK copies and the 30 false-positive resamples")),
   common), taxa = taxa, script = SCRIPT)
