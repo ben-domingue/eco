@@ -3,6 +3,9 @@
 *Exploratory study, 2026-10-30. Everything here is a draft for Ben to react to;
 nothing is production.*
 
+*Website: <https://ben-domingue.github.io/eco/> (source in `site/`, rendered by
+`.github/workflows/site.yml`; preview locally with `cd site && quarto preview`).*
+
 ## The question
 
 The IRW harmonises item-response data into one long-format table (`id`, `item`,

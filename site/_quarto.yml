@@ -1,0 +1,61 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+  resources:
+    - figures.js
+  # Writes data/site_stats.json from the pipeline's staging files so the
+  # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
+  pre-render:
+    - Rscript prerender.R
+  preview:
+    port: 4300
+
+website:
+  title: "eco"
+  # GitHub Pages project site. The custom-domain step is a one-line change
+  # here plus a CNAME file if that ever happens.
+  site-url: https://ben-domingue.github.io/eco/
+  repo-url: https://github.com/ben-domingue/eco
+  repo-actions: [issue]
+  description: "A draft IRW-style warehouse for ecological detection data: occupancy, counts and capture histories in one long format."
+  navbar:
+    title: "eco"
+    search: true
+    left:
+      - href: index.qmd
+        text: Home
+      - href: data.qmd
+        text: Data
+      - href: standard.qmd
+        text: Standard
+      - href: firstlook.qmd
+        text: First look
+      - href: contribute.qmd
+        text: Contribute
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/ben-domingue/eco
+        aria-label: GitHub
+  page-footer:
+    left: "eco is an exploratory project. Nothing here is released; all figures are drafts."
+    right: "Built with [Quarto](https://quarto.org). Data on [Redivis](https://redivis.com/datasets/4j5q)."
+
+format:
+  html:
+    theme:
+      - cosmo
+      - custom.scss
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    link-external-newwindow: true
+
+execute:
+  echo: false
+  message: false
+  warning: false
+  error: false

@@ -1,0 +1,20 @@
+---
+title: "The standard, draft v0.3"
+toc-depth: 2
+---
+
+::: {.callout-note}
+This page renders the repository file
+[`standard_draft.md`](https://github.com/ben-domingue/eco/blob/main/standard_draft.md),
+which is the authoritative copy. Section numbers are the file's own. The
+[round-trip report](https://github.com/ben-domingue/eco/blob/main/roundtrip_report.md)
+records what the Phase 2 tests changed in it.
+:::
+
+```{r}
+#| label: body
+#| output: asis
+body <- readLines("../standard_draft.md", warn = FALSE)
+body <- body[-(1:which(grepl("^# ", body))[1])]   # drop the file's H1; the page has a title
+cat(body, sep = "\n")
+```

@@ -1,0 +1,77 @@
+---
+pagetitle: "eco — ecological detection data in one format"
+toc: false
+---
+
+```{r}
+#| label: stats
+s <- jsonlite::read_json("data/site_stats.json")
+fmt <- function(x) format(x, big.mark = ",")
+```
+
+::: {.eco-hero}
+<span class="eco-status">Exploratory draft</span>
+
+# Ecological detection data, in one format
+
+<p class="lead">
+Occupancy surveys, repeated counts, capture histories and community
+detection matrices share a structure: a unit carries a latent state that is
+observed imperfectly across repeated probes. **eco** asks whether the
+<a href="https://itemresponsewarehouse.org">Item Response Warehouse</a>'s
+one-long-table approach works for that structure, and builds real tables to
+find out.
+</p>
+:::
+
+::: {.eco-stats}
+<div class="stat"><div class="n">`r s$n_tables`</div><div class="l">tables built from public deposits</div></div>
+<div class="stat"><div class="n">`r fmt(s$n_rows)`</div><div class="l">survey observations</div></div>
+<div class="stat"><div class="n">`r fmt(s$n_units)`</div><div class="l">sites and individuals</div></div>
+<div class="stat"><div class="n">`r s$n_families`</div><div class="l">model families</div></div>
+<div class="stat"><div class="n">`r s$n_valid` / `r s$n_tables`</div><div class="l">pass both validators</div></div>
+:::
+
+## The idea in one table
+
+Every table has the IRW's three-column core under local names, plus two time
+indices that ecologists will recognise as primary and secondary sampling
+periods.
+
+| Column | What it holds | IRW name |
+|---|---|---|
+| `unit` | the thing carrying the latent state: a site, camera, transect, or an individual animal | `id` |
+| `taxon` | the species probed for, even when there is only one | `item` |
+| `y` | the observation: 0/1 detection, a count, or a coded state | `resp` |
+| `period` | primary period, across which the latent state may change | occasion column |
+| `occasion` | replicate survey within a period, across which closure is assumed | occasion column |
+
+Covariates are prefixed by the level at which they are constant (`unit_`,
+`period_` for unit by period, `obs_` for the survey row, `taxon_` for the
+species), which is exactly the three-level split that `unmarked`,
+`spOccupancy` and the AHM BUGS code expect. A row exists if and only if a
+survey happened; a missing row is never a zero. A one-line rename gives the
+IRW view, and that view validates under IRW v1.0 unchanged.
+
+::: {.eco-cards}
+<div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>Draft v0.3: the core table, a mapping for each model family, the missingness rule, side tables borrowed from Darwin Core and EML.</p></div>
+<div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>Six public deposits, from a 22-camera tapir survey to 77 years of fish collections, converted, validated and staged on Redivis.</p></div>
+<div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort, and a capture history.</p></div>
+<div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
+<div class="card"><h3><a href="about.html">Why this might work</a></h3><p>A community occupancy model is a random-item IRT model with species as items. The analogy, the evidence, and the open decisions.</p></div>
+:::
+
+## Where things stand
+
+The study ran in three passes. A [standard](standard.html) was drafted
+against IRW v1.0 and the data structures of the main R packages. Six bundled
+package datasets were converted to it and back, with identical arrays and
+identical model estimates on either side. Then six real deposits from Dryad,
+Zenodo, Dataverse and ScienceBase were run through an IRW-style pipeline to
+see the standard meet messy data. All six validate.
+
+Five design decisions remain open and are listed on the [about](about.html)
+page. Until they are settled, nothing is released: the Redivis dataset is an
+unreleased draft and the tables may be renamed or restructured.
+
+*Tables last built `r s$built`.*

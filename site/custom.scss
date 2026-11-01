@@ -1,0 +1,61 @@
+/*-- scss:defaults --*/
+$primary: #2f6b4f;
+$link-color: #2f6b4f;
+$font-family-sans-serif: "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$navbar-bg: #1f3d2f;
+$navbar-fg: #f3f6f4;
+$body-color: #222;
+
+/*-- scss:rules --*/
+.navbar-brand { font-weight: 700; letter-spacing: 0.02em; }
+
+.eco-hero {
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px solid #e3e8e5;
+  margin-bottom: 1.5rem;
+  h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: .5rem; }
+  .lead { font-size: 1.2rem; max-width: 44rem; color: #333; }
+  .eco-status {
+    display: inline-block; font-size: .8rem; text-transform: uppercase;
+    letter-spacing: .08em; background: #f0e6c8; color: #5a4a12;
+    padding: .2rem .6rem; border-radius: .3rem; margin-bottom: .8rem;
+  }
+}
+
+.eco-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  gap: 1rem; margin: 1.5rem 0 2rem;
+  .stat { background: #f4f7f5; border-radius: .5rem; padding: .9rem 1rem; }
+  .n { font-size: 1.8rem; font-weight: 700; color: $primary; line-height: 1.1; }
+  .l { font-size: .85rem; color: #555; }
+}
+
+.eco-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem; margin: 1rem 0 2rem;
+  .card { border: 1px solid #e3e8e5; border-radius: .5rem; padding: 1rem 1.1rem; }
+  .card h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+  .card p { margin: 0; font-size: .95rem; color: #444; }
+}
+
+table.eco-table { font-size: .9rem; }
+table.eco-table td, table.eco-table th { vertical-align: top; }
+/* Table names are the row keys; never wrap them. */
+table td:first-child code { white-space: nowrap; font-size: .8em; }
+code { font-size: .9em; }
+
+/* Figures ported from report.html: series c1 = Los Lagos, c2 = Pampas, c3 = New River */
+:root {
+  --paper: #fff; --ink-2: #55575f; --ink-3: #8a8c94; --grid: #e6e6e2; --line-strong: #c9ccc8;
+  --c1: #4038c9; --c2: #b0522a; --c3: #2a7f62;
+}
+.eco-figs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem 2rem; margin: 1.5rem 0;
+  .figure svg { width: 100%; height: auto; display: block; }
+  .ttl { font-weight: 600; margin: 0 0 .3rem; }
+  .cap { font-size: .88rem; color: var(--ink-2); margin: .4rem 0 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .82rem; color: var(--ink-2); margin: 0 0 6px; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--sw); margin-right: 6px; vertical-align: -1px; }
+}
+#summary table { font-size: .85rem; }

@@ -1,0 +1,61 @@
+# Renders site/ with Quarto and publishes it to GitHub Pages at
+# https://ben-domingue.github.io/eco/. Runs on every push to main that touches
+# the site or the files it reads (tags, dictionary, validator report, output
+# metadata, the standard), and on demand.
+#
+# One-time setup in the repository settings: Pages -> Source -> GitHub Actions.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "standard_draft.md"
+      - "tags/**"
+      - "dictionary/**"
+      - "validate/report.csv"
+      - "output/*__dataset.json"
+      - "queue/**"
+      - ".github/workflows/site.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install R packages
+        run: Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table"))'
+
+      - name: Render
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          path: site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/_site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

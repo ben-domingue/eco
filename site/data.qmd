@@ -1,0 +1,102 @@
+---
+title: "The tables"
+---
+
+```{r}
+#| label: load
+library(data.table)
+tags <- as.data.table(read.csv("../tags/tags_auto.csv", check.names = FALSE, stringsAsFactors = FALSE))
+dict <- as.data.table(read.csv("../dictionary/dictionary_auto.csv", check.names = FALSE, stringsAsFactors = FALSE))
+val  <- as.data.table(read.csv("../validate/report.csv", stringsAsFactors = FALSE))
+meta <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names = TRUE), function(f) {
+  j <- jsonlite::read_json(f)
+  data.table(table = j$table, title = j$title, citation = j$citation,
+             licence = j$intellectualRights$spdx, sourceURL = j$sourceURL,
+             protocol = j$samplingProtocol, coverage = j$temporalCoverage,
+             columns = paste(unlist(j$columns), collapse = ", "),
+             coarsened = isTRUE(j$coordinatesCoarsened$value))
+}))
+d <- merge(merge(tags, dict[, .(table, description)], by = "table"), meta, by = "table")
+d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
+setorder(d, table)
+redivis <- "https://redivis.com/datasets/4j5q"
+gh <- "https://github.com/ben-domingue/eco/blob/main"
+```
+
+Every table below was built by a script in the repository's `data/`
+directory from a public deposit, validated against the draft standard and
+against the IRW v1.0 validator, and staged on Redivis as the unreleased
+dataset [`datapages.eco`](`r redivis`). Each table ships with a `__taxa`
+side table (taxon resolution via GBIF, plus traits where the source has them)
+and, where there are primary periods, a `__periods` side table, and carries a
+`__dataset.json` with the EML and Darwin Core fields the standard borrows.
+
+Tables marked **hold** fall below the proposed sample floor of 30 units and
+would not be published under the current draft. They are kept because they
+exercise the rules, and because the floor is itself an open decision.
+
+## Summary
+
+```{r}
+#| label: summary
+#| output: asis
+d[, dims := sprintf("%s × %s × %s × %s", n_units, n_taxa, n_periods, n_occasions)]
+d[, state := ifelse(grepl("hold", status), "hold", "ok")]
+d[, name := sprintf("[`%s`](#%s)", table, table)]
+out <- d[, .(Table = name, Family = model_family, Taxa = taxon_group,
+             Protocol = sampling_protocol, `Units × taxa × periods × occasions` = dims,
+             Rows = format(n_rows, big.mark = ","), Licence = licence, Status = state)]
+cat(knitr::kable(out, format = "pipe"), sep = "\n")
+```
+
+The four dimensions are counts of distinct `unit`, `taxon`, `period` and
+`occasion` values. The row count is the number of survey observations, which
+is smaller than the product of the four whenever some unit-occasion
+combinations were not surveyed.
+
+## Each table
+
+```{r}
+#| label: cards
+#| output: asis
+for (i in seq_len(nrow(d))) {
+  r <- d[i]
+  cat(sprintf("\n### `%s` {#%s}\n\n", r$table, r$table))
+  cat(sprintf("**%s**\n\n", r$title))
+  cat(sprintf("%s\n\n", r$description))
+  cat("| | |\n|---|---|\n")
+  cat(sprintf("| Family | %s |\n", r$model_family))
+  cat(sprintf("| Design | %s |\n", r$design))
+  cat(sprintf("| Protocol | %s |\n", r$protocol))
+  cat(sprintf("| Response | `%s` |\n", r$response_type))
+  cat(sprintf("| Coverage | %s; %s; %s |\n", r$country, r$realm, r$coverage))
+  cat(sprintf("| Coordinates | %s |\n", r$coordinates))
+  cat(sprintf("| Size | %s units, %s taxa, %s periods, %s occasions, %s rows |\n",
+              r$n_units, r$n_taxa, r$n_periods, r$n_occasions, format(r$n_rows, big.mark = ",")))
+  cat(sprintf("| Sample floor | %s |\n", r$sample_floor))
+  cat(sprintf("| Validation | draft validator passes; IRW v1.0 %s%s |\n", r$irw_v1,
+              if (nzchar(r$irw_warnings)) sprintf(" (warnings: %s)", r$irw_warnings) else ""))
+  cat(sprintf("| Columns | %s |\n", paste0("`", strsplit(r$columns, ", ")[[1]], "`", collapse = " ")))
+  cat(sprintf("| Source | [%s](%s), %s |\n", r$sourceURL, r$sourceURL, r$licence))
+  cat(sprintf("| Script | [`data/%s.R`](%s/data/%s.R) |\n", r$table, gh, r$table))
+  cat(sprintf("| Status | %s |\n", r$status))
+  if (nzchar(r$notes)) cat(sprintf("\nNotes: %s\n", r$notes))
+  cat(sprintf("\nCitation: %s\n", r$citation))
+}
+```
+
+## Getting the data
+
+The dataset is on Redivis as [`datapages.eco`](`r redivis`). It is an
+unreleased draft, so access is through the Redivis interface for now rather
+than the `irw` R or Python packages. Until the first release, the CSVs in the
+repository's `output/` directory are the same files and can be read directly;
+rebuild them from source with
+
+```sh
+Rscript data/run_all.R && Rscript validate/validate_all.R
+```
+
+from the repository root. The scripts cache downloads and are deterministic,
+with assertions on facts about each source so that a changed deposit fails
+loudly.

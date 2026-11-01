@@ -1,0 +1,95 @@
+---
+title: "Converting a deposit"
+---
+
+```{r}
+#| label: queue
+library(data.table)
+q <- as.data.table(read.csv("../queue/candidates.csv", stringsAsFactors = FALSE))
+q[, state := fifelse(grepl("^built", status), "built", fifelse(status == "claimed", "claimed", "available"))]
+counts <- q[, .N, by = state]
+n <- function(s) { v <- counts[state == s, N]; if (length(v)) v else 0L }
+```
+
+The project is at the stage where the most useful thing anyone can do is
+convert another public deposit and see what breaks. There are
+`r n("available")` inspected candidates waiting, `r n("claimed")` claimed and
+`r n("built")` built. Each conversion is one R script, one dictionary row and
+one tags row, modelled directly on how the Item Response Warehouse builds its
+tables.
+
+## How a table is built
+
+One script per source lives in `data/`. It downloads the deposit into a local
+cache, reshapes it into the standard, validates it, and writes
+
+| Output | Where |
+|---|---|
+| the clean long-format CSV | `output/<table>.csv` |
+| side tables for taxa and primary periods | `output/<table>__taxa.csv`, `output/<table>__periods.csv` |
+| dataset metadata with the EML and Darwin Core fields, counts and sample-floor status | `output/<table>__dataset.json` |
+| a Data-Dictionary row and a tags row | `dictionary/dictionary_auto.csv`, `tags/tags_auto.csv` |
+
+Shared helpers (cached downloads, GBIF taxon matching, coordinate coarsening,
+the writer and the staging functions) are in `lib/eco_common.R`. The
+converters and the validator are in `converters/eco_standard.R`. Run one
+script from the repository root with `Rscript data/<table>.R`, or all of them
+with `Rscript data/run_all.R`, then `Rscript validate/validate_all.R`.
+
+## Conventions the scripts follow
+
+- **The script is the processing record.** Its header comment states the
+  source, licence, paper, the file layout as deposited, the mapping onto the
+  standard, and what was not shipped and why. There is no separate notes file.
+- **Assertions, not comments, for facts about the source.** Row counts, value
+  sets, that the missingness pattern is identical across species, that effort
+  is positive exactly where a survey exists. A re-download that changes the
+  source fails loudly.
+- **Explicit zeros.** A row exists if and only if a survey happened. A blank
+  cell in a deposited matrix becomes a missing row, never a missing `y`.
+- **Species codes on `taxon`**, short and upper case. The scientific name,
+  GBIF taxon key and any traits go to the `__taxa` side table.
+- **Period-level facts** (season label, calendar year) go to `__periods`, not
+  into the core file.
+- **Model outputs are not covariates.** A covariate the authors estimated
+  from the same detections is dropped, and the drop is logged.
+- **Coordinates are never finer than the source.** Taxa the source or a red
+  list flags as sensitive get a 0.1-degree coarsening, with the uncertainty
+  column and the dataset flag set.
+- **Table names** follow section 10 of the standard:
+  `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer.
+
+## Claiming a candidate
+
+The queue is `queue/candidates.csv`, seeded from the discovery pass with
+deposits that have recoverable non-detections and a conversion difficulty of
+1 to 4 on a 5-point scale. To claim one, open an issue on
+[`ben-domingue/eco`](https://github.com/ben-domingue/eco/issues) titled with
+the table name you intend to use, set the row's status to `claimed` with your
+name in the same pull request as your `data/` script, and change it to
+`built: <table>` when the script and its outputs land. New candidates go at
+the bottom with status `available`.
+
+```{r}
+#| label: queue-table
+#| output: asis
+setorder(q, state, difficulty_1to5)
+out <- q[, .(Candidate = candidate, Source = source, `DOI / URL` = doi_or_url,
+             Licence = license, `Data type` = data_type, Difficulty = difficulty_1to5,
+             Status = status)]
+cat(knitr::kable(out, format = "pipe"), sep = "\n")
+```
+
+## Where the data lives
+
+The discovery pass found that the data exists in volume and is overwhelmingly
+CC0. Dryad is the richest source by far, with on the order of a thousand
+word-match hits for "detection history" and "detection/non-detection", of
+which perhaps a quarter to two fifths are real detection, count or capture
+data. Dryad's API refuses anonymous file downloads, but every Dryad deposit is
+mirrored on Zenodo under the same DOI and serves openly from there. Zenodo
+natively adds MARK input files; USGS ScienceBase, EDI, KNB and the Dataverses
+add smaller numbers of clean, well-documented series; GBIF sampling-event
+datasets, NEON and the Breeding Bird Survey are each a large integration
+project in their own right. The full account is in the repository's
+[discovery summary](https://github.com/ben-domingue/eco/blob/main/discovery_summary.md).

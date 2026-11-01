@@ -1,0 +1,91 @@
+---
+title: "About eco"
+---
+
+## The question
+
+The [Item Response Warehouse](https://itemresponsewarehouse.org) harmonises
+item response data into one long-format table with three required columns,
+`id`, `item` and `resp`, so that psychometric methods can be benchmarked at
+scale on hundreds of real datasets. Could the same move work for the
+hierarchical models ecologists fit with NIMBLE, JAGS and `unmarked`:
+occupancy, N-mixture, capture-recapture and community models, where a site
+or an animal has a latent state observed imperfectly across repeated surveys?
+
+## Why the structure maps
+
+| Ecology | Latent state per unit | Probe | Item-response analogue |
+|---|---|---|---|
+| Single-season occupancy | site occupied or not | visit | one dichotomous item, repeated trials |
+| N-mixture | site abundance | visit, binomial count | count item, repeated trials |
+| Cormack-Jolly-Seber | individual alive at time t | capture session | longitudinal 0/1 item with an absorbing state |
+| Dynamic occupancy | site occupied in season t | visit within season | longitudinal item, hidden Markov over waves |
+| Community occupancy | site by species | species by visit | multilevel IRT with species as items |
+
+The community occupancy model is the clearest case. The probability of
+detecting species k at site i on visit j has a species-level random effect in
+its intercept, which is a random-item model. That is what motivates putting
+the species, rather than the visit, on `taxon`.
+
+## What the study found
+
+**It round-trips.** Six datasets bundled with R packages, covering
+single-season occupancy, N-mixture, removal sampling, CJS, dynamic occupancy
+and a 158-species community dataset, convert to the format, validate, convert
+back to identical arrays, and give identical model estimates in `unmarked`,
+`marked` and NIMBLE on native and reconstructed data. The only things lost are
+covariate values at surveys that never happened and units that were never
+surveyed, which matter to no likelihood but need a side table if the sampling
+frame matters.
+
+**Real deposits behave.** Six public deposits were then built the way the IRW
+builds tables. The explicit-zero rule was never ambiguous: every deposit used
+blank for "not surveyed" and 0 for "not detected", and in two of them the
+pattern could be cross-checked against an effort table. Coarsening was needed
+once, for an Endangered tapir deposited with exact camera coordinates. A
+multi-state loon table fit with `y` as a species-specific state code. A
+MARK input file with losses on capture exercised the `obs_removed` encoding.
+One covariate that was really a model output was dropped.
+
+**The data exists and is open.** Dryad alone has on the order of a thousand
+hits for the core search terms, nearly all CC0, usually deposited as the very
+site-by-occasion matrix the standard targets. A seed corpus of 50 to 100
+tables is weeks of work; a harvested corpus of several hundred to a thousand,
+most with 20 to 300 units and 2 to 12 occasions, is months. The corpus is one
+of small tables, which is where IRW's floor of 100 ids would exclude most of
+ecology.
+
+## Five open decisions
+
+These are the design choices the draft takes a position on but does not
+settle.
+
+1. **What plays the role of the item?** The draft puts the species on
+   `taxon`, so single-species tables look like IRW's repeated-trial family and
+   community tables are species-as-items. Putting the visit there instead
+   makes every table a person-by-item matrix an IRT model can read directly,
+   but does not generalise to multi-species data.
+2. **Dense zeros or a surveys table?** The explicit-zero rule makes community
+   tables large and repeats observation covariates across species. The
+   alternative is Darwin Core's event-core model: a sparse detections table
+   plus a surveys table. The draft recommends dense for IRW-likeness and
+   self-containment.
+3. **The sample floor.** 100 ids is wrong for ecology. The draft proposes at
+   least 30 units and at least 2 occasions, but two of the six built tables
+   fall below it, and one of those has 10 sites with 43 species and 20 surveys
+   each, so a flat unit floor measures the wrong axis for community data.
+4. **Sensitive-species coordinates.** Coarsen by rule to a 0.1-degree grid
+   with the uncertainty recorded, or drop coordinates for any flagged taxon.
+5. **How far to stretch.** Double-observer and binned distance sampling fit by
+   using `occasion` for a category rather than a time-ordered replicate;
+   spatial capture-recapture adds a `trap` index. Accept the stretched
+   semantics with a declared unit kind and response type, or keep
+   version 1 to the families where the format is unforced.
+
+## People and code
+
+The project is run by [Ben Domingue](https://github.com/ben-domingue) at
+Stanford, as an offshoot of the Item Response Warehouse. The code, the
+standard and this site are at
+[github.com/ben-domingue/eco](https://github.com/ben-domingue/eco). Questions
+and claims on candidates go through the repository's issues.
