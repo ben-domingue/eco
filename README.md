@@ -64,8 +64,10 @@ latent state observed imperfectly across repeated surveys?
    observation covariates across species. The alternative is Darwin Core's
    event-core model: a sparse detections table plus a `surveys` table. The draft
    recommends dense for IRW-likeness and self-containment.
-3. **Sample floor.** 100 ids is wrong for ecology; the draft proposes ≥ 30 units
-   and ≥ 2 occasions (or ≥ 2 periods for capture–recapture).
+3. **Sample floor.** *Settled 2026-11-01:* a reported attribute, not an intake
+   gate. `sample_floor` is `meets` (≥ 30 units and ≥ 2 occasions, or ≥ 2 periods
+   for capture–recapture) or `below (reason)`, and users filter on it. Small
+   tables are not sought out, but they ship when they come.
 4. **Sensitive-species coordinates.** Coarsen by rule (draft: 0.1° / 10 km grid,
    with `coordinateUncertaintyInMeters` set) versus drop coordinates for any
    flagged taxon. Several small Dryad/Zenodo deposits of threatened species carry
@@ -119,10 +121,12 @@ What the real deposits added to the round-trip findings:
   for "not surveyed" and 0 for "not detected", and in two of them the survey
   pattern could be cross-checked against an effort table (fish: blank iff
   effort 0; tapir: filled cells = effort + 1 or 2 days).
-- **Two tables fall below the proposed 30-unit floor** (tapir, 22 cameras;
-  Argentine birds, 10 points). Both are staged with `Status = hold`. The bird
-  table is the interesting case: 10 sites but 43 species x 20 surveys each, so
-  the floor measures the wrong axis for community data (decision 3).
+- **Two tables fall below the 30-unit floor** (tapir, 22 cameras; Argentine
+  birds, 10 points). They were staged as `hold` until the floor was ruled a
+  filterable attribute rather than an intake rule (decision 3); both now ship
+  with `sample_floor = below (...)`. The bird table is why: 10 sites but 43
+  species x 20 surveys each, so a unit floor measures the wrong axis for
+  community data.
 - **Coarsening was needed once** (Endangered tapir, exact camera coordinates
   deposited) and exercised the section 6 rule; the loon table keeps coordinates
   as the USGS published them (decision 4).

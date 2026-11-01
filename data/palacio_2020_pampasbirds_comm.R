@@ -19,7 +19,8 @@
 #   occasion = visit 1..5, y = 0/1. Season label is a function of period alone, so it
 #   goes in the periods side table (section 5.4), not the core file. Traits go in the
 #   taxa side table as taxon_* (section 5.1); they are not copied into the core.
-# Floor: 10 points is below the proposed 30-unit floor; built as a case for that
+# Floor: 10 points is below the 30-unit floor (a filterable attribute, not an intake
+# rule since 2026-11-01); built as a case for that
 #   decision (the species dimension, 43, is where this table's information is).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "palacio_2020_pampasbirds_comm"
@@ -97,4 +98,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Community occupancy (multi-season)",
   sampling_protocol = "point_count", design = "Multi-season (4 seasons x 5 visits)", realm = "Terrestrial",
   country = "ARG", coordinates = "None in source", notes = "Fully balanced; traits as taxon_ in taxa table.",
-  status = "tagged; hold: below sample floor")
+  status = "tagged")

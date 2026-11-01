@@ -70,7 +70,7 @@ identical model estimates on either side. Then six real deposits from Dryad,
 Zenodo, Dataverse and ScienceBase were run through an IRW-style pipeline to
 see the standard meet messy data. All six validate.
 
-The first version of the dataset is published on Redivis. Five design
+The first version of the dataset is published on Redivis. Four design
 decisions remain open and are listed on the [about](about.html) page; until
 they are settled the standard is a draft and tables may be renamed or
 restructured between versions.

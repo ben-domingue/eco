@@ -112,8 +112,9 @@ table_summary <- function(long) {
        prop_zero = round(mean(long$y == 0), 3))
 }
 
-# Proposed intake floor (standard section 10, open question 2): >= 30 units and
-# >= 2 occasions (or >= 2 periods). Returns "meets" / "below (reason)".
+# Sample floor (standard section 10, ruled 2026-11-01 a reported attribute, not an
+# intake gate): >= 30 units and >= 2 occasions (or >= 2 periods). Returns
+# "meets" / "below (reason)"; a below-floor table is published and filterable.
 floor_status <- function(s) {
   reasons <- character()
   if (s$n_units < 30) reasons <- c(reasons, sprintf("%d units < 30", s$n_units))

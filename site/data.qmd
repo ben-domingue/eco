@@ -31,9 +31,10 @@ side table (taxon resolution via GBIF, plus traits where the source has them)
 and, where there are primary periods, a `__periods` side table, and carries a
 `__dataset.json` with the EML and Darwin Core fields the standard borrows.
 
-Tables marked **hold** fall below the proposed sample floor of 30 units and
-would not be published under the current draft. They are kept because they
-exercise the rules, and because the floor is itself an open decision.
+The **Floor** column is the standard's sample floor, 30 or more units and 2
+or more occasions (or periods). It is a filter, not an admission rule: tables
+below it are published like any other and say so, and a user who needs the
+floor excludes them on `sample_floor` in the tags.
 
 ## Summary
 
@@ -41,11 +42,11 @@ exercise the rules, and because the floor is itself an open decision.
 #| label: summary
 #| output: asis
 d[, dims := sprintf("%s × %s × %s × %s", n_units, n_taxa, n_periods, n_occasions)]
-d[, state := ifelse(grepl("hold", status), "hold", "ok")]
+d[, floor := ifelse(sample_floor == "meets", "meets", "below")]
 d[, name := sprintf("[`%s`](#%s)", table, table)]
 out <- d[, .(Table = name, Family = model_family, Taxa = taxon_group,
              Protocol = sampling_protocol, `Units × taxa × periods × occasions` = dims,
-             Rows = format(n_rows, big.mark = ","), Licence = licence, Status = state)]
+             Rows = format(n_rows, big.mark = ","), Licence = licence, Floor = floor)]
 cat(knitr::kable(out, format = "pipe"), sep = "\n")
 ```
 

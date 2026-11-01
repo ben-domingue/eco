@@ -55,10 +55,10 @@ most with 20 to 300 units and 2 to 12 occasions, is months. The corpus is one
 of small tables, which is where IRW's floor of 100 ids would exclude most of
 ecology.
 
-## Five open decisions
+## Open decisions
 
-These are the design choices the draft takes a position on but does not
-settle.
+These are the design choices the draft takes a position on. Four are still
+open; the third was settled on 2026-11-01.
 
 1. **What plays the role of the item?** The draft puts the species on
    `taxon`, so single-species tables look like IRW's repeated-trial family and
@@ -70,10 +70,13 @@ settle.
    alternative is Darwin Core's event-core model: a sparse detections table
    plus a surveys table. The draft recommends dense for IRW-likeness and
    self-containment.
-3. **The sample floor.** 100 ids is wrong for ecology. The draft proposes at
-   least 30 units and at least 2 occasions, but two of the six built tables
-   fall below it, and one of those has 10 sites with 43 species and 20 surveys
-   each, so a flat unit floor measures the wrong axis for community data.
+3. **The sample floor** (settled). It is a reported attribute, not an intake
+   rule: every table carries `sample_floor`, `meets` at 30 or more units and 2
+   or more occasions, otherwise `below` with the reason, and users filter on
+   it. Two of the six built tables are below it. One has 10 sites with 43
+   species and 20 surveys each, which is why a flat unit floor was the wrong
+   kind of rule for this corpus. Small tables are not sought out, but they
+   ship when they come.
 4. **Sensitive-species coordinates.** Coarsen by rule to a 0.1-degree grid
    with the uncertainty recorded, or drop coordinates for any flagged taxon.
 5. **How far to stretch.** Double-observer and binned distance sampling fit by

@@ -18,9 +18,9 @@
 #   coordinates to 1e-8 degrees. Following standard section 6 the coordinates are
 #   coarsened to the centre of a 0.1-degree cell, with the cell half-diagonal as
 #   unit_coordinateUncertaintyInMeters and dataset.coordinatesCoarsened = TRUE.
-# Floor: 22 cameras is below the proposed 30-unit floor (standard section 10, open
-#   question 2). Built anyway as a concrete case for that decision; flagged in the
-#   tags row and dataset.json.
+# Floor: 22 cameras is below the 30-unit floor (standard section 10; since
+#   2026-11-01 a filterable attribute, not an intake rule). Flagged as
+#   sample_floor = below in the tags row and dataset.json, and published.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "schank_2015_tapir_occ"
 f <- download_cached("https://zenodo.org/api/records/17602/files/Tapir_detection_histories_-_Rio_Indio_Nicaragua_-_Cody_Schank.csv/content",
@@ -68,4 +68,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Single-season occupancy",
   sampling_protocol = "camera_trap", design = "Single-season", realm = "Terrestrial", country = "NIC",
   coordinates = "Coarsened (0.1 deg)", notes = "Daily occasions, camera-relative; 11 detections in 1,050 camera-days.",
-  status = "tagged; hold: below sample floor")
+  status = "tagged")

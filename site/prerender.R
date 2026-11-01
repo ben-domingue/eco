@@ -10,7 +10,7 @@ stats <- list(
   n_species  = sum(as.numeric(tags$n_taxa)),
   n_families = length(unique(sub(" \\(.*", "", tags$model_family))),
   n_valid    = sum(val$eco_valid & grepl("passes", val$irw_v1)),
-  n_hold     = sum(grepl("hold", tags$status)),
+  n_below_floor = sum(tags$sample_floor != "meets"),
   built      = max(vapply(list.files("../output", "__dataset.json$", full.names = TRUE),
                  function(f) jsonlite::read_json(f)$buildDate, ""))
 )

@@ -22,6 +22,11 @@ adds, and why red_up alone is not enough here:
     same owner, not an IRW shard.
   * Each table gets its description from output/<table>__dataset.json (title,
     citation, licence, counts), which IRW keeps in a sheet instead.
+  * A core table whose tags row (tags/tags_auto.csv) carries a `do_not_publish`
+    (or the retired `hold`) status is refused, with its side tables, unless
+    `--allow-hold` is passed. Added after two tables tagged `hold` reached the
+    first published version (ben-domingue/eco#1): the tag is the one place a
+    "do not ship" decision is written, so the uploader has to read it.
 
 Like red_up, nothing here publishes. Everything lands on the dataset's
 unreleased draft; releasing is a human click on Redivis.
@@ -29,6 +34,7 @@ unreleased draft; releasing is a human click on Redivis.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import sys
 from pathlib import Path
@@ -40,6 +46,7 @@ from red_up.targets import load_registry
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "output"
+TAGS = ROOT / "tags" / "tags_auto.csv"
 DATASET = "eco"
 DATASET_DESCRIPTION = (
     "Ecological detection data (occupancy, counts, capture histories, community "
@@ -93,6 +100,19 @@ def describe(table: str) -> str | None:
     return f"{head}\n\n{body}"
 
 
+def blocked_by_tags() -> dict[str, str]:
+    """Core tables whose tags status says not to ship, mapped to the reason."""
+    if not TAGS.exists():
+        return {}
+    out = {}
+    with TAGS.open(newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            status = (row.get("status") or "").lower()
+            if "do_not_publish" in status or "hold" in status:
+                out[row["table"]] = row.get("status", "")
+    return out
+
+
 def ensure_dataset(owner: str, name: str, assume: bool) -> None:
     import redivis
     ds = redivis.organization(owner).dataset(name)
@@ -114,6 +134,8 @@ def main(argv=None) -> int:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--yes", "-y", action="store_true")
     ap.add_argument("--no-validate", action="store_true", help="skip irw-validate on core tables")
+    ap.add_argument("--allow-hold", action="store_true",
+                    help="upload tables whose tags status says do_not_publish / hold")
     args = ap.parse_args(argv)
 
     csvs: list[Path] = []
@@ -145,6 +167,11 @@ def main(argv=None) -> int:
             continue
         errors, warnings = run_validator(view)
         r.errors.extend(errors); r.warnings.extend(warnings)
+    blocked = {} if args.allow_hold else blocked_by_tags()
+    for r in reports:
+        base = r.table.split("__")[0]
+        if base in blocked:
+            r.errors.append(f"tags status is `{blocked[base]}` -- not shipped (pass --allow-hold to override)")
     for r in side:
         key = SIDE_KEYS[side_suffix(r.table)]
         if r.columns and key not in r.columns:

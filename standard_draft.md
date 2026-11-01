@@ -422,9 +422,16 @@ support from the standard.
 - Type suffixes: `occ`, `count`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`, `scr`, `state` (multi-state responses).
 - One file per *survey design × response type*. A paper with a bird community
   point-count dataset and a small-mammal trapping grid yields two tables.
-- Sample floor: IRW's 100-`unit` floor is the wrong unit here; many clean occupancy
-  datasets have 50–100 sites. Proposed floor: ≥ 30 units **and** ≥ 2 occasions
-  (or ≥ 2 periods for CR), so that detection is identifiable. Open question (§11).
+- Sample floor (ruled 2026-11-01): **a reported attribute, not an intake gate.**
+  IRW's 100-`unit` floor exists for psychometric power on a person × item matrix;
+  the quantity that limits an occupancy or capture–recapture model is different,
+  and ecology is a corpus of small tables. Every table carries `sampleFloor` in its
+  `__dataset.json` and `sample_floor` in the tags: `meets` when ≥ 30 units **and**
+  ≥ 2 occasions (or ≥ 2 periods for CR), otherwise `below (reason)`. Users filter
+  on it; the warehouse ships small tables and does not prioritise finding them.
+  For community tables the per-unit count understates the information (10 sites ×
+  43 species × 20 surveys), which is one more reason the floor is a filter rather
+  than a rule.
 - Licence handling: adopt IRW's intake rules unchanged (CC0/BY/BY-SA/NC/GPL hosted
   with propagation; ND and unlicensed not hosted). Note that much ecological data
   is CC0 by repository policy (Dryad, EDI by default) — a favourable contrast with
@@ -464,7 +471,7 @@ text and routes it away from the core dataset.
    multi-species tables. Is a corpus in which most tables have a single `taxon`
    acceptable, or should the canonical form be the visit-as-taxon view with
    species as a different column? (Reversible: it is a pivot.)
-2. **Sample floor.** 30 units × 2 occasions, or something else?
+2. ~~**Sample floor.**~~ Ruled 2026-11-01: a reported attribute (§10), not an intake rule.
 3. **Dense zeros for community data.** The explicit-zero rule multiplies rows by
    the species count (MHB 2014: 267 sites × 3 visits × 158 species = 127k rows,
    ~95% zeros). Alternative: a `surveys` side table listing conducted surveys, with
@@ -481,6 +488,13 @@ text and routes it away from the core dataset.
 ---
 
 ## Changelog
+
+- **v0.3.1 (2026-11-01)**: the sample floor is a published, filterable attribute
+  (`sample_floor` = `meets` / `below (reason)`), not an intake gate (§10, closes open
+  question 2). The two tables previously tagged `hold` (`schank_2015_tapir_occ`,
+  `palacio_2020_pampasbirds_comm`) are published like any other; the `hold` status
+  value is retired and `do_not_publish: <reason>` replaces it for tables that must
+  not ship, which the uploader now refuses.
 
 - **v0.3 (2026-10-31)**:
   - **Local nomenclature.** `id`/`item`/`resp` → `unit`/`taxon`/`y`; `resp_raw` → `y_raw`;

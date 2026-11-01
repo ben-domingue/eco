@@ -20,10 +20,10 @@ tagger does, so human and automated rows stay distinguishable. The counts
 | `realm` | `Terrestrial`, `Freshwater`, `Marine` |
 | `country` | ISO 3166-1 alpha-3; several separated by commas |
 | `coordinates` | `None in source`, `As published`, `Coarsened (0.1 deg)` |
-| `sample_floor` | `meets` or `below (reason)` against the proposed >= 30 units x >= 2 occasions/periods |
+| `sample_floor` | `meets` or `below (reason)` against the standard's floor of >= 30 units x >= 2 occasions/periods. A filter, not an intake rule (ruled 2026-11-01): tables below it are published |
 | `n_units`, `n_taxa`, `n_periods`, `n_occasions`, `n_rows` | integers |
 | `notes` | anything a user filtering on the above should know |
-| `status` | `tagged`, or `tagged; hold: <reason>` for tables not to be published yet |
+| `status` | `tagged`, or `tagged; do_not_publish: <reason>` for a table that must not ship (the uploader refuses it). The earlier `hold: below sample floor` value is retired |
 
 Not carried over from IRW's sheet: construct name, item text, age range, sample
 type, language. Their analogues here are the `taxa` side table (taxon
