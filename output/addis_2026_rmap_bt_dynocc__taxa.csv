@@ -1,0 +1,5 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+PSEMAC,Pseudacris maculata,Boreal chorus frog,species,https://www.gbif.org/species/2428169,EXACT,,LC
+ANABOR,Anaxyrus boreas,Boreal toad,species,https://www.gbif.org/species/2422924,EXACT,,NT
+AMBMAV,Ambystoma mavortium,Western tiger salamander,species,https://www.gbif.org/species/2431978,EXACT,,LC
+RANLUT,Rana luteiventris,Columbia spotted frog,species,https://www.gbif.org/species/2426785,EXACT,,LC

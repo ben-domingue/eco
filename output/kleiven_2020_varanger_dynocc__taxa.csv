@@ -1,0 +1,3 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
+RODENT,Rodentia,Small rodents (functional group),order,https://www.gbif.org/species/1459,EXACT,
+MUSTEL,Mustela,"Small mustelids (stoat, least weasel)",genus,https://www.gbif.org/species/44,HIGHERRANK,

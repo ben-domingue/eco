@@ -1,0 +1,42 @@
+{
+  "table": "evans_2021_maine_marten_dynocc",
+  "title": "American marten camera-trap detection histories, 197 stations over seven summer/winter seasons, Maine, USA",
+  "creator": "Evans, Bryn",
+  "pubDate": "2021",
+  "doi": "10.6084/m9.figshare.16441422.v1",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.16441422.v1",
+  "citation": "Evans, B. (2021). Marten detection history [Data set]. figshare. https://doi.org/10.6084/m9.figshare.16441422.v1",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Detection history data for seven seasons of camera trapping surveys in Maine, USA (deposit description). 0 = station active, no detection; 1 = station active, American marten detected; NA = station not active.",
+  "samplingProtocol": "Camera-trap stations surveyed over seven consecutive seasons (four summers, three winters), 33 occasions per season; occasion length not stated in the deposit.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Maine, USA (no coordinates deposited)",
+  "temporalCoverage": "seven seasons (S1-S4, W1-W3); calendar years not stated in the deposit",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "none": "the deposit holds detection histories only; no covariates, coordinates or dates"
+  },
+  "summary": {
+    "n_rows": 15792,
+    "n_units": 197,
+    "n_taxa": 1,
+    "n_periods": 7,
+    "n_occasions": 33,
+    "n_surveys": 15792,
+    "y_values": "0,1",
+    "prop_zero": 0.931
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/evans_2021_maine_marten_dynocc.R",
+  "buildDate": "2026-10-31"
+}

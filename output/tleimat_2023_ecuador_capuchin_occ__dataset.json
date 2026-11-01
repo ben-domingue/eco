@@ -1,0 +1,44 @@
+{
+  "table": "tleimat_2023_ecuador_capuchin_occ",
+  "title": "Ecuadorian capuchin camera-trap detection histories, 21 stations x 39 two-week occasions, Dec 2019 - Jun 2021",
+  "creator": "Tleimat, Jacquelyn; McCracken, Shawn F.; Lynch, Ryan; Rodriguez, David; Fritts, Sarah",
+  "pubDate": "2023",
+  "doi": "10.6084/m9.figshare.22626790.v1",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.22626790.v1",
+  "citation": "Tleimat, J., McCracken, S. F., Lynch, R., Rodriguez, D. & Fritts, S. (2023). Capuchin Detection History [Data set]. figshare. https://doi.org/10.6084/m9.figshare.22626790.v1",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Capuchin detection data binned on a two-week interval from the HCKBA, used for detection and presence modelling (deposit description). Station-level habitat covariates: elevation, tree and station height, habitat class, distances to settlement, forest edge and water, DBH, connected trees, canopy and vegetation cover.",
+  "samplingProtocol": "Camera traps at 21 stations; detection/non-detection per two-week interval; NA where the station was not operating.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "14 days",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion (the depositors treat the 18-month series as one season)",
+  "geographicCoverage": "Ecuador, study area 'HCKBA' (station codes only; no coordinates deposited)",
+  "temporalCoverage": "2019-12-22/2021-06-17",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "none": "all deposited columns are shipped"
+  },
+  "taxonNote": "The deposit names no species; 'Ecuadorian capuchin' is Cebus aequatorialis (IUCN Critically Endangered). No coordinates are deposited, so no coarsening was needed.",
+  "summary": {
+    "n_rows": 573,
+    "n_units": 21,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 39,
+    "n_surveys": 573,
+    "y_values": "0,1",
+    "prop_zero": 0.913
+  },
+  "sampleFloor": "below (21 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_elevation_m", "unit_tree_height_m", "unit_station_height_m", "unit_habitat", "unit_dist_barrio_km", "unit_dist_edge_km", "unit_dbh_cm", "unit_connected_trees", "unit_canopy_cover_avg", "unit_veg_cover_avg", "unit_dist_water_km", "unit_canopy_cover_n", "unit_canopy_cover_e", "unit_canopy_cover_w", "unit_canopy_cover_s", "unit_veg_cover_n", "unit_veg_cover_e", "unit_veg_cover_w", "unit_veg_cover_s"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/tleimat_2023_ecuador_capuchin_occ.R",
+  "buildDate": "2026-10-31"
+}

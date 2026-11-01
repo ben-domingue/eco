@@ -1,0 +1,55 @@
+{
+  "table": "addis_2026_rmap_mbrt_dynocc",
+  "title": "Rocky Mountain Amphibian Project: detection/non-detection of 5 amphibian species at 188 wetland sites, Medicine Bow-Routt National Forest, Wyoming/Colorado, 2012-2019",
+  "creator": "Addis, Brett; Rocky Mountain Amphibian Project",
+  "pubDate": "2026",
+  "doi": "10.6084/m9.figshare.31257466.v2",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.31257466.v2",
+  "citation": "Addis, B. (2026). Rocky Mountain Amphibian Project occupancy data and analyses [Data set]. figshare. https://doi.org/10.6084/m9.figshare.31257466.v2",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Occupancy survey data from the Rocky Mountain Amphibian Project (2012-2019), deposited for autologistic dynamic occupancy modelling of six amphibian species (deposit description). Wetland sites within catchments were surveyed one to eight times per summer by biologists and citizen scientists.",
+  "samplingProtocol": "Repeated visual-encounter surveys of wetland sites within catchments each summer; detection/non-detection per species per survey; number of observers and surveyor type recorded per survey.",
+  "samplingProtocolCode": "ves",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": {
+    "description": "Medicine Bow-Routt National Forest, Wyoming/Colorado",
+    "boundingBox": {
+      "west": -107.3659,
+      "east": -105.3688,
+      "south": 40.0574,
+      "north": 42.2366
+    }
+  },
+  "temporalCoverage": "2012/2019",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published; no taxon in IUCN CR/EN/VU (boreal toad NT)"
+  },
+  "notShipped": {
+    "UTM_Easting_Northing": "derivable from the WGS84 coordinates",
+    "other_forest": "the deposit covers two national forests with different species pools; the Bridger-Teton surveys are in the sibling table"
+  },
+  "splitNote": "Species surveyed-for differ between the two national forests (northern leopard frog and wood frog only in Medicine Bow-Routt; Columbia spotted frog only in Bridger-Teton), so each forest is its own table to satisfy E4.",
+  "summary": {
+    "n_rows": 20725,
+    "n_units": 188,
+    "n_taxa": 5,
+    "n_periods": 8,
+    "n_occasions": 8,
+    "n_surveys": 4145,
+    "y_values": "0,1",
+    "prop_zero": 0.912
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_area_ha", "unit_ave_site_dist_m", "unit_med_site_dist_m", "unit_n_neighbors", "unit_decimalLatitude", "unit_decimalLongitude", "obs_date_doy", "obs_n_observers", "obs_citizen_scientist", "obs_air_temp_f_sq"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/addis_2026_rmap_amph_dynocc.R",
+  "buildDate": "2026-10-31"
+}

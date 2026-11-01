@@ -77,3 +77,40 @@ N-mixture table, a second CJS table and the largest community table so far.
 Strains: none on the format. Two source-quality notes for `data_notes` when #6
 exists: the MHB covariate scales in `widewt`/`mallard` are standardised and not
 recoverable; the AHMbook coordinates deliberately omit their CRS.
+
+## Batch 4 — 2026-11-01 (five tables from four public deposits)
+
+Validated with `eco-validate` (the Python gate from #3): 23/23 tables pass, 23/23 IRW
+view conforms; uploaded to the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| evans_2021_maine_marten_dynocc | dynamic occupancy (camera) | figshare CC BY 4.0 | 15,792 | 197 stations x 7 seasons x 33 occasions; occasion length and years not in the deposit |
+| tleimat_2023_ecuador_capuchin_occ | single-season occupancy (camera) | figshare CC BY 4.0 | 573 | 21 stations x 39 two-week occasions; CR taxon with no coordinates deposited; below floor |
+| addis_2026_rmap_mbrt_dynocc | multi-species dynamic occupancy | figshare CC BY 4.0 | 20,725 | 188 sites, 5 species, 2012-2019; `obs_citizen_scientist`; coordinates as published |
+| addis_2026_rmap_bt_dynocc | multi-species dynamic occupancy | figshare CC BY 4.0 | 9,204 | 145 sites, 4 species, 2014-2019; sibling of the above |
+| kleiven_2020_varanger_dynocc | dynamic co-occurrence occupancy, two spatial scales | DataverseNO CC0 | 115,294 | 46 cameras in 8 blocks (`cluster_id`), 7 seasons x 304 daily occasions; four-state code split into two taxa with the code in `y_raw`; first table on E9's experimental list |
+
+What this batch says about the standard:
+
+- **Species pools that differ by region strain E4.** The RMAP deposit surveys for
+  five species in one national forest and four in the other. E4 note 2 wants a row
+  for every taxon at every survey, so the deposit became two tables. This is the
+  clean answer, but a corpus of regional surveys will meet it often; a per-unit
+  species list (E4 relaxed to "every taxon surveyed-for at that unit") is the
+  alternative and would keep such deposits as one table. Logged, not changed.
+- **Functional groups as taxa.** The COAT data classify images to "small rodents" and
+  "small mustelids". `__taxa` carries `taxonRank = order / genus` and GBIF keys at
+  that rank; nothing in the standard needed to change.
+- **Multi-state co-occurrence codes** (none / A / B / both) split cleanly into one
+  detection row per taxon with the code in `y_raw`; the two-species interaction model
+  is a model choice on the same table (design landscape, group A).
+- **Deposits without dates.** Two deposits (marten, COAT) give ordered occasions with
+  no calendar; `period`/`occasion` carry the order and `__periods` says the calendar
+  is absent. E8 already allows this.
+
+Held this batch (`queue/human_review.csv`): Margenau stopover (one visit per
+point-year, no within-season replication), Iowa herptiles (day columns unlabelled;
+year boundaries not recoverable without the paper's survey calendar), water snake
+CJS (no licence; needs permission by email), puma range-wide (CC0, 100 MB; its own
+project, like BBS).
