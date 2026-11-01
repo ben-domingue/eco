@@ -29,6 +29,7 @@ python3 -m pytest eco_validate/tests -q      # validator tests; the corpus test 
 Rscript validate/validate_all.R              # eco-validate --irw over output/, writes validate/report.csv (the site reads it)
 metadata/run_pipeline.sh                     # metadata.csv, biblio.csv, tags.csv, status.json from output/, dictionary/, tags/
 python3 metadata/upload_meta.py --dry-run    # ship those three to Redivis eco_meta (draft)
+python3 releases/manifest.py --check         # is releases/manifest.csv up to date with Redivis? (run after Ben publishes)
 python3 upload/red_up_eco.py --dry-run       # what would ship; never publishes
 python3 upload/red_up_eco.py                 # upload to the Redivis draft (confirms first)
 cd site && quarto render                     # the website (GitHub Pages builds it on push)
@@ -39,7 +40,8 @@ view check the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or
 `$IRW_SRC`. The uploader also needs IRW's `red_up` importable and a Redivis token.
 
 Nothing in this repo publishes. `red_up_eco.py` writes a draft; releasing is Ben's
-click on Redivis.
+click on Redivis, followed by the checklist in `upload/README.md` (manifest row,
+table_changes row if a published table changed).
 
 ## The format, quick reference
 

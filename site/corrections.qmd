@@ -1,0 +1,72 @@
+---
+title: "Corrections and releases"
+---
+
+```{r}
+#| label: load
+rel <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
+chg <- read.csv("../releases/table_changes.csv", stringsAsFactors = FALSE, colClasses = "character")
+chg <- chg[order(chg$date, decreasing = TRUE), ]
+```
+
+eco tables will sometimes be wrong: a script reads a blank as a zero, a covariate
+turns out to be a model estimate, an upload doubles a table. This page says how
+that is handled, lists every release, and lists every correction to a published
+table. The policy is IRW's, which this project borrows.
+
+## How eco records change
+
+1. **Released versions do not change.** Each eco release is numbered below and the
+   number always refers to the same data. Redivis keeps every released version;
+   cite the eco version and the Redivis tag it names.
+2. **Corrections are new versions.** A corrected table is published in a later
+   release and the earlier version stays available. Pin a version for stability;
+   take the latest for correctness.
+3. **Every correction is recorded.** Each correction to a published table adds a
+   dated row below: what changed, the eco version in which it took effect, the
+   GitHub issue that reported it.
+4. **Renames and replacements point both ways.**
+5. **Withdrawals remove material from the current release onward** and are listed
+   here as rows of kind `withdrawal`; the earlier release still holds the table.
+6. **eco corrects fidelity to the source, not the source.** A table is corrected
+   when it does not match what its source released. Caveats about the source
+   itself are [data notes](data_notes.qmd), not corrections.
+
+## Releases
+
+Written by `releases/manifest.py` from Redivis' own version history. The Redivis
+dataset is [`datapages.eco`](https://redivis.com/datasets/4j5q).
+
+```{r}
+#| label: releases
+#| output: asis
+cat("| eco version | Released | Redivis `eco` | Redivis `eco_meta` | Tables | Note |\n|---|---|---|---|---|---|\n")
+for (i in rev(seq_len(nrow(rel)))) {
+  r <- rel[i, ]
+  cat(sprintf("| **eco v%s** | %s | %s | %s | %s | %s |\n", r$eco_version, substr(r$date, 1, 10),
+              r$eco_redivis_version, if (nzchar(r$eco_meta_redivis_version)) r$eco_meta_redivis_version else "-",
+              r$n_tables, r$note))
+}
+```
+
+## Corrections to published tables
+
+```{r}
+#| label: changes
+#| output: asis
+if (nrow(chg) == 0) {
+  cat("No published table has yet needed a correction. When one does, its row is appended to ",
+      "[`releases/table_changes.csv`](https://github.com/ben-domingue/eco/blob/main/releases/table_changes.csv) ",
+      "when the release carrying the fix is live, and appears here.\n", sep = "")
+} else {
+  cat("| Date | Table | eco version | Kind | What changed | Issue |\n|---|---|---|---|---|---|\n")
+  for (i in seq_len(nrow(chg))) {
+    r <- chg[i, ]
+    extra <- c(if (nzchar(r$replaces)) sprintf(" Replaces `%s`.", r$replaces),
+               if (nzchar(r$replaced_by)) sprintf(" Replaced by `%s`.", r$replaced_by))
+    issue <- if (nzchar(r$issue)) sprintf("[%s](https://github.com/ben-domingue/eco/issues/%s)", r$issue, sub("#", "", r$issue)) else ""
+    cat(sprintf("| %s | `%s` | eco v%s | %s | %s%s | %s |\n", r$date, r$table, r$eco_version, r$kind, r$summary,
+                paste(extra, collapse = ""), issue))
+  }
+}
+```

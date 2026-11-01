@@ -6,7 +6,11 @@ dir.create("data", showWarnings = FALSE)
 meta <- read.csv("../metadata/metadata.csv", stringsAsFactors = FALSE)
 tags <- read.csv("../metadata/tags.csv", check.names = FALSE, stringsAsFactors = FALSE)
 val  <- read.csv("../validate/report.csv", stringsAsFactors = FALSE)
+rel  <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
+last <- rel[nrow(rel), ]
 stats <- list(
+  eco_version = last$eco_version, release_date = substr(last$date, 1, 10),
+  release_redivis = last$eco_redivis_version, release_tables = last$n_tables,
   n_tables   = nrow(meta),
   n_rows     = sum(meta$n_rows),
   n_units    = sum(meta$n_units),

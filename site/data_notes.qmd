@@ -1,0 +1,30 @@
+---
+title: "Data notes"
+---
+
+```{r}
+#| label: load
+notes <- read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character")
+notes <- notes[order(notes$table, notes$date), ]
+```
+
+Some things a user of a table should know cannot be expressed by the table
+itself: a covariate the source derived from the same detections and eco did not
+ship, coordinates generalised for a threatened species, how a loss on capture is
+encoded. eco reproduces its sources as released ([Corrections](corrections.qmd),
+rule 6), so these are recorded as notes rather than fixed. Each note also appears
+on the table's card on the [Data](data.qmd) page. A note is not a defect report;
+released fixes are on [Corrections](corrections.qmd).
+
+The file is [`releases/data_notes.csv`](https://github.com/ben-domingue/eco/blob/main/releases/data_notes.csv),
+appended by hand.
+
+```{r}
+#| label: notes
+#| output: asis
+for (i in seq_len(nrow(notes))) {
+  r <- notes[i, ]
+  issue <- if (nzchar(r$issue)) sprintf(" ([%s](https://github.com/ben-domingue/eco/issues/%s))", r$issue, sub("#", "", r$issue)) else ""
+  cat(sprintf("### [`%s`](data.qmd#%s)\n\n%s%s *(%s)*\n\n", r$table, r$table, r$note, issue, r$date))
+}
+```

@@ -32,6 +32,8 @@ find out.
 <div class="stat"><div class="n">`r s$n_valid` / `r s$n_tables`</div><div class="l">pass both validators</div></div>
 :::
 
+<p class="eco-release">Current release: <strong>eco v`r s$eco_version`</strong> (Redivis `eco` `r s$release_redivis`, `r s$release_date`, `r s$release_tables` tables). Tables built since then are in the repository and the Redivis draft until the next release. <a href="corrections.html">Releases and corrections</a>.</p>
+
 ## The idea in one table
 
 Every table has the IRW's three-column core under local names, plus two time

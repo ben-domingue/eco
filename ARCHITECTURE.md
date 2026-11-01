@@ -23,6 +23,8 @@ pipeline; eco does not, and one repo means one place to look.
 | `metadata/` | **The metadata pipeline**: numbered stages, `run_pipeline.sh` is the run order. `metadata.csv` (computed from `output/`), `biblio.csv` (dictionary + `__dataset.json`), `tags.csv` (auto with human cells winning, vocabulary enforced), `status.json` + `status_history.tsv`. What the site reads; `upload_meta.py` ships them to `eco_meta`. |
 | `validate/` | `validate_all.R` runs `eco-validate --irw --json` over `output/` and writes `report.csv`, which the site reads. |
 | `upload/red_up_eco.py` | The one uploader, a wrapper on IRW's `red_up`: eco-validate gate, true replace, row counts verified, descriptions from `__dataset.json`, refuses `do_not_publish`. Draft only. |
+| `releases/` | **The release ledger**: `manifest.csv` (eco version -> Redivis versions, written by `manifest.py` from Redivis' history, append-only), `table_changes.csv`, `withdrawals.csv`, `data_notes.csv`. Rendered by `site/corrections.qmd` and `site/data_notes.qmd`. |
+| `tools/withdrawals/` | `withdraw_table.py` (dry run by default) removes a shipped table from the Redivis draft and `ledger.py` records it. |
 | `queue/` | `candidates.csv`: inspected deposits, their `status` (`available`, `built: <table>`, `held: ...`, `blocked: ...`, `deferred: ...`) and `claimed_by`. `human_review.csv`: what was held and why. |
 | `BATCH_LOG.md` | One entry per conversion batch: built, held, what strained the standard. |
 | `site/` | Quarto website, published to GitHub Pages by `.github/workflows/site.yml`; pages read the repo's own files at render time. |
@@ -36,9 +38,8 @@ pipeline; eco does not, and one repo means one place to look.
 | `datapages.eco` (reference `eco:4j5q`) | every core table and its side tables, next to each other; a table's kind is its key column, not its location (E10 ruling) | `upload/red_up_eco.py`, draft only |
 | `datapages.eco_meta` | the pipeline's own tables: `metadata`, `biblio`, `tags`, later collections (#15) | `metadata/upload_meta.py`, draft only; the dataset is created by Ben, never by a script |
 
-Publishing is a human click. Nothing in the repo records which version is live
-until the release ledger (#6) exists; until then the Redivis version history is
-the record.
+Publishing is a human click. `releases/manifest.csv` records which Redivis version
+of each dataset each eco version names; the release checklist is `upload/README.md`.
 
 ## 3. How a deposit travels
 
@@ -58,7 +59,9 @@ the record.
    same gate again and will not ship a blocked table.
 5. **Shipped**: `upload/red_up_eco.py` to the draft; `BATCH_LOG.md` gets its
    entry; the queue row becomes `built: <table>`; commit with the issue number.
-6. **Published**: Ben releases the Redivis version. The site rebuilds on push.
+6. **Published**: Ben releases the Redivis version; `releases/manifest.py` appends the
+   eco version; any correction to an already-published table gets its
+   `releases/table_changes.csv` row. The site rebuilds on push.
 
 Facts about a table live in exactly one place:
 
@@ -71,6 +74,9 @@ Facts about a table live in exactly one place:
 | corpus counts over time | `metadata/status.json`, `metadata/status_history.tsv` |
 | whether the table conforms | `eco-validate`, summarised in `validate/report.csv` |
 | why a candidate was not built | `queue/human_review.csv` |
+| which Redivis version an eco version names | `releases/manifest.csv` |
+| what changed in a published table, and when | `releases/table_changes.csv` (public) and `releases/withdrawals.csv` (the table-keyed index) |
+| a caveat about the source that is not an eco defect | `releases/data_notes.csv` |
 
 ## 4. Which document wins
 
@@ -82,7 +88,9 @@ Facts about a table live in exactly one place:
 | How to build a table, step by step | `.claude/skills/eco-convert-deposit/SKILL.md` (order and hard rules) and `processing_guide.md` (judgement) |
 | Which designs are in scope, and what a new family would need | `standard.md` E9, then `design_landscape.md` |
 | Redivis dataset names | `DATASET` in `upload/red_up_eco.py`; the owner comes from IRW's `redivis_config.R` through `red_up` |
-| How anything is uploaded | `upload/red_up_eco.py`'s docstring |
+| How anything is uploaded, and the release checklist | `upload/README.md`, then `upload/red_up_eco.py`'s docstring |
+| Which Redivis version was live as eco vN | `releases/manifest.csv`; an eco version number is a citation and is never renumbered |
+| Whether a published table was corrected, renamed or withdrawn | `releases/table_changes.csv`; `releases/withdrawals.csv` is the internal index by table name |
 | Tag vocabulary | `VOCAB` and `PREFIX_VOCAB` in `metadata/03_tags.R`, enforced; `tags/vocab.md` describes them |
 | Metadata pipeline run order | `DEFAULT_ORDER` in `metadata/run_pipeline.sh`, the order actually executed |
 | Which candidate to process next | `queue/candidates.csv` and the `data queue` issues; `PRIORITIES.md` says why volume ranks where it does |

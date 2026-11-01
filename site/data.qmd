@@ -21,6 +21,7 @@ d <- merge(d, num[, .(table, n_units, n_taxa, n_periods, n_occasions, n_rows, sa
                       columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened)], by = "table")
 d <- merge(d, prose, by = "table")
 d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
+dn <- as.data.table(read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character"))
 setorder(d, table)
 redivis <- "https://redivis.com/datasets/4j5q"
 gh <- "https://github.com/ben-domingue/eco/blob/main"
@@ -85,6 +86,7 @@ for (i in seq_len(nrow(d))) {
   cat(sprintf("| Script | [`data/%s.R`](%s/data/%s.R) |\n", r$table, gh, r$table))
   cat(sprintf("| Status | %s |\n", r$status))
   if (nzchar(r$notes)) cat(sprintf("\nNotes: %s\n", r$notes))
+  for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
   cat(sprintf("\nCitation: %s\n", r$citation))
 }
 ```

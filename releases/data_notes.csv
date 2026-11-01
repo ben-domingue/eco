@@ -1,0 +1,4 @@
+table,note,issue,date
+malhotra_2021_loslagos_comm,"The deposit's camera-level `Dog_occu` covariate is an occupancy estimate the authors derived from the same detections; it is not shipped (model output, standard E2). Dog detections are the taxon `DOG`.",,2026-11-01
+schank_2015_tapir_occ,"Baird's tapir is IUCN Endangered, so the deposited camera coordinates are generalised to 0.1-degree cell centres with `unit_coordinateUncertaintyInMeters` set to the cell half-diagonal (standard E7). The source holds the exact locations.",,2026-11-01
+toledolima_2024_elaenia_cjs,"Capture histories from a MARK `.inp`. Four individuals were removed from the population at their last capture (loss on capture): their rows end at that session with `obs_removed = 1`, and no row follows (standard E4.4).",,2026-11-01
