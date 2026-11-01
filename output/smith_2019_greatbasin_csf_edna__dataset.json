@@ -1,0 +1,44 @@
+{
+  "table": "smith_2019_greatbasin_csf_edna",
+  "title": "Columbia spotted frog eDNA detection in three filter samples at 168 sites nested in 61 Great Basin watersheds, 2015-2016 (multi-scale occupancy dataset)",
+  "abstract": "Environmental DNA survey of the Great Basin clade of the Columbia spotted frog: three temporally replicated 250 ml filter samples at each wetland, pond or pooled-water site, each run in triplicate qPCR; a sample is a detection if any replicate amplified. Sites are nested in 12th-level hydrologic units (watersheds) with 2-8 sites each, the structure of the authors' Nichols et al. (2008) multi-scale occupancy model in Program MARK. Site covariates (water temperature, pH, emergent vegetation and livestock classes, climate, elevation, water type) and watershed covariates (mean precipitation and temperature, perennial stream length, slope) as deposited; definitions in the paper's Appendix 1 Table A2.",
+  "samplingProtocol": "eDNA: three 250 ml water samples filtered in succession at one location per site (pooled from 2-6 locations at 14 large sites), 0.45 um cellulose nitrate filters, species-specific qPCR in triplicate; sample-level detection = any replicate positive. Visual and dipnet surveys at the same sites are in the companion table smith_2019_greatbasin_csf_qpcr.",
+  "closure": "occasion (three samples taken seconds apart)",
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = watershed is the coarse scale (psi), unit = site the fine scale (theta), occasion = filter sample (p). Watershed covariates are repeated on every site of the watershed with the unit_ws_ prefix. Which of the two field seasons a site belongs to is not deposited.",
+  "notShipped": {
+    "MARK_inp_copies": "Smith_Goldberg_MARK.inp and final_dcomp*.inp/.txt are MARK copies and the 30 false-positive resamples (derived data)",
+    "site_identity": "site names, coordinates and survey year are not in the deposit; the link to the qPCR-level file is not deposited"
+  },
+  "creator": "Smith, Matthew M.; Goldberg, Caren S.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.bk3j9kd6q",
+  "sourceURL": "https://doi.org/10.5061/dryad.bk3j9kd6q",
+  "paperDOI": "10.1111/ecog.04743",
+  "citation": "Smith, M. M., & Goldberg, C. S. (2019). Occupancy in dynamic systems: accounting for multiple scales and false positives using environmental DNA to inform monitoring [Data set]. Dryad. https://doi.org/10.5061/dryad.bk3j9kd6q",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "geographicCoverage": "Great Basin range of the Columbia spotted frog: southeastern Oregon, southwestern Idaho and Nevada, USA (no coordinates deposited)",
+  "temporalCoverage": "2015-05/2016-08",
+  "summary": {
+    "n_rows": 504,
+    "n_units": 168,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 504,
+    "y_values": "0,1",
+    "prop_zero": 0.692
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_water_temp_c", "unit_ph", "unit_emergent_veg_class", "unit_livestock_class", "unit_ppt", "unit_temp", "unit_elev", "unit_pond", "unit_stream", "unit_bpond", "unit_ws_ppt_mean", "unit_ws_temp_mean", "unit_ws_stream_length", "unit_ws_slope"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/smith_2019_greatbasin_csf_edna.R",
+  "buildDate": "2026-11-01"
+}

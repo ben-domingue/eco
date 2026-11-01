@@ -160,3 +160,42 @@ What this batch says about the standard:
 Held this batch (`queue/human_review.csv`): Lazenby camera-trap devils and cats
 (camera effort not deposited, devil coordinates masked), Smith & Goldberg eDNA, Roy
 dependent double-observer, Alisauskas & Conn double-observer.
+
+## Batch 6 — 2026-11-01 (eDNA multi-scale and double-observer, unblocked by two PDFs)
+
+Ben placed the two open-access papers the agent could not fetch in `queue/papers/`;
+both held deposits from batch 5 were then built the same day. Validated with
+`eco-validate`: 30/30 tables pass, IRW view conforms. Uploaded to the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| smith_2019_greatbasin_csf_edna | multi-scale occupancy, eDNA (watershed > site > filter sample) | Dryad CC0 | 504 | 61 watersheds (`cluster_id`) x 2-8 sites x 3 samples; site and watershed covariates as deposited (definitions in the paper's appendix); the authors' Program MARK input |
+| smith_2019_greatbasin_csf_qpcr | multi-scale occupancy with false positives (site > sample > qPCR replicate) | Dryad CC0 | 1,512 | 168 sites x 3 samples x 3 replicates; site-level visual/dipnet confirmation (occuFP code 2) as `unit_visual_dipnet_detected`; same sites as the table above but the deposit gives no key to join them |
+| roy_2022_labrador_waterfowl_dobs | dependent double-observer (`multinomialType = dep_double_observer`) | Dryad CC0 | 810 | 27 helicopter plots x 15 species x 2 cells, June 2009; 24 plots without the protocol and one with an unattributed flock not shipped; below floor |
+
+What this batch says about the standard:
+
+- **Four nesting levels do not fit three.** The eDNA deposit is watershed > site >
+  filter sample > qPCR replicate. E9's experimental mapping (`cluster_id`, `unit`,
+  `occasion`) holds three, so the deposit became two tables at adjacent levels. A
+  second grouping column (or `cluster_id` allowed to nest) would keep it as one;
+  not needed yet, but eDNA deposits will do this often.
+- **Confirmation surveys by a second method.** False-positive occupancy models
+  (Miller et al. 2011, `occuFP`) pair ambiguous detections with a certain-detection
+  method. The certain detection sits at the site level while the rows are qPCR
+  replicates, so it is carried as a `unit_` covariate with an explicit note. The
+  standard has no multi-method rule; `obs_method` on rows of one table is the
+  alternative when both methods share a level. Logged for a ruling.
+- **Covariates without definitions.** The deposit has no readme; column meanings
+  come from the paper, and three classes (emergent vegetation, livestock, water-type
+  flags) are defined only in its supplementary table, which the PDF does not include.
+  Shipped under the deposited names with that caveat in the abstract.
+- **Partial protocol coverage.** The double-observer deposit mixes plots with and
+  without the protocol in one file; only the attributed plots are a `multinomial_cell`
+  table, and one plot with a single unattributed flock was dropped rather than shipped
+  with a hole (E4.2). The paper's 29 protocol plots versus the deposit's 28 attributed
+  is recorded, not resolved.
+
+Held: nothing new. Still open from batch 5: Lazenby camera-trap predators, Alisauskas &
+Conn (design landscape C).
+

@@ -1,0 +1,44 @@
+{
+  "table": "smith_2019_greatbasin_csf_qpcr",
+  "title": "Columbia spotted frog eDNA qPCR replicate detections (3 per filter sample, 3 samples per site, 168 sites) with visual/dipnet confirmation, Great Basin, 2015-2016 (false-positive occupancy dataset)",
+  "abstract": "The qPCR-replicate level of the same Great Basin Columbia spotted frog eDNA survey: each of three filter samples per site was run in triplicate qPCR (1 = exponential amplification of the target, 0 = none). The site-level visual and dipnet survey, treated by the authors as an unambiguous detection method in the Miller et al. (2011) false-positive occupancy model (unmarked occuFP coding 2), is carried as the site covariate unit_visual_dipnet_detected. 31 of 168 sites had a visual/dipnet detection, 64 had at least one positive qPCR; the paper estimates a false-positive rate of 0.023 per qPCR replicate.",
+  "samplingProtocol": "Species-specific qPCR of eDNA filter samples in triplicate (3 ul extract in 15 ul, 50 cycles); visual survey of the whole site by two biologists followed by dipnetting along the shoreline about every 1 m.",
+  "closure": "occasion (three qPCR replicates of one extract)",
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = site, unit = filter sample, occasion = qPCR replicate. The visual/dipnet result is a second detection method at the site level carried as a covariate because the rows are qPCR replicates; the standard has no multi-method rule yet (BATCH_LOG, batch 6).",
+  "notShipped": {
+    "watershed": "the watershed of each site is only in the other deposited file, which cannot be joined to this one",
+    "MARK_inp_copies": "MARK copies and the 30 false-positive resamples"
+  },
+  "creator": "Smith, Matthew M.; Goldberg, Caren S.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.bk3j9kd6q",
+  "sourceURL": "https://doi.org/10.5061/dryad.bk3j9kd6q",
+  "paperDOI": "10.1111/ecog.04743",
+  "citation": "Smith, M. M., & Goldberg, C. S. (2019). Occupancy in dynamic systems: accounting for multiple scales and false positives using environmental DNA to inform monitoring [Data set]. Dryad. https://doi.org/10.5061/dryad.bk3j9kd6q",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "geographicCoverage": "Great Basin range of the Columbia spotted frog: southeastern Oregon, southwestern Idaho and Nevada, USA (no coordinates deposited)",
+  "temporalCoverage": "2015-05/2016-08",
+  "summary": {
+    "n_rows": 1512,
+    "n_units": 504,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 1512,
+    "y_values": "0,1",
+    "prop_zero": 0.743
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_visual_dipnet_detected"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/smith_2019_greatbasin_csf_edna.R",
+  "buildDate": "2026-11-01"
+}

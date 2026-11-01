@@ -1,11 +1,11 @@
 {
   "date": "2026-11-01",
-  "n_tables": 27,
-  "n_rows": 1179149,
-  "n_units": 3839,
-  "n_taxa_rows": 624,
-  "n_surveys": 562606,
-  "n_families": 12,
+  "n_tables": 30,
+  "n_rows": 1181975,
+  "n_units": 4538,
+  "n_taxa_rows": 641,
+  "n_surveys": 564676,
+  "n_families": 14,
   "families": {
     "CJS capture-recapture": 2,
     "Community abundance": 1,
@@ -13,8 +13,10 @@
     "Distance sampling": 2,
     "Dynamic co-occurrence occupancy": 1,
     "Dynamic occupancy": 3,
+    "Multi-scale occupancy": 1,
+    "Multi-scale occupancy with false positives": 1,
     "Multi-state dynamic occupancy": 1,
-    "Multinomial N-mixture": 1,
+    "Multinomial N-mixture": 2,
     "N-mixture": 3,
     "Ordinal index": 1,
     "Single-season occupancy": 3,
@@ -22,33 +24,33 @@
   },
   "response_types": {
     "count": 4,
-    "detection": 18,
-    "multinomial_cell": 3,
+    "detection": 20,
+    "multinomial_cell": 4,
     "ordinal": 1,
     "state": 1
   },
   "taxon_groups": {
-    "Amphibians": 4,
-    "Birds": 11,
+    "Amphibians": 6,
+    "Birds": 12,
     "Fish": 1,
     "Invertebrates": 1,
     "Mammals": 9,
     "Multiple": 1
   },
   "survey_evidence": {
-    "deposited_matrix": 15,
+    "deposited_matrix": 17,
     "effort_table": 3,
     "inferred": 3,
     "row_presence": 3,
-    "sample_table": 3
+    "sample_table": 4
   },
-  "n_below_floor": 4,
+  "n_below_floor": 5,
   "n_with_coordinates": 8,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 27,
-  "n_irw_conforms": 25,
+  "n_valid": 30,
+  "n_irw_conforms": 30,
   "standard_versions": {
-    "eco v1.0-draft (2026-11-01)": 27
+    "eco v1.0-draft (2026-11-01)": 30
   }
 }

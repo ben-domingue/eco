@@ -22,7 +22,10 @@ margenau_2021_rowsongbirds_nmix,135072,260,112,TRUE,"","",TRUE,"",TRUE,meets,row
 mctigue_2023_nwarkansas_comm,46746,355,18,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 palacio_2020_pampasbirds_comm,8600,10,43,TRUE,"",sample_floor,TRUE,"",TRUE,below (10 units < 30),deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 raman_2024_nilgiris_birds_ds,15295,8,115,TRUE,"",sample_floor,TRUE,"",TRUE,below (8 units < 30),sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
+roy_2022_labrador_waterfowl_dobs,810,27,15,TRUE,"",sample_floor,TRUE,"",TRUE,below (27 units < 30),sample_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; resp_scale_nested_support; sample_floor
 schank_2015_tapir_occ,1008,22,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (22 units < 30),effort_table,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
+smith_2019_greatbasin_csf_edna,504,168,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*
+smith_2019_greatbasin_csf_qpcr,1512,504,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*
 tleimat_2023_ecuador_capuchin_occ,573,21,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (21 units < 30),deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),imputed_values*; sample_floor
 toledolima_2024_elaenia_cjs,1559,175,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),cov_prefix; imputed_values*
 uherkoch_2021_npraloon_dynocc,886,117,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.0-draft (2026-11-01),passes (conforms to v1.0),""
