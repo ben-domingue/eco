@@ -36,7 +36,7 @@ cd site && quarto render                     # the website (GitHub Pages builds 
 R CMD INSTALL Rpkg && Rscript -e 'testthat::test_dir("Rpkg/tests/testthat")'   # the R package (reads Redivis anonymously)
 ```
 
-Needs R with `data.table` and `jsonlite`, python3 with `pandas`, and for the IRW
+Needs R with `data.table` and `jsonlite` (plus `readxl` for xlsx deposits), python3 with `pandas`, and for the IRW
 view check the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or
 `$IRW_SRC`. The uploader also needs IRW's `red_up` importable and a Redivis token.
 
