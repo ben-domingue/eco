@@ -1,7 +1,9 @@
 # eco — an IRW-style warehouse for ecological detection data?
 
-*Exploratory study, 2026-10-30, extended 2026-10-31 with six built tables on Redivis (`datapages.eco`). Everything here is a draft for Ben to react to;
-nothing is production.*
+*Exploratory project, started 2026-10-30. As of 2026-11-01: 30 tables from 20
+public deposits and 6 package datasets, built by one script each, validated
+against standard v1.0-draft, and released on Redivis as `datapages.eco` (eco v2).
+The standard is a draft and may change between releases; released versions do not.*
 
 *Website: <https://ben-domingue.github.io/eco/> (source in `site/`, rendered by
 `.github/workflows/site.yml`; preview locally with `cd site && quarto preview`).*
@@ -51,33 +53,45 @@ latent state observed imperfectly across repeated surveys?
   datasets, eBird (gated) — a handful of tables with 10⁵–10⁷ rows that would
   dominate by volume.
 
-## The five decisions that are Ben's to make
+## The design decisions, and how they were ruled
+
+All five were ruled on 2026-11-01 (the ruling follows each item; `standard.md`
+is the normative text). Two later rulings, on a fourth nesting level
+(`unit_<group>` covariate) and on confirmation surveys (`detectionCertainty`),
+are in E9 of the standard.
 
 1. **What is `taxon`?** The draft puts the *species* on `taxon`, so single-species
    tables look like IRW's repeated-trial family (one item, many occasions) and
    community tables are species-as-items. The alternative — visit on `taxon` —
    makes every table a person × item matrix an IRT model can eat directly, but
-   does not generalise to multi-species data. It is a one-line pivot either way;
-   the choice is about what the canonical corpus looks like.
+   does not generalise to multi-species data. *Ruled: species on `taxon`; the
+   visit view is a derived pivot.*
 2. **Dense zeros or a surveys table?** The explicit-zero rule (a row exists iff a
    survey happened; missing row ≠ zero) makes community tables large (MHB2014:
    118,658 rows, 95% zeros, 7.6 MB from a 267 × 3 × 158 array) and repeats
    observation covariates across species. The alternative is Darwin Core's
-   event-core model: a sparse detections table plus a `surveys` table. The draft
-   recommends dense for IRW-likeness and self-containment.
+   event-core model: a sparse detections table plus a `surveys` table. *Ruled:
+   dense, and every table declares what its survey set rests on
+   (`surveyEvidence`: a deposited matrix, an effort table, a sample table, row
+   presence, or a stated inference rule).*
 3. **Sample floor.** *Settled 2026-11-01:* a reported attribute, not an intake
    gate. `sample_floor` is `meets` (≥ 30 units and ≥ 2 occasions, or ≥ 2 periods
-   for capture–recapture) or `below (reason)`, and users filter on it. Small
-   tables are not sought out, but they ship when they come.
+   for capture–recapture) or `below (reason)`, and users filter on it. Five of
+   the 30 tables are below it. Small tables are not sought out, but they ship
+   when they come.
 4. **Sensitive-species coordinates.** Coarsen by rule (draft: 0.1° / 10 km grid,
    with `coordinateUncertaintyInMeters` set) versus drop coordinates for any
-   flagged taxon. Several small Dryad/Zenodo deposits of threatened species carry
-   raw lat/long.
+   flagged taxon. *Ruled: coarsen, never drop; a taxon is flagged by the source,
+   by IUCN CR/EN/VU, or by a cited national red list. Needed twice so far.*
 5. **How far to stretch.** Multinomial (double-observer) and binned distance
    sampling fit by using `occasion` for a *category* rather than a time-ordered
    replicate; SCR fits by putting *traps* on `taxon`. Accept the stretched
    semantics with a declared `itemKind`/`responseType`, or keep v1 to the
    detection/count/capture-history families where the format is unforced.
+   *Ruled: three lists. Removal, double-observer and binned distance sampling
+   are in as declared stretches with their metadata required; SCR (with a
+   `trap` key and `__traps`, not traps on `taxon`), multi-scale and
+   per-detection designs are experimental and may be restructured.*
 
 ## Nomenclature (v0.3, 2026-10-31)
 
@@ -99,45 +113,56 @@ conformance as a *view*:
 `eco_to_irw()` (in `Rpkg/R/convert.R` and `eco_validate/core.py`) produces the IRW
 view; `eco-validate --irw` and the uploader run `irw-validate` on it.
 
-## Worked tables (2026-10-31)
+## The corpus (2026-11-01)
 
-Six public deposits were run through an IRW-style pipeline (one processing
-script per source, a dictionary row, a tags row, a clean CSV plus side tables),
-to see the standard meet real deposits rather than package data. All six pass
-the draft validator and `irw-validate` (IRW v1.0 upload gate; the only warnings
-are IRW's own 100-id floor and the `obs_` prefix it does not know).
+30 core tables, 1.18 million survey observations, 4,538 units, 14 model families,
+every one passing `eco-validate` and `irw-validate` (the only IRW warnings are its
+100-id floor and the `obs_` prefix it does not know). The live list, with
+dimensions, licence, survey evidence and a link to each script, is the site's
+[Data page](https://ben-domingue.github.io/eco/data.html); the numbers here come
+from `metadata/status.json`.
 
-| Table | Family | Units x items x periods x occasions | Rows | Source, licence |
-|---|---|---|---|---|
-| `malhotra_2021_loslagos_comm` | community occupancy (camera traps) | 48 x 4 x 1 x 11 | 1,944 | Dryad, CC0 |
-| `schank_2015_tapir_occ` | single-season occupancy; coordinates coarsened | 22 x 1 x 1 x 72 | 1,008 | Zenodo, CC0 |
-| `toledolima_2024_elaenia_cjs` | CJS from a MARK `.inp`, 4 losses on capture | 175 x 1 x 9 x 1 | 1,559 | Zenodo, CC BY 4.0 |
-| `palacio_2020_pampasbirds_comm` | multi-season community occupancy, 19 traits | 10 x 43 x 4 x 5 | 8,600 | Dryad, CC0 |
-| `frimpong_2017_newriver_dynocc` | multi-species dynamic occupancy, 1938-2014, effort | 100 x 74 x 25 x 3 | 74,592 | Harvard Dataverse, CC0 |
-| `uherkoch_2021_npraloon_dynocc` | multi-state (breeding status) dynamic occupancy | 117 x 2 x 4 x 1 | 886 | USGS ScienceBase, CC0 |
+| Family | Tables |
+|---|---|
+| Community occupancy (incl. multi-season) | 7 |
+| Single-season occupancy | 3 |
+| Dynamic occupancy (single and multi-species) | 3 |
+| N-mixture | 3 |
+| Multinomial N-mixture (removal, double-observer) | 2 |
+| Distance sampling | 2 |
+| CJS capture-recapture | 2 |
+| Spatial capture-recapture | 2 |
+| Community abundance; multi-state dynamic occupancy; dynamic co-occurrence; ordinal index | 1 each |
+| Multi-scale occupancy, eDNA (one with false positives) | 2 |
 
-What the real deposits added to the round-trip findings:
+Sources: Dryad (12, two of them via its Zenodo mirror), figshare (4), USGS ScienceBase (3),
+Zenodo (3), Harvard Dataverse and DataverseNO (1 each), and the `unmarked`,
+`AHMbook` and `marked` packages (6). Licences: 18 CC0, 5 CC BY 4.0, 1 ODbL, 6 GPL
+(the package datasets). Protocols: camera traps, line transects, point counts,
+visual encounter surveys, live traps, eDNA, mist nets, acoustic, aerial
+double-observer, and one 77-year compilation of fish collections.
 
-- **The explicit-zero rule was never ambiguous**: every deposit used `NA`/blank
-  for "not surveyed" and 0 for "not detected", and in two of them the survey
-  pattern could be cross-checked against an effort table (fish: blank iff
-  effort 0; tapir: filled cells = effort + 1 or 2 days).
-- **Two tables fall below the 30-unit floor** (tapir, 22 cameras; Argentine
-  birds, 10 points). They were staged as `hold` until the floor was ruled a
-  filterable attribute rather than an intake rule (decision 3); both now ship
-  with `sample_floor = below (...)`. The bird table is why: 10 sites but 43
-  species x 20 surveys each, so a unit floor measures the wrong axis for
-  community data.
-- **Coarsening was needed once** (Endangered tapir, exact camera coordinates
-  deposited) and exercised the section 6 rule; the loon table keeps coordinates
-  as the USGS published them (decision 4).
-- **Multi-state data fit with `y` = species-specific state and `y_raw` =
-  source code**; a territory held by one loon species is a 0 for the other.
-  Suggests adding `state` to the section 10 type suffixes.
-- **Losses on capture** (MARK `freq = -1`) exercised the `obs_removed`
-  encoding, which the round trips had not.
-- **A model output posing as a covariate** (Malhotra's dog-occupancy estimate)
-  is the ecological version of IRW's composite-score rule and was dropped.
+What building 30 tables established, beyond the round trips:
+
+- **The explicit-zero rule is unambiguous when a matrix was deposited** (17
+  tables) and checkable against an effort or sample table (7 more). Record
+  tables with no survey list are the hard case: 3 tables take each deposited
+  row as a survey, and 3 reconstruct the survey set by a stated rule and ship
+  as `surveyEvidence = inferred`.
+- **The sample floor measures the wrong axis for community data**: the table
+  with 10 points has 43 species and 20 surveys each. Hence a reported attribute,
+  not a gate.
+- **Coarsening was needed twice** (an Endangered tapir with exact camera
+  coordinates; a bird community including Vulnerable taxa). Agency-published
+  coordinates are kept as published.
+- **The stretches fit**: distance bins, observer cells and removal intervals on
+  `occasion` with the binning declared in the metadata; SCR with a `trap` key;
+  eDNA with site, sample and qPCR replicate as `cluster_id`, `unit`, `occasion`
+  and the watershed as a `unit_` covariate.
+- **Model outputs posing as covariates** turn up and are dropped and logged
+  (`notShipped`), the ecological version of IRW's composite-score rule.
+- **Textbook datasets round-trip through the public pipeline too**: the six
+  Phase 2 datasets are now ordinary tables, built by scripts under `data/`.
 
 ## Contents
 
@@ -155,12 +180,15 @@ What the real deposits added to the round-trip findings:
 | `lib/eco_common.R` | Shared harness: cached downloads, GBIF taxon lookup, coordinate coarsening, `write_table()`, dictionary and tag staging |
 | `eco_validate/` | **The validator**: `eco-validate`, one pandas package with clause ids (E1-E10), intake profile, `--irw` for the IRW view, exit codes, `--json`; gates the uploader; `pytest eco_validate/tests` |
 | `Rpkg/R/convert.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` checks; mirrored in `eco_validate.eco_to_irw` |
-| `output/` | Clean CSV per table plus `__taxa.csv`, `__periods.csv`, `__dataset.json` side files |
+| `output/` | Clean CSV per table plus `__taxa.csv`, `__periods.csv`, `__units.csv`, `__traps.csv` and `__dataset.json` side files |
+| `metadata/` | `run_pipeline.sh` builds `metadata.csv`, `biblio.csv`, `tags.csv`, `status.json` from `output/`, `dictionary/`, `tags/`; the site and the R package read these |
+| `releases/` | The release ledger: `manifest.csv` (eco version ↔ Redivis versions), `table_changes.csv` (corrections), `data_notes.csv` (caveats about sources) |
+| `site/` | The Quarto website, rendered by GitHub Pages on push |
 | `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
 | `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |
 | `validate/validate_all.R`, `validate/report.csv` | Runs `eco-validate --irw --json` over `output/` and writes the report the site reads |
 | `upload/red_up_eco.py` | Ships `output/` to Redivis `datapages.eco` (reference `eco:4j5q`) with IRW's `red_up`: true replace, row counts verified, descriptions from `__dataset.json`; draft only |
-| `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built`) |
+| `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built` / held with a reason) |
 | `analysis/*.R`, `analysis/build_report.py` | The illustrative figures and the assembly of `report.html` from the repo's own files |
 | `discovery_log.csv`, `discovery_summary.md` | Per-source hit counts, curated candidates with difficulty scores, and the narrative |
 
