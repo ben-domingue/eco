@@ -14,7 +14,8 @@ for (t in tables) {
   view_dir <- file.path(ECO_ROOT, ".cache", "irw_view"); dir.create(view_dir, showWarnings = FALSE, recursive = TRUE)
   view_path <- file.path(view_dir, paste0(t, ".csv")); fwrite(eco_to_irw(long), view_path)
   ds <- fromJSON(file.path(OUT_DIR, paste0(t, "__dataset.json")))
-  mp <- check_dataset_meta(ds, long)                       # standard E10 (and E2/E4/E7 via metadata)
+  up <- file.path(OUT_DIR, paste0(t, "__units.csv")); units_tbl <- if (file.exists(up)) fread(up) else NULL
+  mp <- check_dataset_meta(ds, long, units_tbl)                       # standard E10 (and E2/E4/E7 via metadata)
   if (length(mp)) { v$ok <- FALSE; v$problems <- c(v$problems, mp) }
   if (identical(ds$surveyEvidence, "inferred")) irw_warn_extra <- "surveyEvidence = inferred" else irw_warn_extra <- NULL
   taxa_ok <- file.exists(file.path(OUT_DIR, paste0(t, "__taxa.csv"))) &&

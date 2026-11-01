@@ -153,7 +153,7 @@ STANDARD_VERSION <- "eco v1.0-draft (2026-11-01)"
 
 # The metadata contract of standard E10: required fields, controlled vocabularies,
 # conditional fields. Returns a character vector of problems (empty when fine).
-check_dataset_meta <- function(dataset, long) {
+check_dataset_meta <- function(dataset, long, units = NULL) {
   p <- character()
   req <- c("title", "creator", "pubDate", "citation", "sourceURL", "intellectualRights",
            "samplingProtocol", "samplingProtocolCode", "responseType", "unitKind", "closure",
@@ -169,14 +169,14 @@ check_dataset_meta <- function(dataset, long) {
   if (identical(rt, "detection") && !all(long$y %in% c(0, 1))) p <- c(p, "E2: responseType detection but y is not 0/1")
   if (identical(rt, "count") && any(long$y < 0 | long$y != round(long$y))) p <- c(p, "E2: responseType count but y is not a non-negative integer")
   if (!is.null(dataset$unitKind) && !dataset$unitKind %in% c("site", "individual")) p <- c(p, "E10: unitKind must be site or individual")
-  has_coords <- any(grepl("^unit_(decimalLatitude|x)$", names(long)))
+  has_coords <- any(grepl("^(unit_)?(decimalLatitude|x)$", c(names(long), names(units))))   # core or __units
   if (has_coords && is.null(dataset$coordinatesCoarsened)) p <- c(p, "E7: coordinates present but coordinatesCoarsened not declared")
   p
 }
 
 write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units = NULL, traps = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name))
-  mp <- check_dataset_meta(dataset, long)
+  mp <- check_dataset_meta(dataset, long, units)
   if (length(mp)) stop(sprintf("%s fails the metadata contract: %s", name, paste(mp, collapse = "; ")))
   long <- order_eco(long)
   v <- validate_eco(long)
