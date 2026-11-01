@@ -143,7 +143,9 @@ What the real deposits added to the round-trip findings:
 
 | Path | What |
 |------|------|
-| `standard_draft.md` | The proposed standard: core table, mapping tables per model family, missingness rule, side tables (Darwin Core / EML borrowings), scope, what is lost, open questions, changelog |
+| `CLAUDE.md`, `ARCHITECTURE.md`, `PRIORITIES.md`, `processing_guide.md`, `.claude/skills/eco-convert-deposit/` | Agent-facing docs (issue #9): how to run things and which document wins; the project map; what kind of work to do next; the deposit-conversion checklist; the step order a session follows for one queue row |
+| `standard.md` | **The standard**, v1.0-draft: clauses E1-E10, intake policy, changelog |
+| `standard_draft.md` | History of the standard: core table, mapping tables per model family, missingness rule, side tables (Darwin Core / EML borrowings), scope, what is lost, open questions, changelog |
 | `converters/eco_standard.R` | R converters: array ↔ long, `unmarked` frames ↔ long, multinomial frames, capture histories; validator; writer |
 | `converters/rt_0*_*.R`, `run_all.R` | Round-trip tests for six datasets; `converters/output/` holds the converted tables and `roundtrip_results.csv` |
 | `roundtrip_report.md` | What matched, what did not, what changed in the standard |
