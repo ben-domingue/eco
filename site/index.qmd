@@ -58,24 +58,37 @@ IRW view, and that view validates under IRW v1.0 unchanged.
 ::: {.eco-cards}
 <div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>v1.0-draft: ten numbered clauses covering the core table, the explicit-zero rule and its evidence, covariate levels, side tables, coordinates, scope and storage, plus the intake policy.</p></div>
 <div class="card"><h3><a href="r.html">Read it from R</a></h3><p>No account needed: <code>eco_filter()</code>, <code>eco_fetch()</code>, <code>eco_to_unmarked()</code> over Redivis' public CSV endpoint, with version pinning.</p></div>
-<div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>Six public deposits, from a 22-camera tapir survey to 77 years of fish collections, converted, validated and staged on Redivis.</p></div>
-<div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort, and a capture history.</p></div>
+<div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>`r s$n_tables` tables from `r s$n_deposits` public deposits and `r s$n_packages` textbook datasets: camera traps, point counts, eDNA, distance sampling, mist nets and live traps, every one validated and released on Redivis.</p></div>
+<div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort as a covariate, and a capture history.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
 <div class="card"><h3><a href="about.html">Why this might work</a></h3><p>A community occupancy model is a random-item IRT model with species as items. The analogy, the evidence, and the open decisions.</p></div>
 :::
 
 ## Where things stand
 
-The study ran in three passes. A [standard](standard.html) was drafted
-against IRW v1.0 and the data structures of the main R packages. Six bundled
-package datasets were converted to it and back, with identical arrays and
-identical model estimates on either side. Then six real deposits from Dryad,
-Zenodo, Dataverse and ScienceBase were run through an IRW-style pipeline to
-see the standard meet messy data. All six validate.
+The work ran in four passes.
 
-The first version of the dataset is published on Redivis. The design
-decisions the draft left open were ruled on 2026-11-01 and the standard was
-frozen as v1.0-draft; the [about](about.html) page records each ruling.
-Tables tagged experimental may still be restructured between versions.
+1. A [standard](standard.html) was drafted against IRW v1.0 and the data
+   structures of `unmarked`, `marked`, `spOccupancy` and the AHM code.
+2. Six datasets bundled with R packages were converted to it and back, with
+   identical arrays and identical model estimates on either side.
+3. Six real deposits from Dryad, Zenodo, Dataverse and ScienceBase were run
+   through an IRW-style pipeline, to see the standard meet messy data. The
+   open design decisions were then ruled on and the standard frozen as
+   v1.0-draft; the [about](about.html) page records each ruling.
+4. The pipeline was run as a pipeline: a validator that cites clauses, CI
+   that runs it on every change, a metadata layer the site and the R package
+   read, and a release ledger. Five further batches took the corpus to
+   `r s$n_tables` tables across `r s$n_families` model families, including the
+   first spatial capture-recapture, distance-sampling, double-observer and
+   eDNA multi-scale tables, each of which stretches the format in a declared
+   way.
+
+Every table passes both validators. `r s$n_below_floor` of the `r s$n_tables`
+are below the sample floor and say so; `r s$n_experimental` are tagged
+experimental and may be restructured between versions. What is not yet done:
+the queue holds more inspected candidates than have been built, citations and
+per-table landing pages are planned but not built, and nothing has been
+fitted across the corpus beyond the [first look](firstlook.html).
 
 *Tables last built `r s$built`.*

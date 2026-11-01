@@ -18,7 +18,8 @@ prose <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names 
 }))
 d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url)], by = "table")
 d <- merge(d, num[, .(table, n_units, n_taxa, n_periods, n_occasions, n_rows, sample_floor,
-                      columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened)], by = "table")
+                      columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened,
+                      survey_evidence)], by = "table")
 d <- merge(d, prose, by = "table")
 d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
 dn <- as.data.table(read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character"))
@@ -31,9 +32,14 @@ Every table below was built by a script in the repository's `data/`
 directory from a public deposit, validated against the draft standard and
 against the IRW v1.0 validator, and published on Redivis as the dataset
 [`datapages.eco`](`r redivis`). Each table ships with a `__taxa`
-side table (taxon resolution via GBIF, plus traits where the source has them)
-and, where there are primary periods, a `__periods` side table, and carries a
+side table (taxon resolution via GBIF, plus traits where the source has them),
+a `__periods` side table where there are primary periods, `__units` or
+`__traps` where the sampling frame or trap layout needs one, and a
 `__dataset.json` with the EML and Darwin Core fields the standard borrows.
+Tables whose notes begin "Experimental" use the standard's experimental
+semantics (E9) and may be restructured between versions; "Declared stretch"
+marks a design where `occasion` indexes a category rather than a replicate in
+time.
 
 The **Floor** column is the standard's sample floor, 30 or more units and 2
 or more occasions (or periods). It is a filter, not an admission rule: tables
@@ -79,12 +85,12 @@ for (i in seq_len(nrow(d))) {
   cat(sprintf("| Size | %s units, %s taxa, %s periods, %s occasions, %s rows |\n",
               r$n_units, r$n_taxa, r$n_periods, r$n_occasions, format(r$n_rows, big.mark = ",")))
   cat(sprintf("| Sample floor | %s |\n", r$sample_floor))
+  cat(sprintf("| Survey evidence | `%s` |\n", r$survey_evidence))
   cat(sprintf("| Validation | eco-validate passes; IRW v1.0 %s%s |\n", r$irw_v1,
               if (nzchar(r$irw_warnings)) sprintf(" (warnings: %s)", r$irw_warnings) else ""))
   cat(sprintf("| Columns | %s |\n", paste0("`", strsplit(r$columns, ", ")[[1]], "`", collapse = " ")))
   cat(sprintf("| Source | [%s](%s), %s |\n", r$sourceURL, r$sourceURL, r$licence))
   cat(sprintf("| Script | [`data/%s.R`](%s/data/%s.R) |\n", r$table, gh, r$table))
-  cat(sprintf("| Status | %s |\n", r$status))
   if (nzchar(r$notes)) cat(sprintf("\nNotes: %s\n", r$notes))
   for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
   cat(sprintf("\nCitation: %s\n", r$citation))

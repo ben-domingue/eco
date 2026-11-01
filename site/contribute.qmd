@@ -6,15 +6,18 @@ title: "Converting a deposit"
 #| label: queue
 library(data.table)
 q <- as.data.table(read.csv("../queue/candidates.csv", stringsAsFactors = FALSE))
-q[, state := fifelse(grepl("^built", status), "built", fifelse(status == "claimed", "claimed", "available"))]
+q[, state := fifelse(grepl("^built", status), "built",
+             fifelse(status == "claimed", "claimed",
+             fifelse(status == "available", "available", "held")))]
 counts <- q[, .N, by = state]
 n <- function(s) { v <- counts[state == s, N]; if (length(v)) v else 0L }
 ```
 
 The project is at the stage where the most useful thing anyone can do is
 convert another public deposit and see what breaks. There are
-`r n("available")` inspected candidates waiting, `r n("claimed")` claimed and
-`r n("built")` built. Each conversion is one R script, one dictionary row and
+`r n("available")` inspected candidates waiting, `r n("claimed")` claimed,
+`r n("built")` built and `r n("held")` held back (an access wall, no licence,
+or a design the standard does not yet cover). Each conversion is one R script, one dictionary row and
 one tags row, modelled directly on how the Item Response Warehouse builds its
 tables.
 
@@ -26,15 +29,18 @@ cache, reshapes it into the standard, validates it, and writes
 | Output | Where |
 |---|---|
 | the clean long-format CSV | `output/<table>.csv` |
-| side tables for taxa and primary periods | `output/<table>__taxa.csv`, `output/<table>__periods.csv` |
+| side tables for taxa, primary periods, units and traps | `output/<table>__taxa.csv`, `__periods.csv`, `__units.csv`, `__traps.csv` |
 | dataset metadata with the EML and Darwin Core fields, counts and sample-floor status | `output/<table>__dataset.json` |
 | a Data-Dictionary row and a tags row | `dictionary/dictionary_auto.csv`, `tags/tags_auto.csv` |
 
 Shared helpers (cached downloads, GBIF taxon matching, coordinate coarsening,
-the writer and the staging functions) are in `lib/eco_common.R`. The
-converters and the validator are in `converters/eco_standard.R`. Run one
-script from the repository root with `Rscript data/<table>.R`, or all of them
-with `Rscript data/run_all.R`, then `Rscript validate/validate_all.R`.
+the writer and the staging functions) are in `lib/eco_common.R`; the
+converters are the R package's `Rpkg/R/convert.R`. Run one script from the
+repository root with `Rscript data/<table>.R`, or all of them with
+`Rscript data/run_all.R`. The gate is the Python validator,
+`python3 -m eco_validate.cli output/`, which reports every finding against a
+clause of the standard; the writer runs its R twin and refuses a bad table,
+and CI runs the gate on every pull request.
 
 ## Conventions the scripts follow
 
@@ -46,7 +52,8 @@ with `Rscript data/run_all.R`, then `Rscript validate/validate_all.R`.
   is positive exactly where a survey exists. A re-download that changes the
   source fails loudly.
 - **Explicit zeros.** A row exists if and only if a survey happened. A blank
-  cell in a deposited matrix becomes a missing row, never a missing `y`.
+  cell in a deposited matrix becomes a missing row, never a missing `y`, and
+  the metadata says what the survey set rests on (`surveyEvidence`).
 - **Species codes on `taxon`**, short and upper case. The scientific name,
   GBIF taxon key and any traits go to the `__taxa` side table.
 - **Period-level facts** (season label, calendar year) go to `__periods`, not
@@ -56,7 +63,7 @@ with `Rscript data/run_all.R`, then `Rscript validate/validate_all.R`.
 - **Coordinates are never finer than the source.** Taxa the source or a red
   list flags as sensitive get a 0.1-degree coarsening, with the uncertainty
   column and the dataset flag set.
-- **Table names** follow section 10 of the standard:
+- **Table names** follow the standard's intake policy:
   `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer.
 
 ## Claiming a candidate

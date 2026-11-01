@@ -6,6 +6,7 @@ dir.create("data", showWarnings = FALSE)
 meta <- read.csv("../metadata/metadata.csv", stringsAsFactors = FALSE)
 tags <- read.csv("../metadata/tags.csv", check.names = FALSE, stringsAsFactors = FALSE)
 val  <- read.csv("../validate/report.csv", stringsAsFactors = FALSE)
+bib  <- read.csv("../metadata/biblio.csv", check.names = FALSE, stringsAsFactors = FALSE)
 rel  <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
 last <- rel[nrow(rel), ]
 stats <- list(
@@ -18,6 +19,9 @@ stats <- list(
   n_families = length(unique(sub(" \\(.*", "", tags$model_family))),
   n_valid    = sum(val$eco_valid & grepl("passes", val$irw_v1)),
   n_below_floor = sum(meta$sample_floor != "meets"),
+  n_experimental = sum(grepl("^Experimental", tags$notes)),
+  n_deposits = length(unique(sub("/$", "", bib$source_url[!grepl("cran.r-project.org", bib$source_url)]))),
+  n_packages = sum(grepl("cran.r-project.org", bib$source_url)),
   built      = max(vapply(list.files("../output", "__dataset.json$", full.names = TRUE),
                  function(f) jsonlite::read_json(f)$buildDate, ""))
 )

@@ -16,9 +16,9 @@ cat('<script>const D = ', paste(readLines("../analysis/figures.json", warn = FAL
 Nothing here is a finding about ecology. The point is that once the tables
 share a format, the same few lines of code run across all of them, and the
 species behave like items: each has a prevalence (how many units hold it) and
-a detectability (how often a survey finds it where it is). The figures are
-computed by `analysis/figures_data.R` in the repository and redrawn here from
-its output.
+a detectability (how often a survey finds it where it is). The figures use
+tables from the first batch; they are computed by `analysis/figures_data.R`
+in the repository and redrawn here from its output.
 
 ```{=html}
 <div class="eco-figs">
