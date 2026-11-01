@@ -41,7 +41,7 @@ website:
         href: https://github.com/ben-domingue/eco
         aria-label: GitHub
   page-footer:
-    left: "eco is an exploratory project. Nothing here is released; all figures are drafts."
+    left: "eco is an exploratory project. The standard is a draft and may change between dataset versions."
     right: "Built with [Quarto](https://quarto.org). Data on [Redivis](https://redivis.com/datasets/4j5q)."
 
 format:
