@@ -11,3 +11,4 @@ __pycache__/
 site/_site/
 site/.quarto/
 site/data/site_stats.json
+queue/papers/
