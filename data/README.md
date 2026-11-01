@@ -43,6 +43,16 @@ Shared code is in `../lib/eco_common.R`; the converters and the validator are in
 - **Dictionary rows** use the exact header of IRW's
   `automated_finding/dictionary_auto.csv`, with `Contributor = automated`, so
   they could be unioned into an IRW-style dictionary unchanged.
+- **Record-table sources** (one row per detection, as camera-trap and point-count
+  deposits often are) need a survey list to make zeros explicit. Use a deposited
+  sample/effort table when there is one (Glorioso); otherwise state the inference
+  rule in the header and in `dataset.notes` (Margenau: a point-visit is a survey iff
+  it has a row; McTigue: a camera-week is surveyed iff inside the first-to-last
+  detection span), set `surveyEvidence` (standard E4) accordingly, and log what
+  cannot be recovered.
+- **Dryad** deposits are fetched whole with `download_dryad()` (the per-file API
+  needs a token; the version zip does not). Check the deposited readme's licence
+  against Dryad's CC0 and flag any conflict.
 
 ## Tables built so far
 
@@ -54,3 +64,12 @@ Shared code is in `../lib/eco_common.R`; the converters and the validator are in
 | `palacio_2020_pampasbirds_comm.R` | multi-season community occupancy with traits | Dryad (via Zenodo mirror) | CC0 |
 | `frimpong_2017_newriver_dynocc.R` | multi-species dynamic occupancy, 77 years, effort | Harvard Dataverse | CC0 |
 | `uherkoch_2021_npraloon_dynocc.R` | multi-state (breeding status) dynamic occupancy | USGS ScienceBase | CC0 / public domain |
+| `hamer_2024_hungary_amph_comm.R` | community occupancy, 9 amphibians x 3 multi-method surveys, 8 survey covariates | Dryad (version zip) | CC0 |
+| `galvez_2021_araucania_comm.R` | community occupancy, camera traps, 5 taxa, per-occasion effort | Dryad (version zip) | CC0 on Dryad, ODbL in readme; derived ODbL-1.0 |
+| `margenau_2021_rowsongbirds_nmix.R` | N-mixture counts, 112 bird species, manipulative design, built from per-individual records | Dryad (version zip) | CC0 |
+| `glorioso_2025_atchafalaya_ves.R` | community counts (N-mixture), 47 herp species, 9 years, coordinates | USGS ScienceBase | CC0 / public domain |
+| `glorioso_2025_atchafalaya_calls.R` | ordinal calling index (`responseType = ordinal`), 14 anurans, same surveys | USGS ScienceBase | CC0 / public domain |
+| `mctigue_2023_nwarkansas_comm.R` | community occupancy from a camera record table, zeros inferred from operating spans | Dryad (version zip) | CC0 |
+
+Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; see `../BATCH_LOG.md`. `aux/` holds lookup tables
+shared by scripts (bird alpha codes).

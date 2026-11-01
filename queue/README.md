@@ -12,3 +12,8 @@ intend to use (`author_year_place_type`), set `status = claimed` and
 `claimed_by` in this file in the same PR as your `data/` script, and change it
 to `built: <table>` when the script and its `output/` files land. Add new
 candidates at the bottom with `status = available`.
+
+`human_review.csv` is the IRW-style record of inspected deposits (or parts of
+deposits) that were held, rejected or need a human ruling, with the reason, so
+they are not re-triaged. Columns: `candidate`, `source`, `doi_or_url`, `decision`
+(`held`, `rejected`, `needs-human`), `reason`, `date`, `reviewer`.

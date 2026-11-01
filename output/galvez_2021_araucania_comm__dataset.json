@@ -1,0 +1,49 @@
+{
+  "table": "galvez_2021_araucania_comm",
+  "title": "Camera-trap detection histories of guigna, hog-nosed skunk, foxes, domestic dogs and cats in agricultural landscapes of La Araucania, Chile, 2019",
+  "creator": "Galvez, Nicolas; Infante, Jose; Fernandez, Adrian; Diaz, Jesus; Petracca, Lisanne",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.5qfttdz3h",
+  "sourceURL": "https://doi.org/10.5061/dryad.5qfttdz3h",
+  "citation": "Galvez, N., Infante, J., Fernandez, A., Diaz, J., & Petracca, L. (2021). Detection histories of mesocarnivores in agricultural areas of Southern Chile [Dataset]. Dryad. https://doi.org/10.5061/dryad.5qfttdz3h",
+  "paperDOI": "10.1111/1365-2664.14026",
+  "intellectualRights": {
+    "spdx": "ODbL-1.0",
+    "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+    "note": "Dryad records CC0 1.0; the deposited readme states ODbL 1.0 / DbCL 1.0. Per the intake policy (standard.md, ruled 2026-11-01) the stricter licence governs and propagates."
+  },
+  "abstract": "Camera-trap survey of 180 sampling units selected from a grid of 4-km2 cells in agricultural landscapes of La Araucania Region, southern Chile (February-March 2019), with landscape metrics at 400-ha and 10-ha scales, used to fit single-species occupancy and two-species co-occurrence models of mesocarnivores, free-roaming dogs and cats.",
+  "samplingProtocol": "One camera trap per 4-km2 grid cell; detection histories built with camtrapR; occasion = 5 camera nights; camera nights per occasion is the effort covariate.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "5 nights",
+  "effortColumn": "obs_camera_nights",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "La Araucania Region, Chile (no coordinates deposited)",
+  "temporalCoverage": "2019-01/2019-03",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "dc*, cc*": "dog/cat detection counts (same detections as taxa DOG, CAT)",
+    "hb*, db*, cb*": "0/1 versions of hc/dc/cc",
+    "22 site_covs columns": "FRAGSTATS metrics not documented in the readme",
+    "ForOverlap": "raw record table used for activity-overlap analysis"
+  },
+  "summary": {
+    "n_rows": 9135,
+    "n_units": 180,
+    "n_taxa": 5,
+    "n_periods": 1,
+    "n_occasions": 14,
+    "n_surveys": 1827,
+    "y_values": "0,1",
+    "prop_zero": 0.848
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_habitat_type", "unit_forest_pct_400ha", "unit_largest_patch_index_400ha", "unit_total_edge_m_400ha", "unit_edge_density_400ha", "unit_gyration_mean_m_400ha", "unit_n_patches_400ha", "unit_landscape_shape_index_400ha", "unit_cohesion_400ha", "unit_n_land_subdivisions_400ha", "unit_forest_pct_10ha", "unit_n_patches_10ha", "unit_edge_density_10ha", "unit_n_land_subdivisions_10ha", "obs_camera_nights", "obs_human_detections"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/galvez_2021_araucania_comm.R",
+  "buildDate": "2026-10-31"
+}

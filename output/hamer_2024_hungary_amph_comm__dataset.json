@@ -1,0 +1,42 @@
+{
+  "table": "hamer_2024_hungary_amph_comm",
+  "title": "Detection/non-detection of nine amphibian species at 100 ponds in Hungary over three combined-method surveys, 2023",
+  "creator": "Hamer, Andrew J.; Horanyi, Julia",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.70rxwdc6w",
+  "sourceURL": "https://doi.org/10.5061/dryad.70rxwdc6w",
+  "citation": "Hamer, A. J., & Horanyi, J. (2024). Multi-species occupancy model for estimating the probability of detecting amphibian species in Hungary [Dataset]. Dryad. https://doi.org/10.5061/dryad.70rxwdc6w",
+  "paperDOI": "10.1002/ece3.70383",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Field surveys of 100 ponds in Hungary in spring-summer 2023 using three methods (visual encounter survey with aural census, dip-netting, newt trapping) on each of three visits, with environmental and climatic conditions recorded per survey, used to estimate community and species-specific detection probabilities of nine amphibian species.",
+  "samplingProtocol": "Three surveys per pond (19 March to late July 2023); each survey combined a time-constrained visual encounter survey and aural census, dip-netting and newt trapping; detection of eggs, larvae or post-metamorphic animals counts as a detection.",
+  "samplingProtocolCode": "ves_dipnet_trap",
+  "effortColumn": "obs_effort_ves_min",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Ponds in Hungary (no coordinates deposited)",
+  "temporalCoverage": "2023-03/2023-07",
+  "coordinatesCoarsened": null,
+  "notes": "PELCOM = Pelophylax water-frog complex, not resolved to species by the authors. Continuous covariates are shipped unstandardised (the deposited model code standardises them).",
+  "summary": {
+    "n_rows": 2691,
+    "n_units": 100,
+    "n_taxa": 9,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 299,
+    "y_values": "0,1",
+    "prop_zero": 0.879
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "obs_days_since_19mar", "obs_effort_ves_min", "obs_water_temp_c", "obs_water_level_pct", "obs_wind", "obs_rain", "obs_fish_detected", "obs_emergent_veg_pct"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hamer_2024_hungary_amph_comm.R",
+  "buildDate": "2026-10-31"
+}

@@ -1,0 +1,10 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
+BOMBOM,Bombina bombina,European fire-bellied toad,species,https://www.gbif.org/species/2423443,EXACT,
+BUFBUF,Bufo bufo,Common toad,species,https://www.gbif.org/species/5217160,EXACT,
+BUFVIR,Bufotes viridis,European green toad,species,https://www.gbif.org/species/9529916,EXACT,
+HYLARB,Hyla arborea,European tree frog,species,https://www.gbif.org/species/2427573,EXACT,
+LISVUL,Lissotriton vulgaris,Smooth newt,species,https://www.gbif.org/species/5218405,EXACT,
+PELFUS,Pelobates fuscus,Common spadefoot,species,https://www.gbif.org/species/2430567,EXACT,
+PELCOM,Pelophylax,Water frogs (Pelophylax esculentus complex),species complex,https://www.gbif.org/species/2426629,EXACT,
+RANDAL,Rana dalmatina,Agile frog,species,https://www.gbif.org/species/2426760,EXACT,
+TRIDOB,Triturus dobrogicus,Danube crested newt,species,https://www.gbif.org/species/2431891,EXACT,

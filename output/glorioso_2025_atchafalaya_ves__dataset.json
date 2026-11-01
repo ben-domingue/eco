@@ -1,0 +1,58 @@
+{
+  "table": "glorioso_2025_atchafalaya_ves",
+  "title": "Time-constrained visual encounter survey counts of amphibians and reptiles at 70 sites in the Atchafalaya Basin, Louisiana, 2008-2016",
+  "creator": "Glorioso, Brad M.; Waddle, J. Hardin",
+  "pubDate": "2025",
+  "doi": "10.5066/P9T71JCO",
+  "sourceURL": "https://doi.org/10.5066/P9T71JCO",
+  "citation": "Glorioso, B.M., and Waddle, J.H., 2025, Data from time-constrained visual encounter surveys and acoustic surveys for amphibians and reptiles in the Atchafalaya Basin conducted from 2008 through 2016: U.S. Geological Survey data release, https://doi.org/10.5066/P9T71JCO.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, no access or use constraints"
+  },
+  "abstract": "Data from time-constrained visual encounter surveys conducted in the Atchafalaya River Basin in South Central Louisiana from February 2008 through July 2016, with concurrent vocalization data and tadpole/larva presence, collected under the Amphibian Research and Monitoring Initiative to assess occupancy of amphibian and reptile species.",
+  "samplingProtocol": "Night-time time-constrained visual encounter surveys (nominally 20 minutes, 2-4 observers) at fixed sites, 4-6 samples per site per year; every animal seen is recorded with species, sex, length and substrate.",
+  "samplingProtocolCode": "ves",
+  "effortColumn": "obs_duration_min",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion (samples within a calendar year); period = year",
+  "geographicCoverage": {
+    "description": "Atchafalaya River Basin, Louisiana, USA",
+    "boundingBox": {
+      "west": -91.8979,
+      "east": -91.2689,
+      "south": 29.8001,
+      "north": 30.5694
+    }
+  },
+  "temporalCoverage": "2008-02-19/2016-07-13",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS (sites on public management units)"
+  },
+  "notShipped": {
+    "Tadpoles_Larvae.csv": "larval presence by species (another method)",
+    "Vocalizations.csv": "calling index; see glorioso_2025_atchafalaya_calls",
+    "Sex, Length, Substrate": "per-animal attributes lost by aggregation to counts",
+    "Salinity": "almost entirely missing"
+  },
+  "summary": {
+    "n_rows": 104152,
+    "n_units": 70,
+    "n_taxa": 47,
+    "n_periods": 9,
+    "n_occasions": 6,
+    "n_surveys": 2216,
+    "y_values": "0-29 (27 distinct)",
+    "prop_zero": 0.93
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_management_unit", "unit_owner", "unit_parish", "obs_duration_min", "obs_air_temp_c", "obs_humidity_pct", "obs_wind_ms", "obs_water_temp_c", "obs_water_depth_cm", "obs_weather"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/glorioso_2025_atchafalaya_ves.R",
+  "buildDate": "2026-10-31"
+}
