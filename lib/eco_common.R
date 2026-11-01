@@ -152,6 +152,8 @@ SURVEY_EVIDENCE <- c("sample_table", "effort_table", "deposited_matrix", "row_pr
 STANDARD_VERSION <- "eco v1.0-draft (2026-11-01)"
 
 # The metadata contract of standard E10: required fields, controlled vocabularies,
+# (R twin of eco_validate/checks.py; its test asserts RESPONSE_TYPES, SURVEY_EVIDENCE
+# and `req` below match the Python vocabularies.)
 # conditional fields. Returns a character vector of problems (empty when fine).
 check_dataset_meta <- function(dataset, long, units = NULL) {
   p <- character()

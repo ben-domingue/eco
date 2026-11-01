@@ -75,7 +75,7 @@ for (i in seq_len(nrow(d))) {
   cat(sprintf("| Size | %s units, %s taxa, %s periods, %s occasions, %s rows |\n",
               r$n_units, r$n_taxa, r$n_periods, r$n_occasions, format(r$n_rows, big.mark = ",")))
   cat(sprintf("| Sample floor | %s |\n", r$sample_floor))
-  cat(sprintf("| Validation | draft validator passes; IRW v1.0 %s%s |\n", r$irw_v1,
+  cat(sprintf("| Validation | eco-validate passes; IRW v1.0 %s%s |\n", r$irw_v1,
               if (nzchar(r$irw_warnings)) sprintf(" (warnings: %s)", r$irw_warnings) else ""))
   cat(sprintf("| Columns | %s |\n", paste0("`", strsplit(r$columns, ", ")[[1]], "`", collapse = " ")))
   cat(sprintf("| Source | [%s](%s), %s |\n", r$sourceURL, r$sourceURL, r$licence))

@@ -12,10 +12,11 @@ writes four things:
 | dataset metadata (EML / Darwin Core fields, counts, sample-floor status) | `output/<table>__dataset.json` |
 | a Data-Dictionary row and a tags row | `dictionary/dictionary_auto.csv`, `tags/tags_auto.csv` |
 
-Shared code is in `../lib/eco_common.R`; the converters and the validator are in
-`../converters/eco_standard.R`. Run one script from the repo root
-(`Rscript data/<table>.R`) or all of them (`Rscript data/run_all.R`), then
-`Rscript validate/validate_all.R`.
+Shared code is in `../lib/eco_common.R`; the converters and the R validator twin are in
+`../converters/eco_standard.R`. The gate is `eco-validate` (`../eco_validate/`). Run one
+script from the repo root (`Rscript data/<table>.R`) or all of them
+(`Rscript data/run_all.R`), then `python3 -m eco_validate.cli output/` (or
+`Rscript validate/validate_all.R`, which also runs the IRW check and writes the report).
 
 ## Conventions
 

@@ -1,0 +1,30 @@
+# Packaging for `eco_validate` alone: pandas and the standard library, no
+# Redivis, no network. The piece a contributor runs before depositing a table,
+# and the one that runs unchanged in the browser (issue #8).
+#
+#   pip install /path/to/eco/eco_validate
+#
+# The package directory IS the project directory (same layout as irw_validate).
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eco-validate"
+version = "0.1.0"
+description = "Check a table against the eco data standard, with clause ids and an exit code"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = ["pandas>=1.3.0"]
+
+[project.urls]
+Source = "https://github.com/ben-domingue/eco/tree/main/eco_validate"
+
+[project.scripts]
+eco-validate = "eco_validate.cli:main"
+
+[tool.setuptools]
+packages = ["eco_validate"]
+package-dir = {"eco_validate" = "."}

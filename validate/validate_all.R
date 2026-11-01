@@ -1,48 +1,43 @@
-# Validates every table in output/ twice: against standard.md (validate_eco + check_dataset_meta,
-# converters/eco_standard.R) and, through its IRW view (eco_to_irw(): id/item/resp
-# names, Unix-second dates, written to .cache/irw_view/<table>.csv), against IRW v1.0
-# with irw-validate from ben-domingue/irw (skipped if that checkout is absent).
-# The uploader reads the same view files. Writes validate/report.csv.
+# Validates every core table in output/ with eco-validate (eco_validate/, the one
+# validator: standard.md clauses E1-E10 plus intake policy) and, through --irw,
+# irw-validate on the IRW view (unit/taxon/y -> id/item/resp, Unix-second dates),
+# so IRW v1.0 conformance stays a tested claim. Writes validate/report.csv, which
+# the site reads. The R twin validate_eco() in converters/eco_standard.R still
+# runs inside write_table(); this is the gate.
 # Usage, from the repo root:  Rscript validate/validate_all.R
+#   needs python3 with pandas; the IRW check needs ben-domingue/irw at
+#   ~/Dropbox/projects/irw/src or $IRW_SRC (an "irw:unavailable" error otherwise).
+suppressPackageStartupMessages({ library(data.table); library(jsonlite) })
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
-IRW_SRC <- Sys.getenv("IRW_SRC", unset = path.expand("~/Dropbox/projects/irw/src"))
-tables <- sub("\\.csv$", "", grep("__", list.files(OUT_DIR, pattern = "\\.csv$"), value = TRUE, invert = TRUE))
-rows <- list()
-for (t in tables) {
-  long <- fread(file.path(OUT_DIR, paste0(t, ".csv")))
-  v <- validate_eco(long)
-  view_dir <- file.path(ECO_ROOT, ".cache", "irw_view"); dir.create(view_dir, showWarnings = FALSE, recursive = TRUE)
-  view_path <- file.path(view_dir, paste0(t, ".csv")); fwrite(eco_to_irw(long), view_path)
-  ds <- fromJSON(file.path(OUT_DIR, paste0(t, "__dataset.json")))
-  up <- file.path(OUT_DIR, paste0(t, "__units.csv")); units_tbl <- if (file.exists(up)) fread(up) else NULL
-  mp <- check_dataset_meta(ds, long, units_tbl)                       # standard E10 (and E2/E4/E7 via metadata)
-  if (length(mp)) { v$ok <- FALSE; v$problems <- c(v$problems, mp) }
-  if (identical(ds$surveyEvidence, "inferred")) irw_warn_extra <- "surveyEvidence = inferred" else irw_warn_extra <- NULL
-  taxa_ok <- file.exists(file.path(OUT_DIR, paste0(t, "__taxa.csv"))) &&
-    setequal(fread(file.path(OUT_DIR, paste0(t, "__taxa.csv")))$taxon, unique(long$taxon))
-  irw <- NA_character_; irw_warn <- NA_character_
-  if (dir.exists(file.path(IRW_SRC, "irw_validate"))) {
-    cmd <- sprintf("cd %s && python3 -m irw_validate.cli --json %s 2>/dev/null",
-                   shQuote(IRW_SRC), shQuote(view_path))
-    out <- suppressWarnings(system(cmd, intern = TRUE))
-    j <- try(fromJSON(paste(out, collapse = "\n"), simplifyVector = FALSE), silent = TRUE)
-    if (!inherits(j, "try-error") && length(j)) {
-      r <- j[[1]]
-      f <- r$findings %||% list()
-      sev <- sapply(f, function(x) x$severity %||% "")
-      nm <- sapply(f, function(x) x$check %||% "")
-      irw <- if (isTRUE(r$ok)) "passes" else "blocks"
-      irw <- paste0(irw, if (isTRUE(r$conforms)) " (conforms to v1.0)" else " (does not conform)")
-      irw_warn <- paste(nm[sev == "warn"], collapse = "; ")
-    } else irw <- "irw-validate: could not parse output"
-  }
-  rows[[t]] <- data.table(table = t, rows = nrow(long), units = uniqueN(long$unit), taxa = uniqueN(long$taxon),
-                          eco_valid = v$ok, eco_problems = paste(v$problems, collapse = "; "),
-                          taxa_table_matches = taxa_ok, sample_floor = ds$sampleFloor,
-                          survey_evidence = ds$surveyEvidence %||% "", standard = ds$standardVersion %||% "",
-                          irw_v1 = irw, irw_warnings = irw_warn)  # irw_v1 refers to the IRW view of the table
-}
+`%||%` <- function(a, b) if (is.null(a)) b else a
+
+cmd <- sprintf("cd %s && python3 -m eco_validate.cli --json --irw %s", shQuote(ECO_ROOT), shQuote(OUT_DIR))
+out <- suppressWarnings(system(cmd, intern = TRUE))
+j <- try(fromJSON(paste(out, collapse = "\n"), simplifyVector = FALSE), silent = TRUE)
+if (inherits(j, "try-error") || !length(j)) stop("eco-validate produced no parseable output:\n", paste(out, collapse = "\n"))
+
+rows <- lapply(j, function(r) {
+  f <- r$findings %||% list()
+  grp <- vapply(f, function(x) x$group %||% "", ""); sev <- vapply(f, function(x) x$severity %||% "", "")
+  chk <- vapply(f, function(x) x$check %||% "", ""); msg <- vapply(f, function(x) x$message %||% "", "")
+  eco <- grp != "irw"
+  irw_err <- grp == "irw" & sev == "error"
+  irw_conf <- !any(chk == "irw:conformance")
+  irw <- paste0(if (any(irw_err)) "blocks" else "passes", if (irw_conf) " (conforms to v1.0)" else " (does not conform)")
+  ds <- fromJSON(file.path(OUT_DIR, paste0(r$label, "__dataset.json")))
+  s <- r$stats
+  data.table(table = r$label, rows = s$n_rows %||% NA_integer_, units = s$n_units %||% NA_integer_, taxa = s$n_taxa %||% NA_integer_,
+             eco_valid = isTRUE(r$ok) || !any(eco & sev == "error"),
+             eco_problems = paste(sprintf("%s: %s", chk[eco & sev == "error"], msg[eco & sev == "error"]), collapse = "; "),
+             eco_warnings = paste(chk[eco & sev == "warn"], collapse = "; "),
+             conforms = isTRUE(r$conforms), nonconforming = paste(unlist(r$nonconforming), collapse = ","),
+             taxa_table_matches = "taxa" %in% unlist(r$side_tables) && !any(chk == "side_taxa" & sev == "error"),
+             sample_floor = ds$sampleFloor %||% "", survey_evidence = ds$surveyEvidence %||% "",
+             standard = ds$standardVersion %||% "",
+             irw_v1 = irw,  # refers to the IRW view of the table
+             irw_warnings = paste(sub("^irw:", "", chk[grp == "irw" & sev == "warn" & chk != "irw:conformance"]), collapse = "; "))
+})
 rep <- rbindlist(rows)
-fwrite(rep, "validate/report.csv")
-print(rep[, .(table, rows, units, taxa, eco_valid, sample_floor, irw_v1)])
+fwrite(rep, file.path(ECO_ROOT, "validate", "report.csv"))
+print(rep[, .(table, rows, units, taxa, eco_valid, conforms, sample_floor, irw_v1)])
 if (!all(rep$eco_valid)) quit(status = 1)

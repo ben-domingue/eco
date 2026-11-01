@@ -96,8 +96,8 @@ conformance as a *view*:
 | `date` ISO 8601 | `date` Unix seconds | |
 | `__taxa`, `__periods`, `__units`, `__traps` | item text | side tables, typed by key column |
 
-`eco_to_irw()` in `converters/eco_standard.R` produces the IRW view; the validator
-and the uploader run `irw-validate` on it.
+`eco_to_irw()` (in `converters/eco_standard.R` and `eco_validate/core.py`) produces the IRW
+view; `eco-validate --irw` and the uploader run `irw-validate` on it.
 
 ## Worked tables (2026-10-31)
 
@@ -150,17 +150,18 @@ What the real deposits added to the round-trip findings:
 | `discovery/eco_discover.py` | Repository search (connectors adapted from `ben-domingue/irw`), with cached responses in `discovery/cache/` |
 | `data/*.R`, `data/run_all.R` | One processing script per public deposit (download, reshape, validate, stage rows); see `data/README.md` |
 | `lib/eco_common.R` | Shared harness: cached downloads, GBIF taxon lookup, coordinate coarsening, `write_table()`, dictionary and tag staging |
-| `converters/eco_standard.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` and the uploader check |
+| `eco_validate/` | **The validator**: `eco-validate`, one pandas package with clause ids (E1-E10), intake profile, `--irw` for the IRW view, exit codes, `--json`; gates the uploader; `pytest eco_validate/tests` |
+| `converters/eco_standard.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` checks; mirrored in `eco_validate.eco_to_irw` |
 | `output/` | Clean CSV per table plus `__taxa.csv`, `__periods.csv`, `__dataset.json` side files |
 | `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
 | `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |
-| `validate/validate_all.R`, `validate/report.csv` | Draft validator + `irw-validate` over every output |
+| `validate/validate_all.R`, `validate/report.csv` | Runs `eco-validate --irw --json` over `output/` and writes the report the site reads |
 | `upload/red_up_eco.py` | Ships `output/` to Redivis `datapages.eco` (reference `eco:4j5q`) with IRW's `red_up`: true replace, row counts verified, descriptions from `__dataset.json`; draft only |
 | `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built`) |
 | `analysis/*.R`, `analysis/build_report.py` | The illustrative figures and the assembly of `report.html` from the repo's own files |
 | `discovery_log.csv`, `discovery_summary.md` | Per-source hit counts, curated candidates with difficulty scores, and the narrative |
 
-To rebuild the tables: `Rscript data/run_all.R && Rscript validate/validate_all.R` (from the repo root; needs `data.table`, `jsonlite`, network access for the first run, and the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or `IRW_SRC` for the IRW check).
+To rebuild the tables: `Rscript data/run_all.R && Rscript validate/validate_all.R` (from the repo root; needs `data.table`, `jsonlite`, python3 with pandas, network access for the first run, and the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or `IRW_SRC` for the IRW check). To validate alone: `python3 -m eco_validate.cli output/`.
 
 To rerun the round-trip tests: `cd converters && Rscript run_all.R` (needs `unmarked`,
 `AHMbook`, `marked`, `nimble`, `nimbleEcology`, `data.table`, `jsonlite`).

@@ -13,10 +13,12 @@ adds, and why red_up alone is not enough here:
 
   * red_up refuses `--dataset eco` without `--allow-unregistered`, excludes
     every `*__items.csv` (that suffix means IRW item text) and gates on
-    id/item/resp. Eco tables are unit/taxon/y, so the IRW validator runs on the
-    `eco_to_irw()` view that validate/validate_all.R writes to .cache/irw_view/. The eco side tables (`__taxa`, `__periods`,
-    `__units`, `__traps`) are real tables that belong beside the core file, so they are
-    uploaded here with their own key check instead of the core gate.
+    id/item/resp. Eco tables are unit/taxon/y, so the gate here is
+    `eco-validate` (eco_validate/ at the repo root: standard.md clauses E1-E10
+    plus intake policy), run with `--irw` so irw-validate still checks the IRW
+    view of each core table. The eco side tables (`__taxa`, `__periods`,
+    `__units`, `__traps`) are real tables that belong beside the core file;
+    eco-validate checks them against their core table and they are uploaded here.
   * red_up's targets come from IRW's redivis_config.R, where `eco` is not and
     should not be registered: the eco corpus is a separate dataset under the
     same owner, not an IRW shard.
@@ -40,14 +42,16 @@ import sys
 from pathlib import Path
 
 from red_up.auth import authenticate
-from red_up.checks import check_all, run_validator
+from red_up.checks import check_all
 from red_up.push import open_draft, push_one
 from red_up.targets import load_registry
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))            # eco_validate/ lives at the repo root
+from eco_validate import validate_file   # noqa: E402
+
 OUT = ROOT / "output"
 TAGS = ROOT / "tags" / "tags_auto.csv"
-STANDARD_PREFIX = "eco v1.0"   # standard.md; a table built under an older draft is rebuilt, not shipped
 DATASET = "eco"
 DATASET_DESCRIPTION = (
     "Ecological detection data (occupancy, counts, capture histories, community "
@@ -134,7 +138,10 @@ def main(argv=None) -> int:
     ap.add_argument("--dataset", default=DATASET)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--yes", "-y", action="store_true")
-    ap.add_argument("--no-validate", action="store_true", help="skip irw-validate on core tables")
+    ap.add_argument("--no-validate", action="store_true",
+                    help="skip eco-validate on core tables (the gate; also skips the IRW view check)")
+    ap.add_argument("--no-irw", action="store_true",
+                    help="run eco-validate without --irw (no irw-validate on the IRW view)")
     ap.add_argument("--allow-hold", action="store_true",
                     help="upload tables whose tags status says do_not_publish / hold")
     args = ap.parse_args(argv)
@@ -152,33 +159,24 @@ def main(argv=None) -> int:
     reports = check_all([(p, p.stem) for p in csvs])
     core = [r for r in reports if side_suffix(r.table) is None]
     side = [r for r in reports if side_suffix(r.table) is not None]
-    views = ROOT / ".cache" / "irw_view"
     for r in core:
         missing = [c for c in ("unit", "taxon", "y") if c not in r.columns]
         if missing:
             r.errors.append(f"missing required column(s): {', '.join(missing)}")
             continue
-        # IRW's validator wants id/item/resp; run it on the eco_to_irw() view that
-        # validate/validate_all.R writes, so the IRW v1.0 check still gates the upload.
-        view = views / f"{r.table}.csv"
         if args.no_validate:
             continue
-        if not view.exists():
-            r.errors.append("no IRW view in .cache/irw_view/ -- run `Rscript validate/validate_all.R` first")
+        # The gate: eco-validate over the core table, its side tables and
+        # __dataset.json (standard E1-E10, intake policy: standardVersion, name,
+        # surveyEvidence), plus irw-validate on the IRW view unless --no-irw.
+        try:
+            rep = validate_file(r.path, profile="upload", irw=not args.no_irw)
+        except Exception as exc:
+            r.errors.append(f"eco-validate could not read this table: {exc}")
             continue
-        errors, warnings = run_validator(view)
-        r.errors.extend(errors); r.warnings.extend(warnings)
+        r.errors.extend(f"{f.check}{f' [{f.clause}]' if f.clause else ''}: {f.message}" for f in rep.errors)
+        r.warnings.extend(f"{f.check}{f' [{f.clause}]' if f.clause else ''}: {f.message}" for f in rep.warnings)
     blocked = {} if args.allow_hold else blocked_by_tags()
-    for r in core:
-        meta_p = OUT / f"{r.table}__dataset.json"
-        if not meta_p.exists():
-            r.errors.append("no __dataset.json"); continue
-        m = json.loads(meta_p.read_text())
-        ver = str(m.get("standardVersion", ""))
-        if not ver.startswith(STANDARD_PREFIX):
-            r.errors.append(f"built under `{ver or 'unknown'}`, not {STANDARD_PREFIX}: rerun its data/ script")
-        if not m.get("surveyEvidence"):
-            r.errors.append("standard E4: surveyEvidence missing from __dataset.json")
     for r in reports:
         base = r.table.split("__")[0]
         if base in blocked:

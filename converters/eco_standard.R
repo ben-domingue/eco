@@ -245,6 +245,9 @@ order_eco <- function(long) {
   long[]
 }
 
+# R twin of eco_validate/checks.py, kept so write_table() can refuse a table before it
+# is written. The gate is `eco-validate` (eco_validate/); add a rule there first, here
+# second, and keep the clause ids in the messages aligned.
 validate_eco <- function(long) {
   long <- as.data.table(long)
   problems <- character()
