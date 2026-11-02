@@ -1,0 +1,47 @@
+{
+  "table": "tetzlaff_2026_crotalus_cjs",
+  "title": "Capture histories of 707 adult female timber rattlesnakes over 26 sampling years at six dens, Adirondack Mountains, New York, 1983-2019",
+  "creator": "Tetzlaff, Sasha J.; Hileman, Eric T.; Simon, Matthew G.; Schuett, Gordon W.; Davis, Mark A.; Brown, William S.",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.41ns1rnsk",
+  "sourceURL": "https://doi.org/10.5061/dryad.41ns1rnsk",
+  "citation": "Tetzlaff, S. J., Hileman, E. T., Simon, M. G., Schuett, G. W., Davis, M. A., & Brown, W. S. (2026). Data from: Population dynamics of a long-lived pitviper inferred from capture-recapture data spanning four decades [Dataset]. Dryad. https://doi.org/10.5061/dryad.41ns1rnsk",
+  "paperDOI": "10.1002/ecs2.70560",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture-recapture histories of adult female Crotalus horridus (>= 500 g) at six dens in the southeastern Adirondack Mountains, New York, over 26 sampling years between 1983 and 2019, deposited as a Program MARK input file for Pradel's survival and recruitment model with den x colour-morph groups, unequal interval lengths, and two population-level annual covariates.",
+  "samplingProtocol": "Den-based hand capture and individual marking of adult females during the active season; one occasion per sampling year (Program MARK input, 26 occasions with unequal intervals).",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one occasion per sampling year; survival and recruitment between years)",
+  "lossesOnCapture": "none coded (no negative frequencies in the deposit)",
+  "geographicCoverage": "southeastern Adirondack Mountains, New York, USA (den locations not deposited)",
+  "temporalCoverage": "1983/2019",
+  "coordinatesCoarsened": null,
+  "covariateNote": "unit_den lists both dens for the nine snakes recorded at two (MARK counts them once in each den group); __periods carries the deposited interval lengths and the two population-level covariates on the real scale (NA for 1983-1985 and for the last year).",
+  "notShipped": {
+    "standardised_covariates": "the 2*SD-standardised versions of popmass and precipitation (a transform of the shipped values)",
+    "group_layout": "the 12-column den x morph frequency layout (replaced by unit_den and unit_morph)"
+  },
+  "notes": "Sampling years are unequally spaced (gaps of 2 to 4 years); use __periods$interval_to_next_yr as MARK time intervals. Rows before first capture are kept as 0 (E4); drop them for CJS conditioning. Fit in the paper is Pradel's time-symmetric model.",
+  "summary": {
+    "n_rows": 18382,
+    "n_units": 707,
+    "n_taxa": 1,
+    "n_periods": 26,
+    "n_occasions": 1,
+    "n_surveys": 18382,
+    "y_values": "0,1",
+    "prop_zero": 0.94
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_unit_den", "unit_unit_morph"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/tetzlaff_2026_crotalus_cjs.R",
+  "buildDate": "2026-11-02"
+}
