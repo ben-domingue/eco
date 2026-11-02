@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+GOPAGA,Gopherus agassizii,Mojave Desert Tortoise,species,https://www.gbif.org/species/2441814,EXACT,,CR

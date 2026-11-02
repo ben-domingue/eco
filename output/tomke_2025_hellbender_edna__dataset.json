@@ -1,0 +1,50 @@
+{
+  "table": "tomke_2025_hellbender_edna",
+  "title": "Eastern hellbender eDNA multi-scale detections: 90 Kentucky stream sites, seasonal and spatial water samples, 9 qPCR replicates each, 2019-2021",
+  "creator": "Tomke, Sarah (University of Pennsylvania); Price, Steven (University of Kentucky)",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.9w0vt4bs2",
+  "sourceURL": "https://doi.org/10.5061/dryad.9w0vt4bs2",
+  "citation": "Tomke, S. & Price, S. (2025). Large-scale eDNA sampling and hierarchical modeling elucidates the importance of stream habitat for Eastern Hellbender (Cryptobranchus a. alleganiensis) occupancy and eDNA detection [Dataset]. Dryad. https://doi.org/10.5061/dryad.9w0vt4bs2",
+  "paperDOI": "10.1111/fwb.70079",
+  "relatedWorks": "10.5281/zenodo.14933337",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "qPCR-level eDNA detections of the Eastern hellbender at 90 stream sites on 73 Kentucky rivers: 89 sites sampled in the autumn breeding season, 46 sites in the hatching and pre-breeding seasons (one site, ROU, in the hatching season only); one or three spatial water samples per visit; 9 qPCR replicates per filter. 3,462 qPCR results from 385 filters, 171 positive. Three-level structure for multi-scale occupancy: cluster_id = site, unit = filter, occasion = qPCR replicate. Water chemistry per visit and catchment land cover, ecoregion and (80 sites) stream habitat per site.",
+  "samplingProtocol": "At each site a water sample was collected directly downstream of the highest-quality hellbender habitat within 500 m of the historic record or access point; filters processed within 10 hours and frozen; DNA extracted with Qiagen DNeasy kits; 9 qPCR replicates per extract against a hellbender assay with limits of detection and quantification from standard curves (Dryad methods; Tomke & Price 2025).",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The deposited detection file has one cell per site x season x spatial sample x qPCR replicate; NA cells (season not sampled at the site, single spatial sample, the 3 missing qPCRs of one filter) are not surveys and have no row.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "site occupancy closed across the study (the authors' single-season multi-scale model treats the three seasonal and the spatial samples as level-2 replicates); occasion = qPCR replicate of one filter",
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = site is the occupancy scale (psi), unit = filter (site x season x spatial sample) the availability scale (theta), occasion = qPCR replicate (p). The season is unit_season; the calendar year of each sample is not deposited.",
+  "geographicCoverage": "Streams and rivers across Kentucky, USA (Interior Plateau, Western Allegheny Plateau, Central Appalachians and other Level III ecoregions); no coordinates deposited",
+  "temporalCoverage": "2019-09/2021-06",
+  "coordinatesCoarsened": null,
+  "notes": "The 80-site and 45-site detection files in the deposit are row subsets of the 90-site file (asserted identical) and are not shipped separately; filter by cluster_id to reproduce the authors' habitat (80 sites with habitat covariates) and water-chemistry (45 sites with three seasons) models. Site-level covariates carry the unit_site_ prefix and repeat on every filter of a site. Model outputs (posterior psi, theta and p per site and sample, parameter summaries) are not shipped.",
+  "notShipped": {
+    "model outputs": "Habitat/Landscape/Waterchem_SiteInfo_Psi, _SampleInfo_p, _SampleInfo_Theta, par_estimate_* (posterior summaries)",
+    "subset files": "eDNAocc_fulldata_80sites.csv, eDNAocc_45sites.csv, covariates_sample_80sites.csv, covariates_sample.csv, covariates_sample_means.csv (subsets or summaries of shipped data)",
+    "qPCR standards": "LOD_LOQ_Cq_Standards_Sample1/2.csv (standard curves)",
+    "julian sample dates": "covariates_sample.csv gives day-of-year for the 45 three-season sites without the year (standard: never a bare day-of-year)"
+  },
+  "summary": {
+    "n_rows": 3462,
+    "n_units": 385,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 9,
+    "n_surveys": 3462,
+    "y_values": "0,1",
+    "prop_zero": 0.951
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_season", "unit_spatial_rep", "unit_conductivity_us", "unit_toc_mg_l", "unit_turbidity_ntu", "unit_ph", "unit_water_temp_c", "unit_flow_m_s", "unit_site_ecoregion", "unit_site_prop_water", "unit_site_prop_devel", "unit_site_prop_forest", "unit_site_prop_herb", "unit_site_prop_agric", "unit_site_watershed_area", "unit_site_stream_order", "unit_site_volume_l", "unit_site_perc_trees", "unit_site_perc_bareground", "unit_site_perc_bedrock", "unit_site_perc_boulder", "unit_site_perc_cobble", "unit_site_perc_gravel", "unit_site_perc_sand", "unit_site_perc_fine", "unit_site_ripar_quant", "unit_site_nutrientload"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/tomke_2025_hellbender_edna.R",
+  "buildDate": "2026-11-02"
+}

@@ -1,0 +1,47 @@
+{
+  "table": "karvemo_2024_nacka_grasssnake_cjs",
+  "title": "Annual capture histories of 1,113 grass snakes, Nacka nature reserve, Sweden, 1942-2009",
+  "creator": "Kärvemo, Simon; Elmberg, Johan; Palmheden, Linda; Edelstam, Carl; Hagman, Mattias",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.2z34tmpt4",
+  "sourceURL": "https://doi.org/10.5061/dryad.2z34tmpt4",
+  "citation": "Kärvemo, S., Elmberg, J., Palmheden, L., Edelstam, C., & Hagman, M. (2024). Data from: Climate change-induced shifts in survival and size of the worlds' northernmost oviparous snake: a 68-year study [Dataset]. Dryad. https://doi.org/10.5061/dryad.2z34tmpt4",
+  "paperDOI": "10.1371/journal.pone.0300363",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Hand-capture and recapture records of 1,113 individually marked grass snakes (Natrix natrix) collected by Carl Edelstam in the Nacka nature reserve near Stockholm, 1942-2009, with sex, snout-vent length and mass, plus maximum winter snow cover 1969-2001. Pooled here to annual capture histories over the 66 years with captures.",
+  "samplingProtocol": "Opportunistic hand capture by one collector during the active season (March-November); snakes marked by scale clipping and natural ventral pattern; one capture record per encounter.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "A calendar year with at least one capture record is a surveyed year; 1943 and 1965 have no records and no rows. Search effort per year is not recorded and varied greatly (1 to 112 captures per year).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (captures within a year pooled; survival between years)",
+  "lossesOnCapture": "none recorded",
+  "geographicCoverage": "Nacka nature reserve (7.3 km2), Stockholm County, Sweden; reserve centre 59.29 N, 18.15 E as given in the paper; capture locations not deposited",
+  "temporalCoverage": "1942/2009",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "winter_survival": "the authors' estimated proportional winter survival per year and sex (a model output)",
+    "body_size": "SVL and body mass per capture (vary within individual)"
+  },
+  "notes": "Rows before first capture kept as 0 (E4). Period indices are consecutive over the 66 years with captures; use __periods$year for intervals (1942-1944 and 1964-1966 span two years). obs_seasons gives the seasons with captures for users who want seasonal occasions.",
+  "summary": {
+    "n_rows": 73458,
+    "n_units": 1113,
+    "n_taxa": 1,
+    "n_periods": 66,
+    "n_occasions": 1,
+    "n_surveys": 73458,
+    "y_values": "0,1",
+    "prop_zero": 0.973
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_n_captures", "obs_seasons"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/karvemo_2024_nacka_grasssnake_cjs.R",
+  "buildDate": "2026-11-02"
+}

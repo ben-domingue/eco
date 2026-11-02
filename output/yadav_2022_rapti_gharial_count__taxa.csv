@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+GAVGAN,Gavialis gangeticus,Gharial,species,https://www.gbif.org/species/2441360,EXACT,,CR

@@ -652,3 +652,87 @@ What this batch says about the standard:
 
 Held: nothing. Queue: NEON rows built; remaining rows are eBird (gated), the GBIF
 sampling-event search pointer, the tamarin OSF deposit (no licence) and BBS (#24).
+
+## Batch 15 — 2026-11-02 (gap-targeted search: the first reptiles, ten fish and salamander tables, live-dead, removal and misidentification designs)
+
+A Dryad search aimed at the corpus's gaps (no reptiles, one fish table, few
+invertebrates; dead recovery, double-observer, removal, misidentification) returned
+389 unseen deposits; 25 were queued, 26 tables built from 22 of them in a worktree
+(branch `batch15`). Validated with `eco-validate`: 113/113 tables pass, IRW view
+conforms. Uploaded to the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| tetzlaff_2026_crotalus_cjs | CJS | Dryad CC0 | 18,382 | 707 adult female timber rattlesnakes, New York, 26 years (1983-2019) from the deposited MARK file; den group in `unit_den`; interval lengths and annual covariates (real scale) in `__periods`; first reptile table |
+| cecala_2026_kiawah_terrapin_cjs | CJS | Dryad CC0 | 43,484 | 1,553 diamondback terrapins, Kiawah River SC, 1983-2012, annual histories from capture records; 2000-2001 have no records and no rows (survey years inferred); crab-pot recoveries kept as captures, counted in `obs_n_crabtrap` |
+| karvemo_2024_nacka_grasssnake_cjs | CJS | Dryad CC0 | 73,458 | 1,113 grass snakes, Nacka, Sweden, 66 years; survey years inferred from records; authors' winter-survival estimates not shipped (model output); maximum snow cover in `__periods` |
+| doyle_2025_chinalake_tortoise_scr | SCR (search tracks) | Dryad CC0 | 45,936 | 24 Mojave desert tortoises x 548 50-m search cells x 4 days; effort 0-5 per cell-day; detectors centred to local metres (IUCN CR); below floor |
+| ahizi_2021_civ_crocodylians_occ | community occupancy (spotlight) | Dryad CC0 | 390 | 2 crocodylian taxa x 42 sites x 5 nights, Ivory Coast; four of the paper's 38 sites deposited as interior/exterior sections; encounter-rate and wariness files not shipped (derived ratios) |
+| yadav_2022_rapti_gharial_count | N-mixture repeated counts | Dryad CC0 | 54 | gharial (CR), 18 river segments x 3 counts, Rapti River, Chitwan; below floor |
+| moe_2020_hunder_trout_ld | live-dead (Burnham), state-coded | Dryad CC0 | 212,855 | 13,975 Hunder brown trout, Norway, 1966-2015; first live-dead table: state 0 none / 1 live / 2 dead recovery / 3 both, `y_raw` = the pair; recovery interval 1 July t to 30 June t+1; three recoveries moved after the last live capture |
+| banik_2025_dollyvarden_ms | multistate CR | Dryad CC0 | 228,657 | 21,430 anadromous Dolly Varden, five Yukon rivers in one table (`unit_river`), 14 autumns, breeding state; Rat River uses the breeding matrix where the capture-only matrix disagrees in 10 cells |
+| tomke_2025_hellbender_edna | multi-scale occupancy (eDNA) | Dryad CC0 | 3,462 | Eastern Hellbender (a salamander, not a fish), 385 filters at 90 sites, qPCR replicates; the 80- and 45-site files are subsets, not shipped |
+| swedberg_2023_springfish_occ | multi-scale community occupancy | Dryad CC0 | 3,312 | six target spring-associated fishes x 153 sites in 61 reaches, Oklahoma; ten non-target darters with reach-specific lists not shipped (E4.2); two ID keys repaired |
+| kanno_2022_bluehead_chub_cjs | CJS (2-month intervals) | Dryad CC0 | 6,435 | 429 bluehead chub, 15 occasions; PIT ids destroyed in the deposit (scientific notation), `Obs_ID` is the key; one of three sibling tables (ruling #20) |
+| kanno_2022_creek_chub_cjs | CJS (2-month intervals) | Dryad CC0 | 9,960 | 664 creek chub; sibling |
+| kanno_2022_mottled_sculpin_cjs | CJS (2-month intervals) | Dryad CC0 | 13,920 | 928 mottled sculpin; sibling |
+| lafferty_2024_tidewatergoby_edna | multi-method detection (qPCR, metabarcoding; seine as covariate) | Dryad CC0 | 308 | tidewater goby (ESA endangered), 78 filters at 16 estuaries; qPCR presence = >100 reads (`y_raw` reads), metabarcoding as occasion 4; coordinates coarsened to 0.1 degree |
+| lafferty_2024_estuaryfish_mb | community detection (metabarcoding) | Dryad CC0 | 1,258 | 17 estuarine fishes x 14 sites; Estuary column misaligned for 45 of 74 filters, joined on sample ID; below floor |
+| hartley_2024_cpraealtus_occ | dynamic occupancy (transects) | Dryad CC0 | 1,404 | alpine she-oak skink (endangered), 113 transects x 4 seasons x up to 8 surveys; paired transects sharing a site id split by elevation; occasion = date order |
+| smith_2024_florida_tegu_dynocc | dynamic occupancy (cameras) | Dryad CC0 | 4,527 | Argentine tegu (invasive), 87 cameras x 4 years x 19 windows; bait matrix row order asserted; live-trap capture rate as `period_` covariate |
+| samek_2024_racerunner_occ | single-season occupancy | Dryad CC0 | 300 | six-lined racerunner, 100 longleaf pine transects x 3 surveys |
+| boone_2023_minnesota_bombus_count | community repeated counts | Dryad CC0 | 1,815 | 15 Bombus identification classes (two are species groups) x 25 sites x 5 surveys, Minnesota 2021; coordinates coarsened (B. affinis endangered); first insect community table; below floor |
+| chambert_2018_plethodon_fpocc | two-species occupancy with misidentification | Dryad CC0 | 1,360 | 2 Plethodon salamanders x 131 sites x 4 years; joint field state split into per-species rows, `y_raw` = joint code; DNA confirmation in `obs_dna_state` |
+| teitsworth_2026_necturus_dynocc | dynamic occupancy | Dryad CC0 | 1,341 | Neuse River waterdog (ESA threatened), 176 sites x 5 study years (calendar years not deposited) x 4 visits; keyless yearly covariates assigned in unmarked order (flagged for author confirmation) |
+| price_2018_mtr_salamanders_count | dynamic N-mixture, species x life-stage items | Dryad CC0 | 1,610 | 7 species-stage items x 23 stream reaches x 3 years under mountaintop removal mining; no codebook, item reading documented; years not deposited; below floor |
+| tumursukh_2016_tost_ibex_dobs | double-observer (independent), group as unit | Dryad CC0 | 801 | 267 Siberian ibex groups x cells 10/01/11, Tost, Mongolia 2012-2013; no spatial unit deposited |
+| tumursukh_2016_tost_argali_dobs | double-observer (independent), group as unit | Dryad CC0 | 99 | 33 argali groups; sibling |
+| davis_2016_feralswine_removal | removal (aerial passes) | Dryad CC0 | 177 | feral swine, 49 properties x 9 years x 3 helicopter passes, Oklahoma and Texas; helicopter hours as effort; five episodes exceed the authors' closure guidance, kept and noted |
+| dougherty_2016_rustycrayfish_edna | multi-method detection (qPCR + baited trap), multi-scale | Dryad CC0 | 732 | rusty crayfish (invasive), 261 trap locations in 12 lakes; occasions 1-4 qPCR, 5 baited trap; other crayfish catches as `obs_` |
+
+Held: the DOAS mountain-ungulate deposit (simulation output, no field data); the
+Brownie deer and turkey deposit (SURVIV model code in .docx, no data table). Not built:
+the Kasumigaura fish metabarcoding deposit (Dryad returned HTTP 429 on its version zip
+for over 20 minutes; queue row still `available`).
+
+Fixed while closing: three tables wrote `coordinatesCoarsened` as a string rather than
+the `{value, method}` object, which crashed `metadata/01_metadata.R`; neither validator
+checks the field's shape. The tortoise design tag used "Single-session", outside the
+vocabulary. Issue #38 filed for doubled level prefixes (`unit_unit_*`), which both
+validators accepted and three reptile tables briefly carried.
+
+What this batch says about the standard:
+
+- **Live-dead designs** have no named E2 convention. The trout table encodes the
+  Burnham pair as `state` 0-3 with the pair in `y_raw`; the rule placing a recovery in
+  its interval is the processor's, and Barker-style resightings have no cell.
+  Aggregated Brownie arrays (cohort x recovery year) have no stated home at all.
+- **Method as a design dimension.** Three tables (goby, crayfish, and the springfish
+  gear covariate) put different detection processes on `occasion` with
+  `occasionCodes` and `obs_method`. A convention is needed: occasion, a `method`
+  key column, or separate tables.
+- **Survey years inferred from capture records** in long-term single-collector studies
+  (terrapin, grass snake): a year without records may be a surveyed year with no
+  captures.
+- **Double-observer data deposited per group** with no spatial unit: group-as-unit
+  works but pushes a site design into `unitKind individual` and one table per species.
+- **Search-track SCR** (tortoise): detectors are cells built from surveyor tracks with
+  an effort category; E9's SCR note assumes fixed traps.
+- **Deposits without calendar years** (waterdog, mining salamanders) and **keyless
+  covariate files** whose row order follows a package convention (unmarked
+  `yearlySiteCovs`): the guide should say how to state a relative time frame and
+  whether to ship covariates on the authors' stated order.
+- **Life stage as part of the taxon item** (springfish, mining salamanders):
+  `taxon_life_stage` should be named in E5 or E6.
+- **Recorded identification classes as taxa** (bumble bees: overlapping species and
+  species-group classes): a zero for one class is not an absence of the species.
+- **Reach-level species lists** fail E4.2 (springfish non-targets): the national-pool
+  strain of batch 14 at small scale.
+- **Deposits that destroy keys** (PIT ids in scientific notation, a misaligned column):
+  the guide could say how to record repairs.
+- **Validator gaps**: doubled prefixes (#38); `coordinatesCoarsened` shape not checked.
+- **IRW rights-register false positive**: species code ASPSEX matched a questionnaire
+  code; the register needs a taxon exemption.
+- **Sampling-protocol vocabulary**: `hand_capture`, `net_capture`, `transect_search`,
+  `spotlight_survey`, `boat_count`, `cover_board`, `timed_search`, `visual_encounter`,
+  `baited_trap`, `cover_object_search` should be listed in `tags/vocab.md`.

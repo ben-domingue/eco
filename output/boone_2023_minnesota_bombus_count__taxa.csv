@@ -1,0 +1,16 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_deposited_class,taxon_conservationStatus
+BOMGRI,Bombus griseocollis,,species,https://www.gbif.org/species/1340409,EXACT,,griseocollis,
+BOMIMP,Bombus impatiens,,species,https://www.gbif.org/species/1340350,EXACT,,impatiens,
+BOMBIM,Bombus bimaculatus,,species,https://www.gbif.org/species/1340382,EXACT,,bimaculatus,
+BOMAUP,Bombus auricomus / Bombus pensylvanicus,,species group,https://www.gbif.org/species/1340278,HIGHERRANK,,auricomus_pensylvanicus,
+BOMBOR,Bombus borealis,,species,https://www.gbif.org/species/1340373,EXACT,,borealis,
+BOMRUF,Bombus rufocinctus,,species,https://www.gbif.org/species/1340347,EXACT,,rufocinctus,
+BOMFER,Bombus fervidus,,species,https://www.gbif.org/species/1340478,EXACT,,fervidus,
+BOMVAG,Bombus vagans,,species,https://www.gbif.org/species/1340472,EXACT,,vagans,
+BOMTRN,Bombus ternarius,,species,https://www.gbif.org/species/1340516,EXACT,,ternarius,
+BOMVGS,Bombus vagans / Bombus sandersoni,,species group,https://www.gbif.org/species/1340278,HIGHERRANK,,vagans_sandersoni,
+BOMCIT,Bombus citrinus,,species,https://www.gbif.org/species/1340312,EXACT,,citrinus,
+BOMAFF,Bombus affinis,,species,https://www.gbif.org/species/1340481,EXACT,,affinis,"Endangered (US ESA, 2017); IUCN Critically Endangered"
+BOMTRC,Bombus terricola,,species,https://www.gbif.org/species/1340493,EXACT,,terricola,
+BOMPER,Bombus perplexus,,species,https://www.gbif.org/species/1340406,EXACT,,perplexus,
+BOMINS,Bombus insularis,,species,https://www.gbif.org/species/1340331,EXACT,,insularis,

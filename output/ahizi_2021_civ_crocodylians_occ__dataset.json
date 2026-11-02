@@ -1,0 +1,47 @@
+{
+  "table": "ahizi_2021_civ_crocodylians_occ",
+  "title": "Repeated nocturnal spotlight surveys of two crocodylians at 42 sites in Côte d'Ivoire, 2014-2019",
+  "creator": "Ahizi, Michel N'Dede; Kouman, Christine Yaoua; Ouattara, Allassane; Kouamé, N'Dri Pascal; Dede, Azani; Fairet, Emilie; Shirley, Matthew H.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.15dv41nz5",
+  "sourceURL": "https://doi.org/10.5061/dryad.15dv41nz5",
+  "citation": "Ahizi, M. N., Kouman, C. Y., Ouattara, A., Kouamé, N. P., Dede, A., Fairet, E., & Shirley, M. H. (2022). Detectability and impact of repetitive surveys on threatened West African crocodylians: Data M1 [Dataset]. Dryad. https://doi.org/10.5061/dryad.15dv41nz5",
+  "paperDOI": "10.1002/ece3.8188",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection histories of the Critically Endangered slender-snouted crocodile (Mecistops cataphractus) and the West African crocodile (Crocodylus suchus) from 195 nocturnal spotlight surveys on three to five consecutive nights at 42 sites across Côte d'Ivoire, 2014-2019, with moon, wind, wave, vegetation, fishing-net, rain and temperature covariates per survey and mining and plantation per site.",
+  "samplingProtocol": "Standard nocturnal spotlight (eyeshine) surveys by one observer from a boat, kayak or on foot, at least 10 km per site per night, on three (2014-mid 2016) or five (late 2016-2019) consecutive nights.",
+  "samplingProtocolCode": "spotlight_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period (three to five consecutive nights at a site, treated as closed by the authors)",
+  "geographicCoverage": "Côte d'Ivoire: Guinean forest, Sudano-Guinean and Sudanian ecoregions (site names only, no coordinates deposited)",
+  "temporalCoverage": "2014/2019",
+  "coordinatesCoarsened": null,
+  "covariateNote": "obs_temp_day_c is NA for one survey, as deposited. obs_vegetation is the per-survey aquatic vegetation index; obs_fishnets_per_km nets seen per km surveyed.",
+  "notShipped": {
+    "Base_GLMM.txt": "per-survey encounter rates (crocodiles per km) for the count GLMM: ratios, the counts and survey lengths behind them are not deposited",
+    "CS_wariness.txt, MC_wariness.txt": "per-survey wariness indices (derived)",
+    "survey_dates": "not deposited"
+  },
+  "notes": "Four of the paper's 38 sites are split into interior and exterior sections as deposited (42 units). Survey occasions are consecutive nights; sites surveyed before mid-2016 have three.",
+  "summary": {
+    "n_rows": 390,
+    "n_units": 42,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 195,
+    "y_values": "0,1",
+    "prop_zero": 0.728
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_mining", "unit_plantation", "obs_moon", "obs_wind", "obs_wave", "obs_vegetation", "obs_fishnets_per_km", "obs_rain_prev_day", "obs_temp_day_c", "obs_precip_day_mm", "obs_temp_48h_c", "obs_precip_48h_mm"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahizi_2021_civ_crocodylians_occ.R",
+  "buildDate": "2026-11-02"
+}

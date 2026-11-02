@@ -1,0 +1,309 @@
+unit,taxon,y,y_raw,occasion,date,cluster_id,unit_estuary,unit_decimalLatitude,unit_decimalLongitude,unit_volume_ml,unit_depth_m,unit_water_temp_c,unit_conductivity,unit_do_mg_l,unit_site_seine_goby_count,obs_method
+0166WUI5,EUCNEW,1,168,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+0EY3JUQG,EUCNEW,1,640,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR
+0ICAOEM8,EUCNEW,0,0,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR
+14CG6GVP,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+1Y7HTTUZ,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR
+3MN03WCU,EUCNEW,1,990,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR
+4K1V2B70,EUCNEW,1,203,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+4LR1IE16,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
+54M852FW,EUCNEW,1,477,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+5DZGRPJ8,EUCNEW,0,36,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+5NXLYMB4,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+5W8VHBOX,EUCNEW,0,34,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+6FC330ZX,EUCNEW,0,100,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+73HOCNFX,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR
+7VXU09E9,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,qPCR
+8FZSGQC6,EUCNEW,1,1158,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8HDYA6AT,EUCNEW,1,585,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8TNQ3QEN,EUCNEW,1,654,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8YPPQ58L,EUCNEW,1,503,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+97QVXLNB,EUCNEW,1,1298,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+9H0R367Q,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR
+A3T3UW2T,EUCNEW,1,1145,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
+A6GEWDM0,EUCNEW,1,900,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR
+AF6NPL98,EUCNEW,0,83,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
+AV1G647K,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR
+BDLUWJ2A,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR
+BWKIVG5R,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR
+CXM7RKC1,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
+D8Q44JR4,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,qPCR
+E6K19N4I,EUCNEW,0,0,1,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+EEYYMPOX,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+EOLR86S9,EUCNEW,1,580,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+F33R74EO,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
+FQHMI6N9,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+FYP0R8D7,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,qPCR
+GI9NGV51,EUCNEW,1,735,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+HX9SCNUT,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+I3ZGR5GC,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR
+ICW0XL4W,EUCNEW,1,1150,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+IF7K5NQF,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+IUL4EQNP,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
+IWDVXH17,EUCNEW,0,0,1,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+JIXBJIZ3,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,qPCR
+JTATZ0K5,EUCNEW,0,0,1,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+K49UTWXN,EUCNEW,1,1134,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+K56BBPGJ,EUCNEW,1,168,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR
+KAM50OM8,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
+LVO3QRLX,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+M3BWLMVW,EUCNEW,1,263,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+N6M3N6LT,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR
+NJCNWIUD,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR
+NQ36AGNG,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR
+O3PTMHG6,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+O97C31FZ,EUCNEW,1,550,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR
+OAZV1TYJ,EUCNEW,1,102,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+PFDNIGDZ,EUCNEW,1,191,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+PKC9HRCO,EUCNEW,1,847,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+PKPYEKF3,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+Q3HPLTAL,EUCNEW,1,195,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+QAYFMDLF,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
+QF6Y61R2,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,qPCR
+QKOK5NVQ,EUCNEW,1,1374,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+R5LT1TO7,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,qPCR
+RJC5NWS7,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+RV1Z2FN1,EUCNEW,1,1207,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+SD2QNYHT,EUCNEW,0,0,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
+SNF5Y17H,EUCNEW,1,112,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
+SSEHN2DP,EUCNEW,0,36,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+T6UYA40I,EUCNEW,1,911,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+U31X05GU,EUCNEW,0,0,1,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,220,0.3,18.2,43,8,,qPCR
+UQDK4PXP,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR
+V12I57BA,EUCNEW,1,1060,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+V7RYHLTF,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
+VTSM35KT,EUCNEW,1,128,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+XVU6B64D,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR
+YCSYA7NE,EUCNEW,1,787,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+YWESPUWW,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
+ZF0XLNXD,EUCNEW,1,268,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR
+0166WUI5,EUCNEW,1,363,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+0EY3JUQG,EUCNEW,1,586,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR
+0ICAOEM8,EUCNEW,0,32,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR
+14CG6GVP,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+1Y7HTTUZ,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR
+3MN03WCU,EUCNEW,1,1016,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR
+4K1V2B70,EUCNEW,1,171,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+4LR1IE16,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
+54M852FW,EUCNEW,1,766,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+5DZGRPJ8,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+5NXLYMB4,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+5W8VHBOX,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+6FC330ZX,EUCNEW,0,71,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+73HOCNFX,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR
+7VXU09E9,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,qPCR
+8FZSGQC6,EUCNEW,1,1037,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8HDYA6AT,EUCNEW,1,574,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8TNQ3QEN,EUCNEW,1,496,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8YPPQ58L,EUCNEW,1,699,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+97QVXLNB,EUCNEW,1,1293,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+9H0R367Q,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR
+A3T3UW2T,EUCNEW,1,1029,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
+A6GEWDM0,EUCNEW,1,699,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR
+AF6NPL98,EUCNEW,1,179,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
+AV1G647K,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR
+BDLUWJ2A,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR
+BWKIVG5R,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR
+CXM7RKC1,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
+D8Q44JR4,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,qPCR
+E6K19N4I,EUCNEW,0,0,2,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+EEYYMPOX,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+EOLR86S9,EUCNEW,1,594,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+F33R74EO,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
+FQHMI6N9,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+FYP0R8D7,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,qPCR
+GI9NGV51,EUCNEW,1,644,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+HX9SCNUT,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+I3ZGR5GC,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR
+ICW0XL4W,EUCNEW,1,1296,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+IF7K5NQF,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+IUL4EQNP,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
+IWDVXH17,EUCNEW,0,0,2,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+JIXBJIZ3,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,qPCR
+JTATZ0K5,EUCNEW,0,0,2,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+K49UTWXN,EUCNEW,1,984,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+K56BBPGJ,EUCNEW,1,252,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR
+KAM50OM8,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
+LVO3QRLX,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+M3BWLMVW,EUCNEW,1,283,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+N6M3N6LT,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR
+NJCNWIUD,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR
+NQ36AGNG,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR
+O3PTMHG6,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+O97C31FZ,EUCNEW,1,711,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR
+OAZV1TYJ,EUCNEW,1,222,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+PFDNIGDZ,EUCNEW,0,75,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+PKC9HRCO,EUCNEW,1,1109,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+PKPYEKF3,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+Q3HPLTAL,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+QAYFMDLF,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
+QF6Y61R2,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,qPCR
+QKOK5NVQ,EUCNEW,1,1246,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+R5LT1TO7,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,qPCR
+RJC5NWS7,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+RV1Z2FN1,EUCNEW,1,1557,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+SD2QNYHT,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
+SNF5Y17H,EUCNEW,1,156,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
+SSEHN2DP,EUCNEW,0,35,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+T6UYA40I,EUCNEW,1,750,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+U31X05GU,EUCNEW,0,0,2,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,220,0.3,18.2,43,8,,qPCR
+UQDK4PXP,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR
+V12I57BA,EUCNEW,1,910,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+V7RYHLTF,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
+VTSM35KT,EUCNEW,1,196,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+XVU6B64D,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR
+YCSYA7NE,EUCNEW,1,962,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+YWESPUWW,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
+ZF0XLNXD,EUCNEW,1,299,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR
+0166WUI5,EUCNEW,1,136,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+0EY3JUQG,EUCNEW,1,654,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR
+0ICAOEM8,EUCNEW,0,0,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR
+14CG6GVP,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+1Y7HTTUZ,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR
+3MN03WCU,EUCNEW,1,751,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR
+4K1V2B70,EUCNEW,1,226,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+4LR1IE16,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
+54M852FW,EUCNEW,1,642,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+5DZGRPJ8,EUCNEW,0,74,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+5NXLYMB4,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+5W8VHBOX,EUCNEW,0,0,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+6FC330ZX,EUCNEW,0,64,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+73HOCNFX,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR
+7VXU09E9,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,qPCR
+8FZSGQC6,EUCNEW,1,865,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8HDYA6AT,EUCNEW,1,708,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8TNQ3QEN,EUCNEW,1,481,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+8YPPQ58L,EUCNEW,1,599,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+97QVXLNB,EUCNEW,1,1350,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+9H0R367Q,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR
+A3T3UW2T,EUCNEW,1,1299,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
+A6GEWDM0,EUCNEW,1,853,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR
+AF6NPL98,EUCNEW,1,147,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
+AV1G647K,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR
+BDLUWJ2A,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR
+BWKIVG5R,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR
+CXM7RKC1,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
+D8Q44JR4,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,qPCR
+E6K19N4I,EUCNEW,0,0,3,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+EEYYMPOX,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+EOLR86S9,EUCNEW,1,680,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+F33R74EO,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
+FQHMI6N9,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+FYP0R8D7,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,qPCR
+GI9NGV51,EUCNEW,1,798,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+HX9SCNUT,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+I3ZGR5GC,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR
+ICW0XL4W,EUCNEW,1,1191,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+IF7K5NQF,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
+IUL4EQNP,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
+IWDVXH17,EUCNEW,0,0,3,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+JIXBJIZ3,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,qPCR
+JTATZ0K5,EUCNEW,0,0,3,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
+K49UTWXN,EUCNEW,1,1105,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+K56BBPGJ,EUCNEW,1,277,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR
+KAM50OM8,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
+LVO3QRLX,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+M3BWLMVW,EUCNEW,0,77,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+N6M3N6LT,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR
+NJCNWIUD,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR
+NQ36AGNG,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR
+O3PTMHG6,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
+O97C31FZ,EUCNEW,1,794,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR
+OAZV1TYJ,EUCNEW,0,95,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+PFDNIGDZ,EUCNEW,0,96,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+PKC9HRCO,EUCNEW,1,1103,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+PKPYEKF3,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+Q3HPLTAL,EUCNEW,0,96,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+QAYFMDLF,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
+QF6Y61R2,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,qPCR
+QKOK5NVQ,EUCNEW,1,1326,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+R5LT1TO7,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,qPCR
+RJC5NWS7,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
+RV1Z2FN1,EUCNEW,1,1490,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+SD2QNYHT,EUCNEW,0,0,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
+SNF5Y17H,EUCNEW,1,218,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
+SSEHN2DP,EUCNEW,1,241,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+T6UYA40I,EUCNEW,1,699,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+U31X05GU,EUCNEW,0,0,3,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,220,0.3,18.2,43,8,,qPCR
+UQDK4PXP,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR
+V12I57BA,EUCNEW,1,1002,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+V7RYHLTF,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
+VTSM35KT,EUCNEW,1,208,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
+XVU6B64D,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR
+YCSYA7NE,EUCNEW,1,1007,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
+YWESPUWW,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
+ZF0XLNXD,EUCNEW,1,141,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR
+0166WUI5,EUCNEW,1,277,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+0EY3JUQG,EUCNEW,1,308,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,metabarcoding
+0ICAOEM8,EUCNEW,0,0,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,metabarcoding
+14CG6GVP,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding
+1Y7HTTUZ,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,metabarcoding
+3MN03WCU,EUCNEW,1,374,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,metabarcoding
+4K1V2B70,EUCNEW,1,202,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+4LR1IE16,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,metabarcoding
+54M852FW,EUCNEW,1,275,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+5DZGRPJ8,EUCNEW,1,184,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+5NXLYMB4,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding
+5W8VHBOX,EUCNEW,0,0,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+6FC330ZX,EUCNEW,1,40,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+73HOCNFX,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,metabarcoding
+7VXU09E9,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,metabarcoding
+8FZSGQC6,EUCNEW,1,447,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+8HDYA6AT,EUCNEW,1,594,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+8TNQ3QEN,EUCNEW,1,507,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+8YPPQ58L,EUCNEW,1,1244,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+97QVXLNB,EUCNEW,1,446,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+9H0R367Q,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,metabarcoding
+A3T3UW2T,EUCNEW,1,10,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,metabarcoding
+A6GEWDM0,EUCNEW,1,461,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,metabarcoding
+AF6NPL98,EUCNEW,1,36,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,metabarcoding
+AV1G647K,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,metabarcoding
+BDLUWJ2A,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,metabarcoding
+BWKIVG5R,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,metabarcoding
+CXM7RKC1,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,metabarcoding
+D8Q44JR4,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,metabarcoding
+EEYYMPOX,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding
+EOLR86S9,EUCNEW,1,401,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+F33R74EO,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,metabarcoding
+FQHMI6N9,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding
+FYP0R8D7,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,metabarcoding
+GI9NGV51,EUCNEW,1,544,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+HX9SCNUT,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
+I3ZGR5GC,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,metabarcoding
+ICW0XL4W,EUCNEW,1,194,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+IF7K5NQF,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding
+IUL4EQNP,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,metabarcoding
+JIXBJIZ3,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,metabarcoding
+K49UTWXN,EUCNEW,1,1121,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+K56BBPGJ,EUCNEW,1,17,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,metabarcoding
+KAM50OM8,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,metabarcoding
+LVO3QRLX,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
+M3BWLMVW,EUCNEW,1,65,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+N6M3N6LT,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,metabarcoding
+NJCNWIUD,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,metabarcoding
+NQ36AGNG,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,metabarcoding
+O3PTMHG6,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding
+O97C31FZ,EUCNEW,1,72,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,metabarcoding
+OAZV1TYJ,EUCNEW,1,223,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+PFDNIGDZ,EUCNEW,1,66,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+PKC9HRCO,EUCNEW,1,247,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+PKPYEKF3,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
+Q3HPLTAL,EUCNEW,1,87,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+QAYFMDLF,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,metabarcoding
+QF6Y61R2,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,metabarcoding
+QKOK5NVQ,EUCNEW,1,301,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+R5LT1TO7,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,metabarcoding
+RJC5NWS7,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
+RV1Z2FN1,EUCNEW,1,1265,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+SD2QNYHT,EUCNEW,1,12,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,metabarcoding
+SNF5Y17H,EUCNEW,1,23,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,metabarcoding
+SSEHN2DP,EUCNEW,1,71,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+T6UYA40I,EUCNEW,1,177,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+UQDK4PXP,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,metabarcoding
+V12I57BA,EUCNEW,1,587,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+V7RYHLTF,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,metabarcoding
+VTSM35KT,EUCNEW,1,451,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
+XVU6B64D,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,metabarcoding
+YCSYA7NE,EUCNEW,1,456,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
+YWESPUWW,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,metabarcoding
+ZF0XLNXD,EUCNEW,1,457,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,metabarcoding

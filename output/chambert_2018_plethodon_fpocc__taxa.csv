@@ -1,0 +1,3 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_conservationStatus
+PLECIN,Plethodon cinereus,Red-backed salamander,species,https://www.gbif.org/species/2431491,EXACT,,
+PLESHE,Plethodon shenandoah,Shenandoah salamander,species,https://www.gbif.org/species/2431497,EXACT,,Endangered (US ESA); IUCN Vulnerable

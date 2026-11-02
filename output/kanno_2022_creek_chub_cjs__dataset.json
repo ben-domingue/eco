@@ -1,0 +1,51 @@
+{
+  "table": "kanno_2022_creek_chub_cjs",
+  "title": "Creek chub capture histories, Indian Creek, South Carolina: PIT-tagged fish, 15 bimonthly electrofishing occasions, November 2015 - March 2018",
+  "creator": "Kanno, Yoichiro; Kim, Seoghyun; Pregler, Kasey (Colorado State University)",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.np5hqbzxh",
+  "sourceURL": "https://doi.org/10.5061/dryad.np5hqbzxh",
+  "citation": "Kanno, Y., Kim, S. & Pregler, K. (2022). Capture history data for: Sub-seasonal correlation between growth and survival in three sympatric aquatic ectotherms [Dataset]. Dryad. https://doi.org/10.5061/dryad.np5hqbzxh",
+  "paperDOI": "10.1111/oik.09685",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Cormack-Jolly-Seber capture histories of 664 PIT-tagged creek chub (Semotilus atromaculatus, >= 60 mm total length) in a 740 m reach of Indian Creek, South Carolina, sampled every two months by two-pass backpack electrofishing, November 2015 - March 2018 (15 occasions). One row per fish per occasion, y = captured; rows before first capture are 0. Sibling tables hold the other two species of the same survey.",
+  "samplingProtocol": "Every two months (mean 61 days, range 48-70) the 740 m reach, divided into 20 m sections, was sampled upstream by two-pass backpack electrofishing (Smith Root LR-24, Halltech HT-2000), each occasion taking 1-10 days; fish at or above the tagging length were PIT-tagged (8 mm), measured and returned to their section (Dryad methods; Kanno et al. 2023).",
+  "samplingProtocolCode": "electrofishing",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The deposited capture-history matrix has 15 occasion columns and every fish is surveyed at every occasion, including occasions before its first capture (y = 0).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "open between periods (bimonthly occasions; survival and emigration between occasions, CJS)",
+  "geographicCoverage": "Indian Creek, Sumter National Forest, South Carolina, USA (a 740 m study reach); no coordinates deposited",
+  "temporalCoverage": "2015-11/2018-03",
+  "coordinatesCoarsened": null,
+  "components": [
+    "kanno_2022_bluehead_chub_cjs",
+    "kanno_2022_mottled_sculpin_cjs"
+  ],
+  "notes": "One of three tables from one deposit (ruling #20: one table per taxon of marked individuals); the others are kanno_2022_bluehead_chub_cjs and kanno_2022_mottled_sculpin_cjs. Periods are the bimonthly occasions (month and year in __periods; occasion dates and the 1-10 day sampling windows are not deposited). Rows before first capture are 0: drop them to condition on first capture. PIT tag numbers are not usable (the deposit stores them in scientific notation); units are the deposit's Obs_ID.",
+  "notShipped": {
+    "PIT tag ids": "PIT_Tag_ID is stored in scientific notation (4 distinct values for 2,021 fish); Obs_ID is the key",
+    "lengths": "total lengths at capture used for the paper's growth models are not in the deposit",
+    "other species": "in the sibling tables kanno_2022_bluehead_chub_cjs, kanno_2022_mottled_sculpin_cjs"
+  },
+  "summary": {
+    "n_rows": 9960,
+    "n_units": 664,
+    "n_taxa": 1,
+    "n_periods": 15,
+    "n_occasions": 1,
+    "n_surveys": 9960,
+    "y_values": "0,1",
+    "prop_zero": 0.858
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kanno_2022_indiancreek_fish_cjs.R",
+  "buildDate": "2026-11-02"
+}

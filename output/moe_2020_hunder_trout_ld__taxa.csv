@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+SALTRU,Salmo trutta,"Brown trout (Hunder trout, Lake Mjosa)",species,https://www.gbif.org/species/8215487,EXACT,,LC
