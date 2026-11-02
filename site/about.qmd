@@ -2,6 +2,12 @@
 title: "About eco"
 ---
 
+```{r}
+#| label: stats
+#| include: false
+s <- jsonlite::read_json("data/site_stats.json")
+```
+
 ## The question
 
 The [Item Response Warehouse](https://itemresponsewarehouse.org) harmonises
@@ -38,9 +44,11 @@ covariate values at surveys that never happened and units that were never
 surveyed, which matter to no likelihood but need a side table if the sampling
 frame matters.
 
-**Real deposits behave.** Twenty public deposits from Dryad, Zenodo, figshare,
-Dataverse and ScienceBase have been built the way the IRW builds tables,
-30 tables in all with the six package datasets. The explicit-zero rule was
+**Real deposits behave.** The corpus now holds `r s$n_tables` tables from
+`r s$n_deposits` public deposits and `r s$n_packages` textbook datasets, built
+the way the IRW builds tables. The first twenty deposits, from Dryad, Zenodo,
+figshare, Dataverse and ScienceBase (30 tables with the six package datasets
+then included), settled the questions below. The explicit-zero rule was
 never ambiguous where the source deposited a matrix: blank meant "not
 surveyed" and 0 "not detected", and in three deposits the pattern could be
 cross-checked against an effort table. It was ambiguous where the source was a
