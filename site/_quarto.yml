@@ -34,6 +34,8 @@ website:
         text: Standard
       - href: firstlook.qmd
         text: First look
+      - href: vignettes/index.qmd
+        text: Vignettes
       - href: contribute.qmd
         text: Contribute
       - href: corrections.qmd

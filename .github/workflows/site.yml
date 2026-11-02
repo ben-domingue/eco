@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - "site/**"
+      - "Rpkg/**"
       - "standard_draft.md"
       - "metadata/**"
       - "releases/**"
@@ -44,8 +45,12 @@ jobs:
         with:
           use-public-rspm: true
 
+      # The vignettes under site/vignettes/ fetch tables with the eco package
+      # (installed from this checkout's Rpkg/) and fit them with unmarked.
       - name: Install R packages
-        run: Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table"))'
+        run: |
+          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2"))'
+          R CMD INSTALL Rpkg
 
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
