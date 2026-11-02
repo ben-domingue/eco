@@ -59,7 +59,7 @@ CH <- matrix(0L, length(ids), Tn); CH[cbind(match(yr$ind, ids), yr$period)] <- 1
 sxs <- x[sex %in% c("F", "M"), .(nsex = uniqueN(sex), sex = sex[1]), by = .(ind = as.integer(ind))]
 stopifnot(sum(sxs$nsex > 1L) == 1L)
 sxs[nsex > 1L, sex := "U"]
-covs <- data.frame(unit_sex = ifelse(is.na(sxs$sex[match(ids, sxs$ind)]), "U", sxs$sex[match(ids, sxs$ind)]))
+covs <- data.frame(sex = ifelse(is.na(sxs$sex[match(ids, sxs$ind)]), "U", sxs$sex[match(ids, sxs$ind)]))
 
 long <- array_to_eco(CH, taxon = "NATNAT", site_ids = ids, site_covs = covs, period = seq_len(Tn))
 long[, occasion := NULL]
@@ -67,7 +67,7 @@ long[yr, on = .(unit = ind, period), `:=`(obs_n_captures = i.n, obs_seasons = i.
 long[is.na(obs_n_captures), `:=`(obs_n_captures = 0L, obs_seasons = "")]
 stopifnot(nrow(long) == length(ids) * Tn, sum(long$y) == nrow(yr), sum(long$obs_n_captures) == nrow(x))
 cat(sprintf("  %d snakes, %d captures -> %d snake-years over %d years; sex F %d, M %d, U %d\n", length(ids), nrow(x),
-            nrow(yr), Tn, sum(covs$unit_sex == "F"), sum(covs$unit_sex == "M"), sum(covs$unit_sex == "U")))
+            nrow(yr), Tn, sum(covs$sex == "F"), sum(covs$sex == "M"), sum(covs$sex == "U")))
 
 snow <- as.data.table(read_excel(fs, sheet = "survsnow"))
 stopifnot(identical(names(snow), c("Year", "Season", "Survival", "Max snow (cm)", "Sex")), nrow(snow) == 66L)

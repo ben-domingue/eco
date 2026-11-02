@@ -1,4 +1,4 @@
-unit,taxon,y,period,unit_unit_sex,unit_unit_first_site,obs_n_captures,obs_n_crabtrap
+unit,taxon,y,period,unit_sex,unit_first_site,obs_n_captures,obs_n_crabtrap
 ABCH,MALTER,0,1,M,Site 3,0,0
 ABCI,MALTER,0,1,M,Site 3,0,0
 ABCJ,MALTER,0,1,M,Site 3,0,0

@@ -79,7 +79,7 @@ stopifnot(is.character(morph), length(morph) == 707L)   # one morph per snake, e
 cat(sprintf("  707 snakes, %d detections, 9 recorded at two dens; morphs: %s\n", sum(CH),
             paste(names(table(morph)), table(morph), collapse = ", ")))
 
-covs <- data.frame(unit_den = den, unit_morph = ifelse(morph == "B", "black", "yellow"))
+covs <- data.frame(den = den, morph = ifelse(morph == "B", "black", "yellow"))
 long <- array_to_eco(CH, taxon = "CROHOR", site_ids = id, site_covs = covs, period = seq_len(Tn))
 long[, occasion := NULL]
 stopifnot(nrow(long) == 707L * Tn, sum(long$y) == sum(CH))

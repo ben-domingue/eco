@@ -63,9 +63,9 @@ NK <- matrix(0L, length(ids), Tn); NK[cbind(match(yr$ID, ids), yr$period)] <- yr
 sx <- cap[!is.na(Sex), .(sex = if (uniqueN(Sex) == 1L) Sex[1] else "U"), by = ID]
 stopifnot(sum(cap[!is.na(Sex), uniqueN(Sex), by = ID]$V1 > 1L) == 1L)
 first <- cap[order(Year, as.integer(Month), suppressWarnings(as.integer(Day)))][, .(site = Location[1]), by = ID]
-covs <- data.frame(unit_sex = sx$sex[match(ids, sx$ID)], unit_first_site = first$site[match(ids, first$ID)])
-covs$unit_sex[covs$unit_sex == "Unk"] <- "U"
-stopifnot(!anyNA(covs$unit_first_site))
+covs <- data.frame(sex = sx$sex[match(ids, sx$ID)], first_site = first$site[match(ids, first$ID)])
+covs$sex[covs$sex == "Unk"] <- "U"
+stopifnot(!anyNA(covs$first_site))
 
 long <- array_to_eco(CH, taxon = "MALTER", site_ids = ids, site_covs = covs, period = seq_len(Tn))
 long[, occasion := NULL]

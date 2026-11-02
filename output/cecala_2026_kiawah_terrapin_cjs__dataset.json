@@ -40,7 +40,7 @@
     "prop_zero": 0.93
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "period", "unit_unit_sex", "unit_unit_first_site", "obs_n_captures", "obs_n_crabtrap"],
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_first_site", "obs_n_captures", "obs_n_crabtrap"],
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cecala_2026_kiawah_terrapin_cjs.R",
