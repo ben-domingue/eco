@@ -36,7 +36,7 @@
     "Data/SNAPSHOT_USA_2020_*.csv": "the full Snapshot USA 2020 release re-uploaded by the authors (third-party data, not hosted from this deposit)",
     "Data/Wildlife_Openings_*.csv": "the 2019-2021 Monongahela cameras, shipped as clipp_2024_monongahela_comm"
   },
-  "notes": "Eight Jackson-Mason deployments (Fleming-1..4, Hoffman-1,2,3,6) are in the deployment sheet and the sequence export but were not modelled in the paper (no NDVI); __units.modelled_in_paper marks them. Fourteen cameras were not working at retrieval; the deposit does not say when they failed, so their later camera-days may overstate effort (unit_camera_working_at_retrieval). Deployment names are property-owner surnames plus a number, as deposited.",
+  "notes": "Eight Jackson-Mason deployments (sheet rows 46-53, units JacksonMason_46..53) are in the deployment sheet and the sequence export but were not modelled in the paper (no NDVI); __units.modelled_in_paper marks them. Fourteen cameras were not working at retrieval; the deposit does not say when they failed, so their later camera-days may overstate effort (unit_camera_working_at_retrieval). Deployment names in the deposit are property-owner surnames plus a camera number; unit is pseudonymised to <county-pair>_<sheet row> and the names are not shipped.",
   "summary": {
     "n_rows": 419240,
     "n_units": 146,

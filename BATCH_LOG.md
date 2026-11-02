@@ -237,9 +237,10 @@ What this batch says about the standard:
   from here (third-party), but Snapshot USA belongs on the queue from its own source.
 - **Personal names as unit ids.** The private-land deployment names are landowner
   surnames (e.g. `Haile-2 04/23/2022`) with exact coordinates on private property,
-  as deposited. No flagged taxa, so no coarsening rule fires. **Ben should rule
-  before release** whether to pseudonymise `unit` (and `__units`) in
-  `clipp_2024_wvprivate_comm`; the standard has no personal-data clause.
+  as deposited. No flagged taxa, so no coarsening rule fires. Ben ruled the same day:
+  `unit` is pseudonymised to `<county-pair>_<sheet row>` in the core table and `__units`;
+  the names stay only in the cached deposit and in the script's source assertions.
+  The standard still has no personal-data clause; worth one.
 - **Continuous-time camera detections** were aggregated to camera-days with
   `obs_camera_hours` rather than shipped as the experimental `detection_event`
   type; minute timestamps survive only as `y_raw` counts.

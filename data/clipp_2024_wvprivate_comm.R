@@ -34,7 +34,9 @@
 #
 # Mapping (standard section 3.6, community detection from a sequence table with a deployment
 # table):
-#   unit = Deployment Name (146), cluster_id = county-pair sheet, taxon = species code for
+#   unit = pseudonymised deployment id <county-pair>_<sheet row> (146; the deposited
+#   Deployment Names are property-owner surnames plus a camera number and are not shipped,
+#   Ben's ruling 2026-11-01; the sheet row keeps the join to the deposit), cluster_id = county-pair sheet, taxon = species code for
 #   every sequence identified to species in Mammalia or Aves except Homo sapiens (humans,
 #   vehicles, insects and higher-rank labels such as "Sciurus Species" are dropped);
 #   occasion = camera-day index within the deployment (1 = deployment date), date = that
@@ -102,6 +104,15 @@ stopifnot(c("Odocoileus virginianus", "Canis latrans") %in% species$scientificNa
 sp <- merge(sp, species[, .(genus, species, taxon)], by = c("genus", "species"), all.x = TRUE)
 stopifnot(!anyNA(sp$taxon))
 
+# pseudonymise the deployment names (property-owner surnames) before anything is shipped:
+# unit = <county-pair letters>_<sheet row number>, unique, in deposit order; the name itself
+# stays in the cached deposit only
+dep[, unit_src := unit][, unit := sprintf("%s_%02d", gsub("[^A-Za-z]", "", cluster), row)]
+stopifnot(!anyDuplicated(dep$unit), !any(grepl("[A-Z][a-z]+-[0-9]", dep$unit)))
+pseudo <- setNames(dep$unit, dep$unit_src)    # sp has a column named dep, so look up outside the data.table scope
+sp[, deployment_id := pseudo[deployment_id]]
+stopifnot(!anyNA(sp$deployment_id))
+
 # survey set: camera-days from the deployment table
 days <- dep[, .(date = seq(as.IDate(dep), as.IDate(ret), by = "day")), by = .(unit, dep, ret)]
 days[, d0 := as.POSIXct(paste(date, "00:00:00"), tz = "UTC")]
@@ -127,7 +138,7 @@ taxa <- make_taxa(species$taxon, species$scientificName, vernacularName = specie
 units <- dep[, .(unit, cluster_id = cluster, decimalLatitude = lat, decimalLongitude = lon, detection_distance_m = dist_m,
                  camera_working_at_retrieval = as.integer(working == "Y"), deployed = format(dep, "%Y-%m-%dT%H:%MZ"),
                  retrieved = format(ret - 59, "%Y-%m-%dT%H:%MZ"), camera_days = round(dur, 2), modelled_in_paper = as.integer(!(cluster == "Jackson-Mason" & row > 43)))]   # the paper's code reads rows 3-43 / 3-58 / 3-43
-stopifnot(sum(units$modelled_in_paper == 0) == 8, all(grepl("^(Fleming-[1-4]|Hoffman-[1236]) ", units[modelled_in_paper == 0, unit])))
+stopifnot(sum(units$modelled_in_paper == 0) == 8, all(grepl("^(Fleming-[1-4]|Hoffman-[1236]) ", dep[units[modelled_in_paper == 0], on = "unit", unit_src])))
 
 dataset <- list(
   title = sprintf("Daily camera-trap detections of %d bird and mammal taxa at 146 cameras on private land in three West Virginia county pairs, April-September 2022", nrow(species)),
@@ -150,7 +161,7 @@ dataset <- list(
                     `wtd.RDS, coy.RDS, stan_data.RDS, Fitted-Models/` = "derived from the detections; model inputs and outputs",
                     `Data/SNAPSHOT_USA_2020_*.csv` = "the full Snapshot USA 2020 release re-uploaded by the authors (third-party data, not hosted from this deposit)",
                     `Data/Wildlife_Openings_*.csv` = "the 2019-2021 Monongahela cameras, shipped as clipp_2024_monongahela_comm"),
-  notes = "Eight Jackson-Mason deployments (Fleming-1..4, Hoffman-1,2,3,6) are in the deployment sheet and the sequence export but were not modelled in the paper (no NDVI); __units.modelled_in_paper marks them. Fourteen cameras were not working at retrieval; the deposit does not say when they failed, so their later camera-days may overstate effort (unit_camera_working_at_retrieval). Deployment names are property-owner surnames plus a number, as deposited.")
+  notes = "Eight Jackson-Mason deployments (sheet rows 46-53, units JacksonMason_46..53) are in the deployment sheet and the sequence export but were not modelled in the paper (no NDVI); __units.modelled_in_paper marks them. Fourteen cameras were not working at retrieval; the deposit does not say when they failed, so their later camera-days may overstate effort (unit_camera_working_at_retrieval). Deployment names in the deposit are property-owner surnames plus a camera number; unit is pseudonymised to <county-pair>_<sheet row> and the names are not shipped.")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, units = units, script = "data/clipp_2024_wvprivate_comm.R")
 
 stage_dict_row(TABLE,
@@ -159,7 +170,7 @@ stage_dict_row(TABLE,
   reference = "Clipp, H. L., Pesi, S. M., Miller, M. L., Gigliotti, L. C., Skelly, B. P., & Rota, C. T. (2024). White-tailed deer detection rates increase when coyotes are present. Ecology and Evolution, 14(3), e11149.",
   doi_paper = "10.1002/ece3.11149", doi_data = "10.5281/zenodo.10391650",
   original_license = "CC BY 4.0 (Zenodo record) / CC BY-NC (licence column of sequences.csv)", derived_license = "CC BY-NC 4.0",
-  notes = "Wildlife Insights export; the per-row CC BY-NC governs over the record's CC BY. Eight deployments beyond the paper's 138 shipped and marked in __units. Coordinates on private land as published.",
+  notes = "Wildlife Insights export; the per-row CC BY-NC governs over the record's CC BY. Eight deployments beyond the paper's 138 shipped and marked in __units. Coordinates on private land as published; unit ids pseudonymised (deposited names are landowner surnames).",
   source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Multiple", model_family = "Community occupancy (single season); two-species co-occurrence (deer, coyote)",
   sampling_protocol = "camera_trap", design = "Single-season (2-77 camera-days per deployment)", realm = "Terrestrial", country = "USA",
