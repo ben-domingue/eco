@@ -33,6 +33,7 @@ candidate for a new family when the observation is not of that form.
 | Dead recovery, mark–resight, live–dead | histories with recovery codes (`LD` pairs) | Brownie, Burnham, PNE | `y_raw` = code (`10`,`01`,`11`), `y` = 1 if encountered; `responseType = state` | — |
 | Repeated-count indices with within-route replication (BBS 50 stops, Christmas Bird Count) | route × year × stop counts | N-mixture or trend models | `unit` = route, `period` = year, `occasion` = stop | — (BBS is its own project, issue #10) |
 | Trap arrays summed per session (pitfall, seed, sign/track counts) | trap-session counts | N-mixture | `unit` = trap or plot, `occasion` = session | — |
+| Occasions collapsed to a binomial count (camera nights with a detection out of nights run; capture days out of active days) | site × species matrix with a trials matrix | constant-`p` occupancy / SCR with binomial observation | `responseType = binomial_count`, `obs_trials`, no `occasion` (ruling #34) | Nagarahole tigers (open SCR), Rich Botswana community |
 
 Nothing in group A needs a decision. The gaps to fill with data are closed CR, Royle–Nichols, open N-mixture and a recovery dataset, none of which stresses the format.
 

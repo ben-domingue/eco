@@ -1,0 +1,45 @@
+{
+  "table": "bhattacharya_2022_himachal_bear_occ",
+  "title": "Asiatic black bear camera-trap detection histories, Rupi Bhaba and Daranghati Wildlife Sanctuaries, Himachal Pradesh, 2018-2019",
+  "creator": "Bhattacharya, Ankita; Chatterjee, Nilanjan; Angrish, Kunal; Meena, Dharamveer; Sinha, Bitapi C.; Habib, Bilal",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.fxpnvx0tp",
+  "sourceURL": "https://doi.org/10.5061/dryad.fxpnvx0tp",
+  "citation": "Bhattacharya, A., Chatterjee, N., Angrish, K., Meena, D., Sinha, B. C. & Habib, B. (2022). Capture history of Asiatic black bear from Himachal Pradesh, India [Dataset]. Dryad. https://doi.org/10.5061/dryad.fxpnvx0tp. Paper: Ursus 33(e8):1-10, https://doi.org/10.2192/URSUS-D-21-00002.2",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily camera-trap detection (1) / non-detection (0) of Asiatic black bear at 34 camera sites in Rupi Bhaba Wildlife Sanctuary (May-July 2019, up to 49 days) and 33 sites in Daranghati Wildlife Sanctuary (May-July 2018, up to 40 days), Himachal Pradesh, India, from the Wildlife Institute of India survey used to estimate population density with a spatial presence-absence model. Occasions are camera-relative days (day 1 = first deployment day); a camera's history ends when it stopped operating. 58 detections at 27 cameras in 2,326 camera-days.",
+  "samplingProtocol": "Camera traps at fixed sites, one detection/non-detection record per camera per 24-hour period, May-July; cameras in two protected areas sampled in different years.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "1 day",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Rupi Bhaba Wildlife Sanctuary and Daranghati Wildlife Sanctuary, Himachal Pradesh, Indian Himalaya (no coordinates deposited)",
+  "temporalCoverage": "2018-05/2019-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit (IUCN VU taxon)"
+  },
+  "notes": "cluster_id = protected area (RB = Rupi Bhaba, surveyed 2019; DH = Daranghati, surveyed 2018), also unit_area and unit_year; the paper analysed the areas separately. Site numbers repeat across areas and are prefixed with the area code. Day 1 is each camera's first deployment day, not a calendar date, so there is no date column. Survey years come from the paper's abstract; the deposit has no dates.",
+  "notShipped": [],
+  "summary": {
+    "n_rows": 2326,
+    "n_units": 67,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 49,
+    "n_surveys": 2326,
+    "y_values": "0,1",
+    "prop_zero": 0.975
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_area", "unit_year"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bhattacharya_2022_himachal_bear_occ.R",
+  "buildDate": "2026-11-01"
+}

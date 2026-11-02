@@ -1,0 +1,57 @@
+{
+  "table": "valenzuela_2018_neltume_rhidar_rd",
+  "title": "Robust-design search-encounter capture histories with capture coordinates of 311 Southern Darwin's frogs at two plots near Neltume, Chile, 2014-2017",
+  "creator": "Valenzuela-Sánchez, Andrés",
+  "pubDate": "2018",
+  "doi": "10.5281/zenodo.1327549",
+  "sourceURL": "https://doi.org/10.5281/zenodo.1327549",
+  "citation": "Valenzuela-Sánchez, A. (2018). Spatial capture-recapture data of Darwin's frogs captured between 2014-2017 [Data set]. Zenodo. https://doi.org/10.5281/zenodo.1327549",
+  "relatedWorks": [
+    "Valenzuela-Sánchez, A. et al. (2017). Cryptic disease-induced mortality may cause host extinction in an apparently stable host-parasite system. Proc. R. Soc. B 284, 20171176. doi:10.1098/rspb.2017.1176",
+    "Valenzuela-Sánchez, A. et al. (2022). Interpopulation differences in male reproductive effort drive the population dynamics of a host exposed to an emerging fungal pathogen. J. Anim. Ecol. 91, 308-319. doi:10.1111/1365-2656.13603"
+  ],
+  "intellectualRights": {
+    "spdx": "CC-BY-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  "abstract": "Search-encounter capture-recapture of Southern Darwin's frogs (Rhinoderma darwinii) at two plots (HUI1, HUI2) in the Huilo Huilo reserve near Neltume, southern Chile, 2014-2017, under Pollock's robust design: 16 quarterly primary periods, nine of them visited, each of four consecutive capture days. y = 1 if the frog was captured on that day. The location of each capture in plot-local metres (obs_x_m, obs_y_m) and the frog's snout-vent length in the primary period of capture (obs_svl_mm) are carried on the capture rows, so the spatial Cormack-Jolly-Seber model the authors fitted, and non-spatial robust-design models, can be refit. No geographic coordinates, dates or sex are deposited.",
+  "samplingProtocol": "Visual search of fixed plots by hand on four consecutive days per primary period, frogs individually identified (photo-identification of ventral pattern), capture location recorded in plot coordinates (m), snout-vent length measured; primary periods three months apart.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "A column (secondary occasion) with at least one capture is a surveyed occasion; the seven primary periods whose four columns are all NA in every row (2, 6, 10, 11, 13, 14, 15) were not visited and have no rows, following the record's sibling (zenodo.1185403: 'we did not visit the populations during all these periods'). Every secondary of a visited primary has captures at both plots.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: four consecutive capture days per quarterly primary period; open between primaries)",
+  "occasionCodes": {
+    "1": "capture day 1 of the primary period",
+    "2": "day 2",
+    "3": "day 3",
+    "4": "day 4"
+  },
+  "crs": "local: plot-local metres, origin not deposited",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no geographic coordinates: capture locations are plot-local metres with no deposited origin, so an IUCN EN species is not located by this table"
+  },
+  "geographicCoverage": "Two plots (HUI1, HUI2) in the Huilo Huilo Biological Reserve near Neltume, Los Ríos Region, Chile (c. 39.8 S, 71.9 W at 0.1 degree; no coordinates deposited)",
+  "temporalCoverage": "2014/2017",
+  "designNote": "Search-encounter SCR without fixed detectors: there is no trap key or __traps table; the capture coordinates are observation covariates on the detection rows (design_landscape.md: SCR family, detector-less variant).",
+  "notes": "period is the primary-period index in the file (1-16, quarterly), so gaps between the nine visited periods are real time (months_after_first_primary in __periods); the calendar of period 1 is not deposited. Six cells have a coordinate in one of x.txt / y.txt and NA in the other (frogs 10 and 24, primary 5 secondaries 3-4; frogs 3 and 27, primary 7 secondary 3): counted as captures with the missing coordinate NA. svl.txt writes the SVL on all four secondaries of a captured primary; it is shipped on the capture rows only. Three captured frog-primaries have no SVL (frogs 10 and 27 above, G251b in primary 16). Frog codes are the deposit's (integers and codes such as I275, G251b).",
+  "notShipped": [],
+  "summary": {
+    "n_rows": 11196,
+    "n_units": 311,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 4,
+    "n_surveys": 11196,
+    "y_values": "0,1",
+    "prop_zero": 0.908
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_x_m", "obs_y_m", "obs_svl_mm"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/valenzuela_2018_neltume_rhidar_rd.R",
+  "buildDate": "2026-11-01"
+}

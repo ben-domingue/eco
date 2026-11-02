@@ -1,0 +1,45 @@
+{
+  "table": "knape_2018_shoveler_count",
+  "title": "Northern shoveler repeated counts at 50 Swedish wetlands x 10 visits (Knape et al. 2018)",
+  "creator": "Knape, Jonas; Berg, Ake; Part, Tomas",
+  "pubDate": "2018",
+  "sourceURL": "https://doi.org/10.5281/zenodo.1303825",
+  "citation": "Knape, J., Arlt, D., Barraquand, F., Berg, A., Chevalier, M., Part, T., Ruete, A. & Zmihorski, M. (2018). Sensitivity of binomial N-mixture models to overdispersion: the importance of assessing model fit. Methods in Ecology and Evolution 9(10), 2102-2114. https://doi.org/10.1111/2041-210X.13062. Data: Zenodo https://doi.org/10.5281/zenodo.1303825 (CC BY 4.0).",
+  "paperDOI": "10.1111/2041-210X.13062",
+  "dataDOI": "10.5281/zenodo.1303825",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "The N-mixture case study of Knape et al. (2018): northern shoveler counts on up to 10 visits to each of 50 wetlands in southern and east-central Sweden within one breeding season (Julian days 124-158), with wetland water area, reed cover and RT90 northing as site covariates and the Julian day of each visit. 481 of 500 site-visits were surveyed.",
+  "samplingProtocol": "Repeated counts of northern shovelers at wetlands, up to 10 visits per wetland within one season; protocol details (what was counted, visit duration) are in the paper, which the deposit does not restate.",
+  "samplingProtocolCode": "site_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Southern to east-central Sweden (RT90 northings 6.18-6.71 million m); no eastings or site names deposited",
+  "temporalCoverage": "one breeding season, Julian days 124-158; the year is not stated in the deposit",
+  "coordinatesCoarsened": null,
+  "covariateNote": "unit_water_ha = wetland water area (ha); unit_reedcover_frac = share of wetland area covered by reeds (0-1; the record calls it a percentage); unit_rt90_northing_m = northing in the Swedish RT90 grid, a single axis and not a coordinate pair. obs_julian_day is the day of year of the visit; one surveyed cell (site 12, visit 5) has no date and carries NA. Visit columns are labels: within a site the dates are not in calendar order.",
+  "notes": "Columns in count.csv and date.csv are visit labels 1-10, kept as occasion; order visits by obs_julian_day for a time-ordered analysis. Six cells have a date but no count and are treated as not surveyed. The same data are bundled as nmixgof::shoveler.",
+  "notShipped": {
+    "none": "every deposited value is shipped"
+  },
+  "summary": {
+    "n_rows": 481,
+    "n_units": 50,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 10,
+    "n_surveys": 481,
+    "y_values": "0-20 (20 distinct)",
+    "prop_zero": 0.453
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_water_ha", "unit_reedcover_frac", "unit_rt90_northing_m", "obs_julian_day"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/knape_2018_shoveler_count.R",
+  "buildDate": "2026-11-01"
+}

@@ -1,0 +1,51 @@
+{
+  "table": "doser_2022_hbef_trends_dynocc",
+  "title": "Hubbard Brook Valleywide Bird Survey 2010-2018: detection/non-detection of 12 foliage-gleaning species on 3 replicate point counts at 373 plots (spOccupancy::hbefTrends)",
+  "creator": "Rodenhouse, Nicholas L.; Sillett, T. Scott (Hubbard Brook Valleywide Bird Survey); Doser, Jeffrey W. (spOccupancy subset)",
+  "pubDate": "2022",
+  "sourceURL": "https://cran.r-project.org/package=spOccupancy",
+  "citation": "Doser, J. W., Leuenberger, W., Sillett, T. S., Hallworth, M. T. & Zipkin, E. F. (2022). Integrated community occupancy models: A framework to assess occurrence and biodiversity dynamics using multiple data sources. Methods in Ecology and Evolution 13, 919-932. https://doi.org/10.1111/2041-210X.13811. Data: spOccupancy::hbefTrends (Doser, Finley, Kery & Zipkin 2022, MEE 13, 1670-1678, https://doi.org/10.1111/2041-210X.13897), from Rodenhouse, N. & Sillett, S. (2019) Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016 (ongoing) ver 3, Environmental Data Initiative, https://doi.org/10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217.",
+  "paperDOI": "10.1111/2041-210X.13811",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "Textbook dynamic community occupancy dataset: 12 foliage-gleaning songbirds detected or not on up to three 10-minute, 100 m radius point counts per year at 373 plots in the Hubbard Brook Experimental Forest, New Hampshire, 2010-2018, with plot elevation and coordinates, survey day of year and time of day. The spOccupancy package's hbef2015 object is the 2015 slice of this array (period 6) and is not shipped separately.",
+  "samplingProtocol": "10-minute point counts with a 100 m detection radius, up to three replicates per plot per breeding season (late May to early July); species detection/non-detection per count.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period",
+  "geographicCoverage": "Hubbard Brook Experimental Forest, White Mountains, New Hampshire, USA (373 plots on a valleywide grid)",
+  "temporalCoverage": "2010/2018",
+  "crs": "EPSG:4269 (NAD83) UTM zone 19N as published in unit_utm19_*; unit_decimalLatitude/Longitude converted in-script, NAD83 ~ WGS84",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published in spOccupancy (plot coordinates to the metre); common species, none IUCN CR/EN/VU"
+  },
+  "effortColumn": null,
+  "notes": "period = year index (2010 = 1); occasion = replicate within year. 45 plot-year-replicates have a survey day and time but no detection data in the package array and are not surveyed here. Site ids are the survey's plot numbers (1-400, 27 unused). hbef2015 (the package's single-season example) is identical to period 6 of this table.",
+  "notShipped": {
+    "hbef2015": "the package's 2015 single-season object: identical to the 2015 slice of hbefTrends (asserted), so filter period = 6 instead of a duplicate table",
+    "hbefElev": "a 46,090-cell elevation grid for prediction, not detection data",
+    "site.effect": "an integer site index",
+    "covariate_only_cells": "45 plot-year-replicates with day and time but NA detections"
+  },
+  "summary": {
+    "n_rows": 105240,
+    "n_units": 373,
+    "n_taxa": 12,
+    "n_periods": 9,
+    "n_occasions": 3,
+    "n_surveys": 8770,
+    "y_values": "0,1",
+    "prop_zero": 0.803
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_utm19_easting_m", "unit_utm19_northing_m", "obs_day_of_year", "obs_time_of_day_min"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/doser_2022_hbef_trends_dynocc.R",
+  "buildDate": "2026-11-01"
+}

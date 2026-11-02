@@ -1,0 +1,273 @@
+<title>Occupancy Across the Corpus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (68ch) for prose, charts break out to 960px; field-report register, data in mono. */
+:root{
+  --bg:#f7f6f2; --surface:#fffefb; --fg:#1f2320; --fg2:#565b55; --fg3:#848a82; --rule:#dcdbd3; --rule2:#ebeae3;
+  --psi:#2a78d6; --naive:#eb6834; --det:#1baf7a; --unstable:#9a9f97; --ci:#2a78d6;
+  --font-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#17191a; --surface:#1f2224; --fg:#ecebe6; --fg2:#b8bbb3; --fg3:#858a84; --rule:#33373a; --rule2:#2a2d30;
+  --psi:#3987e5; --naive:#d95926; --det:#199e70; --unstable:#6f746e; --ci:#3987e5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17191a; --surface:#1f2224; --fg:#ecebe6; --fg2:#b8bbb3; --fg3:#858a84; --rule:#33373a; --rule2:#2a2d30;
+  --psi:#3987e5; --naive:#d95926; --det:#199e70; --unstable:#6f746e; --ci:#3987e5; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:960px;margin:0 auto}
+.prose{max-width:68ch}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);letter-spacing:-0.01em}
+h2{font-size:1.6rem;margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h3{font-size:1.1rem;font-family:var(--font-body);font-weight:600;margin-top:1.6rem}
+p{margin:0.8rem 0}
+header{padding-block:3rem 1rem}
+.eyebrow{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--fg2)}
+.lede{font-size:1.15rem;color:var(--fg2);max-width:60ch}
+.model{font-family:var(--font-mono);font-size:0.95rem;background:var(--surface);border:1px solid var(--rule);padding:0.9rem 1.1rem;margin:1.2rem 0;max-width:68ch;overflow-x:auto}
+.model b{color:var(--fg);font-weight:500}
+.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1.4rem;font-size:0.85rem;color:var(--fg2);margin:1rem 0 0.4rem}
+.legend span{display:inline-flex;align-items:center;gap:0.45rem}
+.sw{width:10px;height:10px;border-radius:50%;display:inline-block}
+.sw.line{width:18px;height:2px;border-radius:0}
+.sw.hollow{background:none;border:1.5px solid var(--unstable)}
+.chart{position:relative;margin:0.5rem 0 1rem}
+.chart svg{display:block;width:100%;height:auto;max-width:100%;font-family:var(--font-body)}
+.chart text{fill:var(--fg2);font-size:12px}
+.chart .lab{fill:var(--fg);font-size:12.5px}
+.chart .grp{fill:var(--fg);font-size:12px;font-weight:600;font-family:var(--font-mono);letter-spacing:0.04em}
+.chart .tick{stroke:var(--rule2)}
+.chart .axis{stroke:var(--rule)}
+.chart .one{stroke:var(--fg3);stroke-dasharray:3 4}
+.chart .hit{fill:transparent;cursor:default}
+.tip{position:absolute;pointer-events:none;background:var(--surface);color:var(--fg);border:1px solid var(--rule);
+  padding:0.45rem 0.65rem;font-size:0.8rem;line-height:1.4;border-radius:3px;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:260px;display:none;z-index:5}
+.tip b{font-weight:600}
+.tip .num{color:var(--fg2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem 1.6rem;margin:0.6rem 0}
+.grid>div{min-width:0}
+.panel-title{font-size:0.9rem;font-weight:600;margin:0 0 0.2rem}
+.panel-sub{font-size:0.8rem;color:var(--fg2);margin:0 0 0.3rem}
+table{border-collapse:collapse;width:100%;font-size:0.85rem}
+.tbl{overflow-x:auto;margin:0.8rem 0}
+th,td{text-align:left;padding:0.35rem 0.6rem;border-bottom:1px solid var(--rule2);vertical-align:top}
+th{font-weight:600;color:var(--fg2);font-size:0.75rem;letter-spacing:0.05em;text-transform:uppercase;border-bottom:1px solid var(--rule)}
+td.num,th.num{text-align:right}
+tr.unstable td{color:var(--fg3)}
+details{margin:1rem 0}
+summary{cursor:pointer;font-weight:600;color:var(--fg)}
+summary:focus-visible,a:focus-visible{outline:2px solid var(--psi);outline-offset:2px}
+.note{font-size:0.9rem;color:var(--fg2);border-left:2px solid var(--rule);padding-left:1rem;margin:1rem 0}
+.sources li{margin:0.5rem 0;font-size:0.9rem}
+.sources .num{color:var(--fg2)}
+a{color:var(--psi)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0}
+.stat{border-top:2px solid var(--fg);padding-top:0.5rem}
+.stat .v{font-family:var(--font-display);font-size:2rem;font-weight:500;line-height:1}
+.stat .k{font-size:0.8rem;color:var(--fg2);margin-top:0.3rem}
+/* dumbbell as HTML rows */
+.db{margin:0.6rem 0 1.2rem}
+.db-group{margin:1.6rem 0 0}
+.db-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0.2rem 1rem;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:0.3rem;margin-bottom:0.2rem}
+.db-head .t{font-weight:600}
+.db-head .d{font-size:0.8rem;color:var(--fg2);font-family:var(--font-mono)}
+.db-row{display:grid;grid-template-columns:200px minmax(200px,1fr) 110px;gap:0 1rem;align-items:center;min-height:34px;border-bottom:1px solid var(--rule2);position:relative}
+.db-row:hover{background:var(--surface)}
+.db-row .lab{font-size:0.9rem;line-height:1.25;min-width:0}
+.db-row .lab i{display:block;color:var(--fg3);font-size:0.75rem;font-style:normal;font-family:var(--font-mono)}
+.db-row svg{display:block;width:100%;height:34px;overflow:visible}
+.db-row .pcell{display:flex;align-items:center;gap:0.5rem;font-size:0.85rem}
+.db-row .pcell .bar{flex:1;height:8px;background:var(--rule2);border-radius:2px;overflow:hidden;min-width:40px}
+.db-row .pcell .bar i{display:block;height:100%;background:var(--det);border-radius:2px}
+.db-axis{display:grid;grid-template-columns:200px minmax(200px,1fr) 110px;gap:0 1rem;font-size:0.75rem;color:var(--fg2);font-family:var(--font-mono)}
+.db-axis .ax{display:flex;justify-content:space-between;padding:0 6px}
+.db-axis .pl{text-align:left}
+@media (max-width:640px){
+  .db-row,.db-axis{grid-template-columns:1fr 90px;gap:0 0.6rem}
+  .db-row .lab{grid-column:1/-1;padding-top:0.35rem}
+  .db-axis .lab{display:none}
+}
+@media (prefers-reduced-motion: no-preference){.tip{transition:opacity .08s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">eco corpus · single-season and dynamic occupancy · fitted 2026-11-01</div>
+  <h1>Occupancy Across the Corpus</h1>
+  <p class="lede">The same constant-parameter occupancy model fitted to every detection table in the eco warehouse that has repeated visits, from Swiss breeding-bird quadrats to eDNA filters and camera traps. Each panel shows what the model adds to the naive share of sites with a detection.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="prose">
+<h2>The model</h2>
+<p>MacKenzie and colleagues' single-season occupancy model treats each unit as occupied with probability ψ and, if occupied, detected on each visit with probability p. The unit is a quadrat, pond, camera station or eDNA sampling site, depending on the table. A unit with no detections across J visits is either unoccupied or occupied and missed every time, and the repeated visits let the two be separated.</p>
+<div class="model"><b>z<sub>i</sub></b> ~ Bernoulli(<b>ψ</b>)<br><b>y<sub>ij</sub></b> | z<sub>i</sub> ~ Bernoulli(z<sub>i</sub> · <b>p</b>)<br><span style="color:var(--fg2)">i = unit, j = visit; ψ(.)p(.), no covariates; unmarked::occu</span></div>
+<p>Every fit here is the intercept-only version, ψ(.)p(.), so the estimates are directly comparable across tables. Count tables were collapsed to detection (y > 0) first. The naive estimate is the share of units with at least one detection; it can only fall below ψ̂, and the gap between them is what imperfect detection costs. The multi-season tables at the end use the Dynamic extension, with colonisation γ and extinction ε between primary periods.</p>
+</div>
+
+<h2>Single-season fits</h2>
+<div class="prose"><p>Twenty-six species across nine tables, grouped by table. In each row the orange dot is the naive share of units with a detection, the blue dot is ψ̂ with its 95% Wald interval, and the grey link between them is the correction the model makes. The green bar is per-visit detection p̂. The link is short wherever p̂ is high or visits are many, and longest for the shy camera-trap species.</p></div>
+<div class="legend"><span><i class="sw" style="background:var(--naive)"></i>naive occupancy</span><span><i class="sw" style="background:var(--psi)"></i>ψ̂ with 95% interval</span><span><i class="sw" style="background:var(--det);border-radius:2px;width:14px"></i>p̂ per visit</span></div>
+<div class="db" id="dumbbell"></div>
+<div class="prose">
+<p>Three things stand out. The Swiss quadrat surveys and the eDNA field samples have high detection per visit, so three visits are enough and naive occupancy is nearly unbiased. The pond amphibians sit in the middle: p̂ between 0.3 and 0.6 pushes ψ̂ one third to two thirds higher than naive for the rarer species, with wide intervals from 100 ponds. The camera-trap tables show the classic trade: per-occasion detection is low, but 10 to 46 active occasions per station recover most of it, except for the Baird's tapir, whose 22 cameras and 3 percent daily detection leave ψ̂ at 0.38 with an interval spanning most of the unit line.</p>
+</div>
+
+<h2>A whole community at once: Swiss MHB 2014</h2>
+<div class="prose"><p>The AHM1 chapter 11 dataset. 266 quadrats, three territory-mapping visits, 158 species. Each point is one species' own ψ(.)p(.) fit. The dashed line is naive = ψ̂, the floor of the model; points lift off it as detection falls. Hover for the species.</p></div>
+<div class="legend"><span><i class="sw" style="background:var(--psi)"></i>stable fit</span><span><i class="sw hollow"></i>unstable (ψ̂ at a boundary or SE above 0.3)</span></div>
+<div class="grid">
+  <div><p class="panel-title">Estimated against naive occupancy</p><p class="panel-sub">124 species with a stable fit, 21 unstable; 13 never recorded are not shown</p><div class="chart" id="mhb-psi"></div></div>
+  <div><p class="panel-title">Per-visit detection against naive occupancy</p><p class="panel-sub">p̂ from the same fits</p><div class="chart" id="mhb-p"></div></div>
+</div>
+<div class="prose">
+<p>Median p̂ across the stable fits is 0.67, so three visits give a cumulative detection near 0.96 and most species sit on the line. The ones that lift off have p̂ below 0.4: canopy and nocturnal species, and birds recorded as flyovers. The unstable fits are all species seen in one to eleven quadrats. With that little data the likelihood cannot tell a widespread, almost never detected species from a rare, reliably detected one, and ψ̂ runs to 1 or stays at naive with p̂ at 1. That is a property of the data, not a convergence failure, and it is the reason community models share detection across species.</p>
+</div>
+
+<h2>Dynamic occupancy</h2>
+<div class="prose"><p>Three tables carry repeated seasons. The constant Dynamic model ψ<sub>1</sub>(.)γ(.)ε(.)p(.) was fitted to each species, and the line is the smoothed occupancy trajectory it implies. Orange dots are the naive share of units with a detection in each period.</p></div>
+<div class="legend"><span><i class="sw line" style="background:var(--psi)"></i>smoothed ψ̂<sub>t</sub></span><span><i class="sw" style="background:var(--naive)"></i>naive occupancy</span></div>
+<div class="grid" id="dyn-main"></div>
+<div class="prose"><p>Six fish from the New River basin, chosen for mid-range naive occupancy among the 74 species in the table. Detection records compiled from 1937 to 2014 into 26 three-year periods; the number of collections varies enormously between periods, which the constant model ignores.</p></div>
+<div class="grid" id="dyn-fish"></div>
+<div class="tbl" id="dyn-table"></div>
+<div class="prose">
+<p>The crossbill is the textbook case and behaves like one: ψ<sub>1</sub> of 0.31, turnover of 12 percent colonisation and 17 percent extinction per year, and detection of 0.52 per visit, so the smoothed line tracks naive with a roughly 0.05 lift. The marten fit should not be trusted as a trend. Extinction went to zero and the smoothed line climbs to 0.88 because only 26 of 197 stations were active in later seasons and the survivors were the good ones. That is a design artefact the constant model cannot see. The fish show how a long sparse series behaves under a constant model: colonisation and extinction come out tiny, so the trajectory is a slow monotone drift that smooths over the large swings in naive occupancy caused by changing collection effort.</p>
+</div>
+
+<h2>Every fit</h2>
+<details><summary>Single-season estimates, 26 species</summary><div class="tbl" id="single-table"></div></details>
+<details><summary>Swiss MHB 2014, 145 species with detections</summary><div class="tbl" id="mhb-table"></div></details>
+
+<h2>Method and caveats</h2>
+<div class="prose">
+<p>Tables were read from the committed output of the eco repository and converted with the package's eco_to_umf function, then fitted with unmarked 1.x. Dynamic fits with unequal occasions per period were padded with missing values to the maximum. Status is "unstable" when ψ̂ exceeds 0.995 or its standard error exceeds 0.3. The marten table has no period covariates, so station activity could not be modelled. Nothing here uses covariates; every table ships several, and the source papers fit richer models.</p>
+<p class="note">For the two Smith tables the units are not independent in the way the model assumes. The eDNA table has three filter samples per site and the qPCR table has three replicates per filter, so the authors fit a multi-scale model. The constant fits here treat each level as plain repeated visits and are shown for comparison only.</p>
+</div>
+
+<h2>Sources</h2>
+<ol class="sources" id="sources"></ol>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const D = __DATA__;
+const fmt = (x, d=2) => x==null||isNaN(x) ? '–' : Number(x).toFixed(d);
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, attrs={}){ const t=el('text',{x,y,...attrs},parent); t.textContent=s; return t; }
+const tip = document.getElementById('tip');
+function bindTip(node, container, html){
+  const show = ev => { if (tip.parentNode !== container) container.appendChild(tip); tip.innerHTML = html; tip.style.display='block';
+    const r = container.getBoundingClientRect(); let x = ev.clientX - r.left + 14, y = ev.clientY - r.top + 14;
+    if (x + 270 > r.width) x = Math.max(0, ev.clientX - r.left - 274); tip.style.left = x+'px'; tip.style.top = y+'px'; };
+  node.addEventListener('mousemove', show); node.addEventListener('touchstart', e => show(e.touches[0]), {passive:true});
+  node.addEventListener('mouseleave', () => tip.style.display='none');
+}
+function placeTip(container){ container.style.position='relative'; }
+
+// ---- stats
+(function(){
+  const s = D.single, m = D.mhb.filter(r=>r.status==='ok');
+  const nFits = s.length + D.mhb.filter(r=>r.status!=='no detections').length + D.dyn.length;
+  const tables = new Set([...s.map(r=>r.table), 'kery_2014_mhb_comm', ...D.dyn.map(r=>r.table)]).size;
+  const units = D.tables.length ? null : null;
+  const html = [[tables,'tables'],[nFits,'species × table fits'],[s.filter(r=>r.status==='ok').length + m.length,'stable single-season fits'],[D.dyn.length,'dynamic fits']]
+    .map(([v,k])=>`<div class="stat"><div class="v num">${v}</div><div class="k">${k}</div></div>`).join('');
+  document.getElementById('stats').innerHTML = html;
+})();
+
+// ---- dumbbell (HTML rows, SVG strip per row)
+(function(){
+  const c = document.getElementById('dumbbell'); const rows = D.single;
+  const groups = []; rows.forEach(r => { let g = groups.find(x=>x.table===r.table); if(!g){ g={table:r.table, short:r.short, rows:[]}; groups.push(g);} g.rows.push(r); });
+  const W=600, H=34, pad=8, cy=H/2, x = v => pad + v*(W-2*pad);
+  groups.forEach(g => {
+    const r0 = g.rows[0];
+    const gd = document.createElement('div'); gd.className='db-group'; c.appendChild(gd);
+    gd.innerHTML = `<div class="db-head"><span class="t">${g.short}</span><span class="d">${r0.n_units} units · ${r0.n_occ} occasions · ${fmt(r0.mean_visits,1)} visits per unit</span></div>
+      <div class="db-axis"><span class="lab"></span><span class="ax"><span>0</span><span>0.25</span><span>0.5</span><span>0.75</span><span>1</span></span><span class="pl">p̂ per visit</span></div>`;
+    g.rows.forEach(r => {
+      const row = document.createElement('div'); row.className='db-row'; gd.appendChild(row);
+      const lab = document.createElement('div'); lab.className='lab'; lab.innerHTML = `${r.label}<i>${r.sci}</i>`; row.appendChild(lab);
+      const svg = el('svg',{viewBox:`0 0 ${W} ${H}`,preserveAspectRatio:'none',role:'img','aria-label':`${r.label}: naive ${fmt(r.naive)}, estimated ${fmt(r.psi)}`},row);
+      [0,0.25,0.5,0.75,1].forEach(v=>el('line',{x1:x(v),x2:x(v),y1:4,y2:H-4,class:'tick','vector-effect':'non-scaling-stroke'},svg));
+      const lo = Math.max(0,r.psi-1.96*r.psi_se), hi = Math.min(1,r.psi+1.96*r.psi_se);
+      el('line',{x1:x(lo),x2:x(hi),y1:cy,y2:cy,stroke:'var(--ci)','stroke-width':6,'stroke-linecap':'round',opacity:0.3,'vector-effect':'non-scaling-stroke'},svg);
+      el('line',{x1:x(r.naive),x2:x(r.psi),y1:cy,y2:cy,stroke:'var(--fg3)','stroke-width':2,'vector-effect':'non-scaling-stroke'},svg);
+      // dots as HTML-sized circles: use rx/ry so they stay round under preserveAspectRatio=none
+      const dot = (v,fill) => { const e=el('ellipse',{cx:x(v),cy,rx:6,ry:6,fill,stroke:'var(--bg)','stroke-width':2,'vector-effect':'non-scaling-stroke'},svg); return e; };
+      dot(r.naive,'var(--naive)'); dot(r.psi,'var(--psi)');
+      const pc = document.createElement('div'); pc.className='pcell'; pc.innerHTML = `<span class="bar"><i style="width:${Math.max(2,r.p*100)}%"></i></span><span class="num">${fmt(r.p)}</span>`; row.appendChild(pc);
+      bindTip(row,c,`<b>${r.label}</b> <span class="num">${r.sci}</span><br>${r.short}<br>naive ${fmt(r.naive)} · ψ̂ ${fmt(r.psi)} (SE ${fmt(r.psi_se)}) · interval ${fmt(lo)} to ${fmt(hi)}<br>p̂ ${fmt(r.p)} (SE ${fmt(r.p_se)}) · ${r.n_det_units} of ${r.n_units} units with detections`);
+    });
+  });
+  // fix ellipse aspect: svg is stretched horizontally, so scale rx by the stretch factor
+  function fixDots(){ c.querySelectorAll('svg').forEach(s=>{ const k = s.getBoundingClientRect().width / W; if(!k) return; s.querySelectorAll('ellipse').forEach(e=>e.setAttribute('rx', (6/k).toFixed(2))); }); }
+  fixDots(); window.addEventListener('resize', fixDots);
+  placeTip(c);
+})();
+
+// ---- MHB scatters
+function scatter(id, yKey, yLab, oneLine){
+  const c = document.getElementById(id); const rows = D.mhb.filter(r=>r.status!=='no detections');
+  const W=440,H=400,ml=46,mr=14,mt=14,mb=42; const xw=W-ml-mr, yh=H-mt-mb;
+  const svg = el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':yLab+' against naive occupancy, Swiss MHB 2014'},c);
+  const x=v=>ml+v*xw, y=v=>mt+(1-v)*yh;
+  [0,0.25,0.5,0.75,1].forEach(v=>{ el('line',{x1:x(v),x2:x(v),y1:mt,y2:mt+yh,class:'tick'},svg); el('line',{x1:ml,x2:ml+xw,y1:y(v),y2:y(v),class:'tick'},svg);
+    txt(svg,x(v),H-mb+16,String(v),{'text-anchor':'middle'}); txt(svg,ml-6,y(v)+4,String(v),{'text-anchor':'end'}); });
+  if(oneLine) el('line',{x1:x(0),x2:x(1),y1:y(0),y2:y(1),class:'one'},svg);
+  txt(svg,ml+xw/2,H-6,'naive occupancy (share of 266 quadrats with a detection)',{'text-anchor':'middle'});
+  txt(svg,12,mt+yh/2,yLab,{'text-anchor':'middle',transform:`rotate(-90 12 ${mt+yh/2})`});
+  rows.sort((a,b)=>(a.status==='ok')-(b.status==='ok')).forEach(r=>{
+    const ok = r.status==='ok'; const cy = y(Math.min(1,r[yKey]));
+    const p = el('circle',{cx:x(r.naive),cy,r:ok?4.5:4,fill:ok?'var(--psi)':'none',stroke:ok?'var(--bg)':'var(--unstable)','stroke-width':1.5,opacity:ok?0.85:0.9},svg);
+    const hit = el('circle',{cx:x(r.naive),cy,r:10,class:'hit'},svg);
+    hit.addEventListener('mouseenter',()=>{p.setAttribute('r',ok?7:6.5);p.setAttribute('opacity',1);}); hit.addEventListener('mouseleave',()=>{p.setAttribute('r',ok?4.5:4);p.setAttribute('opacity',ok?0.85:0.9);});
+    bindTip(hit,c,`<b>${r.common||r.sci}</b> <span class="num">${r.sci}</span><br>naive ${fmt(r.naive,3)} · ψ̂ ${fmt(r.psi,3)} (SE ${fmt(r.psi_se)}) · p̂ ${fmt(r.p,3)}<br>${r.n_det_units} quadrats with detections${ok?'':' · unstable'}`);
+  });
+  placeTip(c);
+}
+scatter('mhb-psi','psi','estimated occupancy ψ̂',true);
+scatter('mhb-p','p','per-visit detection p̂',false);
+
+// ---- dynamic small multiples
+function dynPanel(parent, d, opts={}){
+  const wrap = document.createElement('div'); parent.appendChild(wrap);
+  wrap.innerHTML = `<p class="panel-title">${d.sci}</p><p class="panel-sub">${d.short} · ${d.n_units} units · ${d.n_periods} periods × ${d.J} occasions · ψ₁ ${fmt(d.psi1)} γ ${fmt(d.gamma)} ε ${fmt(d.eps)} p ${fmt(d.p)}</p>`;
+  const c = document.createElement('div'); c.className='chart'; wrap.appendChild(c);
+  const W=440,H=240,ml=36,mr=12,mt=10,mb=34; const xw=W-ml-mr,yh=H-mt-mb; const n=d.smoothed.length;
+  const svg = el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Smoothed and naive occupancy by period for '+d.sci},c);
+  const x=i=>ml+(n===1?0:i/(n-1))*xw, y=v=>mt+(1-v)*yh;
+  [0,0.5,1].forEach(v=>{ el('line',{x1:ml,x2:ml+xw,y1:y(v),y2:y(v),class:'tick'},svg); txt(svg,ml-6,y(v)+4,String(v),{'text-anchor':'end'}); });
+  const step = Math.max(1, Math.ceil(n/ (opts.dense?6:9)));
+  d.labels.forEach((l,i)=>{ if(i%step===0||i===n-1) txt(svg,x(i),H-mb+16,l,{'text-anchor':'middle','font-size':'11px'}); });
+  el('line',{x1:ml,x2:ml+xw,y1:y(0),y2:y(0),class:'axis'},svg);
+  const path = d.smoothed.map((v,i)=>(i?'L':'M')+x(i)+' '+y(v)).join(' ');
+  el('path',{d:path,fill:'none',stroke:'var(--psi)','stroke-width':2,'stroke-linejoin':'round'},svg);
+  d.naive.forEach((v,i)=>{ if(v==null) return; el('circle',{cx:x(i),cy:y(v),r:3.5,fill:'var(--naive)',stroke:'var(--bg)','stroke-width':1.2},svg); });
+  d.smoothed.forEach((v,i)=>{ const hit = el('rect',{x:x(i)-xw/n/2,y:mt,width:xw/n,height:yh,class:'hit'},svg);
+    bindTip(hit,c,`<b>${d.labels[i]}</b>${d.active?` · ${d.active[i]} stations active`:''}<br>smoothed ψ̂ ${fmt(v,3)}<br>naive ${d.naive[i]==null?'no surveys':fmt(d.naive[i],3)}`); });
+  placeTip(c);
+}
+D.dyn.filter(d=>d.table!=='frimpong_2017_newriver_dynocc').forEach(d=>dynPanel(document.getElementById('dyn-main'),d));
+D.dyn.filter(d=>d.table==='frimpong_2017_newriver_dynocc').forEach(d=>dynPanel(document.getElementById('dyn-fish'),d,{dense:true}));
+
+// ---- tables
+function se(v,s){ return `${fmt(v,3)} <span style="color:var(--fg3)">±${fmt(s,3)}</span>`; }
+document.getElementById('dyn-table').innerHTML = `<table><thead><tr><th>table</th><th>species</th><th class="num">units</th><th class="num">periods</th><th class="num">ψ₁</th><th class="num">γ</th><th class="num">ε</th><th class="num">p</th></tr></thead><tbody>` +
+  D.dyn.map(d=>`<tr><td>${d.short}</td><td><i>${d.sci}</i></td><td class="num">${d.n_units}</td><td class="num">${d.n_periods}</td><td class="num">${se(d.psi1,d.psi1_se)}</td><td class="num">${se(d.gamma,d.gamma_se)}</td><td class="num">${d.eps<1e-3?'<0.001 <span style="color:var(--fg3)">boundary</span>':se(d.eps,d.eps_se)}</td><td class="num">${se(d.p,d.p_se)}</td></tr>`).join('') + '</tbody></table>';
+document.getElementById('single-table').innerHTML = `<table><thead><tr><th>table</th><th>species</th><th class="num">units</th><th class="num">occ</th><th class="num">detected at</th><th class="num">naive</th><th class="num">ψ̂</th><th class="num">p̂</th></tr></thead><tbody>` +
+  D.single.map(r=>`<tr><td>${r.short}</td><td>${r.label} <span style="color:var(--fg3)"><i>${r.sci}</i></span></td><td class="num">${r.n_units}</td><td class="num">${r.n_occ}</td><td class="num">${r.n_det_units}</td><td class="num">${fmt(r.naive,3)}</td><td class="num">${se(r.psi,r.psi_se)}</td><td class="num">${se(r.p,r.p_se)}</td></tr>`).join('') + '</tbody></table>';
+document.getElementById('mhb-table').innerHTML = `<table><thead><tr><th>species</th><th class="num">quadrats detected</th><th class="num">naive</th><th class="num">ψ̂</th><th class="num">p̂</th><th>status</th></tr></thead><tbody>` +
+  D.mhb.filter(r=>r.status!=='no detections').sort((a,b)=>b.naive-a.naive).map(r=>`<tr class="${r.status}"><td>${r.common||''} <span style="color:var(--fg3)"><i>${r.sci}</i></span></td><td class="num">${r.n_det_units}</td><td class="num">${fmt(r.naive,3)}</td><td class="num">${se(r.psi,r.psi_se)}</td><td class="num">${se(r.p,r.p_se)}</td><td>${r.status}</td></tr>`).join('') + '</tbody></table>';
+
+// ---- sources
+document.getElementById('sources').innerHTML = D.tables.map(t=>`<li><b>${t.short}</b> <span class="num">${t.table}</span><br>${t.reference}</li>`).join('');
+</script>

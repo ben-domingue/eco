@@ -1,0 +1,54 @@
+{
+  "table": "sullivan_2026_powdermill_count",
+  "title": "Breeding-season bird point counts on a 120 m grid across Powdermill Nature Reserve, Pennsylvania, 2013-2025",
+  "creator": "Sullivan, Kathryn (Carnegie Museum of Natural History)",
+  "pubDate": "2026-10-05",
+  "doi": "10.15468/23qhtm",
+  "sourceURL": "https://www.gbif.org/dataset/2b6825d6-ea5a-4d82-bd71-5176dac22250",
+  "citation": "Sullivan K (2026). Powdermill Nature Reserve Bird Point Count Surveys. Version 1.3. Carnegie Museums. Sampling event dataset https://doi.org/10.15468/23qhtm accessed via GBIF.org.",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "Ten-minute, 150 m radius point counts of all birds at the central points of a contiguous grid of 120 m blocks across Powdermill Nature Reserve (Carnegie Museum of Natural History, Rector, PA). The reserve is split into 10 sectors of 8-11 points; one sector is counted per day, twice per breeding season (late May to July). Full seasons in 2013 and 2016-2025 (95-101 points); 2014 and 2015 are partial. Published on GBIF as a Darwin Core sampling-event dataset with the Humboldt extension declaring full taxonomic scope (Aves) and abundance.",
+  "samplingProtocol": "Point count, 10 minutes, 150 m radius, time bins 3:20/6:40/10 min (2013) or 3/5/10 min (2014 onward; bins are remarks only, not shipped); each detected individual or group recorded with a count; y is the total individuals per species per count.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion (two visits within a breeding season); period = calendar year",
+  "geographicCoverage": "Powdermill Nature Reserve, Westmoreland County, Pennsylvania, USA (40.13-40.17 N, 79.29-79.25 W)",
+  "temporalCoverage": "2013-06/2025-07",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by the Carnegie Museum of Natural History for its own reserve (120 m grid); no taxon is IUCN VU or higher; 5 points have no coordinates in the source"
+  },
+  "effortColumn": null,
+  "notShipped": {
+    "time_bins": "3 time intervals per count exist only as free-text remarks; y is the 10-minute total",
+    "distance": "inner/outer circle moves are free-text remarks; the 150 m radius is the only distance field",
+    "UNWO": "90 'Piciformes sp.' records (unidentified woodpecker), not a taxon",
+    "STCA_LUWA": "Streak-crowned Antvireo (2) and Lucy's Warbler (1): Neotropical / south-western species impossible on a Pennsylvania breeding count, treated as code-mapping errors",
+    "absent_rows": "40 'Absent' rows with an empty taxon and quantity 0 (remark 'likely 0 presence counts?'), in events that also hold detections",
+    "unnamed_point": "one 2020-06-11 event with an empty locationID and no coordinates (32 records)",
+    "eventRemarks_occurrenceRemarks": "free text (sex, flyover, behaviour, data-entry notes)"
+  },
+  "notes": "YSFL (Northern Flicker intergrade, 22 records) merged into NOFL and SCJU (Slate-colored Junco, 8) into DEJU, the same species. Flyovers are kept in y because only a remark marks them. Scientific names in __taxa are the source's (partly pre-2011 nomenclature); gbifAcceptedName gives the current name. obs_cloud_cover is a 0-1 fraction although the source field is named CloudCover_Percent. obs_temp_c is NA for 24 counts (Temp=NA in the source). 2014 and 2015 are partial seasons with one visit per point.",
+  "summary": {
+    "n_rows": 231210,
+    "n_units": 101,
+    "n_taxa": 105,
+    "n_periods": 13,
+    "n_occasions": 2,
+    "n_surveys": 2202,
+    "y_values": "0-107 (30 distinct)",
+    "prop_zero": 0.914
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_lat", "unit_lon", "unit_elevation_m", "obs_temp_c", "obs_wind_beaufort", "obs_cloud_cover"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sullivan_2026_powdermill_count.R",
+  "buildDate": "2026-11-01"
+}

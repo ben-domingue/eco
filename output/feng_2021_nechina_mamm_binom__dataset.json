@@ -1,0 +1,46 @@
+{
+  "table": "feng_2021_nechina_mamm_binom",
+  "title": "Camera-trap detections of 18 mammal species at 138 stations in a cattle-grazed temperate forest, Northeast China: 14-day windows with a detection out of windows surveyed",
+  "creator": "Feng, Jia-Wei; Sun, Yi-Fei; Li, Hailong; Xiao, Yuqian; Zhang, Dandan; Smith, James L. D.; Ge, Jianping; Wang, Tian-Ming",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.2jm63xsnp",
+  "sourceURL": "https://doi.org/10.5061/dryad.2jm63xsnp",
+  "citation": "Feng, J.-W., Sun, Y.-F., Li, H., Xiao, Y., Zhang, D., Smith, J. L. D., Ge, J., & Wang, T.-M. (2021). Assessing mammal species richness and occupancy in a Northeast Asian temperate forest shared by cattle [Data set]. Dryad. https://doi.org/10.5061/dryad.2jm63xsnp",
+  "paperDOI": "10.1111/ddi.13237",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "The authors' summarised camera-trap detection matrix for a terrestrial mammal community in temperate forest along the China-Russia border, Northeast China: 138 camera stations, 22,976 trap days, 18 species used in their multi-species occupancy model (21 photographed). For each station and species the deposit gives the number of 14-day windows in which the species was detected at least once and the number of windows the station was surveyed (4-13); the window-level histories were not deposited. One row per station x species, y = windows with a detection, obs_trials = windows surveyed (responseType binomial_count). Twelve site covariates as deposited, including human and cattle detection rates at the same cameras, elevation, distances to settlement, border, road and river, NDVI, basal area and canopy transparency. No coordinates.",
+  "samplingProtocol": "Camera traps (single or paired, 'Cam') at 138 stations for 45-184 trap days each; detections summarised by the authors into 14-day windows per station (k windows surveyed, 0-k windows with a detection per species).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "one season (the whole deployment of each station, 45-184 trap days, is one closed period; the 14-day windows are collapsed into obs_trials)",
+  "geographicCoverage": "Temperate forest across the China-Russia border, Northeast China (the paper's study area; no coordinates deposited)",
+  "temporalCoverage": "not deposited: one camera-trapping season of up to 184 trap days per station; the year is in Feng et al. 2021 (doi:10.1111/ddi.13237), which the agent could not fetch",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit; Amur tiger (EN), leopard (VU, Amur subspecies CR) and Siberian musk deer (VU) are present, so none can be added"
+  },
+  "notes": "Species codes are six letters from the scientific name; the deposit's S-codes are in __taxa.taxon_sourceCode (S06, S08, S16, S18 and S21 are not in the deposit: 21 species photographed, 18 modelled). Three taxa are deposited as subspecies and the black bear at genus ('Ursus'); GBIF keys are at the species or genus level accordingly. unit_human_detection_rate and unit_cattle_detection_rate are detections of humans and cattle at the same cameras, the authors' disturbance covariates. k is not a deterministic function of trap days (7 stations have k > ceiling(Days/14)); both are shipped as deposited.",
+  "notShipped": [],
+  "summary": {
+    "n_rows": 2484,
+    "n_units": 138,
+    "n_taxa": 18,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 138,
+    "y_values": "0-12 (13 distinct)",
+    "prop_zero": 0.632
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_cam_type", "unit_trap_days", "unit_human_detection_rate", "unit_cattle_detection_rate", "unit_elev_m", "unit_dist_settlement_m", "unit_dist_border_m", "unit_dist_road_m", "unit_dist_river_m", "unit_ndvi", "unit_basal_area", "unit_canopy_transparency", "obs_trials"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/feng_2021_nechina_mamm_binom.R",
+  "buildDate": "2026-11-01"
+}

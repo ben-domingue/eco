@@ -1,0 +1,50 @@
+{
+  "table": "jhala_2024_india_tiger_binom",
+  "title": "Tiger sign-survey occupancy data for 7,183 100 km2 grid cells across India in four estimation cycles (2006, 2010, 2014, 2018): replicates with tiger sign out of replicates surveyed",
+  "creator": "Jhala, Yadvendradev; Mungi, Ninad Avinash; Gopal, Rajesh; Qureshi, Qamar",
+  "pubDate": "2024",
+  "doi": "10.5281/zenodo.13856111",
+  "sourceURL": "https://doi.org/10.5281/zenodo.13856111",
+  "citation": "Jhala, Y., Mungi, N. A., Gopal, R., & Qureshi, Q. (2024). Tiger occupancy [Data set]. Zenodo. https://doi.org/10.5281/zenodo.13856111",
+  "paperDOI": "10.1126/science.adk4827",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Occupancy survey data behind Jhala et al. (2025, Science) 'Tiger recovery amid people and poverty': for each of 7,183 100 km2 grid cells of India's tiger landscapes and each of the four All-India tiger estimation cycles (2006, 2010, 2014, 2018), the number of survey replicates with tiger sign and the number without. The replicate-level histories are not deposited, so each cell-cycle is one row with y = replicates with presence and obs_trials = replicates surveyed (responseType binomial_count); a cell-cycle with no replicates is not a row. Covariates are the authors' standardised values: eight static cell covariates (habitat area, road and rail length, human population density, agriculture and settlement area, armed conflict, cumulative threat, poverty) and five cycle-varying ones (prey, livestock and extractive-pressure encounter rates, nighttime light, forest loss over the preceding interval). No coordinates are deposited.",
+  "samplingProtocol": "Sign surveys (tiger sign on replicate walks) per 100 km2 grid cell in each All-India tiger estimation cycle; the deposit gives per cell and cycle the count of replicates with and without tiger sign (max 21 replicates). Protocol details are in the paper and the NTCA/WII status reports.",
+  "samplingProtocolCode": "sign_survey",
+  "surveyEvidence": "deposited_matrix",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "period: occupancy is closed within an estimation cycle and open between the four cycles; the replicates of a cycle are collapsed into obs_trials",
+  "geographicCoverage": "Tiger landscapes of India (7,183 grid cells of 100 km2; no coordinates deposited)",
+  "temporalCoverage": "2006/2018",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit (grid numbers only); the tiger is IUCN EN, so none can be added"
+  },
+  "notes": "Covariates are the authors' standardised values (mean 0, except unit_poverty with mean 1); the sheet gives no means or SDs, so raw values cannot be recovered. period_forest_loss for cycle 1 covers 2001-2006, later ones the preceding four-year interval. Cells unsurveyed in a cycle (566, 1,295, 600, 0) have no row for that period; every cell was surveyed in 2018.",
+  "notShipped": {
+    "y*_dpat": "distance from tiger-occupied protected area: for cycles 2010-2018 it is computed from the previous cycle's tiger survey, i.e. from this table's own detections in another period, so it is a data-derived covariate of the response and is dropped (processing guide); the 2006 column's basis is undocumented and is dropped with it",
+    "sheet cooccurrence": "29,877 25 km2 cells with standardised continuous encounter-rate indices for ~110 fauna codes and landscape indices; not detection data (no replicate structure)",
+    "header / details": "the sheet's variable dictionary, reproduced in the script header"
+  },
+  "summary": {
+    "n_rows": 26271,
+    "n_units": 7183,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 1,
+    "n_surveys": 26271,
+    "y_values": "0-21 (22 distinct)",
+    "prop_zero": 0.821
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_habitat_area", "unit_road_rail_length", "unit_human_pop_density", "unit_agriculture_area", "unit_settlement_area", "unit_armed_conflict", "unit_cumulative_threat", "unit_poverty", "period_prey_encounter_rate", "period_livestock_encounter_rate", "period_extractive_pressure_rate", "period_nighttime_light", "period_forest_loss", "obs_trials"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/jhala_2024_india_tiger_binom.R",
+  "buildDate": "2026-11-01"
+}

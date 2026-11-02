@@ -13,3 +13,9 @@ site/.quarto/
 site/data/site_stats.json
 queue/papers/
 *.egg-info/
+
+# Core tables above GitHub's 100 MB file limit are not tracked: the script rebuilds
+# them (CI runs data/run_all.R) and upload/red_up_eco.py ships them to Redivis.
+# Side tables, __dataset.json, dictionary, tags and metadata rows stay tracked.
+output/rooney_2025_snapshotusa_comm.csv
+output/lindstrom_2025_sweden_summerpoints_count.csv

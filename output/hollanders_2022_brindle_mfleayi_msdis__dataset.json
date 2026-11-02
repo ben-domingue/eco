@@ -1,0 +1,54 @@
+{
+  "table": "hollanders_2022_brindle_mfleayi_msdis",
+  "title": "Disease-structured robust-design capture histories of 116 juvenile Fleay's barred frogs with per-survey Bd qPCR outcomes, Brindle Creek, NSW",
+  "creator": "Hollanders, Matthijs",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.s7h44j19h",
+  "sourceURL": "https://doi.org/10.5061/dryad.s7h44j19h",
+  "citation": "Hollanders, M. (2022). Know what you don't know: Embracing state uncertainty in disease-structured multistate models [Dataset]. Dryad. https://doi.org/10.5061/dryad.s7h44j19h",
+  "paperDOI": "10.1111/2041-210X.13993",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Mark-recapture of juvenile Fleay's barred frogs (Mixophyes fleayi, IUCN EN) at one site, Brindle Creek, northern New South Wales: 14 weekly surveys arranged as 8 primary periods of 2 secondary surveys (two secondaries skipped), each captured frog swabbed for the amphibian chytrid fungus Batrachochytrium dendrobatidis and the swab run in up to four qPCR replicates. The deposit gives the per-run ITS gene copies; this table summarises them per capture: y = 0 not captured, 1 captured with every run negative, 2 captured with at least one positive run (the authors' observed state), with the number of runs, the number positive and the mean ITS copies as observation covariates. The authors' multievent model treats the runs as a further detection level with false positives and false negatives.",
+  "samplingProtocol": "Night-time visual-encounter surveys of a creek reach with hand capture of juvenile frogs, individual marking, and a skin swab per capture assayed by qPCR for Bd (up to 4 runs per swab); weekly surveys grouped as 8 primary periods of 2 (robust design)",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: infection state fixed within a primary period, open between; nominal interval 2 weeks)",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured, all qPCR runs Bd-negative (observed uninfected)",
+    "2": "captured, at least one qPCR run Bd-positive (observed infected)"
+  },
+  "geographicCoverage": "Brindle Creek, northern New South Wales, Australia, one site (no coordinates deposited; IUCN EN taxon)",
+  "temporalCoverage": "calendar dates not deposited: 16 weekly occasions (14 surveyed) in 8 primary periods",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit (IUCN EN taxon)"
+  },
+  "designNote": "Disease-structured multi-state capture-recapture under a robust design (period = primary, occasion = weekly secondary). The deposit's fourth level, qPCR run within swab, is summarised on each row (obs_qpcr_runs, obs_qpcr_positive, obs_its_copies_mean); the authors' multievent model uses the runs themselves to estimate false-positive and false-negative state assignment, which this table supports only through those summaries.",
+  "notes": "Cells NA before an individual's first capture are rows with y = 0 (the survey happened; asserted that every such cell precedes the first capture). Surveys (primary 4, secondary 2) and (primary 7, secondary 2) are NA for all frogs and are not rows. obs_its_copies_mean is the mean over the runs performed, zeros included (the qmd's x.ms), on captured rows only. Row order of the deposit is the unit id.",
+  "notShipped": {
+    "qPCR run level": "the up-to-four ITS copy values per swab as separate observations: a fourth nesting level (individual > primary > secondary > run) that the key does not hold; summarised per capture instead",
+    "multievent-mfleayi.qmd": "the authors' NIMBLE code (Zenodo 7039520)"
+  },
+  "summary": {
+    "n_rows": 1624,
+    "n_units": 116,
+    "n_taxa": 1,
+    "n_periods": 8,
+    "n_occasions": 2,
+    "n_surveys": 1624,
+    "y_values": "0,1,2",
+    "prop_zero": 0.762
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_qpcr_runs", "obs_qpcr_positive", "obs_its_copies_mean"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hollanders_2022_brindle_mfleayi_msdis.R",
+  "buildDate": "2026-11-01"
+}

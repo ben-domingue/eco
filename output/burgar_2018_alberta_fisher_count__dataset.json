@@ -1,0 +1,45 @@
+{
+  "table": "burgar_2018_alberta_fisher_count",
+  "title": "Camera-trap detections of fishers at 64 sites over 64 occasions, Alberta, 2016 (the unmarked data of a spatial-count vs genetic SCR comparison)",
+  "creator": "Burgar, Joanna M.; Stewart, Frances E. C.; Volpe, John P.; Fisher, Jason T.; Burton, A. Cole",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.dh7cd36",
+  "sourceURL": "https://doi.org/10.5061/dryad.dh7cd36",
+  "citation": "Burgar, J. M., Stewart, F. E. C., Volpe, J. P., Fisher, J. T., & Burton, A. C. (2019). Data from: Estimating density for species conservation: comparing camera trap spatial count models to genetic spatial capture-recapture models [Data set]. Dryad. https://doi.org/10.5061/dryad.dh7cd36",
+  "paperDOI": "10.1016/j.gecco.2018.e00411",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap detections of unmarked fishers (Pekania pennanti) at 64 camera sites over 64 sampling occasions in 2016, the 'unmarked' data set of a study comparing spatial count density estimates from cameras with genetic spatial capture-recapture estimates for the same population (sibling table burgar_2018_alberta_fisher_scr). The deposit is a site x occasion matrix of independent 60-minute detection events that contains only 0 and 1, shipped as detection / non-detection; 180 detections at 37 of 64 sites.",
+  "samplingProtocol": "Camera traps at 64 sites (deposited ids 1-66 without 11 and 21); independent detection events defined by a 60-minute interval; 64 sampling occasions in 2016 whose length (one day being the natural reading) is stated only in the paper, which the agent could not fetch.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The matrix has a value for every site x occasion (no NA), so every site-occasion is a survey.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "single period: one 2016 survey of 64 occasions treated as closed (the authors' spatial count model)",
+  "geographicCoverage": "Alberta, Canada; no coordinates in this file (the camera site numbering is not keyed to the TDF of the sibling table); the hair-snag array of the same study sits at 53.2-53.6 N, 112.7-113.1 W if its UTM zone is 12N",
+  "temporalCoverage": "2016",
+  "designNote": "Single-species camera detections. The authors fitted spatial count models (counts per site-occasion); the deposited matrix never exceeds 1, so detection and count readings coincide. Occasion length not recoverable from the deposit.",
+  "notes": "Site ids C01-C66 without C11 and C21 as deposited; occasion = deposited column index 0-63 plus one. Not joinable to burgar_2018_alberta_fisher_scr (different site numbering, no key deposited).",
+  "notShipped": {
+    "edf.csv, TDF.csv": "the genetic SCR data, shipped as burgar_2018_alberta_fisher_scr"
+  },
+  "summary": {
+    "n_rows": 4096,
+    "n_units": 64,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 64,
+    "n_surveys": 4096,
+    "y_values": "0,1",
+    "prop_zero": 0.956
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/burgar_2018_alberta_fisher_count.R",
+  "buildDate": "2026-11-01"
+}

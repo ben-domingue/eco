@@ -1,0 +1,61 @@
+{
+  "table": "ferguson_2015_macon_bawa_fpocc",
+  "title": "Black-and-white Warbler point-count detections with confirmed and unconfirmed detections at 272 sites, Macon County, North Carolina, 2010-2011",
+  "creator": "Ferguson, Paige F. B.; Conroy, Michael J.; Hepinstall-Cymerman, Jeffrey",
+  "pubDate": "2016",
+  "doi": "10.5061/dryad.t68v8",
+  "sourceURL": "https://doi.org/10.5061/dryad.t68v8",
+  "citation": "Ferguson, P.F.B., Conroy, M.J. & Hepinstall-Cymerman, J. (2016). Data from: Occupancy models for data with false positive and false negative errors and heterogeneity across sites and surveys. Dryad, dataset, https://doi.org/10.5061/dryad.t68v8.",
+  "paperDOI": "10.1111/2041-210X.12442",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Point counts for Black-and-white Warbler (Mniotilta varia) at 272 sites in Macon County, North Carolina, each visited three times in one breeding season (2010 or 2011), recording for every visit whether the species was detected and whether that detection was confirmed. The example application of Ferguson et al. (2015), which fit a confirmed-presence (CP) false-positive occupancy model relating occupancy to residential development; percent forest cover within 200 m is the deposited site covariate.",
+  "samplingProtocol": "Point counts, three visits per site within one breeding season; each visit records detection (0/1) and whether the detection was confirmed (0/1). The deposit and README do not state count duration, radius or what constituted confirmation; see the paper.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "site",
+  "closure": "occasion (three visits within one breeding season per site; sites sampled in 2010 or 2011, never both)",
+  "stateCodes": {
+    "0": "not detected",
+    "1": "detected, not confirmed (possible false positive)",
+    "2": "detected and confirmed (certain detection)"
+  },
+  "geographicCoverage": {
+    "description": "Macon County, North Carolina, USA (southern Appalachians), from the deposited coordinates",
+    "boundingBox": {
+      "west": -83.56,
+      "east": -83.15,
+      "south": 34.99,
+      "north": 35.3
+    }
+  },
+  "temporalCoverage": "2010/2011",
+  "crs": "README states NAD 1983 (UTM zone 17N), but the deposited values are decimal degrees; shipped as decimal degrees on that datum",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by the authors; Mniotilta varia is IUCN LC, not flagged"
+  },
+  "notes": "y = y_k + certain_k from the deposit's two 0/1 columns per visit (certain = 1 never occurs without y = 1, asserted), i.e. occuFP type-2 data: 0 / uncertain / certain. No y_raw because the recode combines two deposited columns. unit_year_sampled is 2010 or 2011 from the deposit's Year indicator. Site ids are row numbers (none deposited).",
+  "notShipped": {
+    "none": "every deposited column is shipped"
+  },
+  "summary": {
+    "n_rows": 816,
+    "n_units": 272,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 816,
+    "y_values": "0,1,2",
+    "prop_zero": 0.808
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_decimalLatitude", "unit_decimalLongitude", "unit_pforest_pct", "unit_year_sampled"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ferguson_2015_macon_bawa_fpocc.R",
+  "buildDate": "2026-11-01"
+}

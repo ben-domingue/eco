@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+PANTIG,Panthera tigris,Tiger,species,https://www.gbif.org/species/5219416,EXACT,,EN

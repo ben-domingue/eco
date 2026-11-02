@@ -1,0 +1,49 @@
+{
+  "table": "bedson_2021_holmemoss_hare_cam_ds",
+  "title": "Mountain hare camera-trap distance sampling, 91 cameras at six 1 km sites on Holme Moss, Peak District, winter 2017-18: night-time snapshot detections in twelve 1 m radial-distance bins per camera",
+  "creator": "Bedson, Carlos P. E.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.3r2280gg0",
+  "sourceURL": "https://doi.org/10.5061/dryad.3r2280gg0",
+  "citation": "Bedson, C. P. E. (2021). Estimating density of mountain hares using distance sampling: a comparison of daylight visual surveys, night-time thermal imaging and camera traps [Data set]. Dryad. https://doi.org/10.5061/dryad.3r2280gg0",
+  "paperDOI": "10.2981/wlb.00802",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap distance sampling (Howe et al. 2017) for mountain hares (Lepus timidus) at Holme Moss, Peak District, England: 91 Bushnell cameras 333 m apart at six 1 km sites, deployed site by site for two to five weeks each between November 2017 and March 2018 (1,800 camera-nights), triggering at 1 s intervals, with marker canes at 2, 4, 6, 8 and 10 m to read the radial distance of each hare to the metre. 3,706 night-time (sunset to sunrise) detections in the file (the paper reports 3,705) after the authors removed daytime and attraction images; cluster size 1-2. Sibling tables hold the daylight line-transect and thermal point-transect surveys of the same sites.",
+  "samplingProtocol": "Camera-trap distance sampling: fixed cameras triggering at 1 s intervals, 42-degree field of view, radial distance of each hare read against marker canes; snapshot interval 1 s; effort = seconds deployed.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "multinomial_cell",
+  "distanceBreaks": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "distanceUnits": "m",
+  "transectType": "point",
+  "snapshotInterval": "1 s",
+  "fieldOfViewDegrees": 42,
+  "effortColumn": "unit_effort_seconds",
+  "unitKind": "site",
+  "closure": "occasion (bins of one camera deployment)",
+  "geographicCoverage": "Holme Moss, Peak District National Park, England (OS SE 40 39 area; six 1 km sites; no coordinates deposited)",
+  "temporalCoverage": "2017-11/2018-03",
+  "notes": "Distances are deposited as whole metres d (1-12) and taken as the bin (d-1, d]; the paper truncated at 5 m and used bins at 1, 2, 3-4 and 5 m (n = 3,506, asserted), nothing is dropped here. Effort is the deposited total seconds per camera (the paper multiplies by 42/360 for the field of view; not applied). The file has 3,706 detections and 76 cameras with a detection against the paper's 3,705 and 77 (site 5: 474 vs 479; the other sites match). obs_individuals is hares in the bin (cluster sizes 1-2); y counts snapshot detections. Deployment dates per camera and camera-night counts are only in the paper's supporting information.",
+  "notShipped": {
+    "none": "every row of Camera_trap_data.txt is represented; the visual and thermal files are the sibling tables"
+  },
+  "summary": {
+    "n_rows": 1092,
+    "n_units": 91,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 12,
+    "n_surveys": 1092,
+    "y_values": "0-212 (50 distinct)",
+    "prop_zero": 0.692
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "cluster_id", "unit_effort_seconds", "unit_site_area_km2", "obs_individuals"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bedson_2021_holmemoss_hare_cam_ds.R",
+  "buildDate": "2026-11-01"
+}

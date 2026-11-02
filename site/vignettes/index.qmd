@@ -1,0 +1,12 @@
+---
+title: "Vignettes"
+toc: false
+---
+
+Worked analyses on eco tables, each fetched from the public Redivis endpoint
+with the [R package](../r.html) and pinned to a release. Every one runs from a
+clean session.
+
+::: {.eco-cards}
+<div class="card"><h3><a href="occupancy.html">Single-species site occupancy</a></h3><p>The MacKenzie et al. (2002) model as Kéry and Royle present it in <em>Applied Hierarchical Modeling</em> chapter 10, fit with <code>unmarked</code> to the Swiss willow tit table. A simulator shows why repeat surveys separate ψ from p; then the fit, conditional occupancy of undetected sites, and a goodness-of-fit test that rejects.</p></div>
+:::

@@ -131,7 +131,7 @@ table_summary <- function(long) {
   list(n_rows = nrow(long), n_units = uniqueN(long$unit), n_taxa = uniqueN(long$taxon),
        n_periods = if ("period" %in% names(long)) uniqueN(long$period) else 1L,
        n_occasions = if ("occasion" %in% names(long)) uniqueN(long$occasion) else 1L,
-       n_surveys = nrow(unique(long[, intersect(c("unit", "period", "occasion"), names(long)), with = FALSE])),
+       n_surveys = nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE])),
        y_values = if (uniqueN(long$y) <= 12) paste(sort(unique(long$y)), collapse = ",") else
          sprintf("%s-%s (%d distinct)", min(long$y), max(long$y), uniqueN(long$y)),
        prop_zero = round(mean(long$y == 0), 3))
@@ -140,14 +140,15 @@ table_summary <- function(long) {
 # Sample floor (standard section 10, ruled 2026-11-01 a reported attribute, not an
 # intake gate): >= 30 units and >= 2 occasions (or >= 2 periods). Returns
 # "meets" / "below (reason)"; a below-floor table is published and filterable.
-floor_status <- function(s) {
+floor_status <- function(s, response_type = NULL) {
   reasons <- character()
   if (s$n_units < 30) reasons <- c(reasons, sprintf("%d units < 30", s$n_units))
-  if (max(s$n_occasions, s$n_periods) < 2) reasons <- c(reasons, "no replication")
+  # binomial_count (#34): replication is inside obs_trials, not on occasion/period
+  if (max(s$n_occasions, s$n_periods) < 2 && !identical(response_type, "binomial_count")) reasons <- c(reasons, "no replication")
   if (length(reasons)) paste0("below (", paste(reasons, collapse = "; "), ")") else "meets"
 }
 
-RESPONSE_TYPES  <- c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event")
+RESPONSE_TYPES  <- c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event", "binomial_count")
 SURVEY_EVIDENCE <- c("sample_table", "effort_table", "deposited_matrix", "row_presence", "inferred")
 STANDARD_VERSION <- "eco v1.0-draft (2026-11-01)"
 
@@ -168,6 +169,10 @@ check_dataset_meta <- function(dataset, long, units = NULL) {
   if (!is.null(rt) && rt %in% c("state", "ordinal") && is.null(dataset$stateCodes)) p <- c(p, sprintf("E2: responseType %s needs stateCodes", rt))
   if (identical(rt, "multinomial_cell") && is.null(dataset$multinomialType) && is.null(dataset$distanceBreaks))
     p <- c(p, "E2/E9: multinomial_cell needs multinomialType or distanceBreaks")
+  if (identical(rt, "binomial_count")) {
+    if (!identical(dataset$effortColumn, "obs_trials")) p <- c(p, "E10: binomial_count needs effortColumn = \"obs_trials\" (#34)")
+    if (!"obs_trials" %in% names(long) || "occasion" %in% names(long)) p <- c(p, "E2: binomial_count needs obs_trials and no occasion column (#34)")
+  }
   if (identical(rt, "detection") && !all(long$y %in% c(0, 1))) p <- c(p, "E2: responseType detection but y is not 0/1")
   if (identical(rt, "count") && any(long$y < 0 | long$y != round(long$y))) p <- c(p, "E2: responseType count but y is not a non-negative integer")
   if (!is.null(dataset$unitKind) && !dataset$unitKind %in% c("site", "individual")) p <- c(p, "E10: unitKind must be site or individual")
@@ -192,7 +197,7 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   if (!is.null(traps))   fwrite(traps,   file.path(OUT_DIR, paste0(name, "__traps.csv")))
   s <- table_summary(long)
   dataset <- c(list(table = name), dataset,
-               list(summary = s, sampleFloor = floor_status(s),
+               list(summary = s, sampleFloor = floor_status(s, dataset$responseType),
                     columns = names(long),
                     standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
@@ -225,7 +230,9 @@ TAG_COLS <- c("table", "rater", "taxon_group", "response_type", "model_family", 
   new <- as.data.table(lapply(row[cols], function(x) { x <- as.character(x); if (!length(x) || is.na(x)) "" else x }))
   # guard against spreadsheet formula injection on paste
   for (cc in cols) if (grepl("^[=+@-]", new[[cc]])) new[[cc]] <- paste0("'", new[[cc]])
-  old <- if (file.exists(file)) fread(file, colClasses = "character") else as.data.table(setNames(replicate(length(cols), character(), simplify = FALSE), cols))
+  # read.csv, not fread: data.table 1.18.4 fread does not unescape doubled quotes inside a
+  # quoted field, so every upsert round trip doubled them (the Kleiven reference grew to 262 kB)
+  old <- if (file.exists(file)) as.data.table(read.csv(file, colClasses = "character", check.names = FALSE, na.strings = character())) else as.data.table(setNames(replicate(length(cols), character(), simplify = FALSE), cols))
   old <- old[table != new$table]
   out <- rbind(old, new, fill = TRUE)[, cols, with = FALSE]
   setorder(out, table)

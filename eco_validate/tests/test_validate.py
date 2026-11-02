@@ -240,6 +240,23 @@ def test_metadata():
     assert "survey_evidence" in checks_of(r, "warn")
     assert "meta_conditional" in checks_of(run(meta=good_meta(responseType="ordinal")), "error")
     assert "meta_conditional" in checks_of(run(meta=good_meta(responseType="multinomial_cell")), "error")
+
+
+def test_binomial_count_rules():
+    """Ruling #34: no occasion, obs_trials on every row, y <= obs_trials, effortColumn declared."""
+    df = good_frame()
+    df = df.groupby(["unit", "taxon"], as_index=False).agg(y=("y", "sum"))
+    df["obs_trials"] = 3
+    df = df[["unit", "taxon", "y", "obs_trials"]]
+    meta = good_meta(responseType="binomial_count", effortColumn="obs_trials")
+    r = run(df=df, meta=meta)
+    assert r.ok, [f.message for f in r.errors]
+    assert "replication" not in checks_of(r)
+    assert "meta_conditional" in checks_of(run(df=df, meta=good_meta(responseType="binomial_count")), "error")
+    bad = df.copy(); bad.loc[bad.index[0], "y"] = 9
+    assert "y_response_type" in checks_of(run(df=bad, meta=meta), "error")
+    assert "y_response_type" in checks_of(run(df=df.drop(columns="obs_trials"), meta=meta), "error")
+    assert "y_response_type" in checks_of(run(df=good_frame().assign(obs_trials=1), meta=meta), "error")
     assert "meta_present" not in checks_of(run(meta=None))          # a frame alone: nowhere to look
 
 

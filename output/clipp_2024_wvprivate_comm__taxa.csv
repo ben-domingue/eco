@@ -1,0 +1,48 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_class
+ODOVIR,Odocoileus virginianus,White-tailed Deer,species,https://www.gbif.org/species/2440965,EXACT,,Mammalia
+URSAME,Ursus americanus,American Black Bear,species,https://www.gbif.org/species/2433407,EXACT,,Mammalia
+MELGAL,Meleagris gallopavo,Wild Turkey,species,https://www.gbif.org/species/9606290,EXACT,,Aves
+EQUCAB,Equus caballus,Domestic Horse,species,https://www.gbif.org/species/2440886,EXACT,,Mammalia
+PROLOT,Procyon lotor,Northern Raccoon,species,https://www.gbif.org/species/5218786,EXACT,,Mammalia
+SCICAR,Sciurus carolinensis,Eastern Gray Squirrel,species,https://www.gbif.org/species/5219681,EXACT,,Mammalia
+SCINIG,Sciurus niger,Bryant's Fox Squirrel,species,https://www.gbif.org/species/5219683,EXACT,,Mammalia
+CANLAT,Canis latrans,Coyote,species,https://www.gbif.org/species/5219153,EXACT,,Mammalia
+DIDVIR,Didelphis virginiana,Virginia Opossum,species,https://www.gbif.org/species/2439923,EXACT,,Mammalia
+CARCAR,Cardinalis cardinalis,Northern Cardinal,species,https://www.gbif.org/species/2490384,EXACT,,Aves
+SYLFLO,Sylvilagus floridanus,Eastern Cottontail,species,https://www.gbif.org/species/2436886,EXACT,,Mammalia
+TAMSTR,Tamias striatus,Eastern Chipmunk,species,https://www.gbif.org/species/2437438,EXACT,,Mammalia
+LYNRUF,Lynx rufus,Bobcat,species,https://www.gbif.org/species/2435246,EXACT,,Mammalia
+COLAUR,Colaptes auratus,Northern Flicker,species,https://www.gbif.org/species/2478259,EXACT,,Aves
+PIPERY,Pipilo erythrophthalmus,Rufous-sided Towhee,species,https://www.gbif.org/species/2491205,EXACT,,Aves
+CORBRA,Corvus brachyrhynchos,American Crow,species,https://www.gbif.org/species/2482507,EXACT,,Aves
+CATGUT,Catharus guttatus,Hermit Thrush,species,https://www.gbif.org/species/2490810,EXACT,,Aves
+MUSNIV,Mustela nivalis,Least Weasel,species,https://www.gbif.org/species/5218987,EXACT,,Mammalia
+VULVUL,Vulpes vulpes,Red Fox,species,https://www.gbif.org/species/5219243,EXACT,,Mammalia
+MARMON,Marmota monax,Woodchuck,species,https://www.gbif.org/species/2437368,EXACT,,Mammalia
+BOSTAU,Bos taurus,Domestic Cattle,species,https://www.gbif.org/species/2441022,EXACT,,Mammalia
+CYACRI,Cyanocitta cristata,Blue Jay,species,https://www.gbif.org/species/2482593,EXACT,,Aves
+QUIQUI,Quiscalus quiscula,Common Grackle,species,https://www.gbif.org/species/2484155,EXACT,,Aves
+CANFAM,Canis familiaris,Domestic Dog,species,https://www.gbif.org/species/5219200,EXACT,Canis lupus,Mammalia
+BAEBIC,Baeolophus bicolor,Tufted Titmouse,species,https://www.gbif.org/species/2487887,EXACT,,Aves
+PASCYA,Passerina cyanea,Indigo Bunting,species,https://www.gbif.org/species/2490327,EXACT,,Aves
+HYLMUS,Hylocichla mustelina,Wood Thrush,species,https://www.gbif.org/species/2490872,EXACT,,Aves
+TYRTYR,Tyrannus tyrannus,Eastern Kingbird,species,https://www.gbif.org/species/5229688,EXACT,,Aves
+MEPMEP,Mephitis mephitis,Striped Skunk,species,https://www.gbif.org/species/5219380,EXACT,,Mammalia
+ARDHER,Ardea herodias,Great Blue Heron,species,https://www.gbif.org/species/9630752,EXACT,,Aves
+SAYPHO,Sayornis phoebe,Eastern Phoebe,species,https://www.gbif.org/species/2483606,EXACT,,Aves
+EREDOR,Erethizon dorsatum,North American Porcupine,species,https://www.gbif.org/species/6066824,FUZZY,,Mammalia
+HYLPIL,Hylatomus pileatus,Pileated Woodpecker,species,https://www.gbif.org/species/10968415,EXACT,Dryocopus pileatus,Aves
+TOXRUF,Toxostoma rufum,Brown Thrasher,species,https://www.gbif.org/species/9479809,EXACT,,Aves
+MIMPOL,Mimus polyglottos,Northern Mockingbird,species,https://www.gbif.org/species/5231677,EXACT,,Aves
+FELCAT,Felis catus,Domestic Cat,species,https://www.gbif.org/species/2435035,EXACT,,Mammalia
+CATAUR,Cathartes aura,Turkey Vulture,species,https://www.gbif.org/species/2481930,EXACT,,Aves
+BUTJAM,Buteo jamaicensis,Red-tailed Hawk,species,https://www.gbif.org/species/2480542,EXACT,,Aves
+SPIPAS,Spizella passerina,Chipping Sparrow,species,https://www.gbif.org/species/2492109,EXACT,,Aves
+SPITRI,Spinus tristis,American Goldfinch,species,https://www.gbif.org/species/5231640,EXACT,,Aves
+TURMIG,Turdus migratorius,American Robin,species,https://www.gbif.org/species/9510564,EXACT,,Aves
+UROCIN,Urocyon cinereoargenteus,Grey Fox,species,https://www.gbif.org/species/2434566,EXACT,,Mammalia
+PEKPEN,Pekania pennanti,Fisher,species,https://www.gbif.org/species/8631083,EXACT,,Mammalia
+MNIVAR,Mniotilta varia,Black-and-white Warbler,species,https://www.gbif.org/species/2489613,EXACT,,Aves
+SEIAUR,Seiurus aurocapilla,Ovenbird,species,https://www.gbif.org/species/2489590,EXACT,,Aves
+EQUASI,Equus asinus,Domestic Donkey,species,https://www.gbif.org/species/2440891,EXACT,,Mammalia
+ZENMAC,Zenaida macroura,Mourning Dove,species,https://www.gbif.org/species/2495347,EXACT,,Aves

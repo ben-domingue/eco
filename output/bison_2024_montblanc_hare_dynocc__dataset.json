@@ -1,0 +1,54 @@
+{
+  "table": "bison_2024_montblanc_hare_dynocc",
+  "title": "Daily camera-trap detections of the Alpine mountain hare at 46 stations along elevation gradients in the Mont-Blanc massif, France, 2017-2022",
+  "creator": "Bison, Marjorie; Yoccoz, Nigel G.; Carlson, Bradley Z.; Bayle, Arthur; Delestrade, Anne",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.b2rbnzsp7",
+  "sourceURL": "https://doi.org/10.5061/dryad.b2rbnzsp7",
+  "citation": "Bison, M., Yoccoz, N. G., Carlson, B. Z., Bayle, A., & Delestrade, A. (2024). Data from: Camera traps reveal seasonal variation in activity and occupancy of the Alpine mountain hare (Lepus timidus varronis) [Dataset]. Dryad. https://doi.org/10.5061/dryad.b2rbnzsp7",
+  "paperDOI": "10.1002/wlb3.01186",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap contacts of the Alpine mountain hare (Lepus timidus varronis) at 46 stations between 1,227 and 2,740 m in forest, shrubland and grassland of the Mont-Blanc massif (Haute-Savoie, France), with station setup dates, downtime windows, site descriptors and vegetation-structure classes from point-intercept plots. The paper used the data for multi-season occupancy through the year and single-season occupancy in the breeding season.",
+  "samplingProtocol": "Motion-triggered camera traps (Moultrie 40i/50i, Reconyx HF2X, Bushnell NatureView) at fixed stations along elevation gradients, running continuously from setup; contacts recorded as camera-days with at least one hare photo. Surveyed camera-days = setup date to 30 June 2022 minus the deposited downtime (Problem) windows.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "1 day",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Setup dates and 185 downtime windows are deposited; no retrieval dates. The study end (2022-06-30) is the paper's 'June 2022' (abstract); every camera is assumed to run from setup to that date outside its downtime windows. 13 contacts inside downtime windows (windows mark compromised as well as dead cameras) and 2 after the study end were dropped so that detections and the survey set agree.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period (meteorological season; the processor's binning, not the authors', whose season definition is in the paywalled methods)",
+  "geographicCoverage": "Mont-Blanc massif, Haute-Savoie, France (6.84-7.01 E, 45.88-46.05 N), 1,227-2,740 m",
+  "temporalCoverage": "2017-09-07/2022-06-30",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published (Least Concern taxon; stations on open mountain terrain)"
+  },
+  "notShipped": {
+    "out_height.csv": "3,760 vegetation heights at point-intercept points, per plot (raw, unaggregated)",
+    "out_contact.csv": "266 pin-touch counts by vegetation type, per plot (raw, unaggregated)",
+    "posettes1800": "vegetation plot with no camera station",
+    "Problem causes": "free-text downtime causes (snow, battery, bug, destroyed, ...) used only to define downtime",
+    "13 contacts inside downtime windows, 2 after 2022-06-30": "dropped (see surveyEvidenceNote)",
+    "contacts before 2018-01-01 (23)": "KEPT although the paper's analysis starts January 2018; the deposit includes them"
+  },
+  "notes": "period = meteorological season (Dec-Feb, Mar-May, Jun-Aug, Sep-Nov) labelled in __periods; the first surveyed day is 2017-09-07 because the three 2016 and two of the 2017 setups sit inside deposited downtime windows until then; occasion = day within season; date per row allows re-binning to the authors' occasions. Nine stations never recorded a hare. Camera 'Buchnell' in the source is Bushnell.",
+  "summary": {
+    "n_rows": 45469,
+    "n_units": 46,
+    "n_taxa": 1,
+    "n_periods": 20,
+    "n_occasions": 92,
+    "n_surveys": 45469,
+    "y_values": "0,1",
+    "prop_zero": 0.981
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_elevation_m", "unit_slope_deg", "unit_aspect", "unit_habitat", "unit_camera_model", "unit_relief_homogeneity", "unit_slope_class", "unit_cover_bare_class", "unit_cover_lt10cm_class", "unit_cover_10_40cm_class", "unit_cover_40_130cm_class", "unit_cover_130_400cm_class", "unit_cover_tree_class"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bison_2024_montblanc_hare_dynocc.R",
+  "buildDate": "2026-11-01"
+}

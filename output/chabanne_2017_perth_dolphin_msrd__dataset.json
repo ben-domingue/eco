@@ -1,0 +1,50 @@
+{
+  "table": "chabanne_2017_perth_dolphin_msrd",
+  "title": "Multi-state robust-design capture histories of 209 Indo-Pacific bottlenose dolphins across three sites in Perth metropolitan waters, 2011-2015",
+  "creator": "Chabanne, Delphine B.H.",
+  "pubDate": "2017",
+  "doi": "10.5061/dryad.24s3c",
+  "sourceURL": "https://doi.org/10.5061/dryad.24s3c",
+  "citation": "Chabanne, D. (2017). Data from: Applying the multistate capture-recapture robust design to characterize metapopulation structure [Dataset]. Dryad. https://doi.org/10.5061/dryad.24s3c",
+  "paperDOI": "10.1111/2041-210X.12792",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Photo-identification capture histories of distinctly marked, non-calf Indo-Pacific bottlenose dolphins (Tursiops aduncus) from boat-based surveys of three sites in Perth metropolitan waters, Western Australia (the Swan Canning Riverpark estuary, Cockburn Sound / Owen Anchorage, and Gage Roads), June 2011 to May 2015. Sixteen seasonal primary periods each hold three to six secondary occasions (complete surveys of all sites on consecutive days). y is the site of capture (0 = not captured); an individual captured at two sites within a season was assigned by the authors to the site of its first capture that season. The Program MARK input for the paper's Scenario 1 (three sites).",
+  "samplingProtocol": "Boat-based photo-identification along pre-defined transects covering three sites; a secondary occasion is the set of surveys covering all sites (2-8 days); first capture per secondary occasion retained; distinctive fins (D1, D2) only; calves excluded.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The MARK file has 75 unlabelled columns; the thesis effort table lists 76 completed secondary occasions (6,5,5,5,5,5,5,5,5,4,4,4,5,3,5,5 per season). Columns are assigned to seasons with summer 2011-12 at 4 occasions, the only layout that both leaves no individual at two sites within a season (the authors' data rule) and reproduces the thesis's per-site individual counts for that season (6, 30, 0). Period assignment for columns 12-26 is therefore inferred, not deposited.",
+  "responseType": "state",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: sites closed within a season, open between seasons)",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured in the Swan Canning Riverpark (SCR, estuary)",
+    "2": "captured in Cockburn Sound / Owen Anchorage (CS/OA, semi-enclosed embayment)",
+    "3": "captured in Gage Roads (GR, open coast)"
+  },
+  "geographicCoverage": "Perth metropolitan waters, Western Australia: 45 km of coast plus the Swan Canning Riverpark estuary, c. 275 km2 (no coordinates deposited)",
+  "temporalCoverage": "2011-06/2015-05",
+  "notes": "__periods effort columns (survey hours, km, mean days within and between secondary occasions, days since the previous season) are from Chabanne (2017) PhD thesis Table A2.1.1; n_occasions is the count in the MARK file, n_occasions_completed the thesis count. Individual ids are the authors' three-letter or UNKyyyynn codes. Line 2 of 2 labelled UNK201313 in the deposit is relabelled UNK201314 (identical to that id in the 2-state file). No sex or other individual covariates are deposited.",
+  "notShipped": {
+    "Mark_file_2States.txt": "the paper's Scenario 2 (SCR vs pooled coastal) histories: a separate processing of the same sightings (208 shared ids, 25 histories differ because the within-season single-site rule was applied after pooling), not a deterministic collapse of this table; a user wanting Scenario 2 should pool states 2 and 3 here and accept the small difference"
+  },
+  "summary": {
+    "n_rows": 15675,
+    "n_units": 209,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 6,
+    "n_surveys": 15675,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.909
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/chabanne_2017_perth_dolphin_msrd.R",
+  "buildDate": "2026-11-01"
+}

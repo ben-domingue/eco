@@ -1,0 +1,52 @@
+{
+  "table": "henry_2020_karoo_birds_comm",
+  "title": "Karoo bird point counts with time to first detection, 61 SABAP pentads x 10-20 counts, South Africa, 2017 (Henry et al. 2020)",
+  "creator": "Henry, Dominic A. W.; Lee, Alan T. K.; Altwegg, Res",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.msbcc2fv7",
+  "sourceURL": "https://doi.org/10.5061/dryad.msbcc2fv7",
+  "citation": "Henry, D. A. W., Lee, A. T. K., & Altwegg, R. (2020). Data from: Can time-to-detection models with fewer survey replicates provide a robust alternative to traditional site-occupancy models? Dryad. https://doi.org/10.5061/dryad.msbcc2fv7",
+  "paperCitation": "Henry, D. A. W., Lee, A. T. K., & Altwegg, R. (2020). Can time-to-detection models with fewer survey replicates provide a robust alternative to traditional site-occupancy models? Methods in Ecology and Evolution, 11(5), 643-655. https://doi.org/10.1111/2041-210X.13379",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://spdx.org/licenses/CC0-1.0.html"
+  },
+  "abstract": "Bird point counts in the Karoo, South Africa, February to October 2017, recorded with CyberTracker so that the time from the start of the count to the first detection of each species is known. 61 SABAP pentads (5 x 5 arc-minute cells) each received 10 to 20 point counts, usually 20 on one or two days; 63 species were recorded. The deposit is one row per first detection of a species on a count (4,015 rows). The table is the detection/non-detection view the paper compares against: unit = pentad, occasion = point count in time order, y = detected on that count, with the time to first detection carried as obs_ttd_s on the species rows (NA = not detected within the count) so the paper's time-to-detection models can be refit; count-level weather, minutes after dawn and the count's GPS location ride as obs_ covariates; the pentad centroid is the unit coordinate.",
+  "samplingProtocol": "Point counts of about 10 minutes (observed first detections up to 658 s) at 10-20 points per 5 x 5 arc-minute pentad, all species detected by sight or sound recorded with the time of first detection, distance (rangefinder), detection mode and behaviour; temperature, cloud, wind and days since rain per count.",
+  "samplingProtocolCode": "point_count",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion: the 10-20 point counts within a pentad are the replicates of one 2017 season (the paper's DND design); period absent",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "The deposit is a record table of first detections with no list of point counts: a count exists iff at least one species was recorded on it. Counts with zero detections, if any occurred, cannot be recovered. Every count carries a full set of weather covariates, so the 1,055 counts are the surveyed set as far as the deposit shows.",
+  "surveyDuration": "not deposited; first detections run to 658 s, so counts were about 10 minutes; obs_ttd_s is right-censored at the count's end",
+  "temporalCoverage": "2017-02-21/2017-10-25",
+  "geographicCoverage": "Karoo, Western and Eastern Cape, South Africa; 61 SABAP pentads between 30.8 and 33.1 S, 19.8 and 26.0 E",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: unit coordinates are pentad centroids (5 x 5 arc-minute cells, coarser than 0.1 degree); count locations as obs_ covariates at GPS precision; no taxon is IUCN CR/EN/VU (Karoo Korhaan NT)"
+  },
+  "designNote": "Community detection/non-detection with spatial replication within the pentad (the authors' DND models). The time-to-detection response (design_landscape.md C: continuous, right-censored) is not y; it rides as obs_ttd_s on species rows pending a family ruling. obs_distance_m, obs_detection_mode and obs_behaviour are first-detection attributes.",
+  "notes": "ttd is in seconds (the Metadata sheet says minutes; ttd equals datetime minus survey_start in seconds on every row, floored at 10 s by the authors for the 915 detections within 10 s of the start). obs_mins_after_dawn_start = the deposited minutes-after-dawn of the detection minus the elapsed seconds/60, constant within a count to 0.1 min. Occasion is the chronological rank of the count within its pentad; the deposit's sequence numbers run beyond 20 for pentads surveyed on several days and are not used. Species codes are six letters from the IOC name with bracketed synonyms removed (White-necked Raven is CORALC because CORALB is Pied Crow); the deposit's spelling is in __taxa.taxon_sourceName.",
+  "notShipped": {
+    "mins_after_dawn": "per-detection value; the count-start value is obs_mins_after_dawn_start and the detection value is recoverable as start + obs_ttd_s/60",
+    "time": "the detection clock time, redundant with date + obs_ttd_s"
+  },
+  "summary": {
+    "n_rows": 66465,
+    "n_units": 61,
+    "n_taxa": 63,
+    "n_periods": 1,
+    "n_occasions": 20,
+    "n_surveys": 1055,
+    "y_values": "0,1",
+    "prop_zero": 0.94
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "obs_decimalLatitude", "obs_decimalLongitude", "obs_temperature_c", "obs_cloud_pct", "obs_wind_ms", "obs_rain_class", "obs_mins_after_dawn_start", "obs_ttd_s", "obs_distance_m", "obs_detection_mode", "obs_behaviour"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/henry_2020_karoo_birds_comm.R",
+  "buildDate": "2026-11-01"
+}

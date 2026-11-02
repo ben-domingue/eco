@@ -49,6 +49,7 @@ a deposit is buildable (E4). You need to know which surveys happened:
 | effort per unit x occasion (camera nights, trap nights, minutes) | `effort_table` | a survey exists where effort > 0 |
 | a unit x occasion matrix where NA and 0 are distinct | `deposited_matrix` | NA cells become missing rows; assert the NA pattern is the same across species |
 | a record table with explicit zero-count rows, or one row per visit | `row_presence` | a survey exists where the table has at least one row for it |
+| a site x species matrix of "occasions with a detection" plus the number of occasions surveyed (camera nights, 14-day windows, trap days), no occasion-level history | `deposited_matrix` or `effort_table` | `responseType = binomial_count` (ruling #34): one row per unit x taxon, `obs_trials` = occasions surveyed, no `occasion` column; never invent occasion rows |
 | only detections, with dates | `inferred` | reconstruct the survey set by a rule you state in `surveyEvidenceNote` (first-to-last detection span per camera-year, for instance); the validator warns and users can filter it out |
 
 A detections-only table with no dates and no deployment record cannot be built as

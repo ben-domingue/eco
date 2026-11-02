@@ -1,0 +1,53 @@
+{
+  "table": "lindstrom_2025_sweden_summerpoints_count",
+  "title": "Swedish Bird Survey summer point count routes: route totals of all bird species, 1,256 free-choice routes of 20 points, 1975-2024",
+  "creator": "Lindström, Åke; Green, Martin; Jönsson, Annelie (Department of Biology, Lund University)",
+  "pubDate": "2025-07-10",
+  "doi": "10.15468/2aajk9",
+  "sourceURL": "https://www.gbif.org/dataset/7059595f-0e00-4bd6-bfa9-8869dd6b6096",
+  "citation": "Lindström Å, Green M, Jönsson A (2025). Swedish Bird Survey: Summer point count routes (Sommarpunktrutterna). Version 1.8. Department of Biology, Lund University. Sampling event dataset https://doi.org/10.15468/2aajk9 accessed via GBIF.org.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
+  },
+  "abstract": "The summer point count routes (sommarpunktrutterna) of the Swedish Bird Survey, run by Lund University since 1975: volunteer ornithologists count all birds seen or heard for 5 minutes at each of 20 self-chosen points at least 200-300 m apart, once per year in the breeding season (April to mid-July), ideally on the same date, start time and point order each year. Routes are personal and end when the surveyor stops; new routes start. The deposit gives one event per route per year with the total individuals per species over the 20 points (the point level is not deposited), the observer id, date, start and end time, transport between points, county, and the centre of the 25 x 25 km grid square containing the route. Eleven security-class-4 species are withheld by the publisher.",
+  "samplingProtocol": "Point count route: 20 points at least 200 m (forest) or 300 m (open) apart, 5 minutes per point, all birds seen or heard registered and identified to species (crossbills may be registered as Loxia), one count per route per year in April to July; y is the route total of individuals per species.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "period = calendar year (one count per route per year; no occasion); the 20 points per route are summed by the source, so there is no within-year replication",
+  "geographicCoverage": "Sweden, all 21 counties, concentrated in the southern half (55.0-69.1 N, 11.0-24.2 E; route positions given as 25 x 25 km grid-square centres)",
+  "temporalCoverage": "1975-04-12/2024-07-02",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "by the source: the centre of the 25 x 25 km survey grid square containing the route (coordinateUncertaintyInMeters 17,700), coarser than the 0.1 degree rule; VU taxa (Aythya ferina, Melanitta fusca, Streptopelia turtur) are in the table"
+  },
+  "effortColumn": null,
+  "surveyEvidenceNote": "The event core lists every route count; the protocol registers every bird identified to species at every point, every event has noObservations = false and at least one species, and the occurrence remark states that counts are the sum over the 20 points, so a species absent from an event's occurrences was counted zero.",
+  "notShipped": {
+    "withheld_species": "eleven security-class-4 species are not in the deposit (Ciconia nigra, Anser erythropus, Aquila chrysaetos, Clanga clanga, Haliaeetus albicilla, Circus macrourus, Circus pygargus, Falco peregrinus, Falco rusticolus, Bubo bubo, Dendrocopos leucotos); they have no rows here and their absence is not a zero",
+    "point_level": "the 20 points per route are not deposited; only the route total",
+    "euTaxonID": "EU Article 12 species codes per occurrence (eMoF)",
+    "locationProtected_locationType": "constant per event (no / Point)",
+    "biotope": "per-point biotope data available from the provider on request, not in the deposit"
+  },
+  "notes": "Route ids are the source's siteId with an R prefix; __units carries the station-register URL. observer is the source's pseudonymous recorder id. 72 night counts span midnight (date is the start date). Loxia (crossbills) is a genus-level taxon the protocol allows. Species names are the source's (Dyntaxa) spelling; gbifAcceptedName gives GBIF's accepted name where it differs. The design is an annual index (one count per route-year); N-mixture models across years need the closure assumption stated by the user.",
+  "summary": {
+    "n_rows": 2972970,
+    "n_units": 1256,
+    "n_taxa": 270,
+    "n_periods": 50,
+    "n_occasions": 1,
+    "n_surveys": 11011,
+    "y_values": "0-5176 (505 distinct)",
+    "prop_zero": 0.835
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "observer", "unit_county", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_day_of_year", "obs_start_time", "obs_end_time", "obs_transport"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lindstrom_2025_sweden_summerpoints_count.R",
+  "buildDate": "2026-11-01"
+}

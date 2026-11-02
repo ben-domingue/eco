@@ -1,0 +1,50 @@
+{
+  "table": "kyaw_2024_myanmar_mamm_comm",
+  "title": "Camera-trap detection histories of 46 terrestrial mammal taxa (and the Bengal monitor) at 518 stations in six protected areas across Myanmar, 2014-2020, 10-day occasions",
+  "creator": "Kyaw, Pyae Phyoe; Cushman, Samuel A.; Kaszta, Zaneta; Burnham, Dawn; Zaw, Than; Naing, Hla; Htun, Saw; Moe, Kyaw; Tun, Aung Ye; Myo, Okka; Aung, Zarni; Myo, Khin Myo; Aung, Htet Arkar; Po, Saw Htoo Tha; Po, Saw Ehkhu; Nay, Saw Hay; Tun, Saw William L.; Macdonald, David W.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.0gb5mkm6w",
+  "sourceURL": "https://doi.org/10.5061/dryad.0gb5mkm6w",
+  "citation": "Kyaw, P. P., Cushman, S. A., Kaszta, Z., Burnham, D., Zaw, T., Naing, H., Htun, S., Moe, K., Tun, A. Y., Myo, O., Aung, Z., Myo, K. M., Aung, H. A., Po, S. H. T., Po, S. E., Nay, S. H., Tun, S. W. L., & Macdonald, D. W. (2024). Myanmar mammal occupancy baseline assessment dataset [Dataset]. Dryad. https://doi.org/10.5061/dryad.0gb5mkm6w",
+  "paperDOI": "10.1111/ddi.13934",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://spdx.org/licenses/CC0-1.0.html"
+  },
+  "abstract": "Wildlife Conservation Society Myanmar camera-trap surveys (2014-2020) in Hkakaborazi National Park, Htamanthi Wildlife Sanctuary, Alaungdaw Kathapa National Park, Rakhine Yoma Elephant Range and the Say Taung and Myinmoletkhat Key Biodiversity Areas, pooled by the authors into one national detection matrix of 518 camera stations x 17 ten-day occasions x 46 taxa, with camera days per station-occasion and six Google Earth Engine predictors (water density, elevation, terrain roughness, human population density, GPP, NDVI) at five buffer scales (500-4000 m). Surveys targeted different focal species, so station spacing varies (1-3 km, or 2-km2 and 16-km2 grids). Occasions are indexed within each survey and are not calendar-aligned across surveys. The paper reports 47 species; the moonrat appears only in three per-site folders and not in the pooled matrix, so it is not here.",
+  "samplingProtocol": "Passive camera traps at stations 1000-3000 m apart or on 2-km2 / 16-km2 grids, depending on the survey's focal species; detection history at 10 days per occasion; camera days per occasion is the effort covariate.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "10 days",
+  "effortColumn": "obs_camera_days",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Six protected areas and Key Biodiversity Areas across Myanmar (no coordinates deposited)",
+  "temporalCoverage": "2014/2020",
+  "coordinatesCoarsened": null,
+  "notes": "unit_survey is the deposit's survey code (the year, where the code carries one, is the survey year: AKNP17 and HKNP17 = 2017, MMLK1415 = 2014-15, MMLK16 = 2016, MMLK17 = 2017, MMLKBC1718 and ST = 2017-18, MMLKPW20 = 2020; HMT and RYER are undated in the deposit). Each station was surveyed in one survey only, so the table has one period. Covariate definitions are the README's; values are as deposited, not standardised.",
+  "notShipped": {
+    "<SITE>_o10/ folders": "per-survey subsets of the pooled matrices (HMT's stop one occasion short of the pooled file)",
+    "MMLK_o10/": "the authors' regional combination of the five MMLK surveys",
+    "*_noMMLK16_o10.csv": "analysis variants dropping one survey",
+    "moonrat": "Echinosorex gymnura has per-site files in MMLK16, MMLK17 and MMLKPW20 but no pooled matrix",
+    "ExampleCode_AKNP17Agcat.R": "the authors' unmarked workflow"
+  },
+  "summary": {
+    "n_rows": 140760,
+    "n_units": 518,
+    "n_taxa": 46,
+    "n_periods": 1,
+    "n_occasions": 17,
+    "n_surveys": 3060,
+    "y_values": "0,1",
+    "prop_zero": 0.968
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_survey", "unit_site", "unit_water_density_500m", "unit_water_density_1000m", "unit_water_density_1500m", "unit_water_density_2000m", "unit_water_density_4000m", "unit_elevation_m_500m", "unit_elevation_m_1000m", "unit_elevation_m_1500m", "unit_elevation_m_2000m", "unit_elevation_m_4000m", "unit_terrain_roughness_500m", "unit_terrain_roughness_1000m", "unit_terrain_roughness_1500m", "unit_terrain_roughness_2000m", "unit_terrain_roughness_4000m", "unit_population_density_500m", "unit_population_density_1000m", "unit_population_density_1500m", "unit_population_density_2000m", "unit_population_density_4000m", "unit_gpp_500m", "unit_gpp_1000m", "unit_gpp_1500m", "unit_gpp_2000m", "unit_gpp_4000m", "unit_ndvi_500m", "unit_ndvi_1000m", "unit_ndvi_1500m", "unit_ndvi_2000m", "unit_ndvi_4000m", "obs_camera_days"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kyaw_2024_myanmar_mamm_comm.R",
+  "buildDate": "2026-11-01"
+}

@@ -1,0 +1,45 @@
+{
+  "table": "dettling_2021_marin_riparian_count",
+  "title": "Point counts of 14 riparian landbird species at 183 stations on 13 transects in protected areas of Marin County, California, 1997-2019",
+  "creator": "Dettling, Mark D.; Dybala, Kristen E.; Humple, Diana L.; Gardali, Thomas",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.7d7wm37vj",
+  "sourceURL": "https://doi.org/10.5061/dryad.7d7wm37vj",
+  "citation": "Dettling, M.D., Dybala, K.E., Humple, D.L. & Gardali, T. (2021). Avian point count data from riparian corridors of protected areas in Marin County California. Dryad. https://doi.org/10.5061/dryad.7d7wm37vj. Paper: Ornithological Applications 123(4): duab035, https://doi.org/10.1093/ornithapp/duab035",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Simplified avian point-count data collected by Point Blue Conservation Science in Marin County, California, 1997-2019: 5-minute point counts twice (occasionally three times) per breeding season between 1 May and 30 June along riparian transects in Point Reyes National Seashore, Golden Gate National Recreation Area, Mount Tamalpais State Park and Bolinas Lagoon Open Space Preserve. Counts are individuals detected within 50 m; the deposit includes 14 selected species with a row (including zeros) at every point-visit.",
+  "samplingProtocol": "5-minute point counts, detections (aural and visual) within 50 m of a fixed station; stations along riparian transects surveyed in one morning; chronological visits within 1 May-30 June, normally two per year.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion (visits within a breeding season); period = year",
+  "geographicCoverage": {
+    "description": "Riparian corridors in protected areas of Marin County, California, USA (Point Reyes NS, GGNRA, Mount Tamalpais SP, Bolinas Lagoon OSP); no coordinates deposited"
+  },
+  "temporalCoverage": "1997-05/2019-06",
+  "notes": "The point-visit set is the deposit's own: every surveyed point-visit has exactly 14 species rows with explicit zeros, so no survey set was inferred. Visit is the deposit's chronological visit number within the year (1-3); some point-years have only visit 2, or visits 2-3, and visit numbers do not map to fixed calendar windows. The README states 17 species and 80,104 rows; the file has 14 species and 65,968 rows. Unbalanced: 44-183 points per year.",
+  "notShipped": {
+    "other species": "the authors counted all species but deposited only 14 selected for the paper's trend analysis",
+    "dates, observers, coordinates": "not deposited (available from the California Avian Data Center)"
+  },
+  "summary": {
+    "n_rows": 65968,
+    "n_units": 183,
+    "n_taxa": 14,
+    "n_periods": 23,
+    "n_occasions": 3,
+    "n_surveys": 4712,
+    "y_values": "0,1,2,3,4,5,6,7,8,9,10",
+    "prop_zero": 0.719
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dettling_2021_marin_riparian_count.R",
+  "buildDate": "2026-11-01"
+}

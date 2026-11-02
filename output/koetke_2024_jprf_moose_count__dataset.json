@@ -1,0 +1,48 @@
+{
+  "table": "koetke_2024_jprf_moose_count",
+  "title": "Moose camera-trap detection counts, 72 cameras x 91 winter days, John Prince Research Forest, BC (Koetke et al. 2024)",
+  "creator": "Koetke, Lisa J.; Johnson, Chris J.; Hodder, Dexter P.",
+  "pubDate": "2024",
+  "sourceURL": "https://doi.org/10.5061/dryad.w6m905qv3",
+  "citation": "Koetke, L. J., Hodder, D. P. & Johnson, C. J. (2024). Using camera traps and N-mixture models to estimate population abundance: model selection really matters. Methods in Ecology and Evolution 15(5), 900-915. https://doi.org/10.1111/2041-210X.14320. Data: Dryad https://doi.org/10.5061/dryad.w6m905qv3 (CC0 1.0).",
+  "paperDOI": "10.1111/2041-210X.14320",
+  "dataDOI": "10.5061/dryad.w6m905qv3",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily counts of independent moose detections at 72 camera traps in the John Prince Research Forest, central interior British Columbia, from 15 December 2020 to 15 March 2021 (91 days), the camera-trap data of Koetke et al. (2024), who compared N-mixture abundance estimates against a stratified random block aerial survey. A camera-day is surveyed if the camera was active (5,935 of 6,552); y is the count under the authors' 5-minute independence criterion, with the 30-minute and 8-hour recodings of the same videos carried alongside.",
+  "samplingProtocol": "Camera traps recording video; independent detections of moose per camera per day, with three independence criteria (gap of 5 min, 30 min or 8 h between videos) deposited as three matrices. Camera placement, model and settings are in the paper.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "John Prince Research Forest, near Fort St. James, central interior British Columbia, Canada; no coordinates deposited",
+  "temporalCoverage": "2020-12-15/2021-03-15",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit"
+  },
+  "covariateNote": "obs_detections_30min and obs_detections_8hr are the same camera-day's detections counted under the 30-minute and 8-hour independence criteria (deterministic recodings of the same videos; 8 h <= 30 min <= 5 min in every cell). They are alternative responses, not covariates: replace y with one of them to reproduce the paper's other criteria.",
+  "notes": "y uses the 5-minute criterion (the finest deposited). An NA cell in the deposit (camera not active: dead battery or full memory card) is a missing row; inactive days are scattered, not only at deployment ends. 44 of 72 cameras detected a moose. Camera id prefixes (14_, LC, N) are the deposit's; their meaning is in the paper.",
+  "notShipped": {
+    "SRB data": "the 2021 stratified random block aerial survey (3 strata x 5 of 10 cells, one count of bulls, cows and calves per cell with areas): a single-pass reference abundance, not detection data"
+  },
+  "summary": {
+    "n_rows": 5935,
+    "n_units": 72,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 91,
+    "n_surveys": 5935,
+    "y_values": "0,1,2,3,4,6",
+    "prop_zero": 0.981
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "obs_detections_30min", "obs_detections_8hr"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/koetke_2024_jprf_moose_count.R",
+  "buildDate": "2026-11-01"
+}

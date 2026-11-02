@@ -1,0 +1,66 @@
+{
+  "table": "murray_2021_chicago_coyote_mange",
+  "title": "Daily camera-trap detections of coyotes with and without visible signs of sarcoptic mange at 115 stations across the Chicago metropolitan area, 16 seasons 2010-2014",
+  "creator": "Murray, Maureen; Fidino, Mason; Lehrer, Elizabeth W.; Simonis, Juniper L.; Magle, Seth B.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.x3ffbg7js",
+  "sourceURL": "https://doi.org/10.5061/dryad.x3ffbg7js",
+  "citation": "Murray, M., Fidino, M., Lehrer, E. W., Simonis, J. L., & Magle, S. B. (2021). A multi-state occupancy model to non-invasively monitor visible signs of wildlife health with camera traps that accounts for image quality [Dataset]. Dryad. https://doi.org/10.5061/dryad.x3ffbg7js",
+  "paperDOI": "10.1111/1365-2656.13515",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap data from the Urban Wildlife Information Network's Chicago transect (Lincoln Park Zoo): motion-triggered cameras deployed for 28 days each season (spring, summer, fall, winter) from spring 2010 to winter 2014 at sites along an urbanisation gradient. Every coyote image was scored for visible signs of sarcoptic mange (hair loss), image clarity (Laplacian-variance blur metric), colour versus greyscale and the proportion of the body visible, to fit a multi-state occupancy model with a mange-detection layer that accounts for image quality.",
+  "samplingProtocol": "Motion-triggered trail cameras, one per site, 28 consecutive days per season; daily coyote detection / non-detection (NA when the camera was not active); each coyote image classified for visible mange signs and three image-quality measures.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "1 day",
+  "effortColumn": null,
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The deposited daily Coyote column is NA when the camera was not active and 0/1 otherwise; a row exists iff the camera was active that day. 607 of 1,952 station-seasons and 7 of 122 stations were never active and have no rows.",
+  "responseType": "state",
+  "unitKind": "site",
+  "closure": "period (coyote occupancy and mange state are modelled per site-season; days within the 28-day window are replicate observations)",
+  "stateCodes": {
+    "0": "camera active, no coyote detected",
+    "1": "coyote detected, no image that day shows signs of mange",
+    "2": "coyote detected and at least one image that day shows visible signs of sarcoptic mange"
+  },
+  "geographicCoverage": {
+    "description": "Chicago metropolitan area, Illinois, USA (Cook, DuPage, Kane, Lake, McHenry and Will counties), urban to exurban green space",
+    "boundingBox": {
+      "west": -88.26,
+      "east": -87.58,
+      "south": 41.58,
+      "north": 42.26
+    }
+  },
+  "temporalCoverage": "2010-05-04/2014-02-09",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "deposited UTM zone 16N converted to WGS84 decimal degrees (5 dp); coyote is not a flagged taxon and the README places no restriction on the coordinates"
+  },
+  "notShipped": {
+    "285 images": "270 images dated outside the 28-day sampling windows and 15 on inactive camera-days, dropped as in the authors' prep_data.R (inner join on surveyid + date); 14 of them show mange signs",
+    "urbanisation PCA axes, seasonal temperature": "derived in the authors' code repository, not deposited; the three raw urbanisation covariates are shipped",
+    "station exclusion": "the authors dropped stations with fewer than 2 seasons of data; all 115 active stations are shipped",
+    "weekly aggregation": "the authors' detection model used 4 weekly occasions (max over days); obs_week lets a user reproduce it"
+  },
+  "notes": "y = 2 requires an image with mange signs on that day; days with a coyote detection but no retained image (331 of 2,027) are y = 1. Image-quality covariates (blur, colour, proportion of body visible) are per-day aggregates of per-image values and are NA on days without an image. Two active stations (R02-GFP1, D03-STB1) have no entry in model_covariates.csv, so their unit_house_km2 / unit_tree_cover / unit_impervious_cover are NA.",
+  "summary": {
+    "n_rows": 32898,
+    "n_units": 115,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 28,
+    "n_surveys": 32898,
+    "y_values": "0,1,2",
+    "prop_zero": 0.938
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_house_km2", "unit_tree_cover", "unit_impervious_cover", "obs_week", "obs_n_images", "obs_n_mange_images", "obs_mean_blur", "obs_prop_in_color", "obs_max_propbodyvis"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/murray_2021_chicago_coyote_mange.R",
+  "buildDate": "2026-11-01"
+}

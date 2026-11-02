@@ -1,0 +1,45 @@
+{
+  "table": "khelifa_2021_seybouse_calexul_cjs",
+  "title": "Capture-mark-recapture histories of 313 adult Calopteryx exul over 25 daily sampling occasions, Seybouse River, Algeria, 2011",
+  "creator": "Khelifa, Rassim; Mahdjoub, Hayat; Baaloudj, Affef; Cannings, Robert A.; Samways, Michael J.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.xksn02vfv",
+  "sourceURL": "https://doi.org/10.5061/dryad.xksn02vfv",
+  "citation": "Khelifa, R., Mahdjoub, H., Baaloudj, A., Cannings, R. A., & Samways, M. J. (2021). Capture-mark-recapture of Calopteryx exul in 2011 [Dataset]. Dryad. https://doi.org/10.5061/dryad.xksn02vfv",
+  "paperDOI": "10.1038/s41598-021-86383-z",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily capture-mark-recapture of adult Glittering Demoiselles (Calopteryx exul, IUCN EN) along a 100 m transect of a channel of the Seybouse River at El Fedjoudj, Guelma, northeastern Algeria, in the 2011 flight season: 313 individually wing-marked adults x 25 sampling days (Julian 132-157, day 153 not sampled), with the sex of each adult and the water depth at the centre of the waterbed on each sampling day. The paper fits a Cormack-Jolly-Seber model with constant survival and recapture probability as a quadratic function of water depth and sex.",
+  "samplingProtocol": "Hand-net capture of adults along a fixed 100 m river transect in the morning (09:00-12:00), individual alphanumeric wing marks, daily resampling; CJS.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one capture occasion per sampling day; open between days)",
+  "effortColumn": null,
+  "geographicCoverage": "Seybouse River at El Fedjoudj, Guelma, northeastern Algeria; one site, about 36.5 N 7.4 E (paper's coordinate rounded to 0.1 degree; the species is IUCN EN)",
+  "temporalCoverage": "2011",
+  "coordinatesCoarsened": null,
+  "notes": "Rows before an individual's first capture are kept as 0 (E2). The Julian-day origin is not stated in the deposit and the paper's campaign dates (28 April-29 May 2011) do not match days 132-157 counted from 1 January, so no calendar date is derived; __periods carries the Julian day. period_water_depth_cm is the deposit's daily water depth (cm, graded stick), the paper's detection covariate.",
+  "notShipped": {
+    "Metadata": "variable definitions sheet, used for the header"
+  },
+  "summary": {
+    "n_rows": 7825,
+    "n_units": 313,
+    "n_taxa": 1,
+    "n_periods": 25,
+    "n_occasions": 1,
+    "n_surveys": 7825,
+    "y_values": "0,1",
+    "prop_zero": 0.889
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "period_water_depth_cm"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/khelifa_2021_seybouse_calexul_cjs.R",
+  "buildDate": "2026-11-01"
+}

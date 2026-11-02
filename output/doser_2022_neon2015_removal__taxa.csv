@@ -1,0 +1,13 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
+AMRE,Setophaga ruticilla,American Redstart,species,https://www.gbif.org/species/2489985,EXACT,
+BAWW,Mniotilta varia,Black-and-white Warbler,species,https://www.gbif.org/species/2489613,EXACT,
+BHVI,Vireo solitarius,Blue-headed Vireo,species,https://www.gbif.org/species/2487456,EXACT,
+BLBW,Setophaga fusca,Blackburnian Warbler,species,https://www.gbif.org/species/6093199,EXACT,
+BLPW,Setophaga striata,Blackpoll Warbler,species,https://www.gbif.org/species/6092935,EXACT,
+BTBW,Setophaga caerulescens,Black-throated Blue Warbler,species,https://www.gbif.org/species/7341828,EXACT,
+BTNW,Setophaga virens,Black-throated Green Warbler,species,https://www.gbif.org/species/6092631,EXACT,
+CAWA,Cardellina canadensis,Canada Warbler,species,https://www.gbif.org/species/6091946,EXACT,
+MAWA,Setophaga magnolia,Magnolia Warbler,species,https://www.gbif.org/species/6093209,EXACT,
+NAWA,Leiothlypis ruficapilla,Nashville Warbler,species,https://www.gbif.org/species/7531611,EXACT,
+OVEN,Seiurus aurocapilla,Ovenbird,species,https://www.gbif.org/species/2489590,EXACT,
+REVI,Vireo olivaceus,Red-eyed Vireo,species,https://www.gbif.org/species/2487430,EXACT,

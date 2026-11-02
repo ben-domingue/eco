@@ -1,0 +1,56 @@
+{
+  "table": "hepler_2018_serengeti_gazelle_occ",
+  "title": "Thomson's gazelle detection/non-detection per camera and 8-day window, Snapshot Serengeti grid, Tanzania",
+  "creator": "Hepler, Staci A.; Erhardt, Robert J.; Anderson, T. Michael",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.34kb373",
+  "sourceURL": "https://doi.org/10.5061/dryad.34kb373",
+  "citation": "Hepler, S. A., Erhardt, R., Anderson, T. M. (2019). Data from: Identifying drivers of spatial variation in occupancy with limited replication camera trap data [Dataset]. Dryad. https://doi.org/10.5061/dryad.34kb373",
+  "paperCitation": "Hepler, S. A., Erhardt, R. J., Anderson, T. M. (2018). Identifying drivers of spatial variation in occupancy with limited replication camera trap data. Ecology 99(10):2152-2158. https://doi.org/10.1002/ecy.2396",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Occupancy models are widely used in camera trap studies to analyze species presence, abundance, and geographic distribution. These models account for imperfect detection using a latent variable to distinguish between true presence/absence and observed detection. Under certain experimental setups, parameter estimation in a latent variable framework can be challenging. Several studies have issued guidelines on the number of independent replicated surveys needed for each unchanging occupancy field (season) to ensure reliable estimation. The paper presents a spatio-temporal occupancy model that can be fit to data obtained from a single survey per season, so long as the number of seasons is sufficiently large, with an application to camera-trap data on the Thomson's gazelle in the Serengeti, Tanzania (paper abstract). The deposit is the application data: 194 Snapshot Serengeti cameras x 46 eight-day windows, with MODIS NDVI, a monthly-rainfall indicator, fire, tree density classes, distance to river, camera coordinates and camera-days of operation.",
+  "samplingProtocol": "Snapshot Serengeti camera-trap grid (Swanson et al. 2015); for each camera and consecutive 8-day window, 1 if a Thomson's gazelle was photographed at the camera during the window, 0 otherwise; days the camera was on and functioning in the window (1-8) in obs_camera_days.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "8 days",
+  "effortColumn": "obs_camera_days",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": {
+    "description": "Snapshot Serengeti camera grid, central Serengeti National Park, Tanzania",
+    "boundingBox": {
+      "west": 34.753,
+      "east": 35.156,
+      "south": -2.6395,
+      "north": -2.3863
+    }
+  },
+  "temporalCoverage": "46 consecutive 8-day windows (368 days); calendar dates and year not deposited",
+  "crs": "WGS84 assumed (README: degrees N / degrees E)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published; Thomson's gazelle is IUCN Least Concern and Snapshot Serengeti publishes its camera locations"
+  },
+  "notes": "Occasions are calendar-aligned 8-day windows shared by all cameras (the rainfall indicator is constant within a window), so the table can be read either as the paper's one-survey-per-season design with 46 seasons or as one season with 46 occasions. The window's start date is not deposited, so there is no date column; the wet windows (13-16, 43-46) fall where the Serengeti short and long rains would. obs_rain_gt100mm is constant within an occasion across cameras (occasion-level), carried under the obs_ prefix. The three tree-density indicators and unit_forest are shipped as deposited (unit_forest = unit_moderate_tree or unit_dense_tree); 688 camera-windows (at cameras with no trees within 50 m) have all three indicators 0.",
+  "notShipped": [],
+  "summary": {
+    "n_rows": 5669,
+    "n_units": 194,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 46,
+    "n_surveys": 5669,
+    "y_values": "0,1",
+    "prop_zero": 0.845
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_river_distance_m", "unit_sparse_tree", "unit_moderate_tree", "unit_dense_tree", "unit_forest", "unit_decimalLatitude", "unit_decimalLongitude", "obs_camera_days", "obs_ndvi", "obs_rain_gt100mm", "obs_fire"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hepler_2018_serengeti_gazelle_occ.R",
+  "buildDate": "2026-11-01"
+}

@@ -60,6 +60,7 @@ IRW view, and that view validates under IRW v1.0 unchanged.
 <div class="card"><h3><a href="r.html">Read it from R</a></h3><p>No account needed: <code>eco_filter()</code>, <code>eco_fetch()</code>, <code>eco_to_unmarked()</code> over Redivis' public CSV endpoint, with version pinning.</p></div>
 <div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>`r s$n_tables` tables from `r s$n_deposits` public deposits and `r s$n_packages` textbook datasets: camera traps, point counts, eDNA, distance sampling, mist nets and live traps, every one validated and released on Redivis.</p></div>
 <div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort as a covariate, and a capture history.</p></div>
+<div class="card"><h3><a href="vignettes/index.html">Fit a model</a></h3><p>Worked analyses on eco tables: single-species site occupancy with <code>unmarked</code>, with a simulator for building intuition about ψ and p.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
 <div class="card"><h3><a href="about.html">Why this might work</a></h3><p>A community occupancy model is a random-item IRT model with species as items. The analogy, the evidence, and the open decisions.</p></div>
 :::

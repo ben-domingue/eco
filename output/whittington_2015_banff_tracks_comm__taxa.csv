@@ -1,0 +1,8 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_group,taxon_sourceName
+PUMCON,Puma concolor,cougar,species,https://www.gbif.org/species/2435099,EXACT,,carnivore,cougar
+CANLAT,Canis latrans,coyote,species,https://www.gbif.org/species/5219153,EXACT,,carnivore,coyote
+ODOSPP,Odocoileus,"deer (mule or white-tailed, not distinguished)",genus,https://www.gbif.org/species/2440964,EXACT,,ungulate,deer
+VULVUL,Vulpes vulpes,red fox,species,https://www.gbif.org/species/5219243,EXACT,,carnivore,fox
+LYNCAN,Lynx canadensis,Canada lynx,species,https://www.gbif.org/species/2435263,EXACT,,carnivore,lynx
+ALCALC,Alces alces,moose,species,https://www.gbif.org/species/2440940,EXACT,,ungulate,moose
+GULGUL,Gulo gulo,wolverine,species,https://www.gbif.org/species/5219073,EXACT,,carnivore,wolverine

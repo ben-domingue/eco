@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_subspecies,taxon_iucnCategory
+LEPTIM,Lepus timidus,Alpine mountain hare,species,https://www.gbif.org/species/2436756,EXACT,,varronis,LC
