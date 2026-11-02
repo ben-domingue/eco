@@ -1,0 +1,52 @@
+{
+  "table": "swedberg_2023_springfish_occ",
+  "title": "Spring-associated stream fishes, snorkel and seine detections at 153 channel-unit complexes in 61 reaches, Arbuckle Uplift and Ozark Highlands, Oklahoma, 2018-2019",
+  "creator": "Swedberg, Dusty; Brewer, Shannon; Mollenhauer, Robert (Oklahoma State University)",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.hmgqnk9m3",
+  "sourceURL": "https://doi.org/10.5061/dryad.hmgqnk9m3",
+  "citation": "Swedberg, D., Brewer, S. & Mollenhauer, R. (2023). Physicochemical habitat data and multi-scale occupancy data for spring-associated fishes in Oklahoma streams [Dataset]. Dryad. https://doi.org/10.5061/dryad.hmgqnk9m3",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection histories of four spring-associated fishes (least darter, southern redbelly dace, redspot chub, smallmouth bass as sub-adults and adults) and the orangethroat darter at 153 riffle-run-pool complexes in 61 stream reaches of the Arbuckle Uplift and Ozark Highlands, Oklahoma, summers 2018-2019: two visits about a week apart, each a snorkel survey and a seine survey (occasions 1-4). Per-survey habitat (depth, velocity, clarity, temperature, cover) and site and reach habitat (mesohabitat areas, residual pool depth, seepage, discharge, land-use disturbance). Multi-scale: cluster_id = reach, unit = site.",
+  "samplingProtocol": "Channel-unit complexes (riffle-run-pool sequences) within each reach were surveyed twice, about a week apart; each visit comprised a snorkel survey followed by a seine survey, recording presence of target species and other darters. Habitat measured per survey along three transects (depth, velocity), with horizontal clarity per reach and visual cover estimates; site and reach habitat measured once (Swedberg thesis; Dryad README).",
+  "samplingProtocolCode": "visual_and_seine",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "A site x survey is surveyed iff its y cell is not NA; the NA pattern is identical for every species at a site and matches the gear column (asserted). 21 sites lack the fourth survey and others lack one of the first three.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "site closed across the two visits (about one week); occasions are four surveys (snorkel and seine on each visit); reach = cluster_id is the coarser occupancy scale",
+  "occasionCodes": {
+    "1": "visit 1, snorkel",
+    "2": "visit 1, seine",
+    "3": "visit 2, snorkel",
+    "4": "visit 2, seine"
+  },
+  "designNote": "Experimental list of E9 (multi-scale): cluster_id = reach, unit = channel-unit complex, occasion = survey (gear alternates; obs_gear).",
+  "geographicCoverage": "Arbuckle Uplift (Arbuckle Mountains) and Ozark Highlands ecoregions, Oklahoma, USA: 47 streams; no coordinates deposited",
+  "temporalCoverage": "2018-07-11/2019-10-13",
+  "coordinatesCoarsened": null,
+  "notes": "Two key repairs: 2k_03 -> 2K_03 (SRBD row) and 1N_12 -> 1N_02 (OTD row; every covariate equal, asserted). Site 4C_04's run area and the proportions and total area derived from it are NA (a spreadsheet fill-down in the deposit); site 1B_02's survey-2 water temperature is NA (23.6 on one species row, 24.1 on eight). obs_duration_recorded is the deposit's Time_y value: documented as hours.minutes but 291 values have fractional parts of .60 or more, so it is not converted. Smallmouth bass are two taxa by life stage (taxon_life_stage in __taxa).",
+  "notShipped": {
+    "other darters": "802 rows for ten non-target darters (CHD, OBD, LP, GSD, BND, SBD, ARD, FNTL, DD, SHD), listed only at sites of reaches where they were encountered, so their taxon sets differ between sites (E4.2)",
+    "duplicate rows": "16 identical duplicate CHD rows"
+  },
+  "summary": {
+    "n_rows": 3312,
+    "n_units": 153,
+    "n_taxa": 6,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 552,
+    "y_values": "0,1",
+    "prop_zero": 0.66
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_ecoregion", "unit_stream", "unit_fine_substrate_pct", "unit_area_pool_m2", "unit_area_run_m2", "unit_area_riffle_m2", "unit_area_backwater_m2", "unit_pool_depth_cm", "unit_riffle_crest_cm", "unit_residual_pool_depth_cm", "unit_seepage_up", "unit_seepage_down", "unit_seepage_difference", "unit_gaining_losing", "unit_discharge", "unit_two_week_temp_c", "unit_drainage_area_km2", "unit_disturbance_250m", "unit_disturbance_catch", "unit_disturbance_sub", "unit_prop_pool", "unit_prop_run", "unit_prop_riffle", "unit_prop_backwater", "unit_backwater_present", "unit_total_area_m2", "unit_velocity_occ_m_s", "unit_vegetation_occ_pct", "unit_coarse_wood_occ_pct", "unit_prop_agriculture", "unit_year", "obs_gear", "obs_duration_recorded", "obs_coarse_wood_pct", "obs_coarse_substrate_pct", "obs_vegetation_pct", "obs_velocity_m_s", "obs_depth_m", "obs_clarity_m", "obs_water_temp_c"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/swedberg_2023_springfish_occ.R",
+  "buildDate": "2026-11-02"
+}
