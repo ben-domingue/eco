@@ -1,0 +1,48 @@
+{
+  "table": "cecala_2026_kiawah_terrapin_cjs",
+  "title": "Annual capture histories of 1,553 diamondback terrapins, Kiawah River, South Carolina, 1983-2012",
+  "creator": "Cecala, Kristen",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.31zcrjf36",
+  "sourceURL": "https://doi.org/10.5061/dryad.31zcrjf36",
+  "citation": "Cecala, K. (2026). Long-term diamondback terrapin capture-recapture data from Kiawah Island, South Carolina (1983-2012) [Dataset]. Dryad. https://doi.org/10.5061/dryad.31zcrjf36",
+  "paperDOI": null,
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture-mark-recapture records of diamondback terrapins (Malaclemys terrapin) on the Kiawah River, South Carolina, 1983-2012, from seines, trammel nets, cast and dip nets, hand captures and crab-pot recoveries, with morphometrics, age from annuli and egg counts. Here pooled to annual capture histories of the 1,553 marked terrapins.",
+  "samplingProtocol": "Active-season seining and trammel netting with hand, dip-net and cast-net captures at nine sites on the Kiawah River; individuals notch-marked; crab-pot recoveries recorded.",
+  "samplingProtocolCode": "net_capture",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "A year with at least one capture record is a sampling year (README: monitored annually since 1983). No records exist for 2000 and 2001, which are treated as not surveyed and have no rows; if they were surveyed with no captures, that information is not in the deposit.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (captures within a season pooled to the year; survival between years)",
+  "lossesOnCapture": "not coded in the deposit; crab-trap records (often drowned bycatch) counted in obs_n_crabtrap",
+  "geographicCoverage": "Kiawah River, Kiawah Island, South Carolina, USA (nine site labels, no coordinates)",
+  "temporalCoverage": "1983/2012",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "radiotelemetry": "15 relocations of radio-tagged terrapins in 1992 (MOC Radiotrans), not captures",
+    "unmarked": "31 records of unmarked terrapins (ID UNMKD)",
+    "morphometrics": "plastron, carapace, width, depth, mass, age, egg counts per capture (vary within individual; not covariates of the yearly detection)"
+  },
+  "notes": "Rows before first capture kept as 0 (E4). The sampling years are 1983-1999 and 2002-2012 (28 periods); period indices are consecutive over sampled years, use __periods$year for intervals. One ID (IJNP) recorded as male then female: unit_sex = U.",
+  "summary": {
+    "n_rows": 43484,
+    "n_units": 1553,
+    "n_taxa": 1,
+    "n_periods": 28,
+    "n_occasions": 1,
+    "n_surveys": 43484,
+    "y_values": "0,1",
+    "prop_zero": 0.93
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_unit_sex", "unit_unit_first_site", "obs_n_captures", "obs_n_crabtrap"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cecala_2026_kiawah_terrapin_cjs.R",
+  "buildDate": "2026-11-02"
+}
