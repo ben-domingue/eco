@@ -8,7 +8,7 @@
 #' @param model_family,response_type,taxon_group,protocol,unit_kind,realm,country
 #'   Character, one or more values; `protocol` is the tags column
 #'   `sampling_protocol`. `response_type` is one of `detection`, `count`,
-#'   `state`, `ordinal`, `multinomial_cell`, `detection_event`.
+#'   `state`, `ordinal`, `multinomial_cell`, `detection_event`, `binomial_count`.
 #' @param min_units,min_occasions,min_periods,min_taxa Numeric lower bounds on
 #'   the computed counts.
 #' @param multi_species `TRUE` keeps tables with more than one taxon, `FALSE`

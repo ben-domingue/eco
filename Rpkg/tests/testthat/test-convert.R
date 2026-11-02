@@ -52,6 +52,21 @@ test_that("counts become pcount, several periods colext", {
   expect_equal(umf@numPrimary, 2L)
 })
 
+test_that("binomial_count rows expand to an exchangeable history", {
+  b <- data.frame(unit = c("a", "b"), taxon = "X", y = c(2L, 0L), obs_trials = c(3L, 2L), unit_elev = c(1, 2))
+  expect_true(eco_check(b)$ok)
+  bad <- b; bad$y[1] <- 5L
+  expect_match(eco_check(bad)$problems, "obs_trials", all = FALSE)
+  h <- binomial_to_history(b)
+  expect_equal(nrow(h), 5L)
+  expect_equal(sum(h$y), 2L)
+  expect_true(all(h$occasion[h$unit == "a"] == 1:3))
+  expect_false("obs_trials" %in% names(h))
+  skip_if_not_installed("unmarked")
+  expect_message(umf <- eco_to_unmarked(b), "binomial_count")
+  expect_equal(dim(umf@y), c(2L, 3L))
+})
+
 test_that("capture histories round-trip", {
   d <- data.frame(ch = c("1011", "0101", "1011"), sex = c("f", "m", "f"), stringsAsFactors = FALSE)
   long <- ch_to_eco(d, taxon = "CINCIN")

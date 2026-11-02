@@ -147,7 +147,7 @@ floor_status <- function(s) {
   if (length(reasons)) paste0("below (", paste(reasons, collapse = "; "), ")") else "meets"
 }
 
-RESPONSE_TYPES  <- c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event")
+RESPONSE_TYPES  <- c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event", "binomial_count")
 SURVEY_EVIDENCE <- c("sample_table", "effort_table", "deposited_matrix", "row_presence", "inferred")
 STANDARD_VERSION <- "eco v1.0-draft (2026-11-01)"
 
@@ -168,6 +168,10 @@ check_dataset_meta <- function(dataset, long, units = NULL) {
   if (!is.null(rt) && rt %in% c("state", "ordinal") && is.null(dataset$stateCodes)) p <- c(p, sprintf("E2: responseType %s needs stateCodes", rt))
   if (identical(rt, "multinomial_cell") && is.null(dataset$multinomialType) && is.null(dataset$distanceBreaks))
     p <- c(p, "E2/E9: multinomial_cell needs multinomialType or distanceBreaks")
+  if (identical(rt, "binomial_count")) {
+    if (!identical(dataset$effortColumn, "obs_trials")) p <- c(p, "E10: binomial_count needs effortColumn = \"obs_trials\" (#34)")
+    if (!"obs_trials" %in% names(long) || "occasion" %in% names(long)) p <- c(p, "E2: binomial_count needs obs_trials and no occasion column (#34)")
+  }
   if (identical(rt, "detection") && !all(long$y %in% c(0, 1))) p <- c(p, "E2: responseType detection but y is not 0/1")
   if (identical(rt, "count") && any(long$y < 0 | long$y != round(long$y))) p <- c(p, "E2: responseType count but y is not a non-negative integer")
   if (!is.null(dataset$unitKind) && !dataset$unitKind %in% c("site", "individual")) p <- c(p, "E10: unitKind must be site or individual")

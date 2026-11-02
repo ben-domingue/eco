@@ -37,7 +37,7 @@
 #   Karanth et al. 2006 Table 1 and NOT in the deposit, so __periods carries the period's
 #   length in days and no year), no occasion column (one row per unit x trap x period),
 #   y = number of trap-days on which the individual was photographed at that station in
-#   that period (responseType count), obs_trap_days_active = K_jt (effortColumn), the
+#   that period (responseType binomial_count, ruling #34), obs_trials = K_jt (effortColumn), the
 #   binomial denominator. taxon = PANTIG. unitKind = individual.
 #   Survey set = effort_table: a station-period is surveyed iff EECam_act > 0 (458
 #   station-periods); every individual carries the full rectangle of surveyed
@@ -94,7 +94,7 @@ long <- merge(long, counts, by = c("ind", "trap", "period"), all.x = TRUE)
 long[is.na(y), y := 0L]
 stopifnot(nrow(long) == 75 * 458, sum(long$y) == nrow(rec), all(long$y <= long$k))
 long <- long[, .(unit = sprintf("T%02d", ind), taxon = "PANTIG", y = as.integer(y), trap = sprintf("S%03d", trap),
-                 period, obs_trap_days_active = as.integer(k))]
+                 period, obs_trials = as.integer(k))]
 long <- order_eco(long)
 
 traps <- loc[, .(trap = sprintf("S%03d", trap), x, y)][order(trap)]
@@ -110,18 +110,18 @@ dataset <- list(
   citation = "Gardner, B., Sollmann, R., Kumar, N. S., Jathanna, D., & Karanth, K. U. (2021). Ten year camera trap dataset of tigers in India [Data set]. Dryad. https://doi.org/10.5061/dryad.bcc2fqzd2",
   paperDOI = "10.1002/ece3.4509",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Camera-trap captures of individually identified tigers (Panthera tigris) in the central part of Nagarahole Reserve, Karnataka, India, from the Wildlife Conservation Society study begun in 1991: ten primary sampling periods between 1991 and 2000 at up to 195 camera stations. The deposit gives each capture with its station, trap day and primary period, the number of trap days each station was active in each primary period, and station coordinates centred on an undisclosed origin. The table follows the authors' observation model: one row per tiger x station x primary period in which the station operated, y = number of trap days with a capture, obs_trap_days_active = the number of active trap days (the binomial denominator). Tigers carry rows for all ten periods, including before first and after last capture.",
+  abstract = "Camera-trap captures of individually identified tigers (Panthera tigris) in the central part of Nagarahole Reserve, Karnataka, India, from the Wildlife Conservation Society study begun in 1991: ten primary sampling periods between 1991 and 2000 at up to 195 camera stations. The deposit gives each capture with its station, trap day and primary period, the number of trap days each station was active in each primary period, and station coordinates centred on an undisclosed origin. The table follows the authors' observation model: one row per tiger x station x primary period in which the station operated, y = number of trap days with a capture, obs_trials = the number of active trap days (the binomial denominator). Tigers carry rows for all ten periods, including before first and after last capture.",
   samplingProtocol = "Paired passive camera traps at stations along roads and trails in the central part of Nagarahole; individuals identified from stripe patterns; one detection per individual per station per trap day at most (Karanth 1995; Karanth & Nichols 1998; Karanth et al. 2006). Station activity recorded as trap days per primary period.",
   samplingProtocolCode = "camera_trap", surveyEvidence = "effort_table",
   surveyEvidenceNote = "EECam_act.csv gives trap days active per station x primary period; a station-period is surveyed iff that count is > 0 (458 of 1,950). Which trap days were active is not deposited (capture occasion indices exceed the station's active count in 283 of 343 records), so the table is at the station-period level with the active-day count as effort, which is the paper's own y_ijt ~ Binomial(p, K_jt).",
-  effortColumn = "obs_trap_days_active",
-  responseType = "count", unitKind = "individual",
+  effortColumn = "obs_trials",
+  responseType = "binomial_count", unitKind = "individual",
   closure = "period (population closed within a primary period of 33-197 days; open between the ten periods, 1991-2000)",
   geographicCoverage = "Central Nagarahole Reserve (Nagarahole / Rajiv Gandhi National Park), Karnataka, southwestern India; station coordinates in __traps are centred local metres, no geographic position deposited",
   temporalCoverage = "1991/2000",
   crs = "local: centred by the authors on an undisclosed origin, metres (not a geographic CRS)",
   coordinatesCoarsened = list(value = TRUE, method = "by the source: station coordinates are centred on an undisclosed origin (metres) because stations are still in use; the tiger is IUCN EN; no geographic coordinates exist in the deposit, nothing further applied"),
-  designNote = "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Open population across period. No occasion column: y is the count of capture days per station-period with effort in obs_trap_days_active (the design_landscape 'trap arrays summed per session' shape), because per-occasion effort is not deposited.",
+  designNote = "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Open population across period. No occasion column: y is the count of capture days per station-period with effort in obs_trials (the design_landscape 'trap arrays summed per session' shape), because per-occasion effort is not deposited.",
   notes = "Period 7 captures carry occasion indices 96-115 although the readme gives the period 33 days; the indices are not shipped, only the counts. Station 188 is absent from the deposit. Tiger ids are the deposit's integers prefixed T, stations prefixed S.",
   notShipped = list(Occasion = "the trap day index of each capture: per-occasion station activity is not deposited, so the day cannot be given a survey set; it survives as the count y",
                     station_188 = "absent from the activity and location files (readme)"))
@@ -138,4 +138,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Open-population spatial capture-recapture (binomial counts with trap-day effort)",
   sampling_protocol = "camera_trap", design = "Multi-session (10 primary periods 1991-2000, 195 camera stations, effort per station-period)", realm = "Terrestrial",
   country = "IND", coordinates = "As published (station coordinates centred by the authors on an undisclosed origin, local metres, in __traps)",
-  notes = "Experimental (E9): trap key + __traps. Individuals as unit, full rectangle incl. periods without capture. y = capture days per station-period, obs_trap_days_active = effort.")
+  notes = "Experimental (E9): trap key + __traps. Individuals as unit, full rectangle incl. periods without capture. y = capture days per station-period, obs_trials = effort.")

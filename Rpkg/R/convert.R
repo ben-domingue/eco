@@ -389,6 +389,14 @@ eco_check <- function(long) {
   if ("period" %in% names(long)) for (cc in grep("^period_", names(long), value = TRUE))
     if (nrow(unique(long[, c("unit", "period", cc), with = FALSE])) > nrow(unique(long[, .(unit, period)])))
       problems <- c(problems, sprintf("E5: %s varies within unit x period", cc))
+  # binomial_count (E2, ruling #34): obs_trials on every row, y <= obs_trials, no occasion
+  if ("obs_trials" %in% names(long)) {
+    k <- long$obs_trials
+    if (anyNA(k) || !is.numeric(k) || any(k < 1) || any(k != round(k)))
+      problems <- c(problems, "E2: obs_trials must be an integer >= 1 on every row (binomial_count, #34)")
+    else if (any(long$y > k)) problems <- c(problems, "E2: y > obs_trials (binomial_count, #34)")
+    if ("occasion" %in% names(long)) problems <- c(problems, "E2: binomial_count tables have no occasion column (#34)")
+  }
   # explicit-zero for multi-species: every surveyed (unit,trap,period,occasion) has all taxa
   if (uniqueN(long$taxon) > 1) {
     occ <- intersect(c("unit", "trap", "period", "occasion"), names(long))
@@ -418,6 +426,10 @@ eco_to_unmarked <- function(long, family = NULL, ...) {
     stop("this table has ", nt, " taxa; unmarked frames hold one. Split it, e.g. ",
          "eco_to_unmarked(long[long$taxon == long$taxon[1], ]), or use eco_to_array() to keep the taxon dimension.",
          call. = FALSE)
+  if ("obs_trials" %in% names(long) && !"occasion" %in% names(long)) {
+    message("eco_to_unmarked: binomial_count table; expanding each row to an exchangeable history of obs_trials occasions")
+    long <- binomial_to_history(long)
+  }
   if (is.null(family)) {
     multi_period <- "period" %in% names(long) && uniqueN(long$period) > 1
     family <- if ("y_raw" %in% names(long) && "occasion" %in% names(long) &&
@@ -431,6 +443,28 @@ eco_to_unmarked <- function(long, family = NULL, ...) {
   }
   if (family == "mpois") return(eco_to_mpois(long, ...))
   eco_to_umf(long, type = family, ...)
+}
+
+#' Expand a `binomial_count` table to detection rows
+#'
+#' A `responseType = binomial_count` table (E2, ruling #34) has one row per
+#' `(unit, taxon[, trap][, period])` with `y` = occasions with a detection out of
+#' `obs_trials` surveyed. For a constant detection probability the count is a
+#' sufficient statistic, so the row can be expanded to an exchangeable history:
+#' `occasion` 1..`obs_trials`, `y = 1` for the first `y` occasions and 0 after.
+#' The order of ones is arbitrary; only constant-`p` models should be fitted.
+#' `obs_trials` is dropped from the result.
+#' @param long A table in the eco format with `obs_trials` and no `occasion`.
+#' @return A data.table in the eco format with `occasion` and 0/1 `y`.
+#' @export
+binomial_to_history <- function(long) {
+  long <- as.data.table(long)
+  stopifnot("obs_trials" %in% names(long), !"occasion" %in% names(long), all(long$y <= long$obs_trials))
+  out <- long[rep(seq_len(.N), obs_trials)]
+  out[, occasion := seq_len(.N), by = c(intersect(c("unit", "taxon", "trap", "period"), names(long)))]
+  out[, y := as.integer(occasion <= long$y[rep(seq_len(nrow(long)), long$obs_trials)])]
+  out[, obs_trials := NULL]
+  order_eco(out)
 }
 
 # ---------------------------------------------------------------------------

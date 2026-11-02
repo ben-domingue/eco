@@ -28,7 +28,7 @@ LEGACY_PREFIXES = ("cov_", "itemcov_", "periodcov_")
 ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2})?Z?)?$")
 
 RESPONSE_TYPES = ("detection", "count", "state", "ordinal", "multinomial_cell",
-                  "detection_event")
+                  "detection_event", "binomial_count")
 SURVEY_EVIDENCE = ("sample_table", "effort_table", "deposited_matrix",
                    "row_presence", "inferred")
 UNIT_KINDS = ("site", "individual")
@@ -218,6 +218,25 @@ def check_y_response_type(t: Table):
     if rt == "detection_event" and (y == 1).sum() == 0:
         out.append(_f("y_response_type", "warn",
                       "responseType = detection_event with no y = 1 row", t))
+    if rt == "binomial_count":
+        if "occasion" in t.df.columns:
+            out.append(_f("y_response_type", "error",
+                          "responseType = binomial_count has no occasion column: the source "
+                          "collapsed the occasions, so a row is one (unit, taxon[, trap][, period]) (E2, #34)", t))
+        if "obs_trials" not in t.df.columns:
+            out.append(_f("y_response_type", "error",
+                          "responseType = binomial_count needs obs_trials (occasions surveyed) on every row (E2, #34)", t))
+        else:
+            k = pd.to_numeric(t.df["obs_trials"], errors="coerce")
+            yy = pd.to_numeric(t.df["y"], errors="coerce")
+            if k.isna().any() or (k < 1).any() or not np.all(np.equal(np.mod(k.dropna(), 1), 0)):
+                out.append(_f("y_response_type", "error",
+                              "obs_trials must be an integer >= 1 on every row (E2, #34)", t))
+            over = int((yy > k).sum())
+            if over:
+                out.append(_f("y_response_type", "error",
+                              f"{over:,} row(s) with y > obs_trials: more occasions with a detection "
+                              f"than occasions surveyed (E2, #34)", t))
     return out
 
 
@@ -540,6 +559,9 @@ def check_meta_conditional(t: Table):
     if rt == "multinomial_cell" and not (d.get("multinomialType") or d.get("distanceBreaks")):
         out.append(_f("meta_conditional", "error",
                       "responseType = multinomial_cell needs multinomialType or distanceBreaks (E2/E9)", t))
+    if rt == "binomial_count" and d.get("effortColumn") != "obs_trials":
+        out.append(_f("meta_conditional", "error",
+                      'responseType = binomial_count needs effortColumn = "obs_trials" (E10, #34)', t))
     return out
 
 
@@ -582,7 +604,8 @@ def check_sample_floor(t: Table):
     reasons = []
     if s["n_units"] < FLOOR_UNITS:
         reasons.append(f"{s['n_units']} units < {FLOOR_UNITS}")
-    if max(s["n_occasions"], s["n_periods"]) < FLOOR_REPLICATES:
+    binomial = bool(t.dataset) and t.dataset.get("responseType") == "binomial_count"
+    if max(s["n_occasions"], s["n_periods"]) < FLOOR_REPLICATES and not binomial:
         reasons.append("no replication")
     if not reasons:
         return []
@@ -595,6 +618,8 @@ def check_replication(t: Table):
     s = table_stats(t.df)
     if not s or s["n_occasions"] > 1 or s["n_periods"] > 1:
         return []
+    if t.dataset and t.dataset.get("responseType") == "binomial_count":
+        return []   # replication is inside obs_trials (#34)
     return [_f("replication", "warn",
                "one occasion and one period: a single-visit matrix fits the format "
                "but supports none of E9's core models", t, group="intake")]

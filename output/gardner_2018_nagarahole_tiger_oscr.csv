@@ -1,4 +1,4 @@
-unit,taxon,y,trap,period,obs_trap_days_active
+unit,taxon,y,trap,period,obs_trials
 T01,PANTIG,0,S001,1,46
 T02,PANTIG,0,S001,1,46
 T03,PANTIG,0,S001,1,46

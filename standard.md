@@ -74,6 +74,7 @@ needs no support from the standard.
 | `ordinal` | integer index, 0 = none | the source's label | An ordered index that is neither a count nor a latent state: an anuran calling index 0–3, an abundance class. `stateCodes` required. *Added v1.0 after `glorioso_2025_atchafalaya_calls`.* |
 | `multinomial_cell` | count in the cell | the cell label (`"10"`, `"01"`, `"11"`; a removal interval; a distance bin) | `occasion` indexes the cell (E9). `multinomialType` or `distanceBreaks` required. |
 | `detection_event` | 1 | — | One row per detection with `obs_*` (distance, classifier score) plus one `y = 0` row per survey with no detections. Experimental (E9). |
+| `binomial_count` | number of occasions with a detection, integer 0 to `obs_trials` | — | The source collapsed the occasions: only the count of occasions with a detection and the number surveyed (`obs_trials`, required on every row, integer ≥ 1) are deposited. No `occasion` column; a row is one `(unit, taxon [, trap] [, period])`. Supports constant-`p` models only; a time-varying detection model needs the history, which does not exist. `effortColumn = "obs_trials"`. *Added by ruling #34 (2026-11-01).* |
 
 Counts that were imputed or interpolated MUST be removed. A quantity the source
 authors *estimated* from the same observations (a model-based occupancy estimate, a
@@ -205,6 +206,13 @@ Closure is assumed across `occasion` within a `period`; where a source violates 
 likelihood can still be written from the key and `y` plus one metadata field, and a
 converter back to the native frame exists.
 
+**Ruling (#34, 2026-11-01).** Occasions collapsed by the source to "detected on `y` of
+`obs_trials` occasions" are `responseType = binomial_count` (E2), not `count` with an
+effort column and not a reason to hold. The likelihood is Binomial(`y` | p, `obs_trials`);
+the converter expands each row to an exchangeable history (`y` ones, then zeros) for
+`unmarked`. The four deposits that raised it (Nagarahole tigers, NE China and Botswana
+camera communities, Jhala tiger cells) move together under this type.
+
 **Ruling (#22, #23, 2026-11-01).** A fourth nesting level is a `unit_<group>` covariate,
 not a second grouping column or a reuse of `period`. Confirmation surveys by a second
 method take one of the two forms stated under *Experimental* and are declared in
@@ -215,7 +223,8 @@ dynamic occupancy, N-mixture (incl. open), community occupancy and abundance (in
 dynamic and with interactions), multi-state occupancy (incl. false positives),
 ordinal indices, CJS / Jolly–Seber / Pradel, closed-population capture–recapture,
 robust design, multi-state and dead-recovery capture–recapture, repeated-count
-indices with within-route replication.
+indices with within-route replication, occasions collapsed to a binomial count
+(`binomial_count`, ruling #34).
 
 **Declared stretch, `responseType = multinomial_cell`:** removal and time-removal
 sampling (`multinomialType = removal`), double-observer and dependent
@@ -248,7 +257,8 @@ Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
 `samplingProtocol`, `samplingProtocolCode`, `responseType` (E2), `unitKind` (`site` |
 `individual`), `closure`, `surveyEvidence` (E4), `temporalCoverage`,
 `geographicCoverage`. Conditional: `stateCodes` (for `state` and `ordinal`),
-`multinomialType` or `distanceBreaks` (for `multinomial_cell`),
+`multinomialType` or `distanceBreaks` (for `multinomial_cell`), `effortColumn =
+"obs_trials"` (for `binomial_count`),
 `coordinatesCoarsened` (when coordinates exist), `surveyEvidenceNote` (when
 `surveyEvidence = inferred`), `crs`, `effortColumn`, `detectionCertainty` (when a
 second, certain detection method is carried; E9). Recommended: `abstract`,
@@ -313,6 +323,9 @@ shipped and why. Facts about the source are assertions, not comments.
   licence-conflict rule and the replication note (intake), `obs_` may vary across taxa
   within a survey (E5), the IUCN trigger for coarsening (E7), the three-list scope with
   `experimental` (E9), `eco_meta` as the second dataset (E10).
+- **v1.0-draft, ruling #34 (2026-11-01).** `binomial_count` added to `responseType`
+  (E2): occasions collapsed by the source to a count out of `obs_trials`; no `occasion`
+  column; core semantics in E9.
 - **v1.0-draft, ruling #20 (2026-11-01).** E4.2 applies to site units; individual-unit
   deposits with several species ship as one table per taxon.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

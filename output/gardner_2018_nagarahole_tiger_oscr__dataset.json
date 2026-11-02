@@ -11,13 +11,13 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "abstract": "Camera-trap captures of individually identified tigers (Panthera tigris) in the central part of Nagarahole Reserve, Karnataka, India, from the Wildlife Conservation Society study begun in 1991: ten primary sampling periods between 1991 and 2000 at up to 195 camera stations. The deposit gives each capture with its station, trap day and primary period, the number of trap days each station was active in each primary period, and station coordinates centred on an undisclosed origin. The table follows the authors' observation model: one row per tiger x station x primary period in which the station operated, y = number of trap days with a capture, obs_trap_days_active = the number of active trap days (the binomial denominator). Tigers carry rows for all ten periods, including before first and after last capture.",
+  "abstract": "Camera-trap captures of individually identified tigers (Panthera tigris) in the central part of Nagarahole Reserve, Karnataka, India, from the Wildlife Conservation Society study begun in 1991: ten primary sampling periods between 1991 and 2000 at up to 195 camera stations. The deposit gives each capture with its station, trap day and primary period, the number of trap days each station was active in each primary period, and station coordinates centred on an undisclosed origin. The table follows the authors' observation model: one row per tiger x station x primary period in which the station operated, y = number of trap days with a capture, obs_trials = the number of active trap days (the binomial denominator). Tigers carry rows for all ten periods, including before first and after last capture.",
   "samplingProtocol": "Paired passive camera traps at stations along roads and trails in the central part of Nagarahole; individuals identified from stripe patterns; one detection per individual per station per trap day at most (Karanth 1995; Karanth & Nichols 1998; Karanth et al. 2006). Station activity recorded as trap days per primary period.",
   "samplingProtocolCode": "camera_trap",
   "surveyEvidence": "effort_table",
   "surveyEvidenceNote": "EECam_act.csv gives trap days active per station x primary period; a station-period is surveyed iff that count is > 0 (458 of 1,950). Which trap days were active is not deposited (capture occasion indices exceed the station's active count in 283 of 343 records), so the table is at the station-period level with the active-day count as effort, which is the paper's own y_ijt ~ Binomial(p, K_jt).",
-  "effortColumn": "obs_trap_days_active",
-  "responseType": "count",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
   "unitKind": "individual",
   "closure": "period (population closed within a primary period of 33-197 days; open between the ten periods, 1991-2000)",
   "geographicCoverage": "Central Nagarahole Reserve (Nagarahole / Rajiv Gandhi National Park), Karnataka, southwestern India; station coordinates in __traps are centred local metres, no geographic position deposited",
@@ -27,7 +27,7 @@
     "value": true,
     "method": "by the source: station coordinates are centred on an undisclosed origin (metres) because stations are still in use; the tiger is IUCN EN; no geographic coordinates exist in the deposit, nothing further applied"
   },
-  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Open population across period. No occasion column: y is the count of capture days per station-period with effort in obs_trap_days_active (the design_landscape 'trap arrays summed per session' shape), because per-occasion effort is not deposited.",
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Open population across period. No occasion column: y is the count of capture days per station-period with effort in obs_trials (the design_landscape 'trap arrays summed per session' shape), because per-occasion effort is not deposited.",
   "notes": "Period 7 captures carry occasion indices 96-115 although the readme gives the period 33 days; the indices are not shipped, only the counts. Station 188 is absent from the deposit. Tiger ids are the deposit's integers prefixed T, stations prefixed S.",
   "notShipped": {
     "Occasion": "the trap day index of each capture: per-occasion station activity is not deposited, so the day cannot be given a survey set; it survives as the count y",
@@ -44,7 +44,7 @@
     "prop_zero": 0.991
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "trap", "period", "obs_trap_days_active"],
+  "columns": ["unit", "taxon", "y", "trap", "period", "obs_trials"],
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/gardner_2018_nagarahole_tiger_oscr.R",

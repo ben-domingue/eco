@@ -22,7 +22,7 @@ TAG_COLS <- c("table", "rater", "taxon_group", "response_type", "model_family", 
               "sampling_protocol", "design", "realm", "country", "coordinates", "notes", "status")
 VOCAB <- list(
   taxon_group   = c("Mammals", "Birds", "Fish", "Amphibians", "Reptiles", "Invertebrates", "Plants", "Multiple"),
-  response_type = c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event"),   # standard E2
+  response_type = c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event", "binomial_count"),   # standard E2
   unit_kind     = c("site", "individual"),
   realm         = c("Terrestrial", "Freshwater", "Marine"))
 # Prefix-controlled: a qualifier in parentheses is allowed after the controlled value.
