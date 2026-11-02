@@ -1,0 +1,59 @@
+{
+  "table": "boone_2023_minnesota_bombus_count",
+  "title": "Bumble bee counts by species from five timed searches at 25 sites across Minnesota, June-September 2021",
+  "creator": "Boone, Michelle L.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.0p2ngf264",
+  "sourceURL": "https://doi.org/10.5061/dryad.0p2ngf264",
+  "citation": "Boone, M. (2023). 2021 Minnesota bumble bee survey data [Dataset]. Dryad. https://doi.org/10.5061/dryad.0p2ngf264",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of bumble bees (females, males and queens) by species or species group in one-hour active searches of a 3-acre area at 25 sites across Minnesota, five rounds between mid-June and 1 September 2021 (one site once), with survey weather, timing, bloom cover, native plants in bloom and honey bee presence, and site land use and region. The data supported multi-species occupancy models for seven Bombus species including the endangered rusty patched bumble bee (Bombus affinis), which was associated with developed land.",
+  "samplingProtocol": "USFWS (2019) recovery-monitoring protocol for B. affinis in high-potential zones: one experienced observer actively searched a 3-acre area for 60 minutes (20 or 40 at two sub-areas in rounds 1-2), timer stopped while netting and photographing, recording species/species group and sex of every bumble bee; one bee per species per survey netted and photographed for verification.",
+  "samplingProtocolCode": "timed_search",
+  "effortColumn": "obs_survey_minutes",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion (five survey rounds within one summer)",
+  "geographicCoverage": {
+    "description": "Minnesota, USA (five regions)",
+    "boundingBox": {
+      "west": -96.3,
+      "east": -91.9,
+      "south": 43.8,
+      "north": 47.7
+    }
+  },
+  "temporalCoverage": "2021-06-14/2021-09-01",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords() to 0.1-degree cell centres: the deposited two-decimal site coordinates (about 1 km) are finer than 0.1 degree and the table includes Bombus affinis (US ESA endangered, IUCN CR)"
+  },
+  "notShipped": {
+    "unidentified": "13 records of bumble bees not identified to species or group",
+    "fervidus_borealis": "1 record (one female) ambiguous between two shipped species",
+    "psythirus_sp": "1 record of a cuckoo bumble bee identified to subgenus only",
+    "plant_id1..8": "plants each species was seen foraging on (per record)",
+    "veg_cover_recoded, native_plants_recoded": "numeric recodes of the shipped class columns"
+  },
+  "notes": "taxon is the identification class as recorded: B. vagans appears both as its own class and inside the vagans/sandersoni group class, and B. auricomus and B. pensylvanicus only as a group, so a zero for BOMVAG means no individual was recorded as vagans (not that none was present). y = females + males + queens; the split is in obs_females/obs_males/obs_queens with obs_id_confidence (% confidence of the identification), all NA where the class was not recorded at the survey. Region is recorded inconsistently between surveys for oakleaflake and oavee; unit_region is the most frequent value. The metadata says the two Lone Lake Park sites were surveyed six times; the deposit has one lonelake site with five rounds. No paper DOI is linked on the Dryad record.",
+  "summary": {
+    "n_rows": 1815,
+    "n_units": 25,
+    "n_taxa": 15,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 121,
+    "y_values": "0-507 (72 distinct)",
+    "prop_zero": 0.685
+  },
+  "sampleFloor": "below (25 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertainty_m", "unit_dominant_landuse", "unit_region", "obs_females", "obs_males", "obs_queens", "obs_id_confidence", "obs_survey_minutes", "obs_time_start", "obs_time_end", "obs_temp_f", "obs_wind_mph", "obs_cloud_pct", "obs_bloom_cover_class", "obs_native_plants_in_bloom_class", "obs_honey_bees_seen", "obs_bombus_apis_ratio"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/boone_2023_minnesota_bombus_count.R",
+  "buildDate": "2026-11-02"
+}
