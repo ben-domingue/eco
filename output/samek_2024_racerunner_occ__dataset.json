@@ -1,0 +1,44 @@
+{
+  "table": "samek_2024_racerunner_occ",
+  "title": "Six-lined racerunner detections on 100 transects in bobwhite-managed longleaf pine, Brunswick County, North Carolina, three surveys each, summer 2023",
+  "creator": "Samek, Isaiah W.; Price, Steven J.; Terhune, Theron M., II; McNeil, Darin J., Jr.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.cc2fqz6gk",
+  "sourceURL": "https://doi.org/10.5061/dryad.cc2fqz6gk",
+  "citation": "Samek, I., Price, S., Terhune, T., & McNeil, D. (2024). Habitat associations of six-lined racerunners in longleaf pine managed with a short fire rotation for northern bobwhites [Dataset]. Dryad. https://doi.org/10.5061/dryad.cc2fqz6gk",
+  "paperDOI": "10.1002/ecs2.70126",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the six-lined racerunner (Aspidoscelis sexlineata) on 100 transects surveyed three times each in July-August 2023 in longleaf pine savanna managed with frequent prescribed fire for northern bobwhites, with survey wind, cloud, time since sunrise and temperature, and transect ground-cover, vegetation-structure, NDVI, land-cover, distance-to-cover and burn covariates.",
+  "samplingProtocol": "Visual-encounter transect surveys, three per transect between early July and late August 2023; wind, cloud cover, time and temperature recorded per survey. Transect length and survey duration are in the paper.",
+  "samplingProtocolCode": "transect_search",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion (three surveys within one summer)",
+  "geographicCoverage": "Brunswick County, North Carolina, USA (longleaf pine savanna on a bobwhite-managed property); no coordinates deposited",
+  "temporalCoverage": "2023-07-03/2023-08-22",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "none": "every deposited column is shipped"
+  },
+  "notes": "date = 2023 + the deposited ordinal day. The deposit's perc_* land-cover columns are proportions (0-1) and are named _prop here; ocular-tube readings (unit_ocular_*) are as deposited (0-100). Minutes since sunrise and temperature (F) per survey as deposited.",
+  "summary": {
+    "n_rows": 300,
+    "n_units": 100,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 300,
+    "y_values": "0,1",
+    "prop_zero": 0.86
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_ocular_bare", "unit_ocular_wat", "unit_ocular_lit", "unit_ocular_cwd", "unit_ocular_moss", "unit_ocular_grass", "unit_ocular_forb", "unit_ocular_fern", "unit_ocular_shrub", "unit_ocular_sap", "unit_ocular_can", "unit_nudds_board", "unit_ndvi", "unit_mpine_prop", "unit_grassy_prop", "unit_decid_prop", "unit_bf_prop", "unit_water_prop", "unit_dist_road_m", "unit_dist_mpine_m", "unit_dist_grassy_m", "unit_dist_decid_m", "unit_dist_bf_m", "unit_dist_water_m", "unit_burned_past_year_prop", "unit_burned_past_year", "obs_wind_beaufort", "obs_cloud_pct", "obs_minutes_since_sunrise", "obs_temp_f"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/samek_2024_racerunner_occ.R",
+  "buildDate": "2026-11-02"
+}
