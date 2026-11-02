@@ -421,3 +421,62 @@ What this batch says about the standard:
 
 Held: nothing. Unblocked by #34 and built: Feng (NE China), Rich (Botswana). Still on
 the ruling: Jhala tiger occupancy (next batch).
+
+## Batch 11 — 2026-11-01 (overnight: nine tables, binomial counts with periods, three capture-recapture designs)
+
+Eight deposits, nine tables, built two at a time overnight. Validated with
+`eco-validate`: 60/60 tables pass, IRW view conforms. Uploaded to the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| koetke_2024_jprf_moose_count | N-mixture repeated counts, camera traps, single species | Dryad CC0 | 5,935 | 72 cameras x 91 days (2020-12-15 to 2021-03-15), John Prince Research Forest, BC; 617 inactive camera-days as missing rows (scattered gaps); y = independent detections under the 5-min criterion (170 at 44 cameras), obs_detections_30min / _8hr = the same videos under the coarser criteria; no coordinates or covariates; aerial SRB survey sheet not shipped |
+| jhala_2024_india_tiger_binom | dynamic occupancy, binomial counts (ruling #34) | Zenodo CC BY 4.0 | 26,271 | 7,183 grid cells x 4 cycles (2006, 2010, 2014, 2018), 242,271 sign-survey replicates collapsed to counts (max 21 per cell-cycle); 566 / 1,295 / 600 / 0 cell-cycles unsurveyed; covariates are the authors' standardised values (no means deposited); dpat (distance to tiger-occupied PA, derived from the previous cycle's survey) not shipped; cooccurrence sheet (continuous indices) not shipped; Science paper paywalled, definitions from the sheet dictionary |
+| khelifa_2021_seybouse_calexul_cjs | CJS capture-recapture, daily occasions, insect | Dryad CC0 | 7,825 | 313 adult Calopteryx exul x 25 sampling days (Julian 132-157, 153 not sampled), Seybouse River at El Fedjoudj, Algeria, 2011; 871 captures, 56.9% recaptured; unit_sex, period_water_depth_cm (the paper's recapture covariate); Julian-day origin not stated and the paper's campaign dates disagree, so no calendar date; site coordinate at 0.1 deg in geographicCoverage (EN) |
+| blount_2025_neturkiye_carniv_count | community counts (N-mixture), camera traps, 2 species | Zenodo CC BY 4.0 | 7,080 | 229 deployments (216 with data) at 157 locations around Sarikamis NP, NE Turkiye, 2009-2023, up to 104 deployment-relative 7-day occasions; y = independent events per week; no row ids in the deposit, matrices aligned to the covariate sheet by row order; 13 deployments with no surveyed week; wolf/bear 0/1 files equal y > 0; paper totals exceed deposited sums |
+| blount_2025_neturkiye_lynx_occ | single-season occupancy, camera traps | Zenodo CC BY 4.0 | 3,540 | lynx 0/1 on the same survey set (128 detection-weeks at 61 deployments); the lynx count matrix (215 x 472, no ids, two rows beyond 104 weeks) cannot be aligned and is not shipped, so lynx is detection, not count |
+| hollanders_2022_brindle_mfleayi_msdis | multi-state (disease) robust design capture-recapture; authors' model is multievent with state uncertainty | Dryad CC0 | 1,624 | 116 juvenile Mixophyes fleayi x 14 surveyed weekly occasions in 8 primary periods, Brindle Creek, NSW; y = 0 / captured Bd-negative / captured Bd-positive from up to 4 qPCR runs per swab; obs_qpcr_runs, obs_qpcr_positive, obs_its_copies_mean carry the run level; 386 captures, 101 positive; two skipped secondaries as missing rows; no dates, coordinates or covariates deposited |
+| obrist_2024_gooseisland_birds_count | community counts (N-mixture), point counts, single season | Zenodo CC BY 4.0 | 7,500 | 50 points on six islands of the Yalalii (Goose Island) Archipelago, BC, 3 ten-minute 100 m counts each, 12 May-2 June 2011, 50 species; y = detections in minutes 1-10 within 100 m, the authors' rule, reproducing all 204 summary-sheet cells; 710 detections outside the rule not shipped; dates are 1904-system Excel serials; 33 alpha codes defined in-script; coordinates as published (no flagged taxa) |
+| murphy_2021_riogrande_otter_scr | spatial capture-recapture (closed, genetic scat sampling, dendritic network) | Dryad CC0 | 4,551 | 37 lenient-rule otters (30 conservative, carried as unit_conservative_id) x 20 latrines x 8 occasions, Feb-Apr 2018, Upper Rio Grande, NM; survey set = per-latrine usage string (123 of 160 latrine-occasions; Excel-dropped leading zeros restored); 69 detections from 76 samples, 32 recaptures = the paper's lenient count; one detection at unlisted latrine RGDB03 not shipped; sex by the paper's rule gives 17 M / 15 F / 5 U vs the paper's 17 / 18 / 2; authors' network-distance state space not shipped |
+| valenzuela_2018_neltume_rhidar_rd | robust design capture-recapture; spatial CJS without detectors (search-encounter SCR) | Zenodo CC BY-SA 4.0 | 11,196 | 311 frogs at two Huilo Huilo plots (HUI1 192, HUI2 119), 16 quarterly primaries 2014-2017 of which 9 visited (the 7 all-NA primaries have no rows), 4 consecutive capture days each; 1,031 captures (6 half-coordinate cells counted as captures); obs_x_m / obs_y_m plot-local metres and obs_svl_mm on capture rows; no article named by the record (related: Proc B 2017, J Anim Ecol 2022); first CC BY-SA table |
+
+What this batch says about the standard:
+
+- **Alternative codings of one response.** Moose: three detection-independence
+  thresholds on the same videos; shipped as `y` plus two `obs_` columns with a
+  `covariateNote` that they are responses. Dolphins (2/3 states), Ferguson and Murray
+  (two source columns), otters (two individual-assignment rules, nested so the finer
+  is the unit) are the same family. Rule to write: ship the finest coding as `y`,
+  alternatives as `y_alt_*` or a `responseVariants` list; when alternatives nest, the
+  finer partition is the unit and the coarser a `unit_` covariate.
+- **Sub-occasion observation layers, third instance.** Bd qPCR runs within a capture
+  (frogs) after eDNA replicates and mange images. Summarised to a per-capture state
+  plus run counts; the authors' multievent model needs the run level. `detection_event`
+  rows or a `__observations` side table are the options; three deposits on one row is
+  the threshold `design_landscape.md` sets for a family issue.
+- **Search-encounter SCR has no detector key.** Per-capture coordinates ride as
+  `obs_x_m` / `obs_y_m` on detection rows (Darwin's frog). design_landscape.md should
+  list it beside the `__traps` form.
+- **Lagged covariates derived from the response** (Jhala `dpat`: distance to the
+  previous cycle's occupied area) were dropped as data-derived; one sentence in the
+  guide would settle whether lagged derivations count as model outputs.
+- **Standardised-only covariates** (Jhala) have no stated status; shipped as deposited
+  with a note.
+- **Row-order alignment with no ids** (Türkiye): accepted when row counts match and
+  all-NA rows are explicable, held otherwise (lynx counts). Worth naming in the guide.
+- **Mixed response types in one deposit** (Türkiye: counts for two species, 0/1 for
+  the third) force two tables on one survey set; a `components` cross-reference again.
+- **Period gaps.** Darwin's frog keeps the unvisited primaries' indices so spacing
+  survives; E8 should say gaps in `period` are allowed and meaningful.
+- **No-date deposits**, fourth and fifth instances (Calopteryx Julian days with no
+  origin, frogs with none): E8 held each time; a named fallback (`obs_day_index`) would
+  keep tables consistent.
+- **Single-site coordinates** for individual-unit tables have no machine-readable home
+  (Calopteryx, Darwin's frog: text in `geographicCoverage` at 0.1 degree); a
+  `siteCoordinates` metadata field would.
+- **`crs` inferred from the coordinate range** a third and fourth time (otters 13N);
+  "local" for plot metres again.
+- **`data/aux/bird_alpha_codes.csv`** is missing dozens of western and shorebird codes
+  (Goose Island defined 33 in-script, Marin 8); replace with the full IBP-AOS list.
+- New `samplingProtocolCode` values: `sign_survey`, `hand_capture`, `scat_genotyping`.
+
+Held: nothing.

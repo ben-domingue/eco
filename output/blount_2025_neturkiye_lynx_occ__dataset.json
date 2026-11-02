@@ -1,0 +1,53 @@
+{
+  "table": "blount_2025_neturkiye_lynx_occ",
+  "title": "Weekly camera-trap detection of Eurasian lynx at 229 deployments, Sarikamis-Allahuekber Mountains, northeastern Turkiye, 2009-2023",
+  "creator": "Blount, Judson D.; Green, Austin M.; Chynoweth, Mark; Coban, Emrah; Kusak, Josip; Sekercioglu, Cagan H.",
+  "pubDate": "2025",
+  "sourceURL": "https://doi.org/10.5281/zenodo.14618279",
+  "citation": "Blount, J. D., Green, A. M., Chynoweth, M., Coban, E., Kusak, J. & Sekercioglu, C. H. (2025). Combining N-mixture and occupancy analysis offers a more complete picture of carnivore habitat use in Northeastern Turkiye. PLOS One 20(5), e0320768. https://doi.org/10.1371/journal.pone.0320768. Data: Zenodo https://doi.org/10.5281/zenodo.14618279 (CC BY 4.0).",
+  "paperDOI": "10.1371/journal.pone.0320768",
+  "dataDOI": "10.5281/zenodo.14618279",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Eurasian lynx detection / non-detection per seven-day window at the 229 camera deployments (2009-2023) of the Sarikamis long-term camera-trap study, northeastern Turkiye, with the same deployment covariates as the wolf and bear count table blount_2025_neturkiye_carniv_count. The deposit's lynx count matrix (215 x 472) cannot be aligned to the deployments, so lynx ships as 0/1 only; the paper's lynx N-mixture model used counts with a one-minute independence interval.",
+  "samplingProtocol": "Unbaited camera traps at canopy, chest or knee height facing dirt roads and trails in randomly chosen 2-km2 grid cells, 1-728 days per deployment; detection / non-detection per seven-day occasion from the first deployment day.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "7 days",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "A deployment-week is surveyed iff the cell is non-NA (trailing NA = camera stopped); identical to the wolf and bear matrices. No row ids: matrix and covariate sheet aligned by row order (229 each).",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Sarikamis-Allahuekber Mountains National Park and surrounding forest, Kars Province, northeastern Turkiye (about 40.2-40.5 N, 42.4-42.8 E)",
+  "temporalCoverage": "2009/2023",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as deposited (exact camera locations); lynx is IUCN LC"
+  },
+  "crs": "EPSG:4326",
+  "covariateNote": "As in blount_2025_neturkiye_carniv_count: unit_year, unit_deployment_rank_at_site (1-4), camera model / height / field-of-view score, topography, CORINE level-3 land type, forest cover within 500 m, distances to main roads, dist_from_f_rds, urban areas, dist_from_fe and the town dump, human and vehicle trap rates at the same camera.",
+  "notes": "Deployment-relative seven-day occasions, no dates. The paper reports 190 lynx detections; the weekly 0/1 matrix has 128 detection-weeks and the unalignable count file sums to 173.",
+  "notShipped": {
+    "Lynx.Count(7-Day).xlsx": "215 x 472 with no ids: cannot be aligned to the 229 deployments (two rows have more than 104 surveyed weeks)",
+    "Wolf / Bear files": "shipped as blount_2025_neturkiye_carniv_count (counts)",
+    "scaled_*, OBJECTID.*, place, placename": "derived z-scores, GIS keys, row index, mostly empty names"
+  },
+  "summary": {
+    "n_rows": 3540,
+    "n_units": 216,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 104,
+    "n_surveys": 3540,
+    "y_values": "0,1",
+    "prop_zero": 0.964
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_year", "unit_deployment_rank_at_site", "unit_camera_model", "unit_camera_height", "unit_fov_score", "unit_decimalLongitude", "unit_decimalLatitude", "unit_elevation_m", "unit_slope_deg", "unit_aspect_deg", "unit_land_type_clc", "unit_forest_pct_500m", "unit_buffer_area_500m_m2", "unit_dist_main_roads_m", "unit_dist_f_rds_m", "unit_dist_urban_m", "unit_dist_fe_m", "unit_dist_dump_m", "unit_human_rate", "unit_vehicle_rate"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/blount_2025_neturkiye_lynx_occ.R",
+  "buildDate": "2026-11-01"
+}
