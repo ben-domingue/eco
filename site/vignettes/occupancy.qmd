@@ -657,11 +657,12 @@ twelve), while where it barely varies (the Los Lagos stations, 67 to 80
 trap-nights; the Chilean cameras, 2 to 5 nights) the slope is unidentified and
 the interval spans zero. The MHB community table is the instructive middle
 case: survey duration there runs from 105 to 420 minutes, yet the median
-slope is small and the AIC gain is nil, because the duration of an MHB survey
-is set by the length and terrain of the quadrat's route. Longer surveys cover
-more ground, not the same ground more thoroughly, so raw duration is a site
-property in disguise; the willow tit and mallard tables carry intensity,
-minutes per kilometre, which is the right effort variable and is why those
+slope is small and the AIC gain is nil. The territory-mapping protocol is
+designed so that every quadrat is covered completely on every visit, and the
+extra minutes go to terrain and pace rather than to a more thorough search,
+so for this protocol raw duration is not effort in the sense the model wants.
+The willow tit and mallard tables carry the package's survey intensity, effort
+scaled to the route, which is the better variable and the reason those
 scripts kept it. And one covariate does not fix the fit: ĉ falls for
 `r sprintf("%.0f%%", 100 * share_improved)` of the species where both tests
 ran, but only `r sprintf("%.0f%%", 100 * share_near_one)` end up at or below
