@@ -49,7 +49,7 @@ jobs:
       # (installed from this checkout's Rpkg/) and fit them with unmarked.
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2"))'
+          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly"))'
           R CMD INSTALL Rpkg
 
       - name: Render

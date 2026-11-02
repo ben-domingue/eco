@@ -25,6 +25,7 @@ suppressPackageStartupMessages({
   library(unmarked)
   library(AICcmodavg)
   library(ggplot2)
+  library(plotly)
 })
 theme_set(theme_minimal(base_size = 13))
 options(digits = 3)
@@ -527,16 +528,20 @@ right-of-way songbird point counts, where there are only two visits.
 
 ```{r}
 #| label: fig-corpus
-#| fig-width: 7.5
-#| fig-height: 5
-#| fig-cap: "Estimated against naive occupancy for every species fit. Colour is the estimated per-survey detection probability; open triangles are tables below the sample floor; points on the top edge are boundary fits."
-ggplot(f, aes(naive, psi, colour = p, shape = floor)) +
+#| fig-cap: "Estimated against naive occupancy for every species fit. Colour is the estimated per-survey detection probability; open triangles are tables below the sample floor; points on the top edge are boundary fits. Hover a point for the species."
+f$label <- sprintf("%s\n%s\n%d sites, J = %g\nnaive %.2f, psi %.2f, p %.2f%s",
+                   f$table, f$taxon, f$n_sites, f$J, f$naive, f$psi, f$p,
+                   ifelse(is.na(f$c_hat), "", sprintf("\nc-hat %.1f", f$c_hat)))
+g <- ggplot(f, aes(naive, psi, colour = p, shape = floor, text = label)) +
   geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
   geom_point(size = 2.3, alpha = 0.85) +
-  scale_colour_gradient(low = "#bfe3d2", high = "#0b4f33", name = expression(hat(p)), limits = c(0, 1)) +
+  scale_colour_gradient(low = "#bfe3d2", high = "#0b4f33", name = "p", limits = c(0, 1)) +
   scale_shape_manual(values = c("meets floor" = 16, "below floor" = 2), name = NULL) +
   coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
-  labs(x = "Naive occupancy", y = expression(hat(psi)))
+  labs(x = "Naive occupancy", y = "Estimated occupancy")
+plotly::ggplotly(g, tooltip = "text", width = 620, height = 560) |>
+  plotly::layout(legend = list(title = list(text = ""))) |>
+  plotly::config(displayModeBar = FALSE)
 ```
 
 The picture is the simulator's expected-naive line read backwards. Species
