@@ -1,0 +1,355 @@
+---
+title: "Joining species traits at use time"
+description: |
+  Body mass from AVONET (birds) and COMBINE (mammals) joined onto eco's
+  `__taxa` tables when the page renders, never stored in the warehouse, and
+  used to ask whether per-survey detection scales with body size across
+  nineteen tables and four sampling protocols.
+date: today
+format:
+  html:
+    code-fold: false
+    toc: true
+    toc-depth: 2
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| echo: false
+suppressPackageStartupMessages({
+  library(eco)
+  library(data.table)
+  library(lme4)
+  library(ggplot2)
+  library(plotly)
+})
+theme_set(theme_minimal(base_size = 13))
+options(digits = 3)
+fmt <- function(x, d = 2) formatC(x, digits = d, format = "f")
+# One fixed colour and shape per sampling protocol, in this order everywhere.
+proto_levels <- c("camera_trap", "point_count", "line_transect", "acoustic")
+proto_labels <- c("Camera trap", "Point count", "Line transect", "Acoustic recorder")
+proto_cols <- setNames(c("#0072B2", "#E69F00", "#009E73", "#CC79A7"), proto_labels)
+proto_shapes <- setNames(c(16, 17, 15, 18), proto_labels)
+```
+
+eco stores observations: a row for every survey of every unit, and a `y`. It
+does not store what the species weighs, eats or how far it moves, because
+that is not detection data and other people already maintain it well. Two
+open trait databases cover the two classes most of the corpus is about,
+AVONET for birds (Tobias et al. 2022) and COMBINE for mammals (Soria et al.
+2021), both CC BY 4.0 and both keyed on the scientific names every eco
+`__taxa` table carries. So the join happens here, when the page renders:
+fetch the trait tables, match names, and ask a question that no single
+deposit can answer on its own, whether a species' per-survey detection
+probability scales with its body size.
+
+::: {.callout-note}
+This vignette, including the choice of tables, the analysis and the writing,
+was produced largely by Claude (Anthropic) from a task specification, with
+human review. Treat the interpretations accordingly; the code is all on the
+page and runs from a clean session.
+:::
+
+## Why body mass
+
+The usual expectation is that bigger animals are easier to detect: a larger
+body is seen farther, a larger bird sings louder, a larger mammal triggers a
+camera more reliably and from farther away. Distance sampling makes that
+explicit by modelling detection as a function of distance and letting the
+curve vary with species. Occupancy models do not; their $p$ is a single
+per-survey probability that folds together how many individuals are at the
+site, how far the survey reaches, and how conspicuous each one is. That last
+part is where body mass should enter. The first two can pull the other way,
+since larger species are typically rarer and range more widely, so fewer of
+them are at any one site on any one visit. The corpus lets us see which
+effect wins, and whether it depends on how the survey was done.
+
+## Fetching the traits
+
+`eco_traits()` downloads the two sources from figshare into the package cache
+the first time it is called (AVONET's supplementary dataset is a 21 MB xlsx,
+so it needs `readxl`), then reads them from disk. Nothing is written to eco.
+
+```{r}
+#| label: fetch
+eco_set_version(3)
+traits <- eco_traits()
+setDT(traits)
+traits[, .(species = .N, with_mass = sum(!is.na(body_mass_g)),
+           median_mass_g = median(body_mass_g, na.rm = TRUE)), by = .(source, taxon_group)]
+```
+
+```{r}
+#| label: citations
+#| echo: false
+#| results: asis
+cat(paste0("- ", attr(traits, "citations"), "\n"))
+```
+
+Body mass in AVONET is a species mean, mostly from Dunning's handbook, with
+`body_mass_source` saying where each value came from. COMBINE's
+`trait_data_reported.csv` is the reported layer, not the imputed one: a
+species with no measured mass in the literature stays `NA` here rather than
+being filled from relatives.
+
+## Matching names
+
+The join is by scientific name against each table's `__taxa`, with three
+attempts per row: the exact `scientificName`, then GBIF's accepted name when
+the deposit's name is a synonym, then the binomial when the deposit names a
+subspecies. Codes above species rank (a genus, a family, "sp.") are never
+matched. The tables are the bird and mammal site-level detection and count
+tables for which the next section has a detection estimate.
+
+```{r}
+#| label: match
+tags <- as.data.table(eco_tags())
+corpus <- readRDS("traits_data/traits_corpus.rds")
+fits <- corpus$fits
+tables <- unique(fits$table)
+joined <- rbindlist(lapply(tables, function(tb) {
+  grp <- tags[table == tb]$taxon_group
+  t <- as.data.table(eco_traits(eco_taxa(tb), group = tolower(grp)))
+  t[, table := tb]
+  t[, .(table, taxon, scientificName, taxonRank, body_mass_g, trait_match)]
+}))
+match_tab <- joined[, .(taxa = .N, matched = sum(trait_match != "none"),
+                        with_mass = sum(!is.na(body_mass_g)),
+                        exact = sum(trait_match == "exact"),
+                        accepted = sum(trait_match == "accepted_name"),
+                        binomial = sum(trait_match == "binomial")), by = table]
+match_tab <- merge(match_tab, tags[, .(table, taxon_group, sampling_protocol)], by = "table")
+setorder(match_tab, taxon_group, table)
+knitr::kable(match_tab[, .(table, taxon_group, sampling_protocol, taxa, matched, with_mass, exact, accepted, binomial)],
+             col.names = c("Table", "Group", "Protocol", "Taxa", "Matched", "With mass", "Exact", "Accepted name", "Binomial"))
+```
+
+Across the `r length(tables)` tables, `r sum(match_tab$matched)` of
+`r sum(match_tab$taxa)` taxon codes match a trait row
+(`r fmt(100 * sum(match_tab$matched) / sum(match_tab$taxa), 1)`%), and
+`r sum(match_tab$with_mass)` carry a mass. The rest, and why:
+
+```{r}
+#| label: unmatched
+unmatched <- joined[trait_match == "none" | is.na(body_mass_g)]
+unmatched[, reason := fcase(
+  trait_match != "none" & is.na(body_mass_g), "matched, no reported mass",
+  !is.na(taxonRank) & taxonRank != "species", paste("rank:", taxonRank),
+  scientificName %in% c("Felis catus"), "domestic form, not in COMBINE",
+  scientificName %in% c("Varanus bengalensis"), "a reptile in a mammal table",
+  default = "taxonomy edition (BirdLife v5 / IUCN 2020 vs GBIF backbone)")]
+knitr::kable(unmatched[order(table, scientificName), .(table, taxon, scientificName, reason)],
+             col.names = c("Table", "Code", "Name in __taxa", "Why"))
+```
+
+The taxonomy-edition misses are real species under another name: the pileated
+woodpecker is *Hylatomus pileatus* in BirdLife's checklist, the willow tit
+*Poecile montanus*, the fisher *Martes pennanti* in IUCN 2020. GBIF's accepted
+name catches some synonyms but not splits and lumps that GBIF does not treat
+as synonyms. A crosswalk through the BirdLife and IUCN name lists would close
+most of these; for a first look at the question below, losing them changes
+nothing.
+
+## Detection from the corpus sweep
+
+The detection probability is $\hat p$ from the null single-season occupancy
+model $\psi(\cdot)\,p(\cdot)$ fitted to one species at a time, the same fit
+the [occupancy vignette](occupancy.html) runs over the corpus. Twelve bird and
+mammal tables come from that sweep's cache; the remaining tables were fitted
+with the same recipe in
+[`traits_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/traits_compute.R)
+(counts collapsed to detection, multi-season tables reduced to their largest
+primary period, a species never detected or surveyed once per site skipped).
+Two tables that should be here are not: Snapshot USA
+(`rooney_2025_snapshotusa_comm`, 87 mammals) is 800 MB, over the 100 MB cap
+of the anonymous Redivis endpoint; the Banff snow-track table surveys most
+segments once per winter, so $\psi$ and $p$ do not separate.
+
+A boundary fit ($\hat\psi$ above 0.99 or $\hat p$ below 0.01) says the data
+could not separate the two parameters, so those fits are dropped along with
+non-converged ones. That removes many fits in the two-visit point-count
+tables, where a species seen once at a few sites is consistent with being
+everywhere and almost never detected.
+
+```{r}
+#| label: join
+d <- merge(fits, joined[, .(table, taxon, scientificName, body_mass_g)], by = c("table", "taxon"))
+d[, usable := converged & psi < 0.99 & p > 0.01 & !is.na(body_mass_g)]
+d[, .(fits = .N, converged = sum(converged), boundary = sum(converged & !(psi < 0.99 & p > 0.01)),
+      no_mass = sum(is.na(body_mass_g)), usable = sum(usable))]
+d <- d[usable == TRUE]
+d[, `:=`(logit_p = qlogis(p), log_mass = log10(body_mass_g))]
+d[, protocol := factor(proto_labels[match(sampling_protocol, proto_levels)], levels = proto_labels)]
+d[, log_mass_c := log_mass - mean(log_mass), by = table]
+```
+
+That leaves `r nrow(d)` species-by-table fits in `r uniqueN(d$table)` tables.
+Hover a point for the species and table.
+
+```{r}
+#| label: scatter
+#| fig-height: 5.5
+d[, hover := sprintf("%s<br>%s<br>%s g, p = %s (%s)", scientificName, table,
+                     format(round(body_mass_g), big.mark = ","), fmt(p), protocol)]
+g <- ggplot(d, aes(log_mass, logit_p, colour = protocol, shape = protocol, text = hover)) +
+  geom_point(alpha = 0.6, size = 2) +
+  scale_colour_manual(values = proto_cols, drop = FALSE) +
+  scale_shape_manual(values = proto_shapes, drop = FALSE) +
+  scale_x_continuous(breaks = 0:5, labels = c("1 g", "10 g", "100 g", "1 kg", "10 kg", "100 kg")) +
+  scale_y_continuous(breaks = qlogis(c(0.02, 0.1, 0.3, 0.5, 0.7, 0.9)),
+                     labels = c("0.02", "0.1", "0.3", "0.5", "0.7", "0.9")) +
+  labs(x = "Body mass (log scale)", y = expression(hat(p) ~ "(logit scale)"), colour = NULL, shape = NULL)
+ggplotly(g, tooltip = "text") |> layout(legend = list(orientation = "h", y = -0.2))
+```
+
+Pooled across tables there is no relation to speak of, and there should not
+be: the tables differ in survey length, season, region and in what a
+"survey" is, and the mammals, which are all camera trapped, are also all
+heavier than the birds. The question is within a table. Each panel below is
+one table with at least eight usable species, with an ordinary least-squares
+line through its points.
+
+```{r}
+#| label: facets
+#| fig-height: 8
+big <- d[, if (.N >= 8) .SD, by = table]
+big[, panel := sub("_(comm|count|nmix|dynocc)$", "", table)]
+ggplot(big, aes(log_mass, logit_p, colour = protocol, shape = protocol)) +
+  geom_point(alpha = 0.6, size = 1.8) +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE, linewidth = 0.7, fill = "grey80", colour = "grey30") +
+  facet_wrap(~ panel, scales = "free_x", ncol = 3) +
+  scale_colour_manual(values = proto_cols, drop = FALSE) +
+  scale_shape_manual(values = proto_shapes, drop = FALSE) +
+  scale_x_continuous(breaks = 0:5, labels = c("1 g", "10 g", "100 g", "1 kg", "10 kg", "100 kg")) +
+  labs(x = "Body mass (log scale)", y = expression(hat(p) ~ "(logit scale)"), colour = NULL, shape = NULL) +
+  theme(legend.position = "bottom", strip.text = element_text(size = 9))
+```
+
+## One model
+
+Per-table slopes first, since they are what the panels show. The slope is the
+change in logit $p$ per tenfold increase in body mass, with its standard
+error from the least-squares fit, which ignores the uncertainty in each
+$\hat p$ and so understates it.
+
+```{r}
+#| label: slopes
+slopes <- big[, {
+  m <- lm(logit_p ~ log_mass)
+  .(n = .N, slope = coef(m)[[2]], se = summary(m)$coefficients[2, 2],
+    protocol = protocol[1], taxon_group = taxon_group[1])
+}, by = table]
+setorder(slopes, slope)
+slopes[, table := factor(table, levels = table)]
+ggplot(slopes, aes(slope, table, colour = protocol, shape = protocol)) +
+  geom_vline(xintercept = 0, colour = "grey60") +
+  geom_errorbarh(aes(xmin = slope - 1.96 * se, xmax = slope + 1.96 * se), height = 0, linewidth = 0.6) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = proto_cols, drop = FALSE) +
+  scale_shape_manual(values = proto_shapes, drop = FALSE) +
+  labs(x = "Slope of logit p on log10 body mass (95% interval)", y = NULL, colour = NULL, shape = NULL) +
+  theme(legend.position = "bottom")
+```
+
+```{r}
+#| label: slopes-table
+#| echo: false
+knitr::kable(slopes[, .(table, protocol, n, slope = fmt(slope), se = fmt(se))],
+             col.names = c("Table", "Protocol", "Species", "Slope", "SE"))
+```
+
+Then one pooled model, logit $\hat p$ on log mass centred within table, with
+a random intercept per table and an independent random slope. Centring makes
+the fixed slope the average within-table slope and leaves the between-table
+differences in mass to the intercepts.
+
+```{r}
+#| label: lmer
+m1 <- lmer(logit_p ~ log_mass_c + (1 | table) + (0 + log_mass_c | table), data = d, REML = FALSE)
+m0 <- lmer(logit_p ~ 1 + (1 | table) + (0 + log_mass_c | table), data = d, REML = FALSE)
+cf <- summary(m1)$coefficients
+vc <- as.data.frame(VarCorr(m1))
+lrt <- anova(m0, m1)
+print(cf)
+```
+
+```{r}
+#| label: lmer-report
+#| echo: false
+#| results: asis
+cat(sprintf(paste0(
+  "The average within-table slope is %s (SE %s), on the logit scale per tenfold ",
+  "increase in mass: a species ten times heavier than its table-mates is detected ",
+  "with odds about %s%% %s per survey. The slope standard deviation across tables is %s, ",
+  "so tables disagree about as much as the average says. The likelihood-ratio test ",
+  "against the model with no fixed slope gives $\\chi^2$ = %s on 1 df, $p$ = %s. ",
+  "The residual standard deviation is %s on the logit scale, which is to say that body ",
+  "mass explains very little of why one species is detected more than another in the ",
+  "same table.\n"),
+  fmt(cf[2, 1]), fmt(cf[2, 2]),
+  fmt(100 * abs(exp(cf[2, 1]) - 1), 0), if (cf[2, 1] < 0) "lower" else "higher",
+  fmt(vc[vc$grp == "table.1", "sdcor"]), fmt(lrt$Chisq[2]), fmt(lrt$`Pr(>Chisq)`[2], 3),
+  fmt(vc[vc$grp == "Residual", "sdcor"])))
+```
+
+So the average slope points the other way from the "bigger is easier"
+expectation, and most tables agree on the sign, but the pooled test does not
+reject zero and no single table's slope is more than about two standard
+errors from it. The Swiss breeding bird survey, with its long line transects
+and territory mapping, is the one large table where the slope is positive.
+Read with the caveat from the top: an occupancy $p$ is a per-survey, per-site probability, and larger
+species are at fewer sites in smaller numbers, so a lower $\hat p$ for a
+larger species need not mean each individual is harder to detect. Separating
+the two needs abundance, which the count tables here have and this null fit
+throws away. That is the next vignette, not this one.
+
+## Where this goes
+
+Three things are visible from this page that a single deposit cannot show.
+The name match is good enough to use (`r fmt(100 * sum(match_tab$matched) / sum(match_tab$taxa), 0)`% of codes) but the misses are
+systematic, from taxonomy editions, and a crosswalk through the BirdLife and
+IUCN name lists would be a small, reusable fix. Nothing about the join needed
+anything stored: `eco_traits()` is forty lines over two downloads, and a third
+source for amphibians, fish or reptiles would be another twenty. And the
+question itself is better posed with abundance than with occupancy, which the
+same tables support.
+
+## Reproducibility
+
+Source: [`site/vignettes/traits.qmd`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/traits.qmd)
+and [`traits_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/traits_compute.R)
+in the eco repository. The null-model fits were run on `r corpus$date_run`
+(the twelve tables shared with the occupancy sweep on
+`r corpus$occupancy_sweep_date`). Data were read with `eco_set_version(3)`,
+so a later release of the warehouse does not change the page. The trait
+tables are fetched when the page renders from the pinned figshare versions
+below; a newer version of either database would change the page only if the
+downloaded file ids were changed in the package.
+
+```{r}
+#| label: versions
+#| echo: false
+v <- eco_version()
+cat(sprintf("eco version %s (Redivis eco %s, eco_meta %s, released %s)\n",
+            v$eco_version, v$eco, v$eco_meta, substr(v$released, 1, 10)))
+cat(paste0(unique(traits$source), ": ", unique(traits$source_version), "\n"), sep = "")
+cat(sprintf("R %s; eco %s; unmarked %s; lme4 %s; readxl %s\n",
+            getRversion(), packageVersion("eco"), packageVersion("unmarked"),
+            packageVersion("lme4"), packageVersion("readxl")))
+```
+
+References. Tobias, J. A., Sheard, C., Pigot, A. L., et al. (2022). AVONET:
+morphological, ecological and geographical data for all birds. *Ecology
+Letters* 25, 581–597. Soria, C. D., Pacifici, M., Di Marco, M., Stephen, S.
+M. and Rondinini, C. (2021). COMBINE: a coalesced mammal database of
+intrinsic and extrinsic traits. *Ecology* 102, e03344. MacKenzie, D. I.,
+Nichols, J. D., Lachman, G. B., Droege, S., Royle, J. A. and Langtimm, C. A.
+(2002). Estimating site occupancy rates when detection probabilities are less
+than one. *Ecology* 83, 2248–2255. Bates, D., Mächler, M., Bolker, B. and
+Walker, S. (2015). Fitting linear mixed-effects models using lme4. *Journal of
+Statistical Software* 67(1).

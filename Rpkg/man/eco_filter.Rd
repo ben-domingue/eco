@@ -23,7 +23,7 @@ eco_filter(
 \arguments{
 \item{model_family, response_type, taxon_group, protocol, unit_kind, realm, country}{Character, one or more values; \code{protocol} is the tags column
 \code{sampling_protocol}. \code{response_type} is one of \code{detection}, \code{count},
-\code{state}, \code{ordinal}, \code{multinomial_cell}, \code{detection_event}.}
+\code{state}, \code{ordinal}, \code{multinomial_cell}, \code{detection_event}, \code{binomial_count}.}
 
 \item{min_units, min_occasions, min_periods, min_taxa}{Numeric lower bounds on
 the computed counts.}

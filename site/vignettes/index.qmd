@@ -9,4 +9,5 @@ clean session.
 
 ::: {.eco-cards}
 <div class="card"><h3><a href="occupancy.html">Single-species site occupancy</a></h3><p>The MacKenzie et al. (2002) model as Kéry and Royle present it in <em>Applied Hierarchical Modeling</em> chapter 10, fit with <code>unmarked</code> to the Swiss willow tit table. A simulator shows why repeat surveys separate ψ from p; then the fit, conditional occupancy of undetected sites, and a goodness-of-fit test that rejects.</p></div>
+<div class="card"><h3><a href="traits.html">Joining species traits at use time</a></h3><p>Body mass from AVONET (birds) and COMBINE (mammals), fetched with <code>eco_traits()</code> when the page renders and matched onto each table's <code>__taxa</code> by scientific name. Nothing is stored in eco. Match rates per table, then detection probability against body size across nineteen tables and four sampling protocols, and a mixed model whose within-table slope is small, negative and not distinguishable from zero.</p></div>
 :::

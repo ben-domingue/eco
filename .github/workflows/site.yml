@@ -46,10 +46,11 @@ jobs:
           use-public-rspm: true
 
       # The vignettes under site/vignettes/ fetch tables with the eco package
-      # (installed from this checkout's Rpkg/) and fit them with unmarked.
+      # (installed from this checkout's Rpkg/) and fit them with unmarked; the
+      # traits vignette fetches AVONET (xlsx, readxl) and fits lme4.
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly"))'
+          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly", "lme4", "readxl"))'
           R CMD INSTALL Rpkg
 
       - name: Render
