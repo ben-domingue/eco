@@ -456,6 +456,117 @@ The constructive fixes are a detection covariate that captures the
 heterogeneity, a finite-mixture detection model, or a dynamic model that
 drops the closure assumption.
 
+## The same model across the corpus
+
+One table is a tutorial. The point of a warehouse is that the same six lines
+run over every table of the same shape, so this section fits the null model
+$\psi(\cdot)\,p(\cdot)$ to every species in every site-level detection table in
+eco version 2 and asks three questions of each fit: how far $\hat\psi$ sits
+from naive occupancy, whether the estimate is at a boundary, and whether the
+MacKenzie and Bailey test rejects. The fits take about twenty minutes because
+of the bootstrap, so they live in a companion script,
+[`occupancy_corpus_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/occupancy_corpus_compute.R),
+and the page reads its cache. Multi-season tables contribute the primary
+period with the most surveys; count tables are collapsed to detection; a
+species never detected in that period, or surveyed once per site, is skipped,
+since the null model has nothing to fit or cannot separate $\psi$ from $p$.
+That last rule removes the New River fish table entirely: in any one year
+most watersheds were sampled once.
+
+```{r}
+#| label: corpus-load
+corpus <- readRDS("occupancy_data/occupancy_corpus.rds")
+fits <- corpus$fits
+fits$correction <- fits$psi - fits$naive
+fits$boundary <- !fits$converged | fits$psi > 0.995 | fits$psi < 0.005 | fits$p < 0.005
+# The test's cohort table has 2^J cells. Past ten surveys the expected counts
+# are tiny and the statistic degenerates (the marten table, J = 24, returns a
+# c-hat in the billions), so the test is only read where J <= 10.
+fits[fits$J > 10, c("chisq", "gof_p", "c_hat")] <- NA
+fits$reject <- !is.na(fits$gof_p) & fits$gof_p < 0.05
+fits$floor <- ifelse(fits$sample_floor == "meets", "meets floor", "below floor")
+```
+
+```{r}
+#| label: corpus-table
+#| echo: false
+library(data.table)
+f <- as.data.table(fits)
+tab <- f[, .(species = .N, sites = n_sites[1], J = J[1],
+             `median p` = median(p, na.rm = TRUE),
+             `median psi - naive` = median(correction, na.rm = TRUE),
+             `at boundary` = sum(boundary),
+             `GOF rejects` = sprintf("%d / %d", sum(reject), sum(!is.na(gof_p))),
+             floor = floor[1]), by = table]
+setorder(tab, -species)
+knitr::kable(tab, digits = 2)
+```
+
+```{r}
+#| label: corpus-stats
+#| echo: false
+n_fits <- nrow(f); n_tab <- uniqueN(f$table)
+ok <- f[!boundary & floor == "meets floor"]
+med_corr <- median(ok$correction); q_corr <- quantile(ok$correction, c(.1, .9))
+share_reject <- mean(ok$reject[!is.na(ok$gof_p)])
+med_chat <- median(ok$c_hat, na.rm = TRUE)
+n_bound <- sum(f$boundary); n_bound_rare <- sum(f$boundary & f$naive < 0.05)
+```
+
+Across `r n_fits` species fits in `r n_tab` tables, `r n_bound` are at a
+boundary, with $\hat\psi$ pinned to 1 or $\hat p$ to 0. Most of those
+(`r n_bound_rare`) are species detected at fewer than one site in twenty, where
+a handful of detections cannot say whether the species is rare or merely hard
+to see; the rest are in tables where $\hat p$ is low or there are only two
+visits, or in the three tables below the standard's sample floor. Among the well-behaved fits the median correction
+$\hat\psi - \text{naive}$ is `r fmt(med_corr)`, with the middle 80% of species
+between `r fmt(q_corr[1])` and `r fmt(q_corr[2])`. The long upper tail is two
+tables: the Atchafalaya visual-encounter surveys, where the median $\hat p$ is
+0.04 and twelve of thirty-two species are at the boundary, and the
+right-of-way songbird point counts, where there are only two visits.
+
+```{r}
+#| label: fig-corpus
+#| fig-width: 7.5
+#| fig-height: 5
+#| fig-cap: "Estimated against naive occupancy for every species fit. Colour is the estimated per-survey detection probability; open triangles are tables below the sample floor; points on the top edge are boundary fits."
+ggplot(f, aes(naive, psi, colour = p, shape = floor)) +
+  geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
+  geom_point(size = 2.3, alpha = 0.85) +
+  scale_colour_gradient(low = "#bfe3d2", high = "#0b4f33", name = expression(hat(p)), limits = c(0, 1)) +
+  scale_shape_manual(values = c("meets floor" = 16, "below floor" = 2), name = NULL) +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(x = "Naive occupancy", y = expression(hat(psi)))
+```
+
+The picture is the simulator's expected-naive line read backwards. Species
+with high $\hat p$ sit on the diagonal; the correction grows as $\hat p$
+falls, and below about $p = 0.2$ with three surveys the all-zero sites can no
+longer be told apart from empty ones and the fit slides up the top edge. The
+below-floor tables show the same failure from the other direction: ten or
+twenty sites cannot pin $\psi$ down whatever $p$ is.
+
+```{r}
+#| label: fig-corpus-gof
+#| fig-width: 7
+#| fig-height: 4
+#| fig-cap: "The overdispersion estimate from the MacKenzie and Bailey test for every fit it could be run on (ten or fewer surveys, not at a boundary). Values above 10 are drawn at 10. The dashed line is 1, where the null model fits."
+ggplot(f[!is.na(c_hat)], aes(pmin(c_hat, 10))) +
+  geom_histogram(binwidth = 0.25, fill = "#1e8a5a", colour = "white", boundary = 0) +
+  geom_vline(xintercept = 1, linetype = 2, colour = "#55575f") +
+  labs(x = expression(hat(c)), y = "species")
+```
+
+The test rejects at the 5% level for `r sprintf("%.0f%%", 100 * share_reject)`
+of the well-behaved fits, with a median $\hat c$ of `r fmt(med_chat, 1)`. The
+share tracks sample size as a power calculation would predict: in the MHB
+community table, with 266 quadrats, the test rejects for two species in three.
+That the willow tit's $\hat c$ of 3.6 is not unusual is the useful lesson: the
+constant-$p$ model is a starting point, and the detection heterogeneity it
+leaves behind is the norm in field data, not a feature of one table. The
+remedies are the ones listed above, and the covariates to try are already in
+the tables' `unit_` and `obs_` columns.
+
 ## Where this goes
 
 Everything above changes by one line in the state or observation process, and
@@ -482,7 +593,9 @@ eco carries a table for each.
 ## Reproducibility
 
 Source: [`site/vignettes/occupancy.qmd`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/occupancy.qmd)
-in the eco repository. Data were read with `eco_set_version(2)`, so a later
+and [`occupancy_corpus_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/occupancy_corpus_compute.R)
+in the eco repository; the corpus fits were run on `r corpus$date_run` with
+`r corpus$nsim` bootstrap samples per test. Data were read with `eco_set_version(2)`, so a later
 release of the warehouse does not change the page.
 
 ```{r}
