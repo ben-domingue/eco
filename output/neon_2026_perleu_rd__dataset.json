@@ -1,0 +1,57 @@
+{
+  "table": "neon_2026_perleu_rd",
+  "title": "NEON small mammal box trapping, RELEASE-2026: robust-design capture histories of 13,647 Peromyscus leucopus on 146 trapping grids at 25 NEON sites, 2013-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/a83h-tb34",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.10072.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Small mammal box trapping (DP1.10072.001), RELEASE-2026. https://doi.org/10.48443/a83h-tb34. Dataset accessed from https://data.neonscience.org/data-products/DP1.10072.001/RELEASE-2026 on 2026-11-02",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "note": "Licence stated on https://data.neonscience.org/data-api/ (NEON data products are CC BY 4.0); attribution per NEON's citation guidance"
+  },
+  "abstract": "Capture histories of Peromyscus leucopus ear- or PIT-tagged on NEON's 10 x 10 Sherman-trap grids (10 m spacing) at terrestrial sites across the United States, trapped in bouts of one or three consecutive nights four to six times a year. One row per marked individual x night its home grid (grid of first capture) was trapped, from the bout of first capture through the last surveyed bout at the home grid in the release; y = captured on the home grid that night. 13,647 individuals, 32,092 captures, 930 bouts. Bouts are the primary periods of a robust design and nights the secondary occasions; weight, life stage and the technician's recapture flag ride on capture rows. One of 4 species tables written by one script (ruling #20: one taxon per individual-unit table); the companion table neon_2026_smallmammals_count holds the grid-night capture counts of all species and the grid coordinates.",
+  "samplingProtocol": "Sherman box traps (LFA/XLK) on 10 x 10 grids at 10 m spacing, set in the evening and checked at dawn; bouts within 10 days of the new moon, 1 night (diversity grids) or 3 consecutive nights (pathogen grids); captures identified, ear-tagged (left or right) or PIT-tagged, sexed, aged and weighed; NEON protocol NEON.DOC.000481",
+  "samplingProtocolCode": "live_trap",
+  "occasionLength": "one trap-night",
+  "effortColumn": "obs_traps_set",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "mam_perplotnight: a grid-night is a survey iff samplingImpractical is NA or OK, gridCompletion is recorded, and at least one trap was set; an individual's rows are the surveyed nights of its home grid from the bout of first capture onward (no rows before first capture).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period = trapping bout (eventID, 1-6 nights per grid, usually 1 or 3, within at most 12 days, closed); occasion = night within the bout at the home grid; population open between bouts (robust design)",
+  "geographicCoverage": "25 NEON terrestrial sites in the contiguous United States and Alaska; grid coordinates in neon_2026_smallmammals_count__units (as published by NEON)",
+  "temporalCoverage": "2013-06-19/2024-11-12",
+  "coordinatesCoarsened": null,
+  "covariateNote": "unit_sex is the modal sex over the animal's captures (U when never sexed); obs_weight_g (grams, spring scale), obs_life_stage and obs_recapture_flag (NEON technician's Y/N/U) are present on capture rows and NA otherwise; obs_traps_set and obs_grid_method describe the night's trapping as in the count table. __periods lists the bouts this species has rows in; the count table's __periods is the full list with the same indices.",
+  "designNote": "Robust-design capture-recapture (survival, temporary emigration, abundance per bout) conditional on first capture; rows begin at the first night of the first-capture bout (so nights of that bout before the capture are zeros) and run to the last surveyed bout at the home grid in the release. A tag whose captures carry two species labels is assigned the modal label (n_species_labels in __units). Captures of a marked animal on a grid other than its home grid are not shipped (640 across all species).",
+  "components": {
+    "siblings": "neon_2026_smallmammals_count (grid-night counts, grid coordinates, full __periods); neon_2026_perman_rd, neon_2026_sighis_rd, neon_2026_micpen_rd"
+  },
+  "notes": "Histories are conditional on first capture: no rows before an individual's first-capture bout (E4 applies to the nights the home grid was trapped from then on). Unmarked animals (provisional ids) are in the count table's y but not here. Ear-tag numbers are domain-level; 602 numbers appear with both L and R prefixes across the deposit and are kept as separate units. 78 tag-nights across the deposit carried the same tag in two traps and count as one capture.",
+  "notShipped": {
+    "other species": "the 101 species not among the 4 with the most marked individuals (individuals in parentheses): Myodes rutilus (MYRU: 3327); Myodes gapperi (MYGA: 2255); Napaeozapus insignis (NAIN: 2073); Dipodomys merriami (DIME: 1926); Peromyscus gossypinus (PEGO: 1900); Chaetodipus hispidus (CHHI: 1397); Tamias striatus (TAST: 1268); Onychomys leucogaster (ONLE: 1254); Dipodomys ordii (DIOR: 1236); Reithrodontomys megalotis (REME: 1141); Mus musculus (MUMU: 1071); Zapus hudsonius (ZAHU: 1053); Chaetodipus penicillatus (CHPE: 1032); Perognathus parvus (PEPA: 1009); Peromyscus boylii (PEBO: 981); Ictidomys tridecemlineatus (ICTR: 977); Microtus ochrogaster (MIOC: 874); Peromyscus keeni (PEKE: 858); Neotoma floridana (NEFL: 711); Chaetodipus baileyi (CHBA: 628); Tamias minimus (TAMI: 602); Reithrodontomys montanus (REMO: 400); Perognathus flavus (PEFL: 396); Tamias townsendii (TATO: 396); Microtus oregoni (MIOR: 380); Podomys floridanus (POFL: 364); Onychomys torridus (ONTO: 363); Neotoma albigula (NEAL: 355); Peromyscus truei (PETR: 346); Chaetodipus eremicus (CHER: 338); Peromyscus polionotus (PEPO: 303); Reithrodontomys fulvescens (REFU: 284); Zapus princeps (ZAPR: 242); Glaucomys volans (GLVO: 212); Rattus rattus (RARA: 189); Zapus trinotatus (ZATR: 150); Chaetodipus californicus (CHCA: 142); Tamias speciosus (TASP: 142); Peromyscus eremicus (PEER: 121); Alexandromys oeconomus (ALOE: 118); Dipodomys microps (DIMI: 115); Ochrotomys nuttalli (OCNU: 112); Reithrodontomys humulis (REHU: 107); Microtus pinetorum (MIPI: 105); Sigmodon ochrognathus (SIOC: 90); Spermophilus richardsonii (SPRI: 86); Perognathus flavescens (PEFV: 80); Microtus montanus (MIMO: 78); Tamias amoenus (TAAM: 56); Perognathus inornatus (PEIN: 54); Callospermophilus lateralis (CALA: 51); Peromyscus attwateri (PEAT: 50); Glaucomys sabrinus (GLSA: 49); Dipodomys spectabilis (DISP: 48); Spermophilus franklinii (SPFR: 45); Tamiasciurus hudsonicus (TAHU: 43); Baiomys taylori (BATA: 41); Microtus xanthognathus (MIXA: 41); Microtus longicaudus (MILO: 36); Spermophilus spilosoma (SPSP: 36); Tamias quadrivittatus (TAQU: 32); Lemmus trimucronatus (LETR: 31); Oryzomys palustris (ORPA: 31); Neotoma micropus (NEMI: 28); Onychomys arenicola (ONAR: 27); Tamias quadrimaculatus (TAQD: 24); Synaptomys cooperi (SYCO: 20); Chaetodipus intermedius (CHIN: 18); Lemmiscus curtatus (LECU: 15); Microtus miurus (MIMI: 15); Perognathus amplus (PEAM: 11); Ammospermophilus harrisii (AMHA: 10); Tamias dorsalis (TADO: 9); Neotoma lepida (NELE: 8); Tamias umbrinus (TAUM: 7); Neotoma mexicana (NEME: 6); Tamias rufus (TARU: 6); Perognathus fasciatus (PEFA: 5); Sigmodon arizonae (SIAR: 5); Spermophilus armatus (SPAR: 5); Peromyscus nasutus (PENA: 4); Spermophilus beecheyi (SPBE: 4); Neotoma cinerea (NECI: 3); Spermophilus parryii (SPPA: 3); Spermophilus tereticaudus (SPTE: 3); Thomomys talpoides (THTA: 3); Dicrostonyx groenlandicus (DIGR: 2); Microtus californicus (MICA: 2); Peromyscus merriami (PEME: 2); Perognathus mollipilosus (PEMO: 2); Phenacomys intermedius (PHIN: 2); Spermophilus variegatus (SPVA: 2); Blarina carolinensis (BLCA: 1); Dipodomys heermanni (DIHE: 1); Neotoma macrotis (NEMC: 1); Peromyscus californicus (PECA: 1); Peromyscus crinitus (PECR: 1); Perognathus longimembris (PELO: 1); Rattus norvegicus (RANO: 1); Tamias merriami (TAME: 1); Tamiasciurus douglasii (TSDO: 1)",
+    "unmarked captures": "provisional id (O prefix): 15336; provisional id (plot-trap-date): 4314 (all species; in the count table's y)",
+    "captures not at species rank": "6082 marked-animal captures identified to genus, species group, subspecies, family, order or class (all species)",
+    "captures away from the home grid": "640 (all species)",
+    "measurements and samples": "hindfootLength, earLength, tailLength, totalLength, ticks, blood/ear/hair/fecal samples, reproductive condition",
+    "other NEON tables": "mam_voucher, mam_identificationHistory, mam_voucherIdentificationHistory"
+  },
+  "summary": {
+    "n_rows": 617561,
+    "n_units": 13647,
+    "n_taxa": 1,
+    "n_periods": 930,
+    "n_occasions": 4,
+    "n_surveys": 617561,
+    "y_values": "0,1",
+    "prop_zero": 0.948
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_sex", "unit_first_capture", "obs_traps_set", "obs_grid_method", "obs_weight_g", "obs_life_stage", "obs_recapture_flag"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_smallmammals_rd.R",
+  "buildDate": "2026-11-02"
+}
