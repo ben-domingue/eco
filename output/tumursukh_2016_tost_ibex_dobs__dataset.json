@@ -1,0 +1,53 @@
+{
+  "table": "tumursukh_2016_tost_ibex_dobs",
+  "title": "Independent double-observer detections of Siberian ibex groups, Tost Local Protected Area, South Gobi, Mongolia, 2012-2013",
+  "creator": "Tumursukh, Lkhagvasumberel; Suryawanshi, Kulbhushansingh R.; Mishra, Charudutt; McCarthy, Thomas M.; Boldgiv, Bazartseren",
+  "pubDate": "2016",
+  "doi": "10.5061/dryad.v61m2",
+  "sourceURL": "https://doi.org/10.5061/dryad.v61m2",
+  "paperDOI": "10.1017/S0030605314001203",
+  "citation": "Tumursukh, L., Suryawanshi, K. R., Mishra, C., McCarthy, T. M., & Boldgiv, B. (2016). Data from: Status of the mountain ungulate prey of the endangered snow leopard Panthera uncia in the Tost Local Protected Area, South Gobi, Mongolia [Data set]. Dryad. https://doi.org/10.5061/dryad.v61m2",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Double-observer surveys of siberian ibex in the mountain blocks of the Tost Local Protected Area (South Gobi, Mongolia) in 2012 and 2013: two observers searched independently and every group either detected was recorded with its size and with which observer saw it. 124 groups (650 animals) in 2012 and 143 groups (721 animals) in 2013. The authors estimate groups and population size with the Forsyth-Hickling / Suryawanshi double-observer estimator; prey of the snow leopard.",
+  "samplingProtocol": "Independent double-observer survey of mountain ungulates (Suryawanshi et al. 2012): two observers walk the same route separated in time so neither cues the other, record every group with its size, and groups are matched afterwards on size, composition and location.",
+  "samplingProtocolCode": "double_observer",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "Each deposited row is a group seen by at least one observer; both observers surveyed it, so all three detection cells are defined. Groups missed by both observers are not in the deposit by design.",
+  "responseType": "multinomial_cell",
+  "multinomialType": "double_observer",
+  "unitKind": "individual",
+  "closure": "occasion (the three detection cells of one group within the year's survey); groups are not matched across years",
+  "occasionCodes": {
+    "1": "10: observer one only",
+    "2": "01: observer two only",
+    "3": "11: both observers"
+  },
+  "geographicCoverage": "Tost Local Protected Area, South Gobi province, Mongolia (about 43.1 N, 100.6 E); no coordinates deposited",
+  "temporalCoverage": "2012/2013",
+  "notes": "Unit = a detected group (id = year_row). y = 1 in the group's detection cell, 0 in the other two; unit_group_size = animals in the group. To recover the authors' cell counts sum y by period and occasion; the population estimate multiplies estimated groups by mean group size. Sibling table: tumursukh_2016_tost_argali_dobs (components).",
+  "components": ["tumursukh_2016_tost_ibex_dobs", "tumursukh_2016_tost_argali_dobs"],
+  "notShipped": {
+    "estimates": "Output sheet columns E-F: estimated groups, mean group size, population, variances and detection probabilities (model output)",
+    "back_end_calculator": "intermediate sums for the variance of mean group size (derived)",
+    "demographic_surveys": "the paper's ibex sex-ratio and young-survival surveys are not in the deposit"
+  },
+  "summary": {
+    "n_rows": 801,
+    "n_units": 267,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 801,
+    "y_values": "0,1",
+    "prop_zero": 0.667
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_group_size"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/tumursukh_2016_tost_ungulates_dobs.R",
+  "buildDate": "2026-11-02"
+}

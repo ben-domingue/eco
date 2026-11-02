@@ -92,7 +92,7 @@ Goose Island archipelago avian point counts 2011 (Obrist et al.),zenodo,10.5281/
 "Stream salamanders under mountaintop removal mining, occupancy and abundance dynamics",dryad,doi:10.5061/dryad.7278k2n,CC0-1.0,"dynamic occupancy / N-mixture, multi-species stream salamanders",2,small .Rdata with formatted arrays,available,batch15-occ
 "Rusty crayfish eDNA vs traditional sampling, lakes",dryad,doi:10.5061/dryad.3hp15,CC0-1.0,"multi-method detection, invasive crayfish",3,xlsx + PDF README,available,
 Double-observer census of mountain ungulates (DOAS framework),dryad,doi:10.5061/dryad.zkh1893ks,CC0-1.0,"double-observer counts, ungulates",3,70 MB zip,available,
-"Double-observer surveys of ibex and argali, Tost, Mongolia",dryad,doi:10.5061/dryad.v61m2,CC0-1.0,"double-observer counts, ungulates",2,small zip,available,
+"Double-observer surveys of ibex and argali, Tost, Mongolia",dryad,doi:10.5061/dryad.v61m2,CC0-1.0,"double-observer counts, ungulates",2,small zip,"built: tumursukh_2016_tost_ibex_dobs, tumursukh_2016_tost_argali_dobs",batch15-design
 Removal data from invasive species management actions,dryad,doi:10.5061/dryad.67nb3,CC0-1.0,"removal sampling (depletion), invasive species",2,xlsx 16 kB,available,
 "Brownie tag-recovery with radio-telemetry, white-tailed deer and wild turkey",dryad,doi:10.5061/dryad.26n2q,CC0-1.0,"dead recovery (Brownie), game species",3,data in two docx files,available,
 "Multispecies eDNA metabarcoding occupancy, spatially replicated design (fish)",dryad,doi:10.5061/dryad.3bk3j9kkm,CC0-1.0,"multi-scale community occupancy, eDNA metabarcoding",2,data.Rdata + README,available,
