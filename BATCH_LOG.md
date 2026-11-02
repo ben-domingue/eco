@@ -597,3 +597,58 @@ Held this batch: black lion tamarin camera traps (OSF 8rw4t, no licence on the p
 Queue state after batch 13: every Dryad, Zenodo, Dataverse, GBIF, OSF and package row
 is built or held; NEON rows wait on a token, eBird is gated, the "all GBIF
 sampling-event datasets" row is a search pointer, not a deposit.
+
+## Batch 14 — 2026-11-02 (NEON: the first token-gated agency source; three products, eight tables)
+
+Three NEON Terrestrial Observation System products from `RELEASE-2026`, all sites and
+months, built in a worktree (branch `neon-tables`) while the main checkout carried the
+traits vignette. New in `lib/`: `download_neon()` and `headers`/`subdir` arguments on
+`download_cached()`; the API token is read from `NEON_TOKEN` and never stored.
+`rebuild.yml` passes a `NEON_TOKEN` secret, which the repository still needs. Licence is
+CC BY 4.0 (NEON Data API docs; the queue had said CC0, corrected). Validated with
+`eco-validate`: 87/87 tables pass, IRW view conforms. Four core CSVs over 100 MB are in
+`.gitignore` and rebuilt by their scripts.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_landbirds_count | repeated counts, multi-species, national | NEON DP1.10003.001 CC BY 4.0 | 7,460,729 | 26,363 six-minute point counts at 3,434 points (47 sites) x 2 bouts x 2013-2024 x 283 species (>= 100 clusters; 261 rarer species and every higher-rank "fuzzed" id not shipped); clusters counted once; minute-88 detections dropped; point covariates in `__units`; NEON publishes grid centres for the nine points of a grid; 583 MB, gitignored |
+| neon_2026_landbirds_ds | distance sampling, binned (multinomial_cell) | NEON DP1.10003.001 CC BY 4.0 | 4,850,792 | same counts, four radial bins (0-25-50-100-1000 m), 46 common species (>= 2,000 clusters); period = count event (year x bout), occasion = bin; removal minutes not carried; detection_event could not hold multi-species per-detection rows (see below); 433 MB, gitignored |
+| neon_2026_smallmammals_count | robust-design counts, community | NEON DP1.10072.001 CC BY 4.0 | 2,531,672 | 17,704 surveyed grid-nights on 332 grids (46 sites), 1,612 bouts, 143 species; y = distinct individuals per night; traps set as effort; `__taxa` carries `taxon_sites`; Podomys floridanus (VU) among taxa, coordinates are NEON plot centres as published; 304 MB, gitignored |
+| neon_2026_perman_rd | robust design, individual | NEON DP1.10072.001 CC BY 4.0 | 758,231 | 17,503 Peromyscus maniculatus, from first-capture bout to last surveyed bout at the home grid; 640 off-grid captures dropped |
+| neon_2026_perleu_rd | robust design, individual | NEON DP1.10072.001 CC BY 4.0 | 617,561 | 13,647 Peromyscus leucopus |
+| neon_2026_sighis_rd | robust design, individual | NEON DP1.10072.001 CC BY 4.0 | 203,621 | 4,474 Sigmodon hispidus |
+| neon_2026_micpen_rd | robust design, individual | NEON DP1.10072.001 CC BY 4.0 | 171,464 | 3,435 Microtus pennsylvanicus; the other 101 marked species (34,491 individuals) in notShipped |
+| neon_2026_carabids_count | repeated counts, community, pitfall | NEON DP1.10022.001 CC BY 4.0 | 5,976,135 | 108,657 collected pitfall samples at 2,029 traps (47 sites) x 2013-2023 x up to 17 bouts x 55 carabid species (>= 1,000 individuals; 73% of individuals; 644 species not shipped); sorting-level ids (parataxonomist changes 2.8%, expert changes 22.2% of pinned specimens, not applied); trappingDays as effort, outliers kept as published; 354 MB, gitignored |
+
+What this batch says about the standard:
+
+- **National species pools are the main strain.** E4.2 forces one taxon set per table,
+  so a 47-site scheme ships a national rectangle full of structural zeros, and the row
+  budget then forces severe species cuts (carabids: 55 of 699 species; at a site-level
+  pool roughly 200 would fit). The processing guide's answer (split by region) would
+  mean 47 tables per product. A declared grouping column for the pool, or a
+  `taxon_sites` column in `__taxa` that the validator honours, is the request. The
+  small-mammal table already carries `taxon_sites`.
+- **`detection_event` cannot hold multi-species per-detection data**: several detections
+  of one species in one count collide on the E3 key, and a detection index on
+  `occasion` fails E4.2. Either add a detection index to the key or state that the type
+  is single-species.
+- **Ruling #20 on a national capture-recapture product** gives one table per species
+  (105 here). This batch shipped the four with the most individuals, named
+  `neon_2026_<gen3><spe3>_rd`, from one script; a convention for how many and how to
+  name them is needed.
+- **Sibling tables with different period definitions** (landbirds: year in the count
+  table, year x bout in the distance table) and **sibling `__periods` files that are
+  subsets** (rd tables carry only their bouts, with the count table's indices). Whether
+  siblings must share period definitions is unstated; the `components` cross-reference
+  from batch 8 would carry it.
+- **Source-side taxon fuzzing**: NEON coarsens species of concern to higher rank and
+  withholds some at GRSM. Same need as batch 13's `taxaWithheld`.
+- **Identification layers**: which layer `y` uses when the source re-identifies a subset
+  at higher authority, and whether the disagreement rate belongs in `__dataset.json`.
+- **Effort outliers** far above protocol (pitfall trappingDays up to 245): kept as
+  published; the guide could say whether such a sample is a survey.
+- **Distance binning chosen by the processor** again (batch 12 asked the same).
+
+Held: nothing. Queue: NEON rows built; remaining rows are eBird (gated), the GBIF
+sampling-event search pointer, the tamarin OSF deposit (no licence) and BBS (#24).
