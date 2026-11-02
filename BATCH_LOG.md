@@ -366,3 +366,58 @@ What this batch says about the standard:
 
 Held this batch: Rich et al. 2016 Botswana mammals (aggregated binomial, third instance;
 coordinates already whole-degree, Diet and Size traits would ride in `__taxa`).
+
+## Batch 10 — 2026-11-01 (ruling #34 lands: binomial counts; two SCR deposits; three single-species camera tables)
+
+Seven deposits, eight tables (two from the fisher deposit), plus the Nagarahole tiger
+table rebuilt under `binomial_count`. Validated with `eco-validate`: 51/51 tables
+pass, IRW view conforms. Uploaded to the Redivis draft. Ben ruled #34 during the
+batch (option 2: a new `responseType`); the standard, validator, R twin and converter
+changed in commit 61c65e5 and the two deposits held for that shape were built the
+same night.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| distiller_2020_cockscomb_jaguar_scr | spatial capture-recapture (closed, camera traps, continuous-time capable) | Dryad CC0 | 103,820 | 29 jaguars (19 M, 8 F, 2 unsexed) x 20 stations x 183 days, eastern Cockscomb Basin, Belize, Aug 2013-Feb 2014; survey set = deposited station x day operating matrix (3,580 of 3,660); 334 detections, photograph time kept in obs_capture_time; 31 individual-days at two stations; CAM16 never detected a jaguar; UTM 16N inferred (readme names no CRS); below floor (29 units) |
+| bison_2024_montblanc_hare_dynocc | dynamic occupancy (seasonal), camera traps, single species | Dryad CC0 | 45,469 | 46 stations (1,227-2,740 m), Mont-Blanc massif, Sept 2017-June 2022; y per camera-day; survey set = setup to the abstract's study end (2022-06-30) minus 185 deposited downtime windows (22% of days), no end dates deposited; 13 in-downtime and 2 post-study contacts dropped; period = meteorological season (processor's binning; the authors' seasons and occasion length are in the unreachable paper), date per row; coordinates as published (LC); out_height / out_contact raw vegetation points not shipped |
+| rich_2016_botswana_mamm_binom | community occupancy, binomial counts (responseType binomial_count, first under ruling #34) | Dryad CC0 | 9,724 | 221 stations in 3 blocks, northern Botswana, 15-33 nights each (6,607 trap nights) x 44 species; y = nights with a detection, obs_trials = nights surveyed, no occasion; six station covariates; diet and body-size traits in __taxa; exact station coordinates coarsened to 0.1 deg (wild dog, elephant EN; cheetah, lion, leopard, giraffe, hippo VU); survey year not in the deposit |
+| feng_2021_nechina_mamm_binom | community occupancy, binomial counts (ruling #34) | Dryad CC0 | 2,484 | 138 stations x 18 species along the China-Russia border, NE China, 22,976 trap days; y = 14-day windows with a detection (0-12), obs_trials = windows surveyed (4-13); held in batch 7, built under #34; k is not a function of trap days (7 stations have k > ceiling(Days/14)), both shipped; human and cattle detection rates at the same cameras kept as disturbance covariates; no coordinates (Amur tiger EN, leopard, musk deer VU present); study year only in the unfetchable paper |
+| gardner_2018_nagarahole_tiger_oscr (rebuilt) | open SCR, binomial counts | Dryad CC0 | 34,350 | responseType count -> binomial_count, obs_trap_days_active -> obs_trials; otherwise as batch 9 |
+| bhattacharya_2022_himachal_bear_occ | single-season occupancy, camera traps (paper: spatial presence-absence model) | Dryad CC0 | 2,326 | 34 cameras in Rupi Bhaba WLS (2019, <= 49 days) + 33 in Daranghati WLS (2018, <= 40 days), one table with cluster_id = area; day_1 = first deployment day, NA suffix = camera stopped; 58 detections at 27 cameras; no coordinates or covariates deposited; survey years from the abstract only |
+| burgar_2018_alberta_fisher_scr | spatial capture-recapture (closed, genetic hair snags) | Dryad CC0 | 6,144 | 24 fishers (15 F, 9 M) x 64 hair-snag sites x 4 occasions, Alberta 2016; secr edf + TDF, all sites used on all occasions; 43 detections; UTM zone not stated (12N inferred: Beaver Hills, east of Edmonton); paper behind a publisher bot wall, occasion dates not deposited; below floor (24 units) |
+| burgar_2018_alberta_fisher_count | single-season camera detections (authors: spatial count, unmarked) | Dryad CC0 | 4,096 | 64 camera sites x 64 occasions in 2016, 180 detections at 37 sites; matrix is 0/1 only so shipped as detection; site ids 1-66 minus 11, 21 do not key to the SCR TDF, so no coordinates and no join; occasion length only in the unreachable paper |
+
+What this batch says about the standard:
+
+- **`binomial_count` worked end to end** on three deposits with no workaround: the R
+  twin accepted it, the validator's new checks ran clean, the replication warning
+  stayed quiet. Two follow-ups: `table_summary()` could report `n_trials =
+  sum(obs_trials)` as the natural survey count, and the Rich coordinates turned out to
+  be exact in the cells (the xlsx only displays whole degrees), so the batch 9 hold
+  note was wrong and the table is coarsened.
+- **Continuous-time SCR is group A, not a new family.** A per-row `date` plus
+  `obs_capture_time` on detection rows carries the exact times; the occasion table and
+  the continuous-time data are the same table. A named convention for the time column
+  would keep camera tables consistent.
+- **Paired marked / unmarked deposits.** The fisher deposit is the integrated-model
+  shape (SCR plus unmarked counts of one population) but gives no site key between
+  the halves. Two independent tables with cross-references; a `components` list in
+  `__dataset.json` would express the pairing when a key exists.
+- **CRS inferred from the coordinate range** twice (jaguar UTM 16N, fisher UTM 12N):
+  `crs` carries the word "inferred"; a reserved qualifier would make it
+  machine-readable. Also "local" for author-centred metres (tigers).
+- **Deployment tables without end dates** (hare: setup plus downtime windows, end
+  from the abstract) and **detections inside declared downtime** (13 dropped) have no
+  guidance in E4 or the guide; `inferred` with a note was used.
+- **Disjoint unit sets in different years** (bear: two sanctuaries, 2018 and 2019) are
+  `cluster_id` + `unit_year`, not `period`; same question as #31.
+- **Count vs detection when the matrix never exceeds 1** (fisher cameras): `detection`
+  is the claim the data support; the standard could say so.
+- **`closure` enumeration** asked for a fourth time (hare: a processor-imposed
+  season binning should be visible without reading free text).
+- Small: `samplingProtocolCode = hair_snag` new; `n_surveys` in `table_summary()` now
+  counts `trap`, matching the metadata pipeline (it did not before, so every SCR
+  table's summary was wrong); `floor_status()` takes the responseType.
+
+Held: nothing. Unblocked by #34 and built: Feng (NE China), Rich (Botswana). Still on
+the ruling: Jhala tiger occupancy (next batch).

@@ -1,0 +1,50 @@
+{
+  "table": "burgar_2018_alberta_fisher_scr",
+  "title": "Genetic spatial capture-recapture of fishers at 64 hair-snag sites, Alberta, 2016: 24 individuals x 64 sites x 4 occasions",
+  "creator": "Burgar, Joanna M.; Stewart, Frances E. C.; Volpe, John P.; Fisher, Jason T.; Burton, A. Cole",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.dh7cd36",
+  "sourceURL": "https://doi.org/10.5061/dryad.dh7cd36",
+  "citation": "Burgar, J. M., Stewart, F. E. C., Volpe, J. P., Fisher, J. T., & Burton, A. C. (2019). Data from: Estimating density for species conservation: comparing camera trap spatial count models to genetic spatial capture-recapture models [Data set]. Dryad. https://doi.org/10.5061/dryad.dh7cd36",
+  "paperDOI": "10.1016/j.gecco.2018.e00411",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Non-invasive genetic detections of individually identified fishers (Pekania pennanti) at 64 hair-snag sites over four sampling occasions in 2016, the 'marked' data set of a study comparing genetic spatial capture-recapture density estimates with camera-trap spatial count estimates for the same population. The deposit is a secr-style encounter data file (individual, occasion, trap, sex) and a trap deployment file (site coordinates and per-occasion usage, all sites used on all occasions). The table is one row per fisher x site x occasion, y = 1 where the individual was genotyped from hair at that site on that occasion. 24 individuals (15 females, 9 males), 43 detections.",
+  "samplingProtocol": "Hair-snag sites on a 64-site array (deposited as secr trap 1-64, UTM coordinates), checked on four sampling occasions in 2016; hair samples genotyped to individual and sex. Occasion dates and the snag design are in the paper, which the agent could not fetch.",
+  "samplingProtocolCode": "hair_snag",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "TDF.csv carries a usage column per occasion; every site was used on every occasion (256 site-occasions). Every individual carries all 256, including occasions without a detection.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "single session (one period, omitted): the four occasions are treated as a closed population, as in the authors' SCR; occasion = sampling occasion 1-4",
+  "geographicCoverage": "Alberta, Canada; site coordinates in __traps in UTM metres (zone not stated in the deposit; zone 12N places the grid at 53.2-53.6 N, 112.7-113.1 W, the Beaver Hills east of Edmonton)",
+  "temporalCoverage": "2016",
+  "crs": "UTM metres, zone not stated in the deposit; EPSG:32612 (zone 12N) by inference from the coordinate range and the authors' study area",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published: fisher is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Closed population, four occasions, genetic (hair-snag) detections. The sibling table burgar_2018_alberta_fisher_count holds the unmarked camera-trap data from the same study; its site numbering (1-66) differs from secr_trapID and the deposit gives no key, so the two are not joined.",
+  "notes": "Occasion calendar dates are not deposited (column names carry 2016). Individuals are F01-F24 (the deposit's individualID_2016), sites T01-T64 (secr_trapID). unit_sex as deposited.",
+  "notShipped": {
+    "Fisher_60min2016_matrix.csv": "the unmarked camera detections, shipped as burgar_2018_alberta_fisher_count"
+  },
+  "summary": {
+    "n_rows": 6144,
+    "n_units": 24,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 6144,
+    "y_values": "0,1",
+    "prop_zero": 0.993
+  },
+  "sampleFloor": "below (24 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_sex"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/burgar_2018_alberta_fisher_scr.R",
+  "buildDate": "2026-11-01"
+}

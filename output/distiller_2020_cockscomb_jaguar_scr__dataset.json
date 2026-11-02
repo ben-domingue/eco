@@ -1,0 +1,51 @@
+{
+  "table": "distiller_2020_cockscomb_jaguar_scr",
+  "title": "Spatial capture-recapture of jaguars at Cockscomb Basin Wildlife Sanctuary, Belize: 29 individuals x 20 camera stations x 183 days, Aug 2013 - Feb 2014",
+  "creator": "Distiller, Greg; Borchers, David; Foster, Rebecca; Harmsen, Bart",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.n2z34tmv2",
+  "sourceURL": "https://doi.org/10.5061/dryad.n2z34tmv2",
+  "citation": "Distiller, G., Borchers, D., Foster, R., & Harmsen, B. (2021). Camera trap survey of jaguars from Cockscomb Basin Wildlife Sanctuary in Belize [Data set]. Dryad. https://doi.org/10.5061/dryad.n2z34tmv2",
+  "paperDOI": "10.1002/ece3.6822",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap detections of individually identified jaguars (Panthera onca) at 20 paired camera stations along the trail network of the eastern Cockscomb Basin Wildlife Sanctuary, Belize, over 183 consecutive days from 23 August 2013 to 21 February 2014. The deposit gives every detection with its station, date and time to the minute, and a station x day operating matrix. The table is one row per jaguar x station x operating day with y = 1 on detection; the time of the photograph is kept in obs_capture_time so the authors' continuous-time SCR model can be refitted. 29 individuals: 19 males, 8 females and 2 of undetermined sex (unit_sex; the paper's analyses used males, then both sexes, and excluded the unsexed).",
+  "samplingProtocol": "Twenty paired Pantheracam v3 camera stations along 65 km of trails, mean neighbour spacing 2.0 km (1.1-3.1 km), photographs downloaded every two weeks; individuals identified from coat patterns; station operating days recorded.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "JagsTraps.csv is a station x calendar-day 0/1 operating matrix (183 days); a station-day is surveyed iff its cell is 1 (3,580 of 3,660). Every individual carries all surveyed station-days, including before its first and after its last detection.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "single period: the 6-month survey is treated as one closed population (the paper's continuous-time SCR); occasion = calendar day",
+  "geographicCoverage": "Eastern Cockscomb Basin Wildlife Sanctuary, Stann Creek District, Belize; station coordinates in __traps",
+  "temporalCoverage": "2013-08-23/2014-02-21",
+  "crs": "EPSG:32616 (WGS 84 / UTM zone 16N; inferred from the coordinate range, the readme names no CRS)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published: the jaguar is IUCN Near Threatened, not a flagged category; stations on protected-area trails"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Closed population, daily occasions with per-row dates. The deposit's minute-resolution detection times are carried on the detection rows (obs_capture_time), so the continuous-time likelihood (which drops the occasion structure) can be rebuilt from the table; a conventional occasion-based SCR fit uses y as is.",
+  "notes": "Jaguars were photographed at more than one station on the same day 31 times (kept as separate y = 1 rows). CAM16 operated 160 days and never detected a jaguar. Station names (IE, SNOOK, MITCH, ...) are in __traps. unit_sex = U for the two unsexed individuals the paper excluded.",
+  "notShipped": {
+    "JagMasks.RData": "habitat masks of the state space with spatial covariates: an analysis input, not an observation",
+    "row_total_column": "the unnamed trailing column of JagsTraps.csv (days operating per station) is reproduced in __traps.n_days_operating and asserted against the row sums"
+  },
+  "summary": {
+    "n_rows": 103820,
+    "n_units": 29,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 183,
+    "n_surveys": 103820,
+    "y_values": "0,1",
+    "prop_zero": 0.997
+  },
+  "sampleFloor": "below (29 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_sex", "obs_capture_time"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/distiller_2020_cockscomb_jaguar_scr.R",
+  "buildDate": "2026-11-01"
+}

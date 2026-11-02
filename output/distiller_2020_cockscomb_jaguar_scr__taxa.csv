@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+PANONC,Panthera onca,Jaguar,species,https://www.gbif.org/species/5219426,EXACT,,NT

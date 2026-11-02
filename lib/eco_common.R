@@ -131,7 +131,7 @@ table_summary <- function(long) {
   list(n_rows = nrow(long), n_units = uniqueN(long$unit), n_taxa = uniqueN(long$taxon),
        n_periods = if ("period" %in% names(long)) uniqueN(long$period) else 1L,
        n_occasions = if ("occasion" %in% names(long)) uniqueN(long$occasion) else 1L,
-       n_surveys = nrow(unique(long[, intersect(c("unit", "period", "occasion"), names(long)), with = FALSE])),
+       n_surveys = nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE])),
        y_values = if (uniqueN(long$y) <= 12) paste(sort(unique(long$y)), collapse = ",") else
          sprintf("%s-%s (%d distinct)", min(long$y), max(long$y), uniqueN(long$y)),
        prop_zero = round(mean(long$y == 0), 3))
@@ -140,10 +140,11 @@ table_summary <- function(long) {
 # Sample floor (standard section 10, ruled 2026-11-01 a reported attribute, not an
 # intake gate): >= 30 units and >= 2 occasions (or >= 2 periods). Returns
 # "meets" / "below (reason)"; a below-floor table is published and filterable.
-floor_status <- function(s) {
+floor_status <- function(s, response_type = NULL) {
   reasons <- character()
   if (s$n_units < 30) reasons <- c(reasons, sprintf("%d units < 30", s$n_units))
-  if (max(s$n_occasions, s$n_periods) < 2) reasons <- c(reasons, "no replication")
+  # binomial_count (#34): replication is inside obs_trials, not on occasion/period
+  if (max(s$n_occasions, s$n_periods) < 2 && !identical(response_type, "binomial_count")) reasons <- c(reasons, "no replication")
   if (length(reasons)) paste0("below (", paste(reasons, collapse = "; "), ")") else "meets"
 }
 
@@ -196,7 +197,7 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   if (!is.null(traps))   fwrite(traps,   file.path(OUT_DIR, paste0(name, "__traps.csv")))
   s <- table_summary(long)
   dataset <- c(list(table = name), dataset,
-               list(summary = s, sampleFloor = floor_status(s),
+               list(summary = s, sampleFloor = floor_status(s, dataset$responseType),
                     columns = names(long),
                     standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
