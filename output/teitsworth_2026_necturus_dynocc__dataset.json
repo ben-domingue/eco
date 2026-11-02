@@ -1,0 +1,45 @@
+{
+  "table": "teitsworth_2026_necturus_dynocc",
+  "title": "Trap detections of the Neuse River waterdog at 176 stream sites in North Carolina over five consecutive years, four checks per year",
+  "creator": "Teitsworth, Eric; Hall, Jeffrey; Archambault, Jennifer; Humphries, W. Jeffrey; Pacifici, Krishna",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.63xsj3vgg",
+  "sourceURL": "https://doi.org/10.5061/dryad.63xsj3vgg",
+  "citation": "Teitsworth, E., Hall, J., Archambault, J., Humphries, W. J., & Pacifici, K. (2026). Data from: Multiscale threats shape the occurrence dynamics of a threatened aquatic salamander and reveal a possible extinction debt [Dataset]. Dryad. https://doi.org/10.5061/dryad.63xsj3vgg",
+  "paperDOI": "10.1002/ece3.73225",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the Neuse River waterdog (Necturus lewisi), an aquatic salamander endemic to the Neuse and Tar-Pamlico basins of eastern North Carolina and listed as threatened in 2021, at 176 stream sites in 13 management units over five consecutive years with up to four overnight trap checks per year, with stream discharge and bait age per check, rapid habitat assessment scores and watershed land cover per site, and a yearly streamflow metric and drought intensity per site-year. The paper fit dynamic occupancy models: extinction rose with developed land cover and drought and fell with habitat quality, suggesting an extinction debt in urban subpopulations.",
+  "samplingProtocol": "Baited traps set at each site and checked on up to four consecutive mornings per year (captures overnight), in five consecutive years; discharge is the daily mean of the day before each check (USGS gauges, interpolated for ungauged sites).",
+  "samplingProtocolCode": "baited_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period (study year; colext primary period)",
+  "geographicCoverage": "Neuse and Tar-Pamlico River basins, eastern North Carolina, USA; no coordinates deposited",
+  "temporalCoverage": "five consecutive years before 2026 (calendar years not stated in the deposit)",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "discharge and bait on unsurveyed days": "deposited for every day of the design; shipped only where a check happened",
+    "model_script.R, turnover_equilibrium_script.R": "analysis code (model outputs and derived turnover/equilibrium estimates are not deposited as data)"
+  },
+  "notes": "period is the study year 1..5; the deposit does not give calendar years. period_tq_mean and period_drought_index_max come from YearlySiteCovs.csv, which has no site or year column; they are assigned as row = (site - 1) * 5 + year, the unmarked yearlySiteCovs order that the README states and the authors' code uses. A check of that order is equivocal: under the alternative (years outer, sites inner) the drought index takes 2-3 values per year instead of 4 and TQ correlates 0.28 instead of -0.03 with mean visit discharge, so the alignment should be confirmed with the authors before relying on these two columns. The habitat scores and land-cover proportions are as deposited (the README's '%' are proportions).",
+  "summary": {
+    "n_rows": 1341,
+    "n_units": 176,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 4,
+    "n_surveys": 1341,
+    "y_values": "0,1",
+    "prop_zero": 0.761
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_habitat_substrate_score", "unit_habitat_cover_score", "unit_habitat_total_score", "unit_developed_prop", "unit_grass_pasture_prop", "unit_crop_prop", "unit_wetland_prop", "unit_forest_prop", "unit_management_unit", "period_tq_mean", "period_drought_index_max", "obs_discharge_m3s_prev_day", "obs_bait_age_days"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/teitsworth_2026_necturus_dynocc.R",
+  "buildDate": "2026-11-02"
+}
