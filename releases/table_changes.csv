@@ -1,1 +1,2 @@
 date,table,eco_version,kind,summary,issue,replaces,replaced_by
+2026-11-02,kleiven_2020_varanger_dynocc,3,correction,"eco_meta biblio reference repaired: the staging reader did not unescape doubled quotes, so the reference field had grown to 262 kB of nested quoting after repeated upserts; table data unchanged",25,,
