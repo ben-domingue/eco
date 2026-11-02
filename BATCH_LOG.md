@@ -199,3 +199,55 @@ What this batch says about the standard:
 Held: nothing new. Still open from batch 5: Lazenby camera-trap predators, Alisauskas &
 Conn (design landscape C).
 
+
+## Batch 7 — 2026-11-01 (queue pull: GBIF sampling-event, Dryad rar, Zenodo mixed-licence; BBS left to issue #24)
+
+Four queue rows claimed, three built into four tables, one held. Validated with
+`eco-validate`: 34/34 tables pass, IRW view conforms. BBS stays deferred to its own
+project (issue #24, collaborator); not touched.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| sullivan_2026_powdermill_count | community counts (N-mixture), point counts, multi-season | GBIF sampling-event (CMNH IPT) CC BY 4.0 | 231,210 | 101 grid points x 13 years (2013-2025; 2014-15 partial) x 2 visits x 105 species; survey set = DwC event core with Humboldt extension declaring full Aves scope with abundance; time bins and distance circles are remarks only, so y = 10-min total; dropped UNWO (90), two implausible species (Streak-crowned Antvireo 2, Lucy's Warbler 1, code-mapping errors), 40 empty 'Absent' placeholder rows, one event with no locationID; YSFL->NOFL, SCJU->DEJU |
+| kyaw_2024_myanmar_mamm_comm | community occupancy, camera traps | Dryad CC0 | 140,760 | 518 stations in 10 surveys / 6 protected areas (2014-2020) pooled by the authors; 46 of the paper's 47 species (moonrat has no pooled matrix); occasions indexed within survey, not calendar-aligned; no coordinates; 30 GEE covariates at 5 scales; PANGOLIN genus-level, BMONITOR is a reptile the authors kept |
+| clipp_2024_monongahela_comm | community detection, camera-days (two-species deer/coyote design subsettable) | Zenodo CC BY 4.0 | 40,215 | 129 wildlife-opening cameras, Monongahela NF, WV, Apr-May 2019-21, 1,014 camera-days; all 35 species-level taxa shipped; 12 out-of-window records and 23 Unknown-class records dropped; no coordinates in source |
+| clipp_2024_wvprivate_comm | community detection, camera-days (same design) | Zenodo CC BY 4.0 / rows CC BY-NC; derived CC BY-NC 4.0 | 419,240 | 146 private-land cameras in 3 WV county pairs, 2022, 8,774 camera-days, coordinates as published; 8 deployments beyond the paper's 138 shipped and marked in __units.modelled_in_paper; 265 out-of-window sequences (199 wrong camera year) dropped; 14 cameras dead at retrieval flagged |
+
+What this batch says about the standard:
+
+- **GBIF sampling-event datasets are a clean source.** The Humboldt extension's
+  `isTaxonomicScopeFullyReported` / `isAbundanceReported` is exactly the evidence E4
+  asks for and maps onto `surveyEvidence = sample_table`; worth naming in
+  `processing_guide.md` as the GBIF rule (`isAbsenceReported = FALSE` means no
+  explicit absence rows, not that zeros are unknowable). The R validator twin
+  accepts only `Z` for ISO date-times and rejects `+00:00`; stricter than E8's text.
+- **Evident source errors.** Two Powdermill records are species impossible for
+  Pennsylvania (code-mapping slips). Dropped and recorded in `notShipped` rather
+  than shipped as deposited; the standard has no "ship as deposited vs drop evident
+  errors" rule. Needs a ruling.
+- **Pooled multi-survey designs.** The Myanmar deposit pools ten surveys with
+  different spacing and calendar windows into one matrix; `occasion = 1` is a
+  different window in each survey. Shipped as one single-season table with
+  `unit_survey` as a grouping covariate. Whether this should be `cluster_id`,
+  `period`, or separate tables is not stated anywhere.
+- **Mixed licences inside one deposit.** Zenodo says CC BY; the Wildlife Insights
+  rows inside the zip say CC BY-NC per row. Split into two tables so the NC clause
+  taints only one. A per-row licence column should count as the deposited licence
+  in the intake policy. The same zip re-uploads all of Snapshot USA 2020; not hosted
+  from here (third-party), but Snapshot USA belongs on the queue from its own source.
+- **Personal names as unit ids.** The private-land deployment names are landowner
+  surnames (e.g. `Haile-2 04/23/2022`) with exact coordinates on private property,
+  as deposited. No flagged taxa, so no coarsening rule fires. **Ben should rule
+  before release** whether to pseudonymise `unit` (and `__units`) in
+  `clipp_2024_wvprivate_comm`; the standard has no personal-data clause.
+- **Continuous-time camera detections** were aggregated to camera-days with
+  `obs_camera_hours` rather than shipped as the experimental `detection_event`
+  type; minute timestamps survive only as `y_raw` counts.
+
+Held this batch (`queue/human_review.csv`): NEON small mammals DP1.10072.001 (every
+`/api/v0/data/` endpoint returns 403 without a free API token; build plan recorded;
+the NEON ground-beetle row hits the same wall); Dryad NE China cattle-forest mammals
+(deposit is the count of 14-day windows with a detection per station x species, an
+aggregated binomial with no `responseType`). Looked at and left available: Borealis
+boreal-bird harvest edges (Stan-input `.rds`, 34 species x 189 ARU transects, CC0,
+buildable next batch).

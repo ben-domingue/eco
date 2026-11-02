@@ -225,7 +225,9 @@ TAG_COLS <- c("table", "rater", "taxon_group", "response_type", "model_family", 
   new <- as.data.table(lapply(row[cols], function(x) { x <- as.character(x); if (!length(x) || is.na(x)) "" else x }))
   # guard against spreadsheet formula injection on paste
   for (cc in cols) if (grepl("^[=+@-]", new[[cc]])) new[[cc]] <- paste0("'", new[[cc]])
-  old <- if (file.exists(file)) fread(file, colClasses = "character") else as.data.table(setNames(replicate(length(cols), character(), simplify = FALSE), cols))
+  # read.csv, not fread: data.table 1.18.4 fread does not unescape doubled quotes inside a
+  # quoted field, so every upsert round trip doubled them (the Kleiven reference grew to 262 kB)
+  old <- if (file.exists(file)) as.data.table(read.csv(file, colClasses = "character", check.names = FALSE, na.strings = character())) else as.data.table(setNames(replicate(length(cols), character(), simplify = FALSE), cols))
   old <- old[table != new$table]
   out <- rbind(old, new, fill = TRUE)[, cols, with = FALSE]
   setorder(out, table)

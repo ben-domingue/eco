@@ -1,0 +1,106 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
+ACFL,Empidonax virescens,Acadian Flycatcher,species,https://www.gbif.org/species/2482802,EXACT,
+ALFL,Empidonax alnorum,Alder Flycatcher,species,https://www.gbif.org/species/2482809,EXACT,
+AMCR,Corvus brachyrhynchos,American Crow,species,https://www.gbif.org/species/2482507,EXACT,
+AMGO,Carduelis tristis,American Goldfinch,species,https://www.gbif.org/species/2494653,EXACT,Spinus tristis
+AMRE,Setophaga ruticilla,American Redstart,species,https://www.gbif.org/species/2489985,EXACT,
+AMRO,Turdus migratorius,American Robin,species,https://www.gbif.org/species/9510564,EXACT,
+AMWO,Scolopax minor,American Woodcock,species,https://www.gbif.org/species/2481695,EXACT,
+BADO,Strix varia,Barred Owl,species,https://www.gbif.org/species/2497541,EXACT,
+BAEA,Haliaeetus leucocephalus,Bald Eagle,species,https://www.gbif.org/species/2480446,EXACT,
+BAOR,Icterus galbula,Baltimore Oriole,species,https://www.gbif.org/species/2484340,EXACT,
+BARS,Hirundo rustica,Barn Swallow,species,https://www.gbif.org/species/9515886,EXACT,
+BAWW,Mniotilta varia,Black-and-white Warbler,species,https://www.gbif.org/species/2489613,EXACT,
+BBCU,Coccyzus erythropthalmus,Black-billed Cuckoo,species,https://www.gbif.org/species/2496286,EXACT,
+BBWA,Dendroica castanea,Bay-breasted Warbler,species,https://www.gbif.org/species/2489903,EXACT,Setophaga castanea
+BCCH,Poecile atricapillus,Black-capped Chickadee,species,https://www.gbif.org/species/2487805,EXACT,
+BEKI,Megaceryle alcyon,Belted Kingfisher,species,https://www.gbif.org/species/2475472,EXACT,
+BGGN,Polioptila caerulea,Blue-gray Gnatcatcher,species,https://www.gbif.org/species/2487596,EXACT,
+BHCO,Molothrus ater,Brown-headed Cowbird,species,https://www.gbif.org/species/2484391,EXACT,
+BHVI,Vireo solitarius,Blue-headed Vireo,species,https://www.gbif.org/species/2487456,EXACT,
+BLBW,Dendroica fusca,Blackburnian Warbler,species,https://www.gbif.org/species/2489913,EXACT,Setophaga fusca
+BLJA,Cyanocitta cristata,Blue Jay,species,https://www.gbif.org/species/2482593,EXACT,
+BRCR,Certhia americana,Brown Creeper,species,https://www.gbif.org/species/9581157,EXACT,
+BRTH,Toxostoma rufum,Brown Thrasher,species,https://www.gbif.org/species/9479809,EXACT,
+BTBW,Dendroica caerulescens,Black-throated Blue Warbler,species,https://www.gbif.org/species/2489915,EXACT,Setophaga caerulescens
+BTNW,Dendroica virens,Black-throated Green Warbler,species,https://www.gbif.org/species/2489976,EXACT,Setophaga virens
+BWHA,Buteo platypterus,Broad-winged Hawk,species,https://www.gbif.org/species/2480538,EXACT,
+BWWA,Vermivora pinus,Blue-winged Warbler,species,https://www.gbif.org/species/5230823,EXACT,Setophaga pinus
+CANG,Branta canadensis,Canada Goose,species,https://www.gbif.org/species/5232437,EXACT,
+CARW,Thryothorus ludovicianus,Carolina Wren,species,https://www.gbif.org/species/2493801,EXACT,
+CEDW,Bombycilla cedrorum,Cedar Waxwing,species,https://www.gbif.org/species/2484609,EXACT,
+CERW,Dendroica cerulea,Cerulean Warbler,species,https://www.gbif.org/species/2489982,EXACT,Setophaga cerulea
+CHSP,Spizella passerina,Chipping Sparrow,species,https://www.gbif.org/species/2492109,EXACT,
+CHSW,Chaetura pelagica,Chimney Swift,species,https://www.gbif.org/species/4409023,EXACT,
+COGR,Quiscalus quiscula,Common Grackle,species,https://www.gbif.org/species/2484155,EXACT,
+COHA,Accipiter cooperii,Cooper's Hawk,species,https://www.gbif.org/species/2480621,EXACT,
+COLO,Gavia immer,Common Loon,species,https://www.gbif.org/species/2481962,EXACT,
+CORA,Corvus corax,Common Raven,species,https://www.gbif.org/species/2482492,EXACT,
+COYE,Geothlypis trichas,Common Yellowthroat,species,https://www.gbif.org/species/2489670,EXACT,
+CSWA,Dendroica pensylvanica,Chestnut-sided Warbler,species,https://www.gbif.org/species/2489923,EXACT,Setophaga pensylvanica
+DCCO,Phalacrocorax auritus,Double-crested Cormorant,species,https://www.gbif.org/species/2481875,EXACT,
+DEJU,Junco hyemalis,Dark-eyed Junco,species,https://www.gbif.org/species/9362842,EXACT,
+DOWO,Picoides pubescens,Downy Woodpecker,species,https://www.gbif.org/species/2477781,EXACT,Dryobates pubescens
+EABL,Sialia sialis,Eastern Bluebird,species,https://www.gbif.org/species/2490941,EXACT,
+EAKI,Tyrannus tyrannus,Eastern Kingbird,species,https://www.gbif.org/species/5229688,EXACT,
+EAME,Sturnella magna,Eastern Meadowlark,species,https://www.gbif.org/species/2484254,EXACT,
+EAPH,Sayornis phoebe,Eastern Phoebe,species,https://www.gbif.org/species/2483606,EXACT,
+EASO,Megascops asio,Eastern Screech-Owl,species,https://www.gbif.org/species/2497415,EXACT,
+EATO,Pipilo erythrophthalmus,Eastern Towhee,species,https://www.gbif.org/species/2491205,EXACT,
+EAWP,Contopus virens,Eastern Wood-Pewee,species,https://www.gbif.org/species/5229734,EXACT,
+EUST,Sturnus vulgaris,European Starling,species,https://www.gbif.org/species/9809229,EXACT,
+FISP,Spizella pusilla,Field Sparrow,species,https://www.gbif.org/species/2492096,EXACT,
+GBHE,Ardea herodias,Great Blue Heron,species,https://www.gbif.org/species/9630752,EXACT,
+GCFL,Myiarchus crinitus,Great Crested Flycatcher,species,https://www.gbif.org/species/2483597,EXACT,
+GRCA,Dumetella carolinensis,Gray Catbird,species,https://www.gbif.org/species/2494936,EXACT,
+HAWO,Picoides villosus,Hairy Woodpecker,species,https://www.gbif.org/species/2477741,EXACT,Leuconotopicus villosus
+HETH,Catharus guttatus,Hermit Thrush,species,https://www.gbif.org/species/2490810,EXACT,
+HOFI,Carpodacus mexicanus,House Finch,species,https://www.gbif.org/species/2494446,EXACT,Haemorhous mexicanus
+HOSP,Passer domesticus,House Sparrow,species,https://www.gbif.org/species/5231190,EXACT,
+HOWA,Wilsonia citrina,Hooded Warbler,species,https://www.gbif.org/species/4408922,EXACT,Setophaga citrina
+HOWR,Troglodytes aedon,House Wren,species,https://www.gbif.org/species/5231459,EXACT,
+INBU,Passerina cyanea,Indigo Bunting,species,https://www.gbif.org/species/2490327,EXACT,
+KEWA,Oporornis formosus,Kentucky Warbler,species,https://www.gbif.org/species/2489606,EXACT,Geothlypis formosa
+KILL,Charadrius vociferus,Killdeer,species,https://www.gbif.org/species/2480320,EXACT,
+LEFL,Empidonax minimus,Least Flycatcher,species,https://www.gbif.org/species/2482791,EXACT,
+LOWA,Seiurus motacilla,Louisiana Waterthrush,species,https://www.gbif.org/species/2489589,EXACT,Parkesia motacilla
+MAWA,Dendroica magnolia,Magnolia Warbler,species,https://www.gbif.org/species/2489914,EXACT,Setophaga magnolia
+MODO,Zenaida macroura,Mourning Dove,species,https://www.gbif.org/species/2495347,EXACT,
+NOCA,Cardinalis cardinalis,Northern Cardinal,species,https://www.gbif.org/species/2490384,EXACT,
+NOFL,Colaptes auratus,Northern Flicker,species,https://www.gbif.org/species/2478259,EXACT,
+NOPA,Parula americana,Northern Parula,species,https://www.gbif.org/species/2489730,EXACT,Setophaga americana
+NSWO,Aegolius acadicus,Northern Saw-whet Owl,species,https://www.gbif.org/species/5232207,EXACT,
+OROR,Icterus spurius,Orchard Oriole,species,https://www.gbif.org/species/5229935,EXACT,
+OSPR,Pandion haliaetus,Osprey,species,https://www.gbif.org/species/2480726,EXACT,
+OVEN,Seiurus aurocapilla,Ovenbird,species,https://www.gbif.org/species/2489590,EXACT,
+PIWA,Dendroica pinus,Pine Warbler,species,https://www.gbif.org/species/2489924,EXACT,Setophaga pinus
+PIWO,Dryocopus pileatus,Pileated Woodpecker,species,https://www.gbif.org/species/5228824,EXACT,
+RBGR,Pheucticus ludovicianus,Rose-breasted Grosbeak,species,https://www.gbif.org/species/2490494,EXACT,
+RBNU,Sitta canadensis,Red-breasted Nuthatch,species,https://www.gbif.org/species/2484879,EXACT,
+RBWO,Melanerpes carolinus,Red-bellied Woodpecker,species,https://www.gbif.org/species/2478106,EXACT,
+REVI,Vireo olivaceus,Red-eyed Vireo,species,https://www.gbif.org/species/2487430,EXACT,
+RSHA,Buteo lineatus,Red-shouldered Hawk,species,https://www.gbif.org/species/2480529,EXACT,
+RTHA,Buteo jamaicensis,Red-tailed Hawk,species,https://www.gbif.org/species/2480542,EXACT,
+RTHU,Archilochus colubris,Ruby-throated Hummingbird,species,https://www.gbif.org/species/5228514,EXACT,
+RWBL,Agelaius phoeniceus,Red-winged Blackbird,species,https://www.gbif.org/species/9409198,EXACT,
+SCTA,Piranga olivacea,Scarlet Tanager,species,https://www.gbif.org/species/2488517,EXACT,
+SOSP,Melospiza melodia,Song Sparrow,species,https://www.gbif.org/species/2492196,EXACT,
+SSHA,Accipiter striatus,Sharp-shinned Hawk,species,https://www.gbif.org/species/9740253,EXACT,
+TRES,Tachycineta bicolor,Tree Swallow,species,https://www.gbif.org/species/2489181,EXACT,
+TUTI,Baeolophus bicolor,Tufted Titmouse,species,https://www.gbif.org/species/2487887,EXACT,
+TUVU,Cathartes aura,Turkey Vulture,species,https://www.gbif.org/species/2481930,EXACT,
+VEER,Catharus fuscescens,Veery,species,https://www.gbif.org/species/2490804,EXACT,
+WAVI,Vireo gilvus,Warbling Vireo,species,https://www.gbif.org/species/2487446,EXACT,
+WBNU,Sitta carolinensis,White-breasted Nuthatch,species,https://www.gbif.org/species/2484892,EXACT,
+WEWA,Helmitheros vermivorum,Worm-eating Warbler,species,https://www.gbif.org/species/2489603,EXACT,
+WIFL,Empidonax traillii,Willow Flycatcher,species,https://www.gbif.org/species/2482786,EXACT,
+WITU,Meleagris gallopavo,Wild Turkey,species,https://www.gbif.org/species/9606290,EXACT,
+WIWA,Wilsonia pusilla,Wilson's Warbler,species,https://www.gbif.org/species/4408920,EXACT,Cardellina pusilla
+WIWR,Troglodytes troglodytes,Winter Wren,species,https://www.gbif.org/species/5231438,EXACT,
+WODU,Aix sponsa,Wood Duck,species,https://www.gbif.org/species/2498387,EXACT,
+WOTH,Hylocichla mustelina,Wood Thrush,species,https://www.gbif.org/species/2490872,EXACT,
+YBCH,Icteria virens,Yellow-breasted Chat,species,https://www.gbif.org/species/2489989,EXACT,
+YBCU,Coccyzus americanus,Yellow-billed Cuckoo,species,https://www.gbif.org/species/2496287,EXACT,
+YBSA,Sphyrapicus varius,Yellow-bellied Sapsucker,species,https://www.gbif.org/species/2478605,EXACT,
+YTVI,Vireo flavifrons,Yellow-throated Vireo,species,https://www.gbif.org/species/2487453,EXACT,
+YWAR,Dendroica petechia,Yellow Warbler,species,https://www.gbif.org/species/2489932,EXACT,Setophaga petechia
