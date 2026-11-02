@@ -22,3 +22,4 @@ output/lindstrom_2025_sweden_summerpoints_count.csv
 .claude/settings.local.json
 output/neon_2026_landbirds_count.csv
 output/neon_2026_landbirds_ds.csv
+output/neon_2026_carabids_count.csv
