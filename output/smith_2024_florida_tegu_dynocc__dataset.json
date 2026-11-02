@@ -1,0 +1,48 @@
+{
+  "table": "smith_2024_florida_tegu_dynocc",
+  "title": "Camera-trap detections of invasive Argentine black and white tegus at 87 cameras in Miami-Dade County, Florida, in 14-day windows, 2016-2019",
+  "creator": "Smith, Samantha N.; Miller, Melissa A.; Waddle, Hardin; Cooke, Sarah; Yackel Adams, Amy; Currylow, Andrea; Donmoyer, Kevin; Mazzotti, Frank",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.jsxksn0kp",
+  "sourceURL": "https://doi.org/10.5061/dryad.jsxksn0kp",
+  "citation": "Smith, S., Miller, M., Waddle, H., Cooke, S., Yackel Adams, A., Currylow, A., Donmoyer, K., & Mazzotti, F. (2024). Using camera traps to estimate site occupancy of invasive Argentine black and white tegus (Salvator merianae) in South Florida [Dataset]. Dryad. https://doi.org/10.5061/dryad.jsxksn0kp",
+  "paperDOI": "10.1656/058.023.0402",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the invasive Argentine black and white tegu (Salvator merianae) at 87 camera traps (56-77 per year) in Miami-Dade County, Florida, in nineteen consecutive 14-day windows from mid-February to early November each year, 2016-2019, with days active per window, bait status, mean temperature and rainfall per window, distances to agriculture, an underpass, urban land and the presumed release point, habitat, and the capture rate of the nearest live trap each year. The paper fit dynamic occupancy models: detection peaked in June, lures did not affect detection, and occupancy did not change across years.",
+  "samplingProtocol": "Camera traps with and without lures, operated February to November; detections aggregated by the authors to 14-day windows, with the number of days each camera was active in the window.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "14 days",
+  "effortColumn": "obs_camera_days",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period (year; the paper's colext primary period)",
+  "geographicCoverage": "Miami-Dade County, South Florida, USA (Everglades margin, C-113 canal, L-31 levee, US-1 corridor); no coordinates deposited",
+  "temporalCoverage": "2016-02-15/2019-11-02",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "Juliandate<yr>_brum.csv": "window midpoint day of year, identical across cameras, derivable from date",
+    "TeguDynamicOccupancyModeling.R, .Rhistory": "analysis code",
+    "standardised_covariates": "the authors standardise temperature and rainfall in code; raw values are shipped"
+  },
+  "notes": "The 2019 effort file labels camera C113-2B as C113-2; the row is assigned to C113-2B (C113-2 is a separate camera surveyed 2016-2018; the 2019 detection and live-trap files use C113-2B). obs_baited is from Baited4yr.csv, whose 87 unlabelled rows follow SiteData.csv order (asserted equal to the order of first appearance across the yearly detection files, which is how the authors align it). The last window of each year runs to 1-2 November.",
+  "summary": {
+    "n_rows": 4527,
+    "n_units": 87,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 19,
+    "n_surveys": 4527,
+    "y_values": "0,1",
+    "prop_zero": 0.916
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_dist_agriculture_m", "unit_dist_core_m", "unit_dist_urban_m", "unit_dist_release_point_m", "unit_habitat", "period_live_trap", "period_live_trap_dist_m", "period_live_trap_agency", "period_live_trap_cpue", "obs_window_end", "obs_camera_days", "obs_baited", "obs_temp_mean_f", "obs_precip_mean_in"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/smith_2024_florida_tegu_dynocc.R",
+  "buildDate": "2026-11-02"
+}
