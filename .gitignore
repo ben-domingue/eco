@@ -19,3 +19,4 @@ queue/papers/
 # Side tables, __dataset.json, dictionary, tags and metadata rows stay tracked.
 output/rooney_2025_snapshotusa_comm.csv
 output/lindstrom_2025_sweden_summerpoints_count.csv
+.claude/settings.local.json
