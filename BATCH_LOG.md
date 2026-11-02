@@ -313,3 +313,56 @@ rulings it wants):
 Held: nothing. Two paywalled papers (Knape 2018, Chabanne 2017 final version) would
 sharpen the shoveler header (year, protocol); the dolphin build used the accepted
 manuscript and the open thesis.
+
+## Batch 9 — 2026-11-01 (false positives, disease states, open SCR; the aggregated-binomial question)
+
+Five deposits from the 2026-11-01 search, two at a time; four tables built, one held.
+Validated with `eco-validate`: 44/44 tables pass, IRW view conforms. Uploaded to the
+Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| ferguson_2015_macon_bawa_fpocc | multi-state occupancy, false positives (occuFP type 2 / CP model) | Dryad CC0 | 816 | 272 point-count sites in Macon County, NC, 3 visits each in 2010 or 2011, Black-and-white Warbler only; y = 0/1/2 none / unconfirmed / confirmed from two deposited 0/1 columns (confirmed implies detected, asserted); 23 confirmed of 157 detections; coordinates are decimal degrees despite the README's UTM label; count duration, radius and the confirmation criterion are only in the paper (paywalled) |
+| murray_2021_chicago_coyote_mange | multi-state dynamic occupancy (disease state), camera traps | Dryad CC0 | 32,898 | 115 Chicago-area stations x 16 seasons (2010-2014) x 28 days; y = 0/1/2 with 2 = a visible-mange image that day (127 days, 85 station-seasons); survey set = deposited daily operability flag; image-quality covariates per day; 285 images outside windows or on inactive days dropped as in the authors' code; UTM 16N -> WGS84 in-script; authors' weekly aggregation and PCA axes not shipped |
+| hepler_2018_serengeti_gazelle_occ | single-season occupancy, camera traps (paper: spatio-temporal, one survey per 8-day season) | Dryad CC0 | 5,669 | 194 Snapshot Serengeti cameras x 46 consecutive 8-day windows, rows only where the camera ran >= 1 day (obs_camera_days); 878 detections; obs_ndvi, obs_rain_gt100mm (occasion-level), obs_fire, tree classes, river distance, coordinates as published; window dates and year not deposited, so no date |
+| gardner_2018_nagarahole_tiger_oscr | open-population spatial capture-recapture (station-period counts with effort) | Dryad CC0 | 34,350 | 75 tigers x 458 surveyed station-periods, Nagarahole, 10 primary periods 1991-2000; per-day station activity not deposited (283/343 capture occasion indices exceed the station's active-day count), so no occasion: y = capture days per station-period, obs_trap_days_active = K_jt, the paper's own Binomial(p, K) observation model; __traps in author-centred local metres (EN taxon, masked by the source); period 7 occasion indices exceed its 33 days; station 188 absent. **Shipped as the test case for the aggregated-binomial ruling below; hold it if the ruling goes the other way** |
+
+What this batch says about the standard:
+
+- **The aggregated binomial needs a ruling (issue opened).** Four deposits now ship
+  `y` as the number of occasions with a detection out of K surveyed, with no
+  occasion-level history: NE China cattle-forest mammals (held, batch 7), Jhala tiger
+  occupancy (queued, flagged), Rich et al. Botswana mammals (held, this batch), and the
+  Nagarahole tigers, whose authors' own likelihood is Binomial(p, K_jt). Camera-trap
+  deposits collapse nights to a count routinely. Two ways: declare `count` with a
+  required `effortColumn` the aggregated-binomial form (what the tiger table does, and
+  the validator could check y <= effort), or add `responseType = binomial_count` with
+  an `obs_trials` column and no `occasion`. Until ruled, one table is in the draft and
+  three deposits are held; the four should move together.
+- **Two false-positive forms, one rule missing.** The standard has `detectionCertainty`
+  (a second, certain method at another level: the eDNA table) and multi-state
+  `stateCodes` (certainty within the same survey: Ferguson). The choice was clear but
+  is not written; one sentence in E9 would fix it.
+- **`y_raw` when `y` is a recode of two columns.** Ferguson (detected + confirmed) and
+  Murray (any image + any mange image) both had no single recorded value behind `y`;
+  both omit `y_raw` and carry the parts as covariates. The definition assumes one
+  source column.
+- **Sub-occasion observation layers.** The mange signal is per image with per-image
+  quality covariates; one row per camera-day forces aggregates (count, mean, max), and
+  the authors' exact model is not recoverable from the core table. Second instance
+  after the eDNA qPCR table; `detection_event` rows or a side table are the options.
+- **Occasion-level covariates have no prefix.** Rainfall in the gazelle table is
+  constant within an occasion across all units; E5 has `unit_`, `period_`, `obs_`,
+  `taxon_` but not `occasion_`, so it rides under `obs_`.
+- **Where trap x period usage lives.** E10 puts usage in `__traps`, but it varies by
+  period in the tiger table, so it is a core `obs_` column. The standard should say.
+- **Non-geographic `crs`.** Author-centred metres have no EPSG code; a reserved value
+  ("local") would make source-masked coordinates machine-readable.
+- **`closure` enumeration** asked for a third time (open SCR is "open" only in free text).
+- Same-shape small items: a per-occasion NA-means-inactive flag inside the detection
+  file is `effort_table` in spirit but not a separate table (Murray; cf. the Marin
+  `sample_table` note); the Hepler design is indistinguishable in the table from "one
+  season, 46 occasions" although the paper treats each window as a season.
+
+Held this batch: Rich et al. 2016 Botswana mammals (aggregated binomial, third instance;
+coordinates already whole-degree, Diet and Size traits would ride in `__taxa`).
