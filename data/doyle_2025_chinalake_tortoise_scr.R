@@ -129,6 +129,6 @@ stage_dict_row(TABLE,
   notes = "SCR (E9 experimental) with discretised search-track detectors and effort categories as secr usage. Detector coordinates centred on the grid (IUCN CR). First reptile SCR table.",
   source_via = "Dryad (version zip)")
 stage_tag_row(TABLE, ds, taxon_group = "Reptiles", model_family = "Spatial capture-recapture",
-  sampling_protocol = "transect_search", design = "Single-session (4 survey days)", realm = "Terrestrial",
+  sampling_protocol = "transect_search", design = "Single-season (one session, 4 survey days)", realm = "Terrestrial",
   country = "USA", coordinates = "Coarsened (trap coordinates centred on the grid, local metres; CR species)",
   notes = "Experimental (E9): trap key + __traps; detectors are 50 m search cells with effort categories.")

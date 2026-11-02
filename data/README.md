@@ -137,6 +137,28 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `neon_2026_smallmammals_count.R` | robust-design nightly counts of individuals, 143 small-mammal species x 332 NEON trapping grids x 1,612 bouts, traps set as effort; core CSV not tracked (304 MB) | NEON DP1.10072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `neon_2026_smallmammals_rd.R` | four single-species robust-design capture histories (Peromyscus maniculatus, P. leucopus, Sigmodon hispidus, Microtus pennsylvanicus), individuals x bouts x nights at the home grid | NEON DP1.10072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `neon_2026_carabids_count.R` | biweekly pitfall counts, 55 carabid species x 2,029 NEON traps x 2013-2023, trapping days as effort; core CSV not tracked (354 MB) | NEON DP1.10022.001 RELEASE-2026 (API token) | CC BY 4.0 |
+| `tetzlaff_2026_crotalus_cjs.R` | CJS histories, 707 adult female timber rattlesnakes, New York, 1983-2019, den group, annual covariates | Dryad | CC0 |
+| `cecala_2026_kiawah_terrapin_cjs.R` | annual CJS histories, 1,553 diamondback terrapins, Kiawah River SC, 1983-2012, sex and size | Dryad | CC0 |
+| `karvemo_2024_nacka_grasssnake_cjs.R` | annual CJS histories, 1,113 grass snakes, Nacka, Sweden, 66 years, snow cover | Dryad | CC0 |
+| `doyle_2025_chinalake_tortoise_scr.R` | search-track SCR, 24 Mojave desert tortoises x 548 cells x 4 days, detectors centred (CR) | Dryad | CC0 |
+| `ahizi_2021_civ_crocodylians_occ.R` | spotlight occupancy, 2 crocodylian taxa x 42 sites x 5 nights, Ivory Coast | Dryad | CC0 |
+| `yadav_2022_rapti_gharial_count.R` | repeated counts, gharial x 18 river segments x 3 counts, Chitwan | Dryad | CC0 |
+| `moe_2020_hunder_trout_ld.R` | live-dead (Burnham) state-coded histories, 13,975 Hunder brown trout, 1966-2015 | Dryad | CC0 |
+| `banik_2025_dollyvarden_ms.R` | multistate CR, 21,430 anadromous Dolly Varden, five Yukon rivers, 14 autumns | Dryad | CC0 |
+| `tomke_2025_hellbender_edna.R` | multi-scale eDNA occupancy, Eastern Hellbender, 385 filters at 90 sites | Dryad | CC0 |
+| `swedberg_2023_springfish_occ.R` | multi-scale community occupancy, six spring-associated fishes x 153 sites, Oklahoma | Dryad | CC0 |
+| `kanno_2022_indiancreek_fish_cjs.R` | three CJS tables (bluehead chub, creek chub, mottled sculpin), 2-month occasions | Dryad | CC0 |
+| `lafferty_2024_socal_estuary_edna.R` | two tables: tidewater goby qPCR + metabarcoding detections, and 17-species estuarine metabarcoding, southern California | Dryad | CC0 |
+| `hartley_2024_cpraealtus_occ.R` | dynamic occupancy, alpine she-oak skink x 113 transects x 4 seasons | Dryad | CC0 |
+| `smith_2024_florida_tegu_dynocc.R` | dynamic camera occupancy, Argentine tegu x 87 cameras x 4 years | Dryad | CC0 |
+| `samek_2024_racerunner_occ.R` | single-season occupancy, six-lined racerunner x 100 transects x 3 surveys | Dryad | CC0 |
+| `boone_2023_minnesota_bombus_count.R` | community counts, 15 Bombus classes x 25 sites x 5 surveys, Minnesota 2021, coordinates coarsened | Dryad | CC0 |
+| `chambert_2018_plethodon_fpocc.R` | two-species occupancy with misidentification, Plethodon salamanders x 131 sites x 4 years | Dryad | CC0 |
+| `teitsworth_2026_necturus_dynocc.R` | dynamic occupancy, Neuse River waterdog x 176 sites x 5 years | Dryad | CC0 |
+| `price_2018_mtr_salamanders_count.R` | dynamic counts, 7 stream salamander species-stage items x 23 reaches x 3 years | Dryad | CC0 |
+| `tumursukh_2016_tost_ungulates_dobs.R` | two double-observer tables (Siberian ibex, argali), groups as units, Tost, Mongolia | Dryad | CC0 |
+| `davis_2016_feralswine_removal.R` | three-pass aerial removal, feral swine x 49 properties x 9 years | Dryad | CC0 |
+| `dougherty_2016_rustycrayfish_edna.R` | qPCR replicates plus baited trap, rusty crayfish x 261 locations in 12 lakes | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

@@ -15,7 +15,10 @@
   "samplingProtocolCode": "eDNA",
   "geographicCoverage": "Santa Clara River mouth, Calleguas Creek, Mugu Lagoon and Ormond Lagoon (Ventura County) and Devereux Slough (Santa Barbara County), California, USA; site coordinates coarsened to 0.1 degree",
   "temporalCoverage": "2022-08-15/2022-08-17",
-  "coordinatesCoarsened": "Site coordinates (to 1 second or 5 decimals in the deposit) coarsened to 0.1 degree with coarsen_coords(): the tidewater goby is a federally endangered species (US ESA), as the source states.",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Site coordinates (to 1 second or 5 decimals in the deposit) coarsened to 0.1 degree with coarsen_coords(): the tidewater goby is a federally endangered species (US ESA), as the source states."
+  },
   "title": "Tidewater goby eDNA detections in five southern California estuaries, August 2022: three qPCR replicates and 12S metabarcoding per water filter, seine at Calleguas Creek",
   "abstract": "Detections of the endangered tidewater goby in 78 water filters from 16 sites in five Santa Barbara and Ventura County estuaries (15-17 August 2022): occasions 1-3 are qPCR replicates (y = the author's call, more than 100 reads; y_raw = reads), occasion 4 is 12S metabarcoding of the same extract (y = goby among the filter's consensus taxa; y_raw = summed reads; no metabarcoding record for the four Mugu Lagoon filters). cluster_id = site; the seine haul taken at each of the 8 Calleguas Creek sites caught no gobies (unit_site_seine_goby_count).",
   "surveyEvidence": "deposited_matrix",

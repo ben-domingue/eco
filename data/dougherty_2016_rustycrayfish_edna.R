@@ -96,7 +96,7 @@ dataset <- list(
   occasionCodes = list(`1` = "qPCR replicate 1", `2` = "qPCR replicate 2", `3` = "qPCR replicate 3", `4` = "qPCR replicate 4", `5` = "baited trap, one overnight set"),
   designNote = "Experimental list of E9 (multi-scale / eDNA, multi-method): cluster_id = lake, unit = trap location, occasion = assay replicate or trap, obs_method distinguishes the two detection processes. The trap is a different sample from the water sample at the same location.",
   geographicCoverage = "12 inland lakes, Vilas County, Wisconsin, and Gogebic County, Michigan, USA (about 46.0-46.3 N, 89.5-89.9 W)",
-  coordinatesCoarsened = "Not coarsened: trap coordinates as published (O. rusticus is an invasive species; no flagged taxon)",
+  coordinatesCoarsened = list(value = FALSE, method = "Not coarsened: trap coordinates as published (O. rusticus is an invasive species; no flagged taxon)"),
   temporalCoverage = "2014-07-28/2014-09-07",
   notes = "y_raw is copies per 4 ul of extract on qPCR rows and the number of O. rusticus caught on trap rows. obs_propinquus_caught and obs_virilis_caught are the other crayfish species in the same trap (competitor covariates; not modelled as taxa because the qPCR assay targets O. rusticus only). Spider Lake trap 14 (missing trap, no water sample) has no rows; VanVliet trap 1 (missing trap) has qPCR rows only.",
   notShipped = list(qPCRAve = "mean of the four replicates (derived)",

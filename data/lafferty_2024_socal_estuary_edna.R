@@ -101,7 +101,7 @@ common <- list(
   samplingProtocolCode = "eDNA",
   geographicCoverage = "Santa Clara River mouth, Calleguas Creek, Mugu Lagoon and Ormond Lagoon (Ventura County) and Devereux Slough (Santa Barbara County), California, USA; site coordinates coarsened to 0.1 degree",
   temporalCoverage = "2022-08-15/2022-08-17",
-  coordinatesCoarsened = coarse_note)
+  coordinatesCoarsened = list(value = TRUE, method = coarse_note))
 
 ## ---- table 1: tidewater goby, filter-level qPCR replicates and metabarcoding --------------
 mb_goby <- n[taxon_name == "Eucyclogobius newberryi", .(reads = sum(sumreads)), by = SampleId]
