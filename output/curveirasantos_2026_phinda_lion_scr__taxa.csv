@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+PANLEO,Panthera leo,Lion,species,https://www.gbif.org/species/5219404,EXACT,,VU

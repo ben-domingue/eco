@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+CROCRO,Crocuta crocuta,Spotted hyaena,species,https://www.gbif.org/species/5218781,EXACT,,LC

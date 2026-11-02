@@ -51,6 +51,9 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
   it has a row; McTigue: a camera-week is surveyed iff inside the first-to-last
   detection span), set `surveyEvidence` (standard E4) accordingly, and log what
   cannot be recovered.
+- **Core tables over 100 MB** (GitHub's file limit) are listed in `.gitignore` and not
+  tracked; `Rscript data/<table>.R` rebuilds them and the uploader ships them. Their
+  side tables, `__dataset.json`, dictionary, tags and metadata rows are tracked as usual.
 - **Dryad** deposits are fetched whole with `download_dryad()` (the per-file API
   needs a token; the version zip does not). Check the deposited readme's licence
   against Dryad's CC0 and flag any conflict.
@@ -124,6 +127,11 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `bedson_2021_holmemoss_hare_cam_ds.R` | camera-trap distance sampling (1 s snapshots, 42 degree field of view), 91 cameras, snapshot detections in twelve 1 m radial bins, seconds deployed as effort; first CTDS table | Dryad (version zip) | CC0 |
 | `volzke_2021_macquarie_seal_cjs.R` | two CJS tables: resighting histories of 7,531 (1951-1965 cohorts) and 18,371 (1984-2005 cohorts) southern elephant seals marked as weaned pups, seal years x breeding / rest-of-year windows, survey set inferred from the sightings | Dryad (version zip) | CC0 |
 | `lebeuftaylor_2026_boreal_edges_aru_comm.R` | community occupancy from ARU recordings, 34 boreal songbirds x 564 recorder locations (3 positions across 189 harvest edges) x 1-5 visits, years since harvest and spruce cover per side, coordinates; year not deposited | Borealis Dataverse (rds Stan input) | CC0 |
+| `rooney_2025_snapshotusa_comm.R` | community camera-trap detections by camera-week, 87 mammal species x 9,694 deployments in 263 arrays across the USA, autumn 2019-2023, camera-days per week as effort, coordinates coarsened (CR/EN taxa); built from Dryad version 3 (v6 needs a token); core CSV not tracked (548 MB) | Dryad (version zip) | CC0 |
+| `lindstrom_2025_sweden_summerpoints_count.R` | annual route-total counts, 270 bird taxa x 1,256 Swedish Bird Survey summer point count routes (20 points summed) x 50 years 1975-2024, observer, date-time, transport, county, 25 km grid-square centres; built from the GBIF DwC event core; core CSV not tracked (348 MB) | GBIF (Swedish GBIF IPT, Lund University) | CC0 |
+| `doser_2022_hbef_trends_dynocc.R` | dynamic community occupancy, textbook (spOccupancy::hbefTrends), 12 foliage-gleaning songbirds x 373 Hubbard Brook plots x 9 years x up to 3 point counts, elevation, coordinates, survey day and time; hbef2015 is its 2015 slice | R package (spOccupancy, via GitHub source) | GPL-3 |
+| `doser_2022_neon2015_removal.R` | time-removal community detections, textbook (spOccupancy::neon2015), 12 species x 80 NEON Bartlett sites x three 2-minute intervals of one count, multinomial_cell / removal; two all-zero taxa | R package (spOccupancy, via GitHub source) | GPL-3 |
+| `curveirasantos_2026_phinda_carniv_scr.R` | six closed-population camera-trap SCR tables (leopard, cheetah, lion, spotted hyaena, genet, serval), 100 optimised camera sites x 117 daily occasions in the Munywana Conservancy, South Africa, 2021-22; operation matrix as survey set; trap coordinates centred on the array (VU taxa) | OSF (osfstorage csv) | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

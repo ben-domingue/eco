@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+ACIJUB,Acinonyx jubatus,Cheetah,species,https://www.gbif.org/species/2435270,EXACT,,VU

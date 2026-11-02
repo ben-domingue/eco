@@ -536,3 +536,64 @@ What this batch says about the standard:
   shipped; assigning one state per window from many sightings needs a rule.
 
 Held: nothing.
+
+## Batch 13 — 2026-11-01 (overnight: the two national schemes, textbook spOccupancy sets, a six-species SCR array)
+
+Four deposits, eleven tables; the queue's buildable rows are now exhausted. Validated with
+`eco-validate`: 79/79 tables pass, IRW view conforms. Uploaded to the Redivis draft.
+Two core CSVs (Snapshot USA 548 MB, Swedish Bird Survey 348 MB) exceed GitHub's file
+limit and are listed in `.gitignore`; their scripts rebuild them and CI runs the scripts.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| rooney_2025_snapshotusa_comm | community detection, camera-weeks, annual national survey | Dryad CC0 | 5,148,834 | 9,694 deployments (263 arrays, 6,712 sites, 50 states) x 1-21 weeks x 87 mammal species (>= 50 sequences; 43 rarer mammals, 225 birds, humans, vehicles and higher-rank labels not shipped); survey set = deployment start/end dates (381,673 camera-days); 126,471 detection-weeks; coordinates coarsened to 0.1 deg (red wolf CR, giant kangaroo rat EN); Sequence_ID NA on 223 deployments, keyed by start time; built from Dryad version 3 (2025-01-03) because version 6 is token-gated; largest table in the corpus (548 MB) |
+| lindstrom_2025_sweden_summerpoints_count | repeated-count index (route totals, one count per route-year), multi-species, 50 years | GBIF sampling-event CC0 | 2,972,970 | 11,011 route counts on 1,256 free-choice routes across Sweden, 1975-2024, x 270 taxa (269 species + Loxia); y = sum over 20 five-minute points (point level not deposited); survey set = event core with protocol-stated completeness and noObservations = false everywhere; eleven security-class-4 species withheld by the publisher (no rows, not zeros); coordinates are 25 x 25 km grid centres as published; 712 pseudonymous observers; 348 MB |
+| doser_2022_hbef_trends_dynocc | dynamic community occupancy, point counts, textbook (spOccupancy) | R package GPL-3 | 105,240 | 12 species x 373 plots x 2010-2018 x up to 3 replicates, Hubbard Brook Valleywide Bird Survey subset (the EDI deposit edi.348 is behind an access wall); 8,770 surveyed plot-year-replicates, 273 plot-years unsurveyed; 45 covariate-only cells not surveyed; hbef2015 is the identical 2015 slice and is not shipped separately; UTM 19N as published plus WGS84 |
+| doser_2022_neon2015_removal | community time-removal (multinomial_cell, removal), textbook (spOccupancy) | R package GPL-3 | 2,880 | 12 species x 80 NEON Bartlett sites, one 6-min count in three 2-min intervals, June 2015; the package's NA-after-detection encoding shipped as 0 (asserted removal structure); 252 detections, BLPW and NAWA all-zero; elevation, day, start hour, coordinates |
+| curveirasantos_2026_phinda_leopard_scr | spatial capture-recapture (closed, camera traps) | OSF CC BY 4.0 | 214,560 | 48 leopards x 4,470 surveyed camera-days (100 sites, 117 days, Sept 2021-Jan 2022), Munywana Conservancy, KwaZulu-Natal; two-stage optimised design (60 leopard + 40 small-carnivore cameras); trap coordinates processor-centred (VU); flank profile per individual (11 single-flank ids) |
+| curveirasantos_2026_phinda_cheetah_scr | spatial capture-recapture (closed, camera traps) | OSF CC BY 4.0 | 26,820 | 6 cheetahs (2 coalitions), 20 detections; below floor; sibling of the leopard table |
+| curveirasantos_2026_phinda_lion_scr | spatial capture-recapture (closed, camera traps) | OSF CC BY 4.0 | 93,870 | 21 lions in 6 prides/coalitions, 138 detection-days from 141 records (y_raw); below floor |
+| curveirasantos_2026_phinda_hyena_scr | spatial capture-recapture (closed, camera traps) | OSF CC BY 4.0 | 227,970 | 51 spotted hyaenas, 195 detections; 21 single-flank ids |
+| curveirasantos_2026_phinda_genet_scr | spatial capture-recapture (closed, camera traps) | OSF CC BY 4.0 | 1,345,470 | 301 genet ids (genus rank; species not named in the deposit), 614 detections; 237 single-flank ids, so ids may duplicate animals; largest of the six |
+| curveirasantos_2026_phinda_serval_scr | spatial capture-recapture (closed, camera traps) | OSF CC BY 4.0 | 49,170 | 11 servals, 33 detections; below floor |
+
+What this batch says about the standard:
+
+- **E7 and SCR arrays of flagged taxa conflict.** Coarsening 100 cameras to 0.1 degree
+  cells destroys the inter-trap distances the likelihood needs. The Phinda tables carry
+  processor-centred local metres (the Nagarahole deposit was source-centred); E7 should
+  name centring as the SCR coarsening form, and the validator should look at `__traps`
+  coordinates at all (it checks only the core and `__units`). **Gap in `eco-validate`.**
+- **Whole-array coarsening for two rare taxa** (Snapshot USA: 9,694 cameras lose
+  precision for 339 red wolf and kangaroo rat sequences) is the other side of the same
+  coin; dropping the flagged taxa and keeping exact coordinates is arguably more useful.
+  E7 could say which to prefer for large multi-taxon tables.
+- **Taxa withheld by the source are not zeros** (Swedish Bird Survey's eleven
+  security-class species). The community rule would read their absence as zero; a
+  `taxaWithheld` metadata field or a `__taxa` row flagged `withheld` with no core rows is
+  needed for national schemes.
+- **Token-gated repository versions.** Dryad gates per-file downloads and the latest
+  version's zip for Snapshot USA; built from the newest anonymously served version and
+  recorded. The guide should say so.
+- **Processor-chosen aggregation and taxon cuts** (Snapshot: weeks, >= 50 sequences):
+  `occasionLength` and `notShipped` carry them; `taxonInclusionRule` would make the cut
+  visible.
+- **No within-year replication** (Swedish routes: the 20 stops are summed by the source):
+  the table is an annual index; `closure` is the only place that says detection is not
+  estimable within a year. Enumerated closure, again.
+- **Nested package objects ship once** (hbef2015 is the 2015 slice of hbefTrends);
+  **removal encoding is not non-survey** (neon2015's NA after first detection); a survey
+  with covariates but no observation is not surveyed (45 trends cells). Three sentences
+  for the guide.
+- **Single-flank individual ids** in camera SCR may be the same animal;
+  `unit_flank_profile` lets a user filter; a named convention would serve partial-identity
+  models.
+- Sibling tables from one deposit (six Phinda SCR tables, two seal studies, two Türkiye
+  tables, fisher pair) keep asking for a `components` cross-reference field.
+- Oversize core tables: first two above GitHub's limit; `.gitignore` rule and a
+  `data/README.md` note. The Redivis upload handled 548 MB.
+
+Held this batch: black lion tamarin camera traps (OSF 8rw4t, no licence on the project).
+Queue state after batch 13: every Dryad, Zenodo, Dataverse, GBIF, OSF and package row
+is built or held; NEON rows wait on a token, eBird is gated, the "all GBIF
+sampling-event datasets" row is a search pointer, not a deposit.
