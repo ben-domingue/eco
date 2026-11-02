@@ -1,0 +1,44 @@
+{
+  "table": "price_2018_mtr_salamanders_count",
+  "title": "Repeated counts of stream salamander species and life stages in 23 headwater reaches in forested and mountaintop-removal-mined catchments, south-eastern Kentucky, three years",
+  "creator": "Price, Steven J.; Freytag, Sara Beth; Bonner, Simon J.; Drayer, Andrea N.; Muncy, Brenee' L.; Hutton, Jacob M.; Barton, Christopher D.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.7278k2n",
+  "sourceURL": "https://doi.org/10.5061/dryad.7278k2n",
+  "citation": "Price, S. J., Freytag, S. B., Bonner, S. J., Drayer, A. N., Muncy, B. L., Hutton, J. M., & Barton, C. D. (2018). Data from: Mountaintop removal mining alters stream salamander population dynamics [Dataset]. Dryad. https://doi.org/10.5061/dryad.7278k2n",
+  "paperDOI": "10.1111/ddi.12760",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of five stream salamander species, with adults and larvae separated for two-lined and dusky salamanders, in 23 headwater stream reaches of south-eastern Kentucky, 12 in forested reference catchments and 11 in catchments altered by mountaintop-removal coal mining, visited four times in the first year and three times in each of the next two, with cover objects searched, precipitation, conductivity and day of year. Reference reaches had higher abundance and occupancy, and most species and stages had lower occupancy, colonization, persistence and abundance in mined reaches.",
+  "samplingProtocol": "Repeated counts of salamanders in headwater stream reaches, searching cover objects (number per reach and year deposited); four visits in year 1 and three in years 2-3. Reach length and search method are in the paper.",
+  "samplingProtocolCode": "cover_object_search",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "period (study year; dynamic occupancy between years, N-mixture within)",
+  "geographicCoverage": "Headwater streams of south-eastern Kentucky, USA (Central Appalachia coalfield); no coordinates deposited",
+  "temporalCoverage": "three consecutive years before December 2015 (calendar years not stated in the deposit)",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "price_et_al_2018.R, price_et_al_2018_jags.R": "analysis code; no model outputs are deposited"
+  },
+  "notes": "taxon is the deposit's species x life-stage count column (taxon_deposited_column in __taxa): GP and PR pool all stages; DESSPPL is Desmognathus larvae not identified to species. The deposit has no codebook; the column-to-taxon reading follows the paper's species list and should be checked against it. period is the study year (calendar years not deposited); obs_day_of_year is the deposited JulianDate. obs_precip and obs_conductivity are as deposited (units not stated; the authors standardise precipitation in code). Conductivity is missing for three surveyed visits. period_cover_objects is the number of cover objects searched in the reach that year.",
+  "summary": {
+    "n_rows": 1610,
+    "n_units": 23,
+    "n_taxa": 7,
+    "n_periods": 3,
+    "n_occasions": 4,
+    "n_surveys": 230,
+    "y_values": "0-37 (21 distinct)",
+    "prop_zero": 0.566
+  },
+  "sampleFloor": "below (23 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_mtr", "period_cover_objects", "obs_day_of_year", "obs_precip", "obs_conductivity"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/price_2018_mtr_salamanders_count.R",
+  "buildDate": "2026-11-02"
+}
