@@ -51,8 +51,13 @@ jobs:
           key: eco-raw-${{ hashFiles('data/*.R') }}
           restore-keys: eco-raw-
 
+      # NEON products (data/neon_*.R) are token-gated: download_neon() in
+      # lib/eco_common.R reads NEON_TOKEN. Add the repository secret (a free
+      # NEON account's API token) or those scripts fail here with a clear message.
       - name: Rscript data/run_all.R
         run: Rscript data/run_all.R
+        env:
+          NEON_TOKEN: ${{ secrets.NEON_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:

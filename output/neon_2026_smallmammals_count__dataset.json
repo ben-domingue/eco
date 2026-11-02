@@ -1,0 +1,62 @@
+{
+  "table": "neon_2026_smallmammals_count",
+  "title": "NEON small mammal box trapping, RELEASE-2026: nightly capture counts of 143 species on 332 trapping grids at 46 NEON sites, 2013-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/a83h-tb34",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.10072.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Small mammal box trapping (DP1.10072.001), RELEASE-2026. https://doi.org/10.48443/a83h-tb34. Dataset accessed from https://data.neonscience.org/data-products/DP1.10072.001/RELEASE-2026 on 2026-11-02",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "note": "Licence stated on https://data.neonscience.org/data-api/ (NEON data products are CC BY 4.0); attribution per NEON's citation guidance"
+  },
+  "abstract": "NEON samples small mammals (nonvolant, nocturnal, 5-500 g) on 10 x 10 grids of Sherman box traps at 10 m spacing, three to eight grids per terrestrial site, in bouts of one night (diversity grids) or three consecutive nights (pathogen grids) timed to the new moon, four to six bouts a year. This table is one row per trapping grid x bout x night x species for the 143 species-rank taxa, y = number of captures of the species on the grid that night, obs_traps_set = traps set, with every species carried as a zero on every surveyed grid-night (national pool; the sites where each species was captured are listed in __taxa). Built from the RELEASE-2026 basic package through the NEON API: 17,704 grid-nights, 1,612 bouts, 169,307 captures.",
+  "samplingProtocol": "Sherman box traps (LFA/XLK) on 10 x 10 grids at 10 m spacing, set in the evening and checked at dawn; bouts within 10 days of the new moon, 1 night (diversity grids) or 3 consecutive nights (pathogen grids); captured animals identified, ear-tagged (or PIT-tagged) and measured; NEON protocol NEON.DOC.000481",
+  "samplingProtocolCode": "live_trap",
+  "occasionLength": "one trap-night",
+  "effortColumn": "obs_traps_set",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "mam_perplotnight: a grid-night is a survey iff samplingImpractical is NA or OK, gridCompletion is recorded, and at least one trap was set (mam_pertrapnight trapStatus other than '1 - trap not set'); impractical nights are deposited with 100 'trap not set' rows and are dropped. Species pool is national (E4 full rectangle): every species-rank taxon has a row at every surveyed grid-night, so a species outside its range at a site is a structural zero there; taxon_sites in __taxa lists the sites where each species was captured.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "period = trapping bout (eventID, 1-6 nights per grid, usually 1 or 3, within at most 12 days); occasion = night within the bout at the grid; population open between bouts (robust design)",
+  "geographicCoverage": "46 NEON terrestrial sites in the contiguous United States and Alaska (no Hawaii or Puerto Rico); plot centres latitude 17.97 to 71.25, longitude -156.50 to -66.83, as published by NEON",
+  "temporalCoverage": "2013-06-19/2024-11-12",
+  "crs": "EPSG:4326 (WGS 84, as published)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published by NEON: agency-published plot centres with coordinateUncertainty (the E7 agency exception). The Florida mouse Podomys floridanus (IUCN VU) is among the shipped taxa; NEON publishes these plot coordinates itself, and its own obfuscation of listed taxa (D01 state-listed species to higher rank, per the product issue log) is applied upstream"
+  },
+  "covariateNote": "obs_grid_method is the grid's sampling method that bout (pathogen = 3 nights with blood/ear/hair samples, diversity = 1 night); grids changed method across years at some sites. unit_* are NEON's plot attributes; a few grids carry two published coordinates across the years (modal kept, n_published_coordinates in __units).",
+  "designNote": "Repeated counts within closed bouts (N-mixture per bout) and an open population across bouts (robust-design counts). The companion table neon_2026_smallmammals_rd carries the individual capture histories (same __periods).",
+  "components": {
+    "sibling": "neon_2026_smallmammals_rd (same deposit, same bouts and __periods; individual robust-design histories)"
+  },
+  "notes": "Species pool is national (see surveyEvidenceNote); a community model should restrict each site to the species that can occur there (taxon_sites in __taxa gives the sites with at least one capture) rather than read the out-of-range zeros as surveyed absences. taxon is NEON's four-letter taxonID. Captures identified above species rank are not shipped and their counts are not in y.",
+  "notShipped": {
+    "captures not at species rank": "Peromyscus leucopus/maniculatus (PELEPEMA, speciesGroup: 3317); Dipodomys ordii/microps (DIORDIMI, speciesGroup: 1901); Sorex sp. (SOSP, genus: 1177); Peromyscus sp. (PESP, genus: 610); Peromyscus gossypinus/leucopus (PEGOPELE, speciesGroup: 499); Peromyscus keeni/maniculatus (PEKEPEMA, speciesGroup: 437); Mammalia sp. (OTHE, class: 388); Glaucomys sp. (GLSP, genus: 201); Rodentia sp. (ROSP, order: 58); Chaetodipus sp. (CHSP, genus: 49); Dipodomys sp. (DPSP, genus: 42); Tamias sp. (TMSP, genus: 34); Sorex cinereus/haydeni (SOCISOHA, speciesGroup: 28); Perognathus sp. (PGSP, genus: 26); Peromyscus maniculatus/boylii (PEMAPEBO, speciesGroup: 20); Reithrodontomys sp. (RESP, genus: 19); Heteromyidae sp. (HESP, family: 15); Neotoma sp. (NESP, genus: 14); Microtus sp. (MISP, genus: 11); Onychomys sp. (ONSP, genus: 7); Sylvilagus sp. (SLSP, genus: 5); Cricetidae sp. (CRSP, family: 5); Blarina sp. (BLSP, genus: 5); Mustela sp. (MUSP, genus: 5); Zapus sp. (ZASP, genus: 4); Ictidomys tridecemlineatus monticola (ICTM, subspecies: 3); Muridae sp. (MRSP, family: 3); Sorex monticolus/obscurus (SOMOSOOB, speciesGroup: 3); Sigmodon sp. (SISP, genus: 2); Sigmodon hispidus eremicus (SIHE, subspecies: 2); Spermophilus sp. (SMSP, genus: 2); Soricidae sp. (SRSP, family: 2); Dipodidae sp. (DOSP, family: 1); Myodes sp. (MYSP, genus: 1); Scapanus sp. (SNSP, genus: 1)",
+    "captures without a taxon": "3 capture rows with no taxonID",
+    "per-capture attributes": "sex, lifeStage, weight, hindfootLength, earLength, tailLength, totalLength, ticks, samples (in the _rd sibling where per individual)",
+    "other NEON tables": "mam_voucher (expanded package), mam_identificationHistory, mam_voucherIdentificationHistory",
+    "impractical grid-nights": "4729 plot-nights with samplingImpractical set (no traps set)",
+    "duplicate plot-nights": "3 grid-nights deposited under two nightuids (merged: union of captures, larger trap count)",
+    "trap-night dates": "3 plot-nights whose mam_pertrapnight rows carry a collectDate other than the plot-night's (the plot-night date is used)"
+  },
+  "summary": {
+    "n_rows": 2531672,
+    "n_units": 332,
+    "n_taxa": 143,
+    "n_periods": 1612,
+    "n_occasions": 6,
+    "n_surveys": 17704,
+    "y_values": "0-69 (56 distinct)",
+    "prop_zero": 0.985
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_elevation", "unit_nlcdClass", "unit_plotType", "obs_traps_set", "obs_grid_method"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_smallmammals_count.R",
+  "buildDate": "2026-11-02"
+}

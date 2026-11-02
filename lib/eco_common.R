@@ -32,21 +32,84 @@ UA <- "eco-irw-builder/0.1 (ben.domingue@gmail.com)"
 # ---------------------------------------------------------------------------
 # Sources
 # ---------------------------------------------------------------------------
-download_cached <- function(url, table, filename = NULL, quiet = TRUE) {
+download_cached <- function(url, table, filename = NULL, quiet = TRUE, headers = NULL, subdir = NULL) {
   if (is.null(filename)) {               # Zenodo URLs end in /<file>/content
     path <- sub("\\?.*$", "", url)
     filename <- if (basename(path) == "content") basename(dirname(path)) else basename(path)
   }
-  dir <- file.path(RAW_DIR, table); dir.create(dir, showWarnings = FALSE, recursive = TRUE)
+  dir <- file.path(RAW_DIR, table); if (!is.null(subdir)) dir <- file.path(dir, subdir)
+  dir.create(dir, showWarnings = FALSE, recursive = TRUE)
   dest <- file.path(dir, filename)
   if (!file.exists(dest) || file.size(dest) == 0) {
     message("  downloading ", filename)
     ok <- try(download.file(url, dest, mode = "wb", quiet = quiet,
-                            headers = c("User-Agent" = UA)), silent = TRUE)
+                            headers = c("User-Agent" = UA, headers)), silent = TRUE)
     if (inherits(ok, "try-error") || !file.exists(dest) || file.size(dest) == 0)
       stop("download failed: ", url)
   }
   dest
+}
+
+# NEON: the data endpoints (/api/v0/data/<product>/<site>/<month>) return 403
+# without an API token; tokens are free with a NEON account and are read from
+# the NEON_TOKEN environment variable (never from the repo). One release tag is
+# pinned so a rebuild sees the same files; NEON's citation names it. Every
+# site-month of the release is listed from the product endpoint, each month's
+# file list is cached, and only the basic-package CSVs of the NEON tables asked
+# for are fetched into .cache/raw/<table>/neon/<site>/<month>/. Returns a named
+# list of data.tables, one per NEON table, stacked over site-months with
+# `neon_site` and `neon_month` columns added, plus attributes `release`,
+# `n_site_months`, `site_months`, `productDoi`. The token rate limit is 8
+# requests/s (burst 2000); sequential downloads stay under it without sleeping.
+download_neon <- function(product, table, release, tables, sites = NULL, months = NULL) {
+  token <- Sys.getenv("NEON_TOKEN")
+  if (!nzchar(token)) stop("NEON data downloads need an API token: set NEON_TOKEN (free with a NEON account: https://data.neonscience.org, My Account > API Tokens)")
+  hdr <- c("X-API-Token" = token)
+  api <- "https://data.neonscience.org/api/v0"
+  prod_f <- download_cached(sprintf("%s/products/%s?release=%s", api, product, release), table,
+                            filename = sprintf("product_%s_%s.json", product, release), subdir = "neon")
+  prod <- fromJSON(prod_f, simplifyVector = FALSE)$data
+  stopifnot(identical(prod$productCode, product))
+  sm <- rbindlist(lapply(prod$siteCodes, function(s)
+    data.table(site = s$siteCode, month = unlist(s$availableMonths))))
+  if (!is.null(sites)) sm <- sm[site %in% sites]
+  if (!is.null(months)) sm <- sm[month %in% months]
+  if (!nrow(sm)) stop("no site-months for ", product, " in ", release)
+  setorder(sm, site, month)
+  message(sprintf("  NEON %s %s: %d site-month(s) at %d site(s)", product, release, nrow(sm), uniqueN(sm$site)))
+  out <- setNames(vector("list", length(tables)), tables)
+  for (i in seq_len(nrow(sm))) {
+    s <- sm$site[i]; m <- sm$month[i]
+    sub <- file.path("neon", s, m)
+    lst_f <- download_cached(sprintf("%s/data/%s/%s/%s?release=%s", api, product, s, m, release), table,
+                             filename = "files.json", subdir = sub, headers = hdr)
+    fl <- fromJSON(lst_f, simplifyVector = FALSE)$data
+    if (!identical(fl$release, release)) stop("NEON returned release ", fl$release, " for ", s, " ", m)
+    files <- unique(rbindlist(lapply(fl$files, function(f) data.table(name = f$name, url = f$url))), by = "name")
+    for (tb in tables) {
+      hit <- files[grepl(paste0("\\.", tb, "\\."), name) & grepl("\\.basic\\.", name)]
+      if (nrow(hit) > 1) hit <- hit[order(-as.numeric(sub(".*\\.(\\d{8})T(\\d{6})Z\\.csv$", "\\1\\2", name)))][1]
+      if (!nrow(hit)) next
+      f <- try(download_cached(hit$url, table, filename = hit$name, subdir = sub, headers = hdr), silent = TRUE)
+      if (inherits(f, "try-error")) {       # the signed URLs in a cached files.json expire after 7 days: relist once
+        unlink(lst_f)
+        lst_f <- download_cached(sprintf("%s/data/%s/%s/%s?release=%s", api, product, s, m, release), table,
+                                 filename = "files.json", subdir = sub, headers = hdr)
+        url2 <- Filter(function(x) identical(x$name, hit$name), fromJSON(lst_f, simplifyVector = FALSE)$data$files)[[1]]$url
+        f <- download_cached(url2, table, filename = hit$name, subdir = sub, headers = hdr)
+      }
+      d <- fread(f, colClasses = "character", na.strings = c("", "NA"))
+      d[, `:=`(neon_site = s, neon_month = m)]
+      out[[tb]] <- c(out[[tb]], list(d))
+    }
+    if (i %% 100 == 0) message(sprintf("  ... %d / %d site-months", i, nrow(sm)))
+  }
+  out <- lapply(out, function(l) if (length(l)) rbindlist(l, fill = TRUE) else NULL)
+  rel <- Filter(function(x) identical(x$release, release), prod$releases)
+  attr(out, "release") <- release; attr(out, "n_site_months") <- nrow(sm); attr(out, "site_months") <- sm
+  attr(out, "productDoi") <- if (length(rel)) rel[[1]]$productDoi$url else NA_character_
+  attr(out, "productName") <- prod$productName
+  out
 }
 
 # Dryad: anonymous per-file downloads return 401/403, and most deposits have no
