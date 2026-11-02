@@ -252,3 +252,64 @@ the NEON ground-beetle row hits the same wall); Dryad NE China cattle-forest mam
 aggregated binomial with no `responseType`). Looked at and left available: Borealis
 boreal-bird harvest edges (Stan-input `.rds`, 34 species x 189 ARU transects, CC0,
 buildable next batch).
+
+## Batch 8 — 2026-11-01 (first robust-design and multi-state CR tables, from the new search)
+
+Six tables from six deposits found by the 2026-11-01 repository search, built two at a
+time. Validated with `eco-validate`: 40/40 tables pass, IRW view conforms. Uploaded to
+the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| knape_2018_shoveler_count | N-mixture repeated counts | Zenodo CC BY 4.0 | 481 | 50 wetlands x up to 10 visits, one season, southern to east-central Sweden (RT90 northing only); 19 unsurveyed cells; Julian day per visit but no year, so obs_julian_day and no date; visit columns are not in calendar order; year and protocol are in the paywalled paper |
+| chabanne_2017_perth_dolphin_msrd | multi-state closed robust design CR (state = capture site) | Dryad CC0 | 15,675 | 209 photo-identified Tursiops aduncus x 75 secondary occasions in 16 seasons (Jun 2011-May 2015), Perth; y = 0/SCR/CS-OA/GR; season layout of the unlabelled MARK columns inferred against the thesis effort table (summer 2011-12 has 4 of 5 completed occasions in the file), asserted by the no-within-season-transition rule and the thesis per-site counts; one duplicated id relabelled; 2-state Scenario 2 file not shipped (not a deterministic collapse) |
+| oosthuizen_2019_marion_seal_rd | robust design capture-recapture (multievent), first in corpus | Dryad CC0 | 145,236 | 1,729 females tagged as pups at Marion Island, breeding seasons 1986-2013; the deposit's 8 composite event codes per seal year decomposed losslessly into 3 capture-period rows (uneven weeks, even weeks, moult+winter), y = seen, y_raw = event code; the 8 weekly surveys per season are not deposited; histories condition on first breeding encounter, leading zeros kept; no covariates, dates or coordinates |
+| goldingay_2022_richmond_koala_dynocc | dynamic occupancy, spotlight transects | Dryad CC0 | 659 | 34 transects (20 in 2014 -> 34 in 2019) x 8 years x 3 surveys, Richmond Range NP, NSW; drought year 2019 in __periods; 7 habitat unit covariates; no coordinates; 2021 ARU koala data not shipped |
+| goldingay_2022_richmond_glider_dynocc | dynamic occupancy, spotlight transects | Dryad CC0 | 655 | same surveys for Petauroides armillatus; the two matrices disagree on 22 surveyed cells (0 vs "-"), so two tables, not one community table; IUCN category left empty (assessed as P. volans s.l.) |
+| dettling_2021_marin_riparian_count | community counts (N-mixture), point counts, multi-season | Dryad CC0 | 65,968 | 183 points on 13 riparian transects in Marin County protected areas, 1997-2019, 4,712 five-minute 50 m point counts x 14 selected species; survey set = the deposit's own point-visit list (every point-visit carries all 14 species with zeros); visit = chronological number within 1 May-30 June (1-3); no dates, observers or coordinates deposited; README says 17 species / 80,104 rows, file has 14 / 65,968 |
+
+What this batch says about the standard (robust design is no longer a gap; these are the
+rulings it wants):
+
+- **Robust design fits as written.** `period` + `occasion` on `unitKind = individual`
+  expressed both a multi-state closed robust design (dolphins) and a multievent one
+  (seals) without a stretch. `ch_to_eco()` cannot build it (it puts the whole history on
+  `period`); a `period` vector argument would make it serve robust designs.
+- **`closure` should be enumerated.** It is free text; a robust design wants a controlled
+  value ("closed within period, open between") so a reader can filter. A `designType`
+  field would do the same.
+- **Named occasions.** In both CR tables the secondaries are design categories (capture
+  site season windows; uneven weeks / even weeks / moult), not interchangeable time
+  replicates. Both scripts improvised an `occasionCodes` field in `__dataset.json`. Worth
+  a named convention, since every robust design with labelled secondaries will need it.
+- **Multievent histories decompose into occasions.** The seals' 8-letter event alphabet
+  is the product of three per-window outcomes, so `detection` rows per window with the
+  event code in `y_raw` keep both the robust-design shape and the multievent information;
+  `responseType = state` would have forced an arbitrary integer on it. A sentence in E9
+  allowing this when the alphabet is a product would make it reusable.
+- **States that are places.** The dolphin state is the capture site. The standard has no
+  way to say whether `stateCodes` are places, statuses or certainty levels; a `stateKind`
+  field would.
+- **Unlabelled MARK columns.** The dolphin file's 75 columns had to be assigned to seasons
+  from the thesis effort table and asserted two ways. E4 could say that a layout
+  recovered from the paper is `deposited_matrix` with a `surveyEvidenceNote`.
+- **Non-identical NA patterns across species matrices: split, never fill.** Koala and
+  glider share 34 sites and 24 columns but differ in 22 surveyed cells, so two tables.
+  Same shape as ruling #20; a line in `processing_guide.md` would settle it.
+- **Alternative codings of one history set are not derivable.** The dolphins' 2-state
+  file is not a collapse of the 3-state one once the within-season rule has been applied.
+  Only one is shipped; worth a line in `processing_guide.md`.
+- **Julian day without a year.** Common in N-mixture deposits; E8 held (no bare
+  day-of-year in `date`), but the fallback covariate name varies (`obs_julian_day` here,
+  `obs_date_doy_std` in the mallard table). One name would help.
+- **Explicit-zero species tables.** The Marin deposit has every species at every survey
+  with no NA at all; it is `sample_table` in spirit but not literally a samples table.
+  E4's table could name the case.
+- Small: `data/aux/bird_alpha_codes.csv` lacks eight common western species (defined in
+  the Marin script); `samplingProtocolCode` values `site_count` and `tag_resight` are
+  new, the list is open-ended; a taxon split after an IUCN assessment (P. armillatus vs
+  P. volans) has nowhere to say which name the category belongs to.
+
+Held: nothing. Two paywalled papers (Knape 2018, Chabanne 2017 final version) would
+sharpen the shoveler header (year, protocol); the dolphin build used the accepted
+manuscript and the open thesis.

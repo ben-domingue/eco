@@ -1,0 +1,46 @@
+{
+  "table": "goldingay_2022_richmond_koala_dynocc",
+  "title": "Koala spotlight detection histories at 34 transects over 8 years (2014-2021), Richmond Range National Park, NSW, Australia",
+  "creator": "Goldingay, Ross L.; McHugh, Darren; Parkyn, Jonathan L.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.j6q573ngp",
+  "sourceURL": "https://doi.org/10.5061/dryad.j6q573ngp",
+  "citation": "Goldingay, R. L., McHugh, D. & Parkyn, J. L. (2022). Koala greater glider detection histories: Richmond Range NP [Dataset]. Dryad. https://doi.org/10.5061/dryad.j6q573ngp. Paper: Goldingay, R. L., McHugh, D. & Parkyn, J. L. (2022). Multiyear monitoring of threatened iconic arboreal mammals in a mid-elevation conservation reserve in eastern Australia. Ecology and Evolution 12(5): e8935. https://doi.org/10.1002/ece3.8935",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection (1) / non-detection (0) of the koala (Phascolarctos cinereus) on 20-minute single-observer spotlight surveys of 200 m road transects in Richmond Range National Park (and adjoining State Forest), New South Wales, three surveys per year (typically September-December, nights at least two weeks apart) in each of eight years 2014-2021. Transects were added over the study (20 in 2014, 26 in 2016, 34 in 2019); a transect not surveyed on an occasion has no row. Year 6 (2019) was a severe drought (43 % of average rainfall). Seven habitat variables measured along each transect are unit covariates. The deposit's two species matrices differ in 22 surveyed cells, so each species is its own table; the companion is goldingay_2022_richmond_glider_dynocc.",
+  "samplingProtocol": "Spotlight survey: a single observer walked each 200 m transect at ~600 m/h over 20 min, illuminating both sides with a 350-lumen LED torch, recording arboreal mammals seen or heard; four call broadcasts of yellow-bellied glider and powerful owl mid-survey (for another species). Three surveys per transect per year on different nights, at least two weeks apart, usually dry, low-moonlight, low-wind nights 1-5 h after dark.",
+  "samplingProtocolCode": "spotlight_transect",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "A site-year-survey is surveyed iff the deposited cell is 0 or 1 (\"-\" = not surveyed). The koala and greater glider matrices share 34 sites and 24 columns but differ in 22 cells (one species 0, the other \"-\"); each species' table uses its own deposited survey set, so the two tables are not a community table.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period",
+  "geographicCoverage": "Richmond Range National Park and adjoining State Forest, north-eastern New South Wales, Australia (mid-elevation, 300-610 m; no coordinates deposited)",
+  "temporalCoverage": "2014/2021",
+  "coordinatesCoarsened": null,
+  "notes": "Years 1-8 of the deposit are 2014-2021 (paper section 2.1-2.2; README dates the spotlight data Nov 2014 to Dec 2021). __periods.drought flags 2019, the paper's year-6 drought. Habitat values are as deposited: counts within a 0.8 ha strip (large trees >= 60 cm DBH, hollow-bearing trees), mean height of 10 trees, GPS elevation, ridge (1) vs other (0), and % cover of koala primary food trees and of rainforest within a 200 m buffer (NSW forest-type mapping). Within-year survey dates are not deposited.",
+  "notShipped": {
+    "5-night-audio-detection-history.txt": "2021 acoustic-recorder koala detections over five nights at 39 of 42 sites (31 of the 34 transects plus 8 new sites, different numbering); a different method and site set, not merged",
+    "Audio-vs-spotlight-surveys.txt": "2021 paired spotlight/audio koala detections for the multi-method comparison; same reason",
+    "Greater-glider-detection-histories.txt": "shipped as goldingay_2022_richmond_glider_dynocc (its survey set differs in 22 cells)"
+  },
+  "summary": {
+    "n_rows": 659,
+    "n_units": 34,
+    "n_taxa": 1,
+    "n_periods": 8,
+    "n_occasions": 3,
+    "n_surveys": 659,
+    "y_values": "0,1",
+    "prop_zero": 0.848
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_large_trees_n", "unit_primary_food_trees_pct", "unit_hollow_bearing_trees_n", "unit_ridge", "unit_mean_tree_height_m", "unit_elevation_m", "unit_rainforest_pct"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldingay_2022_richmond_koala_dynocc.R",
+  "buildDate": "2026-11-01"
+}
