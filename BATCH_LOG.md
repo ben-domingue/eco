@@ -480,3 +480,59 @@ What this batch says about the standard:
 - New `samplingProtocolCode` values: `sign_survey`, `hand_capture`, `scat_genotyping`.
 
 Held: nothing.
+
+## Batch 12 — 2026-11-01 (overnight: multi-scale snow tracks, time-to-detection, distance sampling by three methods, two long-term seal and goose studies)
+
+Seven deposits, eleven tables. Validated with `eco-validate`: 69/69 tables pass, IRW
+view conforms. Uploaded to the Redivis draft. Snapshot USA 2019-2023 is building and
+will close with the next batch.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| whittington_2015_banff_tracks_comm | community occupancy, multi-scale (cell > segment > repeat walk), snow tracks | Dryad CC0 | 6,104 | 7 species x 872 segment-dates on 443 segments / 43 transects / 39 hexagonal 100 km2 cells, Banff NP, 2011-11-19 to 2012-04-09; cluster_id = cell (the paper's occupancy unit), unit = segment (spatial replicate), occasion = repeat walk (266 segments once, 177 up to 14x); obs_days_snow differs for ungulates vs carnivores within a survey; deer at genus rank; UTM 11N -> WGS84; authors' Markov lag columns (functions of y) not shipped |
+| henry_2020_karoo_birds_comm | community occupancy, point counts (DND view of a time-to-detection study) | Dryad CC0 | 66,465 | 61 SABAP pentads x 10-20 point counts (1,055) x 63 species, Karoo, South Africa, Feb-Oct 2017; y = detected on the count; obs_ttd_s = seconds to first detection (NA = censored at the count's end, ~10 min, not deposited), obs_distance_m, detection mode and behaviour per species-count; survey set = counts with a detection (row_presence); ttd in seconds not minutes, floored at 10 s; pentad centroid as unit coordinate, count GPS as obs_ |
+| riecke_2018_tutakoke_brant_rd | robust design capture-recapture (survival, breeding probability, temporary emigration) | Dryad CC0 | 635,445 | 7,845 females at the Tutakoke River colony, Y-K Delta, Alaska, 27 seasons 1988-2014 x 3 capture methods (nest searches, tower resighting, banding drives); built from the deposited R workspace's obs array; 22,510 detections; leading zeros kept (model conditions on first); gosling tarsus for 713 of 2,327 gosling-banded birds; authors' yes/total aggregates differ from the histories by 1-2 per cell; raw banding database (42k x 1,016) not shipped |
+| bedson_2021_holmemoss_hare_vis_ds | distance sampling (line transect) | Dryad CC0 | 30 | 6 site walks (4.6-8.2 km) at Holme Moss, Peak District, Nov 2017-May 2018, 41 detections (43 hares); perpendicular distances to the metre binned at the paper's 5/10/20/100 m plus one 100-400 m bin so the 15 detections beyond the paper's 100 m truncation ship; obs_individuals per bin; no dates or coordinates; below floor (6 units) |
+| bedson_2021_holmemoss_hare_therm_ds | distance sampling (point transect, thermal imager) | Dryad CC0 | 912 | 71 vantage points x 1-3 night visits = 114 units at six sites, 206 detections (285 hares, clusters to 8); visit = maximal run of same-point rows, matching the paper's replicates per site exactly; radial distances binned at 50 m to the paper's 350 m truncation plus 350-750 m (54 detections); four empty rows inside detection runs carry nothing |
+| bedson_2021_holmemoss_hare_cam_ds | camera-trap distance sampling (snapshot 1 s, FOV 42 deg), first CTDS table | Dryad CC0 | 1,092 | 91 cameras (12-16 per site, deployed site by site 2-5 weeks each), 3,706 night-time snapshot detections (paper: 3,705; site 5 474 vs 479; 76 vs 77 detecting cameras) in whole-metre radial distances 1-12 taken as 1 m bins; paper truncated at 5 m with bins 1, 2, 3-4, 5 (n = 3,506 asserted); unit_effort_seconds as deposited (paper scales by 42/360); snapshotInterval and fieldOfViewDegrees in metadata; camera 53249 lacks the empty row the other 90 have |
+| volzke_2021_macquarie_seal1950s_cjs | CJS / multi-state capture-recapture, tag-resight, two windows per year | Dryad CC0 | 391,612 | 7,531 seals branded as weaners 1951-1965 at Macquarie Island, 31 seal years 1951-1985 x 2 windows (Sept-Oct breeding; Nov-Aug); organised island searches 1952 and 1959, opportunistic sightings after; survey set inferred (window surveyed iff any study seal sighted), sparse years 1969-1985 flagged in __periods; tag type not recorded for this study |
+| volzke_2021_macquarie_seal1990s_cjs | CJS / multi-state capture-recapture, tag-resight, two windows per year | Dryad CC0 | 1,083,889 | 18,371 seals marked as weaners 1984-2005 (mostly 1993-2000), 32 seal years 1984-2019 x 2 windows; daily isthmus and monthly island searches 1993-2001, declining to ad hoc after 2010; 2,275 seals first seen past the pup stage not units; same study split as the 2021 paper's 1990s period; second-largest table in the corpus |
+| lebeuftaylor_2026_boreal_edges_aru_comm | community occupancy, acoustic recorders, harvest-edge design (cluster_id = transect) | Borealis CC0 | 55,318 | 564 ARU locations at 3 positions (150 m into regen / edge / 150 m into forest) on 189 transects, boreal Alberta, 1-5 visits per location, 34 species, 5,130 detections within 150 m; built from the authors' Stan input; visit day and time only as z-scores; survey year, dates and recording length not deposited; paper in prep (no DOI); 25-species radius files and Hill-number max counts not shipped |
+
+What this batch says about the standard:
+
+- **Time-to-detection carried as a covariate** (Karoo): `obs_ttd_s` on species rows,
+  NA = censored at a count length that is not deposited. First TTD deposit; a
+  `responseType = time_to_event` with `obs_censored`, or a declared `obs_` convention
+  plus a `surveyDuration` field, would make it reusable. Also: `obs_decimalLatitude`
+  (a survey-level GPS finer than the unit) is not recognised by the validator's
+  coordinate regex, so E7 coarsening would not fire on it for a flagged taxon. **Gap
+  in `eco-validate`**, no table affected tonight.
+- **Binning continuous distances is a processing decision E9 does not name.** Two of
+  the three hare files deposit exact metres; the processor chose breaks (the paper's
+  where they exist) and added an outer bin so nothing is dropped (Nilgiris dropped
+  beyond-truncation detections instead). Either name that rule, or let unbinned
+  deposits ship exact distances as `obs_distance_m` on `detection_event` rows. Camera
+  trap DS fits as declared but needs `fieldOfViewDegrees` beside `snapshotInterval`.
+- **Occasions as named windows / methods**, third and fourth robust-design tables
+  (brant: nest / tower / banding; seals: breeding / rest of year); `occasionCodes` is
+  still ad hoc.
+- **Inferred survey sets from long resighting records** (seals): "a window is
+  surveyed iff some marked animal was seen" admits windows with one sighting; a
+  period-level effort convention would let a user filter.
+- **One deposit, two studies** with disjoint cohorts and seasons (seals): split, the
+  temporal form of #31.
+- **Analysis-ready inputs as deposits** (boreal ARU Stan list, brant RData): dates
+  survive only as z-scores, year not deposited; `covariateNote` should be a named E10
+  field, and `temporalCoverage` could allow an explicit "not deposited".
+- **Covariates defined for a subset by design** (gosling tarsus): NA with a note;
+  unstated but right.
+- **Spatial replicates nested in the occupancy unit** (Banff) fit the eDNA multi-scale
+  mapping exactly; the same table also reads as single-scale on segments; only
+  `designNote` says which; the enumerated design field again. An `obs_` covariate that
+  legitimately differs across taxa within a survey (days since snow by species group)
+  is allowed by E5 and now has an example.
+- Multi-state breeding histories (seals' per-sighting status) are rebuildable but not
+  shipped; assigning one state per window from many sightings needs a rule.
+
+Held: nothing.

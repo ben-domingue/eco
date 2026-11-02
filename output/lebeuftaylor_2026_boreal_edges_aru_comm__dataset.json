@@ -1,0 +1,52 @@
+{
+  "table": "lebeuftaylor_2026_boreal_edges_aru_comm",
+  "title": "Boreal bird detections within 150 m at ARU recorders on 189 harvest-edge transects, Alberta: 34 species x 1,627 visits",
+  "creator": "Lebeuf-Taylor, Isabelle",
+  "pubDate": "2026",
+  "doi": "10.5683/SP4/FH7WY6",
+  "sourceURL": "https://doi.org/10.5683/SP4/FH7WY6",
+  "citation": "Lebeuf-Taylor, I. (2026). Replication Data for: Contrast between adjoining stands drives timber harvest edge effects on boreal birds [Dataset]. Borealis, V1. https://doi.org/10.5683/SP4/FH7WY6",
+  "paperDOI": null,
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Autonomous recording units at three positions on each of 189 transects crossing the boundary between a regenerating timber harvest (1-42 years since harvest) and undisturbed aspen or spruce forest in boreal Alberta: 150 m into the regenerating stand (N15), on the edge (E0) and 150 m into the forest (P15). Each location was visited (one recording interpreted) one to five times in a single season; 34 songbird species identified within 150 m of the recorder, 0/1 per visit. The deposit is the analysis-ready input of the authors' 34-species multispecies occupancy model; the sampling year, calendar dates and recording length are not deposited.",
+  "samplingProtocol": "Autonomous recording units (ARUs; WildTrax processing) at 150 m spacing across harvest-forest edges; detections within a 150 m radius; one to five recordings per location interpreted as visits; the deposit is the Stan input of the authors' multispecies occupancy model.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion",
+  "geographicCoverage": "Boreal forest of Alberta, Canada, 49-59 N, 111-120 W; recorder coordinates as published",
+  "temporalCoverage": "not deposited (one season per transect; the Stan model has no year effect; the deposit was published 2026-09)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published (6 decimals); no taxon is IUCN CR/EN/VU"
+  },
+  "designNote": "Multi-scale layout (transect > recorder position > visit) read as community occupancy with unit = recorder location and cluster_id = transect, following E9's cluster_id convention; the authors' model treats position as a location covariate, not a nested level.",
+  "covariateNote": "obs_day_z and obs_time_z are the authors' standardised Julian day and time of day of each visit (mean 0, SD 1 over the 1,627 visits); raw values, means and SDs are not deposited. All other covariates are raw as deposited. unit_tsh_years and the two spruce-cover percentages are transect-level facts repeated on each of the transect's locations.",
+  "notes": "unit_position_m is the signed distance from the edge implied by the position code (-150 regenerating side, 0 edge, +150 forest side), not a measured distance. Three transects (273, 2A, 48) have two positions instead of three. Species codes are the deposit's IBP-AOS alpha codes.",
+  "notShipped": {
+    "tsh_z, x_Ncov, x_Pcov": "standardised duplicates of unit_tsh_years and the spruce-cover percentages",
+    "x_NP, x_edge": "numeric codings of unit_position used by the Stan model",
+    "jsdm_tables_{75,100,125,150}m_25spp.rds": "the same 1,627 visits for 25 of the species at other detection radii (alternative truncations of one detection set; the 150 m file is a column subset of the shipped table, asserted)",
+    "hill_numbers_prepared_data.rds": "per-location maximum counts of 64 species across visits (no per-visit survey set) and derived Hill-number diversity and dissimilarity data"
+  },
+  "summary": {
+    "n_rows": 55318,
+    "n_units": 564,
+    "n_taxa": 34,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 1627,
+    "y_values": "0,1",
+    "prop_zero": 0.907
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_position", "unit_position_m", "unit_forest_type", "unit_tsh_years", "unit_spruce_pct_regen_side", "unit_spruce_pct_forest_side", "unit_decimalLatitude", "unit_decimalLongitude", "obs_day_z", "obs_time_z"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lebeuftaylor_2026_boreal_edges_aru_comm.R",
+  "buildDate": "2026-11-01"
+}

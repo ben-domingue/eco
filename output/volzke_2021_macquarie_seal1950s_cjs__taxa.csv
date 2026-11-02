@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+MIRLEO,Mirounga leonina,Southern elephant seal,species,https://www.gbif.org/species/2434814,EXACT,,LC

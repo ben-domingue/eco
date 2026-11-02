@@ -1,0 +1,53 @@
+{
+  "table": "riecke_2018_tutakoke_brant_rd",
+  "title": "Robust-design capture histories of 7,845 female black brant at the Tutakoke River colony, Yukon-Kuskokwim Delta, Alaska, breeding seasons 1988-2014",
+  "creator": "Riecke, Thomas V.; Leach, Alan G.; Gibson, Daniel; Sedinger, James S.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.c54h30c",
+  "sourceURL": "https://doi.org/10.5061/dryad.c54h30c",
+  "citation": "Riecke, T. V., Leach, A. G., Gibson, D., & Sedinger, J. S. (2019). Data from: Parameterizing the robust design in the BUGS language: lifetime carry-over effects of environmental conditions during growth on a long-lived bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.c54h30c",
+  "paperDOI": "10.1111/2041-210X.13065",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Encounter histories of 7,845 female Pacific black brant (Branta bernicla nigricans) marked with plastic tarsal bands at the Tutakoke River colony, Yukon-Kuskokwim Delta, western Alaska, and detected in 27 breeding seasons (1988-2014) by three capture methods within each season: nest searches, tower and ground resighting of tarsal bands, and banding drives. The deposit is the R workspace of the paper's Bayesian robust-design model (survival and breeding probability with a lifetime carry-over effect of gosling tarsus length); here each season is three rows per female, one per capture method, y = detected. Females banded as goslings carry their tarsus length at about 30 days.",
+  "samplingProtocol": "Annual breeding-season capture-recapture of adult female brant: nest searches on the colony (May-June), resighting of individually coded plastic tarsal bands from towers and the ground (June-July), and banding drives of flightless adults with broods (July-August); goslings banded and measured (tarsus) at about 30 days.",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: three capture methods per breeding season; a female alive and breeding is available to all three; nonbreeders are temporary emigrants from the colony)",
+  "occasionCodes": {
+    "1": "nest searches (p_nest in the paper)",
+    "2": "tower and ground resighting of tarsal bands (p_tower)",
+    "3": "banding drives (p_banding)"
+  },
+  "geographicCoverage": "Tutakoke River colony, Yukon-Kuskokwim Delta, western Alaska, USA (about 61.25 N, 165.6 W); no coordinates deposited",
+  "temporalCoverage": "1988/2014",
+  "coordinatesCoarsened": null,
+  "notes": "Rows before a female's first detection are kept as 0 (E4); the paper's model conditions on first detection (object `first`), so drop rows before the first y = 1 to reproduce its data. Birds banded as adults (A) or second-years (S) have unknown hatch year; unit_gosling_tarsus_mm is available only for the 713 of 2,327 gosling-banded (L) birds that were measured, and the paper's standardised covariate sets it to 0 where missing. The deposit's secondary-occasion aggregates (yes, total) differ from a recomputation from the individual histories by 1-2 birds per cell. The tarsal-band code (unit_band_code) is reused across birds and is not a key.",
+  "notShipped": {
+    "master": "the raw banding database (42,057 x 1,016, metal band numbers)",
+    "age, age.band": "minimum-age indices derivable from banded_year and banded_age_class",
+    "zltar": "standardised gosling tarsus (derivable)",
+    "yes, total": "the authors' per-season secondary-occasion aggregates",
+    "ch (663 x 10), avail, estimate*, msrd, p1-p3": "simulation inputs and MCMC output"
+  },
+  "summary": {
+    "n_rows": 635445,
+    "n_units": 7845,
+    "n_taxa": 1,
+    "n_periods": 27,
+    "n_occasions": 3,
+    "n_surveys": 635445,
+    "y_values": "0,1",
+    "prop_zero": 0.956
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "unit_banded_year", "unit_banded_age_class", "unit_band_code", "unit_gosling_tarsus_mm"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/riecke_2018_tutakoke_brant_rd.R",
+  "buildDate": "2026-11-01"
+}

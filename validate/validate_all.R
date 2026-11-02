@@ -13,6 +13,9 @@ for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { so
 
 cmd <- sprintf("cd %s && python3 -m eco_validate.cli --json --irw %s", shQuote(ECO_ROOT), shQuote(OUT_DIR))
 out <- suppressWarnings(system(cmd, intern = TRUE))
+# irw-validate's PII screen prints a note to stdout before the JSON; keep from the opening bracket on
+start <- which(grepl("^\\s*\\[\\s*$", out) | grepl("^\\s*\\[\\s*\\{", out))
+if (length(start)) out <- out[start[1]:length(out)]
 j <- try(fromJSON(paste(out, collapse = "\n"), simplifyVector = FALSE), silent = TRUE)
 if (inherits(j, "try-error") || !length(j)) stop("eco-validate produced no parseable output:\n", paste(out, collapse = "\n"))
 

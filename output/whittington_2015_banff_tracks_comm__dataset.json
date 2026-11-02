@@ -1,0 +1,52 @@
+{
+  "table": "whittington_2015_banff_tracks_comm",
+  "title": "Snow-track detections of seven mammals on 1 km transect segments nested in 100 km2 cells, Banff National Park, winter 2011-12 (spatially and temporally replicated occupancy dataset)",
+  "creator": "Whittington, Jesse; Heuer, Karsten; Hunt, Barb; Hebblewhite, Mark; Lukacs, Paul M.",
+  "pubDate": "2014",
+  "doi": "10.5061/dryad.v4p20",
+  "sourceURL": "https://doi.org/10.5061/dryad.v4p20",
+  "paperDOI": "10.1111/acv.12140",
+  "citation": "Whittington, J., Heuer, K., Hunt, B., Hebblewhite, M., & Lukacs, P. M. (2014). Data from: Estimating occupancy using spatially and temporally replicated snow surveys [Data set]. Dryad. https://doi.org/10.5061/dryad.v4p20",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Snow-tracking surveys for cougar, coyote, deer, red fox, Canada lynx, moose and wolverine in Banff National Park between 19 November 2011 and 9 April 2012. Transects were walked on snow and split into 1 km segments; segments are nested in 100 km2 hexagonal cells, the occupancy unit of the paper, so segments are spatial replicates and repeat walks of a segment (266 segments once, 177 up to 14 times) are temporal replicates. Each row is one species on one segment on one date, with the number of days since the last snowfall (the track-accumulation window, which the authors set longer for ungulates than for carnivores), the segment's centre coordinates and its position along the transect. The authors fitted spatially replicated, Markovian-detection occupancy models to these data; the lag columns they derived from the detections are not shipped.",
+  "samplingProtocol": "Snow-track surveys on skis or foot along transects in Banff National Park, divided into 1 km segments (intervals); tracks identified to species and recorded as present or absent per segment; days since snowfall recorded per survey (longer window for ungulates). Segments nested in 100 km2 hexagonal cells; many segments resurveyed on later dates.",
+  "samplingProtocolCode": "snow_track",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period (one winter); the authors treat the 100 km2 cell as the occupancy unit and the segment as a spatial replicate, with a Markovian dependence between consecutive segments",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "The deposit is a long table with a 0 or 1 for every one of seven species at every surveyed segment-date (asserted: 872 segment-dates x 7); a segment-date not in the file was not surveyed.",
+  "temporalCoverage": "2011-11-19/2012-04-09",
+  "geographicCoverage": "Banff National Park, Alberta, Canada; 39 hexagonal 100 km2 cells, 43 transects (segment centres 50.6-52.0 N, 117.2-115.0 W)",
+  "crs": "EPSG:4326 (converted in-script from the deposited UTM NAD83 zone 11 segment centres, which are kept in __units)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "segment centres as deposited (UTM 11N -> WGS84, 5 dp); no taxon is IUCN CR/EN/VU (wolverine, lynx, cougar, coyote, red fox, moose, deer all LC) and the sites are inside a national park"
+  },
+  "designNote": "Experimental list of E9 (multi-scale occupancy): cluster_id = 100 km2 cell is the authors' occupancy unit (psi), unit = 1 km segment the spatial replicate, occasion = repeat walk of the segment (temporal replicate). A single-scale reading (unit = segment) is also valid. Transects cross up to four cells; unit_interval orders the segments along a transect for the authors' Markovian detection model, with unit_prev_segment_within_1500m flagging whether the previous segment is adjacent.",
+  "notes": "obs_days_snow differs between the carnivore and ungulate rows of the same survey (the authors aged ungulate tracks over a longer window); E5 allows obs_ covariates to vary across taxa within a survey. 'deer' is not resolved to species (genus Odocoileus); 'fox' is taken as red fox, the only fox in Banff. The README lists six species; the file has seven.",
+  "notShipped": {
+    "days.snow": "DaysSnow standardised within carnivores and ungulates; obs_days_snow is the raw value",
+    "y.lag, y.lag.i, y.seg, y.seg.lag": "the authors' lag indicators, deterministic functions of y and the segment order",
+    "use.lag": "whether the previous data record lies within 1.5 km; reconstructible from the coordinates and unit_interval (the segment-level use.seg.lag is shipped)"
+  },
+  "summary": {
+    "n_rows": 6104,
+    "n_units": 443,
+    "n_taxa": 7,
+    "n_periods": 1,
+    "n_occasions": 14,
+    "n_surveys": 872,
+    "y_values": "0,1",
+    "prop_zero": 0.888
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_transect", "unit_interval", "unit_prev_segment_within_1500m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_days_snow"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/whittington_2015_banff_tracks_comm.R",
+  "buildDate": "2026-11-01"
+}
