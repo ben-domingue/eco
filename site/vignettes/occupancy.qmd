@@ -572,6 +572,104 @@ leaves behind is the norm in field data, not a feature of one table. The
 remedies are the ones listed above, and the covariates to try are already in
 the tables' `unit_` and `obs_` columns.
 
+### One covariate everywhere: effort on $p$
+
+The null model's ĉ says the constant-$p$ assumption fails; the natural first
+covariate is the one every protocol records in some form, how hard the survey
+tried. Nine of the tables carry it: camera nights or days, minutes searched,
+the standardised survey intensity of the Swiss transects, trap-nights at a
+station. The units differ, so each is taken as standardised log effort (the
+two Kéry tables are standardised already) and the model becomes
+$\psi(\cdot)\,p(\text{effort})$. The slope is then the change in logit $p$ per
+standard deviation of log effort, a comparable number across protocols. The
+compute script fits it for every species in those nine tables, on the surveys
+with an effort value, and reruns the goodness-of-fit test.
+
+```{r}
+#| label: effort-load
+ef <- as.data.table(corpus$effort)
+ef <- merge(ef, f[, .(table, taxon, n_sites, J, naive, p_null = p, c_hat_null = c_hat,
+                      boundary, floor, taxon_group)], by = c("table", "taxon"))
+ef[, `:=`(lo = slope - 1.96 * slope_se, hi = slope + 1.96 * slope_se,
+          d_aic = aic_null - aic_effort)]
+ef[, significant := converged & lo > 0]
+ef[J > 10, c_hat_effort := NA]
+ok_e <- ef[converged & !boundary]
+```
+
+```{r}
+#| label: effort-table
+#| echo: false
+etab <- ok_e[, .(species = .N, effort = sub("^(obs|unit)_", "", effort_variable[1]),
+                 `median slope` = median(slope),
+                 `positive, CI excludes 0` = sprintf("%d / %d", sum(significant), .N),
+                 `median delta AIC` = median(d_aic),
+                 `median c-hat, null` = median(c_hat_null, na.rm = TRUE),
+                 `median c-hat, effort` = median(c_hat_effort, na.rm = TRUE)), by = table]
+setorder(etab, -species)
+knitr::kable(etab, digits = 2)
+```
+
+```{r}
+#| label: effort-stats
+#| echo: false
+n_e <- nrow(ok_e); n_pos <- sum(ok_e$slope > 0); n_sig <- sum(ok_e$significant)
+med_slope <- median(ok_e$slope)
+both <- ok_e[!is.na(c_hat_null) & !is.na(c_hat_effort)]
+share_improved <- mean(both$c_hat_effort < both$c_hat_null)
+share_near_one <- mean(both$c_hat_effort <= 1.5)
+```
+
+Of the `r n_e` species with a usable effort fit, `r n_pos` have a positive
+slope and `r n_sig` have an interval that excludes zero; the median slope is
+`r fmt(med_slope)` on the logit scale, so one standard deviation more
+searching raises the odds of a detection by about
+`r sprintf("%.0f%%", 100 * (exp(med_slope) - 1))`.
+
+```{r}
+#| label: fig-effort
+#| fig-cap: "The effort slope on logit p for every species, with 95% intervals, grouped by table. Filled points have an interval that excludes zero. Hover for the species."
+ok_e[, table_short := sub("_(comm|occ|count|ves|nmix|dynocc)$", "", table)]
+ok_e[, label := sprintf("%s\n%s\nslope %.2f (%.2f, %.2f)\np at mean effort %.2f\ndelta AIC %.1f%s",
+                        table, taxon, slope, lo, hi, p_at_mean, d_aic,
+                        ifelse(is.na(c_hat_effort), "", sprintf("\nc-hat %.1f -> %.1f", c_hat_null, c_hat_effort)))]
+setorder(ok_e, table, slope)
+ok_e[, row := seq_len(.N), by = table]
+g <- ggplot(ok_e, aes(slope, row, text = label)) +
+  geom_vline(xintercept = 0, colour = "#c9ccc8") +
+  geom_errorbarh(aes(xmin = pmax(lo, -4), xmax = pmin(hi, 4)), height = 0, colour = "#8a8c94", linewidth = 0.4) +
+  geom_point(aes(fill = significant), shape = 21, size = 1.8, colour = "#1e8a5a") +
+  scale_fill_manual(values = c(`TRUE` = "#1e8a5a", `FALSE` = "white"), guide = "none") +
+  facet_wrap(~ table_short, scales = "free_y", ncol = 3) +
+  coord_cartesian(xlim = c(-4, 4)) +
+  labs(x = "Effort slope on logit p (per SD of log effort)", y = NULL) +
+  theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank(),
+        strip.text = element_text(size = 9))
+plotly::ggplotly(g, tooltip = "text", width = 760, height = 700) |>
+  plotly::config(displayModeBar = FALSE)
+```
+
+Three things stand out. The sign is consistent but the strength is not: where
+effort varies a lot between surveys the slope is large and the fit improves
+sharply (the Hungarian pond searches, 3 to 114 minutes, with eight of nine
+species positive and clear of zero; the Arkansas cameras, 1 to 7 days, ten of
+twelve), while where it barely varies (the Los Lagos stations, 67 to 80
+trap-nights; the Chilean cameras, 2 to 5 nights) the slope is unidentified and
+the interval spans zero. The MHB community table is the instructive middle
+case: survey duration there runs from 105 to 420 minutes, yet the median
+slope is small and the AIC gain is nil, because the duration of an MHB survey
+is set by the length and terrain of the quadrat's route. Longer surveys cover
+more ground, not the same ground more thoroughly, so raw duration is a site
+property in disguise; the willow tit and mallard tables carry intensity,
+minutes per kilometre, which is the right effort variable and is why those
+scripts kept it. And one covariate does not fix the fit: ĉ falls for
+`r sprintf("%.0f%%", 100 * share_improved)` of the species where both tests
+ran, but only `r sprintf("%.0f%%", 100 * share_near_one)` end up at or below
+1.5, and the MHB median does not move. Most of the heterogeneity the null
+model's test detected lives elsewhere, in the site, the observer, or the
+abundance behind a collapsed count, which is where the `unit_` columns and a
+mixture on $p$ come in.
+
 ## Where this goes
 
 Everything above changes by one line in the state or observation process, and
