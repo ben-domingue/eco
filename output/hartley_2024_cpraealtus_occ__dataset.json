@@ -1,0 +1,46 @@
+{
+  "table": "hartley_2024_cpraealtus_occ",
+  "title": "Artificial-cover-tile surveys of the Alpine she-oak skink at 113 transects in the Australian Alps over four snow-free seasons, 2018-2022",
+  "creator": "Hartley, Renée; Blanchard, Wade; Clemann, Nick; Schroder, Mellesa; Schulz, Martin; Lindenmayer, David B.; Scheele, Ben C.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.bzkh189hx",
+  "sourceURL": "https://doi.org/10.5061/dryad.bzkh189hx",
+  "citation": "Hartley, R., Blanchard, W., Clemann, N., Schroder, M., Schulz, M., Lindenmayer, D. B., & Scheele, B. C. (2024). Rare but not lost: Endemic mountain lizard occupancy following mega-fire and grazing disturbances [Dataset]. Dryad. https://doi.org/10.5061/dryad.bzkh189hx",
+  "paperDOI": "10.1111/aec.13431",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the Alpine she-oak skink (Cyclodomorphus praealtus), an endangered endemic of the Australian Alps, in repeated checks of artificial cover-tile transects across four snow-free seasons (2018-19 to 2021-22) spanning the 2019-20 mega-fires, with survey-level air and under-tile temperatures and tile availability, and transect elevation, fire history and an index of grazing by introduced herbivores. The paper fit single-season occupancy models; occupancy was positively associated with grazing and not with fire or elevation.",
+  "samplingProtocol": "Transects of up to 10 artificial cover tiles checked repeatedly within each snow-free season; a survey records the tiles available (under 1/3 ant-occupied, not displaced, shattered or flooded), air and mean under-tile temperatures, and whether the skink was found. Protocol detail beyond the README is in the paper.",
+  "samplingProtocolCode": "cover_board",
+  "effortColumn": "obs_tiles_available",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "period (snow-free season; the paper fit single-season models per season)",
+  "geographicCoverage": "Australian Alps bioregion, south-eastern Australia (New South Wales, Victoria, ACT); no coordinates deposited",
+  "temporalCoverage": "2018-11-16/2022-04-10",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "UID": "row identifier",
+    "day": "day of the snow-free period, derivable from date"
+  },
+  "notes": "Eight siteIDs (TN01-TN08) each label two transects in the deposit (two elevations, with fire and grazing following elevation); they are split into units <siteID>_a (lower) and _b (higher), and unit_site_id keeps the deposited code. occasion is the survey's date order within transect x season; the deposited ObsNo (obs_survey_no) is not chronological. unit_burnt_2019_20 is the deposit's fire flag, constant across seasons including the pre-fire 2018-19 season. The paper reports 2,045 surveys at 120 sites; the deposit has 1,404 surveys at 113 transects. obs_temp_diff is as deposited (an interaction term the authors computed; its components are not deposited).",
+  "summary": {
+    "n_rows": 1404,
+    "n_units": 113,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 8,
+    "n_surveys": 1404,
+    "y_values": "0,1",
+    "prop_zero": 0.901
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site_id", "unit_elevation_m", "unit_burnt_2019_20", "unit_grazing_index", "obs_time_hhmm", "obs_air_temp_c", "obs_tiles_available", "obs_tile_temp_mean_c", "obs_temp_diff", "obs_survey_no"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hartley_2024_cpraealtus_occ.R",
+  "buildDate": "2026-11-02"
+}
