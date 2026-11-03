@@ -164,7 +164,9 @@ eco_to_array <- function(long, site_ids = NULL, taxa = NULL, drop_species = TRUE
     taxon_covs <- as.data.frame(taxon_covs[, ic_names, with = FALSE])
     names(taxon_covs) <- sub("^taxon_", "", ic_names)
   }
-  if (drop_species && K == 1) y <- y[, , 1, drop = TRUE]
+  # Drop only the taxon dimension: y[, , 1, drop = TRUE] would also drop a
+  # single occasion (or a single unit) and return a vector (#33).
+  if (drop_species && K == 1) y <- matrix(y[, , 1], M, J, dimnames = list(site_ids, NULL))
   list(y = y, site_ids = site_ids, taxa = taxa, period = cols$period,
        occasion = cols$occasion, obs_covs = obs_covs, site_covs = site_covs,
        period_covs = period_covs, taxon_covs = taxon_covs)
@@ -450,6 +452,9 @@ eco_to_unmarked <- function(long, family = NULL, ...) {
     message("eco_to_unmarked: family = \"", family, "\" (pass family= to override)")
   }
   if (family == "mpois") return(eco_to_mpois(long, ...))
+  if (family == "occu" && "occasion" %in% names(long) && uniqueN(long$occasion) == 1)
+    warning("eco_to_unmarked: one occasion per unit; occu() cannot separate psi from p ",
+            "without repeat surveys (the frame is built, but only psi*p is identified)", call. = FALSE)
   eco_to_umf(long, type = family, ...)
 }
 

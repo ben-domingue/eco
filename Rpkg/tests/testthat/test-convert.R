@@ -106,3 +106,18 @@ test_that("array_to_eco() refuses covariate names that already carry the prefix 
   expect_error(array_to_eco(y, obs_covs = list(obs_eff = matrix(1, 2, 2))), "already carry")
   expect_true("unit_sex" %in% names(array_to_eco(y, site_covs = data.frame(sex = 1:2))))
 })
+
+test_that("one taxon and one occasion gives an M x 1 matrix, not a vector (#33)", {
+  s <- data.table::data.table(unit = 1:4, taxon = "A", y = c(0, 1, 0, 1), occasion = 1L, obs_effort = 1:4)
+  a <- eco_to_array(s)
+  expect_true(is.matrix(a$y))
+  expect_equal(dim(a$y), c(4L, 1L))
+  expect_equal(unname(a$y[, 1]), c(0, 1, 0, 1))
+  one <- s[1]                                   # a single unit: 1 x 1, still a matrix
+  expect_equal(dim(eco_to_array(one)$y), c(1L, 1L))
+  skip_if_not_installed("unmarked")
+  expect_warning(umf <- eco_to_unmarked(s, family = "occu"), "one occasion")
+  expect_s4_class(umf, "unmarkedFrameOccu")
+  expect_equal(dim(unmarked::getY(umf)), c(4L, 1L))
+  expect_s4_class(eco_to_umf(s, "occu"), "unmarkedFrameOccu")
+})
