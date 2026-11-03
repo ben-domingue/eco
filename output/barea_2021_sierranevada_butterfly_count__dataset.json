@@ -1,0 +1,59 @@
+{
+  "table": "barea_2021_sierranevada_butterfly_count",
+  "title": "Pollard-walk counts of 102 butterfly species on 22 transects of the Sierra Nevada Global-Change Observatory, Spain, 2008-2020",
+  "creator": "Barea-Azcón, José Miguel; Ros Candeira, Andrea",
+  "pubDate": "2021-12-17",
+  "sourceURL": "https://doi.org/10.15470/tc3gdq",
+  "citation": "Barea-Azcón J M (2021). Dataset of butterfly monitoring in Sierra Nevada (Spain). Version 1.2. Sierra Nevada Global-Change Observatory (UGR-JA). Sampling event dataset. https://doi.org/10.15470/tc3gdq (CC BY 4.0).",
+  "dataDOI": "10.15470/tc3gdq",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Butterfly line transects of the Sierra Nevada Global-Change Observatory (Andalusia, Spain): 22 transects from 700 to 3,100 m a.s.l. in high-mountain grassland and scrub, oak and pine forest, pastures and wetlands, walked about every two weeks from March to October, 2008-2020 (none in 2011). 1,725 walks, 109 with no butterfly; counts summed over the sections of a walk; 102 species.",
+  "samplingProtocol": "Pollard & Yates line transect: every butterfly within 5 m to each side and 5 m ahead and above counted per section, netted and released where identification needed it; walks in suitable weather; transects 300-3,270 m (mean 1,900 m).",
+  "samplingProtocolCode": "transect_count",
+  "occasionLength": "one transect walk (start and end time in obs_start_time / obs_end_time)",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "Every walk is a parent event in event.txt (1,725), including 109 with no section event and no occurrence (walks with no butterfly); section events exist only where a butterfly was counted, and every occurrence belongs to a section of a listed walk.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "not assumed: walks every two weeks from March to October follow each species' flight period; period = calendar year",
+  "geographicCoverage": {
+    "description": "Sierra Nevada National and Natural Park, Granada and Almería, Spain (22 transects, 700-3,100 m a.s.l.)",
+    "boundingBox": {
+      "west": -3.65,
+      "east": -2.95,
+      "south": 36.95,
+      "north": 37.15
+    }
+  },
+  "temporalCoverage": "2008-07-07/2020-03-08",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "0.1 degree cell centres (coarsen_coords) for every transect, because Carcharodus baeticus, Polyommatus golgus (IUCN VU, EN per GBIF) occur in the table"
+  },
+  "notShipped": {
+    "section counts": "summed over the sections of each walk into y; empty sections have no event and the section count per transect is not stated",
+    "records to genus or family": "1,239 genus-level and 276 family-level records of butterflies not identified to species; the species zeros at those walks stay as recorded",
+    "infraspecificEpithet": "Coenonympha pamphilus lyllus (500 records), merged into Coenonympha pamphilus",
+    "recordedBy": "observer names, replaced by pseudonymous team ids",
+    "footprintWKT": "route geometry of each transect, finer than the published centroid"
+  },
+  "summary": {
+    "n_rows": 175950,
+    "n_units": 22,
+    "n_taxa": 102,
+    "n_periods": 12,
+    "n_occasions": 21,
+    "n_surveys": 1725,
+    "y_values": "0-500 (171 distinct)",
+    "prop_zero": 0.929
+  },
+  "sampleFloor": "below (22 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_n_observers", "obs_start_time", "obs_end_time", "obs_wind_beaufort", "obs_cloud_cover_pct", "obs_temperature_c"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/barea_2021_sierranevada_butterfly_count.R",
+  "buildDate": "2026-11-03"
+}

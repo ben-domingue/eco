@@ -839,3 +839,41 @@ What this batch says about the standard:
   `notShipped`. A `taxon_` flag or `__taxa` note column would serve.
 - **IRW view quirk:** irw-validate's `date_range` reads pre-1970 dates as negative Unix seconds
   (Wijster); a checker quirk, not a table defect.
+
+## Batch 18 — 2026-11-03 (photo-ID robust design, marked-orchid multistate, Pollard walks, carabid emergence)
+
+Six queue rows, built by two forks in `~/eco-b18` (branch `batch18`). Ten tables from six
+deposits; nothing held. All pass `eco-validate --irw` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| arsocivil_2019_scotland_dolphin_rd | robust design CR, photo-ID | Dryad CC0 | 26,855 | 205 bottlenose dolphins x 27 summer seasons (1989-2015) x 3-5 monthly occasions; the deposited multistate file is the same histories pooled by season with a U/F/M sex label, rebuilt exactly by assertion and carried as `unit_sex` + `unit_sexed_period`, not a second table; adults-only file is the authors' subset (`notShipped`) |
+| arsocivil_2019_scotland_dolphincalf_cjs | CJS, photo-ID | Dryad CC0 | 1,456 | 56 calves x 26 years; two MARK group columns shipped as `g1`/`g2` unlabelled (paper: first-born vs subsequent calves, not mapped in the deposit) |
+| cleavitt_2017_hbef_plamac_ms | multistate CJS, marked plants | DataONE LTER CC BY 4.0 | 816 | Platanthera macrophylla, 218 flagged plants x 5 years; state 0-4; code 11 (flag lost) censors (no rows after); 3 plant-years coded 5 (undefined in the EML) get no row; underground / presumed dead are source inferences, `y = 0` with code in `y_raw` |
+| cleavitt_2017_hbef_plaorb_ms | multistate CJS, marked plants | DataONE LTER CC BY 4.0 | 840 | P. orbiculata, 241 plants; sibling (one census, split by ruling #20) |
+| work_2026_ocala_odonates_comm | community occupancy | Dataverse CC0 | 2,880 | adult odonates by aerial net, 16 ponds x 45 species x 2 years x 2 visits; Libellula jesseana VU and Florida-endemic, so pond coordinates coarsened; six spellings corrected (`taxon_sourceName`); description says 2021 + 2023, sheets say 2022 + 2023 (sheets followed); below floor |
+| work_2026_ocala_odonatenymphs_count | community counts | Dataverse CC0 | 2,880 | nymphs by dipnet, same ponds and visits; sibling; below floor |
+| peer_2014_bmsil_butterfly_count | Pollard-walk community counts | GBIF CC0 | 149,526 | Israeli BMS: 39 transects x 81 species x 7 seasons (from 1 October) x up to 27 walks; section events exist only where something was seen, so sections summed to the walk (as the EML advises); empty walks are explicit `s00` events (`row_presence`), one duplicated empty walk collapsed; volunteer names pseudonymised; impossible temperatures set NA |
+| barea_2021_sierranevada_butterfly_count | Pollard-walk community counts | GBIF CC BY 4.0 | 175,950 | 22 transects x 102 species x 12 years (none 2011) x up to 21 walks; every walk is a parent event, 109 with no butterfly; Polyommatus golgus (EN, endemic) and Carcharodus baeticus (VU) so transects coarsened to 0.1 degree; below floor |
+| peters_2026_carabid_pitfall_count | community pitfall counts | Zenodo CC BY 4.0 | 224,110 | Belgian sugar beet / cereal plots 2023-24: 300 pitfalls (`cluster_id` = plot) x 73 species; `Etat = ok` rows are the surveys; two week codes mistyped (asserted); 31 all-zero template species not shipped; period letters A/J/G read as April/July/October (inferred; check) |
+| peters_2026_carabid_emergence_count | community emergence-tent counts | Zenodo CC BY 4.0 | 111,617 | 185 tents, same species; split from the pitfalls (emergence vs activity-density); one script builds both (`data/peters_2026_carabid_count.R`) |
+
+What this batch says about the standard:
+
+- **Coarsening coordinates leaves other locators.** Sierra Nevada ships `unit_locality` and
+  min/max elevation per transect, which with a 0.1 degree cell nearly re-identifies it. E7 speaks
+  only of coordinates. Question for Ben: should E7 coarsening extend to locality names and
+  elevation for flagged-taxon tables? (The source itself publishes all of it on GBIF.)
+- **Pollard-walk archives record a section only when something was seen** (both GBIF schemes):
+  section zeros need a stated section count; BMS-IL's stated count is exceeded by 94 events. Walk
+  level is the safe unit; a guide sentence.
+- **Lost marks are censoring, not death** (orchid code 11); E4 consequence 4 names removal, not
+  lost marks. **Undefined source codes get no row**, not a guessed state. Two guide sentences.
+- **Recode detection by exact rebuild** (dolphin multistate file = pooled RD histories): a stated
+  rule for multi-file deposits would help.
+- **Ruling #20 splits one census** (two orchid species, one flagging census); `components` again,
+  also for pitfall / emergence and adults / nymphs.
+- **Template taxa lists**: all-zero checklist species dropped; `taxonInclusionRule` would make the
+  cut visible (also asked in batch 13). **Genus- or family-level records beside species zeros**
+  (an unidentified "Pieridae" at a walk) may make some species zeros misses; no field for it.
+- **Unexplained period codes** (carabid A/J/G) inferred from the record description.

@@ -175,6 +175,15 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `leone_2019_minnesota_monarch_nmix.R` | N-mixture repeated counts (monarch adults) | ScienceBase (USGS) | public domain |
 | `stallings_2025_gulfreefs_count.R` | community repeated counts, reef fish diver counts, coarsened coordinates | Zenodo | CC BY 4.0 |
 | `vanklink_2025_wijster_carabid_count.R` | community pitfall counts, trap x collection, with effort | GBIF (NLBIF) | CC0 |
+| `arsocivil_2019_scotland_dolphin_rd.R` | robust design capture-recapture, photo-ID, sex as unit covariate | Dryad | CC0 |
+| `arsocivil_2019_scotland_dolphincalf_cjs.R` | CJS, photo-ID calves | Dryad | CC0 |
+| `cleavitt_2017_hbef_plamac_ms.R` | multistate CJS, marked orchids, lost flags censor | DataONE (LTER) | CC BY 4.0 |
+| `cleavitt_2017_hbef_plaorb_ms.R` | multistate CJS, marked orchids (sibling) | DataONE (LTER) | CC BY 4.0 |
+| `work_2026_ocala_odonates_comm.R` | community occupancy, adult odonates by aerial net, coarsened coordinates | Dataverse | CC0 |
+| `work_2026_ocala_odonatenymphs_count.R` | community counts, odonate nymphs by dipnet (sibling) | Dataverse | CC0 |
+| `peer_2014_bmsil_butterfly_count.R` | Pollard-walk community counts, sections summed to the walk | GBIF | CC0 |
+| `barea_2021_sierranevada_butterfly_count.R` | Pollard-walk community counts, coarsened coordinates | GBIF | CC BY 4.0 |
+| `peters_2026_carabid_count.R` | community counts: pitfalls and emergence tents, two tables | Zenodo | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
