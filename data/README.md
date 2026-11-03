@@ -188,6 +188,11 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `mcknight_2019_kittiwake_ms.R` | multistate CR, two analysis sets (fledglings, recruits), two tables | Dryad | CC0 |
 | `koester_2023_aldabra_reeffish_count.R` | community counts, reef fish UVC belt transects, two methods, two tables, inferred survey set | figshare | CC BY 4.0 |
 | `bradferlawrence_2025_ukwood_comm.R` | community occupancy, four taxa groups in UK woods (beetles, birds, mammals, plants), four tables | Zenodo | CC BY 4.0 |
+| `nowicki_2019_sharkbay_count.R` | repeated boat-transect counts, marine megafauna, three tables by per-taxon survey set | Dryad | CC0 |
+| `symons_2018_bunbury_dolphin.R` | robust design photo-ID, plus female/calf multistate robust design | Dryad | CC0 |
+| `fabritius_2015_fritillary_cjs.R` | CJS from daily MRR with searched-area effort, three populations | Dryad | CC0 |
+| `maihoff_2023_berchtesgaden_bees_count.R` | community counts, wild bee transect walks, 2009 vs 2019 | Dryad | CC0 |
+| `johnson_2023_tweedsmuir_bombus_count.R` | community counts, bumble bee vane traps, postfire | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

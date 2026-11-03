@@ -1,0 +1,50 @@
+{
+  "table": "symons_2018_bunbury_femalecalf_msrd",
+  "creator": "Symons, John; Sprogis, Kate R.; Bejder, Lars",
+  "pubDate": "2019-05-30",
+  "sourceURL": "https://doi.org/10.5061/dryad.6381477",
+  "citation": "Symons, J., Sprogis, K. R. & Bejder, L. (2018). Implications of survey effort on estimating demographic parameters of a long-lived marine top predator. Ecology and Evolution 8(21), 10470-10481. https://doi.org/10.1002/ece3.4512. Data: Dryad https://doi.org/10.5061/dryad.6381477 (CC0).",
+  "paperDOI": "10.1002/ece3.4512",
+  "dataDOI": "10.5061/dryad.6381477",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Boat-based photo-identification along three systematic zig-zag transects covering a 120 km2 coastal study area off Bunbury, Western Australia, in Beaufort <= 3 with two to five observers scanning about 250 m either side; every dolphin in an encountered group photographed for dorsal-fin identification; only distinctive fins in high-quality images enter the histories. Completing the three transects is one secondary period (1-12 days); six per austral season.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: secondary periods within an austral season, assumed closed; open between seasons, with Markovian temporary emigration in the paper's models)",
+  "geographicCoverage": "Coastal waters off Bunbury, south-western Australia (about 33.3 S, 115.6 E; 50 km of coast, 2 km offshore); no coordinates deposited",
+  "temporalCoverage": "2009-12/2012-11",
+  "coordinatesCoarsened": null,
+  "title": "Robust-design sighting histories of 91 female Indo-Pacific bottlenose dolphins with and without dependent calves, Bunbury, Western Australia, 2009-2012",
+  "abstract": "Sighting histories of the reproductively active females of the Bunbury study, with each photograph coded by whether the female's dependent calf was present: 40 calving events (4, 17 and 19 new calves in study years 1-3), used in the paper to show how fewer secondary periods leave calves undocumented in their birth year.",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not photographed in the secondary period",
+    "1": "photographed without a dependent calf",
+    "2": "photographed with her dependent calf (obs_calf_code names the calf)"
+  },
+  "notes": "Female ids are the deposit's female0..female99 and do not link to the dolphin ids of symons_2018_bunbury_dolphin_rd; the female sightings are a separate selection (10 of the 91 sighted females match no history in the capture-history file). obs_date_sighted is the photograph date; secondary periods span 1-12 days, so unphotographed rows carry no date.",
+  "notShipped": {
+    "9 females never photographed": "known females with no sighting in the subsample",
+    "datesighted1, calfsightingdates": "identical copies of datesighted (asserted)"
+  },
+  "summary": {
+    "n_rows": 6552,
+    "n_units": 91,
+    "n_taxa": 1,
+    "n_periods": 12,
+    "n_occasions": 6,
+    "n_surveys": 6552,
+    "y_values": "0,1,2",
+    "prop_zero": 0.812
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_calf_code", "obs_date_sighted"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/symons_2018_bunbury_dolphin.R",
+  "buildDate": "2026-11-03"
+}

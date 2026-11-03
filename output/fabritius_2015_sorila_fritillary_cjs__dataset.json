@@ -1,0 +1,51 @@
+{
+  "table": "fabritius_2015_sorila_fritillary_cjs",
+  "title": "Daily mark-release-recapture histories of 251 false heath fritillaries (Melitaea diamina) in 112 search areas, Sorila, Finland, 2006",
+  "creator": "Cabeza, Mar; Fabritius, Henna; Lehtomaki, Joona; Ovaskainen, Otso; Ronka, Katja; Wahlberg, Niklas",
+  "pubDate": "2016-01-27",
+  "doi": "10.5061/dryad.j54vv",
+  "sourceURL": "https://doi.org/10.5061/dryad.j54vv",
+  "citation": "Cabeza, M., Fabritius, H., Lehtomaki, J., Ovaskainen, O., Ronka, K., & Wahlberg, N. (2016). Data from: The dual role of rivers in facilitating or hindering movements of the false heath fritillary butterfly [Dataset]. Dryad. https://doi.org/10.5061/dryad.j54vv",
+  "paperDOI": "10.1186/s40462-015-0031-z",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Mark-release-recapture of the endangered false heath fritillary in its Sorila population (Pirkanmaa, 2006; coordinator Mar Cabeza, Otso Ovaskainen), one of three Finnish populations (two inland reference populations and a riparian population on the coast) compared in Fabritius et al. (2015) with habitat-specific diffusion models of movement. Butterflies were netted, individually marked and released in mapped search areas; each day a subset of the areas was searched and the area of every capture recorded. The paper estimates movement and mortality parameters per habitat type with Mapper / Disperse (Ovaskainen et al. 2008).",
+  "samplingProtocol": "Daily searches of mapped search areas (112 areas in Sorila) during the flight season; captured butterflies marked individually and released; the searched areas recorded each day (effort file) and the area of each capture or recapture. Males and females recorded separately.",
+  "samplingProtocolCode": "net_mark_recapture",
+  "occasionLength": "one search day",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The deposited effort file lists, for each of the 14 search days, which of the 112 areas were searched; 14 days had a search and are the periods. Every capture lies on a searched area-day. Rows exist for every marked butterfly on every searched day; __periods lists the areas searched that day, so area-level non-detections can be rebuilt with obs_capture_area.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one search day; survival, emigration and movement between days)",
+  "lossesOnCapture": "none recorded",
+  "geographicCoverage": "Sorila, Pirkanmaa, Finland (0.1-degree cell centre 61.55 N, 23.85 E); search-area shapefiles in the deposit are shifted for landowner privacy",
+  "temporalCoverage": "2006",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "No coordinates in the table: the deposit's search-area coordinates are shifted by the authors for landowner privacy. The README's approximate population position is given in geographicCoverage as a 0.1-degree cell centre (coarsen_coords), because the source calls the species endangered (E7 a)."
+  },
+  "notShipped": {
+    "shapefiles": "search-area and habitat-classification polygons (ESRI shapefiles), shifted from the true location by the authors; area ids in obs_capture_area and period_areas_searched match their MR_ID field",
+    "Mapper-format files": "data/<pop>/*.txt, the same effort and capture matrices in wide form (asserted identical)"
+  },
+  "notes": "Population Sorila of three in the deposit (Siitama, Sorila, Merikarvia; separate tables, different years and landscapes). Counts differ slightly from the README (156 (76) males, 95 (29) females): shipped as deposited, recaptured = captured on two or more days. Unit ids are sex + the deposit's id (ids restart per sex). period is the deposit's day number; days with no search are absent. No calendar dates are deposited.",
+  "summary": {
+    "n_rows": 3514,
+    "n_units": 251,
+    "n_taxa": 1,
+    "n_periods": 14,
+    "n_occasions": 1,
+    "n_surveys": 3514,
+    "y_values": "0,1",
+    "prop_zero": 0.883
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_capture_area"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fabritius_2015_fritillary_cjs.R",
+  "buildDate": "2026-11-03"
+}

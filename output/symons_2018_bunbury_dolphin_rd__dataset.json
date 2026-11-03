@@ -1,0 +1,45 @@
+{
+  "table": "symons_2018_bunbury_dolphin_rd",
+  "creator": "Symons, John; Sprogis, Kate R.; Bejder, Lars",
+  "pubDate": "2019-05-30",
+  "sourceURL": "https://doi.org/10.5061/dryad.6381477",
+  "citation": "Symons, J., Sprogis, K. R. & Bejder, L. (2018). Implications of survey effort on estimating demographic parameters of a long-lived marine top predator. Ecology and Evolution 8(21), 10470-10481. https://doi.org/10.1002/ece3.4512. Data: Dryad https://doi.org/10.5061/dryad.6381477 (CC0).",
+  "paperDOI": "10.1002/ece3.4512",
+  "dataDOI": "10.5061/dryad.6381477",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Boat-based photo-identification along three systematic zig-zag transects covering a 120 km2 coastal study area off Bunbury, Western Australia, in Beaufort <= 3 with two to five observers scanning about 250 m either side; every dolphin in an encountered group photographed for dorsal-fin identification; only distinctive fins in high-quality images enter the histories. Completing the three transects is one secondary period (1-12 days); six per austral season.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: secondary periods within an austral season, assumed closed; open between seasons, with Markovian temporary emigration in the paper's models)",
+  "geographicCoverage": "Coastal waters off Bunbury, south-western Australia (about 33.3 S, 115.6 E; 50 km of coast, 2 km offshore); no coordinates deposited",
+  "temporalCoverage": "2009-12/2012-11",
+  "coordinatesCoarsened": null,
+  "title": "Robust-design photo-identification histories of 201 Indo-Pacific bottlenose dolphins off Bunbury, Western Australia, 12 seasons x 6 secondary periods, 2009-2012",
+  "abstract": "Three-year subsample (December 2009 - November 2012) of the Bunbury long-term dolphin monitoring programme: 201 distinctively marked Indo-Pacific bottlenose dolphins photographed in 72 secondary periods (six per austral season), the data the paper used to show how reducing secondary periods inflates the CV of abundance and delays trend detection.",
+  "responseType": "detection",
+  "notes": "Dolphin ids are dryad1 row numbers (no catalogue ids deposited). Occasions before a dolphin's first sighting are kept as 0 (E4). The paper's survey-effort simulations (removing secondary periods) are analyses of this table, not data.",
+  "notShipped": {
+    "dryad1.txt rows of zeros": "28 catalogue dolphins with no photograph in the subsample (the paper documents 201)",
+    "dryad2.txt": "shipped as symons_2018_bunbury_femalecalf_msrd"
+  },
+  "summary": {
+    "n_rows": 14472,
+    "n_units": 201,
+    "n_taxa": 1,
+    "n_periods": 12,
+    "n_occasions": 6,
+    "n_surveys": 14472,
+    "y_values": "0,1",
+    "prop_zero": 0.838
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/symons_2018_bunbury_dolphin.R",
+  "buildDate": "2026-11-03"
+}
