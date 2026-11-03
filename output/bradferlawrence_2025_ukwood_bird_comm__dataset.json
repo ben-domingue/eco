@@ -1,0 +1,59 @@
+{
+  "table": "bradferlawrence_2025_ukwood_bird_comm",
+  "creator": "Bradfer-Lawrence, Tom; Dobson, Andrew; Finch, Tom; et al.",
+  "pubDate": "2025-02-28",
+  "sourceURL": "https://doi.org/10.5281/zenodo.14946190",
+  "citation": "Bradfer-Lawrence, T., Dobson, A., Finch, T., et al. (2025). Data and code for \"Spillovers and legacies of land management on temperate woodland biodiversity\". Zenodo, version 1. https://doi.org/10.5281/zenodo.14946190 (CC BY 4.0).",
+  "dataDOI": "10.5281/zenodo.14946190",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "responseType": "detection",
+  "unitKind": "site",
+  "crs": "EPSG:27700",
+  "geographicCoverage": {
+    "description": "Woodland patches (10 to > 250 years old) in agricultural landscapes in England and Scotland, United Kingdom",
+    "boundingBox": {
+      "west": -4.9,
+      "east": 1.2,
+      "south": 52.4,
+      "north": 57
+    }
+  },
+  "title": "Bird detections (54 species) on three repeat surveys at 125 UK farmland woodlands, 2015 and 2017",
+  "abstract": "Presence / absence of 54 bird species on up to three repeat surveys at each of 125 woodland patches of known age in agricultural landscapes in England and Scotland (79 sites in 2015, 46 in 2017), from a study of spatial spillovers and temporal legacies of land use on woodland biodiversity.",
+  "samplingProtocol": "Repeat bird surveys of each woodland patch (three visits per site, surveyor recorded; the survey method is described in the paper, not the deposit); species scored present / absent per visit.",
+  "samplingProtocolCode": "bird_survey",
+  "occasionLength": "one survey visit",
+  "closure": "occasion within site (three visits in one breeding season); each site is surveyed in one year only",
+  "temporalCoverage": "2015-04-06/2017-06-15",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The Birds sheet is a full site x survey x species matrix; 47 surveys are NA for every species and have no date or surveyor (not carried out) and have no rows. No other NA.",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As deposited (British National Grid, EPSG:27700, metres); no taxon in this table is IUCN CR, EN or VU and the source flags none"
+  },
+  "notShipped": {
+    "Unused_predictors": "road density, urban proportion, cropland ratio and livestock density at five dates: predictors the authors did not use (kept in the deposit)",
+    "Landscape_composition": "woodland and arable proportions in five radii (1-3 km) around each site (kept in the deposit)",
+    "Code_for_NATECOLEVOL-24030739B.R": "the authors' spOccupancy model code",
+    "47 NA surveys": "visits not carried out (NA for every species, no date, no surveyor)"
+  },
+  "summary": {
+    "n_rows": 17712,
+    "n_units": 125,
+    "n_taxa": 54,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 328,
+    "y_values": "0,1",
+    "prop_zero": 0.797
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_survey_year", "unit_country", "unit_age_years", "unit_area_ha", "unit_shape_index", "unit_structure_sd_dbh", "unit_current_woodland_prop_3km", "unit_old_woodland_prop_3km", "unit_lost_woodland_prop_3km", "unit_trees_outside_woodland_prop_3km", "unit_arable_prop_3km", "unit_livestock_density_3km", "unit_x", "unit_y", "unit_coordinateUncertaintyInMeters"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bradferlawrence_2025_ukwood_comm.R",
+  "buildDate": "2026-11-03"
+}

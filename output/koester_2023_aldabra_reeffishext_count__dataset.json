@@ -1,0 +1,54 @@
+{
+  "table": "koester_2023_aldabra_reeffishext_count",
+  "creator": "Koester, Anna; A'Bear, Luke; Bielsa, Maria; Burt, April Jasmine; Chong-Seng, Karen; Haupt, Philip; et al.; Seychelles Islands Foundation",
+  "pubDate": "2026-02-19",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.22792580.v3",
+  "citation": "Koester, A., A'Bear, L., Bielsa, M., Burt, A. J., Chong-Seng, K., Haupt, P., et al. (2023). Reef fish abundance, size and biomass from Aldabra Atoll (Seychelles) between 2014 and 2021 collected by the Seychelles Islands Foundation. figshare, version 3. https://doi.org/10.6084/m9.figshare.22792580.v3 (CC BY 4.0; data owned by the Seychelles Islands Foundation, which must be cited). Paper: Koester et al. (2023), Frontiers in Marine Science 10, 1230717, https://doi.org/10.3389/fmars.2023.1230717.",
+  "paperDOI": "10.3389/fmars.2023.1230717",
+  "dataDOI": "10.6084/m9.figshare.22792580.v3",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "samplingProtocolCode": "visual_census",
+  "occasionLength": "one 50 x 4 m belt transect (200 m2)",
+  "surveyEvidence": "inferred",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion within period: the one to three replicate transects of a site x depth are surveyed in the same dive, 10 m apart (spatial replicates); open between annual seasons",
+  "geographicCoverage": {
+    "description": "Aldabra Atoll, Seychelles, western Indian Ocean: nine seaward-reef sites (5 m and 15 m) and three lagoon sites (2 m)",
+    "boundingBox": {
+      "west": 46.15,
+      "east": 46.55,
+      "south": -9.55,
+      "north": -9.35
+    }
+  },
+  "coordinatesCoarsened": null,
+  "title": "All-fish belt-transect counts at Aldabra Atoll (Seychelles), extended surveys of 2015 and 2020",
+  "abstract": "Seychelles Islands Foundation Aldabra Reef Monitoring, extended surveys: every diurnally active reef-associated fish of 8 cm or more identified (198 taxa), counted and sized to the cm on one to three 50 x 4 m belt transects per site and depth, in the 2015 (just before the 2016 bleaching) and 2020 survey seasons.",
+  "samplingProtocol": "Belt-transect underwater visual census (50 x 4 m) by one experienced, extensively trained surveyor per season; all diurnally active reef-associated fishes counted, lengths estimated to the nearest cm for fish of 8 cm and more (smaller fish are not in the deposit).",
+  "temporalCoverage": "2015-01-19/2020-12-30",
+  "surveyEvidenceNote": "The deposit lists fish records only. A transect is taken as surveyed in a season iff it has at least one record (84 transect-seasons; minimum 2 records). Every fish of 8 cm or more is counted, so a taxon of the 198 without a record on a surveyed transect is a zero.",
+  "notShipped": {
+    "Actual_size, Size_Class, Median_size_class": "length of each counted fish (y sums them)",
+    "Biomass_g": "derived from length by published length-weight constants (FishBase)"
+  },
+  "summary": {
+    "n_rows": 16632,
+    "n_units": 21,
+    "n_taxa": 198,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 84,
+    "y_values": "0-341 (37 distinct)",
+    "prop_zero": 0.885
+  },
+  "sampleFloor": "below (21 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_depth_m", "unit_reef_zone"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/koester_2023_aldabra_reeffish_count.R",
+  "buildDate": "2026-11-03"
+}

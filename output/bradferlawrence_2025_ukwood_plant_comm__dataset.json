@@ -1,0 +1,58 @@
+{
+  "table": "bradferlawrence_2025_ukwood_plant_comm",
+  "creator": "Bradfer-Lawrence, Tom; Dobson, Andrew; Finch, Tom; et al.",
+  "pubDate": "2025-02-28",
+  "sourceURL": "https://doi.org/10.5281/zenodo.14946190",
+  "citation": "Bradfer-Lawrence, T., Dobson, A., Finch, T., et al. (2025). Data and code for \"Spillovers and legacies of land management on temperate woodland biodiversity\". Zenodo, version 1. https://doi.org/10.5281/zenodo.14946190 (CC BY 4.0).",
+  "dataDOI": "10.5281/zenodo.14946190",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "responseType": "detection",
+  "unitKind": "site",
+  "crs": "EPSG:27700",
+  "geographicCoverage": {
+    "description": "Woodland patches (10 to > 250 years old) in agricultural landscapes in England and Scotland, United Kingdom",
+    "boundingBox": {
+      "west": -4.9,
+      "east": 1.2,
+      "south": 52.4,
+      "north": 57
+    }
+  },
+  "title": "Vascular plant presence / absence (200 species) in one survey of each of 129 UK farmland woodlands",
+  "abstract": "Presence / absence of 200 vascular plant species recorded in a single survey of each of 129 woodland patches of known age in agricultural landscapes in England and Scotland, from a study of spatial spillovers and temporal legacies of land use on woodland biodiversity. One visit per site: detection is not estimable from this table alone.",
+  "samplingProtocol": "One botanical survey per woodland patch; species scored present / absent (survey year and date not in the deposit).",
+  "samplingProtocolCode": "botanical_survey",
+  "occasionLength": "one survey",
+  "closure": "single visit per site (no replication)",
+  "temporalCoverage": "2013/2017",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The Plants sheet is a complete site x species matrix with no NA; one survey per site. The survey year is not deposited; temporalCoverage is the study's span (2013-2017).",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As deposited (British National Grid, EPSG:27700, metres); no taxon in this table is IUCN CR, EN or VU and the source flags none"
+  },
+  "notShipped": {
+    "Unused_predictors": "road density, urban proportion, cropland ratio and livestock density at five dates: predictors the authors did not use (kept in the deposit)",
+    "Landscape_composition": "woodland and arable proportions in five radii (1-3 km) around each site (kept in the deposit)",
+    "Code_for_NATECOLEVOL-24030739B.R": "the authors' spOccupancy model code"
+  },
+  "summary": {
+    "n_rows": 25800,
+    "n_units": 129,
+    "n_taxa": 200,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 129,
+    "y_values": "0,1",
+    "prop_zero": 0.864
+  },
+  "sampleFloor": "below (no replication)",
+  "columns": ["unit", "taxon", "y", "unit_country", "unit_age_years", "unit_area_ha", "unit_shape_index", "unit_structure_sd_dbh", "unit_current_woodland_prop_3km", "unit_old_woodland_prop_3km", "unit_lost_woodland_prop_3km", "unit_trees_outside_woodland_prop_3km", "unit_arable_prop_3km", "unit_livestock_density_3km", "unit_x", "unit_y", "unit_coordinateUncertaintyInMeters"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bradferlawrence_2025_ukwood_comm.R",
+  "buildDate": "2026-11-03"
+}

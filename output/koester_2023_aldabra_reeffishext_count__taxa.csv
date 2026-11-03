@@ -1,0 +1,199 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_family,taxon_sourceName,taxon_feeding_guild,taxon_iucnCategory,taxon_on_indicator_list
+CARMEL,Caranx melampygus,Bluefin Trevally,species,https://www.gbif.org/species/2390750,EXACT,,Carangidae,Caranx.melampygus,PI,LC,Yes
+POMSUL,Pomacentrus sulfureus,,species,https://www.gbif.org/species/2398340,EXACT,,Pomacentridae,Pomacentrus.sulfureus,OM,LC,No
+LABDIM,Labroides dimidiatus,,species,https://www.gbif.org/species/2383731,EXACT,,Labridae,Labroides.dimidiatus,IN,LC,No
+PARFOR,Paracirrhites forsteri,,species,https://www.gbif.org/species/5208733,EXACT,,Cirrhitidae,Paracirrhites.forsteri,OM,LC,No
+OTHBLEN,"Blenniidae (other, not on the list)",,family,https://www.gbif.org/species/4251,EXACT,,Blenniidae,other.blenny,OM,,No
+PLATAP,Plagiotremus tapeinosoma,,species,https://www.gbif.org/species/2395993,EXACT,,Blenniidae,Plagiotremus.tapeinosoma,PI,LC,No
+HALMAR,Halichoeres marginatus,,species,https://www.gbif.org/species/2384102,EXACT,,Labridae,Halichoeres.marginatus,IN,LC,No
+ANALIN,Anampses lineatus,,species,https://www.gbif.org/species/2383476,EXACT,,Labridae,Anampses.lineatus,IN,DD,No
+CORFOR,Coris formosa,,species,https://www.gbif.org/species/5209768,EXACT,,Labridae,Coris.formosa,OM,LC,No
+MACBIP,Macropharyngodon bipartitus,,species,https://www.gbif.org/species/4285655,EXACT,,Labridae,Macropharyngodon.bipartitus,IN,LC,No
+CTESTRSUS,Ctenochaetus strigosus,Surgeonfish,species,https://www.gbif.org/species/2379620,EXACT,,Acanthuridae,Ctenochaetus.strigosus,HV,LC,Yes
+GOMCAE,Gomphosus caeruleus,,species,https://www.gbif.org/species/2383023,EXACT,,Labridae,Gomphosus.caeruleus,IN,LC,No
+HALCOS,Halichoeres cosmetus,,species,https://www.gbif.org/species/2384073,EXACT,,Labridae,Halichoeres.cosmetus,IN,LC,No
+HALSPP,Halichoeres sp.,,genus,https://www.gbif.org/species/2381823,EXACT,,Labridae,Halichoeres.sp,IN,,No
+HALHOR,Halichoeres hortulanus,,species,https://www.gbif.org/species/2384141,EXACT,,Labridae,Halichoeres.hortulanus,IN,LC,No
+ACANIGCUS,Acanthurus nigrofuscus,Surgeonfish,species,https://www.gbif.org/species/5209227,EXACT,,Acanthuridae,Acanthurus.nigrofuscus,HV,LC,Yes
+CHLSOR,Chlorurus sordidus,other parrotfish,species,https://www.gbif.org/species/5211134,EXACT,,Scaridae,Chlorurus.sordidus,HV,LC,Yes
+STEALB,Stethojulis albovittata,,species,https://www.gbif.org/species/2383410,EXACT,,Labridae,Stethojulis.albovittata,IN,LC,No
+OTHWRAS,"Labridae (other, not on the list)",,family,https://www.gbif.org/species/8535,EXACT,,Labridae,other.wrasse,IN,,No
+CTESTRTUS,Ctenochaetus striatus,Bristletooth,species,https://www.gbif.org/species/2379621,EXACT,,Acanthuridae,Ctenochaetus.striatus,HV,LC,Yes
+PARARC,Paracirrhites arcatus,,species,https://www.gbif.org/species/5208726,EXACT,,Cirrhitidae,Paracirrhites.arcatus,OM,LC,No
+THAHAR,Thalassoma hardwicke,,species,https://www.gbif.org/species/2384460,EXACT,,Labridae,Thalassoma.hardwicke,OM,LC,No
+PARBAR,Parupeneus barberinus,Goatfish,species,https://www.gbif.org/species/2396650,EXACT,,Mullidae,Parupeneus.barberinus,OM,LC,Yes
+EPIFAS,Epinephelus fasciatus,other grouper,species,https://www.gbif.org/species/2388344,EXACT,,Serranidae,Epinephelus.fasciatus,PI,LC,Yes
+HEMFAS,Hemigymnus fasciatus,,species,https://www.gbif.org/species/2383744,EXACT,,Labridae,Hemigymnus.fasciatus,IN,LC,No
+SUFCHR,Sufflamen chrysopterum,Flagtail Triggerfish,species,https://www.gbif.org/species/2407192,EXACT,,Balistidae,Sufflamen.chrysopterum,IN,LC,Yes
+OTHPARR,"Scaridae (other, not on the list)",other parrotfish,family,https://www.gbif.org/species/4504,EXACT,,Scaridae,other.parrotfish,HV,,Yes
+OTHDAMS,"Pomacentridae (other, not on the list)",,family,https://www.gbif.org/species/4499,EXACT,,Pomacentridae,other.damselfish,PI,,No
+CTETRU,Ctenochaetus truncatus,Bristletooth,species,https://www.gbif.org/species/2379642,EXACT,,Acanthuridae,Ctenochaetus.truncatus,HV,LC,Yes
+ZEBDES,Zebrasoma desjardinii,Tang,species,https://www.gbif.org/species/2379874,EXACT,,Acanthuridae,Zebrasoma.desjardinii,HV,LC,Yes
+PARHEP,Paracanthurus hepatus,Surgeonfish,species,https://www.gbif.org/species/2379534,EXACT,,Acanthuridae,Paracanthurus.hepatus,HV,LC,Yes
+ACALEUNON,Acanthurus leucosternon,Surgeonfish,species,https://www.gbif.org/species/5209210,EXACT,,Acanthuridae,Acanthurus.leucosternon,HV,LC,Yes
+BODDIA,Bodianus diana,,species,https://www.gbif.org/species/5209719,EXACT,,Labridae,Bodianus.diana,OM,LC,No
+THAHEB,Thalassoma hebraicum,,species,https://www.gbif.org/species/2384556,EXACT,,Labridae,Thalassoma.hebraicum,IN,LC,No
+CENACA,Centropyge acanthops,Angelfish,species,https://www.gbif.org/species/2396533,EXACT,,Pomacanthidae,Centropyge.acanthops,IN,LC,Yes
+CENMUL,Centropyge multispinis,Angelfish,species,https://www.gbif.org/species/2396554,EXACT,,Pomacanthidae,Centropyge.multispinis,IN,LC,Yes
+CHACIT,Chaetodon citrinellus,Speckled Butterflyfish,species,https://www.gbif.org/species/7479802,EXACT,,Chaetodontidae,Chaetodon.citrinellus,IN,LC,Yes
+ODONIG,Odonus niger,Triggerfish,species,https://www.gbif.org/species/2407210,EXACT,,Balistidae,Odonus.niger,OM,LC,Yes
+ZEBSCO,Zebrasoma scopas,Tang,species,https://www.gbif.org/species/2379864,EXACT,,Acanthuridae,Zebrasoma.scopas,HV,LC,Yes
+CHAGUT,Chaetodon guttatissimus,Spotted Butterflyfish,species,https://www.gbif.org/species/2385514,EXACT,,Chaetodontidae,Chaetodon.guttatissimus,IN,LC,Yes
+NOVTAE,Novaculichthys taeniourus,,species,https://www.gbif.org/species/2383280,EXACT,,Labridae,Novaculichthys.taeniourus,IN,LC,No
+DASTRI,Dascyllus trimaculatus,,species,https://www.gbif.org/species/5212031,EXACT,,Pomacentridae,Dascyllus.trimaculatus,PL,LC,No
+PLEJOH,Plectroglyphidodon johnstonianus,,species,https://www.gbif.org/species/2398965,EXACT,,Pomacentridae,Plectroglyphidodon.johnstonianus,HV,LC,No
+PLELAC,Plectroglyphidodon lacrymatus,,species,https://www.gbif.org/species/2398933,EXACT,,Pomacentridae,Plectroglyphidodon.lacrymatus,HV,LC,No
+CEPNIG,Cephalopholis nigripinnis,Blackfin Rock Cod,species,https://www.gbif.org/species/2388948,EXACT,,Serranidae,Cephalopholis.nigripinnis,PI,LC,Yes
+CHRWEB,Chromis weberi,,species,https://www.gbif.org/species/5212140,EXACT,,Pomacentridae,Chromis.weberi,OM,LC,No
+PARCYC,Parupeneus cyclostomus,Goatfish,species,https://www.gbif.org/species/2396655,EXACT,,Mullidae,Parupeneus.cyclostomus,OM,LC,Yes
+PLEDIC,Plectroglyphidodon dickii,,species,https://www.gbif.org/species/2398924,EXACT,,Pomacentridae,Plectroglyphidodon.dickii,OM,NT,No
+CHAKLE,Chaetodon kleinii,Kleins Butterflyfish,species,https://www.gbif.org/species/2385458,EXACT,,Chaetodontidae,Chaetodon.kleinii,IN,LC,Yes
+AMPFUS,Amphiprion fuscocaudatus,,species,https://www.gbif.org/species/5212056,EXACT,,Pomacentridae,Amphiprion.fuscocaudatus,IN,LC,No
+HEMZOS,Hemitaurichthys zoster,Black Pyramid Butterflyfish,species,https://www.gbif.org/species/2385643,EXACT,,Chaetodontidae,Hemitaurichthys.zoster,PL,LC,Yes
+BALUND,Balistapus undulatus,Triggerfish,species,https://www.gbif.org/species/2407167,EXACT,,Balistidae,Balistapus.undulatus,OM,LC,Yes
+BODAXI,Bodianus axillaris,,species,https://www.gbif.org/species/5209666,EXACT,,Labridae,Bodianus.axillaris,OM,LC,No
+CTEBIN,Ctenochaetus binotatus,Bristletooth,species,https://www.gbif.org/species/2379623,EXACT,,Acanthuridae,Ctenochaetus.binotatus,HV,LC,Yes
+DASARU,Dascyllus aruanus,,species,https://www.gbif.org/species/5212047,EXACT,,Pomacentridae,Dascyllus.aruanus,PL,LC,No
+CHAFAL,Chaetodon falcula,Saddleback Butterflyfish,species,https://www.gbif.org/species/2385419,EXACT,,Chaetodontidae,Chaetodon.falcula,IN,LC,Yes
+CORCAU,Coris caudimacula,,species,https://www.gbif.org/species/5209763,EXACT,,Labridae,Coris.caudimacula,IN,LC,No
+SCARUB,Scarus rubroviolaceus,other parrotfish,species,https://www.gbif.org/species/2393790,EXACT,,Scaridae,Scarus.rubroviolaceus,HV,LC,Yes
+CHRTER,Chromis ternatensis,,species,https://www.gbif.org/species/5212275,EXACT,,Pomacentridae,Chromis.ternatensis,OM,LC,No
+HOLDOL,Hologymnosus doliatus,,species,https://www.gbif.org/species/2384436,EXACT,,Labridae,Hologymnosus.doliatus,IN,LC,No
+LABBIC,Labroides bicolor,,species,https://www.gbif.org/species/2383735,EXACT,,Labridae,Labroides.bicolor,IN,LC,No
+PLARHI,Plagiotremus rhinorhynchos,,species,https://www.gbif.org/species/2395981,EXACT,,Blenniidae,Plagiotremus.rhinorhynchos,PI,LC,No
+CHAAUR,Chaetodon auriga,Threadfin Butterflyfish,species,https://www.gbif.org/species/2385390,EXACT,,Chaetodontidae,Chaetodon.auriga,IN,LC,Yes
+ARONIG,Arothron nigropunctatus,other pufferfish,species,https://www.gbif.org/species/2407394,EXACT,,Tetraodontidae,Arothron.nigropunctatus,IN,LC,Yes
+ANAMEL,Anampses meleagrides,,species,https://www.gbif.org/species/2383481,EXACT,,Labridae,Anampses.meleagrides,IN,LC,No
+EPISPI,Epinephelus spilotoceps,other grouper,species,https://www.gbif.org/species/2388181,EXACT,,Serranidae,Epinephelus.spilotoceps,PI,LC,Yes
+PARTRI,Parupeneus trifasciatus,Goatfish,species,https://www.gbif.org/species/2396624,EXACT,,Mullidae,Parupeneus.trifasciatus,OM,LC,Yes
+HALPRO,Halichoeres prosopeion,,species,https://www.gbif.org/species/2384086,EXACT,,Labridae,Halichoeres.prosopeion,OM,LC,No
+HALNEB,Halichoeres nebulosus,,species,https://www.gbif.org/species/2384055,EXACT,,Labridae,Halichoeres.nebulosus,IN,LC,No
+THALUN,Thalassoma lunare,,species,https://www.gbif.org/species/2384468,EXACT,,Labridae,Thalassoma.lunare,IN,LC,No
+GRAALB,Gracila albomarginata,Masked Grouper,species,https://www.gbif.org/species/2387970,EXACT,,Serranidae,Gracila.albomarginata,PI,NE,Yes
+PARMAC,Parupeneus macronemus,Goatfish,species,https://www.gbif.org/species/2396631,EXACT,,Mullidae,Parupeneus.macronemus,OM,LC,Yes
+CHEQUI,Cheilodipterus quinquelineatus,,species,https://www.gbif.org/species/2397549,EXACT,,Apogonidae,Cheilodipterus.quinquelineatus,IN,LC,No
+BODANT,Bodianus anthioides,,species,https://www.gbif.org/species/5209716,EXACT,,Labridae,Bodianus.anthioides,IN,LC,No
+MYCBON,Mycteroperca bonaci,other grouper,species,https://www.gbif.org/species/2389013,EXACT,,Serranidae,Mycteroperca.bonaci,PI,NT,Yes
+SCASCA,Scarus scaber,other parrotfish,species,https://www.gbif.org/species/2393773,EXACT,,Scaridae,Scarus.scaber,HV,LC,Yes
+CEPLEO,Cephalopholis leopardus,other grouper,species,https://www.gbif.org/species/2388841,EXACT,,Serranidae,Cephalopholis.leopardus,PI,LC,Yes
+ACALIN,Acanthurus lineatus,Surgeonfish,species,https://www.gbif.org/species/5209244,EXACT,,Acanthuridae,Acanthurus.lineatus,HV,LC,Yes
+EPIMER,Epinephelus merra,other grouper,species,https://www.gbif.org/species/2388193,EXACT,,Serranidae,Epinephelus.merra,PI,LC,Yes
+OTHGOAT,"Mullidae (other, not on the list)",Goatfish,family,https://www.gbif.org/species/4287,EXACT,,Mullidae,other.goatfish,OM,,Yes
+FORFLA,Forcipiger flavissimus,Longnose Butterflyfish,species,https://www.gbif.org/species/2385706,EXACT,,Chaetodontidae,Forcipiger.flavissimus,IN,LC,Yes
+ACANIGUDA,Acanthurus nigricauda,Surgeonfish,species,https://www.gbif.org/species/5209160,EXACT,,Acanthuridae,Acanthurus.nigricauda,HV,LC,Yes
+MONHET,Monotaxis heterodon,Emperor,species,https://www.gbif.org/species/9556328,EXACT,,Lethrinidae,Monotaxis.heterodon,OM,LC,Yes
+CEPARG,Cephalopholis argus,other grouper,species,https://www.gbif.org/species/2388891,EXACT,,Serranidae,Cephalopholis.argus,PI,LC,Yes
+CEPMIN,Cephalopholis miniata,other grouper,species,https://www.gbif.org/species/2388916,EXACT,,Serranidae,Cephalopholis.miniata,PI,LC,Yes
+ACATRI,Acanthurus triostegus,Surgeonfish,species,https://www.gbif.org/species/5209217,EXACT,,Acanthuridae,Acanthurus.triostegus,HV,LC,Yes
+ABUVAI,Abudefduf vaigiensis,,species,https://www.gbif.org/species/2398634,EXACT,,Pomacentridae,Abudefduf.vaigiensis,OM,LC,No
+GNAAUR,Gnathodentex aureolineatus,Emperor,species,https://www.gbif.org/species/2374957,EXACT,,Lethrinidae,Gnathodentex.aureolineatus,OM,LC,Yes
+CANPAR,Cantherhines pardalis,,species,https://www.gbif.org/species/2406982,EXACT,,Monocanthidae,Cantherhines.pardalis,OM,LC,No
+ACALEULUS,Acanthurus leucocheilus,Surgeonfish,species,https://www.gbif.org/species/5209259,EXACT,,Acanthuridae,Acanthurus.leucocheilus,HV,LC,Yes
+ACATEN,Acanthurus tennentii,Surgeonfish,species,https://www.gbif.org/species/5209206,EXACT,,Acanthuridae,Acanthurus.tennentii,HV,LC,Yes
+NASELE,Naso elegans,Unicornfish,species,https://www.gbif.org/species/5209095,EXACT,,Acanthuridae,Naso.elegans,PL,LC,Yes
+MELIND,Melichthys indicus,Triggerfish,species,https://www.gbif.org/species/2407156,EXACT,,Balistidae,Melichthys.indicus,OM,LC,Yes
+MELNIG,Melichthys niger,Triggerfish,species,https://www.gbif.org/species/2407141,EXACT,,Balistidae,Melichthys.niger,OM,LC,Yes
+VALSTR,Valenciennea strigata,,species,https://www.gbif.org/species/2377379,EXACT,,Gobiidae,Valenciennea.strigata,OM,LC,No
+APHFUR,Aphareus furca,Snapper,species,https://www.gbif.org/species/5209911,EXACT,,Lutjanidae,Aphareus.furca,OM,LC,Yes
+MONGRA,Monotaxis grandoculis,Humpnose Big Eye Bream,species,https://www.gbif.org/species/5208715,EXACT,,Lethrinidae,Monotaxis.grandoculis,OM,LC,Yes
+SCATRI,Scarus tricolor,other parrotfish,species,https://www.gbif.org/species/2393638,EXACT,,Scaridae,Scarus.tricolor,HV,LC,Yes
+CHETRI,Cheilinus trilobatus,Tripletail Wrasse,species,https://www.gbif.org/species/2383305,EXACT,,Labridae,Cheilinus.trilobatus,IN,LC,Yes
+CHATRILIS,Chaetodon trifascialis,Chevroned Butterflyfish,species,https://www.gbif.org/species/2385428,EXACT,,Chaetodontidae,Chaetodon.trifascialis,C,NT,Yes
+APOTRI,Apolemichthys trimaculatus,Angelfish,species,https://www.gbif.org/species/2396564,EXACT,,Pomacanthidae,Apolemichthys.trimaculatus,IN,LC,Yes
+SUFBUR,Sufflamen bursa,Triggerfish,species,https://www.gbif.org/species/2407198,EXACT,,Balistidae,Sufflamen.bursa,OM,LC,Yes
+OXYDIG,Oxycheilinus digramma,Cheeklined Splendour Wrasse,species,https://www.gbif.org/species/2384370,EXACT,,Labridae,Oxycheilinus.digramma,IN,LC,Yes
+AROMEL,Arothron meleagris,other pufferfish,species,https://www.gbif.org/species/2407418,EXACT,,Tetraodontidae,Arothron.meleagris,IN,LC,Yes
+OTHPUFF,"Tetraodontidae (other, not on the list)",other pufferfish,family,https://www.gbif.org/species/2219,EXACT,,Tetraodontidae,other.pufferfish,IN,,Yes
+SCAFRE,Scarus frenatus,other parrotfish,species,https://www.gbif.org/species/2393569,EXACT,,Scaridae,Scarus.frenatus,HV,LC,Yes
+CHRATR,Chromis atripectoralis,,species,https://www.gbif.org/species/5212173,EXACT,,Pomacentridae,Chromis.atripectoralis,OM,LC,No
+ACASPP,Acanthurus sp.,Surgeonfish,genus,https://www.gbif.org/species/2379647,EXACT,,Acanthuridae,Acanthurus.sp,HV,,Yes
+AETROG,Aethaloperca rogaa,Redmouth Grouper,species,https://www.gbif.org/species/2388085,EXACT,,Serranidae,Aethaloperca.rogaa,PI,LC,Yes
+CHAMEL,Chaetodon melannotus,Blackbacked Butterflyfish,species,https://www.gbif.org/species/2385556,EXACT,,Chaetodontidae,Chaetodon.melannotus,C,LC,Yes
+CHATRITUS,Chaetodon trifasciatus,Indian Redfin Butterflyfish,species,https://www.gbif.org/species/8333642,EXACT,,Chaetodontidae,Chaetodon.trifasciatus,C,LC,Yes
+CHABEN,Chaetodon benetti,Bennet's Butterflyfish,species,https://www.gbif.org/species/2385308,EXACT,,Chaetodontidae,Chaetodon.benetti,C,DD,Yes
+CHAMEY,Chaetodon meyeri,Meyers Butterflyfish,species,https://www.gbif.org/species/2385494,EXACT,,Chaetodontidae,Chaetodon.meyeri,C,LC,Yes
+CHALUN,Chaetodon lunula,Racoon Butterflyfish,species,https://www.gbif.org/species/2385531,EXACT,,Chaetodontidae,Chaetodon.lunula,IN,LC,Yes
+CHAMAD,Chaetodon madagaskariensis,Seychelles Butterflyfish,species,https://www.gbif.org/species/2385453,EXACT,,Chaetodontidae,Chaetodon.madagaskariensis,IN,LC,Yes
+LUTBOH,Lutjanus bohar,Twinspot Snapper,species,https://www.gbif.org/species/2384758,EXACT,,Lutjanidae,Lutjanus.bohar,PI,LC,Yes
+CHAINT,Chaetodon interruptus,Indian Ocean Teardrop Butterflyfish,species,https://www.gbif.org/species/2385332,EXACT,,Chaetodontidae,Chaetodon.interruptus,IN,LC,Yes
+CHAXAN,Chaetodon xanthocephalus,Yellow Headed Butterflyfish,species,https://www.gbif.org/species/2385406,EXACT,,Chaetodontidae,Chaetodon.xanthocephalus,IN,LC,Yes
+CHAZAN,Chaetodon zanzibarensis,Zanzibar Butterflyfish,species,https://www.gbif.org/species/2385360,EXACT,,Chaetodontidae,Chaetodon.zanzibarensis,C,LC,Yes
+ACATHO,Acanthurus thompsoni,Surgeonfish,species,https://www.gbif.org/species/5209215,EXACT,,Acanthuridae,Acanthurus.thompsoni,HV,LC,Yes
+ZANCOR,Zanclus cornutus,Moorish Idol,species,https://www.gbif.org/species/2374663,EXACT,,Zanclidae,Zanclus.cornutus,OM,LC,Yes
+CTESPP,Ctenochaetus sp.,Bristletooth,genus,https://www.gbif.org/species/2379619,EXACT,,Acanthuridae,Ctenochaetus.sp,HV,,Yes
+MALLAT,Malacanthus latovittatus,,species,https://www.gbif.org/species/2389870,EXACT,,Malacanthidae,Malacanthus.latovittatus,OM,LC,No
+EPIINS,Epibulus insidiator,,species,https://www.gbif.org/species/2383808,EXACT,,Labridae,Epibulus.insidiator,OM,LC,No
+CHECHL,Cheilinus chlorourus,,species,https://www.gbif.org/species/2383308,EXACT,,Labridae,Cheilinus.chlorourus,IN,LC,No
+CALCAR,Calotomus carolinus,other parrotfish,species,https://www.gbif.org/species/2393870,EXACT,,Scaridae,Calotomus.carolinus,HV,LC,Yes
+POMIMP,Pomacanthus imperator,Angelfish,species,https://www.gbif.org/species/2396426,EXACT,,Pomacanthidae,Pomacanthus.imperator,IN,LC,Yes
+OTHCARD,"Apogonidae (other, not on the list)",,family,https://www.gbif.org/species/4236,EXACT,,Apogonidae,other.cardinalfish,IN,,No
+NASSPP,Naso sp.,Unicornfish,genus,https://www.gbif.org/species/2379541,EXACT,,Acanthuridae,Naso.sp,HV,,Yes
+NASUNI,Naso unicornis,Unicornfish,species,https://www.gbif.org/species/5209124,EXACT,,Acanthuridae,Naso.unicornis,PL,LC,Yes
+CHEINE,Cheilio inermis,,species,https://www.gbif.org/species/2383605,EXACT,,Labridae,Cheilio.inermis,IN,LC,No
+OTHGROU,"Serranidae (other, not on the list)",other grouper,family,https://www.gbif.org/species/8597,EXACT,,Serranidae,other.grouper,PI,,Yes
+SCAGLO,Scarus globiceps,other parrotfish,species,https://www.gbif.org/species/2393782,EXACT,,Scaridae,Scarus.globiceps,HV,LC,Yes
+EPIMAC,Epinephelus macrospilos,other grouper,species,https://www.gbif.org/species/2388141,EXACT,,Serranidae,Epinephelus.macrospilos,PI,LC,Yes
+VARLOU,Variola louti,Yellow Edged Lyretail Grouper,species,https://www.gbif.org/species/2389100,EXACT,,Serranidae,Variola.louti,PI,LC,Yes
+MACNIG,Macolor niger,Snapper,species,https://www.gbif.org/species/2385207,EXACT,,Lutjanidae,Macolor.niger,OM,LC,Yes
+LUTSEB,Lutjanus sebae,Snapper,species,https://www.gbif.org/species/2384899,EXACT,,Lutjanidae,Lutjanus.sebae,OM,LC,Yes
+BODBIL,Bodianus bilunulatus,,species,https://www.gbif.org/species/5209697,EXACT,,Labridae,Bodianus.bilunulatus,IN,LC,No
+CHEFAS,Cheilinus fasciatus,Red Breasted Wrasse,species,https://www.gbif.org/species/2383309,EXACT,,Labridae,Cheilinus.fasciatus,IN,LC,Yes
+LETOBS,Lethrinus obsoletus,Emperor,species,https://www.gbif.org/species/2374840,EXACT,,Lethrinidae,Lethrinus.obsoletus,OM,LC,Yes
+LUTGIB,Lutjanus gibbus,Humpback Snapper,species,https://www.gbif.org/species/2385035,EXACT,,Lutjanidae,Lutjanus.gibbus,OM,LC,Yes
+OTHEMPE,"Lethrinidae (other, not on the list)",Emperor,family,https://www.gbif.org/species/8540,EXACT,,Lethrinidae,other.emperor,OM,,Yes
+BALCON,Balistoides conspicillum,Triggerfish,species,https://www.gbif.org/species/2407129,EXACT,,Balistidae,Balistoides.conspicillum,OM,LC,Yes
+LETNEB,Lethrinus nebulosus,Spangled Emperor,species,https://www.gbif.org/species/2374885,EXACT,,Lethrinidae,Lethrinus.nebulosus,OM,LC,Yes
+SCAGHO,Scarus ghobban,other parrotfish,species,https://www.gbif.org/species/2393577,EXACT,,Scaridae,Scarus.ghobban,HV,LC,Yes
+CANDUM,Cantherhines dumerilii,,species,https://www.gbif.org/species/2406972,EXACT,,Monocanthidae,Cantherhines.dumerilii,OM,LC,No
+NEOMEL,Neoglyphidodon melas,,species,https://www.gbif.org/species/2398600,EXACT,,Pomacentridae,Neoglyphidodon.melas,OM,LC,No
+PYGDIA,Pygoplites diacanthus,Angelfish,species,https://www.gbif.org/species/2396596,EXACT,,Pomacanthidae,Pygoplites.diacanthus,IN,LC,Yes
+NASBRE,Naso brevirostris,Unicornfish,species,https://www.gbif.org/species/9760005,EXACT,,Acanthuridae,Naso.brevirostris,PL,LC,Yes
+NASLIT,Naso lituratus,Unicornfish,species,https://www.gbif.org/species/5209096,EXACT,,Acanthuridae,Naso.lituratus,HV,LC,Yes
+SCAPSI,Scarus psittacus,other parrotfish,species,https://www.gbif.org/species/2393800,EXACT,,Scaridae,Scarus.psittacus,HV,LC,Yes
+SPHBAR,Sphyraena barracuda,Great Barracuda,species,https://www.gbif.org/species/9784990,EXACT,,Sphyraenidae,Sphyraena.barracuda,PI,LC,Yes
+POMSEM,Pomacanthus semicirculatus,Angelfish,species,https://www.gbif.org/species/2396399,EXACT,,Pomacanthidae,Pomacanthus.semicirculatus,IN,LC,Yes
+OSTSPP,Ostracion sp.,,genus,https://www.gbif.org/species/2407938,EXACT,,Ostraciidae,Ostracion.sp,OM,,No
+ACADUS,Acanthurus dussumieri,Surgeonfish,species,https://www.gbif.org/species/5209167,EXACT,,Acanthuridae,Acanthurus.dussumieri,HV,LC,Yes
+HENMON,Heniochus monoceros,Masked Bannerfish,species,https://www.gbif.org/species/2385719,EXACT,,Chaetodontidae,Heniochus.monoceros,IN,LC,Yes
+DERSTR,Dermatolepis striolata,Smooth Grouper,species,https://www.gbif.org/species/2389120,EXACT,,Serranidae,Dermatolepis.striolata,PI,LC,Yes
+LUTRIV,Lutjanus rivulatus,Speckled Snapper,species,https://www.gbif.org/species/2384813,EXACT,,Lutjanidae,Lutjanus.rivulatus,OM,LC,Yes
+HEMMEL,Hemigymnus melapterus,,species,https://www.gbif.org/species/2383739,EXACT,,Labridae,Hemigymnus.melapterus,IN,LC,No
+LUTKAS,Lutjanus kasmira,Snapper,species,https://www.gbif.org/species/2385129,EXACT,,Lutjanidae,Lutjanus.kasmira,OM,LC,Yes
+SPHQEN,Sphyraena qenie,,species,https://www.gbif.org/species/2394210,EXACT,,Sphyraenidae,Sphyraena.qenie,PI,LC,No
+BOLMUR,Bolbometopon muricatum,Bumphead Parrotfish,species,https://www.gbif.org/species/2393443,EXACT,,Scaridae,Bolbometopon.muricatum,HV,VU,Yes
+HENACU,Heniochus acuminatus,Longfin Bannerfish,species,https://www.gbif.org/species/2385730,EXACT,,Chaetodontidae,Heniochus.acuminatus,PL,LC,Yes
+POMCHR,Pomacanthus chrysurus,Angelfish,species,https://www.gbif.org/species/2396393,EXACT,,Pomacanthidae,Pomacanthus.chrysurus,IN,LC,Yes
+PLEVIT,Plectorhinchus vittatus,Oriental Sweetlips,species,https://www.gbif.org/species/2382755,EXACT,,Haemulidae,Plectorhinchus.vittatus,OM,LC,Yes
+SCANIG,Scarus niger,other parrotfish,species,https://www.gbif.org/species/2393689,EXACT,,Scaridae,Scarus.niger,HV,LC,Yes
+SIGSTE,Siganus stellatus,Rabbitfish,species,https://www.gbif.org/species/2390297,EXACT,,Siganidae,Siganus.stellatus,HV,LC,Yes
+PLEPES,Plectropomus pessuliferus,Roving Coral Grouper,species,https://www.gbif.org/species/5210131,EXACT,,Serranidae,Plectropomus.pessuliferus,PI,LC,Yes
+PLEPUN,Plectropomus punctatus,Marbled Coral Grouper,species,https://www.gbif.org/species/5210136,EXACT,,Serranidae,Plectropomus.punctatus,PI,LC,Yes
+APRVIR,Aprion virescens,Green Jobfish Snapper,species,https://www.gbif.org/species/2385226,EXACT,,Lutjanidae,Aprion.virescens,PI,LC,Yes
+HIPHAR,Hipposcarus harid,other parrotfish,species,https://www.gbif.org/species/2393848,EXACT,,Scaridae,Hipposcarus.harid,HV,LC,Yes
+PLEALB,Plectorhinchus albovittatus,Giant Sweetlips,species,https://www.gbif.org/species/2382626,EXACT,,Haemulidae,Plectorhinchus.albovittatus,OM,LC,Yes
+EPIMUL,Epinephelus multinotatus,other grouper,species,https://www.gbif.org/species/2388150,EXACT,,Serranidae,Epinephelus.multinotatus,PI,LC,Yes
+LUTMON,Lutjanus monostigma,Snapper,species,https://www.gbif.org/species/2385027,EXACT,,Lutjanidae,Lutjanus.monostigma,OM,LC,Yes
+ACAXAN,Acanthurus xanthopterus,Surgeonfish,species,https://www.gbif.org/species/5209252,EXACT,,Acanthuridae,Acanthurus.xanthopterus,HV,LC,Yes
+EPIFUS,Epinephelus fuscoguttatus,Brown Marbled Grouper,species,https://www.gbif.org/species/2388440,EXACT,,Serranidae,Epinephelus.fuscoguttatus,PI,VU,Yes
+PLEPAU,Plectorhinchus paulayi,other sweetlips,species,https://www.gbif.org/species/2382694,EXACT,,Haemulidae,Plectorhinchus.paulayi,OM,LC,Yes
+EPIPOL,Epinephelus polyphekadion,Camouflage Grouper,species,https://www.gbif.org/species/2388423,EXACT,,Serranidae,Epinephelus.polyphekadion,PI,VU,Yes
+LETXAN,Lethrinus xanthochilus,other emperor,species,https://www.gbif.org/species/2374879,EXACT,,Lethrinidae,Lethrinus.xanthochilus,OM,LC,Yes
+EPITUK,Epinephelus tukula,Potato Grouper,species,https://www.gbif.org/species/2388439,EXACT,,Serranidae,Epinephelus.tukula,PI,LC,Yes
+GNASPE,Gnathanodon speciosus,Golden Trevally,species,https://www.gbif.org/species/2391331,EXACT,,Carangidae,Gnathanodon.speciosus,PI,LC,Yes
+CHEUND,Cheilinus undulatus,Humphead Wrasse,species,https://www.gbif.org/species/2383313,EXACT,,Labridae,Cheilinus.undulatus,IN,EN,Yes
+CHLSTR,Chlorurus strongylocephalus,other parrotfish,species,https://www.gbif.org/species/5211133,EXACT,,Scaridae,Chlorurus.strongylocephalus,HV,LC,Yes
+OTHPORC,"Diodontidae (other, not on the list)",other porcupinefish,family,https://www.gbif.org/species/5898,EXACT,,Diodontidae,other.porcupinefish,IN,,Yes
+NASTUB,Naso tuberosus,Unicornfish,species,https://www.gbif.org/species/5209115,EXACT,,Acanthuridae,Naso.tuberosus,PL,DD,Yes
+PSEFLA,Pseudobalistes flavimarginatus,Yellow Margin Triggerfish,species,https://www.gbif.org/species/2407181,EXACT,,Balistidae,Pseudobalistes.flavimarginatus,IN,LC,Yes
+CARIGN,Caranx ignobilis,Giant Trevally,species,https://www.gbif.org/species/2390805,EXACT,,Carangidae,Caranx.ignobilis,PI,LC,Yes
+AROMAP,Arothron mappa,other pufferfish,species,https://www.gbif.org/species/2407375,EXACT,,Tetraodontidae,Arothron.mappa,IN,LC,Yes
+PLAORB,Platax orbicularis,Batfish,species,https://www.gbif.org/species/2394300,EXACT,,Ephipidae,Platax.orbicularis,HV,LC,Yes
+CARLUG,Caranx lugubris,Trevally,species,https://www.gbif.org/species/2390836,EXACT,,Carangidae,Caranx.lugubris,PI,LC,Yes
+PLASPP,Platax sp.,Batfish,genus,https://www.gbif.org/species/2370014,EXACT,,Ephipidae,Platax.sp,HV,,Yes
+PLEPLA,Plectorhinchus plagiodesmus,Yellow Rubberlip Sweetlips,species,https://www.gbif.org/species/2382728,EXACT,,Haemulidae,Plectorhinchus.plagiodesmus,OM,LC,Yes
+ACABLO,Acanthurus blochii,Surgeonfish,species,https://www.gbif.org/species/5209203,EXACT,,Acanthuridae,Acanthurus.blochii,HV,LC,Yes
+LETOLI,Lethrinus olivaceus,Longfaced Emperor,species,https://www.gbif.org/species/2374850,EXACT,,Lethrinidae,Lethrinus.olivaceus,OM,LC,Yes
+PLEGIB,Plectorhinchus gibbosus,Sweetlips,species,https://www.gbif.org/species/9815299,EXACT,,Haemulidae,Plectorhinchus.gibbosus,OM,LC,Yes
+SCOLYS,Scomberoides lysan,Trevally,species,https://www.gbif.org/species/2390871,EXACT,,Carangidae,Scomberoides.lysan,PI,LC,Yes
+AROSTE,Arothron stellatus,other pufferfish,species,https://www.gbif.org/species/2407362,EXACT,,Tetraodontidae,Arothron.stellatus,IN,LC,Yes
+BALVIR,Balistodes viridescens,Titan Triggerfish,species,https://www.gbif.org/species/2407133,EXACT,,Balistidae,Balistodes.viridescens,IN,LC,Yes

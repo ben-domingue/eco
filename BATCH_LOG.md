@@ -877,3 +877,45 @@ What this batch says about the standard:
   cut visible (also asked in batch 13). **Genus- or family-level records beside species zeros**
   (an unidentified "Pieridae" at a walk) may make some species zeros misses; no field for it.
 - **Unexplained period codes** (carabid A/J/G) inferred from the record description.
+
+## Batch 19 — 2026-11-03 (marine: beaked whales, kittiwakes, Aldabra reef fish; UK woodland communities)
+
+Six queue rows, built by two forks in `~/eco-b19` (branch `batch19`). Nine tables from four
+deposits; two held. All pass `eco-validate --irw` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| curtis_2021_sannicolas_ziphius_cjs | CJS, partial identity | Dryad CC0 | 1,397 | 127 Cuvier's beaked whales off San Nicolas Island, 11 August-July years 2007-18; histories rebuilt from 318 catalogued photo-ID records with the authors' deposited selection code (29 uncatalogued dropped), every Table 1 count asserted; `y` = multimark "sometimes" coding 0-4 with `unit_known`; vessel effort per year in `__periods` (`effort_table`); capture-weighted `eff.bssn` not shipped |
+| mcknight_2019_kittiwake_fledgling_ms | multistate CR | Dryad CC0 | 55,472 | 5,090 black-legged kittiwakes banded as chicks, Middleton Island, 19 years; 0 / P / B; each bird's first cell is the authors' simulated release at age 1 or 2, flagged `obs_release = 1`, `unit_cohort` = banding year; histories start at release |
+| mcknight_2019_kittiwake_recruit_ms | multistate CR | Dryad CC0 | 12,141 | 977 recruits (paper: 997), 0 / P / B / U; a separate analysis set (only 293 birds align with the fledgling sheet), not a recode; one script builds both |
+| koester_2023_aldabra_reeffish_count | community counts (marine) | figshare CC BY 4.0 | 26,076 | Aldabra Atoll UVC, 21 site-depths x 82 taxa x 6 seasons x 1-3 belt transects; no survey list, so a transect is surveyed in a season iff it has a record (`inferred`); four EN/VU species recorded in `__taxa`, no coordinates deposited; SIF citation request carried; below floor |
+| koester_2023_aldabra_reeffishext_count | community counts (marine) | figshare CC BY 4.0 | 16,632 | extended species list method, 198 taxa x 2 seasons; split by method (different species pools) |
+| bradferlawrence_2025_ukwood_beetle_comm | community occupancy | Zenodo CC BY 4.0 | 34,385 | 60 woods x 115 beetle taxa x 5 pitfall collections; a species-year NA is exactly a taxon never caught that year (asserted), shipped `y = 0`, `y_raw = "NA"`, as the authors' code does; one lost collection has no rows; three staphylinid subfamilies have no GBIF key |
+| bradferlawrence_2025_ukwood_bird_comm | community occupancy | Zenodo CC BY 4.0 | 17,712 | 125 woods x 54 species x 3 surveys; 47 all-NA surveys have no rows |
+| bradferlawrence_2025_ukwood_mammal_comm | community occupancy | Zenodo CC BY 4.0 | 1,600 | 100 woods x 4 small mammals x 4 trap days |
+| bradferlawrence_2025_ukwood_plant_comm | community detection, single visit | Zenodo CC BY 4.0 | 25,800 | 129 woods x 200 plants, one visit (replication warning); BNG coordinates as deposited (no flagged taxa) |
+
+Held: the Hauraki Gulf aerial survey (doi:10.5061/dryad.wm37pvmrn: the deposit is presence and
+pseudo-absence points built for boosted regression trees, not the survey) and the Western
+Maryland dragonflies (doi:10.5063/J101KS: no visit schedule for the capture occasions, and
+ruling #20 would give 24 near-empty single-species tables). Rows in `queue/human_review.csv`.
+
+What this batch says about the standard:
+
+- **Simulated releases in deposited histories** (kittiwake age-1/2 release cells) are analysis
+  artefacts, not encounters; `obs_release` flags them. And **rows before marking**: the kittiwake
+  histories start at release, the booby and fin-whale CJS tables carry zeros before first
+  capture. E4 should say which is right for individuals marked as chicks.
+- **Partial identity** (one-sided photo-ID, multimark 0-4) joins single-flank camera SCR: a named
+  convention would let users find both.
+- **Model-input deposits** (SDM presence / pseudo-absence) are a recurring hold class; intake
+  could name it.
+- **NA as "not scored" rather than "not surveyed"** (woodland beetles): the test is that every
+  NA taxon-year has no detection anywhere that year and every scored taxon is detected. A guide
+  sentence.
+- **Record-only survey sets with a clear design** (Aldabra transects) have to be `inferred`.
+- **Projected-coordinate coarsening** (BNG) has no stated grid in E7.
+- **GBIF strict matching sends homonyms to kingdom or family** (Acanthurus, Naso, Aprion, Chloris,
+  Taraxacum); both scripts assert EXACT matches. That assertion belongs in `make_taxa()`.
+- **Residual list groups** ("other grouper") change meaning with the list; shipped at family rank
+  with the qualifier in the name.
