@@ -93,8 +93,10 @@ The discovery pass found that the data exists in volume and is overwhelmingly
 CC0. Dryad is the richest source by far, with on the order of a thousand
 word-match hits for "detection history" and "detection/non-detection", of
 which perhaps a quarter to two fifths are real detection, count or capture
-data. Dryad's API refuses anonymous file downloads, but every Dryad deposit is
-mirrored on Zenodo under the same DOI and serves openly from there. Zenodo
+data. Dryad's API refuses anonymous per-file downloads, and most deposits have
+no Zenodo mirror; what Dryad does serve anonymously is the zip of a whole
+deposit version, which is what `download_dryad()` in `lib/eco_common.R` fetches
+and caches. Zenodo
 natively adds MARK input files; USGS ScienceBase, EDI, KNB and the Dataverses
 add smaller numbers of clean, well-documented series; GBIF sampling-event
 datasets, NEON and the Breeding Bird Survey are each a large integration

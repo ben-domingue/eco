@@ -91,7 +91,7 @@ hold the deposit.
 
 Download into `.cache/raw/<table>/` with `download_cached()` or `download_dryad()`
 (the Dryad version zip is the only anonymous route; per-file downloads need a
-token; many Dryad deposits are mirrored on Zenodo). EDI's portal and PASTA refuse
+token; a few Dryad deposits also have a Zenodo copy, most do not). EDI's portal and PASTA refuse
 scripted requests; use DataONE or hold. Read every file the deposit ships, not only
 the obvious one: the covariate files often reveal which cells were surveyed, and
 the readme often carries the licence and the species code list.

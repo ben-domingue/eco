@@ -29,9 +29,9 @@ IRW's `id`/`item`/`resp` and the table then validates under IRW v1.0 unchanged.
 ## 1. Why this is close to IRW at all
 
 The hierarchical models fit with NIMBLE in Kéry & Royle's *AHM* share the structure
-of an taxon response model: a unit has a latent quantity, and that quantity is
+of an item response model: a unit has a latent quantity, and that quantity is
 observed imperfectly through repeated probes whose detection parameters play the
-role of taxon parameters.
+role of item parameters.
 
 | Ecology (AHM / NIMBLE)              | Latent state per unit        | Probe                       | IRT analogue                              |
 |-------------------------------------|------------------------------|-----------------------------|-------------------------------------------|
@@ -287,7 +287,7 @@ consequential encoding error in this domain.
 The core file is complete on its own for modelling. Side tables carry what IRW
 carries in its taxon-text and metadata tables.
 
-### 5.1 `__taxa` (taxon table) — analogous to IRW taxon text
+### 5.1 `__taxa` (taxon table) — analogous to IRW item text
 
 | Column | Definition | Borrowed from |
 |--------|------------|---------------|
@@ -427,7 +427,7 @@ support from the standard.
 - One file per *survey design × response type*. A paper with a bird community
   point-count dataset and a small-mammal trapping grid yields two tables.
 - Sample floor (ruled 2026-11-01): **a reported attribute, not an intake gate.**
-  IRW's 100-`unit` floor exists for psychometric power on a person × item matrix;
+  IRW's 100-`id` floor exists for psychometric power on a person × item matrix;
   the quantity that limits an occupancy or capture–recapture model is different,
   and ecology is a corpus of small tables. Every table carries `sampleFloor` in its
   `__dataset.json` and `sample_floor` in the tags: `meets` when ≥ 30 units **and**
@@ -447,7 +447,7 @@ support from the standard.
 
 *Added 2026-10-31 after the first upload; confirmed as a ruling 2026-11-01, with one
 addition: the pipeline's metadata tables (metadata, biblio, tags) go in a second
-dataset, `eco_meta`, so that `LIKE` queries over `eco` see only data tables.* The IRW keeps response tables and taxon
+dataset, `eco_meta`, so that `LIKE` queries over `eco` see only data tables.* The IRW keeps response tables and item
 text in separate Redivis datasets and separate shard lists. For eco the side tables
 (`__items`, `__periods`, `__units`) are small, there are several kinds, and every one
 of them is meaningless without its core table, so the simplest rule is adopted:

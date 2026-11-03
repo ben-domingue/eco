@@ -10,8 +10,8 @@ The standard is a draft and may change between releases; released versions do no
 
 ## The question
 
-The IRW harmonises item-response data into one long-format table (`unit`, `taxon`,
-`y`) so psychometric methods can be benchmarked at scale. Could the same move
+The IRW harmonises item-response data into one long-format table (`id`, `item`,
+`resp`) so psychometric methods can be benchmarked at scale. Could the same move
 work for the hierarchical ecological models fit with NIMBLE — occupancy,
 N-mixture, capture–recapture, community models — where a site or animal has a
 latent state observed imperfectly across repeated surveys?

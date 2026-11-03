@@ -2,7 +2,7 @@
 
 One self-contained processing script per source, mirroring `data/` in
 `ben-domingue/irw`. Each script downloads its source into `.cache/raw/<table>/`,
-reshapes it into the draft standard (`../standard_draft.md`), validates it, and
+reshapes it into the standard (`../standard.md`, v1.0-draft), validates it, and
 writes four things:
 
 | Output | Where |
