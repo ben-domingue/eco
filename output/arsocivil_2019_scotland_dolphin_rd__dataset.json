@@ -1,0 +1,46 @@
+{
+  "table": "arsocivil_2019_scotland_dolphin_rd",
+  "title": "Robust-design photo-identification histories of 205 marked juvenile and adult bottlenose dolphins, east coast of Scotland, 1989-2015",
+  "creator": "Arso Civil, Monica; Cheney, Barbara; Quick, Nicola J.; Islas-Villanueva, Valentina; Graves, Jeff A.; Janik, Vincent M.; Thompson, Paul M.; Hammond, Philip S.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.8qm8r4m",
+  "sourceURL": "https://doi.org/10.5061/dryad.8qm8r4m",
+  "citation": "Arso Civil, M., Cheney, B., Quick, N. J., Islas-Villanueva, V., Graves, J. A., Janik, V. M., Thompson, P. M., & Hammond, P. S. (2018). Data from: Variations in age- and sex-specific survival rates help explain population trend in a discrete marine mammal population [Dataset]. Dryad. https://doi.org/10.5061/dryad.8qm8r4m",
+  "paperDOI": "10.1002/ece3.4772",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Photo-identification capture histories of the 205 marked juvenile and adult bottlenose dolphins identified off the east coast of Scotland (Moray Firth Special Area of Conservation and St Andrews Bay / Tay estuary) from 1989 to 2015, arranged for robust-design models: each annual field season (May-September) is a primary period and months within it are secondary occasions. The paper estimated juvenile/adult survival with temporary emigration and individual heterogeneity, sex-specific survival with multistate models, and calf survival with age-specific CJS models.",
+  "samplingProtocol": "Boat-based photo-identification surveys May-September each year following standardised protocols; individuals identified from long-lasting nicks on the trailing edge of the dorsal fin and matched against the east-coast catalogue. Sex from photographs of the genital area, biopsy genetics or mother-calf pairs. Effort in the Moray Firth SAC was consistent over the study; in St Andrews Bay / Tay it varied 1997-2007 and was consistent from 2009.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "occasion within period (robust design: months within a field season; temporary emigration between seasons, which the paper models as Markovian)",
+  "geographicCoverage": "East coast of Scotland, UK: Moray Firth SAC and St Andrews Bay / Tay estuary; no coordinates deposited",
+  "temporalCoverage": "1989/2015",
+  "coordinatesCoarsened": null,
+  "notes": "Dolphin ids are row numbers (the deposit has no catalogue ids). Seasons 1989, 1990 and 1994 have 3, 4 and 4 secondary occasions, all others 5 (time_intervals.txt). Occasions before a dolphin's first sighting are kept as 0 (E4); RMark conditions on first capture. unit_sex is the final multistate label (F 65, M 42, U 98 never sexed; the paper reports 66 / 43 / 96); unit_sexed_period is the first season labelled F or M, so the deposited multistate histories are rebuilt exactly by pooling each season and labelling U before unit_sexed_period. Effort varied between study areas and years (see samplingProtocol), which is not in the deposit.",
+  "notShipped": {
+    "JuvAd_Multistate models.txt": "annual U/F/M histories of the same 205 dolphins: a recode of this table plus unit_sex and unit_sexed_period (asserted identical)",
+    "Adult only_Robust design models.txt": "the authors' adults-only restriction (148 dolphins, first 6 or 3 years of sightings dropped by age class at first sighting, which is not deposited per dolphin)",
+    "calf_age CJS models.txt": "shipped as arsocivil_2019_scotland_dolphincalf_cjs"
+  },
+  "summary": {
+    "n_rows": 26855,
+    "n_units": 205,
+    "n_taxa": 1,
+    "n_periods": 27,
+    "n_occasions": 5,
+    "n_surveys": 26855,
+    "y_values": "0,1",
+    "prop_zero": 0.862
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "unit_sexed_period"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/arsocivil_2019_scotland_dolphin_rd.R",
+  "buildDate": "2026-11-03"
+}

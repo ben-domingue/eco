@@ -1,0 +1,103 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+AGLAURTI,Aglais urticae,,species,https://www.gbif.org/species/1894840,EXACT,,NE
+ANTHCARD,Anthocharis cardamines,,species,https://www.gbif.org/species/1919712,EXACT,,NE
+ANTHEUPH,Anthocharis euphenoides,,species,https://www.gbif.org/species/1919698,EXACT,,LC
+APORCRAT,Aporia crataegi,,species,https://www.gbif.org/species/1920218,EXACT,,NE
+ARETARET,Arethusana arethusa,,species,https://www.gbif.org/species/1893137,EXACT,,NE
+ARGYPAND,Argynnis pandora,,species,https://www.gbif.org/species/7810861,EXACT,Damora pandora,NE
+ARICCRAM,Aricia cramera,,species,https://www.gbif.org/species/1933204,EXACT,,NE
+ARICMONT,Aricia montensis,,species,https://www.gbif.org/species/1933126,EXACT,,NE
+ARICMORR,Aricia morronensis,,species,https://www.gbif.org/species/1933163,EXACT,,LC
+BRINCIRC,Brintesia circe,,species,https://www.gbif.org/species/4535529,EXACT,Loweia tityrus,NE
+CACYMARS,Cacyreus marshalli,,species,https://www.gbif.org/species/1932752,EXACT,,LC
+CALLRUBI,Callophrys rubi,,species,https://www.gbif.org/species/1932411,EXACT,,NE
+CARCALCE,Carcharodus alceae,,species,https://www.gbif.org/species/8277078,EXACT,,NE
+CARCBAET,Carcharodus baeticus,,species,https://www.gbif.org/species/4535386,EXACT,,VU
+CELAARGI,Celastrina argiolus,,species,https://www.gbif.org/species/1925918,EXACT,,NE
+CHAZBRIS,Chazara briseis,,species,https://www.gbif.org/species/4535583,EXACT,Satyrus briseis,NE
+COENDORU,Coenonympha dorus,,species,https://www.gbif.org/species/8396242,EXACT,,NE
+COENPAMP,Coenonympha pamphilus,,species,https://www.gbif.org/species/1911461,EXACT,,NE
+COLIALFA,Colias alfacariensis,,species,https://www.gbif.org/species/8203812,EXACT,,NE
+COLICROC,Colias crocea,,species,https://www.gbif.org/species/5137612,FUZZY,,NE
+COLOEVAG,Colotis evagore,,species,https://www.gbif.org/species/1920395,EXACT,,LC
+CUPILORQ,Cupido lorquinii,,species,https://www.gbif.org/species/1926166,EXACT,,LC
+CYANSEMI,Cyaniris semiargus,,species,https://www.gbif.org/species/5139156,EXACT,,NE
+EREBHISP,Erebia hispania,,species,https://www.gbif.org/species/5135090,EXACT,Erebia tyndarus,NT
+EUCHCRAM,Euchloe crameri,,species,https://www.gbif.org/species/7981372,EXACT,,NE
+EUPHAURI,Euphydryas aurinia,,species,https://www.gbif.org/species/4535809,EXACT,,NE
+FABRADIP,Fabriciana adippe,,species,https://www.gbif.org/species/7809779,EXACT,,NE
+FABRNIOB,Fabriciana niobe,,species,https://www.gbif.org/species/8078362,EXACT,,NE
+FAVOQUER,Favonius quercus,,species,https://www.gbif.org/species/4535180,EXACT,Quercusia quercus,NE
+GEGENOST,Gegenes nostrodamus,,species,https://www.gbif.org/species/5142338,EXACT,,NE
+GLAUALEX,Glaucopsyche alexis,,species,https://www.gbif.org/species/1924097,EXACT,,NE
+GLAUMELA,Glaucopsyche melanops,,species,https://www.gbif.org/species/1924082,EXACT,,NE
+GONECLEO,Gonepteryx cleopatra,,species,https://www.gbif.org/species/1920709,EXACT,,NE
+GONERHAM,Gonepteryx rhamni,,species,https://www.gbif.org/species/1920712,EXACT,,NE
+HESPCOMM,Hesperia comma,,species,https://www.gbif.org/species/7633472,EXACT,,NE
+HIPPFIDI,Hipparchia fidia,,species,https://www.gbif.org/species/1918632,EXACT,,NE
+HIPPHERM,Hipparchia hermione,,species,https://www.gbif.org/species/1918868,EXACT,,NE
+HIPPSEME,Hipparchia semele,,species,https://www.gbif.org/species/8176911,EXACT,,LC
+HIPPSTAT,Hipparchia statilinus,,species,https://www.gbif.org/species/8035998,EXACT,,LC
+HYPOLUPI,Hyponephele lupina,,species,https://www.gbif.org/species/1906552,FUZZY,,NE
+HYPOLYCA,Hyponephele lycaon,,species,https://www.gbif.org/species/8208583,EXACT,,NE
+IPHIFEIS,Iphiclides feisthamelii,,species,https://www.gbif.org/species/4690079,EXACT,,NE
+ISSOLATH,Issoria lathonia,,species,https://www.gbif.org/species/1905383,EXACT,,NE
+LAMPBOET,Lampides boeticus,,species,https://www.gbif.org/species/1924713,EXACT,,LC
+LASIMAER,Lasiommata maera,,species,https://www.gbif.org/species/4535636,EXACT,,NE
+LASIMEGE,Lasiommata megera,,species,https://www.gbif.org/species/4535632,EXACT,,NE
+LEPTSINA,Leptidea sinapis,,species,https://www.gbif.org/species/5137903,EXACT,,NE
+LEPTPIRI,Leptotes pirithous,,species,https://www.gbif.org/species/1932976,EXACT,,LC
+LIBYCELT,Libythea celtis,,species,https://www.gbif.org/species/1909838,EXACT,,NE
+LYCAALCI,Lycaena alciphron,,species,https://www.gbif.org/species/8356768,EXACT,,NE
+LYCAPHLA,Lycaena phlaeas,,species,https://www.gbif.org/species/1929697,EXACT,,NE
+LYSAALBI,Lysandra albicans,,species,https://www.gbif.org/species/11470119,EXACT,,LC
+LYSABELL,Lysandra bellargus,,species,https://www.gbif.org/species/1925233,EXACT,,NE
+MANIJURT,Maniola jurtina,,species,https://www.gbif.org/species/5135513,EXACT,,NE
+MELAINES,Melanargia ines,,species,https://www.gbif.org/species/1916352,EXACT,,NE
+MELALACH,Melanargia lachesis,,species,https://www.gbif.org/species/1916458,EXACT,,LC
+MELAOCCI,Melanargia occitanica,,species,https://www.gbif.org/species/1916554,EXACT,,NE
+MELIATHA,Melitaea athalia,,species,https://www.gbif.org/species/1899433,EXACT,,NE
+MELIDEIO,Melitaea deione,,species,https://www.gbif.org/species/6229058,EXACT,,NE
+MELIDIDY,Melitaea didyma,,species,https://www.gbif.org/species/8393082,EXACT,,NE
+MELIPART,Melitaea parthenoides,,species,https://www.gbif.org/species/5792087,EXACT,Mellicta parthenoides,LC
+MELIPHOE,Melitaea phoebe,,species,https://www.gbif.org/species/7934873,EXACT,,NE
+MELITRIV,Melitaea trivia,,species,https://www.gbif.org/species/1899349,EXACT,,NE
+MUSCPROT,Muschampia proto,,species,https://www.gbif.org/species/4535396,EXACT,,NE
+NYMPPOLY,Nymphalis polychloros,,species,https://www.gbif.org/species/7762841,EXACT,,NE
+OCHLSYLV,Ochlodes sylvanus,,species,https://www.gbif.org/species/1946844,EXACT,Ochlodes venata,NE
+PAPIMACH,Papilio machaon,,species,https://www.gbif.org/species/8225376,EXACT,,NE
+PARAAEGE,Pararge aegeria,,species,https://www.gbif.org/species/8049830,EXACT,,NE
+PARNAPOL,Parnassius apollo,,species,https://www.gbif.org/species/1938810,EXACT,,LC
+PIERBRAS,Pieris brassicae,,species,https://www.gbif.org/species/1920506,EXACT,,NE
+PIERNAPI,Pieris napi,,species,https://www.gbif.org/species/1920494,EXACT,,NE
+PIERRAPA,Pieris rapae,,species,https://www.gbif.org/species/1920496,EXACT,,NE
+PLEBARGU,Plebejus argus,,species,https://www.gbif.org/species/5138561,EXACT,,NE
+PLEBIDAS,Plebejus idas,,species,https://www.gbif.org/species/5714690,EXACT,Lycaeides idas,NE
+POLYC-AL,Polygonia c-album,,species,https://www.gbif.org/species/1898544,EXACT,,NE
+POLYAMAN,Polyommatus amandus,,species,https://www.gbif.org/species/7597891,EXACT,Plebejus amanda,NE
+POLYCELI,Polyommatus celina,,species,https://www.gbif.org/species/9954885,EXACT,,NE
+POLYESCH,Polyommatus escheri,,species,https://www.gbif.org/species/7445680,EXACT,Plebicula escheri,NE
+POLYGOLG,Polyommatus golgus,,species,https://www.gbif.org/species/5772700,EXACT,Plebicula golgus,EN
+POLYICAR,Polyommatus icarus,,species,https://www.gbif.org/species/5140214,EXACT,,NE
+POLYNIVE,Polyommatus nivescens,,species,https://www.gbif.org/species/5772702,EXACT,,LC
+POLYTHER,Polyommatus thersites,,species,https://www.gbif.org/species/7634721,EXACT,,NE
+PONTDAPL,Pontia daplidice,,species,https://www.gbif.org/species/1920258,EXACT,,LC
+PSEUMERC,Pseudochazara mercurius,,species,https://www.gbif.org/species/12031122,EXACT,Pseudochazara hippolyte,NE
+PSEUABEN,Pseudophilotes abencerragus,,species,https://www.gbif.org/species/1922572,EXACT,,NE
+PSEUPANO,Pseudophilotes panoptes,,species,https://www.gbif.org/species/8311653,EXACT,Pseudophilotes baton,LC
+PYRGONOP,Pyrgus onopordi,,species,https://www.gbif.org/species/1949954,EXACT,,NE
+PYROBATH,Pyronia bathseba,,species,https://www.gbif.org/species/8404037,EXACT,,NE
+PYROCECI,Pyronia cecilia,,species,https://www.gbif.org/species/7988274,EXACT,,NE
+PYROTITH,Pyronia tithonus,,species,https://www.gbif.org/species/7622059,EXACT,,NE
+SATYESCU,Satyrium esculi,,species,https://www.gbif.org/species/7552387,EXACT,Fixsenia esculi,NE
+SATYSPIN,Satyrium spini,,species,https://www.gbif.org/species/7391741,EXACT,Tuttiola spini,NE
+SATYACTA,Satyrus actaea,,species,https://www.gbif.org/species/5134301,EXACT,,LC
+SPEYAGLA,Speyeria aglaja,,species,https://www.gbif.org/species/6221746,EXACT,,NE
+SPIASERT,Spialia sertorius,,species,https://www.gbif.org/species/1945569,EXACT,,NE
+THYMACTE,Thymelicus acteon,,species,https://www.gbif.org/species/8073674,EXACT,,NE
+THYMLINE,Thymelicus lineola,,species,https://www.gbif.org/species/8133678,EXACT,,NE
+THYMSYLV,Thymelicus sylvestris,,species,https://www.gbif.org/species/8273661,EXACT,,NE
+TOMABALL,Tomares ballus,,species,https://www.gbif.org/species/1926385,EXACT,,NE
+VANEATAL,Vanessa atalanta,,species,https://www.gbif.org/species/1898286,EXACT,,LC
+VANECARD,Vanessa cardui,,species,https://www.gbif.org/species/4299368,EXACT,,LC
+ZERYRUMI,Zerynthia rumina,,species,https://www.gbif.org/species/5141297,EXACT,,NE

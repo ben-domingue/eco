@@ -1,0 +1,60 @@
+{
+  "table": "peer_2014_bmsil_butterfly_count",
+  "title": "Pollard-walk counts of 81 butterfly species on 39 transects of the Israeli Butterfly Monitoring Scheme (BMS-IL), 2009-2015",
+  "creator": "Peer, Israel; Pe'er, Guy; Benyamini, Dubi; Schwartz-Tzachor, Racheli",
+  "pubDate": "2016-12-23",
+  "sourceURL": "https://doi.org/10.15468/q4lynx",
+  "citation": "Peer I (2014). Israeli Butterfly Monitoring Scheme (BMS-IL). v6.17. ILS - Israeli Lepidopterists' society. Dataset/Samplingevent. https://doi.org/10.15468/q4lynx (CC0 1.0).",
+  "dataDOI": "10.15468/q4lynx",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Volunteer Pollard walks of the Israeli Butterfly Monitoring Scheme: 39 transects of 50 m sections (300-600 m) across Israel, walked about every two weeks, mostly October to June, with every butterfly within 5 m counted per section. 1,846 walks from October 2009 to November 2015, 220 of them with no butterfly seen; counts summed over the sections of a walk; 81 species.",
+  "samplingProtocol": "Pollard walk: the whole transect is walked (partial walks are not recorded), every butterfly within an imaginary 5 x 5 x 5 m cube counted per 50 m section; unidentified individuals recorded to family (not shipped); a walk with no butterfly recorded as an explicit absence event; start time and weather recorded per walk.",
+  "samplingProtocolCode": "transect_count",
+  "occasionLength": "one transect walk (about 30 minutes)",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "A walk exists where event.txt has any row for its visit id: section events for walks with sightings and an explicit s00 absence event (Lepidoptera, 0) for each of the 221 walks with none; the protocol records only whole-transect walks. Two visit ids that are one empty walk of TR003 on 2014-10-29 are one survey.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "not assumed: visits every two weeks through a season of up to a year follow each species' flight period; period = monitoring season from 1 October",
+  "geographicCoverage": {
+    "description": "Israel, from the Golan and Galilee to the Negev (39 transects)",
+    "boundingBox": {
+      "west": 34.3565,
+      "east": 35.75,
+      "south": 29.5554,
+      "north": 33.0289
+    }
+  },
+  "temporalCoverage": "2009-10-02/2015-11-13",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published, averaged: the centroid of each transect's section coordinates, uncertainty half the section spread + 25 m; TR017 has no coordinates in the source; no species is IUCN CR, EN or VU (checked through GBIF)"
+  },
+  "notShipped": {
+    "section counts": "summed over the sections of each walk into y (the EML's own instruction); section-level zeros cannot be evidenced because empty sections have no event",
+    "records to family or order": "Pieridae 314, Lycaenidae 166, Hesperiidae 26, Satyridae 20, Nymphalidae 15, Papilionidae 1 and Lepidoptera 1 records of unidentified butterflies; the species zeros at those walks stay as recorded",
+    "recordedBy": "volunteer names, replaced by pseudonymous observer ids",
+    "infraspecificEpithet": "one subspecies name per species where given; not part of the taxon code",
+    "duplicate rows": "13 repeated event x taxon rows (visit 3481's Azanus jesous records over five sections appear twice) are summed as deposited",
+    "measurementorfact temperature": "values of 0 (240 section events) and above 50 are set to NA in obs_temperature_c"
+  },
+  "summary": {
+    "n_rows": 149526,
+    "n_units": 39,
+    "n_taxa": 81,
+    "n_periods": 7,
+    "n_occasions": 27,
+    "n_surveys": 1846,
+    "y_values": "0-362 (66 distinct)",
+    "prop_zero": 0.959
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_start_time", "obs_end_time", "obs_temperature_c", "obs_wind", "obs_cloudiness"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/peer_2014_bmsil_butterfly_count.R",
+  "buildDate": "2026-11-03"
+}

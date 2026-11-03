@@ -1,0 +1,48 @@
+{
+  "table": "work_2026_ocala_odonatenymphs_count",
+  "title": "Odonate (dragonfly and damselfly) nymph counts at 16 ponds in Ocala National Forest, Florida, four dipnet visits 2022-2023",
+  "creator": "Work, Kirsten; Ray, H. A.",
+  "pubDate": "2026",
+  "doi": "10.7910/DVN/M7XVVL",
+  "sourceURL": "https://doi.org/10.7910/DVN/M7XVVL",
+  "citation": "Work, K. (2026). Odonate species richness and abundance in Ocala National Forest ponds [Dataset]. Harvard Dataverse, V1. https://doi.org/10.7910/DVN/M7XVVL",
+  "paperDOI": "10.1080/02705060.2026.2711736",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of nymphs of 45 odonate species collected with dipnets at 16 ponds in four spatial groups in Ocala National Forest, Florida, on four visits (May and August 2022, June and August 2023), with pond size, depth, isolation, vegetation and fish / crayfish presence. Collected to test whether assemblages are more similar in nearby ponds and which ecological variables predict assemblage structure; adults collected with aerial nets on the same visits are a sibling table.",
+  "samplingProtocol": "Nymphs collected with dipnets at each pond on each visit; adults with aerial nets (sibling table). Number of sweeps, time or area per visit is not given in the deposit.",
+  "samplingProtocolCode": "dipnet",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none assumed: two visits two to three months apart within a summer; nymph cohorts grow and emerge between visits, so counts are not replicate counts of a closed population",
+  "geographicCoverage": "Ocala National Forest, Marion County, Florida, USA (29.12-29.33 N, 81.61-81.74 W)",
+  "temporalCoverage": "2022-05/2023-08",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Pond coordinates (degrees-minutes-seconds to 0.01 s in the deposit) generalised to the 0.1 degree cell centre with coarsen_coords(), uncertainty = cell half-diagonal; flagged taxon: Libellula jesseana (IUCN VU via GBIF; Florida endemic, so in its native range)"
+  },
+  "notes": "Visit months only (obs_survey_month); no day, so no `date`. The Dataverse description says summers 2021 and 2023; the sheets say 2022 and 2023 and are followed. Six source spellings corrected for GBIF (Argia moesta, Coryphaeschna ingens, Nasiaeschna pentacantha, Pachydiplax longipennis, Epitheca cynosura, Gomphus cavillaris); the source spelling is in __taxa taxon_sourceName. Species collected only as adults are 0 throughout. Counts are not standardised for effort, which the deposit does not give. Hopkins pond 3's coordinate string has a stray trailing '7', dropped. Sampling effort per visit is not in the deposit.",
+  "notShipped": {
+    "two blank species columns": "unlabelled and empty in both stage sheets",
+    "Odonate adult data": "shipped as work_2026_ocala_odonates_comm"
+  },
+  "summary": {
+    "n_rows": 2880,
+    "n_units": 16,
+    "n_taxa": 45,
+    "n_periods": 2,
+    "n_occasions": 2,
+    "n_surveys": 64,
+    "y_values": "0-100 (40 distinct)",
+    "prop_zero": 0.856
+  },
+  "sampleFloor": "below (16 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_size_m2", "unit_depth_m", "unit_nearest_neighbour_m", "unit_forest_distance_m", "unit_open_water_pct", "unit_open_water_area_m2", "unit_grass_pct", "unit_lily_pct", "unit_sunfish", "unit_fish", "unit_crayfish", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_survey_month"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/work_2026_ocala_odonatenymphs_count.R",
+  "buildDate": "2026-11-03"
+}
