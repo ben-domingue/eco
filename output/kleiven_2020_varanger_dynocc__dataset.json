@@ -1,6 +1,6 @@
 {
   "table": "kleiven_2020_varanger_dynocc",
-  "title": "COAT small-mammal camera traps, Varanger Peninsula: daily detection of small rodents and small mustelids at 48 cameras in 8 blocks over 7 seasons",
+  "title": "COAT small-mammal camera traps, Varanger Peninsula: daily detection of small rodents and small mustelids at 46 cameras (of 48 positions) in 8 blocks over 7 seasons",
   "creator": "Kleiven, Eivind Flittie; COAT (Climate-ecological Observatory for Arctic Tundra), UiT The Arctic University of Norway",
   "pubDate": "2020",
   "doi": "10.18710/ZLW59W",
@@ -31,7 +31,7 @@
     "seas_2021": "summer/winter day labels whose alignment to the day axis is not stated",
     "SimData": "simulated data for the paper's simulation study (not real observations)"
   },
-  "designNote": "Two spatial scales: cluster_id = block is the coarse scale of the source model; the 48 cameras are the fine scale. Experimental list of E9 (multi-scale via cluster_id).",
+  "designNote": "Two spatial scales: cluster_id = block is the coarse scale of the source model; the 46 cameras with data (of 48 positions) are the fine scale. Experimental list of E9 (multi-scale via cluster_id).",
   "summary": {
     "n_rows": 115294,
     "n_units": 46,
@@ -47,5 +47,5 @@
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/kleiven_2020_varanger_dynocc.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

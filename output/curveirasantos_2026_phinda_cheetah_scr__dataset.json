@@ -1,6 +1,6 @@
 {
   "table": "curveirasantos_2026_phinda_cheetah_scr",
-  "title": "Spatial capture-recapture of cheetah (Acinonyx jubatus) at 100 camera traps in the Munywana Conservancy, South Africa, Sept 2021 to Jan 2022",
+  "title": "Spatial capture-recapture of cheetah (Acinonyx jubatus) at 99 operating camera traps (100 deployed) in the Munywana Conservancy, South Africa, Sept 2021 to Jan 2022",
   "creator": "Curveira-Santos, Goncalo; Dupont, Gates; Sutherland, Chris; Gigliotti, Laura",
   "pubDate": "2025",
   "doi": "10.17605/OSF.IO/Y3W6F",
@@ -11,7 +11,7 @@
     "spdx": "CC-BY-4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
   },
-  "abstract": "Daily camera-trap detections of individually identified cheetah (Acinonyx jubatus) at 100 camera sites in the Munywana Conservancy (Phinda), KwaZulu-Natal, South Africa, 17 September 2021 to 11 January 2022: 60 cameras placed for leopards and 40 for small-bodied carnivores by the authors' two-stage design optimisation. One row per individual x operating camera-day; the deposited camera operation matrix is the survey set. Sibling tables for the other five identifiable carnivores of the same survey: curveirasantos_2026_phinda_leopard_scr, curveirasantos_2026_phinda_lion_scr, curveirasantos_2026_phinda_hyena_scr, curveirasantos_2026_phinda_genet_scr, curveirasantos_2026_phinda_serval_scr. Trap coordinates are centred on the array (local metres) because three of the six species are IUCN Vulnerable.",
+  "abstract": "Daily camera-trap detections of individually identified cheetah (Acinonyx jubatus) at 100 camera sites (99 operated; MYW43 never did) in the Munywana Conservancy (Phinda), KwaZulu-Natal, South Africa, 17 September 2021 to 11 January 2022: 60 cameras placed for leopards and 40 for small-bodied carnivores by the authors' two-stage design optimisation. One row per individual x operating camera-day; the deposited camera operation matrix is the survey set. Sibling tables for the other five identifiable carnivores of the same survey: curveirasantos_2026_phinda_leopard_scr, curveirasantos_2026_phinda_lion_scr, curveirasantos_2026_phinda_hyena_scr, curveirasantos_2026_phinda_genet_scr, curveirasantos_2026_phinda_serval_scr. Trap coordinates are centred on the array (local metres) because three of the six species are IUCN Vulnerable.",
   "samplingProtocol": "Paired or single camera traps at 100 sites (Cuddeback and Spartan), checked over 117 calendar days; individuals identified from coat pattern (flank recorded as both / left / right where applicable), lions and cheetahs also by pride or coalition. Detection history is individual x camera x day.",
   "samplingProtocolCode": "camera_trap",
   "surveyEvidence": "effort_table",
@@ -50,5 +50,5 @@
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/curveirasantos_2026_phinda_carniv_scr.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

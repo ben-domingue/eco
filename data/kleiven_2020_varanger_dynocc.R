@@ -32,14 +32,15 @@ long <- rbindlist(list(
   obs[, .(unit, taxon = "MUSTEL", y = as.integer(state %in% c(3L, 4L)), y_raw = state, period = season, occasion = day, cluster_id = sprintf("B%d", block))]))
 long <- order_eco(long)
 cat(sprintf("  %d of 48 block x site cameras have data\n", uniqueN(long$unit)))
-stopifnot(nrow(long) == 2 * nrow(obs), uniqueN(long$unit) <= 48, long[, .N, by = .(unit, period, occasion)][, all(N == 2)])
+stopifnot(nrow(long) == 2 * nrow(obs), uniqueN(long$unit) == 46,  # the prose says 46 of 48 (#28)
+          long[, .N, by = .(unit, period, occasion)][, all(N == 2)])
 periods <- data.table(period = 1:7, n_cameras_active = sapply(1:7, function(t) uniqueN(long[period == t, unit])),
                       note = "calendar bounds not in the deposit; collection 2015-09 to 2020-06")
 
 taxa <- make_taxa(c("RODENT", "MUSTEL"), c("Rodentia", "Mustela"), vernacularName = c("Small rodents (functional group)", "Small mustelids (stoat, least weasel)"),
                   taxonRank = c("order", "genus"))
 dataset <- list(
-  title = "COAT small-mammal camera traps, Varanger Peninsula: daily detection of small rodents and small mustelids at 48 cameras in 8 blocks over 7 seasons",
+  title = "COAT small-mammal camera traps, Varanger Peninsula: daily detection of small rodents and small mustelids at 46 cameras (of 48 positions) in 8 blocks over 7 seasons",
   creator = "Kleiven, Eivind Flittie; COAT (Climate-ecological Observatory for Arctic Tundra), UiT The Arctic University of Norway",
   pubDate = "2020", doi = "10.18710/ZLW59W", sourceURL = "https://doi.org/10.18710/ZLW59W",
   citation = "Kleiven, E. F. et al. (2020, v4 2023). Data and code to replicate \"A dynamic occupancy model for interacting species with two spatial scales\" [Data set]. DataverseNO. https://doi.org/10.18710/ZLW59W",
@@ -54,10 +55,10 @@ dataset <- list(
   stateCodes = list(`1` = "no detection", `2` = "rodent detected", `3` = "mustelid detected", `4` = "rodent and mustelid detected"),
   notShipped = list(seas_2021 = "summer/winter day labels whose alignment to the day axis is not stated",
                     SimData = "simulated data for the paper's simulation study (not real observations)"),
-  designNote = "Two spatial scales: cluster_id = block is the coarse scale of the source model; the 48 cameras are the fine scale. Experimental list of E9 (multi-scale via cluster_id).")
+  designNote = "Two spatial scales: cluster_id = block is the coarse scale of the source model; the 46 cameras with data (of 48 positions) are the fine scale. Experimental list of E9 (multi-scale via cluster_id).")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/kleiven_2020_varanger_dynocc.R")
 stage_dict_row(TABLE,
-  description = "Daily camera-trap detection/non-detection of small rodents and small mustelids (two functional groups) at 48 cameras in 8 blocks on the Varanger Peninsula, Norway, over 7 seasons of 304 days (COAT programme, 2015-2020); the deposited four-state code is kept in y_raw.",
+  description = "Daily camera-trap detection/non-detection of small rodents and small mustelids (two functional groups) at 46 cameras with data, of 48 positions, in 8 blocks on the Varanger Peninsula, Norway, over 7 seasons of 304 days (COAT programme, 2015-2020); the deposited four-state code is kept in y_raw.",
   url = "https://doi.org/10.18710/ZLW59W",
   reference = "Kleiven, E. F. et al. Data and code to replicate \"A dynamic occupancy model for interacting species with two spatial scales\". DataverseNO.",
   doi_data = "10.18710/ZLW59W", original_license = "CC0 1.0", derived_license = "CC0 1.0",
