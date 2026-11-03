@@ -191,6 +191,12 @@ Coordinates are coarsened, not dropped: spatial occupancy and SCR need them, and
 agency released for a flagged taxon on public land are kept as published; the agency
 is the authority on what it publishes. Trap coordinates follow the same rule.
 
+**Ruling (non-native taxa, 2026-11-02).** (b) applies only where the survey is within
+the taxon's native range. The IUCN category protects wild populations; an introduced
+population (a garden escape, an invasive) is not flagged by its global category, so
+its coordinates are kept as the source published them. (a) and (c) still apply, and
+`coordinatesCoarsened` says why a listed taxon was not coarsened.
+
 ## E8. Time
 
 `period` and `occasion` are integers ordered in time (an `occasion` that indexes a
@@ -205,6 +211,10 @@ Closure is assumed across `occasion` within a `period`; where a source violates 
 **Ruling (Q6, 2026-11-01).** Three lists. The test for the second is that the
 likelihood can still be written from the key and `y` plus one metadata field, and a
 converter back to the native frame exists.
+
+**Ruling (plants, 2026-11-02).** Plants are in scope. The lists below are about
+designs, not taxa: repeat-visit plant surveys are occupancy, and histories of marked
+plants (including dormancy) are capture-recapture, under the same clauses as animals.
 
 **Ruling (#34, 2026-11-01).** Occasions collapsed by the source to "detected on `y` of
 `obs_trials` occasions" are `responseType = binomial_count` (E2), not `count` with an

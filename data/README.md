@@ -159,6 +159,16 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `tumursukh_2016_tost_ungulates_dobs.R` | two double-observer tables (Siberian ibex, argali), groups as units, Tost, Mongolia | Dryad | CC0 |
 | `davis_2016_feralswine_removal.R` | three-pass aerial removal, feral swine x 49 properties x 9 years | Dryad | CC0 |
 | `dougherty_2016_rustycrayfish_edna.R` | qPCR replicates plus baited trap, rusty crayfish x 261 locations in 12 lakes | Dryad | CC0 |
+| `sandercock_2022_norway_alien.R` | community occupancy (plants, two botanists) + multi-scale eDNA (insects) | Dryad | CC0 |
+| `armstrong_2024_hydrilla_dynocc.R` | dynamic occupancy (plant) | Dryad | CC0 |
+| `martinezvillegas_2024_plants_cjs.R` | CJS, five marked plant species | Dryad | CC0 |
+| `deprengerlevin_2024_astragalus_cmr.R` | multistate robust design + multistate CJS (plant, dormancy) | Dryad | CC0 |
+| `schleimer_2019_gsl_finwhale_cjs.R` | CJS, photo-ID | Dryad | CC0 |
+| `ancona_2016_isabel_booby_cjs.R` | CJS | Dryad | CC0 |
+| `dezeeuw_2024_nl_waterbeetle_nmix.R` | community repeated counts (water beetles) | Dryad | CC0 |
+| `inbo_2026_flanders_aesiso_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
+| `inbo_2026_flanders_calvir_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
+| `inbo_2026_flanders_coepul_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

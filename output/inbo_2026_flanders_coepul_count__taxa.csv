@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+COEPUL,Coenagrion pulchellum,Variable Damselfly,species,https://www.gbif.org/species/1421980,EXACT,,LC

@@ -1,0 +1,44 @@
+{
+  "table": "dezeeuw_2024_nl_waterbeetle_nmix",
+  "title": "Repeated hand-net counts of Graphoderus bilineatus and three other water beetles at 337 locations, the Netherlands, 2011-2022",
+  "creator": "de Zeeuw, Marnix; van Strien, Arco; Koese, Bram; Stienstra, Jelle; Soldaat, Leo",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.p5hqbzkwm",
+  "sourceURL": "https://doi.org/10.5061/dryad.p5hqbzkwm",
+  "citation": "de Zeeuw, M., van Strien, A., Koese, B., Stienstra, J., & Soldaat, L. (2024). Data for: Trends in abundance and occupancy of the protected waterbeetle Graphoderus bilineatus in the Netherlands. Dryad. https://doi.org/10.5061/dryad.p5hqbzkwm",
+  "paperDOI": "10.1007/s10841-024-00550-x",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "National monitoring scheme for the Habitats Directive beetle Graphoderus bilineatus: 337 locations in 68 1-km squares, each hand-netted twice within a season by two different professional observers 5-8 days apart, and resurveyed six years later (rounds 2011-2016 and 2017-2022). Counts of G. bilineatus and three co-occurring water beetles. The authors fit occupancy and Poisson GLMM trend models and found declines and strong observer effects.",
+  "samplingProtocol": "Standardized hand-netting at a chosen sampling location, September-October; two visits per season by different observers 5-8 days apart; locations resurveyed on a six-year cycle.",
+  "samplingProtocolCode": "dipnet",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion within period (two visits 5-8 days apart in one season); state may change between the two survey years six years apart",
+  "geographicCoverage": "The Netherlands, mainly the western and northern peat areas (no coordinates deposited)",
+  "temporalCoverage": "2011/2022",
+  "coordinatesCoarsened": null,
+  "notes": "Each location has two of the twelve periods (one per round); __periods gives year and round. occasion is ordered by date; obs_selector = 1 marks the visit by the observer who chose the five locations in the square (in 10 location-years that visit came second). The 1-km square of each location is not deposited.",
+  "notShipped": {
+    "occupancy and trend estimates": "model outputs in the paper; not in the deposit"
+  },
+  "summary": {
+    "n_rows": 5344,
+    "n_units": 337,
+    "n_taxa": 4,
+    "n_periods": 12,
+    "n_occasions": 2,
+    "n_surveys": 1336,
+    "y_values": "0-52 (33 distinct)",
+    "prop_zero": 0.635
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_n2000", "obs_selector"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dezeeuw_2024_nl_waterbeetle_nmix.R",
+  "buildDate": "2026-11-02"
+}

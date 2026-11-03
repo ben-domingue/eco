@@ -83,7 +83,7 @@ the name plus `__taxa` (required), `__periods`, `__units`, `__traps`; metadata i
   density the authors derived from the same detections is dropped and recorded in
   `notShipped`.
 - **Coordinates never finer than the source.** Flagged taxa (source says so, IUCN
-  CR/EN/VU, cited red list) with coordinates finer than 0.1 degree are coarsened
+  CR/EN/VU in its native range, cited red list) with coordinates finer than 0.1 degree are coarsened
   with `coarsen_coords()`, and `coordinatesCoarsened` says how. Agency-published
   coordinates are kept as published.
 - **Species codes on `taxon`**, scientific name and GBIF key in `__taxa` via

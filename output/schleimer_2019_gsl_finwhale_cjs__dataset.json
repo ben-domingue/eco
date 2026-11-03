@@ -1,0 +1,47 @@
+{
+  "table": "schleimer_2019_gsl_finwhale_cjs",
+  "title": "Photo-identification capture histories of 507 fin whales, northern Gulf of St. Lawrence, 1982-2016",
+  "creator": "Schleimer, Anna; Ramp, Christian; Delarue, Julien; Carpentier, Alain; Berube, Martine; Palsboll, Per J.; Sears, Richard; Hammond, Philip S.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.pv93760",
+  "sourceURL": "https://doi.org/10.5061/dryad.pv93760",
+  "citation": "Schleimer, A., Ramp, C., Delarue, J., Carpentier, A., Berube, M., Palsboll, P. J., Sears, R., & Hammond, P. S. (2019). Data from: Decline in abundance and apparent survival rates of fin whales (Balaenoptera physalus) in the northern Gulf of St. Lawrence. Dryad. https://doi.org/10.5061/dryad.pv93760",
+  "paperDOI": "10.1002/ece3.5055",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual photo-identification histories of 507 fin whales identified by the Mingan Island Cetacean Study in the northern Gulf of St. Lawrence over 35 years (1982-2016), from more than 5,000 identifications. The authors fit CJS models (survival with a linear trend and a sharp late decline) and POPAN super-population models.",
+  "samplingProtocol": "Boat-based photo-identification surveys each summer (June-October) in the Mingan Islands / Jacques Cartier Passage study area; one annual capture occasion per whale per year, y_raw = number of days the whale was photographed that year.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one annual occasion; survival and emigration between years)",
+  "geographicCoverage": "Northern Gulf of St. Lawrence, Quebec, Canada: Mingan Islands and Jacques Cartier Passage (one study zone; no coordinates deposited)",
+  "temporalCoverage": "1982/2016",
+  "coordinatesCoarsened": null,
+  "notes": "unit_calf = 1 marks the 41 whales listed in Calves.txt, which the authors exclude from all models because a calf's sightings follow its mother's; filter them out to reproduce the paper. unit_sex is NA for the 280 whales not genetically sexed. The authors' CJS analyses use 1990-2016 subsets of these histories.",
+  "notShipped": {
+    "ChPopan20042010.txt, ChPopan20102016.txt": "7-year windows of the same histories for POPAN; recoverable from this table by period",
+    "residency clusters": "the authors' visitor / core-regular grouping is a clustering of the same sighting histories and is not deposited per whale",
+    "SightingHist.txt Zone": "constant (MING)",
+    "Calves.txt IDs not in Chall": "3 calf IDs have no history (ID140, ID188, ID451)"
+  },
+  "summary": {
+    "n_rows": 17745,
+    "n_units": 507,
+    "n_taxa": 1,
+    "n_periods": 35,
+    "n_occasions": 1,
+    "n_surveys": 17745,
+    "y_values": "0,1",
+    "prop_zero": 0.887
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_sex", "unit_calf"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/schleimer_2019_gsl_finwhale_cjs.R",
+  "buildDate": "2026-11-02"
+}

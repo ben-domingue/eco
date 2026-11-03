@@ -1,0 +1,5 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory,taxon_habitatsDirective
+GRABIL,Graphoderus bilineatus,,species,https://www.gbif.org/species/4470279,EXACT,,VU,"Annex II, IV"
+GRACIN,Graphoderus cinereus,,species,https://www.gbif.org/species/1037908,EXACT,,,
+CYBLAT,Cybister lateralimarginalis,,species,https://www.gbif.org/species/4470300,EXACT,,,
+HYDPIC,Hydrophilus piceus,Great Silver Water Beetle,species,https://www.gbif.org/species/5745349,EXACT,,,

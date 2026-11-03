@@ -1,0 +1,56 @@
+{
+  "table": "sandercock_2022_norway_plants_comm",
+  "creator": "Sandercock, Brett K.; Davey, Marie L.; Endrestol, Anders; Blaalid, Rakel; Fossoy, Frode; Hegre, Hanne; Majaneva, Markus A.M.; Often, Anders; Astrom, Jens; Jacobsen, Rannveig M.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.0rxwdbs4f",
+  "sourceURL": "https://doi.org/10.5061/dryad.0rxwdbs4f",
+  "citation": "Sandercock, B. K., Davey, M. L., Endrestol, A., Blaalid, R., Fossoy, F., Hegre, H., Majaneva, M. A. M., Often, A., Astrom, J., & Jacobsen, R. M. (2022). Dataset for: Designing a surveillance program for early detection of alien plants and insects in Norway [Dataset]. Dryad. https://doi.org/10.5061/dryad.0rxwdbs4f",
+  "paperDOI": "10.1007/s10530-022-02957-6",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "geographicCoverage": "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Plot latitude/longitude kept as deposited (5 decimals). Aesculus hippocastanum (IUCN VU) and Syringa josikaea (IUCN EN) are on the plant list, but as introduced populations outside their native range, which E7 (b) does not flag (ruling on non-native taxa, 2026-11-02); every surveyed taxon is on the Norwegian Alien Species List. UTM33 easting/northing not shipped (same positions)."
+  },
+  "title": "Alien vascular plant detections by two independent botanists in 60 plots around the Oslofjord, Norway, 2018-2020",
+  "abstract": "Surveillance for alien vascular plants in 60 study plots (6.25 ha; 27 chosen by experts, 33 by weighted random selection from a hotspot model) in southern Norway, 15 to 25 plots per year 2018-2020, each plot in one year. Two experienced botanists (A. Often, H. Hegre) searched each plot independently within one month (mid-August to mid-September); 35 plots were searched by both and 25 by one, 95 surveys in all. One row per plot x botanist x taxon for 241 alien taxa on the Norwegian Alien Species List (2018), with the list's risk category in __taxa.",
+  "samplingProtocol": "Independent searches of each 6.25-ha plot by two botanists in mid-August to mid-September; in 2018 along four transects (10 m strips) plus about 30 minutes elsewhere (maximum 2 h), in 2019-2020 a random walk over the whole plot (maximum 5 h). The search list is the 241 alien taxa of the Norwegian Alien Species List (2018).",
+  "samplingProtocolCode": "visual_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "occasion within plot (the two botanists searched the plot independently within one month); each plot is surveyed in one year only",
+  "temporalCoverage": "2018-08/2020-09",
+  "occasionCodes": {
+    "1": "botanist Anders Often (observer AO)",
+    "2": "botanist Hanne Hegre (observer HH)"
+  },
+  "designNote": "Standard E3: two observers on one visit are two occasions with `observer`; the source records each botanist's own 0/1, so a double-observer multinomial view (cells 10/01/11) is a derived pivot of this table. Occasion order is not temporal. Repeat plots (unit_history = Repeat, 5 plots) re-survey a site from an earlier year under a new plot id; unit_site_name links them (coordinates differ by 0 to about 1.6 km).",
+  "notes": "Taxon codes are built from the scientific name (4 + 4 letters, plus 3 of an infraspecific epithet). Hybrids (x), one cultivar (Salix 'Brekkavier') and subspecies are kept at the source's rank; GBIF matches above the source's rank are not shipped as taxonID. Pilosella aurantiaca aurantiaca appears twice in the source with identical detections and two risk categories (SE, HI): one row kept. Site names are as deposited, with the deposit's 'na' -> '0' substitution (Al0 = Alna). unit_hotspot_prediction is the external hotspot model's predicted suitability used for the selection weights (Olsen et al. 2017), not an estimate from these detections; land-cover areas are m2 within 1 km of the plot centre.",
+  "components": [
+    "sandercock_2022_norway_insects_edna"
+  ],
+  "notShipped": {
+    "UTM33 coordinates": "same positions as the shipped latitude/longitude",
+    "duplicate Pilosella row": "Pilosella aurantiaca aurantiaca listed a second time (risk HI) with detections identical to the SE row"
+  },
+  "summary": {
+    "n_rows": 22895,
+    "n_units": 60,
+    "n_taxa": 241,
+    "n_periods": 3,
+    "n_occasions": 2,
+    "n_surveys": 95,
+    "y_values": "0,1",
+    "prop_zero": 0.921
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sandercock_2022_norway_alien.R",
+  "buildDate": "2026-11-02"
+}

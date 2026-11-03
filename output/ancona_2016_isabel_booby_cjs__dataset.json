@@ -1,0 +1,42 @@
+{
+  "table": "ancona_2016_isabel_booby_cjs",
+  "title": "Annual resighting histories of 4,608 breeding blue-footed boobies, Isla Isabel, Mexico, 1991-2013",
+  "creator": "Ancona, Sergio; Drummond, Hugh; Rodriguez, Cristina; Zuniga-Vega, Jose Jaime",
+  "pubDate": "2016",
+  "doi": "10.5061/dryad.h0qp0",
+  "sourceURL": "https://doi.org/10.5061/dryad.h0qp0",
+  "citation": "Ancona, S., Drummond, H., Rodriguez, C., & Zuniga-Vega, J. J. (2016). Data from: Long-term population dynamics reveal that survival and recruitment of tropical boobies improve after a hurricane. Dryad. https://doi.org/10.5061/dryad.h0qp0",
+  "paperDOI": "10.1111/jav.01133",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture-recapture histories of 4,608 banded blue-footed boobies resighted as breeders in a fixed 26,889 m2 study area on Isla Isabel, Mexico, every February-March from 1991 to 2013, with sex. The authors fit Pradel models of adult survival, local recruitment and population growth, and tested the effect of a hurricane.",
+  "samplingProtocol": "Resighting of banded breeding adults during systematic monitoring of a fixed study area in February and March of each breeding season; one annual occasion per bird.",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one annual occasion; survival and recruitment between years)",
+  "geographicCoverage": "Isla Isabel, Nayarit, Mexico (21.87 N, 105.9 W; one fixed study area, no per-bird coordinates)",
+  "temporalCoverage": "1991/2013",
+  "coordinatesCoarsened": null,
+  "notes": "unit ids are line numbers in the deposit (no band numbers were deposited). Only 10 birds are resighted in 1991 and 1 in 1992, as deposited.",
+  "notShipped": [],
+  "summary": {
+    "n_rows": 105984,
+    "n_units": 4608,
+    "n_taxa": 1,
+    "n_periods": 23,
+    "n_occasions": 1,
+    "n_surveys": 105984,
+    "y_values": "0,1",
+    "prop_zero": 0.848
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ancona_2016_isabel_booby_cjs.R",
+  "buildDate": "2026-11-02"
+}

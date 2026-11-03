@@ -736,3 +736,58 @@ What this batch says about the standard:
 - **Sampling-protocol vocabulary**: `hand_capture`, `net_capture`, `transect_search`,
   `spotlight_survey`, `boat_count`, `cover_board`, `timed_search`, `visual_encounter`,
   `baited_trap`, `cover_object_search` should be listed in `tags/vocab.md`.
+
+## Batch 16 — 2026-11-02 (the first plant tables; invertebrate and marine gap search)
+
+A search aimed at invertebrates, plants and marine taxa (issue #40) inspected 100
+unseen deposits (`discovery_log.csv`) and queued 69. Ben ruled plants in scope (E9,
+2026-11-02). Sixteen tables were built from eight deposits in a worktree (branch
+`search-2026-11-02`); all Dryad zips came from the search's own downloads, so Dryad's
+rate limit did not block the build. Validated with `eco-validate`: 129/129 tables
+pass, IRW view conforms. Uploaded to the Redivis draft.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| sandercock_2022_norway_plants_comm | community occupancy, two independent botanists | Dryad CC0 | 22,895 | first plant table: 241 alien plant taxa x 60 plots x 3 years, Norway; `occasion` = botanist (E3, not the multinomial double-observer form); coordinates as deposited: two taxa are IUCN threatened (horse chestnut VU, *Syringa josikaea* EN) but here are introduced garden escapes, not flagged under the E7 ruling on non-native taxa |
+| sandercock_2022_norway_insects_edna | multi-scale eDNA metabarcoding (experimental) | Dryad CC0 | 42,185 | 143 insect taxa x 225 Malaise samples (`cluster_id` = plot); `occasion` = DNA source (crushed, ethanol, lysis buffer), not pooled as in the authors' script; abstract's "255 rounds" vs 225 samples noted |
+| armstrong_2024_hydrilla_dynocc | dynamic occupancy | Dryad CC0 | 4,211 | Hydrilla in 506 rock pools x 5 years x up to 10 visits; 196 duplicated pool-dates collapsed (any detection), count in `obs_n_records`; 744-pool frame in `__units`; distance-to-occupied and transition probabilities not shipped (derived) |
+| martinezvillegas_2024_flaveria_cjs | CJS, marked plants | Dryad CC0 | 9,708 | 809 plants x 12 censuses; census years and sites not deposited, index only in `__periods` |
+| martinezvillegas_2024_mammillaria_cjs | CJS, marked plants | Dryad CC0 | 5,695 | 1,139 plants x 5 censuses (M. hernandezii, IUCN EN; no coordinates); sibling |
+| martinezvillegas_2024_neobuxbaumia_cjs | CJS, marked plants | Dryad CC0 | 1,266 | 211 plants x 6 censuses; sibling |
+| martinezvillegas_2024_govenia_cjs | CJS, marked plants | Dryad CC0 | 1,276 | 319 orchids x 4 censuses; one history typed `11O0` read as 1100 (asserted unique); sibling |
+| martinezvillegas_2024_castilleja_cjs | CJS, marked plants | Dryad CC0 | 2,439 | 271 plants x 9 censuses; sibling |
+| deprengerlevin_2024_astragalus_msrd | multistate robust design | Dryad CC0 | 28,718 | Astragalus microcymbus, 1,970 plants x 3 years x 10 encounter bins; state 0/1 veg/2 repro/3 found unrecorded; 2014-15 survey set inferred (plot visited iff any plant has a row), 2013 deposited zeros, distinguished in `y_raw` |
+| deprengerlevin_2024_astragalus_ms | multistate CJS, stage | Dryad CC0 | 88,866 | 4,042 plants x 28 years (1995-2022); source's inferred dormant and dead are `y = 0` with the code in `y_raw` (ruling for this batch); next-year observations taken from the `fate` column; plot spans not padded to 2022 |
+| schleimer_2019_gsl_finwhale_cjs | CJS, photo-ID | Dryad CC0 | 17,745 | 507 fin whales x 35 years, Gulf of St. Lawrence; `y_raw` = sighting days, asserted to rebuild the deposited histories; sex and calf flag as `unit_`; calves kept (authors exclude them) |
+| ancona_2016_isabel_booby_cjs | CJS | Dryad CC0 | 105,984 | 4,608 blue-footed boobies x 23 years, Isla Isabel; no band numbers, unit = line number; sex from MARK group columns |
+| dezeeuw_2024_nl_waterbeetle_nmix | community repeated counts | Dryad CC0 | 5,344 | 4 Graphoderus species x 337 locations x 12 years x 2 visits = the paper's 1,336 surveys; G. bilineatus IUCN VU, no coordinates deposited; occasions ordered by date, the location-selecting observer's visit flagged `obs_selector` |
+| inbo_2026_flanders_aesiso_count | repeated counts, target species | GBIF CC0 (INBO) | 210 | Aeshna isoceles, 30 transects x 9 years; one table per target-species project (incidental species not shipped, they would invent zeros); coordinates as generalised by INBO; two counts dated 2025-12-11 kept as published |
+| inbo_2026_flanders_calvir_count | repeated counts, target species | GBIF CC0 (INBO) | 240 | Calopteryx virgo, 30 transects x 8 years; sibling |
+| inbo_2026_flanders_coepul_count | repeated counts, target species | GBIF CC0 (INBO) | 203 | Coenagrion pulchellum, 32 transects x 9 years; sibling |
+
+Held: the Meetnetten butterfly site counts (doi:10.15468/hvgkh4): the target species
+appears in one or two undistinguished occurrence rows per count, so `y` cannot be
+defined; question to INBO. Nine other queued deposits need a ruling or author
+information (`queue/human_review.csv`, 2026-11-02 rows).
+
+Fixed while closing: the three INBO scripts wrote `coordinatesCoarsened` as a string,
+which crashed `metadata/01_metadata.R` again (batch 15 hit the same thing; #38 asks the
+validator to check the shape).
+
+What this batch says about the standard:
+
+- **IUCN trigger on non-native taxa.** E7(b) flagged horse chestnut (VU) and *Syringa
+  josikaea* (EN), garden escapes in Norway, which coarsened every plot in both Norway
+  tables. Ruled 2026-11-02 (Ben): (b) applies only within the native range; standard.md
+  E7 now says so and the two tables were rebuilt with the deposited coordinates.
+- **Occasion as a category, not a time** (botanist, DNA source): allowed by E3 and E9,
+  but E8's "ordered in time" does not hold.
+- **Partly inferred survey sets inside one table** (Astragalus 2013 deposited, 2014-15
+  inferred): `surveyEvidence` is one value per table; `y_raw` marks the difference.
+- **Stage-fate deposits**: the guide could say that a `fate` column is the next
+  census's observation and that the source's dormant/dead are inferences (`y_raw`).
+- **One survey design, several target-species frames** (Meetnetten): split per target,
+  following the species-pool rule. Ben (2026-11-02): right; users can recombine them.
+- **Categorised counts** (dragonfly sex/behaviour/teneral) are summed into `y`; E2 has
+  no home for a breakdown of one count.
+- **Synthetic unit ids** (booby line numbers) and **flagged subsets kept** (whale calves).
