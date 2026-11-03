@@ -10,10 +10,10 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "geographicCoverage": "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway; coordinates coarsened to 0.1 degree",
+  "geographicCoverage": "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway",
   "coordinatesCoarsened": {
-    "value": true,
-    "method": "Plot coordinates (5 decimals in the deposit) coarsened to the 0.1-degree cell centre with coarsen_coords(): the plant list includes two taxa that are IUCN-listed on GBIF (Aesculus hippocastanum VU, Syringa josikaea EN), so E7 (b) flags them; both tables share the plots and are coarsened alike. UTM33 coordinates not shipped."
+    "value": false,
+    "method": "Plot latitude/longitude kept as deposited (5 decimals). Aesculus hippocastanum (IUCN VU) and Syringa josikaea (IUCN EN) are on the plant list, but as introduced populations outside their native range, which E7 (b) does not flag (ruling on non-native taxa, 2026-11-02); every surveyed taxon is on the Norwegian Alien Species List. UTM33 easting/northing not shipped (same positions)."
   },
   "title": "Alien insect detections by DNA metabarcoding of Malaise-trap samples in 60 plots around the Oslofjord, Norway, 2018-2020",
   "abstract": "One Malaise trap per study plot (the plots of sandercock_2022_norway_plants_comm), emptied in 3 weekly (2018) or 4 biweekly (2019-2020) rounds; each sample metabarcoded from crushed insects (2018), from the ethanol preservative and from a lysis buffer (2019, both, the lysis buffer missing for 10 samples) or from the lysis buffer (2020). One row per sample x DNA source x taxon for 143 alien insect and other invertebrate taxa from the Norwegian Alien Species List (2018) or new to Norway.",
@@ -35,7 +35,7 @@
     "sandercock_2022_norway_plants_comm"
   ],
   "notShipped": {
-    "UTM33 coordinates": "finer than the coarsened 0.1-degree cell",
+    "UTM33 coordinates": "same positions as the shipped latitude/longitude",
     "pooled 2019 histories": "the authors' ethanol-OR-lysis combination (computed in InsectOccupancy2020.R, not a deposit file)"
   },
   "summary": {
@@ -49,7 +49,7 @@
     "prop_zero": 0.975
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_round", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_method"],
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_round", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude", "obs_method"],
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/sandercock_2022_norway_alien.R",

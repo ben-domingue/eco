@@ -63,8 +63,8 @@ GBIF backbone (cached in `.cache/gbif/`). A code the deposit never expands, a
 `scientificName` and pass a corrected spelling as `lookupName` when GBIF needs it.
 
 **Coordinates and sensitivity.** Decide before writing: does the deposit carry
-coordinates, and is any taxon flagged (the source says so, IUCN CR/EN/VU, a cited
-national red list)? If both, coarsen with `coarsen_coords()` to the 0.1 degree cell
+coordinates, and is any taxon flagged (the source says so, IUCN CR/EN/VU within its
+native range, a cited national red list)? If both, coarsen with `coarsen_coords()` to the 0.1 degree cell
 and set `coordinatesCoarsened`. Agency-published coordinates on public land are
 kept as published. Never publish finer than the source did. If there are no
 coordinates, `coordinatesCoarsened = NA` still has to be present in the metadata

@@ -748,7 +748,7 @@ pass, IRW view conforms. Uploaded to the Redivis draft.
 
 | Table | Family | Source | Rows | Notes |
 |---|---|---|---|---|
-| sandercock_2022_norway_plants_comm | community occupancy, two independent botanists | Dryad CC0 | 22,895 | first plant table: 241 alien plant taxa x 60 plots x 3 years, Norway; `occasion` = botanist (E3, not the multinomial double-observer form); coordinates coarsened to 0.1 degree because two garden escapes are IUCN threatened in their native range |
+| sandercock_2022_norway_plants_comm | community occupancy, two independent botanists | Dryad CC0 | 22,895 | first plant table: 241 alien plant taxa x 60 plots x 3 years, Norway; `occasion` = botanist (E3, not the multinomial double-observer form); coordinates as deposited: two taxa are IUCN threatened (horse chestnut VU, *Syringa josikaea* EN) but here are introduced garden escapes, not flagged under the E7 ruling on non-native taxa |
 | sandercock_2022_norway_insects_edna | multi-scale eDNA metabarcoding (experimental) | Dryad CC0 | 42,185 | 143 insect taxa x 225 Malaise samples (`cluster_id` = plot); `occasion` = DNA source (crushed, ethanol, lysis buffer), not pooled as in the authors' script; abstract's "255 rounds" vs 225 samples noted |
 | armstrong_2024_hydrilla_dynocc | dynamic occupancy | Dryad CC0 | 4,211 | Hydrilla in 506 rock pools x 5 years x up to 10 visits; 196 duplicated pool-dates collapsed (any detection), count in `obs_n_records`; 744-pool frame in `__units`; distance-to-occupied and transition probabilities not shipped (derived) |
 | martinezvillegas_2024_flaveria_cjs | CJS, marked plants | Dryad CC0 | 9,708 | 809 plants x 12 censuses; census years and sites not deposited, index only in `__periods` |
@@ -776,9 +776,10 @@ validator to check the shape).
 
 What this batch says about the standard:
 
-- **IUCN trigger on non-native taxa.** E7(b) flags horse chestnut (VU) and *Syringa
-  josikaea* (EN) as garden escapes in Norway, which coarsens every plot, including in
-  the insect table with no flagged taxa. Should a taxon outside its native range count?
+- **IUCN trigger on non-native taxa.** E7(b) flagged horse chestnut (VU) and *Syringa
+  josikaea* (EN), garden escapes in Norway, which coarsened every plot in both Norway
+  tables. Ruled 2026-11-02 (Ben): (b) applies only within the native range; standard.md
+  E7 now says so and the two tables were rebuilt with the deposited coordinates.
 - **Occasion as a category, not a time** (botanist, DNA source): allowed by E3 and E9,
   but E8's "ordered in time" does not hold.
 - **Partly inferred survey sets inside one table** (Astragalus 2013 deposited, 2014-15

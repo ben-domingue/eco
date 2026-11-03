@@ -10,10 +10,10 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "geographicCoverage": "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway; coordinates coarsened to 0.1 degree",
+  "geographicCoverage": "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway",
   "coordinatesCoarsened": {
-    "value": true,
-    "method": "Plot coordinates (5 decimals in the deposit) coarsened to the 0.1-degree cell centre with coarsen_coords(): the plant list includes two taxa that are IUCN-listed on GBIF (Aesculus hippocastanum VU, Syringa josikaea EN), so E7 (b) flags them; both tables share the plots and are coarsened alike. UTM33 coordinates not shipped."
+    "value": false,
+    "method": "Plot latitude/longitude kept as deposited (5 decimals). Aesculus hippocastanum (IUCN VU) and Syringa josikaea (IUCN EN) are on the plant list, but as introduced populations outside their native range, which E7 (b) does not flag (ruling on non-native taxa, 2026-11-02); every surveyed taxon is on the Norwegian Alien Species List. UTM33 easting/northing not shipped (same positions)."
   },
   "title": "Alien vascular plant detections by two independent botanists in 60 plots around the Oslofjord, Norway, 2018-2020",
   "abstract": "Surveillance for alien vascular plants in 60 study plots (6.25 ha; 27 chosen by experts, 33 by weighted random selection from a hotspot model) in southern Norway, 15 to 25 plots per year 2018-2020, each plot in one year. Two experienced botanists (A. Often, H. Hegre) searched each plot independently within one month (mid-August to mid-September); 35 plots were searched by both and 25 by one, 95 surveys in all. One row per plot x botanist x taxon for 241 alien taxa on the Norwegian Alien Species List (2018), with the list's risk category in __taxa.",
@@ -34,7 +34,7 @@
     "sandercock_2022_norway_insects_edna"
   ],
   "notShipped": {
-    "UTM33 coordinates": "finer than the coarsened 0.1-degree cell",
+    "UTM33 coordinates": "same positions as the shipped latitude/longitude",
     "duplicate Pilosella row": "Pilosella aurantiaca aurantiaca listed a second time (risk HI) with detections identical to the SE row"
   },
   "summary": {
@@ -48,7 +48,7 @@
     "prop_zero": 0.921
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude"],
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/sandercock_2022_norway_alien.R",

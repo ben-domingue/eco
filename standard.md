@@ -191,6 +191,12 @@ Coordinates are coarsened, not dropped: spatial occupancy and SCR need them, and
 agency released for a flagged taxon on public land are kept as published; the agency
 is the authority on what it publishes. Trap coordinates follow the same rule.
 
+**Ruling (non-native taxa, 2026-11-02).** (b) applies only where the survey is within
+the taxon's native range. The IUCN category protects wild populations; an introduced
+population (a garden escape, an invasive) is not flagged by its global category, so
+its coordinates are kept as the source published them. (a) and (c) still apply, and
+`coordinatesCoarsened` says why a listed taxon was not coarsened.
+
 ## E8. Time
 
 `period` and `occasion` are integers ordered in time (an `occasion` that indexes a

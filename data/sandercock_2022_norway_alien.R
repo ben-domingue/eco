@@ -49,11 +49,11 @@
 #   (2019, 2020), with obs_method; y = metabarcoding detection 0/1. In 2019 each sample was
 #   sequenced from both sources, so it has two occasions (where lysis was sequenced). unit_round =
 #   sampling round. Survey evidence: deposited_matrix.
-# Coordinates (both tables): plot coordinates are deposited to 5 decimals. Two taxa in the plant list
-#   are IUCN-listed on GBIF (Aesculus hippocastanum VU, Syringa josikaea EN), which makes them flagged
-#   under E7 (b), so plot coordinates are coarsened to 0.1 degree with coarsen_coords() in both tables
-#   (the insect table shares the plots, and finer coordinates there would undo the coarsening).
-# Not shipped: UTM33 easting/northing (finer than the coarsened cell); the duplicate Pilosella row;
+# Coordinates (both tables): plot latitude/longitude kept as deposited (5 decimals). Two taxa in the
+#   plant list are IUCN-listed on GBIF (Aesculus hippocastanum VU, Syringa josikaea EN), but every taxon
+#   here is on the Norwegian Alien Species List: these are introduced populations, outside the native
+#   range, so E7 (b) does not flag them (ruling on non-native taxa, 2026-11-02).
+# Not shipped: UTM33 easting/northing (the same positions as latitude/longitude); the duplicate Pilosella row;
 #   the authors' pooled 2019 insect histories (ethanol OR lysis, computed in their script), not a
 #   deposit file.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -72,7 +72,6 @@ stopifnot(nrow(s) == 60L, !anyDuplicated(s$location), all(s$year %in% 2018:2020)
           all(s$history %in% c("New", "Repeat")), all(s$selection %in% c("Manual", "Auto")),
           sum(s$selection == "Manual") == 27L, sum(s$selection == "Auto") == 33L,
           all(s$latitude %between% c(59, 60.3)), all(s$longitude %between% c(9.6, 11.4)))
-cc <- coarsen_coords(s$latitude, s$longitude)
 landcov <- c("FieldsFullDepth", "FieldsShallowDepth", "Forest", "Freshwater", "Housing", "Mire", "OpenLand",
              "Pasture", "Roads", "Sea")
 plots <- s[, .(location, plot_year = year, unit_site_name = site, unit_alt_name = fifelse(`alter0tive 0mes` == "", NA_character_, `alter0tive 0mes`),
@@ -80,7 +79,7 @@ plots <- s[, .(location, plot_year = year, unit_site_name = site, unit_alt_name 
                unit_population = sum_pop_tot, unit_buildings = sum_bui2det, unit_hotspot_prediction = model_prediction,
                unit_mean_precip_mm = mean_prec, unit_mean_temp_c = mean_temp)]
 for (lc in landcov) plots[, (paste0("unit_area_", tolower(lc), "_m2")) := s[[lc]]]
-plots[, `:=`(unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon, unit_coordinateUncertaintyInMeters = cc$uncertainty_m)]
+plots[, `:=`(unit_decimalLatitude = s$latitude, unit_decimalLongitude = s$longitude)]
 
 code_of <- function(nm) {
   x <- gsub("[×'\"]", "", nm); w <- strsplit(x, " +")
@@ -88,15 +87,15 @@ code_of <- function(nm) {
 }
 risk_lab <- c(NW = "newly detected in Norway", NK = "no known effect", LO = "low risk", PH = "potentially high risk",
               HI = "high risk", SE = "severe risk", NR = "not risk assessed")
-coarse_note <- "Plot coordinates (5 decimals in the deposit) coarsened to the 0.1-degree cell centre with coarsen_coords(): the plant list includes two taxa that are IUCN-listed on GBIF (Aesculus hippocastanum VU, Syringa josikaea EN), so E7 (b) flags them; both tables share the plots and are coarsened alike. UTM33 coordinates not shipped."
+coarse_note <- "Plot latitude/longitude kept as deposited (5 decimals). Aesculus hippocastanum (IUCN VU) and Syringa josikaea (IUCN EN) are on the plant list, but as introduced populations outside their native range, which E7 (b) does not flag (ruling on non-native taxa, 2026-11-02); every surveyed taxon is on the Norwegian Alien Species List. UTM33 easting/northing not shipped (same positions)."
 common <- list(
   creator = "Sandercock, Brett K.; Davey, Marie L.; Endrestol, Anders; Blaalid, Rakel; Fossoy, Frode; Hegre, Hanne; Majaneva, Markus A.M.; Often, Anders; Astrom, Jens; Jacobsen, Rannveig M.",
   pubDate = "2022", doi = "10.5061/dryad.0rxwdbs4f", sourceURL = "https://doi.org/10.5061/dryad.0rxwdbs4f",
   citation = "Sandercock, B. K., Davey, M. L., Endrestol, A., Blaalid, R., Fossoy, F., Hegre, H., Majaneva, M. A. M., Often, A., Astrom, J., & Jacobsen, R. M. (2022). Dataset for: Designing a surveillance program for early detection of alien plants and insects in Norway [Dataset]. Dryad. https://doi.org/10.5061/dryad.0rxwdbs4f",
   paperDOI = "10.1007/s10530-022-02957-6",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  geographicCoverage = "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway; coordinates coarsened to 0.1 degree",
-  coordinatesCoarsened = list(value = TRUE, method = coarse_note))
+  geographicCoverage = "60 study plots (6.25 ha) in the Oslofjord region (Oslo, Akershus, Buskerud, Vestfold, Telemark, Ostfold), southern Norway",
+  coordinatesCoarsened = list(value = FALSE, method = coarse_note))
 periods_base <- data.table(period = 1:3, year = 2018:2020, n_plots = c(15L, 20L, 25L))
 
 ## ---- table 1: plants ---------------------------------------------------------------------
@@ -155,7 +154,7 @@ ds1 <- write_table(long1, T1, c(common, list(
   designNote = "Standard E3: two observers on one visit are two occasions with `observer`; the source records each botanist's own 0/1, so a double-observer multinomial view (cells 10/01/11) is a derived pivot of this table. Occasion order is not temporal. Repeat plots (unit_history = Repeat, 5 plots) re-survey a site from an earlier year under a new plot id; unit_site_name links them (coordinates differ by 0 to about 1.6 km).",
   notes = "Taxon codes are built from the scientific name (4 + 4 letters, plus 3 of an infraspecific epithet). Hybrids (x), one cultivar (Salix 'Brekkavier') and subspecies are kept at the source's rank; GBIF matches above the source's rank are not shipped as taxonID. Pilosella aurantiaca aurantiaca appears twice in the source with identical detections and two risk categories (SE, HI): one row kept. Site names are as deposited, with the deposit's 'na' -> '0' substitution (Al0 = Alna). unit_hotspot_prediction is the external hotspot model's predicted suitability used for the selection weights (Olsen et al. 2017), not an estimate from these detections; land-cover areas are m2 within 1 km of the plot centre.",
   components = list(T2),
-  notShipped = list(`UTM33 coordinates` = "finer than the coarsened 0.1-degree cell",
+  notShipped = list(`UTM33 coordinates` = "same positions as the shipped latitude/longitude",
                     `duplicate Pilosella row` = "Pilosella aurantiaca aurantiaca listed a second time (risk HI) with detections identical to the SE row"))),
   taxa = taxa1, periods = periods1, script = SCRIPT)
 stage_dict_row(T1,
@@ -164,11 +163,11 @@ stage_dict_row(T1,
   reference = "Sandercock, B. K., et al. (2023). Designing a surveillance program for early detection of alien plants and insects in Norway. Biological Invasions, 25, 917-944.",
   doi_paper = "10.1007/s10530-022-02957-6", doi_data = "10.5061/dryad.0rxwdbs4f",
   original_license = "CC0 1.0 (Dryad and README; README asks re-users to contact the authors)", derived_license = "CC0 1.0",
-  notes = "Botanists as occasions (E3), observer column. Coordinates coarsened (two IUCN-listed taxa on the list). Companion of sandercock_2022_norway_insects_edna.",
+  notes = "Botanists as occasions (E3), observer column. Coordinates as deposited (IUCN-listed taxa here are introduced, not flagged). Companion of sandercock_2022_norway_insects_edna.",
   source_via = "Dryad")
 stage_tag_row(T1, ds1, taxon_group = "Plants", model_family = "Community occupancy (two independent observers)",
   sampling_protocol = "visual_survey", design = "Single-season (2 observers per plot; plots in 3 annual cohorts)",
-  realm = "Terrestrial", country = "NOR", coordinates = "Coarsened (0.1 deg)",
+  realm = "Terrestrial", country = "NOR", coordinates = "As published",
   notes = "First plant community table; alien species surveillance; risk category in __taxa.", status = "tagged")
 
 ## ---- table 2: insects --------------------------------------------------------------------
@@ -225,7 +224,7 @@ ds2 <- write_table(long2, T2, c(common, list(
   designNote = "Experimental list of E9 (multi-scale / eDNA): cluster_id = plot (occupancy), unit = Malaise-trap sample per round (availability), occasion = DNA source (detection). Occasion indexes a method, not a time. The authors pooled the two 2019 sources by OR into one history per plot-round; this table keeps them apart.",
   notes = "Taxon codes built from the scientific name (4 + 4 letters). Risk labels in the deposit have broken Norwegian letters; only the two-letter code is shipped. Plot covariates as in the plant table. The Dryad abstract reports 255 rounds of sampling; the deposited files hold 225 trap samples (45 + 80 + 100) and 295 sequenced extractions.",
   components = list(T1),
-  notShipped = list(`UTM33 coordinates` = "finer than the coarsened 0.1-degree cell",
+  notShipped = list(`UTM33 coordinates` = "same positions as the shipped latitude/longitude",
                     `pooled 2019 histories` = "the authors' ethanol-OR-lysis combination (computed in InsectOccupancy2020.R, not a deposit file)"))),
   taxa = taxa2, periods = periods2, script = SCRIPT)
 stage_dict_row(T2,
@@ -234,9 +233,9 @@ stage_dict_row(T2,
   reference = "Sandercock, B. K., et al. (2023). Designing a surveillance program for early detection of alien plants and insects in Norway. Biological Invasions, 25, 917-944.",
   doi_paper = "10.1007/s10530-022-02957-6", doi_data = "10.5061/dryad.0rxwdbs4f",
   original_license = "CC0 1.0 (Dryad and README; README asks re-users to contact the authors)", derived_license = "CC0 1.0",
-  notes = "Experimental multi-scale form: plot = cluster_id, sample = unit, DNA source = occasion. Coordinates coarsened with the plant table. Companion of sandercock_2022_norway_plants_comm.",
+  notes = "Experimental multi-scale form: plot = cluster_id, sample = unit, DNA source = occasion. Coordinates as deposited, as in the plant table. Companion of sandercock_2022_norway_plants_comm.",
   source_via = "Dryad")
 stage_tag_row(T2, ds2, taxon_group = "Invertebrates", model_family = "Multi-scale occupancy (eDNA metabarcoding, community)",
   sampling_protocol = "eDNA", design = "Single-season (3-4 trap rounds x 1-2 DNA sources; plots in 3 annual cohorts)",
-  realm = "Terrestrial", country = "NOR", coordinates = "Coarsened (0.1 deg)",
+  realm = "Terrestrial", country = "NOR", coordinates = "As published",
   notes = "Alien insects from Malaise-trap metabarcoding; 2019 samples sequenced from two DNA sources.", status = "tagged")
