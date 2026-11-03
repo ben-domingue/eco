@@ -36,6 +36,7 @@ CLAUSES = {
     "treat_binary":         "E1",
     "undefined_columns":    "E5",
     "legacy_prefix":        "E5",
+    "doubled_prefix":       "E5",
     "covariate_level":      "E5",
     "y_numeric":            "E2",
     "y_response_type":      "E2",

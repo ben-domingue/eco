@@ -139,6 +139,14 @@ def test_undefined_and_legacy_columns():
     assert "undefined_columns" in checks_of(run(df), "error")
     df = good_frame(); df["cov_elev"] = 1
     assert "legacy_prefix" in checks_of(run(df), "error")
+    for c in ("unit_unit_sex", "obs_obs_effort", "period_period_rain", "taxon_taxon_mass"):
+        df = good_frame(); df[c] = 1
+        r = run(df)
+        assert "doubled_prefix" in checks_of(r, "error") and "E5" in r.nonconforming, c
+    df = good_frame(); df["unit_obs_count"] = 1        # two different levels is not doubling
+    assert "doubled_prefix" not in checks_of(run(df))
+    r = run(units=pd.DataFrame({"unit": range(1, 41), "unit_unit_elev": 1.0}))
+    assert "doubled_prefix" in checks_of(r, "error")
 
 
 def test_y_rules():
@@ -239,6 +247,11 @@ def test_metadata():
     assert "meta_conditional" not in checks_of(r)
     assert "survey_evidence" in checks_of(r, "warn")
     assert "meta_conditional" in checks_of(run(meta=good_meta(responseType="ordinal")), "error")
+    # coordinatesCoarsened: null or {value: bool, method: str} (#38, #40)
+    for bad in ("TRUE", True, {"value": True}, {"value": "yes", "method": "m"}, {"value": False, "method": ""}):
+        assert "meta_vocab" in checks_of(run(meta=good_meta(coordinatesCoarsened=bad)), "error"), bad
+    for ok in (None, {"value": False, "method": "kept as published"}, {"value": True, "method": "0.1 degree cell"}):
+        assert "meta_vocab" not in checks_of(run(meta=good_meta(coordinatesCoarsened=ok))), ok
     assert "meta_conditional" in checks_of(run(meta=good_meta(responseType="multinomial_cell")), "error")
 
 

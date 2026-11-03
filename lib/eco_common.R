@@ -241,6 +241,13 @@ check_dataset_meta <- function(dataset, long, units = NULL) {
   if (!is.null(dataset$unitKind) && !dataset$unitKind %in% c("site", "individual")) p <- c(p, "E10: unitKind must be site or individual")
   has_coords <- any(grepl("^(unit_)?(decimalLatitude|x)$", c(names(long), names(units))))   # core or __units
   if (has_coords && is.null(dataset$coordinatesCoarsened)) p <- c(p, "E7: coordinates present but coordinatesCoarsened not declared")
+  cc <- dataset$coordinatesCoarsened                       # null/NA, or list(value = TRUE/FALSE, method = "...") (#38)
+  if (!is.null(cc) && !identical(cc, NA) &&
+      !(is.list(cc) && is.logical(cc$value) && length(cc$value) == 1 && !is.na(cc$value) &&
+        is.character(cc$method) && length(cc$method) == 1 && nzchar(trimws(cc$method))))
+    p <- c(p, "E7/E10: coordinatesCoarsened must be NA or list(value = TRUE/FALSE, method = \"...\")")
+  dbl <- grep("^(unit_unit_|period_period_|obs_obs_|taxon_taxon_)", c(names(long), names(units)), value = TRUE)
+  if (length(dbl)) p <- c(p, paste("E5: level prefix doubled:", paste(dbl, collapse = ", ")))
   p
 }
 

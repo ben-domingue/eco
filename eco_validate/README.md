@@ -44,11 +44,11 @@ differ by intake policy, which is not part of the format.
 | E2 encoding of `y` | `y_numeric`, `y_response_type` (against `responseType`), `y_raw_without_recode` (warn) |
 | E3 uniqueness | `dup_key` on `(unit, taxon, trap, period, occasion)` |
 | E4 explicit zeros | `y_na`, `explicit_zero_taxa` (every survey has every taxon), `survey_evidence` (warn when `inferred`) |
-| E5 covariates | `undefined_columns`, `legacy_prefix` (`cov_`, `itemcov_`, `periodcov_`), `covariate_level` (`unit_*` constant within unit, `period_*` within unit x period, `taxon_*` within taxon) |
+| E5 covariates | `undefined_columns`, `legacy_prefix` (`cov_`, `itemcov_`, `periodcov_`), `doubled_prefix` (`unit_unit_*`, `obs_obs_*`, ...), `covariate_level` (`unit_*` constant within unit, `period_*` within unit x period, `taxon_*` within taxon) |
 | E6 side tables | `side_taxa` (set-equal to core `taxon`, lists `scientificName`, `taxonRank`, `taxonID`), `side_periods`, `side_units`, `side_traps` (cover the core), `side_key_na` |
 | E7 spatial | `coordinates_declared` (`coordinatesCoarsened` key present when coordinates exist, in the core or `__units`), `crs_declared` (for `unit_x` / `unit_y`), `coordinates_sensitive` (warn: IUCN CR/EN/VU taxon with coordinates finer than 0.1 degree) |
 | E8 time | `date_iso`, `index_integer` (`period`, `occasion`) |
-| E10 metadata | `meta_present`, `meta_required`, `meta_vocab` (`responseType`, `surveyEvidence`, `unitKind`, `intellectualRights.spdx`), `meta_conditional` (`stateCodes`, `multinomialType` / `distanceBreaks`, `surveyEvidenceNote`, `effortColumn = "obs_trials"` for `binomial_count`) |
+| E10 metadata | `meta_present`, `meta_required`, `meta_vocab` (`responseType`, `surveyEvidence`, `unitKind`, `intellectualRights.spdx`, `coordinatesCoarsened` shape `{value, method}` or null), `meta_conditional` (`stateCodes`, `multinomialType` / `distanceBreaks`, `surveyEvidenceNote`, `effortColumn = "obs_trials"` for `binomial_count`) |
 | intake policy | `table_name`, `standard_version` (`eco v1.0`), `sample_floor` (warn), `replication` (warn) |
 
 `--irw` adds irw-validate (upload profile) on the IRW view of the table
