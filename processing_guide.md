@@ -68,7 +68,9 @@ native range, a cited national red list)? If both, coarsen with `coarsen_coords(
 and set `coordinatesCoarsened`. Agency-published coordinates on public land are
 kept as published. Never publish finer than the source did. If there are no
 coordinates, `coordinatesCoarsened = NA` still has to be present in the metadata
-when any coordinate column exists; otherwise leave it out.
+when any coordinate column exists; otherwise leave it out. When set, it is
+`list(value = TRUE/FALSE, method = "...")`, never a bare string or logical: the
+validator and `metadata/01_metadata.R` read `$value`.
 
 **Sample floor and replication** are reported, not gates: `write_table()` computes
 `sampleFloor` (30 units and 2 occasions or periods). A single-visit community matrix

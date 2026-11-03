@@ -99,3 +99,10 @@ test_that("order_eco puts fixed columns first", {
   shuffled <- tapir[, rev(names(tapir))]
   expect_equal(names(order_eco(shuffled))[1:3], c("unit", "taxon", "y"))
 })
+
+test_that("array_to_eco() refuses covariate names that already carry the prefix (#38)", {
+  y <- matrix(c(1, 0, 0, 1), 2, 2)
+  expect_error(array_to_eco(y, site_covs = data.frame(unit_sex = 1:2)), "already carry")
+  expect_error(array_to_eco(y, obs_covs = list(obs_eff = matrix(1, 2, 2))), "already carry")
+  expect_true("unit_sex" %in% names(array_to_eco(y, site_covs = data.frame(sex = 1:2))))
+})

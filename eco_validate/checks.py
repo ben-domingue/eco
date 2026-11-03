@@ -147,6 +147,22 @@ def check_legacy_prefix(t: Table):
                f"(eco_to_irw() produces them): {_sample(bad)}", t, details=bad)]
 
 
+def check_doubled_prefix(t: Table):
+    """A level prefix repeated (`unit_unit_sex`, `obs_obs_effort`) is a processing
+    error: a converter added the prefix to a name that already carried it (#38)."""
+    bad = [c for c in t.df.columns
+           if any(c.startswith(p + p) for p in PREFIXES)]
+    units = t.side.get("units")
+    if units is not None:
+        bad += [f"__units.{c}" for c in units.columns
+                if any(c.startswith(p + p) for p in PREFIXES)]
+    if not bad:
+        return []
+    return [_f("doubled_prefix", "error",
+               f"level prefix doubled (E5 prefixes once): {_sample(bad)}; "
+               f"array_to_eco() adds unit_/obs_/period_ itself", t, details=bad)]
+
+
 def check_key_na(t: Table):
     out = []
     for c in _key(t.df):
@@ -537,6 +553,13 @@ def check_meta_vocab(t: Table):
         if v is not None and v not in allowed:
             out.append(_f("meta_vocab", "error",
                           f"{k} = `{v}` not in {{{', '.join(allowed)}}} ({clause})", t))
+    cc = d.get("coordinatesCoarsened", None)
+    if cc is not None and not (isinstance(cc, dict) and isinstance(cc.get("value"), bool)
+                               and isinstance(cc.get("method"), str) and cc["method"].strip()):
+        out.append(_f("meta_vocab", "error",
+                      "coordinatesCoarsened must be null or an object "
+                      "{value: true/false, method: \"...\"} (E7/E10); found "
+                      f"`{json.dumps(cc)[:60]}`", t))
     rights = d.get("intellectualRights")
     if rights is not None and not (isinstance(rights, dict) and rights.get("spdx")):
         out.append(_f("meta_vocab", "error",
@@ -650,7 +673,7 @@ def table_stats(df: pd.DataFrame) -> dict:
 #: Run order. Format checks first, in clause order; intake last.
 ALL_CHECKS = (
     check_required_columns, check_column_order, check_key_na, check_treat_binary,
-    check_undefined_columns, check_legacy_prefix, check_covariate_level,
+    check_undefined_columns, check_legacy_prefix, check_doubled_prefix, check_covariate_level,
     check_y_numeric, check_y_na, check_y_response_type, check_y_raw_without_recode,
     check_dup_key, check_explicit_zero_taxa, check_survey_evidence,
     check_side_taxa, check_side_periods, check_side_units, check_side_traps,

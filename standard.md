@@ -155,7 +155,8 @@ An `obs_` column that happens to be constant within a unit is not a defect. An `
 column MAY vary across taxa within one survey (a per-species index recorded at the
 survey, such as the calling index outside the plot); that is allowed by the
 definition and should be noted in the column's description. IRW's `cov_`,
-`itemcov_` and `periodcov_` MUST NOT appear; `eco_to_irw()` produces them.
+`itemcov_` and `periodcov_` MUST NOT appear; `eco_to_irw()` produces them. A prefix
+appears once: `unit_unit_sex` or `obs_obs_effort` is a processing error.
 
 **Ruling (Q4, 2026-11-01).** Observation covariates live in the core file, repeated
 across taxa in community tables. The three-level split is exactly the one `unmarked`,
@@ -269,7 +270,8 @@ Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
 `geographicCoverage`. Conditional: `stateCodes` (for `state` and `ordinal`),
 `multinomialType` or `distanceBreaks` (for `multinomial_cell`), `effortColumn =
 "obs_trials"` (for `binomial_count`),
-`coordinatesCoarsened` (when coordinates exist), `surveyEvidenceNote` (when
+`coordinatesCoarsened` (when coordinates exist; `null`, or an object
+`{"value": true|false, "method": "..."}` saying how or why not, E7), `surveyEvidenceNote` (when
 `surveyEvidence = inferred`), `crs`, `effortColumn`, `detectionCertainty` (when a
 second, certain detection method is carried; E9). Recommended: `abstract`,
 `notShipped` (what was in the source and not shipped, with the reason). The

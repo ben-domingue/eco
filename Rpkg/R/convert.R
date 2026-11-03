@@ -65,6 +65,14 @@ array_to_eco <- function(y, taxon = "SP1", site_ids = NULL, site_covs = NULL,
   if (is.null(site_ids)) site_ids <- if (!is.null(rownames(y))) rownames(y) else seq_len(M)
   if (is.null(period)) period <- rep(1L, J)
   occasion <- ave(seq_len(J), period, FUN = seq_along)
+  # The level prefix is added here; a name that already carries it would come out
+  # doubled (unit_unit_sex), which E5 rejects (#38).
+  for (a in list(list(site_covs, "site_covs", "unit_"), list(obs_covs, "obs_covs", "obs_"),
+                 list(period_covs, "period_covs", "period_"), list(taxon_covs, "taxon_covs", "taxon_"))) {
+    pre <- grep(paste0("^", a[[3]]), names(a[[1]]), value = TRUE)
+    if (length(pre)) stop(sprintf("%s names already carry the `%s` prefix (%s); array_to_eco() adds it, pass bare names",
+                                  a[[2]], a[[3]], paste(pre, collapse = ", ")), call. = FALSE)
+  }
 
   long <- data.table(
     unit       = rep(site_ids, times = J * K),
