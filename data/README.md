@@ -184,6 +184,10 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `peer_2014_bmsil_butterfly_count.R` | Pollard-walk community counts, sections summed to the walk | GBIF | CC0 |
 | `barea_2021_sierranevada_butterfly_count.R` | Pollard-walk community counts, coarsened coordinates | GBIF | CC BY 4.0 |
 | `peters_2026_carabid_count.R` | community counts: pitfalls and emergence tents, two tables | Zenodo | CC BY 4.0 |
+| `curtis_2021_sannicolas_ziphius_cjs.R` | CJS with partial identity (one-sided photo-ID, multimark codes), vessel effort | Dryad | CC0 |
+| `mcknight_2019_kittiwake_ms.R` | multistate CR, two analysis sets (fledglings, recruits), two tables | Dryad | CC0 |
+| `koester_2023_aldabra_reeffish_count.R` | community counts, reef fish UVC belt transects, two methods, two tables, inferred survey set | figshare | CC BY 4.0 |
+| `bradferlawrence_2025_ukwood_comm.R` | community occupancy, four taxa groups in UK woods (beetles, birds, mammals, plants), four tables | Zenodo | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

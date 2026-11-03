@@ -1,0 +1,57 @@
+{
+  "table": "curtis_2021_sannicolas_ziphius_cjs",
+  "title": "Annual two-sided photo-ID capture histories of 127 Cuvier's beaked whales on the San Nicolas Basin Navy range, southern California, 2007-2018",
+  "creator": "Curtis, K. Alexandra; Falcone, Erin A.; Schorr, Gregory S.; Moore, Jeffrey E.; Moretti, David J.; Barlow, Jay; Keene, Erin",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.547d7wm4j",
+  "sourceURL": "https://doi.org/10.5061/dryad.547d7wm4j",
+  "citation": "Curtis, K. A., Falcone, E. A., Schorr, G. S., Moore, J. E., Moretti, D. J., Barlow, J., & Keene, E. (2022). Data from: Abundance, survival, and annual rate of change in Cuvier's beaked whales (Ziphius cavirostris) on a Navy sonar range [Dataset]. Dryad. https://doi.org/10.5061/dryad.547d7wm4j",
+  "paperDOI": "10.1111/mms.12747",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Photo-identification of Cuvier's beaked whales on the Southern California Offshore Range (San Nicolas Basin), where the Navy's hydrophone array was used to direct small-boat effort to vocalising groups, August 2007 to July 2018. Annual capture histories (August-July occasions) record which side(s) of each whale were photographed, for two-sided (multimark) CJS models of apparent survival, with vessel effort per year.",
+  "samplingProtocol": "Small-vessel surveys in the San Nicolas Basin guided by real-time acoustic detections from the range hydrophone array; groups approached and both sides photographed where possible. Photos scored for quality (1-3) and distinctiveness (0-5) per side; analysis set as in the authors' processing code (accepted quality <= 2, distinctiveness >= 2, non-calves, whales with at least one top-quality photo).",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The deposited GPS effort track gives vessel time inside the San Nicolas Basin over > 800 m depth in each of the 11 annual occasions (effort_min > 0 in __periods), so every whale-year is a survey.",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not photographed in the year",
+    "1": "left side only",
+    "2": "right side only",
+    "3": "left and right sides on separate encounters (not linked within the year)",
+    "4": "both sides on one encounter"
+  },
+  "closure": "period (annual occasions August-July; survival between years)",
+  "lossesOnCapture": "none",
+  "geographicCoverage": "San Nicolas Basin, Southern California Offshore Range (SOAR), California Bight, USA (about 32.8 N, 118.9 W); coordinates of sightings not shipped",
+  "temporalCoverage": "2007-08-01/2018-07-31",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "Pradel left / right histories": "the same captures restricted to one side (rebuildable from the deposited photo scores)",
+    "eff.bssn": "capture-rate-weighted effort index derived from these captures",
+    "group sightings": "group sizes, calves and positions per sighting",
+    "records outside the analysis set": "calves, low-quality or indistinct photos, sightings outside San Nicolas Basin, 2006-2007 and post-July-2018 records",
+    "model inputs": "unmarked-animal correction factor and closed-model subsets"
+  },
+  "notes": "Unit ids are the catalogue IDs. y follows multimark data.type 'sometimes' (0-4); unit_known is the authors' known vector (sides linked). Whales with unit_known = 0 are one-sided IDs that may duplicate another ID. obs_precapture = 1 marks the authors' precaptures; set those y to 0 for their 'npc' history. Years before first capture are 0; condition on first capture for CJS.",
+  "summary": {
+    "n_rows": 1397,
+    "n_units": 127,
+    "n_taxa": 1,
+    "n_periods": 11,
+    "n_occasions": 1,
+    "n_surveys": 1397,
+    "y_values": "0,1,2,3,4",
+    "prop_zero": 0.863
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_known", "unit_sex", "obs_precapture", "obs_age_class"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/curtis_2021_sannicolas_ziphius_cjs.R",
+  "buildDate": "2026-11-03"
+}

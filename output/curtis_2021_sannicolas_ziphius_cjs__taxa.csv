@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+ZIPCAV,Ziphius cavirostris,Cuvier's beaked whale,species,https://www.gbif.org/species/2440369,EXACT,,LC

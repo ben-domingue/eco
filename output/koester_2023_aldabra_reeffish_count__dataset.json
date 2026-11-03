@@ -1,0 +1,56 @@
+{
+  "table": "koester_2023_aldabra_reeffish_count",
+  "creator": "Koester, Anna; A'Bear, Luke; Bielsa, Maria; Burt, April Jasmine; Chong-Seng, Karen; Haupt, Philip; et al.; Seychelles Islands Foundation",
+  "pubDate": "2026-02-19",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.22792580.v3",
+  "citation": "Koester, A., A'Bear, L., Bielsa, M., Burt, A. J., Chong-Seng, K., Haupt, P., et al. (2023). Reef fish abundance, size and biomass from Aldabra Atoll (Seychelles) between 2014 and 2021 collected by the Seychelles Islands Foundation. figshare, version 3. https://doi.org/10.6084/m9.figshare.22792580.v3 (CC BY 4.0; data owned by the Seychelles Islands Foundation, which must be cited). Paper: Koester et al. (2023), Frontiers in Marine Science 10, 1230717, https://doi.org/10.3389/fmars.2023.1230717.",
+  "paperDOI": "10.3389/fmars.2023.1230717",
+  "dataDOI": "10.6084/m9.figshare.22792580.v3",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "samplingProtocolCode": "visual_census",
+  "occasionLength": "one 50 x 4 m belt transect (200 m2)",
+  "surveyEvidence": "inferred",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion within period: the one to three replicate transects of a site x depth are surveyed in the same dive, 10 m apart (spatial replicates); open between annual seasons",
+  "geographicCoverage": {
+    "description": "Aldabra Atoll, Seychelles, western Indian Ocean: nine seaward-reef sites (5 m and 15 m) and three lagoon sites (2 m)",
+    "boundingBox": {
+      "west": 46.15,
+      "east": 46.55,
+      "south": -9.55,
+      "north": -9.35
+    }
+  },
+  "coordinatesCoarsened": null,
+  "title": "Indicator-taxa belt-transect fish counts at Aldabra Atoll (Seychelles), 21 site-depths, six seasons 2014-2021",
+  "abstract": "Seychelles Islands Foundation Aldabra Reef Monitoring: underwater visual census of a predefined list of indicator fish taxa (species, genera and 'other' family remainders) on one to three 50 x 4 m belt transects per site and depth, at nine seaward-reef sites (5 and 15 m) and three lagoon sites (2 m), in the 2014, 2016, 2017, 2018, 2019 and 2021 survey seasons (before and after the 2016 bleaching).",
+  "samplingProtocol": "Belt-transect underwater visual census (50 x 4 m), large mobile fish on the outward pass and small site-attached fish on the return; every fish of the 84-taxon indicator list counted in five or six size classes. One to three replicate transects per site x depth in one dive; the first is the permanently marked transect.",
+  "temporalCoverage": "2014-10-31/2021-12-23",
+  "surveyEvidenceNote": "The deposit lists fish records only. A transect (site x depth x replicate) is taken as surveyed in a season iff it has at least one record (318 transect-seasons; minimum 2 records). Both methods count every fish of their list, so a listed taxon without a record on a surveyed transect is a zero. A transect with no listed fish at all would be missing; the paper's per-year transect counts (Table S1) could not be retrieved to check.",
+  "notShipped": {
+    "Size_Class, Median_size_class": "size-class breakdown of each count (y sums the classes); six classes in the data though the Explanations sheet lists five",
+    "Biomass_g": "derived from size by published length-weight constants (FishBase)",
+    "two taxa of the 84-taxon list": "the deposit has 82 indicator taxa; the two never recorded are not named, so they cannot carry zeros",
+    "Survey_Date on 7 transect-seasons": "ARM07 15 m replicates 2-3 (2018) and ARM12 transects (2021) carry two dates; the earliest is shipped"
+  },
+  "summary": {
+    "n_rows": 26076,
+    "n_units": 21,
+    "n_taxa": 82,
+    "n_periods": 6,
+    "n_occasions": 3,
+    "n_surveys": 318,
+    "y_values": "0-1500 (127 distinct)",
+    "prop_zero": 0.814
+  },
+  "sampleFloor": "below (21 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_depth_m", "unit_reef_zone"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/koester_2023_aldabra_reeffish_count.R",
+  "buildDate": "2026-11-03"
+}
