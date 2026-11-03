@@ -169,6 +169,12 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `inbo_2026_flanders_aesiso_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
 | `inbo_2026_flanders_calvir_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
 | `inbo_2026_flanders_coepul_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
+| `hinneberg_2022_limenitis_ccr.R` | closed-population capture-recapture, occasion = surveyor (first of its family) | Dryad | CC0 |
+| `leith_2022_africanpenguin_ms.R` | multistate CJS, breeder / non-breeder, PIT resightings | Dryad | CC0 |
+| `bruce_2021_wisconsin_monarch_nmix.R` | N-mixture repeated counts (monarch adults) | ScienceBase (USGS) | public domain |
+| `leone_2019_minnesota_monarch_nmix.R` | N-mixture repeated counts (monarch adults) | ScienceBase (USGS) | public domain |
+| `stallings_2025_gulfreefs_count.R` | community repeated counts, reef fish diver counts, coarsened coordinates | Zenodo | CC BY 4.0 |
+| `vanklink_2025_wijster_carabid_count.R` | community pitfall counts, trap x collection, with effort | GBIF (NLBIF) | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

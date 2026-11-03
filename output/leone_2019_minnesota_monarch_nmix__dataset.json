@@ -1,0 +1,45 @@
+{
+  "table": "leone_2019_minnesota_monarch_nmix",
+  "title": "Repeated Pollard-walk counts of adult monarchs at 20 burned or grazed Minnesota remnant prairies, 2016-2017",
+  "creator": "Leone, Julia B.; Larson, Diane L.; Larson, Jennifer L.; Pennarola, Nora P.; Oberhauser, Karen",
+  "pubDate": "2019",
+  "doi": "10.5066/P940ICLS",
+  "sourceURL": "https://doi.org/10.5066/P940ICLS",
+  "citation": "Leone, J.B., Larson, D.L., Larson, J.L., Pennarola, N.P., and Oberhauser, K., 2019, Monarch densities in burned or grazed Minnesota remnant prairie, 2016-2017: U.S. Geological Survey data release, https://doi.org/10.5066/P940ICLS.",
+  "paperDOI": "10.3389/fevo.2019.00435",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain"
+  },
+  "abstract": "Adult monarchs counted on three 400-m Pollard walks per summer at 10 burned and 10 grazed remnant tallgrass prairies in Minnesota in 2016 and 2017 (117 visits), with forb and milkweed frequency per site-year and management history, stocking rate, site area and surrounding prairie per site. The paper finds monarchs more abundant at burned than at grazed sites.",
+  "samplingProtocol": "Modified Pollard walk: one observer walked 400 m of transects at 10 m/min, recording monarchs within 2.5 m either side, 5 m ahead and 5 m above, between 09:30 and 18:30 in suitable weather; three visits (early, mid, late) per summer. Vegetation frequency from 0.5 x 2 m plots on stratified random transects, once per site-year.",
+  "samplingProtocolCode": "pollard_walk",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion (three visits within a summer, May-August); period = year",
+  "geographicCoverage": "20 remnant tallgrass prairies in the Prairie Parkland Province of western Minnesota, USA (state, federal, TNC and private land); site coordinates not deposited",
+  "temporalCoverage": "2016-06-15/2017-08-18",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "species_columns": "CommonName, ButterflySpeciesID, Genus, Species: constant (the deposit is the monarch subset of a full butterfly survey); in __taxa"
+  },
+  "notes": "Site G-1 was surveyed in 2017 only. All butterfly surveys were by one observer. 20 units: below the 30-unit floor. Kept apart from bruce_2021_wisconsin_monarch_nmix (different protocol and region).",
+  "summary": {
+    "n_rows": 117,
+    "n_units": 20,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 117,
+    "y_values": "0-17 (13 distinct)",
+    "prop_zero": 0.53
+  },
+  "sampleFloor": "below (20 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_management", "unit_area_ha", "unit_years_managed_2005_2017", "unit_stocking_rate", "unit_pct_prairie_1500m", "period_forb_freq", "period_milkweed_freq", "period_years_since_mgmt"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/leone_2019_minnesota_monarch_nmix.R",
+  "buildDate": "2026-11-03"
+}
