@@ -1,0 +1,49 @@
+{
+  "table": "hinneberg_2022_limenitis_ccr",
+  "title": "Multi-surveyor closed capture-recapture of hibernating Limenitis larvae (75 hibernacula, 13 surveyors), Swabian Jura, Germany, 2021",
+  "creator": "Hinneberg, Heiko; Döring, Jörg; Hermann, Gabriel; Markl, Gregor; Theobald, Jennifer; Aust, Ines; Bamann, Thomas; Bertscheit, Ralf; Budach, Daniela; Niedermayer, Jana; Rissi, Alicia; Gottschalk, Thomas",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.s7h44j195",
+  "sourceURL": "https://doi.org/10.5061/dryad.s7h44j195",
+  "citation": "Hinneberg, H., Döring, J., Hermann, G., Markl, G., Theobald, J., Aust, I., Bamann, T., Bertscheit, R., Budach, D., Niedermayer, J., Rissi, A., & Gottschalk, T. (2022). Multi-surveyor capture-mark-recapture as a powerful tool for butterfly population monitoring in the pre-imaginal stage [Dataset]. Dryad. https://doi.org/10.5061/dryad.s7h44j195",
+  "paperDOI": "10.1002/ece3.9140",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Thirteen surveyors (6 experts, 7 novices) independently searched three plots of a spruce clear-cut for the winter hibernacula of Southern White Admiral (Limenitis reducta) larvae, one after the other, February-March 2021; each plot was searched by 9-10 of them. Each of the 75 hibernacula found by anyone has a detection history over the surveyors who searched its plot. Surveyors replace capture occasions: the paper fits Huggins closed-population models with surveyor-specific or experience-specific detection.",
+  "samplingProtocol": "Independent visual search of a marked plot for larval hibernacula on Lonicera xylosteum, at most 2 h per surveyor per plot; each find marked with tape, recorded by GPS and photograph by the first author, tape removed before the next surveyor; finds matched across surveyors after the last search; hibernacula contents (L. reducta, L. camilla, empty) identified afterwards.",
+  "samplingProtocolCode": "multi_observer_search",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "one closed period; occasions are surveyors, not times. Surveyors searched one after the other over six weeks without information about earlier finds; S1 (the first author) was always first, the order of the others is not deposited. Three hibernacula that disappeared during the study were removed by the authors before deposit.",
+  "geographicCoverage": "Spruce clear-cut near Merklingen, Alb-Donau district, Baden-Württemberg, Germany; site centre 48.45 N, 9.75 E (0.1-degree cell); three plots of 916, 807 and 2952 m2",
+  "temporalCoverage": "2021-02-05/2021-03-22",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Only a site coordinate exists (the paper's 48.494 N, 9.788 E); given in geographicCoverage as the centre of its 0.1-degree cell because the source calls L. reducta highly endangered. No per-hibernaculum positions are deposited."
+  },
+  "notShipped": {
+    "resultsfile": "reduced-effort population estimates, SEs and confidence limits per surveyor subset (model output)",
+    "detections_per_hibernaculum": "realized and possible detections per hibernaculum (row sums of the histories; asserted equal)",
+    "CH_plotA_B_C": "the same histories split by plot (inputs to the authors' removal analysis; asserted identical)"
+  },
+  "notes": "One taxon at genus rank because the closed population is the set of hibernacula, whose contents were determined after the searches: unit_contents is reducta (39), camilla (2) or empty (34). Filter unit_contents == 'reducta' for L. reducta larvae alive at the end of the survey. occasion = surveyor number; use observer and obs_experience for Mt / experience models. cluster_id = plot; the paper estimates N per plot with plot as a group. 75 units: above the unit floor but a small population; the value of the table is the design.",
+  "summary": {
+    "n_rows": 733,
+    "n_units": 75,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 13,
+    "n_surveys": 733,
+    "y_values": "0,1",
+    "prop_zero": 0.718
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "observer", "cluster_id", "unit_contents", "unit_plot_area_m2", "obs_experience"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hinneberg_2022_limenitis_ccr.R",
+  "buildDate": "2026-11-03"
+}

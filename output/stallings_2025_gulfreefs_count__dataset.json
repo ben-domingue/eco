@@ -1,0 +1,59 @@
+{
+  "table": "stallings_2025_gulfreefs_count",
+  "title": "Diver visual census counts of 171 reef fish taxa on 14 artificial and natural reefs, eastern Gulf of Mexico, quarterly 2013-2023",
+  "creator": "Stallings, Christopher D.; Emory, Meaghan E.; Peake, Jonathan A.; Schram, Michael J.; Wall, Kara R.; Williams, Ian",
+  "pubDate": "2024-12-09",
+  "sourceURL": "https://doi.org/10.5281/zenodo.14338634",
+  "citation": "Stallings, C. D., Emory, M. E., Peake, J. A., Schram, M. J., Wall, K. R. & Williams, I. (2025). Ten years (2013-2023) of fish assemblage data collected seasonally with diver surveys on artificial and natural reefs. Ecology 106(5), e70108. https://doi.org/10.1002/ecy.70108. Data: Zenodo https://doi.org/10.5281/zenodo.14338634 (CC BY 4.0).",
+  "paperDOI": "10.1002/ecy.70108",
+  "dataDOI": "10.5281/zenodo.14338634",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Stationary-point underwater visual census of reef fish on eight paired artificial and natural reefs (2013-2023) and six further artificial reefs (2020-2023) off west-central Florida. Each calendar quarter two divers made two to four 10-minute counts of every fish seen in a cylinder of up to 7.5 m radius (visibility-limited); 1,349 counts, 544,736 fish, 171 resolved taxa.",
+  "samplingProtocol": "Stationary-point visual census by SCUBA divers: 10-minute counts of all fishes within an imaginary cylinder of radius up to 7.5 m (horizontal visibility) from the seafloor to the surface; two to four counts per reef per calendar quarter, usually two divers each making two counts; lengths estimated per fish or per school.",
+  "samplingProtocolCode": "visual_census",
+  "occasionLength": "10 minutes",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "surveys.csv lists all 1,349 counts; every fishes.csv row belongs to a listed count, so a taxon absent from a count's rows is a zero. The 17 codes missing from taxa.csv (larvae, bait fish, unknowns, unresolved family / genus codes; 183 rows) are dropped as taxa, not as surveys.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion within period (the two to four counts of one reef in one quarter, made within minutes or a few days by side-by-side divers; the authors warn that within-survey sample units are not independent); open between quarters",
+  "geographicCoverage": {
+    "description": "Artificial and natural reefs 8-30 m deep off Pinellas and Manatee counties, west-central Florida, eastern Gulf of Mexico, USA",
+    "boundingBox": {
+      "west": -83.25,
+      "east": -82.75,
+      "south": 27.45,
+      "north": 28.05
+    }
+  },
+  "temporalCoverage": "2013-04-15/2023-06-26",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Reef coordinates (3 decimals in the deposit) generalised to the 0.1 degree cell centre with coarsen_coords(), uncertainty = cell half-diagonal; flagged taxa (IUCN via GBIF): Balistes capriscus (VU), Bathytoshia centroura (VU), Carcharhinus leucas (VU), Carcharhinus limbatus (VU), Carcharhinus plumbeus (EN), Epinephelus itajara (VU), Epinephelus morio (VU), Ginglymostoma cirratum (VU), Lachnolaimus maximus (VU), Lutjanus campechanus (VU), Lutjanus cyanopterus (VU), Mycteroperca microlepis (VU), Rhomboplites aurorubens (VU)"
+  },
+  "notShipped": {
+    "fishes.csv size, school_mean_size, school_min_size, school_max_size": "individual and school length estimates (biomass is rebuildable from the deposit with taxa.csv's length-weight coefficients)",
+    "surveys.csv time_start, time_stop": "clock times, several clearly mistyped; every count is 10 minutes",
+    "17 species codes absent from taxa.csv": "GOFM, LARV, UNKN, HOSP, CLFM, SCPP, LUSP, LAFM, BAIT, TEFM, CALF, OPSP, OSFM, GYSP, SPPP, CAFM, EPSP: 183 rows, 164050 fish (larval fish, bait fish, unknowns, and family / genus codes the deposit does not define)",
+    "AC5_FA16_1 ARPR second row": "no number and no length beside a real row: an empty duplicate"
+  },
+  "summary": {
+    "n_rows": 230679,
+    "n_units": 14,
+    "n_taxa": 171,
+    "n_periods": 41,
+    "n_occasions": 6,
+    "n_surveys": 1349,
+    "y_values": "0-10025 (157 distinct)",
+    "prop_zero": 0.932
+  },
+  "sampleFloor": "below (14 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_visibility_m", "obs_temperature_c"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/stallings_2025_gulfreefs_count.R",
+  "buildDate": "2026-11-03"
+}

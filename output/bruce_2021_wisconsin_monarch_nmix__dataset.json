@@ -1,0 +1,58 @@
+{
+  "table": "bruce_2021_wisconsin_monarch_nmix",
+  "title": "Repeated transect counts of adult monarch butterflies at 60 Wisconsin grassland sites, 2018-2019",
+  "creator": "Bruce, Alexis S.; Thogmartin, Wayne E.; Trosen, Claudia; Oberhauser, Karen; Gratton, Claudio",
+  "pubDate": "2021",
+  "doi": "10.5066/P9BERZ62",
+  "sourceURL": "https://doi.org/10.5066/P9BERZ62",
+  "citation": "Bruce, A.S., Thogmartin, W.E., Trosen, C., Oberhauser, K., and Gratton, C., 2021, Monarch Butterfly patch and landscape data for Wisconsin, 2018-2019: U.S. Geological Survey data release, https://doi.org/10.5066/P9BERZ62.",
+  "paperDOI": "10.1007/s10980-021-01341-4",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, no access or use constraints"
+  },
+  "abstract": "Adult monarchs counted on transects three times per summer at 60 grassland sites in northern and southern Wisconsin in 2018 and 2019, with blooming-species richness and milkweed density per survey and patch and landscape metrics (10-km buffers) per site. The paper relates monarch occurrence to patch quality and landscape context.",
+  "samplingProtocol": "Integrated Monarch Monitoring Program (IMMP 2018; Cariveau et al. 2019) adult monarch transect survey by trained surveyors, three surveys per site per summer; milkweed (A. verticillata excluded) and blooming species recorded at the survey.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "occasion (three surveys within a summer, June-August); period = year",
+  "geographicCoverage": {
+    "description": "Grassland sites in northern and southern Wisconsin, USA",
+    "boundingBox": {
+      "west": -92.7322,
+      "east": -88.5021,
+      "south": 42.6868,
+      "north": 45.6212
+    }
+  },
+  "temporalCoverage": "2018-06-01/2019-08-09",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "USGS-published site coordinates kept as published (E7 agency rule); the migratory monarch is IUCN Vulnerable, and the sites are public or agency grassland properties named in the source"
+  },
+  "notShipped": {
+    "EggsLarvaePerStemExcludingWhorled": "monarch eggs and larvae per milkweed stem: a ratio of a second response (immature stages) whose counts and stem numbers are not deposited",
+    "EggsLarvaePerStemExcludingWhorledDBPerMSq": "monarch eggs and larvae per m2: as above"
+  },
+  "notes": "Survey dates are not deposited (occasion = survey number within the summer). One site was surveyed in 2018 only; 8 site-surveys are absent (no rows). obs_milkweed_per_m2 excludes whorled milkweed (Asclepias verticillata), as in the source.",
+  "summary": {
+    "n_rows": 352,
+    "n_units": 60,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 352,
+    "y_values": "0-61 (13 distinct)",
+    "prop_zero": 0.423
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_region", "unit_decimalLatitude", "unit_decimalLongitude", "unit_patch_area_ha", "unit_avgpatch_area_10km_ha", "unit_isolation_patch_enn_m", "unit_isolation_avg_enn_10km_m", "unit_cohesion_10km", "unit_grass_prop_10km", "unit_road_density_10km", "unit_forest_edge_density_10km", "obs_nectar_species", "obs_milkweed_per_m2"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bruce_2021_wisconsin_monarch_nmix.R",
+  "buildDate": "2026-11-03"
+}

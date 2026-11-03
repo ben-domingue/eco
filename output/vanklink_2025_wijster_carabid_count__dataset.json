@@ -1,0 +1,59 @@
+{
+  "table": "vanklink_2025_wijster_carabid_count",
+  "title": "Pitfall-trap counts of 134 ground beetle species per collection at 156 traps, Biological Station Wijster, Drenthe, the Netherlands, 1959-1967",
+  "creator": "Van Klink, Roel; Gerrits, Gijs; Vermeulen, Rikjan",
+  "pubDate": "2025-10-09",
+  "sourceURL": "https://doi.org/10.15468/3mcqja",
+  "citation": "Van Klink R, Gerrits G, Vermeulen R (2025). Biological Station Wijster standard trapping program: Sampling event data for ground beetles (Coleoptera: Carabidae). Netherlands Biodiversity Information Facility (NLBIF). Samplingevent dataset. https://doi.org/10.15468/3mcqja (CC0 1.0).",
+  "dataDOI": "10.15468/3mcqja",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Year-round pitfall trapping of ground beetles in forests, heathlands and bogs of Drenthe by the Biological Station Wijster (P. J. den Boer's programme), sampling years 1959, 1961, 1963, 1965 and 1966: three traps per location (two live traps and one funnel trap with formaldehyde), emptied mostly weekly; every carabid identified to species and counted. 15,024 collections, 90,070 beetles, 134 species.",
+  "samplingProtocol": "Square metal pitfall traps (1 m perimeter) with rain covers, three per location about 10 m apart in a line, the middle one with a funnel into 3% formaldehyde, the outer two live traps; run year-round (1 March - end of February) and emptied mostly weekly; catches accumulate over a skipped emptying (obs_trap_days).",
+  "samplingProtocolCode": "pitfall_trap",
+  "effortColumn": "obs_trap_days",
+  "occasionLength": "one collection interval (4-28 days, mostly 7)",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "Every collection is an event (level 5) with its interval and trap-days; collections with no beetles carry an explicit 'Carabidae' absence record, and the Humboldt extension declares complete reporting of Carabidae per trap-year, so a species absent from a collection's records is a zero.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "not assumed: occasions are the successive collections of a whole year, so activity-density follows each species' phenology; period = sampling year",
+  "geographicCoverage": {
+    "description": "Forests, heathlands and bogs in Drenthe, the Netherlands (Mantingerbos, Dwingelderveld, Mantingerveld, Bargerveen, Dalerpeel, Kraloo, Wijster, Bruntinge, Eursinge)",
+    "boundingBox": {
+      "west": 6.4017,
+      "east": 6.6152,
+      "south": 52.7793,
+      "north": 52.8363
+    }
+  },
+  "temporalCoverage": "1959-03-07/1967-02-22",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published (reconstructed historical trap locations, uncertainty 20-1000 m in unit_coordinateUncertaintyInMeters); no species is IUCN CR, EN or VU (checked through GBIF) and the source flags none"
+  },
+  "notShipped": {
+    "occurrence.txt sex": "male / female / unknown breakdown, summed into y",
+    "series-year and trap-year events": "aggregates (sums) of the collections",
+    "humboldtecologicalinventory.txt voucher fields": "which trap-years' material is stored at Naturalis",
+    "species pairs not separated in the historical period": "shipped under the recorded names; per the EML, Calathus melanocephalus / cinctus, Bradycellus collaris / harpalinus, Pterostichus nigrita / rhaeticus, Bembidion lampros / properans and Poecilus versicolor / cupreus were not reliably separated, and species of Agonum, Asaphidion, Amara and Harpalus may have been overlooked"
+  },
+  "summary": {
+    "n_rows": 2013216,
+    "n_units": 156,
+    "n_taxa": 134,
+    "n_periods": 5,
+    "n_occasions": 52,
+    "n_surveys": 15024,
+    "y_values": "0-169 (80 distinct)",
+    "prop_zero": 0.985
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "obs_trap_days"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/vanklink_2025_wijster_carabid_count.R",
+  "buildDate": "2026-11-03"
+}

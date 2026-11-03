@@ -791,3 +791,51 @@ What this batch says about the standard:
 - **Categorised counts** (dragonfly sex/behaviour/teneral) are summed into `y`; E2 has
   no home for a breakdown of one count.
 - **Synthetic unit ids** (booby line numbers) and **flagged subsets kept** (whale calves).
+
+## Batch 17 — 2026-11-03 (the first closed-population capture-recapture table; marine reef fish; a 2-million-row carabid series)
+
+Seven queue rows chosen to fill gaps: the corpus had no closed-population CR table, only seven
+marine tables, and few invertebrate count tables. Built by two forks in a worktree
+(`~/eco-b17`, branch `batch17` off `origin/main`). Six tables from six deposits; one held.
+All pass `eco-validate --irw` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| hinneberg_2022_limenitis_ccr | closed-population CR | Dryad CC0 | 733 | first closed CR table: 75 hibernacula x 13 independent surveyors, one period; `occasion` = surveyor (unordered except that S1 always searched first; said in `closure`), `observer` and `obs_experience`; "." in the deposit is not-surveyed, 0 is missed; taxon at genus level with `unit_contents` (L. reducta / L. camilla / empty, identified after all searches); site coordinate to 0.1 degree (source: highly endangered) |
+| leith_2022_africanpenguin_ms | multistate CJS | Dryad CC0 | 7,192 | 899 PIT-tagged African penguins (IUCN CR), Robben Island and Stony Point, 2013-2020; y = 0 / 1 breeder / 2 non-breeder, letter in `y_raw` (the source's P prebreeder is a recode of N, kept in `y_raw`, 13 cells in 9 birds break the paper's P rule, asserted); no coordinates deposited, colonies at 0.1 degree in metadata; prey biomass per year (DFFE survey, from the authors' RMark script) in `__periods` |
+| bruce_2021_wisconsin_monarch_nmix | N-mixture | ScienceBase PD | 352 | 60 sites x 2 years x 3 surveys; rows absent = not surveyed (`row_presence`); no survey dates in the deposit; coordinates as USGS published; egg/larva per-stem ratios not shipped (derived) |
+| leone_2019_minnesota_monarch_nmix | N-mixture | ScienceBase PD | 117 | 20 burned or grazed prairie remnants x 2 years x 3 dated surveys; separate from Wisconsin (protocol, region, years differ); below the sample floor |
+| stallings_2025_gulfreefs_count | community repeated counts (marine) | Zenodo CC BY 4.0 | 230,679 | 14 NE Gulf of Mexico reefs x 171 fish taxa x 1,349 ten-minute diver counts; `period` = quarter (41, 2013-2023), `occasion` = count within quarter; 13 taxa IUCN VU/EN so all reefs coarsened to 0.1 degree; 17 codes (183 rows) with no taxa entry (larvae, bait, unknowns) not shipped; below the sample floor (14 units) |
+| vanklink_2025_wijster_carabid_count | community pitfall counts | GBIF CC0 (NLBIF) | 2,013,216 | Biological Station Wijster 1959-1966: 156 traps x 134 species x 15,024 collections, `period` = year (5), `occasion` = collection (46-52 per year), effort in `obs_trap_days`, `cluster_id` = three-trap location; empty collections carry an explicit Carabidae absence, so zeros by complement over the event list; 77 MB (under GitHub's limit); EML says 135 species, the data have 134 |
+
+Held: Agroecology-Transect butterflies (zenodo 22916934): four national protocols, 375 of
+1,677 occurrence rows on visit ids missing from the Visits sheet, mixed moths and synonyms,
+each country below the floor (`queue/human_review.csv`).
+
+What this batch says about the standard:
+
+- **Taxon identified after capture.** The Limenitis hibernacula were closed populations whose
+  contents (two species or empty) were known only after every survey. Ruling #20 (one taxon per
+  table when the unit is an individual) would drop the 34 empty hibernacula; a genus-level taxon
+  with `unit_contents` keeps them. Worth a sentence in the guide.
+- **Occasions that are observers, not times.** E8 orders occasions in time; here only the first
+  surveyor's position is known. `closure` carries it; an `occasionKind` (time / observer / cell /
+  replicate) field would make it filterable, and is the same request as the botanist occasions
+  in batch 16.
+- **Source state codes that are the authors' recodes** (penguin P from N): keep both in `y_raw`,
+  one `y` code, assert the counts.
+- **External time covariates from the authors' code** (prey biomass from a separate fisheries
+  survey) are not derived from the detections, so they ship in `__periods`; the guide could say so.
+- **GBIF IUCN lookups need checking.** `/species/{key}/iucnRedListCategory` mapped Calathus mollis
+  through a synonym to the extinct St Helena C. extensicollis (EX); overridden with an assertion.
+  "No assessment" is HTTP 204 (cached as `[]`), correctly read as not assessed. A shared
+  `iucn_category()` helper in `lib/` would stop each script writing its own.
+- **One flagged fish coarsens every reef.** Commercial Gulf species (red snapper, gag, red grouper)
+  are VU/EN, so any Gulf reef-fish table is coarsened; the whole-array coarsening question again.
+- **Replicates the authors say are not independent** (side-by-side divers) and **year-round
+  occasions without closure** (Wijster, after NEON carabids) have only `closure` to live in:
+  enumerated closure, again.
+- **Species pairs the source could not separate** (five carabid pairs) have no field; recorded in
+  `notShipped`. A `taxon_` flag or `__taxa` note column would serve.
+- **IRW view quirk:** irw-validate's `date_range` reads pre-1970 dates as negative Unix seconds
+  (Wijster); a checker quirk, not a table defect.
