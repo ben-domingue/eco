@@ -163,7 +163,7 @@ taxa <- make_taxa(toupper(sp$code), sp$scientificName, vernacularName = sp$verna
 stopifnot(!anyNA(taxa$taxonID))
 
 dataset <- list(
-  title = "Camera-trap detection histories of 46 terrestrial mammal taxa (and the Bengal monitor) at 518 stations in six protected areas across Myanmar, 2014-2020, 10-day occasions",
+  title = "Camera-trap detection histories of 46 taxa (45 terrestrial mammals and the Bengal monitor) at 518 stations in six protected areas across Myanmar, 2014-2020, 10-day occasions",
   creator = "Kyaw, Pyae Phyoe; Cushman, Samuel A.; Kaszta, Zaneta; Burnham, Dawn; Zaw, Than; Naing, Hla; Htun, Saw; Moe, Kyaw; Tun, Aung Ye; Myo, Okka; Aung, Zarni; Myo, Khin Myo; Aung, Htet Arkar; Po, Saw Htoo Tha; Po, Saw Ehkhu; Nay, Saw Hay; Tun, Saw William L.; Macdonald, David W.",
   pubDate = "2024",
   doi = "10.5061/dryad.0gb5mkm6w", sourceURL = "https://doi.org/10.5061/dryad.0gb5mkm6w",

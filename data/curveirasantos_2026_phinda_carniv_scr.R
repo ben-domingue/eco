@@ -162,13 +162,13 @@ build <- function(sp) {
   taxa <- make_taxa(s$taxon, s$sci, vernacularName = s$vern, taxonRank = s$rank, taxon_iucnCategory = s$iucn)
   stopifnot(!is.na(taxa$taxonID))
   dataset <- list(
-    title = sprintf("Spatial capture-recapture of %s (%s) at 100 camera traps in the Munywana Conservancy, South Africa, Sept 2021 to Jan 2022", tolower(s$vern), s$sci),
+    title = sprintf("Spatial capture-recapture of %s (%s) at 99 operating camera traps (100 deployed) in the Munywana Conservancy, South Africa, Sept 2021 to Jan 2022", tolower(s$vern), s$sci),
     creator = "Curveira-Santos, Goncalo; Dupont, Gates; Sutherland, Chris; Gigliotti, Laura",
     pubDate = "2025", doi = "10.17605/OSF.IO/Y3W6F", sourceURL = "https://osf.io/y3w6f/",
     citation = "Curveira-Santos, G., Dupont, G., Sutherland, C., & Gigliotti, L. (2025). Data and Code for: Optimizing Camera-Trap Survey Designs for Multi-Species Density Estimation Using Spatial Capture-Recapture Models. OSF. https://doi.org/10.17605/OSF.IO/Y3W6F",
     paperDOI = "10.1111/1365-2664.70261",
     intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/legalcode"),
-    abstract = sprintf("Daily camera-trap detections of individually identified %s (%s) at 100 camera sites in the Munywana Conservancy (Phinda), KwaZulu-Natal, South Africa, 17 September 2021 to 11 January 2022: 60 cameras placed for leopards and 40 for small-bodied carnivores by the authors' two-stage design optimisation. One row per individual x operating camera-day; the deposited camera operation matrix is the survey set. Sibling tables for the other five identifiable carnivores of the same survey: %s. Trap coordinates are centred on the array (local metres) because three of the six species are IUCN Vulnerable.",
+    abstract = sprintf("Daily camera-trap detections of individually identified %s (%s) at 100 camera sites (99 operated; MYW43 never did) in the Munywana Conservancy (Phinda), KwaZulu-Natal, South Africa, 17 September 2021 to 11 January 2022: 60 cameras placed for leopards and 40 for small-bodied carnivores by the authors' two-stage design optimisation. One row per individual x operating camera-day; the deposited camera operation matrix is the survey set. Sibling tables for the other five identifiable carnivores of the same survey: %s. Trap coordinates are centred on the array (local metres) because three of the six species are IUCN Vulnerable.",
                        tolower(s$vern), s$sci, OTHERS(s$table)),
     samplingProtocol = "Paired or single camera traps at 100 sites (Cuddeback and Spartan), checked over 117 calendar days; individuals identified from coat pattern (flank recorded as both / left / right where applicable), lions and cheetahs also by pride or coalition. Detection history is individual x camera x day.",
     samplingProtocolCode = "camera_trap", surveyEvidence = "effort_table",
@@ -190,7 +190,7 @@ build <- function(sp) {
                       exact_coordinates = "UTM 36S trap positions withheld (VU taxa); __traps carries them centred on the array"))
   ds <- write_table(long, s$table, dataset, taxa = taxa, traps = traps, script = SCRIPT)
   stage_dict_row(s$table,
-    description = sprintf("Spatial capture-recapture histories of %s (%s) at 100 camera sites in the Munywana Conservancy, South Africa, 17 Sept 2021 to 11 Jan 2022, individual x camera x day on the deposited operation matrix; trap coordinates centred on the array (local metres). One of six sibling tables from a multi-species design-optimisation study.", tolower(s$vern), s$sci),
+    description = sprintf("Spatial capture-recapture histories of %s (%s) at 99 operating camera sites (100 deployed) in the Munywana Conservancy, South Africa, 17 Sept 2021 to 11 Jan 2022, individual x camera x day on the deposited operation matrix; trap coordinates centred on the array (local metres). One of six sibling tables from a multi-species design-optimisation study.", tolower(s$vern), s$sci),
     url = "https://osf.io/y3w6f/",
     reference = "Curveira-Santos, G., Dupont, G., Sutherland, C., Pretorius, C., Naylor, S., Allan, K., & Gigliotti, L. C. (2026). Optimizing camera-trap survey designs for multi-species density estimation using spatial capture-recapture models. Journal of Applied Ecology, 63(1).",
     doi_paper = "10.1111/1365-2664.70261", doi_data = "10.17605/OSF.IO/Y3W6F",
@@ -199,7 +199,7 @@ build <- function(sp) {
                     if (sp == "genet") "Genus-rank taxon; mostly single-flank ids." else if (sp == "cheetah") "Below floor (6 individuals)." else ""),
     source_via = "OSF (osfstorage files)")
   stage_tag_row(s$table, ds, taxon_group = "Mammals", model_family = "Spatial capture-recapture (closed, camera traps)",
-    sampling_protocol = "camera_trap", design = "Single-season (117 daily occasions, 100 cameras, one array)", realm = "Terrestrial",
+    sampling_protocol = "camera_trap", design = "Single-season (117 daily occasions, 99 operating cameras of 100, one array)", realm = "Terrestrial",
     country = "ZAF", coordinates = "Coarsened (trap coordinates centred on the array, local metres; VU taxa)",
     notes = "Experimental (E9): trap key + __traps. Individuals as unit, full rectangle of surveyed camera-days. Six sibling tables share traps and survey set.")
   invisible(ds)

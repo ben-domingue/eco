@@ -72,6 +72,13 @@ jobs:
       - name: Every table has its companions
         run: python tools/check_coverage.py --quiet
 
+      # A count in a title, description, abstract, designNote or design tag
+      # that is within 20% of, but not equal to, the computed n_units, n_traps,
+      # n_periods or n_taxa ("48 cameras" over 46 units) fails (#28). Judged
+      # exceptions live in EXEMPT in the script, each with its reason.
+      - name: Numbers in prose agree with computed metadata
+        run: python tools/check_prose_numbers.py --strict
+
       # Every repository file a site page reads is in site.yml's paths:, so an
       # edit to it rebuilds the site (#27).
       - name: Site rebuild paths cover what the site reads

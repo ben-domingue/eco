@@ -93,6 +93,7 @@ long <- cbind(long[, .(ind)], eff[long$i])
 long <- merge(long, counts, by = c("ind", "trap", "period"), all.x = TRUE)
 long[is.na(y), y := 0L]
 stopifnot(nrow(long) == 75 * 458, sum(long$y) == nrow(rec), all(long$y <= long$k))
+stopifnot(uniqueN(long$trap) == 193)                                                     # 2 of 195 stations never active; the prose says 193 (#28)
 long <- long[, .(unit = sprintf("T%02d", ind), taxon = "PANTIG", y = as.integer(y), trap = sprintf("S%03d", trap),
                  period, obs_trials = as.integer(k))]
 long <- order_eco(long)
@@ -104,7 +105,7 @@ periods <- data.table(period = 1:10, n_days = c(162L, 127L, 75L, 197L, 78L, 118L
                       note = "primary periods 1-10 span 1991-2000 (10 periods over 9 years, unevenly spaced; Gardner et al. 2018); calendar dates per period are in Karanth et al. 2006 Table 1, not in the deposit; n_days from the readme")
 
 dataset <- list(
-  title = "Open-population spatial capture-recapture of tigers at Nagarahole Reserve, India: 75 individuals x 195 camera stations x 10 primary periods, 1991-2000",
+  title = "Open-population spatial capture-recapture of tigers at Nagarahole Reserve, India: 75 individuals x 193 active camera stations (195 deposited) x 10 primary periods, 1991-2000",
   creator = "Gardner, Beth; Sollmann, Rahel; Kumar, N. Samba; Jathanna, Devcharan; Karanth, K. Ullas",
   pubDate = "2021", doi = "10.5061/dryad.bcc2fqzd2", sourceURL = "https://doi.org/10.5061/dryad.bcc2fqzd2",
   citation = "Gardner, B., Sollmann, R., Kumar, N. S., Jathanna, D., & Karanth, K. U. (2021). Ten year camera trap dataset of tigers in India [Data set]. Dryad. https://doi.org/10.5061/dryad.bcc2fqzd2",
@@ -128,7 +129,7 @@ dataset <- list(
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, traps = traps, script = SCRIPT)
 
 stage_dict_row(TABLE,
-  description = "Open-population spatial capture-recapture of tigers at Nagarahole Reserve, India (WCS, 1991-2000): 75 photo-identified individuals x 195 camera stations x 10 primary periods, y = trap days with a capture per station-period, effort = active trap days; station coordinates centred by the authors (local metres).",
+  description = "Open-population spatial capture-recapture of tigers at Nagarahole Reserve, India (WCS, 1991-2000): 75 photo-identified individuals x 193 camera stations active in at least one period (195 deposited) x 10 primary periods, y = trap days with a capture per station-period, effort = active trap days; station coordinates centred by the authors (local metres).",
   url = "https://doi.org/10.5061/dryad.bcc2fqzd2",
   reference = "Gardner, B., Sollmann, R., Kumar, N. S., Jathanna, D., & Karanth, K. U. (2018). State space and movement specification in open population spatial capture-recapture models. Ecology and Evolution, 8(20), 10336-10344.",
   doi_paper = "10.1002/ece3.4509", doi_data = "10.5061/dryad.bcc2fqzd2",
@@ -136,6 +137,6 @@ stage_dict_row(TABLE,
   notes = "First open-population SCR table (E9 experimental). Station-period level (count + effort), no occasion: per-day effort not deposited. Coordinates centred by the source.",
   source_via = "Dryad (version zip)")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Open-population spatial capture-recapture (binomial counts with trap-day effort)",
-  sampling_protocol = "camera_trap", design = "Multi-session (10 primary periods 1991-2000, 195 camera stations, effort per station-period)", realm = "Terrestrial",
+  sampling_protocol = "camera_trap", design = "Multi-session (10 primary periods 1991-2000, 193 active camera stations of 195, effort per station-period)", realm = "Terrestrial",
   country = "IND", coordinates = "As published (station coordinates centred by the authors on an undisclosed origin, local metres, in __traps)",
   notes = "Experimental (E9): trap key + __traps. Individuals as unit, full rectangle incl. periods without capture. y = capture days per station-period, obs_trials = effort.")

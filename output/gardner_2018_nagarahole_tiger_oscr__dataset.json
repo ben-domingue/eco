@@ -1,6 +1,6 @@
 {
   "table": "gardner_2018_nagarahole_tiger_oscr",
-  "title": "Open-population spatial capture-recapture of tigers at Nagarahole Reserve, India: 75 individuals x 195 camera stations x 10 primary periods, 1991-2000",
+  "title": "Open-population spatial capture-recapture of tigers at Nagarahole Reserve, India: 75 individuals x 193 active camera stations (195 deposited) x 10 primary periods, 1991-2000",
   "creator": "Gardner, Beth; Sollmann, Rahel; Kumar, N. Samba; Jathanna, Devcharan; Karanth, K. Ullas",
   "pubDate": "2021",
   "doi": "10.5061/dryad.bcc2fqzd2",
@@ -48,5 +48,5 @@
   "standardVersion": "eco v1.0-draft (2026-11-01)",
   "builtBy": "data/ script, see `script`",
   "script": "data/gardner_2018_nagarahole_tiger_oscr.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

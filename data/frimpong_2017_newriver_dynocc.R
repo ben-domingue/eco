@@ -71,12 +71,12 @@ dataset <- list(
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/frimpong_2017_newriver_dynocc.R")
 
 stage_dict_row(TABLE,
-  description = "Detection/non-detection of 74 fish species in 100 HUC12 watersheds of the Upper and Middle New River basin (Virginia/North Carolina) across 26 three-year primary periods (1938-2014), compiled from collection records; years within a period are secondary occasions and the number of collections per HUC-year is the effort covariate.",
+  description = "Detection/non-detection of 74 fish species in 100 HUC12 watersheds of the Upper and Middle New River basin (Virginia/North Carolina) across 25 surveyed three-year primary periods of a 26-period grid (1938-2014; __periods carries all 26), compiled from collection records; years within a period are secondary occasions and the number of collections per HUC-year is the effort covariate.",
   url = "https://doi.org/10.7910/DVN/KS4HIR",
   reference = "Frimpong, E. (2017). Fish Detection Histories and Covariates, Upper and Middle New River Drainage Basin (Virginia and North Carolina, USA). Harvard Dataverse, V1.",
   doi_data = "10.7910/DVN/KS4HIR", original_license = "CC0 1.0", derived_license = "CC0 1.0",
   notes = "No associated paper identified on Crossref. Surveyed = at least one collection record that HUC-year.",
   source_via = "Harvard Dataverse")
 stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "Dynamic occupancy (multi-species)",
-  sampling_protocol = "compiled_collections", design = "Multi-season (26 periods x up to 3 years)", realm = "Freshwater",
+  sampling_protocol = "compiled_collections", design = "Multi-season (25 surveyed periods of 26 x up to 3 years)", realm = "Freshwater",
   country = "USA", coordinates = "None in source (HUC12 codes)", notes = "Opportunistic sampling: 1,008 of 7,700 HUC-years surveyed.")

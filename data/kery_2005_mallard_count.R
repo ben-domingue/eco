@@ -25,13 +25,13 @@ stopifnot(nrow(long) == sum(!is.na(mallard.y)), uniqueN(long$unit) == 235)
 
 taxa <- make_taxa("ANAPLA", "Anas platyrhynchos", vernacularName = "Mallard")
 dataset <- list(
-  title = "Mallard repeated counts, Swiss MHB, 239 quadrats x 3 surveys (unmarked::mallard)",
+  title = "Mallard repeated counts, Swiss MHB, 235 surveyed quadrats (of 239) x 3 surveys (unmarked::mallard)",
   creator = "Kery, Marc; Royle, J. Andrew; Schmid, Hans",
   pubDate = "2005", sourceURL = "https://cran.r-project.org/package=unmarked",
   citation = "Kery, M., Royle, J. A. & Schmid, H. (2005). Modeling avian abundance from replicated counts using binomial mixture models. Ecological Applications 15(4), 1450-1461. https://doi.org/10.1890/04-1120. Data as bundled in unmarked (Fiske & Chandler 2011).",
   paperDOI = "10.1890/04-1120",
   intellectualRights = list(spdx = "GPL-3.0-or-later", url = "https://www.gnu.org/licenses/gpl-3.0.html"),
-  abstract = "Textbook N-mixture dataset: mallard counts on up to three surveys of 239 MHB quadrats, with standardised elevation, transect length and forest cover, and standardised survey intensity and date.",
+  abstract = "Textbook N-mixture dataset: mallard counts on up to three surveys of 235 MHB quadrats (239 in unmarked::mallard; four were never surveyed and have no rows), with standardised elevation, transect length and forest cover, and standardised survey intensity and date.",
   samplingProtocol = "Simplified territory mapping along a fixed transect in each 1-km2 quadrat, up to three surveys per breeding season; count of individuals per survey.",
   samplingProtocolCode = "line_transect", surveyEvidence = "deposited_matrix",
   responseType = "count", unitKind = "site", closure = "occasion",

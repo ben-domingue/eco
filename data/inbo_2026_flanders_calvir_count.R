@@ -136,6 +136,6 @@ stage_dict_row(TABLE,
   notes = sprintf("INBO IPT DwC-A (meetnetten-libellen-transect-occurrences, v1.28). One of three tables from this dataset, one per target species (project). Coordinates generalised by INBO."),
   source_via = "GBIF")
 stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (open / multi-season)",
-  sampling_protocol = "transect_count", design = sprintf("Multi-season (%d years x 1-%d counts)", length(years), max(long$occasion)), realm = "Freshwater",
+  sampling_protocol = "transect_count", design = sprintf("Multi-season (%d years x 1-%d counts)", uniqueN(long$period), max(long$occasion)), realm = "Freshwater",
   country = "BEL", coordinates = "As published",
   notes = "Agency monitoring with volunteers; each population counted in a subset of years; adults summed over sex and behaviour categories.")
