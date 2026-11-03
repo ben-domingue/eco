@@ -35,7 +35,7 @@ python3 releases/manifest.py --check         # is releases/manifest.csv up to da
 python3 upload/red_up_eco.py --dry-run       # what would ship; never publishes
 python3 upload/red_up_eco.py                 # upload to the Redivis draft (confirms first)
 cd site && quarto render                     # the website (GitHub Pages builds it on push)
-R CMD INSTALL Rpkg && Rscript -e 'testthat::test_dir("Rpkg/tests/testthat")'   # the R package (reads Redivis anonymously)
+R CMD INSTALL Rpkg && Rscript -e 'library(eco); testthat::test_dir("Rpkg/tests/testthat")'   # the R package (reads Redivis anonymously)
 ```
 
 Needs R with `data.table` and `jsonlite` (plus `readxl` for xlsx deposits), python3 with `pandas`, and for the IRW
