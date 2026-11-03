@@ -786,7 +786,7 @@ What this batch says about the standard:
 - **Stage-fate deposits**: the guide could say that a `fate` column is the next
   census's observation and that the source's dormant/dead are inferences (`y_raw`).
 - **One survey design, several target-species frames** (Meetnetten): split per target,
-  following the species-pool rule; confirm this is the intended reading.
+  following the species-pool rule. Ben (2026-11-02): right; users can recombine them.
 - **Categorised counts** (dragonfly sex/behaviour/teneral) are summed into `y`; E2 has
   no home for a breakdown of one count.
 - **Synthetic unit ids** (booby line numbers) and **flagged subsets kept** (whale calves).
