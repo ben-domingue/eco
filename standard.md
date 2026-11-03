@@ -206,6 +206,10 @@ Closure is assumed across `occasion` within a `period`; where a source violates 
 likelihood can still be written from the key and `y` plus one metadata field, and a
 converter back to the native frame exists.
 
+**Ruling (plants, 2026-11-02).** Plants are in scope. The lists below are about
+designs, not taxa: repeat-visit plant surveys are occupancy, and histories of marked
+plants (including dormancy) are capture-recapture, under the same clauses as animals.
+
 **Ruling (#34, 2026-11-01).** Occasions collapsed by the source to "detected on `y` of
 `obs_trials` occasions" are `responseType = binomial_count` (E2), not `count` with an
 effort column and not a reason to hold. The likelihood is Binomial(`y` | p, `obs_trials`);

@@ -1,0 +1,53 @@
+{
+  "table": "armstrong_2024_hydrilla_dynocc",
+  "title": "Hydrilla verticillata presence/absence in 506 riverine rock pools of the James River, Richmond, Virginia, over 4,211 surveys, 2017-2021",
+  "creator": "Armstrong, Joshua",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.jsxksn0fn",
+  "sourceURL": "https://doi.org/10.5061/dryad.jsxksn0fn",
+  "citation": "Armstrong, J. (2024). Regional and local factors interact to shape colonization and extinction dynamics of invasive Hydrilla verticillata in a patchy landscape [Dataset]. Dryad. https://doi.org/10.5061/dryad.jsxksn0fn",
+  "paperDOI": "10.1002/ece3.11558",
+  "relatedWorks": "10.5281/zenodo.7831559",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated surveys of the invasive aquatic plant Hydrilla verticillata in riverine rock pools that flood at different river heights, 2017-2021: 506 pools, 179 survey dates (8-70 per year), 1-10 surveys per pool per year. y = Hydrilla recorded present at the survey. Pool depth, volume, flood height, distance to the river channel and to the nearest pool, coordinates, and flooding summaries over the study are unit covariates; the 744-pool mapped frame is in __units.",
+  "samplingProtocol": "Rock pools on the James River bedrock were visited on irregular dates through each growing season and searched for Hydrilla; the source records presence/absence per pool per visit (the paper's model used five within-visit detections per survey, which are not deposited).",
+  "samplingProtocolCode": "visual_survey",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "A survey exists where All_Data.csv has a row for the pool-date. 196 pool-dates have 2-4 rows (184 identical copies, 12 with both a 0 and a 1); they are one visit each, because the deposit's own visit record (Days_since_occupancy.csv) never shows a 0-day interval after a pool's first visit. For the 12 conflicting visits y = 1; obs_n_records is the number of source rows.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "not assumed within year by the source: the authors treat each survey as a primary period (within-year colonisation and extinction); period = year here, occasion = survey within year, so a user fitting colext with years as seasons assumes closure the source did not",
+  "geographicCoverage": "Rock pools on the bedrock of the James River fall line, Richmond, Virginia, USA (37.53 N, 77.45 W)",
+  "temporalCoverage": "2017-06/2021-10",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: Hydrilla verticillata is an invasive non-native species, not flagged"
+  },
+  "crs": "EPSG:4326",
+  "notes": "Dates are irregular, so occasion k is the pool's k-th survey of the year, not a common visit; use `date` for time. The paper's detection histories (five within-visit detections per survey, Hyd_detA-E) are not in the deposit; y here is the per-visit result as deposited. Pool depth and volume are averages over the study (source).",
+  "notShipped": {
+    "Dist_hyd_m": "distance to the nearest Hydrilla-occupied pool on the survey date (All_Data.csv, All_dist.csv): computed from the detections themselves",
+    "Post_Hoc_Dataset.csv": "per-pool transition probabilities (absence, colonisation, extinction, persistence) derived from the detection histories, with averaged covariates",
+    "Days_since_occupancy.csv": "days since the previous visit: derivable from `date`",
+    "FloodedAt": "flood height in feet (FiveYearAverages.csv), identical to unit_flood_height_m in metres"
+  },
+  "summary": {
+    "n_rows": 4211,
+    "n_units": 506,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 10,
+    "n_surveys": 4211,
+    "y_values": "0,1",
+    "prop_zero": 0.911
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_depth_cm", "unit_volume_cm3", "unit_flood_height_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_nearest_pool_m", "unit_dist_river_m", "unit_days_flooded", "unit_days_flooded_per_year", "unit_flood_events", "unit_flood_events_per_year", "obs_n_records"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/armstrong_2024_hydrilla_dynocc.R",
+  "buildDate": "2026-11-02"
+}

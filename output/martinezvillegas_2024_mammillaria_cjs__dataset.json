@@ -1,0 +1,47 @@
+{
+  "table": "martinezvillegas_2024_mammillaria_cjs",
+  "creator": "Martinez-Villegas, Jorge A.; Pisanty, Irene; Martorell, Carlos; Hernandez-Apolinar, Mariana; Valverde, Teresa; Granados-Hernandez, Luisa A.; Rodriguez-Sanchez, Mariana; Zuniga-Vega, Jaime J.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.b5mkkwhnk",
+  "sourceURL": "https://doi.org/10.5061/dryad.b5mkkwhnk",
+  "citation": "Martinez-Villegas, J. A., Pisanty, I., Martorell, C., Hernandez-Apolinar, M., Valverde, T., Granados-Hernandez, L. A., Rodriguez-Sanchez, M., & Zuniga-Vega, J. J. (2024). Data from: Importance of accounting for imperfect detection of plants in the estimation of population growth rates [Dataset]. Dryad. https://doi.org/10.5061/dryad.b5mkkwhnk",
+  "paperDOI": "10.1111/oik.10708",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Censuses of individually marked plants in permanent study populations in Mexico; at each census every marked plant is searched for and recorded as found (1) or not found (0). Program MARK input for temporal-symmetry (Pradel) models.",
+  "samplingProtocolCode": "marked_plant_census",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "period (one census per period; survival and recruitment between censuses)",
+  "geographicCoverage": "Mexico (study populations not located in the deposit; no coordinates deposited)",
+  "temporalCoverage": "annual censuses (4 to 12 per species) before 2024; calendar years not stated in the deposit",
+  "coordinatesCoarsened": null,
+  "title": "Census histories of 1139 individually marked Mammillaria hernandezii plants over 5 censuses, Mexico",
+  "abstract": "Detection histories (found / not found at each census) of 1139 individually marked Mammillaria hernandezii (Cactaceae, small globose cactus) over 5 censuses, one of five plant species used by Martinez-Villegas et al. (2024) to show that plant detection is imperfect and that ignoring it biases population growth rates; analysed there with temporal-symmetry (Pradel) models.",
+  "notes": "Individuals are numbered by line in the MARK file (no tag ids deposited). Census years, study site and plot structure are not in the deposit (see the paper). IUCN EN (flagged under E7); no coordinates deposited, so nothing to coarsen.",
+  "components": [
+    "martinezvillegas_2024_flaveria_cjs",
+    "martinezvillegas_2024_neobuxbaumia_cjs",
+    "martinezvillegas_2024_govenia_cjs",
+    "martinezvillegas_2024_castilleja_cjs"
+  ],
+  "summary": {
+    "n_rows": 5695,
+    "n_units": 1139,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 1,
+    "n_surveys": 5695,
+    "y_values": "0,1",
+    "prop_zero": 0.428
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/martinezvillegas_2024_plants_cjs.R",
+  "buildDate": "2026-11-02"
+}

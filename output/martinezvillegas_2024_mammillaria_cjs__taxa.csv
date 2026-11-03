@@ -1,0 +1,2 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_family,taxon_growthForm,taxon_iucnCategory
+MAMHER,Mammillaria hernandezii,,species,https://www.gbif.org/species/5619743,EXACT,,Cactaceae,small globose cactus,EN
