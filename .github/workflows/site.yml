@@ -3,6 +3,10 @@
 # the site or the files it reads (tags, dictionary, validator report, output
 # metadata, the standard), and on demand.
 #
+# Rule: every repository file a page under site/ reads must match a glob in
+# `paths:` below, or edits to it leave the page stale (#27).
+# tools/check_site_paths.py enforces this in CI (tests.yml).
+#
 # One-time setup in the repository settings: Pages -> Source -> GitHub Actions.
 name: Publish site
 
@@ -12,7 +16,8 @@ on:
     paths:
       - "site/**"
       - "Rpkg/**"
-      - "standard_draft.md"
+      - "standard.md"
+      - "analysis/figures.json"
       - "metadata/**"
       - "releases/**"
       - "validate/report.csv"

@@ -72,6 +72,11 @@ jobs:
       - name: Every table has its companions
         run: python tools/check_coverage.py --quiet
 
+      # Every repository file a site page reads is in site.yml's paths:, so an
+      # edit to it rebuilds the site (#27).
+      - name: Site rebuild paths cover what the site reads
+        run: python tools/check_site_paths.py
+
   # R: the data/ scripts, lib/eco_common.R and the converters still parse, and
   # the R package installs. Nothing is executed against data: the scripts
   # download deposits and the package tests read Redivis, both of which belong
