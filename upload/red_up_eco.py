@@ -13,7 +13,8 @@ adds, and why red_up alone is not enough here:
 
   * red_up refuses `--dataset eco` without `--allow-unregistered`, excludes
     every `*__items.csv` (that suffix means IRW item text) and gates on
-    id/item/resp. Eco tables are unit/taxon/y, so the gate here is
+    id/item/resp. Eco tables are unit/taxon/y, with side tables `__taxa`,
+    `__periods`, `__units`, `__traps` (standard.md E6), so the gate here is
     `eco-validate` (eco_validate/ at the repo root: standard.md clauses E1-E10
     plus intake policy), run with `--irw` so irw-validate still checks the IRW
     view of each core table. The eco side tables (`__taxa`, `__periods`,
@@ -49,18 +50,30 @@ from red_up.targets import load_registry
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))            # eco_validate/ lives at the repo root
 from eco_validate import validate_file   # noqa: E402
+from eco_validate.model import STANDARD_URL   # noqa: E402
 
 OUT = ROOT / "output"
 TAGS = ROOT / "tags" / "tags_auto.csv"
 DATASET = "eco"
-DATASET_DESCRIPTION = (
-    "Ecological detection data (occupancy, counts, capture histories, community "
-    "surveys) in an IRW-style long format: unit = site or individual, taxon, "
-    "y = detection / count / state, period + occasion = primary / secondary survey, "
-    "covariates prefixed unit_ / period_ / obs_ / taxon_. A row exists iff a survey "
-    "happened. Each core table <t> has side tables <t>__items (taxa, GBIF keys, traits) "
-    "and, where relevant, <t>__periods. Draft standard v0.2, 2026-10. Sources are CC0 / "
-    "CC BY deposits; see each table's description.")
+
+
+def dataset_description() -> str:
+    """The Redivis dataset description, citing the standard version(s) the
+    tables in output/ were built under (their __dataset.json standardVersion)."""
+    versions = sorted({json.loads(p.read_text())["standardVersion"]
+                       for p in OUT.glob("*__dataset.json")})
+    return (
+        "Ecological detection data (occupancy, repeated counts, capture histories, "
+        "community surveys) in an IRW-style long format, one table per deposit: "
+        "unit = site or individual, taxon = species code, y = the observation "
+        "(detection, count, state, ordinal, multinomial cell, detection event, "
+        "binomial count), period + occasion = primary / secondary survey, covariates "
+        "prefixed unit_ / period_ / obs_ / taxon_ by the level at which they are "
+        "constant. A row exists iff a survey happened; y = 0 is surveyed and not "
+        "detected. Each core table <t> has the side table <t>__taxa (scientific name, "
+        "GBIF key) and, where relevant, <t>__periods, <t>__units and <t>__traps. "
+        f"Standard: {', '.join(versions)}, {STANDARD_URL}. Sources are openly licensed "
+        "deposits; each table's description gives its citation and licence.")
 
 #: Which column a side table must carry to be the table its suffix claims.
 SIDE_KEYS = {"__taxa": "taxon", "__periods": "period", "__units": "unit", "__traps": "trap"}
@@ -74,18 +87,24 @@ def side_suffix(table: str) -> str | None:
 
 
 def describe(table: str) -> str | None:
-    """Table description from the core table's __dataset.json."""
+    """Table description from the core table's __dataset.json.
+
+    Keys are indexed, not .get()-ed: a key the standard requires (E10) or the
+    pipeline always writes (`summary`, `sampleFloor`, `script`, `buildDate`)
+    must exist, so an uploader that has drifted from the format raises KeyError
+    at plan time instead of writing `None` to Redivis (#26)."""
     core = table.split("__")[0]
     meta_path = OUT / f"{core}__dataset.json"
     if not meta_path.exists():
         return None
     m = json.loads(meta_path.read_text())
-    s = m.get("summary", {})
-    rights = m.get("intellectualRights", {})
-    spdx = rights.get("spdx") if isinstance(rights, dict) else rights
-    head = (f"{m.get('title', core)}\n\nSource: {m.get('citation', m.get('sourceURL', ''))}\n"
-            f"Licence: {spdx}. responseType={m.get('responseType')}, unitKind={m.get('unitKind')}, "
-            f"itemKind={m.get('itemKind')}, closure={m.get('closure')}.")
+    s = m["summary"]
+    rights = m["intellectualRights"]
+    spdx = rights["spdx"] if isinstance(rights, dict) else rights
+    head = (f"{m['title']}\n\nSource: {m['citation']}\n"
+            f"Licence: {spdx}. responseType={m['responseType']}, unitKind={m['unitKind']}, "
+            f"surveyEvidence={m['surveyEvidence']}, closure={m['closure']}. "
+            f"Standard: {m['standardVersion']}.")
     suffix = side_suffix(table)
     if suffix == "__taxa":
         return f"Taxon side table for {core}: taxon code -> scientificName, GBIF taxonID, traits (taxon_*).\n\n{head}"
@@ -95,10 +114,10 @@ def describe(table: str) -> str | None:
         return f"Unit side table for {core}: every unit in the sampling frame, surveyed or not.\n\n{head}"
     if suffix == "__traps":
         return f"Trap side table for {core}: trap index -> coordinates and usage.\n\n{head}"
-    body = (f"{s.get('n_rows', '?'):,} rows; {s.get('n_units', '?')} units x {s.get('n_items', '?')} items x "
-            f"{s.get('n_periods', '?')} periods x {s.get('n_occasions', '?')} occasions; "
-            f"resp values {s.get('resp_values')}. Sample floor: {m.get('sampleFloor')}. "
-            f"Built by {m.get('script')} on {m.get('buildDate')}.")
+    body = (f"{s['n_rows']:,} rows; {s['n_units']:,} units x {s['n_taxa']:,} taxa x "
+            f"{s['n_periods']} periods x {s['n_occasions']} occasions; {s['n_surveys']:,} surveys; "
+            f"y values {s['y_values']}; {s['prop_zero']:.1%} zeros. Sample floor: {m['sampleFloor']}. "
+            f"Built by {m['script']} on {m['buildDate']}.")
     coarse = m.get("coordinatesCoarsened")
     if isinstance(coarse, dict) and coarse.get("value"):
         body += f" Coordinates coarsened: {coarse.get('method')}."
@@ -127,7 +146,7 @@ def ensure_dataset(owner: str, name: str, assume: bool) -> None:
     if not assume and sys.stdin.isatty():
         if input("Create it (private, unreleased)? [y/N] ").strip().lower() != "y":
             raise SystemExit("Cancelled.")
-    ds.create(public_access_level="none", description=DATASET_DESCRIPTION)
+    ds.create(public_access_level="none", description=dataset_description())
     print(f"created {owner}.{name} (private)")
 
 
@@ -137,6 +156,8 @@ def main(argv=None) -> int:
                     help="CSV files or directories (default: output/)")
     ap.add_argument("--dataset", default=DATASET)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--describe", action="store_true",
+                    help="print the dataset description and every table's generated description, then exit (no token needed)")
     ap.add_argument("--yes", "-y", action="store_true")
     ap.add_argument("--no-validate", action="store_true",
                     help="skip eco-validate on core tables (the gate; also skips the IRW view check)")
@@ -153,6 +174,18 @@ def main(argv=None) -> int:
     csvs = list(dict.fromkeys(csvs))
     if not csvs:
         print("no CSV files", file=sys.stderr); return 2
+
+    if args.describe:
+        print(dataset_description(), end="\n\n")
+        bad = 0
+        for p in csvs:
+            print(f"=== {p.stem}")
+            try:
+                print(describe(p.stem) or "(no __dataset.json)", end="\n\n")
+            except KeyError as exc:
+                bad += 1
+                print(f"ERROR: __dataset.json lacks {exc}\n")
+        return 1 if bad else 0
 
     owner, _ = load_registry()          # the owner (datapages) from IRW's config; eco is not a shard
 
@@ -176,6 +209,14 @@ def main(argv=None) -> int:
             continue
         r.errors.extend(f"{f.check}{f' [{f.clause}]' if f.clause else ''}: {f.message}" for f in rep.errors)
         r.warnings.extend(f"{f.check}{f' [{f.clause}]' if f.clause else ''}: {f.message}" for f in rep.warnings)
+    # Descriptions are built now, not after each push: a __dataset.json the
+    # uploader cannot describe stops that table before anything is written.
+    descriptions = {}
+    for r in reports:
+        try:
+            descriptions[r.table] = describe(r.table)
+        except KeyError as exc:
+            r.errors.append(f"cannot build the Redivis description: __dataset.json lacks {exc}")
     blocked = {} if args.allow_hold else blocked_by_tags()
     for r in reports:
         base = r.table.split("__")[0]
@@ -216,7 +257,7 @@ def main(argv=None) -> int:
         print(f"  [{n}/{len(live)}] {r.table}", flush=True)
         res = push_one(dataset, r.path, r.table, r.rows)
         if res.ok:
-            desc = describe(r.table)
+            desc = descriptions[r.table]
             if desc:
                 try:
                     dataset.table(r.table).update(description=desc[:4000])
