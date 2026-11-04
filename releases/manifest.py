@@ -33,6 +33,7 @@ MANIFEST = ROOT / "releases" / "manifest.csv"
 OWNER = "datapages"
 CORE = "eco:4j5q"          # qualified reference, so a rename cannot break this
 META = "eco_meta"
+SAME_RELEASE = dt.timedelta(minutes=5)
 COLUMNS = ["eco_version", "date", "eco_redivis_version", "eco_meta_redivis_version", "n_tables", "note"]
 
 
@@ -65,9 +66,15 @@ def build(core: list[dict], meta: list[dict]) -> list[dict]:
     # release (the metadata pipeline runs after the tables ship, so eco_meta for
     # version i is released after eco version i). The latest eco version takes the
     # latest eco_meta, so this column can change for that row; diverges() allows it.
+    # Ben publishes the two drafts together, and Redivis can stamp eco_meta a moment
+    # before eco; an eco_meta release within SAME_RELEASE of the next eco release
+    # belongs to that next release, not to this one.
+    def _before(ts: str) -> str:
+        t = dt.datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ") - SAME_RELEASE
+        return t.strftime("%Y-%m-%dT%H:%M:%SZ")
     rows = []
     for i, c in enumerate(core, 1):
-        until = core[i]["released_at"] if i < len(core) else "9999"
+        until = _before(core[i]["released_at"]) if i < len(core) else "9999"
         live_meta = [m for m in meta if m["released_at"] < until]
         rows.append({"eco_version": str(i), "date": c["released_at"], "eco_redivis_version": c["tag"],
                      "eco_meta_redivis_version": live_meta[-1]["tag"] if live_meta else "",
