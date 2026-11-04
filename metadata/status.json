@@ -1,18 +1,18 @@
 {
-  "date": "2026-11-03",
-  "n_tables": 168,
-  "n_rows": 48682521,
-  "n_units": 191497,
-  "n_taxa_rows": 4760,
-  "n_surveys": 9714449,
+  "date": "2026-11-04",
+  "n_tables": 173,
+  "n_rows": 58147623,
+  "n_units": 199692,
+  "n_taxa_rows": 4999,
+  "n_surveys": 9855340,
   "n_families": 39,
   "families": {
     "CJS / multi-state capture-recapture": 2,
-    "CJS capture-recapture": 20,
+    "CJS capture-recapture": 21,
     "CJS capture-recapture with two-sided photo-ID": 1,
     "Closed-population capture-recapture": 1,
     "Community abundance": 2,
-    "Community occupancy": 29,
+    "Community occupancy": 30,
     "Community occupancy or N-mixture": 2,
     "Dead recovery / live-dead capture-recapture": 1,
     "Distance sampling": 7,
@@ -21,7 +21,7 @@
     "Dynamic occupancy": 9,
     "Multi-scale / multi-method occupancy": 1,
     "Multi-scale community occupancy": 1,
-    "Multi-scale occupancy": 4,
+    "Multi-scale occupancy": 5,
     "Multi-scale occupancy with false positives": 1,
     "Multi-state": 1,
     "Multi-state capture-recapture": 1,
@@ -31,7 +31,7 @@
     "Multi-state occupancy": 1,
     "Multievent / multi-state robust design capture-recapture": 1,
     "Multinomial N-mixture": 2,
-    "N-mixture": 30,
+    "N-mixture": 32,
     "N-mixture / annual count index": 1,
     "N-mixture / robust-design counts": 1,
     "N-mixture with dynamic occupancy": 1,
@@ -49,8 +49,8 @@
   },
   "response_types": {
     "binomial_count": 5,
-    "count": 38,
-    "detection": 95,
+    "count": 40,
+    "detection": 98,
     "multinomial_cell": 13,
     "ordinal": 1,
     "state": 16
@@ -58,27 +58,27 @@
   "taxon_groups": {
     "Amphibians": 11,
     "Birds": 32,
-    "Fish": 14,
-    "Invertebrates": 28,
-    "Mammals": 58,
+    "Fish": 15,
+    "Invertebrates": 31,
+    "Mammals": 59,
     "Multiple": 4,
     "Plants": 12,
     "Reptiles": 9
   },
   "survey_evidence": {
-    "deposited_matrix": 84,
+    "deposited_matrix": 86,
     "effort_table": 27,
     "inferred": 13,
     "row_presence": 15,
-    "sample_table": 29
+    "sample_table": 32
   },
   "n_below_floor": 33,
-  "n_with_coordinates": 58,
+  "n_with_coordinates": 60,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
   "n_valid": 168,
   "n_irw_conforms": 168,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 168
+    "eco v1.1-draft (2026-11-03)": 173
   }
 }

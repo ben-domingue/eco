@@ -1,0 +1,94 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxonRemarks,taxon_family,taxon_iucnCategory
+AGLIO,Aglais io,,species,https://www.gbif.org/species/4535827,EXACT,,,Nymphalidae,NE
+AGLURT,Aglais urticae,,species,https://www.gbif.org/species/1894840,EXACT,,,Nymphalidae,NE
+AGROPT,Agriades optilete,,species,https://www.gbif.org/species/8020665,EXACT,Vacciniina optilete,,Lycaenidae,NE
+ANTCAR,Anthocharis cardamines,,species,https://www.gbif.org/species/1919712,EXACT,,,Pieridae,NE
+APHHYP,Aphantopus hyperantus,,species,https://www.gbif.org/species/1896841,EXACT,,,Nymphalidae,NE
+ARGPAP,Argynnis paphia,,species,https://www.gbif.org/species/1909398,EXACT,,,Nymphalidae,NE
+ARIART,Aricia artaxerxes,,species,https://www.gbif.org/species/1933138,EXACT,,,Lycaenidae,NE
+BOLAQU,Boloria aquilonaris,,species,https://www.gbif.org/species/1912372,EXACT,,,Nymphalidae,NE
+BOLEUN,Boloria eunomia,,species,https://www.gbif.org/species/4299535,EXACT,,,Nymphalidae,NE
+BOLEUP,Boloria euphrosyne,,species,https://www.gbif.org/species/5772893,EXACT,Clossiana euphrosyne,,Nymphalidae,NE
+BOLFRE,Boloria freija,,species,https://www.gbif.org/species/4299599,EXACT,,,Nymphalidae,NE
+BOLSEL,Boloria selene,,species,https://www.gbif.org/species/1912325,EXACT,,,Nymphalidae,NE
+BOMBAL,Bombus balteatus,,species,https://www.gbif.org/species/1340403,EXACT,,,Apidae,NE
+BOMBOH,Bombus bohemicus,,species,https://www.gbif.org/species/1340362,EXACT,,,Apidae,DD
+BOMBSSTR,Bombus sensu stricto,,speciesAggregate,https://www.gbif.org/species/1340278,HIGHERRANK,,"Species aggregate as recorded: the subgenus Bombus s. str. (B. terrestris / lucorum / cryptarum / magnus, not separable in the field); taxonID is the genus Bombus",Apidae,
+BOMCAM,Bombus campestris,,species,https://www.gbif.org/species/1340527,EXACT,,,Apidae,NE
+BOMCIN,Bombus cingulatus,,species,https://www.gbif.org/species/1340509,EXACT,,,Apidae,NE
+BOMCON,Bombus consobrinus,,species,https://www.gbif.org/species/1340465,EXACT,,,Apidae,NE
+BOMDIS,Bombus distinguendus,,species,https://www.gbif.org/species/1340521,EXACT,,,Apidae,DD
+BOMFLA,Bombus flavidus,,species,https://www.gbif.org/species/1340484,EXACT,,,Apidae,DD
+BOMHOR,Bombus hortorum,,species,https://www.gbif.org/species/1340542,EXACT,,,Apidae,NE
+BOMHUM,Bombus humilis,,species,https://www.gbif.org/species/1340523,EXACT,,,Apidae,NE
+BOMHYP,Bombus hypnorum,,species,https://www.gbif.org/species/1340513,EXACT,,,Apidae,NE
+BOMJON,Bombus jonellus,,species,https://www.gbif.org/species/1340308,EXACT,,,Apidae,DD
+BOMLAP,Bombus lapidarius,,species,https://www.gbif.org/species/1340301,EXACT,,,Apidae,NE
+BOMLAPMON,Bombus lapponicus/monticola,,speciesAggregate,https://www.gbif.org/species/1340278,HIGHERRANK,,Species aggregate as recorded by the source (Bombus lapponicus/monticola not separated); taxonID is the genus,Apidae,
+BOMMUS,Bombus muscorum,,species,https://www.gbif.org/species/1340286,EXACT,,,Apidae,NE
+BOMPAS,Bombus pascuorum,,species,https://www.gbif.org/species/1340405,EXACT,,,Apidae,NE
+BOMPRA,Bombus pratorum,,species,https://www.gbif.org/species/1340305,EXACT,,,Apidae,NE
+BOMRUD,Bombus ruderarius,,species,https://www.gbif.org/species/1340394,EXACT,,,Apidae,NE
+BOMRUP,Bombus rupestris,,species,https://www.gbif.org/species/1340344,EXACT,,,Apidae,NE
+BOMSOR,Bombus soroeensis,,species,https://www.gbif.org/species/1340444,EXACT,,,Apidae,NE
+BOMSPO,Bombus sporadicus,,species,https://www.gbif.org/species/1340433,EXACT,,,Apidae,NE
+BOMSPP,Bombus spp.,,genus,https://www.gbif.org/species/1340278,HIGHERRANK,,Bumblebees not identified to species (Bombus spp.); taxonID is the genus,Apidae,
+BOMSYL,Bombus sylvarum,,species,https://www.gbif.org/species/1340342,EXACT,,,Apidae,NE
+BOMSYLNOR,Bombus sylvestris/norvegicus,,speciesAggregate,https://www.gbif.org/species/1340278,HIGHERRANK,,Species aggregate as recorded by the source (Bombus sylvestris/norvegicus not separated); taxonID is the genus,Apidae,
+BOMWUR,Bombus wurflenii,,species,https://www.gbif.org/species/1340358,EXACT,,,Apidae,NE
+BREINO,Brenthis ino,,species,https://www.gbif.org/species/1902749,EXACT,,,Nymphalidae,NE
+CALRUB,Callophrys rubi,,species,https://www.gbif.org/species/1932411,EXACT,,,Lycaenidae,NE
+CARPAL,Carterocephalus palaemon,,species,https://www.gbif.org/species/1947335,EXACT,,,Hesperiidae,NE
+CARSIL,Carterocephalus silvicola,,species,https://www.gbif.org/species/1947306,EXACT,,,Hesperiidae,NE
+CELARG,Celastrina argiolus,,species,https://www.gbif.org/species/1925918,EXACT,,,Lycaenidae,NE
+COEARC,Coenonympha arcania,,species,https://www.gbif.org/species/7728366,EXACT,,,Nymphalidae,NE
+COEPAM,Coenonympha pamphilus,,species,https://www.gbif.org/species/1911461,EXACT,,,Nymphalidae,NE
+COETUL,Coenonympha tullia,,species,https://www.gbif.org/species/1911112,EXACT,,,Nymphalidae,NE
+COLPAL,Colias palaeno,,species,https://www.gbif.org/species/5137582,EXACT,,,Pieridae,NE
+CUPMIN,Cupido minimus,,species,https://www.gbif.org/species/1926260,EXACT,,,Lycaenidae,NE
+CYASEM,Cyaniris semiargus,,species,https://www.gbif.org/species/5139156,EXACT,,,Lycaenidae,NE
+ERELIG,Erebia ligea,,species,https://www.gbif.org/species/5134682,EXACT,,,Nymphalidae,NE
+EREMED,Erebia medusa,,species,https://www.gbif.org/species/8314088,EXACT,,,Nymphalidae,NE
+ERYTAG,Erynnis tages,,species,https://www.gbif.org/species/8270406,EXACT,,,Hesperiidae,NE
+EUMEUM,Eumedonia eumedon,,species,https://www.gbif.org/species/1933793,EXACT,,,Lycaenidae,NE
+FABADI,Fabriciana adippe,,species,https://www.gbif.org/species/7809779,EXACT,,,Nymphalidae,NE
+GLAALE,Glaucopsyche alexis,,species,https://www.gbif.org/species/1924097,EXACT,,,Lycaenidae,NE
+GONRHA,Gonepteryx rhamni,,species,https://www.gbif.org/species/1920712,EXACT,,,Pieridae,NE
+HESCOM,Hesperia comma,,species,https://www.gbif.org/species/7633472,EXACT,,,Hesperiidae,NE
+HIPSEM,Hipparchia semele,,species,https://www.gbif.org/species/8176911,EXACT,,,Nymphalidae,LC
+ISSLAT,Issoria lathonia,,species,https://www.gbif.org/species/1905383,EXACT,,,Nymphalidae,NE
+LASMAE,Lasiommata maera,,species,https://www.gbif.org/species/4535636,EXACT,,,Nymphalidae,NE
+LASMEG,Lasiommata megera,,species,https://www.gbif.org/species/4535632,EXACT,,,Nymphalidae,NE
+LASPET,Lasiommata petropolitana,,species,https://www.gbif.org/species/4535634,EXACT,Pararge petropolitana,,Nymphalidae,NE
+LEPIDOPTERA,Lepidoptera spp.,,order,https://www.gbif.org/species/797,EXACT,,Butterflies or burnets not identified below order (Lepidoptera spp.); taxonID is the order,,
+LEPSINJUV,Leptidea sinapis/juvernica,,speciesAggregate,https://www.gbif.org/species/1920554,EXACT,,Species aggregate as recorded by the source (Leptidea sinapis/juvernica not separated); taxonID is the genus,Pieridae,
+LIMPOP,Limenitis populi,,species,https://www.gbif.org/species/5132183,EXACT,,,Nymphalidae,NE
+LYCHEL,Lycaena helle,,species,https://www.gbif.org/species/7417698,EXACT,Helleia helle,,Lycaenidae,NE
+LYCHIP,Lycaena hippothoe,,species,https://www.gbif.org/species/10572889,EXACT,Palaeochrysophanus hippothoe,"Matched on GBIF as Lycaena hippothoe (Linnaeus, 1761); the bare name is a homonym the strict match resolves only to the family",Lycaenidae,NE
+LYCPHL,Lycaena phlaeas,,species,https://www.gbif.org/species/1929697,EXACT,,,Lycaenidae,NE
+LYCVIR,Lycaena virgaureae,,species,https://www.gbif.org/species/1929659,EXACT,,,Lycaenidae,NE
+MANJUR,Maniola jurtina,,species,https://www.gbif.org/species/5135513,EXACT,,,Nymphalidae,NE
+MELATH,Melitaea athalia,,species,https://www.gbif.org/species/1899433,EXACT,,,Nymphalidae,NE
+MELDIA,Melitaea diamina,,species,https://www.gbif.org/species/7768674,EXACT,,,Nymphalidae,NE
+NYMANT,Nymphalis antiopa,,species,https://www.gbif.org/species/5130682,EXACT,,,Nymphalidae,LC
+OCHSYL,Ochlodes sylvanus,,species,https://www.gbif.org/species/1946844,EXACT,Ochlodes venata,,Hesperiidae,NE
+PAPMAC,Papilio machaon,,species,https://www.gbif.org/species/8225376,EXACT,,,Papilionidae,NE
+PARAEG,Pararge aegeria,,species,https://www.gbif.org/species/8049830,EXACT,,,Nymphalidae,NE
+PARAPO,Parnassius apollo,,species,https://www.gbif.org/species/1938810,EXACT,,,Papilionidae,LC
+PIEBRA,Pieris brassicae,,species,https://www.gbif.org/species/1920506,EXACT,,,Pieridae,NE
+PIENAP,Pieris napi,,species,https://www.gbif.org/species/1920494,EXACT,,,Pieridae,NE
+PIERAP,Pieris rapae,,species,https://www.gbif.org/species/1920496,EXACT,,,Pieridae,NE
+PIERIDAE,Pieridae spp.,,family,https://www.gbif.org/species/5481,EXACT,,Whites not identified below family (Pieridae spp.); taxonID is the family,Pieridae,
+PLEARGIDA,Plebejus argus/idas,,speciesAggregate,https://www.gbif.org/species/1923058,EXACT,,Species aggregate as recorded by the source (Plebejus argus/idas not separated); taxonID is the genus,Lycaenidae,
+POLAMA,Polyommatus amandus,,species,https://www.gbif.org/species/7597891,EXACT,Plebejus amanda,,Lycaenidae,NE
+POLCAL,Polygonia c-album,,species,https://www.gbif.org/species/1898544,EXACT,,,Nymphalidae,NE
+POLICA,Polyommatus icarus,,species,https://www.gbif.org/species/5140214,EXACT,,,Lycaenidae,NE
+PONEDU,Pontia edusa,,species,https://www.gbif.org/species/1920259,EXACT,,,Pieridae,NE
+PYRMAL,Pyrgus malvae,,species,https://www.gbif.org/species/8109173,EXACT,,,Hesperiidae,NE
+SATWAL,Satyrium w-album,,species,https://www.gbif.org/species/5882965,EXACT,,,Lycaenidae,NE
+SPEAGL,Speyeria aglaja,,species,https://www.gbif.org/species/6221746,EXACT,,,Nymphalidae,NE
+THYLIN,Thymelicus lineola,,species,https://www.gbif.org/species/8133678,EXACT,,,Hesperiidae,NE
+VANATA,Vanessa atalanta,,species,https://www.gbif.org/species/1898286,EXACT,,,Nymphalidae,LC
+VANCAR,Vanessa cardui,,species,https://www.gbif.org/species/4299368,EXACT,,,Nymphalidae,LC
+ZYGEXU,Zygaena exulans,,species,https://www.gbif.org/species/7955974,EXACT,,,Zygaenidae,NE
+ZYGFIL,Zygaena filipendulae,,species,https://www.gbif.org/species/5107219,EXACT,,,Zygaenidae,NE

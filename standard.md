@@ -141,7 +141,10 @@ rejected.
 response type are one table: differences in which taxa were surveyed for, between
 regions, units or runs, are carried by `__survey_taxa`, not by splitting the table.
 Two methods (pitfall and emergence tent, aerial net and dipnet, eDNA and visual
-survey) are two protocols. The ruling is about taxon lists only, so it does not touch
+survey) are two protocols when each has its own survey set; when both methods are
+applied to the same unit at the same visit (a paired design), the deposit is one table
+with `obs_method`, under the multi-method form of E9 (*Experimental*). The ruling is about
+taxon lists only, so it does not touch
 `unitKind = individual` tables, which split by taxon (ruling #20) and stay separate
 where the source deposited separate analysis sets or populations.
 
@@ -462,4 +465,8 @@ shipped and why. Facts about the source are assertions, not comments.
   projected coordinates, trap arrays, multi-taxon tables (the `_exact` sibling), other
   locators and displaced coordinates; `components` in the metadata table (E10). Every
   table was rebuilt under v1.1-draft.
+- **v1.1-draft, ruling #31 clarified (2026-11-04).** Two methods are two protocols
+  only when each has its own survey set; a paired design (both methods on the same unit
+  at the same visit) is one table with `obs_method` (E9), as the published
+  `dougherty_2016_rustycrayfish_edna` and `lafferty_2024_tidewatergoby_edna` already are.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
