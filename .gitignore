@@ -29,3 +29,9 @@ output/neon_2026_perleu_rd.csv
 output/neon_2026_perman_rd.csv
 output/nina_2026_norway_pollinator_count.csv
 output/nina_2026_norway_pollinator_exact_count.csv
+# Breeding Bird Survey (#24): 39 core tables, 3.86 GB. All are ignored, not only those over 100 MB, to keep 1 GB out of
+# history, except BCR 15's count table, so CI's gate and corpus test see one. The script rebuilds them from raw files
+# downloaded by hand (ScienceBase refuses direct downloads). Side tables and __dataset.json stay tracked.
+output/ziolkowski_2026_bbs_*.csv
+!output/ziolkowski_2026_bbs_*__*.csv
+!output/ziolkowski_2026_bbs_bcr15_count.csv
