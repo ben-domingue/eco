@@ -1,0 +1,51 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxonRemarks,taxon_primer_mismatches
+ABBRIV,Abbottina rivularis,,species,https://www.gbif.org/species/5206304,EXACT,,,1
+ACALAC,Acanthogobius lactipes,,species,https://www.gbif.org/species/2375970,EXACT,,,2
+ACHMAC,Acheilognathus macropterus,,species,https://www.gbif.org/species/2359405,EXACT,,,1
+ACHRHO,Acheilognathus rhombeus,,species,https://www.gbif.org/species/2359434,EXACT,,,1
+ANGJAP,Anguilla japonica,,species,https://www.gbif.org/species/5213022,EXACT,,,1
+BIWZEZ,Biwia zezera,,species,https://www.gbif.org/species/2364662,EXACT,,,1
+CARCUV,Carassius cuvieri,,species,https://www.gbif.org/species/2366641,EXACT,,,1
+CARSPP,Carassius spp.,,genus,https://www.gbif.org/species/7396773,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+CHAARG,Channa argus,,species,https://www.gbif.org/species/4284921,EXACT,,,0
+CTEIDE,Ctenopharyngodon idella,,species,https://www.gbif.org/species/2362030,EXACT,,,1
+CYPCAR,Cyprinus carpio,,species,https://www.gbif.org/species/4286975,EXACT,,,2
+GAMAFF,Gambusia affinis,,species,https://www.gbif.org/species/2350580,EXACT,,,2
+GNASPP,Gnathopogon spp.,,genus,https://www.gbif.org/species/2366297,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+GYMCAS,Gymnogobius castaneus,,species,https://www.gbif.org/species/2376336,EXACT,,,1
+GYMPET,Gymnogobius petschiliensis,,species,https://www.gbif.org/species/2376375,EXACT,,,1
+GYMURO,Gymnogobius urotaenia,,species,https://www.gbif.org/species/2376327,EXACT,,,1
+HEMSPP,Hemibarbus spp.,,genus,https://www.gbif.org/species/2365979,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+HYPNIP,Hypomesus nipponensis,,species,https://www.gbif.org/species/2410890,EXACT,,,4
+HYPSPP,Hypophthalmichthys spp.,,genus,https://www.gbif.org/species/2362472,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+HYPINT,Hyporhamphus intermedius,,species,https://www.gbif.org/species/2368887,EXACT,,,1
+ICTPUN,Ictalurus punctatus,,species,https://www.gbif.org/species/5202520,EXACT,,,2
+ISCSTE,Ischikauia steenackeri,,species,https://www.gbif.org/species/2367589,EXACT,,,1
+LEPMAC,Lepomis macrochirus macrochirus,,subspecies,https://www.gbif.org/species/9453826,EXACT,Lepomis macrochirus,,1
+LEUPET,Leucopsarion petersii,,species,https://www.gbif.org/species/2378642,EXACT,,,2
+MEGAMB,Megalobrama amblycephala,,species,https://www.gbif.org/species/2362740,EXACT,,,1
+MICDOL,Micropterus dolomieu dolomieu,,subspecies,https://www.gbif.org/species/5211255,EXACT,Micropterus dolomieu,,1
+MICSAL,Micropterus salmoides,,species,https://www.gbif.org/species/2394563,EXACT,,,1
+MISSPP,Misgurnus spp.,,genus,https://www.gbif.org/species/2367906,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+MONALB,Monopterus albus,,species,https://www.gbif.org/species/5204081,EXACT,,,3
+MUGCEP,Mugil cephalus cephalus,,subspecies,https://www.gbif.org/species/8952863,EXACT,,,2
+MYLPIC,Mylopharyngodon piceus,,species,https://www.gbif.org/species/2362110,EXACT,,,1
+NIPSIE,Nipponocypris sieboldii,,species,https://www.gbif.org/species/2360921,EXACT,,,1
+NIPTEM,Nipponocypris temminckii,,species,https://www.gbif.org/species/2360929,EXACT,,,1
+OPSPLA,Opsariichthys platypus,,species,https://www.gbif.org/species/2365787,EXACT,,Matched on GBIF as Zacco platypus (the backbone name for this species),1
+OPSUNC,Opsariichthys uncirostris uncirostris,,subspecies,https://www.gbif.org/species/6167404,EXACT,Opsariichthys uncirostris,,1
+ORYLAT,Oryzias latipes,,species,https://www.gbif.org/species/2368377,EXACT,,,3
+PLEALT,Plecoglossus altivelis altivelis,,subspecies,https://www.gbif.org/species/7193754,EXACT,Plecoglossus altivelis,,3
+PSESPP,Pseudogobio spp.,,genus,https://www.gbif.org/species/2366340,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+PSEPAR,Pseudorasbora parva,,species,https://www.gbif.org/species/2362868,EXACT,,,1
+RHISPP,Rhinogobius spp.,,genus,https://www.gbif.org/species/2377576,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1
+RHOOCE,Rhodeus ocellatus ocellatus,,subspecies,https://www.gbif.org/species/7059107,EXACT,Rhodeus ocellatus,,1
+SALMIC,Salangichthys microdon,,species,https://www.gbif.org/species/2411008,EXACT,,,5
+SARVAR,Sarcocheilichthys variegatus microoculus,,subspecies,https://www.gbif.org/species/6166646,EXACT,,,1
+SILASO,Silurus asotus,,species,https://www.gbif.org/species/2337594,EXACT,,,1
+SQUCHA,Squalidus chankaensis biwae,,subspecies,https://www.gbif.org/species/6167257,EXACT,Squalidus chankaensis,,1
+TACTOK,Tachysurus tokiensis,,species,https://www.gbif.org/species/9856204,EXACT,,,2
+TANLAN,Tanakia lanceolata,,species,https://www.gbif.org/species/2366948,EXACT,,,1
+TRIBRA,Tribolodon brandtii maruta,,subspecies,https://www.gbif.org/species/11235793,EXACT,Tribolodon brandtii,,1
+TRIHAK,Tribolodon hakonensis,,species,https://www.gbif.org/species/5205566,EXACT,,,1
+TRISPP,Tridentiger spp.,,genus,https://www.gbif.org/species/2376455,EXACT,,Genus-level group as recorded by the source (MiFish 12S reads not resolved to species); taxonID is the genus,1

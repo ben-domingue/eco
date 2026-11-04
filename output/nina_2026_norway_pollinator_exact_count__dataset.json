@@ -1,0 +1,56 @@
+{
+  "table": "nina_2026_norway_pollinator_exact_count",
+  "creator": "Gohli, Jostein; Åström, Jens",
+  "pubDate": "2026",
+  "doi": "10.15468/mpsa4g",
+  "sourceURL": "https://doi.org/10.15468/mpsa4g",
+  "citation": "Gohli J, Åström J (2026). Bumblebees and butterflies in Norway. Version 1.12. Norwegian Institute for Nature Research. Samplingevent dataset. https://doi.org/10.15468/mpsa4g",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "samplingProtocol": "National monitoring of butterflies and bumblebees (NINA for the Norwegian Environment Agency): in each 1.5 x 1.5 km square of an 18 km grid over lowland Norway, 20 fixed 50 m transect sections in open forest and grassland are walked three times each summer (late spring, mid-summer, late summer) between 10:00 and 17:00 in suitable weather (above 15 C, at most 60% cloud, little wind) by trained volunteers; all bumblebees (Bombus) and butterflies and burnets (Papilionidae, Hesperiidae, Pieridae, Lycaenidae, Nymphalidae, Zygaenidae) within 2.5 m to each side and 5 m ahead are identified and counted, caught with a sweep net when needed; flower cover (0-3), temperature, cloud and time recorded per section.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "Every 50 m section walk is an event in the event core, including walks with no records; the publisher states that absences were removed and are inferred by adding zeros for all bumblebee and butterfly taxa at every event. Each walk carries a row for every taxon in the occurrence file.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "not assumed: the three visits of a summer are timed to late spring, mid-summer and late summer to cover different species' flight periods; period = calendar year",
+  "temporalCoverage": "2009-05/2025-09",
+  "notes": "unit = 50 m transect section (the source's section code; a/b/c where a moved section has several locationIDs), cluster_id = 1.5 km square code, obs_visit = the square visit's rank in its year (most square-years have three visits, a few one to seven; 74 visits walked fewer than 20 sections); occasion = the visit's slot in the square-year, equal to obs_visit except where six visits in 2024-2025 walked one section twice (two events at different times, both kept): such a visit has two slots, the repeat walk in the second, and later visits shift by one. y = individuals counted (records of one taxon on one walk summed: 565 cases). Taxa are as recorded: five species aggregates (including Bombus sensu stricto), Bombus spp., Pieridae spp. and Lepidoptera spp. are their own taxa, so a zero for a species does not exclude individuals recorded only to the aggregate. Zygaena (burnets) are included because the EML lists Zygaenidae among the registered families, although its zero-inference note names Papilionoidea and Bombus only. Observers are pseudonymous UUIDs in the source, recoded O01..O73. Regions joined over time (Ostfold/Vestfold 2009, Trondelag 2011, Agder/Rogaland 2013, Vestland/More og Romsdal later, northern Norway 2025), so the unit set grows with period.",
+  "geographicCoverage": "Lowland Norway: 92 survey squares in Viken, Vestfold og Telemark, Trondelag, Agder, Rogaland, Vestland, More og Romsdal, Nordland and Troms og Finnmark",
+  "title": "Bumblebee and butterfly counts on 50 m transect sections, three visits a summer, Norwegian national pollinator monitoring 2009-2025 (without Bombus alpinus, coordinates as published)",
+  "abstract": "Counts of bumblebees (Bombus: 22 species, 3 aggregates and Bombus spp.) and butterflies and burnets (Papilionoidea and Zygaena: 64 species, 2 aggregates, Pieridae spp. and Lepidoptera spp.) on 50 m transect sections, 20 per 1.5 km square, in 92 squares of a grid over lowland Norway, walked three times each summer 2009-2025 by trained volunteers for the Norwegian national monitoring programme run by NINA; with per-walk temperature, cloud cover, flower cover and time, and section habitat. Absences are the explicit zeros of every taxon at every walk, as the publisher instructs. This table omits Bombus alpinus (IUCN VU) so that section coordinates ship at the published 5 m precision.",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published (section centre points, coordinateUncertaintyInMeters 5): Bombus alpinus (IUCN VU) is not in this table (E7.3); nina_2026_norway_pollinator_count has it with coarsened coordinates"
+  },
+  "components": [
+    "nina_2026_norway_pollinator_count"
+  ],
+  "notShipped": {
+    "square-visit events": "2,548 parent events (the 1.5 km square visit) that contain the section walks and carry no records of their own",
+    "orphan records": "25 occurrence records on 16 eventIDs absent from event.txt (no survey to attach them to)",
+    "observer UUIDs": "recoded to O01..O73",
+    "BOMALP": "Bombus alpinus (IUCN VU): in nina_2026_norway_pollinator_count only, whose coordinates are coarsened"
+  },
+  "summary": {
+    "n_rows": 4683759,
+    "n_units": 2651,
+    "n_taxa": 93,
+    "n_periods": 17,
+    "n_occasions": 7,
+    "n_surveys": 50363,
+    "y_values": "0-81 (45 distinct)",
+    "prop_zero": 0.99
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_temperature_c", "obs_cloud_cover_pct", "obs_flower_cover", "obs_time_start", "obs_time_end", "obs_visit"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/nina_2026_norway_pollinator_count.R",
+  "buildDate": "2026-11-04"
+}

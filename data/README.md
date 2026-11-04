@@ -97,6 +97,10 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `chabanne_2017_perth_dolphin_msrd.R` | multi-state closed robust design capture-recapture (16 seasons x 3-6 secondary occasions, y = site of capture), photo-id dolphins; first robust-design and first multi-state CR table | Dryad (version zip, MARK .inp) | CC0 |
 | `oosthuizen_2019_marion_seal_rd.R` | robust design tag-resight, 1,729 female elephant seals x 28 seal years x 3 capture periods; multievent code in y_raw | Dryad | CC0 |
 | `goldingay_2022_richmond_mammals_dynocc.R` | dynamic occupancy, spotlight transects, koala and central greater glider, 8 years x 3 surveys; one table with `__survey_taxa` by survey (v1.1 ruling #31; replaced the koala and glider tables) | Dryad | CC0 |
+| `nina_2026_norway_pollinator_count.R` | community counts, 50 m transect sections, bumblebees and butterflies, zeros added per the publisher; builds the coarsened table and its `_exact` sibling (E7.3) | GBIF (NINA IPT) | CC BY 4.0 |
+| `fukaya_2022_kasumigaura_fish_mb.R` | community detection, eDNA metabarcoding, three replicate samples per site | Dryad | CC0 |
+| `allen_2021_nj_lanternfly_edna.R` | multi-scale eDNA qPCR with a paired visual survey (`obs_method`), plot in vineyard, two rounds | Dryad | CC0 |
+| `hastings_2018_seak_sealion_cjs.R` | CJS, resighting histories of pups branded at birth (E4.4) | Dryad | CC0 |
 | `dettling_2021_marin_riparian_count.R` | N-mixture community counts, 14 riparian landbirds, 183 points x 23 years x 1-3 visits, explicit zeros as deposited | Dryad (version zip) | CC0 |
 | `ferguson_2015_macon_bawa_fpocc.R` | multi-state occupancy with false positives (0 / unconfirmed / confirmed per visit), one warbler, 272 sites x 3 visits, coordinates and forest cover | Dryad (version zip) | CC0 |
 | `murray_2021_chicago_coyote_mange.R` | multi-state occupancy (disease: 0 / coyote / coyote with mange signs), daily camera-trap observations, 16 seasons x 28 days, per-day image-quality covariates, coordinates | Dryad (version zip) | CC0 |

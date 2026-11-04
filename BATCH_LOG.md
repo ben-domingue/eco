@@ -1016,3 +1016,38 @@ hand in three groups. All 168 tables pass `eco-validate`; pytest 199 passed; R p
 Not settled here (still open): `detection_event` for multi-species per-detection data, live-dead
 and Brownie arrays, and the Limenitis hibernacula question (a structure detected, contents
 identified later) which v1.1 leaves as built.
+
+## Batch 21 — 2026-11-04 (first batch under v1.1-draft: NINA Norway pollinators, Kasumigaura fish eDNA, lanternfly eDNA, Steller sea lions)
+
+Six queue rows, built by two agents in `~/eco-b21` (branch `batch21`). Five tables from four
+deposits; two held. All pass `eco-validate --irw` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| nina_2026_norway_pollinator_count | community counts, Pollard-type 50 m sections | GBIF/NINA IPT CC BY 4.0 v1.12 | 4,734,122 | 2,651 sections in 92 1.5 km squares x 94 taxa (Bombus and Papilionoidea, plus Zygaena from the EML's registered families) x 2009-2025 x up to 7 walks; zeros added for every taxon at every walk as the publisher instructs (`sample_table`, the event list is complete); one protocol for bees and butterflies (ruling #31); Bombus alpinus IUCN VU, so coordinates at 0.1-degree cell centres and place names dropped (E7, E7.4); unit covariates in `__units`; core gitignored (297 MB) |
+| nina_2026_norway_pollinator_exact_count | E7.3 sibling | same | 4,683,759 | without B. alpinus; 5 m coordinates, municipality, locality and section footprint in `__units`; core gitignored (294 MB) |
+| fukaya_2022_kasumigaura_fish_mb | community detection, eDNA metabarcoding, replicate samples | Dryad CC0 | 7,200 | 50 sites x 3 replicate samples x 50 taxa (8 genus-level groups as own taxa); six zero-read samples are not surveys (authors' rule); y_raw = reads; no coordinates |
+| allen_2021_nj_lanternfly_edna | multi-scale eDNA with a paired visual survey (E9 experimental) | Dryad CC0 | 376 | plot in vineyard, round = period, 3 qPCR replicates + visual count (`obs_method`); the paper's 3 suspected false positives flagged, not recoded; 14 plot surveys dated 2016 in a 2019 study left undated |
+| hastings_2018_seak_sealion_cjs | CJS, resighting of branded pups | Dryad CC0 | 39,645 | 2,795 pups at 4 SE Alaska rookeries x 18 periods (1994, 1995, 2000-2015); rows from branding (E4.4); the 1994 cohort has no 1995 row (no resighting before 2000); no mark loss; caphist2 multistate male histories not shipped (state codes undefined); no coordinates; IUCN NT |
+
+Held:
+- Ohio butterflies (doi:10.5061/dryad.cf78420): Dryad holds indices and sample raw data only. The raw counts are by request from NABMN, and the GitHub copy is third-party data under a code licence.
+- North Atlantic right whale open SCR (doi:10.5061/dryad.stqjq2c35): the detector is each day's set of flown transect lines, and detections have continuous locations. E9 has no layout for this. A non-spatial robust design is buildable from `y`.
+
+What this batch says about the standard:
+
+- **Ruling #31 and paired methods.** Its text named eDNA and visual survey as two protocols, but
+  the published dougherty and lafferty eDNA tables keep two methods applied at the same visit in
+  one table with `obs_method`. The text now says so: two methods are two protocols only when
+  each has its own survey set (clarification in `standard.md`, 2026-11-04).
+- **Line-transect / search-encounter SCR** (right whale) has no layout: it needs a per-occasion
+  track side table and per-detection `obs_` locations.
+- **A deposited period that is a survey for some cohorts and not others** (sea lions, 1995) is
+  handled as "not surveyed" under E4.4; the at-risk rule does not say so in as many words.
+- **Repeated section walks within one visit** (NINA, six visits in 2024-2025) take two occasion
+  slots; `obs_visit` keeps the visit rank. No rule covers it.
+- **Coarsening that is undone elsewhere**: GBIF publishes NINA's 5 m coordinates. E7 was applied
+  as written; the agency exception does not cover land that is not public.
+- **Size**: the NINA cores (about 295 MB each) are the largest tables so far.
+- **Large Dryad deposits** refuse zip generation (405) and per-file downloads need a token
+  (second instance after Snapshot USA); `download_dryad()` has no token path.

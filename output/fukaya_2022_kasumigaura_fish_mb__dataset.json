@@ -1,0 +1,54 @@
+{
+  "table": "fukaya_2022_kasumigaura_fish_mb",
+  "title": "Freshwater fish eDNA metabarcoding (MiFish 12S) read counts for 50 taxa in three replicate samples at 50 sites, Lake Kasumigaura watershed, Japan, August 2017",
+  "creator": "Fukaya, Keiichi; Kondo, Natsuko Ito; Matsuzaki, Shin-ichiro S.; Kadoya, Taku",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.3bk3j9kkm",
+  "sourceURL": "https://doi.org/10.5061/dryad.3bk3j9kkm",
+  "paperDOI": "10.1111/2041-210X.13732",
+  "citation": "Fukaya, K., Kondo, N. I., Matsuzaki, S. S., & Kadoya, T. (2021). Data from: Multispecies site occupancy modeling and study design for spatially replicated environmental DNA metabarcoding [Data set]. Dryad. https://doi.org/10.5061/dryad.3bk3j9kkm",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Sequence read counts of 50 freshwater fish taxa (species, subspecies and genus-level groups) from eDNA metabarcoding with the MiFish-U primers of three replicate water samples at each of 50 sites in the Lake Kasumigaura watershed, Japan, August 2017, with a site covariate (riverbank without aquatic and riparian vegetation) and a per-taxon count of primer mismatches. Six samples yielded no reads and are not surveys. The authors fit a multispecies site occupancy model of the reads (site occupancy, per-replicate sequence availability, read share) and used it to weigh sites, replicates and sequencing depth in study design.",
+  "samplingProtocol": "Three environmental (water) samples per site collected in August 2017; DNA amplified with the universal fish primer set MiFish-U, a separate library prepared per replicate and sequenced on an Illumina MiSeq; reads assigned to fish taxa. Laboratory details are in the paper's Appendix S2.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The deposited array has no NA; a replicate sample with zero reads for every taxon (six of 150) is a sample for which no sequence reads were obtained, omitted by the authors (preprint; 1_model_fitting.R sets them to NA), and has no rows. The other 144 samples carry a row for every taxon.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "closureNote": "occasion = replicate water sample taken at the site at one visit; the authors' model treats site occupancy as constant across the replicates",
+  "occasionCodes": {
+    "1": "replicate L",
+    "2": "replicate C",
+    "3": "replicate R"
+  },
+  "designNote": "E9 multi-scale eDNA form with one replication level: unit = site, occasion = replicate sample (each with its own library); the authors' read-count model is a further level that y_raw supports.",
+  "geographicCoverage": "Lake Kasumigaura watershed, Ibaraki Prefecture, Japan (50 sites; no coordinates deposited)",
+  "temporalCoverage": "2017-08/2017-08",
+  "notes": "y = 1 where the taxon has at least one read in the replicate sample; y_raw = the read count (no read threshold is applied by the source). Sequencing depth per sample is the sum of y_raw over the 50 taxa. The replicate labels L, C and R are not defined in the deposit or the preprint; occasion follows the deposited order. Eight taxa are genus-level groups (Carassius, Gnathopogon, Hemibarbus, Hypophthalmichthys, Misgurnus, Pseudogobio, Rhinogobius, Tridentiger: see __taxa) and Carassius cuvieri is also its own taxon, so a zero for a species does not exclude reads assigned to its genus group. taxon_primer_mismatches (in __taxa) is the authors' species covariate of read share.",
+  "notShipped": {
+    "sequencing depth": "per-sample total reads; the sum of y_raw over taxa, not repeated",
+    "six empty samples": "replicate samples with no reads (no sequence data obtained): not surveys, no rows"
+  },
+  "summary": {
+    "n_rows": 7200,
+    "n_units": 50,
+    "n_taxa": 50,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 144,
+    "y_values": "0,1",
+    "prop_zero": 0.705
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_riverbank_unvegetated", "obs_replicate_label"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fukaya_2022_kasumigaura_fish_mb.R",
+  "buildDate": "2026-11-04"
+}

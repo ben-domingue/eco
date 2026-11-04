@@ -1,0 +1,48 @@
+{
+  "table": "hastings_2018_seak_sealion_cjs",
+  "title": "Steller sea lion resighting histories, south-east Alaska: 2,795 pups branded at four rookeries (1994-1995, 2001-2005), annual resighting 2000-2015",
+  "creator": "Hastings, Kelly K.; Jemison, Lauri A.; Pendleton, Grey W. (Alaska Department of Fish and Game)",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.541r5",
+  "sourceURL": "https://doi.org/10.5061/dryad.541r5",
+  "citation": "Hastings, K. K., Jemison, L. A., & Pendleton, G. W. (2018). Data from: Survival of adult Steller sea lions in Alaska: senescence, annual variation and covariation with male reproductive success [Dataset]. Dryad. https://doi.org/10.5061/dryad.541r5",
+  "paperDOI": "10.1098/rsos.170665",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Cormack-Jolly-Seber histories of 2,795 Steller sea lion (Eumetopias jubatus) pups branded by the Alaska Department of Fish and Game at four of five rookeries in south-east Alaska (Forrester Island complex, Hazy Islands, White Sisters, Graves Rocks) in 1994-1995 and 2001-2005, and resighted each summer 2000-2015 from photo-confirmed sightings (dedicated boat surveys of all rookeries and major haul-outs, a near-daily field camp at Forrester, and contributed photographs from Oregon to Russia). Multiple sightings per summer are pooled to one annual observation. Each animal's rows begin at its branding; the 1994 cohort has no 1995 row because resightings before 2000 were not used.",
+  "samplingProtocol": "Hot-iron branding of pups (2-4 weeks old, late June-early July) with unique alphanumeric marks; resighting of branded animals from photographs taken during 1-3 dedicated boat surveys per summer (May-July) visiting every rookery and major haul-out in south-east Alaska, an annual May-July field camp at Forrester Island, dedicated surveys in northern British Columbia in 11 years and contributed photographs; only photo-confirmed resightings used; one annual observation per animal.",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The deposited 0/1 history covers the paper's 18 occasions (1994, 1995, 2000-2015) with no missing cells. Rows begin at each animal's branding (marked at birth, E4.4). The 1995 cell of the 1994 cohort is not a survey (the paper used no resightings before 2000) and has no row; every such cell is 0 in the deposit.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one pooled annual observation per period; survival is estimated between periods, and the 1995-2000 interval is five years",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "South-east Alaska, USA (natal rookeries Forrester Island complex, Hazy Islands, White Sisters, Graves Rocks); resightings from Oregon to the Bering Sea and Russia; no coordinates deposited",
+  "temporalCoverage": "1994/2015",
+  "notes": "unit_natal_rookery codes as deposited: F Forrester Island complex, H Hazy Islands, W White Sisters, V Graves Rocks (the paper's G; 93 pups in two cohorts, matching the paper). unit_sex: 11 animals of unrecorded sex were assigned a sex at random by the authors and are not identified. 39 misshapen-brand resightings (3.2% of resighted animals) were assigned to individuals at random among the possible matches (paper section 2). No mark loss (paper section 2). Unit ids are row numbers of caphist1; the deposit carries no brand codes. Eastern DPS; IUCN NT for the species.",
+  "notShipped": {
+    "caphist2.prn (adult-male territorial multi-state histories)": "1,522 histories with state letters Z, N, S, T, A, B, C and a coh column (A/B); Z, S and coh are not defined in the deposit or the paper (whose states are A, B, C, N, T, H), so the codes cannot be mapped to a stateCodes list",
+    "resightings of the 1994-1995 cohorts before 2000": "not in the deposit (the paper excluded them: not photo-documented)"
+  },
+  "summary": {
+    "n_rows": 39645,
+    "n_units": 2795,
+    "n_taxa": 1,
+    "n_periods": 18,
+    "n_occasions": 1,
+    "n_surveys": 39645,
+    "y_values": "0,1",
+    "prop_zero": 0.77
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_natal_rookery", "unit_cohort_year"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hastings_2018_seak_sealion_cjs.R",
+  "buildDate": "2026-11-04"
+}

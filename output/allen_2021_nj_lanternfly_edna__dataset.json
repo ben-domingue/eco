@@ -1,0 +1,55 @@
+{
+  "table": "allen_2021_nj_lanternfly_edna",
+  "title": "Spotted lanternfly eDNA qPCR replicates and paired visual surveys in 48 plots at 12 New Jersey vineyards, two rounds, autumn 2019",
+  "creator": "Allen, Michael C.; Nielsen, Anne L.; Peterson, Donnie L.; Lockwood, Julie L.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.ghx3ffbp5",
+  "sourceURL": "https://doi.org/10.5061/dryad.ghx3ffbp5",
+  "paperDOI": "10.1002/edn3.231",
+  "citation": "Allen, M. C., Nielsen, A. L., Peterson, D. L., & Lockwood, J. L. (2021). Data and code for: Terrestrial eDNA survey outperforms conventional approach for detecting an invasive pest insect within an agricultural ecosystem [Data set]. Dryad. https://doi.org/10.5061/dryad.ghx3ffbp5",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Paired terrestrial eDNA (spray aggregation of grapevine foliage, three qPCR technical replicates) and visual surveys for the invasive spotted lanternfly (Lycorma delicatula) in four plots at each of 12 vineyards along the invasion front in New Jersey, USA, in two rounds (September and early October 2019; two plots in round two only). The authors' multi-method occupancy model put per-plot detection at 84% for eDNA against 36% for visual search; eDNA detected lanternflies at five plots in three vineyards in round one, when visual search found one individual.",
+  "samplingProtocol": "Each plot (12-24 grapevines) was sprayed with deionized water at about 2 m/min while the rinse was collected in buckets, filtered on site (10-micron filter), and one filter per plot extracted (HotSHOT) and tested with a species-specific TaqMan qPCR assay (ITS1) in three technical replicates; during spraying the same vines were inspected and lanternflies counted. Sampling at least 24 h after rain.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": ["method", "spatial"],
+  "taxonInclusion": "single",
+  "closureNote": "plot state closed within one plot survey: occasions 1-3 are qPCR replicates of the plot's eDNA sample and occasion 4 the visual search of the same vines at the same visit; the state may change between rounds (period)",
+  "occasionCodes": {
+    "1": "qPCR technical replicate 1",
+    "2": "qPCR technical replicate 2",
+    "3": "qPCR technical replicate 3",
+    "4": "visual survey (y_raw = lanternflies counted)"
+  },
+  "designNote": "Experimental list of E9 (multi-scale / eDNA, multi-method): cluster_id = vineyard (the paper's sample unit), unit = plot, period = survey round, occasion = qPCR replicate or visual survey, obs_method distinguishes the two methods. The authors' eDNA detection per plot survey is any of occasions 1-3.",
+  "geographicCoverage": "12 vineyards in New Jersey, USA, along the spotted lanternfly invasion front by the Pennsylvania border (latitude 39.540 to 40.616, longitude -74.536 to -75.411, from the paper)",
+  "temporalCoverage": "2019-09/2019-10",
+  "notes": "obs_suspected_false_positive = 1 marks the qPCR rows of the three round-one samples (AV2, AV3, TO4) the paper's primary analysis treats as negatives; they ship as deposited (a parallel analysis in the paper keeps them positive). 14 round-one plot surveys are dated 2016-09-09 in the deposit (Terhune, Working Dog, Tomasello, Bellview), impossible for this 2019 study; their date is left empty. Deposited round-one dates run 4-18 September, though the paper says 9-18 September. Bellview plots 3 and 4 were surveyed in round two only. Tomasello's plot codes are TO in round one and TS in round two; unit uses TO. Sample covariates (filters, volumes, preservation, extraction volume, qPCR run) are on the qPCR rows and NA on visual rows.",
+  "notShipped": {
+    "pres": "any-replicate eDNA detection per plot survey; rebuilt exactly from pcr1-pcr3 (asserted)",
+    "ctmean, ctsd, qmean, qsd": "Ct and DNA quantity summarised over the replicates that amplified (per-sample summaries across occasions)",
+    "controls": "field positive and negative controls per vineyard visit are described in the paper but not deposited"
+  },
+  "summary": {
+    "n_rows": 376,
+    "n_units": 48,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 4,
+    "n_surveys": 376,
+    "y_values": "0,1",
+    "prop_zero": 0.864
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "obs_method", "obs_filters", "obs_volume_filtered_ml", "obs_volume_collected_ml", "obs_preservation", "obs_extract_volume_ul", "obs_qpcr_run", "obs_suspected_false_positive"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/allen_2021_nj_lanternfly_edna.R",
+  "buildDate": "2026-11-04"
+}
