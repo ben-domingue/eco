@@ -159,6 +159,7 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `tumursukh_2016_tost_ungulates_dobs.R` | two double-observer tables (Siberian ibex, argali), groups as units, Tost, Mongolia | Dryad | CC0 |
 | `davis_2016_feralswine_removal.R` | three-pass aerial removal, feral swine x 49 properties x 9 years | Dryad | CC0 |
 | `dougherty_2016_rustycrayfish_edna.R` | qPCR replicates plus baited trap, rusty crayfish x 261 locations in 12 lakes | Dryad | CC0 |
+| `ziolkowski_2026_bbs.R` | North American Breeding Bird Survey, 39 tables from one script: run totals per Bird Conservation Region (37 tables, 42.1 M rows, 1966-2025), plus 10-stop blocks and stops for BCR 15; core CSVs not tracked (3.86 GB) except `ziolkowski_2026_bbs_bcr15_count`; raw files downloaded by hand, ScienceBase refuses direct downloads | USGS ScienceBase | CC0 |
 | `sandercock_2022_norway_alien.R` | community occupancy (plants, two botanists) + multi-scale eDNA (insects) | Dryad | CC0 |
 | `armstrong_2024_hydrilla_dynocc.R` | dynamic occupancy (plant) | Dryad | CC0 |
 | `martinezvillegas_2024_plants_cjs.R` | CJS, five marked plant species | Dryad | CC0 |

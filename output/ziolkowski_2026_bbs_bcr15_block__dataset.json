@@ -1,0 +1,56 @@
+{
+  "table": "ziolkowski_2026_bbs_bcr15_block",
+  "title": "North American Breeding Bird Survey, BCR 15, Sierra Nevada: 10-stop block counts of 234 bird taxa on 40 routes, 1968-2025",
+  "creator": "Ziolkowski, David J., Jr.; Lutmerding, Michael; Skalos, Shannon M. (U.S. Geological Survey, Eastern Ecological Science Center); English, Willow B.; Hudson, Marie-Anne R. (Environment and Climate Change Canada, Canadian Wildlife Service)",
+  "pubDate": "2026-05-28",
+  "doi": "10.5066/P144YU3S",
+  "sourceURL": "https://doi.org/10.5066/P144YU3S",
+  "citation": "Ziolkowski, D.J., Lutmerding, M., Skalos, S.M., English, W.B., and Hudson, M-A.R., 2026, North American Breeding Bird Survey Dataset 1966 - 2025: U.S. Geological Survey data release, https://doi.org/10.5066/P144YU3S. All work using these data should acknowledge the thousands of dedicated U.S. and Canadian participants who annually perform and coordinate the survey.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "DataCite (doi:10.5066/P144YU3S) and the USGS data page mark the release CC0 1.0 Universal. The release metadata XML names no licence, states 'No access constraints', approves the release for USGS and ECCC (Canadian Wildlife Service), disclaims liability, and asks for citation and an acknowledgement of the participants; both are in the citation. ECCC co-approves the release and names no Canadian licence."
+  },
+  "abstract": "The standard runs (RPID 101) of the 50-stop routes of Bird Conservation Region 15 (Sierra Nevada; California), 1968-2025, as five 10-stop blocks per run. One row per run, block and bird taxon: y is the count of the taxon over the block's stops (breeding-category plus non-breeder records), zero for each of the 234 taxa recorded in these runs and not seen in that block. Blocks after the last stop with evidence of sampling have no row. Blocks are consecutive stretches of a route about 8 km long, not temporal repeats.",
+  "samplingProtocol": "North American Breeding Bird Survey: 3-minute point counts of all birds seen within 400 m or heard at 50 stops per route; counts are published per 10-stop block (stops 1-10, 11-20, ... 41-50) for the whole record from 1966.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "inferred",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "period = year (index year - 1965); occasion = 10-stop block along the route (1 to 5). Blocks are consecutive stretches of the route, counted in sequence once in a morning, not temporal repeats. Across years a route's rows are not a closed population. Stops are sequential spatial points about 800 m apart along a route of about 39.2 km, counted once, in one morning of about five hours, by one moving observer: they are not temporal repeats at one place, so no closure of the kind that N-mixture or occupancy models assume holds across stops. A bird can be counted at two stops. On spatial subunits as replicates see Kendall and White (2009, doi:10.1111/j.1365-2664.2009.01732.x); on N-mixture reliability, Barker et al. (2018, doi:10.1111/biom.12734) and Link et al. (2018, doi:10.1002/ecy.2362).",
+  "surveyEvidenceNote": "Weather.csv lists every run but no file says how many stops a run sampled. Evidence that a stop was sampled: a bird record in the 50-stop or non-breeder stop files, or Car > 0 or Noise > 0 in VehicleData. K = the last stop with evidence, from 1997 (when stop data are complete); before 1997 the last block with a non-zero count (breeding or non-breeder) is the last block. Blocks 1 to ceiling(K/10) are surveys; a zero in an empty block before the last is fair because the observer went on past it. Blocks after have no row. A mid-route skip inside a run cannot be seen, so a zero there could be unsupported; nationally obs_quality_current = 0 marks more than 85% of runs from 1997 with K below 45. Pool: every taxon recorded in this table's runs, in the breeding or the non-breeder files; observers record every bird at every run.",
+  "temporalCoverage": "1968-06-02/2025-07-12",
+  "geographicCoverage": "Bird Conservation Region 15 (Sierra Nevada; BCR code and name as in this release's Routes.csv and metadata), roadside routes in California; route start points as published",
+  "crs": "EPSG:4269 (NAD83)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "route start points as USGS publishes them; agency coordinates are kept as published under E7"
+  },
+  "covariateNote": "obs_nonbreeder_count: the non-breeder count in this block; NA before 1999 where no non-breeder record exists, 0 from 1999 where none does. obs_block_stops: stops of the block up to K (1 to 10), 1997 on; NA before. Codes, from the release metadata: wind is Beaufort 0 to 8; sky is 0 clear or few clouds, 1 partly cloudy or variable, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers; obs_assistant is 1 if an assistant recorded the data; obs_quality_current is 1 if the run met all quality criteria (manual inspection before 1997, by rule from 1997); minutes are after midnight; wind or sky code 9 (no data) is NA.",
+  "designNote": "Five blocks per run at most; occasion = block. Blocks past the last stop with evidence of sampling have no row.",
+  "components": ["ziolkowski_2026_bbs_bcr15_count", "ziolkowski_2026_bbs_bcr15_stop"],
+  "notShipped": {
+    "runs_outside_the_design": "none: all 1095 runs of BCR 15 are RPID 101 on a Detail 1 or 2 route and are in this table",
+    "blocks_after_last_stop_with_evidence": "8 blocks of this table's runs, past ceiling(K/10) from 1997 or past the last non-zero block before 1997",
+    "TotalSpp": "per-run count of breeding records; an assertion; not shipped",
+    "StopTotal": "per-taxon number of stops with the taxon; impossible in 322 records before 1997 nationally; not shipped",
+    "stop_level_counts": "shipped for 2009 on in ziolkowski_2026_bbs_bcr15_stop; before 2009 for size"
+  },
+  "notes": "BCR codes and names are this release's (1 to 37); bbsBayes2 has since renumbered some. USGS and bbsBayes2 analyse RunType 1 only: filter obs_run_type == 1. RPID 501/502 (experimental) lower counts on average (Sauer et al. 2019, doi:10.1093/condor/duz009). Non-breeder records are nearly absent before 1999, when the survey began to keep them: a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder, and y steps up at 1999 for such taxa. y - obs_nonbreeder_count (NA as 0) is the published breeding count in every year. taxon_nonbreeder_share_1999on in __taxa is the national share of a taxon's records from 1999 that are non-breeder records (records, not birds; NA with no record from 1999). taxon_first_year and taxon_last_year in __taxa are national; a zero before taxon_first_year can mean the category did not exist yet. Unidentified groups, forms and hybrids are their own taxa, with nothing rolled up. Route covariates and route start points (not bird locations) are in __units, so eco_to_unmarked() starts with empty siteCovs; join on unit. Temperatures are as recorded, value plus scale; impossible values are kept. period = year - 1965 in every table, with the calendar year in __periods, which lists every year from the table's first to its last; a year without a run has n_runs = 0. 2020 had no field work (no row in any data file), so period 55 never occurs. eco_to_unmarked(family = \"colext\") builds numPrimary = max(period) and one column per (period, occasion) present, so a year without a run breaks it or misaligns it: filter to occasion == 1 and pad the periods yourself before fitting a dynamic occupancy model. Block table: the 50-stop data are complete only from 1997 (86,210 of 86,210 runs from 1997; 293 before), so blocks before 1997 come from States and MigrantSummary and obs_block_stops is NA there; stop_data_complete in __periods says which years. Several runs of one route-year: this table keeps RPID 101 only, so each route-year has one run and occasion is the block. Rationale: notes/decisions/bbs_design.md.",
+  "summary": {
+    "n_rows": 1279278,
+    "n_units": 40,
+    "n_taxa": 234,
+    "n_periods": 57,
+    "n_occasions": 5,
+    "n_surveys": 5467,
+    "y_values": "0-431 (166 distinct)",
+    "prop_zero": 0.896
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_rpid", "obs_run_type", "obs_quality_current", "obs_start_temp", "obs_end_temp", "obs_temp_scale", "obs_start_wind", "obs_end_wind", "obs_start_sky", "obs_end_sky", "obs_start_minute", "obs_end_minute", "obs_assistant", "obs_block_stops", "obs_nonbreeder_count"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ziolkowski_2026_bbs.R",
+  "buildDate": "2026-11-04"
+}
