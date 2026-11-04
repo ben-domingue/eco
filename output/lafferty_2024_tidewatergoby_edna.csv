@@ -1,309 +1,309 @@
-unit,taxon,y,y_raw,occasion,date,cluster_id,unit_estuary,unit_decimalLatitude,unit_decimalLongitude,unit_volume_ml,unit_depth_m,unit_water_temp_c,unit_conductivity,unit_do_mg_l,unit_site_seine_goby_count,obs_method
-0166WUI5,EUCNEW,1,168,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-0EY3JUQG,EUCNEW,1,640,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR
-0ICAOEM8,EUCNEW,0,0,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR
-14CG6GVP,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-1Y7HTTUZ,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR
-3MN03WCU,EUCNEW,1,990,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR
-4K1V2B70,EUCNEW,1,203,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-4LR1IE16,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
-54M852FW,EUCNEW,1,477,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-5DZGRPJ8,EUCNEW,0,36,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-5NXLYMB4,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-5W8VHBOX,EUCNEW,0,34,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-6FC330ZX,EUCNEW,0,100,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-73HOCNFX,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR
-7VXU09E9,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,qPCR
-8FZSGQC6,EUCNEW,1,1158,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8HDYA6AT,EUCNEW,1,585,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8TNQ3QEN,EUCNEW,1,654,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8YPPQ58L,EUCNEW,1,503,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-97QVXLNB,EUCNEW,1,1298,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-9H0R367Q,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR
-A3T3UW2T,EUCNEW,1,1145,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
-A6GEWDM0,EUCNEW,1,900,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR
-AF6NPL98,EUCNEW,0,83,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
-AV1G647K,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR
-BDLUWJ2A,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR
-BWKIVG5R,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR
-CXM7RKC1,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
-D8Q44JR4,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,qPCR
-E6K19N4I,EUCNEW,0,0,1,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-EEYYMPOX,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-EOLR86S9,EUCNEW,1,580,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-F33R74EO,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
-FQHMI6N9,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-FYP0R8D7,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,qPCR
-GI9NGV51,EUCNEW,1,735,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-HX9SCNUT,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-I3ZGR5GC,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR
-ICW0XL4W,EUCNEW,1,1150,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-IF7K5NQF,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-IUL4EQNP,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
-IWDVXH17,EUCNEW,0,0,1,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-JIXBJIZ3,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,qPCR
-JTATZ0K5,EUCNEW,0,0,1,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-K49UTWXN,EUCNEW,1,1134,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-K56BBPGJ,EUCNEW,1,168,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR
-KAM50OM8,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
-LVO3QRLX,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-M3BWLMVW,EUCNEW,1,263,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-N6M3N6LT,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR
-NJCNWIUD,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR
-NQ36AGNG,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR
-O3PTMHG6,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-O97C31FZ,EUCNEW,1,550,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR
-OAZV1TYJ,EUCNEW,1,102,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-PFDNIGDZ,EUCNEW,1,191,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-PKC9HRCO,EUCNEW,1,847,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-PKPYEKF3,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-Q3HPLTAL,EUCNEW,1,195,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-QAYFMDLF,EUCNEW,0,0,1,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
-QF6Y61R2,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,qPCR
-QKOK5NVQ,EUCNEW,1,1374,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-R5LT1TO7,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,qPCR
-RJC5NWS7,EUCNEW,0,0,1,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-RV1Z2FN1,EUCNEW,1,1207,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-SD2QNYHT,EUCNEW,0,0,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
-SNF5Y17H,EUCNEW,1,112,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
-SSEHN2DP,EUCNEW,0,36,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-T6UYA40I,EUCNEW,1,911,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-U31X05GU,EUCNEW,0,0,1,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,220,0.3,18.2,43,8,,qPCR
-UQDK4PXP,EUCNEW,0,0,1,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR
-V12I57BA,EUCNEW,1,1060,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-V7RYHLTF,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
-VTSM35KT,EUCNEW,1,128,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-XVU6B64D,EUCNEW,0,0,1,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR
-YCSYA7NE,EUCNEW,1,787,1,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-YWESPUWW,EUCNEW,0,0,1,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
-ZF0XLNXD,EUCNEW,1,268,1,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR
-0166WUI5,EUCNEW,1,363,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-0EY3JUQG,EUCNEW,1,586,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR
-0ICAOEM8,EUCNEW,0,32,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR
-14CG6GVP,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-1Y7HTTUZ,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR
-3MN03WCU,EUCNEW,1,1016,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR
-4K1V2B70,EUCNEW,1,171,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-4LR1IE16,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
-54M852FW,EUCNEW,1,766,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-5DZGRPJ8,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-5NXLYMB4,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-5W8VHBOX,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-6FC330ZX,EUCNEW,0,71,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-73HOCNFX,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR
-7VXU09E9,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,qPCR
-8FZSGQC6,EUCNEW,1,1037,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8HDYA6AT,EUCNEW,1,574,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8TNQ3QEN,EUCNEW,1,496,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8YPPQ58L,EUCNEW,1,699,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-97QVXLNB,EUCNEW,1,1293,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-9H0R367Q,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR
-A3T3UW2T,EUCNEW,1,1029,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
-A6GEWDM0,EUCNEW,1,699,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR
-AF6NPL98,EUCNEW,1,179,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
-AV1G647K,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR
-BDLUWJ2A,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR
-BWKIVG5R,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR
-CXM7RKC1,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
-D8Q44JR4,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,qPCR
-E6K19N4I,EUCNEW,0,0,2,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-EEYYMPOX,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-EOLR86S9,EUCNEW,1,594,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-F33R74EO,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
-FQHMI6N9,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-FYP0R8D7,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,qPCR
-GI9NGV51,EUCNEW,1,644,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-HX9SCNUT,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-I3ZGR5GC,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR
-ICW0XL4W,EUCNEW,1,1296,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-IF7K5NQF,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-IUL4EQNP,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
-IWDVXH17,EUCNEW,0,0,2,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-JIXBJIZ3,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,qPCR
-JTATZ0K5,EUCNEW,0,0,2,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-K49UTWXN,EUCNEW,1,984,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-K56BBPGJ,EUCNEW,1,252,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR
-KAM50OM8,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
-LVO3QRLX,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-M3BWLMVW,EUCNEW,1,283,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-N6M3N6LT,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR
-NJCNWIUD,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR
-NQ36AGNG,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR
-O3PTMHG6,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-O97C31FZ,EUCNEW,1,711,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR
-OAZV1TYJ,EUCNEW,1,222,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-PFDNIGDZ,EUCNEW,0,75,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-PKC9HRCO,EUCNEW,1,1109,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-PKPYEKF3,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-Q3HPLTAL,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-QAYFMDLF,EUCNEW,0,0,2,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
-QF6Y61R2,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,qPCR
-QKOK5NVQ,EUCNEW,1,1246,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-R5LT1TO7,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,qPCR
-RJC5NWS7,EUCNEW,0,0,2,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-RV1Z2FN1,EUCNEW,1,1557,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-SD2QNYHT,EUCNEW,0,0,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
-SNF5Y17H,EUCNEW,1,156,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
-SSEHN2DP,EUCNEW,0,35,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-T6UYA40I,EUCNEW,1,750,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-U31X05GU,EUCNEW,0,0,2,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,220,0.3,18.2,43,8,,qPCR
-UQDK4PXP,EUCNEW,0,0,2,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR
-V12I57BA,EUCNEW,1,910,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-V7RYHLTF,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
-VTSM35KT,EUCNEW,1,196,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-XVU6B64D,EUCNEW,0,0,2,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR
-YCSYA7NE,EUCNEW,1,962,2,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-YWESPUWW,EUCNEW,0,0,2,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
-ZF0XLNXD,EUCNEW,1,299,2,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR
-0166WUI5,EUCNEW,1,136,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-0EY3JUQG,EUCNEW,1,654,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR
-0ICAOEM8,EUCNEW,0,0,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR
-14CG6GVP,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-1Y7HTTUZ,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR
-3MN03WCU,EUCNEW,1,751,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR
-4K1V2B70,EUCNEW,1,226,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-4LR1IE16,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
-54M852FW,EUCNEW,1,642,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-5DZGRPJ8,EUCNEW,0,74,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-5NXLYMB4,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-5W8VHBOX,EUCNEW,0,0,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-6FC330ZX,EUCNEW,0,64,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-73HOCNFX,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR
-7VXU09E9,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,qPCR
-8FZSGQC6,EUCNEW,1,865,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8HDYA6AT,EUCNEW,1,708,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8TNQ3QEN,EUCNEW,1,481,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-8YPPQ58L,EUCNEW,1,599,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-97QVXLNB,EUCNEW,1,1350,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-9H0R367Q,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR
-A3T3UW2T,EUCNEW,1,1299,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
-A6GEWDM0,EUCNEW,1,853,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR
-AF6NPL98,EUCNEW,1,147,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
-AV1G647K,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR
-BDLUWJ2A,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR
-BWKIVG5R,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR
-CXM7RKC1,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR
-D8Q44JR4,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,qPCR
-E6K19N4I,EUCNEW,0,0,3,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-EEYYMPOX,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-EOLR86S9,EUCNEW,1,680,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-F33R74EO,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
-FQHMI6N9,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-FYP0R8D7,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,qPCR
-GI9NGV51,EUCNEW,1,798,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-HX9SCNUT,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-I3ZGR5GC,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR
-ICW0XL4W,EUCNEW,1,1191,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-IF7K5NQF,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,qPCR
-IUL4EQNP,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
-IWDVXH17,EUCNEW,0,0,3,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-JIXBJIZ3,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,qPCR
-JTATZ0K5,EUCNEW,0,0,3,2022-08-16,L-Street Culvert B,Mugu Lagoon,34.15,-119.15,200,0.3,18.2,43,8,,qPCR
-K49UTWXN,EUCNEW,1,1105,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-K56BBPGJ,EUCNEW,1,277,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR
-KAM50OM8,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
-LVO3QRLX,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-M3BWLMVW,EUCNEW,0,77,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-N6M3N6LT,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR
-NJCNWIUD,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR
-NQ36AGNG,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR
-O3PTMHG6,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,qPCR
-O97C31FZ,EUCNEW,1,794,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR
-OAZV1TYJ,EUCNEW,0,95,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-PFDNIGDZ,EUCNEW,0,96,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-PKC9HRCO,EUCNEW,1,1103,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-PKPYEKF3,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-Q3HPLTAL,EUCNEW,0,96,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-QAYFMDLF,EUCNEW,0,0,3,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,qPCR
-QF6Y61R2,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,qPCR
-QKOK5NVQ,EUCNEW,1,1326,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-R5LT1TO7,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,qPCR
-RJC5NWS7,EUCNEW,0,0,3,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,qPCR
-RV1Z2FN1,EUCNEW,1,1490,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-SD2QNYHT,EUCNEW,0,0,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR
-SNF5Y17H,EUCNEW,1,218,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR
-SSEHN2DP,EUCNEW,1,241,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-T6UYA40I,EUCNEW,1,699,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-U31X05GU,EUCNEW,0,0,3,2022-08-16,L-Street Culvert A,Mugu Lagoon,34.15,-119.15,220,0.3,18.2,43,8,,qPCR
-UQDK4PXP,EUCNEW,0,0,3,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR
-V12I57BA,EUCNEW,1,1002,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-V7RYHLTF,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR
-VTSM35KT,EUCNEW,1,208,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR
-XVU6B64D,EUCNEW,0,0,3,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR
-YCSYA7NE,EUCNEW,1,1007,3,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR
-YWESPUWW,EUCNEW,0,0,3,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,qPCR
-ZF0XLNXD,EUCNEW,1,141,3,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR
-0166WUI5,EUCNEW,1,277,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-0EY3JUQG,EUCNEW,1,308,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,300,0.3,24.7,14.7,10.7,,metabarcoding
-0ICAOEM8,EUCNEW,0,0,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,110,0.3,23.8,2.9,16.5,,metabarcoding
-14CG6GVP,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding
-1Y7HTTUZ,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,140,0.6,21.1,35.3,7,0,metabarcoding
-3MN03WCU,EUCNEW,1,374,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,350,0.3,24.7,14.7,10.7,,metabarcoding
-4K1V2B70,EUCNEW,1,202,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-4LR1IE16,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,metabarcoding
-54M852FW,EUCNEW,1,275,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-5DZGRPJ8,EUCNEW,1,184,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-5NXLYMB4,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding
-5W8VHBOX,EUCNEW,0,0,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-6FC330ZX,EUCNEW,1,40,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-73HOCNFX,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 2,Calleguas Creek,34.15,-119.05,130,0.6,21.1,35.3,7,0,metabarcoding
-7VXU09E9,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,55,0.3,26.6,158,90,,metabarcoding
-8FZSGQC6,EUCNEW,1,447,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-8HDYA6AT,EUCNEW,1,594,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-8TNQ3QEN,EUCNEW,1,507,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-8YPPQ58L,EUCNEW,1,1244,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-97QVXLNB,EUCNEW,1,446,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-9H0R367Q,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,metabarcoding
-A3T3UW2T,EUCNEW,1,10,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,metabarcoding
-A6GEWDM0,EUCNEW,1,461,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,320,0.3,24.7,14.7,10.7,,metabarcoding
-AF6NPL98,EUCNEW,1,36,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,metabarcoding
-AV1G647K,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,metabarcoding
-BDLUWJ2A,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,metabarcoding
-BWKIVG5R,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 2,Calleguas Creek,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,metabarcoding
-CXM7RKC1,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 2,Calleguas Creek,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,metabarcoding
-D8Q44JR4,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,60,0.3,26.6,158,90,,metabarcoding
-EEYYMPOX,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding
-EOLR86S9,EUCNEW,1,401,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-F33R74EO,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,metabarcoding
-FQHMI6N9,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding
-FYP0R8D7,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,40,0.3,27.5,160,91,,metabarcoding
-GI9NGV51,EUCNEW,1,544,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-HX9SCNUT,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
-I3ZGR5GC,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,200,0.5,21.2,16,10.4,0,metabarcoding
-ICW0XL4W,EUCNEW,1,194,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-IF7K5NQF,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding
-IUL4EQNP,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,metabarcoding
-JIXBJIZ3,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,40,0.3,26.6,158,90,,metabarcoding
-K49UTWXN,EUCNEW,1,1121,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-K56BBPGJ,EUCNEW,1,17,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,95,0.3,23.8,2.9,16.5,,metabarcoding
-KAM50OM8,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,metabarcoding
-LVO3QRLX,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
-M3BWLMVW,EUCNEW,1,65,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-N6M3N6LT,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 3,Calleguas Creek,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,metabarcoding
-NJCNWIUD,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - up 1,Calleguas Creek,34.15,-119.05,60,0.5,21.2,16,10.4,0,metabarcoding
-NQ36AGNG,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,metabarcoding
-O3PTMHG6,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding
-O97C31FZ,EUCNEW,1,72,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,380,0.3,24.7,14.7,10.7,,metabarcoding
-OAZV1TYJ,EUCNEW,1,223,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-PFDNIGDZ,EUCNEW,1,66,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-PKC9HRCO,EUCNEW,1,247,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-PKPYEKF3,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
-Q3HPLTAL,EUCNEW,1,87,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-QAYFMDLF,EUCNEW,0,0,4,2022-08-15,Devereux COPR Bridge,Devereux Slough,34.45,-119.85,55,0.3,27.2,109,99,,metabarcoding
-QF6Y61R2,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,60,0.3,30,108,170,,metabarcoding
-QKOK5NVQ,EUCNEW,1,301,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-R5LT1TO7,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge NCOS,Devereux Slough,34.45,-119.85,50,0.3,27.5,160,91,,metabarcoding
-RJC5NWS7,EUCNEW,0,0,4,2022-08-15,Devereux Slough Mouth,Devereux Slough,34.45,-119.85,50,0.3,30,108,170,,metabarcoding
-RV1Z2FN1,EUCNEW,1,1265,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-SD2QNYHT,EUCNEW,1,12,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,80,0.3,23.8,2.9,16.5,,metabarcoding
-SNF5Y17H,EUCNEW,1,23,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,90,0.3,23.8,2.9,16.5,,metabarcoding
-SSEHN2DP,EUCNEW,1,71,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-T6UYA40I,EUCNEW,1,177,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-UQDK4PXP,EUCNEW,0,0,4,2022-08-16,Calleagus Creek Bridge - down 1,Calleguas Creek,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,metabarcoding
-V12I57BA,EUCNEW,1,587,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-V7RYHLTF,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Up 1,Calleguas Creek,34.15,-119.05,300,0.7,18.6,42.7,7,0,metabarcoding
-VTSM35KT,EUCNEW,1,451,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding
-XVU6B64D,EUCNEW,0,0,4,2022-08-16,Revlon Slough - Down 1,Calleguas Creek,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,metabarcoding
-YCSYA7NE,EUCNEW,1,456,4,2022-08-17,J Street Canal,Ormond Lagoon,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding
-YWESPUWW,EUCNEW,0,0,4,2022-08-15,Devereux-Venoco Bridge COPR,Devereux Slough,34.45,-119.85,50,0.3,26.6,158,90,,metabarcoding
-ZF0XLNXD,EUCNEW,1,457,4,2022-08-17,Santa Clara River Mouth,Santa Clara River,34.05,-119.25,85,0.3,23.8,2.9,16.5,,metabarcoding
+unit,taxon,y,y_raw,occasion,date,cluster_id,unit_decimalLatitude,unit_decimalLongitude,unit_volume_ml,unit_depth_m,unit_water_temp_c,unit_conductivity,unit_do_mg_l,unit_site_seine_goby_count,obs_method,obs_replicate
+0166WUI5,EUCNEW,1,168,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+0EY3JUQG,EUCNEW,1,640,1,2022-08-17,S10,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR,1
+0ICAOEM8,EUCNEW,0,0,1,2022-08-17,S16,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR,1
+14CG6GVP,EUCNEW,0,0,1,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,1
+1Y7HTTUZ,EUCNEW,0,0,1,2022-08-16,S15,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR,1
+3MN03WCU,EUCNEW,1,990,1,2022-08-17,S10,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR,1
+4K1V2B70,EUCNEW,1,203,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+4LR1IE16,EUCNEW,0,0,1,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR,1
+54M852FW,EUCNEW,1,477,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+5DZGRPJ8,EUCNEW,0,36,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+5NXLYMB4,EUCNEW,0,0,1,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,1
+5W8VHBOX,EUCNEW,0,34,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+6FC330ZX,EUCNEW,0,100,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+73HOCNFX,EUCNEW,0,0,1,2022-08-16,S15,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR,1
+7VXU09E9,EUCNEW,0,0,1,2022-08-15,S08,34.45,-119.85,55,0.3,26.6,158,90,,qPCR,1
+8FZSGQC6,EUCNEW,1,1158,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+8HDYA6AT,EUCNEW,1,585,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+8TNQ3QEN,EUCNEW,1,654,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+8YPPQ58L,EUCNEW,1,503,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+97QVXLNB,EUCNEW,1,1298,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+9H0R367Q,EUCNEW,0,0,1,2022-08-16,S04,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR,1
+A3T3UW2T,EUCNEW,1,1145,1,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR,1
+A6GEWDM0,EUCNEW,1,900,1,2022-08-17,S10,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR,1
+AF6NPL98,EUCNEW,0,83,1,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR,1
+AV1G647K,EUCNEW,0,0,1,2022-08-16,S05,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR,1
+BDLUWJ2A,EUCNEW,0,0,1,2022-08-16,S01,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR,1
+BWKIVG5R,EUCNEW,0,0,1,2022-08-16,S04,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR,1
+CXM7RKC1,EUCNEW,0,0,1,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR,1
+D8Q44JR4,EUCNEW,0,0,1,2022-08-15,S08,34.45,-119.85,60,0.3,26.6,158,90,,qPCR,1
+E6K19N4I,EUCNEW,0,0,1,2022-08-16,S12,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,1
+EEYYMPOX,EUCNEW,0,0,1,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,1
+EOLR86S9,EUCNEW,1,580,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+F33R74EO,EUCNEW,0,0,1,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR,1
+FQHMI6N9,EUCNEW,0,0,1,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,1
+FYP0R8D7,EUCNEW,0,0,1,2022-08-15,S09,34.45,-119.85,40,0.3,27.5,160,91,,qPCR,1
+GI9NGV51,EUCNEW,1,735,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+HX9SCNUT,EUCNEW,0,0,1,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,1
+I3ZGR5GC,EUCNEW,0,0,1,2022-08-16,S03,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR,1
+ICW0XL4W,EUCNEW,1,1150,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+IF7K5NQF,EUCNEW,0,0,1,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,1
+IUL4EQNP,EUCNEW,0,0,1,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,qPCR,1
+IWDVXH17,EUCNEW,0,0,1,2022-08-16,S11,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,1
+JIXBJIZ3,EUCNEW,0,0,1,2022-08-15,S08,34.45,-119.85,40,0.3,26.6,158,90,,qPCR,1
+JTATZ0K5,EUCNEW,0,0,1,2022-08-16,S12,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,1
+K49UTWXN,EUCNEW,1,1134,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+K56BBPGJ,EUCNEW,1,168,1,2022-08-17,S16,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR,1
+KAM50OM8,EUCNEW,0,0,1,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,qPCR,1
+LVO3QRLX,EUCNEW,0,0,1,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,1
+M3BWLMVW,EUCNEW,1,263,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+N6M3N6LT,EUCNEW,0,0,1,2022-08-16,S05,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR,1
+NJCNWIUD,EUCNEW,0,0,1,2022-08-16,S03,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR,1
+NQ36AGNG,EUCNEW,0,0,1,2022-08-16,S13,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR,1
+O3PTMHG6,EUCNEW,0,0,1,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,1
+O97C31FZ,EUCNEW,1,550,1,2022-08-17,S10,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR,1
+OAZV1TYJ,EUCNEW,1,102,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+PFDNIGDZ,EUCNEW,1,191,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+PKC9HRCO,EUCNEW,1,847,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+PKPYEKF3,EUCNEW,0,0,1,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,1
+Q3HPLTAL,EUCNEW,1,195,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+QAYFMDLF,EUCNEW,0,0,1,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,qPCR,1
+QF6Y61R2,EUCNEW,0,0,1,2022-08-15,S07,34.45,-119.85,60,0.3,30,108,170,,qPCR,1
+QKOK5NVQ,EUCNEW,1,1374,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+R5LT1TO7,EUCNEW,0,0,1,2022-08-15,S09,34.45,-119.85,50,0.3,27.5,160,91,,qPCR,1
+RJC5NWS7,EUCNEW,0,0,1,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,1
+RV1Z2FN1,EUCNEW,1,1207,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+SD2QNYHT,EUCNEW,0,0,1,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR,1
+SNF5Y17H,EUCNEW,1,112,1,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR,1
+SSEHN2DP,EUCNEW,0,36,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+T6UYA40I,EUCNEW,1,911,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+U31X05GU,EUCNEW,0,0,1,2022-08-16,S11,34.15,-119.15,220,0.3,18.2,43,8,,qPCR,1
+UQDK4PXP,EUCNEW,0,0,1,2022-08-16,S01,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR,1
+V12I57BA,EUCNEW,1,1060,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+V7RYHLTF,EUCNEW,0,0,1,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR,1
+VTSM35KT,EUCNEW,1,128,1,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,1
+XVU6B64D,EUCNEW,0,0,1,2022-08-16,S13,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR,1
+YCSYA7NE,EUCNEW,1,787,1,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,1
+YWESPUWW,EUCNEW,0,0,1,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,qPCR,1
+ZF0XLNXD,EUCNEW,1,268,1,2022-08-17,S16,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR,1
+0166WUI5,EUCNEW,1,363,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+0EY3JUQG,EUCNEW,1,586,2,2022-08-17,S10,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR,2
+0ICAOEM8,EUCNEW,0,32,2,2022-08-17,S16,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR,2
+14CG6GVP,EUCNEW,0,0,2,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,2
+1Y7HTTUZ,EUCNEW,0,0,2,2022-08-16,S15,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR,2
+3MN03WCU,EUCNEW,1,1016,2,2022-08-17,S10,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR,2
+4K1V2B70,EUCNEW,1,171,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+4LR1IE16,EUCNEW,0,0,2,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR,2
+54M852FW,EUCNEW,1,766,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+5DZGRPJ8,EUCNEW,0,0,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+5NXLYMB4,EUCNEW,0,0,2,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,2
+5W8VHBOX,EUCNEW,0,0,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+6FC330ZX,EUCNEW,0,71,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+73HOCNFX,EUCNEW,0,0,2,2022-08-16,S15,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR,2
+7VXU09E9,EUCNEW,0,0,2,2022-08-15,S08,34.45,-119.85,55,0.3,26.6,158,90,,qPCR,2
+8FZSGQC6,EUCNEW,1,1037,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+8HDYA6AT,EUCNEW,1,574,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+8TNQ3QEN,EUCNEW,1,496,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+8YPPQ58L,EUCNEW,1,699,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+97QVXLNB,EUCNEW,1,1293,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+9H0R367Q,EUCNEW,0,0,2,2022-08-16,S04,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR,2
+A3T3UW2T,EUCNEW,1,1029,2,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR,2
+A6GEWDM0,EUCNEW,1,699,2,2022-08-17,S10,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR,2
+AF6NPL98,EUCNEW,1,179,2,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR,2
+AV1G647K,EUCNEW,0,0,2,2022-08-16,S05,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR,2
+BDLUWJ2A,EUCNEW,0,0,2,2022-08-16,S01,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR,2
+BWKIVG5R,EUCNEW,0,0,2,2022-08-16,S04,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR,2
+CXM7RKC1,EUCNEW,0,0,2,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR,2
+D8Q44JR4,EUCNEW,0,0,2,2022-08-15,S08,34.45,-119.85,60,0.3,26.6,158,90,,qPCR,2
+E6K19N4I,EUCNEW,0,0,2,2022-08-16,S12,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,2
+EEYYMPOX,EUCNEW,0,0,2,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,2
+EOLR86S9,EUCNEW,1,594,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+F33R74EO,EUCNEW,0,0,2,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR,2
+FQHMI6N9,EUCNEW,0,0,2,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,2
+FYP0R8D7,EUCNEW,0,0,2,2022-08-15,S09,34.45,-119.85,40,0.3,27.5,160,91,,qPCR,2
+GI9NGV51,EUCNEW,1,644,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+HX9SCNUT,EUCNEW,0,0,2,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,2
+I3ZGR5GC,EUCNEW,0,0,2,2022-08-16,S03,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR,2
+ICW0XL4W,EUCNEW,1,1296,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+IF7K5NQF,EUCNEW,0,0,2,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,2
+IUL4EQNP,EUCNEW,0,0,2,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,qPCR,2
+IWDVXH17,EUCNEW,0,0,2,2022-08-16,S11,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,2
+JIXBJIZ3,EUCNEW,0,0,2,2022-08-15,S08,34.45,-119.85,40,0.3,26.6,158,90,,qPCR,2
+JTATZ0K5,EUCNEW,0,0,2,2022-08-16,S12,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,2
+K49UTWXN,EUCNEW,1,984,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+K56BBPGJ,EUCNEW,1,252,2,2022-08-17,S16,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR,2
+KAM50OM8,EUCNEW,0,0,2,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,qPCR,2
+LVO3QRLX,EUCNEW,0,0,2,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,2
+M3BWLMVW,EUCNEW,1,283,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+N6M3N6LT,EUCNEW,0,0,2,2022-08-16,S05,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR,2
+NJCNWIUD,EUCNEW,0,0,2,2022-08-16,S03,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR,2
+NQ36AGNG,EUCNEW,0,0,2,2022-08-16,S13,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR,2
+O3PTMHG6,EUCNEW,0,0,2,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,2
+O97C31FZ,EUCNEW,1,711,2,2022-08-17,S10,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR,2
+OAZV1TYJ,EUCNEW,1,222,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+PFDNIGDZ,EUCNEW,0,75,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+PKC9HRCO,EUCNEW,1,1109,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+PKPYEKF3,EUCNEW,0,0,2,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,2
+Q3HPLTAL,EUCNEW,0,0,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+QAYFMDLF,EUCNEW,0,0,2,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,qPCR,2
+QF6Y61R2,EUCNEW,0,0,2,2022-08-15,S07,34.45,-119.85,60,0.3,30,108,170,,qPCR,2
+QKOK5NVQ,EUCNEW,1,1246,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+R5LT1TO7,EUCNEW,0,0,2,2022-08-15,S09,34.45,-119.85,50,0.3,27.5,160,91,,qPCR,2
+RJC5NWS7,EUCNEW,0,0,2,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,2
+RV1Z2FN1,EUCNEW,1,1557,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+SD2QNYHT,EUCNEW,0,0,2,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR,2
+SNF5Y17H,EUCNEW,1,156,2,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR,2
+SSEHN2DP,EUCNEW,0,35,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+T6UYA40I,EUCNEW,1,750,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+U31X05GU,EUCNEW,0,0,2,2022-08-16,S11,34.15,-119.15,220,0.3,18.2,43,8,,qPCR,2
+UQDK4PXP,EUCNEW,0,0,2,2022-08-16,S01,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR,2
+V12I57BA,EUCNEW,1,910,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+V7RYHLTF,EUCNEW,0,0,2,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR,2
+VTSM35KT,EUCNEW,1,196,2,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,2
+XVU6B64D,EUCNEW,0,0,2,2022-08-16,S13,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR,2
+YCSYA7NE,EUCNEW,1,962,2,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,2
+YWESPUWW,EUCNEW,0,0,2,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,qPCR,2
+ZF0XLNXD,EUCNEW,1,299,2,2022-08-17,S16,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR,2
+0166WUI5,EUCNEW,1,136,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+0EY3JUQG,EUCNEW,1,654,3,2022-08-17,S10,34.15,-119.15,300,0.3,24.7,14.7,10.7,,qPCR,3
+0ICAOEM8,EUCNEW,0,0,3,2022-08-17,S16,34.05,-119.25,110,0.3,23.8,2.9,16.5,,qPCR,3
+14CG6GVP,EUCNEW,0,0,3,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,3
+1Y7HTTUZ,EUCNEW,0,0,3,2022-08-16,S15,34.15,-119.05,140,0.6,21.1,35.3,7,0,qPCR,3
+3MN03WCU,EUCNEW,1,751,3,2022-08-17,S10,34.15,-119.15,350,0.3,24.7,14.7,10.7,,qPCR,3
+4K1V2B70,EUCNEW,1,226,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+4LR1IE16,EUCNEW,0,0,3,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR,3
+54M852FW,EUCNEW,1,642,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+5DZGRPJ8,EUCNEW,0,74,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+5NXLYMB4,EUCNEW,0,0,3,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,3
+5W8VHBOX,EUCNEW,0,0,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+6FC330ZX,EUCNEW,0,64,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+73HOCNFX,EUCNEW,0,0,3,2022-08-16,S15,34.15,-119.05,130,0.6,21.1,35.3,7,0,qPCR,3
+7VXU09E9,EUCNEW,0,0,3,2022-08-15,S08,34.45,-119.85,55,0.3,26.6,158,90,,qPCR,3
+8FZSGQC6,EUCNEW,1,865,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+8HDYA6AT,EUCNEW,1,708,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+8TNQ3QEN,EUCNEW,1,481,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+8YPPQ58L,EUCNEW,1,599,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+97QVXLNB,EUCNEW,1,1350,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+9H0R367Q,EUCNEW,0,0,3,2022-08-16,S04,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,qPCR,3
+A3T3UW2T,EUCNEW,1,1299,3,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR,3
+A6GEWDM0,EUCNEW,1,853,3,2022-08-17,S10,34.15,-119.15,320,0.3,24.7,14.7,10.7,,qPCR,3
+AF6NPL98,EUCNEW,1,147,3,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR,3
+AV1G647K,EUCNEW,0,0,3,2022-08-16,S05,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,qPCR,3
+BDLUWJ2A,EUCNEW,0,0,3,2022-08-16,S01,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,qPCR,3
+BWKIVG5R,EUCNEW,0,0,3,2022-08-16,S04,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,qPCR,3
+CXM7RKC1,EUCNEW,0,0,3,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,qPCR,3
+D8Q44JR4,EUCNEW,0,0,3,2022-08-15,S08,34.45,-119.85,60,0.3,26.6,158,90,,qPCR,3
+E6K19N4I,EUCNEW,0,0,3,2022-08-16,S12,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,3
+EEYYMPOX,EUCNEW,0,0,3,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,3
+EOLR86S9,EUCNEW,1,680,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+F33R74EO,EUCNEW,0,0,3,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR,3
+FQHMI6N9,EUCNEW,0,0,3,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,3
+FYP0R8D7,EUCNEW,0,0,3,2022-08-15,S09,34.45,-119.85,40,0.3,27.5,160,91,,qPCR,3
+GI9NGV51,EUCNEW,1,798,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+HX9SCNUT,EUCNEW,0,0,3,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,3
+I3ZGR5GC,EUCNEW,0,0,3,2022-08-16,S03,34.15,-119.05,200,0.5,21.2,16,10.4,0,qPCR,3
+ICW0XL4W,EUCNEW,1,1191,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+IF7K5NQF,EUCNEW,0,0,3,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,qPCR,3
+IUL4EQNP,EUCNEW,0,0,3,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,qPCR,3
+IWDVXH17,EUCNEW,0,0,3,2022-08-16,S11,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,3
+JIXBJIZ3,EUCNEW,0,0,3,2022-08-15,S08,34.45,-119.85,40,0.3,26.6,158,90,,qPCR,3
+JTATZ0K5,EUCNEW,0,0,3,2022-08-16,S12,34.15,-119.15,200,0.3,18.2,43,8,,qPCR,3
+K49UTWXN,EUCNEW,1,1105,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+K56BBPGJ,EUCNEW,1,277,3,2022-08-17,S16,34.05,-119.25,95,0.3,23.8,2.9,16.5,,qPCR,3
+KAM50OM8,EUCNEW,0,0,3,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,qPCR,3
+LVO3QRLX,EUCNEW,0,0,3,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,3
+M3BWLMVW,EUCNEW,0,77,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+N6M3N6LT,EUCNEW,0,0,3,2022-08-16,S05,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,qPCR,3
+NJCNWIUD,EUCNEW,0,0,3,2022-08-16,S03,34.15,-119.05,60,0.5,21.2,16,10.4,0,qPCR,3
+NQ36AGNG,EUCNEW,0,0,3,2022-08-16,S13,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,qPCR,3
+O3PTMHG6,EUCNEW,0,0,3,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,qPCR,3
+O97C31FZ,EUCNEW,1,794,3,2022-08-17,S10,34.15,-119.15,380,0.3,24.7,14.7,10.7,,qPCR,3
+OAZV1TYJ,EUCNEW,0,95,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+PFDNIGDZ,EUCNEW,0,96,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+PKC9HRCO,EUCNEW,1,1103,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+PKPYEKF3,EUCNEW,0,0,3,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,3
+Q3HPLTAL,EUCNEW,0,96,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+QAYFMDLF,EUCNEW,0,0,3,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,qPCR,3
+QF6Y61R2,EUCNEW,0,0,3,2022-08-15,S07,34.45,-119.85,60,0.3,30,108,170,,qPCR,3
+QKOK5NVQ,EUCNEW,1,1326,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+R5LT1TO7,EUCNEW,0,0,3,2022-08-15,S09,34.45,-119.85,50,0.3,27.5,160,91,,qPCR,3
+RJC5NWS7,EUCNEW,0,0,3,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,qPCR,3
+RV1Z2FN1,EUCNEW,1,1490,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+SD2QNYHT,EUCNEW,0,0,3,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,qPCR,3
+SNF5Y17H,EUCNEW,1,218,3,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,qPCR,3
+SSEHN2DP,EUCNEW,1,241,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+T6UYA40I,EUCNEW,1,699,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+U31X05GU,EUCNEW,0,0,3,2022-08-16,S11,34.15,-119.15,220,0.3,18.2,43,8,,qPCR,3
+UQDK4PXP,EUCNEW,0,0,3,2022-08-16,S01,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,qPCR,3
+V12I57BA,EUCNEW,1,1002,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+V7RYHLTF,EUCNEW,0,0,3,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,qPCR,3
+VTSM35KT,EUCNEW,1,208,3,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,qPCR,3
+XVU6B64D,EUCNEW,0,0,3,2022-08-16,S13,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,qPCR,3
+YCSYA7NE,EUCNEW,1,1007,3,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,qPCR,3
+YWESPUWW,EUCNEW,0,0,3,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,qPCR,3
+ZF0XLNXD,EUCNEW,1,141,3,2022-08-17,S16,34.05,-119.25,85,0.3,23.8,2.9,16.5,,qPCR,3
+0166WUI5,EUCNEW,1,277,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+0EY3JUQG,EUCNEW,1,308,4,2022-08-17,S10,34.15,-119.15,300,0.3,24.7,14.7,10.7,,metabarcoding,1
+0ICAOEM8,EUCNEW,0,0,4,2022-08-17,S16,34.05,-119.25,110,0.3,23.8,2.9,16.5,,metabarcoding,1
+14CG6GVP,EUCNEW,0,0,4,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding,1
+1Y7HTTUZ,EUCNEW,0,0,4,2022-08-16,S15,34.15,-119.05,140,0.6,21.1,35.3,7,0,metabarcoding,1
+3MN03WCU,EUCNEW,1,374,4,2022-08-17,S10,34.15,-119.15,350,0.3,24.7,14.7,10.7,,metabarcoding,1
+4K1V2B70,EUCNEW,1,202,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+4LR1IE16,EUCNEW,0,0,4,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,metabarcoding,1
+54M852FW,EUCNEW,1,275,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+5DZGRPJ8,EUCNEW,1,184,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+5NXLYMB4,EUCNEW,0,0,4,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding,1
+5W8VHBOX,EUCNEW,0,0,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+6FC330ZX,EUCNEW,1,40,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+73HOCNFX,EUCNEW,0,0,4,2022-08-16,S15,34.15,-119.05,130,0.6,21.1,35.3,7,0,metabarcoding,1
+7VXU09E9,EUCNEW,0,0,4,2022-08-15,S08,34.45,-119.85,55,0.3,26.6,158,90,,metabarcoding,1
+8FZSGQC6,EUCNEW,1,447,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+8HDYA6AT,EUCNEW,1,594,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+8TNQ3QEN,EUCNEW,1,507,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+8YPPQ58L,EUCNEW,1,1244,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+97QVXLNB,EUCNEW,1,446,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+9H0R367Q,EUCNEW,0,0,4,2022-08-16,S04,34.15,-119.05,100,0.4,21.5,34.7,6.9,0,metabarcoding,1
+A3T3UW2T,EUCNEW,1,10,4,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,metabarcoding,1
+A6GEWDM0,EUCNEW,1,461,4,2022-08-17,S10,34.15,-119.15,320,0.3,24.7,14.7,10.7,,metabarcoding,1
+AF6NPL98,EUCNEW,1,36,4,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,metabarcoding,1
+AV1G647K,EUCNEW,0,0,4,2022-08-16,S05,34.15,-119.05,120,0.5,22.1,32.7,8.3,0,metabarcoding,1
+BDLUWJ2A,EUCNEW,0,0,4,2022-08-16,S01,34.15,-119.05,70,0.75,22.8,28.7,13.5,0,metabarcoding,1
+BWKIVG5R,EUCNEW,0,0,4,2022-08-16,S04,34.15,-119.05,75,0.4,21.5,34.7,6.9,0,metabarcoding,1
+CXM7RKC1,EUCNEW,0,0,4,2022-08-16,S02,34.15,-119.05,70,0.6,21.4,30.4,6.7,0,metabarcoding,1
+D8Q44JR4,EUCNEW,0,0,4,2022-08-15,S08,34.45,-119.85,60,0.3,26.6,158,90,,metabarcoding,1
+EEYYMPOX,EUCNEW,0,0,4,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding,1
+EOLR86S9,EUCNEW,1,401,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+F33R74EO,EUCNEW,0,0,4,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,metabarcoding,1
+FQHMI6N9,EUCNEW,0,0,4,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding,1
+FYP0R8D7,EUCNEW,0,0,4,2022-08-15,S09,34.45,-119.85,40,0.3,27.5,160,91,,metabarcoding,1
+GI9NGV51,EUCNEW,1,544,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+HX9SCNUT,EUCNEW,0,0,4,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,metabarcoding,1
+I3ZGR5GC,EUCNEW,0,0,4,2022-08-16,S03,34.15,-119.05,200,0.5,21.2,16,10.4,0,metabarcoding,1
+ICW0XL4W,EUCNEW,1,194,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+IF7K5NQF,EUCNEW,0,0,4,2022-08-15,S06,34.45,-119.85,50,0.3,27.2,109,99,,metabarcoding,1
+IUL4EQNP,EUCNEW,0,0,4,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,metabarcoding,1
+JIXBJIZ3,EUCNEW,0,0,4,2022-08-15,S08,34.45,-119.85,40,0.3,26.6,158,90,,metabarcoding,1
+K49UTWXN,EUCNEW,1,1121,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+K56BBPGJ,EUCNEW,1,17,4,2022-08-17,S16,34.05,-119.25,95,0.3,23.8,2.9,16.5,,metabarcoding,1
+KAM50OM8,EUCNEW,0,0,4,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,metabarcoding,1
+LVO3QRLX,EUCNEW,0,0,4,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,metabarcoding,1
+M3BWLMVW,EUCNEW,1,65,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+N6M3N6LT,EUCNEW,0,0,4,2022-08-16,S05,34.15,-119.05,110,0.5,22.1,32.7,8.3,0,metabarcoding,1
+NJCNWIUD,EUCNEW,0,0,4,2022-08-16,S03,34.15,-119.05,60,0.5,21.2,16,10.4,0,metabarcoding,1
+NQ36AGNG,EUCNEW,0,0,4,2022-08-16,S13,34.15,-119.05,70,0.6,20.9,35.1,6.5,0,metabarcoding,1
+O3PTMHG6,EUCNEW,0,0,4,2022-08-15,S09,34.45,-119.85,45,0.3,27.5,160,91,,metabarcoding,1
+O97C31FZ,EUCNEW,1,72,4,2022-08-17,S10,34.15,-119.15,380,0.3,24.7,14.7,10.7,,metabarcoding,1
+OAZV1TYJ,EUCNEW,1,223,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+PFDNIGDZ,EUCNEW,1,66,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+PKC9HRCO,EUCNEW,1,247,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+PKPYEKF3,EUCNEW,0,0,4,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,metabarcoding,1
+Q3HPLTAL,EUCNEW,1,87,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+QAYFMDLF,EUCNEW,0,0,4,2022-08-15,S06,34.45,-119.85,55,0.3,27.2,109,99,,metabarcoding,1
+QF6Y61R2,EUCNEW,0,0,4,2022-08-15,S07,34.45,-119.85,60,0.3,30,108,170,,metabarcoding,1
+QKOK5NVQ,EUCNEW,1,301,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+R5LT1TO7,EUCNEW,0,0,4,2022-08-15,S09,34.45,-119.85,50,0.3,27.5,160,91,,metabarcoding,1
+RJC5NWS7,EUCNEW,0,0,4,2022-08-15,S07,34.45,-119.85,50,0.3,30,108,170,,metabarcoding,1
+RV1Z2FN1,EUCNEW,1,1265,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+SD2QNYHT,EUCNEW,1,12,4,2022-08-17,S16,34.05,-119.25,80,0.3,23.8,2.9,16.5,,metabarcoding,1
+SNF5Y17H,EUCNEW,1,23,4,2022-08-17,S16,34.05,-119.25,90,0.3,23.8,2.9,16.5,,metabarcoding,1
+SSEHN2DP,EUCNEW,1,71,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+T6UYA40I,EUCNEW,1,177,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+UQDK4PXP,EUCNEW,0,0,4,2022-08-16,S01,34.15,-119.05,80,0.75,22.8,28.7,13.5,0,metabarcoding,1
+V12I57BA,EUCNEW,1,587,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+V7RYHLTF,EUCNEW,0,0,4,2022-08-16,S14,34.15,-119.05,300,0.7,18.6,42.7,7,0,metabarcoding,1
+VTSM35KT,EUCNEW,1,451,4,2022-08-17,S16,34.05,-119.25,100,0.3,23.8,2.9,16.5,,metabarcoding,1
+XVU6B64D,EUCNEW,0,0,4,2022-08-16,S13,34.15,-119.05,100,0.6,20.9,35.1,6.5,0,metabarcoding,1
+YCSYA7NE,EUCNEW,1,456,4,2022-08-17,S10,34.15,-119.15,400,0.3,24.7,14.7,10.7,,metabarcoding,1
+YWESPUWW,EUCNEW,0,0,4,2022-08-15,S08,34.45,-119.85,50,0.3,26.6,158,90,,metabarcoding,1
+ZF0XLNXD,EUCNEW,1,457,4,2022-08-17,S16,34.05,-119.25,85,0.3,23.8,2.9,16.5,,metabarcoding,1

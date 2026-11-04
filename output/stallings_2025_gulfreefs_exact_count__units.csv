@@ -1,0 +1,15 @@
+unit,unit_reef_name,unit_reef_type,unit_pair,unit_depth_m,unit_deployment_year,unit_first_survey_year,unit_decimalLatitude,unit_decimalLongitude
+21HS,21HS,natural,1,10,,2013,27.923,-82.947
+3MRN,3 Mile Reef North,artificial,,9,1987,2020,27.493,-82.787
+3MRS,3 Mile Reef South,artificial,,8,1989,2020,27.44,-82.743
+7MRN,7 Mile Reef North,artificial,,13,2000,2020,27.536,-82.874
+7MRS,7 Mile Reef South,artificial,,13,2007,2020,27.439,-82.819
+AC5,AC5,natural,2,14,,2013,27.633,-82.902
+CAVES,Caves,natural,3,25,,2013,27.869,-83.2
+CWR,Clearwater Reef,artificial,1,9,1974,2013,28.014,-82.891
+FFL,Florida Fishermen's Ledge,natural,4,27,,2013,27.795,-83.231
+PIN2,Pinellas II,artificial,3,24,1982,2013,27.879,-83.183
+RAR,Rube Allyn Reef,artificial,,15,1996,2020,27.932,-83.023
+SCR,South County Reef,artificial,,15,2004,2020,27.723,-82.975
+SPBR,St Pete Beach Reef,artificial,2,12,1985,2013,27.677,-82.862
+TI2,Treasure Island II,artificial,4,30,2004,2013,27.695,-83.289

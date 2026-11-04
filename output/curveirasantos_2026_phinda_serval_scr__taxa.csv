@@ -1,2 +1,2 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
-LEPSER,Leptailurus serval,Serval,species,https://www.gbif.org/species/2435172,EXACT,,LC
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory,taxonRemarks
+LEPSER,Leptailurus serval,Serval,species,https://www.gbif.org/species/2435172,EXACT,,LC,

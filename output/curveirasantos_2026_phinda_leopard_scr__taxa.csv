@@ -1,2 +1,2 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
-PANPAR,Panthera pardus,Leopard,species,https://www.gbif.org/species/5219436,EXACT,,VU
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory,taxonRemarks
+PANPAR,Panthera pardus,Leopard,species,https://www.gbif.org/species/5219436,EXACT,,VU,

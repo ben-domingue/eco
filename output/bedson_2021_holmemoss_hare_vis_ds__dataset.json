@@ -21,7 +21,10 @@
   "transectType": "line",
   "effortColumn": "unit_line_length_km",
   "unitKind": "site",
-  "closure": "occasion (bins of one walk)",
+  "closure": "closed",
+  "closureNote": "occasion (bins of one walk)",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
   "geographicCoverage": "Holme Moss, Peak District National Park, England (OS SE 40 39 area; six 1 km sites; no coordinates deposited)",
   "temporalCoverage": "2017-11/2018-05",
   "notes": "Perpendicular distances are deposited to the metre and binned here: the paper's bins (5, 10, 20, 100 m; truncation 100 m, n = 26) plus one 100-400 m bin holding the 15 detections beyond the paper's truncation, so no detection is dropped; drop occasion 5 to reproduce the paper. obs_individuals is the number of hares in the bin (cluster sizes 1-2); y counts groups. Dates of the five survey days are not deposited. Six units: below the sample floor by design.",
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "below (6 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_line_length_km", "unit_site_area_km2", "obs_individuals"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bedson_2021_holmemoss_hare_vis_ds.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

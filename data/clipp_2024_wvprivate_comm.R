@@ -49,6 +49,10 @@
 #   overstate effort; the deposit does not say when they failed). Not shipped: group_size,
 #   age, sex (per sequence), the out-of-window sequences, NDVI (author-derived), the Stan
 #   inputs and fitted models, and the other two datasets (see the sibling script).
+#   v1.1: closure = closed (the paper's assumption over deployments of up to 76 days),
+#   occasionKind = time, taxonInclusion = recorded. iucn_category() 2026-11-03: no CR/EN/VU
+#   (common grackle NT; porcupine and pileated woodpecker NA only through GBIF name variants,
+#   both LC). Stays separate from clipp_2024_monongahela_comm: different licence (CC BY-NC).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 suppressPackageStartupMessages(library(readxl))
 TABLE <- "clipp_2024_wvprivate_comm"
@@ -134,7 +138,10 @@ long <- long[, .(unit, taxon, y = as.integer(sequences > 0), y_raw = sequences, 
 long <- order_eco(long)
 stopifnot(nrow(long) == nrow(days) * nrow(species), sum(long$y_raw) == nrow(sp), uniqueN(long$unit) == 146)
 
-taxa <- make_taxa(species$taxon, species$scientificName, vernacularName = species$common_name, taxon_class = species$class)
+# GBIF's backbone spells the porcupine Erethizon dorsatus (FUZZY on the Wildlife Insights
+# dorsatum): the same species, looked up under the backbone spelling
+taxa <- make_taxa(species$taxon, species$scientificName, vernacularName = species$common_name, taxon_class = species$class,
+                  lookupName = fifelse(species$scientificName == "Erethizon dorsatum", "Erethizon dorsatus", species$scientificName))
 units <- dep[, .(unit, cluster_id = cluster, decimalLatitude = lat, decimalLongitude = lon, detection_distance_m = dist_m,
                  camera_working_at_retrieval = as.integer(working == "Y"), deployed = format(dep, "%Y-%m-%dT%H:%MZ"),
                  retrieved = format(ret - 59, "%Y-%m-%dT%H:%MZ"), camera_days = round(dur, 2), modelled_in_paper = as.integer(!(cluster == "Jackson-Mason" & row > 43)))]   # the paper's code reads rows 3-43 / 3-58 / 3-43
@@ -151,7 +158,8 @@ dataset <- list(
   samplingProtocol = "Game cameras on private land, deployed 1.7-76 days (median 62) between 2022-04-23 and 2022-09-15; images grouped into sequences (photos within one minute of each other) and identified in Wildlife Insights. Occasion = calendar day of the deployment; effort = hours the camera operated within that day, from the deployment and retrieval timestamps.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day", effortColumn = "obs_camera_hours",
   surveyEvidence = "effort_table",
-  responseType = "detection", unitKind = "site", closure = "occasion (camera-days within one deployment of up to 76 days, the paper's closure assumption); no period",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "occasion (camera-days within one deployment of up to 76 days, the paper's closure assumption); no period",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Private land in Jackson, Mason, Barbour, Upshur and Hampshire counties, West Virginia, USA (camera coordinates as published)", temporalCoverage = "2022-04-23/2022-09-15",
   coordinatesCoarsened = list(value = FALSE, method = "none: no taxon is flagged (no IUCN CR/EN/VU species; white-tailed deer and coyote are Least Concern); coordinates as deposited"),
   notShipped = list(out_of_window = "265 sequences timestamped outside their deployment window: 199 with a wrong camera year (2017, 2021) at four cameras whose comments report clock faults, 66 at the deployment or retrieval boundary (61 by under an hour, 5 by 2-12 hours)",

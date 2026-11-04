@@ -87,7 +87,7 @@ dataset <- list(
   abstract = "Daily counts of independent moose detections at 72 camera traps in the John Prince Research Forest, central interior British Columbia, from 15 December 2020 to 15 March 2021 (91 days), the camera-trap data of Koetke et al. (2024), who compared N-mixture abundance estimates against a stratified random block aerial survey. A camera-day is surveyed if the camera was active (5,935 of 6,552); y is the count under the authors' 5-minute independence criterion, with the 30-minute and 8-hour recodings of the same videos carried alongside.",
   samplingProtocol = "Camera traps recording video; independent detections of moose per camera per day, with three independence criteria (gap of 5 min, 30 min or 8 h between videos) deposited as three matrices. Camera placement, model and settings are in the paper.",
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix",
-  responseType = "count", unitKind = "site", closure = "occasion",
+  responseType = "count", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "John Prince Research Forest, near Fort St. James, central interior British Columbia, Canada; no coordinates deposited",
   temporalCoverage = "2020-12-15/2021-03-15",
   coordinatesCoarsened = list(value = FALSE, method = "no coordinates in the deposit"),

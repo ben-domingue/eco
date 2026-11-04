@@ -18,7 +18,10 @@
   "responseType": "count",
   "unitKind": "site",
   "effortColumn": "obs_trapping_days",
-  "closure": "occasion = biweekly bout within the growing season, indexed within the site-year by first collection date; period = calendar year",
+  "closure": "open",
+  "closureNote": "occasion = biweekly bout within the growing season, indexed within the site-year by first collection date; period = calendar year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude 18.0 to 71.3, longitude -156.6 to -66.8",
   "temporalCoverage": "2013-07-01/2023-12-20",
   "crs": "EPSG:4326 (WGS 84), as published",
@@ -48,8 +51,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "unit_plot", "obs_trapping_days", "obs_cup_status", "obs_fluid_level"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_carabids_count.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

@@ -1,7 +1,12 @@
 #!/usr/bin/env Rscript
 # Table:  koester_2023_aldabra_reeffish_count (indicator surveys, 2014, 2016-2019, 2021) and
 #         koester_2023_aldabra_reeffishext_count (extended surveys, 2015 and 2020); one script,
-#         two tables (the two methods have different species lists, so their zeros differ).
+#         two tables. They stay two tables under ruling #31 because they are two protocols, not
+#         one protocol with two taxon lists: the indicator survey counts its list in six size
+#         classes including fish under 8 cm (class 1, midpoint 3 cm), while the extended survey
+#         counts every fish of 8 cm or more, sized to the cm, by one trained surveyor; a
+#         listed taxon's count therefore measures a different size range in the two, so y is
+#         not the same quantity (the ruling covers taxon lists only).
 # Source: figshare doi:10.6084/m9.figshare.22792580.v3 (version 3, 2026-02-19 metadata;
 #         files "corrected_Oct2024"), Koester, A'Bear, Bielsa, Burt, Chong-Seng, Haupt et al.
 #         Licence as shown on the record: CC BY 4.0. The record adds: "All data is owned by the
@@ -43,6 +48,10 @@
 #   survey date (seven transect-years carry two dates in the deposit, ARM07 15 m in 2018 and
 #   ARM12 in 2021: the earliest date is used, asserted). unit_ covariates: site, depth (m),
 #   reef zone (seaward / lagoon). Effort is constant (one 200 m2 transect).
+#   closure = closed (replicate transects of one dive; closureNote keeps the detail),
+#   occasionKind = spatial, taxonInclusion = recorded (each table: the taxa recorded by its
+#   own surveys). "other.<group>" family remainders and "Genus.sp" records are their own taxa
+#   at family / genus rank, with taxonRemarks in __taxa saying what they pool (E6).
 #   surveyEvidence = inferred: the deposit is a record table without zero rows, so a transect
 #   is taken to be surveyed in a season iff it has at least one record. A 200 m2 reef transect
 #   with no fish of the indicator list would be missing; none is expected (the minimum is 2
@@ -129,24 +138,20 @@ build_taxa <- function(d) {
   sp[lookup == "Acanthurus", lookup := "Acanthurus Forsskål, 1775"]
   sp[lookup == "Naso", lookup := "Naso Lacepède, 1801"]
   sp[lookup == "Aprion virescens", lookup := "Aprion virescens Valenciennes, 1830"]
+  sp[, remarks := fifelse(rank == "family", sprintf("Members of %s not on the indicator list, pooled by the source (\"%s\"); taxonID is the family", Family, Species),
+                  fifelse(rank == "genus", sprintf("Recorded only to genus by the source (\"%s\")", Species), NA_character_))]
   sp[, vern := fifelse(English %in% c("N/A", "") | is.na(English), NA_character_, gsub("\\.", " ", English))]
   sp[]
 }
-iucn <- function(id) {
-  if (is.na(id)) return(NA_character_)
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- tryCatch(fromJSON(fp), error = function(e) NULL)
-  if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
-}
 mk_taxa <- function(sp) {
   tx <- make_taxa(sp$taxon, sp$sci, vernacularName = sp$vern, taxonRank = sp$rank, lookupName = sp$lookup,
-                  taxon_family = sp$Family, taxon_sourceName = sp$Species, taxon_feeding_guild = sp$Feeding_guild_code)
+                  taxon_family = sp$Family, taxon_sourceName = sp$Species, taxon_feeding_guild = sp$Feeding_guild_code, taxonRemarks = sp$remarks)
   stopifnot(!anyNA(tx$taxonID), all(tx$gbifMatchType == "EXACT"), !any(grepl("/species/[0-9]$", tx$taxonID)))
-  tx[taxonRank == "species", taxon_iucnCategory := sapply(taxonID, iucn)]
+  tx[taxonRank == "species", taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+  # GBIF's IUCN record for Aethaloperca rogaa is filed under the accepted Cephalopholis rogaa: the
+  # same species after a genus transfer (same epithet), assessed LC; every other species resolves
+  stopifnot(identical(tx[taxonRank == "species" & is.na(taxon_iucnCategory), taxon], "AETROG"))
+  tx[taxon == "AETROG", taxon_iucnCategory := "LC"]
   tx[]
 }
 
@@ -187,7 +192,8 @@ common <- list(
   intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
   samplingProtocolCode = "visual_census", occasionLength = "one 50 x 4 m belt transect (200 m2)",
   surveyEvidence = "inferred", responseType = "count", unitKind = "site",
-  closure = "occasion within period: the one to three replicate transects of a site x depth are surveyed in the same dive, 10 m apart (spatial replicates); open between annual seasons",
+  closure = "closed", occasionKind = "spatial", taxonInclusion = "recorded",
+  closureNote = "occasion within period: the one to three replicate transects of a site x depth are surveyed in the same dive, 10 m apart (spatial replicates); open between annual seasons",
   geographicCoverage = list(description = "Aldabra Atoll, Seychelles, western Indian Ocean: nine seaward-reef sites (5 m and 15 m) and three lagoon sites (2 m)",
                             boundingBox = list(west = 46.15, east = 46.55, south = -9.55, north = -9.35)),
   coordinatesCoarsened = NA)

@@ -113,7 +113,7 @@ dataset <- list(
   samplingProtocolCode = "hand_capture", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "A column (secondary occasion) with at least one capture is a surveyed occasion; the seven primary periods whose four columns are all NA in every row (2, 6, 10, 11, 13, 14, 15) were not visited and have no rows, following the record's sibling (zenodo.1185403: 'we did not visit the populations during all these periods'). Every secondary of a visited primary has captures at both plots.",
   responseType = "detection", unitKind = "individual",
-  closure = "occasion within period (robust design: four consecutive capture days per quarterly primary period; open between primaries)",
+  closure = "closed", closureNote = "occasion within period (robust design: four consecutive capture days per quarterly primary period; open between primaries)", occasionKind = "time", taxonInclusion = "single",
   occasionCodes = list(`1` = "capture day 1 of the primary period", `2` = "day 2", `3` = "day 3", `4` = "day 4"),
   crs = "local: plot-local metres, origin not deposited",
   coordinatesCoarsened = list(value = FALSE, method = "no geographic coordinates: capture locations are plot-local metres with no deposited origin, so an IUCN EN species is not located by this table"),

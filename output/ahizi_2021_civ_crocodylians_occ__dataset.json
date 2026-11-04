@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period (three to five consecutive nights at a site, treated as closed by the authors)",
+  "closure": "closed",
+  "closureNote": "period (three to five consecutive nights at a site, treated as closed by the authors)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "geographicCoverage": "Côte d'Ivoire: Guinean forest, Sudano-Guinean and Sudanian ecoregions (site names only, no coordinates deposited)",
   "temporalCoverage": "2014/2019",
   "coordinatesCoarsened": null,
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_mining", "unit_plantation", "obs_moon", "obs_wind", "obs_wave", "obs_vegetation", "obs_fishnets_per_km", "obs_rain_prev_day", "obs_temp_day_c", "obs_precip_day_mm", "obs_temp_48h_c", "obs_precip_48h_mm"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ahizi_2021_civ_crocodylians_occ.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

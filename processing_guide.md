@@ -2,7 +2,7 @@
 
 What to produce when turning a public deposit into an eco table, and the judgement
 calls along the way. The format itself is the numbered clauses of
-[`standard.md`](standard.md) (v1.0-draft); `eco-validate` reports each finding
+[`standard.md`](standard.md) (v1.1-draft); `eco-validate` reports each finding
 against them, and this guide does not restate the clauses. It adds the intake
 checklist and the working practice. Where the two disagree, the standard governs;
 raise the disagreement rather than following either silently. The step order and
@@ -116,14 +116,19 @@ else (a format reader, a package that ships the data) is a question for the batc
 log before it goes in a script.
 
 **Row layout by family.** Site tables: one row per taxon per survey (E4). Capture
-histories (`cjs`): one row per individual per `period` from first capture on, the
-full rectangle the deposit's history strings give. Spatial capture-recapture
+histories (`cjs`): one row per individual per surveyed `period` while it was at risk
+(E4.4): from the study's first period for an animal caught in the wild, from the
+marking period for one marked at birth or hatching, and to the end of the study unless
+it was removed or its mark was lost. This is the full rectangle MARK history strings
+give; a deposit that starts each history at first capture is padded back to the
+study's first period. Spatial capture-recapture
 (`scr`): a row per individual x `trap` x `period` x `occasion` for every trap-night
 the trap was operated, since an operating trap surveys every individual in the
 population; trap usage comes from the deposit (`__traps` usage) or, if it is not
 deposited, from a stated rule declared in `surveyEvidence`. Sessions with no
-capture of an individual keep their rows. A `secr` user filters to the captured
-individual-sessions; the table does not pre-filter for them. The IRW view folds
+capture of an individual keep their rows (ruling #30); `eco_to_ch()` drops all-zero
+unit x period blocks by default for closed-model users, and the table does not
+pre-filter for them. The IRW view folds
 `trap` into `item` as `taxon:trap`.
 
 Covariates go at the level where they are constant (E5): `unit_` (elevation,
@@ -148,10 +153,39 @@ which the animal was not at risk has no row, loss on capture is `obs_removed = 1
 on the last row. Removal and double-observer designs put the cell on `occasion`
 and declare `multinomialType`.
 
-Community tables carry a row for every taxon at every conducted survey, so when a
-deposit's species pools differ between regions (the surveyed list is not the same),
-split by region into separate tables under separate `__dataset.json` files rather
-than inventing zeros for taxa that were not surveyed for.
+Community tables carry a row for every taxon surveyed for at every conducted survey.
+When the source says the taxa surveyed for differ between regions, units or runs,
+the table stays whole and `__survey_taxa` lists them (E4.2, E6, ruling #31); never
+invent zeros for taxa that were not surveyed for, and never split one protocol's
+table to avoid them. Two methods are two tables.
+
+**Rules learned in batches 17 to 20.** Each is a fact to assert, not a judgement:
+
+- A code the source does not define gets no row; count it in `notShipped`.
+- A lost mark (tag, flag) ends the history after the last period it was known present.
+- A catalogue entry never detected in the deposit is not a unit; drop all-zero histories.
+- A deposited history cell that is the authors' simulated release, not an encounter,
+  is kept and flagged `obs_release = 1`.
+- A second file is a recode of the first only if the script rebuilds it exactly from
+  the first and asserts so; then it ships once. Otherwise it is its own table.
+- A source state letter that is the authors' recode of another (P from N) keeps both
+  letters in `y_raw` under one `y` code, with the counts asserted.
+- NA in a species x survey matrix means "not scored", not "not surveyed", only when
+  every NA taxon-period has no detection anywhere in that period and every scored
+  taxon is detected somewhere; assert both, ship `y = 0` with `y_raw = "NA"`.
+- A source `replicate` or `round` number with gaps is not evidence of lost surveys
+  until the walk count per unit-period is checked against the protocol.
+- Pollard-walk archives on GBIF record a section only where something was seen, so
+  the unit is the transect walk (sections summed) unless empty section events exist.
+- A covariate from a separate survey (fisheries prey biomass, regional weather) is
+  not derived from these detections and may ship, in `__periods` or as `unit_`.
+- Dryad's `primary_article` field can be wrong; check the paper by title.
+- A deposit of model inputs (SDM presence and pseudo-absence points, gridded arrays
+  with no survey list) is held: there is no survey set.
+- GBIF strict name matching can resolve a homonym to a kingdom or family, and the
+  IUCN endpoint can answer for a synonym's different species. `make_taxa()` asserts
+  EXACT matches and `iucn_category()` checks the assessed name; HTTP 204 is "not
+  assessed".
 
 ## Metadata (`__dataset.json`)
 
@@ -160,10 +194,12 @@ contract. Required: `title`, `creator`, `pubDate`, `citation`, `sourceURL`,
 `intellectualRights` (`spdx`, `url`), `samplingProtocol` (a sentence),
 `samplingProtocolCode` (a token: `camera_trap`, `point_count`, `line_transect`,
 `mist_net`, `live_trap`, `removal`, `double_observer`, `eDNA`, `acoustic`,
-`territory_survey`, ...), `responseType`, `unitKind`, `closure`, `surveyEvidence`,
-`temporalCoverage` (`YYYY/YYYY` or `YYYY-MM/YYYY-MM`), `geographicCoverage`.
-Conditional: `stateCodes`, `multinomialType` or `distanceBreaks`,
-`coordinatesCoarsened`, `surveyEvidenceNote`, `crs`, `effortColumn`. Recommended:
+`territory_survey`, ...), `responseType`, `unitKind`, `closure` and `occasionKind` (one of the E8 values; prose
+goes in `closureNote`), `taxonInclusion` (`recorded` | `target` | `single`, E10),
+`surveyEvidence`, `temporalCoverage` (`YYYY/YYYY` or `YYYY-MM/YYYY-MM`),
+`geographicCoverage`. Conditional: `stateCodes`, `multinomialType` or
+`distanceBreaks`, `coordinatesCoarsened`, `surveyEvidenceNote`, `crs`, `effortColumn`,
+`taxaWithheld`, `detectionCertainty`. Recommended:
 `abstract`, `paperDOI`, `notShipped` (a named list: what and why), `notes`.
 `write_table()` adds `summary`, `sampleFloor`, `columns`, `standardVersion`,
 `script`, `buildDate`.

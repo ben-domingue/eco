@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "one closed period; occasions are surveyors, not times. Surveyors searched one after the other over six weeks without information about earlier finds; S1 (the first author) was always first, the order of the others is not deposited. Three hibernacula that disappeared during the study were removed by the authors before deposit.",
+  "closure": "closed",
+  "occasionKind": "observer",
+  "taxonInclusion": "single",
+  "closureNote": "one closed period; occasions are surveyors, not times. Surveyors searched one after the other over six weeks without information about earlier finds; S1 (the first author) was always first, the order of the others is not deposited. Three hibernacula that disappeared during the study were removed by the authors before deposit.",
   "geographicCoverage": "Spruce clear-cut near Merklingen, Alb-Donau district, Baden-Württemberg, Germany; site centre 48.45 N, 9.75 E (0.1-degree cell); three plots of 916, 807 and 2952 m2",
   "temporalCoverage": "2021-02-05/2021-03-22",
   "coordinatesCoarsened": {
@@ -42,7 +45,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "observer", "cluster_id", "unit_contents", "unit_plot_area_m2", "obs_experience"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hinneberg_2022_limenitis_ccr.R",
   "buildDate": "2026-11-03"

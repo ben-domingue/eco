@@ -1,0 +1,159 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxonRemarks,taxon_family,taxon_order,taxon_lw_coef_a,taxon_lw_coef_b,taxon_max_length_cm,taxon_trophic_position,taxon_lateral_profile,taxon_cross_section,taxon_mouth_position,taxon_caudal_aspect_ratio,taxon_iucnCategory
+ABSA,Abudefduf saxatilis,Sergeant Major,species,https://www.gbif.org/species/2398623,EXACT,,,Pomacentridae,Ovalentaria,0.0205,3.126,22.9,2.8,Deep,Compressed,Terminal,1.539,LC
+ACBA,Acanthurus bahianus,Ocean surgeonfish,species,https://www.gbif.org/species/5209181,EXACT,,,Acanthuridae,Acanthuriformes,0.026,2.87,32,2.4,Deep,Compressed,Terminal,2.279,LC
+ACCH,Acanthurus chirurgus,Doctorfish,species,https://www.gbif.org/species/5209174,EXACT,,,Acanthuridae,Acanthuriformes,0.0214,2.9085,39,2.7,Deep,Compressed,Terminal,1.867,LC
+ACCO,Acanthurus coeruleus,Blue Tang,species,https://www.gbif.org/species/5209188,EXACT,,,Acanthuridae,Acanthuriformes,0.0317,2.9643,39,2.2,Deep,Compressed,Terminal,3.489,LC
+ACQU,Acanthostracion quadricornis,Scrawled Cowfish,species,https://www.gbif.org/species/2408197,EXACT,,,Ostraciidae,Tetraodontiformes,0.1636,2.2565,55,3.8,Deep,Angular,Subterminal,1.37,LC
+ALCI,Alectis ciliaris,African Pompano,species,https://www.gbif.org/species/2390537,EXACT,,,Carangidae,Carangiformes,0.0395,2.7743,150,3.5,Deep,Compressed,Terminal,4.409,LC
+ALHE,Aluterus heudelotii,Dotterel Filefish,species,https://www.gbif.org/species/2406739,EXACT,,,Monacanthidae,Tetraodontiformes,0.0253,2.86,45,3.3,Deep,Compressed,Terminal,0.66,LC
+ALSC,Aluterus schoepfii,Orange Filefish,species,https://www.gbif.org/species/2406748,EXACT,,,Monacanthidae,Tetraodontiformes,0.0253,2.86,61,3.3,Deep,Compressed,Terminal,0.662,LC
+ALSR,Aluterus scriptus,Scrawled Filefish,species,https://www.gbif.org/species/2406721,EXACT,,,Monacanthidae,Tetraodontiformes,0.0253,2.86,110,3,Deep,Compressed,Terminal,0.865,LC
+ANVI,Anisotremus virginicus,Porkfish,species,https://www.gbif.org/species/2382596,EXACT,,,Haemulidae,Eupercaria,0.014,2.9957,40.6,3.4,Deep,Compressed,Terminal,1.774,LC
+APPS,Apogon pseudomaculatus,Two Spot Cardinalfish,species,https://www.gbif.org/species/5211723,EXACT,,,Apogonidae,Kurtiformes,0.02,2.943,11,,Fusiform,Compressed,Terminal,0.705,LC
+ARPR,Archosargus probatocephalus,Sheepshead,species,https://www.gbif.org/species/2392542,EXACT,,,Sparidae,Spariformes,0.0256,3.0293,91,3.5,Deep,Compressed,Terminal,1.441,LC
+ASYG,Astroscopus y-graecum,Southern Stargazer,species,https://www.gbif.org/species/2394346,EXACT,,,Uranoscopidae,Trachiniformes,0.006,3,51.5,,,Circular,Superior,0.725,LC
+BLSP,Blennioidei,Blenny species,suborder,https://www.gbif.org/species/9314530,EXACT,,Recorded only to suborder by the source (code BLSP),Unknown,Perciformes,0.0125,2.959,12.7,3.1,Fusiform,Oval,Subterminal,1.073,
+BORU,Bodianus rufus,Spanish Hogfish,species,https://www.gbif.org/species/5209687,EXACT,,,Labridae,Labriformes,0.0168,3.0815,40,3.4,Fusiform,Compressed,Terminal,1.615,LC
+CABA,Caranx bartholomaei,Yellow Jack,species,https://www.gbif.org/species/2390959,EXACT,Carangoides bartholomaei,,Carangidae,Carangiformes,0.0371,2.7793,100,4.5,Fusiform,Compressed,Terminal,3.614,LC
+CACA,Calamus calamus,Saucereye Porgy,species,https://www.gbif.org/species/5210995,EXACT,,,Sparidae,Spariformes,0.0232,2.9905,56,3.5,Deep,Compressed,Terminal,3.011,LC
+CACR,Caranx crysos,Blue Runner,species,https://www.gbif.org/species/2390762,EXACT,,,Carangidae,Carangiformes,0.0194,2.9566,70,3.6,Fusiform,Compressed,Terminal,3.362,LC
+CAHI,Caranx hippos,Crevalle Jack,species,https://www.gbif.org/species/2390778,EXACT,,,Carangidae,Carangiformes,0.0256,2.8428,124,3.8,Fusiform,Compressed,Terminal,3.413,LC
+CALA,Caranx latus,Horse-eye Jack,species,https://www.gbif.org/species/2390847,EXACT,,,Carangidae,Carangiformes,0.0252,2.8645,101,3.9,Fusiform,Compressed,Terminal,3.534,LC
+CALB,Callionymus bairdi,Lancer Dragonet,species,https://www.gbif.org/species/2386771,EXACT,,,Callionymidae,Callionymiformes,0.0231,3.121,11.4,,Elongated,Oval,Terminal,0.473,LC
+CAMA,Cantherhines macrocerus,Whitespotted Filefish,species,https://www.gbif.org/species/2406957,EXACT,,,Monacanthidae,Tetraodontiformes,0.0561,2.653,46,2.7,Deep,Compressed,Terminal,1.262,LC
+CANO,Calamus nodosus,Knobbed Porgy,species,https://www.gbif.org/species/5211004,EXACT,,,Sparidae,Spariformes,0.0077,3.13,54.4,3.6,Deep,Compressed,Terminal,3.7,LC
+CAPE,Calamus penna,Sheepshead Porgy,species,https://www.gbif.org/species/5211002,EXACT,,,Sparidae,Spariformes,0.059,2.7027,46,3.4,Deep,Compressed,Terminal,3.655,LC
+CARU,Caranx ruber,Bar Jack,species,https://www.gbif.org/species/2390989,EXACT,,,Carangidae,Carangiformes,0.0157,2.9967,73,3.8,Fusiform,Compressed,Terminal,4.228,LC
+CASP,Calamus spp.,Porgy species,genus,https://www.gbif.org/species/2392568,EXACT,,Recorded only to genus by the source (code CASP),Sparidae,Spariformes,0.0348,2.8881,42.7,3.5,Deep,Compressed,Terminal,3.074,
+CASU,Canthidermis sufflamen,Ocean Triggerfish,species,https://www.gbif.org/species/2407087,EXACT,,,Balistidae,Tetraodontiformes,0.0452,2.8307,65,3.5,Deep,Compressed,Terminal,2.596,LC
+CECR,Cephalopholis cruentata,Graysby,species,https://www.gbif.org/species/2388866,EXACT,,,Serranidae,Perciformes,0.0108,3.121,42.6,4.2,Fusiform,Oval,Superior,2.429,LC
+CEOC,Centropristis ocyurus,Bank Seabass,species,https://www.gbif.org/species/2387481,EXACT,,,Serranidae,Perciformes,0.0878,2.599,30,3.5,Fusiform,Compressed,Superior,1.118,LC
+CEST,Centropristis striata,Black Sea Bass,species,https://www.gbif.org/species/2387483,EXACT,,,Serranidae,Perciformes,0.0319,2.8227,66,3.7,Fusiform,Compressed,Superior,1.032,LC
+CEUN,Centropomus undecimalis,Common Snook,species,https://www.gbif.org/species/2369643,EXACT,,,Centropomidae,Carangaria,0.0084,2.9713,140,4.1,Fusiform,Oval,Superior,1.907,LC
+CHCA,Chaetodon capistratus,Foureye Butterflyfish,species,https://www.gbif.org/species/2385548,EXACT,,,Chaetodontidae,Acanthuriformes,0.0248,3.16,15,2.8,Deep,Compressed,Terminal,2.828,LC
+CHCH,Chloroscombrus chrysurus,Atlantic Bumper,species,https://www.gbif.org/species/2391079,EXACT,,,Carangidae,Carangiformes,0.0171,2.7831,65,3.5,Fusiform,Compressed,Terminal,3.242,LC
+CHCY,Chromis cyanea,Blue Chromis,species,https://www.gbif.org/species/5212147,EXACT,,,Pomacentridae,Ovalentaria,0.0285,2.9726,15,3.7,Fusiform,Oval,Terminal,2.613,LC
+CHEN,Chromis enchrysurus,Yellowtail Reeffish,species,https://www.gbif.org/species/5212213,EXACT,,,Pomacentridae,Ovalentaria,0.0285,2.9726,10,,Fusiform,Oval,,1.608,LC
+CHFA,Chaetodipterus faber,Atlantic Spadefish,species,https://www.gbif.org/species/2394320,EXACT,,,Ephippidae,Moroniformes,0.0474,2.8369,91,3.5,Deep,Compressed,Terminal,3.233,LC
+CHIN,Chromis insolata,Sunshinefish,species,https://www.gbif.org/species/5212207,EXACT,,,Pomacentridae,Ovalentaria,0.0285,2.9726,16,3.7,Fusiform,Oval,Terminal,1.809,LC
+CHOC,Chaetodon ocellatus,Spotfin Butterflyfish,species,https://www.gbif.org/species/2385448,EXACT,,,Chaetodontidae,Acanthuriformes,0.0318,2.984,20,2.8,Deep,Compressed,Terminal,2.559,LC
+CHSC,Chromis scotti,Purple Reeffish,species,https://www.gbif.org/species/5212188,EXACT,,,Pomacentridae,Ovalentaria,0.0285,2.9726,10,3.7,Deep,Compressed,Terminal,1.525,LC
+CHSE,Chaetodon sedentarius,Reef Butterflyfish,species,https://www.gbif.org/species/2385404,EXACT,,,Chaetodontidae,Acanthuriformes,0.0252,3.0759,15,2.8,Deep,Compressed,Terminal,2.11,LC
+CHST,Chaetodon striatus,Banded Butterflyfish,species,https://www.gbif.org/species/7906686,EXACT,,,Chaetodontidae,Acanthuriformes,0.0254,3.06,16,2.8,Deep,Compressed,Terminal,2.559,LC
+COGL,Coryphopterus glaucofraenum,Bridled Goby,species,https://www.gbif.org/species/2377816,EXACT,,,Gobiidae,Gobiiformes,0.0126,2.8923,8,2.7,Elongated,Oval,Terminal,0.672,LC
+CTSA,Ctenogobius saepepallens,Dash Goby,species,https://www.gbif.org/species/2375352,EXACT,,,Gobiidae,Gobiiformes,0.0052,3.0533,5,3.4,Elongated,Oval,Terminal,0.401,LC
+DESP,Decapterus spp.,Scad species,genus,https://www.gbif.org/species/2391033,EXACT,,Recorded only to genus by the source (code DESP),Carangidae,Carangiformes,0.0091,3.1114,42,3.2,Fusiform,Oval,Terminal,3.753,
+DIFO,Diplectrum formosum,Sand Perch,species,https://www.gbif.org/species/5210229,EXACT,,,Serranidae,Perciformes,0.0061,3.2426,30,4.2,Fusiform,Compressed,Superior,1.879,LC
+DIHO,Diplodus holbrookii,Spottail Pinfish,species,https://www.gbif.org/species/5210961,EXACT,,,Sparidae,Spariformes,0.0287,2.9538,46,2.7,Deep,Compressed,Terminal,2.358,LC
+ECNA,Echeneis naucrates,Live Sharksucker,species,https://www.gbif.org/species/2375300,EXACT,,,Echeneidae,Carangiformes,9e-04,3.3239,110,,Elongated,Circular,Superior,1.539,LC
+ECNE,Echeneis neucratoides,Whitefin Sharksucker,species,https://www.gbif.org/species/2375299,EXACT,,,Echeneidae,Carangiformes,9e-04,3.3239,75,,Elongated,Circular,Superior,0.276,DD
+ELBI,Elagatis bipinnulata,Rainbow Runner,species,https://www.gbif.org/species/5210446,EXACT,,,Carangidae,Carangiformes,0.0172,2.638,180,3.6,Fusiform,Compressed,Terminal,3.295,LC
+EMAT,Emmelichthyops atlanticus,Bonnetmouth,species,https://www.gbif.org/species/2395117,EXACT,,,Haemulidae,Eupercaria,0.0207,2.9861,13,3.9,Elongated,Compressed,Terminal,1.204,LC
+EPGU,Epinephelus guttatus,Red Hind,species,https://www.gbif.org/species/2388558,EXACT,,,Serranidae,Perciformes,0.0139,3.04,76,4.2,Fusiform,Oval,Superior,0.977,LC
+EQLA,Eques lanceolatus,Jackknife Fish,species,https://www.gbif.org/species/10931445,EXACT,Equetus lanceolatus,,Sciaenidae,Eupercaria,0.0011,3.844,25,3.6,Fusiform,Compressed,Subterminal,1.199,NE
+EUAL,Euthynnus alletteratus,Little Tunny,species,https://www.gbif.org/species/5208565,EXACT,,,Scombridae,Scombriformes,0.0198,2.939,122,4,Fusiform,Oval,Terminal,4.184,LC
+EUME,Eucinostomus melanopterus,Flagfin Mojarra,species,https://www.gbif.org/species/2369483,EXACT,,,Gerreidae,Eupercaria,0.0116,3.0689,30,3.4,Fusiform,Compressed,Terminal,2.604,LC
+EUSP,Eucinostomus spp.,Mojarra species,genus,https://www.gbif.org/species/2369470,EXACT,,Recorded only to genus by the source (code EUSP),Gerreidae,Eupercaria,0.026,3.0268,21.5,3.3,Fusiform,Compressed,Terminal,2.122,
+GNTH,Gnatholepis thompsoni,Goldspot Goby,species,https://www.gbif.org/species/2378717,EXACT,,,Gobiidae,Gobiiformes,0.0035,3.766,8.2,2.8,Fusiform,Oval,Terminal,0.576,LC
+GYFU,Gymnothorax funebris,Green Moray,species,https://www.gbif.org/species/2403964,EXACT,,,Muraenidae,Anguilliformes,0.0017,3.048,250,4,Eel-like,Oval,Terminal,,LC
+GYMO,Gymnothorax moringa,Spotted Moray,species,https://www.gbif.org/species/2404065,EXACT,,,Muraenidae,Anguilliformes,7e-04,3.2197,200,4.2,Eel-like,Oval,Terminal,,LC
+HAAL,Haemulon album,White Margate,species,https://www.gbif.org/species/2382523,EXACT,,,Haemulidae,Eupercaria,0.015,3.058,79,3.4,Fusiform,Compressed,Terminal,2.737,DD
+HAAU,Haemulon aurolineatum,Tomtate,species,https://www.gbif.org/species/2382528,EXACT,,,Haemulidae,Eupercaria,0.0145,2.9914,25,3.2,Fusiform,Compressed,Terminal,2.103,LC
+HABI,Halichoeres bivittatus,Slippery Dick,species,https://www.gbif.org/species/2384268,EXACT,,,Labridae,Labriformes,0.011,3.0608,35,3.6,Fusiform,Compressed,Terminal,1.1,LC
+HACA,Halichoeres caudalis,Painted Wrasse,species,https://www.gbif.org/species/2384064,EXACT,,,Labridae,Labriformes,0.0081,3.2812,20,3.6,Fusiform,Compressed,Terminal,1.588,LC
+HAGA,Halichoeres garnoti,Yellowhead Wrasse,species,https://www.gbif.org/species/2384162,EXACT,,,Labridae,Labriformes,0.0052,3.375,19.3,3.6,Fusiform,Compressed,Terminal,0.889,LC
+HAMA,Halichoeres maculipinna,Clown Wrasse,species,https://www.gbif.org/species/2384125,EXACT,,,Labridae,Labriformes,0.0028,3.693,18,3.6,Fusiform,Compressed,Terminal,1.11,LC
+HAPL,Haemulon plumierii,White Grunt,species,https://www.gbif.org/species/2382537,EXACT,,,Haemulidae,Eupercaria,0.02,2.9568,53,3.8,Fusiform,Compressed,Terminal,2.998,LC
+HARA,Halichoeres radiatus,Puddingwife Wrasse,species,https://www.gbif.org/species/2384111,EXACT,,,Labridae,Labriformes,0.0081,3.2812,51,3.6,Fusiform,Compressed,Terminal,1.496,LC
+HASP,Haemulon spp.,Grunt species,genus,https://www.gbif.org/species/2382500,EXACT,,Recorded only to genus by the source (code HASP),Haemulidae,Eupercaria,0.0216,2.9715,36.6,3.5,Fusiform,Compressed,Terminal,2.238,
+HAVI,Haemulon vittatum,Boga,species,https://www.gbif.org/species/7193166,EXACT,,,Haemulidae,Eupercaria,0.0216,2.9715,23,3.5,Elongated,Compressed,Terminal,1.652,LC
+HOBE,Holacanthus bermudensis,Blue Angelfish,species,https://www.gbif.org/species/5211460,EXACT,,,Pomacanthidae,Acanthuriformes,0.0319,2.899,45,3.3,Deep,Compressed,Terminal,1.191,LC
+HOCI,Holacanthus ciliaris,Queen Angelfish,species,https://www.gbif.org/species/5211452,EXACT,,,Pomacanthidae,Acanthuriformes,0.0336,2.9,45,3.1,Deep,Compressed,Terminal,0.803,LC
+HOFM,Holocentridae,Squirrelfish species,family,https://www.gbif.org/species/7195,EXACT,,Recorded only to family by the source (code HOFM),Holocentridae,Holocentriformes,0.0219,2.9698,22.3,3.5,Fusiform,Compressed,Terminal,2.116,
+HYAM,Hypanus americanus,Southern Stingray,species,https://www.gbif.org/species/9335213,EXACT,,,Dasyatidae,Myliobatiformes,0.0739,2.81,200,3.7,Other,Flattened,Inferior,,NT
+HYFL,Hypoplectrus floridae,Florida Hamlet,species,https://www.gbif.org/species/7193116,EXACT,,,Serranidae,Perciformes,0.0109,3.182,10,4,Deep,Compressed,Superior,1.405,LC
+HYPU,Hypoplectrus puella,Barred Hamlet,species,https://www.gbif.org/species/2388790,EXACT,,,Serranidae,Perciformes,0.0109,3.182,15.2,4,Deep,Compressed,Superior,1.94,LC
+HYSP,Hypoplectrus spp.,Hamlet species,genus,https://www.gbif.org/species/2385252,EXACT,,Recorded only to genus by the source (code HYSP),Serranidae,Perciformes,0.0109,3.182,11.7,4,Deep,Compressed,Superior,1.405,
+KYSP,Kyphosus spp.,Chub species,genus,https://www.gbif.org/species/2381286,EXACT,,Recorded only to genus by the source (code KYSP),Kyphosidae,Centrarchiformes,0.0179,3.027,83,2.3,Fusiform,Compressed,Terminal,2.791,
+LANU,Labrisomus nuchipinnis,Hairy Blenny,species,https://www.gbif.org/species/2389661,EXACT,,,Labrisomidae,Blenniiformes,0.0084,3.2,23,3.5,Fusiform,Oval,Subterminal,0.831,LC
+LARH,Lagodon rhomboides,Pinfish,species,https://www.gbif.org/species/2392516,EXACT,,,Sparidae,Spariformes,0.021,3.0848,40,3.2,Deep,Compressed,Terminal,2.22,LC
+LATR,Lactophrys triqueter,Smooth Trunkfish,species,https://www.gbif.org/species/2408093,EXACT,,,Ostraciidae,Tetraodontiformes,0.309,2.23,47,3.6,Deep,Angular,Subterminal,2.168,LC
+LUAN,Lutjanus analis,Mutton Snapper,species,https://www.gbif.org/species/2384981,EXACT,,,Lutjanidae,Eupercaria,0.0149,3.0295,94,3.9,Fusiform,Oval,Terminal,1.69,NT
+LUAP,Lutjanus apodus,Schoolmaster Snapper,species,https://www.gbif.org/species/2384922,EXACT,,,Lutjanidae,Eupercaria,0.018,2.9982,79.1,3.8,Fusiform,Oval,Terminal,1.776,LC
+LUGR,Lutjanus griseus,Gray Snapper,species,https://www.gbif.org/species/2384986,EXACT,,,Lutjanidae,Eupercaria,0.0193,2.9453,89,3.9,Fusiform,Oval,Terminal,1.777,LC
+LUMA,Lutjanus mahogoni,Mahogany Snapper,species,https://www.gbif.org/species/2385023,EXACT,,,Lutjanidae,Eupercaria,0.0637,2.6445,48,4,Fusiform,Oval,Terminal,2.011,LC
+LUSY,Lutjanus synagris,Lane Snapper,species,https://www.gbif.org/species/2384837,EXACT,,,Lutjanidae,Eupercaria,0.0231,2.9116,60,3.7,Fusiform,Oval,Terminal,1.464,NT
+MAMA,Malacoctenus macropus,Rosy Blenny,species,https://www.gbif.org/species/2389497,EXACT,,,Labrisomidae,Blenniiformes,0.0179,2.72,5.5,3.2,Fusiform,Oval,Subterminal,1.004,LC
+MAPL,Malacanthus plumieri,Sand Tilefish,species,https://www.gbif.org/species/2389881,EXACT,,,Malacanthidae,Eupercaria,0.0158,2.7808,70,,Elongated,Oval,Subterminal,1.25,LC
+MATR,Malacoctenus triangulatus,Saddled Blenny,species,https://www.gbif.org/species/2389521,EXACT,,,Labrisomidae,Blenniiformes,0.0089,3,7.5,3.2,Fusiform,Oval,Subterminal,1.004,LC
+MICA,Microgobius carri,Seminole Goby,species,https://www.gbif.org/species/2376651,EXACT,,,Gobiidae,Gobiiformes,0.0065,2.9685,10,3.5,Elongated,Oval,Terminal,0.436,LC
+MOFM,Monacanthidae,Filefish species,family,https://www.gbif.org/species/5896,EXACT,,Recorded only to family by the source (code MOFM),Monacanthidae,Tetraodontiformes,0.0309,2.9441,43.6,3,Deep,Compressed,Terminal,1.17,
+MYBO,Mycteroperca bonaci,Black Grouper,species,https://www.gbif.org/species/2389013,EXACT,,,Serranidae,Perciformes,0.01,3.1316,150,4.1,Fusiform,Oval,Superior,1.524,NT
+MYPH,Mycteroperca phenax,Scamp,species,https://www.gbif.org/species/2389053,EXACT,,,Serranidae,Perciformes,0.0144,3,107,4.1,Fusiform,Oval,Superior,1.508,DD
+NELO,Nes longus,Orangespot Goby,species,https://www.gbif.org/species/2376810,EXACT,,,Gobiidae,Gobiiformes,0.0108,3.003,10,3.4,Fusiform,Oval,Terminal,0.822,LC
+NIUS,Nicholsina usta,Emerald Parrotfish,species,https://www.gbif.org/species/4285799,EXACT,,,Scaridae,Labriformes,0.0144,3.1009,30,,Fusiform,Oval,Terminal,1.083,LC
+OCCH,Ocyurus chrysurus,Yellowtail Snapper,species,https://www.gbif.org/species/2385282,EXACT,,,Lutjanidae,Eupercaria,0.0294,2.7997,86.3,3.9,Fusiform,Oval,Terminal,1.737,DD
+ODDE,Odontoscion dentex,Reef Croaker,species,https://www.gbif.org/species/2399624,EXACT,,,Sciaenidae,Eupercaria,0.0105,3.007,30,3.6,Fusiform,Compressed,Subterminal,1.262,LC
+OGFM,Ogcocephalidae,Batfish species,family,https://www.gbif.org/species/4215,EXACT,,Recorded only to family by the source (code OGFM),Ogcocephalidae,Lophiiformes,0.0186,2.9647,21.1,3.5,Deep,Flattened,Subterminal,,
+OGPA,Ogcocephalus pantostictus,Spotted Batfish,species,https://www.gbif.org/species/5214832,EXACT,,,Ogcocephalidae,Lophiiformes,0.0202,2.9155,31,3.5,Deep,Flattened,Subterminal,,LC
+OGRA,Ogcocephalus radiatus,Polkadot Batfish,species,https://www.gbif.org/species/5214841,EXACT,,,Ogcocephalidae,Lophiiformes,0.0154,3.063,38,3.5,Deep,Flattened,Subterminal,,NE
+OLSA,Oligoplites saurus,Leatherjacket,species,https://www.gbif.org/species/2390622,EXACT,,,Carangidae,Carangiformes,0.0139,2.688,35,3.5,Fusiform,Compressed,Terminal,3.353,LC
+OPAT,Ophioblennius atlanticus,Redlip Blenny,species,https://www.gbif.org/species/2395284,EXACT,,,Blenniidae,Blenniiformes,0.0137,2.9375,19,3,Fusiform,Oval,Subterminal,1.124,LC
+OPAU,Opistognathus aurifrons,Yellowhead Jawfish,species,https://www.gbif.org/species/2391774,EXACT,,,Opistognathidae,Ovalentaria,0.0093,2.99,10,3.7,Elongated,Oval,Terminal,0.409,LC
+OPBE,Opsanus beta,Gulf Toadfish,species,https://www.gbif.org/species/2350911,EXACT,,,Batrachoididae,Batrachoidiformes,0.0197,2.9703,30,3.7,Fusiform,Circular,Subterminal,0.908,LC
+OPGO,Ophichthus gomesii,Shrimp Eel,species,https://www.gbif.org/species/5213186,EXACT,,,Ophichthidae,Anguilliformes,0.0038,3,91.4,3.8,Eel-like,Oval,Terminal,,LC
+OPPA,Opsanus pardus,Leopard Toadfish,species,https://www.gbif.org/species/2350906,EXACT,,,Batrachoididae,Batrachoidiformes,0.0173,2.9241,38,3.7,Fusiform,Circular,Subterminal,0.908,LC
+OPPP,Opsanus sp.,Toadfish species,genus,https://www.gbif.org/species/2350904,EXACT,,Recorded only to genus by the source (code OPPP),Batrachoididae,Batrachoidiformes,0.0173,2.9241,29.1,3.7,Fusiform,Circular,Subterminal,0.908,
+OPWH,Opistognathus whitehursti,Dusky Jawfish,species,https://www.gbif.org/species/2391791,EXACT,,,Opistognathidae,Ovalentaria,0.0093,2.99,14,4,Elongated,Oval,Terminal,0.409,LC
+PAAC,Pareques acuminatus,High Hat,species,https://www.gbif.org/species/2399906,EXACT,,,Sciaenidae,Eupercaria,0.0087,3.202,23,3.6,Fusiform,Compressed,Subterminal,1.249,LC
+PAAL,Paralichthys albigutta,Gulf Flounder,species,https://www.gbif.org/species/2408884,EXACT,,,Paralichthyidae,Pleuronectiformes,0.0114,3,71,3.5,Deep,Flattened,Other,1.593,LC
+PAMA,Parablennius marmoreus,Seaweed Blenny,species,https://www.gbif.org/species/2395741,EXACT,,,Blenniidae,Blenniiformes,0.0137,2.9375,8.5,2.5,Fusiform,Oval,Subterminal,1.402,LC
+PAPA,Pagrus pagrus,Red Porgy,species,https://www.gbif.org/species/5210913,EXACT,,,Sparidae,Spariformes,0.0206,2.9658,91,3.6,Fusiform,Compressed,Terminal,2.02,LC
+PAUM,Pareques umbrosus,Cubbyu,species,https://www.gbif.org/species/2399914,EXACT,,,Sciaenidae,Eupercaria,0.0087,3.202,25,3.6,Fusiform,Compressed,Subterminal,1.269,LC
+PHSP,Phaeoptyx spp.,Cardinalfish species,genus,https://www.gbif.org/species/2396964,EXACT,,Recorded only to genus by the source (code PHSP),Apogonidae,Kurtiformes,0.0082,3.3132,8.2,,Fusiform,Compressed,Terminal,1.364,
+POAR,Pomacanthus arcuatus,Gray Angelfish,species,https://www.gbif.org/species/2396435,EXACT,,,Pomacanthidae,Acanthuriformes,0.0344,2.968,60,3.1,Deep,Compressed,Terminal,2.063,LC
+POCR,Pogonias cromis,Black Drum,species,https://www.gbif.org/species/5212349,EXACT,,,Sciaenidae,Eupercaria,0.0124,3.0256,170,3.8,Fusiform,Compressed,Subterminal,1.247,LC
+POPA,Pomacanthus paru,French Angelfish,species,https://www.gbif.org/species/2396447,EXACT,,,Pomacanthidae,Acanthuriformes,0.0492,2.96,41.1,3.1,Deep,Compressed,Terminal,1.827,LC
+PRSP,Prionotus spp.,Searobin species,genus,https://www.gbif.org/species/2336541,EXACT,,Recorded only to genus by the source (code PRSP),Triglidae,Scorpaeniformes,0.0145,3.0232,23.3,3.8,Fusiform,Circular,Terminal,0.988,
+PSMA,Pseudupeneus maculatus,Spotted Goatfish,species,https://www.gbif.org/species/2396813,EXACT,,,Mullidae,Mulliformes,0.0165,3.0388,30,3.4,Fusiform,Oval,Subterminal,2.206,LC
+PTCA,Ptereleotris calliura,Blue Dartfish,species,https://www.gbif.org/species/2385823,EXACT,,,Gobiidae,Gobiiformes,0.0086,3.0769,12.5,3.2,Elongated,Oval,Terminal,0.727,LC
+PTVO,Pterois volitans,Red Lionfish,species,https://www.gbif.org/species/2334438,EXACT,,,Scorpaenidae,Scorpaeniformes,0.0049,3.2589,45.7,3.4,Fusiform,Compressed,Terminal,1.101,LC
+RACA,Rachycentron canadum,Cobia,species,https://www.gbif.org/species/2391729,EXACT,,,Rachycentridae,Carangiformes,0.0067,3.0101,200,4.3,Elongated,Oval,Terminal,0.987,LC
+RERE,Remora remora,Remora,species,https://www.gbif.org/species/2375267,EXACT,,,Echeneidae,Carangiformes,0.0042,3,86.4,,Elongated,Circular,Superior,1.324,LC
+RYMA,Rypticus maculatus,Whitespotted Soapfish,species,https://www.gbif.org/species/2387715,EXACT,,,Serranidae,Perciformes,0.0047,3.3205,20,4,Fusiform,Compressed,Superior,1.474,LC
+SAAU,Sardinella aurita,Round Sardinella,species,https://www.gbif.org/species/2412864,EXACT,,,Clupeidae,Clupeiformes,0.0074,3.0594,41,3,Elongated,Compressed,Terminal,1.591,LC
+SASA,Sarda sarda,Atlantic Bonito,species,https://www.gbif.org/species/5208593,EXACT,,,Scombridae,Scombriformes,0.0046,3.1008,91.4,4.3,Fusiform,Oval,Terminal,5.758,LC
+SCCA,Scomberomorus cavalla,King Mackerel,species,https://www.gbif.org/species/2374282,EXACT,,,Scombridae,Scombriformes,0.0144,2.9541,184,4.4,Fusiform,Oval,Terminal,5.815,LC
+SCCR,Scartella cristata,Molly Miller,species,https://www.gbif.org/species/2395157,EXACT,,,Blenniidae,Blenniiformes,0.0151,2.842,12,3.2,Fusiform,Circular,Subterminal,0.737,LC
+SCIS,Scarus iseri,Striped Parrotfish,species,https://www.gbif.org/species/2393654,EXACT,,,Scaridae,Labriformes,0.0161,3.0116,35,,Fusiform,Oval,Terminal,1.317,LC
+SCMA,Scomberomorus maculatus,Spanish Mackerel,species,https://www.gbif.org/species/2374268,EXACT,,,Scombridae,Scombriformes,0.01,2.9938,91,4.4,Fusiform,Oval,Terminal,4.001,LC
+SCOC,Sciaenops ocellatus,Red Drum,species,https://www.gbif.org/species/2400222,EXACT,,,Sciaenidae,Eupercaria,0.0103,3.042,155,3.7,Fusiform,Compressed,Subterminal,1.488,LC
+SCSP,Scorpaena spp.,Scorpionfish species,genus,https://www.gbif.org/species/2333694,EXACT,,Recorded only to genus by the source (code SCSP),Scorpaenidae,Scorpaeniformes,0.021,3.0523,25,4,Fusiform,Compressed,Terminal,0.864,
+SCTA,Scarus taeniopterus,Princess Parrotfish,species,https://www.gbif.org/species/2393734,EXACT,,,Scaridae,Labriformes,0.0135,3,35,,Fusiform,Oval,Terminal,1.054,LC
+SEDU,Seriola dumerili,Greater Amberjack,species,https://www.gbif.org/species/5961696,EXACT,,,Carangidae,Carangiformes,0.0278,2.8337,190,4.1,Fusiform,Compressed,Terminal,2.832,LC
+SEPU,Serraniculus pumilio,Pygmy Seabass,species,https://www.gbif.org/species/2388638,EXACT,,,Serranidae,Perciformes,0.023,3.029,7.5,3.9,Fusiform,Compressed,Superior,1.288,LC
+SERI,Seriola rivoliana,Almaco Jack,species,https://www.gbif.org/species/5961682,EXACT,,,Carangidae,Carangiformes,0.0175,2.9532,160,4.5,Deep,Compressed,Terminal,3.744,LC
+SESU,Serranus subligarius,Belted Sandfish,species,https://www.gbif.org/species/2388718,EXACT,,,Serranidae,Perciformes,0.0153,3.0748,10,4,Fusiform,Compressed,Superior,0.974,LC
+SEVO,Selene vomer,Lookdown,species,https://www.gbif.org/species/2390711,EXACT,,,Carangidae,Carangiformes,0.0188,2.8274,48.3,3.7,Fusiform,Compressed,Terminal,3.713,LC
+SEZO,Seriola zonata,Banded Rudderfish,species,https://www.gbif.org/species/5961719,EXACT,,,Carangidae,Carangiformes,0.0272,2.8491,75,4.5,Fusiform,Compressed,Terminal,2.363,LC
+SPBA,Sphyraena barracuda,Great Barracuda,species,https://www.gbif.org/species/9784990,EXACT,,,Sphyraenidae,Istiophoriformes,0.0115,2.9471,200,4.5,Elongated,Compressed,Terminal,2.454,LC
+SPBO,Sphyraena borealis,Northern Sennet,species,https://www.gbif.org/species/2394241,EXACT,,,Sphyraenidae,Istiophoriformes,0.0086,2.9502,46,4.4,Elongated,Compressed,Terminal,1.735,LC
+SPCH,Sparisoma chrysopterum,Redtail Parrotfish,species,https://www.gbif.org/species/2393900,EXACT,,,Scaridae,Labriformes,0.0131,3.1047,46,,Fusiform,Oval,Terminal,1.351,LC
+SPGU,Sphyraena guachancho,Guaguanche Barracuda,species,https://www.gbif.org/species/2394232,EXACT,,,Sphyraenidae,Istiophoriformes,0.0084,2.9263,200,4.4,Elongated,Compressed,Terminal,2.186,LC
+SPRU,Sparisoma rubripinne,Yellowtail Parrotfish,species,https://www.gbif.org/species/2393924,EXACT,,,Scaridae,Labriformes,0.0182,3.0147,47.8,,Fusiform,Oval,Terminal,1.198,LC
+SPSP,Sphoeroides spengleri,Bandtail Pufferfish,species,https://www.gbif.org/species/2407829,EXACT,,,Tetraodontidae,Tetraodontiformes,0.0309,2.7657,30,3.5,Fusiform,Circular,Terminal,1.972,LC
+STAD,Stegastes adustus,Dusky Damselfish,species,https://www.gbif.org/species/2398897,EXACT,,,Pomacentridae,Ovalentaria,0.0306,2.9288,15,3.1,Deep,Compressed,Terminal,1.281,LC
+STDI,Stegastes diencaeus,Longfin Damselfish,species,https://www.gbif.org/species/2398786,EXACT,,,Pomacentridae,Ovalentaria,0.0306,2.9288,12.5,3.1,Deep,Compressed,Terminal,1.522,LC
+STHI,Stephanolepis hispida,Planehead Filefish,species,https://www.gbif.org/species/5213455,EXACT,,,Monacanthidae,Tetraodontiformes,0.023,2.9094,27.5,2.8,Deep,Compressed,Terminal,1.265,LC
+STLE,Stegastes leucostictus,Beaugregory,species,https://www.gbif.org/species/2398903,EXACT,,,Pomacentridae,Ovalentaria,0.029,2.8791,10,3.1,Deep,Compressed,Terminal,1.42,LC
+STMA,Strongylura marina,Atlantic Needlefish,species,https://www.gbif.org/species/5208028,EXACT,,,Belonidae,Beloniformes,0.0015,2.9683,111,3.8,Elongated,Circular,Terminal,1.342,LC
+STPA,Stegastes partitus,Bicolor Damselfish,species,https://www.gbif.org/species/2398881,EXACT,,,Pomacentridae,Ovalentaria,0.0182,3.152,10,3.1,Fusiform,Compressed,Terminal,1.522,LC
+STPL,Stegastes planifrons,Three Spot Damselfish,species,https://www.gbif.org/species/2398894,EXACT,,,Pomacentridae,Ovalentaria,0.0379,2.857,13,2.8,Deep,Compressed,Terminal,1.327,LC
+STSP,Stegastes spp.,Damselfish species,genus,https://www.gbif.org/species/2398767,EXACT,,Recorded only to genus by the source (code STSP),Pomacentridae,Ovalentaria,0.0306,2.9288,12.4,3.1,Deep,Compressed,Terminal,1.522,
+STVA,Stegastes variabilis,Cocoa Damselfish,species,https://www.gbif.org/species/2398885,EXACT,,,Pomacentridae,Ovalentaria,0.0156,3.13,12.5,3.1,Deep,Compressed,Terminal,1.984,LC
+SYIN,Synodus intermedius,Sand Diver,species,https://www.gbif.org/species/5212673,EXACT,,,Synodontidae,Aulopiformes,0.0099,2.999,46,4.4,Elongated,Circular,Terminal,1.561,LC
+THBI,Thalassoma bifasciatum,Bluehead Wrasse,species,https://www.gbif.org/species/2384533,EXACT,,,Labridae,Labriformes,0.0109,2.978,25,3.5,Fusiform,Compressed,Terminal,1.486,LC
+TIMA,Tigrigobius macrodon,Tiger Goby,species,https://www.gbif.org/species/7646160,EXACT,,,Gobiidae,Gobiiformes,0.0108,3.003,5,3.2,Elongated,Oval,Terminal,0.822,LC
+TRFA,Trachinotus falcatus,Permit,species,https://www.gbif.org/species/9819074,EXACT,,,Carangidae,Carangiformes,0.0172,2.9275,122,3.5,Deep,Compressed,Terminal,2.87,LC
+UPPA,Upeneus parvus,Dwarf Goatfish,species,https://www.gbif.org/species/2396783,EXACT,,,Mullidae,Mulliformes,0.01,3.1354,30,4.1,Fusiform,Oval,Subterminal,2.038,LC
+XYSP,Xyrichtys splendens,Green Razorfish,species,https://www.gbif.org/species/2383030,EXACT,,,Labridae,Labriformes,0.0122,3.0295,17.5,3.4,Elongated,Compressed,Terminal,1.387,LC

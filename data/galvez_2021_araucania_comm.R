@@ -81,7 +81,7 @@ dataset <- list(
   samplingProtocol = "One camera trap per 4-km2 grid cell; detection histories built with camtrapR; occasion = 5 camera nights; camera nights per occasion is the effort covariate.",
   samplingProtocolCode = "camera_trap", occasionLength = "5 nights", effortColumn = "obs_camera_nights",
   surveyEvidence = "effort_table",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "target",
   geographicCoverage = "La Araucania Region, Chile (no coordinates deposited)", temporalCoverage = "2019-01/2019-03",
   coordinatesCoarsened = NA,
   notShipped = list(`dc*, cc*` = "dog/cat detection counts (same detections as taxa DOG, CAT)",

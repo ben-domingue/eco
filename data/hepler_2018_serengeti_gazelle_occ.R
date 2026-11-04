@@ -84,7 +84,7 @@ dataset <- list(
   samplingProtocol = "Snapshot Serengeti camera-trap grid (Swanson et al. 2015); for each camera and consecutive 8-day window, 1 if a Thomson's gazelle was photographed at the camera during the window, 0 otherwise; days the camera was on and functioning in the window (1-8) in obs_camera_days.",
   samplingProtocolCode = "camera_trap", occasionLength = "8 days", effortColumn = "obs_camera_days",
   surveyEvidence = "effort_table",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = list(description = "Snapshot Serengeti camera grid, central Serengeti National Park, Tanzania",
                             boundingBox = list(west = min(long$unit_decimalLongitude), east = max(long$unit_decimalLongitude),
                                                south = min(long$unit_decimalLatitude), north = max(long$unit_decimalLatitude))),

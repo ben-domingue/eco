@@ -104,7 +104,7 @@ dataset <- list(
   samplingProtocol = "Camera traps with and without lures, operated February to November; detections aggregated by the authors to 14-day windows, with the number of days each camera was active in the window.",
   samplingProtocolCode = "camera_trap", occasionLength = "14 days", effortColumn = "obs_camera_days",
   surveyEvidence = "effort_table", responseType = "detection", unitKind = "site",
-  closure = "period (year; the paper's colext primary period)",
+  closure = "closed", closureNote = "period (year; the paper's colext primary period)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Miami-Dade County, South Florida, USA (Everglades margin, C-113 canal, L-31 levee, US-1 corridor); no coordinates deposited",
   temporalCoverage = "2016-02-15/2019-11-02",
   coordinatesCoarsened = NA,

@@ -109,7 +109,7 @@ dataset <- list(
   samplingProtocolCode = "transect_search", surveyEvidence = "effort_table",
   surveyEvidenceNote = "ChinaLake_Detectors_Cat.txt gives each of 548 cells an effort category 0-5 for each of the four days; a cell-day is surveyed iff the category is > 0. Every detection falls on a surveyed cell-day.",
   responseType = "detection", unitKind = "individual",
-  closure = "period (four consecutive days in September 2022, closed population)",
+  closure = "closed", closureNote = "period (four consecutive days in September 2022, closed population)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = sprintf("South Range, Naval Air Weapons Station China Lake, Kern/San Bernardino County, California, USA; plot centroid %.1f, %.1f (0.1 degree); detector positions in __traps as local metres centred on the grid", ctr_c$lat, ctr_c$lon),
   temporalCoverage = "2022-09", crs = "local: metres, UTM NAD83 zone 11N easting/northing minus the detector-grid centroid (processor-centred)",
   coordinatesCoarsened = list(value = TRUE, method = "detector coordinates centred on the grid centroid by the processor (local metres; exact UTM positions withheld) because Gopherus agassizii is IUCN Critically Endangered; the centroid is given at 0.1 degree in geographicCoverage"),

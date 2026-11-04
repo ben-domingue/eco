@@ -106,7 +106,7 @@ dataset <- list(
   samplingProtocolCode = "eDNA", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The deposited detection file has one cell per site x season x spatial sample x qPCR replicate; NA cells (season not sampled at the site, single spatial sample, the 3 missing qPCRs of one filter) are not surveys and have no row.",
   responseType = "detection", unitKind = "site",
-  closure = "site occupancy closed across the study (the authors' single-season multi-scale model treats the three seasonal and the spatial samples as level-2 replicates); occasion = qPCR replicate of one filter",
+  closure = "closed", closureNote = "site occupancy closed across the study (the authors' single-season multi-scale model treats the three seasonal and the spatial samples as level-2 replicates); occasion = qPCR replicate of one filter", occasionKind = "spatial", taxonInclusion = "single",
   designNote = "Experimental list of E9 (multi-scale / eDNA): cluster_id = site is the occupancy scale (psi), unit = filter (site x season x spatial sample) the availability scale (theta), occasion = qPCR replicate (p). The season is unit_season; the calendar year of each sample is not deposited.",
   geographicCoverage = "Streams and rivers across Kentucky, USA (Interior Plateau, Western Allegheny Plateau, Central Appalachians and other Level III ecoregions); no coordinates deposited",
   temporalCoverage = "2019-09/2021-06",

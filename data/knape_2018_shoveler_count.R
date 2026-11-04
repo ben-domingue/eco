@@ -75,7 +75,7 @@ dataset <- list(
   abstract = "The N-mixture case study of Knape et al. (2018): northern shoveler counts on up to 10 visits to each of 50 wetlands in southern and east-central Sweden within one breeding season (Julian days 124-158), with wetland water area, reed cover and RT90 northing as site covariates and the Julian day of each visit. 481 of 500 site-visits were surveyed.",
   samplingProtocol = "Repeated counts of northern shovelers at wetlands, up to 10 visits per wetland within one season; protocol details (what was counted, visit duration) are in the paper, which the deposit does not restate.",
   samplingProtocolCode = "site_count", surveyEvidence = "deposited_matrix",
-  responseType = "count", unitKind = "site", closure = "occasion",
+  responseType = "count", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Southern to east-central Sweden (RT90 northings 6.18-6.71 million m); no eastings or site names deposited",
   temporalCoverage = "one breeding season, Julian days 124-158; the year is not stated in the deposit",
   coordinatesCoarsened = NA,

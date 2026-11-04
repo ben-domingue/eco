@@ -60,7 +60,7 @@ dataset <- list(
   samplingProtocol = "Boat survey by two observers with binoculars along the whole 72 km river, three replicate surveys in winter when gharials bask; each 4 km segment's count summed from 20 points at 200 m.",
   samplingProtocolCode = "boat_count", surveyEvidence = "deposited_matrix",
   responseType = "count", unitKind = "site",
-  closure = "period (three surveys within three weeks in winter; population treated as closed by the authors)",
+  closure = "closed", closureNote = "period (three surveys within three weeks in winter; population treated as closed by the authors)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Rapti River, Chitwan National Park, Nepal (segment labels only, no coordinates deposited)",
   temporalCoverage = "2019-11-13/2019-12-03", coordinatesCoarsened = NA,
   notShipped = list(DepthXDepth = "the square of unit_depth_m (asserted)", correlation_matrix = "covariate correlation matrix on the Covariates sheet (analysis product)",

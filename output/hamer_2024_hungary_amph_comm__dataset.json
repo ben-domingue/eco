@@ -18,7 +18,9 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Ponds in Hungary (no coordinates deposited)",
   "temporalCoverage": "2023-03/2023-07",
   "coordinatesCoarsened": null,
@@ -35,8 +37,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "obs_days_since_19mar", "obs_effort_ves_min", "obs_water_temp_c", "obs_water_level_pct", "obs_wind", "obs_rain", "obs_fish_detected", "obs_emergent_veg_pct"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hamer_2024_hungary_amph_comm.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

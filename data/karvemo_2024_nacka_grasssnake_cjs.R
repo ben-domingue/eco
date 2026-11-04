@@ -91,7 +91,7 @@ dataset <- list(
   samplingProtocolCode = "hand_capture", surveyEvidence = "inferred",
   surveyEvidenceNote = "A calendar year with at least one capture record is a surveyed year; 1943 and 1965 have no records and no rows. Search effort per year is not recorded and varied greatly (1 to 112 captures per year).",
   responseType = "detection", unitKind = "individual",
-  closure = "period (captures within a year pooled; survival between years)",
+  closure = "none", closureNote = "period (captures within a year pooled; survival between years)", occasionKind = "none", taxonInclusion = "single",
   lossesOnCapture = "none recorded",
   geographicCoverage = "Nacka nature reserve (7.3 km2), Stockholm County, Sweden; reserve centre 59.29 N, 18.15 E as given in the paper; capture locations not deposited",
   temporalCoverage = "1942/2009", coordinatesCoarsened = NA,

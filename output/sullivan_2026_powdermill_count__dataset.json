@@ -16,7 +16,10 @@
   "surveyEvidence": "sample_table",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion (two visits within a breeding season); period = calendar year",
+  "closure": "closed",
+  "closureNote": "occasion (two visits within a breeding season); period = calendar year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Powdermill Nature Reserve, Westmoreland County, Pennsylvania, USA (40.13-40.17 N, 79.29-79.25 W)",
   "temporalCoverage": "2013-06/2025-07",
   "crs": "EPSG:4326",
@@ -47,8 +50,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_lat", "unit_lon", "unit_elevation_m", "obs_temp_c", "obs_wind_beaufort", "obs_cloud_cover"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/sullivan_2026_powdermill_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

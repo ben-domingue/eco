@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period (year)",
+  "closure": "closed",
+  "closureNote": "period (year)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "detectionCertainty": {
     "column": "obs_dna_state",
     "method": "DNA-based species identification of animals from the site-occasion",
@@ -49,8 +52,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "obs_dna_state"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/chambert_2018_plethodon_fpocc.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

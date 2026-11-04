@@ -187,7 +187,7 @@ dataset <- list(
   surveyEvidence = "sample_table",
   surveyEvidenceNote = "mam_perplotnight: a grid-night is a survey iff samplingImpractical is NA or OK, gridCompletion is recorded, and at least one trap was set (mam_pertrapnight trapStatus other than '1 - trap not set'); impractical nights are deposited with 100 'trap not set' rows and are dropped. Species pool is national (E4 full rectangle): every species-rank taxon has a row at every surveyed grid-night, so a species outside its range at a site is a structural zero there; taxon_sites in __taxa lists the sites where each species was captured.",
   responseType = "count", unitKind = "site",
-  closure = "period = trapping bout (eventID, 1-6 nights per grid, usually 1 or 3, within at most 12 days); occasion = night within the bout at the grid; population open between bouts (robust design)",
+  closure = "closed", closureNote = "period = trapping bout (eventID, 1-6 nights per grid, usually 1 or 3, within at most 12 days); occasion = night within the bout at the grid; population open between bouts (robust design)", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = sprintf("%d NEON terrestrial sites in the contiguous United States and Alaska (no Hawaii or Puerto Rico); plot centres latitude %.2f to %.2f, longitude %.2f to %.2f, as published by NEON", uniqueN(long$cluster_id), min(plots$unit_decimalLatitude), max(plots$unit_decimalLatitude), min(plots$unit_decimalLongitude), max(plots$unit_decimalLongitude)),
   temporalCoverage = sprintf("%s/%s", min(nights$night_date), max(nights$night_date)),
   crs = "EPSG:4326 (WGS 84, as published)",

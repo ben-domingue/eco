@@ -32,13 +32,20 @@ RESPONSE_TYPES = ("detection", "count", "state", "ordinal", "multinomial_cell",
 SURVEY_EVIDENCE = ("sample_table", "effort_table", "deposited_matrix",
                    "row_presence", "inferred")
 UNIT_KINDS = ("site", "individual")
+CLOSURE = ("closed", "open", "dependent", "none")
+OCCASION_KINDS = ("time", "observer", "method", "spatial", "cell", "none")
+TAXON_INCLUSION = ("recorded", "target", "single")
+UNIT_IDENTITY = ("both", "left", "right")
 META_REQUIRED = ("title", "creator", "pubDate", "citation", "sourceURL",
                  "intellectualRights", "samplingProtocol", "samplingProtocolCode",
                  "responseType", "unitKind", "closure", "surveyEvidence",
-                 "temporalCoverage", "geographicCoverage")
+                 "temporalCoverage", "geographicCoverage", "occasionKind",
+                 "taxonInclusion")
 SENSITIVE_IUCN = ("CR", "EN", "VU")
 COORD_RE = re.compile(r"^(unit_)?(decimalLatitude|decimalLongitude)$|^unit_[xy]$")
-SIDE_KEYS = {"taxa": "taxon", "periods": "period", "units": "unit", "traps": "trap"}
+SIDE_KEYS = {"taxa": "taxon", "periods": "period", "units": "unit", "traps": "trap",
+             # composite key: taxon plus a subset of the survey columns (E6)
+             "survey_taxa": "taxon"}
 
 #: Intake policy: table names and the sample floor.
 NAME_RE = re.compile(r"^[a-z0-9_]+$")
@@ -305,16 +312,89 @@ def check_explicit_zero_taxa(t: Table):
                    f"unitKind = individual with {n_taxa} taxa; an individual carries only "
                    f"its own taxon, so a multi-species deposit ships as one table per taxon (E4 ruling #20)", t)]
     cols = _survey_cols(t.df)
-    per = t.df.groupby(cols, sort=False, dropna=False).size()
+    if t.side.get("survey_taxa") is not None:
+        return _survey_taxa_sets(t, cols)
+    # Every survey carries the same SET of taxa (the whole list); counting distinct
+    # taxa per survey is the set test, since every survey's taxa are a subset.
+    per = t.df.groupby(cols, sort=False, dropna=False)["taxon"].nunique()
     short = per[per != n_taxa]
     if short.empty:
         return []
     return [_f("explicit_zero_taxa", "error",
                f"{len(short):,} of {len(per):,} surveys lack rows for some of the "
                f"{n_taxa} taxa; a community table carries y = 0 for every taxon "
-               f"not detected at a conducted survey", t,
+               f"surveyed for at a conducted survey (a __survey_taxa side table "
+               f"lists them when they differ between surveys)", t,
                details=[f"{dict(zip(cols, k if isinstance(k, tuple) else (k,)))}: "
-                        f"{v} rows" for k, v in short.head(20).items()])]
+                        f"{v} taxa" for k, v in short.head(20).items()])]
+
+
+def _survey_taxa_sets(t: Table, cols):
+    """E4.2 with a __survey_taxa side table: each survey's taxon rows equal the
+    union of the side-table rows matching it."""
+    st = t.side["survey_taxa"]
+    match = [c for c in st.columns if c != "taxon"]
+    bad = [c for c in match if c not in cols]
+    if "taxon" not in st.columns or not match or bad:
+        return [_f("side_survey_taxa", "error",
+                   "__survey_taxa must have `taxon` plus one or more of the core survey "
+                   f"columns ({', '.join(cols)})" + (f"; unknown: {', '.join(bad)}" if bad else ""), t)]
+    surveys = t.df[cols].drop_duplicates().astype(str)
+    stx = st[["taxon"] + match].drop_duplicates().astype(str)
+    expected = surveys.merge(stx, on=match, how="left")
+    unmatched = expected[expected["taxon"].isna()][cols].drop_duplicates()
+    out = []
+    if len(unmatched):
+        out.append(_f("explicit_zero_taxa", "error",
+                      f"{len(unmatched):,} survey(s) match no __survey_taxa row, so no taxon "
+                      f"was surveyed for there (E4.2)", t,
+                      details=[str(dict(r)) for r in unmatched.head(20).to_dict("records")]))
+    expected = expected.dropna(subset=["taxon"])[cols + ["taxon"]].drop_duplicates()
+    observed = t.df[cols + ["taxon"]].drop_duplicates().astype(str)
+    both = expected.merge(observed, on=cols + ["taxon"], how="outer", indicator=True)
+    missing = both[both["_merge"] == "left_only"]
+    extra = both[both["_merge"] == "right_only"]
+    if len(missing):
+        out.append(_f("explicit_zero_taxa", "error",
+                      f"{len(missing):,} survey x taxon row(s) listed in __survey_taxa are "
+                      f"absent from the core (a taxon surveyed for carries y = 0 when not detected)",
+                      t, details=[str(dict(r)) for r in missing.drop(columns="_merge").head(20).to_dict("records")]))
+    if len(extra):
+        out.append(_f("explicit_zero_taxa", "error",
+                      f"{len(extra):,} core survey x taxon row(s) for taxa __survey_taxa does not "
+                      f"list at that survey", t,
+                      details=[str(dict(r)) for r in extra.drop(columns="_merge").head(20).to_dict("records")]))
+    return out
+
+
+def check_never_detected(t: Table):
+    """E4.4: an individual never detected in the table is not a unit."""
+    if (t.dataset or {}).get("unitKind") != "individual" or not {"unit", "y"} <= set(t.df.columns):
+        return []
+    y = pd.to_numeric(t.df["y"], errors="coerce").fillna(0)
+    best = y.groupby(t.df["unit"]).max()
+    never = best[best <= 0].index
+    if not len(never):
+        return []
+    return [_f("never_detected", "error",
+               f"{len(never):,} individual(s) are never detected (every y = 0); a catalogue "
+               f"entry never sighted is not a unit (E4.4): {_sample(list(never))}",
+               t, details=[str(u) for u in never])]
+
+
+def check_unit_identity(t: Table):
+    """E2 partial identity: `unit_identity` is one of both / left / right."""
+    out = []
+    for frame in (t.df, t.side.get("units")):
+        if frame is None or "unit_identity" not in frame.columns:
+            continue
+        bad = sorted(set(frame["unit_identity"].dropna().astype(str)) - set(UNIT_IDENTITY))
+        if bad or frame["unit_identity"].isna().any():
+            out.append(_f("unit_identity", "error",
+                          f"unit_identity must be one of {{{', '.join(UNIT_IDENTITY)}}} on every "
+                          f"unit (E2); found {_sample(bad) if bad else 'empty values'}", t))
+            break
+    return out
 
 
 def check_survey_evidence(t: Table):
@@ -402,6 +482,24 @@ def check_side_taxa(t: Table):
         for col in ("scientificName", "taxonRank", "taxonID"):
             if col not in side.columns:
                 out.append(_f("side_taxa", "warn", f"__taxa lacks `{col}` (E6 lists it)", t))
+        if "taxonID" in side.columns:
+            no_id = side["taxonID"].isna() | (side["taxonID"].astype(str).str.strip() == "")
+            rem = (side["taxonRemarks"] if "taxonRemarks" in side.columns
+                   else pd.Series([None] * len(side), index=side.index))
+            no_rem = rem.isna() | (rem.astype(str).str.strip() == "")
+            bad = side.loc[no_id & no_rem, "taxon"]
+            if len(bad):
+                out.append(_f("taxon_rows", "error",
+                              f"{len(bad)} __taxa row(s) have no taxonID and no taxonRemarks saying "
+                              f"why (E6: only a group the GBIF backbone does not hold): {_sample(list(bad))}",
+                              t, details=[str(b) for b in bad]))
+    st = t.side.get("survey_taxa")
+    if st is not None and side is not None and "taxon" in st.columns and "taxon" in side.columns:
+        extra = sorted(set(st["taxon"].dropna().astype(str)) - set(side["taxon"].astype(str)))
+        if extra:
+            out.append(_f("side_survey_taxa", "error",
+                          f"{len(extra)} __survey_taxa taxon/taxa not in __taxa: {_sample(extra)}",
+                          t, details=extra))
     return out
 
 
@@ -462,16 +560,25 @@ def check_coordinates_sensitive(t: Table):
     if iucn is None:
         return []
     flagged = taxa.loc[taxa[iucn].astype(str).str.upper().isin(SENSITIVE_IUCN), "taxon"]
-    if flagged.empty or t.dataset.get("coordinatesCoarsened"):
+    cc = t.dataset.get("coordinatesCoarsened")
+    if flagged.empty or cc:   # declared either way: coarsened, or why not (E7)
         return []
-    for frame in (t.df, t.side.get("units")):
+    local = "local" in str(t.dataset.get("crs") or "").lower()
+    frames = [t.df, t.side.get("units")] + ([] if local else [t.side.get("traps")])
+    for frame in frames:
         if frame is None:
             continue
         lat = next((c for c in frame.columns if c.endswith("decimalLatitude")), None)
-        if lat is None:
-            continue
-        x = pd.to_numeric(frame[lat], errors="coerce").dropna()
-        fine = (np.abs(x * 10 - np.round(x * 10)) > 1e-9).any()
+        fine = False
+        if lat is not None:
+            x = pd.to_numeric(frame[lat], errors="coerce").dropna()
+            fine = bool((np.abs(x * 10 - np.round(x * 10)) > 1e-9).any())
+        else:
+            # projected pair (E7.1): coarsened values sit on 10 km cell centres
+            xc = next((c for c in frame.columns if c in ("unit_x", "x", "x_m")), None)
+            if xc is not None and not local:
+                x = pd.to_numeric(frame[xc], errors="coerce").dropna()
+                fine = bool((np.abs((x - 5000) % 10000) > 1e-6).any())
         if fine:
             return [_f("coordinates_sensitive", "warn",
                        f"{len(flagged)} taxon/taxa flagged {'/'.join(SENSITIVE_IUCN)} "
@@ -547,7 +654,15 @@ def check_meta_vocab(t: Table):
     out = []
     vocab = (("responseType", RESPONSE_TYPES, "E2"),
              ("surveyEvidence", SURVEY_EVIDENCE, "E4"),
-             ("unitKind", UNIT_KINDS, "E10"))
+             ("unitKind", UNIT_KINDS, "E10"),
+             ("closure", CLOSURE, "E8"),
+             ("taxonInclusion", TAXON_INCLUSION, "E10"))
+    ok_ = d.get("occasionKind")
+    if ok_ is not None and not _occasion_kind_ok(ok_):
+        out.append(_f("meta_vocab", "error",
+                      f"occasionKind = `{json.dumps(ok_)}` must be one of {{{', '.join(OCCASION_KINDS)}}}, "
+                      f"or a list of two distinct kinds other than `none`, outer first, for crossed "
+                      f"occasions (E8)", t))
     for k, allowed, clause in vocab:
         v = d.get(k)
         if v is not None and v not in allowed:
@@ -565,6 +680,14 @@ def check_meta_vocab(t: Table):
         out.append(_f("meta_vocab", "error",
                       "intellectualRights must be an object with `spdx` (and `url`)", t))
     return out
+
+
+def _occasion_kind_ok(v) -> bool:
+    """E8: one kind, or two distinct kinds (outer first) for crossed occasions."""
+    if isinstance(v, str):
+        return v in OCCASION_KINDS
+    return (isinstance(v, list) and len(v) == 2 and len(set(v)) == 2
+            and all(isinstance(x, str) and x in OCCASION_KINDS and x != "none" for x in v))
 
 
 def check_meta_conditional(t: Table):
@@ -585,6 +708,52 @@ def check_meta_conditional(t: Table):
     if rt == "binomial_count" and d.get("effortColumn") != "obs_trials":
         out.append(_f("meta_conditional", "error",
                       'responseType = binomial_count needs effortColumn = "obs_trials" (E10, #34)', t))
+    df = t.df
+    has_occ = "occasion" in df.columns
+    ok_, cl = d.get("occasionKind"), d.get("closure")
+    if _occasion_kind_ok(ok_ if ok_ is not None else "") and (ok_ == "none") == has_occ:
+        out.append(_f("meta_conditional", "error",
+                      f"occasionKind = {ok_} but the table {'has' if has_occ else 'has no'} an "
+                      f"`occasion` column (E8: `none` exactly when there is none)", t))
+    if cl in CLOSURE:
+        if not has_occ and cl != "none":
+            out.append(_f("meta_conditional", "error",
+                          f"closure = {cl} but there is no `occasion` column (E8: closure = none)", t))
+        elif has_occ and cl == "none":
+            grp = [c for c in ("unit", "taxon", "trap", "period") if c in df.columns]
+            if (df.groupby(grp, sort=False)["occasion"].nunique() > 1).any():
+                out.append(_f("meta_conditional", "error",
+                              "closure = none but some unit x taxon x period has more than one "
+                              "occasion (E8)", t))
+    ti = d.get("taxonInclusion")
+    if ti in TAXON_INCLUSION and "taxon" in df.columns:
+        n = df["taxon"].nunique()
+        if (ti == "single") != (n == 1):
+            out.append(_f("meta_conditional", "error",
+                          f"taxonInclusion = {ti} with {n} taxa (E10: `single` exactly when the "
+                          f"table has one taxon)", t))
+        if ti == "recorded" and "y" in df.columns:
+            best = pd.to_numeric(df["y"], errors="coerce").fillna(0).groupby(df["taxon"]).max()
+            never = sorted(best[best <= 0].index.astype(str))
+            if never:
+                out.append(_f("meta_conditional", "error",
+                              f"taxonInclusion = recorded but {len(never)} taxon/taxa are never "
+                              f"recorded in this table (E10): {_sample(never)}", t, details=never))
+    tw = d.get("taxaWithheld")
+    if tw is not None:
+        if not (isinstance(tw, list) and all(isinstance(x, str) and x.strip() for x in tw)):
+            out.append(_f("meta_conditional", "error",
+                          "taxaWithheld must be a list of taxon names (E10)", t))
+        else:
+            known = set(df["taxon"].astype(str)) if "taxon" in df.columns else set()
+            taxa = t.side.get("taxa")
+            if taxa is not None and "scientificName" in taxa.columns:
+                known |= set(taxa["scientificName"].dropna().astype(str))
+            clash = sorted(set(tw) & known)
+            if clash:
+                out.append(_f("meta_conditional", "error",
+                              f"taxaWithheld names taxa that have core rows: {_sample(clash)} "
+                              f"(a withheld taxon has no rows, E10)", t))
     return out
 
 
@@ -675,7 +844,8 @@ ALL_CHECKS = (
     check_required_columns, check_column_order, check_key_na, check_treat_binary,
     check_undefined_columns, check_legacy_prefix, check_doubled_prefix, check_covariate_level,
     check_y_numeric, check_y_na, check_y_response_type, check_y_raw_without_recode,
-    check_dup_key, check_explicit_zero_taxa, check_survey_evidence,
+    check_dup_key, check_explicit_zero_taxa, check_never_detected, check_unit_identity,
+    check_survey_evidence,
     check_side_taxa, check_side_periods, check_side_units, check_side_traps,
     check_coordinates_declared, check_crs_declared, check_coordinates_sensitive,
     check_date_iso, check_index_integer,

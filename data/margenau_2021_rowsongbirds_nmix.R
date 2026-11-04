@@ -85,7 +85,7 @@ dataset <- list(
   abstract = "Point-count data from summer breeding songbird surveys at points along electric-transmission rights-of-way and forest controls, used in N-mixture and species-richness models comparing right-of-way width and edge treatments before and after treatment.",
   samplingProtocol = "Point counts, two visits per breeding season per point, three treatment-relative years; each detected individual recorded with distance band, sex and detection type; y is the number of individuals per species per count excluding pure flyovers.",
   samplingProtocolCode = "point_count", surveyEvidence = "row_presence", responseType = "count", unitKind = "site",
-  closure = "occasion (two visits within a breeding season); period = treatment-relative year",
+  closure = "closed", closureNote = "occasion (two visits within a breeding season); period = treatment-relative year", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Central Appalachian forest, USA (no coordinates deposited; Site codes only)", temporalCoverage = "2016-05/2019-06",
   coordinatesCoarsened = NA,
   notShipped = list(Distance = "distance band per individual (lost by aggregation to counts)", Sex = "per individual", Detection = "type per individual; pure flyovers excluded from y",

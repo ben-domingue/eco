@@ -51,6 +51,9 @@
 #   Streptopelia turtur) are in the table. Not shipped: the eleven withheld species (absent from
 #   the deposit, so their zeros are not zeros: documented), euTaxonID, locationProtected,
 #   locationType (constant), the 20-point structure (not deposited), biotope data (on request).
+#   v1.1: closure = none, occasionKind = none (one count per route-year), taxonInclusion =
+#   recorded, taxaWithheld = the eleven security-class-4 species (E10); LOXSPP carries
+#   taxonRemarks (genus-rank record). Not E7.3: the source itself publishes only 25 km centres.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "lindstrom_2025_sweden_summerpoints_count"
 zip <- download_cached("https://www.gbif.se/ipt/archive.do?r=lu_sft_spkt", TABLE, "dwca.zip")
@@ -140,8 +143,11 @@ cat(sprintf("  %s rows = %d counts x %d taxa; %d non-zero\n", format(nrow(long),
 
 # GBIF strict match returns "multiple equal matches" for the bare binomial Chloris chloris (a plant genus homonym); the authorship resolves it
 lookup <- ifelse(sp$scientificName == "Chloris chloris", "Chloris chloris (Linnaeus, 1758)", sp$scientificName)
+# GBIF's backbone spells the wood warbler with Bechstein's original double l (FUZZY otherwise): same species
+lookup[lookup == "Phylloscopus sibilatrix"] <- "Phylloscopus sibillatrix"
 taxa <- make_taxa(sp$taxon, sp$scientificName, vernacularName = sp$vernacularName, taxonRank = sp$taxonRank,
-                  lookupName = lookup, taxon_dyntaxaID = sp$taxonID)
+                  lookupName = lookup, taxon_dyntaxaID = sp$taxonID,
+                  taxonRemarks = fifelse(sp$taxon == "LOXSPP", "crossbills registered at genus, as the protocol allows; the species-level Loxia records are their own taxa", NA_character_))
 stopifnot(!anyNA(taxa$taxonID))
 periods <- ev[, .(year = unique(year), n_routes = uniqueN(unit)), by = period][order(period)]
 stopifnot(nrow(periods) == 50, all(periods$year == 1974L + periods$period))
@@ -159,7 +165,10 @@ dataset <- list(
   abstract = "The summer point count routes (sommarpunktrutterna) of the Swedish Bird Survey, run by Lund University since 1975: volunteer ornithologists count all birds seen or heard for 5 minutes at each of 20 self-chosen points at least 200-300 m apart, once per year in the breeding season (April to mid-July), ideally on the same date, start time and point order each year. Routes are personal and end when the surveyor stops; new routes start. The deposit gives one event per route per year with the total individuals per species over the 20 points (the point level is not deposited), the observer id, date, start and end time, transport between points, county, and the centre of the 25 x 25 km grid square containing the route. Eleven security-class-4 species are withheld by the publisher.",
   samplingProtocol = "Point count route: 20 points at least 200 m (forest) or 300 m (open) apart, 5 minutes per point, all birds seen or heard registered and identified to species (crossbills may be registered as Loxia), one count per route per year in April to July; y is the route total of individuals per species.",
   samplingProtocolCode = "point_count", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
-  closure = "period = calendar year (one count per route per year; no occasion); the 20 points per route are summed by the source, so there is no within-year replication",
+  closure = "none", closureNote = "period = calendar year (one count per route per year; no occasion); the 20 points per route are summed by the source, so there is no within-year replication",
+  occasionKind = "none", taxonInclusion = "recorded",
+  taxaWithheld = c("Ciconia nigra", "Anser erythropus", "Aquila chrysaetos", "Clanga clanga", "Haliaeetus albicilla", "Circus macrourus",
+                   "Circus pygargus", "Falco peregrinus", "Falco rusticolus", "Bubo bubo", "Dendrocopos leucotos"),
   geographicCoverage = "Sweden, all 21 counties, concentrated in the southern half (55.0-69.1 N, 11.0-24.2 E; route positions given as 25 x 25 km grid-square centres)",
   temporalCoverage = "1975-04-12/2024-07-02", crs = "EPSG:4326",
   coordinatesCoarsened = list(value = TRUE, method = "by the source: the centre of the 25 x 25 km survey grid square containing the route (coordinateUncertaintyInMeters 17,700), coarser than the 0.1 degree rule; VU taxa (Aythya ferina, Melanitta fusca, Streptopelia turtur) are in the table"),

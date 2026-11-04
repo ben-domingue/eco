@@ -31,13 +31,15 @@
 #   symons_2018_bunbury_dolphin_rd: unit = dolphin ("BD001".. from the row number), taxon = TURADU,
 #     period = primary period 1-12, occasion = secondary period 1-6, y = photographed (0/1). Every
 #     secondary period of the study is a survey for every documented dolphin (occasions before a
-#     dolphin's first sighting are kept as 0, as in the other robust-design tables; the deposit is
-#     the full matrix). surveyEvidence = deposited_matrix. The 28 never-seen rows are not shipped.
+#     dolphin's first sighting are kept as 0; the deposit is the full matrix). E4.4: the deposit
+#     gives no age or birth year for any dolphin (natural fin marks, no tag loss), so all are of
+#     unknown age and at risk from the first season; the 28 never-seen rows are dropped. surveyEvidence = deposited_matrix. The 28 never-seen rows are not shipped.
 #   symons_2018_bunbury_femalecalf_msrd: unit = female ("F00".."F99"), same periods and occasions,
 #     y = 0 not photographed / 1 photographed without a calf / 2 photographed with her dependent
 #     calf; obs_calf_code = the calf's code on y = 2 rows; obs_date_sighted = the sighting date on
 #     y >= 1 rows (secondary periods span several days, so there is no survey date for y = 0 rows).
-#     The 9 never-seen females are not shipped. surveyEvidence = deposited_matrix.
+#     The 9 never-seen females are not shipped. surveyEvidence = deposited_matrix. E4.4: the
+#     females are reproductively active adults of unknown age, at risk from the first season.
 #   __periods: season, study year (Dec-Nov), and the first and last female sighting date in the
 #   season (the deposit has no survey dates). Coordinates: none deposited. Tursiops aduncus is NT.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -107,7 +109,7 @@ COMMON <- list(
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
   samplingProtocol = "Boat-based photo-identification along three systematic zig-zag transects covering a 120 km2 coastal study area off Bunbury, Western Australia, in Beaufort <= 3 with two to five observers scanning about 250 m either side; every dolphin in an encountered group photographed for dorsal-fin identification; only distinctive fins in high-quality images enter the histories. Completing the three transects is one secondary period (1-12 days); six per austral season.",
   samplingProtocolCode = "photo_id", surveyEvidence = "deposited_matrix", unitKind = "individual",
-  closure = "occasion within period (robust design: secondary periods within an austral season, assumed closed; open between seasons, with Markovian temporary emigration in the paper's models)",
+  closure = "closed", closureNote = "occasion within period (robust design: secondary periods within an austral season, assumed closed; open between seasons, with Markovian temporary emigration in the paper's models)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Coastal waters off Bunbury, south-western Australia (about 33.3 S, 115.6 E; 50 km of coast, 2 km offshore); no coordinates deposited",
   temporalCoverage = "2009-12/2012-11",
   coordinatesCoarsened = NA)
@@ -118,7 +120,7 @@ ds <- write_table(long, TABLE, c(COMMON, list(
   title = "Robust-design photo-identification histories of 201 Indo-Pacific bottlenose dolphins off Bunbury, Western Australia, 12 seasons x 6 secondary periods, 2009-2012",
   abstract = "Three-year subsample (December 2009 - November 2012) of the Bunbury long-term dolphin monitoring programme: 201 distinctively marked Indo-Pacific bottlenose dolphins photographed in 72 secondary periods (six per austral season), the data the paper used to show how reducing secondary periods inflates the CV of abundance and delays trend detection.",
   responseType = "detection",
-  notes = "Dolphin ids are dryad1 row numbers (no catalogue ids deposited). Occasions before a dolphin's first sighting are kept as 0 (E4). The paper's survey-effort simulations (removing secondary periods) are analyses of this table, not data.",
+  notes = "Dolphin ids are dryad1 row numbers (no catalogue ids deposited). Occasions before a dolphin's first sighting are kept as 0 (E4.4: no ages deposited, so every dolphin is of unknown age and at risk from the first season). The paper's survey-effort simulations (removing secondary periods) are analyses of this table, not data.",
   notShipped = list(`dryad1.txt rows of zeros` = "28 catalogue dolphins with no photograph in the subsample (the paper documents 201)",
                     `dryad2.txt` = "shipped as symons_2018_bunbury_femalecalf_msrd"))),
   taxa = taxa, periods = periods, script = "data/symons_2018_bunbury_dolphin.R")

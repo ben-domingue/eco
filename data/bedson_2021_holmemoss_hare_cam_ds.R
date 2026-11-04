@@ -83,7 +83,7 @@ dataset <- list(
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix",
   responseType = "multinomial_cell", distanceBreaks = BREAKS, distanceUnits = "m", transectType = "point",
   snapshotInterval = "1 s", fieldOfViewDegrees = 42,
-  effortColumn = "unit_effort_seconds", unitKind = "site", closure = "occasion (bins of one camera deployment)",
+  effortColumn = "unit_effort_seconds", unitKind = "site", closure = "closed", closureNote = "occasion (bins of one camera deployment)", occasionKind = "cell", taxonInclusion = "single",
   geographicCoverage = "Holme Moss, Peak District National Park, England (OS SE 40 39 area; six 1 km sites; no coordinates deposited)",
   temporalCoverage = "2017-11/2018-03",
   notes = "Distances are deposited as whole metres d (1-12) and taken as the bin (d-1, d]; the paper truncated at 5 m and used bins at 1, 2, 3-4 and 5 m (n = 3,506, asserted), nothing is dropped here. Effort is the deposited total seconds per camera (the paper multiplies by 42/360 for the field of view; not applied). The file has 3,706 detections and 76 cameras with a detection against the paper's 3,705 and 77 (site 5: 474 vs 479; the other sites match). obs_individuals is hares in the bin (cluster sizes 1-2); y counts snapshot detections. Deployment dates per camera and camera-night counts are only in the paper's supporting information.",

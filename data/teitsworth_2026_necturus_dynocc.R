@@ -81,7 +81,7 @@ dataset <- list(
   abstract = "Detection/non-detection of the Neuse River waterdog (Necturus lewisi), an aquatic salamander endemic to the Neuse and Tar-Pamlico basins of eastern North Carolina and listed as threatened in 2021, at 176 stream sites in 13 management units over five consecutive years with up to four overnight trap checks per year, with stream discharge and bait age per check, rapid habitat assessment scores and watershed land cover per site, and a yearly streamflow metric and drought intensity per site-year. The paper fit dynamic occupancy models: extinction rose with developed land cover and drought and fell with habitat quality, suggesting an extinction debt in urban subpopulations.",
   samplingProtocol = "Baited traps set at each site and checked on up to four consecutive mornings per year (captures overnight), in five consecutive years; discharge is the daily mean of the day before each check (USGS gauges, interpolated for ungauged sites).",
   samplingProtocolCode = "baited_trap", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "site",
-  closure = "period (study year; colext primary period)",
+  closure = "closed", closureNote = "period (study year; colext primary period)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Neuse and Tar-Pamlico River basins, eastern North Carolina, USA; no coordinates deposited",
   temporalCoverage = "five consecutive years before 2026 (calendar years not stated in the deposit)",
   coordinatesCoarsened = NA,

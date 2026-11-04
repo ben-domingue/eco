@@ -17,7 +17,9 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "John Prince Research Forest, near Fort St. James, central interior British Columbia, Canada; no coordinates deposited",
   "temporalCoverage": "2020-12-15/2021-03-15",
   "coordinatesCoarsened": {
@@ -41,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "obs_detections_30min", "obs_detections_8hr"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/koetke_2024_jprf_moose_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

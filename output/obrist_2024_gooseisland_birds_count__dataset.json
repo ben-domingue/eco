@@ -1,6 +1,6 @@
 {
   "table": "obrist_2024_gooseisland_birds_count",
-  "title": "Point counts of 50 bird species at 50 points on six islands of the Yalalii (Goose Island) Archipelago, British Columbia, three surveys in May-June 2011",
+  "title": "Point counts of 40 bird species at 50 points on six islands of the Yalalii (Goose Island) Archipelago, British Columbia, three surveys in May-June 2011",
   "creator": "Obrist, Debora; Field, Rachel; Reynolds, John",
   "pubDate": "2024",
   "doi": "10.5281/zenodo.11518182",
@@ -16,7 +16,10 @@
   "surveyEvidence": "row_presence",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion (three surveys within one breeding season)",
+  "closure": "closed",
+  "closureNote": "occasion (three surveys within one breeding season)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Yalalii (Goose Island) Archipelago, Heiltsuk territory, central coast of British Columbia, Canada; 50 points on six islands, coordinates as published",
     "westBoundingCoordinate": -128.4812,
@@ -36,22 +39,23 @@
     "detections outside the authors' rule": "508 of 1,802 rows: time.survey outside minutes 1-10 (on arrival, after survey, ~1 hour ago, on departure, minute 12 or 15, unrecorded 'n/a', or a clock time) or distance beyond 100 m, free text or 'n/a'; the deposit's metadata treats these as casual observations",
     "Casual Observations sheet": "535 incidental records without a survey set",
     "Relative Abundance Comparisons": "the paper's 1948 vs 2011 totals (derived)",
+    "species recorded only outside the rule": "10 species (BLTU, COLO, COME, DUNL, GBHE, MALL, PGPL, SAND, WESA, WHIM) have detections only outside the counting rule, so this table's surveys did not record them (taxonInclusion = recorded)",
     "atlascode": "BC Breeding Bird Atlas evidence code per detection (per-detection, not per count)"
   },
   "summary": {
-    "n_rows": 7500,
+    "n_rows": 6000,
     "n_units": 50,
-    "n_taxa": 50,
+    "n_taxa": 40,
     "n_periods": 1,
     "n_occasions": 3,
     "n_surveys": 150,
     "y_values": "0,1,2,3,4,5,6,8,10,11",
-    "prop_zero": 0.893
+    "prop_zero": 0.866
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_island", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude", "obs_start_time", "obs_temp_c", "obs_weather"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/obrist_2024_gooseisland_birds_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

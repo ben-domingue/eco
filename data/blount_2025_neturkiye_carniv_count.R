@@ -105,7 +105,7 @@ dataset <- list(
   samplingProtocol = "Unbaited camera traps (Reconyx PC900 / HPX2, Keepguard KG891) at canopy, chest or knee height on trees facing dirt roads and trails in randomly chosen 2-km2 grid cells, left for 1-728 days (mean 111); independent detection events separated by 30 min (wolf) or 10 min (bear); counts summed over seven-day occasions from the first deployment day.",
   samplingProtocolCode = "camera_trap", occasionLength = "7 days", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "A deployment-week is surveyed iff the cell is non-NA in the count matrices; NA cells are the trailing weeks after the camera stopped. The matrices carry no row ids; they and the covariate sheet (229 rows each, 13 matrix rows entirely NA) are taken to be in the same deployment order, as the authors' unmarked inputs.",
-  responseType = "count", unitKind = "site", closure = "occasion",
+  responseType = "count", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "target",
   geographicCoverage = "Sarikamis-Allahuekber Mountains National Park and surrounding forest, Kars Province, northeastern Turkiye (about 40.2-40.5 N, 42.4-42.8 E)",
   temporalCoverage = "2009/2023",
   coordinatesCoarsened = list(value = FALSE, method = "kept as deposited (exact camera locations); neither taxon is IUCN CR/EN/VU"),

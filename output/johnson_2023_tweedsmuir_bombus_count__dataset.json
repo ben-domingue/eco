@@ -19,7 +19,10 @@
   "surveyEvidenceNote": "TrapInfo.csv lists the three traps set at each of the 26 sites on both rounds (52 site visits), and TrapBumbles.csv records traps that caught nothing (Species NA, Abundance 0); every catch belongs to a listed trap. A species with no trap row at a site visit is a zero. Three traps (two bear-disturbed) have no catch row and are counted in the visit as empty, as the authors do.",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "within season: the two visits are treated as replicates of the season's occupancy (the paper's model); colony phenology changes over the 4-6 weeks between them",
+  "closure": "closed",
+  "closureNote": "within season: the two visits are treated as replicates of the season's occupancy (the paper's model); colony phenology changes over the 4-6 weeks between them",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Tweedsmuir Provincial Park and surroundings, British Columbia, Canada",
     "boundingBox": {
@@ -53,7 +56,7 @@
   },
   "sampleFloor": "below (26 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_burned", "obs_trap_hours", "obs_n_traps_disturbed", "obs_flower_count", "obs_flower_richness"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/johnson_2023_tweedsmuir_bombus_count.R",
   "buildDate": "2026-11-03"

@@ -32,6 +32,9 @@
 #   no model outputs). Taxa: Amur tiger (Panthera tigris, EN), Amur leopard (P. pardus, VU at
 #   species level; the subspecies is CR) and Siberian musk deer (VU) are flagged, but the deposit
 #   has no coordinates, so there is nothing to coarsen.
+#   v1.1: closure = none and occasionKind = none (no occasion column); taxonInclusion =
+#   recorded (all 18 deposited species detected at least once, asserted; the three
+#   photographed but unmodelled species are not in the deposit, notShipped).
 
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "feng_2021_nechina_mamm_binom"
@@ -63,7 +66,9 @@ tx <- data.table(code = c("S01", "S02", "S03", "S04", "S05", "S07", "S09", "S10"
 tx <- merge(tx, spp, by.x = "code", by.y = "SppCode")
 stopifnot(nrow(tx) == 18, !anyDuplicated(tx$taxon))
 taxa <- make_taxa(tx$taxon, tx$SciName, vernacularName = tx$CommName, taxonRank = tx$rank, lookupName = tx$lookup,
-                  taxon_family = tx$Family, taxon_sourceCode = tx$code, taxon_iucnCategory = tx$iucn)
+                  taxon_family = tx$Family, taxon_sourceCode = tx$code, taxon_iucnCategory = tx$iucn,
+                  taxonRemarks = ifelse(tx$taxon == "URSUS", "deposited at genus (SciName 'Ursus', CommName 'Black bear'); taxonID is the genus", NA_character_),
+                  allow_higher = "URSUS")   # GBIF answers the genus name with HIGHERRANK to the genus itself (key 2433406)
 stopifnot(!anyNA(taxa$taxonID))
 
 # ---- long table ----------------------------------------------------------------------------
@@ -77,7 +82,7 @@ long <- long[, .(unit = CamID, taxon, y = as.integer(y), obs_trials = as.integer
                  unit_dist_road_m = Dist.road, unit_dist_river_m = Dist.river, unit_ndvi = NDVI,
                  unit_basal_area = BA, unit_canopy_transparency = Transparent)]
 long <- order_eco(long)
-stopifnot(nrow(long) == 138 * 18, sum(long$y) == sum(m), all(long$y <= long$obs_trials), uniqueN(long$unit) == 138)
+stopifnot(nrow(long) == 138 * 18, sum(long$y) == sum(m), all(long[, sum(y), by = taxon]$V1 > 0), all(long$y <= long$obs_trials), uniqueN(long$unit) == 138)
 
 dataset <- list(
   title = "Camera-trap detections of 18 mammal species at 138 stations in a cattle-grazed temperate forest, Northeast China: 14-day windows with a detection out of windows surveyed",
@@ -91,12 +96,13 @@ dataset <- list(
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix",
   effortColumn = "obs_trials",
   responseType = "binomial_count", unitKind = "site",
-  closure = "one season (the whole deployment of each station, 45-184 trap days, is one closed period; the 14-day windows are collapsed into obs_trials)",
+  closure = "none", closureNote = "one season (the whole deployment of each station, 45-184 trap days, is one closed period; the 14-day windows are collapsed into obs_trials)",
+  occasionKind = "none", taxonInclusion = "recorded",
   geographicCoverage = "Temperate forest across the China-Russia border, Northeast China (the paper's study area; no coordinates deposited)",
   temporalCoverage = "not deposited: one camera-trapping season of up to 184 trap days per station; the year is in Feng et al. 2021 (doi:10.1111/ddi.13237), which the agent could not fetch",
   coordinatesCoarsened = list(value = FALSE, method = "no coordinates in the deposit; Amur tiger (EN), leopard (VU, Amur subspecies CR) and Siberian musk deer (VU) are present, so none can be added"),
   notes = "Species codes are six letters from the scientific name; the deposit's S-codes are in __taxa.taxon_sourceCode (S06, S08, S16, S18 and S21 are not in the deposit: 21 species photographed, 18 modelled). Three taxa are deposited as subspecies and the black bear at genus ('Ursus'); GBIF keys are at the species or genus level accordingly. unit_human_detection_rate and unit_cattle_detection_rate are detections of humans and cattle at the same cameras, the authors' disturbance covariates. k is not a deterministic function of trap days (7 stations have k > ceiling(Days/14)); both are shipped as deposited.",
-  notShipped = list())
+  notShipped = list(unmodelled_species = "the paper photographed 21 species; the deposit carries the 18 it modelled (S06, S08, S16, S18, S21 absent, names not given), so the other three cannot be shipped"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, script = SCRIPT)
 
 stage_dict_row(TABLE,

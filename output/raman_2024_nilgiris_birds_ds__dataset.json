@@ -20,19 +20,23 @@
   "distanceUnits": "m",
   "transectType": "line",
   "unitKind": "site",
-  "closure": "occasion (bands of one walk); period = repeat visit",
+  "closure": "closed",
+  "occasionKind": "cell",
+  "taxonInclusion": "recorded",
+  "closureNote": "occasion (bands of one walk); period = repeat visit",
   "geographicCoverage": "Mudumalai Wildlife Sanctuary and Upper Nilgiris, Nilgiris district, Tamil Nadu, India (transect coordinates coarsened to 0.1 degree in __units)",
   "temporalCoverage": "1995-11/1996-05",
   "coordinatesCoarsened": {
     "value": true,
-    "method": "0.1-degree grid cell centre for all transects; the community includes IUCN Vulnerable taxa (Anthus nilghiriensis, Columba elphinstonii); source coordinates carried a 500 m uncertainty"
+    "method": "0.1-degree grid cell centre for all transects; the community includes IUCN-threatened taxa (Anthus nilghiriensis VU); source coordinates carried a 500 m uncertainty; transect names replaced by T1..T8 (E7.4)"
   },
   "notes": "Community distance sampling: a 0 row for every species x band at every survey. Heard-only detections are included with their recorded band, as the source does. Transects were visited 1-4 times; period is the visit index, so most units have fewer than 4 periods.",
   "notShipped": {
     "beyond_100m": "3 detections recorded beyond 100 m (bands 100-125, 100-150, >100), outside the band scheme",
     "ambiguous_band": "1 detection in a 20-50 band that spans two scheme bands",
     "no_band": "1 detection with no distance band",
-    "per_detection_fields": "heardSeenFlying, leftRight, mixedFlock, location and remarks are per detection and do not survive aggregation to band counts"
+    "per_detection_fields": "heardSeenFlying, leftRight, mixedFlock, location and remarks are per detection and do not survive aggregation to band counts",
+    "transect names": "place names (E7.4); unit is T1..T8; names are in raman_2024_nilgiris_birds_exact_ds"
   },
   "summary": {
     "n_rows": 15295,
@@ -46,8 +50,8 @@
   },
   "sampleFloor": "below (8 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_stratum", "obs_duration_min", "obs_weather", "obs_start_time"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/raman_2024_nilgiris_birds_ds.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

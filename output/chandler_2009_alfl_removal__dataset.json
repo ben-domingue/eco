@@ -17,7 +17,9 @@
   "responseType": "multinomial_cell",
   "multinomialType": "removal",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
   "geographicCoverage": "Beaver meadows, western Massachusetts, USA (no coordinates in the package files)",
   "temporalCoverage": "2005",
   "coordinatesCoarsened": null,
@@ -37,8 +39,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_woody", "unit_struct", "unit_time_survey1", "unit_date_survey1"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/chandler_2009_alfl_removal.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

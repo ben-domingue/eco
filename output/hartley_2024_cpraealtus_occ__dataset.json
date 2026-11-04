@@ -18,7 +18,10 @@
   "surveyEvidence": "sample_table",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period (snow-free season; the paper fit single-season models per season)",
+  "closure": "closed",
+  "closureNote": "period (snow-free season; the paper fit single-season models per season)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Australian Alps bioregion, south-eastern Australia (New South Wales, Victoria, ACT); no coordinates deposited",
   "temporalCoverage": "2018-11-16/2022-04-10",
   "coordinatesCoarsened": null,
@@ -39,8 +42,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site_id", "unit_elevation_m", "unit_burnt_2019_20", "unit_grazing_index", "obs_time_hhmm", "obs_air_temp_c", "obs_tiles_available", "obs_tile_temp_mean_c", "obs_temp_diff", "obs_survey_no"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hartley_2024_cpraealtus_occ.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

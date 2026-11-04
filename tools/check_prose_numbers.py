@@ -65,6 +65,17 @@ EXEMPT = {
         "the paper's count, with the reason the pooled matrix has 46",
     ("curveirasantos_2026_phinda_hyena_scr", "60 cameras placed"):
         "the leopard-design subset of the 100 cameras; near 51 hyenas by coincidence",
+    # v1.1: species counts of the source or of the E7.3 sibling table, named as such
+    ("peer_2014_bmsil_butterfly_count", "81 species plus"):
+        "81 species plus 7 family- or order-level taxa = 88",
+    ("barea_2021_sierran_butterfly_exact_count", "102 species"): "the source's count; this sibling omits the flagged taxa",
+    ("lafferty_2024_estuaryfish_exact_mb", "17 species"): "the source's count; this sibling omits the flagged taxon",
+    ("rich_2016_botswana_mamm_binom", "37 species at"): "the _exact sibling's count",
+    ("rich_2016_botswana_mamm_exact_binom", "44 mammal species"): "the source's (and the coarsened table's) count",
+    ("rich_2016_botswana_mamm_exact_binom", "44 species with"): "the coarsened sibling's count",
+    ("rooney_2025_snapshotusa_comm", "85 species at"): "the _exact sibling's count",
+    ("rooney_2025_snapshotusa_exact_comm", "87 species with"): "the coarsened sibling's count",
+    ("stallings_2025_gulfreefs_exact_count", "171 resolved taxa"): "the source's count; this sibling omits the flagged taxa",
 }
 
 WORDS = {w: i for i, w in enumerate(

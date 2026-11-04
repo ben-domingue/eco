@@ -80,7 +80,7 @@ dataset <- list(
   abstract = "Repeated surveys of 131 sites for two sympatric lungless salamanders, the federally endangered Shenandoah salamander (Plethodon shenandoah) and the red-backed salamander (P. cinereus), over four years (2011-2014, 2-5 surveys per year), recording the species identified in the field and, for a subset of site-occasions, the identity confirmed by DNA analysis. The worked example for a two-species occupancy model that accounts for misidentification between the species.",
   samplingProtocol = "Repeated surveys of salamander sites within each year; animals identified to species in the field, with genetic confirmation of identity for a subset. Survey method and site layout are in the paper.",
   samplingProtocolCode = "visual_encounter", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "site",
-  closure = "period (year)",
+  closure = "closed", closureNote = "period (year)", occasionKind = "time", taxonInclusion = "target",
   detectionCertainty = list(column = "obs_dna_state", method = "DNA-based species identification of animals from the site-occasion", level = "obs (site-occasion)",
                             note = "0 = no confirmation available; 1 = P. cinereus confirmed, 2 = P. shenandoah confirmed, 3 = both confirmed. Field identifications (y, y_raw) may be misidentifications; confirmed codes are certain."),
   stateCodes = list(`0` = "no species detected", `1` = "P. cinereus", `2` = "P. shenandoah", `3` = "both species"),

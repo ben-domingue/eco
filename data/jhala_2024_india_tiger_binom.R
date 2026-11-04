@@ -97,7 +97,7 @@ dataset <- list(
   samplingProtocolCode = "sign_survey", surveyEvidence = "deposited_matrix",
   effortColumn = "obs_trials",
   responseType = "binomial_count", unitKind = "site",
-  closure = "period: occupancy is closed within an estimation cycle and open between the four cycles; the replicates of a cycle are collapsed into obs_trials",
+  closure = "none", closureNote = "period: occupancy is closed within an estimation cycle and open between the four cycles; the replicates of a cycle are collapsed into obs_trials", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "Tiger landscapes of India (7,183 grid cells of 100 km2; no coordinates deposited)",
   temporalCoverage = "2006/2018",
   coordinatesCoarsened = list(value = FALSE, method = "no coordinates in the deposit (grid numbers only); the tiger is IUCN EN, so none can be added"),

@@ -44,7 +44,7 @@ dataset <- list(
   abstract = "Textbook multinomial N-mixture (removal) dataset: alder flycatchers first detected in each of three consecutive 5-minute intervals of a 15-minute point count at 50 points in beaver meadows, Massachusetts, 2005; survey 1 of 3, as analysed in the unmarked capture-recapture vignette.",
   samplingProtocol = "15-minute point counts split into three 5-minute removal intervals; individuals assigned to the interval of first detection. Per-individual time and distance records in the source are collapsed to interval counts.",
   samplingProtocolCode = "point_count", surveyEvidence = "deposited_matrix",
-  responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site", closure = "occasion",
+  responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site", closure = "closed", occasionKind = "cell", taxonInclusion = "single",
   geographicCoverage = "Beaver meadows, western Massachusetts, USA (no coordinates in the package files)",
   temporalCoverage = "2005",
   coordinatesCoarsened = NA,

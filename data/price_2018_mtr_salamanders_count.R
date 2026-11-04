@@ -28,11 +28,14 @@
 # Mapping (standard: N-mixture repeated counts with dynamic occupancy, community, E9 core):
 #   unit = stream reach (site 1-23); period = study year 1-3 (__periods; calendar years
 #   unknown); occasion = visit; taxon = species x life-stage item (seven codes, with
-#   taxon_life_stage in __taxa, as swedberg_2023_springfish_occ does for bass stages);
+#   lifeStage (Darwin Core) in __taxa, E6; GP and PR pool all stages, so lifeStage is
+#   empty and taxonRemarks says so; DESSPPL is a genus-rank record);
 #   y = count. obs_: day of year, precipitation (as deposited), conductivity. period_
 #   (reach x year): cover objects searched. unit_: mountaintop-removal flag. Survey
 #   evidence: the deposited counts table, one row per conducted visit (row_presence; every
 #   site has every visit of the design). No dates (day of year only), no coordinates.
+#   v1.1: closure = closed, occasionKind = time, taxonInclusion = recorded (every item has
+#   a count > 0, asserted).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "price_2018_mtr_salamanders_count"
 dir <- download_dryad("10.5061/dryad.7278k2n", TABLE)
@@ -69,7 +72,7 @@ long <- merge(long, cov, by = c("Site", "Year"))
 long[, unit_mtr := e$MTR[Site]]
 long <- long[, .(unit = Site, taxon, y = as.integer(y), period = as.integer(Year), occasion = as.integer(Visit),
                  obs_day_of_year, obs_precip, obs_conductivity, period_cover_objects, unit_mtr)]
-stopifnot(nrow(long) == 230 * 7, sum(long$y) == 2481, !anyDuplicated(long[, .(unit, taxon, period, occasion)]))
+stopifnot(nrow(long) == 230 * 7, sum(long$y) == 2481, all(long[, sum(y), by = taxon]$V1 > 0), !anyDuplicated(long[, .(unit, taxon, period, occasion)]))
 
 taxa <- make_taxa(unname(CODE),
                   c("Desmognathus fuscus", "Desmognathus monticola", "Eurycea cirrigera", "Gyrinophilus porphyriticus",
@@ -77,7 +80,9 @@ taxa <- make_taxa(unname(CODE),
                   vernacularName = c("Northern dusky salamander", "Seal salamander", "Southern two-lined salamander",
                                      "Spring salamander", "Red salamander", "Southern two-lined salamander", "Dusky salamanders"),
                   taxonRank = c(rep("species", 6), "genus"),
-                  taxon_life_stage = c("adult", "adult", "adult", "all stages", "all stages", "larva", "larva"),
+                  lifeStage = c("adult", "adult", "adult", NA, NA, "larva", "larva"),   # Darwin Core (E6); GP and PR pool stages
+                  taxonRemarks = c(NA, NA, NA, "all life stages pooled in the deposited column", "all life stages pooled in the deposited column",
+                                   NA, "Desmognathus larvae not identified to species (recorded at genus rank)"),
                   taxon_deposited_column = ITEM)
 periods <- data.table(period = 1:3, study_year = 1:3, year = NA_integer_, n_visits = c(4L, 3L, 3L))
 
@@ -91,12 +96,13 @@ dataset <- list(
   abstract = "Counts of five stream salamander species, with adults and larvae separated for two-lined and dusky salamanders, in 23 headwater stream reaches of south-eastern Kentucky, 12 in forested reference catchments and 11 in catchments altered by mountaintop-removal coal mining, visited four times in the first year and three times in each of the next two, with cover objects searched, precipitation, conductivity and day of year. Reference reaches had higher abundance and occupancy, and most species and stages had lower occupancy, colonization, persistence and abundance in mined reaches.",
   samplingProtocol = "Repeated counts of salamanders in headwater stream reaches, searching cover objects (number per reach and year deposited); four visits in year 1 and three in years 2-3. Reach length and search method are in the paper.",
   samplingProtocolCode = "cover_object_search", surveyEvidence = "row_presence", responseType = "count", unitKind = "site",
-  closure = "period (study year; dynamic occupancy between years, N-mixture within)",
+  closure = "closed", closureNote = "period (study year; dynamic occupancy between years, N-mixture within)",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Headwater streams of south-eastern Kentucky, USA (Central Appalachia coalfield); no coordinates deposited",
   temporalCoverage = "three consecutive years before December 2015 (calendar years not stated in the deposit)",
   coordinatesCoarsened = NA,
   notShipped = list(`price_et_al_2018.R, price_et_al_2018_jags.R` = "analysis code; no model outputs are deposited"),
-  notes = "taxon is the deposit's species x life-stage count column (taxon_deposited_column in __taxa): GP and PR pool all stages; DESSPPL is Desmognathus larvae not identified to species. The deposit has no codebook; the column-to-taxon reading follows the paper's species list and should be checked against it. period is the study year (calendar years not deposited); obs_day_of_year is the deposited JulianDate. obs_precip and obs_conductivity are as deposited (units not stated; the authors standardise precipitation in code). Conductivity is missing for three surveyed visits. period_cover_objects is the number of cover objects searched in the reach that year.")
+  notes = "taxon is the deposit's species x life-stage count column (taxon_deposited_column and lifeStage in __taxa): GP and PR pool all stages; DESSPPL is Desmognathus larvae not identified to species. The deposit has no codebook; the column-to-taxon reading follows the paper's species list and should be checked against it. period is the study year (calendar years not deposited); obs_day_of_year is the deposited JulianDate. obs_precip and obs_conductivity are as deposited (units not stated; the authors standardise precipitation in code). Conductivity is missing for three surveyed visits. period_cover_objects is the number of cover objects searched in the reach that year.")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/price_2018_mtr_salamanders_count.R")
 
 stage_dict_row(TABLE,

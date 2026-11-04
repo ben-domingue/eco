@@ -86,7 +86,7 @@ dataset <- list(
   abstract = "Data from time-constrained visual encounter surveys conducted in the Atchafalaya River Basin in South Central Louisiana from February 2008 through July 2016, with concurrent vocalization data and tadpole/larva presence, collected under the Amphibian Research and Monitoring Initiative to assess occupancy of amphibian and reptile species.",
   samplingProtocol = "Night-time time-constrained visual encounter surveys (nominally 20 minutes, 2-4 observers) at fixed sites, 4-6 samples per site per year; every animal seen is recorded with species, sex, length and substrate.",
   samplingProtocolCode = "ves", effortColumn = "obs_duration_min", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
-  closure = "occasion (samples within a calendar year); period = year",
+  closure = "closed", closureNote = "occasion (samples within a calendar year); period = year", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Atchafalaya River Basin, Louisiana, USA", boundingBox = list(west = -91.8979, east = -91.2689, south = 29.8001, north = 30.5694)),
   temporalCoverage = "2008-02-19/2016-07-13",
   coordinatesCoarsened = list(value = FALSE, method = "kept as published by USGS (sites on public management units)"),

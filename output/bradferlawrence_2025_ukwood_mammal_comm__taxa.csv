@@ -1,5 +1,5 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_sourceName,taxon_iucnCategory
-APOSYL,Apodemus sylvaticus,,species,https://www.gbif.org/species/2437760,EXACT,,Apodemus.sylvaticus,LC
-MICAGR,Microtus agrestis,,species,https://www.gbif.org/species/2438616,EXACT,,Microtus.agrestis,LC
-MYOGLA,Myodes glareolus,,species,https://www.gbif.org/species/5706764,EXACT,,Myodes.glareolus,LC
-SORARA,Sorex araneus,,species,https://www.gbif.org/species/8316400,EXACT,,Sorex.araneus,LC
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_sourceName,taxonRemarks,taxon_iucnCategory
+APOSYL,Apodemus sylvaticus,,species,https://www.gbif.org/species/2437760,EXACT,,Apodemus.sylvaticus,,LC
+MICAGR,Microtus agrestis,,species,https://www.gbif.org/species/2438616,EXACT,,Microtus.agrestis,,LC
+MYOGLA,Myodes glareolus,,species,https://www.gbif.org/species/5706764,EXACT,,Myodes.glareolus,,LC
+SORARA,Sorex araneus,,species,https://www.gbif.org/species/8316400,EXACT,,Sorex.araneus,,LC

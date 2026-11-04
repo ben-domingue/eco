@@ -18,7 +18,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion (visits within a season); state may change between seasons (period)",
+  "closure": "closed",
+  "closureNote": "occasion (visits within a season); state may change between seasons (period)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "itemCovariates": "19 functional traits in the taxa side table (body mass; diet, foraging stratum and foraging behaviour as 0/1)",
   "geographicCoverage": "east-central Argentina (Pampas; no coordinates deposited)",
   "temporalCoverage": "not stated in deposit",
@@ -35,8 +38,8 @@
   },
   "sampleFloor": "below (10 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/palacio_2020_pampasbirds_comm.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

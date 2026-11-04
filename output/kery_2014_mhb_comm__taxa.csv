@@ -1,159 +1,159 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
-TACRUF,Tachybaptus ruficollis,Little Grebe,species,https://www.gbif.org/species/2482048,EXACT,
-PODCRI,Podiceps cristatus,Great Crested Grebe,species,https://www.gbif.org/species/2482054,EXACT,
-ARDCIN,Ardea cinerea,Grey Heron,species,https://www.gbif.org/species/9797180,EXACT,
-IXOMIN,Ixobrychus minutus,Little Bittern,species,https://www.gbif.org/species/2480850,EXACT,
-CICCIC,Ciconia ciconia,White Stork,species,https://www.gbif.org/species/2481912,EXACT,
-CYGOLO,Cygnus olor,Mute Swan,species,https://www.gbif.org/species/2498343,EXACT,
-ANSANS,Anser anser,Greylag Goose,species,https://www.gbif.org/species/2498036,EXACT,
-ANAPLA,Anas platyrhynchos,Mallard,species,https://www.gbif.org/species/9761484,EXACT,
-MERMER,Mergus merganser,Common Merganser,species,https://www.gbif.org/species/9537647,EXACT,
-PERAPI,Pernis apivorus,European Honey Buzzard,species,https://www.gbif.org/species/2480420,EXACT,
-MILMIL,Milvus milvus,Red Kite,species,https://www.gbif.org/species/5229168,EXACT,
-MILMIG,Milvus migrans,Black Kite,species,https://www.gbif.org/species/5229167,EXACT,
-ACCGEN,Accipiter gentilis,Northern Goshawk,species,https://www.gbif.org/species/2480589,EXACT,
-ACCNIS,Accipiter nisus,Eurasian Sparrowhawk,species,https://www.gbif.org/species/2480637,EXACT,
-BUTBUT,Buteo buteo,Common Buzzard,species,https://www.gbif.org/species/2480537,EXACT,
-AQUCHR,Aquila chrysaetos,Golden Eagle,species,https://www.gbif.org/species/2480506,EXACT,
-FALPER,Falco peregrinus,Peregrine Falcon,species,https://www.gbif.org/species/2481047,EXACT,
-FALSUB,Falco subbuteo,Eurasian Hobby,species,https://www.gbif.org/species/2481035,EXACT,
-FALTIN,Falco tinnunculus,Common Kestrel,species,https://www.gbif.org/species/9616058,EXACT,
-TETURO,Tetrao urogallus,Western Capercaillie,species,https://www.gbif.org/species/2473577,EXACT,
-TETTET,Tetrao tetrix,Black Grouse,species,https://www.gbif.org/species/8379871,EXACT,Lyrurus tetrix
-LAGMUT,Lagopus muta,Rock Ptarmigan,species,https://www.gbif.org/species/5227679,EXACT,
-TETBON,Bonasa bonasia,Hazel Grouse,species,https://www.gbif.org/species/2473671,EXACT,Tetrastes bonasia
-ALEGRA,Alectoris graeca,Rock Partridge,species,https://www.gbif.org/species/2474055,EXACT,
-COTCOT,Coturnix coturnix,Common Quail,species,https://www.gbif.org/species/2474156,EXACT,
-PHACOL,Phasianus colchicus,Common Pheasant,species,https://www.gbif.org/species/9752149,EXACT,
-RALAQU,Rallus aquaticus,Water Rail,species,https://www.gbif.org/species/2474831,EXACT,
-GALCHL,Gallinula chloropus,Common Moorhen,species,https://www.gbif.org/species/5228199,EXACT,
-FULATR,Fulica atra,Eurasian Coot,species,https://www.gbif.org/species/2474377,EXACT,
-VANVAN,Vanellus vanellus,Northern Lapwing,species,https://www.gbif.org/species/2480242,EXACT,
-CHADUB,Charadrius dubius,Little Ringed Plover,species,https://www.gbif.org/species/7937336,EXACT,
-ACTHYP,Actitis hypoleucos,Common Sandpiper,species,https://www.gbif.org/species/2481800,EXACT,
-SCORUS,Scolopax rusticola,Eurasian Woodcock,species,https://www.gbif.org/species/2481700,EXACT,
-LARMIC,Larus michahellis,Yellow-legged Gull,species,https://www.gbif.org/species/9413670,EXACT,
-COLLDO,Columba livia domestica,Feral Pigeon,species,https://www.gbif.org/species/9310871,EXACT,
-COLOEN,Columba oenas,Stock Dove,species,https://www.gbif.org/species/2495471,EXACT,
-COLPAL,Columba palumbus,Common Wood Pigeon,species,https://www.gbif.org/species/2495455,EXACT,
-STRTUR,Streptopelia turtur,European Turtle Dove,species,https://www.gbif.org/species/2495708,EXACT,
-STRDEC,Streptopelia decaocto,Eurasian Collared Dove,species,https://www.gbif.org/species/2495696,EXACT,
-CUCCAN,Cuculus canorus,Common Cuckoo,species,https://www.gbif.org/species/5231918,EXACT,
-TYTALB,Tyto alba,Barn Owl,species,https://www.gbif.org/species/2497921,EXACT,
-OTUSCO,Otus scops,Scops Owl,species,https://www.gbif.org/species/2497701,EXACT,
-BUBBUB,Bubo bubo,Eurasian Eagle-Owl,species,https://www.gbif.org/species/5959092,EXACT,
-GLAPAS,Glaucidium passerinum,Eurasian Pygmy Owl,species,https://www.gbif.org/species/5232162,EXACT,
-ATHNOC,Athene noctua,Little Owl,species,https://www.gbif.org/species/2497266,EXACT,
-STRALU,Strix aluco,Tawny Owl,species,https://www.gbif.org/species/9282206,EXACT,
-ASIOTU,Asio otus,Long-eared Owl,species,https://www.gbif.org/species/2497306,EXACT,
-AEGFUN,Aegolius funereus,Boreal Owl,species,https://www.gbif.org/species/5739298,EXACT,
-APUMEL,Apus melba,Alpine Swift,species,https://www.gbif.org/species/5228684,EXACT,Tachymarptis melba
-APUAPU,Apus apus,Common Swift,species,https://www.gbif.org/species/5228676,EXACT,
-ALCATT,Alcedo atthis,Common Kingfisher,species,https://www.gbif.org/species/2475532,EXACT,
-UPUEPO,Upupa epops,Eurasian Hoopoe,species,https://www.gbif.org/species/2498415,EXACT,
-JYNTOR,Jynx torquilla,Eurasian Wryneck,species,https://www.gbif.org/species/8012314,EXACT,
-PICVIR,Picus viridis,European Green Woodpecker,species,https://www.gbif.org/species/2478523,EXACT,
-PICCAN,Picus canus,Grey-headed Woodpecker,species,https://www.gbif.org/species/2478548,EXACT,
-DRYMAR,Dryocopus martius,Black Woodpecker,species,https://www.gbif.org/species/2477872,EXACT,
-DENMAJ,Dendrocopos major,Great Spotted Woodpecker,species,https://www.gbif.org/species/2477968,EXACT,
-DENMED,Dendrocopos medius,Middle Spotted Woodpecker,species,https://www.gbif.org/species/2478026,EXACT,Dendrocoptes medius
-DENLEU,Dendrocopos leucotos,White-backed Woodpecker,species,https://www.gbif.org/species/2477927,EXACT,
-DENMIN,Dendrocopos minor,Lesser Spotted Woodpecker,species,https://www.gbif.org/species/2477950,EXACT,Dryobates minor
-PICTRI,Picoides tridactylus,Eurasian Three-toed Woodpecker,species,https://www.gbif.org/species/2477804,EXACT,
-LULARB,Lullula arborea,Woodlark,species,https://www.gbif.org/species/2490604,EXACT,
-ALAARV,Alauda arvensis,Eurasian Skylark,species,https://www.gbif.org/species/8077224,EXACT,
-HIRRUS,Hirundo rustica,Barn Swallow,species,https://www.gbif.org/species/9515886,EXACT,
-PTYRUP,Ptyonoprogne rupestris,Eurasian Crag Martin,species,https://www.gbif.org/species/4408796,EXACT,
-DELURB,Delichon urbicum,Common House Martin,species,https://www.gbif.org/species/2489214,EXACT,
-ORIORI,Oriolus oriolus,Eurasian Golden Oriole,species,https://www.gbif.org/species/2488949,EXACT,
-CORCOX,Corvus corax,Northern Raven,species,https://www.gbif.org/species/2482492,EXACT,
-CORCOR,Corvus corone,Carrion/Hooded Crow,species,https://www.gbif.org/species/9409796,EXACT,
-CORFRU,Corvus frugilegus,Rook,species,https://www.gbif.org/species/2482513,EXACT,
-CORMON,Corvus monedula,Western Jackdaw,species,https://www.gbif.org/species/2482473,EXACT,Coloeus monedula
-PICPIC,Pica pica,Eurasian Magpie,species,https://www.gbif.org/species/5229490,EXACT,
-NUCCAR,Nucifraga caryocatactes,Spotted Nutcracker,species,https://www.gbif.org/species/2482613,EXACT,
-GARGLA,Garrulus glandarius,Eurasian Jay,species,https://www.gbif.org/species/5229493,EXACT,
-PYRPYX,Pyrrhocorax pyrrhocorax,Red-billed Chough,species,https://www.gbif.org/species/2482552,EXACT,
-PYRGRA,Pyrrhocorax graculus,Alpine Chough,species,https://www.gbif.org/species/2482553,EXACT,
-PARMAJ,Parus major,Great Tit,species,https://www.gbif.org/species/9705453,EXACT,
-PARCAE,Parus caeruleus,Blue Tit,species,https://www.gbif.org/species/8191482,EXACT,Cyanistes caeruleus
-PARATE,Parus ater,Coal Tit,species,https://www.gbif.org/species/7820681,EXACT,Periparus ater
-PARCRI,Parus cristatus,European Crested Tit,species,https://www.gbif.org/species/8203973,EXACT,Lophophanes cristatus
-PARPAL,Parus palustris,Marsh Tit,species,https://www.gbif.org/species/8126684,EXACT,Poecile palustris
-PARMON,Parus montanus,Willow Tit,species,https://www.gbif.org/species/4409010,EXACT,
-AEGCAU,Aegithalos caudatus,Long-tailed Bushtit,species,https://www.gbif.org/species/2495000,EXACT,
-SITEUR,Sitta europaea,Eurasian Nuthatch,species,https://www.gbif.org/species/2484916,EXACT,
-CERFAM,Certhia familiaris,Eurasian Treecreeper,species,https://www.gbif.org/species/2487603,EXACT,
-CERBRA,Certhia brachydactyla,Short-toed Treecreeper,species,https://www.gbif.org/species/7806848,EXACT,
-TICMUR,Tichodroma muraria,Wallcreeper,species,https://www.gbif.org/species/2484918,EXACT,
-CINCIN,Cinclus cinclus,White-throated Dipper,species,https://www.gbif.org/species/2495093,EXACT,
-TROTRO,Troglodytes troglodytes,Winter Wren,species,https://www.gbif.org/species/5231438,EXACT,
-ERIRUB,Erithacus rubecula,European Robin,species,https://www.gbif.org/species/2492462,EXACT,
-LUSMEG,Luscinia megarhynchos,Common Nightingale,species,https://www.gbif.org/species/7660710,EXACT,
-LUSSVE,Luscinia svecica,Bluethroat,species,https://www.gbif.org/species/4408732,EXACT,
-PHOOCH,Phoenicurus ochruros,Black Redstart,species,https://www.gbif.org/species/5739315,EXACT,
-PHOPHO,Phoenicurus phoenicurus,Common Redstart,species,https://www.gbif.org/species/5739317,EXACT,
-SAXRUB,Saxicola rubetra,Whinchat,species,https://www.gbif.org/species/2492521,EXACT,
-SAXRLA,Saxicola torquatus,Eurasian Stonechat,species,https://www.gbif.org/species/2492526,EXACT,
-OENOEN,Oenanthe oenanthe,Northern Wheatear,species,https://www.gbif.org/species/5231240,EXACT,
-MONSAX,Monticola saxatilis,Rufous-tailed Rock Thrush,species,https://www.gbif.org/species/2490956,EXACT,
-TURTOR,Turdus torquatus,Ring Ouzel,species,https://www.gbif.org/species/7865305,EXACT,
-TURMER,Turdus merula,Common Blackbird,species,https://www.gbif.org/species/2490719,EXACT,
-TURPIL,Turdus pilaris,Fieldfare,species,https://www.gbif.org/species/2490737,EXACT,
-TURPHI,Turdus philomelos,Song Thrush,species,https://www.gbif.org/species/7901064,EXACT,
-TURVIS,Turdus viscivorus,Mistle Thrush,species,https://www.gbif.org/species/2490774,EXACT,
-LOCNAE,Locustella naevia,Common Grasshopper Warbler,species,https://www.gbif.org/species/2493548,EXACT,
-LOCLUS,Locustella luscinioides,Savi's Warbler,species,https://www.gbif.org/species/2493551,EXACT,
-ACRARU,Acrocephalus arundinaceus,Great Reed Warbler,species,https://www.gbif.org/species/2493128,EXACT,
-ACRSCI,Acrocephalus scirpaceus,Eurasian Reed Warbler,species,https://www.gbif.org/species/2493118,EXACT,
-ACRPAL,Acrocephalus palustris,Marsh Warbler,species,https://www.gbif.org/species/2493136,EXACT,
-HIPPOL,Hippolais polyglotta,Melodious Warbler,species,https://www.gbif.org/species/2493214,EXACT,
-HIPICT,Hippolais icterina,Icterine Warbler,species,https://www.gbif.org/species/2493220,EXACT,
-SYLATR,Sylvia atricapilla,Eurasian Blackcap,species,https://www.gbif.org/species/2492956,EXACT,
-SYLBOR,Sylvia borin,Garden Warbler,species,https://www.gbif.org/species/2492942,EXACT,
-SYLCOM,Sylvia communis,Common Whitethroat,species,https://www.gbif.org/species/2492943,EXACT,
-SYLCUR,Sylvia curruca,Lesser Whitethroat,species,https://www.gbif.org/species/2492960,EXACT,
-PHYTRO,Phylloscopus trochilus,Willow Warbler,species,https://www.gbif.org/species/2493052,EXACT,
-PHYCOL,Phylloscopus collybita,Common Chiffchaff,species,https://www.gbif.org/species/2493091,EXACT,
-PHYBON,Phylloscopus bonelli,Western Bonelli's Warbler,species,https://www.gbif.org/species/2493070,EXACT,
-PHYSIB,Phylloscopus sibilatrix,Wood Warbler,species,https://www.gbif.org/species/8128385,FUZZY,
-REGREG,Regulus regulus,Goldcrest,species,https://www.gbif.org/species/2484596,EXACT,
-REGIGN,Regulus ignicapilla,Firecrest,species,https://www.gbif.org/species/6093527,EXACT,
-MUSSTR,Muscicapa striata,Spotted Flycatcher,species,https://www.gbif.org/species/2492576,EXACT,
-FICHYP,Ficedula hypoleuca,European Pied Flycatcher,species,https://www.gbif.org/species/2492606,EXACT,
-FICALB,Ficedula albicollis,Collared Flycatcher,species,https://www.gbif.org/species/2492601,EXACT,
-FICPAR,Ficedula parva,Red-breasted Flycatcher,species,https://www.gbif.org/species/2492605,EXACT,
-PRUMOD,Prunella modularis,Dunnock,species,https://www.gbif.org/species/5231763,EXACT,
-PRUCOL,Prunella collaris,Alpine Accentor,species,https://www.gbif.org/species/5231770,EXACT,
-ANTPRA,Anthus pratensis,Meadow Pipit,species,https://www.gbif.org/species/2490266,EXACT,
-ANTCAM,Anthus campestris,Tawny Pipit,species,https://www.gbif.org/species/2490274,EXACT,
-ANTTRI,Anthus trivialis,Tree Pipit,species,https://www.gbif.org/species/2490246,EXACT,
-ANTSPI,Anthus spinoletta,Water Pipit,species,https://www.gbif.org/species/2490255,EXACT,
-MOTALB,Motacilla alba,White Wagtail,species,https://www.gbif.org/species/9687165,EXACT,
-MOTCIN,Motacilla cinerea,Grey Wagtail,species,https://www.gbif.org/species/2490310,EXACT,
-MOTFLA,Motacilla flava,Western Yellow Wagtail,species,https://www.gbif.org/species/9701857,EXACT,
-LANSEN,Lanius senator,Woodchat Shrike,species,https://www.gbif.org/species/2492867,EXACT,
-LANCOL,Lanius collurio,Red-backed Shrike,species,https://www.gbif.org/species/7745240,EXACT,
-STUVUL,Sturnus vulgaris,Common Starling,species,https://www.gbif.org/species/9809229,EXACT,
-PASDOM,Passer domesticus,House Sparrow,species,https://www.gbif.org/species/5231190,EXACT,
-PASHIT,Passer hispaniolensis italiae,Italian Sparrow,species,https://www.gbif.org/species/11069672,EXACT,Passer italiae
-PASMON,Passer montanus,Eurasian Tree Sparrow,species,https://www.gbif.org/species/5231198,EXACT,
-MONNIV,Montifringilla nivalis,White-winged Snowfinch,species,https://www.gbif.org/species/2492371,EXACT,
-COCCOC,Coccothraustes coccothraustes,Hawfinch,species,https://www.gbif.org/species/2494329,EXACT,
-CARCHL,Carduelis chloris,European Greenfinch,species,https://www.gbif.org/species/2494642,EXACT,Chloris chloris
-CARCAR,Carduelis carduelis,European Goldfinch,species,https://www.gbif.org/species/2494686,EXACT,
-CARSPI,Carduelis spinus,Eurasian Siskin,species,https://www.gbif.org/species/2494701,EXACT,Spinus spinus
-CARCAN,Carduelis cannabina,Common Linnet,species,https://www.gbif.org/species/2494708,EXACT,Linaria cannabina
-CARCAB,Carduelis cabaret,Lesser Redpoll,species,https://www.gbif.org/species/6098966,EXACT,Acanthis flammea
-SERCIT,Serinus citrinella,Citril Finch,species,https://www.gbif.org/species/5231634,EXACT,Carduelis citrinella
-SERSER,Serinus serinus,European Serin,species,https://www.gbif.org/species/2494200,EXACT,
-PYRPYR,Pyrrhula pyrrhula,Eurasian Bullfinch,species,https://www.gbif.org/species/2494543,EXACT,
-CARERY,Carpodacus erythrinus,Common Rosefinch,species,https://www.gbif.org/species/2494459,EXACT,
-LOXCUR,Loxia curvirostra,Red Crossbill,species,https://www.gbif.org/species/9629160,EXACT,
-FRICOE,Fringilla coelebs,Common Chaffinch,species,https://www.gbif.org/species/2494422,EXACT,
-EMBCAL,Emberiza calandra,Corn Bunting,species,https://www.gbif.org/species/7634625,EXACT,
-EMBCIT,Emberiza citrinella,Yellowhammer,species,https://www.gbif.org/species/2491534,EXACT,
-EMBCIR,Emberiza cirlus,Cirl Bunting,species,https://www.gbif.org/species/7626513,EXACT,
-EMBHOR,Emberiza hortulana,Ortolan Bunting,species,https://www.gbif.org/species/2491482,EXACT,
-EMBCIA,Emberiza cia,Rock Bunting,species,https://www.gbif.org/species/2491498,EXACT,
-EMBSCH,Emberiza schoeniclus,Common Reed Bunting,species,https://www.gbif.org/species/2491557,EXACT,
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+TACRUF,Tachybaptus ruficollis,Little Grebe,species,https://www.gbif.org/species/2482048,EXACT,,LC
+PODCRI,Podiceps cristatus,Great Crested Grebe,species,https://www.gbif.org/species/2482054,EXACT,,LC
+ARDCIN,Ardea cinerea,Grey Heron,species,https://www.gbif.org/species/9797180,EXACT,,LC
+IXOMIN,Ixobrychus minutus,Little Bittern,species,https://www.gbif.org/species/2480850,EXACT,,LC
+CICCIC,Ciconia ciconia,White Stork,species,https://www.gbif.org/species/2481912,EXACT,,LC
+CYGOLO,Cygnus olor,Mute Swan,species,https://www.gbif.org/species/2498343,EXACT,,LC
+ANSANS,Anser anser,Greylag Goose,species,https://www.gbif.org/species/2498036,EXACT,,LC
+ANAPLA,Anas platyrhynchos,Mallard,species,https://www.gbif.org/species/9761484,EXACT,,LC
+MERMER,Mergus merganser,Common Merganser,species,https://www.gbif.org/species/9537647,EXACT,,LC
+PERAPI,Pernis apivorus,European Honey Buzzard,species,https://www.gbif.org/species/2480420,EXACT,,LC
+MILMIL,Milvus milvus,Red Kite,species,https://www.gbif.org/species/5229168,EXACT,,LC
+MILMIG,Milvus migrans,Black Kite,species,https://www.gbif.org/species/5229167,EXACT,,LC
+ACCGEN,Accipiter gentilis,Northern Goshawk,species,https://www.gbif.org/species/2480589,EXACT,,LC
+ACCNIS,Accipiter nisus,Eurasian Sparrowhawk,species,https://www.gbif.org/species/2480637,EXACT,,LC
+BUTBUT,Buteo buteo,Common Buzzard,species,https://www.gbif.org/species/2480537,EXACT,,LC
+AQUCHR,Aquila chrysaetos,Golden Eagle,species,https://www.gbif.org/species/2480506,EXACT,,LC
+FALPER,Falco peregrinus,Peregrine Falcon,species,https://www.gbif.org/species/2481047,EXACT,,LC
+FALSUB,Falco subbuteo,Eurasian Hobby,species,https://www.gbif.org/species/2481035,EXACT,,LC
+FALTIN,Falco tinnunculus,Common Kestrel,species,https://www.gbif.org/species/9616058,EXACT,,LC
+TETURO,Tetrao urogallus,Western Capercaillie,species,https://www.gbif.org/species/2473577,EXACT,,LC
+TETTET,Tetrao tetrix,Black Grouse,species,https://www.gbif.org/species/8379871,EXACT,Lyrurus tetrix,LC
+LAGMUT,Lagopus muta,Rock Ptarmigan,species,https://www.gbif.org/species/5227679,EXACT,,LC
+TETBON,Bonasa bonasia,Hazel Grouse,species,https://www.gbif.org/species/2473671,EXACT,Tetrastes bonasia,LC
+ALEGRA,Alectoris graeca,Rock Partridge,species,https://www.gbif.org/species/2474055,EXACT,,NT
+COTCOT,Coturnix coturnix,Common Quail,species,https://www.gbif.org/species/2474156,EXACT,,LC
+PHACOL,Phasianus colchicus,Common Pheasant,species,https://www.gbif.org/species/9752149,EXACT,,LC
+RALAQU,Rallus aquaticus,Water Rail,species,https://www.gbif.org/species/2474831,EXACT,,LC
+GALCHL,Gallinula chloropus,Common Moorhen,species,https://www.gbif.org/species/5228199,EXACT,,LC
+FULATR,Fulica atra,Eurasian Coot,species,https://www.gbif.org/species/2474377,EXACT,,LC
+VANVAN,Vanellus vanellus,Northern Lapwing,species,https://www.gbif.org/species/2480242,EXACT,,NT
+CHADUB,Charadrius dubius,Little Ringed Plover,species,https://www.gbif.org/species/7937336,EXACT,,LC
+ACTHYP,Actitis hypoleucos,Common Sandpiper,species,https://www.gbif.org/species/2481800,EXACT,,LC
+SCORUS,Scolopax rusticola,Eurasian Woodcock,species,https://www.gbif.org/species/2481700,EXACT,,LC
+LARMIC,Larus michahellis,Yellow-legged Gull,species,https://www.gbif.org/species/9413670,EXACT,,LC
+COLLDO,Columba livia domestica,Feral Pigeon,species,https://www.gbif.org/species/9310871,EXACT,,NE
+COLOEN,Columba oenas,Stock Dove,species,https://www.gbif.org/species/2495471,EXACT,,LC
+COLPAL,Columba palumbus,Common Wood Pigeon,species,https://www.gbif.org/species/2495455,EXACT,,LC
+STRTUR,Streptopelia turtur,European Turtle Dove,species,https://www.gbif.org/species/2495708,EXACT,,VU
+STRDEC,Streptopelia decaocto,Eurasian Collared Dove,species,https://www.gbif.org/species/2495696,EXACT,,LC
+CUCCAN,Cuculus canorus,Common Cuckoo,species,https://www.gbif.org/species/5231918,EXACT,,LC
+TYTALB,Tyto alba,Barn Owl,species,https://www.gbif.org/species/2497921,EXACT,,LC
+OTUSCO,Otus scops,Scops Owl,species,https://www.gbif.org/species/2497701,EXACT,,LC
+BUBBUB,Bubo bubo,Eurasian Eagle-Owl,species,https://www.gbif.org/species/5959092,EXACT,,LC
+GLAPAS,Glaucidium passerinum,Eurasian Pygmy Owl,species,https://www.gbif.org/species/5232162,EXACT,,LC
+ATHNOC,Athene noctua,Little Owl,species,https://www.gbif.org/species/2497266,EXACT,,LC
+STRALU,Strix aluco,Tawny Owl,species,https://www.gbif.org/species/9282206,EXACT,,LC
+ASIOTU,Asio otus,Long-eared Owl,species,https://www.gbif.org/species/2497306,EXACT,,LC
+AEGFUN,Aegolius funereus,Boreal Owl,species,https://www.gbif.org/species/5739298,EXACT,,LC
+APUMEL,Apus melba,Alpine Swift,species,https://www.gbif.org/species/5228684,EXACT,Tachymarptis melba,LC
+APUAPU,Apus apus,Common Swift,species,https://www.gbif.org/species/5228676,EXACT,,LC
+ALCATT,Alcedo atthis,Common Kingfisher,species,https://www.gbif.org/species/2475532,EXACT,,LC
+UPUEPO,Upupa epops,Eurasian Hoopoe,species,https://www.gbif.org/species/2498415,EXACT,,LC
+JYNTOR,Jynx torquilla,Eurasian Wryneck,species,https://www.gbif.org/species/8012314,EXACT,,LC
+PICVIR,Picus viridis,European Green Woodpecker,species,https://www.gbif.org/species/2478523,EXACT,,LC
+PICCAN,Picus canus,Grey-headed Woodpecker,species,https://www.gbif.org/species/2478548,EXACT,,LC
+DRYMAR,Dryocopus martius,Black Woodpecker,species,https://www.gbif.org/species/2477872,EXACT,,LC
+DENMAJ,Dendrocopos major,Great Spotted Woodpecker,species,https://www.gbif.org/species/2477968,EXACT,,LC
+DENMED,Dendrocopos medius,Middle Spotted Woodpecker,species,https://www.gbif.org/species/2478026,EXACT,Dendrocoptes medius,LC
+DENLEU,Dendrocopos leucotos,White-backed Woodpecker,species,https://www.gbif.org/species/2477927,EXACT,,LC
+DENMIN,Dendrocopos minor,Lesser Spotted Woodpecker,species,https://www.gbif.org/species/2477950,EXACT,Dryobates minor,LC
+PICTRI,Picoides tridactylus,Eurasian Three-toed Woodpecker,species,https://www.gbif.org/species/2477804,EXACT,,LC
+LULARB,Lullula arborea,Woodlark,species,https://www.gbif.org/species/2490604,EXACT,,LC
+ALAARV,Alauda arvensis,Eurasian Skylark,species,https://www.gbif.org/species/8077224,EXACT,,LC
+HIRRUS,Hirundo rustica,Barn Swallow,species,https://www.gbif.org/species/9515886,EXACT,,LC
+PTYRUP,Ptyonoprogne rupestris,Eurasian Crag Martin,species,https://www.gbif.org/species/4408796,EXACT,,LC
+DELURB,Delichon urbicum,Common House Martin,species,https://www.gbif.org/species/2489214,EXACT,,LC
+ORIORI,Oriolus oriolus,Eurasian Golden Oriole,species,https://www.gbif.org/species/2488949,EXACT,,LC
+CORCOX,Corvus corax,Northern Raven,species,https://www.gbif.org/species/2482492,EXACT,,LC
+CORCOR,Corvus corone,Carrion/Hooded Crow,species,https://www.gbif.org/species/9409796,EXACT,,LC
+CORFRU,Corvus frugilegus,Rook,species,https://www.gbif.org/species/2482513,EXACT,,LC
+CORMON,Corvus monedula,Western Jackdaw,species,https://www.gbif.org/species/2482473,EXACT,Coloeus monedula,LC
+PICPIC,Pica pica,Eurasian Magpie,species,https://www.gbif.org/species/5229490,EXACT,,LC
+NUCCAR,Nucifraga caryocatactes,Spotted Nutcracker,species,https://www.gbif.org/species/2482613,EXACT,,LC
+GARGLA,Garrulus glandarius,Eurasian Jay,species,https://www.gbif.org/species/5229493,EXACT,,LC
+PYRPYX,Pyrrhocorax pyrrhocorax,Red-billed Chough,species,https://www.gbif.org/species/2482552,EXACT,,LC
+PYRGRA,Pyrrhocorax graculus,Alpine Chough,species,https://www.gbif.org/species/2482553,EXACT,,LC
+PARMAJ,Parus major,Great Tit,species,https://www.gbif.org/species/9705453,EXACT,,LC
+PARCAE,Parus caeruleus,Blue Tit,species,https://www.gbif.org/species/8191482,EXACT,Cyanistes caeruleus,LC
+PARATE,Parus ater,Coal Tit,species,https://www.gbif.org/species/7820681,EXACT,Periparus ater,LC
+PARCRI,Parus cristatus,European Crested Tit,species,https://www.gbif.org/species/8203973,EXACT,Lophophanes cristatus,LC
+PARPAL,Parus palustris,Marsh Tit,species,https://www.gbif.org/species/8126684,EXACT,Poecile palustris,LC
+PARMON,Parus montanus,Willow Tit,species,https://www.gbif.org/species/4409010,EXACT,,LC
+AEGCAU,Aegithalos caudatus,Long-tailed Bushtit,species,https://www.gbif.org/species/2495000,EXACT,,LC
+SITEUR,Sitta europaea,Eurasian Nuthatch,species,https://www.gbif.org/species/2484916,EXACT,,LC
+CERFAM,Certhia familiaris,Eurasian Treecreeper,species,https://www.gbif.org/species/2487603,EXACT,,LC
+CERBRA,Certhia brachydactyla,Short-toed Treecreeper,species,https://www.gbif.org/species/7806848,EXACT,,LC
+TICMUR,Tichodroma muraria,Wallcreeper,species,https://www.gbif.org/species/2484918,EXACT,,LC
+CINCIN,Cinclus cinclus,White-throated Dipper,species,https://www.gbif.org/species/2495093,EXACT,,LC
+TROTRO,Troglodytes troglodytes,Winter Wren,species,https://www.gbif.org/species/5231438,EXACT,,LC
+ERIRUB,Erithacus rubecula,European Robin,species,https://www.gbif.org/species/2492462,EXACT,,LC
+LUSMEG,Luscinia megarhynchos,Common Nightingale,species,https://www.gbif.org/species/7660710,EXACT,,LC
+LUSSVE,Luscinia svecica,Bluethroat,species,https://www.gbif.org/species/4408732,EXACT,,LC
+PHOOCH,Phoenicurus ochruros,Black Redstart,species,https://www.gbif.org/species/5739315,EXACT,,LC
+PHOPHO,Phoenicurus phoenicurus,Common Redstart,species,https://www.gbif.org/species/5739317,EXACT,,LC
+SAXRUB,Saxicola rubetra,Whinchat,species,https://www.gbif.org/species/2492521,EXACT,,LC
+SAXRLA,Saxicola torquatus,Eurasian Stonechat,species,https://www.gbif.org/species/2492526,EXACT,,LC
+OENOEN,Oenanthe oenanthe,Northern Wheatear,species,https://www.gbif.org/species/5231240,EXACT,,LC
+MONSAX,Monticola saxatilis,Rufous-tailed Rock Thrush,species,https://www.gbif.org/species/2490956,EXACT,,LC
+TURTOR,Turdus torquatus,Ring Ouzel,species,https://www.gbif.org/species/7865305,EXACT,,LC
+TURMER,Turdus merula,Common Blackbird,species,https://www.gbif.org/species/2490719,EXACT,,LC
+TURPIL,Turdus pilaris,Fieldfare,species,https://www.gbif.org/species/2490737,EXACT,,LC
+TURPHI,Turdus philomelos,Song Thrush,species,https://www.gbif.org/species/7901064,EXACT,,LC
+TURVIS,Turdus viscivorus,Mistle Thrush,species,https://www.gbif.org/species/2490774,EXACT,,LC
+LOCNAE,Locustella naevia,Common Grasshopper Warbler,species,https://www.gbif.org/species/2493548,EXACT,,LC
+LOCLUS,Locustella luscinioides,Savi's Warbler,species,https://www.gbif.org/species/2493551,EXACT,,LC
+ACRARU,Acrocephalus arundinaceus,Great Reed Warbler,species,https://www.gbif.org/species/2493128,EXACT,,LC
+ACRSCI,Acrocephalus scirpaceus,Eurasian Reed Warbler,species,https://www.gbif.org/species/2493118,EXACT,,LC
+ACRPAL,Acrocephalus palustris,Marsh Warbler,species,https://www.gbif.org/species/2493136,EXACT,,LC
+HIPPOL,Hippolais polyglotta,Melodious Warbler,species,https://www.gbif.org/species/2493214,EXACT,,LC
+HIPICT,Hippolais icterina,Icterine Warbler,species,https://www.gbif.org/species/2493220,EXACT,,LC
+SYLATR,Sylvia atricapilla,Eurasian Blackcap,species,https://www.gbif.org/species/2492956,EXACT,,LC
+SYLBOR,Sylvia borin,Garden Warbler,species,https://www.gbif.org/species/2492942,EXACT,,LC
+SYLCOM,Sylvia communis,Common Whitethroat,species,https://www.gbif.org/species/2492943,EXACT,,LC
+SYLCUR,Sylvia curruca,Lesser Whitethroat,species,https://www.gbif.org/species/2492960,EXACT,,LC
+PHYTRO,Phylloscopus trochilus,Willow Warbler,species,https://www.gbif.org/species/2493052,EXACT,,LC
+PHYCOL,Phylloscopus collybita,Common Chiffchaff,species,https://www.gbif.org/species/2493091,EXACT,,LC
+PHYBON,Phylloscopus bonelli,Western Bonelli's Warbler,species,https://www.gbif.org/species/2493070,EXACT,,LC
+PHYSIB,Phylloscopus sibilatrix,Wood Warbler,species,https://www.gbif.org/species/8128385,EXACT,,LC
+REGREG,Regulus regulus,Goldcrest,species,https://www.gbif.org/species/2484596,EXACT,,LC
+REGIGN,Regulus ignicapilla,Firecrest,species,https://www.gbif.org/species/6093527,EXACT,,LC
+MUSSTR,Muscicapa striata,Spotted Flycatcher,species,https://www.gbif.org/species/2492576,EXACT,,LC
+FICHYP,Ficedula hypoleuca,European Pied Flycatcher,species,https://www.gbif.org/species/2492606,EXACT,,LC
+FICALB,Ficedula albicollis,Collared Flycatcher,species,https://www.gbif.org/species/2492601,EXACT,,LC
+FICPAR,Ficedula parva,Red-breasted Flycatcher,species,https://www.gbif.org/species/2492605,EXACT,,LC
+PRUMOD,Prunella modularis,Dunnock,species,https://www.gbif.org/species/5231763,EXACT,,LC
+PRUCOL,Prunella collaris,Alpine Accentor,species,https://www.gbif.org/species/5231770,EXACT,,LC
+ANTPRA,Anthus pratensis,Meadow Pipit,species,https://www.gbif.org/species/2490266,EXACT,,LC
+ANTCAM,Anthus campestris,Tawny Pipit,species,https://www.gbif.org/species/2490274,EXACT,,LC
+ANTTRI,Anthus trivialis,Tree Pipit,species,https://www.gbif.org/species/2490246,EXACT,,LC
+ANTSPI,Anthus spinoletta,Water Pipit,species,https://www.gbif.org/species/2490255,EXACT,,LC
+MOTALB,Motacilla alba,White Wagtail,species,https://www.gbif.org/species/9687165,EXACT,,LC
+MOTCIN,Motacilla cinerea,Grey Wagtail,species,https://www.gbif.org/species/2490310,EXACT,,LC
+MOTFLA,Motacilla flava,Western Yellow Wagtail,species,https://www.gbif.org/species/9701857,EXACT,,LC
+LANSEN,Lanius senator,Woodchat Shrike,species,https://www.gbif.org/species/2492867,EXACT,,NT
+LANCOL,Lanius collurio,Red-backed Shrike,species,https://www.gbif.org/species/7745240,EXACT,,LC
+STUVUL,Sturnus vulgaris,Common Starling,species,https://www.gbif.org/species/9809229,EXACT,,LC
+PASDOM,Passer domesticus,House Sparrow,species,https://www.gbif.org/species/5231190,EXACT,,LC
+PASHIT,Passer hispaniolensis italiae,Italian Sparrow,species,https://www.gbif.org/species/11069672,EXACT,Passer italiae,NE
+PASMON,Passer montanus,Eurasian Tree Sparrow,species,https://www.gbif.org/species/5231198,EXACT,,LC
+MONNIV,Montifringilla nivalis,White-winged Snowfinch,species,https://www.gbif.org/species/2492371,EXACT,,LC
+COCCOC,Coccothraustes coccothraustes,Hawfinch,species,https://www.gbif.org/species/2494329,EXACT,,LC
+CARCHL,Carduelis chloris,European Greenfinch,species,https://www.gbif.org/species/2494642,EXACT,Chloris chloris,LC
+CARCAR,Carduelis carduelis,European Goldfinch,species,https://www.gbif.org/species/2494686,EXACT,,LC
+CARSPI,Carduelis spinus,Eurasian Siskin,species,https://www.gbif.org/species/2494701,EXACT,Spinus spinus,LC
+CARCAN,Carduelis cannabina,Common Linnet,species,https://www.gbif.org/species/2494708,EXACT,Linaria cannabina,LC
+CARCAB,Carduelis cabaret,Lesser Redpoll,species,https://www.gbif.org/species/6098966,EXACT,Acanthis flammea,NE
+SERCIT,Serinus citrinella,Citril Finch,species,https://www.gbif.org/species/5231634,EXACT,Carduelis citrinella,LC
+SERSER,Serinus serinus,European Serin,species,https://www.gbif.org/species/2494200,EXACT,,LC
+PYRPYR,Pyrrhula pyrrhula,Eurasian Bullfinch,species,https://www.gbif.org/species/2494543,EXACT,,LC
+CARERY,Carpodacus erythrinus,Common Rosefinch,species,https://www.gbif.org/species/2494459,EXACT,,LC
+LOXCUR,Loxia curvirostra,Red Crossbill,species,https://www.gbif.org/species/9629160,EXACT,,LC
+FRICOE,Fringilla coelebs,Common Chaffinch,species,https://www.gbif.org/species/2494422,EXACT,,LC
+EMBCAL,Emberiza calandra,Corn Bunting,species,https://www.gbif.org/species/7634625,EXACT,,LC
+EMBCIT,Emberiza citrinella,Yellowhammer,species,https://www.gbif.org/species/2491534,EXACT,,LC
+EMBCIR,Emberiza cirlus,Cirl Bunting,species,https://www.gbif.org/species/7626513,EXACT,,LC
+EMBHOR,Emberiza hortulana,Ortolan Bunting,species,https://www.gbif.org/species/2491482,EXACT,,LC
+EMBCIA,Emberiza cia,Rock Bunting,species,https://www.gbif.org/species/2491498,EXACT,,LC
+EMBSCH,Emberiza schoeniclus,Common Reed Bunting,species,https://www.gbif.org/species/2491557,EXACT,,LC

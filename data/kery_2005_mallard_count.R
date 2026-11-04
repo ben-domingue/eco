@@ -34,7 +34,7 @@ dataset <- list(
   abstract = "Textbook N-mixture dataset: mallard counts on up to three surveys of 235 MHB quadrats (239 in unmarked::mallard; four were never surveyed and have no rows), with standardised elevation, transect length and forest cover, and standardised survey intensity and date.",
   samplingProtocol = "Simplified territory mapping along a fixed transect in each 1-km2 quadrat, up to three surveys per breeding season; count of individuals per survey.",
   samplingProtocolCode = "line_transect", surveyEvidence = "deposited_matrix",
-  responseType = "count", unitKind = "site", closure = "occasion",
+  responseType = "count", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Switzerland, MHB 1-km2 quadrats (no coordinates in the package)",
   temporalCoverage = "one breeding season (2002 per Kery, Royle & Schmid 2005)",
   coordinatesCoarsened = NA,

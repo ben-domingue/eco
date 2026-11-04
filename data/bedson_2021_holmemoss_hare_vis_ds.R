@@ -72,7 +72,7 @@ dataset <- list(
   samplingProtocol = "Line-transect distance sampling on foot in daylight, ~1 km per hour with binoculars; radial distance and angle recorded per hare, converted to perpendicular distance; one walk per site.",
   samplingProtocolCode = "line_transect", surveyEvidence = "deposited_matrix",
   responseType = "multinomial_cell", distanceBreaks = BREAKS, distanceUnits = "m", transectType = "line",
-  effortColumn = "unit_line_length_km", unitKind = "site", closure = "occasion (bins of one walk)",
+  effortColumn = "unit_line_length_km", unitKind = "site", closure = "closed", closureNote = "occasion (bins of one walk)", occasionKind = "cell", taxonInclusion = "single",
   geographicCoverage = "Holme Moss, Peak District National Park, England (OS SE 40 39 area; six 1 km sites; no coordinates deposited)",
   temporalCoverage = "2017-11/2018-05",
   notes = "Perpendicular distances are deposited to the metre and binned here: the paper's bins (5, 10, 20, 100 m; truncation 100 m, n = 26) plus one 100-400 m bin holding the 15 detections beyond the paper's truncation, so no detection is dropped; drop occasion 5 to reproduce the paper. obs_individuals is the number of hares in the bin (cluster sizes 1-2); y counts groups. Dates of the five survey days are not deposited. Six units: below the sample floor by design.",

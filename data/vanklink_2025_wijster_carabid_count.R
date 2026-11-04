@@ -31,7 +31,8 @@
 #     melanocephalus / cinctus, Bradycellus collaris / harpalinus, Pterostichus nigrita /
 #     rhaeticus, Bembidion lampros / properans, Poecilus versicolor / cupreus) and some species
 #     in Agonum, Asaphidion, Amara and Harpalus possibly overlooked; shipped under the names
-#     recorded (the deposit has no merged taxa), the caveat is in notShipped / the dictionary.
+#     recorded (the deposit has no merged taxa; only one name of each pair occurs); v1.1:
+#     taxonRemarks in __taxa on those five taxa.
 #
 # Mapping (standard E1-E5, trap counts per collection interval / community N-mixture):
 #   unit = trap (locationID, 156), cluster_id = location (the three-trap series, 54),
@@ -49,7 +50,9 @@
 #   occurrence row belongs to a listed collection (asserted); a collection without beetles is
 #   listed with an explicit 'Carabidae' absence.
 #   Coordinates: as published; the script looks up each species' IUCN category through GBIF
-#   and stops if any is CR / EN / VU (none is, at the time of writing).
+#   (iucn_category()) and stops if any is CR / EN / VU (none is, at the time of writing).
+#   v1.1: closure = open (year-round collections), occasionKind = time, taxonInclusion =
+#   recorded (all 134 species are in the occurrence records).
 #   Not shipped: the sex breakdown (summed into y); the series-year and trap-year aggregates
 #   (sums of the collections); voucher storage flags.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -111,21 +114,24 @@ counts[, taxon := sp$taxon[match(scientificName, sp$scientificName)]]
 
 # taxa and the IUCN check
 taxa <- make_taxa(sp$taxon, sp$binomial, lookupName = sp$binomial, scientificNameAuthorship = trimws(sub("^\\S+ \\S+", "", sp$scientificName)))
-iucn <- function(id) {
-  if (is.na(id)) return(NA_character_)
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- fromJSON(fp); if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
-}
-taxa[, taxon_iucnCategory := sapply(taxonID, iucn)]
-# GBIF links Calathus mollis (Marsham), a common dune carabid, through a synonym "Calathus mollis Marsh."
-# to the extinct St Helena Calathus extensicollis: not this species' assessment
-stopifnot(taxa[taxon == "CALAMOLL", taxon_iucnCategory == "EX"], sum(taxa$taxon_iucnCategory == "EX") == 1)
+# iucn_category() checks the assessed name: GBIF links Calathus mollis (Marsham), a common dune
+# carabid, through a synonym "Calathus mollis Marsh." to the extinct St Helena C. extensicollis,
+# which comes back NA (not this species' assessment) and is set to NE
+taxa[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+stopifnot(identical(taxa[is.na(taxon_iucnCategory), taxon], "CALAMOLL"))
 taxa[taxon == "CALAMOLL", taxon_iucnCategory := "NE"]
 stopifnot(!any(taxa$taxon_iucnCategory %in% c("CR", "EN", "VU")))
+
+# species pairs the EML says were not reliably separated in the historical period: only one name
+# of each pair is recorded in the deposit; it is shipped as recorded and taxonRemarks says it may
+# include the other (E6)
+pairs <- list(c("Calathus melanocephalus", "Calathus cinctus"), c("Bradycellus harpalinus", "Bradycellus collaris"),
+              c("Pterostichus nigrita", "Pterostichus rhaeticus"), c("Bembidion lampros", "Bembidion properans"),
+              c("Poecilus versicolor", "Poecilus cupreus"))
+stopifnot(all(sapply(pairs, `[`, 1) %in% taxa$scientificName), !any(sapply(pairs, `[`, 2) %in% taxa$scientificName))
+taxa[, taxonRemarks := NA_character_]
+for (pp in pairs)
+  taxa[scientificName == pp[1], taxonRemarks := sprintf("not reliably separated from %s in the historical period (EML), which is not recorded separately; may include it", pp[2])]
 
 # long table
 units <- tr[!duplicated(locationID)][, .(unit = locationID, unit_trap_type = fifelse(funnel, "funnel_formaldehyde", "live"), unit_location = loc)]
@@ -159,7 +165,8 @@ dataset <- list(
   surveyEvidence = "sample_table",
   surveyEvidenceNote = "Every collection is an event (level 5) with its interval and trap-days; collections with no beetles carry an explicit 'Carabidae' absence record, and the Humboldt extension declares complete reporting of Carabidae per trap-year, so a species absent from a collection's records is a zero.",
   responseType = "count", unitKind = "site",
-  closure = "not assumed: occasions are the successive collections of a whole year, so activity-density follows each species' phenology; period = sampling year",
+  closure = "open", closureNote = "not assumed: occasions are the successive collections of a whole year, so activity-density follows each species' phenology; period = sampling year",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Forests, heathlands and bogs in Drenthe, the Netherlands (Mantingerbos, Dwingelderveld, Mantingerveld, Bargerveen, Dalerpeel, Kraloo, Wijster, Bruntinge, Eursinge)",
                             boundingBox = list(west = min(units$unit_decimalLongitude), east = max(units$unit_decimalLongitude),
                                                south = min(units$unit_decimalLatitude), north = max(units$unit_decimalLatitude))),
@@ -168,7 +175,7 @@ dataset <- list(
   notShipped = list(`occurrence.txt sex` = "male / female / unknown breakdown, summed into y",
                     `series-year and trap-year events` = "aggregates (sums) of the collections",
                     `humboldtecologicalinventory.txt voucher fields` = "which trap-years' material is stored at Naturalis",
-                    `species pairs not separated in the historical period` = "shipped under the recorded names; per the EML, Calathus melanocephalus / cinctus, Bradycellus collaris / harpalinus, Pterostichus nigrita / rhaeticus, Bembidion lampros / properans and Poecilus versicolor / cupreus were not reliably separated, and species of Agonum, Asaphidion, Amara and Harpalus may have been overlooked"))
+                    `possibly overlooked species` = "per the EML, species of Agonum, Asaphidion, Amara and Harpalus may have been overlooked in the historical period (the five species pairs not reliably separated are shipped as recorded, with taxonRemarks in __taxa)"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/vanklink_2025_wijster_carabid_count.R")
 
 stage_dict_row(TABLE,

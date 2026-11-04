@@ -12,14 +12,17 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "abstract": "Resighting histories of 7531 southern elephant seals marked as weaned pups on the Macquarie Island isthmus (cohorts 1951-1965) and resighted by organised island searches (1952, 1959) and opportunistic sightings to 1979, with a handful of sightings to 1986. Built from the deposited sighting records: one row per seal x seal year (September to August) x occasion (1 = breeding season, September-October; 2 = the rest of the seal year), y = 1 if the seal was recorded in that window, y_raw = number of distinct sighting days. The survey set is inferred from the sightings themselves (a window is surveyed if any marked seal of this study was sighted in it); per-window sighting counts are in __periods so sparse windows can be dropped. Rows before the cohort year are 0.",
+  "abstract": "Resighting histories of 7531 southern elephant seals marked as weaned pups on the Macquarie Island isthmus (cohorts 1951-1965) and resighted by organised island searches (1952, 1959) and opportunistic sightings to 1979, with a handful of sightings to 1986. Built from the deposited sighting records: one row per seal x seal year (September to August) x occasion (1 = breeding season, September-October; 2 = the rest of the seal year), y = 1 if the seal was recorded in that window, y_raw = number of distinct sighting days. The survey set is inferred from the sightings themselves (a window is surveyed if any marked seal of this study was sighted in it); per-window sighting counts are in __periods so sparse windows can be dropped. Each seal's rows begin in its cohort (marking) year.",
   "samplingProtocol": "Permanent marking of weaned pups (hot-iron branding, 1951-1965) and resighting of marked seals ashore: by organised island searches (1952, 1959) and opportunistic sightings to 1979, with a handful of sightings to 1986. Sightings record date, sex, age class, breeding status and moult stage.",
   "samplingProtocolCode": "tag_resight",
   "surveyEvidence": "inferred",
   "surveyEvidenceNote": "No effort table is deposited and the papers do not list which seasons were searched. A period x occasion window is in the survey set iff at least one marked seal of this study has a sighting record in it; every unit then carries a row for that window. Windows with very few sightings (see __periods n_sightings_*) reflect ad hoc effort and may be dropped before fitting; the 2021 paper's analysis windows were 1957-1979 and 1993-2003.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "occasion within period (two resight windows per seal year; the papers treat a breeding-season sighting as a breeding event and a rest-of-year sighting as alive, nonbreeding or unknown); open between seal years (CJS / multi-state)",
+  "closure": "closed",
+  "closureNote": "occasion within period (two resight windows per seal year; the papers treat a breeding-season sighting as a breeding event and a rest-of-year sighting as alive, nonbreeding or unknown); open between seal years (CJS / multi-state)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "occasionCodes": {
     "1": "breeding season, September-October of `year` (the papers' 'seen breeding' emission)",
     "2": "rest of the seal year, November of `year` to August of `year`+1 (the papers' 'seen other' emission; moult, mid-year haul-out)"
@@ -27,7 +30,7 @@
   "geographicCoverage": "Macquarie Island, Southern Ocean (54.5 S, 158.9 E); all seals marked on the isthmus; no coordinates deposited",
   "temporalCoverage": "1951-09/1986-08",
   "coordinatesCoarsened": null,
-  "notes": "Units are seals whose first record is a pup age class (01-05); their first record's seal year is unit_cohort_year and rows before it are 0 (drop them to condition on marking). unit_tag_type is NA where the deposit has #N/A (every 1950s seal, although the README says they were branded). unit_sex U = never sexed. y_raw counts distinct sighting days (163 same-day duplicate records in the deposit collapsed). Per-sighting breeding status, age class, moult and weight are not shipped; a multi-state breeding history can be rebuilt from the deposit's SEAL_STATUS_ID.",
+  "notes": "Units are seals whose first record is a pup age class (01-05); their first record's seal year is unit_cohort_year, and as seals marked at birth (E4.4) they have no rows before it. unit_tag_type is NA where the deposit has #N/A (every 1950s seal, although the README says they were branded). unit_sex U = never sexed. y_raw counts distinct sighting days (163 same-day duplicate records in the deposit collapsed). Per-sighting breeding status, age class, moult and weight are not shipped; a multi-state breeding history can be rebuilt from the deposit's SEAL_STATUS_ID.",
   "notShipped": {
     "seals first recorded past the pup stage": "7 seals (both studies: 2,282) with no known cohort; the 2021 paper also excludes seals first tagged as adults",
     "other study": "the other mark-recapture study in the same file is the sibling table",
@@ -35,19 +38,19 @@
     "sightings outside the study's seal years": "none: the 1950s cohorts' last sighting is in seal year 1985 and the 1990s cohorts' first is 1984"
   },
   "summary": {
-    "n_rows": 391612,
+    "n_rows": 283892,
     "n_units": 7531,
     "n_taxa": 1,
     "n_periods": 31,
     "n_occasions": 2,
-    "n_surveys": 391612,
+    "n_surveys": 283892,
     "y_values": "0,1",
-    "prop_zero": 0.968
+    "prop_zero": 0.956
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_sex", "unit_cohort_year", "unit_tag_type", "unit_first_age_class"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/volzke_2021_macquarie_seal_cjs.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

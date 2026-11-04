@@ -16,7 +16,11 @@
   "surveyEvidence": "sample_table",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "period = calendar year (one count per route per year; no occasion); the 20 points per route are summed by the source, so there is no within-year replication",
+  "closure": "none",
+  "closureNote": "period = calendar year (one count per route per year; no occasion); the 20 points per route are summed by the source, so there is no within-year replication",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "taxaWithheld": ["Ciconia nigra", "Anser erythropus", "Aquila chrysaetos", "Clanga clanga", "Haliaeetus albicilla", "Circus macrourus", "Circus pygargus", "Falco peregrinus", "Falco rusticolus", "Bubo bubo", "Dendrocopos leucotos"],
   "geographicCoverage": "Sweden, all 21 counties, concentrated in the southern half (55.0-69.1 N, 11.0-24.2 E; route positions given as 25 x 25 km grid-square centres)",
   "temporalCoverage": "1975-04-12/2024-07-02",
   "crs": "EPSG:4326",
@@ -46,8 +50,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "date", "observer", "unit_county", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_day_of_year", "obs_start_time", "obs_end_time", "obs_transport"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lindstrom_2025_sweden_summerpoints_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

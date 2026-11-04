@@ -18,7 +18,10 @@
   "surveyEvidence": "row_presence",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion (three surveys within a summer, June-August); period = year",
+  "closure": "closed",
+  "closureNote": "occasion (three surveys within a summer, June-August); period = year",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": {
     "description": "Grassland sites in northern and southern Wisconsin, USA",
     "boundingBox": {
@@ -51,7 +54,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_region", "unit_decimalLatitude", "unit_decimalLongitude", "unit_patch_area_ha", "unit_avgpatch_area_10km_ha", "unit_isolation_patch_enn_m", "unit_isolation_avg_enn_10km_m", "unit_cohesion_10km", "unit_grass_prop_10km", "unit_road_density_10km", "unit_forest_edge_density_10km", "obs_nectar_species", "obs_milkweed_per_m2"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bruce_2021_wisconsin_monarch_nmix.R",
   "buildDate": "2026-11-03"

@@ -19,7 +19,10 @@
   "surveyEvidenceNote": "The deposited detection file has one cell per site x season x spatial sample x qPCR replicate; NA cells (season not sampled at the site, single spatial sample, the 3 missing qPCRs of one filter) are not surveys and have no row.",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "site occupancy closed across the study (the authors' single-season multi-scale model treats the three seasonal and the spatial samples as level-2 replicates); occasion = qPCR replicate of one filter",
+  "closure": "closed",
+  "closureNote": "site occupancy closed across the study (the authors' single-season multi-scale model treats the three seasonal and the spatial samples as level-2 replicates); occasion = qPCR replicate of one filter",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
   "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = site is the occupancy scale (psi), unit = filter (site x season x spatial sample) the availability scale (theta), occasion = qPCR replicate (p). The season is unit_season; the calendar year of each sample is not deposited.",
   "geographicCoverage": "Streams and rivers across Kentucky, USA (Interior Plateau, Western Allegheny Plateau, Central Appalachians and other Level III ecoregions); no coordinates deposited",
   "temporalCoverage": "2019-09/2021-06",
@@ -43,8 +46,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_season", "unit_spatial_rep", "unit_conductivity_us", "unit_toc_mg_l", "unit_turbidity_ntu", "unit_ph", "unit_water_temp_c", "unit_flow_m_s", "unit_site_ecoregion", "unit_site_prop_water", "unit_site_prop_devel", "unit_site_prop_forest", "unit_site_prop_herb", "unit_site_prop_agric", "unit_site_watershed_area", "unit_site_stream_order", "unit_site_volume_l", "unit_site_perc_trees", "unit_site_perc_bareground", "unit_site_perc_bedrock", "unit_site_perc_boulder", "unit_site_perc_cobble", "unit_site_perc_gravel", "unit_site_perc_sand", "unit_site_perc_fine", "unit_site_ripar_quant", "unit_site_nutrientload"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tomke_2025_hellbender_edna.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

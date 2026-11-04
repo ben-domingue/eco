@@ -94,7 +94,7 @@ dataset <- list(
   samplingProtocol = "Transects of up to 10 artificial cover tiles checked repeatedly within each snow-free season; a survey records the tiles available (under 1/3 ant-occupied, not displaced, shattered or flooded), air and mean under-tile temperatures, and whether the skink was found. Protocol detail beyond the README is in the paper.",
   samplingProtocolCode = "cover_board", effortColumn = "obs_tiles_available",
   surveyEvidence = "sample_table", responseType = "detection", unitKind = "site",
-  closure = "period (snow-free season; the paper fit single-season models per season)",
+  closure = "closed", closureNote = "period (snow-free season; the paper fit single-season models per season)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Australian Alps bioregion, south-eastern Australia (New South Wales, Victoria, ACT); no coordinates deposited",
   temporalCoverage = "2018-11-16/2022-04-10",
   coordinatesCoarsened = NA,

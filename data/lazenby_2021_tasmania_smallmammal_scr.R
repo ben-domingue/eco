@@ -24,7 +24,9 @@
 #   night 1..5, y = 1 if the individual was caught in that trap on that night, else 0;
 #   cluster_id = site (the trapping grid). Every individual carries the full rectangle
 #   of its site's 60 traps x 5 nights x 6 sessions, including sessions before its first
-#   and after its last capture (the convention of the CJS tables, toledolima / dipper).
+#   and after its last capture (E4.4: wild-caught animals of unknown age, ear-marked at first
+#   capture, are at risk from the first session; no mark loss or removal is recorded, and every
+#   individual has a capture).
 #   __traps: trap, x, y (EPSG:32755), site. unitKind = individual.
 #   Survey evidence = inferred: trap usage is not deposited. Rule: all 60 traps of a
 #   site are taken as set on all five nights of every session, because the capture
@@ -110,7 +112,7 @@ build <- function(sheet, taxon, sci, vern, table) {
     samplingProtocol = "Elliott live capture-and-release traps, 60 per site, checked over five successive 24 h trap nights per session; individuals ear-marked. Detection history is individual x trap x night.",
     samplingProtocolCode = "live_trap", surveyEvidence = "inferred",
     surveyEvidenceNote = "Trap usage is not deposited. Every one of the 60 Elliott traps at a site is taken as set on all five nights of every session; the capture files record nights 1-5 and trap numbers 1-60 at every site, and no failures are recorded. Each individual carries rows for all six sessions at its site.",
-    responseType = "detection", unitKind = "individual", closure = "period (population closed within a 5-night session; open between sessions)",
+    responseType = "detection", unitKind = "individual", closure = "closed", closureNote = "period (population closed within a 5-night session; open between sessions)", occasionKind = "time", taxonInclusion = "single",
     geographicCoverage = "Four forest sites in southern Tasmania, Australia: Southwest (SW), Mt Field (MtF), Wellington Ranges (WR), Tasman Peninsula (TP); Elliott trap coordinates in __traps",
     temporalCoverage = "2009-03/2011-05",
     crs = "EPSG:32755", coordinatesCoarsened = NA,

@@ -29,7 +29,7 @@ dataset <- list(
   abstract = "Textbook CJS dataset: 294 European dippers captured and recaptured over seven annual occasions (1981-1987) along streams in eastern France, with sex. A flood in 1983 is the classic covariate on survival.",
   samplingProtocol = "Annual capture-mark-recapture of dippers along streams; one capture occasion per year.",
   samplingProtocolCode = "live_trap", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "individual", closure = "period",
+  responseType = "detection", unitKind = "individual", closure = "none", closureNote = "period", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "Eastern France (streams; no coordinates in the package)", temporalCoverage = "1981/1987",
   coordinatesCoarsened = NA,
   notShipped = list())

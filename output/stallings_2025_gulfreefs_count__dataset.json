@@ -19,7 +19,10 @@
   "surveyEvidenceNote": "surveys.csv lists all 1,349 counts; every fishes.csv row belongs to a listed count, so a taxon absent from a count's rows is a zero. The 17 codes missing from taxa.csv (larvae, bait fish, unknowns, unresolved family / genus codes; 183 rows) are dropped as taxa, not as surveys.",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion within period (the two to four counts of one reef in one quarter, made within minutes or a few days by side-by-side divers; the authors warn that within-survey sample units are not independent); open between quarters",
+  "closure": "dependent",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "occasion within period (the two to four counts of one reef in one quarter, made within minutes or a few days by side-by-side divers; the authors warn that within-survey sample units are not independent); open between quarters",
   "geographicCoverage": {
     "description": "Artificial and natural reefs 8-30 m deep off Pinellas and Manatee counties, west-central Florida, eastern Gulf of Mexico, USA",
     "boundingBox": {
@@ -32,9 +35,10 @@
   "temporalCoverage": "2013-04-15/2023-06-26",
   "coordinatesCoarsened": {
     "value": true,
-    "method": "Reef coordinates (3 decimals in the deposit) generalised to the 0.1 degree cell centre with coarsen_coords(), uncertainty = cell half-diagonal; flagged taxa (IUCN via GBIF): Balistes capriscus (VU), Bathytoshia centroura (VU), Carcharhinus leucas (VU), Carcharhinus limbatus (VU), Carcharhinus plumbeus (EN), Epinephelus itajara (VU), Epinephelus morio (VU), Ginglymostoma cirratum (VU), Lachnolaimus maximus (VU), Lutjanus campechanus (VU), Lutjanus cyanopterus (VU), Mycteroperca microlepis (VU), Rhomboplites aurorubens (VU)"
+    "method": "Reef coordinates (3 decimals in the deposit) generalised to the 0.1 degree cell centre with coarsen_coords(), uncertainty = cell half-diagonal; flagged taxa (IUCN via GBIF): Balistes capriscus (VU), Bathytoshia centroura (VU), Carcharhinus leucas (VU), Carcharhinus limbatus (VU), Carcharhinus plumbeus (EN), Epinephelus itajara (VU), Epinephelus morio (VU), Ginglymostoma cirratum (VU), Lachnolaimus maximus (VU), Lutjanus campechanus (VU), Lutjanus cyanopterus (VU), Mycteroperca microlepis (VU), Rhomboplites aurorubens (VU); reef names not shipped (E7.4)"
   },
   "notShipped": {
+    "unit_reef_name": "reef place names (E7.4); in stallings_2025_gulfreefs_exact_count",
     "fishes.csv size, school_mean_size, school_min_size, school_max_size": "individual and school length estimates (biomass is rebuildable from the deposit with taxa.csv's length-weight coefficients)",
     "surveys.csv time_start, time_stop": "clock times, several clearly mistyped; every count is 10 minutes",
     "17 species codes absent from taxa.csv": "GOFM, LARV, UNKN, HOSP, CLFM, SCPP, LUSP, LAFM, BAIT, TEFM, CALF, OPSP, OSFM, GYSP, SPPP, CAFM, EPSP: 183 rows, 164050 fish (larval fish, bait fish, unknowns, and family / genus codes the deposit does not define)",
@@ -52,7 +56,7 @@
   },
   "sampleFloor": "below (14 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_visibility_m", "obs_temperature_c"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/stallings_2025_gulfreefs_count.R",
   "buildDate": "2026-11-03"

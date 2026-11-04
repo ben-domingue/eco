@@ -962,3 +962,57 @@ What this batch says about the standard:
   for "built in part".
 - **Pooled groups with no GBIF key** (Hydrophiinae): `make_taxa()` cannot mark an NA key as
   intentional.
+
+## Standard v1.1-draft rebuild — 2026-11-03 (every table rebuilt; 164 -> 168 tables)
+
+Ben's rule for standard changes (2026-11-03): clear, no judgement, and lossy only where
+protection requires it. Rulings written into `standard.md` v1.1-draft from the strains logged
+in batches 4 to 20; decision notes for #30 and #31 in `notes/decisions/`. Ben ruled the three
+items that failed the test: E7 multi-taxon tables ship two tables (coarsened whole, plus an
+`_exact` sibling without the flagged taxa); E7.4 other locators are coarsened only in tables
+already coarsened; published tables are rebuilt to the new rules (no users yet).
+
+Tooling: `eco-validate` (closure / occasionKind / taxonInclusion vocabularies and
+consistency, set-based E4.2 with `__survey_taxa`, never-detected individuals, `unit_identity`,
+`__traps` coordinates of flagged taxa, empty `taxonID` needs `taxonRemarks`); R twin to match;
+`make_taxa(exact = TRUE, allow_higher, no_key)`; `iucn_category()` (checks the assessed name
+against the accepted name; a synonym's assessment is not taken); `write_table(survey_taxa =)`;
+`eco_to_ch(fill =, by_period =, drop_zero_sessions =)`; `components`, `closure`,
+`occasion_kind`, `taxon_inclusion` in `metadata/metadata.csv`; `__survey_taxa` in the uploader.
+
+Rebuild: 72 scripts needed only the new metadata (data reproduced exactly); 59 were rebuilt by
+hand in three groups. All 168 tables pass `eco-validate`; pytest 199 passed; R package 93.
+
+- **Merged (ruling #31, `__survey_taxa`)**: addis RMAP bt + mbrt -> `addis_2026_rmap_amph_dynocc`;
+  nowicki Shark Bay megafauna + turtle + dolphin -> `nowicki_2019_sharkbay_count`; INBO aesiso +
+  calvir + coepul -> `inbo_2026_flanders_dragonfly_count`; goldingay glider + koala ->
+  `goldingay_2022_richmond_mammals_dynocc`. Ten tables withdrawn
+  (`tools/withdrawals/withdraw_v11_merges.py`). Koester's two Aldabra tables stay split: the
+  methods count different size classes (two protocols).
+- **New `_exact` siblings (E7.3)**: barea (`barea_2021_sierran_butterfly_exact_count`), boone,
+  lafferty estuary fish, raman, rich, stallings, work Ocala adults and nymphs, rooney Snapshot USA
+  (543 MB, gitignored), and kery MHB (turtle dove VU found by `iucn_category()`; projected
+  coordinates snapped to 10 km cells, E7.1). Place-name unit and cluster ids replaced in the
+  coarsened twins; elevation rounded to 100 m.
+- **At-risk span (E4.4)**: trimmed before marking for animals marked at birth or hatching
+  (arsocivil calves, schleimer calves, riecke goslings, volzke seal cohorts, deprengerlevin
+  seedlings, oosthuizen from first encounter because the authors deleted earlier sightings);
+  padded to the study's first period for wild-caught animals (moe trout, cleavitt orchids with
+  `y_raw = "-999"` kept, NEON small mammals: perleu and perman now exceed 100 MB, gitignored);
+  kittiwakes start at the real banding year (`obs_banding = 1`), not the simulated release.
+- **unit_identity (E2)**: Phinda (renamed from `unit_flank_profile`), curtis beaked whales.
+- **Taxa (E6, E10)**: `taxonInclusion = recorded` drops taxa never detected in the table (obrist
+  10 species seen only outside the counting rule; peters pitfall 3 and emergence 22 caught only
+  by the other method; Ocala adults 15, nymphs 4; sandercock insects 1); family- and order-level
+  records shipped as taxa (peer: 7); lifeStage (price, swedberg, hinneberg); taxonRemarks for
+  unseparated pairs, aggregates and no-key groups; lindstrom's 11 security-class species in
+  `taxaWithheld`.
+- **v1.0 taxon errors caught by exact matching**: homonyms resolved to kingdom or phylum
+  (stallings Prionotus, raman Iduna/Hippolais/Acrocephalus, kleiven Mustela), species matched
+  to their genus (peer Melitaea ornata, sandercock Amelanchier and Sedum, bradferlawrence
+  Taraxacum to Asteraceae), "sp." records labelled genus at family or class rank (raman), and
+  about two dozen fuzzy spelling matches, all fixed through lookup names.
+
+Not settled here (still open): `detection_event` for multi-species per-detection data, live-dead
+and Brownie arrays, and the Limenitis hibernacula question (a structure detected, contents
+identified later) which v1.1 leaves as built.

@@ -5,10 +5,10 @@
   "temporalCoverage": "1992/2010",
   "stateCodes": {
     "0": "not resighted",
-    "1": "pre-recruit (y_raw P): present, not yet documented holding a nest site in this or a previous year; also the simulated age-1 release (obs_release = 1)",
+    "1": "pre-recruit (y_raw P): present, not yet documented holding a nest site in this or a previous year; also the banding of the chick (obs_banding = 1, y_raw empty) and the simulated age-1 release (obs_release = 1)",
     "2": "recruit (y_raw B): documented holding a nest site this or a previous year"
   },
-  "notes": "Unit ids are line numbers (no band ids in the deposit). Each bird's first row (obs_release = 1) is the authors' simulated release as an age-1 pre-recruit in the year after banding, not an observation; condition on it. Rows begin at release (earlier years precede hatching). unit_cohort = banding year. Breeder-to-pre-recruit transitions are impossible by the state definition.",
+  "notes": "Unit ids are line numbers (no band ids in the deposit). Rows begin in the real banding year (E4.4, marked as chicks): that row is the banding capture (y = 1, obs_banding = 1, y_raw empty; the deposit has 0 there), except for the 1991 cohort, banded before the first resighting year, whose rows begin in 1992. The row with obs_release = 1 is the authors' simulated release as an age-1 pre-recruit in the year after banding, not an observation; to reproduce their data drop the rows before it and condition on it. unit_cohort = banding year. Breeder-to-pre-recruit transitions are impossible by the state definition.",
   "creator": "McKnight, Aly; Blomberg, Erik J.; Irons, David B.; Loftin, Cynthia S.; McKinney, Shawn T.",
   "pubDate": "2020",
   "doi": "10.5061/dryad.ch2740k",
@@ -24,7 +24,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "state",
   "unitKind": "individual",
-  "closure": "period (one state per May resighting season; survival and state transitions between years)",
+  "closure": "none",
+  "closureNote": "period (one state per May resighting season; survival and state transitions between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "lossesOnCapture": "none",
   "geographicCoverage": "Shoup Bay colony, Prince William Sound, Alaska, USA (61.17 N, 146.58 W, from the paper)",
   "coordinatesCoarsened": null,
@@ -32,18 +35,18 @@
     "none": "every deposited history is shipped; the paper's colony size, productivity and weather covariates are not in the deposit"
   },
   "summary": {
-    "n_rows": 55472,
+    "n_rows": 60064,
     "n_units": 5090,
     "n_taxa": 1,
     "n_periods": 19,
     "n_occasions": 1,
-    "n_surveys": 55472,
+    "n_surveys": 60064,
     "y_values": "0,1,2",
-    "prop_zero": 0.757
+    "prop_zero": 0.7
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_cohort", "obs_release"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_cohort", "obs_banding", "obs_release"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/mcknight_2019_kittiwake_ms.R",
   "buildDate": "2026-11-03"

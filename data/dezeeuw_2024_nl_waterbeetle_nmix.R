@@ -89,7 +89,7 @@ dataset <- list(
   abstract = "National monitoring scheme for the Habitats Directive beetle Graphoderus bilineatus: 337 locations in 68 1-km squares, each hand-netted twice within a season by two different professional observers 5-8 days apart, and resurveyed six years later (rounds 2011-2016 and 2017-2022). Counts of G. bilineatus and three co-occurring water beetles. The authors fit occupancy and Poisson GLMM trend models and found declines and strong observer effects.",
   samplingProtocol = "Standardized hand-netting at a chosen sampling location, September-October; two visits per season by different observers 5-8 days apart; locations resurveyed on a six-year cycle.",
   samplingProtocolCode = "dipnet", surveyEvidence = "deposited_matrix", responseType = "count", unitKind = "site",
-  closure = "occasion within period (two visits 5-8 days apart in one season); state may change between the two survey years six years apart",
+  closure = "closed", closureNote = "occasion within period (two visits 5-8 days apart in one season); state may change between the two survey years six years apart", occasionKind = "time", taxonInclusion = "target",
   geographicCoverage = "The Netherlands, mainly the western and northern peat areas (no coordinates deposited)",
   temporalCoverage = "2011/2022", coordinatesCoarsened = NA,
   notes = "Each location has two of the twelve periods (one per round); __periods gives year and round. occasion is ordered by date; obs_selector = 1 marks the visit by the observer who chose the five locations in the square (in 10 location-years that visit came second). The 1-km square of each location is not deposited.",

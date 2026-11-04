@@ -163,7 +163,7 @@ dataset <- list(
   samplingProtocol = "Bushnell Trophy Cam HD (120 cameras) and Reconyx Hyperfire (9) game cameras at wildlife openings, deployed 1.4-11 days (mean 7.9) in April-May; every photo record with species and timestamp at minute resolution. Occasion = calendar day of the deployment; effort = hours the camera operated within that day.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day", effortColumn = "obs_camera_hours",
   surveyEvidence = "effort_table",
-  responseType = "detection", unitKind = "site", closure = "occasion (camera-days within one deployment of 2-11 days); no period, each site deployed once",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "occasion (camera-days within one deployment of 2-11 days); no period, each site deployed once", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Monongahela National Forest, West Virginia, USA (no coordinates deposited)", temporalCoverage = "2019-04-13/2021-05-12",
   coordinatesCoarsened = NA,
   notShipped = list(`Unknown Animal, Bird, Corvid, Fox, Owl, Thrush` = "24 records not resolved to a taxon (one also out of window)",

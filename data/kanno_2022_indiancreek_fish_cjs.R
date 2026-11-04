@@ -25,8 +25,10 @@
 #   1..15 (__periods: month and year of the bimonthly occasion; exact dates not deposited), no
 #   occasion column (one capture occasion per period), y = captured.
 #   Survey evidence: the deposited matrix; every fish carries all 15 occasions, including those
-#   before its first capture (y = 0, standard E4; the authors' CJS conditions on first capture:
-#   drop rows before the first y = 1 to reproduce it).
+#   before its first capture (y = 0; E4.4: wild-caught fish of unknown age, tagged at >= 60 / 50 mm,
+#   are at risk from the study's first occasion; the authors' CJS conditions on first capture:
+#   drop rows before the first y = 1 to reproduce it). No tag loss is recorded; every fish has a
+#   capture.
 #   Not shipped: lengths (the paper's growth data are not in the deposit), PIT tag numbers
 #   (destroyed in the deposit).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -72,7 +74,7 @@ for (i in seq_len(nrow(spp))) {
     samplingProtocolCode = "electrofishing", surveyEvidence = "deposited_matrix",
     surveyEvidenceNote = "The deposited capture-history matrix has 15 occasion columns and every fish is surveyed at every occasion, including occasions before its first capture (y = 0).",
     responseType = "detection", unitKind = "individual",
-    closure = "open between periods (bimonthly occasions; survival and emigration between occasions, CJS)",
+    closure = "none", closureNote = "open between periods (bimonthly occasions; survival and emigration between occasions, CJS)", occasionKind = "none", taxonInclusion = "single",
     geographicCoverage = "Indian Creek, Sumter National Forest, South Carolina, USA (a 740 m study reach); no coordinates deposited",
     temporalCoverage = "2015-11/2018-03",
     coordinatesCoarsened = NA,

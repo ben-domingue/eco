@@ -32,7 +32,10 @@
 #   unit_sex = F/M from Chsexed19902015 for the 227 sexed whales, NA otherwise (sex is a
 #   property of the whale, so it applies to the whole 1982-2016 history). unit_calf = 1 for
 #   the 41 whales listed in Calves.txt, which the authors exclude; kept here so the user can
-#   choose. Rows before first capture are kept as 0 (a field season happened every year).
+#   choose. At-risk span (E4.4): the whales are wild animals of unknown age (rows from 1982,
+#   zeros before first capture; a field season happened every year), except the 41 calves,
+#   first identified as calves with their mothers: born in the year of first identification,
+#   so no rows before it. Natural marks (no tag loss); every whale has a sighting.
 #   surveyEvidence = deposited_matrix: a photo-ID season ran every year 1982-2016 (the
 #   paper's 35 years of surveys); the deposit has no effort per year.
 #   No coordinates (one study zone). Balaenoptera physalus is IUCN VU, but nothing to coarsen.
@@ -86,6 +89,11 @@ covs <- data.frame(sex = sx$sex[match(ch$ID, sx$ID)], calf = as.integer(ch$ID %i
 long <- array_to_eco(CH, taxon = "BALPHY", site_ids = ch$ID, site_covs = covs, period = seq_len(Tn), y_raw = YR)
 long[, occasion := NULL]
 stopifnot(nrow(long) == 507 * Tn, sum(long$y) == sum(CH), sum(long$unit_calf) == 41 * Tn)
+# E4.4: a calf is marked in its birth year (first identification): no rows before it
+first <- apply(CH, 1, function(r) which(r == 1L)[1])
+start <- ifelse(covs$calf == 1L, first, 1L)
+long <- long[period >= start[match(unit, ch$ID)]]
+stopifnot(nrow(long) == sum(Tn - start + 1L), sum(long$y) == sum(CH))
 
 taxa <- make_taxa("BALPHY", "Balaenoptera physalus", vernacularName = "Fin Whale", taxon_iucnCategory = "VU")
 periods <- data.table(period = seq_len(Tn), year = years)
@@ -99,10 +107,10 @@ dataset <- list(
   abstract = "Annual photo-identification histories of 507 fin whales identified by the Mingan Island Cetacean Study in the northern Gulf of St. Lawrence over 35 years (1982-2016), from more than 5,000 identifications. The authors fit CJS models (survival with a linear trend and a sharp late decline) and POPAN super-population models.",
   samplingProtocol = "Boat-based photo-identification surveys each summer (June-October) in the Mingan Islands / Jacques Cartier Passage study area; one annual capture occasion per whale per year, y_raw = number of days the whale was photographed that year.",
   samplingProtocolCode = "photo_id", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "period (one annual occasion; survival and emigration between years)",
+  closure = "none", closureNote = "period (one annual occasion; survival and emigration between years)", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "Northern Gulf of St. Lawrence, Quebec, Canada: Mingan Islands and Jacques Cartier Passage (one study zone; no coordinates deposited)",
   temporalCoverage = "1982/2016", coordinatesCoarsened = NA,
-  notes = "unit_calf = 1 marks the 41 whales listed in Calves.txt, which the authors exclude from all models because a calf's sightings follow its mother's; filter them out to reproduce the paper. unit_sex is NA for the 280 whales not genetically sexed. The authors' CJS analyses use 1990-2016 subsets of these histories.",
+  notes = "unit_calf = 1 marks the 41 whales listed in Calves.txt, which the authors exclude from all models because a calf's sightings follow its mother's; filter them out to reproduce the paper. Their rows begin in the year of first identification (born that year; E4.4); every other whale is of unknown age, with rows from 1982 and zeros before first capture. unit_sex is NA for the 280 whales not genetically sexed. The authors' CJS analyses use 1990-2016 subsets of these histories.",
   notShipped = list(
     `ChPopan20042010.txt, ChPopan20102016.txt` = "7-year windows of the same histories for POPAN; recoverable from this table by period",
     `residency clusters` = "the authors' visitor / core-regular grouping is a clustering of the same sighting histories and is not deposited per whale",
@@ -121,4 +129,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "CJS capture-recapture",
   sampling_protocol = "photo_id", design = "Multi-session (35 annual primary periods, no secondary)", realm = "Marine",
   country = "CAN", coordinates = "None in source",
-  notes = "Individuals as unit; rows before first capture kept as 0; unit_calf flags calves the authors exclude.")
+  notes = "Individuals as unit; rows from 1982 with zeros before first capture, except calves (from their first identification); unit_calf flags calves the authors exclude.")

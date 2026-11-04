@@ -76,7 +76,7 @@ dataset <- list(
   samplingProtocol = "Integrated Monarch Monitoring Program (IMMP 2018; Cariveau et al. 2019) adult monarch transect survey by trained surveyors, three surveys per site per summer; milkweed (A. verticillata excluded) and blooming species recorded at the survey.",
   samplingProtocolCode = "transect_count", surveyEvidence = "row_presence",
   responseType = "count", unitKind = "site",
-  closure = "occasion (three surveys within a summer, June-August); period = year",
+  closure = "closed", closureNote = "occasion (three surveys within a summer, June-August); period = year", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = list(description = "Grassland sites in northern and southern Wisconsin, USA",
                             boundingBox = list(west = min(x$XCoord), east = max(x$XCoord), south = min(x$YCoord), north = max(x$YCoord))),
   temporalCoverage = "2018-06-01/2019-08-09", crs = "EPSG:4326",

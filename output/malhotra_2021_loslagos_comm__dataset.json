@@ -20,7 +20,9 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "geographicCoverage": "Los Lagos Region, Chile (no coordinates deposited)",
   "temporalCoverage": "2019",
   "coordinatesCoarsened": null,
@@ -39,8 +41,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_trapnights", "unit_understory_10m", "unit_smallmammal_rate", "unit_forest", "unit_isolation", "unit_edge"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/malhotra_2021_loslagos_comm.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

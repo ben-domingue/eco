@@ -1,4 +1,4 @@
-unit,taxon,y,y_raw,trap,occasion,date,unit_sex,unit_group,unit_flank_profile,obs_side
+unit,taxon,y,y_raw,trap,occasion,date,unit_sex,unit_group,unit_identity,obs_side
 LF158,PANLEO,0,0,MYW01,57,2021-11-12,F,Mountain_pride,both,
 LF165,PANLEO,0,0,MYW01,57,2021-11-12,F,Mountain_pride,both,
 LF179,PANLEO,0,0,MYW01,57,2021-11-12,F,North_pride,both,

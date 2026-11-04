@@ -2,7 +2,7 @@
 
 One self-contained processing script per source, mirroring `data/` in
 `ben-domingue/irw`. Each script downloads its source into `.cache/raw/<table>/`,
-reshapes it into the standard (`../standard.md`, v1.0-draft), validates it, and
+reshapes it into the standard (`../standard.md`, v1.1-draft), validates it, and
 writes four things:
 
 | Output | Where |
@@ -96,8 +96,7 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `knape_2018_shoveler_count.R` | N-mixture repeated counts, 50 Swedish wetlands x 10 visits, per-visit Julian day, three site covariates (nmixgof::shoveler) | Zenodo | CC BY 4.0 |
 | `chabanne_2017_perth_dolphin_msrd.R` | multi-state closed robust design capture-recapture (16 seasons x 3-6 secondary occasions, y = site of capture), photo-id dolphins; first robust-design and first multi-state CR table | Dryad (version zip, MARK .inp) | CC0 |
 | `oosthuizen_2019_marion_seal_rd.R` | robust design tag-resight, 1,729 female elephant seals x 28 seal years x 3 capture periods; multievent code in y_raw | Dryad | CC0 |
-| `goldingay_2022_richmond_koala_dynocc.R` | single-species dynamic occupancy, spotlight transects, 8 years x 3 surveys, 7 habitat covariates, 2019 drought flagged | Dryad (version zip, UTF-16 text) | CC0 |
-| `goldingay_2022_richmond_glider_dynocc.R` | same deposit and design for the central greater glider; separate table because the two species' survey sets differ in 22 cells | Dryad (version zip, UTF-16 text) | CC0 |
+| `goldingay_2022_richmond_mammals_dynocc.R` | dynamic occupancy, spotlight transects, koala and central greater glider, 8 years x 3 surveys; one table with `__survey_taxa` by survey (v1.1 ruling #31; replaced the koala and glider tables) | Dryad | CC0 |
 | `dettling_2021_marin_riparian_count.R` | N-mixture community counts, 14 riparian landbirds, 183 points x 23 years x 1-3 visits, explicit zeros as deposited | Dryad (version zip) | CC0 |
 | `ferguson_2015_macon_bawa_fpocc.R` | multi-state occupancy with false positives (0 / unconfirmed / confirmed per visit), one warbler, 272 sites x 3 visits, coordinates and forest cover | Dryad (version zip) | CC0 |
 | `murray_2021_chicago_coyote_mange.R` | multi-state occupancy (disease: 0 / coyote / coyote with mange signs), daily camera-trap observations, 16 seasons x 28 days, per-day image-quality covariates, coordinates | Dryad (version zip) | CC0 |
@@ -166,9 +165,7 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `schleimer_2019_gsl_finwhale_cjs.R` | CJS, photo-ID | Dryad | CC0 |
 | `ancona_2016_isabel_booby_cjs.R` | CJS | Dryad | CC0 |
 | `dezeeuw_2024_nl_waterbeetle_nmix.R` | community repeated counts (water beetles) | Dryad | CC0 |
-| `inbo_2026_flanders_aesiso_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
-| `inbo_2026_flanders_calvir_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
-| `inbo_2026_flanders_coepul_count.R` | repeated counts, target species (dragonfly) | GBIF (INBO) | CC0 |
+| `inbo_2026_flanders_dragonfly_count.R` | repeated counts, three target dragonflies, one table with `__survey_taxa` by unit (v1.1 ruling #31; replaced three per-species tables) | GBIF (INBO) | CC0 |
 | `hinneberg_2022_limenitis_ccr.R` | closed-population capture-recapture, occasion = surveyor (first of its family) | Dryad | CC0 |
 | `leith_2022_africanpenguin_ms.R` | multistate CJS, breeder / non-breeder, PIT resightings | Dryad | CC0 |
 | `bruce_2021_wisconsin_monarch_nmix.R` | N-mixture repeated counts (monarch adults) | ScienceBase (USGS) | public domain |

@@ -97,7 +97,7 @@ dataset <- list(
   samplingProtocolCode = "hair_snag", surveyEvidence = "effort_table",
   surveyEvidenceNote = "TDF.csv carries a usage column per occasion; every site was used on every occasion (256 site-occasions). Every individual carries all 256, including occasions without a detection.",
   responseType = "detection", unitKind = "individual",
-  closure = "single session (one period, omitted): the four occasions are treated as a closed population, as in the authors' SCR; occasion = sampling occasion 1-4",
+  closure = "closed", closureNote = "single session (one period, omitted): the four occasions are treated as a closed population, as in the authors' SCR; occasion = sampling occasion 1-4", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Alberta, Canada; site coordinates in __traps in UTM metres (zone not stated in the deposit; zone 12N places the grid at 53.2-53.6 N, 112.7-113.1 W, the Beaver Hills east of Edmonton)",
   temporalCoverage = "2016",
   crs = "UTM metres, zone not stated in the deposit; EPSG:32612 (zone 12N) by inference from the coordinate range and the authors' study area",

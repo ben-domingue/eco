@@ -33,10 +33,15 @@
 #   female bred that year (only breeders are ashore in the breeding season); a detection at
 #   occasion 3 carries no reproductive state, which is the paper's state uncertainty.
 #   Survey evidence: the deposited matrix; every capture period was surveyed in every seal
-#   year (weekly breeding-season surveys 1986-2013, 10-day non-breeding surveys 1984-2014), so
-#   every individual carries the full 28 x 3 rectangle, including the seal years before its
-#   first breeding encounter (kept as 0, standard E4; the paper's conditioning on first
-#   breeding is a model choice, reproducible by dropping rows before the first y_raw > 0).
+#   year (weekly breeding-season surveys 1986-2013, 10-day non-breeding surveys 1984-2014).
+#   At-risk span (E4.4): every female was tagged as a weaned pup (1983-2009 cohorts), so she has
+#   no rows before her marking season; the deposit has no cohort or tagging year, and the
+#   authors' histories condition on the first breeding encounter (a juvenile's earlier moult or
+#   winter sightings, code 4, were removed, so the deposited zeros before it are not
+#   non-detections). Rows therefore begin in the seal year of the first encounter, the earliest
+#   year the deposit can place the female at risk and observed; within it all three capture
+#   periods are rows. Later years run to 2013/14 (no tag loss recorded; tags are double
+#   hind-flipper tags).
 #   Not shipped: nothing is omitted. The weekly secondary surveys themselves are not in the
 #   deposit (the authors collapsed them to the three capture periods before archiving).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -76,6 +81,10 @@ stopifnot(all(map[paste0(bits[, 1] + 0L, bits[, 2] + 0L, bits[, 3] + 0L)] == as.
 
 long <- array_to_eco(Y, taxon = "MIRLEO", site_ids = seq_len(n_ind), period = period, y_raw = RAW)
 stopifnot(nrow(long) == n_ind * n_per * 3L, all(long$occasion %in% 1:3), sum(long$y) == sum(seenU) + sum(seenE) + sum(seenM))
+# E4.4: marked as pups, cohort not deposited; histories start at the first (breeding) encounter
+fp <- apply(EV, 1, function(h) which(h > 0)[1])
+long <- long[period >= fp[as.integer(unit)]]
+stopifnot(nrow(long) == 3L * sum(n_per - fp + 1L), sum(long$y) == sum(seenU) + sum(seenE) + sum(seenM))
 
 taxa <- make_taxa("MIRLEO", "Mirounga leonina", vernacularName = "Southern elephant seal")
 periods <- data.table(period = seq_len(n_per), year = 1985L + seq_len(n_per),
@@ -91,13 +100,13 @@ dataset <- list(
   abstract = "Encounter histories of 1,729 female southern elephant seals tagged as weaned pups at Marion Island (1983-2009 cohorts) and resighted in 28 breeding seasons (1986-2013) plus the moult and winter surveys that follow each. The deposit encodes each seal year as one of eight composite events (seen or not in the uneven breeding-season weeks, the even weeks, and outside the breeding season); here each seal year is three rows, one per capture period, y = seen, y_raw = the event code. Histories condition on the first encounter as a breeder.",
   samplingProtocol = "Weekly island-wide tag-resight surveys of all breeding beaches during the breeding season (8 per season, collapsed by the authors to uneven and even weeks), and 10-day tag-resight surveys of all beaches during the moult and winter; hind-flipper livestock tags on weaned pups.",
   samplingProtocolCode = "tag_resight", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "occasion within period (robust design: three capture periods per seal year; breeder / nonbreeder state is fixed within a seal year and may change between years; nonbreeders are assumed unavailable in occasions 1-2)",
+  closure = "closed", closureNote = "occasion within period (robust design: three capture periods per seal year; breeder / nonbreeder state is fixed within a seal year and may change between years; nonbreeders are assumed unavailable in occasions 1-2)", occasionKind = "time", taxonInclusion = "single",
   occasionCodes = list(`1` = "kappa_U: breeding-season surveys in weeks 1,3,5,7 (Sept-Nov)", `2` = "kappa_E: breeding-season surveys in weeks 2,4,6,8 (Sept-Nov)", `3` = "kappa_M: moult and winter surveys (Nov-Aug), no reproductive state"),
   respRawCodes = list(`0` = "not seen in any capture period (NS)", `1` = "seen in U, E and M (MUE)", `2` = "seen in U and M (MU)", `3` = "seen in E and M (ME)", `4` = "seen in M only (M)", `5` = "seen in U and E (UE)", `6` = "seen in U only (U)", `7` = "seen in E only (E)"),
   geographicCoverage = "Marion Island, Prince Edward Islands, southern Indian Ocean (46.9 S, 37.7 E); no coordinates deposited",
   temporalCoverage = "1986-09/2014-08",
   coordinatesCoarsened = NA,
-  notes = "Rows before an individual's first breeding encounter are kept as 0 (E4); the paper conditions on that encounter, so drop rows before the first y_raw > 0 to reproduce its data. A detection at occasion 1 or 2 implies the female bred that year. The weekly secondary surveys are not in the deposit. Frequency column is 1 throughout; no covariates deposited.",
+  notes = "Each female's rows begin in the seal year of her first encounter (always as a breeder), as in the paper's conditioning: she was tagged as a weaned pup (E4.4: no rows before marking), the deposit has no cohort, and sightings before the first breeding encounter were removed by the authors, so earlier years cannot be placed. A detection at occasion 1 or 2 implies the female bred that year. The weekly secondary surveys are not in the deposit. Frequency column is 1 throughout; no covariates deposited.",
   notShipped = list())
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/oosthuizen_2019_marion_seal_rd.R")
 
@@ -107,7 +116,7 @@ stage_dict_row(TABLE,
   reference = "Oosthuizen, W. C., Pradel, R., Bester, M. N., & de Bruyn, P. J. N. (2019). Making use of multiple surveys: Estimating breeding probability using a multievent-robust design capture-recapture model. Ecology and Evolution, 9, 836-848.",
   doi_paper = "10.1002/ece3.4828", doi_data = "10.5061/dryad.gd23252",
   original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "First robust-design table. Composite event codes decomposed losslessly into three capture-period rows per seal year; the event code is y_raw. Histories condition on first breeding encounter; leading zeros kept.",
+  notes = "First robust-design table. Composite event codes decomposed losslessly into three capture-period rows per seal year; the event code is y_raw. Histories start at the first breeding encounter (tagged as pups, cohort not deposited).",
   source_via = "Dryad")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Multievent / multi-state robust design capture-recapture",
   sampling_protocol = "tag_resight", design = "Robust design (28 seal years x 3 capture periods)", realm = "Marine",

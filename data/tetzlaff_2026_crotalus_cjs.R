@@ -100,7 +100,7 @@ dataset <- list(
   abstract = "Capture-recapture histories of adult female Crotalus horridus (>= 500 g) at six dens in the southeastern Adirondack Mountains, New York, over 26 sampling years between 1983 and 2019, deposited as a Program MARK input file for Pradel's survival and recruitment model with den x colour-morph groups, unequal interval lengths, and two population-level annual covariates.",
   samplingProtocol = "Den-based hand capture and individual marking of adult females during the active season; one occasion per sampling year (Program MARK input, 26 occasions with unequal intervals).",
   samplingProtocolCode = "hand_capture", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "period (one occasion per sampling year; survival and recruitment between years)",
+  closure = "none", closureNote = "period (one occasion per sampling year; survival and recruitment between years)", occasionKind = "none", taxonInclusion = "single",
   lossesOnCapture = "none coded (no negative frequencies in the deposit)",
   geographicCoverage = "southeastern Adirondack Mountains, New York, USA (den locations not deposited)",
   temporalCoverage = "1983/2019",

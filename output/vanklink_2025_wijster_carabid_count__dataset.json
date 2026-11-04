@@ -19,7 +19,10 @@
   "surveyEvidenceNote": "Every collection is an event (level 5) with its interval and trap-days; collections with no beetles carry an explicit 'Carabidae' absence record, and the Humboldt extension declares complete reporting of Carabidae per trap-year, so a species absent from a collection's records is a zero.",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "not assumed: occasions are the successive collections of a whole year, so activity-density follows each species' phenology; period = sampling year",
+  "closure": "open",
+  "closureNote": "not assumed: occasions are the successive collections of a whole year, so activity-density follows each species' phenology; period = sampling year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Forests, heathlands and bogs in Drenthe, the Netherlands (Mantingerbos, Dwingelderveld, Mantingerveld, Bargerveen, Dalerpeel, Kraloo, Wijster, Bruntinge, Eursinge)",
     "boundingBox": {
@@ -38,7 +41,7 @@
     "occurrence.txt sex": "male / female / unknown breakdown, summed into y",
     "series-year and trap-year events": "aggregates (sums) of the collections",
     "humboldtecologicalinventory.txt voucher fields": "which trap-years' material is stored at Naturalis",
-    "species pairs not separated in the historical period": "shipped under the recorded names; per the EML, Calathus melanocephalus / cinctus, Bradycellus collaris / harpalinus, Pterostichus nigrita / rhaeticus, Bembidion lampros / properans and Poecilus versicolor / cupreus were not reliably separated, and species of Agonum, Asaphidion, Amara and Harpalus may have been overlooked"
+    "possibly overlooked species": "per the EML, species of Agonum, Asaphidion, Amara and Harpalus may have been overlooked in the historical period (the five species pairs not reliably separated are shipped as recorded, with taxonRemarks in __taxa)"
   },
   "summary": {
     "n_rows": 2013216,
@@ -52,7 +55,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "obs_trap_days"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/vanklink_2025_wijster_carabid_count.R",
   "buildDate": "2026-11-03"

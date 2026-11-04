@@ -34,9 +34,13 @@
 #           to the live year; counted below).
 #   y = state code 0 = neither (00), 1 = live only (10), 2 = dead only (01), 3 = live then dead in
 #   the same interval (11); y_raw = the "LD" pair as text. stateCodes and respRawCodes in metadata.
-#   Rows: from the marking year (first period, always y = 1 or 3) to the period of dead recovery,
-#   or to 2016 for fish not recovered dead by 30 June 2017 (standard E4 item 4: an individual has
-#   no rows after it has left the population). No rows before marking.
+#   Rows: from 1966, the study's first spawning run, to the period of dead recovery, or to 2016
+#   for fish not recovered dead by 30 June 2017 (E4.4: an individual has no rows after it has
+#   left the population). At-risk span (E4.4): every fish was first caught as an adult of
+#   unknown age in the fish-ladder trap (wild-spawned or stocked; the deposit gives no stocking
+#   or hatch year), so it is at risk from the first period: years before its marking run are
+#   y = 0 (00). The marking run is unit_mark_year (always y = 1 or 3); drop earlier rows to
+#   condition on first capture. Carlin-tag loss is not recorded; every fish has a capture.
 #   Survey evidence (inferred): the deposit has no effort table. The trap is operated every
 #   spawning run (data paper) and the deposit has trap captures in every year 1966-2016, so every
 #   period is a live occasion; dead recoveries are reported continuously (harvest reporting),
@@ -109,13 +113,13 @@ fish[, unit_tag_series := trimws(sub("[0-9].*$", "", MarkNo))]
 fish <- merge(fish, rec[, .(MarkNo, end = year)], by = "MarkNo", all.x = TRUE)
 fish[is.na(end), end := 2016L]
 stopifnot(all(fish$end >= fish$mark_year))
-grid <- fish[, .(year = mark_year:end), by = MarkNo]
+grid <- fish[, .(year = 1966L:end), by = MarkNo]                     # E4.4: wild-caught adults, at risk from 1966
 long <- merge(grid, live, by = c("MarkNo", "year"), all.x = TRUE)
 long <- merge(long, rec[, .(MarkNo, year, D = 1L, obs_recovery_type, obs_recovery_area, obs_recovery_gear)],
               by = c("MarkNo", "year"), all.x = TRUE)
 long[is.na(L), L := 0L][is.na(D), D := 0L]
 long <- merge(long, fish[, .(MarkNo, unit_sex, unit_origin, mark_year, unit_length_mark_mm, unit_weight_mark_g, unit_tag_series)], by = "MarkNo")
-stopifnot(nrow(long) == sum(fish$end - fish$mark_year + 1L),
+stopifnot(nrow(long) == sum(fish$end - 1966L + 1L), all(long[year < mark_year, L == 0L & D == 0L]),
           sum(long$L) == nrow(live), sum(long$D) == nrow(rec),
           all(long[year == mark_year, L == 1L]))
 long <- long[, .(unit = MarkNo, taxon = "SALTRU", y = L + 2L * D, y_raw = paste0(L, D), period = year - 1965L,
@@ -144,19 +148,19 @@ dataset <- list(
   citation = "Moe, S. J., Nater, C. R., Rustadbakken, A., Vollestad, L. A., Lund, E., Qvenild, T., Hegge, O. & Aass, P. (2020). Data from: Long-term mark-recapture and growth data for large-sized migratory brown trout (Salmo trutta) from Lake Mjosa, Norway. Dryad. https://doi.org/10.5061/dryad.9cnp5hqf4",
   paperDOI = "10.3897/BDJ.8.e52157",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Burnham live-dead histories of 13,975 adult brown trout marked in the fish-ladder trap on the river Gudbrandsdalslagen during their spawning migration from Lake Mjosa, 1966-2015, recaptured alive in the trap in later runs (to 2016) and recovered dead by fishers or staff (harvest, found dead, dead in the trap). One row per fish per spawning year from marking to dead recovery or 2016: y = 0 not encountered, 1 captured alive in the trap that year, 2 recovered dead in the interval after that year's run (1 July to 30 June), 3 both; y_raw = the live-dead pair.",
+  abstract = "Burnham live-dead histories of 13,975 adult brown trout marked in the fish-ladder trap on the river Gudbrandsdalslagen during their spawning migration from Lake Mjosa, 1966-2015, recaptured alive in the trap in later runs (to 2016) and recovered dead by fishers or staff (harvest, found dead, dead in the trap). One row per fish per spawning year from 1966 to dead recovery or 2016 (years before marking are y = 0): y = 0 not encountered, 1 captured alive in the trap that year, 2 recovered dead in the interval after that year's run (1 July to 30 June), 3 both; y_raw = the live-dead pair.",
   samplingProtocol = "Adults ascending the river Gudbrandsdalslagen to spawn are caught in a trap in the fish ladder at the Hunderfossen hydropower dam each summer and autumn, measured, weighed, sexed where possible, Carlin-tagged and released upstream; stocked hatchery fish are marked as well. Live recaptures are trap captures in later runs; dead recoveries are tag returns from anglers and net fishers in the lake and river, fish found dead, and fish dead in the trap (data paper, Moe et al. 2020).",
   samplingProtocolCode = "tag_recovery", surveyEvidence = "inferred",
   surveyEvidenceNote = "No effort table is deposited. The trap is operated in every spawning run (data paper) and the deposit has live trap captures in every year 1966-2016, so every period is a live occasion; tag recovery from the fishery is continuous, so every interval is a recovery interval. Fishing effort, and so recovery probability, is not recorded and varies over the 51 years.",
   responseType = "state", unitKind = "individual",
-  closure = "open between periods (Burnham live-dead model: one live-capture occasion per spawning run and one dead-recovery interval after it; no closure assumed within a period)",
+  closure = "none", closureNote = "open between periods (Burnham live-dead model: one live-capture occasion per spawning run and one dead-recovery interval after it; no closure assumed within a period)", occasionKind = "none", taxonInclusion = "single",
   stateCodes = list(`0` = "not encountered in period t (live 0, dead 0)", `1` = "captured alive in the river trap in calendar year t (live 1, dead 0)",
                     `2` = "recovered dead between 1 July of t and 30 June of t+1 (live 0, dead 1)", `3` = "captured alive in run t and recovered dead in the following interval (live 1, dead 1)"),
   respRawCodes = list(`00` = "neither", `10` = "live capture only", `01` = "dead recovery only", `11` = "live capture and dead recovery"),
   geographicCoverage = "Lake Mjosa and the river Gudbrandsdalslagen at Hunderfossen, Innlandet, Norway (61.2 N, 10.4 E); recoveries in the lake, the river above and below the dam and a few in the river Glomma; no coordinates deposited",
   temporalCoverage = "1966-07/2017-06",
   coordinatesCoarsened = NA,
-  notes = sprintf("First live-dead (Burnham) table in eco. Rows run from the marking year to the dead-recovery period, or to 2016; the period of dead recovery is a fish's last row. Dead recoveries are placed by date in the interval 1 July of t to 30 June of t+1; %d recoveries with year-only dates were placed by year with the same rule (an April-June harvest assumed when no month), and %d recoveries that the rule would have put before the fish's last live capture were moved to the live year. Spring trap captures (13, April-May) are live captures of that calendar year. The deposit's ScaleData flag and the growth file are not shipped. Recovery covariates (type, area, gear) are on the recovery row.", n_nomonth, n_moved),
+  notes = sprintf("First live-dead (Burnham) table in eco. Rows run from 1966 (E4.4: fish first caught as adults of unknown age are at risk from the first run; unit_mark_year is the marking run, so drop earlier rows to condition on first capture) to the dead-recovery period, or to 2016; the period of dead recovery is a fish's last row. Dead recoveries are placed by date in the interval 1 July of t to 30 June of t+1; %d recoveries with year-only dates were placed by year with the same rule (an April-June harvest assumed when no month), and %d recoveries that the rule would have put before the fish's last live capture were moved to the live year. Spring trap captures (13, April-May) are live captures of that calendar year. The deposit's ScaleData flag and the growth file are not shipped. Recovery covariates (type, area, gear) are on the recovery row.", n_nomonth, n_moved),
   notShipped = list(`catch and release` = sprintf("%d live encounters away from the trap (Barker-model resightings; the live-dead pair has no cell for them)", n_cr),
                     `dead-then-alive record` = "NH 13124: a harvest dated 2007-05-11 followed by a live trap capture on 2007-07-31; the harvest record is dropped",
                     `recoveries after the last occasion` = sprintf("%d dead recoveries dated after 30 June 2017 (no live occasion follows)", n_after),
@@ -173,4 +177,4 @@ stage_dict_row(TABLE,
   source_via = "Dryad")
 stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "Dead recovery / live-dead capture-recapture (Burnham)",
   sampling_protocol = "tag_recovery", design = "Multi-session (51 spawning runs, live capture plus dead-recovery interval)", realm = "Freshwater",
-  country = "NOR", coordinates = "None in source", notes = "Individuals as unit; rows from marking to dead recovery or 2016; y = live-dead state.")
+  country = "NOR", coordinates = "None in source", notes = "Individuals as unit; rows from 1966 (adults of unknown age) to dead recovery or 2016; y = live-dead state.")

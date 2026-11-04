@@ -105,7 +105,7 @@ dataset <- list(
   samplingProtocolCode = "camera_trap", occasionLength = "7 days", effortColumn = "obs_camera_days",
   surveyEvidence = "inferred",
   surveyEvidenceNote = "Surveyed camera-weeks = calendar weeks overlapping the first-to-last detection span of each camera-year (all detections, people included). The deposited deployment Start/End fields were not believed: 4,349 detections fall outside their own row's window.",
-  responseType = "detection", unitKind = "site", closure = "occasion (weeks within a winter season)",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "occasion (weeks within a winter season)", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Northwest Arkansas, USA (Fayetteville to the Ozark Mountains; no coordinates deposited)", temporalCoverage = "2020-12/2022-03",
   coordinatesCoarsened = NA,
   notShipped = list(Density_2023.csv = "REM density estimates and GIS covariates; camera IDs do not match the detection file",

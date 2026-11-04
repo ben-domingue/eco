@@ -17,6 +17,9 @@
 #   mustelids), period = season 1..7, occasion = day index 1..304, y = 0/1 per taxon derived
 #   from the state (rodent: state 2 or 4; mustelid: 3 or 4), y_raw = the four-state code.
 #   surveyEvidence = deposited_matrix. Block 6 has no data in seasons 1-2 (no rows).
+#   v1.1: closure = closed (as the source model assumes; prose in closureNote), occasionKind =
+#   time, taxonInclusion = target (the two classifier groups); taxonRemarks in __taxa say the
+#   taxa are functional groups.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "kleiven_2020_varanger_dynocc"
 
@@ -37,8 +40,12 @@ stopifnot(nrow(long) == 2 * nrow(obs), uniqueN(long$unit) == 46,  # the prose sa
 periods <- data.table(period = 1:7, n_cameras_active = sapply(1:7, function(t) uniqueN(long[period == t, unit])),
                       note = "calendar bounds not in the deposit; collection 2015-09 to 2020-06")
 
-taxa <- make_taxa(c("RODENT", "MUSTEL"), c("Rodentia", "Mustela"), vernacularName = c("Small rodents (functional group)", "Small mustelids (stoat, least weasel)"),
-                  taxonRank = c("order", "genus"))
+# "Mustela" alone is a GBIF homonym (strict match fell to phylum Chordata in v1.0); the
+# lookup carries the authority so it matches the mammal genus (key 2433922) EXACTLY.
+taxa <- make_taxa(c("RODENT", "MUSTEL"), c("Rodentia", "Mustela"), lookupName = c("Rodentia", "Mustela Linnaeus, 1758"), vernacularName = c("Small rodents (functional group)", "Small mustelids (stoat, least weasel)"),
+                  taxonRank = c("order", "genus"),
+                  taxonRemarks = c("functional group of the image classifier (small rodents: voles and lemmings); taxonID is the order Rodentia, of which the group is a part",
+                                   "functional group of the image classifier (small mustelids: stoat and least weasel); taxonID is the genus Mustela"))
 dataset <- list(
   title = "COAT small-mammal camera traps, Varanger Peninsula: daily detection of small rodents and small mustelids at 46 cameras (of 48 positions) in 8 blocks over 7 seasons",
   creator = "Kleiven, Eivind Flittie; COAT (Climate-ecological Observatory for Arctic Tundra), UiT The Arctic University of Norway",
@@ -48,7 +55,8 @@ dataset <- list(
   abstract = "Case-study data for a dynamic occupancy model of interacting species with two spatial scales: daily camera-trap detection of small rodents and small mustelids on the arctic tundra of the Varanger Peninsula, from the COAT long-term monitoring programme. Images were classified by an automatic classifier (MLWIC). The deposited observation is a four-state code (none, rodent, mustelid, both) per camera-day; it is split here into one detection row per functional group with the state kept in y_raw.",
   samplingProtocol = "Camera traps inside small-mammal tunnels (Soininen et al. 2015 design), 6 cameras per block in 8 blocks; daily detection/non-detection of each functional group; seasons of 304 days.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion (within a 304-day season, as the source model assumes)",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "occasion (within a 304-day season, as the source model assumes)",
+  occasionKind = "time", taxonInclusion = "target",
   geographicCoverage = "Varanger Peninsula, Troms og Finnmark, Norway (no coordinates deposited)",
   temporalCoverage = "2015-09/2020-06 (seven seasons; day-to-date mapping not in the deposit)",
   coordinatesCoarsened = NA,

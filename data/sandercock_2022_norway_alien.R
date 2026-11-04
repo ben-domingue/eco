@@ -53,6 +53,9 @@
 #   plant list are IUCN-listed on GBIF (Aesculus hippocastanum VU, Syringa josikaea EN), but every taxon
 #   here is on the Norwegian Alien Species List: these are introduced populations, outside the native
 #   range, so E7 (b) does not flag them (ruling on non-native taxa, 2026-11-02).
+# v1.1: plants closure = closed, occasionKind = observer, taxonInclusion = recorded (all 241
+#   detected); insects closure = closed, occasionKind = method, taxonInclusion = recorded: the one
+#   listed taxon never detected (LYSIVAGA) is dropped (notShipped). Two methods, two tables (#31).
 # Not shipped: UTM33 easting/northing (the same positions as latitude/longitude); the duplicate Pilosella row;
 #   the authors' pooled 2019 insect histories (ethanol OR lysis, computed in their script), not a
 #   deposit file.
@@ -132,9 +135,16 @@ cat(sprintf("  plants: %d plot-surveys (botanist visits), %d detections of %d ta
 rank_of <- function(nm) fifelse(grepl("'", nm), "cultivar", fifelse(grepl("×", nm), "hybrid",
                          fifelse(lengths(strsplit(nm, " +")) > 2, "subspecies", "species")))
 lookup <- sub("^Sorbus Koehneana$", "Sorbus koehneana", sp)      # source capitalises the epithet
+# v1.1 make_taxa(exact = TRUE): the bare names fell to their genera (HIGHERRANK) in v1.0 and
+# shipped without a key; with the authority each matches the species name EXACTLY (GBIF files
+# both as synonyms: of Amelanchier humilis and Petrosedum forsterianum, gbifAcceptedName)
+lookup[lookup == "Amelanchier spicata"] <- "Amelanchier spicata (Lam.) K.Koch"
+lookup[lookup == "Sedum forsterianum"] <- "Sedum forsterianum Sm."
 risk1 <- unique(pl[, .(CorrectSpecies, CorrectRisk)])[match(sp, CorrectSpecies), CorrectRisk]
 taxa1 <- make_taxa(code, sp, taxonRank = rank_of(sp), lookupName = lookup,
-                   taxon_alienRisk = risk1, taxon_alienRiskLabel = unname(risk_lab[risk1]))
+                   taxon_alienRisk = risk1, taxon_alienRiskLabel = unname(risk_lab[risk1]),
+                   taxonRemarks = fifelse(sp == "Salix 'Brekkavier'", "cultivar recorded as such by the source; the GBIF backbone holds no cultivars, so taxonID is empty", NA_character_),
+                   no_key = code[sp == "Salix 'Brekkavier'"])
 taxa1[gbifMatchType == "HIGHERRANK", taxonID := NA_character_]     # do not ship a genus key for a species-rank name
 taxa1[scientificName == "Pilosella aurantiaca aurantiaca", `:=`(taxon_alienRisk = "SE", taxon_alienRiskLabel = "severe risk (listed twice in the source, as SE and HI)")]
 taxa1[scientificName == "Aesculus hippocastanum", taxon_iucnCategory := "VU"]
@@ -148,11 +158,12 @@ ds1 <- write_table(long1, T1, c(common, list(
   samplingProtocol = "Independent searches of each 6.25-ha plot by two botanists in mid-August to mid-September; in 2018 along four transects (10 m strips) plus about 30 minutes elsewhere (maximum 2 h), in 2019-2020 a random walk over the whole plot (maximum 5 h). The search list is the 241 alien taxa of the Norwegian Alien Species List (2018).",
   samplingProtocolCode = "visual_survey", surveyEvidence = "deposited_matrix",
   responseType = "detection", unitKind = "site",
-  closure = "occasion within plot (the two botanists searched the plot independently within one month); each plot is surveyed in one year only",
+  closure = "closed", closureNote = "occasion within plot (the two botanists searched the plot independently within one month); each plot is surveyed in one year only",
+  occasionKind = "observer", taxonInclusion = "recorded",
   temporalCoverage = "2018-08/2020-09",
   occasionCodes = list(`1` = "botanist Anders Often (observer AO)", `2` = "botanist Hanne Hegre (observer HH)"),
   designNote = "Standard E3: two observers on one visit are two occasions with `observer`; the source records each botanist's own 0/1, so a double-observer multinomial view (cells 10/01/11) is a derived pivot of this table. Occasion order is not temporal. Repeat plots (unit_history = Repeat, 5 plots) re-survey a site from an earlier year under a new plot id; unit_site_name links them (coordinates differ by 0 to about 1.6 km).",
-  notes = "Taxon codes are built from the scientific name (4 + 4 letters, plus 3 of an infraspecific epithet). Hybrids (x), one cultivar (Salix 'Brekkavier') and subspecies are kept at the source's rank; GBIF matches above the source's rank are not shipped as taxonID. Pilosella aurantiaca aurantiaca appears twice in the source with identical detections and two risk categories (SE, HI): one row kept. Site names are as deposited, with the deposit's 'na' -> '0' substitution (Al0 = Alna). unit_hotspot_prediction is the external hotspot model's predicted suitability used for the selection weights (Olsen et al. 2017), not an estimate from these detections; land-cover areas are m2 within 1 km of the plot centre.",
+  notes = "Taxon codes are built from the scientific name (4 + 4 letters, plus 3 of an infraspecific epithet). Hybrids (x), one cultivar (Salix 'Brekkavier') and subspecies are kept at the source's rank; The cultivar has no taxonID (the GBIF backbone holds no cultivars; taxonRemarks). Pilosella aurantiaca aurantiaca appears twice in the source with identical detections and two risk categories (SE, HI): one row kept. Site names are as deposited, with the deposit's 'na' -> '0' substitution (Al0 = Alna). unit_hotspot_prediction is the external hotspot model's predicted suitability used for the selection weights (Olsen et al. 2017), not an estimate from these detections; land-cover areas are m2 within 1 km of the plot centre.",
   components = list(T2),
   notShipped = list(`UTM33 coordinates` = "same positions as the shipped latitude/longitude",
                     `duplicate Pilosella row` = "Pilosella aurantiaca aurantiaca listed a second time (risk HI) with detections identical to the SE row"))),
@@ -199,14 +210,25 @@ li[, `:=`(taxon = code2[match(taxa, sp2)], period = year - 2017L)]
 li <- merge(li, plots, by.x = "site", by.y = "location")
 long2 <- li[, c(list(unit = unit, taxon = taxon, y = as.integer(y), period = period, occasion = occasion,
                      cluster_id = as.character(site), unit_round = round, obs_method = method), .SD), .SDcols = patterns("^unit_")]
+# taxonInclusion = recorded (E10): a listed taxon with no detection in these samples is not listed
+never2 <- long2[, sum(y), by = taxon][V1 == 0, taxon]
+stopifnot(identical(never2, "LYSIVAGA"))
+long2 <- long2[!taxon %in% never2]
 long2 <- order_eco(long2)
 n_samp <- long2[, uniqueN(unit)]; n_ext <- uniqueN(long2[, .(unit, occasion)])
-stopifnot(n_samp == 15L * 3L + 20L * 4L + 25L * 4L, n_ext == 45L + 80L + 70L + 100L, nrow(long2) == n_ext * 143L,
-          all(long2[, .N, by = .(unit, occasion)]$N == 143L), uniqueN(long2$cluster_id) == 60L)
+stopifnot(n_samp == 15L * 3L + 20L * 4L + 25L * 4L, n_ext == 45L + 80L + 70L + 100L, nrow(long2) == n_ext * 142L,
+          all(long2[, .N, by = .(unit, occasion)]$N == 142L), uniqueN(long2$cluster_id) == 60L)
 cat(sprintf("  insects: %d samples, %d sequenced extractions, %d detections of %d taxa\n",
             n_samp, n_ext, sum(long2$y), uniqueN(long2[y == 1, taxon])))
 risk2 <- unique(ins[, .(taxa, risk2)])[match(sp2, taxa), risk2]
-taxa2 <- make_taxa(code2, sp2, taxon_alienRisk = risk2, taxon_alienRiskLabel = unname(risk_lab[risk2]))
+# gender-ending variants: GBIF's backbone spelling of the same species (FUZZY on the source's);
+# Neochrysocharis okazakii (Eulophidae) is not in the backbone: no_key with taxonRemarks
+look2 <- c("Camilla atrimana" = "Camilla atrimanus", "Lysibia nanus" = "Lysibia nana", "Megaselia abdita" = "Megaselia abditus")
+taxa2 <- make_taxa(code2, sp2, lookupName = fifelse(sp2 %in% names(look2), look2[sp2], sp2),
+                   taxon_alienRisk = risk2, taxon_alienRiskLabel = unname(risk_lab[risk2]),
+                   taxonRemarks = fifelse(sp2 == "Neochrysocharis okazakii", "not in the GBIF backbone (no match, 2026-11-03), so taxonID is empty", NA_character_),
+                   no_key = code2[sp2 == "Neochrysocharis okazakii"])
+taxa2 <- taxa2[!taxon %in% never2]
 taxa2[gbifMatchType == "HIGHERRANK", taxonID := NA_character_]
 periods2 <- copy(periods_base)[, `:=`(
   rounds = c("3 weekly rounds, weeks 36-39 (traps set week 35)", "4 biweekly rounds, weeks 29-35 (traps set week 25)", "4 biweekly rounds, weeks 29-35 (traps set week 25)"),
@@ -214,21 +236,23 @@ periods2 <- copy(periods_base)[, `:=`(
   preservative = c("water, ethanol and propylene glycol 1:1:3", "96% ethanol", "96% ethanol"))]
 ds2 <- write_table(long2, T2, c(common, list(
   title = "Alien insect detections by DNA metabarcoding of Malaise-trap samples in 60 plots around the Oslofjord, Norway, 2018-2020",
-  abstract = "One Malaise trap per study plot (the plots of sandercock_2022_norway_plants_comm), emptied in 3 weekly (2018) or 4 biweekly (2019-2020) rounds; each sample metabarcoded from crushed insects (2018), from the ethanol preservative and from a lysis buffer (2019, both, the lysis buffer missing for 10 samples) or from the lysis buffer (2020). One row per sample x DNA source x taxon for 143 alien insect and other invertebrate taxa from the Norwegian Alien Species List (2018) or new to Norway.",
+  abstract = "One Malaise trap per study plot (the plots of sandercock_2022_norway_plants_comm), emptied in 3 weekly (2018) or 4 biweekly (2019-2020) rounds; each sample metabarcoded from crushed insects (2018), from the ethanol preservative and from a lysis buffer (2019, both, the lysis buffer missing for 10 samples) or from the lysis buffer (2020). One row per sample x DNA source x taxon for the 142 alien insect and other invertebrate taxa from the Norwegian Alien Species List (2018) or new to Norway detected at least once (the deposit lists 143).",
   samplingProtocol = "Single Malaise trap per plot, mid-June to late August (2019-2020) or September (2018); DNA metabarcoding of each round's sample from the crushed bulk sample (2018), the ethanol preservative and a lysis buffer (2019), or the lysis buffer (2020); detections reported for the alien-species list.",
   samplingProtocolCode = "eDNA", surveyEvidence = "deposited_matrix",
   responseType = "detection", unitKind = "site",
-  closure = "plot occupancy within the season (cluster_id); unit = trap sample (round), occasion = DNA source sequenced from that sample",
+  closure = "closed", closureNote = "plot occupancy within the season (cluster_id); unit = trap sample (round), occasion = DNA source sequenced from that sample",
+  occasionKind = "method", taxonInclusion = "recorded",
   temporalCoverage = "2018-06/2020-08",
   occasionCodes = list(`1` = "crushed bulk sample (2018)", `2` = "ethanol preservative (2019)", `3` = "lysis buffer (2019, 2020)"),
   designNote = "Experimental list of E9 (multi-scale / eDNA): cluster_id = plot (occupancy), unit = Malaise-trap sample per round (availability), occasion = DNA source (detection). Occasion indexes a method, not a time. The authors pooled the two 2019 sources by OR into one history per plot-round; this table keeps them apart.",
   notes = "Taxon codes built from the scientific name (4 + 4 letters). Risk labels in the deposit have broken Norwegian letters; only the two-letter code is shipped. Plot covariates as in the plant table. The Dryad abstract reports 255 rounds of sampling; the deposited files hold 225 trap samples (45 + 80 + 100) and 295 sequenced extractions.",
   components = list(T1),
   notShipped = list(`UTM33 coordinates` = "same positions as the shipped latitude/longitude",
-                    `pooled 2019 histories` = "the authors' ethanol-OR-lysis combination (computed in InsectOccupancy2020.R, not a deposit file)"))),
+                    `pooled 2019 histories` = "the authors' ethanol-OR-lysis combination (computed in InsectOccupancy2020.R, not a deposit file)",
+                    `never-detected taxon` = "Lysiphlebus vaga (LYSIVAGA) is on the deposited list but detected in none of the deposited samples (taxonInclusion = recorded)"))),
   taxa = taxa2, periods = periods2, script = SCRIPT)
 stage_dict_row(T2,
-  description = "Alien insect surveillance by Malaise-trap DNA metabarcoding in 60 plots around the Oslofjord, southern Norway, 2018-2020: detection of 143 listed alien taxa per trap sample and DNA source (crushed insects, ethanol preservative, lysis buffer); multi-scale eDNA layout with the plot as cluster.",
+  description = "Alien insect surveillance by Malaise-trap DNA metabarcoding in 60 plots around the Oslofjord, southern Norway, 2018-2020: detection of 142 listed alien taxa per trap sample and DNA source (crushed insects, ethanol preservative, lysis buffer); multi-scale eDNA layout with the plot as cluster.",
   url = "https://doi.org/10.5061/dryad.0rxwdbs4f",
   reference = "Sandercock, B. K., et al. (2023). Designing a surveillance program for early detection of alien plants and insects in Norway. Biological Invasions, 25, 917-944.",
   doi_paper = "10.1007/s10530-022-02957-6", doi_data = "10.5061/dryad.0rxwdbs4f",

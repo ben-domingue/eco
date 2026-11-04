@@ -39,8 +39,11 @@
 #   surveyEvidence = sample_table: the sheet lists every collection with its status; a survey is a
 #   row with Etat = ok. Absent, flooded, torn, removed and "Vide" traps are not surveys (Vide is
 #   ambiguous: one of the three Vide rows holds 7 beetles).
-#   Taxa: the 73 species with at least one beetle anywhere in the deposit, in both tables (a species
-#   may be 0 throughout one method); the 31 template columns with no beetle are not shipped.
+#   Taxa (v1.1, taxonInclusion = recorded): the species with at least one beetle in that table's
+#   own collections (70 pitfall, 51 emergence of the deposit's 73); a species caught only by the
+#   other method is not listed (notShipped), nor are the 31 template columns with no beetle.
+#   closure = closed within a seasonal period, occasionKind = time. The two methods stay two
+#   tables (two protocols, ruling #31).
 #   No coordinates or dates in the deposit (period and week only).
 #   Not shipped: non-ok collections (328 rows, 255 beetles); the 31 empty species columns.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -139,7 +142,8 @@ common <- list(
   intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
   surveyEvidence = "sample_table",
   responseType = "count", unitKind = "site",
-  closure = "within a seasonal period (three consecutive sampling weeks); populations change between April, July and October and between crops",
+  closure = "closed", closureNote = "within a seasonal period (three consecutive sampling weeks); populations change between April, July and October and between crops",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Commercial arable plots in Belgium (locations not given in the deposit)"),
   temporalCoverage = "2023/2025",
   coordinatesCoarsened = NA)
@@ -147,18 +151,25 @@ common <- list(
 for (method in c("pitfall", "emergence")) {
   TABLE <- sprintf("peters_2026_carabid_%s_count", method)
   b <- build(method)
+  # taxonInclusion = recorded (E10): a species caught only by the other method is not recorded here
+  rec <- b$long[, sum(y), by = taxon][V1 > 0, taxon]
+  other_only <- setdiff(sp$taxon, rec)
+  stopifnot(length(other_only) == if (method == "pitfall") 3L else 22L)
+  b$long <- b$long[taxon %in% rec]
+  tx_m <- taxa[taxon %in% rec]
+  NSP <- length(rec)
   cat(sprintf("  %s: %d collections kept, %d not surveys (%d beetles)\n", method, b$n_ok, b$n_dropped, b$dropped_beetles))
   print(b$dropped_tab)
   per <- periods[period %in% b$long$period]
   per[, period_n_collections := sapply(period, function(pp) uniqueN(b$long[period == pp, .(unit, occasion)]))]
   is_pit <- method == "pitfall"
   dataset <- c(common, list(
-    title = if (is_pit) "Pitfall-trap counts of 73 ground beetle species per trap and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025"
-            else "Emergence-tent counts of 73 ground beetle species per tent and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025",
-    abstract = sprintf("Carabid beetles in %d commercial arable plots in Belgium followed through a sugar beet - winter cereal succession in two crop cycles (plots 1-20: sugar beet 2023, cereal 2024; plots 21-40: sugar beet 2024, cereal 2025), sampled in April, July and (sugar beet) October, three sampling weeks each. %s %d collections with status ok; 73 species.",
+    title = sprintf("%s counts of %d ground beetle species per %s and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025",
+                    if (is_pit) "Pitfall-trap" else "Emergence-tent", NSP, if (is_pit) "trap" else "tent"),
+    abstract = sprintf("Carabid beetles in %d commercial arable plots in Belgium followed through a sugar beet - winter cereal succession in two crop cycles (plots 1-20: sugar beet 2023, cereal 2024; plots 21-40: sugar beet 2024, cereal 2025), sampled in April, July and (sugar beet) October, three sampling weeks each. %s %d collections with status ok; %d species caught.",
                        uniqueN(b$units$unit_plot),
                        if (is_pit) "Barber pitfall traps at six within-plot positions, with vinegar, propylene glycol (2023) or brine (2024-2025) as preservative." else "Emergence tents at five within-plot positions, catching beetles emerging from the enclosed soil.",
-                       b$n_ok),
+                       b$n_ok, NSP),
     samplingProtocol = if (is_pit) "Barber pitfall traps at fixed positions in each plot (lines A, B, C1, C2, D, E), preservative vinegar, propylene glycol or brine (unit_preservative), emptied after each sampling week; three weeks per seasonal period."
                        else "Emergence tents at fixed positions in each plot (lines A-E) enclosing the soil surface, collected after each sampling week; three weeks per seasonal period.",
     samplingProtocolCode = if (is_pit) "pitfall_trap" else "emergence_trap",
@@ -167,12 +178,14 @@ for (method in c("pitfall", "emergence")) {
                                  b$n_ok, b$n_ok + b$n_dropped, if (is_pit) "pitfall" else "tent"),
     notShipped = list(`collections not ok` = sprintf("%d rows (%d beetles) with Etat Absent, flooded, torn, removed or Vide", b$n_dropped, b$dropped_beetles),
                       `empty species columns` = "31 species columns that hold no beetle in any row (a checklist template)",
+                      `species caught only by the other method` = sprintf("%d species (%s) have no beetle in any %s collection, so this table's surveys did not record them (taxonInclusion = recorded)",
+                                                                          length(other_only), paste(other_only, collapse = ", "), if (is_pit) "pitfall" else "emergence-tent"),
                       `other method` = if (is_pit) "emergence-tent collections are peters_2026_carabid_emergence_count" else "pitfall collections are peters_2026_carabid_pitfall_count",
                       `Carabus violaceus purpurascens` = "subspecies written in the column name, shipped as Carabus violaceus")))
-  ds <- write_table(b$long, TABLE, dataset, taxa = taxa, periods = per, units = b$units, script = "data/peters_2026_carabid_count.R")
+  ds <- write_table(b$long, TABLE, dataset, taxa = tx_m, periods = per, units = b$units, script = "data/peters_2026_carabid_count.R")
   stage_dict_row(TABLE,
-    description = sprintf("Counts of 73 ground beetle species per %s and sampling week in %d Belgian arable plots through a sugar beet - winter cereal succession (two crop cycles, 2023-2025), sampled in April, July and October, with the crop per survey%s.",
-                          if (is_pit) "pitfall trap" else "emergence tent", uniqueN(b$units$unit_plot), if (is_pit) " and the trap's preservative" else ""),
+    description = sprintf("Counts of %d ground beetle species per %s and sampling week in %d Belgian arable plots through a sugar beet - winter cereal succession (two crop cycles, 2023-2025), sampled in April, July and October, with the crop per survey%s.",
+                          NSP, if (is_pit) "pitfall trap" else "emergence tent", uniqueN(b$units$unit_plot), if (is_pit) " and the trap's preservative" else ""),
     url = "https://doi.org/10.5281/zenodo.20523452",
     reference = "Péters J, Boeraeve F, Dufrêne M (2026). Overwintering in the field: carabid communities [Data set]. Zenodo.",
     doi_data = "10.5281/zenodo.20523452", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",

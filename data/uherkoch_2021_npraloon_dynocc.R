@@ -55,7 +55,7 @@ dataset <- list(
   abstract = "Territory occupancy data for Pacific and Yellow-billed Loons and presence/absence of five fish species from freshwater lakes on the Arctic Coastal Plain, northern Alaska, 2011-2014, collected to understand how fish communities affect loon occupancy and breeding success.",
   samplingProtocol = "Annual lake surveys of loon territories; status recorded once per year.",
   samplingProtocolCode = "territory_survey", surveyEvidence = "deposited_matrix", responseType = "state", unitKind = "site",
-  closure = "period (one survey per year; territory status may change between years)",
+  closure = "none", closureNote = "period (one survey per year; territory status may change between years)", occasionKind = "none", taxonInclusion = "target",
   stateCodes = list(`0` = "species does not hold the territory", `1` = "territorial pair", `2` = "territorial pair with reproduction (chicks >= 3 weeks)"),
   respRawCodes = list(`0` = "Unoccupied", `1` = "Pacific Loon pair", `2` = "Pacific Loon pair with reproduction", `3` = "Yellow-billed Loon pair", `4` = "Yellow-billed Loon pair with reproduction"),
   geographicCoverage = list(description = "National Petroleum Reserve-Alaska, Arctic Coastal Plain",

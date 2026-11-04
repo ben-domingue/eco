@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
-# Tables: nowicki_2019_sharkbay_megafauna_count, nowicki_2019_sharkbay_turtle_count,
-#         nowicki_2019_sharkbay_dolphin_count (one script, three survey sets)
+# Table:  nowicki_2019_sharkbay_count (replaces nowicki_2019_sharkbay_megafauna_count,
+#         nowicki_2019_sharkbay_turtle_count and nowicki_2019_sharkbay_dolphin_count; ruling #31)
 # Source: Dryad doi:10.5061/dryad.7sg523n, version 23816 (published 2019-02-20), Nowicki, Heithaus,
 #         Thomson, Burkholder, Gastrich & Wirsing. Licence as shown on the Dryad record: CC0 1.0
 #         (https://spdx.org/licenses/CC0-1.0.html). The README tab asks users of the data in further
@@ -43,15 +43,20 @@
 #   index ordered in time; the field team sampled monthly), occasion = run of the transect
 #   within the month, ordered by date and start time (1-12), y = unique animals of the taxon
 #   seen inside its sighting band on that run. date = the run's date.
-#   Survey sets (E4 consequence 2: every taxon at every survey): the deposit's own flags define
-#   three, so three tables:
-#     megafauna: dugong, sea snakes (Hydrophiinae, several species pooled by the source),
-#       cormorants (Phalacrocorax, pooled) on every usable run (3,555 after the three doubles);
-#     turtle: green and loggerhead turtles on usable runs with use.for.turts = "yes" (runs
-#       where turtles could all be identified to species; the 207 unidentified turtles that
-#       remain on those runs are obs_unidentified_turtles);
-#     dolphin: Indo-Pacific bottlenose dolphins on usable runs with use.for.dol = "yes" (
-#       the source says dolphins were not reliably counted in 2002-2007).
+#   Survey sets: ONE table (ruling #31: one deposit x protocol x response type); the deposit's
+#   own flags say which taxa each run counted, carried by __survey_taxa (taxon x unit x period
+#   x occasion, E4.2):
+#     dugong, sea snakes (Hydrophiinae, several species pooled by the source; no GBIF key, the
+#       backbone has no Hydrophiinae) and cormorants (Phalacrocorax, pooled) on every usable run
+#       (3,555 after the three doubles);
+#     green and loggerhead turtles on usable runs with use.for.turts = "yes" (runs where turtles
+#       could all be identified to species; the 207 unidentified turtles that remain on those
+#       runs are obs_unidentified_turtles, which is shipped on turtle runs only);
+#     Indo-Pacific bottlenose dolphins on usable runs with use.for.dol = "yes" (the source says
+#       dolphins were not reliably counted in 2002-2007).
+#   closure = closed (runs within a month; closureNote: mobile megafauna move between zones,
+#   so closure is approximate), occasionKind = time, taxonInclusion = target (the six counted
+#   taxa the protocol names).
 #   surveyEvidence = sample_table: one row per transect run, counts of zero included.
 #   Covariates: unit_habitat (modal habitat of the zone; four zones have one to three runs coded
 #   otherwise, asserted), unit_transect_km (constant per zone within a run of years; the run
@@ -146,12 +151,6 @@ periods_all <- per[, .(period, period_year = Year, period_month = Month, period_
 surv_cols <- function(s) s[, .(unit, period, occasion, date = format(date), obs_transect_km = round(km, 4), obs_depth_m = round(depth, 3),
                                obs_start_time = start, obs_n_observers = n_obs, obs_beaufort = beaufort,
                                obs_visibility = vis, obs_season = Season, unit_habitat = units$unit_habitat[match(unit, units$unit)])]
-build <- function(s, cols, codes, extra = NULL) {
-  base <- surv_cols(s); if (!is.null(extra)) base <- cbind(base, s[, ..extra])
-  long <- rbindlist(lapply(seq_along(codes), function(i) { x <- copy(base); x[, `:=`(taxon = codes[i], y = s[[cols[i]]])]; x }))
-  stopifnot(nrow(long) == nrow(s) * length(codes), !anyNA(long$y))
-  order_eco(long)
-}
 
 TAXA <- data.table(
   col = c("dug", "ss", "cor", "GT.uncorr", "LT.uncorr", "dol"),
@@ -159,82 +158,69 @@ TAXA <- data.table(
   sci = c("Dugong dugon", "Hydrophiinae", "Phalacrocorax", "Chelonia mydas", "Caretta caretta", "Tursiops aduncus"),
   vern = c("dugong", "sea snakes", "cormorants", "green turtle", "loggerhead turtle", "Indo-Pacific bottlenose dolphin"),
   rank = c("species", "subfamily", "genus", "species", "species", "species"),
-  band = c(0.2, 0.01, 0.06, 0.06, 0.06, 0.4))
+  band = c(0.2, 0.01, 0.06, 0.06, 0.06, 0.4),
+  run_flag = c("all", "all", "all", "use.for.turts", "use.for.turts", "use.for.dol"),
+  remarks = c(NA, "Several sea snake species (Hydrophiinae) pooled by the source; the GBIF backbone holds no Hydrophiinae (it treats Hydrophiidae as a synonym of Elapidae), so no taxonID rather than a family match",
+              "Cormorants pooled to genus by the source", NA, NA, NA))
 taxa_all <- make_taxa(TAXA$taxon, TAXA$sci, vernacularName = TAXA$vern, taxonRank = TAXA$rank,
-                      taxon_band_width_km = TAXA$band)
-# the GBIF backbone has no Hydrophiinae (it treats Hydrophiidae as a synonym of Elapidae): no key rather than a family match
+                      taxon_band_width_km = TAXA$band, taxonRemarks = TAXA$remarks, no_key = "HYDROPHIINAE")
 stopifnot(taxa_all[taxon != "HYDROPHIINAE", !anyNA(taxonID) && all(gbifMatchType == "EXACT")], taxa_all[taxon == "HYDROPHIINAE", is.na(taxonID)])
-iucn <- function(id) {
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)
-  }
-  r <- fromJSON(fp); if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
-}
-taxa_all[, taxon_iucnCategory := sapply(taxonID, function(i) if (is.na(i)) NA_character_ else iucn(i))]
+taxa_all[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
 cat("  IUCN:", paste(taxa_all$taxon, taxa_all$taxon_iucnCategory, collapse = "; "), "\n")
 flagged <- taxa_all[taxon_iucnCategory %in% c("CR", "EN", "VU")]
 stopifnot(nrow(flagged) >= 1)                                        # dugong and loggerhead VU at build time
 
-COMMON <- list(
+TABLE <- "nowicki_2019_sharkbay_count"
+base <- surv_cols(u)
+base[, obs_unidentified_turtles := fifelse(u$use.for.turts == "yes", u$unk.T, NA_integer_)]
+on_run <- function(flag) if (flag == "all") rep(TRUE, nrow(u)) else u[[flag]] == "yes"
+long <- rbindlist(lapply(seq_len(nrow(TAXA)), function(i) {
+  k <- on_run(TAXA$run_flag[i]); x <- copy(base[k]); x[, `:=`(taxon = TAXA$taxon[i], y = u[[TAXA$col[i]]][k])]; x }))
+stopifnot(!anyNA(long$y), nrow(long) == 3 * nrow(u) + 2 * sum(u$use.for.turts == "yes") + sum(u$use.for.dol == "yes"),
+          nrow(long) == 10665 + 6180 + 2338)
+for (i in seq_len(nrow(TAXA))) stopifnot(long[taxon == TAXA$taxon[i], sum(y)] == sum(u[[TAXA$col[i]]][on_run(TAXA$run_flag[i])]))
+long <- order_eco(long)
+survey_taxa <- unique(long[, .(taxon, unit, period, occasion)])
+periods <- periods_all[period %in% long$period]
+dataset <- list(
+  title = "Strip-transect counts of dugongs, sea snakes, cormorants, green and loggerhead turtles and Indo-Pacific bottlenose dolphins on 11 permanent boat transects, Shark Bay, Western Australia, 1997-2014",
   creator = "Nowicki, Robert; Heithaus, Michael; Thomson, Jordan; Burkholder, Derek; Gastrich, Kirk; Wirsing, Aaron",
   pubDate = "2019-02-20", sourceURL = "https://doi.org/10.5061/dryad.7sg523n",
   citation = "Nowicki, R., Heithaus, M., Thomson, J., Burkholder, D., Gastrich, K. & Wirsing, A. (2019). Indirect legacy effects of an extreme climactic event on a marine megafaunal community. Ecological Monographs 89(2), e01365. https://doi.org/10.1002/ecm.1365. Data: Dryad https://doi.org/10.5061/dryad.7sg523n (CC0).",
   paperDOI = "10.1002/ecm.1365", dataDOI = "10.5061/dryad.7sg523n",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
+  abstract = paste0("Monthly boat strip-transect surveys of permanent focal zones in the Eastern Gulf of Shark Bay over 15 years spanning the 2011 Ningaloo Nino marine heatwave and seagrass die-off. Counts of unique animals inside taxon-specific sighting bands on ", nrow(u),
+                    " usable runs: dugongs, sea snakes and cormorants on every run; green and loggerhead turtles on the ", sum(u$use.for.turts == "yes"),
+                    " runs where turtles could be identified to species; Indo-Pacific bottlenose dolphins on the ", sum(u$use.for.dol == "yes"), " runs outside 2002-2007."),
   samplingProtocol = "Boat-based strip transects along permanent focal zones in the Eastern Gulf of Shark Bay, run at low speed in good conditions by two to six observers; every unique animal of the target taxa seen inside a taxon-specific sighting band was counted (band widths: dugong 0.2 km, dolphin 0.4 km, cormorant and turtle 0.06 km, sea snake 0.01 km); zones were run one to twelve times per monthly field period.",
   samplingProtocolCode = "line_transect", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
   effortColumn = "obs_transect_km",
-  closure = "occasion within period: the runs of one focal zone within a calendar month; mobile megafauna move between zones, so closure is approximate; open between months",
+  closure = "closed", occasionKind = "time", taxonInclusion = "target",
+  closureNote = "occasion within period: the runs of one focal zone within a calendar month; mobile megafauna move between zones, so closure is approximate; open between months",
+  surveyTaxaNote = "The source's run flags say which taxa a run counted: dugong, sea snakes and cormorants on every usable run; green and loggerhead turtles only where use.for.turts = yes; dolphins only where use.for.dol = yes (not reliably counted 2002-2007). __survey_taxa lists the taxa per run.",
+  temporalCoverage = sprintf("%s/%s", min(u$date), max(u$date)),
+  surveyEvidenceNote = "Each row of the Surface Transect Data tab is one run of a permanent transect, with zero counts recorded; the source's usability flags select the runs (usable = yes) and the taxa counted on each (use.for.turts, use.for.dol).",
   geographicCoverage = list(description = "Eastern Gulf of Shark Bay, Western Australia (Monkey Mia region), shallow seagrass banks and deep channels; focal-zone coordinates not deposited"),
   coordinatesCoarsened = list(value = FALSE, method = sprintf("None in source: focal zones are numbered only; %s flagged (IUCN via GBIF) but no coordinates exist to coarsen",
-                                                               paste(sprintf("%s (%s)", flagged$scientificName, flagged$taxon_iucnCategory), collapse = " and "))))
-NOTSHIP <- list(`*.d, *.d.old, *.rd, shg.d` = "densities, pre-heatwave seasonal mean densities and relative densities: derived from these counts",
-                `*.bin` = "0/1 versions of the counts", `*.area` = "band areas: transect length x a fixed band width per taxon (widths in __taxa)",
-                `usable = no` = "480 runs the source marks as not meeting minimum requirements (sighting conditions, data reliability), incl. every run of FZ 13 and 14 and 23 E-prefixed 2007 entries",
-                `doubled entries` = "ID '-' at FZ 6 on 2014-04-04 (same times as 6201444, which is kept), the second 72014625 row on 2014-06-25 and the second 122006106 row (identical times and counts)",
-                `min out, Raw Time, Total, Time E` = "suspension minutes, raw and net duration (over 250 usable runs have zero or negative net minutes, the raw time being 0) and end time: not reliable enough to ship as effort; transect length is the effort column")
-out <- list()
-sets <- list(
-  megafauna = list(s = u, cols = c("dug", "ss", "cor"), extra = NULL,
-    title = "Strip-transect counts of dugongs, sea snakes and cormorants on 11 permanent boat transects, Shark Bay, Western Australia, 1997-2014",
-    abstract = paste0("Monthly boat strip-transect surveys of permanent focal zones in the Eastern Gulf of Shark Bay over 15 years spanning the 2011 Ningaloo Nino marine heatwave and seagrass die-off. Counts of unique dugongs, sea snakes (several Hydrophiinae species pooled) and cormorants inside taxon-specific sighting bands on ", nrow(u), " usable runs."),
-    note = NULL, tag_notes = "Dugong, sea snakes, cormorants; sibling tables for turtles and dolphins (different survey sets); heatwave phase and shark CPUE as period covariates."),
-  turtle = list(s = u[use.for.turts == "yes"], cols = c("GT.uncorr", "LT.uncorr"), extra = "unk.T",
-    title = "Strip-transect counts of green and loggerhead turtles on 11 permanent boat transects, Shark Bay, Western Australia, 1997-2014",
-    abstract = paste0("Green and loggerhead turtle counts from the Shark Bay focal-zone strip transects, restricted (as by the source) to the ", u[use.for.turts == "yes", .N], " usable runs on which turtles could be identified to species; turtles left unidentified on those runs are obs_unidentified_turtles."),
-    note = "Runs with use.for.turts = no (465 usable runs where not all turtles could be identified) are not surveys for the species-level turtle counts and have no rows. Counts are uncorrected for submerged animals (GT.uncorr, LT.uncorr).",
-    tag_notes = "Green and loggerhead (VU) turtles; species-identified runs only; unidentified turtles per run as obs_unidentified_turtles."),
-  dolphin = list(s = u[use.for.dol == "yes"], cols = "dol", extra = NULL,
-    title = "Strip-transect counts of Indo-Pacific bottlenose dolphins on 11 permanent boat transects, Shark Bay, Western Australia, 1997-2014",
-    abstract = paste0("Indo-Pacific bottlenose dolphin counts from the Shark Bay focal-zone strip transects on the ", u[use.for.dol == "yes", .N], " usable runs of 1997-1999 and 2008-2014; the source did not count dolphins reliably in 2002-2007."),
-    note = "Runs of 2002-2007 (use.for.dol = no) are not surveys for dolphins and have no rows.",
-    tag_notes = "Indo-Pacific bottlenose dolphin; 2002-2007 not surveyed for dolphins (source flag)."))
-for (nm in names(sets)) {
-  st <- sets[[nm]]; TABLE <- sprintf("nowicki_2019_sharkbay_%s_count", nm)
-  codes <- TAXA$taxon[match(st$cols, TAXA$col)]
-  long <- build(st$s, st$cols, codes, st$extra)
-  if (!is.null(st$extra)) setnames(long, "unk.T", "obs_unidentified_turtles")
-  stopifnot(nrow(long) == nrow(st$s) * length(codes), sum(long$y) == sum(as.matrix(st$s[, st$cols, with = FALSE])))
-  pr <- periods_all[period %in% long$period]
-  ds_list <- c(COMMON, list(title = st$title, abstract = st$abstract,
-      temporalCoverage = sprintf("%s/%s", min(st$s$date), max(st$s$date)),
-      surveyEvidenceNote = paste("Each row of the Surface Transect Data tab is one run of a permanent transect, with zero counts recorded; the source's usability flags select the runs (usable = yes",
-                                 switch(nm, megafauna = ")", turtle = "; use.for.turts = yes)", dolphin = "; use.for.dol = yes)"),
-                                 "and every listed taxon is counted on every selected run.", st$note %||% ""),
-      notShipped = NOTSHIP))
-  ds <- write_table(long, TABLE, ds_list, taxa = taxa_all[taxon %in% codes], periods = pr,
-                    script = "data/nowicki_2019_sharkbay_count.R")
-  stage_dict_row(TABLE,
-    description = paste0(st$title, ": ", nrow(st$s), " runs of permanent focal zones, one to twelve per month, with transect length, depth, sea state, observers, heatwave phase, water temperature and shark catch rates."),
-    url = "https://doi.org/10.5061/dryad.7sg523n",
-    reference = "Nowicki, R., Heithaus, M., Thomson, J., Burkholder, D., Gastrich, K. & Wirsing, A. (2019). Indirect legacy effects of an extreme climactic event on a marine megafaunal community. Ecological Monographs 89(2), e01365.",
-    doi_paper = "10.1002/ecm.1365", doi_data = "10.5061/dryad.7sg523n", original_license = "CC0 1.0", derived_license = "CC0 1.0",
-    notes = paste("Survey set from the source's usability flags; densities and relative densities not shipped (derived). No coordinates deposited.", st$note %||% ""),
-    source_via = "Dryad (version zip)")
-  stage_tag_row(TABLE, ds, taxon_group = switch(nm, megafauna = "Multiple", turtle = "Reptiles", dolphin = "Mammals"),
-    model_family = "N-mixture (open / multi-season)", sampling_protocol = "line_transect",
-    design = sprintf("Multi-season (%d monthly periods x 1-12 runs per focal zone)", nrow(pr)),
-    realm = "Marine", country = "AUS", coordinates = "None in source", notes = st$tag_notes, status = "tagged")
-}
+                                                               paste(sprintf("%s (%s)", flagged$scientificName, flagged$taxon_iucnCategory), collapse = " and "))),
+  notShipped = list(`*.d, *.d.old, *.rd, shg.d` = "densities, pre-heatwave seasonal mean densities and relative densities: derived from these counts",
+                    `*.bin` = "0/1 versions of the counts", `*.area` = "band areas: transect length x a fixed band width per taxon (widths in __taxa)",
+                    T.total = "the sum of the turtle columns",
+                    `turtle and dolphin counts on unflagged runs` = "runs with use.for.turts = no (turtles not all identifiable) or use.for.dol = no (2002-2007) are not surveys for those taxa; their cells are not shipped",
+                    `usable = no` = "480 runs the source marks as not meeting minimum requirements (sighting conditions, data reliability), incl. every run of FZ 13 and 14 and 23 E-prefixed 2007 entries",
+                    `doubled entries` = "ID '-' at FZ 6 on 2014-04-04 (same times as 6201444, which is kept), the second 72014625 row on 2014-06-25 and the second 122006106 row (identical times and counts)",
+                    `min out, Raw Time, Total, Time E` = "suspension minutes, raw and net duration (over 250 usable runs have zero or negative net minutes, the raw time being 0) and end time: not reliable enough to ship as effort; transect length is the effort column"))
+ds <- write_table(long, TABLE, dataset, taxa = taxa_all, periods = periods, survey_taxa = survey_taxa,
+                  script = "data/nowicki_2019_sharkbay_count.R")
+stage_dict_row(TABLE,
+  description = paste0(dataset$title, ": ", nrow(u), " runs of permanent focal zones, one to twelve per month, with transect length, depth, sea state, observers, heatwave phase, water temperature and shark catch rates; the taxa counted per run follow the source's flags (__survey_taxa)."),
+  url = "https://doi.org/10.5061/dryad.7sg523n",
+  reference = "Nowicki, R., Heithaus, M., Thomson, J., Burkholder, D., Gastrich, K. & Wirsing, A. (2019). Indirect legacy effects of an extreme climactic event on a marine megafaunal community. Ecological Monographs 89(2), e01365.",
+  doi_paper = "10.1002/ecm.1365", doi_data = "10.5061/dryad.7sg523n", original_license = "CC0 1.0", derived_license = "CC0 1.0",
+  notes = "Replaces nowicki_2019_sharkbay_megafauna_count, _turtle_count and _dolphin_count (ruling #31). Survey set and taxa per run from the source's usability flags; densities and relative densities not shipped (derived). No coordinates deposited.",
+  source_via = "Dryad (version zip)")
+stage_tag_row(TABLE, ds, taxon_group = "Multiple",
+  model_family = "N-mixture (open / multi-season)", sampling_protocol = "line_transect",
+  design = sprintf("Multi-season (%d monthly periods x 1-12 runs per focal zone)", nrow(periods)),
+  realm = "Marine", country = "AUS", coordinates = "None in source",
+  notes = "Dugong, sea snakes, cormorants, turtles (species-identified runs), dolphins (not 2002-2007); heatwave phase and shark CPUE as period covariates.", status = "tagged")

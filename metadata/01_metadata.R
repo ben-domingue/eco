@@ -14,7 +14,9 @@
 # every taxon), prop_zero, naive_occupancy (share of units with any y > 0),
 # mean_detection (share of rows with y > 0), max_y, response_type, unit_kind,
 # survey_evidence, sample_floor, has_effort, has_coordinates, coordinates_coarsened,
-# variables (pipe-joined column list), standard_version, build_date, script.
+# variables (pipe-joined column list), standard_version, build_date, script; from v1.1-draft also
+# closure, occasion_kind, taxon_inclusion, and components (the other core tables whose __dataset.json
+# names the same sourceURL, i.e. built from the same deposit; E10), pipe-joined.
 suppressPackageStartupMessages({ library(data.table); library(jsonlite) })
 options(scipen = 999)
 root <- normalizePath(if (file.exists("standard.md")) "." else "..")
@@ -47,8 +49,14 @@ rows <- lapply(tables, function(t) {
     has_coordinates = any(grepl("^(unit_)?(decimalLatitude|decimalLongitude)$|^unit_[xy]$", cols)),
     coordinates_coarsened = isTRUE(ds$coordinatesCoarsened$value),   # {value, method} object, or null
     variables = paste(names(d), collapse = "|"),
+    closure = ds$closure %||% "", occasion_kind = paste(unlist(ds$occasionKind), collapse = " x "),
+    taxon_inclusion = ds$taxonInclusion %||% "", source_url = ds$sourceURL %||% "",
     standard_version = ds$standardVersion %||% "", build_date = ds$buildDate %||% "", script = ds$script %||% "")
 })
 meta <- rbindlist(rows)
+# components (E10): siblings from the same deposit, by sourceURL
+meta[, components := vapply(seq_len(.N), function(i)
+  paste(setdiff(table[source_url == source_url[i] & source_url[i] != ""], table[i]), collapse = "|"), "")]
+meta[, source_url := NULL]
 fwrite(meta, file.path(root, "metadata", "metadata.csv"))
 cat(sprintf("01_metadata.R: %d tables -> metadata/metadata.csv\n", nrow(meta)))

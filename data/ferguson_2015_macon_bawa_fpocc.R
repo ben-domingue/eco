@@ -70,7 +70,7 @@ dataset <- list(
   abstract = "Point counts for Black-and-white Warbler (Mniotilta varia) at 272 sites in Macon County, North Carolina, each visited three times in one breeding season (2010 or 2011), recording for every visit whether the species was detected and whether that detection was confirmed. The example application of Ferguson et al. (2015), which fit a confirmed-presence (CP) false-positive occupancy model relating occupancy to residential development; percent forest cover within 200 m is the deposited site covariate.",
   samplingProtocol = "Point counts, three visits per site within one breeding season; each visit records detection (0/1) and whether the detection was confirmed (0/1). The deposit and README do not state count duration, radius or what constituted confirmation; see the paper.",
   samplingProtocolCode = "point_count", surveyEvidence = "deposited_matrix", responseType = "state", unitKind = "site",
-  closure = "occasion (three visits within one breeding season per site; sites sampled in 2010 or 2011, never both)",
+  closure = "closed", closureNote = "occasion (three visits within one breeding season per site; sites sampled in 2010 or 2011, never both)", occasionKind = "time", taxonInclusion = "single",
   stateCodes = list(`0` = "not detected", `1` = "detected, not confirmed (possible false positive)", `2` = "detected and confirmed (certain detection)"),
   geographicCoverage = list(description = "Macon County, North Carolina, USA (southern Appalachians), from the deposited coordinates",
                             boundingBox = list(west = round(min(raw$Xcoord), 2), east = round(max(raw$Xcoord), 2),

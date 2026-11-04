@@ -72,7 +72,7 @@ dataset <- list(
   abstract = "Vocalization (calling index) data for 14 anuran species collected concurrently with night-time visual encounter surveys in the Atchafalaya River Basin, Louisiana, 2008-2016, under the Amphibian Research and Monitoring Initiative.",
   samplingProtocol = "Aural survey during each night-time site visit; calling intensity of each species scored 0-3 separately for calls inside and outside the study plot.",
   samplingProtocolCode = "acoustic", effortColumn = "obs_duration_min", surveyEvidence = "sample_table", responseType = "ordinal", unitKind = "site",
-  closure = "occasion (samples within a calendar year); period = year",
+  closure = "closed", closureNote = "occasion (samples within a calendar year); period = year", occasionKind = "time", taxonInclusion = "recorded",
   stateCodes = list(`0` = "no calling inside the plot", `1` = "individuals can be counted; gaps between calls", `2` = "calls overlap but individuals distinguishable", `3` = "full chorus; individuals not distinguishable"),
   geographicCoverage = list(description = "Atchafalaya River Basin, Louisiana, USA", boundingBox = list(west = -91.8979, east = -91.2689, south = 29.8001, north = 30.5694)),
   temporalCoverage = "2008-02-19/2016-07-13",

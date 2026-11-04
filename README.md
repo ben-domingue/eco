@@ -24,7 +24,7 @@ latent state observed imperfectly across repeated surveys?
   IRW C5 occasion columns), covariates prefixed by the level at which they are
   constant (`unit_`, `period_`, `obs_`, `taxon_` — exactly `unmarked`'s
   three covariate levels). A community occupancy model is literally a
-  random-item IRT model with species as items. See `standard.md` (v1.0-draft, the
+  random-item IRT model with species as items. See `standard.md` (v1.1-draft, the
   normative clauses) and `standard_draft.md` (the reasoning).
 - **It round-trips.** Six bundled datasets covering single-season occupancy,
   N-mixture, removal/multinomial, CJS, dynamic occupancy and a 158-species
@@ -169,7 +169,7 @@ What building 30 tables established, beyond the round trips:
 | Path | What |
 |------|------|
 | `CLAUDE.md`, `ARCHITECTURE.md`, `PRIORITIES.md`, `processing_guide.md`, `.claude/skills/eco-convert-deposit/` | Agent-facing docs (issue #9): how to run things and which document wins; the project map; what kind of work to do next; the deposit-conversion checklist; the step order a session follows for one queue row |
-| `standard.md` | **The standard**, v1.0-draft: clauses E1-E10, intake policy, changelog |
+| `standard.md` | **The standard**, v1.1-draft: clauses E1-E10, intake policy, changelog |
 | `standard_draft.md` | History of the standard: core table, mapping tables per model family, missingness rule, side tables (Darwin Core / EML borrowings), scope, what is lost, open questions, changelog |
 | `Rpkg/` | **The R package `eco`**: `eco_list_tables()`, `eco_filter()`, `eco_fetch()`, `eco_to_unmarked()`, `eco_set_version()`, over Redivis' anonymous CSV endpoint; no login. `remotes::install_github("ben-domingue/eco", subdir = "Rpkg")` |
 | `converters/eco_standard.R` | Shim over `Rpkg/R/convert.R`: array ↔ long, `unmarked` frames ↔ long, multinomial frames, capture histories; validator twin; writer |

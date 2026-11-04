@@ -1,13 +1,15 @@
 # eco_common.R -- shared harness for the per-dataset processing scripts in ../data/.
 #
 # Mirrors the division of labour in ben-domingue/irw: a data/ script reads one
-# source and writes one or more tables in the standard (../standard.md, v1.0-draft);
+# source and writes one or more tables in the standard (../standard.md, v1.1-draft);
 # this file supplies what every script needs and nothing dataset-specific:
 #   * download_cached()  fetch a source file once into .cache/raw/<table>/
 #   * download_dryad()    fetch and unzip a whole Dryad deposit (the only anonymous route)
 #   * gbif_taxon()       resolve a scientific name to a GBIF usage key (cached)
+#   * make_taxa()        the __taxa side table; asserts EXACT GBIF matches (E6)
+#   * iucn_category()    IUCN category per GBIF key, checked against the assessed name (E7)
 #   * coarsen_coords()   the sensitive-species coordinate rule (standard section 6)
-#   * write_table()      core CSV + __taxa / __periods / __units / __traps side tables + dataset.json
+#   * write_table()      core CSV + __taxa / __periods / __units / __traps / __survey_taxa + dataset.json
 #   * stage_dict_row()   append a Data-Dictionary row to dictionary/dictionary_auto.csv
 #   * stage_tag_row()    append a tags row to tags/tags_auto.csv (vocabulary in tags/vocab.md)
 # The converters and validator live in ../converters/eco_standard.R and are sourced here.
@@ -156,12 +158,26 @@ gbif_taxon <- function(name) {
        rank = tolower(res$rank %||% NA_character_), matchType = res$matchType)
 }
 
-# Build the `taxa` side table (standard section 5.1) from code -> scientific name.
+# Build the `taxa` side table (standard E6) from code -> scientific name.
 # lookupName: the spelling sent to GBIF when the source's spelling does not match
 # (the source spelling is kept in scientificName).
+# exact = TRUE stops unless every GBIF match is EXACT: strict matching can still
+# resolve a homonym or an unknown name to a genus, family or kingdom (HIGHERRANK),
+# which would put a wrong taxonID on the row (batch 19: Acanthurus, Naso, Chloris).
+# allow_higher: taxon codes for which a HIGHERRANK match is intended (a genus-level
+# record matched to its genus). no_key: taxon codes deliberately left without a
+# taxonID (a pooled group or subfamily the backbone does not hold); they are not sent
+# to GBIF and need a non-empty `taxonRemarks` (passed through ...) saying why (E6).
 make_taxa <- function(taxon, scientificName, vernacularName = NA_character_, taxonRank = "species",
-                       lookupName = scientificName, ...) {
-  tx <- lapply(lookupName, gbif_taxon)
+                       lookupName = scientificName, ..., exact = TRUE, allow_higher = character(),
+                       no_key = character()) {
+  bad <- setdiff(c(allow_higher, no_key), taxon)
+  if (length(bad)) stop("make_taxa(): allow_higher / no_key name unknown taxon code(s): ", paste(bad, collapse = ", "))
+  lookupName <- rep_len(lookupName, length(taxon))
+  skip <- taxon %in% no_key
+  tx <- lapply(seq_along(taxon), function(i)
+    if (skip[i]) list(taxonID = NA_character_, acceptedName = NA_character_, rank = NA_character_, matchType = "NONE")
+    else gbif_taxon(lookupName[i]))
   it <- data.table(taxon = taxon, scientificName = scientificName, vernacularName = vernacularName,
                    taxonRank = taxonRank,
                    taxonID = sapply(tx, `[[`, "taxonID"),
@@ -169,9 +185,70 @@ make_taxa <- function(taxon, scientificName, vernacularName = NA_character_, tax
                    gbifAcceptedName = sapply(tx, `[[`, "acceptedName"))
   extra <- list(...)
   for (nm in names(extra)) it[, (nm) := extra[[nm]]]
-  nomatch <- it[is.na(taxonID), scientificName]
+  # an intended higher-rank match (allow_higher) carries that rank, not the "species" default (E6);
+  # taxonRemarks is required only where taxonID is empty
+  gr <- sapply(tx, `[[`, "rank")
+  up <- it$taxon %in% allow_higher & it$gbifMatchType == "HIGHERRANK" & it$taxonRank == "species" & !is.na(gr)
+  if (any(up)) { it[up, taxonRank := gr[up]]
+    message("  make_taxa(): taxonRank from GBIF for allow_higher taxa: ", paste(sprintf("%s=%s", it$taxon[up], gr[up]), collapse = ", ")) }
+  if (length(no_key)) {
+    rem <- if ("taxonRemarks" %in% names(it)) it$taxonRemarks else rep(NA_character_, nrow(it))
+    miss <- it$taxon[skip & (is.na(rem) | !nzchar(trimws(rem)))]
+    if (length(miss)) stop("make_taxa(): no_key taxa need a taxonRemarks saying why (E6): ", paste(miss, collapse = ", "))
+  }
+  if (exact) {
+    off <- it[!skip & !(gbifMatchType == "EXACT" | (gbifMatchType == "HIGHERRANK" & taxon %in% allow_higher))]
+    if (nrow(off)) stop("make_taxa(): GBIF match not EXACT for ",
+                        paste(sprintf("%s %s (%s)", off$taxon, off$scientificName, off$gbifMatchType), collapse = "; "),
+                        ". Fix the lookupName, or list the code in allow_higher (an intended higher-rank match) ",
+                        "or no_key (with taxonRemarks).")
+  }
+  nomatch <- it[is.na(taxonID) & !skip, scientificName]
   if (length(nomatch)) message("  GBIF: no match for ", paste(nomatch, collapse = ", "))
   it[]
+}
+
+# IUCN Red List category for GBIF keys (standard E7(b)), from GBIF's
+# /species/{key}/iucnRedListCategory, cached as .cache/gbif/iucn_<key>.json.
+# HTTP 204 / an empty body means not assessed: "NE". The endpoint can answer for a
+# different species through a synonym (batch 17: Calathus mollis came back as the
+# extinct St Helena C. extensicollis: the record's name is a SYNONYM whose acceptedName
+# is another species), so the category is returned only when the assessed species'
+# genus + epithet (acceptedName for a synonym record) equal the key's accepted species name (from
+# /species/{key}, cached as species_<key>.json); otherwise NA, with a message, and
+# the script must decide. taxonID: GBIF species URLs or bare keys; NA gives NA.
+iucn_category <- function(taxonID, scientificName = NULL) {
+  binom <- function(x) { w <- strsplit(trimws(as.character(x %||% "")), "\\s+")[[1]]; paste(head(w, 2), collapse = " ") }
+  fetch <- function(url, f) {
+    if (!file.exists(f)) {
+      txt <- tryCatch(paste(readLines(url, warn = FALSE), collapse = ""), error = function(e) NULL)
+      if (is.null(txt)) stop("iucn_category(): request failed: ", url)
+      writeLines(if (nzchar(txt)) txt else "[]", f)
+    }
+    txt <- paste(readLines(f, warn = FALSE), collapse = "")
+    if (!nzchar(txt) || txt %in% c("[]", "{}")) NULL else fromJSON(txt, simplifyVector = FALSE)
+  }
+  one <- function(id, nm) {
+    if (is.na(id) || !nzchar(id)) return(NA_character_)
+    key <- sub(".*/", "", id)
+    r <- fetch(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key),
+               file.path(GBIF_DIR, paste0("iucn_", key, ".json")))
+    if (is.null(r) || is.null(r$code)) return("NE")
+    sp <- fetch(sprintf("https://api.gbif.org/v1/species/%s", key),
+                file.path(GBIF_DIR, paste0("species_", key, ".json")))
+    want <- binom(sp$species %||% sp$canonicalName)
+    # the record names the species assessed: its acceptedName when the matched
+    # IUCN name is a synonym (Calathus mollis Marsh. -> C. extensicollis), else its name
+    got <- binom(if (identical(r$taxonomicStatus, "SYNONYM")) r$acceptedName %||% r$scientificName else r$scientificName)
+    if (!nzchar(want) || !identical(want, got)) {
+      message(sprintf("  iucn_category(): key %s (%s) was assessed as `%s`, not `%s`; returning NA",
+                      key, nm %||% want, got, want))
+      return(NA_character_)
+    }
+    r$code
+  }
+  nms <- if (is.null(scientificName)) rep(list(NULL), length(taxonID)) else as.list(scientificName)
+  vapply(seq_along(taxonID), function(i) one(taxonID[i], nms[[i]]), character(1))
 }
 
 # ---------------------------------------------------------------------------
@@ -213,18 +290,57 @@ floor_status <- function(s, response_type = NULL) {
 
 RESPONSE_TYPES  <- c("detection", "count", "state", "ordinal", "multinomial_cell", "detection_event", "binomial_count")
 SURVEY_EVIDENCE <- c("sample_table", "effort_table", "deposited_matrix", "row_presence", "inferred")
-STANDARD_VERSION <- "eco v1.0-draft (2026-11-01)"
+CLOSURE         <- c("closed", "open", "dependent", "none")
+OCCASION_KINDS  <- c("time", "observer", "method", "spatial", "cell", "none")
+TAXON_INCLUSION <- c("recorded", "target", "single")
+UNIT_IDENTITY   <- c("both", "left", "right")
+STANDARD_VERSION <- "eco v1.1-draft (2026-11-03)"
 
 # The metadata contract of standard E10: required fields, controlled vocabularies,
-# (R twin of eco_validate/checks.py; its test asserts RESPONSE_TYPES, SURVEY_EVIDENCE
-# and `req` below match the Python vocabularies.)
+# (R twin of eco_validate/checks.py; its test asserts RESPONSE_TYPES, SURVEY_EVIDENCE,
+# CLOSURE, OCCASION_KINDS, TAXON_INCLUSION, UNIT_IDENTITY and `req` below match the
+# Python vocabularies.)
 # conditional fields. Returns a character vector of problems (empty when fine).
 check_dataset_meta <- function(dataset, long, units = NULL) {
   p <- character()
   req <- c("title", "creator", "pubDate", "citation", "sourceURL", "intellectualRights",
            "samplingProtocol", "samplingProtocolCode", "responseType", "unitKind", "closure",
-           "surveyEvidence", "temporalCoverage", "geographicCoverage")
+           "surveyEvidence", "temporalCoverage", "geographicCoverage", "occasionKind",
+           "taxonInclusion")
   miss <- setdiff(req, names(dataset)); if (length(miss)) p <- c(p, paste("E10: missing", paste(miss, collapse = ", ")))
+  vocab <- list(closure = CLOSURE, taxonInclusion = TAXON_INCLUSION)
+  okd <- unlist(dataset$occasionKind)
+  # E8: one kind, or two distinct kinds other than none, outer first, for crossed occasions
+  if (!is.null(okd) && !((length(okd) == 1 && okd %in% OCCASION_KINDS) ||
+                         (length(okd) == 2 && !anyDuplicated(okd) && all(okd %in% setdiff(OCCASION_KINDS, "none")))))
+    p <- c(p, sprintf("E8: occasionKind `%s` must be one of {%s} or two distinct kinds (outer first) for crossed occasions",
+                      paste(okd, collapse = ","), paste(OCCASION_KINDS, collapse = ", ")))
+  for (k in names(vocab)) { v <- dataset[[k]]
+    if (!is.null(v) && !(length(v) == 1 && v %in% vocab[[k]]))
+      p <- c(p, sprintf("E8/E10: %s `%s` not in {%s}", k, paste(v, collapse = ","), paste(vocab[[k]], collapse = ", "))) }
+  has_occ <- "occasion" %in% names(long)
+  if (!is.null(okd) && identical(okd, "none") == has_occ)
+    p <- c(p, sprintf("E8: occasionKind = %s but the table %s an occasion column", paste(okd, collapse = ","), if (has_occ) "has" else "has no"))
+  if (!has_occ && !is.null(dataset$closure) && !identical(dataset$closure, "none"))
+    p <- c(p, "E8: no occasion column, so closure = none")
+  if (has_occ && identical(dataset$closure, "none")) {
+    grp <- intersect(c("unit", "taxon", "trap", "period"), names(long))
+    if (any(as.data.table(long)[, uniqueN(occasion), by = grp]$V1 > 1)) p <- c(p, "E8: closure = none but some unit x taxon x period has several occasions")
+  }
+  if (!is.null(dataset$taxonInclusion) && identical(dataset$taxonInclusion, "single") != (uniqueN(long$taxon) == 1))
+    p <- c(p, sprintf("E10: taxonInclusion = %s with %d taxa (single exactly when one taxon)", dataset$taxonInclusion, uniqueN(long$taxon)))
+  if (identical(dataset$taxonInclusion, "recorded")) {
+    never <- as.data.table(long)[, .(best = max(y)), by = taxon][best <= 0, taxon]
+    if (length(never)) p <- c(p, sprintf("E10: taxonInclusion = recorded but %d taxon/taxa never recorded: %s",
+                                         length(never), paste(head(never, 10), collapse = ", ")))
+  }
+  tw <- dataset$taxaWithheld
+  if (!is.null(tw)) {
+    if (!is.character(tw) || !length(tw) || any(!nzchar(trimws(tw)))) p <- c(p, "E10: taxaWithheld must be a character vector of taxon names")
+    else if (any(tw %in% long$taxon)) p <- c(p, "E10: taxaWithheld names taxa that have core rows")
+  }
+  if ("unit_identity" %in% names(long) && !all(long$unit_identity %in% UNIT_IDENTITY))
+    p <- c(p, sprintf("E2: unit_identity must be one of {%s}", paste(UNIT_IDENTITY, collapse = ", ")))
   rt <- dataset$responseType; se <- dataset$surveyEvidence
   if (!is.null(rt) && !rt %in% RESPONSE_TYPES) p <- c(p, sprintf("E2: responseType `%s` not in {%s}", rt, paste(RESPONSE_TYPES, collapse = ", ")))
   if (!is.null(se) && !se %in% SURVEY_EVIDENCE) p <- c(p, sprintf("E4: surveyEvidence `%s` not in {%s}", se, paste(SURVEY_EVIDENCE, collapse = ", ")))
@@ -251,13 +367,22 @@ check_dataset_meta <- function(dataset, long, units = NULL) {
   p
 }
 
-write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units = NULL, traps = NULL, script = NULL) {
+write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units = NULL, traps = NULL,
+                        survey_taxa = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name))
   mp <- check_dataset_meta(dataset, long, units)
   if (length(mp)) stop(sprintf("%s fails the metadata contract: %s", name, paste(mp, collapse = "; ")))
   long <- order_eco(long)
-  v <- validate_eco(long)
+  v <- validate_eco(long, survey_taxa = survey_taxa, unit_kind = dataset$unitKind)
   if (!v$ok) stop(sprintf("%s fails validate_eco: %s", name, paste(v$problems, collapse = "; ")))
+  if (!is.null(taxa) && "taxonID" %in% names(taxa)) {
+    rem <- if ("taxonRemarks" %in% names(taxa)) taxa$taxonRemarks else rep(NA_character_, nrow(taxa))
+    nokey <- taxa$taxon[(is.na(taxa$taxonID) | !nzchar(taxa$taxonID)) & (is.na(rem) | !nzchar(trimws(rem)))]
+    if (length(nokey)) stop(sprintf("%s: __taxa row(s) with no taxonID need taxonRemarks saying why (E6): %s",
+                                    name, paste(nokey, collapse = ", ")))
+  }
+  if (!is.null(survey_taxa) && !all(survey_taxa$taxon %in% long$taxon))
+    stop(sprintf("%s: __survey_taxa lists taxa with no core rows", name))
   if (!is.null(taxa)) {
     stopifnot(setequal(taxa$taxon, unique(long$taxon)))
     fwrite(taxa, file.path(OUT_DIR, paste0(name, "__taxa.csv")))
@@ -265,7 +390,12 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   if (!is.null(periods)) fwrite(periods, file.path(OUT_DIR, paste0(name, "__periods.csv")))
   if (!is.null(units))   fwrite(units,   file.path(OUT_DIR, paste0(name, "__units.csv")))
   if (!is.null(traps))   fwrite(traps,   file.path(OUT_DIR, paste0(name, "__traps.csv")))
+  if (!is.null(survey_taxa)) {
+    fwrite(survey_taxa, file.path(OUT_DIR, paste0(name, "__survey_taxa.csv")))
+  }
   s <- table_summary(long)
+  if (!is.null(dataset$taxaWithheld)) dataset$taxaWithheld <- I(as.character(dataset$taxaWithheld))   # a JSON array even with one name
+  if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))   # crossed: a JSON array
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s, dataset$responseType),
                     columns = names(long),

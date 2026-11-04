@@ -14,14 +14,17 @@
   "samplingProtocolCode": "photo_id",
   "surveyEvidence": "deposited_matrix",
   "unitKind": "individual",
-  "closure": "occasion within period (robust design: secondary periods within an austral season, assumed closed; open between seasons, with Markovian temporary emigration in the paper's models)",
+  "closure": "closed",
+  "closureNote": "occasion within period (robust design: secondary periods within an austral season, assumed closed; open between seasons, with Markovian temporary emigration in the paper's models)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Coastal waters off Bunbury, south-western Australia (about 33.3 S, 115.6 E; 50 km of coast, 2 km offshore); no coordinates deposited",
   "temporalCoverage": "2009-12/2012-11",
   "coordinatesCoarsened": null,
   "title": "Robust-design photo-identification histories of 201 Indo-Pacific bottlenose dolphins off Bunbury, Western Australia, 12 seasons x 6 secondary periods, 2009-2012",
   "abstract": "Three-year subsample (December 2009 - November 2012) of the Bunbury long-term dolphin monitoring programme: 201 distinctively marked Indo-Pacific bottlenose dolphins photographed in 72 secondary periods (six per austral season), the data the paper used to show how reducing secondary periods inflates the CV of abundance and delays trend detection.",
   "responseType": "detection",
-  "notes": "Dolphin ids are dryad1 row numbers (no catalogue ids deposited). Occasions before a dolphin's first sighting are kept as 0 (E4). The paper's survey-effort simulations (removing secondary periods) are analyses of this table, not data.",
+  "notes": "Dolphin ids are dryad1 row numbers (no catalogue ids deposited). Occasions before a dolphin's first sighting are kept as 0 (E4.4: no ages deposited, so every dolphin is of unknown age and at risk from the first season). The paper's survey-effort simulations (removing secondary periods) are analyses of this table, not data.",
   "notShipped": {
     "dryad1.txt rows of zeros": "28 catalogue dolphins with no photograph in the subsample (the paper documents 201)",
     "dryad2.txt": "shipped as symons_2018_bunbury_femalecalf_msrd"
@@ -38,7 +41,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/symons_2018_bunbury_dolphin.R",
   "buildDate": "2026-11-03"

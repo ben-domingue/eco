@@ -146,7 +146,7 @@ dataset <- list(
   surveyEvidence = "sample_table",
   surveyEvidenceNote = "TrapInfo.csv lists the three traps set at each of the 26 sites on both rounds (52 site visits), and TrapBumbles.csv records traps that caught nothing (Species NA, Abundance 0); every catch belongs to a listed trap. A species with no trap row at a site visit is a zero. Three traps (two bear-disturbed) have no catch row and are counted in the visit as empty, as the authors do.",
   responseType = "count", unitKind = "site",
-  closure = "within season: the two visits are treated as replicates of the season's occupancy (the paper's model); colony phenology changes over the 4-6 weeks between them",
+  closure = "closed", closureNote = "within season: the two visits are treated as replicates of the season's occupancy (the paper's model); colony phenology changes over the 4-6 weeks between them", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Tweedsmuir Provincial Park and surroundings, British Columbia, Canada",
                             boundingBox = list(west = min(units$unit_decimalLongitude), east = max(units$unit_decimalLongitude),
                                                south = min(units$unit_decimalLatitude), north = max(units$unit_decimalLatitude))),

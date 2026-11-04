@@ -109,7 +109,7 @@ dataset <- list(
   samplingProtocol = "Night-time visual-encounter surveys of a creek reach with hand capture of juvenile frogs, individual marking, and a skin swab per capture assayed by qPCR for Bd (up to 4 runs per swab); weekly surveys grouped as 8 primary periods of 2 (robust design)",
   samplingProtocolCode = "hand_capture", surveyEvidence = "deposited_matrix",
   responseType = "state", unitKind = "individual",
-  closure = "occasion within period (robust design: infection state fixed within a primary period, open between; nominal interval 2 weeks)",
+  closure = "closed", closureNote = "occasion within period (robust design: infection state fixed within a primary period, open between; nominal interval 2 weeks)", occasionKind = "time", taxonInclusion = "single",
   stateCodes = list(`0` = "not captured", `1` = "captured, all qPCR runs Bd-negative (observed uninfected)",
                     `2` = "captured, at least one qPCR run Bd-positive (observed infected)"),
   geographicCoverage = "Brindle Creek, northern New South Wales, Australia, one site (no coordinates deposited; IUCN EN taxon)",

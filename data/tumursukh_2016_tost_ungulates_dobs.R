@@ -33,6 +33,8 @@
 #   Not shipped: the authors' estimates (columns E-F; model output) and the back-end
 #   calculator sheet (derived sums). The groups-by-cell counts in column F are asserted
 #   against the rows, so the deposit's own summary checks the parse.
+#   v1.1: closure = closed, occasionKind = cell, taxonInclusion = single. E4.4: a group is a
+#   group-year (one period), so its at-risk span is that period; nothing to pad or trim.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 suppressPackageStartupMessages(library(readxl))
 SCRIPT <- "data/tumursukh_2016_tost_ungulates_dobs.R"
@@ -95,7 +97,8 @@ build <- function(sp) {
     samplingProtocolCode = "double_observer", surveyEvidence = "row_presence",
     surveyEvidenceNote = "Each deposited row is a group seen by at least one observer; both observers surveyed it, so all three detection cells are defined. Groups missed by both observers are not in the deposit by design.",
     responseType = "multinomial_cell", multinomialType = "double_observer", unitKind = "individual",
-    closure = "occasion (the three detection cells of one group within the year's survey); groups are not matched across years",
+    closure = "closed", closureNote = "occasion (the three detection cells of one group within the year's survey); groups are not matched across years",
+    occasionKind = "cell", taxonInclusion = "single",
     occasionCodes = list(`1` = "10: observer one only", `2` = "01: observer two only", `3` = "11: both observers"),
     geographicCoverage = "Tost Local Protected Area, South Gobi province, Mongolia (about 43.1 N, 100.6 E); no coordinates deposited",
     temporalCoverage = "2012/2013",

@@ -91,7 +91,7 @@ dataset <- list(
   abstract = "Textbook time-removal community dataset: one 6-minute, 125 m radius point count at each of 80 NEON sites in Bartlett Experimental Forest, New Hampshire, June 2015, split into three 2-minute intervals; for each of 12 foliage-gleaning songbirds the cell of first detection is 1 and the others 0 (the package encodes intervals after detection as NA, which here is zero new detections). Two species were never detected and ship as all-zero taxa. Site elevation, coordinates, survey day and start hour.",
   samplingProtocol = "6-minute point count with a 125 m radius, one per site, split into three 2-minute removal intervals; species recorded in the interval of first detection and mentally removed thereafter.",
   samplingProtocolCode = "point_count", surveyEvidence = "deposited_matrix",
-  responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site", closure = "occasion",
+  responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site", closure = "closed", occasionKind = "cell", taxonInclusion = "target",
   geographicCoverage = "Bartlett Experimental Forest (NEON site BART), New Hampshire, USA (80 point-count sites)",
   temporalCoverage = "2015-06-14/2015-06-20",
   crs = "EPSG:4269 (NAD83) UTM zone 19N as published in unit_utm19_*; unit_decimalLatitude/Longitude converted in-script, NAD83 ~ WGS84",

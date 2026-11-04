@@ -38,7 +38,7 @@ dataset <- list(
   abstract = "Textbook dataset: willow tit (Poecile montanus) detection/non-detection on three replicate surveys of 237 1-km2 MHB quadrats, with standardised elevation, forest cover, transect length, survey date and survey intensity. Used in the unmarked overview vignette and in AHM1 chapter 10.",
   samplingProtocol = "Simplified territory mapping along a fixed transect in each 1-km2 quadrat, up to three surveys per breeding season; collapsed to detection/non-detection per survey.",
   samplingProtocolCode = "line_transect", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Switzerland, MHB 1-km2 quadrats (no coordinates in the package file)",
   temporalCoverage = "one breeding season, year not stated in the package file",
   coordinatesCoarsened = NA,

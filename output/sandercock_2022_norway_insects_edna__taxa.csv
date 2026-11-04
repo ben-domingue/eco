@@ -1,144 +1,143 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_alienRisk,taxon_alienRiskLabel
-ACTIINFA,Actia infantula,,species,https://www.gbif.org/species/1463655,EXACT,,NW,newly detected in Norway
-ALEICRAS,Aleiodes crassipes,,species,https://www.gbif.org/species/1264896,EXACT,,NW,newly detected in Norway
-ALEIPICT,Aleiodes pictus,,species,https://www.gbif.org/species/1264720,EXACT,Aleiodes circumscriptus,NW,newly detected in Norway
-AMBLNASU,Amblytylus nasutus,,species,https://www.gbif.org/species/2008893,EXACT,,NW,newly detected in Norway
-ANACEUCH,Anacharis eucharioides,,species,https://www.gbif.org/species/7988276,EXACT,,NW,newly detected in Norway
-ANAGBICO,Anagnota bicolor,,species,https://www.gbif.org/species/1587747,EXACT,,NW,newly detected in Norway
-ANAGUSTU,Anagrus ustulatus,,species,https://www.gbif.org/species/1368310,EXACT,,NW,newly detected in Norway
-ANASMACU,Anaspis maculata,,species,https://www.gbif.org/species/5878447,EXACT,,NW,newly detected in Norway
-APAMEPOM,Apamea epomidion,,species,https://www.gbif.org/species/1796139,EXACT,,NW,newly detected in Norway
-APANSODA,Apanteles sodalis,,species,https://www.gbif.org/species/1267656,EXACT,,NW,newly detected in Norway
-APHICING,Aphidius cingulatus,,species,https://www.gbif.org/species/1269127,EXACT,,NW,newly detected in Norway
-APHIEADY,Aphidius eadyi,,species,https://www.gbif.org/species/1269231,EXACT,,NW,newly detected in Norway
-APHIROSA,Aphidius rosae,,species,https://www.gbif.org/species/1269278,EXACT,,NW,newly detected in Norway
-APHIUZBE,Aphidius uzbekistanicus,,species,https://www.gbif.org/species/1269225,EXACT,,NW,newly detected in Norway
-APHISPIR,Aphis spiraecola,,species,https://www.gbif.org/species/2072761,EXACT,,NW,newly detected in Norway
-APISMELL,Apis mellifera,,species,https://www.gbif.org/species/1341976,EXACT,,NR,not risk assessed
-APODINCI,Apodesmia incisula,,species,https://www.gbif.org/species/4512075,EXACT,Opius incisulus,NW,newly detected in Norway
-APRISUBB,Aprionus subbetulae,,species,https://www.gbif.org/species/10324121,EXACT,,NW,newly detected in Norway
-ASTEBEAT,Asteia beata,,species,https://www.gbif.org/species/1675677,EXACT,,NW,newly detected in Norway
-ATHAPARA,Athalia paradoxa,,species,https://www.gbif.org/species/4490936,EXACT,,NW,newly detected in Norway
-BALCRHEN,Balclutha rhenana,,species,https://www.gbif.org/species/2044135,EXACT,,NW,newly detected in Norway
-BESSSELE,Bessa selecta,,species,https://www.gbif.org/species/1473386,EXACT,,NW,newly detected in Norway
-BINOBREV,Binodoxys brevicornis,,species,https://www.gbif.org/species/1265678,EXACT,,NW,newly detected in Norway
-BLACSTEL,Blacus stelfoxi,,species,https://www.gbif.org/species/1252683,EXACT,,NW,newly detected in Norway
-BOMBTERR,Bombus terrestris,,species,https://www.gbif.org/species/1340503,EXACT,,SE,severe risk
-BRADIMPA,Bradysia impatiens,,species,https://www.gbif.org/species/1488614,EXACT,,NR,not risk assessed
-CACOFIBU,Cacopsylla fibulata,,species,https://www.gbif.org/species/2012827,EXACT,,NW,newly detected in Norway
-CAMEOHRI,Cameraria ohridella,,species,https://www.gbif.org/species/1749449,EXACT,,LO,low risk
-CAMIATRI,Camilla atrimana,,species,https://www.gbif.org/species/1545002,FUZZY,,NW,newly detected in Norway
-CAMPFARI,Campiglossa farinata,,species,https://www.gbif.org/species/1624083,EXACT,,NW,newly detected in Norway
-CAMPHETE,Camptomyia heterobia,,species,https://www.gbif.org/species/1597986,EXACT,,NW,newly detected in Norway
-CAPIELAE,Capitophorus elaeagni,,species,https://www.gbif.org/species/2076336,EXACT,,NW,newly detected in Norway
-CARCLAXI,Carcelia laxifrons,,species,https://www.gbif.org/species/1469969,EXACT,,NW,newly detected in Norway
-CARTBIFA,Cartodere bifasciata,,species,https://www.gbif.org/species/4451122,EXACT,,LO,low risk
-CARTNODI,Cartodere nodifer,,species,https://www.gbif.org/species/4451126,EXACT,,PH,potentially high risk
-CATOANGU,Catocha angulata,,species,https://www.gbif.org/species/7513333,EXACT,,NW,newly detected in Norway
-CHALBREV,Chalarus brevicaudis,,species,https://www.gbif.org/species/5089481,EXACT,,NW,newly detected in Norway
-CHALHOLO,Chalarus holosericeus,,species,https://www.gbif.org/species/5089515,EXACT,,NW,newly detected in Norway
-CHALINDI,Chalarus indistinctus,,species,https://www.gbif.org/species/5089517,EXACT,,NW,newly detected in Norway
-CHALLONG,Chalarus longicaudis,,species,https://www.gbif.org/species/5089513,EXACT,,NW,newly detected in Norway
-CHAMGENI,Chamaemyia geniculata,,species,https://www.gbif.org/species/1674586,EXACT,,NW,newly detected in Norway
-CHIRBALA,Chironomus balatonicus,,species,https://www.gbif.org/species/1448199,EXACT,,NW,newly detected in Norway
-CHIRBORO,Chironomus borokensis,,species,https://www.gbif.org/species/1448114,EXACT,,NW,newly detected in Norway
-CHIRCOMM,Chironomus commutatus,,species,https://www.gbif.org/species/1448521,EXACT,,NW,newly detected in Norway
-CINACUPR,Cinara cupressi,,species,https://www.gbif.org/species/2073544,EXACT,,NW,newly detected in Norway
-CLADCOMA,Cladius comari,,species,https://www.gbif.org/species/8658310,EXACT,,NW,newly detected in Norway
-COENAGRO,Coenosia agromyzina,,species,https://www.gbif.org/species/1528512,EXACT,,NW,newly detected in Norway
-CONIDAUC,Conicera dauci,,species,https://www.gbif.org/species/1546041,EXACT,,NW,newly detected in Norway
-CONTRUFI,Contacyphon ruficeps,,species,https://www.gbif.org/species/9387161,EXACT,,NW,newly detected in Norway
-CONTASCL,Contarinia asclepiadis,,species,https://www.gbif.org/species/5082340,EXACT,,NW,newly detected in Norway
-CORTELON,Corticaria elongata,,species,https://www.gbif.org/species/1044375,EXACT,,NR,not risk assessed
-CORYPERP,Corynoptera perpusilla,,species,https://www.gbif.org/species/1488009,EXACT,,NW,newly detected in Norway
-CRYPOBRE,Cryptochironomus obreptans,,species,https://www.gbif.org/species/1454704,EXACT,,NW,newly detected in Norway
-CRYPPROP,Cryptophilus propinquus,,species,https://www.gbif.org/species/9670028,EXACT,,PH,potentially high risk
-CUBOINSI,Cubocephalus insidiator,,species,https://www.gbif.org/species/1299925,EXACT,,NW,newly detected in Norway
-CURTBISI,Curtimorda bisignata,,species,https://www.gbif.org/species/4456498,EXACT,,NW,newly detected in Norway
-DAHLTRIQ,Dahlica triquetrella,,species,https://www.gbif.org/species/4526094,EXACT,,NW,newly detected in Norway
-DASYTURF,Dasyhelea turficola,,species,https://www.gbif.org/species/1635976,EXACT,,NW,newly detected in Norway
-DASYTRIA,Dasyopa triangulata,,species,https://www.gbif.org/species/1489608,EXACT,,NW,newly detected in Norway
-DERALUTE,Deraeocoris lutescens,,species,https://www.gbif.org/species/4488801,EXACT,,HI,high risk
-DIPLFREY,Diplonevra freyi,,species,https://www.gbif.org/species/1548541,EXACT,,NW,newly detected in Norway
-DISCOBSC,Discocerina obscurella,,species,https://www.gbif.org/species/1619894,EXACT,,NW,newly detected in Norway
-DOHRCORN,Dohrniphora cornuta,,species,https://www.gbif.org/species/1548900,EXACT,,LO,low risk
-DOLISICA,Dolichogenidea sicaria,,species,https://www.gbif.org/species/9453271,EXACT,Apanteles sicarius,NW,newly detected in Norway
-DOLICELE,Dolichopus celeripes,,species,https://www.gbif.org/species/1605631,EXACT,,NW,newly detected in Norway
-DORYSPIN,Dorylomorpha spinosa,,species,https://www.gbif.org/species/1647524,EXACT,,NW,newly detected in Norway
-DROSBUSC,Drosophila busckii,,species,https://www.gbif.org/species/5073476,EXACT,,PH,potentially high risk
-DROSHYDE,Drosophila hydei,,species,https://www.gbif.org/species/5074534,EXACT,,LO,low risk
-DROSMELA,Drosophila melanogaster,,species,https://www.gbif.org/species/5073713,EXACT,,LO,low risk
-DUSOSUBT,Dusona subtilis,,species,https://www.gbif.org/species/1289250,EXACT,,NW,newly detected in Norway
-EPITPUBE,Epitrix pubescens,,species,https://www.gbif.org/species/4462668,EXACT,,NR,not risk assessed
-ERATATRI,Eratigena atrica,,species,https://www.gbif.org/species/7783291,EXACT,,LO,low risk
-ERIOANNC,Eriosoma anncharlotteae,,species,https://www.gbif.org/species/2076048,EXACT,,NW,newly detected in Norway
-EUCEPAPY,Euceraphis papyrifericola,,species,https://www.gbif.org/species/2074679,EXACT,,NW,newly detected in Norway
-EUDOTERM,Eudorylas terminalis,,species,https://www.gbif.org/species/1648136,EXACT,,NW,newly detected in Norway
-EUDOZERM,Eudorylas zermattensis,,species,https://www.gbif.org/species/1647835,EXACT,,NW,newly detected in Norway
-EUSCVARI,Euscelidius variegatus,,species,https://www.gbif.org/species/2026086,EXACT,,NW,newly detected in Norway
-EUURRIBE,Euura ribesii,,species,https://www.gbif.org/species/9463895,EXACT,Nematus ribesii,NW,newly detected in Norway
-FANNMETA,Fannia metallipennis,,species,https://www.gbif.org/species/5094832,EXACT,,NW,newly detected in Norway
-FELTACAR,Feltiella acarisuga,,species,https://www.gbif.org/species/1598545,EXACT,,LO,low risk
-HAEMSTIM,Haematobosca stimulans,,species,https://www.gbif.org/species/1529681,EXACT,,LO,low risk
-HAPLDITE,Haplotinea ditella,,species,https://www.gbif.org/species/1856133,EXACT,,NW,newly detected in Norway
-HYDRSPAR,Hydroptila sparsa,,species,https://www.gbif.org/species/1433480,EXACT,,NW,newly detected in Norway
-HYPOANNU,Hyposoter annulipes,,species,https://www.gbif.org/species/1291594,EXACT,,NW,newly detected in Norway
-JASSBEAT,Jassidophaga beatricis,,species,https://www.gbif.org/species/1647768,EXACT,,NW,newly detected in Norway
-LAINPSAM,Laingia psammae,,species,https://www.gbif.org/species/2075115,EXACT,,NW,newly detected in Norway
-LEPTNERV,Leptosyna nervosa,,species,https://www.gbif.org/species/1594342,EXACT,,NW,newly detected in Norway
-LESTPOLY,Lestodiplosis polypori,,species,https://www.gbif.org/species/1593734,EXACT,,NW,newly detected in Norway
-LINOGALI,Linosiphon galiophagum,,species,https://www.gbif.org/species/2077332,EXACT,,NW,newly detected in Norway
-LIPOCERV,Lipoptena cervi,,species,https://www.gbif.org/species/1638597,EXACT,,NR,not risk assessed
-LOBEARTE,Lobesia artemisiana,,species,https://www.gbif.org/species/1740596,EXACT,,NW,newly detected in Norway
-LYSINANU,Lysibia nanus,,species,https://www.gbif.org/species/1301720,FUZZY,,NW,newly detected in Norway
-LYSIVAGA,Lysigamasus vagabundus,,species,https://www.gbif.org/species/10326977,EXACT,,NW,newly detected in Norway
-MACROCEL,Macropsis ocellata,,species,https://www.gbif.org/species/2039963,EXACT,,NW,newly detected in Norway
-MEGAABDI,Megaselia abdita,,species,https://www.gbif.org/species/1547663,FUZZY,,NW,newly detected in Norway
-MEGAGREG,Megaselia gregaria,,species,https://www.gbif.org/species/1546523,EXACT,,NR,not risk assessed
-MEGAINFR,Megaselia infraposita,,species,https://www.gbif.org/species/1546875,EXACT,,NW,newly detected in Norway
-MEGARUBE,Megaselia rubella,,species,https://www.gbif.org/species/1547999,EXACT,,NW,newly detected in Norway
-MEGAZONA,Megaselia zonata,,species,https://www.gbif.org/species/1548029,EXACT,,NW,newly detected in Norway
-MICRCONG,Microdrosophila congesta,,species,https://www.gbif.org/species/1562008,EXACT,,NW,newly detected in Norway
-MICRMEDI,Microplitis mediator,,species,https://www.gbif.org/species/5024867,EXACT,,NW,newly detected in Norway
-MICREXIG,Microsoma exiguum,,species,https://www.gbif.org/species/5765996,EXACT,,NW,newly detected in Norway
-MUSCDOME,Musca domestica,,species,https://www.gbif.org/species/1524843,EXACT,,NR,not risk assessed
-MYZULYTH,Myzus lythri,,species,https://www.gbif.org/species/2076196,EXACT,,NW,newly detected in Norway
-NAPOCICH,Napomyza cichorii,,species,https://www.gbif.org/species/1554705,EXACT,Phytomyza cichorii,NW,newly detected in Norway
-NEOCOKAZ,Neochrysocharis okazakii,,species,,NONE,,NW,newly detected in Norway
-OMONFLOR,Omonadus floralis,,species,https://www.gbif.org/species/1046849,EXACT,,LO,low risk
-OPILCANE,Opilio canestrinii,,species,https://www.gbif.org/species/4553496,EXACT,,SE,severe risk
-OZIRLONG,Ozirhincus longicollis,,species,https://www.gbif.org/species/1594366,EXACT,,NW,newly detected in Norway
-PARAGRIM,Paratanytarsus grimmii,,species,https://www.gbif.org/species/1450581,EXACT,,NW,newly detected in Norway
-PERILYRO,Periphyllus lyropictus,,species,https://www.gbif.org/species/2071320,EXACT,,NW,newly detected in Norway
-PHAOCANE,Phaonia canescens,,species,https://www.gbif.org/species/5068491,EXACT,,NW,newly detected in Norway
-PHILPRAE,Philodromus praedatus,,species,https://www.gbif.org/species/5169589,EXACT,,NW,newly detected in Norway
-PHILSPIN,Philonthus spinipes,,species,https://www.gbif.org/species/4436921,EXACT,,NW,newly detected in Norway
-PHILVITT,Philygria vittipennis,,species,https://www.gbif.org/species/1619460,EXACT,,NW,newly detected in Norway
-PHYTCIRS,Phytomyza cirsii,,species,https://www.gbif.org/species/1551313,EXACT,,NW,newly detected in Norway
-PIEZLITU,Piezodorus lituratus,,species,https://www.gbif.org/species/2078821,EXACT,,PH,potentially high risk
-PIPUCALC,Pipunculus calceatus,,species,https://www.gbif.org/species/1647028,EXACT,,NW,newly detected in Norway
-PLACNIGR,Placochela nigripes,,species,https://www.gbif.org/species/1601223,EXACT,,NW,newly detected in Norway
-PLATVEGE,Platypalpus vegetus,,species,https://www.gbif.org/species/1457768,EXACT,,NW,newly detected in Norway
-POLYFORM,Polydrusus formosus,,species,https://www.gbif.org/species/4468015,EXACT,,HI,high risk
-PORRNIGR,Porricondyla nigripennis,,species,https://www.gbif.org/species/4297908,EXACT,Lestodiplosis nigripennis,NW,newly detected in Norway
-PRISBREV,Pristiphora brevis,,species,https://www.gbif.org/species/7585218,EXACT,,NW,newly detected in Norway
-PROCFERR,Procladius ferrugineus,,species,https://www.gbif.org/species/1449397,EXACT,,NW,newly detected in Norway
-PSECCONJ,Psectrocladius conjungens,,species,https://www.gbif.org/species/4519827,EXACT,,NW,newly detected in Norway
-PSECSIMU,Psectrocladius simulans,,species,https://www.gbif.org/species/1446764,EXACT,,NW,newly detected in Norway
-QUADURTI,Quadracus urticarius,,species,https://www.gbif.org/species/4545027,EXACT,,NW,newly detected in Norway
-RHOPCARB,Rhopalopterum carbonarium,,species,https://www.gbif.org/species/1490520,EXACT,,NW,newly detected in Norway
-SCEPLONG,Sceptonia longiseta,,species,https://www.gbif.org/species/4521266,EXACT,Opsion longisetosa,NW,newly detected in Norway
-SKUHTRIA,Skuhraviana triangulifera,,species,https://www.gbif.org/species/1599217,EXACT,,NW,newly detected in Norway
-SPINBERG,Spiniphora bergenstammi,,species,https://www.gbif.org/species/4516560,EXACT,Spiniphora excisa,NW,newly detected in Norway
-STRITOBI,Stricticollis tobias,,species,https://www.gbif.org/species/6997654,EXACT,,LO,low risk
-SYNTFALC,Syntretus falcifer,,species,https://www.gbif.org/species/1250360,EXACT,,NW,newly detected in Norway
-SYSPSCUT,Syspasis scutellator,,species,https://www.gbif.org/species/1295193,EXACT,,NW,newly detected in Norway
-THERRIEH,Therioaphis riehmi,,species,https://www.gbif.org/species/2071634,EXACT,,NW,newly detected in Norway
-TOMOGENI,Tomosvaryella geniculata,,species,https://www.gbif.org/species/1647138,EXACT,,NW,newly detected in Norway
-TOMOKUTH,Tomosvaryella kuthyi,,species,https://www.gbif.org/species/1647291,EXACT,,NW,newly detected in Norway
-TREMFULG,Tremulicerus fulgidus,,species,https://www.gbif.org/species/4483994,EXACT,,LO,low risk
-TRICPULC,Trichonta pulchra,,species,https://www.gbif.org/species/1616976,EXACT,,NW,newly detected in Norway
-TRIPNUDI,Triphleba nudipalpis,,species,https://www.gbif.org/species/9748380,EXACT,,NW,newly detected in Norway
-TRIXATTI,Trixagus atticus,,species,https://www.gbif.org/species/4430827,EXACT,,LO,low risk
-VIBRTURR,Vibrissina turrita,,species,https://www.gbif.org/species/1471608,EXACT,,NW,newly detected in Norway
-WINTCRUE,Winthemia cruentata,,species,https://www.gbif.org/species/1461104,EXACT,,NW,newly detected in Norway
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_alienRisk,taxon_alienRiskLabel,taxonRemarks
+ACTIINFA,Actia infantula,,species,https://www.gbif.org/species/1463655,EXACT,,NW,newly detected in Norway,
+ALEICRAS,Aleiodes crassipes,,species,https://www.gbif.org/species/1264896,EXACT,,NW,newly detected in Norway,
+ALEIPICT,Aleiodes pictus,,species,https://www.gbif.org/species/1264720,EXACT,Aleiodes circumscriptus,NW,newly detected in Norway,
+AMBLNASU,Amblytylus nasutus,,species,https://www.gbif.org/species/2008893,EXACT,,NW,newly detected in Norway,
+ANACEUCH,Anacharis eucharioides,,species,https://www.gbif.org/species/7988276,EXACT,,NW,newly detected in Norway,
+ANAGBICO,Anagnota bicolor,,species,https://www.gbif.org/species/1587747,EXACT,,NW,newly detected in Norway,
+ANAGUSTU,Anagrus ustulatus,,species,https://www.gbif.org/species/1368310,EXACT,,NW,newly detected in Norway,
+ANASMACU,Anaspis maculata,,species,https://www.gbif.org/species/5878447,EXACT,,NW,newly detected in Norway,
+APAMEPOM,Apamea epomidion,,species,https://www.gbif.org/species/1796139,EXACT,,NW,newly detected in Norway,
+APANSODA,Apanteles sodalis,,species,https://www.gbif.org/species/1267656,EXACT,,NW,newly detected in Norway,
+APHICING,Aphidius cingulatus,,species,https://www.gbif.org/species/1269127,EXACT,,NW,newly detected in Norway,
+APHIEADY,Aphidius eadyi,,species,https://www.gbif.org/species/1269231,EXACT,,NW,newly detected in Norway,
+APHIROSA,Aphidius rosae,,species,https://www.gbif.org/species/1269278,EXACT,,NW,newly detected in Norway,
+APHIUZBE,Aphidius uzbekistanicus,,species,https://www.gbif.org/species/1269225,EXACT,,NW,newly detected in Norway,
+APHISPIR,Aphis spiraecola,,species,https://www.gbif.org/species/2072761,EXACT,,NW,newly detected in Norway,
+APISMELL,Apis mellifera,,species,https://www.gbif.org/species/1341976,EXACT,,NR,not risk assessed,
+APODINCI,Apodesmia incisula,,species,https://www.gbif.org/species/4512075,EXACT,Opius incisulus,NW,newly detected in Norway,
+APRISUBB,Aprionus subbetulae,,species,https://www.gbif.org/species/10324121,EXACT,,NW,newly detected in Norway,
+ASTEBEAT,Asteia beata,,species,https://www.gbif.org/species/1675677,EXACT,,NW,newly detected in Norway,
+ATHAPARA,Athalia paradoxa,,species,https://www.gbif.org/species/4490936,EXACT,,NW,newly detected in Norway,
+BALCRHEN,Balclutha rhenana,,species,https://www.gbif.org/species/2044135,EXACT,,NW,newly detected in Norway,
+BESSSELE,Bessa selecta,,species,https://www.gbif.org/species/1473386,EXACT,,NW,newly detected in Norway,
+BINOBREV,Binodoxys brevicornis,,species,https://www.gbif.org/species/1265678,EXACT,,NW,newly detected in Norway,
+BLACSTEL,Blacus stelfoxi,,species,https://www.gbif.org/species/1252683,EXACT,,NW,newly detected in Norway,
+BOMBTERR,Bombus terrestris,,species,https://www.gbif.org/species/1340503,EXACT,,SE,severe risk,
+BRADIMPA,Bradysia impatiens,,species,https://www.gbif.org/species/1488614,EXACT,,NR,not risk assessed,
+CACOFIBU,Cacopsylla fibulata,,species,https://www.gbif.org/species/2012827,EXACT,,NW,newly detected in Norway,
+CAMEOHRI,Cameraria ohridella,,species,https://www.gbif.org/species/1749449,EXACT,,LO,low risk,
+CAMIATRI,Camilla atrimana,,species,https://www.gbif.org/species/1545002,EXACT,,NW,newly detected in Norway,
+CAMPFARI,Campiglossa farinata,,species,https://www.gbif.org/species/1624083,EXACT,,NW,newly detected in Norway,
+CAMPHETE,Camptomyia heterobia,,species,https://www.gbif.org/species/1597986,EXACT,,NW,newly detected in Norway,
+CAPIELAE,Capitophorus elaeagni,,species,https://www.gbif.org/species/2076336,EXACT,,NW,newly detected in Norway,
+CARCLAXI,Carcelia laxifrons,,species,https://www.gbif.org/species/1469969,EXACT,,NW,newly detected in Norway,
+CARTBIFA,Cartodere bifasciata,,species,https://www.gbif.org/species/4451122,EXACT,,LO,low risk,
+CARTNODI,Cartodere nodifer,,species,https://www.gbif.org/species/4451126,EXACT,,PH,potentially high risk,
+CATOANGU,Catocha angulata,,species,https://www.gbif.org/species/7513333,EXACT,,NW,newly detected in Norway,
+CHALBREV,Chalarus brevicaudis,,species,https://www.gbif.org/species/5089481,EXACT,,NW,newly detected in Norway,
+CHALHOLO,Chalarus holosericeus,,species,https://www.gbif.org/species/5089515,EXACT,,NW,newly detected in Norway,
+CHALINDI,Chalarus indistinctus,,species,https://www.gbif.org/species/5089517,EXACT,,NW,newly detected in Norway,
+CHALLONG,Chalarus longicaudis,,species,https://www.gbif.org/species/5089513,EXACT,,NW,newly detected in Norway,
+CHAMGENI,Chamaemyia geniculata,,species,https://www.gbif.org/species/1674586,EXACT,,NW,newly detected in Norway,
+CHIRBALA,Chironomus balatonicus,,species,https://www.gbif.org/species/1448199,EXACT,,NW,newly detected in Norway,
+CHIRBORO,Chironomus borokensis,,species,https://www.gbif.org/species/1448114,EXACT,,NW,newly detected in Norway,
+CHIRCOMM,Chironomus commutatus,,species,https://www.gbif.org/species/1448521,EXACT,,NW,newly detected in Norway,
+CINACUPR,Cinara cupressi,,species,https://www.gbif.org/species/2073544,EXACT,,NW,newly detected in Norway,
+CLADCOMA,Cladius comari,,species,https://www.gbif.org/species/8658310,EXACT,,NW,newly detected in Norway,
+COENAGRO,Coenosia agromyzina,,species,https://www.gbif.org/species/1528512,EXACT,,NW,newly detected in Norway,
+CONIDAUC,Conicera dauci,,species,https://www.gbif.org/species/1546041,EXACT,,NW,newly detected in Norway,
+CONTRUFI,Contacyphon ruficeps,,species,https://www.gbif.org/species/9387161,EXACT,,NW,newly detected in Norway,
+CONTASCL,Contarinia asclepiadis,,species,https://www.gbif.org/species/5082340,EXACT,,NW,newly detected in Norway,
+CORTELON,Corticaria elongata,,species,https://www.gbif.org/species/1044375,EXACT,,NR,not risk assessed,
+CORYPERP,Corynoptera perpusilla,,species,https://www.gbif.org/species/1488009,EXACT,,NW,newly detected in Norway,
+CRYPOBRE,Cryptochironomus obreptans,,species,https://www.gbif.org/species/1454704,EXACT,,NW,newly detected in Norway,
+CRYPPROP,Cryptophilus propinquus,,species,https://www.gbif.org/species/9670028,EXACT,,PH,potentially high risk,
+CUBOINSI,Cubocephalus insidiator,,species,https://www.gbif.org/species/1299925,EXACT,,NW,newly detected in Norway,
+CURTBISI,Curtimorda bisignata,,species,https://www.gbif.org/species/4456498,EXACT,,NW,newly detected in Norway,
+DAHLTRIQ,Dahlica triquetrella,,species,https://www.gbif.org/species/4526094,EXACT,,NW,newly detected in Norway,
+DASYTURF,Dasyhelea turficola,,species,https://www.gbif.org/species/1635976,EXACT,,NW,newly detected in Norway,
+DASYTRIA,Dasyopa triangulata,,species,https://www.gbif.org/species/1489608,EXACT,,NW,newly detected in Norway,
+DERALUTE,Deraeocoris lutescens,,species,https://www.gbif.org/species/4488801,EXACT,,HI,high risk,
+DIPLFREY,Diplonevra freyi,,species,https://www.gbif.org/species/1548541,EXACT,,NW,newly detected in Norway,
+DISCOBSC,Discocerina obscurella,,species,https://www.gbif.org/species/1619894,EXACT,,NW,newly detected in Norway,
+DOHRCORN,Dohrniphora cornuta,,species,https://www.gbif.org/species/1548900,EXACT,,LO,low risk,
+DOLISICA,Dolichogenidea sicaria,,species,https://www.gbif.org/species/9453271,EXACT,Apanteles sicarius,NW,newly detected in Norway,
+DOLICELE,Dolichopus celeripes,,species,https://www.gbif.org/species/1605631,EXACT,,NW,newly detected in Norway,
+DORYSPIN,Dorylomorpha spinosa,,species,https://www.gbif.org/species/1647524,EXACT,,NW,newly detected in Norway,
+DROSBUSC,Drosophila busckii,,species,https://www.gbif.org/species/5073476,EXACT,,PH,potentially high risk,
+DROSHYDE,Drosophila hydei,,species,https://www.gbif.org/species/5074534,EXACT,,LO,low risk,
+DROSMELA,Drosophila melanogaster,,species,https://www.gbif.org/species/5073713,EXACT,,LO,low risk,
+DUSOSUBT,Dusona subtilis,,species,https://www.gbif.org/species/1289250,EXACT,,NW,newly detected in Norway,
+EPITPUBE,Epitrix pubescens,,species,https://www.gbif.org/species/4462668,EXACT,,NR,not risk assessed,
+ERATATRI,Eratigena atrica,,species,https://www.gbif.org/species/7783291,EXACT,,LO,low risk,
+ERIOANNC,Eriosoma anncharlotteae,,species,https://www.gbif.org/species/2076048,EXACT,,NW,newly detected in Norway,
+EUCEPAPY,Euceraphis papyrifericola,,species,https://www.gbif.org/species/2074679,EXACT,,NW,newly detected in Norway,
+EUDOTERM,Eudorylas terminalis,,species,https://www.gbif.org/species/1648136,EXACT,,NW,newly detected in Norway,
+EUDOZERM,Eudorylas zermattensis,,species,https://www.gbif.org/species/1647835,EXACT,,NW,newly detected in Norway,
+EUSCVARI,Euscelidius variegatus,,species,https://www.gbif.org/species/2026086,EXACT,,NW,newly detected in Norway,
+EUURRIBE,Euura ribesii,,species,https://www.gbif.org/species/9463895,EXACT,Nematus ribesii,NW,newly detected in Norway,
+FANNMETA,Fannia metallipennis,,species,https://www.gbif.org/species/5094832,EXACT,,NW,newly detected in Norway,
+FELTACAR,Feltiella acarisuga,,species,https://www.gbif.org/species/1598545,EXACT,,LO,low risk,
+HAEMSTIM,Haematobosca stimulans,,species,https://www.gbif.org/species/1529681,EXACT,,LO,low risk,
+HAPLDITE,Haplotinea ditella,,species,https://www.gbif.org/species/1856133,EXACT,,NW,newly detected in Norway,
+HYDRSPAR,Hydroptila sparsa,,species,https://www.gbif.org/species/1433480,EXACT,,NW,newly detected in Norway,
+HYPOANNU,Hyposoter annulipes,,species,https://www.gbif.org/species/1291594,EXACT,,NW,newly detected in Norway,
+JASSBEAT,Jassidophaga beatricis,,species,https://www.gbif.org/species/1647768,EXACT,,NW,newly detected in Norway,
+LAINPSAM,Laingia psammae,,species,https://www.gbif.org/species/2075115,EXACT,,NW,newly detected in Norway,
+LEPTNERV,Leptosyna nervosa,,species,https://www.gbif.org/species/1594342,EXACT,,NW,newly detected in Norway,
+LESTPOLY,Lestodiplosis polypori,,species,https://www.gbif.org/species/1593734,EXACT,,NW,newly detected in Norway,
+LINOGALI,Linosiphon galiophagum,,species,https://www.gbif.org/species/2077332,EXACT,,NW,newly detected in Norway,
+LIPOCERV,Lipoptena cervi,,species,https://www.gbif.org/species/1638597,EXACT,,NR,not risk assessed,
+LOBEARTE,Lobesia artemisiana,,species,https://www.gbif.org/species/1740596,EXACT,,NW,newly detected in Norway,
+LYSINANU,Lysibia nanus,,species,https://www.gbif.org/species/1301720,EXACT,,NW,newly detected in Norway,
+MACROCEL,Macropsis ocellata,,species,https://www.gbif.org/species/2039963,EXACT,,NW,newly detected in Norway,
+MEGAABDI,Megaselia abdita,,species,https://www.gbif.org/species/1547663,EXACT,,NW,newly detected in Norway,
+MEGAGREG,Megaselia gregaria,,species,https://www.gbif.org/species/1546523,EXACT,,NR,not risk assessed,
+MEGAINFR,Megaselia infraposita,,species,https://www.gbif.org/species/1546875,EXACT,,NW,newly detected in Norway,
+MEGARUBE,Megaselia rubella,,species,https://www.gbif.org/species/1547999,EXACT,,NW,newly detected in Norway,
+MEGAZONA,Megaselia zonata,,species,https://www.gbif.org/species/1548029,EXACT,,NW,newly detected in Norway,
+MICRCONG,Microdrosophila congesta,,species,https://www.gbif.org/species/1562008,EXACT,,NW,newly detected in Norway,
+MICRMEDI,Microplitis mediator,,species,https://www.gbif.org/species/5024867,EXACT,,NW,newly detected in Norway,
+MICREXIG,Microsoma exiguum,,species,https://www.gbif.org/species/5765996,EXACT,,NW,newly detected in Norway,
+MUSCDOME,Musca domestica,,species,https://www.gbif.org/species/1524843,EXACT,,NR,not risk assessed,
+MYZULYTH,Myzus lythri,,species,https://www.gbif.org/species/2076196,EXACT,,NW,newly detected in Norway,
+NAPOCICH,Napomyza cichorii,,species,https://www.gbif.org/species/1554705,EXACT,Phytomyza cichorii,NW,newly detected in Norway,
+NEOCOKAZ,Neochrysocharis okazakii,,species,,NONE,,NW,newly detected in Norway,"not in the GBIF backbone (no match, 2026-11-03), so taxonID is empty"
+OMONFLOR,Omonadus floralis,,species,https://www.gbif.org/species/1046849,EXACT,,LO,low risk,
+OPILCANE,Opilio canestrinii,,species,https://www.gbif.org/species/4553496,EXACT,,SE,severe risk,
+OZIRLONG,Ozirhincus longicollis,,species,https://www.gbif.org/species/1594366,EXACT,,NW,newly detected in Norway,
+PARAGRIM,Paratanytarsus grimmii,,species,https://www.gbif.org/species/1450581,EXACT,,NW,newly detected in Norway,
+PERILYRO,Periphyllus lyropictus,,species,https://www.gbif.org/species/2071320,EXACT,,NW,newly detected in Norway,
+PHAOCANE,Phaonia canescens,,species,https://www.gbif.org/species/5068491,EXACT,,NW,newly detected in Norway,
+PHILPRAE,Philodromus praedatus,,species,https://www.gbif.org/species/5169589,EXACT,,NW,newly detected in Norway,
+PHILSPIN,Philonthus spinipes,,species,https://www.gbif.org/species/4436921,EXACT,,NW,newly detected in Norway,
+PHILVITT,Philygria vittipennis,,species,https://www.gbif.org/species/1619460,EXACT,,NW,newly detected in Norway,
+PHYTCIRS,Phytomyza cirsii,,species,https://www.gbif.org/species/1551313,EXACT,,NW,newly detected in Norway,
+PIEZLITU,Piezodorus lituratus,,species,https://www.gbif.org/species/2078821,EXACT,,PH,potentially high risk,
+PIPUCALC,Pipunculus calceatus,,species,https://www.gbif.org/species/1647028,EXACT,,NW,newly detected in Norway,
+PLACNIGR,Placochela nigripes,,species,https://www.gbif.org/species/1601223,EXACT,,NW,newly detected in Norway,
+PLATVEGE,Platypalpus vegetus,,species,https://www.gbif.org/species/1457768,EXACT,,NW,newly detected in Norway,
+POLYFORM,Polydrusus formosus,,species,https://www.gbif.org/species/4468015,EXACT,,HI,high risk,
+PORRNIGR,Porricondyla nigripennis,,species,https://www.gbif.org/species/4297908,EXACT,Lestodiplosis nigripennis,NW,newly detected in Norway,
+PRISBREV,Pristiphora brevis,,species,https://www.gbif.org/species/7585218,EXACT,,NW,newly detected in Norway,
+PROCFERR,Procladius ferrugineus,,species,https://www.gbif.org/species/1449397,EXACT,,NW,newly detected in Norway,
+PSECCONJ,Psectrocladius conjungens,,species,https://www.gbif.org/species/4519827,EXACT,,NW,newly detected in Norway,
+PSECSIMU,Psectrocladius simulans,,species,https://www.gbif.org/species/1446764,EXACT,,NW,newly detected in Norway,
+QUADURTI,Quadracus urticarius,,species,https://www.gbif.org/species/4545027,EXACT,,NW,newly detected in Norway,
+RHOPCARB,Rhopalopterum carbonarium,,species,https://www.gbif.org/species/1490520,EXACT,,NW,newly detected in Norway,
+SCEPLONG,Sceptonia longiseta,,species,https://www.gbif.org/species/4521266,EXACT,Opsion longisetosa,NW,newly detected in Norway,
+SKUHTRIA,Skuhraviana triangulifera,,species,https://www.gbif.org/species/1599217,EXACT,,NW,newly detected in Norway,
+SPINBERG,Spiniphora bergenstammi,,species,https://www.gbif.org/species/4516560,EXACT,Spiniphora excisa,NW,newly detected in Norway,
+STRITOBI,Stricticollis tobias,,species,https://www.gbif.org/species/6997654,EXACT,,LO,low risk,
+SYNTFALC,Syntretus falcifer,,species,https://www.gbif.org/species/1250360,EXACT,,NW,newly detected in Norway,
+SYSPSCUT,Syspasis scutellator,,species,https://www.gbif.org/species/1295193,EXACT,,NW,newly detected in Norway,
+THERRIEH,Therioaphis riehmi,,species,https://www.gbif.org/species/2071634,EXACT,,NW,newly detected in Norway,
+TOMOGENI,Tomosvaryella geniculata,,species,https://www.gbif.org/species/1647138,EXACT,,NW,newly detected in Norway,
+TOMOKUTH,Tomosvaryella kuthyi,,species,https://www.gbif.org/species/1647291,EXACT,,NW,newly detected in Norway,
+TREMFULG,Tremulicerus fulgidus,,species,https://www.gbif.org/species/4483994,EXACT,,LO,low risk,
+TRICPULC,Trichonta pulchra,,species,https://www.gbif.org/species/1616976,EXACT,,NW,newly detected in Norway,
+TRIPNUDI,Triphleba nudipalpis,,species,https://www.gbif.org/species/9748380,EXACT,,NW,newly detected in Norway,
+TRIXATTI,Trixagus atticus,,species,https://www.gbif.org/species/4430827,EXACT,,LO,low risk,
+VIBRTURR,Vibrissina turrita,,species,https://www.gbif.org/species/1471608,EXACT,,NW,newly detected in Norway,
+WINTCRUE,Winthemia cruentata,,species,https://www.gbif.org/species/1461104,EXACT,,NW,newly detected in Norway,

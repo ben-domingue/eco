@@ -20,8 +20,11 @@
   "abstract": "Within-season visits (up to ten encounter periods per year, March to October) to permanently tagged plants of the endangered skiff milkvetch in 18 (2013) and 28 (2014-2015) plots at six sites. y = the plant's observed above-ground state at the visit: 0 not found (vegetative dormancy or missed), 1 vegetative, 2 reproductive (flowers or fruit), 3 found, status not recorded. The paper fits a Huggins closed robust design with multi-state probabilities to these visits.",
   "samplingProtocol": "Tagged plants (10-inch nails and numbered metal tags) in 3-m-radius circular plots searched at each visit; stem length, flowering or fruiting, fruit count and browsing recorded for each plant found.",
   "surveyEvidence": "inferred",
-  "surveyEvidenceNote": "2013 records every tagged plant at every plot visit (deposited zeros, y_raw = 0); 2014 and 2015 record only plants found. A plot was visited at an encounter iff any of its plants has a row then, and every plant tagged in the plot in 2013-2015 is a row at every visit of its plot in all three years, 0 where the plant has no row (y_raw empty). This is the authors' own layout (tidyr::complete with fill 0 and their plotssurveyed table, Zenodo code). Rows before a plant's first detection are kept (E2).",
-  "closure": "occasion within period (robust design: closed within a growing season, open between years); the plant's flowering state changes within a season (the authors assign a season-level stratum, R if ever reproductive)",
+  "surveyEvidenceNote": "2013 records every tagged plant at every plot visit (deposited zeros, y_raw = 0); 2014 and 2015 record only plants found. A plot was visited at an encounter iff any of its plants has a row then, and every plant tagged in the plot in 2013-2015 is a row at every visit of its plot in all three years, 0 where the plant has no row (y_raw empty). This is the authors' own layout (tidyr::complete with fill 0 and their plotssurveyed table, Zenodo code). Rows before a plant's first detection are kept (E4.4, unknown age), except for the 268 plants first found with cotyledons in 2014 or 2015 (seedlings), which have no rows in earlier years.",
+  "closure": "closed",
+  "closureNote": "occasion within period (robust design: closed within a growing season, open between years); the plant's flowering state changes within a season (the authors assign a season-level stratum, R if ever reproductive)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "stateCodes": {
     "0": "not found above ground at the visit",
     "1": "vegetative (found, no flowers or fruit)",
@@ -38,19 +41,19 @@
     "deprengerlevin_2024_astragalus_ms"
   ],
   "summary": {
-    "n_rows": 28718,
+    "n_rows": 27042,
     "n_units": 1970,
     "n_taxa": 1,
     "n_periods": 3,
     "n_occasions": 10,
-    "n_surveys": 28718,
+    "n_surveys": 27042,
     "y_values": "0,1,2,3",
-    "prop_zero": 0.72
+    "prop_zero": 0.703
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_site", "obs_length_cm", "obs_fruits", "obs_browsed", "obs_comment"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/deprengerlevin_2024_astragalus_cmr.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

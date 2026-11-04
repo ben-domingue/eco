@@ -70,7 +70,7 @@ dataset <- list(
   samplingProtocol = "Camera traps at fixed sites, one detection/non-detection record per camera per 24-hour period, May-July; cameras in two protected areas sampled in different years.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day",
   surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Rupi Bhaba Wildlife Sanctuary and Daranghati Wildlife Sanctuary, Himachal Pradesh, Indian Himalaya (no coordinates deposited)",
   temporalCoverage = "2018-05/2019-07",
   coordinatesCoarsened = list(value = FALSE, method = "no coordinates in the deposit (IUCN VU taxon)"),

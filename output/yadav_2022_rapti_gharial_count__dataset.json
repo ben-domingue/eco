@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "period (three surveys within three weeks in winter; population treated as closed by the authors)",
+  "closure": "closed",
+  "closureNote": "period (three surveys within three weeks in winter; population treated as closed by the authors)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Rapti River, Chitwan National Park, Nepal (segment labels only, no coordinates deposited)",
   "temporalCoverage": "2019-11-13/2019-12-03",
   "coordinatesCoarsened": null,
@@ -39,8 +42,8 @@
   },
   "sampleFloor": "below (18 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "unit_depth_m", "unit_width_m", "unit_sandbanks", "unit_human_disturbance"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/yadav_2022_rapti_gharial_count.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

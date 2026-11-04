@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
-# Table:  rooney_2025_snapshotusa_comm
+# Tables: rooney_2025_snapshotusa_comm (coarsened) and rooney_2025_snapshotusa_exact_comm (E7.3
+#         sibling without the red wolf and the giant kangaroo rat)
 # Source: Dryad doi:10.5061/dryad.k0p2ngfhn, "SNAPSHOT USA 2019-2023: The first five years of
 #         data from a coordinated camera trap survey of the United States", Rooney, McShea,
 #         Kays, Cove et al.; licence CC0 1.0 (Dryad). The current version (6, 2025-04-10,
@@ -39,7 +40,17 @@
 #   Coordinates: the deposit publishes exact camera coordinates. Two shipped taxa are IUCN
 #   flagged (red wolf Canis rufus CR, giant kangaroo rat Dipodomys ingens EN), so every unit's
 #   coordinates are coarsened to the 0.1-degree cell centre (one unit set serves all taxa;
-#   standard E7); __units carries the coarsened coordinates too.
+#   standard E7); __units carries the coarsened coordinates too. E7.4: deployment ids, site names,
+#   array names and project names name places ("AK_Forest_Chilkat_Preserve_1", "Abilene",
+#   "Shenandoah National Park"), so in the coarsened table unit = D00001.. (deployments in id
+#   order), cluster_id = A001.. (arrays in name order), __units carries a sequential site_id
+#   (S0001.., Site_Name in name order, so sites re-run across years stay linked) instead of the
+#   site name, and Project, Site_Name and Deployment_ID are not shipped. E7.3:
+#   rooney_2025_snapshotusa_exact_comm has the other 85 species with the deposit's ids, names and
+#   exact coordinates.
+#   v1.1: closure = closed (camera-weeks of one deployment; closureNote), occasionKind = time,
+#   taxonInclusion = recorded (every shipped species is detected; the 50-sequence cut is in
+#   notShipped).
 #   Not shipped: labels above species rank (Mammal, Rodent, Bird, Peromyscus Species, ...),
 #   humans (Homo sapiens under 12 common names), vehicles, birds (225 species, 27,913 rows:
 #   incidental to a mammal survey and not consistently tagged, 14,086 generic "Bird" rows),
@@ -116,6 +127,7 @@ stopifnot(nrow(species) == 87, species[Genus == "Odocoileus" & Species == "virgi
 species[, scientificName := paste(Genus, Species)]
 species[, lookupName := scientificName]
 species[scientificName == "Capra aegagrus hircus", `:=`(scientificName = "Capra hircus", lookupName = "Capra hircus")]   # WI trinomial for the domestic goat
+species[scientificName == "Erethizon dorsatum", lookupName := "Erethizon dorsatus"]   # WI spelling; GBIF strict match is FUZZY on it
 species[, taxon := toupper(paste0(substr(Genus, 1, 3), substr(Species, 1, 3)))]
 stopifnot(!anyDuplicated(species$taxon), !anyDuplicated(species$scientificName))
 # IUCN Red List categories (2026 assessments) for the non-LC shipped species; everything else is LC or domestic
@@ -144,14 +156,17 @@ dep[, `:=`(lat_c = cc$lat, lon_c = cc$lon, unc_m = cc$uncertainty_m)]
 periods <- data.table(period = 1:5, year = 2019:2023)
 periods <- merge(periods, dep[, .(n_deployments = .N, n_arrays = uniqueN(Camera_Trap_Array), first_start = format(min(st)), last_end = format(max(en))), by = .(year = Year)], by = "year")[order(period)]
 setcolorder(periods, c("period", "year"))
-long <- merge(long, dep[, .(unit, cluster_id = Camera_Trap_Array, period = match(Year, periods$year), unit_year = Year,
-                            unit_decimalLatitude = lat_c, unit_decimalLongitude = lon_c, unit_coordinateUncertaintyInMeters = unc_m,
+# sequential ids for the coarsened table (E7.4)
+setorder(dep, unit); dep[, uid := sprintf("D%05d", seq_len(.N))]
+arr <- sort(unique(dep$Camera_Trap_Array)); dep[, aid := sprintf("A%03d", match(Camera_Trap_Array, arr))]
+sites <- sort(unique(dep$Site_Name)); dep[, sid := sprintf("S%04d", match(Site_Name, sites))]
+long <- merge(long, dep[, .(unit, uid, aid, Camera_Trap_Array, period = match(Year, periods$year), unit_year = Year,
+                            Latitude, Longitude, lat_c, lon_c, unc_m,
                             unit_habitat = Habitat, unit_development_level = Development_Level)], by = "unit")
-long <- long[, .(unit, taxon, y = as.integer(y_raw > 0L), y_raw, period, occasion, date = format(wstart), cluster_id,
-                 unit_year, unit_decimalLatitude, unit_decimalLongitude, unit_coordinateUncertaintyInMeters,
+long <- long[, .(unit, uid, taxon, y = as.integer(y_raw > 0L), y_raw, period, occasion, date = format(wstart), Camera_Trap_Array, aid,
+                 unit_year, Latitude, Longitude, lat_c, lon_c, unc_m,
                  unit_habitat, unit_development_level, obs_camera_days)]
-long <- order_eco(long)
-stopifnot(nrow(long) == 59182L * 87L, uniqueN(long$unit) == 9694, uniqueN(long$taxon) == 87, uniqueN(long$period) == 5,
+stopifnot(nrow(long) == 59182L * 87L, uniqueN(long$unit) == 9694, uniqueN(long$uid) == 9694, uniqueN(long$aid) == 263, uniqueN(long$taxon) == 87, uniqueN(long$period) == 5,
           long[taxon == "ODOVIR", sum(y_raw)] == WTD_SEQ)
 cat(sprintf("  %s rows, %d camera-weeks x %d taxa, %s detection-weeks\n", format(nrow(long), big.mark = ","), nrow(weeks), nrow(species),
             format(sum(long$y), big.mark = ",")))
@@ -159,54 +174,77 @@ cat(sprintf("  %s rows, %d camera-weeks x %d taxa, %s detection-weeks\n", format
 taxa <- make_taxa(species$taxon, species$scientificName, vernacularName = species$common_name, lookupName = species$lookupName,
                   taxon_class = "Mammalia", taxon_order = species$Order, taxon_family = species$Family,
                   taxon_iucnCategory = species$iucn, taxon_n_sequences = species$n_seq)
-units <- dep[, .(unit, cluster_id = Camera_Trap_Array, project = Project, site = Site_Name, deployment_id = Deployment_ID, year = Year,
-                 decimalLatitude = lat_c, decimalLongitude = lon_c, coordinateUncertaintyInMeters = unc_m,
+units_exact <- dep[, .(unit, cluster_id = Camera_Trap_Array, project = Project, site = Site_Name, deployment_id = Deployment_ID, year = Year,
+                 decimalLatitude = Latitude, decimalLongitude = Longitude,
                  start_date = format(st), end_date = format(en), survey_nights = Survey_Nights, n_weeks = ceiling(span_days / 7),
                  habitat = Habitat, development_level = Development_Level, feature_type = Feature_Type)]
+units <- dep[, .(unit = uid, cluster_id = aid, site_id = sid, year = Year,
+                 decimalLatitude = lat_c, decimalLongitude = lon_c, coordinateUncertaintyInMeters = unc_m,
+                 start_date = format(st), end_date = format(en), survey_nights = Survey_Nights, n_weeks = ceiling(span_days / 7),
+                 habitat = Habitat, development_level = Development_Level, feature_type = Feature_Type)][order(unit)]
+FLAG <- names(iucn)[iucn %in% c("CR", "EN", "VU")]
+stopifnot(setequal(FLAG, c("CANRUF", "DIPING")))
 
 not_shipped_mammals <- mam[n_seq < MIN_SEQ][order(-n_seq), paste0(Genus, " ", Species, " (", n_seq, ")")]
-dataset <- list(
-  title = "Snapshot USA 2019-2023: weekly camera-trap detections of 87 mammal species at 9,694 deployments in 263 arrays across the United States",
-  creator = "Rooney, Brigit; McShea, William J.; Kays, Roland; Cove, Michael V.; and the Snapshot USA contributors",
-  pubDate = "2025", doi = "10.5061/dryad.k0p2ngfhn", sourceURL = "https://doi.org/10.5061/dryad.k0p2ngfhn",
-  citation = "Rooney, B., McShea, W. J., Kays, R., Cove, M. V., et al. (2025). SNAPSHOT USA 2019-2023: The first five years of data from a coordinated camera trap survey of the United States [Data set]. Dryad. https://doi.org/10.5061/dryad.k0p2ngfhn (version 3, 2025-01-03)",
-  paperDOI = "10.1002/ecy.4318",
-  relatedPapers = c("10.1002/ecy.3353", "10.1002/ecy.3775", "10.1002/ecy.4318"),
-  intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = sprintf("Snapshot USA is an annual, multi-contributor camera-trap survey of mammals across the United States, run each autumn (deployments between 1 August and 29 December) since 2019 with a shared protocol: arrays of about ten cameras per site type, cameras run for several weeks, images identified in Wildlife Insights to species where possible. This table aggregates the 2019-2023 sequence file to camera-weeks: one row per deployment x 7-day window x species for the %d mammal species with at least %d sequences over the five years, y = detected in that week, y_raw = number of sequences, obs_camera_days = days of the window inside the deployment (the last window is partial). The deployment table is the survey set. Camera coordinates are coarsened to 0.1-degree cell centres because two shipped species are IUCN flagged (red wolf CR, giant kangaroo rat EN). Built from Dryad version 3 (2025-01-03); the current version 6 is not downloadable without a token.", nrow(species), MIN_SEQ),
-  samplingProtocol = "Unbaited passive-infrared camera traps at knee height facing trails or random points, 10+ cameras per array spaced >= 200 m, run for several weeks between August and December; sequences = photos within one minute of a trigger; species identified by the contributors in Wildlife Insights",
-  samplingProtocolCode = "camera_trap", occasionLength = "7 days (last window of a deployment partial)", effortColumn = "obs_camera_days",
-  surveyEvidence = "effort_table",
-  surveyEvidenceNote = "A camera-day exists iff Start_Date <= day <= End_Date in ssusa_alldeployments.csv (Survey_Nights = End - Start for every row); camera-days are grouped into 7-day windows from the start date. Every sequence in the file falls inside its deployment's window; 27 sequence rows naming a deployment absent from the deployments file are dropped.",
-  responseType = "detection", unitKind = "site",
-  closure = "period = survey year (one deployment per unit, so a unit has rows in one period only); occasion = camera-week within the deployment, 1-21 weeks",
-  geographicCoverage = "United States (all 50 states), camera coordinates coarsened to 0.1-degree cells; latitude 21.4 to 59.5, longitude -157.7 to -68.6",
-  temporalCoverage = "2019-08-01/2023-12-29",
-  crs = "EPSG:4326 (WGS 84, as published), coarsened",
-  coordinatesCoarsened = list(value = TRUE, method = "0.1-degree grid cell centre for every deployment (one unit set serves all taxa); red wolf (Canis rufus, IUCN CR) and giant kangaroo rat (Dipodomys ingens, IUCN EN) are among the shipped taxa; the source publishes exact camera coordinates (WGS 84, 4-6 decimals)"),
-  covariateNote = "unit_habitat and unit_development_level are the contributors' array-level classifications as deposited; Project, Site_Name, Deployment_ID, Feature_Type and the deployment dates are in __units.",
-  designNote = "Community detection table aggregated to camera-weeks (E9 core). The deposit is sequence-level with timestamps, so daily or finer occasions can be rebuilt from the source; weeks were chosen to keep the table at 5.1 million rows. period duplicates unit_year because the survey is an annual design with new deployments each year; a dynamic model across years needs the site, not the deployment, as the unit (Site_Name in __units; 6,712 sites, most sampled in several years).",
-  notes = sprintf("Taxa are the %d mammal species with >= %d sequences; the %d mammal species below that cut are not shipped (see notShipped). 46 Deployment_IDs recur in two years and carry a _<year> suffix in unit. The deposit's version 3 is used (see abstract). y_raw counts distinct Sequence_IDs (a sequence with two rows for one species, e.g. age/sex groups, counts once); on 223 deployments (14,445 rows) the Sequence_ID is NA and each row's start time stands in for it.", nrow(species), MIN_SEQ, nrow(mam) - nrow(species)),
-  notShipped = list(
-    `mammals below 50 sequences` = paste(not_shipped_mammals, collapse = "; "),
-    birds = sprintf("225 species-level bird labels (27,913 sequence rows) plus 14,086 generic 'Bird' rows: incidental to a mammal-focused survey and not consistently tagged across contributors"),
-    `reptiles, amphibians, invertebrates` = "13 reptile and 1 amphibian species (209 rows), Insecta, Arachnida, Gastropoda",
-    `labels above species rank` = "Mammal, Rodent, Peromyscus Species, Sciuridae Family, Sylvilagus Species, Animal, Unknown, etc. (132 labels)",
-    `humans and vehicles` = "Homo sapiens under 12 common names, Vehicle, Official Vehicle",
-    `Age, Sex, Group_Size` = "per-sequence attributes (mostly Unknown), not carried at the camera-week level",
-    `orphan sequences` = "27 rows whose Deployment_ID x Year is not in the deployments file"))
+emit <- function(TABLE, exact) {
+  lg <- if (exact) long[!taxon %in% FLAG] else long
+  lg <- if (exact) lg[, .(unit, taxon, y, y_raw, period, occasion, date, cluster_id = Camera_Trap_Array, unit_year,
+                          unit_decimalLatitude = Latitude, unit_decimalLongitude = Longitude, unit_habitat, unit_development_level, obs_camera_days)]
+        else lg[, .(unit = uid, taxon, y, y_raw, period, occasion, date, cluster_id = aid, unit_year,
+                    unit_decimalLatitude = lat_c, unit_decimalLongitude = lon_c, unit_coordinateUncertaintyInMeters = unc_m,
+                    unit_habitat, unit_development_level, obs_camera_days)]
+  lg <- order_eco(lg)
+  tx <- if (exact) taxa[!taxon %in% FLAG] else taxa
+  un <- if (exact) units_exact else units
+  dataset <- list(
+    title = sprintf("Snapshot USA 2019-2023: weekly camera-trap detections of %d mammal species at 9,694 deployments in 263 arrays across the United States%s", nrow(tx), if (exact) " (without the red wolf and giant kangaroo rat, coordinates as published)" else ""),
+    creator = "Rooney, Brigit; McShea, William J.; Kays, Roland; Cove, Michael V.; and the Snapshot USA contributors",
+    pubDate = "2025", doi = "10.5061/dryad.k0p2ngfhn", sourceURL = "https://doi.org/10.5061/dryad.k0p2ngfhn",
+    citation = "Rooney, B., McShea, W. J., Kays, R., Cove, M. V., et al. (2025). SNAPSHOT USA 2019-2023: The first five years of data from a coordinated camera trap survey of the United States [Data set]. Dryad. https://doi.org/10.5061/dryad.k0p2ngfhn (version 3, 2025-01-03)",
+    paperDOI = "10.1002/ecy.4318",
+    relatedPapers = c("10.1002/ecy.3353", "10.1002/ecy.3775", "10.1002/ecy.4318"),
+    intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
+    abstract = sprintf("Snapshot USA is an annual, multi-contributor camera-trap survey of mammals across the United States, run each autumn (deployments between 1 August and 29 December) since 2019 with a shared protocol: arrays of about ten cameras per site type, cameras run for several weeks, images identified in Wildlife Insights to species where possible. This table aggregates the 2019-2023 sequence file to camera-weeks: one row per deployment x 7-day window x species for the %d mammal species with at least %d sequences over the five years, y = detected in that week, y_raw = number of sequences, obs_camera_days = days of the window inside the deployment (the last window is partial). The deployment table is the survey set. %s Built from Dryad version 3 (2025-01-03); the current version 6 is not downloadable without a token.", nrow(tx), MIN_SEQ,
+      if (exact) "This table omits the two IUCN-flagged species (red wolf CR, giant kangaroo rat EN) so that camera coordinates, deployment, site, array and project names ship as published; rooney_2025_snapshotusa_comm has all 87 species with coarsened coordinates." else "Camera coordinates are coarsened to 0.1-degree cell centres and deployment, array, site and project names replaced by sequential ids because two shipped species are IUCN flagged (red wolf CR, giant kangaroo rat EN); rooney_2025_snapshotusa_exact_comm has the other 85 species at published precision."),
+    samplingProtocol = "Unbaited passive-infrared camera traps at knee height facing trails or random points, 10+ cameras per array spaced >= 200 m, run for several weeks between August and December; sequences = photos within one minute of a trigger; species identified by the contributors in Wildlife Insights",
+    samplingProtocolCode = "camera_trap", occasionLength = "7 days (last window of a deployment partial)", effortColumn = "obs_camera_days",
+    surveyEvidence = "effort_table",
+    surveyEvidenceNote = "A camera-day exists iff Start_Date <= day <= End_Date in ssusa_alldeployments.csv (Survey_Nights = End - Start for every row); camera-days are grouped into 7-day windows from the start date. Every sequence in the file falls inside its deployment's window; 27 sequence rows naming a deployment absent from the deployments file are dropped.",
+    responseType = "detection", unitKind = "site",
+    closure = "closed", occasionKind = "time", taxonInclusion = "recorded",
+    closureNote = "period = survey year (one deployment per unit, so a unit has rows in one period only); occasion = camera-week within the deployment, 1-21 weeks",
+    geographicCoverage = paste0("United States (all 50 states), camera coordinates ", if (exact) "as published" else "coarsened to 0.1-degree cells", "; latitude 21.4 to 59.5, longitude -157.7 to -68.6"),
+    temporalCoverage = "2019-08-01/2023-12-29",
+    crs = if (exact) "EPSG:4326 (WGS 84, as published)" else "EPSG:4326 (WGS 84, as published), coarsened",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = "As published (WGS 84, 4-6 decimals): the red wolf (Canis rufus, IUCN CR) and giant kangaroo rat (Dipodomys ingens, IUCN EN) are not in this table (E7.3)") else list(value = TRUE, method = "0.1-degree grid cell centre for every deployment (one unit set serves all taxa); red wolf (Canis rufus, IUCN CR) and giant kangaroo rat (Dipodomys ingens, IUCN EN) are among the shipped taxa; the source publishes exact camera coordinates (WGS 84, 4-6 decimals); deployment ids, array names, site names and project names replaced by sequential ids or not shipped (E7.4)"),
+    covariateNote = if (exact) "unit_habitat and unit_development_level are the contributors' array-level classifications as deposited; Project, Site_Name, Deployment_ID, Feature_Type and the deployment dates are in __units." else "unit_habitat and unit_development_level are the contributors' array-level classifications as deposited; a sequential site_id (linking deployments of one site across years), Feature_Type and the deployment dates are in __units.",
+    designNote = paste0("Community detection table aggregated to camera-weeks (E9 core). The deposit is sequence-level with timestamps, so daily or finer occasions can be rebuilt from the source; weeks were chosen to keep the table at 5.1 million rows. period duplicates unit_year because the survey is an annual design with new deployments each year; a dynamic model across years needs the site, not the deployment, as the unit (", if (exact) "Site_Name" else "site_id", " in __units; 6,712 sites, most sampled in several years)."),
+    notes = sprintf("Taxa are the %d mammal species with >= %d sequences; the %d mammal species below that cut are not shipped (see notShipped). 46 Deployment_IDs recur in two years and carry a _<year> suffix in unit. The deposit's version 3 is used (see abstract). y_raw counts distinct Sequence_IDs (a sequence with two rows for one species, e.g. age/sex groups, counts once); on 223 deployments (14,445 rows) the Sequence_ID is NA and each row's start time stands in for it.", nrow(species), MIN_SEQ, nrow(mam) - nrow(species)),
+    notShipped = c(if (exact) list(`IUCN-flagged species` = "Canis rufus (CR) and Dipodomys ingens (EN): in rooney_2025_snapshotusa_comm only, whose coordinates are coarsened")
+                   else list(`place names` = "Deployment_ID, Camera_Trap_Array, Site_Name and Project name places (E7.4): replaced by sequential unit, cluster_id and site_id, Project not shipped; all are in rooney_2025_snapshotusa_exact_comm"),
+      list(`mammals below 50 sequences` = paste(not_shipped_mammals, collapse = "; "),
+      birds = sprintf("225 species-level bird labels (27,913 sequence rows) plus 14,086 generic 'Bird' rows: incidental to a mammal-focused survey and not consistently tagged across contributors"),
+      `reptiles, amphibians, invertebrates` = "13 reptile and 1 amphibian species (209 rows), Insecta, Arachnida, Gastropoda",
+      `labels above species rank` = "Mammal, Rodent, Peromyscus Species, Sciuridae Family, Sylvilagus Species, Animal, Unknown, etc. (132 labels)",
+      `humans and vehicles` = "Homo sapiens under 12 common names, Vehicle, Official Vehicle",
+      `Age, Sex, Group_Size` = "per-sequence attributes (mostly Unknown), not carried at the camera-week level",
+      `orphan sequences` = "27 rows whose Deployment_ID x Year is not in the deployments file")))
 
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/rooney_2025_snapshotusa_comm.R")
+  ds <- write_table(lg, TABLE, dataset, taxa = tx, periods = periods, units = un, script = "data/rooney_2025_snapshotusa_comm.R")
 
-stage_dict_row(TABLE,
-  description = sprintf("Weekly camera-trap detection/non-detection (sequence counts in y_raw) of %d mammal species at 9,694 Snapshot USA deployments in 263 arrays across the United States, autumn 2019-2023, with camera-days per week as effort, array as cluster_id, habitat and development class, and 0.1-degree coarsened coordinates.", nrow(species)),
-  url = "https://doi.org/10.5061/dryad.k0p2ngfhn",
-  reference = "Shamon, H., Maor, R., Cove, M. V., Kays, R., et al. (2024). SNAPSHOT USA 2021: A third coordinated national camera trap survey of the United States. Ecology, 105(6), e4318; Cove et al. (2021) Ecology 102:e03353; Kays et al. (2022) Ecology 103:e3775.",
-  doi_paper = "10.1002/ecy.4318", doi_data = "10.5061/dryad.k0p2ngfhn",
-  original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "Built from Dryad version 3 (2025-01-03; version 6 needs a token). 87 of 130 mammal species (>= 50 sequences); birds and higher-rank labels not shipped. Coordinates coarsened (red wolf CR, giant kangaroo rat EN among the taxa).",
-  source_via = "Dryad version zip")
-stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Community occupancy (annual single-season; dynamic across years by site)",
-  sampling_protocol = "camera_trap", design = "Multi-season (5 annual surveys x 1-21 camera-weeks per deployment)", realm = "Terrestrial", country = "USA",
-  coordinates = "Coarsened (0.1 deg)", notes = "Largest table in the corpus (5.1M rows). Sequence-level source allows daily occasions. 46 deployment ids reused across years suffixed with the year.",
-  status = "tagged")
+  stage_dict_row(TABLE,
+    description = sprintf("Weekly camera-trap detection/non-detection (sequence counts in y_raw) of %d mammal species at 9,694 Snapshot USA deployments in 263 arrays across the United States, autumn 2019-2023, with camera-days per week as effort, array as cluster_id, habitat and development class, and %s.", nrow(tx), if (exact) "published coordinates (red wolf and giant kangaroo rat omitted)" else "0.1-degree coarsened coordinates"),
+    url = "https://doi.org/10.5061/dryad.k0p2ngfhn",
+    reference = "Shamon, H., Maor, R., Cove, M. V., Kays, R., et al. (2024). SNAPSHOT USA 2021: A third coordinated national camera trap survey of the United States. Ecology, 105(6), e4318; Cove et al. (2021) Ecology 102:e03353; Kays et al. (2022) Ecology 103:e3775.",
+    doi_paper = "10.1002/ecy.4318", doi_data = "10.5061/dryad.k0p2ngfhn",
+    original_license = "CC0 1.0", derived_license = "CC0 1.0",
+    notes = paste0(if (exact) "E7.3 sibling of rooney_2025_snapshotusa_comm without Canis rufus and Dipodomys ingens. " else "", "Built from Dryad version 3 (2025-01-03; version 6 needs a token). 87 of 130 mammal species (>= 50 sequences); birds and higher-rank labels not shipped. Coordinates coarsened (red wolf CR, giant kangaroo rat EN among the taxa)."),
+    source_via = "Dryad version zip")
+  stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Community occupancy (annual single-season; dynamic across years by site)",
+    sampling_protocol = "camera_trap", design = "Multi-season (5 annual surveys x 1-21 camera-weeks per deployment)", realm = "Terrestrial", country = "USA",
+    coordinates = if (exact) "As published" else "Coarsened (0.1 deg)", notes = "Largest table in the corpus (5.1M rows). Sequence-level source allows daily occasions. 46 deployment ids reused across years suffixed with the year.",
+    status = "tagged")
+  rm(lg); invisible(gc())
+}
+emit(TABLE, exact = FALSE)
+emit("rooney_2025_snapshotusa_exact_comm", exact = TRUE)

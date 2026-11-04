@@ -25,7 +25,8 @@
 #   cloud %, minutes since sunrise, temperature F. unit_: every site covariate as deposited
 #   (perc_* kept on the deposited 0-1 scale and named _prop). Survey evidence: the
 #   deposited transect x occasion matrix (deposited_matrix; complete, no NA). No
-#   coordinates deposited. Nothing is a model output.
+#   coordinates deposited. Nothing is a model output. v1.1: closure = closed, occasionKind =
+#   time, taxonInclusion = single.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "samek_2024_racerunner_occ"
 dir <- download_dryad("10.5061/dryad.cc2fqz6gk", TABLE)
@@ -55,7 +56,10 @@ D <- cbind(day(1), day(2), day(3))
 long[, date := D[cbind(match(unit, raw$transect), occasion)]]
 stopifnot(nrow(long) == 300, sum(long$y) == sum(Y), !anyNA(long$date), !any(grepl("^unit_unit_", names(long))))
 
-taxa <- make_taxa("ASPSEX", "Aspidoscelis sexlineata", vernacularName = "Six-lined racerunner")
+# GBIF's backbone has the masculine ending (Aspidoscelis sexlineatus, key 2472425; FUZZY on the
+# source's sexlineata): the same species, looked up under the backbone spelling.
+taxa <- make_taxa("ASPSEX", "Aspidoscelis sexlineata", vernacularName = "Six-lined racerunner",
+                  lookupName = "Aspidoscelis sexlineatus")
 dataset <- list(
   title = "Six-lined racerunner detections on 100 transects in bobwhite-managed longleaf pine, Brunswick County, North Carolina, three surveys each, summer 2023",
   creator = "Samek, Isaiah W.; Price, Steven J.; Terhune, Theron M., II; McNeil, Darin J., Jr.",
@@ -66,7 +70,7 @@ dataset <- list(
   abstract = "Detection/non-detection of the six-lined racerunner (Aspidoscelis sexlineata) on 100 transects surveyed three times each in July-August 2023 in longleaf pine savanna managed with frequent prescribed fire for northern bobwhites, with survey wind, cloud, time since sunrise and temperature, and transect ground-cover, vegetation-structure, NDVI, land-cover, distance-to-cover and burn covariates.",
   samplingProtocol = "Visual-encounter transect surveys, three per transect between early July and late August 2023; wind, cloud cover, time and temperature recorded per survey. Transect length and survey duration are in the paper.",
   samplingProtocolCode = "transect_search", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "site",
-  closure = "occasion (three surveys within one summer)",
+  closure = "closed", closureNote = "occasion (three surveys within one summer)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Brunswick County, North Carolina, USA (longleaf pine savanna on a bobwhite-managed property); no coordinates deposited",
   temporalCoverage = "2023-07-03/2023-08-22",
   coordinatesCoarsened = NA,

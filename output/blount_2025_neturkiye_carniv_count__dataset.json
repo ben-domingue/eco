@@ -19,7 +19,9 @@
   "surveyEvidenceNote": "A deployment-week is surveyed iff the cell is non-NA in the count matrices; NA cells are the trailing weeks after the camera stopped. The matrices carry no row ids; they and the covariate sheet (229 rows each, 13 matrix rows entirely NA) are taken to be in the same deployment order, as the authors' unmarked inputs.",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "geographicCoverage": "Sarikamis-Allahuekber Mountains National Park and surrounding forest, Kars Province, northeastern Turkiye (about 40.2-40.5 N, 42.4-42.8 E)",
   "temporalCoverage": "2009/2023",
   "coordinatesCoarsened": {
@@ -48,8 +50,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_year", "unit_deployment_rank_at_site", "unit_camera_model", "unit_camera_height", "unit_fov_score", "unit_decimalLongitude", "unit_decimalLatitude", "unit_elevation_m", "unit_slope_deg", "unit_aspect_deg", "unit_land_type_clc", "unit_forest_pct_500m", "unit_buffer_area_500m_m2", "unit_dist_main_roads_m", "unit_dist_f_rds_m", "unit_dist_urban_m", "unit_dist_fe_m", "unit_dist_dump_m", "unit_human_rate", "unit_vehicle_rate"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/blount_2025_neturkiye_carniv_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

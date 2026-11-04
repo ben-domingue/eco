@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "Trap usage is not deposited. Every one of the 60 Elliott traps at a site is taken as set on all five nights of every session; the capture files record nights 1-5 and trap numbers 1-60 at every site, and no failures are recorded. Each individual carries rows for all six sessions at its site.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (population closed within a 5-night session; open between sessions)",
+  "closure": "closed",
+  "closureNote": "period (population closed within a 5-night session; open between sessions)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Four forest sites in southern Tasmania, Australia: Southwest (SW), Mt Field (MtF), Wellington Ranges (WR), Tasman Peninsula (TP); Elliott trap coordinates in __traps",
   "temporalCoverage": "2009-03/2011-05",
   "crs": "EPSG:32755",
@@ -41,8 +44,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lazenby_2021_tasmania_smallmammal_scr.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

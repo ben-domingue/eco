@@ -39,8 +39,12 @@
 #   are listed only for the reaches in which they were encountered, so their taxon sets differ
 #   between sites (standard E4.2: one taxon set per community table) and they are not shipped
 #   (rows counted in notShipped). Smallmouth bass sub-adults and adults keep the source's two
-#   codes as two taxa, both Micropterus dolomieu, with taxon_life_stage in __taxa.
-#   Covariates: obs_gear, obs_coarse_wood_pct, obs_coarse_substrate_pct, obs_vegetation_pct,
+#   codes as two taxa, both Micropterus dolomieu, with lifeStage in __taxa (E6: stages recorded
+#   separately within one survey).
+#   v1.1: taxonInclusion = target (the six target taxa the README names; the other darters are
+#   incidental encounters, not shipped); closure = closed; occasionKind = c("time", "method"),
+#   visit outer, gear inner, recoverable from obs_visit and obs_gear.
+#   Covariates: obs_visit (1, 2), obs_gear, obs_coarse_wood_pct, obs_coarse_substrate_pct, obs_vegetation_pct,
 #   obs_velocity_m_s, obs_depth_m, obs_clarity_m, obs_water_temp_c, obs_duration_recorded (as
 #   deposited, see above); unit_ecoregion, unit_stream, unit_year and the site habitat columns
 #   (unit_*; Area_Run, Prop_Pool, Prop_Run, Prop_Riffle and Total_Area NA at 4C_04);
@@ -85,7 +89,7 @@ site[ID == "4C_04", (area_cols) := NA]
 site[ID == "1B_02", Temp.2 := NA]
 
 surv <- rbindlist(lapply(1:4, function(k) site[, .(ID, occasion = k, date = as.IDate(get(paste0("Date_y.", k)), "%m/%d/%Y"),
-  obs_gear = get(paste0("gear.", k)), obs_duration_recorded = get(paste0("Time_y.", k)),
+  obs_visit = (k + 1L) %/% 2L, obs_gear = get(paste0("gear.", k)), obs_duration_recorded = get(paste0("Time_y.", k)),
   obs_coarse_wood_pct = get(paste0("CW.", k)), obs_coarse_substrate_pct = get(paste0("CS.", k)),
   obs_vegetation_pct = get(paste0("Vegetation.", k)), obs_velocity_m_s = get(paste0("Velocity.", k)),
   obs_depth_m = get(paste0("Depth.", k)), obs_clarity_m = get(paste0("Clarity.", k)), obs_water_temp_c = get(paste0("Temp.", k)))]))
@@ -123,7 +127,7 @@ taxa <- make_taxa(TARGET, c("Etheostoma microperca", "Chrosomus erythrogaster", 
                             "Micropterus dolomieu", "Micropterus dolomieu"),
                   vernacularName = c("Least darter", "Southern redbelly dace", "Redspot chub", "Orangethroat darter",
                                      "Smallmouth bass (sub-adult)", "Smallmouth bass (adult)"))
-taxa[, taxon_life_stage := c(NA, NA, NA, NA, "sub-adult", "adult")]
+taxa[, lifeStage := c(NA, NA, NA, NA, "sub-adult", "adult")]   # Darwin Core lifeStage, as the source labels it (E6)
 
 dataset <- list(
   title = "Spring-associated stream fishes, snorkel and seine detections at 153 channel-unit complexes in 61 reaches, Arbuckle Uplift and Ozark Highlands, Oklahoma, 2018-2019",
@@ -136,13 +140,14 @@ dataset <- list(
   samplingProtocolCode = "visual_and_seine", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "A site x survey is surveyed iff its y cell is not NA; the NA pattern is identical for every species at a site and matches the gear column (asserted). 21 sites lack the fourth survey and others lack one of the first three.",
   responseType = "detection", unitKind = "site",
-  closure = "site closed across the two visits (about one week); occasions are four surveys (snorkel and seine on each visit); reach = cluster_id is the coarser occupancy scale",
+  closure = "closed", closureNote = "site closed across the two visits (about one week); occasions are four surveys (snorkel and seine on each visit); reach = cluster_id is the coarser occupancy scale",
+  occasionKind = c("time", "method"), taxonInclusion = "target",
   occasionCodes = list(`1` = "visit 1, snorkel", `2` = "visit 1, seine", `3` = "visit 2, snorkel", `4` = "visit 2, seine"),
   designNote = "Experimental list of E9 (multi-scale): cluster_id = reach, unit = channel-unit complex, occasion = survey (gear alternates; obs_gear).",
   geographicCoverage = "Arbuckle Uplift (Arbuckle Mountains) and Ozark Highlands ecoregions, Oklahoma, USA: 47 streams; no coordinates deposited",
   temporalCoverage = sprintf("%s/%s", min(surv$date), max(surv$date)),
   coordinatesCoarsened = NA,
-  notes = "Two key repairs: 2k_03 -> 2K_03 (SRBD row) and 1N_12 -> 1N_02 (OTD row; every covariate equal, asserted). Site 4C_04's run area and the proportions and total area derived from it are NA (a spreadsheet fill-down in the deposit); site 1B_02's survey-2 water temperature is NA (23.6 on one species row, 24.1 on eight). obs_duration_recorded is the deposit's Time_y value: documented as hours.minutes but 291 values have fractional parts of .60 or more, so it is not converted. Smallmouth bass are two taxa by life stage (taxon_life_stage in __taxa).",
+  notes = "Two key repairs: 2k_03 -> 2K_03 (SRBD row) and 1N_12 -> 1N_02 (OTD row; every covariate equal, asserted). Site 4C_04's run area and the proportions and total area derived from it are NA (a spreadsheet fill-down in the deposit); site 1B_02's survey-2 water temperature is NA (23.6 on one species row, 24.1 on eight). obs_duration_recorded is the deposit's Time_y value: documented as hours.minutes but 291 values have fractional parts of .60 or more, so it is not converted. Smallmouth bass are two taxa by life stage (lifeStage in __taxa). obs_visit (1, 2) and obs_gear give the two components of the visit x gear occasion.",
   notShipped = list(`other darters` = sprintf("%d rows for ten non-target darters (CHD, OBD, LP, GSD, BND, SBD, ARD, FNTL, DD, SHD), listed only at sites of reaches where they were encountered, so their taxon sets differ between sites (E4.2)", n_other),
                     `duplicate rows` = sprintf("%d identical duplicate CHD rows", n_chd_dup)))
 

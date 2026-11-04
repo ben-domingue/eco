@@ -67,7 +67,7 @@ dataset <- list(
   samplingProtocol = "Line-transect distance sampling on foot; perpendicular distance of each butterfly recorded and binned at 1 m to a 5 m truncation; transect length in metres per walk.",
   samplingProtocolCode = "line_transect", surveyEvidence = "deposited_matrix",
   responseType = "multinomial_cell", distanceBreaks = c(0, 1, 2, 3, 4, 5), distanceUnits = "m", transectType = "line",
-  effortColumn = "unit_length_m", unitKind = "site", closure = "occasion (bins of one walk)",
+  effortColumn = "unit_length_m", unitKind = "site", closure = "closed", closureNote = "occasion (bins of one walk)", occasionKind = "cell", taxonInclusion = "single",
   geographicCoverage = "One Mitchell's satyr site in lower Michigan, USA (site names JCC, Liberty, Weaver; no coordinates deposited)",
   temporalCoverage = "2011-07-04/2011-07-12",
   notes = "Transect labels are date-specific (P, Q, Y, G, S series) and the deposit does not match them across days, so each walk is its own unit and there is no period. Temperature and humidity are per day, carried at unit level. First distance-sampling table.",

@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (one occasion per sampling year; survival and recruitment between years)",
+  "closure": "none",
+  "closureNote": "period (one occasion per sampling year; survival and recruitment between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "lossesOnCapture": "none coded (no negative frequencies in the deposit)",
   "geographicCoverage": "southeastern Adirondack Mountains, New York, USA (den locations not deposited)",
   "temporalCoverage": "1983/2019",
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_den", "unit_morph"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tetzlaff_2026_crotalus_cjs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

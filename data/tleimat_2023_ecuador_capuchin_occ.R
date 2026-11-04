@@ -48,7 +48,7 @@ dataset <- list(
   abstract = "Capuchin detection data binned on a two-week interval from the HCKBA, used for detection and presence modelling (deposit description). Station-level habitat covariates: elevation, tree and station height, habitat class, distances to settlement, forest edge and water, DBH, connected trees, canopy and vegetation cover.",
   samplingProtocol = "Camera traps at 21 stations; detection/non-detection per two-week interval; NA where the station was not operating.",
   samplingProtocolCode = "camera_trap", occasionLength = "14 days", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion (the depositors treat the 18-month series as one season)",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "occasion (the depositors treat the 18-month series as one season)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Ecuador, study area 'HCKBA' (station codes only; no coordinates deposited)",
   temporalCoverage = "2019-12-22/2021-06-17",
   coordinatesCoarsened = NA,

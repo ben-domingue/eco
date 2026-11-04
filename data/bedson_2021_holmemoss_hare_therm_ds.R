@@ -84,7 +84,7 @@ dataset <- list(
   samplingProtocol = "Point-transect distance sampling by night with a thermal imager (360-degree scans, 10-20 min per point, one hour after sunset); radial distance by laser range finder, cluster size recorded; points visited 1-3 times.",
   samplingProtocolCode = "point_transect", surveyEvidence = "deposited_matrix",
   responseType = "multinomial_cell", distanceBreaks = BREAKS, distanceUnits = "m", transectType = "point",
-  effortColumn = "unit_survey_effort", unitKind = "site", closure = "occasion (bins of one point visit)",
+  effortColumn = "unit_survey_effort", unitKind = "site", closure = "closed", closureNote = "occasion (bins of one point visit)", occasionKind = "cell", taxonInclusion = "single",
   geographicCoverage = "Holme Moss, Peak District National Park, England (OS SE 40 39 area; six 1 km sites; no coordinates deposited)",
   temporalCoverage = "2017-11/2018-05",
   notes = "The deposit has no visit label; a visit is a maximal run of consecutive rows with the same vantage point in file order, which reproduces the paper's 114 replicates per site exactly (20, 22, 27, 22, 12, 11). Radial distances are deposited to the metre and binned here (50 m bins to the paper's 350 m truncation, plus one 350-750 m bin holding the 54 detections beyond it); the paper fitted exact distances. obs_individuals is hares in the bin (cluster sizes 1-8); y counts groups. Three leveret sightings were excluded by the authors before deposit. No dates or coordinates deposited.",

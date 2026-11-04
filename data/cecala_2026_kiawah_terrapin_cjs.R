@@ -91,7 +91,7 @@ dataset <- list(
   samplingProtocolCode = "net_capture", surveyEvidence = "inferred",
   surveyEvidenceNote = "A year with at least one capture record is a sampling year (README: monitored annually since 1983). No records exist for 2000 and 2001, which are treated as not surveyed and have no rows; if they were surveyed with no captures, that information is not in the deposit.",
   responseType = "detection", unitKind = "individual",
-  closure = "period (captures within a season pooled to the year; survival between years)",
+  closure = "none", closureNote = "period (captures within a season pooled to the year; survival between years)", occasionKind = "none", taxonInclusion = "single",
   lossesOnCapture = "not coded in the deposit; crab-trap records (often drowned bycatch) counted in obs_n_crabtrap",
   geographicCoverage = "Kiawah River, Kiawah Island, South Carolina, USA (nine site labels, no coordinates)",
   temporalCoverage = "1983/2012", coordinatesCoarsened = NA,

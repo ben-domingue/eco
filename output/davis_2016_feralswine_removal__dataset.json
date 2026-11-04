@@ -18,7 +18,10 @@
   "responseType": "multinomial_cell",
   "multinomialType": "removal",
   "unitKind": "site",
-  "closure": "occasion within period (one removal episode per property-year treated as closed; 5 episodes run longer than 3 months)",
+  "closure": "closed",
+  "closureNote": "occasion within period (one removal episode per property-year treated as closed; 5 episodes run longer than 3 months)",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
   "occasionCodes": {
     "1": "pass 1",
     "2": "pass 2",
@@ -44,8 +47,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_county", "unit_state", "obs_effort_h", "obs_episode_start", "obs_episode_end"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/davis_2016_feralswine_removal.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

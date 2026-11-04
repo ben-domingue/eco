@@ -93,7 +93,7 @@ dataset <- list(
   samplingProtocolCode = "live_trap", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "Each river's deposited matrix has one column per sampled fall; every fish of that river is surveyed in every column, including falls before its first capture (y = 0). Rat River falls 2008, 2011, 2012 and Joe Creek fall 2020 have very few captures (reduced effort); per-river capture counts are in __periods.",
   responseType = "state", unitKind = "individual",
-  closure = "open between periods (annual fall sampling; reproductive state may change between years, CJS multi-state)",
+  closure = "none", closureNote = "open between periods (annual fall sampling; reproductive state may change between years, CJS multi-state)", occasionKind = "none", taxonInclusion = "single",
   stateCodes = list(`0` = "not captured", `1` = "captured as a spawner", `2` = "captured as a non-spawner"),
   geographicCoverage = "Firth River and Joe Creek (Yukon North Slope), Babbage River (Yukon), Big Fish River and Rat River (Northwest Territories), western Canadian Arctic; no coordinates deposited",
   temporalCoverage = "2007-09/2020-10",

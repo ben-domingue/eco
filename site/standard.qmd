@@ -1,5 +1,5 @@
 ---
-title: "The standard, v1.0-draft"
+title: "The standard, v1.1-draft"
 toc-depth: 2
 ---
 

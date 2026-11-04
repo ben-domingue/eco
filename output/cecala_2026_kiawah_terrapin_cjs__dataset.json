@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "A year with at least one capture record is a sampling year (README: monitored annually since 1983). No records exist for 2000 and 2001, which are treated as not surveyed and have no rows; if they were surveyed with no captures, that information is not in the deposit.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (captures within a season pooled to the year; survival between years)",
+  "closure": "none",
+  "closureNote": "period (captures within a season pooled to the year; survival between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "lossesOnCapture": "not coded in the deposit; crab-trap records (often drowned bycatch) counted in obs_n_crabtrap",
   "geographicCoverage": "Kiawah River, Kiawah Island, South Carolina, USA (nine site labels, no coordinates)",
   "temporalCoverage": "1983/2012",
@@ -41,8 +44,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_first_site", "obs_n_captures", "obs_n_crabtrap"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cecala_2026_kiawah_terrapin_cjs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

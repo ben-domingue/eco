@@ -17,7 +17,9 @@
   "responseType": "multinomial_cell",
   "multinomialType": "removal",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "cell",
+  "taxonInclusion": "target",
   "geographicCoverage": "Bartlett Experimental Forest (NEON site BART), New Hampshire, USA (80 point-count sites)",
   "temporalCoverage": "2015-06-14/2015-06-20",
   "crs": "EPSG:4269 (NAD83) UTM zone 19N as published in unit_utm19_*; unit_decimalLatitude/Longitude converted in-script, NAD83 ~ WGS84",
@@ -41,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "unit_elevation_m", "unit_day_of_year", "unit_time_of_day_h", "unit_decimalLatitude", "unit_decimalLongitude", "unit_utm19_easting_m", "unit_utm19_northing_m"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/doser_2022_neon2015_removal.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

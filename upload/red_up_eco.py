@@ -76,7 +76,8 @@ def dataset_description() -> str:
         "deposits; each table's description gives its citation and licence.")
 
 #: Which column a side table must carry to be the table its suffix claims.
-SIDE_KEYS = {"__taxa": "taxon", "__periods": "period", "__units": "unit", "__traps": "trap"}
+SIDE_KEYS = {"__taxa": "taxon", "__periods": "period", "__units": "unit", "__traps": "trap",
+             "__survey_taxa": "taxon"}
 
 
 def side_suffix(table: str) -> str | None:
@@ -103,7 +104,9 @@ def describe(table: str) -> str | None:
     spdx = rights["spdx"] if isinstance(rights, dict) else rights
     head = (f"{m['title']}\n\nSource: {m['citation']}\n"
             f"Licence: {spdx}. responseType={m['responseType']}, unitKind={m['unitKind']}, "
-            f"surveyEvidence={m['surveyEvidence']}, closure={m['closure']}. "
+            f"surveyEvidence={m['surveyEvidence']}, closure={m['closure']}, "
+            f"occasionKind={' x '.join(m['occasionKind']) if isinstance(m['occasionKind'], list) else m['occasionKind']}, "
+            f"taxonInclusion={m['taxonInclusion']}. "
             f"Standard: {m['standardVersion']}.")
     suffix = side_suffix(table)
     if suffix == "__taxa":
@@ -114,6 +117,9 @@ def describe(table: str) -> str | None:
         return f"Unit side table for {core}: every unit in the sampling frame, surveyed or not.\n\n{head}"
     if suffix == "__traps":
         return f"Trap side table for {core}: trap index -> coordinates and usage.\n\n{head}"
+    if suffix == "__survey_taxa":
+        return (f"Survey-taxa side table for {core}: which taxa were surveyed for at which "
+                f"surveys (standard E4.2, E6).\n\n{head}")
     body = (f"{s['n_rows']:,} rows; {s['n_units']:,} units x {s['n_taxa']:,} taxa x "
             f"{s['n_periods']} periods x {s['n_occasions']} occasions; {s['n_surveys']:,} surveys; "
             f"y values {s['y_values']}; {s['prop_zero']:.1%} zeros. Sample floor: {m['sampleFloor']}. "

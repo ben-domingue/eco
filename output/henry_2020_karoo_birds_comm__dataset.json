@@ -16,7 +16,10 @@
   "samplingProtocolCode": "point_count",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion: the 10-20 point counts within a pentad are the replicates of one 2017 season (the paper's DND design); period absent",
+  "closure": "closed",
+  "closureNote": "occasion: the 10-20 point counts within a pentad are the replicates of one 2017 season (the paper's DND design); period absent",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
   "surveyEvidence": "row_presence",
   "surveyEvidenceNote": "The deposit is a record table of first detections with no list of point counts: a count exists iff at least one species was recorded on it. Counts with zero detections, if any occurred, cannot be recovered. Every count carries a full set of weather covariates, so the 1,055 counts are the surveyed set as far as the deposit shows.",
   "surveyDuration": "not deposited; first detections run to 658 s, so counts were about 10 minutes; obs_ttd_s is right-censored at the count's end",
@@ -45,8 +48,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "obs_decimalLatitude", "obs_decimalLongitude", "obs_temperature_c", "obs_cloud_pct", "obs_wind_ms", "obs_rain_class", "obs_mins_after_dawn_start", "obs_ttd_s", "obs_distance_m", "obs_detection_mode", "obs_behaviour"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/henry_2020_karoo_birds_comm.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

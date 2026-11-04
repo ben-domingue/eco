@@ -57,7 +57,7 @@ dataset <- list(
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The matrix has a value for every site x occasion (no NA), so every site-occasion is a survey.",
   responseType = "detection", unitKind = "site",
-  closure = "single period: one 2016 survey of 64 occasions treated as closed (the authors' spatial count model)",
+  closure = "closed", closureNote = "single period: one 2016 survey of 64 occasions treated as closed (the authors' spatial count model)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Alberta, Canada; no coordinates in this file (the camera site numbering is not keyed to the TDF of the sibling table); the hair-snag array of the same study sits at 53.2-53.6 N, 112.7-113.1 W if its UTM zone is 12N",
   temporalCoverage = "2016",
   designNote = "Single-species camera detections. The authors fitted spatial count models (counts per site-occasion); the deposited matrix never exceeds 1, so detection and count readings coincide. Occasion length not recoverable from the deposit.",

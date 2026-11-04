@@ -20,7 +20,9 @@
   "surveyEvidence": "effort_table",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "geographicCoverage": "La Araucania Region, Chile (no coordinates deposited)",
   "temporalCoverage": "2019-01/2019-03",
   "coordinatesCoarsened": null,
@@ -42,8 +44,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_habitat_type", "unit_forest_pct_400ha", "unit_largest_patch_index_400ha", "unit_total_edge_m_400ha", "unit_edge_density_400ha", "unit_gyration_mean_m_400ha", "unit_n_patches_400ha", "unit_landscape_shape_index_400ha", "unit_cohesion_400ha", "unit_n_land_subdivisions_400ha", "unit_forest_pct_10ha", "unit_n_patches_10ha", "unit_edge_density_10ha", "unit_n_land_subdivisions_10ha", "obs_camera_nights", "obs_human_detections"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/galvez_2021_araucania_comm.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

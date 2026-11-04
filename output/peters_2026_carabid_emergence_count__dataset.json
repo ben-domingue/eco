@@ -12,14 +12,17 @@
   "surveyEvidence": "sample_table",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "within a seasonal period (three consecutive sampling weeks); populations change between April, July and October and between crops",
+  "closure": "closed",
+  "closureNote": "within a seasonal period (three consecutive sampling weeks); populations change between April, July and October and between crops",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Commercial arable plots in Belgium (locations not given in the deposit)"
   },
   "temporalCoverage": "2023/2025",
   "coordinatesCoarsened": null,
-  "title": "Emergence-tent counts of 73 ground beetle species per tent and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025",
-  "abstract": "Carabid beetles in 37 commercial arable plots in Belgium followed through a sugar beet - winter cereal succession in two crop cycles (plots 1-20: sugar beet 2023, cereal 2024; plots 21-40: sugar beet 2024, cereal 2025), sampled in April, July and (sugar beet) October, three sampling weeks each. Emergence tents at five within-plot positions, catching beetles emerging from the enclosed soil. 1529 collections with status ok; 73 species.",
+  "title": "Emergence-tent counts of 51 ground beetle species per tent and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025",
+  "abstract": "Carabid beetles in 37 commercial arable plots in Belgium followed through a sugar beet - winter cereal succession in two crop cycles (plots 1-20: sugar beet 2023, cereal 2024; plots 21-40: sugar beet 2024, cereal 2025), sampled in April, July and (sugar beet) October, three sampling weeks each. Emergence tents at five within-plot positions, catching beetles emerging from the enclosed soil. 1529 collections with status ok; 51 species caught.",
   "samplingProtocol": "Emergence tents at fixed positions in each plot (lines A-E) enclosing the soil surface, collected after each sampling week; three weeks per seasonal period.",
   "samplingProtocolCode": "emergence_trap",
   "occasionLength": "one sampling week",
@@ -27,22 +30,23 @@
   "notShipped": {
     "collections not ok": "136 rows (149 beetles) with Etat Absent, flooded, torn, removed or Vide",
     "empty species columns": "31 species columns that hold no beetle in any row (a checklist template)",
+    "species caught only by the other method": "22 species (AMARAPRI, AMARAULI, AMAREURY, AMARLUCI, AMARLUNI, AMARMONT, ANISBINO, BADIPELT, CALAMELA, CARAAURA, CARAMONI, CARANEMO, CARAVIOL, HARPRUBR, NOTIRUFI, OCYDFEMO, PEDILONG, PHILIRIC, PTERANTH, PTERNIGE, PTERSTRE, SCYBOBLO) have no beetle in any emergence-tent collection, so this table's surveys did not record them (taxonInclusion = recorded)",
     "other method": "pitfall collections are peters_2026_carabid_pitfall_count",
     "Carabus violaceus purpurascens": "subspecies written in the column name, shipped as Carabus violaceus"
   },
   "summary": {
-    "n_rows": 111617,
+    "n_rows": 77979,
     "n_units": 185,
-    "n_taxa": 73,
+    "n_taxa": 51,
     "n_periods": 6,
     "n_occasions": 3,
     "n_surveys": 1529,
     "y_values": "0-55 (31 distinct)",
-    "prop_zero": 0.977
+    "prop_zero": 0.967
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_crop"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/peters_2026_carabid_count.R",
   "buildDate": "2026-11-03"

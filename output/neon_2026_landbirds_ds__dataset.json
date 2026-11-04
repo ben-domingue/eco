@@ -20,7 +20,10 @@
   "distanceUnits": "m",
   "transectType": "point",
   "unitKind": "site",
-  "closure": "occasion = distance bin of one count; period = the count event (year x bout), 1-2 per point per year",
+  "closure": "closed",
+  "closureNote": "occasion = distance bin of one count; period = the count event (year x bout), 1-2 per point per year",
+  "occasionKind": "cell",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; point coordinates as published by NEON (WGS 84) in __units; latitude 18.0 to 71.3, longitude -156.6 to -66.8",
   "temporalCoverage": "2013-06-05/2024-07-16",
   "crs": "EPSG:4326 (WGS 84), as published",
@@ -52,8 +55,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "observer", "unit_site", "obs_air_temp_c", "obs_wind_kmh", "obs_cloud_pct", "obs_rh_pct", "obs_habitat", "obs_individuals"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_landbirds_ds.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

@@ -20,11 +20,11 @@ SEVERITIES = ("error", "warn", "info")
 PROFILES = ("format", "upload")
 
 #: The frozen standard these checks enforce: standard.md at the repo root.
-STANDARD_VERSION = "1.0-draft"
+STANDARD_VERSION = "1.1-draft"
 STANDARD_URL = "https://ben-domingue.github.io/eco/standard.html"
 #: What `standardVersion` in `__dataset.json` must start with (intake policy; the
 #: uploader rejects tables built under an older draft).
-STANDARD_PREFIX = "eco v1.0"
+STANDARD_PREFIX = "eco v1.1"
 
 #: Check -> clause of standard.md. Only these checks bear on conformance.
 #: `tests/test_validate.py` asserts that every check `checks.py` can emit is
@@ -45,10 +45,14 @@ CLAUSES = {
     "y_na":                 "E4",
     "explicit_zero_taxa":   "E4",
     "survey_evidence":      "E4",
+    "never_detected":       "E4",
+    "unit_identity":        "E2",
     "side_taxa":            "E6",
     "side_periods":         "E6",
     "side_units":           "E6",
     "side_traps":           "E6",
+    "side_survey_taxa":     "E6",
+    "taxon_rows":           "E6",
     "side_key_na":          "E6",
     "coordinates_declared": "E7",
     "coordinates_sensitive": "E7",

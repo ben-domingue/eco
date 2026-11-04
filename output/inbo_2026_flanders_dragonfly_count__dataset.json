@@ -1,0 +1,52 @@
+{
+  "table": "inbo_2026_flanders_dragonfly_count",
+  "title": "Meetnetten.be transect counts of three priority dragonflies (Calopteryx virgo, Coenagrion pulchellum, Aeshna isoceles), Flanders, Belgium, 2017-2025",
+  "creator": "Piesschaert, Frederik; De Knijf, Geert; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/y8u6e9",
+  "sourceURL": "https://doi.org/10.15468/y8u6e9",
+  "citation": "Piesschaert F, De Knijf G, Brosens D, Westra T, Desmet P, Ledegen H, Pollet M (2026). Meetnetten.be - Transects for dragonflies in Flanders, Belgium. Version 1.28. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/y8u6e9",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated transect counts of adult Calopteryx virgo, Coenagrion pulchellum, Aeshna isoceles at 92 monitored populations in Flanders, from the Meetnetten.be priority-species monitoring network run by INBO and Natuurpunt Studie with specialised volunteers. Each transect belongs to one species' project and is counted for that species only; each population is counted in some years (10 of 30 per species per year), at least twice in a counting year while adults fly.",
+  "samplingProtocol": "Transect count of adults along a 100-500 m shore transect in good dragonfly weather, 11:00-16:30, within 2 m of the bank and 3-5 m above the water (De Knijf et al. 2019); at least two counts in a counting year.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "closureNote": "occasion within period (counts within one flight season); populations may change between years",
+  "surveyTaxaNote": "Each transect is monitored for its own project's target species only (Bosbeekjuffer = Calopteryx virgo, Variabele waterjuffer = Coenagrion pulchellum, Vroege glazenmaker = Aeshna isoceles); __survey_taxa gives the taxon per unit, unit_project the project.",
+  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 1 km or 10 km UTM square centroids)",
+  "temporalCoverage": "2017/2025",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO) to the centroid of a 1 km (uncertainty 707 m) or 10 km (7071 m) UTM square before publication; kept as published."
+  },
+  "notes": "y sums all adult and teneral categories the app records (male, female, unknown, teneral, copula, egg-laying); copula is summed as recorded. 3 count(s) are dated outside May-August as published (e.g. 2025-12-11), probably data-entry errors in the date; kept. obs_transect_length_m is NA where INBO gives 'unknown'.",
+  "notShipped": {
+    "exuviae": "the exuviae category (a different life stage, counted under a separate Meetnetten protocol)",
+    "category breakdown": "sex / teneral / copula / egg-laying counts are summed into y",
+    "other species": "dragonflies other than the project's target are recorded at some counts only (incidental); not a complete community record"
+  },
+  "summary": {
+    "n_rows": 653,
+    "n_units": 92,
+    "n_taxa": 3,
+    "n_periods": 9,
+    "n_occasions": 7,
+    "n_surveys": 653,
+    "y_values": "0-622 (94 distinct)",
+    "prop_zero": 0.282
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_project", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_transect_length_m"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_dragonfly_count.R",
+  "buildDate": "2026-11-03"
+}

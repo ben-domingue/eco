@@ -17,7 +17,10 @@
   "surveyEvidence": "row_presence",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion (two visits within a breeding season); period = treatment-relative year",
+  "closure": "closed",
+  "closureNote": "occasion (two visits within a breeding season); period = treatment-relative year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Central Appalachian forest, USA (no coordinates deposited; Site codes only)",
   "temporalCoverage": "2016-05/2019-06",
   "coordinatesCoarsened": null,
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_treatment", "period_calendar_year", "obs_time_hhmm"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/margenau_2021_rowsongbirds_nmix.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

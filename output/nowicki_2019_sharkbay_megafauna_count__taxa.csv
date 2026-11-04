@@ -1,4 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_band_width_km,taxon_iucnCategory
-DUGDUG,Dugong dugon,dugong,species,https://www.gbif.org/species/9729967,EXACT,,0.2,VU
-HYDROPHIINAE,Hydrophiinae,sea snakes,subfamily,,NONE,,0.01,
-PHALACROCORAX,Phalacrocorax,cormorants,genus,https://www.gbif.org/species/2481854,EXACT,,0.06,NE

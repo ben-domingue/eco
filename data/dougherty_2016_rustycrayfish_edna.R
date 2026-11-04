@@ -92,7 +92,7 @@ dataset <- list(
   samplingProtocol = "Baited minnow traps set overnight along the littoral zone; 250 ml water samples taken at alternate trap locations, filtered, extracted and analysed with a species-specific qPCR assay in four replicates; positives confirmed by Sanger sequencing.",
   samplingProtocolCode = "eDNA", surveyEvidence = "deposited_matrix",
   responseType = "detection", unitKind = "site",
-  closure = "lake and location state closed over the 1-2 day survey; occasion = qPCR replicate (1-4) or the trap (5)",
+  closure = "closed", closureNote = "lake and location state closed over the 1-2 day survey; occasion = qPCR replicate (1-4) or the trap (5)", occasionKind = c("method", "spatial"), taxonInclusion = "single",
   occasionCodes = list(`1` = "qPCR replicate 1", `2` = "qPCR replicate 2", `3` = "qPCR replicate 3", `4` = "qPCR replicate 4", `5` = "baited trap, one overnight set"),
   designNote = "Experimental list of E9 (multi-scale / eDNA, multi-method): cluster_id = lake, unit = trap location, occasion = assay replicate or trap, obs_method distinguishes the two detection processes. The trap is a different sample from the water sample at the same location.",
   geographicCoverage = "12 inland lakes, Vilas County, Wisconsin, and Gogebic County, Michigan, USA (about 46.0-46.3 N, 89.5-89.9 W)",

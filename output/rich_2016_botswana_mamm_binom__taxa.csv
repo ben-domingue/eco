@@ -36,7 +36,7 @@ HINI,Hippotragus niger,Sable,species,https://www.gbif.org/species/2441031,EXACT,
 RACA,Raphicerus campestris,Steenbok,species,https://www.gbif.org/species/2441141,EXACT,,Herbivore,Medium,
 DALU,Damaliscus lunatus,Tsessebe,species,https://www.gbif.org/species/2441041,EXACT,,Herbivore,Large,
 COTA,Connochaetes taurinus,Wildebeest,species,https://www.gbif.org/species/2441105,EXACT,,Herbivore,Large,
-EQBU,Equus burchelli,Zebra,species,https://www.gbif.org/species/2440885,FUZZY,Equus quagga,Herbivore,Xlarge,NT
+EQBU,Equus burchelli,Zebra,species,https://www.gbif.org/species/2440885,EXACT,Equus quagga,Herbivore,Xlarge,NT
 ORAF,Orycteropus afer,Aardvark,species,https://www.gbif.org/species/5218416,EXACT,,Carnivore,Large,
 PAUR,Papio ursinus,Chacma baboon,species,https://www.gbif.org/species/7262029,EXACT,,Omnivore,Medium,
 LECA,Lepus capensis,Cape hare,species,https://www.gbif.org/species/2436736,EXACT,,Herbivore,Small,

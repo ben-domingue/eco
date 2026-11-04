@@ -12,14 +12,17 @@
   "surveyEvidence": "sample_table",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "within a seasonal period (three consecutive sampling weeks); populations change between April, July and October and between crops",
+  "closure": "closed",
+  "closureNote": "within a seasonal period (three consecutive sampling weeks); populations change between April, July and October and between crops",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Commercial arable plots in Belgium (locations not given in the deposit)"
   },
   "temporalCoverage": "2023/2025",
   "coordinatesCoarsened": null,
-  "title": "Pitfall-trap counts of 73 ground beetle species per trap and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025",
-  "abstract": "Carabid beetles in 40 commercial arable plots in Belgium followed through a sugar beet - winter cereal succession in two crop cycles (plots 1-20: sugar beet 2023, cereal 2024; plots 21-40: sugar beet 2024, cereal 2025), sampled in April, July and (sugar beet) October, three sampling weeks each. Barber pitfall traps at six within-plot positions, with vinegar, propylene glycol (2023) or brine (2024-2025) as preservative. 3070 collections with status ok; 73 species.",
+  "title": "Pitfall-trap counts of 70 ground beetle species per trap and sampling week in Belgian sugar beet and winter cereal plots, 2023-2025",
+  "abstract": "Carabid beetles in 40 commercial arable plots in Belgium followed through a sugar beet - winter cereal succession in two crop cycles (plots 1-20: sugar beet 2023, cereal 2024; plots 21-40: sugar beet 2024, cereal 2025), sampled in April, July and (sugar beet) October, three sampling weeks each. Barber pitfall traps at six within-plot positions, with vinegar, propylene glycol (2023) or brine (2024-2025) as preservative. 3070 collections with status ok; 70 species caught.",
   "samplingProtocol": "Barber pitfall traps at fixed positions in each plot (lines A, B, C1, C2, D, E), preservative vinegar, propylene glycol or brine (unit_preservative), emptied after each sampling week; three weeks per seasonal period.",
   "samplingProtocolCode": "pitfall_trap",
   "occasionLength": "one sampling week",
@@ -27,22 +30,23 @@
   "notShipped": {
     "collections not ok": "188 rows (106 beetles) with Etat Absent, flooded, torn, removed or Vide",
     "empty species columns": "31 species columns that hold no beetle in any row (a checklist template)",
+    "species caught only by the other method": "3 species (AGONVIDU, POECVERS, SYNTFOVE) have no beetle in any pitfall collection, so this table's surveys did not record them (taxonInclusion = recorded)",
     "other method": "emergence-tent collections are peters_2026_carabid_emergence_count",
     "Carabus violaceus purpurascens": "subspecies written in the column name, shipped as Carabus violaceus"
   },
   "summary": {
-    "n_rows": 224110,
+    "n_rows": 214900,
     "n_units": 300,
-    "n_taxa": 73,
+    "n_taxa": 70,
     "n_periods": 8,
     "n_occasions": 3,
     "n_surveys": 3070,
     "y_values": "0-384 (218 distinct)",
-    "prop_zero": 0.946
+    "prop_zero": 0.944
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_crop"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/peters_2026_carabid_count.R",
   "buildDate": "2026-11-03"

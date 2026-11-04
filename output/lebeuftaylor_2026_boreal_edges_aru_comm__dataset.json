@@ -17,7 +17,9 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Boreal forest of Alberta, Canada, 49-59 N, 111-120 W; recorder coordinates as published",
   "temporalCoverage": "not deposited (one season per transect; the Stan model has no year effect; the deposit was published 2026-09)",
   "coordinatesCoarsened": {
@@ -45,8 +47,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_position", "unit_position_m", "unit_forest_type", "unit_tsh_years", "unit_spruce_pct_regen_side", "unit_spruce_pct_forest_side", "unit_decimalLatitude", "unit_decimalLongitude", "obs_day_z", "obs_time_z"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lebeuftaylor_2026_boreal_edges_aru_comm.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

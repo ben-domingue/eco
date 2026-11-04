@@ -43,7 +43,7 @@ DIPMER,Dipodomys merriami,Merriam's Kangaroo Rat,species,https://www.gbif.org/sp
 CAPAEG,Capra hircus,Domestic Goat,species,https://www.gbif.org/species/2441056,EXACT,,Mammalia,Cetartiodactyla,Bovidae,,674
 GLASAB,Glaucomys sabrinus,Northern Flying Squirrel,species,https://www.gbif.org/species/2437331,EXACT,,Mammalia,Rodentia,Sciuridae,,630
 OTOVAR,Otospermophilus variegatus,Rock Squirrel,species,https://www.gbif.org/species/7572569,EXACT,,Mammalia,Rodentia,Sciuridae,,574
-EREDOR,Erethizon dorsatum,North American Porcupine,species,https://www.gbif.org/species/6066824,FUZZY,,Mammalia,Rodentia,Erethizontidae,,521
+EREDOR,Erethizon dorsatum,North American Porcupine,species,https://www.gbif.org/species/6066824,EXACT,,Mammalia,Rodentia,Erethizontidae,,521
 GLAVOL,Glaucomys volans,Mexican Flying Squirrel,species,https://www.gbif.org/species/2437338,EXACT,,Mammalia,Rodentia,Sciuridae,,428
 SYLPAL,Sylvilagus palustris,Marsh Rabbit,species,https://www.gbif.org/species/2436840,EXACT,,Mammalia,Lagomorpha,Leporidae,,366
 PUMCON,Puma concolor,Puma,species,https://www.gbif.org/species/2435099,EXACT,,Mammalia,Carnivora,Felidae,,365

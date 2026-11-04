@@ -30,14 +30,15 @@
 #         2000). Every one of the 150 point x survey combinations has detections.
 #
 # Mapping (standard section 3.2, N-mixture community counts built from individual records):
-#   unit = point (50), occasion = survey 1-3, taxon = alpha code (50 species), y = number of
+#   unit = point (50), occasion = survey 1-3, taxon = alpha code (40 species), y = number of
 #   detections of the species on that point count that fall inside the authors' own rule,
 #   minute 1-10 and distance <= 100 m: this rule reproduces every one of the 204 "number"
 #   cells of the Summarized Point Counts sheet exactly (asserted), so y is the authors' count.
 #   Detections outside the 10 minutes, beyond 100 m or with no usable distance are
 #   not shipped and are listed in notShipped. Community rule: a row for every species at every
 #   point count. Survey evidence: row_presence, which here equals the stated design (50 points
-#   x 3 surveys, all 150 present). date = ISO date (1904-system serial, checked against
+#   x 3 surveys, all 150 present). taxonInclusion = recorded (v1.1): the 10 species whose
+#   detections all fall outside the rule are not listed (notShipped), leaving 40. date = ISO date (1904-system serial, checked against
 #   year + day.julian); observer = surveyor; obs_start_time (HH:MM), obs_temp_c, obs_weather
 #   per count; unit_island, unit_habitat (from the point code), unit_decimalLatitude /
 #   unit_decimalLongitude from Locations (51 deg + min/60, -(128 deg + min/60)), as published,
@@ -85,6 +86,10 @@ cat(sprintf("  %d detections, %d inside the authors' rule (minute 1-10, <= 100 m
 
 # taxa: alpha codes; 17 of the 50 are in data/aux/bird_alpha_codes.csv, the rest given here (IBP-AOS list)
 species <- sort(unique(r$species))
+# taxonInclusion = recorded (E10): a species detected only outside the counting rule is not
+# recorded by this table's surveys and is not listed
+outside_only <- setdiff(species, r[counted == TRUE, unique(species)])
+stopifnot(length(outside_only) == 10)
 alpha <- fread(file.path(ECO_ROOT, "data", "aux", "bird_alpha_codes.csv"))[, .(code, commonName, scientificName)]
 extra <- fread(text = '
 code,commonName,scientificName
@@ -126,6 +131,7 @@ stopifnot(!any(extra$code %in% alpha$code), nrow(extra) == 33)
 alpha <- rbind(alpha[code %in% species], extra)
 stopifnot(setequal(alpha$code, species), !anyDuplicated(alpha$code))
 alpha <- alpha[match(species, code)]
+species <- setdiff(species, outside_only); alpha <- alpha[code %in% species]
 taxa <- make_taxa(species, alpha$scientificName, vernacularName = alpha$commonName)
 stopifnot(!anyNA(taxa$taxonID))
 
@@ -160,10 +166,11 @@ long <- merge(long, pc[, .(unit = point, occasion, date = format(date_iso), obse
 long <- merge(long, units[, .(unit, unit_island = island, unit_habitat = habitat,
                               unit_decimalLatitude = decimalLatitude, unit_decimalLongitude = decimalLongitude)], by = "unit")
 long <- order_eco(long)
-stopifnot(nrow(long) == 150 * 50, sum(long$y) == N_IN, uniqueN(long$unit) == 50, uniqueN(long$taxon) == 50, !anyNA(long$y))
+stopifnot(nrow(long) == 150 * 40, sum(long$y) == N_IN, uniqueN(long$unit) == 50, uniqueN(long$taxon) == 40, !anyNA(long$y),
+          all(long[, sum(y), by = taxon]$V1 > 0))
 
 dataset <- list(
-  title = "Point counts of 50 bird species at 50 points on six islands of the Yalalii (Goose Island) Archipelago, British Columbia, three surveys in May-June 2011",
+  title = "Point counts of 40 bird species at 50 points on six islands of the Yalalii (Goose Island) Archipelago, British Columbia, three surveys in May-June 2011",
   creator = "Obrist, Debora; Field, Rachel; Reynolds, John",
   pubDate = "2024", doi = "10.5281/zenodo.11518182", sourceURL = "https://doi.org/10.5281/zenodo.11518182",
   citation = "Obrist, D., Field, R. & Reynolds, J. (2024). Avian Point Count Surveys from Yalalii (Goose Island) Archipelago, British Columbia, Canada in 2011. Zenodo. https://doi.org/10.5281/zenodo.11518182. Paper: Obrist, D.S. et al. (2024). Comparing historical and contemporary observations of avian fauna on the Yalalii (Goose Island) Archipelago, British Columbia, Canada. Ecology and Evolution 14(12): e70464, https://doi.org/10.1002/ece3.70464",
@@ -171,7 +178,8 @@ dataset <- list(
   abstract = "Ten-minute point counts by Simon Fraser University researchers at 50 points in the four Guiguet (1953) habitat types (climax forest, ecotone, muskeg, meadow) on Goose, Gosling, Duck, Snipe, Swan and Gull Islands, Yalalii (Goose Island) Archipelago, British Columbia, each surveyed three times between 12 May and 2 June 2011 within five hours of sunrise. y is the number of individuals of a species detected within the 10 minutes and within 100 m, the authors' own counting rule, which reproduces every species x survey total in the deposit's summary sheet. The paper compares these counts with Guiguet's 1948 observations.",
   samplingProtocol = "10-minute point counts, one observer, all birds seen or heard within 100 m, detections assigned to minute-long intervals with estimated distance; three surveys per point in one breeding season (Huff et al. 2000 protocol).",
   samplingProtocolCode = "point_count", surveyEvidence = "row_presence", responseType = "count", unitKind = "site",
-  closure = "occasion (three surveys within one breeding season)",
+  closure = "closed", closureNote = "occasion (three surveys within one breeding season)",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Yalalii (Goose Island) Archipelago, Heiltsuk territory, central coast of British Columbia, Canada; 50 points on six islands, coordinates as published",
                             westBoundingCoordinate = min(units$decimalLongitude), eastBoundingCoordinate = max(units$decimalLongitude),
                             southBoundingCoordinate = min(units$decimalLatitude), northBoundingCoordinate = max(units$decimalLatitude)),
@@ -183,11 +191,12 @@ dataset <- list(
   notShipped = list(`detections outside the authors' rule` = paste0(N_OUT, " of 1,802 rows: time.survey outside minutes 1-10 (on arrival, after survey, ~1 hour ago, on departure, minute 12 or 15, unrecorded 'n/a', or a clock time) or distance beyond 100 m, free text or 'n/a'; the deposit's metadata treats these as casual observations"),
                     `Casual Observations sheet` = "535 incidental records without a survey set",
                     `Relative Abundance Comparisons` = "the paper's 1948 vs 2011 totals (derived)",
+                    `species recorded only outside the rule` = paste0(length(outside_only), " species (", paste(outside_only, collapse = ", "), ") have detections only outside the counting rule, so this table's surveys did not record them (taxonInclusion = recorded)"),
                     atlascode = "BC Breeding Bird Atlas evidence code per detection (per-detection, not per count)"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, units = units, script = "data/obrist_2024_gooseisland_birds_count.R")
 
 stage_dict_row(TABLE,
-  description = "Counts of 50 bird species on 150 ten-minute, 100 m point counts (50 points x 3 surveys, 12 May-2 June 2011) in four habitat types on six islands of the Yalalii (Goose Island) Archipelago, British Columbia, built from the deposited per-detection records under the authors' own counting rule; start time, temperature, weather, observer and point coordinates.",
+  description = "Counts of 40 bird species on 150 ten-minute, 100 m point counts (50 points x 3 surveys, 12 May-2 June 2011) in four habitat types on six islands of the Yalalii (Goose Island) Archipelago, British Columbia, built from the deposited per-detection records under the authors' own counting rule; start time, temperature, weather, observer and point coordinates.",
   url = "https://doi.org/10.5281/zenodo.11518182",
   reference = "Obrist, D.S., Pendray, J.E., Field, R.D., Housty, W.G., Reynolds, J.D. et al. (2024). Comparing historical and contemporary observations of avian fauna on the Yalalii (Goose Island) Archipelago, British Columbia, Canada. Ecology and Evolution 14(12): e70464.",
   doi_paper = "10.1002/ece3.70464", doi_data = "10.5281/zenodo.11518182",

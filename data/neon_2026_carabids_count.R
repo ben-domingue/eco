@@ -161,7 +161,7 @@ dataset <- list(
   samplingProtocolCode = "pitfall_trap", surveyEvidence = "sample_table",
   surveyEvidenceNote = "bet_fielddata lists every trap-bout; a survey exists iff sampleCollected == Y and samplingImpractical is OK or blank. A collected sample with no carabid rows in bet_sorting is y = 0 for every species. Species pool is national: every shipped species at every collected sample.",
   responseType = "count", unitKind = "site", effortColumn = "obs_trapping_days",
-  closure = "occasion = biweekly bout within the growing season, indexed within the site-year by first collection date; period = calendar year",
+  closure = "open", closureNote = "occasion = biweekly bout within the growing season, indexed within the site-year by first collection date; period = calendar year", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = sprintf("47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
   temporalCoverage = sprintf("%s/%s", min(sv$day), max(sv$day)),
   crs = "EPSG:4326 (WGS 84), as published",

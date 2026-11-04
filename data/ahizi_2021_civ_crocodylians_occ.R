@@ -68,7 +68,7 @@ dataset <- list(
   samplingProtocol = "Standard nocturnal spotlight (eyeshine) surveys by one observer from a boat, kayak or on foot, at least 10 km per site per night, on three (2014-mid 2016) or five (late 2016-2019) consecutive nights.",
   samplingProtocolCode = "spotlight_survey", surveyEvidence = "deposited_matrix",
   responseType = "detection", unitKind = "site",
-  closure = "period (three to five consecutive nights at a site, treated as closed by the authors)",
+  closure = "closed", closureNote = "period (three to five consecutive nights at a site, treated as closed by the authors)", occasionKind = "time", taxonInclusion = "target",
   geographicCoverage = "Côte d'Ivoire: Guinean forest, Sudano-Guinean and Sudanian ecoregions (site names only, no coordinates deposited)",
   temporalCoverage = "2014/2019", coordinatesCoarsened = NA,
   covariateNote = "obs_temp_day_c is NA for one survey, as deposited. obs_vegetation is the per-survey aquatic vegetation index; obs_fishnets_per_km nets seen per km surveyed.",

@@ -39,7 +39,7 @@ dataset <- list(
   abstract = "Detection history data for seven seasons of camera trapping surveys in Maine, USA (deposit description). 0 = station active, no detection; 1 = station active, American marten detected; NA = station not active.",
   samplingProtocol = "Camera-trap stations surveyed over seven consecutive seasons (four summers, three winters), 33 occasions per season; occasion length not stated in the deposit.",
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Maine, USA (no coordinates deposited)",
   temporalCoverage = "seven seasons (S1-S4, W1-W3); calendar years not stated in the deposit",
   coordinatesCoarsened = NA,

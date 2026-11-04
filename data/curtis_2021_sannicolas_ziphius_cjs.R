@@ -41,17 +41,24 @@
 #   y = the multimark "sometimes" capture type for the year: 0 not photographed, 1 left side
 #   only, 2 right side only, 3 left and right on separate encounters (sides not linked within
 #   the year), 4 both sides on one encounter. y_raw not used.
-#   unit_known = 1 when the whale's left and right sides are linked (the authors' `known`
-#   vector: a both-sides capture in some year, or linked high-quality photos, fin damage with an
-#   accepted photo, or ID 16). Whales with unit_known = 0 were only ever photographed on one side
-#   and may be the same animal as another one-sided ID: that is what multimark models.
+#   unit_identity (E2 partial identity) = the sides from which the whale is identified: "both"
+#   for the 87 whales whose sides are linked and for the one unlinked whale photographed on both
+#   sides (a code-3 year), "left" for the 18 whales only ever photographed on the left, "right"
+#   for the 21 only ever photographed on the right. unit_known keeps the authors' multimark
+#   `known` vector (1 = sides linked: a both-sides capture in some year, linked high-quality
+#   photos, fin damage with an accepted photo, or ID 16); it differs from unit_identity == "both"
+#   only for that one whale. A one-sided whale may be the same animal as another one-sided ID:
+#   that is what multimark models.
 #   unit_sex = the single sex assigned across the whale's records (Female / Male), "Unknown"
 #   when never assigned; obs_age_class = age class assigned in that year (NA where y = 0).
 #   obs_precapture = 1 on captures before the year of the whale's first photo with no aspect
 #   scored 3 (the authors' precaptures); setting those cells to 0 gives their "npc" history.
 #   Survey evidence: effort_table. The effort file gives vessel time inside the San Nicolas
 #   Basin over > 800 m depth in every one of the 11 years (asserted), so every whale-year is a
-#   surveyed cell; years before a whale's first capture are 0, as in the other CJS tables (E4).
+#   surveyed cell. At-risk span (E4.4): the whales are wild adults and juveniles of unknown age
+#   (calves excluded), so every whale's rows run from the first year, 2007/08; years before its
+#   first capture are 0. No tag loss (natural marks); no never-detected IDs (every ID is in the
+#   analysis set because it was photographed).
 #   Effort per year (minutes and days, and minutes at Beaufort 0-2 and 0-3, the authors'
 #   eff.02 / eff.03) is in __periods.
 #   No coordinates in the core (one study basin, a Navy range); IUCN LC.
@@ -158,7 +165,12 @@ stopifnot(all(rowSums(CH * (1L - PC) > 0) > 0))
 # whale-level sex: one assigned value across all records (or Unknown)
 sx <- indiv[ID %in% ids, .(s = { v <- setdiff(unique(na.omit(Sex)), "Unknown"); if (length(v) == 0) "Unknown" else if (length(v) == 1) v else "conflict" }), by = ID]
 stopifnot(!any(sx$s == "conflict"))
-covs <- data.frame(known = as.integer(kn), sex = sx$s[match(ids, sx$ID)])
+side <- ifelse(apply(CH, 1, function(r) any(r %in% 3:4)) | kn, "both",
+               ifelse(apply(CH, 1, function(r) all(r %in% c(0L, 1L))), "left", "right"))
+stopifnot(all(apply(CH[side == "right", , drop = FALSE], 1, function(r) all(r %in% c(0L, 2L)))),
+          identical(as.vector(table(factor(side, c("both", "left", "right")))), c(88L, 18L, 21L)),
+          sum(side == "both" & !kn) == 1L)
+covs <- data.frame(identity = side, known = as.integer(kn), sex = sx$s[match(ids, sx$ID)])
 
 long <- array_to_eco(CH, taxon = "ZIPCAV", site_ids = sprintf("Zc%03d", ids), site_covs = covs,
                      period = seq_len(n_occ),
@@ -198,7 +210,7 @@ dataset <- list(
   stateCodes = list(`0` = "not photographed in the year", `1` = "left side only", `2` = "right side only",
                     `3` = "left and right sides on separate encounters (not linked within the year)",
                     `4` = "both sides on one encounter"),
-  closure = "period (annual occasions August-July; survival between years)",
+  closure = "none", closureNote = "period (annual occasions August-July; survival between years)", occasionKind = "none", taxonInclusion = "single",
   lossesOnCapture = "none",
   geographicCoverage = "San Nicolas Basin, Southern California Offshore Range (SOAR), California Bight, USA (about 32.8 N, 118.9 W); coordinates of sightings not shipped",
   temporalCoverage = "2007-08-01/2018-07-31",
@@ -209,7 +221,7 @@ dataset <- list(
     `group sightings` = "group sizes, calves and positions per sighting",
     `records outside the analysis set` = "calves, low-quality or indistinct photos, sightings outside San Nicolas Basin, 2006-2007 and post-July-2018 records",
     `model inputs` = "unmarked-animal correction factor and closed-model subsets"),
-  notes = "Unit ids are the catalogue IDs. y follows multimark data.type 'sometimes' (0-4); unit_known is the authors' known vector (sides linked). Whales with unit_known = 0 are one-sided IDs that may duplicate another ID. obs_precapture = 1 marks the authors' precaptures; set those y to 0 for their 'npc' history. Years before first capture are 0; condition on first capture for CJS.")
+  notes = "Unit ids are the catalogue IDs. y follows multimark data.type 'sometimes' (0-4). unit_identity (both / left / right) is the sides from which each whale is identified; unit_known is the authors' known vector (sides linked), 0 for the 39 one-sided whales and for one whale photographed on both sides in a year without the sides being linked (unit_identity both). One-sided whales may duplicate another ID. obs_precapture = 1 marks the authors' precaptures; set those y to 0 for their 'npc' history. Years before first capture are 0; condition on first capture for CJS.")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/curtis_2021_sannicolas_ziphius_cjs.R")
 
 stage_dict_row(TABLE,

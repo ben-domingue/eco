@@ -61,6 +61,13 @@
 #   Not shipped: Unused_predictors (road density, urban proportion, cropland ratio and
 #   livestock density at five dates: the authors' discarded predictors, kept in the deposit) and
 #   Landscape_composition (woodland and arable proportions at five radii); the model code.
+#   v1.1: beetle, bird, mammal tables closure = closed, occasionKind = time; plant table closure
+#   = none, occasionKind = none; taxonInclusion = recorded for all four (every taxon detected).
+#   Four tables stay four (four methods, ruling #31). Taxa via make_taxa(exact = TRUE): the three
+#   staphylinid subfamilies are no_key with taxonRemarks; Poa pratensis s.l., Rosa canina agg.
+#   and the Pterostichus nigrita / rhaeticus record are taxonRank speciesAggregate with
+#   taxonRemarks; Lesteva sicula heeri is a subspecies; Taraxacum is looked up as "Taraxacum
+#   Weber" (the bare name matches the family). IUCN categories through iucn_category().
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 suppressMessages(library(readxl))
 SCRIPT <- "data/bradferlawrence_2025_ukwood_comm.R"
@@ -85,26 +92,27 @@ site_code <- function(id) sprintf("W%03d", as.integer(id))
 ## taxa -----------------------------------------------------------------------
 fix_lookup <- c("Tachnius rufipes" = "Tachinus rufipes", "Pterostichus nigrata" = "Pterostichus nigrita",
                 "Pterostichus nigrata rhaeticus" = "Pterostichus nigrita",
-                "Lesteva sicula heeri" = "Lesteva sicula",
                 # homonyms and names the strict match refuses without an authority
                 "Chloris chloris" = "Chloris chloris (Linnaeus, 1758)", "Blechnum spicant" = "Blechnum spicant (L.) Roth",
                 "Festuca pratensis" = "Festuca pratensis Huds.", "Senecio erucifolius" = "Senecio erucifolius L.",
-                "Angelica officinalis" = "Angelica archangelica")   # A. officinalis Moench is a name for A. archangelica
-iucn <- function(id) {
-  if (is.na(id)) return(NA_character_)
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- tryCatch(fromJSON(fp), error = function(e) NULL)
-  if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
-}
+                "Angelica officinalis" = "Angelica archangelica",   # A. officinalis Moench is a name for A. archangelica
+                "Taraxacum" = "Taraxacum Weber",                    # the bare name matches the family Asteraceae
+                "Poa pratensis sens lat" = "Poa pratensis", "Rosa canina agg" = "Rosa canina")
+# taxonRemarks (E6): aggregates, the subfamilies the backbone does not hold, the unseparated pair
+remarks <- c("Aleocharinae" = "subfamily (Staphylinidae) recorded as one taxon by the source; the GBIF backbone holds no Aleocharinae at subfamily rank, so taxonID is empty",
+             "Omaliinae" = "subfamily (Staphylinidae) recorded as one taxon by the source; the GBIF backbone holds no Omaliinae at subfamily rank, so taxonID is empty",
+             "Tachyporinae" = "subfamily (Staphylinidae) recorded as one taxon by the source; the GBIF backbone holds no Tachyporinae at subfamily rank, so taxonID is empty",
+             "Pterostichus nigrata rhaeticus" = "recorded as 'Pterostichus nigrata rhaeticus' beside 'Pterostichus nigrata': read as the P. nigrita / P. rhaeticus pair not separated (species aggregate); taxonID is P. nigrita",
+             "Pterostichus nigrata" = "source spelling of P. nigrita; the source also records the unseparated nigrita / rhaeticus pair as its own taxon (PTENIGRHA)",
+             "Poa pratensis sens lat " = "Poa pratensis sensu lato, recorded as an aggregate by the source; taxonID is P. pratensis",
+             "Rosa canina agg " = "Rosa canina aggregate, recorded as such by the source; taxonID is R. canina",
+             "Taraxacum" = "recorded at genus rank by the source")
 taxa_of <- function(src) {
   sp <- data.table(src = sort(unique(src)))
   sp[, sci := gsub("\\.", " ", src)]
   sp[, rank := fifelse(!grepl(" ", sci), fifelse(grepl("inae$", sci), "subfamily", "genus"),
-               fifelse(lengths(strsplit(sci, " ")) >= 3, "aggregate", "species"))]
+               fifelse(lengths(strsplit(sci, " ")) >= 3, "speciesAggregate", "species"))]
+  sp[sci == "Lesteva sicula heeri", rank := "subspecies"]   # a subspecies name, matched EXACTLY by GBIF
   w <- strsplit(sp$sci, " ")
   code <- function(k) vapply(w, function(x) if (length(x) == 1) toupper(x) else toupper(paste(substr(x, 1, k), collapse = "")), "")
   sp[, taxon := code(3)]                                     # GENSPE (GENSPESUB for trinomials); subfamilies keep their name
@@ -113,13 +121,19 @@ taxa_of <- function(src) {
   d <- sp[duplicated(taxon) | duplicated(taxon, fromLast = TRUE), taxon]
   i5 <- sp$taxon %in% d; sp$taxon[i5] <- toupper(gsub("[^A-Za-z]", "", sp$sci[i5]))
   stopifnot(!anyDuplicated(sp$taxon), all(nchar(sp$taxon) <= 30))
-  sp[, lookup := fifelse(sci %in% names(fix_lookup), fix_lookup[sci], sci)]
-  sp[rank == "aggregate" & !sci %in% names(fix_lookup), lookup := vapply(strsplit(sci, " "), function(x) paste(x[1:2], collapse = " "), "")]
-  tx <- make_taxa(sp$taxon, sp$sci, taxonRank = sp$rank, lookupName = sp$lookup, taxon_sourceName = sp$src)
-  # Taraxacum: the name-only match returns a family; the genus is Taraxacum Weber (GBIF 7787708)
-  if ("Taraxacum" %in% tx$scientificName) tx[scientificName == "Taraxacum", `:=`(taxonID = "https://www.gbif.org/species/7787708", gbifMatchType = "MANUAL (Taraxacum Weber, genus)")]
-  stopifnot(tx[taxonRank != "subfamily", all(gbifMatchType == "EXACT" | grepl("^MANUAL", gbifMatchType))], tx[taxonRank == "subfamily", all(is.na(taxonID))])
-  tx[taxonRank %in% c("species", "aggregate"), taxon_iucnCategory := sapply(taxonID, iucn)]
+  sp[, lookup := fifelse(trimws(sci) %in% names(fix_lookup), fix_lookup[trimws(sci)], sci)]
+  sp[, rem := fifelse(sci %in% names(remarks), remarks[sci], fifelse(trimws(sci) %in% names(remarks), remarks[trimws(sci)], NA_character_))]
+  stopifnot(all(!is.na(sp[rank %in% c("subfamily", "speciesAggregate", "genus"), rem])))
+  tx <- make_taxa(sp$taxon, sp$sci, taxonRank = sp$rank, lookupName = sp$lookup, taxon_sourceName = sp$src,
+                  taxonRemarks = sp$rem, no_key = sp[rank == "subfamily", taxon])
+  stopifnot(tx[taxonRank == "subfamily", all(is.na(taxonID))], tx[taxonRank != "subfamily", !anyNA(taxonID)])
+  tx[taxonRank %in% c("species", "speciesAggregate", "subspecies"), taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+  # NA = the IUCN record's name differs from GBIF's accepted name; for these eight the record
+  # carries the source's own name (same species), and its category is taken (checked 2026-11-03)
+  same_sp <- c("Corvus monedula" = "LC", "Sylvia communis" = "LC", "Sylvia curruca" = "LC", "Myodes glareolus" = "LC",
+               "Blechnum spicant" = "NE", "Festuca pratensis" = "NE", "Picris echioides" = "NE", "Senecio erucifolius" = "NE")
+  tx[is.na(taxon_iucnCategory) & scientificName %in% names(same_sp), taxon_iucnCategory := same_sp[scientificName]]
+  stopifnot(tx[taxonRank %in% c("species", "speciesAggregate", "subspecies"), !anyNA(taxon_iucnCategory)])
   list(sp = sp, tx = tx)
 }
 
@@ -202,7 +216,8 @@ ds_b <- write_table(long_b, T_BEE, c(common, list(
   abstract = "Presence / absence of 115 beetle taxa in five successive pitfall-trap collections at each of 60 woodland patches of known age in agricultural landscapes in England and Scotland (20 sites in 2013, 40 in 2014), from a study of spatial spillovers and temporal legacies of land use on woodland biodiversity.",
   samplingProtocol = "Pitfall traps (6-15 per site) emptied fortnightly; five collections per site in one summer; catches identified and scored as present / absent per taxon and collection.",
   samplingProtocolCode = "pitfall_trap", occasionLength = "about two weeks (one pitfall collection)", effortColumn = "obs_n_traps",
-  closure = "occasion within site (five fortnightly collections in one summer); each site is surveyed in one year only",
+  closure = "closed", closureNote = "occasion within site (five fortnightly collections in one summer); each site is surveyed in one year only",
+  occasionKind = "time", taxonInclusion = "recorded",
   temporalCoverage = sprintf("%s/%s", min(long_b$date), max(long_b$date)),
   surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The Beetles sheet is a full site x collection x taxon matrix. The one collection that is NA for every taxon and has no date (site 10, 2014, collection 5) was not obtained and has no rows. All other NA cells are a fixed taxon set per year (34 in 2013, 16 in 2014) that is exactly the taxa with no detection anywhere that year; they are shipped as y = 0 with y_raw = 'NA', as the authors' model code does.",
@@ -234,7 +249,8 @@ ds_bi <- write_table(long_bi, T_BIR, c(common, list(
   abstract = "Presence / absence of 54 bird species on up to three repeat surveys at each of 125 woodland patches of known age in agricultural landscapes in England and Scotland (79 sites in 2015, 46 in 2017), from a study of spatial spillovers and temporal legacies of land use on woodland biodiversity.",
   samplingProtocol = "Repeat bird surveys of each woodland patch (three visits per site, surveyor recorded; the survey method is described in the paper, not the deposit); species scored present / absent per visit.",
   samplingProtocolCode = "bird_survey", occasionLength = "one survey visit",
-  closure = "occasion within site (three visits in one breeding season); each site is surveyed in one year only",
+  closure = "closed", closureNote = "occasion within site (three visits in one breeding season); each site is surveyed in one year only",
+  occasionKind = "time", taxonInclusion = "recorded",
   temporalCoverage = sprintf("%s/%s", min(long_bi$date), max(long_bi$date)),
   surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The Birds sheet is a full site x survey x species matrix; 47 surveys are NA for every species and have no date or surveyor (not carried out) and have no rows. No other NA.",
@@ -261,7 +277,8 @@ ds_m <- write_table(long_m, T_MAM, c(common, list(
   abstract = "Presence / absence of wood mouse, bank vole, field vole and common shrew on four successive live-trapping days at each of 100 woodland patches of known age in agricultural landscapes in England and Scotland, from a study of spatial spillovers and temporal legacies of land use on woodland biodiversity.",
   samplingProtocol = "Small-mammal live trapping over four consecutive trap days per site in one season; species scored present / absent per trap day (the deposit does not give trap numbers).",
   samplingProtocolCode = "live_trap", occasionLength = "one trap day",
-  closure = "occasion within site (four consecutive trap days); each site is surveyed in one year only",
+  closure = "closed", closureNote = "occasion within site (four consecutive trap days); each site is surveyed in one year only",
+  occasionKind = "time", taxonInclusion = "recorded",
   temporalCoverage = sprintf("%s/%s", min(long_m$date), max(long_m$date)),
   surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The Mammals sheet is a complete site x trap day x species matrix with no NA.",
@@ -285,7 +302,8 @@ ds_p <- write_table(long_p, T_PLA, c(common, list(
   abstract = "Presence / absence of 200 vascular plant species recorded in a single survey of each of 129 woodland patches of known age in agricultural landscapes in England and Scotland, from a study of spatial spillovers and temporal legacies of land use on woodland biodiversity. One visit per site: detection is not estimable from this table alone.",
   samplingProtocol = "One botanical survey per woodland patch; species scored present / absent (survey year and date not in the deposit).",
   samplingProtocolCode = "botanical_survey", occasionLength = "one survey",
-  closure = "single visit per site (no replication)",
+  closure = "none", closureNote = "single visit per site (no replication)",
+  occasionKind = "none", taxonInclusion = "recorded",
   temporalCoverage = "2013/2017",
   surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The Plants sheet is a complete site x species matrix with no NA; one survey per site. The survey year is not deposited; temporalCoverage is the study's span (2013-2017).",

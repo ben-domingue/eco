@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion (three surveys within one summer)",
+  "closure": "closed",
+  "closureNote": "occasion (three surveys within one summer)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Brunswick County, North Carolina, USA (longleaf pine savanna on a bobwhite-managed property); no coordinates deposited",
   "temporalCoverage": "2023-07-03/2023-08-22",
   "coordinatesCoarsened": null,
@@ -37,8 +40,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_ocular_bare", "unit_ocular_wat", "unit_ocular_lit", "unit_ocular_cwd", "unit_ocular_moss", "unit_ocular_grass", "unit_ocular_forb", "unit_ocular_fern", "unit_ocular_shrub", "unit_ocular_sap", "unit_ocular_can", "unit_nudds_board", "unit_ndvi", "unit_mpine_prop", "unit_grassy_prop", "unit_decid_prop", "unit_bf_prop", "unit_water_prop", "unit_dist_road_m", "unit_dist_mpine_m", "unit_dist_grassy_m", "unit_dist_decid_m", "unit_dist_bf_m", "unit_dist_water_m", "unit_burned_past_year_prop", "unit_burned_past_year", "obs_wind_beaufort", "obs_cloud_pct", "obs_minutes_since_sunrise", "obs_temp_f"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/samek_2024_racerunner_occ.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

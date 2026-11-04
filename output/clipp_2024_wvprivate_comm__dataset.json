@@ -20,7 +20,10 @@
   "surveyEvidence": "effort_table",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion (camera-days within one deployment of up to 76 days, the paper's closure assumption); no period",
+  "closure": "closed",
+  "closureNote": "occasion (camera-days within one deployment of up to 76 days, the paper's closure assumption); no period",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Private land in Jackson, Mason, Barbour, Upshur and Hampshire counties, West Virginia, USA (camera coordinates as published)",
   "temporalCoverage": "2022-04-23/2022-09-15",
   "coordinatesCoarsened": {
@@ -49,8 +52,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_detection_distance_m", "unit_camera_working_at_retrieval", "obs_camera_hours"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/clipp_2024_wvprivate_comm.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

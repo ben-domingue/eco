@@ -174,7 +174,7 @@ dataset <- list(
   samplingProtocol = "Passive camera traps at stations 1000-3000 m apart or on 2-km2 / 16-km2 grids, depending on the survey's focal species; detection history at 10 days per occasion; camera days per occasion is the effort covariate.",
   samplingProtocolCode = "camera_trap", occasionLength = "10 days", effortColumn = "obs_camera_days",
   surveyEvidence = "effort_table",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Six protected areas and Key Biodiversity Areas across Myanmar (no coordinates deposited)",
   temporalCoverage = "2014/2020",
   coordinatesCoarsened = NA,

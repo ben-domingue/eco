@@ -30,7 +30,7 @@ TYRTYR,Tyrannus tyrannus,Eastern Kingbird,species,https://www.gbif.org/species/5
 MEPMEP,Mephitis mephitis,Striped Skunk,species,https://www.gbif.org/species/5219380,EXACT,,Mammalia
 ARDHER,Ardea herodias,Great Blue Heron,species,https://www.gbif.org/species/9630752,EXACT,,Aves
 SAYPHO,Sayornis phoebe,Eastern Phoebe,species,https://www.gbif.org/species/2483606,EXACT,,Aves
-EREDOR,Erethizon dorsatum,North American Porcupine,species,https://www.gbif.org/species/6066824,FUZZY,,Mammalia
+EREDOR,Erethizon dorsatum,North American Porcupine,species,https://www.gbif.org/species/6066824,EXACT,,Mammalia
 HYLPIL,Hylatomus pileatus,Pileated Woodpecker,species,https://www.gbif.org/species/10968415,EXACT,Dryocopus pileatus,Aves
 TOXRUF,Toxostoma rufum,Brown Thrasher,species,https://www.gbif.org/species/9479809,EXACT,,Aves
 MIMPOL,Mimus polyglottos,Northern Mockingbird,species,https://www.gbif.org/species/5231677,EXACT,,Aves

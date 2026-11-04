@@ -39,7 +39,10 @@
 #   (LIMENI, Limenitis) and unit_contents = reducta / camilla / empty. Splitting by species
 #   (ruling #20 would require one table per taxon) would drop the 34 empty hibernacula,
 #   which the paper counts as part of the closed population and whose detectability is the
-#   same object. A user wanting L. reducta larvae filters unit_contents.
+#   same object. A user wanting L. reducta larvae filters unit_contents. __taxa carries
+#   lifeStage = larva and taxonRemarks saying why the taxon is the genus (an aggregate of two
+#   species and empty hibernacula). At-risk span (E4.4): one closed session, no period; every
+#   hibernaculum was found by at least one surveyor.
 #   obs_experience = surveyor's experience level (expert / novice), constant per surveyor.
 #   unit_plot_area_m2 from the paper.
 #   Closure: three hibernacula disappeared during the six weeks and were removed by the
@@ -95,7 +98,9 @@ stopifnot(nrow(long) == 31L * 10L + 17L * 9L + 27L * 10L, sum(long$y) == sum(dph
           all(long[, sum(y), by = unit]$V1 >= 1L))
 cat(sprintf("  %d hibernacula x surveyors-of-their-plot = %d rows, %d detections\n", uniqueN(long$unit), nrow(long), sum(long$y)))
 
-taxa <- make_taxa("LIMENI", "Limenitis", vernacularName = "Admirals (hibernacula of L. reducta and L. camilla)", taxonRank = "genus")
+taxa <- make_taxa("LIMENI", "Limenitis", vernacularName = "Admirals (hibernacula of L. reducta and L. camilla)", taxonRank = "genus",
+                  lifeStage = "larva",
+                  taxonRemarks = "Genus rank on purpose: the units are larval hibernacula whose contents (39 L. reducta, 2 L. camilla, 34 empty) were identified only after all searches; the species is the unit covariate unit_contents")
 
 site <- coarsen_coords(48.494, 9.788)
 dataset <- list(
@@ -109,7 +114,8 @@ dataset <- list(
   samplingProtocol = "Independent visual search of a marked plot for larval hibernacula on Lonicera xylosteum, at most 2 h per surveyor per plot; each find marked with tape, recorded by GPS and photograph by the first author, tape removed before the next surveyor; finds matched across surveyors after the last search; hibernacula contents (L. reducta, L. camilla, empty) identified afterwards.",
   samplingProtocolCode = "multi_observer_search", surveyEvidence = "deposited_matrix",
   responseType = "detection", unitKind = "individual",
-  closure = "one closed period; occasions are surveyors, not times. Surveyors searched one after the other over six weeks without information about earlier finds; S1 (the first author) was always first, the order of the others is not deposited. Three hibernacula that disappeared during the study were removed by the authors before deposit.",
+  closure = "closed", occasionKind = "observer", taxonInclusion = "single",
+  closureNote = "one closed period; occasions are surveyors, not times. Surveyors searched one after the other over six weeks without information about earlier finds; S1 (the first author) was always first, the order of the others is not deposited. Three hibernacula that disappeared during the study were removed by the authors before deposit.",
   geographicCoverage = sprintf("Spruce clear-cut near Merklingen, Alb-Donau district, Baden-Württemberg, Germany; site centre %.2f N, %.2f E (0.1-degree cell); three plots of 916, 807 and 2952 m2", site$lat, site$lon),
   temporalCoverage = "2021-02-05/2021-03-22",
   coordinatesCoarsened = list(value = TRUE, method = "Only a site coordinate exists (the paper's 48.494 N, 9.788 E); given in geographicCoverage as the centre of its 0.1-degree cell because the source calls L. reducta highly endangered. No per-hibernaculum positions are deposited."),
