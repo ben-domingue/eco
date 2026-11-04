@@ -1,0 +1,61 @@
+{
+  "table": "maihoff_2023_berchtesgaden_bees_count",
+  "title": "Transect-walk counts of 131 wild bee taxa at 33 grassland sites along an elevational gradient (641-2032 m), Berchtesgadener Land, Germany, 2009 and 2019",
+  "creator": "Maihoff, Fabienne; Friess, Nicolas; Hoiss, Bernhard; Schmid-Egger, Christian; Kerner, Janika; Neumayer, Johann; Hopfenmueller, Sebastian; Baessler, Claus; Mueller, Joerg; Classen, Alice",
+  "pubDate": "2022-12-07",
+  "doi": "10.5061/dryad.80gb5mkt1",
+  "sourceURL": "https://doi.org/10.5061/dryad.80gb5mkt1",
+  "citation": "Maihoff, F. (2022). Raw data: Wildbee Monitoring along two elevational gradients in Germany [Dataset]. Dryad. https://doi.org/10.5061/dryad.80gb5mkt1",
+  "paperDOI": "10.1111/ddi.13658",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Wild bees and honeybees caught by sweep netting on standardised 50-minute transect walks (10 sub-transects of 5 min) at 33 grassland sites (60 x 60 m; 18 extensively grazed or mown, 15 unmanaged) along five mountain transects in and around Berchtesgaden National Park, May to September 2009 and resampled in 2019; five walks per site-year above 1200 m, six below. The paper reports upward elevational shifts of the bee communities over the decade, driven by mean annual temperature.",
+  "samplingProtocol": "Standardised transect walks: 10 evenly spaced sub-transects per site, 5 minutes each (50 minutes per walk), all wild bees and honeybees caught with sweep nets, 9:30 to 18:00 in sunny weather or above 17 C at 650 m on cloudy days. Walks with no bee recorded as blank sampling events. Flower cover per plant species estimated on site visits.",
+  "samplingProtocolCode": "transect_count",
+  "occasionLength": "one 50-minute transect walk",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "Every walk is in BGL_monitoring.csv: specimen rows, or for the six walks with no bee an explicit blank sampling event (species null, abundance 0). Each of the 66 site-years has 5 or 6 walks, the methods' five above 1200 m and six below (the rule holds in 58 site-years; the other 8 lie near 1200 m). The source's replicate number is a campaign round; 8 site-years skip a round number but keep the protocol's walk count, so the gap is a round not walked, not a lost walk. A species absent from a walk's rows is a zero.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "not assumed within a period: walks run from May to September and follow each species' flight season; period = year (2009, 2019)",
+  "geographicCoverage": {
+    "description": "Berchtesgadener Land, Bavaria, Germany: Berchtesgaden National Park and vicinity (Hintersee, Hochalm, Watzmann, Wimbachtal and lowland sites)",
+    "boundingBox": {
+      "west": 12.8007,
+      "east": 12.9631,
+      "south": 47.5271,
+      "north": 47.6133
+    }
+  },
+  "temporalCoverage": "2009-05-08/2019-09-16",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published: site centre coordinates as deposited; no species in the table is IUCN CR, EN or VU (checked through GBIF)"
+  },
+  "notShipped": {
+    "Bavarian Forest gradient": "BF_monitoring.csv and its site files: Malaise and flight-interception trap specimens with collection dates only; no record of trap runs or empty catches, sites split between 2007 and 2008, so the survey set cannot be recovered",
+    "sub-transect counts": "summed into the walk; empty sub-transects have no row, so sub-transect zeros cannot be evidenced",
+    "T2 2009": "year_site_info_BGL.csv has a 2009 row and BGL_flowercover_data.csv 93 flower records for a site T2 that has no bee walks in the monitoring file (not resampled in 2019); without walk records it is not a surveyed unit here",
+    "temperature series": "temperature_period_BGL.csv (modelled annual means 2005-2020); the sampled years are in period_temperature_annual_c",
+    "management_binary": "derivable from period_management"
+  },
+  "notes": "B. lucorum and B. terrestris are one taxon (BOMBLUTE) as deposited; workers cannot be told apart in the field. Apis mellifera (managed honeybee) is included as recorded. Temperatures are modelled from climate stations. obs_first_hour is the earliest rounded specimen hour, an approximation of the walk's start. Site names in the coordinate file differ in case (WMa1 = Wma1). occasion is the walk's order within the site-year; obs_round is the source's round number (1-7).",
+  "summary": {
+    "n_rows": 46636,
+    "n_units": 33,
+    "n_taxa": 131,
+    "n_periods": 2,
+    "n_occasions": 6,
+    "n_surveys": 356,
+    "y_values": "0-71 (34 distinct)",
+    "prop_zero": 0.957
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "period_temperature_sampling_c", "period_temperature_annual_c", "period_mean_flower_cover_pct", "period_management", "obs_n_days", "obs_first_hour", "obs_round", "obs_flower_cover_pct"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/maihoff_2023_berchtesgaden_bees_count.R",
+  "buildDate": "2026-11-03"
+}

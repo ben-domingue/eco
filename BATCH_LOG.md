@@ -919,3 +919,46 @@ What this batch says about the standard:
   Taraxacum); both scripts assert EXACT matches. That assertion belongs in `make_taxa()`.
 - **Residual list groups** ("other grouper") change meaning with the list; shipped at family rank
   with the qualifier in the name.
+
+## Batch 20 — 2026-11-03 (Shark Bay megafauna, Bunbury dolphins, fritillary MRR with search effort, wild bees)
+
+Six Dryad queue rows, built by two forks in `~/eco-b20` (branch `batch20`). Ten tables from
+five deposits; one held. All pass `eco-validate --irw` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| nowicki_2019_sharkbay_megafauna_count | repeated transect counts (marine) | Dryad CC0 | 10,665 | Shark Bay boat transects, 11 transects x 3 taxa (incl. dugong, VU; sea snakes as Hydrophiinae, no GBIF key) x 109 months x 1-12 runs; only runs flagged usable (480 dropped); no coordinates deposited; densities and run durations not shipped; below floor |
+| nowicki_2019_sharkbay_turtle_count | repeated transect counts (marine) | Dryad CC0 | 6,180 | the runs on which turtles were identified to species (E4: a different survey set); sibling |
+| nowicki_2019_sharkbay_dolphin_count | repeated transect counts (marine) | Dryad CC0 | 2,338 | the runs on which dolphins were counted (not reliably 2002-07); sibling |
+| symons_2018_bunbury_dolphin_rd | robust design CR, photo-ID | Dryad CC0 | 14,472 | 201 bottlenose dolphins x 12 seasons x 6 (paper's count); 28 all-zero catalogue rows dropped |
+| symons_2018_bunbury_femalecalf_msrd | multistate robust design | Dryad CC0 | 6,552 | 91 females, 0 / 1 seen without calf / 2 with calf; separate selection (10 females absent from the main file); 40 calving events asserted against the paper |
+| fabritius_2015_siitama_fritillary_cjs | CJS, daily MRR | Dryad CC0 | 21,050 | false heath fritillary, 842 butterflies x 25 search days; searched areas per day in `__periods` (`effort_table`); capture area as `obs_capture_area`; endangered per source, location as a 0.1 degree cell in metadata; privacy-shifted shapefiles not shipped |
+| fabritius_2015_sorila_fritillary_cjs | CJS, daily MRR | Dryad CC0 | 3,514 | 251 butterflies x 14 days; sibling |
+| fabritius_2015_merikarvia_fritillary_cjs | CJS, daily MRR | Dryad CC0 | 3,129 | 149 butterflies x 21 days; sibling |
+| maihoff_2023_berchtesgaden_bees_count | community counts | Dryad CC0 | 46,636 | 33 sites x 131 bee taxa x 2009/2019 x 5-6 walks; source `replicate` is a campaign round (kept as `obs_round`), occasion = walk order; B. lucorum/terrestris complex at genus (asserted); Bavarian Forest half not buildable (specimens only, no trap-run record) |
+| johnson_2023_tweedsmuir_bombus_count | community counts | Dryad CC0 | 520 | 26 sites x 10 Bombus x 2 vane-trap visits, postfire BC; netting (burned sites only, no effort; the only B. terricola VU records) not shipped; below floor |
+
+Held: Mediterranean UVC (doi:10.5061/dryad.k6djh9wb4): three groups' protocols merged in one
+undated CSV, 224 site labels vs the paper's 52; needs the Wiley paper (`queue/papers/`).
+
+What this batch says about the standard:
+
+- **Per-taxon survey sets inside one survey** (Shark Bay: which taxa were countable on which run)
+  force E4 splits of one survey into sibling tables; a per-taxon survey-set rule or `components`
+  would keep them together. Asked for again.
+- **Covariates that vary by taxon within a survey** (sighting-band width per taxon) went into
+  `__taxa`; E5 has no level for unit x taxon or survey x taxon facts.
+- **Source seasons that are not contiguous** cannot be E8 periods; months used.
+- **All-zero deposited histories** (never-seen catalogue rows; Bunbury, after Isla Isabel) are not
+  shipped; a guide sentence.
+- **Capture location on a detection** has to be an `obs_` column NA on non-detections, because
+  E2 lets `y_raw` carry only the recorded value.
+- **Campaign rounds vs walk indices** (Berchtesgaden): gaps in a replicate number are not lost
+  surveys until checked against the protocol's walk count.
+- **Methods at only some units** (netting at burned sites) cannot join the community table.
+- **Privacy-shifted coordinates** are not locations; E7 has no wording for them.
+- **Dryad `primary_article` can be wrong** (the wild-bee record names a transcriptome paper).
+- **Partial builds** (Bavarian Forest half) live only in `notShipped`; the queue has no status
+  for "built in part".
+- **Pooled groups with no GBIF key** (Hydrophiinae): `make_taxa()` cannot mark an NA key as
+  intentional.

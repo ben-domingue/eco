@@ -1,0 +1,60 @@
+{
+  "table": "johnson_2023_tweedsmuir_bombus_count",
+  "title": "Blue vane trap counts of 10 bumble bee species at 26 burned and unburned forest sites, Tweedsmuir Provincial Park, British Columbia, 2019 (two visits)",
+  "creator": "Jackson, Hanna M.; Johnson, Sarah A.; Noth, Hutton; M'Gonigle, Leithen K.",
+  "pubDate": "2023-01-13",
+  "doi": "10.5061/dryad.wdbrv15sr",
+  "sourceURL": "https://doi.org/10.5061/dryad.wdbrv15sr",
+  "citation": "Jackson, H. M. (2023). Data for: Positive impact of postfire environment on bumble bees not explained by habitat variables in a remote forested ecosystem [Dataset]. Dryad. https://doi.org/10.5061/dryad.wdbrv15sr",
+  "paperDOI": "10.1002/ece3.9743",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Bumble bees caught in three blue vane traps per site (2-4 days out) on two visits 4-6 weeks apart in June to August 2019 at 13 burned and 13 adjacent unburned forest sites (100 m diameter) around four wildfires (2009, 2010, 2017, 2018) in and near Tweedsmuir Provincial Park, on the territories of the Nuxalk and Ulkatcho First Nations. The paper fits a multi-species occupancy model with burn status, floral resources and canopy openness.",
+  "samplingProtocol": "Three blue vane traps per site per visit, collected after 2-4 days; bees identified to species and caste (Williams et al. 2014). Open flowers counted by plant species along two perpendicular 100 m x 3 m transects (four arms) each visit; canopy openness from hemispherical photographs (Gap Light Analyzer). Supplementary spot netting at burned sites only (not shipped).",
+  "samplingProtocolCode": "vane_trap",
+  "occasionLength": "one site visit (three vane traps for 2-4 days)",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "TrapInfo.csv lists the three traps set at each of the 26 sites on both rounds (52 site visits), and TrapBumbles.csv records traps that caught nothing (Species NA, Abundance 0); every catch belongs to a listed trap. A species with no trap row at a site visit is a zero. Three traps (two bear-disturbed) have no catch row and are counted in the visit as empty, as the authors do.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "within season: the two visits are treated as replicates of the season's occupancy (the paper's model); colony phenology changes over the 4-6 weeks between them",
+  "geographicCoverage": {
+    "description": "Tweedsmuir Provincial Park and surroundings, British Columbia, Canada",
+    "boundingBox": {
+      "west": -125.8631,
+      "east": -125.6221,
+      "south": 52.3878,
+      "north": 52.5694
+    }
+  },
+  "temporalCoverage": "2019-06-14/2019-08-12",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published: site centre coordinates as deposited; no trapped species is IUCN CR, EN or VU (checked through GBIF)"
+  },
+  "notShipped": {
+    "netting": "NetBumbles.csv: spot netting at the 13 burned sites only, with no effort record (visits without a catch are not listed); the authors' occupancy model uses the traps only. It holds the only B. terricola (IUCN VU) records",
+    "castes": "queen, worker and male counts summed into y",
+    "trap level": "per-trap counts and trap coordinates: the authors pool traps per site visit; obs_trap_hours and obs_n_traps_disturbed keep the effort",
+    "plant records": "the plant species each netted bee was taken from"
+  },
+  "notes": "y > 0 reproduces the authors' detection array (26 sites x 2 visits x 10 species). Bear disturbance: 2009_S4 and 2010_F4 round 2 and 2017_S1 round 1 (two traps). date is the day the traps were set.",
+  "summary": {
+    "n_rows": 520,
+    "n_units": 26,
+    "n_taxa": 10,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 52,
+    "y_values": "0-26 (13 distinct)",
+    "prop_zero": 0.792
+  },
+  "sampleFloor": "below (26 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_burned", "obs_trap_hours", "obs_n_traps_disturbed", "obs_flower_count", "obs_flower_richness"],
+  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/johnson_2023_tweedsmuir_bombus_count.R",
+  "buildDate": "2026-11-03"
+}
