@@ -22,7 +22,10 @@
     "1": "encountered as a breeder (y_raw B)",
     "2": "encountered as a nonbreeder (y_raw N after the bird's first breeding encounter, P before it: the authors' prebreeder state)"
   },
-  "closure": "period (one state per breeding season; survival and state transitions between seasons)",
+  "closure": "none",
+  "closureNote": "period (one state per breeding season; survival and state transitions between seasons)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "lossesOnCapture": "none recorded",
   "geographicCoverage": "Robben Island (cell centre -33.75, 18.35) and Stony Point, Betty's Bay (cell centre -34.35, 18.85), Western Cape, South Africa",
   "temporalCoverage": "2013/2020",
@@ -46,7 +49,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_colony", "obs_ground_readers"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/leith_2022_africanpenguin_ms.R",
   "buildDate": "2026-11-03"

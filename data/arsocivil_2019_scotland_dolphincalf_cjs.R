@@ -19,9 +19,11 @@
 # Mapping (standard E9 CJS, responseType detection, unitKind individual):
 #   unit = calf C01..C56 (row of the file), taxon = TURTRU, period = year 1..26 (1990..2015, in
 #   __periods), no occasion (one per period), y = 0/1 sighted that year. Survey evidence: the
-#   deposited matrix; years before a calf's first sighting (its birth year, by the paper's
-#   inclusion rule) are kept as 0, as in the other CJS tables (E4); RMark conditions on first
-#   capture. unit_mark_group = "g1" (deposit's 1 0) or "g2" (0 1), labels deliberately neutral.
+#   deposited matrix. At-risk span (E4.4): a calf is identified in its birth year (the paper's
+#   inclusion rule: known year of birth, mother seen in the birth year and the 3 following), so
+#   it is marked at birth and has no rows before its first sighting; rows run from the birth
+#   year to 2015, with y = 0 in years not sighted. Calves carry no permanent marks, but the
+#   deposit gives no censoring, so no history is cut short. unit_mark_group = "g1" (deposit's 1 0) or "g2" (0 1), labels deliberately neutral.
 #   Not shipped: nothing else in this file.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "arsocivil_2019_scotland_dolphincalf_cjs"
@@ -45,6 +47,9 @@ long <- array_to_eco(Y, taxon = "TURTRU", site_ids = units, period = seq_len(n_y
                      site_covs = data.frame(mark_group = ifelse(g == "1 0", "g1", "g2")))
 long[, occasion := NULL]
 stopifnot(nrow(long) == 56L * n_yr, sum(long$y) == sum(Y))
+# E4.4: marked at birth -> no rows before the birth (first-sighting) year
+long <- long[period >= first[match(unit, units)]]
+stopifnot(nrow(long) == sum(n_yr - first + 1L), sum(long$y) == sum(Y))
 
 taxa <- make_taxa("TURTRU", "Tursiops truncatus", vernacularName = "Common bottlenose dolphin",
                   taxon_iucnCategory = "LC")
@@ -62,11 +67,11 @@ dataset <- list(
   abstract = "Annual photo-identification sighting histories of 56 bottlenose dolphin calves with known mother and year of birth whose mothers were seen in the birth year and the three following years, east coast of Scotland, 1990-2015, used for age-specific CJS models of survival in the first three years of life and for comparing first-born with subsequently born calves.",
   samplingProtocol = "Boat-based photo-identification surveys May-September each year; calves (no permanent marks) identified by body size, skin colouration, fetal folds and repeated association with a known mother; sightings pooled within each year.",
   samplingProtocolCode = "photo_id", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "period (annual sightings; survival between years)",
+  closure = "none", closureNote = "period (annual sightings; survival between years)", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "East coast of Scotland, UK: Moray Firth SAC and St Andrews Bay / Tay estuary; no coordinates deposited",
   temporalCoverage = "1990/2015",
   coordinatesCoarsened = NA,
-  notes = "Calf ids are row numbers. Years before a calf's first sighting (its birth year by the paper's inclusion rule) are kept as 0 (E4); condition on first sighting to reproduce the paper's data. unit_mark_group carries the deposit's two MARK group columns (g1 = '1 0', 19 calves; g2 = '0 1', 37 calves); the paper's groups are first-born and subsequently born calves, but the deposit does not say which is which. Calf detection depends strongly on sighting the mother (inclusion requires the mother seen in the three years after birth). Calves may later appear among the marked juveniles/adults of the sibling robust-design table; the deposit has no ids to link them.",
+  notes = "Calf ids are row numbers. Each calf's rows begin in its birth year (its first sighting, by the paper's inclusion rule), E4.4 for individuals marked at birth; this is the paper's conditioning on first sighting. unit_mark_group carries the deposit's two MARK group columns (g1 = '1 0', 19 calves; g2 = '0 1', 37 calves); the paper's groups are first-born and subsequently born calves, but the deposit does not say which is which. Calf detection depends strongly on sighting the mother (inclusion requires the mother seen in the three years after birth). Calves may later appear among the marked juveniles/adults of the sibling robust-design table; the deposit has no ids to link them.",
   notShipped = list(`group labels` = "the deposit's group columns are unlabelled; not mapped to first-born / subsequent"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/arsocivil_2019_scotland_dolphincalf_cjs.R")
 

@@ -19,7 +19,10 @@
   "surveyEvidence": "effort_table",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion (camera-days within one deployment of 2-11 days); no period, each site deployed once",
+  "closure": "closed",
+  "closureNote": "occasion (camera-days within one deployment of 2-11 days); no period, each site deployed once",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Monongahela National Forest, West Virginia, USA (no coordinates deposited)",
   "temporalCoverage": "2019-04-13/2021-05-12",
   "coordinatesCoarsened": null,
@@ -44,8 +47,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "unit_year", "unit_camera_model", "unit_study_area", "unit_habitat", "obs_camera_hours"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/clipp_2024_monongahela_comm.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

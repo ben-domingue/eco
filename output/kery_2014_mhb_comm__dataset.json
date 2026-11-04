@@ -1,6 +1,6 @@
 {
   "table": "kery_2014_mhb_comm",
-  "title": "Swiss breeding bird survey MHB 2014: counts of 158 species on up to 3 surveys of 267 quadrats (AHMbook::MHB2014)",
+  "title": "Swiss breeding bird survey MHB 2014: counts of 158 species on up to 3 surveys of 267 quadrats (AHMbook::MHB2014), coordinates coarsened to 10 km",
   "creator": "Schweizerische Vogelwarte (Swiss Ornithological Institute); Kery, Marc; Royle, J. Andrew (package)",
   "pubDate": "2016",
   "sourceURL": "https://cran.r-project.org/package=AHMbook",
@@ -15,13 +15,15 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "geographicCoverage": "Switzerland, 267 MHB 1-km2 quadrats on a national grid",
   "temporalCoverage": "2014",
   "crs": "unspecified: the package states the coordinate reference system is intentionally not given; values are metres in a Swiss projected grid",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "as published in AHMbook (quadrat centres, unspecified CRS); common species, none flagged"
+    "value": true,
+    "method": "E7.1 projected pair: unit_x / unit_y snapped to the centre of the 10 km cell of the source grid (floor(x / 10000) * 10000 + 5000), uncertainty 7,071 m (unit_coordinateUncertainty_m), because the table includes the turtle dove (Streptopelia turtur, IUCN VU); unit_elev rounded to 100 m (E7.4). The table without the turtle dove at source precision is kery_2014_mhb_exact_comm (E7.3)"
   },
   "notShipped": {
     "unsurveyed_quadrat": "1 quadrat with no survey in 2014 has no rows"
@@ -37,9 +39,9 @@
     "prop_zero": 0.825
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "occasion", "observer", "unit_x", "unit_y", "unit_elev", "unit_rlength", "unit_forest", "unit_nsurvey_planned", "obs_date_doy", "obs_dur_min", "taxon_body_length_cm", "taxon_body_mass_g", "taxon_wing_span_cm", "taxon_specid"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "columns": ["unit", "taxon", "y", "occasion", "observer", "unit_x", "unit_y", "unit_elev", "unit_rlength", "unit_forest", "unit_nsurvey_planned", "unit_coordinateUncertainty_m", "obs_date_doy", "obs_dur_min", "taxon_body_length_cm", "taxon_body_mass_g", "taxon_wing_span_cm", "taxon_specid"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/kery_2014_mhb_comm.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

@@ -18,7 +18,7 @@ CHAZBRIS,Chazara briseis,,species,https://www.gbif.org/species/4535583,EXACT,Sat
 COENDORU,Coenonympha dorus,,species,https://www.gbif.org/species/8396242,EXACT,,NE
 COENPAMP,Coenonympha pamphilus,,species,https://www.gbif.org/species/1911461,EXACT,,NE
 COLIALFA,Colias alfacariensis,,species,https://www.gbif.org/species/8203812,EXACT,,NE
-COLICROC,Colias crocea,,species,https://www.gbif.org/species/5137612,FUZZY,,NE
+COLICROC,Colias crocea,,species,https://www.gbif.org/species/5137612,EXACT,,NE
 COLOEVAG,Colotis evagore,,species,https://www.gbif.org/species/1920395,EXACT,,LC
 CUPILORQ,Cupido lorquinii,,species,https://www.gbif.org/species/1926166,EXACT,,LC
 CYANSEMI,Cyaniris semiargus,,species,https://www.gbif.org/species/5139156,EXACT,,NE
@@ -38,7 +38,7 @@ HIPPFIDI,Hipparchia fidia,,species,https://www.gbif.org/species/1918632,EXACT,,N
 HIPPHERM,Hipparchia hermione,,species,https://www.gbif.org/species/1918868,EXACT,,NE
 HIPPSEME,Hipparchia semele,,species,https://www.gbif.org/species/8176911,EXACT,,LC
 HIPPSTAT,Hipparchia statilinus,,species,https://www.gbif.org/species/8035998,EXACT,,LC
-HYPOLUPI,Hyponephele lupina,,species,https://www.gbif.org/species/1906552,FUZZY,,NE
+HYPOLUPI,Hyponephele lupina,,species,https://www.gbif.org/species/1906552,EXACT,,NE
 HYPOLYCA,Hyponephele lycaon,,species,https://www.gbif.org/species/8208583,EXACT,,NE
 IPHIFEIS,Iphiclides feisthamelii,,species,https://www.gbif.org/species/4690079,EXACT,,NE
 ISSOLATH,Issoria lathonia,,species,https://www.gbif.org/species/1905383,EXACT,,NE

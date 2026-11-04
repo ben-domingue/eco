@@ -39,7 +39,7 @@ dataset <- list(
   abstract = "Textbook dynamic-occupancy dataset: crossbill detection/non-detection on up to three surveys per year over nine years at 267 MHB quadrats, with elevation, forest cover and survey date.",
   samplingProtocol = "Simplified territory mapping along a fixed transect in each 1-km2 quadrat, two (above the tree line) or three surveys per breeding season, every year 1999-2007; collapsed to detection/non-detection per survey.",
   samplingProtocolCode = "line_transect", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Switzerland, MHB 1-km2 quadrats (no coordinates in the package)", temporalCoverage = "1999/2007",
   coordinatesCoarsened = NA,
   notShipped = list(unsurveyed_site_years = "site-years with no survey have no rows (48 in the round trip); the year is in __periods so nothing is lost"))

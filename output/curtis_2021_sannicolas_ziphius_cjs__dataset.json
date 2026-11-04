@@ -25,7 +25,10 @@
     "3": "left and right sides on separate encounters (not linked within the year)",
     "4": "both sides on one encounter"
   },
-  "closure": "period (annual occasions August-July; survival between years)",
+  "closure": "none",
+  "closureNote": "period (annual occasions August-July; survival between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "lossesOnCapture": "none",
   "geographicCoverage": "San Nicolas Basin, Southern California Offshore Range (SOAR), California Bight, USA (about 32.8 N, 118.9 W); coordinates of sightings not shipped",
   "temporalCoverage": "2007-08-01/2018-07-31",
@@ -37,7 +40,7 @@
     "records outside the analysis set": "calves, low-quality or indistinct photos, sightings outside San Nicolas Basin, 2006-2007 and post-July-2018 records",
     "model inputs": "unmarked-animal correction factor and closed-model subsets"
   },
-  "notes": "Unit ids are the catalogue IDs. y follows multimark data.type 'sometimes' (0-4); unit_known is the authors' known vector (sides linked). Whales with unit_known = 0 are one-sided IDs that may duplicate another ID. obs_precapture = 1 marks the authors' precaptures; set those y to 0 for their 'npc' history. Years before first capture are 0; condition on first capture for CJS.",
+  "notes": "Unit ids are the catalogue IDs. y follows multimark data.type 'sometimes' (0-4). unit_identity (both / left / right) is the sides from which each whale is identified; unit_known is the authors' known vector (sides linked), 0 for the 39 one-sided whales and for one whale photographed on both sides in a year without the sides being linked (unit_identity both). One-sided whales may duplicate another ID. obs_precapture = 1 marks the authors' precaptures; set those y to 0 for their 'npc' history. Years before first capture are 0; condition on first capture for CJS.",
   "summary": {
     "n_rows": 1397,
     "n_units": 127,
@@ -49,9 +52,9 @@
     "prop_zero": 0.863
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "period", "unit_known", "unit_sex", "obs_precapture", "obs_age_class"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "columns": ["unit", "taxon", "y", "period", "unit_identity", "unit_known", "unit_sex", "obs_precapture", "obs_age_class"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/curtis_2021_sannicolas_ziphius_cjs.R",
-  "buildDate": "2026-11-03"
+  "buildDate": "2026-11-04"
 }

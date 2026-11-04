@@ -65,7 +65,7 @@ dataset <- list(
   samplingProtocol = "Compiled fish collection records (museum databases and authors' collections); a HUC-year counts as surveyed when at least one collection exists; number of collections is the effort covariate.",
   samplingProtocolCode = "compiled_collections", effortColumn = "obs_effort",
   surveyEvidence = "effort_table", responseType = "detection", unitKind = "site",
-  closure = "occasion (years within a 3-year primary period)",
+  closure = "closed", closureNote = "occasion (years within a 3-year primary period)", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Upper and Middle New River drainage, Virginia and North Carolina, USA (HUC12 codes; no coordinates deposited)",
   temporalCoverage = "1938/2014", coordinatesCoarsened = NA)
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/frimpong_2017_newriver_dynocc.R")

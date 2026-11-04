@@ -19,7 +19,10 @@
   "surveyEvidenceNote": "Every walk is in BGL_monitoring.csv: specimen rows, or for the six walks with no bee an explicit blank sampling event (species null, abundance 0). Each of the 66 site-years has 5 or 6 walks, the methods' five above 1200 m and six below (the rule holds in 58 site-years; the other 8 lie near 1200 m). The source's replicate number is a campaign round; 8 site-years skip a round number but keep the protocol's walk count, so the gap is a round not walked, not a lost walk. A species absent from a walk's rows is a zero.",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "not assumed within a period: walks run from May to September and follow each species' flight season; period = year (2009, 2019)",
+  "closure": "open",
+  "closureNote": "not assumed within a period: walks run from May to September and follow each species' flight season; period = year (2009, 2019)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Berchtesgadener Land, Bavaria, Germany: Berchtesgaden National Park and vicinity (Hintersee, Hochalm, Watzmann, Wimbachtal and lowland sites)",
     "boundingBox": {
@@ -54,7 +57,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "period_temperature_sampling_c", "period_temperature_annual_c", "period_mean_flower_cover_pct", "period_management", "obs_n_days", "obs_first_hour", "obs_round", "obs_flower_cover_pct"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/maihoff_2023_berchtesgaden_bees_count.R",
   "buildDate": "2026-11-03"

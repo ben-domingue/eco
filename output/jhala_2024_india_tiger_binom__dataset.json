@@ -18,7 +18,10 @@
   "effortColumn": "obs_trials",
   "responseType": "binomial_count",
   "unitKind": "site",
-  "closure": "period: occupancy is closed within an estimation cycle and open between the four cycles; the replicates of a cycle are collapsed into obs_trials",
+  "closure": "none",
+  "closureNote": "period: occupancy is closed within an estimation cycle and open between the four cycles; the replicates of a cycle are collapsed into obs_trials",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "Tiger landscapes of India (7,183 grid cells of 100 km2; no coordinates deposited)",
   "temporalCoverage": "2006/2018",
   "coordinatesCoarsened": {
@@ -43,8 +46,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_habitat_area", "unit_road_rail_length", "unit_human_pop_density", "unit_agriculture_area", "unit_settlement_area", "unit_armed_conflict", "unit_cumulative_threat", "unit_poverty", "period_prey_encounter_rate", "period_livestock_encounter_rate", "period_extractive_pressure_rate", "period_nighttime_light", "period_forest_loss", "obs_trials"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/jhala_2024_india_tiger_binom.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

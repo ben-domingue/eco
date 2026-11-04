@@ -1,0 +1,3 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+PHACIN,Phascolarctos cinereus,koala,species,https://www.gbif.org/species/2440012,EXACT,,VU
+PETARM,Petauroides armillatus,central greater glider,species,https://www.gbif.org/species/11913780,EXACT,,

@@ -73,7 +73,7 @@ dataset <- list(
   samplingProtocol = "Modified Pollard walk: one observer walked 400 m of transects at 10 m/min, recording monarchs within 2.5 m either side, 5 m ahead and 5 m above, between 09:30 and 18:30 in suitable weather; three visits (early, mid, late) per summer. Vegetation frequency from 0.5 x 2 m plots on stratified random transects, once per site-year.",
   samplingProtocolCode = "pollard_walk", surveyEvidence = "row_presence",
   responseType = "count", unitKind = "site",
-  closure = "occasion (three visits within a summer, May-August); period = year",
+  closure = "closed", closureNote = "occasion (three visits within a summer, May-August); period = year", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "20 remnant tallgrass prairies in the Prairie Parkland Province of western Minnesota, USA (state, federal, TNC and private land); site coordinates not deposited",
   temporalCoverage = "2016-06-15/2017-08-18",
   coordinatesCoarsened = NA,

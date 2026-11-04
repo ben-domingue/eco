@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
-# Table:  barea_2021_sierranevada_butterfly_count
+# Tables: barea_2021_sierranevada_butterfly_count (coarsened) and
+#         barea_2021_sierran_butterfly_exact_count (E7.3 sibling without the flagged taxa)
 # Source: GBIF sampling-event dataset d7a3df60-e856-438b-851d-74653ef6c0d2, doi:10.15470/tc3gdq,
 #         GBIF Spain IPT resource "butterflies", EML packageId .../v1.2, pubDate 2021-12-17.
 #         Licence as shown on GBIF and in the EML: CC BY 4.0 ("This work is licensed under a
@@ -43,8 +44,15 @@
 #   obs_n_observers; obs_start_time / obs_end_time (HH:MM, local); obs_wind_beaufort,
 #   obs_cloud_cover_pct (as recorded: "0" or a class), obs_temperature_c. Unit covariates in
 #   __units: locality, length, min / max elevation, habitat mix, coordinates.
-#   Coordinates: the published transect centroids; the script checks each species' IUCN category
-#   through GBIF and coarsens all units to 0.1 degree if any is CR / EN / VU.
+#   closure = open (walks every two weeks March-October span flight periods; closureNote),
+#   occasionKind = time, taxonInclusion = recorded (every species recorded at least once).
+#   Coordinates (E7.3, E7.4): the published transect centroids; the script checks each species'
+#   IUCN category through GBIF (iucn_category). If any is CR / EN / VU, two tables ship:
+#   barea_2021_sierranevada_butterfly_count, all species, every transect coarsened to 0.1 degree,
+#   unit_min/maximumElevationInMeters rounded to 100 m and unit_locality (place names) not
+#   shipped; and barea_2021_sierran_butterfly_exact_count (the name cut to 40 characters by
+#   trimming "sierranevada" from its end, E7.3) without the flagged species, coordinates,
+#   elevations and localities as published. Unit ids are codes (T01...) in both.
 #   Not shipped: section counts (summed into y); records to genus or family (not taxa of the
 #   community; the species zeros at those walks stay as recorded); the subspecies epithet
 #   (merged into its species, the only one with a subspecies); observer names; footprintWKT
@@ -138,25 +146,32 @@ stopifnot(nrow(units) == 22, identical(units[is.na(unit_length_m), unit], "T25")
 setorder(units, unit)
 
 # taxa and the IUCN check
-taxa <- make_taxa(sp$taxon, sp$binomial)
-iucn <- function(id) {
-  if (is.na(id)) return(NA_character_)
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- fromJSON(fp); if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
+# two source spellings use the feminine / other ending: GBIF strict matching is FUZZY on them
+lk <- c("Colias crocea" = "Colias croceus", "Hyponephele lupina" = "Hyponephele lupinus")
+stopifnot(all(names(lk) %in% sp$binomial))
+taxa <- make_taxa(sp$taxon, sp$binomial, lookupName = fifelse(sp$binomial %in% names(lk), lk[sp$binomial], sp$binomial))
+taxa[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+# iucn_category() returns NA where the GBIF key's accepted species differs from the name on the
+# IUCN record (GBIF places Polyommatus golgus in Plebicula, P. panoptes under P. baton, ...). The
+# record applies to the source's taxon when the name it carries is the source's own binomial:
+# then its code is used (asserted for every NA; 14 at build time, incl. Polyommatus golgus EN).
+same_name <- function(id, nm) {
+  r <- fromJSON(file.path(GBIF_DIR, paste0("iucn_", sub(".*/", "", id), ".json")))
+  w <- strsplit(r$scientificName %||% "", " ")[[1]]
+  if (identical(paste(head(w, 2), collapse = " "), nm)) r$code %||% NA_character_ else NA_character_
 }
-taxa[, taxon_iucnCategory := sapply(taxonID, iucn)]
+taxa[is.na(taxon_iucnCategory), taxon_iucnCategory := mapply(same_name, taxonID, scientificName)]
+stopifnot(!anyNA(taxa$taxon_iucnCategory))
 print(taxa[, .N, by = taxon_iucnCategory])
 flagged <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU")]
 cat("  IUCN flagged:", if (nrow(flagged)) paste(flagged$scientificName, flagged$taxon_iucnCategory, collapse = "; ") else "none", "\n")
 COARSEN <- nrow(flagged) > 0
-if (COARSEN) {
-  cc <- coarsen_coords(units$unit_decimalLatitude, units$unit_decimalLongitude)
-  units[, `:=`(unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon, unit_coordinateUncertaintyInMeters = cc$uncertainty_m)]
-}
+stopifnot(COARSEN)                      # Polyommatus golgus EN, Carcharodus baeticus VU at build time: the _exact sibling ships
+units_exact <- copy(units)
+cc <- coarsen_coords(units$unit_decimalLatitude, units$unit_decimalLongitude)
+units[, `:=`(unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon, unit_coordinateUncertaintyInMeters = cc$uncertainty_m,
+             unit_minimumElevationInMeters = round(unit_minimumElevationInMeters, -2), unit_maximumElevationInMeters = round(unit_maximumElevationInMeters, -2))]
+units[, unit_locality := NULL]
 
 # long table
 surveys <- par[, .(eventID, unit = sprintf("T%02d", as.integer(tr)), period, occasion, date = format(d), observer, obs_n_observers,
@@ -171,40 +186,49 @@ long <- order_eco(long)
 periods <- data.table(period = seq_along(years), period_year = years,
                       period_n_walks = sapply(years, function(yy) sum(year(par$d) == yy)),
                       period_n_transects = sapply(years, function(yy) uniqueN(par[year(d) == yy, tr])))
-bb <- units[!is.na(unit_decimalLatitude), .(w = min(unit_decimalLongitude), e = max(unit_decimalLongitude), s = min(unit_decimalLatitude), n = max(unit_decimalLatitude))]
-dataset <- list(
-  title = "Pollard-walk counts of 102 butterfly species on 22 transects of the Sierra Nevada Global-Change Observatory, Spain, 2008-2020",
-  creator = "Barea-Azcón, José Miguel; Ros Candeira, Andrea", pubDate = "2021-12-17", sourceURL = "https://doi.org/10.15470/tc3gdq",
-  citation = "Barea-Azcón J M (2021). Dataset of butterfly monitoring in Sierra Nevada (Spain). Version 1.2. Sierra Nevada Global-Change Observatory (UGR-JA). Sampling event dataset. https://doi.org/10.15470/tc3gdq (CC BY 4.0).",
-  dataDOI = "10.15470/tc3gdq",
-  intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
-  abstract = "Butterfly line transects of the Sierra Nevada Global-Change Observatory (Andalusia, Spain): 22 transects from 700 to 3,100 m a.s.l. in high-mountain grassland and scrub, oak and pine forest, pastures and wetlands, walked about every two weeks from March to October, 2008-2020 (none in 2011). 1,725 walks, 109 with no butterfly; counts summed over the sections of a walk; 102 species.",
-  samplingProtocol = "Pollard & Yates line transect: every butterfly within 5 m to each side and 5 m ahead and above counted per section, netted and released where identification needed it; walks in suitable weather; transects 300-3,270 m (mean 1,900 m).",
-  samplingProtocolCode = "transect_count", occasionLength = "one transect walk (start and end time in obs_start_time / obs_end_time)",
-  surveyEvidence = "sample_table",
-  surveyEvidenceNote = "Every walk is a parent event in event.txt (1,725), including 109 with no section event and no occurrence (walks with no butterfly); section events exist only where a butterfly was counted, and every occurrence belongs to a section of a listed walk.",
-  responseType = "count", unitKind = "site",
-  closure = "not assumed: walks every two weeks from March to October follow each species' flight period; period = calendar year",
-  geographicCoverage = list(description = "Sierra Nevada National and Natural Park, Granada and Almería, Spain (22 transects, 700-3,100 m a.s.l.)",
-                            boundingBox = list(west = bb$w, east = bb$e, south = bb$s, north = bb$n)),
-  temporalCoverage = sprintf("%s/%s", min(par$d), max(par$d)),
-  coordinatesCoarsened = if (COARSEN) list(value = TRUE, method = sprintf("0.1 degree cell centres (coarsen_coords) for every transect, because %s (IUCN %s per GBIF) occur in the table", paste(flagged$scientificName, collapse = ", "), paste(flagged$taxon_iucnCategory, collapse = ", "))) else
-    list(value = FALSE, method = "As published (transect centroids); no species is IUCN CR, EN or VU (checked through GBIF)"),
-  notShipped = list(`section counts` = "summed over the sections of each walk into y; empty sections have no event and the section count per transect is not stated",
-                    `records to genus or family` = "1,239 genus-level and 276 family-level records of butterflies not identified to species; the species zeros at those walks stay as recorded",
-                    `infraspecificEpithet` = "Coenonympha pamphilus lyllus (500 records), merged into Coenonympha pamphilus",
-                    `recordedBy` = "observer names, replaced by pseudonymous team ids",
-                    `footprintWKT` = "route geometry of each transect, finer than the published centroid"))
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/barea_2021_sierranevada_butterfly_count.R")
+emit <- function(TABLE, lg, tx, u, exact) {
+  bb <- u[!is.na(unit_decimalLatitude), .(w = min(unit_decimalLongitude), e = max(unit_decimalLongitude), s = min(unit_decimalLatitude), n = max(unit_decimalLatitude))]
+  dataset <- list(
+    title = sprintf("Pollard-walk counts of %d butterfly species on 22 transects of the Sierra Nevada Global-Change Observatory, Spain, 2008-2020%s", nrow(tx), if (exact) " (without IUCN-threatened species, coordinates as published)" else ""),
+    creator = "Barea-Azcón, José Miguel; Ros Candeira, Andrea", pubDate = "2021-12-17", sourceURL = "https://doi.org/10.15470/tc3gdq",
+    citation = "Barea-Azcón J M (2021). Dataset of butterfly monitoring in Sierra Nevada (Spain). Version 1.2. Sierra Nevada Global-Change Observatory (UGR-JA). Sampling event dataset. https://doi.org/10.15470/tc3gdq (CC BY 4.0).",
+    dataDOI = "10.15470/tc3gdq",
+    intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
+    abstract = paste0("Butterfly line transects of the Sierra Nevada Global-Change Observatory (Andalusia, Spain): 22 transects from 700 to 3,100 m a.s.l. in high-mountain grassland and scrub, oak and pine forest, pastures and wetlands, walked about every two weeks from March to October, 2008-2020 (none in 2011). 1,725 walks, 109 with no butterfly; counts summed over the sections of a walk; 102 species.", if (exact) sprintf(" This table omits %s (IUCN %s) so that the transect centroids, elevations and localities ship as published; barea_2021_sierranevada_butterfly_count has every species with coarsened locations.", paste(flagged$scientificName, collapse = " and "), paste(flagged$taxon_iucnCategory, collapse = ", ")) else sprintf(" Locations coarsened because %s are IUCN-threatened; barea_2021_sierran_butterfly_exact_count has the other species at published precision.", paste(flagged$scientificName, collapse = " and "))),
+    samplingProtocol = "Pollard & Yates line transect: every butterfly within 5 m to each side and 5 m ahead and above counted per section, netted and released where identification needed it; walks in suitable weather; transects 300-3,270 m (mean 1,900 m).",
+    samplingProtocolCode = "transect_count", occasionLength = "one transect walk (start and end time in obs_start_time / obs_end_time)",
+    surveyEvidence = "sample_table",
+    surveyEvidenceNote = "Every walk is a parent event in event.txt (1,725), including 109 with no section event and no occurrence (walks with no butterfly); section events exist only where a butterfly was counted, and every occurrence belongs to a section of a listed walk.",
+    responseType = "count", unitKind = "site",
+    closure = "open", occasionKind = "time", taxonInclusion = "recorded",
+    closureNote = "not assumed: walks every two weeks from March to October follow each species' flight period; period = calendar year",
+    geographicCoverage = list(description = "Sierra Nevada National and Natural Park, Granada and Almería, Spain (22 transects, 700-3,100 m a.s.l.)",
+                              boundingBox = list(west = bb$w, east = bb$e, south = bb$s, north = bb$n)),
+    temporalCoverage = sprintf("%s/%s", min(par$d), max(par$d)),
+    coordinatesCoarsened = if (!exact) list(value = TRUE, method = sprintf("0.1 degree cell centres (coarsen_coords) for every transect, because %s (IUCN %s per GBIF) occur in the table; elevations rounded to 100 m, localities not shipped (E7.4)", paste(flagged$scientificName, collapse = ", "), paste(flagged$taxon_iucnCategory, collapse = ", "))) else
+      list(value = FALSE, method = sprintf("As published (transect centroids): the IUCN-threatened %s are not in this table (E7.3)", paste(flagged$scientificName, collapse = ", "))),
+    notShipped = c(list(`section counts` = "summed over the sections of each walk into y; empty sections have no event and the section count per transect is not stated",
+                      `records to genus or family` = "1,239 genus-level and 276 family-level records of butterflies not identified to species; the species zeros at those walks stay as recorded",
+                      `infraspecificEpithet` = "Coenonympha pamphilus lyllus (500 records), merged into Coenonympha pamphilus",
+                      `recordedBy` = "observer names, replaced by pseudonymous team ids",
+                      `footprintWKT` = "route geometry of each transect, finer than the published centroid"),
+                    if (exact) list(`threatened species` = sprintf("%s (IUCN %s): in barea_2021_sierranevada_butterfly_count only, whose locations are coarsened", paste(flagged$scientificName, collapse = ", "), paste(flagged$taxon_iucnCategory, collapse = ", ")))
+                    else list(unit_locality = "transect place names (E7.4: a coarsened table names no place); in barea_2021_sierran_butterfly_exact_count",
+                              `elevation precision` = "unit_minimum/maximumElevationInMeters rounded to 100 m (E7.4)")))
+  ds <- write_table(lg, TABLE, dataset, taxa = tx, periods = periods, units = u, script = "data/barea_2021_sierranevada_butterfly_count.R")
 
-stage_dict_row(TABLE,
-  description = "Counts of 102 butterfly species on 1,725 Pollard walks of 22 transects (700-3,100 m a.s.l.) of the Sierra Nevada Global-Change Observatory, Spain, March-October 2008-2020, summed over the sections of each walk, with pseudonymous observer team, start and end time, wind, cloud cover and temperature.",
-  url = "https://doi.org/10.15470/tc3gdq",
-  reference = "Barea-Azcón J M (2021). Dataset of butterfly monitoring in Sierra Nevada (Spain). Version 1.2. Sierra Nevada Global-Change Observatory (UGR-JA). Sampling event dataset.",
-  doi_data = "10.15470/tc3gdq", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Zeros from the walk list (parent events, 109 with no butterfly). Sections summed. Genus- and family-level records not shipped. No walks in 2011.",
-  source_via = "GBIF (GBIF Spain IPT)")
-stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (multi-species, multi-season)",
-  sampling_protocol = "transect_count", design = sprintf("Multi-season (%d years x up to %d walks per transect)", length(years), max(par$occasion)),
-  realm = "Terrestrial", country = "Spain", coordinates = if (COARSEN) "Coarsened (0.1 deg)" else "As published (transect centroids)",
-  notes = "Mountain butterfly monitoring, Pollard walks; counts are per walk, summed over sections.", status = "tagged")
+  stage_dict_row(TABLE,
+    description = paste0(if (exact) sprintf("Precise-location sibling without %s: c", paste(flagged$scientificName, collapse = " and ")) else "C", sprintf("ounts of %d butterfly species on 1,725 Pollard walks of 22 transects (700-3,100 m a.s.l.) of the Sierra Nevada Global-Change Observatory, Spain, March-October 2008-2020, summed over the sections of each walk, with pseudonymous observer team, start and end time, wind, cloud cover and temperature.", nrow(tx))),
+    url = "https://doi.org/10.15470/tc3gdq",
+    reference = "Barea-Azcón J M (2021). Dataset of butterfly monitoring in Sierra Nevada (Spain). Version 1.2. Sierra Nevada Global-Change Observatory (UGR-JA). Sampling event dataset.",
+    doi_data = "10.15470/tc3gdq", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
+    notes = paste("Zeros from the walk list (parent events, 109 with no butterfly). Sections summed. Genus- and family-level records not shipped. No walks in 2011.", if (exact) "E7.3 sibling of barea_2021_sierranevada_butterfly_count without the IUCN-threatened species, locations as published." else "Locations coarsened; barea_2021_sierran_butterfly_exact_count has the unthreatened species at published precision."),
+    source_via = "GBIF (GBIF Spain IPT)")
+  stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (multi-species, multi-season)",
+    sampling_protocol = "transect_count", design = sprintf("Multi-season (%d years x up to %d walks per transect)", length(years), max(par$occasion)),
+    realm = "Terrestrial", country = "Spain", coordinates = if (!exact) "Coarsened (0.1 deg)" else "As published (transect centroids)",
+    notes = "Mountain butterfly monitoring, Pollard walks; counts are per walk, summed over sections.", status = "tagged")
+}
+emit(TABLE, long, taxa, units, exact = FALSE)
+keep <- setdiff(taxa$taxon, flagged$taxon)
+emit("barea_2021_sierran_butterfly_exact_count", long[taxon %in% keep], taxa[taxon %in% keep], units_exact, exact = TRUE)

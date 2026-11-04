@@ -22,7 +22,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion within plot (the two botanists searched the plot independently within one month); each plot is surveyed in one year only",
+  "closure": "closed",
+  "closureNote": "occasion within plot (the two botanists searched the plot independently within one month); each plot is surveyed in one year only",
+  "occasionKind": "observer",
+  "taxonInclusion": "recorded",
   "temporalCoverage": "2018-08/2020-09",
   "occasionCodes": {
     "1": "botanist Anders Often (observer AO)",
@@ -49,8 +52,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/sandercock_2022_norway_alien.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

@@ -100,7 +100,7 @@ dataset <- list(
   abstract = "Textbook dynamic community occupancy dataset: 12 foliage-gleaning songbirds detected or not on up to three 10-minute, 100 m radius point counts per year at 373 plots in the Hubbard Brook Experimental Forest, New Hampshire, 2010-2018, with plot elevation and coordinates, survey day of year and time of day. The spOccupancy package's hbef2015 object is the 2015 slice of this array (period 6) and is not shipped separately.",
   samplingProtocol = "10-minute point counts with a 100 m detection radius, up to three replicates per plot per breeding season (late May to early July); species detection/non-detection per count.",
   samplingProtocolCode = "point_count", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "period",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "period", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Hubbard Brook Experimental Forest, White Mountains, New Hampshire, USA (373 plots on a valleywide grid)",
   temporalCoverage = "2010/2018",
   crs = "EPSG:4269 (NAD83) UTM zone 19N as published in unit_utm19_*; unit_decimalLatitude/Longitude converted in-script, NAD83 ~ WGS84",

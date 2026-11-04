@@ -16,7 +16,10 @@
   "surveyEvidence": "sample_table",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion (visits within a breeding season); period = year",
+  "closure": "closed",
+  "closureNote": "occasion (visits within a breeding season); period = year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": {
     "description": "Riparian corridors in protected areas of Marin County, California, USA (Point Reyes NS, GGNRA, Mount Tamalpais SP, Bolinas Lagoon OSP); no coordinates deposited"
   },
@@ -38,8 +41,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/dettling_2021_marin_riparian_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

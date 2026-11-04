@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
-# Table:  stallings_2025_gulfreefs_count
+# Tables: stallings_2025_gulfreefs_count (coarsened) and stallings_2025_gulfreefs_exact_count (E7.3
+#         sibling without the IUCN CR / EN / VU taxa)
 # Source: Zenodo doi:10.5281/zenodo.14338634 (version of 2024-12-09; concept DOI
 #         10.5281/zenodo.10882237, whose first version of 2024-04-17 also carried a
 #         data_decriptors.csv), Stallings, Emory, Peake, Schram, Wall & Williams. Licence as shown
@@ -54,7 +55,14 @@
 #   coordinates, because a reef's location reveals where the flagged fish is. At build time 13
 #   taxa are flagged (12 VU, sandbar shark EN; red snapper, gag, red grouper, goliath grouper,
 #   gray triggerfish, hogfish, cubera snapper, vermilion snapper, four sharks and a stingray), so
-#   the 14 reefs are generalised to 0.1 degree cell centres (12 distinct cells).
+#   the 14 reefs are generalised to 0.1 degree cell centres (12 distinct cells), and (E7.4) the
+#   reef names (unit_reef_name, e.g. "3 Mile Reef North") are not shipped in that table; reef
+#   ids are codes. unit_depth_m (8-30 m) is a depth, not an elevation, and is kept. E7.3:
+#   stallings_2025_gulfreefs_exact_count has every unflagged taxon at the published reef
+#   coordinates, with the reef names.
+#   v1.1: closure = dependent (side-by-side divers; the authors say the counts of an event are not
+#   independent; closureNote), occasionKind = time, taxonInclusion = recorded (every taxon of
+#   taxa.csv is counted at least once). Genus / family / suborder codes carry taxonRemarks (E6).
 #   Not shipped: individual and school lengths (biomass can be rebuilt from the deposit with
 #   the taxa.csv coefficients); start / stop times (several are clearly mistyped, and every
 #   count is 10 minutes); the 17 unresolved codes.
@@ -95,41 +103,54 @@ tx[, rank := fifelse(grepl(" spp?\\.$", species_name), "genus",
               fifelse(!grepl(" ", species_name), fifelse(grepl("idae$", species_name), "family", "suborder"), "species"))]
 stopifnot(tx[rank == "genus", .N] == 11, tx[rank == "family", .N] == 3, tx[rank == "suborder", .N] == 1)
 tx[, lookup := fifelse(rank == "genus", sub(" .*$", "", species_name), species_name)]
+# "Calamus" is a homonym (palm, grasshopper, porgy) that the strict match refuses: name the porgy genus's authority
+stopifnot(tx[species_code == "CASP", lookup == "Calamus"])
+tx[species_code == "CASP", lookup := "Calamus Swainson, 1839"]
+# Prionotus too (v1.0 matched it to the kingdom Animalia); two source spellings with the other gender ending
+stopifnot(tx[species_code == "PRSP", lookup == "Prionotus"], tx[species_code == "CHEN", species_name == "Chromis enchrysurus"],
+          tx[species_code == "STHI", species_name == "Stephanolepis hispida"])
+tx[species_code == "PRSP", lookup := "Prionotus Lacepède, 1801"]
+tx[species_code == "CHEN", lookup := "Chromis enchrysura"]
+tx[species_code == "STHI", lookup := "Stephanolepis hispidus"]
+tx[, remarks := fifelse(rank == "species", NA_character_, sprintf("Recorded only to %s by the source (code %s)", rank, species_code))]
 taxa <- make_taxa(tx$species_code, tx$species_name, vernacularName = tx$common, taxonRank = tx$rank, lookupName = tx$lookup,
+                  taxonRemarks = tx$remarks,
                   taxon_family = tx$family, taxon_order = tx$order, taxon_lw_coef_a = tx$coef_a, taxon_lw_coef_b = tx$coef_b,
                   taxon_max_length_cm = tx$max_length, taxon_trophic_position = tx$trophic_position,
                   taxon_lateral_profile = tx$lateral_profile, taxon_cross_section = tx$cross_section,
                   taxon_mouth_position = tx$mouth_position, taxon_caudal_aspect_ratio = tx$aspect_ratio)
 
-# IUCN category per GBIF key (GBIF's /species/{key}/iucnRedListCategory), cached beside the match
-iucn <- function(id) {
-  if (is.na(id)) return(NA_character_)
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- fromJSON(fp); if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
+stopifnot(taxa[taxon == "CASP", taxonID == "https://www.gbif.org/species/2392568"])
+taxa[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+taxa[taxonRank != "species", taxon_iucnCategory := NA_character_]
+# NA where GBIF's IUCN record carries the source's own binomial as a synonym of the backbone name:
+# the record is the source's species, so its code is used (asserted: no species stays NA)
+same_name <- function(id, nm) {
+  r <- fromJSON(file.path(GBIF_DIR, paste0("iucn_", sub(".*/", "", id), ".json")))
+  w <- strsplit(r$scientificName %||% "", " ")[[1]]
+  if (identical(paste(head(w, 2), collapse = " "), nm)) r$code %||% NA_character_ else NA_character_
 }
-# "Calamus" is a homonym (palm, grasshopper, porgy) that the strict match refuses: set the porgy genus
-stopifnot(taxa[taxon == "CASP", is.na(taxonID)])
-taxa[taxon == "CASP", `:=`(taxonID = "https://www.gbif.org/species/2392568", gbifMatchType = "MANUAL (Calamus Swainson, 1839, Sparidae)")]
-taxa[, taxon_iucnCategory := sapply(taxonID, iucn)]
+taxa[taxonRank == "species" & is.na(taxon_iucnCategory), taxon_iucnCategory := mapply(same_name, taxonID, scientificName)]
+print(taxa[taxonRank == "species" & is.na(taxon_iucnCategory), .(taxon, scientificName)])
 flagged <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU")]
 cat(sprintf("  IUCN flagged taxa (CR/EN/VU): %s\n", if (nrow(flagged)) paste(sprintf("%s %s (%s)", flagged$taxon, flagged$scientificName, flagged$taxon_iucnCategory), collapse = "; ") else "none"))
 
 # reefs; coordinates coarsened when any flagged taxon occurs (all occur on these reefs)
 hab[, cluster := fifelse(is.na(pair), paste0("unpaired_", reef_ID), paste0("pair", pair))]
+stopifnot(nrow(flagged) >= 1)
+units_exact <- hab[, .(unit = reef_ID, unit_reef_name = reef_name, unit_reef_type = tolower(type), unit_pair = pair,
+                       unit_depth_m = depth, unit_deployment_year = deployment, unit_first_survey_year = first_year,
+                       unit_decimalLatitude = latitude, unit_decimalLongitude = longitude)]
 if (nrow(flagged)) {
   cc <- coarsen_coords(hab$latitude, hab$longitude)
   hab[, `:=`(lat = cc$lat, lon = cc$lon, unc = cc$uncertainty_m)]
-  coarse <- list(value = TRUE, method = sprintf("Reef coordinates (3 decimals in the deposit) generalised to the 0.1 degree cell centre with coarsen_coords(), uncertainty = cell half-diagonal; flagged taxa (IUCN via GBIF): %s",
-                                                 paste(sprintf("%s (%s)", flagged$scientificName, flagged$taxon_iucnCategory), collapse = ", ")))
+  coarse <- list(value = TRUE, method = sprintf("Reef coordinates (3 decimals in the deposit) generalised to the 0.1 degree cell centre with coarsen_coords(), uncertainty = cell half-diagonal; flagged taxa (IUCN via GBIF): %s%s",
+                                                 paste(sprintf("%s (%s)", flagged$scientificName, flagged$taxon_iucnCategory), collapse = ", "), "; reef names not shipped (E7.4)"))
 } else {
   hab[, `:=`(lat = latitude, lon = longitude, unc = NA_real_)]
   coarse <- list(value = FALSE, method = "As published (3 decimals); no taxon is IUCN CR, EN or VU and the source flags none")
 }
-units <- hab[, .(unit = reef_ID, unit_reef_name = reef_name, unit_reef_type = tolower(type), unit_pair = pair,
+units <- hab[, .(unit = reef_ID, unit_reef_type = tolower(type), unit_pair = pair,
                  unit_depth_m = depth, unit_deployment_year = deployment, unit_first_survey_year = first_year,
                  unit_decimalLatitude = lat, unit_decimalLongitude = lon, unit_coordinateUncertaintyInMeters = unc)]
 
@@ -147,38 +168,44 @@ periods <- per[, .(period, period_year = year, period_season = tolower(season),
                    period_n_reefs = sv[, uniqueN(reef_ID), by = period][match(per$period, period), V1])]
 stopifnot(nrow(periods) == 41, !anyDuplicated(periods$period))
 
-dataset <- list(
-  title = "Diver visual census counts of 171 reef fish taxa on 14 artificial and natural reefs, eastern Gulf of Mexico, quarterly 2013-2023",
-  creator = "Stallings, Christopher D.; Emory, Meaghan E.; Peake, Jonathan A.; Schram, Michael J.; Wall, Kara R.; Williams, Ian",
-  pubDate = "2024-12-09", sourceURL = "https://doi.org/10.5281/zenodo.14338634",
-  citation = "Stallings, C. D., Emory, M. E., Peake, J. A., Schram, M. J., Wall, K. R. & Williams, I. (2025). Ten years (2013-2023) of fish assemblage data collected seasonally with diver surveys on artificial and natural reefs. Ecology 106(5), e70108. https://doi.org/10.1002/ecy.70108. Data: Zenodo https://doi.org/10.5281/zenodo.14338634 (CC BY 4.0).",
-  paperDOI = "10.1002/ecy.70108", dataDOI = "10.5281/zenodo.14338634",
-  intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
-  abstract = "Stationary-point underwater visual census of reef fish on eight paired artificial and natural reefs (2013-2023) and six further artificial reefs (2020-2023) off west-central Florida. Each calendar quarter two divers made two to four 10-minute counts of every fish seen in a cylinder of up to 7.5 m radius (visibility-limited); 1,349 counts, 544,736 fish, 171 resolved taxa.",
-  samplingProtocol = "Stationary-point visual census by SCUBA divers: 10-minute counts of all fishes within an imaginary cylinder of radius up to 7.5 m (horizontal visibility) from the seafloor to the surface; two to four counts per reef per calendar quarter, usually two divers each making two counts; lengths estimated per fish or per school.",
-  samplingProtocolCode = "visual_census", occasionLength = "10 minutes", surveyEvidence = "sample_table",
-  surveyEvidenceNote = "surveys.csv lists all 1,349 counts; every fishes.csv row belongs to a listed count, so a taxon absent from a count's rows is a zero. The 17 codes missing from taxa.csv (larvae, bait fish, unknowns, unresolved family / genus codes; 183 rows) are dropped as taxa, not as surveys.",
-  responseType = "count", unitKind = "site",
-  closure = "occasion within period (the two to four counts of one reef in one quarter, made within minutes or a few days by side-by-side divers; the authors warn that within-survey sample units are not independent); open between quarters",
-  geographicCoverage = list(description = "Artificial and natural reefs 8-30 m deep off Pinellas and Manatee counties, west-central Florida, eastern Gulf of Mexico, USA",
-                            boundingBox = list(west = min(units$unit_decimalLongitude), east = max(units$unit_decimalLongitude), south = min(units$unit_decimalLatitude), north = max(units$unit_decimalLatitude))),
-  temporalCoverage = sprintf("%s/%s", min(sv$d), max(sv$d)),
-  coordinatesCoarsened = coarse,
-  notShipped = list(`fishes.csv size, school_mean_size, school_min_size, school_max_size` = "individual and school length estimates (biomass is rebuildable from the deposit with taxa.csv's length-weight coefficients)",
-                    `surveys.csv time_start, time_stop` = "clock times, several clearly mistyped; every count is 10 minutes",
-                    `17 species codes absent from taxa.csv` = sprintf("%s: %d rows, %d fish (larval fish, bait fish, unknowns, and family / genus codes the deposit does not define)",
-                                                                       paste(unres$species_code, collapse = ", "), sum(unres$rows), sum(unres$fish)),
-                    `AC5_FA16_1 ARPR second row` = "no number and no length beside a real row: an empty duplicate"))
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/stallings_2025_gulfreefs_count.R")
+emit <- function(TABLE, lg, tx2, un, exact) {
+  dataset <- list(
+    title = sprintf("Diver visual census counts of %d reef fish taxa on 14 artificial and natural reefs, eastern Gulf of Mexico, quarterly 2013-2023%s", nrow(tx2), if (exact) " (without IUCN-threatened taxa, coordinates as published)" else ""),
+    creator = "Stallings, Christopher D.; Emory, Meaghan E.; Peake, Jonathan A.; Schram, Michael J.; Wall, Kara R.; Williams, Ian",
+    pubDate = "2024-12-09", sourceURL = "https://doi.org/10.5281/zenodo.14338634",
+    citation = "Stallings, C. D., Emory, M. E., Peake, J. A., Schram, M. J., Wall, K. R. & Williams, I. (2025). Ten years (2013-2023) of fish assemblage data collected seasonally with diver surveys on artificial and natural reefs. Ecology 106(5), e70108. https://doi.org/10.1002/ecy.70108. Data: Zenodo https://doi.org/10.5281/zenodo.14338634 (CC BY 4.0).",
+    paperDOI = "10.1002/ecy.70108", dataDOI = "10.5281/zenodo.14338634",
+    intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
+    abstract = paste0("Stationary-point underwater visual census of reef fish on eight paired artificial and natural reefs (2013-2023) and six further artificial reefs (2020-2023) off west-central Florida. Each calendar quarter two divers made two to four 10-minute counts of every fish seen in a cylinder of up to 7.5 m radius (visibility-limited); 1,349 counts, 544,736 fish, 171 resolved taxa.", if (exact) sprintf(" This table omits the %d IUCN CR/EN/VU taxa so that reef coordinates and names ship as published; stallings_2025_gulfreefs_count has all 171 with coarsened coordinates.", nrow(flagged)) else ""),
+    samplingProtocol = "Stationary-point visual census by SCUBA divers: 10-minute counts of all fishes within an imaginary cylinder of radius up to 7.5 m (horizontal visibility) from the seafloor to the surface; two to four counts per reef per calendar quarter, usually two divers each making two counts; lengths estimated per fish or per school.",
+    samplingProtocolCode = "visual_census", occasionLength = "10 minutes", surveyEvidence = "sample_table",
+    surveyEvidenceNote = "surveys.csv lists all 1,349 counts; every fishes.csv row belongs to a listed count, so a taxon absent from a count's rows is a zero. The 17 codes missing from taxa.csv (larvae, bait fish, unknowns, unresolved family / genus codes; 183 rows) are dropped as taxa, not as surveys.",
+    responseType = "count", unitKind = "site",
+    closure = "dependent", occasionKind = "time", taxonInclusion = "recorded",
+    closureNote = "occasion within period (the two to four counts of one reef in one quarter, made within minutes or a few days by side-by-side divers; the authors warn that within-survey sample units are not independent); open between quarters",
+    geographicCoverage = list(description = "Artificial and natural reefs 8-30 m deep off Pinellas and Manatee counties, west-central Florida, eastern Gulf of Mexico, USA",
+                              boundingBox = list(west = min(un$unit_decimalLongitude), east = max(un$unit_decimalLongitude), south = min(un$unit_decimalLatitude), north = max(un$unit_decimalLatitude))),
+    temporalCoverage = sprintf("%s/%s", min(sv$d), max(sv$d)),
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("As published (3 decimals): the %d IUCN CR/EN/VU taxa are not in this table (E7.3)", nrow(flagged))) else coarse,
+    notShipped = c(if (exact) list(`IUCN CR/EN/VU taxa` = sprintf("%s: in stallings_2025_gulfreefs_count only, whose coordinates are coarsened", paste(flagged$taxon, collapse = ", "))) else
+                     list(unit_reef_name = "reef place names (E7.4); in stallings_2025_gulfreefs_exact_count"), list(`fishes.csv size, school_mean_size, school_min_size, school_max_size` = "individual and school length estimates (biomass is rebuildable from the deposit with taxa.csv's length-weight coefficients)",
+                      `surveys.csv time_start, time_stop` = "clock times, several clearly mistyped; every count is 10 minutes",
+                      `17 species codes absent from taxa.csv` = sprintf("%s: %d rows, %d fish (larval fish, bait fish, unknowns, and family / genus codes the deposit does not define)",
+                                                                         paste(unres$species_code, collapse = ", "), sum(unres$rows), sum(unres$fish)),
+                      `AC5_FA16_1 ARPR second row` = "no number and no length beside a real row: an empty duplicate")))
+  ds <- write_table(lg, TABLE, dataset, taxa = tx2, periods = periods, units = un, script = "data/stallings_2025_gulfreefs_count.R")
 
-stage_dict_row(TABLE,
-  description = "Ten years of quarterly diver visual-census counts of 171 reef fish taxa on 14 reefs (eight paired artificial / natural reefs from 2013, six artificial reefs from 2020) in the eastern Gulf of Mexico: 1,349 ten-minute counts, 2-4 per reef per quarter, with visibility, temperature, observer, reef type, depth and traits per taxon.",
-  url = "https://doi.org/10.5281/zenodo.14338634",
-  reference = "Stallings, C. D., Emory, M. E., Peake, J. A., Schram, M. J., Wall, K. R. & Williams, I. (2025). Ten years (2013-2023) of fish assemblage data collected seasonally with diver surveys on artificial and natural reefs. Ecology 106(5), e70108.",
-  doi_paper = "10.1002/ecy.70108", doi_data = "10.5281/zenodo.14338634", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Zeros from the count list (surveys.csv). 17 codes absent from taxa.csv (183 rows, incl. larvae and bait schools) not shipped. Lengths not shipped. Within-quarter counts are side-by-side divers; the authors warn they are not independent.",
-  source_via = "Zenodo")
-stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "N-mixture (community counts, multi-season)",
-  sampling_protocol = "visual_census", design = "Multi-season (41 quarters x 2-4 counts); paired artificial / natural reefs",
-  realm = "Marine", country = "USA", coordinates = if (isTRUE(coarse$value)) "Coarsened (0.1 deg)" else "As published",
-  notes = "Reef fish UVC; fish traits and length-weight coefficients in __taxa; reef pair as cluster_id.", status = "tagged")
+  stage_dict_row(TABLE,
+    description = sprintf("Ten years of quarterly diver visual-census counts of %d reef fish taxa%s on 14 reefs (eight paired artificial / natural reefs from 2013, six artificial reefs from 2020) in the eastern Gulf of Mexico: 1,349 ten-minute counts, 2-4 per reef per quarter, with visibility, temperature, observer, reef type, depth and traits per taxon.", nrow(tx2), if (exact) " (IUCN-threatened taxa omitted; coordinates as published)" else ""),
+    url = "https://doi.org/10.5281/zenodo.14338634",
+    reference = "Stallings, C. D., Emory, M. E., Peake, J. A., Schram, M. J., Wall, K. R. & Williams, I. (2025). Ten years (2013-2023) of fish assemblage data collected seasonally with diver surveys on artificial and natural reefs. Ecology 106(5), e70108.",
+    doi_paper = "10.1002/ecy.70108", doi_data = "10.5281/zenodo.14338634", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
+    notes = paste0(if (exact) "E7.3 sibling of stallings_2025_gulfreefs_count without the IUCN CR/EN/VU taxa. " else "", "Zeros from the count list (surveys.csv). 17 codes absent from taxa.csv (183 rows, incl. larvae and bait schools) not shipped. Lengths not shipped. Within-quarter counts are side-by-side divers; the authors warn they are not independent."),
+    source_via = "Zenodo")
+  stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "N-mixture (community counts, multi-season)",
+    sampling_protocol = "visual_census", design = "Multi-season (41 quarters x 2-4 counts); paired artificial / natural reefs",
+    realm = "Marine", country = "USA", coordinates = if (!exact && isTRUE(coarse$value)) "Coarsened (0.1 deg)" else "As published",
+    notes = "Reef fish UVC; fish traits and length-weight coefficients in __taxa; reef pair as cluster_id.", status = "tagged")
+}
+emit(TABLE, long, taxa, units, exact = FALSE)
+emit("stallings_2025_gulfreefs_exact_count", long[!taxon %in% flagged$taxon], taxa[!taxon %in% flagged$taxon], units_exact, exact = TRUE)

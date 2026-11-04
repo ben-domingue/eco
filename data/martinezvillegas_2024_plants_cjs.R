@@ -27,8 +27,10 @@
 #   line number within the species' file; the deposit has no tag ids), taxon = 6-letter code,
 #   period = census 1..T (annual censuses per the paper; calendar years not deposited, so no
 #   `date` and __periods carries only the index), y = 0/1 (detected above ground at the census).
-#   No `occasion` (one census per period). Rows before first detection are kept as 0 (E2), the full
-#   individual x census rectangle the history strings give. Survey evidence: deposited_matrix (the
+#   No `occasion` (one census per period). Rows before first detection are kept as 0, the full
+#   individual x census rectangle the history strings give (E4.4: plants first found after census 1
+#   are wild of unknown age, since the deposit and README say nothing of seedlings or age at marking,
+#   so they are at risk from census 1; no lost tags recorded; every history has a 1). Survey evidence: deposited_matrix (the
 #   0s inside MARK histories are censuses at which the marked plant was not found).
 #   No losses on capture (no negative freq). No coordinates or covariates deposited; Mammillaria
 #   hernandezii is IUCN EN (GBIF) but there is nothing to coarsen.
@@ -59,7 +61,7 @@ common <- list(
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
   samplingProtocol = "Censuses of individually marked plants in permanent study populations in Mexico; at each census every marked plant is searched for and recorded as found (1) or not found (0). Program MARK input for temporal-symmetry (Pradel) models.",
   samplingProtocolCode = "marked_plant_census", surveyEvidence = "deposited_matrix", responseType = "detection",
-  unitKind = "individual", closure = "period (one census per period; survival and recruitment between censuses)",
+  unitKind = "individual", closure = "none", closureNote = "period (one census per period; survival and recruitment between censuses)", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "Mexico (study populations not located in the deposit; no coordinates deposited)",
   temporalCoverage = "annual censuses (4 to 12 per species) before 2024; calendar years not stated in the deposit", coordinatesCoarsened = NA)
 

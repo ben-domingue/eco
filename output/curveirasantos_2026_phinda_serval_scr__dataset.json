@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "MYW2021_cam_op_site_effort_UTM.csv gives each camera site x day as 1 (operating), 0 (deployed, not operating) or NA (not deployed); a camera-day is surveyed iff 1 (4,470 of 11,700). Every detection falls on an operating camera-day. MYW43 never operated and has no rows.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (one season, Sept 2021 to Jan 2022, treated as closed by the authors)",
+  "closure": "closed",
+  "closureNote": "period (one season, Sept 2021 to Jan 2022, treated as closed by the authors)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Munywana Conservancy (Phinda Private Game Reserve), KwaZulu-Natal, South Africa; camera array centroid -27.9, 32.2 (0.1 degree); trap positions in __traps as local metres centred on the array",
   "temporalCoverage": "2021-09-17/2022-01-11",
   "crs": "local: metres, UTM 36S (EPSG:32736) easting/northing minus the array centroid (processor-centred)",
@@ -27,7 +30,7 @@
     "method": "trap coordinates centred on the array centroid by the processor (local metres; exact UTM 36S positions withheld) because leopard, cheetah and lion (IUCN VU) share the one camera array; the centroid is given at 0.1 degree in geographicCoverage"
   },
   "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Closed population, one session; occasion = calendar day as in the authors' oSCR code (they collapse occasions to counts with effort). One species per table (ruling #20); the six tables share traps and survey set.",
-  "notes": "unit_flank_profile = the set of flanks ever recorded for the individual; single-flank ids may duplicate an animal recorded on the other flank.",
+  "notes": "unit_identity = the flanks from which the individual is identified (both / left / right); single-flank ids may duplicate an animal recorded on the other flank.",
   "notShipped": {
     "output/": "simulation designs, simulation results (out_df_1..6.csv) and fitted oSCR null models: analysis outputs",
     "R/": "the authors' oSCR fitting and simulation code",
@@ -46,8 +49,8 @@
     "prop_zero": 0.999
   },
   "sampleFloor": "below (11 units < 30)",
-  "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_flank_profile", "obs_side"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_identity", "obs_side"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/curveirasantos_2026_phinda_carniv_scr.R",
   "buildDate": "2026-11-03"

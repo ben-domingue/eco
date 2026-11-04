@@ -125,7 +125,7 @@ dataset <- list(
   abstract = "Autonomous recording units at three positions on each of 189 transects crossing the boundary between a regenerating timber harvest (1-42 years since harvest) and undisturbed aspen or spruce forest in boreal Alberta: 150 m into the regenerating stand (N15), on the edge (E0) and 150 m into the forest (P15). Each location was visited (one recording interpreted) one to five times in a single season; 34 songbird species identified within 150 m of the recorder, 0/1 per visit. The deposit is the analysis-ready input of the authors' 34-species multispecies occupancy model; the sampling year, calendar dates and recording length are not deposited.",
   samplingProtocol = "Autonomous recording units (ARUs; WildTrax processing) at 150 m spacing across harvest-forest edges; detections within a 150 m radius; one to five recordings per location interpreted as visits; the deposit is the Stan input of the authors' multispecies occupancy model.",
   samplingProtocolCode = "acoustic", surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Boreal forest of Alberta, Canada, 49-59 N, 111-120 W; recorder coordinates as published",
   temporalCoverage = "not deposited (one season per transect; the Stan model has no year effect; the deposit was published 2026-09)",
   coordinatesCoarsened = list(value = FALSE, method = "kept as published (6 decimals); no taxon is IUCN CR/EN/VU"),

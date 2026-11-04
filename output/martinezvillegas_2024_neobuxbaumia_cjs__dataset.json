@@ -15,7 +15,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (one census per period; survival and recruitment between censuses)",
+  "closure": "none",
+  "closureNote": "period (one census per period; survival and recruitment between censuses)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "Mexico (study populations not located in the deposit; no coordinates deposited)",
   "temporalCoverage": "annual censuses (4 to 12 per species) before 2024; calendar years not stated in the deposit",
   "coordinatesCoarsened": null,
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/martinezvillegas_2024_plants_cjs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

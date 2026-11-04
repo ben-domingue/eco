@@ -17,14 +17,17 @@
   "surveyEvidence": "row_presence",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "period (study year; dynamic occupancy between years, N-mixture within)",
+  "closure": "closed",
+  "closureNote": "period (study year; dynamic occupancy between years, N-mixture within)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Headwater streams of south-eastern Kentucky, USA (Central Appalachia coalfield); no coordinates deposited",
   "temporalCoverage": "three consecutive years before December 2015 (calendar years not stated in the deposit)",
   "coordinatesCoarsened": null,
   "notShipped": {
     "price_et_al_2018.R, price_et_al_2018_jags.R": "analysis code; no model outputs are deposited"
   },
-  "notes": "taxon is the deposit's species x life-stage count column (taxon_deposited_column in __taxa): GP and PR pool all stages; DESSPPL is Desmognathus larvae not identified to species. The deposit has no codebook; the column-to-taxon reading follows the paper's species list and should be checked against it. period is the study year (calendar years not deposited); obs_day_of_year is the deposited JulianDate. obs_precip and obs_conductivity are as deposited (units not stated; the authors standardise precipitation in code). Conductivity is missing for three surveyed visits. period_cover_objects is the number of cover objects searched in the reach that year.",
+  "notes": "taxon is the deposit's species x life-stage count column (taxon_deposited_column and lifeStage in __taxa): GP and PR pool all stages; DESSPPL is Desmognathus larvae not identified to species. The deposit has no codebook; the column-to-taxon reading follows the paper's species list and should be checked against it. period is the study year (calendar years not deposited); obs_day_of_year is the deposited JulianDate. obs_precip and obs_conductivity are as deposited (units not stated; the authors standardise precipitation in code). Conductivity is missing for three surveyed visits. period_cover_objects is the number of cover objects searched in the reach that year.",
   "summary": {
     "n_rows": 1610,
     "n_units": 23,
@@ -37,8 +40,8 @@
   },
   "sampleFloor": "below (23 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_mtr", "period_cover_objects", "obs_day_of_year", "obs_precip", "obs_conductivity"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/price_2018_mtr_salamanders_count.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

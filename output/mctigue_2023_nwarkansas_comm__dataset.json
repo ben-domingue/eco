@@ -20,7 +20,10 @@
   "surveyEvidenceNote": "Surveyed camera-weeks = calendar weeks overlapping the first-to-last detection span of each camera-year (all detections, people included). The deposited deployment Start/End fields were not believed: 4,349 detections fall outside their own row's window.",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion (weeks within a winter season)",
+  "closure": "closed",
+  "closureNote": "occasion (weeks within a winter season)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Northwest Arkansas, USA (Fayetteville to the Ozark Mountains; no coordinates deposited)",
   "temporalCoverage": "2020-12/2022-03",
   "coordinatesCoarsened": null,
@@ -42,8 +45,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "cluster_id", "obs_camera_days"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/mctigue_2023_nwarkansas_comm.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

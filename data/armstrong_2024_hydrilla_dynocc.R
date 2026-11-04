@@ -105,7 +105,7 @@ dataset <- list(
   samplingProtocolCode = "visual_survey", surveyEvidence = "row_presence",
   surveyEvidenceNote = "A survey exists where All_Data.csv has a row for the pool-date. 196 pool-dates have 2-4 rows (184 identical copies, 12 with both a 0 and a 1); they are one visit each, because the deposit's own visit record (Days_since_occupancy.csv) never shows a 0-day interval after a pool's first visit. For the 12 conflicting visits y = 1; obs_n_records is the number of source rows.",
   responseType = "detection", unitKind = "site",
-  closure = "not assumed within year by the source: the authors treat each survey as a primary period (within-year colonisation and extinction); period = year here, occasion = survey within year, so a user fitting colext with years as seasons assumes closure the source did not",
+  closure = "open", closureNote = "not assumed within year by the source: the authors treat each survey as a primary period (within-year colonisation and extinction); period = year here, occasion = survey within year, so a user fitting colext with years as seasons assumes closure the source did not", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Rock pools on the bedrock of the James River fall line, Richmond, Virginia, USA (37.53 N, 77.45 W)",
   temporalCoverage = "2017-06/2021-10", coordinatesCoarsened = list(value = FALSE, method = "as published: Hydrilla verticillata is an invasive non-native species, not flagged"),
   crs = "EPSG:4326",

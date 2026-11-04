@@ -17,27 +17,30 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (annual sightings; survival between years)",
+  "closure": "none",
+  "closureNote": "period (annual sightings; survival between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "East coast of Scotland, UK: Moray Firth SAC and St Andrews Bay / Tay estuary; no coordinates deposited",
   "temporalCoverage": "1990/2015",
   "coordinatesCoarsened": null,
-  "notes": "Calf ids are row numbers. Years before a calf's first sighting (its birth year by the paper's inclusion rule) are kept as 0 (E4); condition on first sighting to reproduce the paper's data. unit_mark_group carries the deposit's two MARK group columns (g1 = '1 0', 19 calves; g2 = '0 1', 37 calves); the paper's groups are first-born and subsequently born calves, but the deposit does not say which is which. Calf detection depends strongly on sighting the mother (inclusion requires the mother seen in the three years after birth). Calves may later appear among the marked juveniles/adults of the sibling robust-design table; the deposit has no ids to link them.",
+  "notes": "Calf ids are row numbers. Each calf's rows begin in its birth year (its first sighting, by the paper's inclusion rule), E4.4 for individuals marked at birth; this is the paper's conditioning on first sighting. unit_mark_group carries the deposit's two MARK group columns (g1 = '1 0', 19 calves; g2 = '0 1', 37 calves); the paper's groups are first-born and subsequently born calves, but the deposit does not say which is which. Calf detection depends strongly on sighting the mother (inclusion requires the mother seen in the three years after birth). Calves may later appear among the marked juveniles/adults of the sibling robust-design table; the deposit has no ids to link them.",
   "notShipped": {
     "group labels": "the deposit's group columns are unlabelled; not mapped to first-born / subsequent"
   },
   "summary": {
-    "n_rows": 1456,
+    "n_rows": 452,
     "n_units": 56,
     "n_taxa": 1,
     "n_periods": 26,
     "n_occasions": 1,
-    "n_surveys": 1456,
+    "n_surveys": 452,
     "y_values": "0,1",
-    "prop_zero": 0.804
+    "prop_zero": 0.369
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_mark_group"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/arsocivil_2019_scotland_dolphincalf_cjs.R",
   "buildDate": "2026-11-03"

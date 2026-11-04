@@ -136,7 +136,7 @@ dataset <- list(
   samplingProtocolCode = "camera_trap", occasionLength = "1 day",
   surveyEvidence = "inferred",
   surveyEvidenceNote = "Setup dates and 185 downtime windows are deposited; no retrieval dates. The study end (2022-06-30) is the paper's 'June 2022' (abstract); every camera is assumed to run from setup to that date outside its downtime windows. 13 contacts inside downtime windows (windows mark compromised as well as dead cameras) and 2 after the study end were dropped so that detections and the survey set agree.",
-  responseType = "detection", unitKind = "site", closure = "period (meteorological season; the processor's binning, not the authors', whose season definition is in the paywalled methods)",
+  responseType = "detection", unitKind = "site", closure = "closed", closureNote = "period (meteorological season; the processor's binning, not the authors', whose season definition is in the paywalled methods)", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Mont-Blanc massif, Haute-Savoie, France (6.84-7.01 E, 45.88-46.05 N), 1,227-2,740 m",
   temporalCoverage = "2017-09-07/2022-06-30",
   coordinatesCoarsened = list(value = FALSE, method = "kept as published (Least Concern taxon; stations on open mountain terrain)"),

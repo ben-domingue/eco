@@ -54,10 +54,14 @@
 #   Coordinates: section coordinates are averaged to one point per transect (not finer than the
 #   source); the script checks each species' IUCN category through GBIF and coarsens if any is
 #   CR / EN / VU.
-#   Not shipped: section-level counts (summed into y); records to family or order (not a taxon of
-#   the community, and the zeros of the species they may belong to stay as recorded); subspecies
+#   Records to family or order (unidentified individuals) are their own taxa at that rank (v1.1 E6);
+#   the zeros of the species they may belong to stay as recorded.
+#   Not shipped: section-level counts (summed into y); subspecies
 #   epithets (one per species, kept out of the code); volunteer names; the per-event
 #   sampleSize (250 m2) and samplingEffort text (constant).
+#   v1.1: closure = open (year-long season of walks), occasionKind = time, taxonInclusion =
+#   recorded (species, families and the order with at least one record). IUCN check through
+#   iucn_category().
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "peer_2014_bmsil_butterfly_count"
 
@@ -91,11 +95,15 @@ oc[, `:=`(visit = sub("-.*$", "", eventID), name = gsub("\\s+", " ", trimws(scie
 stopifnot(oc[, .(n = uniqueN(recordedBy)), by = visit][, all(n == 1)])
 higher <- c("Lepidoptera", "Pieridae", "Lycaenidae", "Hesperiidae", "Satyridae", "Nymphalidae", "Papilionidae")
 stopifnot(all(higher %in% oc$name), all(grepl(" ", setdiff(unique(oc$name), higher))))
-spo <- oc[!name %in% higher & occurrenceStatus == "present"]
+# v1.1 (E6): records the source identified only to family or order are their own taxa at that rank
+spo <- oc[occurrenceStatus == "present"]
 sp <- data.table(binomial = sort(unique(spo$name)))
-sp[, taxon := toupper(paste0(substr(sub(" .*$", "", binomial), 1, 4), substr(sub("^\\S+ ", "", binomial), 1, 4)))]
-stopifnot(nrow(sp) == 81, !anyDuplicated(sp$taxon),
-          spo[, uniqueN(infraspecificEpithet), by = name][, all(V1 == 1)])
+sp[, higher := binomial %in% higher]
+sp[, taxon := fifelse(higher, toupper(substr(binomial, 1, 8)),
+                      toupper(paste0(substr(sub(" .*$", "", binomial), 1, 4), substr(sub("^\\S+ ", "", binomial), 1, 4))))]
+sp[, rank := fifelse(!higher, "species", fifelse(binomial == "Lepidoptera", "order", "family"))]
+stopifnot(sum(!sp$higher) == 81, setequal(sp[higher == TRUE, binomial], higher), !anyDuplicated(sp$taxon),
+          spo[!name %in% higher, uniqueN(infraspecificEpithet), by = name][, all(V1 == 1)])
 counts <- spo[, .(y = sum(as.integer(organismQuantity))), by = .(visit, name)]
 counts[, taxon := sp$taxon[match(name, sp$binomial)]]
 
@@ -158,19 +166,25 @@ units <- merge(ev[, .(unit_locality = locality[1], unit_n_sections = as.integer(
 stopifnot(nrow(units) == 39)
 
 # taxa and the IUCN check
-look <- c("Anaphaeis aurota" = "Belenois aurota", "Apharitis cilissa" = "Cigaritis cilissa")   # source spellings GBIF does not match
-taxa <- make_taxa(sp$taxon, sp$binomial, lookupName = fifelse(sp$binomial %in% names(look), look[sp$binomial], sp$binomial))
+look <- c("Anaphaeis aurota" = "Belenois aurota", "Apharitis cilissa" = "Cigaritis cilissa",   # source spellings GBIF does not match
+          # v1.1 make_taxa(exact = TRUE): bare "Melitaea ornata" fell to the genus Melitaea (HIGHERRANK)
+          # in v1.0; with its authority it matches the species name EXACTLY (GBIF files it as a synonym
+          # of M. phoebe, gbifAcceptedName). Tarucus rosaceus is the backbone's T. rosacea (gender ending).
+          "Melitaea ornata" = "Melitaea ornata Christoph, 1893", "Tarucus rosaceus" = "Tarucus rosacea")
+taxa <- make_taxa(sp$taxon, sp$binomial, taxonRank = sp$rank,
+                  lookupName = fifelse(sp$binomial %in% names(look), look[sp$binomial], sp$binomial),
+                  allow_higher = sp[higher == TRUE, taxon])
 stopifnot(!anyNA(taxa$taxonID))
-iucn <- function(id) {
-  if (is.na(id)) return(NA_character_)
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- fromJSON(fp); if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
-}
-taxa[, taxon_iucnCategory := sapply(taxonID, iucn)]
+taxa[taxon %in% sp[higher == TRUE, taxon],
+     taxonRemarks := "individuals the walker could not identify to species, recorded by the source at this rank; not a sum of the species rows"]
+taxa[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+# ten NA answers: GBIF keys these under another accepted name (Cigaritis acamas, Pseudophilotes
+# baton, ...), but each IUCN record carries the source's own name, so it is the same species;
+# every one of the ten records says NE (checked 2026-11-03), taken as NE
+NA10 <- c("APHAACAM", "CHILGALB", "COLILIBA", "EUCHCHAR", "LYCATHER", "MELIORNA", "PSEUVICR", "SATYILIC", "SATYSPIN", "SPIAORBI")
+stopifnot(setequal(taxa[is.na(taxon_iucnCategory) & taxonRank == "species", taxon], NA10))
+taxa[taxon %in% NA10, taxon_iucnCategory := "NE"]
+taxa[taxonRank != "species", taxon_iucnCategory := NA_character_]   # IUCN assesses species, not families
 print(taxa[, .N, by = taxon_iucnCategory])
 flagged <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU")]
 cat("  IUCN flagged:", if (nrow(flagged)) paste(flagged$scientificName, flagged$taxon_iucnCategory) else "none", "\n")
@@ -192,7 +206,7 @@ stopifnot(nrow(surveys) == 1846, !anyDuplicated(surveys[, .(unit, period, occasi
 long <- surveys[rep(seq_len(.N), each = nrow(sp))][, taxon := rep(sp$taxon, times = nrow(surveys))]
 long <- merge(long, counts[, .(visit, taxon, y)], by = c("visit", "taxon"), all.x = TRUE)
 long[is.na(y), y := 0L]; long[, visit := NULL]
-stopifnot(nrow(long) == 1846 * 81, sum(long$y) == sum(as.integer(spo$organismQuantity)))
+stopifnot(nrow(long) == 1846 * nrow(sp), sum(long$y) == sum(as.integer(spo$organismQuantity)))
 long <- order_eco(long)
 
 periods <- data.table(period = seq_along(seasons), period_season = sprintf("%d/%02d", seasons, (seasons + 1) %% 100),
@@ -206,21 +220,21 @@ dataset <- list(
   citation = "Peer I (2014). Israeli Butterfly Monitoring Scheme (BMS-IL). v6.17. ILS - Israeli Lepidopterists' society. Dataset/Samplingevent. https://doi.org/10.15468/q4lynx (CC0 1.0).",
   dataDOI = "10.15468/q4lynx",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Volunteer Pollard walks of the Israeli Butterfly Monitoring Scheme: 39 transects of 50 m sections (300-600 m) across Israel, walked about every two weeks, mostly October to June, with every butterfly within 5 m counted per section. 1,846 walks from October 2009 to November 2015, 220 of them with no butterfly seen; counts summed over the sections of a walk; 81 species.",
-  samplingProtocol = "Pollard walk: the whole transect is walked (partial walks are not recorded), every butterfly within an imaginary 5 x 5 x 5 m cube counted per 50 m section; unidentified individuals recorded to family (not shipped); a walk with no butterfly recorded as an explicit absence event; start time and weather recorded per walk.",
+  abstract = "Volunteer Pollard walks of the Israeli Butterfly Monitoring Scheme: 39 transects of 50 m sections (300-600 m) across Israel, walked about every two weeks, mostly October to June, with every butterfly within 5 m counted per section. 1,846 walks from October 2009 to November 2015, 220 of them with no butterfly seen; counts summed over the sections of a walk; 81 species plus 7 family- or order-level taxa for butterflies the walker could not identify to species.",
+  samplingProtocol = "Pollard walk: the whole transect is walked (partial walks are not recorded), every butterfly within an imaginary 5 x 5 x 5 m cube counted per 50 m section; unidentified individuals recorded to family (shipped as family-level taxa); a walk with no butterfly recorded as an explicit absence event; start time and weather recorded per walk.",
   samplingProtocolCode = "transect_count", occasionLength = "one transect walk (about 30 minutes)",
   surveyEvidence = "row_presence",
   surveyEvidenceNote = "A walk exists where event.txt has any row for its visit id: section events for walks with sightings and an explicit s00 absence event (Lepidoptera, 0) for each of the 221 walks with none; the protocol records only whole-transect walks. Two visit ids that are one empty walk of TR003 on 2014-10-29 are one survey.",
   responseType = "count", unitKind = "site",
-  closure = "not assumed: visits every two weeks through a season of up to a year follow each species' flight period; period = monitoring season from 1 October",
+  closure = "open", closureNote = "not assumed: visits every two weeks through a season of up to a year follow each species' flight period; period = monitoring season from 1 October",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Israel, from the Golan and Galilee to the Negev (39 transects)",
                             boundingBox = list(west = bb$w, east = bb$e, south = bb$s, north = bb$n)),
   temporalCoverage = sprintf("%s/%s", min(vis$d), max(vis$d)),
   coordinatesCoarsened = if (COARSEN) list(value = TRUE, method = sprintf("0.1 degree cell centres (coarsen_coords), because %s is IUCN %s", paste(flagged$scientificName, collapse = ", "), paste(flagged$taxon_iucnCategory, collapse = ", "))) else
     list(value = FALSE, method = "As published, averaged: the centroid of each transect's section coordinates, uncertainty half the section spread + 25 m; TR017 has no coordinates in the source; no species is IUCN CR, EN or VU (checked through GBIF)"),
   notShipped = list(`section counts` = "summed over the sections of each walk into y (the EML's own instruction); section-level zeros cannot be evidenced because empty sections have no event",
-                    `records to family or order` = "Pieridae 314, Lycaenidae 166, Hesperiidae 26, Satyridae 20, Nymphalidae 15, Papilionidae 1 and Lepidoptera 1 records of unidentified butterflies; the species zeros at those walks stay as recorded",
-                    `recordedBy` = "volunteer names, replaced by pseudonymous observer ids",
+                                        `recordedBy` = "volunteer names, replaced by pseudonymous observer ids",
                     `infraspecificEpithet` = "one subspecies name per species where given; not part of the taxon code",
                     `duplicate rows` = "13 repeated event x taxon rows (visit 3481's Azanus jesous records over five sections appear twice) are summed as deposited",
                     `measurementorfact temperature` = "values of 0 (240 section events) and above 50 are set to NA in obs_temperature_c"))
@@ -231,7 +245,7 @@ stage_dict_row(TABLE,
   url = "https://doi.org/10.15468/q4lynx",
   reference = "Peer I (2014). Israeli Butterfly Monitoring Scheme (BMS-IL). v6.17. ILS - Israeli Lepidopterists' society. Dataset/Samplingevent.",
   doi_data = "10.15468/q4lynx", original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "Zeros from the walk list (empty walks carry an explicit absence event). Sections summed. Family-level records not shipped. Season = 1 October to 30 September. Temperature 0 / >50 set to NA.",
+  notes = "Zeros from the walk list (empty walks carry an explicit absence event). Sections summed. Family- and order-level records are their own taxa (E6). Season = 1 October to 30 September. Temperature 0 / >50 set to NA.",
   source_via = "GBIF (EU BON IPT)")
 stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (multi-species, multi-season)",
   sampling_protocol = "transect_count", design = "Multi-season (7 seasons x up to 27 fortnightly walks per transect)",

@@ -40,7 +40,11 @@
 #   encounter iff any plant of that plot has a row at that encounter (their `plotssurveyed` table);
 #   every plant tagged in the plot (anywhere in 2013-2015) is a survey row at every visit of its
 #   plot in all three years, 0 where it has no row (their tidyr::complete(..., fill = "0")), rows
-#   before first detection included (E2). Two rows for one plant-visit (17) are one visit: y = the
+#   before first detection included (E4.4: a plant of unknown age is at risk from the start).
+#   Exception (E4.4, marked as a seedling): a plant whose first found record of the year carries a
+#   field comment on cotyledons (17 plants first found in 2014, 251 in 2015) germinated that year,
+#   so it has no rows in earlier years (within its first year every visit of the plot is a row).
+#   2013 comments never mention cotyledons, so 2013 seedlings cannot be told apart. Two rows for one plant-visit (17) are one visit: y = the
 #   highest state, covariates from the reproductive (or first) record.
 #   obs_: length_cm, fruits, browsed (from the plant's row; NA where there is none), comment.
 # Mapping, deprengerlevin_2024_astragalus_ms (E9 core, multi-state CJS / Pradel; individual units):
@@ -55,7 +59,10 @@
 #   from 1995 (plots 238 and 300 from 1996, 598 from 2004, the 11 Cebolla Creek plots at sites 1-2
 #   from 2014, as the authors' code states) to 2022, except plots 581, 89 and 578, last censused in
 #   2011, 2019 and 2020. Every plant of a plot is a row in every census year of its plot, 0 where it
-#   has no observation, rows before first sighting included (E2). The authors' Pradel layout fills
+#   has no observation, rows before first sighting included (E4.4: a plant of unknown age is at
+#   risk from its plot's first census), except that a plant first seen as a seedling (stage
+#   seedling in its first above-ground year) germinated that year and has no rows before it
+#   (E4.4, marked as a seedling). The authors' Pradel layout fills
 #   zeros over 1995-2022 for every plot; the three plots are not extended here, because nothing in
 #   the deposit shows they were censused later.
 #   period_fenced (plot-year), obs_length_cm, obs_fruits, obs_browsed, cluster_id = plot, unit_site.
@@ -110,6 +117,14 @@ long1 <- grid[, .(unit, taxon = "ASTMIC", y = fifelse(is.na(state), 0L, state), 
                   period = as.integer(Year - 2012), occasion = as.integer(encounter),
                   date = as.character(as.IDate(sprintf("%d-01-01", Year)) + Day - 1L), cluster_id = as.character(Plot),
                   obs_length_cm = Ln, obs_fruits = Fr, obs_browsed = Br, obs_comment = comment, unit_site = as.integer(Site))]
+# E4.4: a plant first found with cotyledons is a seedling marked that year: no rows in earlier years
+fy <- d[Obs == 1, .(fy = min(Year)), by = unit]
+sdl <- merge(d, fy, by = "unit")[Year == fy & grepl("cotyled", Comments, ignore.case = TRUE), .(fy = fy[1]), by = unit]
+stopifnot(identical(as.integer(table(sdl$fy)), c(17L, 251L)), all(sdl$fy %in% 2014:2015))
+n_before <- nrow(long1)
+long1 <- long1[!(unit %in% sdl$unit & period < sdl$fy[match(unit, sdl$unit)] - 2012L)]
+stopifnot(long1[unit %in% sdl$unit, all(period >= sdl$fy[match(unit, sdl$unit)] - 2012L)], n_before - nrow(long1) == 1676L)
+cat(sprintf("  robust design: %d seedling-first plants; %d rows before their first year dropped\n", nrow(sdl), n_before - nrow(long1)))
 long1 <- order_eco(long1)
 stopifnot(!anyDuplicated(long1[, .(unit, period, occasion)]), sum(long1$y > 0) == sum(v1$state > 0),
           uniqueN(long1$unit) == 1970L, all(long1$y %in% 0:3))
@@ -125,8 +140,8 @@ ds1 <- write_table(long1, T1, c(common, list(
   abstract = "Within-season visits (up to ten encounter periods per year, March to October) to permanently tagged plants of the endangered skiff milkvetch in 18 (2013) and 28 (2014-2015) plots at six sites. y = the plant's observed above-ground state at the visit: 0 not found (vegetative dormancy or missed), 1 vegetative, 2 reproductive (flowers or fruit), 3 found, status not recorded. The paper fits a Huggins closed robust design with multi-state probabilities to these visits.",
   samplingProtocol = "Tagged plants (10-inch nails and numbered metal tags) in 3-m-radius circular plots searched at each visit; stem length, flowering or fruiting, fruit count and browsing recorded for each plant found.",
   surveyEvidence = "inferred",
-  surveyEvidenceNote = "2013 records every tagged plant at every plot visit (deposited zeros, y_raw = 0); 2014 and 2015 record only plants found. A plot was visited at an encounter iff any of its plants has a row then, and every plant tagged in the plot in 2013-2015 is a row at every visit of its plot in all three years, 0 where the plant has no row (y_raw empty). This is the authors' own layout (tidyr::complete with fill 0 and their plotssurveyed table, Zenodo code). Rows before a plant's first detection are kept (E2).",
-  closure = "occasion within period (robust design: closed within a growing season, open between years); the plant's flowering state changes within a season (the authors assign a season-level stratum, R if ever reproductive)",
+  surveyEvidenceNote = "2013 records every tagged plant at every plot visit (deposited zeros, y_raw = 0); 2014 and 2015 record only plants found. A plot was visited at an encounter iff any of its plants has a row then, and every plant tagged in the plot in 2013-2015 is a row at every visit of its plot in all three years, 0 where the plant has no row (y_raw empty). This is the authors' own layout (tidyr::complete with fill 0 and their plotssurveyed table, Zenodo code). Rows before a plant's first detection are kept (E4.4, unknown age), except for the 268 plants first found with cotyledons in 2014 or 2015 (seedlings), which have no rows in earlier years.",
+  closure = "closed", closureNote = "occasion within period (robust design: closed within a growing season, open between years); the plant's flowering state changes within a season (the authors assign a season-level stratum, R if ever reproductive)", occasionKind = "time", taxonInclusion = "single",
   stateCodes = list(`0` = "not found above ground at the visit", `1` = "vegetative (found, no flowers or fruit)", `2` = "reproductive (flowers or fruit)", `3` = "found, reproductive status not recorded"),
   temporalCoverage = "2013-03/2015-10",
   occasionCodes = list(note = "occasion = the source's encounter period (1-10), a fixed within-year calendar bin; only visited bins occur"),
@@ -184,6 +199,13 @@ long2 <- g[, .(unit = as.character(tag), taxon = "ASTMIC", y = fifelse(is.na(lab
                y_raw = lab, period = year - 1994L, cluster_id = as.character(plot),
                period_fenced = as.integer(fenced == "y"), obs_length_cm = length, obs_fruits = fruits,
                obs_browsed = as.integer(browse), unit_site = site)]
+# E4.4: a plant first seen above ground as a seedling germinated that year: no rows before it
+long2[, fsy := min(period[y > 0]), by = unit]
+long2[, sfirst := y[period == fsy][1] == 1L, by = unit]
+n_sdl <- uniqueN(long2[sfirst == TRUE, unit]); n_before <- nrow(long2)
+long2 <- long2[!(sfirst & period < fsy)][, c("fsy", "sfirst") := NULL]
+stopifnot(n_sdl == 2460L, n_before - nrow(long2) == 26111L)
+cat(sprintf("  annual: %d seedling-first plants; %d rows before their first year dropped\n", n_sdl, n_before - nrow(long2)))
 long2 <- order_eco(long2)
 stopifnot(!anyDuplicated(long2[, .(unit, period)]), uniqueN(long2$unit) == 4042L, !anyNA(long2$y),
           sum(long2$y > 0) == ob[lab %in% names(smap)[1:3], .N], sum(long2$y_raw == "dead", na.rm = TRUE) == ob[lab == "dead", .N])
@@ -198,8 +220,8 @@ ds2 <- write_table(long2, T2, c(common, list(
   abstract = "Every July since 1995, all plants of the endangered skiff milkvetch in 3-m-radius plots at four (from 2014 six) sites were tagged and their stage recorded. y = the stage observed above ground that year (0 not seen, 1 seedling, 2 vegetative, 3 reproductive). The source's inferred dormant stage (no growth seen but the plant seen before and after) and inferred death are kept in y_raw and are y = 0, so the table is the observation record a Pradel or multi-state CJS model needs, with vegetative dormancy unobservable.",
   samplingProtocol = "Annual census during fruiting (late July) of all plants in 3-m-radius circular plots; plants marked with 10-inch nails and numbered metal tags; stem length, fruits and browsing recorded; plots fenced against mammal browsing in some years.",
   surveyEvidence = "inferred",
-  surveyEvidenceNote = "A plant-year observation is the stage of that year's row or, failing that, the fate of the previous year's row (a row exists only when the next year's transition was recorded, so a plot's last census and some single years appear only as fates). A plot was censused in a year iff any of its plants has an observation then (including the source's dormant and dead); spans are contiguous, from 1995 (238 and 300 from 1996, 598 from 2004, sites 1-2 from 2014) to 2022, except plots 581, 89 and 578 (last censused 2011, 2019, 2020). Every plant of a plot is a row in every census year of the plot, 0 where it has no observation (y_raw empty); rows before first sighting are kept (E2). The authors' Pradel layout instead fills zeros over 1995-2022 for all plots.",
-  closure = "period (one census per year; survival, recruitment and stage transitions between years)",
+  surveyEvidenceNote = "A plant-year observation is the stage of that year's row or, failing that, the fate of the previous year's row (a row exists only when the next year's transition was recorded, so a plot's last census and some single years appear only as fates). A plot was censused in a year iff any of its plants has an observation then (including the source's dormant and dead); spans are contiguous, from 1995 (238 and 300 from 1996, 598 from 2004, sites 1-2 from 2014) to 2022, except plots 581, 89 and 578 (last censused 2011, 2019, 2020). Every plant of a plot is a row in every census year of the plot, 0 where it has no observation (y_raw empty); rows before first sighting are kept (E4.4, unknown age), except that a plant first seen as a seedling has no rows before that year (E4.4, marked as a seedling). The authors' Pradel layout instead fills zeros over 1995-2022 for all plots.",
+  closure = "none", closureNote = "period (one census per year; survival, recruitment and stage transitions between years)", occasionKind = "none", taxonInclusion = "single",
   stateCodes = list(`0` = "not seen above ground (y_raw dormant = source-inferred dormancy; dead = source-inferred death; empty = no source observation)", `1` = "seedling", `2` = "vegetative", `3` = "reproductive (flowers or fruit)"),
   temporalCoverage = "1995/2022",
   designNote = "Ruling 2026-11-02: y records only what was observed above ground; the source's dormant code, inferred from later sightings, goes in y_raw.",

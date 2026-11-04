@@ -306,15 +306,70 @@ ch_to_eco <- function(df, taxon = "SP1", ch_col = "ch", freq_col = "freq") {
   long[, occasion := NULL]
   long
 }
+#' @param by_period For `eco_to_ch()`: `FALSE` (the default) gives one history
+#'   per individual across all periods and occasions (CJS, MARK); `TRUE` gives one
+#'   history per individual x period across that period's occasions, with a
+#'   `period` column, for closed models fitted session by session (`secr`, M0/Mt/Mh).
+#' @param fill For `eco_to_ch()`: what to write in a history cell that has no row
+#'   because the individual was not at risk (standard E4.4). A named character
+#'   vector `c(before = "0", gap = ".", after = ".")` (the default): `before` the
+#'   individual's first row (an animal marked at birth or hatching, whose rows begin
+#'   at its marking period) a `"0"`, which CJS ignores because it conditions on
+#'   first capture and which MARK and `marked` expect, since histories have one
+#'   length; within the history (`gap`) and `after` its last row (removed, mark lost)
+#'   a `"."`, MARK's code for an occasion at which the animal could not be
+#'   encountered, because a `"0"` there would be read as a missed detection of a
+#'   live, marked animal and bias survival low. `fill = NULL` stops on any absent
+#'   cell, as before.
+#' @param drop_zero_sessions With `by_period = TRUE`, drop the individual x period
+#'   histories with no capture (standard E4.4, ruling #30): the table keeps them,
+#'   because the individual was at risk and the session happened, but a closed
+#'   model conditioned on capture cannot use them. A message says how many.
 #' @rdname ch_to_eco
 #' @export
-eco_to_ch <- function(long, collapse_freq = TRUE) {
+eco_to_ch <- function(long, collapse_freq = TRUE, by_period = FALSE, drop_zero_sessions = TRUE,
+                      fill = c(before = "0", gap = ".", after = ".")) {
   long <- as.data.table(long)
+  if (by_period && "period" %in% names(long)) {
+    per <- sort(unique(long$period))
+    out <- lapply(per, function(p) {
+      sub <- long[period == p]
+      sub[, period := NULL]
+      if (drop_zero_sessions) {
+        hit <- sub[, .(any_y = any(y > 0)), by = unit]
+        sub <- sub[unit %in% hit[any_y == TRUE, unit]]
+      }
+      if (!nrow(sub)) return(NULL)
+      h <- eco_to_ch(sub, collapse_freq = collapse_freq, fill = fill)
+      cbind(period = p, h)
+    })
+    if (drop_zero_sessions) {
+      n_all <- nrow(unique(long[, .(unit, period)]))
+      n_hit <- nrow(unique(long[y > 0, .(unit, period)]))
+      if (n_all > n_hit) message(sprintf("eco_to_ch(): dropped %d of %d individual x period histories with no capture (drop_zero_sessions = TRUE)",
+                                         n_all - n_hit, n_all))
+    }
+    return(do.call(rbind, out))
+  }
   if (!"occasion" %in% names(long)) long[, occasion := 1L]
   a <- eco_to_array(long)
   CH <- a$y
-  if (any(is.na(CH))) stop("capture history has unsurveyed cells; marked cannot represent this")
-  ch <- apply(CH, 1, paste, collapse = "")
+  if (any(is.na(CH))) {
+    if (is.null(fill)) stop("capture history has cells with no row (not at risk, E4.4); pass `fill` to write them")
+    dflt <- c(before = "0", gap = ".", after = ".")
+    if (is.null(names(fill))) dflt[] <- rep_len(as.character(fill), 3)
+    else dflt[intersect(names(fill), names(dflt))] <- as.character(fill[intersect(names(fill), names(dflt))])
+    fill <- dflt
+    ch <- apply(CH, 1, function(r) {
+      have <- which(!is.na(r))
+      out <- as.character(r)
+      if (!length(have)) return(paste(rep(fill[["before"]], length(r)), collapse = ""))
+      first <- min(have); last <- max(have)
+      idx <- which(is.na(r))
+      out[idx] <- ifelse(idx < first, fill[["before"]], ifelse(idx > last, fill[["after"]], fill[["gap"]]))
+      paste(out, collapse = "")
+    })
+  } else ch <- apply(CH, 1, paste, collapse = "")
   out <- data.frame(ch = ch, stringsAsFactors = FALSE)
   if (!is.null(a$site_covs)) out <- cbind(out, a$site_covs)
   if (collapse_freq) {
@@ -364,6 +419,10 @@ order_eco <- function(long) {
 #' quick check for a table you built or edited yourself.
 #'
 #' @param long A table in the eco format.
+#' @param survey_taxa Optional `__survey_taxa` side table: which taxa were
+#'   surveyed for at which surveys (E4.2, E6).
+#' @param unit_kind Optional `"site"` or `"individual"`; with `"individual"` an
+#'   individual with no detection is a problem (E4.4).
 #' @return A list: `ok`, `problems` (character, each starting with its clause
 #'   id), `n_rows`, `n_units`, `n_taxa`.
 #' @examples
@@ -371,7 +430,7 @@ order_eco <- function(long) {
 #' bad <- schank_2015_tapir_occ; bad$y[1] <- NA
 #' eco_check(bad)$problems
 #' @export
-eco_check <- function(long) {
+eco_check <- function(long, survey_taxa = NULL, unit_kind = NULL) {
   long <- as.data.table(long)
   problems <- character()
   req <- c("unit", "taxon", "y")
@@ -407,12 +466,35 @@ eco_check <- function(long) {
     else if (any(long$y > k)) problems <- c(problems, "E2: y > obs_trials (binomial_count, #34)")
     if ("occasion" %in% names(long)) problems <- c(problems, "E2: binomial_count tables have no occasion column (#34)")
   }
-  # explicit-zero for multi-species: every surveyed (unit,trap,period,occasion) has all taxa
-  if (uniqueN(long$taxon) > 1) {
-    occ <- intersect(c("unit", "trap", "period", "occasion"), names(long))
-    per_survey <- long[, .N, by = occ]
-    if (any(per_survey$N != uniqueN(long$taxon)))
+  # explicit-zero (E4.2): every surveyed (unit,trap,period,occasion) carries the SET of
+  # taxa surveyed for there: all taxa, or those __survey_taxa lists for it
+  occ <- intersect(c("unit", "trap", "period", "occasion"), names(long))
+  if (!is.null(survey_taxa)) {
+    st <- unique(as.data.table(survey_taxa))
+    m <- setdiff(names(st), "taxon")
+    if (!"taxon" %in% names(st) || !length(m) || !all(m %in% occ)) {
+      problems <- c(problems, "E6: __survey_taxa needs taxon plus one or more of the core survey columns")
+    } else {
+      chr <- function(d) { d <- copy(d); for (cc in names(d)) set(d, j = cc, value = as.character(d[[cc]])); d }
+      surveys <- chr(unique(long[, occ, with = FALSE]))
+      exp <- merge(surveys, chr(st), by = m, allow.cartesian = TRUE, all.x = TRUE)
+      if (anyNA(exp$taxon)) problems <- c(problems, "E4: some surveys match no __survey_taxa row")
+      exp <- unique(exp[!is.na(taxon), c(occ, "taxon"), with = FALSE])
+      obs <- chr(unique(long[, c(occ, "taxon"), with = FALSE]))
+      if (nrow(fsetdiff(exp, obs)))
+        problems <- c(problems, "E4: some surveys lack rows for taxa __survey_taxa lists (explicit-zero rule)")
+      if (nrow(fsetdiff(obs, exp)))
+        problems <- c(problems, "E4: some surveys carry taxa __survey_taxa does not list for them")
+    }
+  } else if (uniqueN(long$taxon) > 1) {
+    per_survey <- long[, .(n = uniqueN(taxon)), by = occ]
+    if (any(per_survey$n != uniqueN(long$taxon)))
       problems <- c(problems, "E4: some surveys lack rows for some taxa (explicit-zero rule)")
+  }
+  # E4.4: an individual never detected in the table is not a unit
+  if (identical(unit_kind, "individual")) {
+    never <- long[, .(best = max(y)), by = unit][best <= 0]
+    if (nrow(never)) problems <- c(problems, sprintf("E4: %d individual(s) never detected (every y = 0)", nrow(never)))
   }
   list(ok = length(problems) == 0, problems = problems,
        n_rows = nrow(long), n_units = uniqueN(long$unit), n_taxa = uniqueN(long$taxon))

@@ -64,7 +64,7 @@ dataset <- list(
   samplingProtocol = "Camera traps; detection histories built from trigger histories with a 30-minute quiet period between triggers of the same species; each occasion is 7 camera-days.",
   samplingProtocolCode = "camera_trap", occasionLength = "7 days", effortColumn = "unit_trapnights",
   surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "target",
   geographicCoverage = "Los Lagos Region, Chile (no coordinates deposited)", temporalCoverage = "2019",
   coordinatesCoarsened = NA, notShipped = list(Dog_occu = "model-derived covariate"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, script = "data/malhotra_2021_loslagos_comm.R")

@@ -19,7 +19,10 @@
   "surveyEvidence": "effort_table",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period (year; the paper's colext primary period)",
+  "closure": "closed",
+  "closureNote": "period (year; the paper's colext primary period)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Miami-Dade County, South Florida, USA (Everglades margin, C-113 canal, L-31 levee, US-1 corridor); no coordinates deposited",
   "temporalCoverage": "2016-02-15/2019-11-02",
   "coordinatesCoarsened": null,
@@ -41,8 +44,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_dist_agriculture_m", "unit_dist_core_m", "unit_dist_urban_m", "unit_dist_release_point_m", "unit_habitat", "period_live_trap", "period_live_trap_dist_m", "period_live_trap_agency", "period_live_trap_cpue", "obs_window_end", "obs_camera_days", "obs_baited", "obs_temp_mean_f", "obs_precip_mean_in"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/smith_2024_florida_tegu_dynocc.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

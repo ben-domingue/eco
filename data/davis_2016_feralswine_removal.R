@@ -70,7 +70,7 @@ dataset <- list(
   samplingProtocol = "Management removal by aerial gunning from a helicopter; three passes per property within an episode, hours flown recorded per pass.",
   samplingProtocolCode = "removal", surveyEvidence = "effort_table",
   responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site",
-  closure = "occasion within period (one removal episode per property-year treated as closed; 5 episodes run longer than 3 months)",
+  closure = "closed", closureNote = "occasion within period (one removal episode per property-year treated as closed; 5 episodes run longer than 3 months)", occasionKind = "cell", taxonInclusion = "single",
   occasionCodes = list(`1` = "pass 1", `2` = "pass 2", `3` = "pass 3"),
   effortColumn = "obs_effort_h",
   geographicCoverage = "Oklahoma (21 episodes) and Texas (38 episodes), USA; county only, no coordinates deposited",

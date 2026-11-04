@@ -106,7 +106,7 @@ dataset <- list(
   samplingProtocolCode = "point_count", surveyEvidence = "sample_table",
   surveyEvidenceNote = "brd_perpoint lists every point-count event; a count exists iff samplingImpractical == OK and at least one brd_countdata row. Species pool is national: every shipped species at every count.",
   responseType = "multinomial_cell", distanceBreaks = BREAKS, distanceUnits = "m", transectType = "point",
-  unitKind = "site", closure = "occasion = distance bin of one count; period = the count event (year x bout), 1-2 per point per year",
+  unitKind = "site", closure = "closed", closureNote = "occasion = distance bin of one count; period = the count event (year x bout), 1-2 per point per year", occasionKind = "cell", taxonInclusion = "recorded",
   geographicCoverage = sprintf("47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; point coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
   temporalCoverage = sprintf("%s/%s", substr(min(evt$startDate), 1, 10), substr(max(evt$startDate), 1, 10)),
   crs = "EPSG:4326 (WGS 84), as published",

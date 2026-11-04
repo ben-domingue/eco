@@ -1,4 +1,4 @@
-unit,taxon,y,trap,occasion,date,unit_flank_profile,obs_side
+unit,taxon,y,trap,occasion,date,unit_identity,obs_side
 G10,GENSPP,0,MYW01,57,2021-11-12,right,
 G103,GENSPP,0,MYW01,57,2021-11-12,right,
 G104,GENSPP,0,MYW01,57,2021-11-12,both,

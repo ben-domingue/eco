@@ -41,10 +41,15 @@
 #   authors into one state). y: fledgling 0 / 1 P / 2 B; recruit 0 / 1 P / 2 B / 3 U; y_raw =
 #   the deposited letter. obs_release = 1 on the first non-zero cell: the authors' simulated
 #   release (age 1 or age 2), not an observed resighting; unit_cohort = hatch (banding) year
-#   derived from the release column. Rows start at the release year: earlier years are before
-#   the bird hatched (or before the authors' release age), not missed resightings, so they are
-#   not surveys of this individual (E4); this differs from the CJS tables of birds marked as
-#   adults, which keep pre-capture zeros.
+#   derived from the release column (release year minus release age).
+#   At-risk span (E4.4): the birds were banded as chicks, so each history starts in its real
+#   banding year (unit_cohort), not at the authors' simulated release: no rows before it. The
+#   banding-year row is the marking capture, y = 1 (pre-recruit), obs_banding = 1, y_raw empty
+#   (the deposit has 0 there because the authors' histories begin at release; asserted). Years
+#   between banding and release (the age-1 year in the recruit sheet) are y = 0 as deposited.
+#   The 1991 cohort was banded before the first resighting season (fledgling 1992, recruit 1993),
+#   so its rows start at the table's first period. To reproduce the authors' data, drop the
+#   rows before obs_release = 1. Bands are colour bands; the deposit records no band loss.
 #   Survey evidence: deposited_matrix (the colony was resighted every year 1992-2010).
 #   No coordinates per bird; Shoup Bay colony at 61.17 N, 146.58 W (paper), in metadata only.
 #   Rissa tridactyla is IUCN VU (global, 2017 assessment) and Alaska is in its native range,
@@ -74,16 +79,24 @@ build <- function(h, years, codes, release_age, prefix) {
   stopifnot(!anyNA(first), all(S[cbind(seq_along(h), first)] == "P"))
   Y <- matrix(match(S, names(codes)) - 1L, nrow(S)); stopifnot(!anyNA(Y))
   R <- matrix(0L, nrow(S), ncol(S)); R[cbind(seq_along(h), first)] <- 1L
-  Y[col(Y) < first] <- NA_integer_                  # before release: not a survey of this bird
-  YR <- S; YR[is.na(Y)] <- NA_character_
   cohort <- years[first] - release_age
+  band <- first - release_age                       # column of the real banding year (< 1: before the table)
+  start <- pmax(band, 1L)
+  Y[col(Y) < start] <- NA_integer_                  # E4.4: before banding the chick had not hatched
+  YR <- S; YR[is.na(Y)] <- NA_character_
+  B <- matrix(0L, nrow(S), ncol(S)); ib <- which(band >= 1L)
+  stopifnot(all(S[cbind(ib, band[ib])] == "0"))     # the deposit starts at the simulated release
+  B[cbind(ib, band[ib])] <- 1L
+  Y[cbind(ib, band[ib])] <- 1L; YR[cbind(ib, band[ib])] <- NA_character_   # the marking capture: pre-recruit
   long <- array_to_eco(Y, taxon = "RISTRI", site_ids = sprintf("%s%04d", prefix, seq_along(h)),
                        site_covs = data.frame(cohort = cohort), period = seq_along(years),
-                       obs_covs = list(release = R), y_raw = YR)
+                       obs_covs = list(banding = B, release = R), y_raw = YR)
   long[, occasion := NULL]
-  stopifnot(nrow(long) == sum(!is.na(Y)), sum(long$obs_release) == length(h))
+  stopifnot(nrow(long) == sum(!is.na(Y)), sum(long$obs_release) == length(h), sum(long$obs_banding) == length(ib),
+            long[, .(mp = min(period)), by = unit][, all(mp == start[match(unit, sprintf("%s%04d", prefix, seq_along(h)))])])
   periods <- data.table(period = seq_along(years), year = years,
-                        n_resighted = as.integer(colSums(!is.na(Y) & Y > 0 & R == 0)),
+                        n_resighted = as.integer(colSums(!is.na(Y) & Y > 0 & R == 0 & B == 0)),
+                        n_banded = as.integer(tabulate(band[ib], length(years))),
                         n_released = as.integer(tabulate(first, length(years))))
   list(long = long, periods = periods, cohort = cohort)
 }
@@ -97,7 +110,7 @@ common <- list(
   samplingProtocol = "Chicks colour-banded at 12-32 days old at the Shoup Bay colony; each May 1992-2010, four to eight observers read colour bands with binoculars and spotting scopes during morning and evening watches, about 10 times per breeding patch (10 patches) per season, recording the nest site each bird occupied; birds seen three or more times on one site were breeders. Encounters summarised into one state per bird per year.",
   samplingProtocolCode = "resighting", surveyEvidence = "deposited_matrix",
   responseType = "state", unitKind = "individual",
-  closure = "period (one state per May resighting season; survival and state transitions between years)",
+  closure = "none", closureNote = "period (one state per May resighting season; survival and state transitions between years)", occasionKind = "none", taxonInclusion = "single",
   lossesOnCapture = "none",
   geographicCoverage = "Shoup Bay colony, Prince William Sound, Alaska, USA (61.17 N, 146.58 W, from the paper)",
   coordinatesCoarsened = NA,
@@ -113,12 +126,12 @@ dataset <- c(list(
   title = "Annual multistate resighting histories (pre-recruit / recruit) of 5,090 black-legged kittiwakes banded as chicks at Shoup Bay, Alaska, 1992-2010",
   abstract = "Kittiwakes colour-banded as chicks in 1991 and 1995-2006 at the Shoup Bay colony, Prince William Sound, and resighted at the colony each May through 2010; annual state pre-recruit or recruit. The paper fits multistate CJS models of apparent fledgling survival and age-dependent recruitment to the natal colony.",
   temporalCoverage = "1992/2010",
-  stateCodes = list(`0` = "not resighted", `1` = "pre-recruit (y_raw P): present, not yet documented holding a nest site in this or a previous year; also the simulated age-1 release (obs_release = 1)",
+  stateCodes = list(`0` = "not resighted", `1` = "pre-recruit (y_raw P): present, not yet documented holding a nest site in this or a previous year; also the banding of the chick (obs_banding = 1, y_raw empty) and the simulated age-1 release (obs_release = 1)",
                     `2` = "recruit (y_raw B): documented holding a nest site this or a previous year"),
-  notes = "Unit ids are line numbers (no band ids in the deposit). Each bird's first row (obs_release = 1) is the authors' simulated release as an age-1 pre-recruit in the year after banding, not an observation; condition on it. Rows begin at release (earlier years precede hatching). unit_cohort = banding year. Breeder-to-pre-recruit transitions are impossible by the state definition."), common)
+  notes = "Unit ids are line numbers (no band ids in the deposit). Rows begin in the real banding year (E4.4, marked as chicks): that row is the banding capture (y = 1, obs_banding = 1, y_raw empty; the deposit has 0 there), except for the 1991 cohort, banded before the first resighting year, whose rows begin in 1992. The row with obs_release = 1 is the authors' simulated release as an age-1 pre-recruit in the year after banding, not an observation; to reproduce their data drop the rows before it and condition on it. unit_cohort = banding year. Breeder-to-pre-recruit transitions are impossible by the state definition."), common)
 ds <- write_table(f$long, TABLE, dataset, taxa = taxa, periods = f$periods, script = "data/mcknight_2019_kittiwake_ms.R")
 stage_dict_row(TABLE,
-  description = "Annual multistate resighting histories (pre-recruit / recruit) of 5,090 black-legged kittiwakes banded as chicks (1991, 1995-2006 cohorts) at the Shoup Bay colony, Prince William Sound, Alaska, resighted each May 1992-2010; first row per bird is the authors' simulated age-1 release.",
+  description = "Annual multistate resighting histories (pre-recruit / recruit) of 5,090 black-legged kittiwakes banded as chicks (1991, 1995-2006 cohorts) at the Shoup Bay colony, Prince William Sound, Alaska, resighted each May 1992-2010; rows from the banding year, with the authors' simulated age-1 release flagged (obs_release).",
   url = "https://doi.org/10.5061/dryad.ch2740k",
   reference = "McKnight, A., Blomberg, E. J., Irons, D. B., Loftin, C. S., & McKinney, S. T. (2019). Survival and recruitment dynamics of Black-legged Kittiwakes Rissa tridactyla at an Alaskan colony. Marine Ornithology, 47, 209-222.",
   doi_paper = "10.5038/2074-1235.47.2.1319", doi_data = "10.5061/dryad.ch2740k",
@@ -128,7 +141,7 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Multi-state CJS capture-recapture (fledgling survival and recruitment)",
   sampling_protocol = "resighting", design = "Multi-session (19 annual resighting seasons)",
   realm = "Marine", country = "USA", coordinates = "None in source",
-  notes = "Seabird banded as chicks; first row per bird is a simulated release (obs_release).")
+  notes = "Seabird banded as chicks; rows from the banding year; the authors' simulated release is flagged (obs_release).")
 
 # --- post-recruitment survival (three states, eventual recruits only) --------------------------
 ry <- 1993:2010
@@ -140,13 +153,13 @@ dataset <- c(list(
   title = "Annual multistate resighting histories (pre-recruit / breeder / non-breeder) of 977 kittiwakes that recruited to the Shoup Bay colony, Alaska, 1993-2010",
   abstract = "Kittiwakes banded as chicks at Shoup Bay (1991 and 1995-2004 cohorts per the paper) that eventually recruited to the colony, resighted each May through 2010 with annual state pre-recruit, breeder or recruited non-breeder; for multistate CJS models of apparent post-recruitment survival and breeding.",
   temporalCoverage = "1993/2010",
-  stateCodes = list(`0` = "not resighted", `1` = "pre-recruit (y_raw P); also the simulated age-2 release (obs_release = 1)",
+  stateCodes = list(`0` = "not resighted", `1` = "pre-recruit (y_raw P); also the banding of the chick (obs_banding = 1, y_raw empty) and the simulated age-2 release (obs_release = 1)",
                     `2` = "breeder (y_raw B): seen three or more times on one nest site this year",
                     `3` = "recruited non-breeder (y_raw U): a former breeder not holding a nest site this year"),
-  notes = "Unit ids are line numbers. Each bird's first row (obs_release = 1) is the authors' simulated release as a two-year-old pre-recruit, not an observation; condition on it. Rows begin at release. The deposit has 977 birds (paper: 997) and two birds of a 2005 cohort (paper: cohorts to 2004); kept as deposited. Only eventual recruits are included, so pre-recruit survival is 1 by construction (the paper fixes it)."), common)
+  notes = "Unit ids are line numbers. Rows begin in the real banding year (E4.4, marked as chicks): that row is the banding capture (y = 1, obs_banding = 1, y_raw empty; the deposit has 0 there), the age-1 year is y = 0 as deposited, and the 1991 cohort (banded before the first resighting year) starts in 1993. The row with obs_release = 1 is the authors' simulated release as a two-year-old pre-recruit, not an observation; to reproduce their data drop the rows before it and condition on it. The deposit has 977 birds (paper: 997) and two birds of a 2005 cohort (paper: cohorts to 2004); kept as deposited. Only eventual recruits are included, so pre-recruit survival is 1 by construction (the paper fixes it)."), common)
 ds <- write_table(r$long, TABLE, dataset, taxa = taxa, periods = r$periods, script = "data/mcknight_2019_kittiwake_ms.R")
 stage_dict_row(TABLE,
-  description = "Annual multistate resighting histories (pre-recruit / breeder / recruited non-breeder) of 977 black-legged kittiwakes banded as chicks that recruited to the Shoup Bay colony, Prince William Sound, Alaska, resighted each May 1993-2010; first row per bird is the authors' simulated age-2 release.",
+  description = "Annual multistate resighting histories (pre-recruit / breeder / recruited non-breeder) of 977 black-legged kittiwakes banded as chicks that recruited to the Shoup Bay colony, Prince William Sound, Alaska, resighted each May 1993-2010; rows from the banding year, with the authors' simulated age-2 release flagged (obs_release).",
   url = "https://doi.org/10.5061/dryad.ch2740k",
   reference = "McKnight, A., Blomberg, E. J., Irons, D. B., Loftin, C. S., & McKinney, S. T. (2019). Survival and recruitment dynamics of Black-legged Kittiwakes Rissa tridactyla at an Alaskan colony. Marine Ornithology, 47, 209-222.",
   doi_paper = "10.5038/2074-1235.47.2.1319", doi_data = "10.5061/dryad.ch2740k",
@@ -156,4 +169,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Multi-state CJS capture-recapture (post-recruitment survival and breeding state)",
   sampling_protocol = "resighting", design = "Multi-session (18 annual resighting seasons)",
   realm = "Marine", country = "USA", coordinates = "None in source",
-  notes = "Recruits only; first row per bird is a simulated release (obs_release).")
+  notes = "Recruits only; rows from the banding year; the authors' simulated release is flagged (obs_release).")

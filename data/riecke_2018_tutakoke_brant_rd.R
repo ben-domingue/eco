@@ -34,9 +34,14 @@
 #   in __periods), occasion = secondary capture method 1 nest, 2 tower, 3 banding (design
 #   categories, all three run every year: n.sec = 3 in the model; order within the season is
 #   nesting (May-June), tower observation (June-July), banding drives (July-August)), y = 0/1.
-#   Survey evidence: the deposited matrix; every individual carries the full 27 x 3 rectangle,
-#   including seasons before first detection (kept as 0, E4; the model conditions on `first`,
-#   reproducible by dropping rows before the first detection). unit_sex, unit_banded_year,
+#   Survey evidence: the deposited matrix. At-risk span (E4.4): females banded as adults (A,
+#   5,237) or second-years (S, 281) are wild birds of unknown age, at risk from 1988, so they
+#   carry the full 27 x 3 rectangle with zeros before first detection. The 2,327 females banded
+#   as goslings (L) were marked at hatching: no rows before their banding season (2,078 banded
+#   in 1988-2013; the 249 banded 1967-1987 start in 1988). Their banding season is a row of
+#   zeros (a gosling is not among the breeding females the three methods detect; asserted).
+#   The model conditions on `first`: drop rows before the first detection to reproduce it.
+#   No band loss recorded; every female has a detection. unit_sex, unit_banded_year,
 #   unit_banded_age_class, unit_band_code, unit_gosling_tarsus_mm (= ltar / 10, NA unless banded
 #   as a gosling and measured) as deposited.
 #   Not shipped: master (raw banding database), age / age.band (derivable), zltar (standardised
@@ -82,6 +87,13 @@ site_covs <- data.frame(sex = as.character(ind$sex), banded_year = as.integer(in
 long <- array_to_eco(Y, taxon = "BRABER", site_ids = units$unit, period = period, site_covs = site_covs)
 stopifnot(nrow(long) == n_ind * n_yr * 3L, all(long$occasion %in% 1:3), sum(long$y) == sum(obs),
           uniqueN(long$unit) == n_ind, max(long$period) == n_yr)
+# E4.4: goslings (L) were marked at hatching: no rows before the banding season
+start <- ifelse(ind$bandedage == "L", pmax(ind$bandedyear - 1987L, 1L), 1L)
+stopifnot(sum(ind$bandedage == "L" & ind$bandedyear >= 1988) == 2078L,
+          all(long[period < start[match(unit, units$unit)], y] == 0L),
+          all(long[period == start[match(unit, units$unit)] & unit_banded_age_class == "L" & unit_banded_year >= 1988L, y] == 0L))
+long <- long[period >= start[match(unit, units$unit)]]
+stopifnot(nrow(long) == 3L * sum(n_yr - start + 1L), sum(long$y) == sum(obs))
 
 taxa <- make_taxa("BRABER", "Branta bernicla", vernacularName = "Black brant (Pacific black brent)",
                   taxon_subspecies = "nigricans", taxon_iucnCategory = "LC")
@@ -100,12 +112,12 @@ dataset <- list(
   abstract = "Encounter histories of 7,845 female Pacific black brant (Branta bernicla nigricans) marked with plastic tarsal bands at the Tutakoke River colony, Yukon-Kuskokwim Delta, western Alaska, and detected in 27 breeding seasons (1988-2014) by three capture methods within each season: nest searches, tower and ground resighting of tarsal bands, and banding drives. The deposit is the R workspace of the paper's Bayesian robust-design model (survival and breeding probability with a lifetime carry-over effect of gosling tarsus length); here each season is three rows per female, one per capture method, y = detected. Females banded as goslings carry their tarsus length at about 30 days.",
   samplingProtocol = "Annual breeding-season capture-recapture of adult female brant: nest searches on the colony (May-June), resighting of individually coded plastic tarsal bands from towers and the ground (June-July), and banding drives of flightless adults with broods (July-August); goslings banded and measured (tarsus) at about 30 days.",
   samplingProtocolCode = "tag_resight", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "occasion within period (robust design: three capture methods per breeding season; a female alive and breeding is available to all three; nonbreeders are temporary emigrants from the colony)",
+  closure = "closed", closureNote = "occasion within period (robust design: three capture methods per breeding season; a female alive and breeding is available to all three; nonbreeders are temporary emigrants from the colony)", occasionKind = "method", taxonInclusion = "single",
   occasionCodes = list(`1` = "nest searches (p_nest in the paper)", `2` = "tower and ground resighting of tarsal bands (p_tower)", `3` = "banding drives (p_banding)"),
   geographicCoverage = "Tutakoke River colony, Yukon-Kuskokwim Delta, western Alaska, USA (about 61.25 N, 165.6 W); no coordinates deposited",
   temporalCoverage = "1988/2014",
   coordinatesCoarsened = NA,
-  notes = "Rows before a female's first detection are kept as 0 (E4); the paper's model conditions on first detection (object `first`), so drop rows before the first y = 1 to reproduce its data. Birds banded as adults (A) or second-years (S) have unknown hatch year; unit_gosling_tarsus_mm is available only for the 713 of 2,327 gosling-banded (L) birds that were measured, and the paper's standardised covariate sets it to 0 where missing. The deposit's secondary-occasion aggregates (yes, total) differ from a recomputation from the individual histories by 1-2 birds per cell. The tarsal-band code (unit_band_code) is reused across birds and is not a key.",
+  notes = "At-risk span (E4.4): females banded as adults or second-years are at risk from 1988 and keep zeros before first detection; females banded as goslings (unit_banded_age_class L) have no rows before their banding season (from 1988 if banded earlier), and that season is zeros. The paper's model conditions on first detection (object `first`), so drop rows before the first y = 1 to reproduce its data. Birds banded as adults (A) or second-years (S) have unknown hatch year; unit_gosling_tarsus_mm is available only for the 713 of 2,327 gosling-banded (L) birds that were measured, and the paper's standardised covariate sets it to 0 where missing. The deposit's secondary-occasion aggregates (yes, total) differ from a recomputation from the individual histories by 1-2 birds per cell. The tarsal-band code (unit_band_code) is reused across birds and is not a key.",
   notShipped = list(master = "the raw banding database (42,057 x 1,016, metal band numbers)",
                     `age, age.band` = "minimum-age indices derivable from banded_year and banded_age_class",
                     zltar = "standardised gosling tarsus (derivable)",
@@ -119,7 +131,7 @@ stage_dict_row(TABLE,
   reference = "Riecke, T. V., Leach, A. G., Gibson, D., & Sedinger, J. S. (2018). Parameterizing the robust design in the BUGS language: Lifetime carry-over effects of environmental conditions during growth on a long-lived bird. Methods in Ecology and Evolution, 9(11), 2294-2305.",
   doi_paper = "10.1111/2041-210X.13065", doi_data = "10.5061/dryad.c54h30c",
   original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "Built from the deposited R workspace (obs array). Occasions are capture methods within a season. Leading zeros before first detection kept; the paper conditions on first detection.",
+  notes = "Built from the deposited R workspace (obs array). Occasions are capture methods within a season. Leading zeros from 1988 for birds banded as adults; gosling-banded females start at their banding season; the paper conditions on first detection.",
   source_via = "Dryad")
 stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Robust design capture-recapture (survival, breeding probability, temporary emigration)",
   sampling_protocol = "tag_resight", design = "Robust design (27 breeding seasons x 3 capture methods)", realm = "Terrestrial",

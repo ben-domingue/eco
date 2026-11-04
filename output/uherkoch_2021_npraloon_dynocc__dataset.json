@@ -18,7 +18,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "state",
   "unitKind": "site",
-  "closure": "period (one survey per year; territory status may change between years)",
+  "closure": "none",
+  "closureNote": "period (one survey per year; territory status may change between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
   "stateCodes": {
     "0": "species does not hold the territory",
     "1": "territorial pair",
@@ -57,8 +60,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_decimalLatitude", "unit_decimalLongitude", "unit_fish_least_cisco", "unit_fish_broad_whitefish", "unit_fish_arctic_grayling", "unit_fish_alaska_blackfish", "unit_fish_ninespine_stickleback", "unit_fish_n_species"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/uherkoch_2021_npraloon_dynocc.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

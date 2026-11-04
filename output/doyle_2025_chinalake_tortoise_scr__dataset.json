@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "ChinaLake_Detectors_Cat.txt gives each of 548 cells an effort category 0-5 for each of the four days; a cell-day is surveyed iff the category is > 0. Every detection falls on a surveyed cell-day.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (four consecutive days in September 2022, closed population)",
+  "closure": "closed",
+  "closureNote": "period (four consecutive days in September 2022, closed population)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "South Range, Naval Air Weapons Station China Lake, Kern/San Bernardino County, California, USA; plot centroid 35.5, -117.0 (0.1 degree); detector positions in __traps as local metres centred on the grid",
   "temporalCoverage": "2022-09",
   "crs": "local: metres, UTM NAD83 zone 11N easting/northing minus the detector-grid centroid (processor-centred)",
@@ -45,8 +48,8 @@
   },
   "sampleFloor": "below (24 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "trap", "occasion", "unit_sex", "unit_age", "unit_sexage", "unit_temp_id", "obs_effort", "obs_location"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/doyle_2025_chinalake_tortoise_scr.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

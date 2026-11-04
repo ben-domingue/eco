@@ -63,7 +63,7 @@ dataset <- list(
   abstract = "Capture-recapture histories of 4,608 banded blue-footed boobies resighted as breeders in a fixed 26,889 m2 study area on Isla Isabel, Mexico, every February-March from 1991 to 2013, with sex. The authors fit Pradel models of adult survival, local recruitment and population growth, and tested the effect of a hurricane.",
   samplingProtocol = "Resighting of banded breeding adults during systematic monitoring of a fixed study area in February and March of each breeding season; one annual occasion per bird.",
   samplingProtocolCode = "tag_resight", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "period (one annual occasion; survival and recruitment between years)",
+  closure = "none", closureNote = "period (one annual occasion; survival and recruitment between years)", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "Isla Isabel, Nayarit, Mexico (21.87 N, 105.9 W; one fixed study area, no per-bird coordinates)",
   temporalCoverage = "1991/2013", coordinatesCoarsened = NA,
   notes = "unit ids are line numbers in the deposit (no band numbers were deposited). Only 10 birds are resighted in 1991 and 1 in 1992, as deposited.",

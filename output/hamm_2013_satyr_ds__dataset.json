@@ -21,7 +21,10 @@
   "transectType": "line",
   "effortColumn": "unit_length_m",
   "unitKind": "site",
-  "closure": "occasion (bins of one walk)",
+  "closure": "closed",
+  "closureNote": "occasion (bins of one walk)",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
   "geographicCoverage": "One Mitchell's satyr site in lower Michigan, USA (site names JCC, Liberty, Weaver; no coordinates deposited)",
   "temporalCoverage": "2011-07-04/2011-07-12",
   "notes": "Transect labels are date-specific (P, Q, Y, G, S series) and the deposit does not match them across days, so each walk is its own unit and there is no period. Temperature and humidity are per day, carried at unit level. First distance-sampling table.",
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_habitat", "unit_length_m", "unit_temp_c", "unit_rh_pct"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hamm_2013_satyr_ds.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

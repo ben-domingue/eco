@@ -19,7 +19,10 @@
   "surveyEvidenceNote": "Setup dates and 185 downtime windows are deposited; no retrieval dates. The study end (2022-06-30) is the paper's 'June 2022' (abstract); every camera is assumed to run from setup to that date outside its downtime windows. 13 contacts inside downtime windows (windows mark compromised as well as dead cameras) and 2 after the study end were dropped so that detections and the survey set agree.",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period (meteorological season; the processor's binning, not the authors', whose season definition is in the paywalled methods)",
+  "closure": "closed",
+  "closureNote": "period (meteorological season; the processor's binning, not the authors', whose season definition is in the paywalled methods)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Mont-Blanc massif, Haute-Savoie, France (6.84-7.01 E, 45.88-46.05 N), 1,227-2,740 m",
   "temporalCoverage": "2017-09-07/2022-06-30",
   "coordinatesCoarsened": {
@@ -47,8 +50,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_elevation_m", "unit_slope_deg", "unit_aspect", "unit_habitat", "unit_camera_model", "unit_relief_homogeneity", "unit_slope_class", "unit_cover_bare_class", "unit_cover_lt10cm_class", "unit_cover_10_40cm_class", "unit_cover_40_130cm_class", "unit_cover_130_400cm_class", "unit_cover_tree_class"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bison_2024_montblanc_hare_dynocc.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

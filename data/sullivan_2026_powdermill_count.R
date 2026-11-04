@@ -151,7 +151,7 @@ dataset <- list(
   abstract = "Ten-minute, 150 m radius point counts of all birds at the central points of a contiguous grid of 120 m blocks across Powdermill Nature Reserve (Carnegie Museum of Natural History, Rector, PA). The reserve is split into 10 sectors of 8-11 points; one sector is counted per day, twice per breeding season (late May to July). Full seasons in 2013 and 2016-2025 (95-101 points); 2014 and 2015 are partial. Published on GBIF as a Darwin Core sampling-event dataset with the Humboldt extension declaring full taxonomic scope (Aves) and abundance.",
   samplingProtocol = "Point count, 10 minutes, 150 m radius, time bins 3:20/6:40/10 min (2013) or 3/5/10 min (2014 onward; bins are remarks only, not shipped); each detected individual or group recorded with a count; y is the total individuals per species per count.",
   samplingProtocolCode = "point_count", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
-  closure = "occasion (two visits within a breeding season); period = calendar year",
+  closure = "closed", closureNote = "occasion (two visits within a breeding season); period = calendar year", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Powdermill Nature Reserve, Westmoreland County, Pennsylvania, USA (40.13-40.17 N, 79.29-79.25 W)",
   temporalCoverage = "2013-06/2025-07", crs = "EPSG:4326",
   coordinatesCoarsened = list(value = FALSE, method = "kept as published by the Carnegie Museum of Natural History for its own reserve (120 m grid); no taxon is IUCN VU or higher; 5 points have no coordinates in the source"),

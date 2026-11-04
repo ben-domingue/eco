@@ -137,7 +137,7 @@ dataset <- list(
   samplingProtocolCode = "photo_id", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "The MARK file has 75 unlabelled columns; the thesis effort table lists 76 completed secondary occasions (6,5,5,5,5,5,5,5,5,4,4,4,5,3,5,5 per season). Columns are assigned to seasons with summer 2011-12 at 4 occasions, the only layout that both leaves no individual at two sites within a season (the authors' data rule) and reproduces the thesis's per-site individual counts for that season (6, 30, 0). Period assignment for columns 12-26 is therefore inferred, not deposited.",
   responseType = "state", unitKind = "individual",
-  closure = "occasion within period (robust design: sites closed within a season, open between seasons)",
+  closure = "closed", closureNote = "occasion within period (robust design: sites closed within a season, open between seasons)", occasionKind = "time", taxonInclusion = "single",
   stateCodes = list(`0` = "not captured", `1` = "captured in the Swan Canning Riverpark (SCR, estuary)",
                     `2` = "captured in Cockburn Sound / Owen Anchorage (CS/OA, semi-enclosed embayment)",
                     `3` = "captured in Gage Roads (GR, open coast)"),

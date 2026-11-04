@@ -72,7 +72,7 @@ dataset <- list(
   samplingProtocol = "Dependent double-observer helicopter survey of 5 x 5 km and 2 x 2 km plots at 15-50 m altitude and 30-100 km/h; primary observer pair reports all waterfowl flocks to the secondary pair, which adds flocks the primary missed; flocks missed by both on the first pass excluded.",
   samplingProtocolCode = "double_observer", surveyEvidence = "sample_table",
   responseType = "multinomial_cell", multinomialType = "dep_double_observer", unitKind = "site",
-  closure = "occasion (the two detection cells of one pass over a plot)",
+  closure = "closed", closureNote = "occasion (the two detection cells of one pass over a plot)", occasionKind = "cell", taxonInclusion = "recorded",
   geographicCoverage = "About 27,000 km2 straddling the Labrador / Quebec boundary, Newfoundland and Labrador, Canada (plot coordinates not deposited)",
   temporalCoverage = "2009-06-10/2009-06-19",
   effortColumn = "unit_plot_area_km2",

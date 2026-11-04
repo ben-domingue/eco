@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "The deposited capture-history matrix has 15 occasion columns and every fish is surveyed at every occasion, including occasions before its first capture (y = 0).",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "open between periods (bimonthly occasions; survival and emigration between occasions, CJS)",
+  "closure": "none",
+  "closureNote": "open between periods (bimonthly occasions; survival and emigration between occasions, CJS)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "Indian Creek, Sumter National Forest, South Carolina, USA (a 740 m study reach); no coordinates deposited",
   "temporalCoverage": "2015-11/2018-03",
   "coordinatesCoarsened": null,
@@ -44,8 +47,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/kanno_2022_indiancreek_fish_cjs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

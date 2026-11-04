@@ -51,7 +51,7 @@ dataset <- list(
   samplingProtocol = "Camera traps; daily detection/non-detection per camera; camera-days of effort in unit_trapdays.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day", effortColumn = "unit_trapdays",
   surveyEvidence = "effort_table",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = list(description = "Rio Indio, southeastern Nicaragua",
                             boundingBox = list(west = min(cc$lon), east = max(cc$lon), south = min(cc$lat), north = max(cc$lat))),
   temporalCoverage = "2014-06/2014-08",

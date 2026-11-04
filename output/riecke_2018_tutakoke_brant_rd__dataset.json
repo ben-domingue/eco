@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "occasion within period (robust design: three capture methods per breeding season; a female alive and breeding is available to all three; nonbreeders are temporary emigrants from the colony)",
+  "closure": "closed",
+  "closureNote": "occasion within period (robust design: three capture methods per breeding season; a female alive and breeding is available to all three; nonbreeders are temporary emigrants from the colony)",
+  "occasionKind": "method",
+  "taxonInclusion": "single",
   "occasionCodes": {
     "1": "nest searches (p_nest in the paper)",
     "2": "tower and ground resighting of tarsal bands (p_tower)",
@@ -26,7 +29,7 @@
   "geographicCoverage": "Tutakoke River colony, Yukon-Kuskokwim Delta, western Alaska, USA (about 61.25 N, 165.6 W); no coordinates deposited",
   "temporalCoverage": "1988/2014",
   "coordinatesCoarsened": null,
-  "notes": "Rows before a female's first detection are kept as 0 (E4); the paper's model conditions on first detection (object `first`), so drop rows before the first y = 1 to reproduce its data. Birds banded as adults (A) or second-years (S) have unknown hatch year; unit_gosling_tarsus_mm is available only for the 713 of 2,327 gosling-banded (L) birds that were measured, and the paper's standardised covariate sets it to 0 where missing. The deposit's secondary-occasion aggregates (yes, total) differ from a recomputation from the individual histories by 1-2 birds per cell. The tarsal-band code (unit_band_code) is reused across birds and is not a key.",
+  "notes": "At-risk span (E4.4): females banded as adults or second-years are at risk from 1988 and keep zeros before first detection; females banded as goslings (unit_banded_age_class L) have no rows before their banding season (from 1988 if banded earlier), and that season is zeros. The paper's model conditions on first detection (object `first`), so drop rows before the first y = 1 to reproduce its data. Birds banded as adults (A) or second-years (S) have unknown hatch year; unit_gosling_tarsus_mm is available only for the 713 of 2,327 gosling-banded (L) birds that were measured, and the paper's standardised covariate sets it to 0 where missing. The deposit's secondary-occasion aggregates (yes, total) differ from a recomputation from the individual histories by 1-2 birds per cell. The tarsal-band code (unit_band_code) is reused across birds and is not a key.",
   "notShipped": {
     "master": "the raw banding database (42,057 x 1,016, metal band numbers)",
     "age, age.band": "minimum-age indices derivable from banded_year and banded_age_class",
@@ -35,19 +38,19 @@
     "ch (663 x 10), avail, estimate*, msrd, p1-p3": "simulation inputs and MCMC output"
   },
   "summary": {
-    "n_rows": 635445,
+    "n_rows": 590520,
     "n_units": 7845,
     "n_taxa": 1,
     "n_periods": 27,
     "n_occasions": 3,
-    "n_surveys": 635445,
+    "n_surveys": 590520,
     "y_values": "0,1",
-    "prop_zero": 0.956
+    "prop_zero": 0.952
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "unit_banded_year", "unit_banded_age_class", "unit_band_code", "unit_gosling_tarsus_mm"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/riecke_2018_tutakoke_brant_rd.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

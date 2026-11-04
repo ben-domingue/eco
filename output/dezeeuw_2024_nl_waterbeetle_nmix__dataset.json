@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion within period (two visits 5-8 days apart in one season); state may change between the two survey years six years apart",
+  "closure": "closed",
+  "closureNote": "occasion within period (two visits 5-8 days apart in one season); state may change between the two survey years six years apart",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
   "geographicCoverage": "The Netherlands, mainly the western and northern peat areas (no coordinates deposited)",
   "temporalCoverage": "2011/2022",
   "coordinatesCoarsened": null,
@@ -37,8 +40,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_n2000", "obs_selector"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/dezeeuw_2024_nl_waterbeetle_nmix.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

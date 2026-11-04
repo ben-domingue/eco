@@ -16,7 +16,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period",
+  "closure": "closed",
+  "closureNote": "period",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Hubbard Brook Experimental Forest, White Mountains, New Hampshire, USA (373 plots on a valleywide grid)",
   "temporalCoverage": "2010/2018",
   "crs": "EPSG:4269 (NAD83) UTM zone 19N as published in unit_utm19_*; unit_decimalLatitude/Longitude converted in-script, NAD83 ~ WGS84",
@@ -44,8 +47,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_utm19_easting_m", "unit_utm19_northing_m", "obs_day_of_year", "obs_time_of_day_min"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/doser_2022_hbef_trends_dynocc.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

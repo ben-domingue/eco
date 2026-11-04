@@ -48,9 +48,12 @@
 #   seal of that study was sighted in it. The deposit has no effort table; the papers describe
 #   the regimes but not which seasons were searched. Sparse windows (one or two sightings, e.g.
 #   seal years 1979-1986 and 2011-2019) are therefore in the survey set with almost no effort;
-#   __periods carries n_sightings per occasion so they can be filtered. Every unit carries the
-#   full rectangle of its study's surveyed windows, including seal years before its cohort year
-#   (y = 0, standard E4; drop rows before unit_cohort_year to condition on marking).
+#   __periods carries n_sightings per occasion so they can be filtered. At-risk span (E4.4):
+#   every unit was marked as a weaned pup, so it has no rows before its cohort (marking) seal
+#   year; from then on it carries every surveyed window of its study to the study's last seal
+#   year, 0 where not sighted. Tag loss is not recorded per seal (seals resighted later were
+#   still identifiable, by brand or a remaining tag), so no history is cut short; every unit has
+#   a sighting (its marking record).
 #   Not shipped: per-sighting attributes (breeding status, age class, moult stage, weight, tags
 #   on animal, sex on sighting, comments, data-entry fields); the 2,282 seals first recorded past
 #   the pup stage; 163 same-day duplicate records (collapsed by distinct day).
@@ -103,9 +106,10 @@ build <- function(st, sy_range, table, cohort_label, regime) {
   det <- s[, .(y_raw = uniqueN(date)), by = .(SEAL_ID, sy, occ)]
   grid <- CJ(SEAL_ID = u$SEAL_ID, w = seq_len(nrow(windows)))
   grid <- cbind(grid, windows[grid$w, .(sy, occ, period)])
+  grid <- grid[sy >= u$cohort[match(SEAL_ID, u$SEAL_ID)]]       # E4.4: marked as pups, no rows before the cohort year
   long <- merge(grid, det, by = c("SEAL_ID", "sy", "occ"), all.x = TRUE)
   long[is.na(y_raw), y_raw := 0L]
-  stopifnot(nrow(long) == nrow(u) * nrow(windows), sum(long$y_raw > 0) == nrow(det), sum(long$y_raw) == nrow(unique(s[, .(SEAL_ID, date)])))
+  stopifnot(nrow(long) == sum(sapply(u$cohort, function(c) sum(windows$sy >= c))), sum(long$y_raw > 0) == nrow(det), sum(long$y_raw) == nrow(unique(s[, .(SEAL_ID, date)])))
   long <- merge(long, u[, .(SEAL_ID, cohort, sex, tag, first_age)], by = "SEAL_ID")
   long <- long[, .(unit = paste0("S", SEAL_ID), taxon = "MIRLEO", y = as.integer(y_raw > 0), y_raw = as.integer(y_raw),
                    period, occasion = occ,
@@ -113,7 +117,7 @@ build <- function(st, sy_range, table, cohort_label, regime) {
                    unit_first_age_class = as.integer(first_age))]
   long <- order_eco(long)
   stopifnot(uniqueN(long$unit) == nrow(u), !anyDuplicated(long[, .(unit, period, occasion)]),
-            all(long[, .(ok = all(y == 0L)), by = .(unit, before = period < per[match(long$unit_cohort_year, sy), period])][before == TRUE, ok]))
+            all(long$period >= per[match(long$unit_cohort_year, per$sy), period]))
   periods <- merge(per, dcast(eff, sy ~ occ, value.var = c("n_sightings", "n_seals"), fill = 0L), by = "sy")
   setnames(periods, c("n_sightings_1", "n_sightings_2", "n_seals_1", "n_seals_2"),
            c("n_sightings_breeding", "n_sightings_other", "n_seals_breeding", "n_seals_other"))
@@ -129,18 +133,18 @@ build <- function(st, sy_range, table, cohort_label, regime) {
     citation = "Volzke, S. (2023). Macquarie Island southern elephant seal capture-mark-recapture data [Dataset]. Dryad. https://doi.org/10.5061/dryad.zpc866t7f",
     paperDOI = "10.1002/ece3.7919", relatedWorks = c("10.1098/rsos.221635", "https://data.aad.gov.au/metadata/records/AADC-00101", "https://data.aad.gov.au/metadata/records/AADC-00102"),
     intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-    abstract = sprintf("Resighting histories of %d southern elephant seals marked as weaned pups on the Macquarie Island isthmus (cohorts %s) and resighted %s. Built from the deposited sighting records: one row per seal x seal year (September to August) x occasion (1 = breeding season, September-October; 2 = the rest of the seal year), y = 1 if the seal was recorded in that window, y_raw = number of distinct sighting days. The survey set is inferred from the sightings themselves (a window is surveyed if any marked seal of this study was sighted in it); per-window sighting counts are in __periods so sparse windows can be dropped. Rows before the cohort year are 0.", nrow(u), cohort_label, regime),
+    abstract = sprintf("Resighting histories of %d southern elephant seals marked as weaned pups on the Macquarie Island isthmus (cohorts %s) and resighted %s. Built from the deposited sighting records: one row per seal x seal year (September to August) x occasion (1 = breeding season, September-October; 2 = the rest of the seal year), y = 1 if the seal was recorded in that window, y_raw = number of distinct sighting days. The survey set is inferred from the sightings themselves (a window is surveyed if any marked seal of this study was sighted in it); per-window sighting counts are in __periods so sparse windows can be dropped. Each seal's rows begin in its cohort (marking) year.", nrow(u), cohort_label, regime),
     samplingProtocol = sprintf("Permanent marking of weaned pups (%s) and resighting of marked seals ashore: %s. Sightings record date, sex, age class, breeding status and moult stage.",
                                if (st == "1950s") "hot-iron branding, 1951-1965" else "hot-iron branding 1993-1999 and/or Roto flipper tags, 1984-2000", regime),
     samplingProtocolCode = "tag_resight", surveyEvidence = "inferred",
     surveyEvidenceNote = "No effort table is deposited and the papers do not list which seasons were searched. A period x occasion window is in the survey set iff at least one marked seal of this study has a sighting record in it; every unit then carries a row for that window. Windows with very few sightings (see __periods n_sightings_*) reflect ad hoc effort and may be dropped before fitting; the 2021 paper's analysis windows were 1957-1979 and 1993-2003.",
     responseType = "detection", unitKind = "individual",
-    closure = "occasion within period (two resight windows per seal year; the papers treat a breeding-season sighting as a breeding event and a rest-of-year sighting as alive, nonbreeding or unknown); open between seal years (CJS / multi-state)",
+    closure = "closed", closureNote = "occasion within period (two resight windows per seal year; the papers treat a breeding-season sighting as a breeding event and a rest-of-year sighting as alive, nonbreeding or unknown); open between seal years (CJS / multi-state)", occasionKind = "time", taxonInclusion = "single",
     occasionCodes = list(`1` = "breeding season, September-October of `year` (the papers' 'seen breeding' emission)", `2` = "rest of the seal year, November of `year` to August of `year`+1 (the papers' 'seen other' emission; moult, mid-year haul-out)"),
     geographicCoverage = "Macquarie Island, Southern Ocean (54.5 S, 158.9 E); all seals marked on the isthmus; no coordinates deposited",
     temporalCoverage = sprintf("%d-09/%d-08", min(per$sy), max(per$sy) + 1L),
     coordinatesCoarsened = NA,
-    notes = sprintf("Units are seals whose first record is a pup age class (01-05); their first record's seal year is unit_cohort_year and rows before it are 0 (drop them to condition on marking). unit_tag_type is NA where the deposit has #N/A (%s). unit_sex U = never sexed. y_raw counts distinct sighting days (163 same-day duplicate records in the deposit collapsed). Per-sighting breeding status, age class, moult and weight are not shipped; a multi-state breeding history can be rebuilt from the deposit's SEAL_STATUS_ID.",
+    notes = sprintf("Units are seals whose first record is a pup age class (01-05); their first record's seal year is unit_cohort_year, and as seals marked at birth (E4.4) they have no rows before it. unit_tag_type is NA where the deposit has #N/A (%s). unit_sex U = never sexed. y_raw counts distinct sighting days (163 same-day duplicate records in the deposit collapsed). Per-sighting breeding status, age class, moult and weight are not shipped; a multi-state breeding history can be rebuilt from the deposit's SEAL_STATUS_ID.",
                     if (st == "1950s") "every 1950s seal, although the README says they were branded" else "908 of the 1987-1992 cohort seals"),
     notShipped = list(`seals first recorded past the pup stage` = sprintf("%d seals (both studies: 2,282) with no known cohort; the 2021 paper also excludes seals first tagged as adults", seals[pup == FALSE & study == st, .N]),
                       `other study` = "the other mark-recapture study in the same file is the sibling table",
@@ -159,7 +163,7 @@ build <- function(st, sy_range, table, cohort_label, regime) {
     source_via = "Dryad")
   stage_tag_row(table, ds, taxon_group = "Mammals", model_family = "CJS / multi-state capture-recapture (breeding and non-breeding resight windows)",
     sampling_protocol = "tag_resight", design = sprintf("Multi-session (%d seal years x 2 resight windows)", nrow(per)), realm = "Marine",
-    country = "AUS", coordinates = "None in source", notes = "Individuals as unit; full rectangle incl. pre-cohort rows; survey set inferred from sightings.")
+    country = "AUS", coordinates = "None in source", notes = "Individuals as unit; rows from the cohort (marking) year; survey set inferred from sightings.")
   invisible(ds)
 }
 

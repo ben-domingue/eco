@@ -18,7 +18,10 @@
   "responseType": "multinomial_cell",
   "multinomialType": "dep_double_observer",
   "unitKind": "site",
-  "closure": "occasion (the two detection cells of one pass over a plot)",
+  "closure": "closed",
+  "closureNote": "occasion (the two detection cells of one pass over a plot)",
+  "occasionKind": "cell",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "About 27,000 km2 straddling the Labrador / Quebec boundary, Newfoundland and Labrador, Canada (plot coordinates not deposited)",
   "temporalCoverage": "2009-06-10/2009-06-19",
   "effortColumn": "unit_plot_area_km2",
@@ -41,8 +44,8 @@
   },
   "sampleFloor": "below (27 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_plot_area_km2", "unit_front_seat_observer", "unit_primary_position"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/roy_2022_labrador_waterfowl_dobs.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

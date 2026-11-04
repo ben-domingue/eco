@@ -1,6 +1,6 @@
 # eco-validate
 
-Check a table against the eco data standard (`standard.md`, v1.0-draft) and
+Check a table against the eco data standard (`standard.md`, v1.1-draft) and
 exit non-zero if anything blocks. Pandas and the standard library only; no
 Redivis, no network. It is the gate the uploader runs and the piece a
 contributor runs before depositing a table.
@@ -30,7 +30,7 @@ attaches it to a GitHub release. PyPI is not wired (see that workflow's header).
 A *core table* is `<name>.csv` with `unit, taxon, y` as its first columns. Its
 side tables and metadata are picked up from beside it by name: `<name>__taxa.csv`
 (required), `<name>__periods.csv` (required when `period` exists), `__units`,
-`__traps`, and `<name>__dataset.json` (required). Naming a side table on the
+`__traps`, `__survey_taxa` (which taxa were surveyed for where, E4.2), and `<name>__dataset.json` (required). Naming a side table on the
 command line validates its core table.
 
 Every finding names its **check** and, when the check tests the format, the

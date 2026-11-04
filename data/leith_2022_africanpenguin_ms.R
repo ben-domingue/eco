@@ -105,7 +105,7 @@ dataset <- list(
   responseType = "state", unitKind = "individual",
   stateCodes = list(`0` = "not encountered in the season", `1` = "encountered as a breeder (y_raw B)",
                     `2` = "encountered as a nonbreeder (y_raw N after the bird's first breeding encounter, P before it: the authors' prebreeder state)"),
-  closure = "period (one state per breeding season; survival and state transitions between seasons)",
+  closure = "none", closureNote = "period (one state per breeding season; survival and state transitions between seasons)", occasionKind = "none", taxonInclusion = "single",
   lossesOnCapture = "none recorded",
   geographicCoverage = sprintf("Robben Island (cell centre %.2f, %.2f) and Stony Point, Betty's Bay (cell centre %.2f, %.2f), Western Cape, South Africa", ri$lat, ri$lon, sp$lat, sp$lon),
   temporalCoverage = "2013/2020",

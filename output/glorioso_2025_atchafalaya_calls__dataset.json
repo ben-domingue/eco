@@ -18,7 +18,10 @@
   "surveyEvidence": "sample_table",
   "responseType": "ordinal",
   "unitKind": "site",
-  "closure": "occasion (samples within a calendar year); period = year",
+  "closure": "closed",
+  "closureNote": "occasion (samples within a calendar year); period = year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "stateCodes": {
     "0": "no calling inside the plot",
     "1": "individuals can be counted; gaps between calls",
@@ -52,8 +55,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_management_unit", "unit_owner", "unit_parish", "obs_duration_min", "obs_air_temp_c", "obs_humidity_pct", "obs_wind_ms", "obs_water_temp_c", "obs_water_depth_cm", "obs_weather", "obs_call_index_outside"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/glorioso_2025_atchafalaya_calls.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

@@ -142,7 +142,7 @@ dataset <- list(
   surveyEvidence = "effort_table",
   surveyEvidenceNote = "The deposited daily Coyote column is NA when the camera was not active and 0/1 otherwise; a row exists iff the camera was active that day. 607 of 1,952 station-seasons and 7 of 122 stations were never active and have no rows.",
   responseType = "state", unitKind = "site",
-  closure = "period (coyote occupancy and mange state are modelled per site-season; days within the 28-day window are replicate observations)",
+  closure = "closed", closureNote = "period (coyote occupancy and mange state are modelled per site-season; days within the 28-day window are replicate observations)", occasionKind = "time", taxonInclusion = "single",
   stateCodes = list(`0` = "camera active, no coyote detected", `1` = "coyote detected, no image that day shows signs of mange", `2` = "coyote detected and at least one image that day shows visible signs of sarcoptic mange"),
   geographicCoverage = list(description = "Chicago metropolitan area, Illinois, USA (Cook, DuPage, Kane, Lake, McHenry and Will counties), urban to exurban green space",
                             boundingBox = list(west = round(min(stations$lon), 2), east = round(max(stations$lon), 2), south = round(min(stations$lat), 2), north = round(max(stations$lat), 2))),

@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion (the depositors treat the 18-month series as one season)",
+  "closure": "closed",
+  "closureNote": "occasion (the depositors treat the 18-month series as one season)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Ecuador, study area 'HCKBA' (station codes only; no coordinates deposited)",
   "temporalCoverage": "2019-12-22/2021-06-17",
   "coordinatesCoarsened": null,
@@ -37,8 +40,8 @@
   },
   "sampleFloor": "below (21 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_elevation_m", "unit_tree_height_m", "unit_station_height_m", "unit_habitat", "unit_dist_barrio_km", "unit_dist_edge_km", "unit_dbh_cm", "unit_connected_trees", "unit_canopy_cover_avg", "unit_veg_cover_avg", "unit_dist_water_km", "unit_canopy_cover_n", "unit_canopy_cover_e", "unit_canopy_cover_w", "unit_canopy_cover_s", "unit_veg_cover_n", "unit_veg_cover_e", "unit_veg_cover_w", "unit_veg_cover_s"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tleimat_2023_ecuador_capuchin_occ.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

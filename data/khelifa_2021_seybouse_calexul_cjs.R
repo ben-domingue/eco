@@ -75,7 +75,7 @@ dataset <- list(
   abstract = "Daily capture-mark-recapture of adult Glittering Demoiselles (Calopteryx exul, IUCN EN) along a 100 m transect of a channel of the Seybouse River at El Fedjoudj, Guelma, northeastern Algeria, in the 2011 flight season: 313 individually wing-marked adults x 25 sampling days (Julian 132-157, day 153 not sampled), with the sex of each adult and the water depth at the centre of the waterbed on each sampling day. The paper fits a Cormack-Jolly-Seber model with constant survival and recapture probability as a quadratic function of water depth and sex.",
   samplingProtocol = "Hand-net capture of adults along a fixed 100 m river transect in the morning (09:00-12:00), individual alphanumeric wing marks, daily resampling; CJS.",
   samplingProtocolCode = "hand_capture", surveyEvidence = "deposited_matrix", responseType = "detection", unitKind = "individual",
-  closure = "period (one capture occasion per sampling day; open between days)",
+  closure = "none", closureNote = "period (one capture occasion per sampling day; open between days)", occasionKind = "none", taxonInclusion = "single",
   effortColumn = NA,
   geographicCoverage = "Seybouse River at El Fedjoudj, Guelma, northeastern Algeria; one site, about 36.5 N 7.4 E (paper's coordinate rounded to 0.1 degree; the species is IUCN EN)",
   temporalCoverage = "2011", coordinatesCoarsened = NA,

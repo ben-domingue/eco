@@ -27,7 +27,7 @@ VOCAB <- list(
   realm         = c("Terrestrial", "Freshwater", "Marine"))
 # Prefix-controlled: a qualifier in parentheses is allowed after the controlled value.
 PREFIX_VOCAB <- list(
-  coordinates = c("None in source", "As published", "Coarsened (0.1 deg)", "Coarsened (by the source", "Coarsened (trap coordinates centred"),   # SCR centring and source-coarsened grids (E7, batch 13)
+  coordinates = c("None in source", "As published", "Coarsened (0.1 deg)", "Coarsened (by the source", "Coarsened (trap coordinates centred", "Coarsened (10 km"),   # SCR centring and source-coarsened grids (E7, batch 13)
   design      = c("Single-season", "Multi-season", "Multi-session", "Robust design"),
   status      = c("tagged"))
 

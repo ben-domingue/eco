@@ -12,7 +12,7 @@ pipeline; eco does not, and one repo means one place to look.
 
 | Directory | Owns |
 |---|---|
-| `standard.md` | **The format.** v1.0-draft, clauses E1 to E10, intake policy, changelog. `standard_draft.md` is its history and `design_landscape.md` the checklist of study designs behind E9. |
+| `standard.md` | **The format.** v1.1-draft, clauses E1 to E10, intake policy, changelog. `standard_draft.md` is its history and `design_landscape.md` the checklist of study designs behind E9. |
 | `data/` | One R script per source deposit, `<table>.R`; the processing record. `data/aux/` holds shared lookups. `data/README.md` lists the tables built. |
 | `lib/eco_common.R` | The build harness: cached downloads (`download_cached`, `download_dryad`), GBIF matching (`gbif_taxon`, `make_taxa`), `coarsen_coords`, `write_table` (runs the R validator twin, writes the CSV, side tables and `__dataset.json`), `stage_dict_row`, `stage_tag_row`. |
 | `Rpkg/` | **The R package `eco`** (#7): list / filter / fetch over Redivis' anonymous CSV endpoint, version pinning through `releases/manifest.csv`, a disk cache, and the converters (`R/convert.R`: array, `unmarked`-frame and capture-history converters to and from the long format; `eco_check()`, the R validator twin; `eco_to_irw()`, the IRW view). Installed with `remotes::install_github("ben-domingue/eco", subdir = "Rpkg")`; tests in `tests/testthat`. |

@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "The latrine file's Usage string gives, per latrine, one digit per occasion (1 surveyed); 123 of 160 latrine-occasions were surveyed. Every individual carries all 123, including occasions without a detection. Excel dropped the leading zeros of six strings; left-padding to eight digits is the only padding under which every detection falls on a surveyed latrine-occasion.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "single session (one period, omitted): the eight occasions are treated as a closed population, as in the authors' SCR; occasion = survey occasion 1-8",
+  "closure": "closed",
+  "closureNote": "single session (one period, omitted): the eight occasions are treated as a closed population, as in the authors' SCR; occasion = survey occasion 1-8",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Upper Rio Grande River Basin, Taos County, New Mexico, USA; 20 latrines along 259 km of the Rio Grande and tributaries, coordinates in __traps (UTM zone 13N)",
   "temporalCoverage": "2018-02/2018-04",
   "crs": "EPSG:26913 or EPSG:32613 (UTM zone 13N, metres); the deposit says 'UTMs' without a zone or datum, zone 13N follows from the coordinate range over the Rio Grande gorge",
@@ -46,8 +49,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "trap", "occasion", "unit_conservative_id", "unit_sex"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/murphy_2021_riogrande_otter_scr.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

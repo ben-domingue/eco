@@ -1,0 +1,53 @@
+{
+  "table": "work_2026_ocala_odonates_exact_comm",
+  "title": "Adult odonate (dragonfly and damselfly) detection/non-detection at 16 ponds in Ocala National Forest, Florida, four aerial-net visits 2022-2023 (without Libellula jesseana, coordinates as deposited)",
+  "creator": "Work, Kirsten; Ray, H. A.",
+  "pubDate": "2026",
+  "doi": "10.7910/DVN/M7XVVL",
+  "sourceURL": "https://doi.org/10.7910/DVN/M7XVVL",
+  "citation": "Work, K. (2026). Odonate species richness and abundance in Ocala National Forest ponds [Dataset]. Harvard Dataverse, V1. https://doi.org/10.7910/DVN/M7XVVL",
+  "paperDOI": "10.1080/02705060.2026.2711736",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Presence of 29 odonate species as adults collected with aerial nets at 16 ponds in four spatial groups in Ocala National Forest, Florida, on four visits (May and August 2022, June and August 2023), with pond size, depth, isolation, vegetation and fish / crayfish presence. Collected to test whether assemblages are more similar in nearby ponds and which ecological variables predict assemblage structure; nymphs collected with dipnets on the same visits are a sibling table. This table omits Libellula jesseana (IUCN VU) so that pond names and coordinates ship as deposited.",
+  "samplingProtocol": "Adults collected with aerial nets at each pond on each visit; nymphs with dipnets (sibling table). Sampling time or area per visit is not given in the deposit.",
+  "samplingProtocolCode": "aerial_net",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "period, loosely: two visits two to three months apart within a summer; adult flight seasons differ by species, so a species' availability changes between visits",
+  "geographicCoverage": "Ocala National Forest, Marion County, Florida, USA (29.12-29.33 N, 81.61-81.74 W)",
+  "temporalCoverage": "2022-05/2023-08",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As deposited (degrees-minutes-seconds to 0.01 s, converted to decimal degrees): Libellula jesseana (IUCN VU) is not in this table (E7.3)"
+  },
+  "notes": "Visit months only (obs_survey_month); no day, so no `date`. The Dataverse description says summers 2021 and 2023; the sheets say 2022 and 2023 and are followed. Six source spellings corrected for GBIF (Argia moesta, Coryphaeschna ingens, Nasiaeschna pentacantha, Pachydiplax longipennis, Epitheca cynosura, Gomphus cavillaris); the source spelling is in __taxa taxon_sourceName. Species collected only as nymphs are not listed (taxonInclusion = recorded). Hopkins pond 3's coordinate string has a stray trailing '7', dropped. Sampling effort per visit is not in the deposit.",
+  "notShipped": {
+    "two blank species columns": "unlabelled and empty in both stage sheets",
+    "species never collected as adults": "15 species of the 45-column list never collected in this table (only as nymphs): Argia moesta, Argia sedula, Argia tibialis, Enallagma concisum, Enallagma pallidum, Enallagma vesperum, Epitheca cynosura, Epitheca stella, Gomphus australis, Gomphus cavillaris, Ischnura kellicotti, Ladona deplanata, Libellula incesta, Libellula semifasciata, Nasiaeschna pentacantha",
+    "Odonate nymph data": "shipped as work_2026_ocala_odonatenymphs_count",
+    "LIBJES": "Libellula jesseana (IUCN VU): in work_2026_ocala_odonates_comm only, whose coordinates are coarsened"
+  },
+  "summary": {
+    "n_rows": 1856,
+    "n_units": 16,
+    "n_taxa": 29,
+    "n_periods": 2,
+    "n_occasions": 2,
+    "n_surveys": 64,
+    "y_values": "0,1",
+    "prop_zero": 0.813
+  },
+  "sampleFloor": "below (16 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_size_m2", "unit_depth_m", "unit_nearest_neighbour_m", "unit_forest_distance_m", "unit_open_water_pct", "unit_open_water_area_m2", "unit_grass_pct", "unit_lily_pct", "unit_sunfish", "unit_fish", "unit_crayfish", "unit_decimalLatitude", "unit_decimalLongitude", "obs_survey_month"],
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/work_2026_ocala_odonates_comm.R",
+  "buildDate": "2026-11-03"
+}

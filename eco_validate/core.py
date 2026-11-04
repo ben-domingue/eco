@@ -3,7 +3,8 @@ the result. `validate_file` and `validate_frame` are the public API; the CLI
 and the uploader call the first, tests and R callers can use the second.
 
 Side tables are found by name next to the core CSV: `<name>__taxa.csv`,
-`__periods.csv`, `__units.csv`, `__traps.csv`, and `<name>__dataset.json`.
+`__periods.csv`, `__units.csv`, `__traps.csv`, `__survey_taxa.csv`, and
+`<name>__dataset.json`.
 Nothing here touches the network.
 """
 from __future__ import annotations
@@ -72,12 +73,13 @@ def run_checks(t: Table, profile: str = "upload") -> Report:
 
 
 def validate_frame(df: pd.DataFrame, *, name: str = "table", dataset: dict | None = None,
-                   taxa=None, periods=None, units=None, traps=None,
+                   taxa=None, periods=None, units=None, traps=None, survey_taxa=None,
                    profile: str = "upload") -> Report:
     """Validate an in-memory table. Side tables and metadata you do not pass
     are not reported missing (there was nowhere to look)."""
     side = {k: v for k, v in (("taxa", taxa), ("periods", periods),
-                              ("units", units), ("traps", traps)) if v is not None}
+                              ("units", units), ("traps", traps),
+                              ("survey_taxa", survey_taxa)) if v is not None}
     t = Table(name=name, df=df, dataset=dataset, side=side, side_searched=False)
     return run_checks(t, profile)
 

@@ -1,5 +1,4 @@
 taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_sourceName,taxon_iucnCategory
-LESAUS,Lestes australis,,species,https://www.gbif.org/species/5715372,EXACT,,Lestes australis,LC
 LESVID,Lestes vidua,,species,https://www.gbif.org/species/5051564,EXACT,,Lestes vidua,LC
 LESVIG,Lestes vigilax,,species,https://www.gbif.org/species/5051542,EXACT,,Lestes vigilax,LC
 LESREC,Lestes rectangularis,,species,https://www.gbif.org/species/5051661,EXACT,,Lestes rectangularis,LC
@@ -36,11 +35,8 @@ ERYMIN,Erythrodiplax minuscula,,species,https://www.gbif.org/species/1428978,EXA
 ERYSIM,Erythemis simplicicollis,,species,https://www.gbif.org/species/1429340,EXACT,,Erythemis simplicicollis,LC
 LADDEP,Ladona deplanata,,species,https://www.gbif.org/species/4302513,EXACT,,Ladona deplanata,LC
 LIBAUR,Libellula auripennis,,species,https://www.gbif.org/species/1427957,EXACT,,Libellula auripennis,LC
-LIBAXI,Libellula axilena,,species,https://www.gbif.org/species/1427929,EXACT,,Libellula axilena,LC
-LIBINC,Libellula incesta,,species,https://www.gbif.org/species/1427899,EXACT,,Libellula incesta,LC
 LIBJES,Libellula jesseana,,species,https://www.gbif.org/species/1427902,EXACT,,Libellula jesseana,VU
 LIBNEE,Libellula needhami,,species,https://www.gbif.org/species/1427959,EXACT,,Libellula needhami,LC
 LIBSEM,Libellula semifasciata,,species,https://www.gbif.org/species/1427907,EXACT,,Libellula semifasciata,LC
 PACLON,Pachydiplax longipennis,,species,https://www.gbif.org/species/1428054,EXACT,,Pachydiplex longipennis,LC
-PERTEN,Perithemis tenera,,species,https://www.gbif.org/species/1428077,EXACT,,Perithemis tenera,LC
 TRACAR,Tramea carolina,,species,https://www.gbif.org/species/1428483,EXACT,,Tramea carolina,LC

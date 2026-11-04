@@ -15,7 +15,10 @@
   "surveyEvidence": "inferred",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion within period: the one to three replicate transects of a site x depth are surveyed in the same dive, 10 m apart (spatial replicates); open between annual seasons",
+  "closure": "closed",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "closureNote": "occasion within period: the one to three replicate transects of a site x depth are surveyed in the same dive, 10 m apart (spatial replicates); open between annual seasons",
   "geographicCoverage": {
     "description": "Aldabra Atoll, Seychelles, western Indian Ocean: nine seaward-reef sites (5 m and 15 m) and three lagoon sites (2 m)",
     "boundingBox": {
@@ -47,7 +50,7 @@
   },
   "sampleFloor": "below (21 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_depth_m", "unit_reef_zone"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/koester_2023_aldabra_reeffish_count.R",
   "buildDate": "2026-11-03"

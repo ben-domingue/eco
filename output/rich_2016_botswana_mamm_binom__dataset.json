@@ -11,7 +11,7 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "abstract": "Camera-trap survey of the terrestrial mammal community of northern Botswana (Okavango region; three study blocks coded 1WA, 2WA, 3LA) by Rich et al. (2016): 221 camera stations run for 15-33 nights each (6,607 trap nights), 44 mammal species. The deposit gives, for each station and species, the number of camera-nights with at least one photograph and the number of nights the station operated; the night-level histories were not deposited. The table is therefore one row per station x species with y = nights with a detection and obs_trials = nights surveyed (responseType binomial_count, ruling #34), the binomial form the authors' multi-species occupancy model used. Station covariates as deposited: road density, vegetation density, humans and vehicles per station (detection covariates in the paper), distance to the nearest wildlife area (km, negative inside), proportion floodplain grassland, distance to water (km). Species traits (diet: carnivore / omnivore / herbivore; body size: small / medium / large / extra-large), the authors' grouping variables, are in the taxa side table. Station coordinates are coarsened to 0.1-degree cells here because the community includes EN and VU species; the deposit has exact locations.",
+  "abstract": "Camera-trap survey of the terrestrial mammal community of northern Botswana (Okavango region; three study blocks coded 1WA, 2WA, 3LA) by Rich et al. (2016): 221 camera stations run for 15-33 nights each (6,607 trap nights), 44 mammal species. The deposit gives, for each station and species, the number of camera-nights with at least one photograph and the number of nights the station operated; the night-level histories were not deposited. The table is therefore one row per station x species with y = nights with a detection and obs_trials = nights surveyed (responseType binomial_count, ruling #34), the binomial form the authors' multi-species occupancy model used. Station covariates as deposited: road density, vegetation density, humans and vehicles per station (detection covariates in the paper), distance to the nearest wildlife area (km, negative inside), proportion floodplain grassland, distance to water (km). Species traits (diet: carnivore / omnivore / herbivore; body size: small / medium / large / extra-large), the authors' grouping variables, are in the taxa side table. Station coordinates are coarsened to 0.1-degree cells here because the community includes EN and VU species; the deposit has exact locations (rich_2016_botswana_mamm_exact_binom has the other 37 species at them).",
   "samplingProtocol": "Unbaited passive camera-trap stations across protected wildlife areas and adjoining non-protected land in northern Botswana, each run for 15-33 consecutive nights; species identified from photographs; detections collapsed by the authors to camera-nights with a detection per station and species (Rich et al. 2016, J Appl Ecol 53:1225-1235).",
   "samplingProtocolCode": "camera_trap",
   "surveyEvidence": "deposited_matrix",
@@ -19,7 +19,10 @@
   "effortColumn": "obs_trials",
   "responseType": "binomial_count",
   "unitKind": "site",
-  "closure": "single season (one deployment of 15-33 nights per station; occupancy assumed constant within it)",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "closureNote": "single season (one deployment of 15-33 nights per station; occupancy assumed constant within it)",
   "geographicCoverage": "Northern Botswana, Okavango Delta region (Ngamiland), roughly 19.3-19.7 S, 23.5-23.9 E: protected wildlife areas and adjoining non-protected land; station coordinates coarsened to 0.1-degree cells",
   "temporalCoverage": "one deployment of 15-33 nights per station; the survey year is not stated in the deposit or the open abstract (paper published 2016-04)",
   "crs": "EPSG:4326",
@@ -27,7 +30,7 @@
     "value": true,
     "method": "0.1-degree grid cell centre (coarsen_coords), applied to all 221 stations because the table carries IUCN EN/VU taxa (Lycaon pictus, Loxodonta africana EN; Acinonyx jubatus, Panthera leo, Panthera pardus, Giraffa camelopardalis, Hippopotamus amphibius VU); the deposit has exact station coordinates to 5 decimal places"
   },
-  "designNote": "First binomial_count table under ruling #34 (E2, E9): the authors deposited the sufficient statistic of a constant-p detection model (nights with a detection out of nights surveyed) rather than the night-level history. Community rule E4.2 holds: all 44 species at all 221 stations.",
+  "designNote": "First binomial_count table under ruling #34 (E2, E9): the authors deposited the sufficient statistic of a constant-p detection model (nights with a detection out of nights surveyed) rather than the night-level history. Community rule E4.2 holds: every species at all 221 stations.",
   "notes": "HumansVehicles appears on both covariate sheets with identical values and is shipped once. DistanceWildlifeArea is negative for stations inside a wildlife area (the paper's sign convention). The deposit carries no dates and the survey year is only in the paywalled methods. taxon_iucnCategory is filled for the CR/EN/VU/NT species only.",
   "notShipped": [],
   "summary": {
@@ -42,8 +45,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "unit_humans_vehicles", "unit_distance_wildlife_area_km", "unit_floodplain_grassland", "unit_distance_water_km", "unit_road_density", "unit_vegetation_density", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_trials"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/rich_2016_botswana_mamm_binom.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

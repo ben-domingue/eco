@@ -21,7 +21,10 @@
   "surveyEvidenceNote": "A column (secondary occasion) with at least one capture is a surveyed occasion; the seven primary periods whose four columns are all NA in every row (2, 6, 10, 11, 13, 14, 15) were not visited and have no rows, following the record's sibling (zenodo.1185403: 'we did not visit the populations during all these periods'). Every secondary of a visited primary has captures at both plots.",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "occasion within period (robust design: four consecutive capture days per quarterly primary period; open between primaries)",
+  "closure": "closed",
+  "closureNote": "occasion within period (robust design: four consecutive capture days per quarterly primary period; open between primaries)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "occasionCodes": {
     "1": "capture day 1 of the primary period",
     "2": "day 2",
@@ -50,8 +53,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_x_m", "obs_y_m", "obs_svl_mm"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/valenzuela_2018_neltume_rhidar_rd.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

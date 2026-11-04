@@ -44,6 +44,10 @@
 #   so counts were about 10 minutes (surveyDuration in metadata states this as observed).
 #   Coordinates as published: no taxon is IUCN CR/EN/VU (Karoo Korhaan NT), pentad centroids
 #   are coarser than 0.1 degree anyway.
+#   v1.1: closure = closed, occasionKind = spatial (point counts within the pentad),
+#   taxonInclusion = recorded (the deposit lists only recorded species). iucn_category() run
+#   2026-11-03: no CR/EN/VU; six NA answers are genus moves of the same species (Parus afer ->
+#   Melaniparus afer, Karoo Korhaan -> Heterotetrax vigorsii NT, ...), none flagged.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 suppressMessages(library(readxl))
 TABLE <- "henry_2020_karoo_birds_comm"
@@ -109,6 +113,10 @@ stopifnot(uniqueN(long$unit) == 61, uniqueN(long$taxon) == 63, max(long$occasion
 
 lookup <- species$scientificName
 lookup[lookup == "Parisoma subcaeruleum"] <- "Sylvia subcoerulea"      # GBIF spelling of the Chestnut-vented Tit-Babbler
+# gender-ending variants: GBIF's backbone spelling of the same species (FUZZY on the IOC spelling)
+lookup[lookup == "Alopochen aegyptiacus"] <- "Alopochen aegyptiaca"
+lookup[lookup == "Cisticola fulvicapillus"] <- "Cisticola fulvicapilla"
+lookup[lookup == "Cisticola subruficapillus"] <- "Cisticola subruficapilla"
 taxa <- make_taxa(species$taxon, species$scientificName, vernacularName = species$species, lookupName = lookup,
                   taxon_sourceName = species$latin_name)
 stopifnot(!anyNA(taxa$taxonID))
@@ -123,7 +131,8 @@ dataset <- list(
   abstract = "Bird point counts in the Karoo, South Africa, February to October 2017, recorded with CyberTracker so that the time from the start of the count to the first detection of each species is known. 61 SABAP pentads (5 x 5 arc-minute cells) each received 10 to 20 point counts, usually 20 on one or two days; 63 species were recorded. The deposit is one row per first detection of a species on a count (4,015 rows). The table is the detection/non-detection view the paper compares against: unit = pentad, occasion = point count in time order, y = detected on that count, with the time to first detection carried as obs_ttd_s on the species rows (NA = not detected within the count) so the paper's time-to-detection models can be refit; count-level weather, minutes after dawn and the count's GPS location ride as obs_ covariates; the pentad centroid is the unit coordinate.",
   samplingProtocol = "Point counts of about 10 minutes (observed first detections up to 658 s) at 10-20 points per 5 x 5 arc-minute pentad, all species detected by sight or sound recorded with the time of first detection, distance (rangefinder), detection mode and behaviour; temperature, cloud, wind and days since rain per count.",
   samplingProtocolCode = "point_count", responseType = "detection", unitKind = "site",
-  closure = "occasion: the 10-20 point counts within a pentad are the replicates of one 2017 season (the paper's DND design); period absent",
+  closure = "closed", closureNote = "occasion: the 10-20 point counts within a pentad are the replicates of one 2017 season (the paper's DND design); period absent",
+  occasionKind = "spatial", taxonInclusion = "recorded",
   surveyEvidence = "row_presence",
   surveyEvidenceNote = "The deposit is a record table of first detections with no list of point counts: a count exists iff at least one species was recorded on it. Counts with zero detections, if any occurred, cannot be recovered. Every count carries a full set of weather covariates, so the 1,055 counts are the surveyed set as far as the deposit shows.",
   surveyDuration = "not deposited; first detections run to 658 s, so counts were about 10 minutes; obs_ttd_s is right-censored at the count's end",

@@ -17,11 +17,14 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (one annual occasion; survival and emigration between years)",
+  "closure": "none",
+  "closureNote": "period (one annual occasion; survival and emigration between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "Northern Gulf of St. Lawrence, Quebec, Canada: Mingan Islands and Jacques Cartier Passage (one study zone; no coordinates deposited)",
   "temporalCoverage": "1982/2016",
   "coordinatesCoarsened": null,
-  "notes": "unit_calf = 1 marks the 41 whales listed in Calves.txt, which the authors exclude from all models because a calf's sightings follow its mother's; filter them out to reproduce the paper. unit_sex is NA for the 280 whales not genetically sexed. The authors' CJS analyses use 1990-2016 subsets of these histories.",
+  "notes": "unit_calf = 1 marks the 41 whales listed in Calves.txt, which the authors exclude from all models because a calf's sightings follow its mother's; filter them out to reproduce the paper. Their rows begin in the year of first identification (born that year; E4.4); every other whale is of unknown age, with rows from 1982 and zeros before first capture. unit_sex is NA for the 280 whales not genetically sexed. The authors' CJS analyses use 1990-2016 subsets of these histories.",
   "notShipped": {
     "ChPopan20042010.txt, ChPopan20102016.txt": "7-year windows of the same histories for POPAN; recoverable from this table by period",
     "residency clusters": "the authors' visitor / core-regular grouping is a clustering of the same sighting histories and is not deposited per whale",
@@ -29,19 +32,19 @@
     "Calves.txt IDs not in Chall": "3 calf IDs have no history (ID140, ID188, ID451)"
   },
   "summary": {
-    "n_rows": 17745,
+    "n_rows": 16680,
     "n_units": 507,
     "n_taxa": 1,
     "n_periods": 35,
     "n_occasions": 1,
-    "n_surveys": 17745,
+    "n_surveys": 16680,
     "y_values": "0,1",
-    "prop_zero": 0.887
+    "prop_zero": 0.88
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_sex", "unit_calf"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/schleimer_2019_gsl_finwhale_cjs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

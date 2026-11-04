@@ -17,7 +17,10 @@
   "surveyEvidenceNote": "brd_perpoint lists every point-count event; a count exists iff samplingImpractical == OK and at least one brd_countdata row (a targetTaxaPresent = N row records a count with no detections). Species pool is national: every shipped species at every count.",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion = bout within the breeding season (1-2 counts per point per year); period = calendar year",
+  "closure": "closed",
+  "closureNote": "occasion = bout within the breeding season (1-2 counts per point per year); period = calendar year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; point coordinates as published by NEON (WGS 84) in __units; latitude 18.0 to 71.3, longitude -156.6 to -66.8",
   "temporalCoverage": "2013-06-05/2024-07-16",
   "crs": "EPSG:4326 (WGS 84), as published",
@@ -50,8 +53,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_site", "obs_air_temp_c", "obs_wind_kmh", "obs_cloud_pct", "obs_rh_pct", "obs_habitat"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_landbirds_count.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

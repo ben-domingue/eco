@@ -19,7 +19,10 @@
   "responseType": "multinomial_cell",
   "multinomialType": "double_observer",
   "unitKind": "individual",
-  "closure": "occasion (the three detection cells of one group within the year's survey); groups are not matched across years",
+  "closure": "closed",
+  "closureNote": "occasion (the three detection cells of one group within the year's survey); groups are not matched across years",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
   "occasionCodes": {
     "1": "10: observer one only",
     "2": "01: observer two only",
@@ -46,8 +49,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_group_size"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tumursukh_2016_tost_ungulates_dobs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

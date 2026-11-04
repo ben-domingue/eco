@@ -17,7 +17,9 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Rupi Bhaba Wildlife Sanctuary and Daranghati Wildlife Sanctuary, Himachal Pradesh, Indian Himalaya (no coordinates deposited)",
   "temporalCoverage": "2018-05/2019-07",
   "coordinatesCoarsened": {
@@ -38,8 +40,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_area", "unit_year"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bhattacharya_2022_himachal_bear_occ.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

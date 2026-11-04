@@ -17,7 +17,9 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "count",
   "unitKind": "site",
-  "closure": "occasion",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "geographicCoverage": "Southern to east-central Sweden (RT90 northings 6.18-6.71 million m); no eastings or site names deposited",
   "temporalCoverage": "one breeding season, Julian days 124-158; the year is not stated in the deposit",
   "coordinatesCoarsened": null,
@@ -38,8 +40,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_water_ha", "unit_reedcover_frac", "unit_rt90_northing_m", "obs_julian_day"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/knape_2018_shoveler_count.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

@@ -51,7 +51,10 @@
 #   site-year mean), period_management (m / g / n; changes between years at T5 and HO3).
 #   unit_: elevation, mountain transect, coordinates.
 #   Coordinates: as deposited (site centres, 8 decimals) unless a species is IUCN CR, EN or VU
-#   (checked through GBIF; the script coarsens to 0.1 degree if so).
+#   (checked through GBIF with iucn_category(); none is, so nothing is coarsened).
+#   v1.1: closure = open (May-September walks follow flight seasons), occasionKind = time,
+#   taxonInclusion = recorded. BOMBLUTE is the source's species aggregate (taxonRank
+#   speciesAggregate, taxonID the genus Bombus via allow_higher, taxonRemarks in __taxa; E6).
 #   Not shipped: the Bavarian Forest (BF) gradient: specimen rows from Malaise and flight-
 #   interception traps with collection dates only, no record of trap runs or empty catches,
 #   sites split between 2007 and 2008, so its survey set cannot be recovered. Sub-transect
@@ -127,19 +130,19 @@ sp[, `:=`(binomial = fifelse(source == "Bombus lucorum_terrestris", "Bombus luco
 sp[, taxon := toupper(paste0(substr(sub(" .*$", "", source), 1, 4), substr(sub("^\\S+ ", "", source), 1, 6)))]
 sp[source == "Bombus lucorum_terrestris", taxon := "BOMBLUTE"]
 stopifnot(!anyDuplicated(sp$taxon))
-taxa <- make_taxa(sp$taxon, sp$binomial, taxonRank = sp$rank, lookupName = sp$lookup)
+taxa <- make_taxa(sp$taxon, sp$binomial, taxonRank = sp$rank, lookupName = sp$lookup,
+                  taxonRemarks = fifelse(sp$taxon == "BOMBLUTE", "species aggregate recorded as one by the source (B. lucorum and B. terrestris workers cannot be told apart in the field; README: 'better use Bombus sensu stricto complex'); taxonID is the genus Bombus", NA_character_),
+                  allow_higher = "BOMBLUTE")
 stopifnot(!anyNA(taxa$taxonID), all(taxa[taxon != "BOMBLUTE", gbifMatchType] == "EXACT"),
           taxa[taxon == "BOMBLUTE", taxonID == "https://www.gbif.org/species/1340278"])   # the complex resolves to the genus Bombus Latreille (HIGHERRANK)
-iucn <- function(id) {
-  key <- sub(".*/", "", id); fp <- file.path(GBIF_DIR, paste0("iucn_", key, ".json"))
-  if (!file.exists(fp)) {
-    txt <- paste(readLines(sprintf("https://api.gbif.org/v1/species/%s/iucnRedListCategory", key), warn = FALSE), collapse = "")
-    writeLines(if (nzchar(txt)) txt else '{"code": "NE"}', fp)   # HTTP 204 = no assessment in GBIF
-  }
-  r <- fromJSON(fp); if (is.list(r) && length(r) && !is.null(r$code)) r$code else "NE"
-}
-taxa[, taxon_iucnCategory := fifelse(taxonRank == "species", sapply(taxonID, iucn), NA_character_)]
+taxa[, taxon_iucnCategory := fifelse(taxonRank == "species", iucn_category(taxonID, scientificName), NA_character_)]
 print(taxa[, .N, by = taxon_iucnCategory])
+# four Osmia names GBIF keys under Hoplitis come back NA because the IUCN record carries the
+# source's own name (Osmia claviventris, leucomelana, mitis, villosa: the same species, the
+# record answers NE for each); taken as NE
+OSM <- c("OSMICLAVIV", "OSMILEUCOM", "OSMIMITIS", "OSMIVILLOS")
+stopifnot(setequal(taxa[is.na(taxon_iucnCategory) & taxonRank == "species", taxon], OSM))
+taxa[taxon %in% OSM, taxon_iucnCategory := "NE"]
 flagged <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU")]
 print(flagged[, .(taxon, scientificName, gbifAcceptedName, taxon_iucnCategory)])
 COARSEN <- nrow(flagged) > 0
@@ -176,7 +179,8 @@ dataset <- list(
   surveyEvidence = "row_presence",
   surveyEvidenceNote = "Every walk is in BGL_monitoring.csv: specimen rows, or for the six walks with no bee an explicit blank sampling event (species null, abundance 0). Each of the 66 site-years has 5 or 6 walks, the methods' five above 1200 m and six below (the rule holds in 58 site-years; the other 8 lie near 1200 m). The source's replicate number is a campaign round; 8 site-years skip a round number but keep the protocol's walk count, so the gap is a round not walked, not a lost walk. A species absent from a walk's rows is a zero.",
   responseType = "count", unitKind = "site",
-  closure = "not assumed within a period: walks run from May to September and follow each species' flight season; period = year (2009, 2019)",
+  closure = "open", closureNote = "not assumed within a period: walks run from May to September and follow each species' flight season; period = year (2009, 2019)",
+  occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = list(description = "Berchtesgadener Land, Bavaria, Germany: Berchtesgaden National Park and vicinity (Hintersee, Hochalm, Watzmann, Wimbachtal and lowland sites)",
                             boundingBox = list(west = min(units$unit_decimalLongitude), east = max(units$unit_decimalLongitude),
                                                south = min(units$unit_decimalLatitude), north = max(units$unit_decimalLatitude))),

@@ -41,9 +41,14 @@
 #   y_raw = number of records that day (lions only: three individual-site-days have two
 #   records; every other species has at most one, so no y_raw column there).
 #   obs_side = flank(s) photographed on detection rows (both / left / right), NA otherwise;
-#   unit_flank_profile = the set of flanks ever recorded for the individual: a "left"- or
-#   "right"-only id may be the same animal as another single-flank id of the opposite side
-#   (the authors used the ids as deposited; genets are mostly single-flank).
+#   unit_identity (E2 partial identity) = the flanks from which the individual is identified:
+#   "left" or "right" when every record of the id is that flank, else "both"; a left- or
+#   right-only id may be the same animal as another single-flank id of the opposite side (the
+#   authors used the ids as deposited; genets are mostly single-flank). Cheetah records carry no
+#   Side column (identified from coat pattern with sex and coalition), so that table has no
+#   unit_identity: the deposit gives no sign of one-sided ids.
+#   At-risk span (E4.4): one closed session (no period), so every individual carries every
+#   surveyed camera-day; no never-detected ids (every id comes from a detection).
 #   unit_sex (leopard, cheetah, lion), unit_group (cheetah coalition, lion pride) as deposited.
 #   __traps: trap, x_m, y_m = UTM 36S easting/northing CENTRED on the array centroid by the
 #   processor (local metres), half, brand, grid_allocation, n_days_operating. Leopard, cheetah
@@ -52,7 +57,8 @@
 #   a handful of cells) while withholding the absolute positions, and the same trap table
 #   serves all six tables. The array centroid is given at 0.1 degree in geographicCoverage.
 #   Taxa: the genet is identified only as "genet" in the deposit; shipped at genus rank
-#   (Genetta; Phinda holds the large-spotted genet complex).
+#   (Genetta, GBIF exact genus match) with taxonRemarks: Phinda holds the large-spotted genet
+#   complex, not separated in the deposit.
 #   NOT shipped: output/ (simulation designs and results, fitted null models), R/ code,
 #   spatial/ fence (analysis state space), MYW_grid_cam_allocation.csv (duplicate of the
 #   Grid_Allocation column, asserted identical).
@@ -143,7 +149,8 @@ build <- function(sp) {
   ind <- unique(d[, .(unit = Animal_ID)])
   if ("Sex" %in% names(d)) ind <- merge(ind, unique(d[, .(unit = Animal_ID, unit_sex = Sex)]), by = "unit")
   if ("Group" %in% names(d)) ind <- merge(ind, unique(d[, .(unit = Animal_ID, unit_group = fifelse(Group == "", NA_character_, Group))]), by = "unit")
-  if ("Side" %in% names(d)) ind <- merge(ind, d[, .(unit_flank_profile = paste(sort(unique(Side)), collapse = "/")), by = .(unit = Animal_ID)], by = "unit")
+  if ("Side" %in% names(d)) ind <- merge(ind, d[, .(unit_identity = if (all(Side == "left")) "left" else if (all(Side == "right")) "right" else "both"),
+                                                by = .(unit = Animal_ID)], by = "unit")
   stopifnot(nrow(ind) == s$n_ids)
 
   # the rectangle: individual x surveyed camera-days
@@ -159,7 +166,8 @@ build <- function(sp) {
   long <- order_eco(long)
   cat(sprintf("  %s: %d individuals, %d detections (%d records), %d rows\n", sp, nrow(ind), nrow(det), nrow(d), nrow(long)))
 
-  taxa <- make_taxa(s$taxon, s$sci, vernacularName = s$vern, taxonRank = s$rank, taxon_iucnCategory = s$iucn)
+  taxa <- make_taxa(s$taxon, s$sci, vernacularName = s$vern, taxonRank = s$rank, taxon_iucnCategory = s$iucn,
+                    taxonRemarks = if (sp == "genet") "Recorded only as 'genet' in the deposit; the Phinda genets are the large-spotted genet complex (Genetta tigrina / G. maculata), not separated, so the taxon is the genus" else NA_character_)
   stopifnot(!is.na(taxa$taxonID))
   dataset <- list(
     title = sprintf("Spatial capture-recapture of %s (%s) at 99 operating camera traps (100 deployed) in the Munywana Conservancy, South Africa, Sept 2021 to Jan 2022", tolower(s$vern), s$sci),
@@ -173,16 +181,16 @@ build <- function(sp) {
     samplingProtocol = "Paired or single camera traps at 100 sites (Cuddeback and Spartan), checked over 117 calendar days; individuals identified from coat pattern (flank recorded as both / left / right where applicable), lions and cheetahs also by pride or coalition. Detection history is individual x camera x day.",
     samplingProtocolCode = "camera_trap", surveyEvidence = "effort_table",
     surveyEvidenceNote = "MYW2021_cam_op_site_effort_UTM.csv gives each camera site x day as 1 (operating), 0 (deployed, not operating) or NA (not deployed); a camera-day is surveyed iff 1 (4,470 of 11,700). Every detection falls on an operating camera-day. MYW43 never operated and has no rows.",
-    responseType = "detection", unitKind = "individual", closure = "period (one season, Sept 2021 to Jan 2022, treated as closed by the authors)",
+    responseType = "detection", unitKind = "individual", closure = "closed", closureNote = "period (one season, Sept 2021 to Jan 2022, treated as closed by the authors)", occasionKind = "time", taxonInclusion = "single",
     geographicCoverage = sprintf("Munywana Conservancy (Phinda Private Game Reserve), KwaZulu-Natal, South Africa; camera array centroid %.1f, %.1f (0.1 degree); trap positions in __traps as local metres centred on the array", ctr_c$lat, ctr_c$lon),
     temporalCoverage = "2021-09-17/2022-01-11",
     crs = "local: metres, UTM 36S (EPSG:32736) easting/northing minus the array centroid (processor-centred)",
     coordinatesCoarsened = list(value = TRUE, method = "trap coordinates centred on the array centroid by the processor (local metres; exact UTM 36S positions withheld) because leopard, cheetah and lion (IUCN VU) share the one camera array; the centroid is given at 0.1 degree in geographicCoverage"),
     designNote = "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Closed population, one session; occasion = calendar day as in the authors' oSCR code (they collapse occasions to counts with effort). One species per table (ruling #20); the six tables share traps and survey set.",
-    notes = if (sp == "genet") "The deposit identifies the species only as 'genet'; shipped at genus rank (Genetta). 237 of 301 genet ids are single-flank (unit_flank_profile left or right), so two ids may be one animal; the authors used the ids as deposited." else
+    notes = if (sp == "genet") "The deposit identifies the species only as 'genet'; shipped at genus rank (Genetta). 237 of 301 genet ids are single-flank (unit_identity left or right), so two ids may be one animal; the authors used the ids as deposited." else
             if (sp == "lion") "Three individual-camera-days carry two records (y_raw = 2). unit_group is the pride or coalition as deposited." else
             if (sp == "cheetah") "Six individuals; two have no group recorded (unit_group NA). Below the sample floor; shipped as a sibling of the other five species." else
-            "unit_flank_profile = the set of flanks ever recorded for the individual; single-flank ids may duplicate an animal recorded on the other flank.",
+            "unit_identity = the flanks from which the individual is identified (both / left / right); single-flank ids may duplicate an animal recorded on the other flank.",
     notShipped = list(`output/` = "simulation designs, simulation results (out_df_1..6.csv) and fitted oSCR null models: analysis outputs",
                       `R/` = "the authors' oSCR fitting and simulation code",
                       `spatial/Full_Phinda_2018_UTM.*` = "reserve fence shapefile, the SCR state space (analysis input)",

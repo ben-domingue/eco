@@ -20,7 +20,10 @@
   "surveyEvidenceNote": "The deposited daily Coyote column is NA when the camera was not active and 0/1 otherwise; a row exists iff the camera was active that day. 607 of 1,952 station-seasons and 7 of 122 stations were never active and have no rows.",
   "responseType": "state",
   "unitKind": "site",
-  "closure": "period (coyote occupancy and mange state are modelled per site-season; days within the 28-day window are replicate observations)",
+  "closure": "closed",
+  "closureNote": "period (coyote occupancy and mange state are modelled per site-season; days within the 28-day window are replicate observations)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "stateCodes": {
     "0": "camera active, no coyote detected",
     "1": "coyote detected, no image that day shows signs of mange",
@@ -59,8 +62,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_house_km2", "unit_tree_cover", "unit_impervious_cover", "obs_week", "obs_n_images", "obs_n_mange_images", "obs_mean_blur", "obs_prop_in_color", "obs_max_propbodyvis"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/murray_2021_chicago_coyote_mange.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

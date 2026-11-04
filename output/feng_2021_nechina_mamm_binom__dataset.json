@@ -18,7 +18,10 @@
   "effortColumn": "obs_trials",
   "responseType": "binomial_count",
   "unitKind": "site",
-  "closure": "one season (the whole deployment of each station, 45-184 trap days, is one closed period; the 14-day windows are collapsed into obs_trials)",
+  "closure": "none",
+  "closureNote": "one season (the whole deployment of each station, 45-184 trap days, is one closed period; the 14-day windows are collapsed into obs_trials)",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
   "geographicCoverage": "Temperate forest across the China-Russia border, Northeast China (the paper's study area; no coordinates deposited)",
   "temporalCoverage": "not deposited: one camera-trapping season of up to 184 trap days per station; the year is in Feng et al. 2021 (doi:10.1111/ddi.13237), which the agent could not fetch",
   "coordinatesCoarsened": {
@@ -26,7 +29,9 @@
     "method": "no coordinates in the deposit; Amur tiger (EN), leopard (VU, Amur subspecies CR) and Siberian musk deer (VU) are present, so none can be added"
   },
   "notes": "Species codes are six letters from the scientific name; the deposit's S-codes are in __taxa.taxon_sourceCode (S06, S08, S16, S18 and S21 are not in the deposit: 21 species photographed, 18 modelled). Three taxa are deposited as subspecies and the black bear at genus ('Ursus'); GBIF keys are at the species or genus level accordingly. unit_human_detection_rate and unit_cattle_detection_rate are detections of humans and cattle at the same cameras, the authors' disturbance covariates. k is not a deterministic function of trap days (7 stations have k > ceiling(Days/14)); both are shipped as deposited.",
-  "notShipped": [],
+  "notShipped": {
+    "unmodelled_species": "the paper photographed 21 species; the deposit carries the 18 it modelled (S06, S08, S16, S18, S21 absent, names not given), so the other three cannot be shipped"
+  },
   "summary": {
     "n_rows": 2484,
     "n_units": 138,
@@ -39,8 +44,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "unit_cam_type", "unit_trap_days", "unit_human_detection_rate", "unit_cattle_detection_rate", "unit_elev_m", "unit_dist_settlement_m", "unit_dist_border_m", "unit_dist_road_m", "unit_dist_river_m", "unit_ndvi", "unit_basal_area", "unit_canopy_transparency", "obs_trials"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/feng_2021_nechina_mamm_binom.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

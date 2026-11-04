@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "state",
   "unitKind": "individual",
-  "closure": "occasion within period (robust design: infection state fixed within a primary period, open between; nominal interval 2 weeks)",
+  "closure": "closed",
+  "closureNote": "occasion within period (robust design: infection state fixed within a primary period, open between; nominal interval 2 weeks)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
   "stateCodes": {
     "0": "not captured",
     "1": "captured, all qPCR runs Bd-negative (observed uninfected)",
@@ -47,8 +50,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_qpcr_runs", "obs_qpcr_positive", "obs_its_copies_mean"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hollanders_2022_brindle_mfleayi_msdis.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

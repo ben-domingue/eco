@@ -16,7 +16,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period",
+  "closure": "none",
+  "closureNote": "period",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "Eastern France (streams; no coordinates in the package)",
   "temporalCoverage": "1981/1987",
   "coordinatesCoarsened": null,
@@ -33,8 +36,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lebreton_1992_dipper_cjs.R",
-  "buildDate": "2026-10-31"
+  "buildDate": "2026-11-03"
 }

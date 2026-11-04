@@ -1,7 +1,6 @@
 taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_writtenAs
 ACUPMERI,Acupalpus meridianus,,species,https://www.gbif.org/species/1037633,EXACT,,
 AGONMUEL,Agonum muelleri,,species,https://www.gbif.org/species/4988484,EXACT,,
-AGONVIDU,Agonum viduum,,species,https://www.gbif.org/species/5755075,EXACT,,
 AMARAENE,Amara aenea,,species,https://www.gbif.org/species/1035185,EXACT,,
 AMARAPRI,Amara apricaria,,species,https://www.gbif.org/species/1035231,EXACT,,
 AMARAULI,Amara aulica,,species,https://www.gbif.org/species/1035194,EXACT,,
@@ -57,7 +56,6 @@ PHILMANN,Philochthus mannerheimii,,species,https://www.gbif.org/species/4478662,
 PHILBIGU,Philochthus biguttatus,,species,https://www.gbif.org/species/4478619,EXACT,Bembidion biguttatum,Philochtus biggatus
 PHYLOBTU,Phyla obtusa,,species,https://www.gbif.org/species/7418621,EXACT,Bembidion obtusum,
 POECCUPR,Poecilus cupreus,,species,https://www.gbif.org/species/5753697,EXACT,,Poecilius cupreus
-POECVERS,Poecilus versicolor,,species,https://www.gbif.org/species/5753720,EXACT,,Poecilius versicolor
 PSEURUFI,Pseudophonus rufipes,,species,https://www.gbif.org/species/9198953,EXACT,,
 PTERANTH,Pterostichus anthracinus,,species,https://www.gbif.org/species/8423772,EXACT,,
 PTERMADI,Pterostichus madidus,,species,https://www.gbif.org/species/7641814,EXACT,,
@@ -67,7 +65,6 @@ PTERSTRE,Pterostichus strenuus,,species,https://www.gbif.org/species/7508714,EXA
 PTERVERN,Pterostichus vernalis,,species,https://www.gbif.org/species/7975487,EXACT,,
 SCYBOBLO,Scybalicus oblongiusculus,,species,https://www.gbif.org/species/4474984,EXACT,,
 STOMPUMI,Stomis pumicatus,,species,https://www.gbif.org/species/4473297,EXACT,,
-SYNTFOVE,Syntomus foveatus,,species,https://www.gbif.org/species/4479890,EXACT,,
 TRECMICR,Trechoblemus micros,,species,https://www.gbif.org/species/4476832,EXACT,,
 TRECQUAD,Trechus quadristriatus,,species,https://www.gbif.org/species/4476667,EXACT,,
 TRECRUBE,Trechus rubens,,species,https://www.gbif.org/species/1037293,EXACT,,

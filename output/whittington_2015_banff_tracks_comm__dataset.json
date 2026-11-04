@@ -16,7 +16,10 @@
   "samplingProtocolCode": "snow_track",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "period (one winter); the authors treat the 100 km2 cell as the occupancy unit and the segment as a spatial replicate, with a Markovian dependence between consecutive segments",
+  "closure": "dependent",
+  "closureNote": "period (one winter); the authors treat the 100 km2 cell as the occupancy unit and the segment as a spatial replicate, with a Markovian dependence between consecutive segments",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
   "surveyEvidence": "row_presence",
   "surveyEvidenceNote": "The deposit is a long table with a 0 or 1 for every one of seven species at every surveyed segment-date (asserted: 872 segment-dates x 7); a segment-date not in the file was not surveyed.",
   "temporalCoverage": "2011-11-19/2012-04-09",
@@ -45,8 +48,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_transect", "unit_interval", "unit_prev_segment_within_1500m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_days_snow"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/whittington_2015_banff_tracks_comm.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

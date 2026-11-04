@@ -21,7 +21,10 @@
   "transectType": "point",
   "effortColumn": "unit_survey_effort",
   "unitKind": "site",
-  "closure": "occasion (bins of one point visit)",
+  "closure": "closed",
+  "closureNote": "occasion (bins of one point visit)",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
   "geographicCoverage": "Holme Moss, Peak District National Park, England (OS SE 40 39 area; six 1 km sites; no coordinates deposited)",
   "temporalCoverage": "2017-11/2018-05",
   "notes": "The deposit has no visit label; a visit is a maximal run of consecutive rows with the same vantage point in file order, which reproduces the paper's 114 replicates per site exactly (20, 22, 27, 22, 12, 11). Radial distances are deposited to the metre and binned here (50 m bins to the paper's 350 m truncation, plus one 350-750 m bin holding the 54 detections beyond it); the paper fitted exact distances. obs_individuals is hares in the bin (cluster sizes 1-8); y counts groups. Three leveret sightings were excluded by the authors before deposit. No dates or coordinates deposited.",
@@ -40,8 +43,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "cluster_id", "unit_point", "unit_visit", "unit_site_area_km2", "unit_survey_effort", "obs_individuals"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bedson_2021_holmemoss_hare_therm_ds.R",
-  "buildDate": "2026-11-01"
+  "buildDate": "2026-11-03"
 }

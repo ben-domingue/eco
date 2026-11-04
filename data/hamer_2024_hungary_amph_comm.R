@@ -67,7 +67,7 @@ dataset <- list(
   samplingProtocol = "Three surveys per pond (19 March to late July 2023); each survey combined a time-constrained visual encounter survey and aural census, dip-netting and newt trapping; detection of eggs, larvae or post-metamorphic animals counts as a detection.",
   samplingProtocolCode = "ves_dipnet_trap", effortColumn = "obs_effort_ves_min",
   surveyEvidence = "deposited_matrix",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "recorded",
   geographicCoverage = "Ponds in Hungary (no coordinates deposited)", temporalCoverage = "2023-03/2023-07",
   coordinatesCoarsened = NA,
   notes = "PELCOM = Pelophylax water-frog complex, not resolved to species by the authors. Continuous covariates are shipped unstandardised (the deposited model code standardises them).")

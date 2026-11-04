@@ -1,3 +1,3 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
-RODENT,Rodentia,Small rodents (functional group),order,https://www.gbif.org/species/1459,EXACT,
-MUSTEL,Mustela,"Small mustelids (stoat, least weasel)",genus,https://www.gbif.org/species/44,HIGHERRANK,
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxonRemarks
+RODENT,Rodentia,Small rodents (functional group),order,https://www.gbif.org/species/1459,EXACT,,"functional group of the image classifier (small rodents: voles and lemmings); taxonID is the order Rodentia, of which the group is a part"
+MUSTEL,Mustela,"Small mustelids (stoat, least weasel)",genus,https://www.gbif.org/species/2433922,EXACT,,functional group of the image classifier (small mustelids: stoat and least weasel); taxonID is the genus Mustela

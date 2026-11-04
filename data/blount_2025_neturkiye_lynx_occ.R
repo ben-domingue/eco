@@ -56,7 +56,7 @@ dataset <- list(
   samplingProtocol = "Unbaited camera traps at canopy, chest or knee height facing dirt roads and trails in randomly chosen 2-km2 grid cells, 1-728 days per deployment; detection / non-detection per seven-day occasion from the first deployment day.",
   samplingProtocolCode = "camera_trap", occasionLength = "7 days", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "A deployment-week is surveyed iff the cell is non-NA (trailing NA = camera stopped); identical to the wolf and bear matrices. No row ids: matrix and covariate sheet aligned by row order (229 each).",
-  responseType = "detection", unitKind = "site", closure = "occasion",
+  responseType = "detection", unitKind = "site", closure = "closed", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Sarikamis-Allahuekber Mountains National Park and surrounding forest, Kars Province, northeastern Turkiye (about 40.2-40.5 N, 42.4-42.8 E)",
   temporalCoverage = "2009/2023",
   coordinatesCoarsened = list(value = FALSE, method = "kept as deposited (exact camera locations); lynx is IUCN LC"),

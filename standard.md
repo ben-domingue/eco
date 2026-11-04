@@ -1,6 +1,6 @@
-# The eco data standard, v1.0-draft
+# The eco data standard, v1.1-draft
 
-*2026-11-01. Supersedes `standard_draft.md` (v0.1–v0.3.1), which is kept as the
+*2026-11-01; v1.1-draft 2026-11-03 (see the changelog). Supersedes `standard_draft.md` (v0.1–v0.3.1), which is kept as the
 record of how the clauses were arrived at and still holds the per-family mapping
 tables and the discussion of alternatives. This file is the normative text: ten
 numbered clauses, `E1`–`E10`, which the validator cites, followed by the intake
@@ -68,13 +68,21 @@ needs no support from the standard.
 
 | `responseType` | `y` | `y_raw` | Notes |
 |---|---|---|---|
-| `detection` | 0 or 1 | the count, if `y` was collapsed from one | Detection / non-detection, capture histories. Rows before an individual's first capture are kept as 0 if a session happened. |
+| `detection` | 0 or 1 | the count, if `y` was collapsed from one | Detection / non-detection, capture histories. Rows before an individual's first capture follow E4 consequence 4. |
 | `count` | integer ≥ 0 | — | Repeated counts (N-mixture), removal counts, trap counts. |
 | `state` | integer state code, 0 = not detected | the source's label | Multi-state occupancy or capture–recapture: breeding status, disease state, false-positive certainty. `stateCodes` required in metadata. |
 | `ordinal` | integer index, 0 = none | the source's label | An ordered index that is neither a count nor a latent state: an anuran calling index 0–3, an abundance class. `stateCodes` required. *Added v1.0 after `glorioso_2025_atchafalaya_calls`.* |
 | `multinomial_cell` | count in the cell | the cell label (`"10"`, `"01"`, `"11"`; a removal interval; a distance bin) | `occasion` indexes the cell (E9). `multinomialType` or `distanceBreaks` required. |
 | `detection_event` | 1 | — | One row per detection with `obs_*` (distance, classifier score) plus one `y = 0` row per survey with no detections. Experimental (E9). |
 | `binomial_count` | number of occasions with a detection, integer 0 to `obs_trials` | — | The source collapsed the occasions: only the count of occasions with a detection and the number surveyed (`obs_trials`, required on every row, integer ≥ 1) are deposited. No `occasion` column; a row is one `(unit, taxon [, trap] [, period])`. Supports constant-`p` models only; a time-varying detection model needs the history, which does not exist. `effortColumn = "obs_trials"`. *Added by ruling #34 (2026-11-01).* |
+
+**Partial identity.** Where some individuals are identified from one side only (one
+flank in camera traps, one side of the dorsal fin in photo-ID), so that a left-only and
+a right-only record may be the same animal, every unit carries `unit_identity` with one
+of `both`, `left`, `right`: the sides from which the individual's identity is known.
+`y` stays the detection or state of E2; a design that codes which side was seen on each
+encounter (multimark's 0 to 4) is `responseType = state` with those codes in
+`stateCodes`.
 
 Counts that were imputed or interpolated MUST be removed. A quantity the source
 authors *estimated* from the same observations (a model-based occupancy estimate, a
@@ -97,15 +105,30 @@ Consequences:
 
 1. Unbalanced designs are encoded by row count, not by `NA` padding; the converter
    back to the native matrix pads with `NA`.
-2. A multi-species table MUST carry a row for every taxon on the list at every
-   conducted survey, so `unique(taxon)` is the species list and "surveyed, not
-   detected" is distinguishable from "not surveyed". The validator checks that every
-   survey has the same number of taxon rows.
+2. A multi-species table MUST carry a row for every taxon surveyed for at every
+   conducted survey, so "surveyed, not detected" is distinguishable from "not
+   surveyed". By default every taxon is surveyed for at every survey, and the validator
+   checks that every survey has the same set of taxon rows. Where the source states
+   that the taxa surveyed for differ between surveys (different species lists by
+   region, taxa countable only on some runs), the table carries a `__survey_taxa` side
+   table (E6) listing them, and the validator checks each survey's taxon rows against
+   it. Which taxa are on the list at all is `taxonInclusion` (E10).
 3. A unit never surveyed has no rows; if the sampling frame matters it belongs in
    `__units`.
-4. Capture–recapture: a session at which an individual was not at risk (removed,
-   outside the trapped area) has no row; a loss on capture is `obs_removed = 1` on the
-   last row.
+4. Capture–recapture: a session at which an individual was not at risk has no row.
+   Not at risk means removed (a loss on capture is `obs_removed = 1` on the last
+   row), outside the trapped area, not yet born or hatched (an individual marked as a
+   newborn, chick or seedling has no rows before the period in which it was marked,
+whatever release convention the authors' analysis used), or no longer
+   identifiable (a lost tag or flag ends the history: no rows after the last period at
+   which the mark was known to be present). An individual of unknown age caught in
+   the wild was at risk from the first period of the study, so its rows begin there.
+   Within the span at risk, a session in which the individual was not caught is a row
+   with `y = 0`, including whole primary periods with no capture; converters that
+   build per-session histories for a closed model (`eco_to_ch()`) drop all-zero
+   unit × period blocks unless asked to keep them (ruling #30). An individual with no
+   detection anywhere in the table (a catalogue entry never sighted) is not a unit
+   and has no rows.
 
 **Ruling (#20, 2026-11-01).** Consequence 2 applies to `unitKind = site`. When the
 unit is an individual (`cjs`, `scr`, closed captures) the taxon is a property of the
@@ -113,6 +136,14 @@ unit, so an individual's surveys can carry only its own taxon's rows. A deposit 
 several species of individuals ships as one table per taxon (E9: one table per
 survey design × response type); a multi-taxon table with `unitKind = individual` is
 rejected.
+
+**Ruling (#31, 2026-11-03).** The site-unit surveys of one deposit under one protocol ×
+response type are one table: differences in which taxa were surveyed for, between
+regions, units or runs, are carried by `__survey_taxa`, not by splitting the table.
+Two methods (pitfall and emergence tent, aerial net and dipnet, eDNA and visual
+survey) are two protocols. The ruling is about taxon lists only, so it does not touch
+`unitKind = individual` tables, which split by taxon (ruling #20) and stay separate
+where the source deposited separate analysis sets or populations.
 
 **Ruling (Q3, 2026-11-01).** Dense explicit zeros are the only canonical form. A sparse
 detections-only table is not accepted as a core table. Across twelve deposits the
@@ -174,6 +205,19 @@ column, not by the suffix.
 | `__periods` | `period` | when `period` exists | Calendar bounds and any covariate constant across all units within a period (session effort, year-level climate). |
 | `__units` | `unit` | no | The sampling frame: `unit_*`, coordinates, including units never surveyed. |
 | `__traps` | `trap` | when `trap` exists | Trap coordinates, `crs`, usage. |
+| `__survey_taxa` | `taxon` plus one or more of `unit`, `trap`, `period`, `occasion` | when the taxa surveyed for differ between surveys (E4.2) | One row per taxon surveyed for at the surveys matching the other columns; a survey matched by no row has no taxa surveyed for, which is a defect. |
+
+A taxon is a species, or the lowest unit the source identified (a genus, a species
+aggregate the source records as one, such as *Bombus lucorum/terrestris*, with
+`taxonRank` and `taxonRemarks` saying so). It is never a composite of a taxon and
+something else (a sex, a method, a site), with one exception: where the source records
+life stages separately within one survey (adults and larvae counted on the same visit),
+`taxon` is the species × stage (`AESCYA_L`) and `__taxa` carries `lifeStage` (Darwin
+Core). Records the source identified only to a higher rank are their own taxon, at that
+`taxonRank`. Where the source says two taxa were not reliably separated, both are
+shipped as recorded and `__taxa` says so in `taxonRemarks`. `taxonID` MAY be empty only
+for a group the GBIF backbone does not hold (a pooled group, a subfamily absent from the
+backbone), and `taxonRemarks` then says so.
 
 ## E7. Spatial information
 
@@ -198,14 +242,64 @@ population (a garden escape, an invasive) is not flagged by its global category,
 its coordinates are kept as the source published them. (a) and (c) still apply, and
 `coordinatesCoarsened` says why a listed taxon was not coarsened.
 
+**Ruling (E7 scope, 2026-11-03).**
+
+1. *Projected coordinates.* Coarsening a projected pair snaps it to the centre of the
+   10 km cell of the source's grid (`floor(x / 10000) * 10000 + 5000`), with
+   uncertainty 7,071 m.
+2. *Trap arrays.* Coarsening the traps of an SCR array would destroy the distances the
+   model needs, so for a flagged taxon the trap coordinates are centred on the array
+   (the mean trap position subtracted, local metres), the array's own location is
+   given as a 0.1° cell in `geographicCoverage`, and `crs` says `local`.
+3. *Multi-taxon tables.* When some but not all taxa of a site-unit table are flagged,
+   two tables ship: the whole table, coarsened, under the table's name; and the table
+   without the flagged taxa, at the source's precision, under the same name with
+   `_exact` before the type suffix (`stallings_2025_gulfreefs_exact_count`); if that
+   exceeds 40 characters, the longest segment between the year and the type suffix
+   is cut from its end until it fits. The user chooses; nothing is lost that the source
+   published.
+4. *Other locators.* In a coarsened table, elevation columns are rounded to the nearest
+   100 m, and columns that name a place (locality, site name) are not shipped
+   (`notShipped`). A `unit` or `cluster_id` value that names a place is replaced by the
+   source's code or a sequential id. The `_exact` sibling keeps them as published.
+5. *Displaced coordinates.* Coordinates the source deliberately displaced for privacy
+   are shipped as published, and `coordinatesCoarsened.method` says how they were
+   displaced.
+
 ## E8. Time
 
 `period` and `occasion` are integers ordered in time (an `occasion` that indexes a
 category rather than a time is E9's stretch). `date` is ISO 8601 per row where known;
 when only a day-of-year exists it goes in `obs_date_doy` and `date` is left empty, not
 fabricated. A calendar year is a property of a `period` and belongs in `__periods`.
-Closure is assumed across `occasion` within a `period`; where a source violates that,
-`closure` in `__dataset.json` says so. Robust design is both columns present.
+Closure is assumed across `occasion` within a `period`. Robust design is both
+columns present.
+
+**Ruling (closure and occasions, 2026-11-03).** `closure` in `__dataset.json` MUST be
+one of:
+
+| `closure` | Meaning |
+|---|---|
+| `closed` | The state is assumed constant across the occasions of a period, and the source gives no reason to doubt it. |
+| `open` | The occasions of a period span a time over which the state may change (year-round trapping, a season of weekly walks across emergence), as the source states or its dates show. |
+| `dependent` | The occasions are simultaneous or not independent (side-by-side divers, observers who share information), as the source states. |
+| `none` | There is one occasion per period, or no `occasion` column. |
+
+Anything further goes in `closureNote`. `occasionKind` MUST be one of:
+
+| `occasionKind` | The occasion indexes |
+|---|---|
+| `time` | repeat surveys ordered in time (visits, nights, weeks, passes) |
+| `observer` | independent observers or surveyors at one survey |
+| `method` | methods or sample types applied at one survey (DNA sources, gear types) |
+| `spatial` | spatial replicates within the unit at one time (transects, quadrats, samples, PCR replicates) |
+| `cell` | the cells of a multinomial design (removal intervals, distance bins, observer cells; E9) |
+| `none` | there is no `occasion` column |
+
+`occasion` is ordered in time when `occasionKind = time`; for the others its order is
+the source's. When each occasion is a crossing of two kinds (a method × a replicate,
+a visit × a method), `occasionKind` is the list of both, outer first
+(`["method", "spatial"]`), and the components are recoverable from `obs_` columns.
 
 ## E9. Scope
 
@@ -267,16 +361,32 @@ Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
 `pubDate`, `citation`, `sourceURL`, `intellectualRights` (`spdx`, `url`),
 `samplingProtocol`, `samplingProtocolCode`, `responseType` (E2), `unitKind` (`site` |
 `individual`), `closure`, `surveyEvidence` (E4), `temporalCoverage`,
-`geographicCoverage`. Conditional: `stateCodes` (for `state` and `ordinal`),
+`geographicCoverage`, `occasionKind` (E8), `taxonInclusion`. Conditional: `stateCodes` (for `state` and `ordinal`),
 `multinomialType` or `distanceBreaks` (for `multinomial_cell`), `effortColumn =
 "obs_trials"` (for `binomial_count`),
 `coordinatesCoarsened` (when coordinates exist; `null`, or an object
 `{"value": true|false, "method": "..."}` saying how or why not, E7), `surveyEvidenceNote` (when
-`surveyEvidence = inferred`), `crs`, `effortColumn`, `detectionCertainty` (when a
+`surveyEvidence = inferred`), `taxaWithheld` (taxa the source surveyed for but did not
+publish, such as security-class species in a national scheme: a list of names, with no
+core rows and no zeros), `crs`, `effortColumn`, `detectionCertainty` (when a
 second, certain detection method is carried; E9). Recommended: `abstract`,
 `notShipped` (what was in the source and not shipped, with the reason). The
 pipeline adds `summary`, `sampleFloor`, `columns`, `standardVersion`, `script`,
-`buildDate`.
+`buildDate`, and in the metadata table `components`: the other core tables built from
+the same deposit.
+
+`closure` and `occasionKind` take the values in E8. `taxonInclusion` says which taxa are
+in the table:
+
+| `taxonInclusion` | The taxa are |
+|---|---|
+| `recorded` | every taxon of the target group recorded at least once in this table's own surveys (a complete-community protocol; a taxon never recorded is not listed, because the set of possible taxa is open, and one recorded only by another method or outside the counting rule is not recorded here) |
+| `target` | the taxa the protocol names as searched for, all of them, including any never detected |
+| `single` | the one taxon of a single-species table |
+
+A cut the processor made beyond that (taxa below a record threshold) is stated in
+`notShipped`. Records identified only to a higher rank are not cut: they are their own
+taxa (E6).
 
 **Ruling (Q8, 2026-11-01).** One Redivis dataset, `datapages.eco`, holds every core
 table and its side tables, next to each other. A table's kind is defined by its key
@@ -316,7 +426,9 @@ It is admitted with that fact filterable; the pipeline does not seek such tables
 
 **Naming.** `author_year_taxonOrPlace_type`, lower case, ≤ 40 characters; type
 suffixes `occ`, `count` / `nmix`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`, `scr`,
-`state`, `calls` and the like. One table per survey design × response type.
+`state`, `calls` and the like. One table per survey protocol × response type (E4,
+ruling #31); the precise sibling of a coarsened table puts `_exact` before the type
+suffix (E7).
 
 **Duplicates.** Search the dictionary by DOI before processing; a deposit mirrored on
 two repositories is one table.
@@ -340,4 +452,14 @@ shipped and why. Facts about the source are assertions, not comments.
   column; core semantics in E9.
 - **v1.0-draft, ruling #20 (2026-11-01).** E4.2 applies to site units; individual-unit
   deposits with several species ship as one table per taxon.
+- **v1.1-draft (2026-11-03).** Rulings drawn from batches 4 to 20 (`BATCH_LOG.md`),
+  under the rule that a clause must be clear, need no judgement, and lose information
+  only where protection requires it. `closure` and `occasionKind` enumerated (E8);
+  `taxonInclusion` and `taxaWithheld` (E10); `__survey_taxa` and one table per deposit
+  × protocol × response type (E4.2, E6, ruling #31); individuals at risk, lost marks,
+  never-detected catalogue entries and all-zero sessions (E4.4, ruling #30); partial
+  identity (E2); life stage, higher-rank records and empty `taxonID` (E6); E7 for
+  projected coordinates, trap arrays, multi-taxon tables (the `_exact` sibling), other
+  locators and displaced coordinates; `components` in the metadata table (E10). Every
+  table was rebuilt under v1.1-draft.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

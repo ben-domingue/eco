@@ -121,3 +121,44 @@ test_that("one taxon and one occasion gives an M x 1 matrix, not a vector (#33)"
   expect_equal(dim(unmarked::getY(umf)), c(4L, 1L))
   expect_s4_class(eco_to_umf(s, "occu"), "unmarkedFrameOccu")
 })
+
+test_that("eco_to_ch(by_period = TRUE) drops all-zero sessions by default (ruling #30)", {
+  long <- data.frame(unit = rep(c("a", "b"), each = 4), taxon = "RAT",
+                     y = c(1, 0, 0, 0,  0, 1, 1, 1),
+                     period = rep(c(1L, 1L, 2L, 2L), 2), occasion = rep(1:2, 4))
+  expect_message(h <- eco_to_ch(long, by_period = TRUE, collapse_freq = FALSE), "dropped 1 of 4")
+  expect_equal(nrow(h), 3L)
+  expect_false(any(h$period == 2 & h$ch == "00"))
+  h2 <- eco_to_ch(long, by_period = TRUE, collapse_freq = FALSE, drop_zero_sessions = FALSE)
+  expect_equal(nrow(h2), 4L)
+  expect_true("00" %in% h2$ch)
+  # the default, one history across periods, is unchanged
+  expect_setequal(eco_to_ch(long)$ch, c("1000", "0111"))
+})
+
+test_that("eco_check: E4.2 by taxon set, __survey_taxa, never-detected individuals", {
+  d <- expand.grid(unit = 1:4, occasion = 1:2, taxon = c("A", "B"), stringsAsFactors = FALSE)
+  d$y <- 0; d$y[1] <- 1
+  expect_true(eco_check(d)$ok)
+  part <- d[!(d$unit > 2 & d$taxon == "B"), ]
+  expect_match(eco_check(part)$problems, "^E4", all = FALSE)
+  st <- rbind(data.frame(unit = 1:4, taxon = "A"), data.frame(unit = 1:2, taxon = "B"))
+  expect_true(eco_check(part, survey_taxa = st)$ok)
+  expect_false(eco_check(d, survey_taxa = st)$ok)                 # B rows where B was not surveyed for
+  expect_false(eco_check(part, survey_taxa = st[st$unit != 4, ])$ok)
+  ind <- data.frame(unit = c(1, 1, 2, 2), taxon = "A", y = c(1, 0, 0, 0), period = c(1, 2, 1, 2))
+  expect_match(eco_check(ind, unit_kind = "individual")$problems, "never detected", all = FALSE)
+  expect_true(eco_check(ind)$ok)
+})
+
+test_that("eco_to_ch() fills cells of individuals not at risk (E4.4)", {
+  # a: wild-caught, all periods; b: marked as a chick in period 2; c: mark lost after period 2
+  long <- data.frame(unit = c("a", "a", "a", "a", "b", "b", "b", "c", "c"), taxon = "KIT",
+                     y = c(1, 0, 1, 0,  1, 0, 1,  1, 1),
+                     period = c(1:4, 2:4, 1:2))
+  h <- eco_to_ch(long, collapse_freq = FALSE)
+  expect_equal(h$ch[match(c("a", "b", "c"), unique(long$unit))], c("1010", "0101", "11.."))
+  expect_error(eco_to_ch(long, fill = NULL), "not at risk")
+  h0 <- eco_to_ch(long, collapse_freq = FALSE, fill = c(after = "0"))
+  expect_true("1100" %in% h0$ch)
+})

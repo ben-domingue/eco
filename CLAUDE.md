@@ -48,7 +48,7 @@ table_changes row if a published table changed).
 
 ## The format, quick reference
 
-The standard is [`standard.md`](standard.md) (v1.0-draft, clauses E1 to E10 plus
+The standard is [`standard.md`](standard.md) (v1.1-draft, clauses E1 to E10 plus
 intake policy). `eco-validate` reports every finding against a clause. This table is
 a reminder, not the rule.
 
@@ -67,8 +67,8 @@ a reminder, not the rule.
 
 Key: `(unit, taxon, trap, period, occasion)`. **A row exists iff a survey happened**;
 `y = 0` is surveyed and not detected; a missing row is not surveyed; `y` is never NA
-(E4). Community tables carry a row for every taxon at every survey. Side tables share
-the name plus `__taxa` (required), `__periods`, `__units`, `__traps`; metadata is
+(E4). Community tables carry a row for every taxon surveyed for at every survey. Side tables share
+the name plus `__taxa` (required), `__periods`, `__units`, `__traps`, `__survey_taxa`; metadata is
 `<table>__dataset.json` (E10), which must say what the survey set rests on
 (`surveyEvidence`).
 

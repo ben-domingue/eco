@@ -111,7 +111,7 @@ dataset <- list(
   samplingProtocolCode = "camera_trap", surveyEvidence = "effort_table",
   surveyEvidenceNote = "JagsTraps.csv is a station x calendar-day 0/1 operating matrix (183 days); a station-day is surveyed iff its cell is 1 (3,580 of 3,660). Every individual carries all surveyed station-days, including before its first and after its last detection.",
   responseType = "detection", unitKind = "individual",
-  closure = "single period: the 6-month survey is treated as one closed population (the paper's continuous-time SCR); occasion = calendar day",
+  closure = "closed", closureNote = "single period: the 6-month survey is treated as one closed population (the paper's continuous-time SCR); occasion = calendar day", occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Eastern Cockscomb Basin Wildlife Sanctuary, Stann Creek District, Belize; station coordinates in __traps",
   temporalCoverage = "2013-08-23/2014-02-21",
   crs = "EPSG:32616 (WGS 84 / UTM zone 16N; inferred from the coordinate range, the readme names no CRS)",

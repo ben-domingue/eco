@@ -117,7 +117,7 @@ dataset <- list(
   surveyEvidenceNote = "EECam_act.csv gives trap days active per station x primary period; a station-period is surveyed iff that count is > 0 (458 of 1,950). Which trap days were active is not deposited (capture occasion indices exceed the station's active count in 283 of 343 records), so the table is at the station-period level with the active-day count as effort, which is the paper's own y_ijt ~ Binomial(p, K_jt).",
   effortColumn = "obs_trials",
   responseType = "binomial_count", unitKind = "individual",
-  closure = "period (population closed within a primary period of 33-197 days; open between the ten periods, 1991-2000)",
+  closure = "none", closureNote = "period (population closed within a primary period of 33-197 days; open between the ten periods, 1991-2000)", occasionKind = "none", taxonInclusion = "single",
   geographicCoverage = "Central Nagarahole Reserve (Nagarahole / Rajiv Gandhi National Park), Karnataka, southwestern India; station coordinates in __traps are centred local metres, no geographic position deposited",
   temporalCoverage = "1991/2000",
   crs = "local: centred by the authors on an undisclosed origin, metres (not a geographic CRS)",

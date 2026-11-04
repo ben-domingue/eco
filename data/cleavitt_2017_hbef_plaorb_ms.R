@@ -38,8 +38,12 @@
 #   0 not seen above ground (y_raw 0 = source-inferred underground / dormant, 10 = source-inferred
 #   presumed dead), 1 one linear leaf, 2 one rounded leaf, 3 two-leaved adult, 4 adult with a
 #   flower spike (y_raw 4, or 3.5 = spike initiated but damaged). y_raw carries the source code.
-#   Survey evidence: the deposited matrix; -999 means no observation for the plant that year, so no
-#   row (before marking, and 9 mid-history gaps). 11 (flag lost, plant not relocated) is censoring:
+#   Survey evidence: the deposited matrix. At-risk span (E4.4): every orchid is a wild plant of
+#   unknown age (flagged when first sighted, most of the later-flagged ones already adults), so its
+#   rows begin in 2011, the study's first census: a -999 before a plant was first recorded is
+#   y = 0 (not seen above ground), y_raw "-999" (the deposit does not say whether a later-found
+#   plant's spot was searched in earlier years; drop y_raw == "-999" to start at first record).
+#   A -999 after the first record (11 mid-history cells in 10 plants: the flag was not visited) has no row. 11 (flag lost, plant not relocated) is censoring:
 #   no row from that year on (3 cells, 2 plants). The three undefined code-5 cells are not shipped
 #   (no row): the plant was evidently seen but its state is unknown, and a missing row is the
 #   standard's "not surveyed", not a guessed state. obs_leaf_area_cm2 from the leaf-area table
@@ -76,21 +80,26 @@ setorder(L, orchidID, year)
 L[, lost := cumsum(code == 11) > 0, by = orchidID]
 stopifnot(L[lost == TRUE, all(code %in% c(11, -999))], uniqueN(L[code == 11, orchidID]) == 2L)
 nogap <- L[code == -999 & !lost, .N]
-L <- L[code != -999 & !lost & code != 5]
+# E4.4: wild plants of unknown age are at risk from 2011; -999 before the first record is a non-sighting
+L[, lead := cumsum(code != -999) == 0, by = orchidID]
+n_lead <- L[lead == TRUE, .N]
+stopifnot(n_lead == 622L, nogap - n_lead == 11L)                     # the rest: 11 mid-history cells in 10 plants
+L <- L[(code != -999 | lead) & !lost & code != 5]
 # 10 (presumed dead) is absorbing in the source; 0 (underground) never follows 10
 stopifnot(L[, all(cummax(code == 10) <= (code == 10)), by = orchidID]$V1)
-L[, y := fcase(code %in% c(0, 10), 0L, code == 1, 1L, code == 2, 2L, code == 3, 3L, code %in% c(3.5, 4), 4L)]
+L[, y := fcase(code %in% c(0, 10, -999), 0L, code == 1, 1L, code == 2, 2L, code == 3, 3L, code %in% c(3.5, 4), 4L)]
 L[, y_raw := as.character(code)]
 stopifnot(!anyNA(L$y), all(L[, any(y > 0), by = orchidID]$V1))      # every orchid seen above ground at least once
 
 la[, period := Year - 2010L]
 m <- merge(L[, .(orchidID, taxon, period, code)], la, by = c("orchidID", "period"), all.y = TRUE, suffixes = c("", "_la"))
-ok <- m[!is.na(code) & taxon == taxon_la]
+ok <- m[!is.na(code) & code != -999 & taxon == taxon_la]
 stopifnot(nrow(ok) == 632L, nrow(m) - nrow(ok) == 44L, ok[, all((code == 3.5 & stage == 4) | code == stage)])
 L[ok, on = .(orchidID, period), leaf_area_cm2 := i.leafArea]
 
 long <- L[, .(unit = orchidID, taxon, y, y_raw, period, obs_leaf_area_cm2 = leaf_area_cm2)]
-stopifnot(nrow(long) == 459L * 5L - 633L - 3L - 3L, uniqueN(long$unit) == 459L)
+stopifnot(nrow(long) == 459L * 5L - 633L + n_lead - 3L - 3L, uniqueN(long$unit) == 459L,
+          long[, min(period) == 1L, by = unit]$V1)
 SP <- "PLOR4"
 long <- long[taxon == SP]
 stopifnot(uniqueN(long$unit) == 241L)
@@ -123,14 +132,14 @@ dataset <- list(
   abstract = "Life stages of every flagged individual of two round-leaved orchids, Platanthera macrophylla and P. orbiculata, in the Hubbard Brook Experimental Forest, recorded each year 2011-2015 (underground, one linear leaf, one rounded leaf, two-leaved adult, adult with a flower spike, presumed dead), with leaf area per plant-year; used to estimate stage-based demographic rates and leaf damage.",
   samplingProtocol = "From summer 2011 every round-leaved orchid sighted in the HBEF was marked with a numbered PVC flag and mapped; flowering plants were visited three times a season (early spring, July for flowers, late August to early September for capsules) and nonflowering plants at least once, to record life stage and leaf measurements, through 2015.",
   samplingProtocolCode = "marked_plant_census", surveyEvidence = "deposited_matrix", responseType = "state", unitKind = "individual",
-  closure = "period (one stage per year; survival, dormancy and stage transitions between years)",
-  stateCodes = list(`0` = "not seen above ground (y_raw 0 = source-inferred underground / dormant; 10 = source-inferred presumed dead)",
+  closure = "none", closureNote = "period (one stage per year; survival, dormancy and stage transitions between years)", occasionKind = "none", taxonInclusion = "single",
+  stateCodes = list(`0` = "not seen above ground (y_raw 0 = source-inferred underground / dormant; 10 = source-inferred presumed dead; -999 = before the plant was first recorded)",
                     `1` = "one linear leaf", `2` = "one rounded leaf", `3` = "two rounded leaves (adult)",
                     `4` = "adult with a flower spike (y_raw 3.5 = spike initiated but damaged)"),
   geographicCoverage = "Hubbard Brook Experimental Forest, New Hampshire, USA (43.914-43.959 N, 71.702-71.806 W); no coordinates per plant deposited",
   temporalCoverage = "2011/2015",
   coordinatesCoarsened = NA,
-  notes = "One species of the deposit's two; cleavitt_2017_hbef_plamac_ms is the other (P. macrophylla), from the same flags and census. Rows exist only where the source has an observation: -999 (no observation for the plant / year; before marking and 9 mid-history gaps) has no row. Source codes 0 (underground) and 10 (presumed dead) are inferences the authors made from later years and are both y = 0 with the code in y_raw; 10 is absorbing in the source, so a model that treats it as a true death should read it from y_raw. Code 11 (flag lost, plant not relocated; 3 cells in 2 plants, after years coded 10) censors the history: no rows from that year on. Three cells coded 5, a code the EML does not define, have no row. obs_leaf_area_cm2 is the leaf-area table's value for the plant-year where it matches (632 of 676 rows; the leaf table records 3.5 as 4).",
+  notes = "One species of the deposit's two; cleavitt_2017_hbef_plamac_ms is the other (P. macrophylla), from the same flags and census. Every orchid's rows begin in 2011 (E4.4: wild plants of unknown age are at risk from the study's first census): a year before the plant was first recorded (source -999) is y = 0 with y_raw -999; the deposit does not say whether a later-found plant's spot was searched in earlier years, so filter y_raw == '-999' to start histories at first record. A -999 after the first record (11 mid-history cells in 10 plants) has no row. Source codes 0 (underground) and 10 (presumed dead) are inferences the authors made from later years and are both y = 0 with the code in y_raw; 10 is absorbing in the source, so a model that treats it as a true death should read it from y_raw. Code 11 (flag lost, plant not relocated; 3 cells in 2 plants, after years coded 10) censors the history: no rows from that year on. Three cells coded 5, a code the EML does not define, have no row. obs_leaf_area_cm2 is the leaf-area table's value for the plant-year where it matches (632 of 676 rows; the leaf table records 3.5 as 4).",
   notShipped = list(`code 5 cells` = "3 plant-years (orchids 79 / 2013, R / 2012, 187 / 2014) with a stage code the EML does not define",
                     `leaf-area rows without a plant-year` = "42 rows for 21 orchid ids absent from the transitions table, and 2 rows for orchid 306 whose taxon differs between the two tables"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/cleavitt_2017_hbef_plaorb_ms.R")

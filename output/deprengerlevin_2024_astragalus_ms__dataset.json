@@ -20,8 +20,11 @@
   "abstract": "Every July since 1995, all plants of the endangered skiff milkvetch in 3-m-radius plots at four (from 2014 six) sites were tagged and their stage recorded. y = the stage observed above ground that year (0 not seen, 1 seedling, 2 vegetative, 3 reproductive). The source's inferred dormant stage (no growth seen but the plant seen before and after) and inferred death are kept in y_raw and are y = 0, so the table is the observation record a Pradel or multi-state CJS model needs, with vegetative dormancy unobservable.",
   "samplingProtocol": "Annual census during fruiting (late July) of all plants in 3-m-radius circular plots; plants marked with 10-inch nails and numbered metal tags; stem length, fruits and browsing recorded; plots fenced against mammal browsing in some years.",
   "surveyEvidence": "inferred",
-  "surveyEvidenceNote": "A plant-year observation is the stage of that year's row or, failing that, the fate of the previous year's row (a row exists only when the next year's transition was recorded, so a plot's last census and some single years appear only as fates). A plot was censused in a year iff any of its plants has an observation then (including the source's dormant and dead); spans are contiguous, from 1995 (238 and 300 from 1996, 598 from 2004, sites 1-2 from 2014) to 2022, except plots 581, 89 and 578 (last censused 2011, 2019, 2020). Every plant of a plot is a row in every census year of the plot, 0 where it has no observation (y_raw empty); rows before first sighting are kept (E2). The authors' Pradel layout instead fills zeros over 1995-2022 for all plots.",
-  "closure": "period (one census per year; survival, recruitment and stage transitions between years)",
+  "surveyEvidenceNote": "A plant-year observation is the stage of that year's row or, failing that, the fate of the previous year's row (a row exists only when the next year's transition was recorded, so a plot's last census and some single years appear only as fates). A plot was censused in a year iff any of its plants has an observation then (including the source's dormant and dead); spans are contiguous, from 1995 (238 and 300 from 1996, 598 from 2004, sites 1-2 from 2014) to 2022, except plots 581, 89 and 578 (last censused 2011, 2019, 2020). Every plant of a plot is a row in every census year of the plot, 0 where it has no observation (y_raw empty); rows before first sighting are kept (E4.4, unknown age), except that a plant first seen as a seedling has no rows before that year (E4.4, marked as a seedling). The authors' Pradel layout instead fills zeros over 1995-2022 for all plots.",
+  "closure": "none",
+  "closureNote": "period (one census per year; survival, recruitment and stage transitions between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "stateCodes": {
     "0": "not seen above ground (y_raw dormant = source-inferred dormancy; dead = source-inferred death; empty = no source observation)",
     "1": "seedling",
@@ -40,19 +43,19 @@
     "tag 3947": "recorded only as dormant in five years, never above ground: an all-zero history"
   },
   "summary": {
-    "n_rows": 88866,
+    "n_rows": 62755,
     "n_units": 4042,
     "n_taxa": 1,
     "n_periods": 28,
     "n_occasions": 1,
-    "n_surveys": 88866,
+    "n_surveys": 62755,
     "y_values": "0,1,2,3",
-    "prop_zero": 0.877
+    "prop_zero": 0.825
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "cluster_id", "unit_site", "period_fenced", "obs_length_cm", "obs_fruits", "obs_browsed"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/deprengerlevin_2024_astragalus_cmr.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

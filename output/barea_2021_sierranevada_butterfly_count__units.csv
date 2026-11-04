@@ -1,23 +1,23 @@
-unit,unit_locality,unit_length_m,unit_minimumElevationInMeters,unit_maximumElevationInMeters,unit_habitat,unit_decimalLatitude,unit_decimalLongitude,unit_coordinateUncertaintyInMeters
-T14,Laguna Seca,3044,2257,2306,100% High-mountain shrubland,37.05,-2.95,7121
-T15,Altas cumbres,3209,3081,3170,"100% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
-T16,Borreguiles San Juan,2533,2527,2563,"10.39% High-mountain meadows | 21.74% High-mountain shrubland | 67.87% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
-T17,Loma de Papeles Alto,3068,2338,2463,"61.42% High-mountain shrubland | 38.58% High mountain grasslands, canchales and rocks",37.15,-3.35,7118
-T18,Loma de Papeles Bajo,2743,2052,2190,"44.39% High-mountain shrubland | 55.61% High mountain grasslands, canchales and rocks",37.15,-3.35,7118
-T20,Purche,2758,1387,1496,47.48% Mid mountain grasslands | 45.98% Mid-mountain shrubland | 6.54% Mountain crops,37.15,-3.45,7118
-T21,Matas Verdes,2672,1851,1987,4.95% Mid mountain grasslands | 85.08% High-mountain shrubland | 0.18% Pine plantations | 9.78% Autochtonous Scot Pine,37.05,-3.45,7121
-T23,Robledal de Dilar,2725,1673,1767,0.05% Mid mountain grasslands | 2.55% Aquatic systems | 97.40% Pyrenean oak,37.05,-3.45,7121
-T24,Campos de Otero,2992,2178,2317,"8.92% High-mountain meadows | 82.58% High-mountain shrubland | 8.50% High mountain grasslands, canchales and rocks",37.15,-3.35,7118
-T25,Robledal de Cáñar,,,,"",,,
-T32,Fabriquilla,415,971,1013,20% Mid-mountain shrubland | 80% Aquatic systems,37.15,-3.45,7118
-T33,Barranco de San Juan,453,1347,1377,20% Mid-mountain shrubland | 30% Aquatic systems | 50% Pyrenean oak,37.15,-3.35,7118
-T34,Catifas,483,1658,1673,38.67% Mid-mountain shrubland | 61.33% Pyrenean oak,37.15,-3.45,7118
-T35,Praillos,366,1887,1900,9.80% High-mountain shrubland | 81.70% Mid-mountain shrubland | 8.51% Pine plantations,37.15,-3.45,7118
-T36,Sabinas,289,2177,2184,100% High-mountain shrubland,37.15,-3.45,7118
-T37,Cauchiles,624,3196,3210,"100% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
-T38,Carihuela,387,2792,2824,"100% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
-T39,Hoya de la Mora,433,2524,2540,"37.40% High-mountain shrubland | 62.60% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
-T45,Dúrcal,3563,1913,1987,21.03% Mid mountain grasslands | 34.73% High-mountain shrubland | 29.81% Mid-mountain shrubland | 14.43% Mountain crops,37.05,-3.45,7121
-T46,Laguna,500,726,739,15.94% Aquatic systems | 38.66% Lowland shrubland | 45.41% Lowland crops,37.05,-3.65,7121
-T48,Pitres,2671,1283,1475,12.84% Holm oak forest | 87.16% Mountain crops,36.95,-3.35,7125
-T49,Turbera,2754,723,767,0.11% Aquatic systems | 9.14% Lowland shrubland | 90.75% Lowland crops,37.05,-3.65,7121
+unit,unit_length_m,unit_minimumElevationInMeters,unit_maximumElevationInMeters,unit_habitat,unit_decimalLatitude,unit_decimalLongitude,unit_coordinateUncertaintyInMeters
+T14,3044,2300,2300,100% High-mountain shrubland,37.05,-2.95,7121
+T15,3209,3100,3200,"100% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
+T16,2533,2500,2600,"10.39% High-mountain meadows | 21.74% High-mountain shrubland | 67.87% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
+T17,3068,2300,2500,"61.42% High-mountain shrubland | 38.58% High mountain grasslands, canchales and rocks",37.15,-3.35,7118
+T18,2743,2100,2200,"44.39% High-mountain shrubland | 55.61% High mountain grasslands, canchales and rocks",37.15,-3.35,7118
+T20,2758,1400,1500,47.48% Mid mountain grasslands | 45.98% Mid-mountain shrubland | 6.54% Mountain crops,37.15,-3.45,7118
+T21,2672,1900,2000,4.95% Mid mountain grasslands | 85.08% High-mountain shrubland | 0.18% Pine plantations | 9.78% Autochtonous Scot Pine,37.05,-3.45,7121
+T23,2725,1700,1800,0.05% Mid mountain grasslands | 2.55% Aquatic systems | 97.40% Pyrenean oak,37.05,-3.45,7121
+T24,2992,2200,2300,"8.92% High-mountain meadows | 82.58% High-mountain shrubland | 8.50% High mountain grasslands, canchales and rocks",37.15,-3.35,7118
+T25,,,,"",,,
+T32,415,1000,1000,20% Mid-mountain shrubland | 80% Aquatic systems,37.15,-3.45,7118
+T33,453,1300,1400,20% Mid-mountain shrubland | 30% Aquatic systems | 50% Pyrenean oak,37.15,-3.35,7118
+T34,483,1700,1700,38.67% Mid-mountain shrubland | 61.33% Pyrenean oak,37.15,-3.45,7118
+T35,366,1900,1900,9.80% High-mountain shrubland | 81.70% Mid-mountain shrubland | 8.51% Pine plantations,37.15,-3.45,7118
+T36,289,2200,2200,100% High-mountain shrubland,37.15,-3.45,7118
+T37,624,3200,3200,"100% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
+T38,387,2800,2800,"100% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
+T39,433,2500,2500,"37.40% High-mountain shrubland | 62.60% High mountain grasslands, canchales and rocks",37.05,-3.35,7121
+T45,3563,1900,2000,21.03% Mid mountain grasslands | 34.73% High-mountain shrubland | 29.81% Mid-mountain shrubland | 14.43% Mountain crops,37.05,-3.45,7121
+T46,500,700,700,15.94% Aquatic systems | 38.66% Lowland shrubland | 45.41% Lowland crops,37.05,-3.65,7121
+T48,2671,1300,1500,12.84% Holm oak forest | 87.16% Mountain crops,36.95,-3.35,7125
+T49,2754,700,800,0.11% Aquatic systems | 9.14% Lowland shrubland | 90.75% Lowland crops,37.05,-3.65,7121

@@ -1,4 +1,4 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_life_stage
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,lifeStage
 LD,Etheostoma microperca,Least darter,species,https://www.gbif.org/species/2382404,EXACT,,
 SRBD,Chrosomus erythrogaster,Southern redbelly dace,species,https://www.gbif.org/species/2365382,EXACT,,
 RSC,Nocomis asper,Redspot chub,species,https://www.gbif.org/species/2365438,EXACT,,

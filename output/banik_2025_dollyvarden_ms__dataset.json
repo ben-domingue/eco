@@ -18,7 +18,10 @@
   "surveyEvidenceNote": "Each river's deposited matrix has one column per sampled fall; every fish of that river is surveyed in every column, including falls before its first capture (y = 0). Rat River falls 2008, 2011, 2012 and Joe Creek fall 2020 have very few captures (reduced effort); per-river capture counts are in __periods.",
   "responseType": "state",
   "unitKind": "individual",
-  "closure": "open between periods (annual fall sampling; reproductive state may change between years, CJS multi-state)",
+  "closure": "none",
+  "closureNote": "open between periods (annual fall sampling; reproductive state may change between years, CJS multi-state)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "stateCodes": {
     "0": "not captured",
     "1": "captured as a spawner",
@@ -44,8 +47,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_river", "unit_sex"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/banik_2025_dollyvarden_ms.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

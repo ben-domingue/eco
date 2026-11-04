@@ -38,7 +38,9 @@
 #   searched; __periods gives the number and list of areas searched that day
 #   (period_areas_searched, ";"-separated ids), so individual x area x day histories with
 #   area-level non-detections can be rebuilt from this table. Rows exist for every
-#   individual on every searched day of its population, including before first capture (E2).
+#   individual on every searched day of its population, including before first capture (E4.4:
+#   wild-caught adults of unknown age are at risk from the first search day; the deposit records
+#   no marks lost and every id has a capture).
 #   Coordinates: none shipped. The search-area shapefiles are shifted by the authors for
 #   landowner privacy, so their coordinates are not locations; the README gives each
 #   population's position to about 0.05 degree. The source calls the species endangered
@@ -133,7 +135,7 @@ for (P in pops) {
     surveyEvidence = "effort_table",
     surveyEvidenceNote = sprintf("The deposited effort file lists, for each of the %d search days, which of the %d areas were searched; %d days had a search and are the periods. Every capture lies on a searched area-day. Rows exist for every marked butterfly on every searched day; __periods lists the areas searched that day, so area-level non-detections can be rebuilt with obs_capture_area.", P$days, P$areas, P$sdays),
     responseType = "detection", unitKind = "individual",
-    closure = "period (one search day; survival, emigration and movement between days)",
+    closure = "none", closureNote = "period (one search day; survival, emigration and movement between days)", occasionKind = "none", taxonInclusion = "single",
     lossesOnCapture = "none recorded",
     geographicCoverage = sprintf("%s, %s, Finland (0.1-degree cell centre %.2f N, %.2f E); search-area shapefiles in the deposit are shifted for landowner privacy", P$place, P$region, cc$lat, cc$lon),
     temporalCoverage = as.character(P$year),

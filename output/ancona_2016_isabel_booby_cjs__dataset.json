@@ -17,7 +17,10 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "individual",
-  "closure": "period (one annual occasion; survival and recruitment between years)",
+  "closure": "none",
+  "closureNote": "period (one annual occasion; survival and recruitment between years)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
   "geographicCoverage": "Isla Isabel, Nayarit, Mexico (21.87 N, 105.9 W; one fixed study area, no per-bird coordinates)",
   "temporalCoverage": "1991/2013",
   "coordinatesCoarsened": null,
@@ -35,8 +38,8 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex"],
-  "standardVersion": "eco v1.0-draft (2026-11-01)",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ancona_2016_isabel_booby_cjs.R",
-  "buildDate": "2026-11-02"
+  "buildDate": "2026-11-03"
 }

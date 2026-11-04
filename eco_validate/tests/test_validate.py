@@ -70,6 +70,10 @@ def test_r_twin_vocabularies_match():
         return tuple(re.findall(r'"([^"]+)"', m.group(1)))
     assert r_vec("RESPONSE_TYPES") == checks.RESPONSE_TYPES
     assert r_vec("SURVEY_EVIDENCE") == checks.SURVEY_EVIDENCE
+    assert r_vec("CLOSURE") == checks.CLOSURE
+    assert r_vec("OCCASION_KINDS") == checks.OCCASION_KINDS
+    assert r_vec("TAXON_INCLUSION") == checks.TAXON_INCLUSION
+    assert r_vec("UNIT_IDENTITY") == checks.UNIT_IDENTITY
     m = re.search(r"req <- c\((.*?)\)\n", r, re.S)
     assert tuple(re.findall(r'"([^"]+)"', m.group(1))) == checks.META_REQUIRED
 
@@ -93,9 +97,10 @@ def good_meta(**over):
     d = {"title": "t", "creator": "c", "pubDate": "2020", "citation": "x",
          "sourceURL": "https://example.org", "intellectualRights": {"spdx": "CC0-1.0", "url": "u"},
          "samplingProtocol": "p", "samplingProtocolCode": "point_count",
-         "responseType": "detection", "unitKind": "site", "closure": "occasion",
+         "responseType": "detection", "unitKind": "site", "closure": "closed",
          "surveyEvidence": "deposited_matrix", "temporalCoverage": "2020",
-         "geographicCoverage": "nowhere", "standardVersion": "eco v1.0-draft (2026-11-01)"}
+         "geographicCoverage": "nowhere", "occasionKind": "time",
+         "taxonInclusion": "recorded", "standardVersion": "eco v1.1-draft (2026-11-03)"}
     d.update(over)
     return d
 
@@ -261,11 +266,13 @@ def test_binomial_count_rules():
     df = df.groupby(["unit", "taxon"], as_index=False).agg(y=("y", "sum"))
     df["obs_trials"] = 3
     df = df[["unit", "taxon", "y", "obs_trials"]]
-    meta = good_meta(responseType="binomial_count", effortColumn="obs_trials")
+    meta = good_meta(responseType="binomial_count", effortColumn="obs_trials",
+                     occasionKind="none", closure="none")
     r = run(df=df, meta=meta)
     assert r.ok, [f.message for f in r.errors]
     assert "replication" not in checks_of(r)
-    assert "meta_conditional" in checks_of(run(df=df, meta=good_meta(responseType="binomial_count")), "error")
+    assert "meta_conditional" in checks_of(run(df=df, meta=good_meta(
+        responseType="binomial_count", occasionKind="none", closure="none")), "error")
     bad = df.copy(); bad.loc[bad.index[0], "y"] = 9
     assert "y_response_type" in checks_of(run(df=bad, meta=meta), "error")
     assert "y_response_type" in checks_of(run(df=df.drop(columns="obs_trials"), meta=meta), "error")
@@ -343,3 +350,133 @@ def test_eco_to_irw_view():
     assert list(v.columns[:3]) == ["id", "item", "resp"]
     assert "cov_elev" in v.columns and "obs_wind" in v.columns
     assert v["date"].iloc[0] == 1588291200          # 2020-05-01T00:00:00Z
+
+
+# ---------------------------------------------------------------------------
+# v1.1-draft rules
+# ---------------------------------------------------------------------------
+
+def test_closure_and_occasion_kind():
+    assert "meta_vocab" in checks_of(run(meta=good_meta(closure="occasion")), "error")
+    assert "meta_vocab" in checks_of(run(meta=good_meta(occasionKind="visit")), "error")
+    assert "meta_vocab" in checks_of(run(meta=good_meta(taxonInclusion="all")), "error")
+    # occasionKind none exactly when there is no occasion column
+    assert "meta_conditional" in checks_of(run(meta=good_meta(occasionKind="none")), "error")
+    one = good_frame()[good_frame()["occasion"] == 1].drop(columns="occasion")
+    r = run(one, good_meta(occasionKind="time", closure="none"))
+    assert "meta_conditional" in checks_of(r, "error")
+    r = run(one, good_meta(occasionKind="none", closure="closed"))
+    assert "meta_conditional" in checks_of(r, "error")
+    assert "meta_conditional" not in checks_of(run(one, good_meta(occasionKind="none", closure="none")))
+    # closure none with an occasion column needs one occasion per unit x taxon x period
+    assert "meta_conditional" in checks_of(run(meta=good_meta(closure="none")), "error")
+    for kind in ("observer", "method", "spatial", "cell"):
+        assert "meta_conditional" not in checks_of(run(meta=good_meta(occasionKind=kind))), kind
+    assert "meta_required" in checks_of(run(meta={k: v for k, v in good_meta().items()
+                                                  if k != "occasionKind"}), "error")
+
+
+def test_taxon_inclusion_and_withheld():
+    assert "meta_conditional" in checks_of(run(meta=good_meta(taxonInclusion="single")), "error")
+    df = good_frame(); df = df[df["taxon"] == "AAA"]
+    r = run(df, good_meta(taxonInclusion="recorded"), taxa=good_taxa().iloc[:1])
+    assert "meta_conditional" in checks_of(r, "error")
+    r = run(df, good_meta(taxonInclusion="single"), taxa=good_taxa().iloc[:1])
+    assert "meta_conditional" not in checks_of(r)
+    assert "meta_conditional" in checks_of(run(meta=good_meta(taxaWithheld="X y")), "error")
+    assert "meta_conditional" in checks_of(run(meta=good_meta(taxaWithheld=["A a"])), "error")
+    assert "meta_conditional" not in checks_of(run(meta=good_meta(taxaWithheld=["Z z"])))
+
+
+def test_survey_taxa():
+    # unit 1-20 surveyed for AAA and BBB, units 21-40 for AAA only
+    df = good_frame()
+    df = df[~((df["unit"] > 20) & (df["taxon"] == "BBB"))]
+    assert "explicit_zero_taxa" in checks_of(run(df), "error")
+    st = pd.DataFrame([{"unit": u, "taxon": t} for u in range(1, 41)
+                       for t in (("AAA", "BBB") if u <= 20 else ("AAA",))])
+    r = run(df, survey_taxa=st)
+    assert r.ok, [f.message for f in r.errors]
+    # a listed taxon missing from a survey, and an unlisted one present
+    assert "explicit_zero_taxa" in checks_of(run(df.iloc[1:], survey_taxa=st), "error")
+    assert "explicit_zero_taxa" in checks_of(run(good_frame(), survey_taxa=st), "error")
+    # a survey that no row matches
+    assert "explicit_zero_taxa" in checks_of(run(df, survey_taxa=st[st["unit"] != 5]), "error")
+    # bad columns, and taxa not in __taxa
+    assert "side_survey_taxa" in checks_of(run(df, survey_taxa=st.rename(columns={"unit": "site"})), "error")
+    st2 = pd.concat([st, pd.DataFrame({"unit": [1], "taxon": ["CCC"]})])
+    assert "side_survey_taxa" in checks_of(run(df, survey_taxa=st2), "error")
+    # matching on occasion only works too
+    sto = pd.DataFrame({"occasion": [1, 1, 2], "taxon": ["AAA", "BBB", "AAA"]})
+    dfo = good_frame(); dfo = dfo[~((dfo["occasion"] == 2) & (dfo["taxon"] == "BBB"))]
+    assert run(dfo, survey_taxa=sto).ok
+
+
+def test_survey_taxa_file_is_a_side_table(tmp_path):
+    from eco_validate.core import is_core_table, load_table
+    df = good_frame()
+    df.to_csv(tmp_path / "smith_2020_place_comm.csv", index=False)
+    pd.DataFrame({"occasion": [1, 2], "taxon": ["AAA", "AAA"]}).to_csv(
+        tmp_path / "smith_2020_place_comm__survey_taxa.csv", index=False)
+    assert not is_core_table(tmp_path / "smith_2020_place_comm__survey_taxa.csv")
+    assert "survey_taxa" in load_table(tmp_path / "smith_2020_place_comm.csv").side
+
+
+def test_never_detected_individuals():
+    df = pd.DataFrame({"unit": [1, 1, 2, 2], "taxon": "AAA", "y": [1, 0, 0, 0],
+                       "period": [1, 2, 1, 2]})
+    meta = good_meta(unitKind="individual", closure="none", occasionKind="none",
+                     taxonInclusion="single")
+    taxa = good_taxa().iloc[:1]
+    per = pd.DataFrame({"period": [1, 2]})
+    r = run(df, meta, taxa=taxa, periods=per)
+    assert "never_detected" in checks_of(r, "error") and "E4" in r.nonconforming
+    assert "never_detected" not in checks_of(run(df[df["unit"] == 1], meta, taxa=taxa, periods=per))
+    # site tables may have all-zero units
+    assert "never_detected" not in checks_of(run(df, good_meta(closure="none", occasionKind="none",
+                                                               taxonInclusion="single"),
+                                                 taxa=taxa, periods=per))
+
+
+def test_unit_identity():
+    df = good_frame(); df["unit_identity"] = "both"
+    assert "unit_identity" not in checks_of(run(df))
+    df.loc[df["unit"] == 3, "unit_identity"] = "flank"
+    assert "unit_identity" in checks_of(run(df), "error")
+
+
+def test_taxon_id_needs_remarks():
+    taxa = good_taxa(); taxa.loc[1, "taxonID"] = None
+    assert "taxon_rows" in checks_of(run(taxa=taxa), "error")
+    taxa["taxonRemarks"] = [None, "subfamily absent from the GBIF backbone"]
+    assert "taxon_rows" not in checks_of(run(taxa=taxa))
+
+
+def test_trap_coordinates_of_flagged_taxa():
+    df = good_frame(); df = df[df["taxon"] == "AAA"].copy()
+    df["trap"] = 1
+    taxa = good_taxa().iloc[:1].copy(); taxa["taxon_iucnCategory"] = "EN"
+    traps = pd.DataFrame({"trap": [1], "x": [512345.0], "y": [6123456.0]})
+    meta = good_meta(taxonInclusion="single", coordinatesCoarsened=None, crs="EPSG:32736")
+    r = run(df, meta, taxa=taxa, traps=traps)
+    assert "coordinates_sensitive" in checks_of(r, "warn")
+    meta = good_meta(taxonInclusion="single", coordinatesCoarsened=None,
+                     crs="local: metres, centred on the array")
+    assert "coordinates_sensitive" not in checks_of(run(df, meta, taxa=taxa, traps=traps))
+    snapped = traps.assign(x=515000.0, y=6125000.0)
+    meta = good_meta(taxonInclusion="single", coordinatesCoarsened=None, crs="EPSG:32736")
+    assert "coordinates_sensitive" not in checks_of(run(df, meta, taxa=taxa, traps=snapped))
+
+
+def test_crossed_occasion_kind_and_recorded_taxa():
+    for ok in (["method", "spatial"], ["time", "method"]):
+        r = run(meta=good_meta(occasionKind=ok))
+        assert "meta_vocab" not in checks_of(r) and "meta_conditional" not in checks_of(r), ok
+    for bad in (["method"], ["method", "method"], ["time", "none"], ["a", "b"], ["time", "method", "spatial"]):
+        assert "meta_vocab" in checks_of(run(meta=good_meta(occasionKind=bad)), "error"), bad
+    one = good_frame()[good_frame()["occasion"] == 1].drop(columns="occasion")
+    assert "meta_conditional" in checks_of(run(one, good_meta(occasionKind=["time", "method"], closure="none")), "error")
+    # recorded: every taxon has a detection
+    df = good_frame(); df.loc[df["taxon"] == "BBB", "y"] = 0
+    assert "meta_conditional" in checks_of(run(df), "error")
+    assert "meta_conditional" not in checks_of(run(df, good_meta(taxonInclusion="target")))
