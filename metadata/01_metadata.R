@@ -23,26 +23,51 @@ root <- normalizePath(if (file.exists("standard.md")) "." else "..")
 out_dir <- file.path(root, "output")
 `%||%` <- function(a, b) if (is.null(a)) b else a
 
-tables <- sort(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)))
-rows <- lapply(tables, function(t) {
-  d <- fread(file.path(out_dir, paste0(t, ".csv")))
-  ds <- fromJSON(file.path(out_dir, paste0(t, "__dataset.json")), simplifyVector = FALSE)
+tables <- sort(c(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)),
+                 sub("\\.parts$", "", list.files(out_dir, "\\.parts$"))))   # period parts (standard E4)
+# The counts of one core file, as pieces that add up across the period parts of a parted table (standard E4).
+file_stats <- function(f) {
+  d <- fread(f)
   surv <- intersect(c("unit", "trap", "period", "occasion"), names(d))
-  n_surveys <- nrow(unique(d[, surv, with = FALSE]))
-  n_taxa <- uniqueN(d$taxon)
+  list(cols = names(d), n_rows = nrow(d), units = unique(d$unit), taxa = unique(d$taxon),
+       periods = if ("period" %in% names(d)) unique(d$period), occasions = if ("occasion" %in% names(d)) unique(d$occasion),
+       traps = if ("trap" %in% names(d)) unique(d$trap), n_surveys = nrow(unique(d[, surv, with = FALSE])),
+       n_zero = sum(d$y == 0), n_pos = sum(d$y > 0), max_y = max(d$y), unit_hit = d[, .(hit = any(y > 0)), by = unit])
+}
+core_stats <- function(t) {
+  pd <- file.path(out_dir, paste0(t, ".parts"))
+  files <- if (dir.exists(pd)) sort(list.files(pd, "^part-.*\\.csv$", full.names = TRUE)) else file.path(out_dir, paste0(t, ".csv"))
+  acc <- NULL
+  for (f in files) {
+    x <- file_stats(f)
+    acc <- if (is.null(acc)) x else list(cols = acc$cols, n_rows = acc$n_rows + x$n_rows, units = union(acc$units, x$units),
+      taxa = union(acc$taxa, x$taxa), periods = union(acc$periods, x$periods), occasions = union(acc$occasions, x$occasions),
+      traps = union(acc$traps, x$traps), n_surveys = acc$n_surveys + x$n_surveys, n_zero = acc$n_zero + x$n_zero,
+      n_pos = acc$n_pos + x$n_pos, max_y = max(acc$max_y, x$max_y),
+      unit_hit = rbind(acc$unit_hit, x$unit_hit)[, .(hit = any(hit)), by = unit])
+    rm(x); gc(FALSE)
+  }
+  acc
+}
+rows <- lapply(tables, function(t) {
+  x <- core_stats(t)
+  ds <- fromJSON(file.path(out_dir, paste0(t, "__dataset.json")), simplifyVector = FALSE)
+  n_surveys <- x$n_surveys
+  n_taxa <- length(x$taxa)
   up <- file.path(out_dir, paste0(t, "__units.csv"))
+  d <- setnames(data.table(matrix(nrow = 0, ncol = length(x$cols))), x$cols)   # column names only, for the tests below
   cols <- c(names(d), if (file.exists(up)) names(fread(up, nrows = 0)))
   data.table(
-    table = t, n_rows = nrow(d), n_units = uniqueN(d$unit), n_taxa = n_taxa,
-    n_periods = if ("period" %in% names(d)) uniqueN(d$period) else 1L,
-    n_occasions = if ("occasion" %in% names(d)) uniqueN(d$occasion) else 1L,
-    n_traps = if ("trap" %in% names(d)) uniqueN(d$trap) else 1L,
+    table = t, n_rows = x$n_rows, n_units = length(x$units), n_taxa = n_taxa,
+    n_periods = if (length(x$periods)) length(x$periods) else 1L,
+    n_occasions = if (length(x$occasions)) length(x$occasions) else 1L,
+    n_traps = if (length(x$traps)) length(x$traps) else 1L,
     n_surveys = n_surveys,
-    density = round(nrow(d) / (n_surveys * n_taxa), 4),
-    prop_zero = round(mean(d$y == 0), 4),
-    naive_occupancy = round(mean(d[, any(y > 0), by = unit]$V1), 4),
-    mean_detection = round(mean(d$y > 0), 4),
-    max_y = max(d$y),
+    density = round(x$n_rows / (n_surveys * n_taxa), 4),
+    prop_zero = round(x$n_zero / x$n_rows, 4),
+    naive_occupancy = round(mean(x$unit_hit$hit), 4),
+    mean_detection = round(x$n_pos / x$n_rows, 4),
+    max_y = x$max_y,
     response_type = ds$responseType %||% "", unit_kind = ds$unitKind %||% "",
     survey_evidence = ds$surveyEvidence %||% "", sample_floor = ds$sampleFloor %||% "",
     has_effort = !is.null(ds$effortColumn) || any(grepl("^obs_(effort|.*nights|.*days|duration|.*_min)$", names(d))),

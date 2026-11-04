@@ -11,7 +11,9 @@ anything blocks.
 
 Side tables (`<name>__taxa.csv`, `__periods`, `__units`, `__traps`) and
 `<name>__dataset.json` are picked up from beside each core CSV; naming a side
-table on the command line validates its core table.
+table on the command line validates its core table. A table stored as period
+parts is the directory `<name>.parts/` (standard E4); name the directory, or
+`<name>.csv`, or the directory that holds it.
 
 Exit codes: 0 ok - 1 something blocks - 2 bad input.
 """
@@ -22,7 +24,7 @@ import json
 import sys
 from pathlib import Path
 
-from .core import TABLE_SUFFIXES, format_report, is_core_table, side_suffix, validate_file
+from .core import PARTS_SUFFIX, TABLE_SUFFIXES, is_parted, format_report, is_core_table, side_suffix, validate_file
 from .model import PROFILES, exit_code
 
 _SKIP_DIRS = {"__MACOSX", ".git", "__pycache__", ".cache"}
@@ -35,6 +37,9 @@ def expand_paths(paths: list, recursive: bool = False) -> tuple[list, list]:
     files, empty = [], []
     for raw in paths:
         p = Path(raw)
+        if is_parted(p):                      # a table stored as period parts
+            files.append(str(p))
+            continue
         if not p.is_dir():
             if side_suffix(p.stem) is not None:
                 p = p.with_name(p.stem.rsplit("__", 1)[0] + ".csv")
@@ -46,7 +51,9 @@ def expand_paths(paths: list, recursive: bool = False) -> tuple[list, list]:
             rel = f.relative_to(p).parts
             if any(part.startswith(".") or part in _SKIP_DIRS for part in rel):
                 continue
-            if f.is_file() and is_core_table(f):
+            if any(part.endswith(PARTS_SUFFIX) for part in rel[:-1]):
+                continue                      # a part of a parted table, not a table
+            if is_core_table(f):
                 found.append(str(f))
         if found:
             files.extend(sorted(found))

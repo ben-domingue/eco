@@ -63,6 +63,7 @@ CLAUSES = {
     "meta_required":        "E10",
     "meta_vocab":           "E10",
     "meta_conditional":     "E10",
+    "table_parts":          "E4",
 }
 
 #: Intake policy (standard.md, "Intake policy"): reported, not part of the format.

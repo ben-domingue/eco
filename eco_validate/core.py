@@ -5,6 +5,12 @@ and the uploader call the first, tests and R callers can use the second.
 Side tables are found by name next to the core CSV: `<name>__taxa.csv`,
 `__periods.csv`, `__units.csv`, `__traps.csv`, `__survey_taxa.csv`, and
 `<name>__dataset.json`.
+
+A table too large for one file is stored as period parts (standard E4):
+`<name>.parts/part-NN.csv`, each holding whole periods, with the side tables
+and `__dataset.json` beside the directory as for any table. `validate_file` on
+the directory runs every check on each part and then the checks that need the
+whole table on the union (`whole_table_findings`).
 Nothing here touches the network.
 """
 from __future__ import annotations
@@ -16,11 +22,28 @@ from pathlib import Path
 
 import pandas as pd
 
-from .checks import ALL_CHECKS, SIDE_KEYS, Table, table_stats
+from .checks import (ALL_CHECKS, SIDE_KEYS, Table, _f, _sample, check_replication,
+                     check_sample_floor, table_stats)
 from .model import STANDARD_VERSION, Finding, Report, keep
 
 SIDE_SUFFIXES = tuple(SIDE_KEYS)
 TABLE_SUFFIXES = (".csv",)
+PARTS_SUFFIX = ".parts"
+
+
+def is_parted(path: str | Path) -> bool:
+    """A table stored as period parts: a directory `<name>.parts`."""
+    p = Path(path)
+    return p.is_dir() and p.name.endswith(PARTS_SUFFIX)
+
+
+def part_files(path: str | Path) -> list[Path]:
+    return sorted(Path(path).glob("part-*.csv"))
+
+
+def table_name(path: str | Path) -> str:
+    p = Path(path)
+    return p.name[: -len(PARTS_SUFFIX)] if is_parted(p) else p.stem
 
 
 def side_suffix(stem: str) -> str | None:
@@ -34,7 +57,9 @@ def side_suffix(stem: str) -> str | None:
 
 def is_core_table(path: str | Path) -> bool:
     p = Path(path)
-    return p.suffix.lower() in TABLE_SUFFIXES and side_suffix(p.stem) is None
+    if is_parted(p):
+        return True
+    return p.is_file() and p.suffix.lower() in TABLE_SUFFIXES and side_suffix(p.stem) is None
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
@@ -43,12 +68,7 @@ def _read_csv(path: Path) -> pd.DataFrame:
     return pd.read_csv(path, low_memory=False)
 
 
-def load_table(path: str | Path) -> Table:
-    p = Path(path)
-    if not p.exists():
-        raise FileNotFoundError(p)
-    name = p.stem
-    df = _read_csv(p)
+def _load_beside(p: Path, name: str) -> tuple[dict, dict | None]:
     side = {}
     for suffix in SIDE_SUFFIXES:
         sp = p.with_name(f"{name}__{suffix}.csv")
@@ -58,6 +78,18 @@ def load_table(path: str | Path) -> Table:
     dp = p.with_name(f"{name}__dataset.json")
     if dp.exists():
         dataset = json.loads(dp.read_text())
+    return side, dataset
+
+
+def load_table(path: str | Path) -> Table:
+    p = Path(path)
+    if not p.exists():
+        raise FileNotFoundError(p)
+    if is_parted(p):
+        raise ValueError(f"{p} is a table stored as parts; use validate_file()")
+    name = p.stem
+    df = _read_csv(p)
+    side, dataset = _load_beside(p, name)
     return Table(name=name, df=df, dataset=dataset, side=side, side_searched=True)
 
 
@@ -85,11 +117,202 @@ def validate_frame(df: pd.DataFrame, *, name: str = "table", dataset: dict | Non
 
 
 def validate_file(path: str | Path, *, profile: str = "upload", irw: bool = False) -> Report:
-    t = load_table(path)
+    p = Path(path)
+    if not p.exists() and p.suffix == ".csv" and p.with_name(p.stem + PARTS_SUFFIX).is_dir():
+        p = p.with_name(p.stem + PARTS_SUFFIX)      # `<name>.csv` named for a parted table
+    if is_parted(p):
+        return validate_parts(p, profile=profile, irw=irw)
+    t = load_table(p)
     report = run_checks(t, profile)
     if irw:
         report.findings.extend(irw_findings(t))
         report.checks_run.append("irw_view")
+    return report
+
+
+class _PartsAccumulator:
+    """What the whole-table checks need from each part, without holding the parts."""
+
+    def __init__(self):
+        self.columns: list | None = None
+        self.col_mismatch: list = []
+        self.periods: dict = {}          # period -> part file
+        self.overlap: list = []
+        self.taxa_sets: list = []        # (part, frozenset)
+        self.best = {}                   # taxon -> max y
+        self.unit_best = {}              # unit -> max y (individual tables)
+        self.units, self.occasions, self.traps = set(), set(), set()
+        self.cov_pairs: dict = {}        # column -> set of (key, value)
+        self.n_rows = self.n_surveys = self.n_zero = 0
+        self.y_values = set()
+        self.rows_by_part: dict = {}
+
+    def add(self, part: Path, df: pd.DataFrame):
+        cols = list(df.columns)
+        if self.columns is None:
+            self.columns = cols
+        elif cols != self.columns:
+            self.col_mismatch.append(part.name)
+        if "period" in df.columns:
+            for per in pd.unique(df["period"]):
+                if per in self.periods:
+                    self.overlap.append(f"period {per} in {self.periods[per]} and {part.name}")
+                else:
+                    self.periods[per] = part.name
+        if "taxon" in df.columns:
+            self.taxa_sets.append((part.name, frozenset(df["taxon"].astype(str).unique())))
+            y = pd.to_numeric(df["y"], errors="coerce").fillna(0) if "y" in df.columns else None
+            if y is not None:
+                for k, v in y.groupby(df["taxon"].astype(str)).max().items():
+                    self.best[k] = max(self.best.get(k, v), v)
+                for k, v in y.groupby(df["unit"].astype(str)).max().items():
+                    self.unit_best[k] = max(self.unit_best.get(k, v), v)
+                self.n_zero += int((y == 0).sum())
+                if len(self.y_values) <= 10000:
+                    self.y_values |= set(pd.unique(y.dropna()))
+        if "unit" in df.columns:
+            self.units |= set(df["unit"].astype(str).unique())
+        if "occasion" in df.columns:
+            self.occasions |= set(pd.unique(df["occasion"]))
+        if "trap" in df.columns:
+            self.traps |= set(df["trap"].astype(str).unique())
+        for prefix, key in (("unit_", "unit"), ("taxon_", "taxon")):
+            if key not in df.columns:
+                continue
+            for c in [c for c in df.columns if c.startswith(prefix)]:
+                pairs = df[[key, c]].drop_duplicates().astype(str)
+                self.cov_pairs.setdefault((key, c), set()).update(map(tuple, pairs.to_numpy()))
+        from .checks import _survey_cols
+        self.n_surveys += int(df[_survey_cols(df)].drop_duplicates().shape[0])
+        self.n_rows += len(df)
+        self.rows_by_part[part.name] = len(df)
+
+    def stats(self) -> dict:
+        yv = sorted(self.y_values)
+        return {
+            "n_rows": self.n_rows, "n_units": len(self.units), "n_taxa": len(self.best),
+            "n_periods": len(self.periods) if self.periods else 1,
+            "n_occasions": len(self.occasions) if self.occasions else 1,
+            "n_traps": len(self.traps) if self.traps else 1,
+            "n_surveys": self.n_surveys,
+            "y_values": ",".join(f"{v:g}" for v in yv[:12]) + (",..." if len(yv) > 12 else ""),
+            "prop_zero": round(self.n_zero / self.n_rows, 3) if self.n_rows else None,
+            "columns": self.columns or [],
+        }
+
+
+def whole_table_findings(t: Table, acc: _PartsAccumulator, parts: list[Path]) -> list:
+    """The checks that need every part at once (standard E4: every clause applies
+    to the union of a table's parts)."""
+    out = []
+    d = t.dataset or {}
+    if acc.col_mismatch:
+        out.append(_f("table_parts", "error",
+                      f"parts differ in their columns from {parts[0].name}: {_sample(acc.col_mismatch)}", t))
+    if acc.overlap:
+        out.append(_f("table_parts", "error",
+                      f"{len(acc.overlap)} period(s) appear in more than one part; each part holds "
+                      f"whole periods (E4)", t, details=acc.overlap))
+    manifest = d.get("parts")
+    if manifest is not None:
+        listed = {m.get("file"): m.get("n_rows") for m in manifest if isinstance(m, dict)}
+        if set(listed) != set(acc.rows_by_part):
+            out.append(_f("table_parts", "error",
+                          f"__dataset.json `parts` lists {sorted(listed)}, the directory holds "
+                          f"{sorted(acc.rows_by_part)}", t))
+        else:
+            bad = [f for f, n in listed.items() if n != acc.rows_by_part[f]]
+            if bad:
+                out.append(_f("table_parts", "error",
+                              f"row counts in __dataset.json `parts` differ from the files: {_sample(bad)}", t))
+    else:
+        out.append(_f("table_parts", "error",
+                      "a table stored as parts needs `parts` in __dataset.json (file, periods, n_rows)", t))
+    union = frozenset(acc.best)
+    if t.side.get("survey_taxa") is None and len(union) > 1:
+        short = [p for p, s in acc.taxa_sets if s != union]
+        if short:
+            out.append(_f("explicit_zero_taxa", "error",
+                          f"{len(short)} part(s) lack rows for some of the table's {len(union)} taxa; every "
+                          f"survey carries every taxon (E4.2)", t, details=short))
+    for (key, c), pairs in acc.cov_pairs.items():
+        n_keys = len({k for k, _ in pairs})
+        if len(pairs) > n_keys:
+            out.append(_f("covariate_level", "error",
+                          f"`{c}` varies within {key} across parts: {len(pairs) - n_keys:,} extra "
+                          f"combination(s)", t))
+    side = t.side.get("taxa")
+    if side is not None and "taxon" in side.columns:
+        extra = sorted(set(side["taxon"].dropna().astype(str)) - set(union))
+        if extra:
+            out.append(_f("side_taxa", "error",
+                          f"{len(extra)} __taxa row(s) not in the core table: {_sample(extra)}; every "
+                          f"__taxa row must appear in the core", t, details=extra))
+    if d.get("unitKind") == "individual":
+        never = sorted(u for u, v in acc.unit_best.items() if v <= 0)
+        if never:
+            out.append(_f("never_detected", "error",
+                          f"{len(never):,} individual(s) are never detected (every y = 0); a catalogue "
+                          f"entry never sighted is not a unit (E4.4): {_sample(never)}", t, details=never))
+    ti = d.get("taxonInclusion")
+    if ti in ("single", "recorded", "target"):
+        n = len(union)
+        if (ti == "single") != (n == 1):
+            out.append(_f("meta_conditional", "error",
+                          f"taxonInclusion = {ti} with {n} taxa (E10: `single` exactly when the "
+                          f"table has one taxon)", t))
+        if ti == "recorded":
+            never = sorted(k for k, v in acc.best.items() if v <= 0)
+            if never:
+                out.append(_f("meta_conditional", "error",
+                              f"taxonInclusion = recorded but {len(never)} taxon/taxa are never "
+                              f"recorded in this table (E10): {_sample(never)}", t, details=never))
+    s = acc.stats()
+    out += check_sample_floor(t, s) + check_replication(t, s)
+    return out
+
+
+def validate_parts(path: str | Path, *, profile: str = "upload", irw: bool = False) -> Report:
+    """Validate a table stored as period parts, one part in memory at a time."""
+    d = Path(path)
+    name = table_name(d)
+    parts = part_files(d)
+    side, dataset = _load_beside(d, name)
+    report = Report(label=name, profile=profile, side_tables=sorted(side))
+    if not parts:
+        report.findings.append(Finding("table_parts", "error", f"{d} holds no part-*.csv files",
+                                       table=name, group="format"))
+        return report
+    acc = _PartsAccumulator()
+    seen: dict = {}
+    for part in parts:
+        df = _read_csv(part)
+        t = Table(name=name, df=df, dataset=dataset, side=side, side_searched=True, part=True)
+        found = []
+        for check in ALL_CHECKS:
+            if part is parts[0]:
+                report.checks_run.append(check.__name__.removeprefix("check_"))
+            found += [f for f in check(t) if keep(f, profile)]
+        if irw:
+            found += irw_findings(t)
+        for f in found:
+            # IRW-view findings carry per-part figures in the message; one per check is enough
+            k = (f.check, f.severity) if f.group == "irw" else (f.check, f.severity, f.message)
+            if k in seen:
+                seen[k] = (seen[k][0], seen[k][1] + [part.name])
+            else:
+                seen[k] = (f, [part.name])
+        acc.add(part, df)
+        del df, t
+    for f, where in seen.values():
+        details = tuple(f.details) + (f"in {len(where)} of {len(parts)} parts: {', '.join(where[:5])}"
+                                      + (", ..." if len(where) > 5 else ""),)
+        report.findings.append(Finding(f.check, f.severity, f.message, table=f.table,
+                                       group=f.group, details=details))
+    whole = Table(name=name, df=pd.DataFrame(), dataset=dataset, side=side, side_searched=True, part=True)
+    report.findings += [f for f in whole_table_findings(whole, acc, parts) if keep(f, profile)]
+    report.checks_run += ["table_parts"] + (["irw_view"] if irw else [])
+    report.stats = acc.stats()
     return report
 
 

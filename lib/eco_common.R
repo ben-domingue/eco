@@ -301,7 +301,7 @@ STANDARD_VERSION <- "eco v1.1-draft (2026-11-03)"
 # CLOSURE, OCCASION_KINDS, TAXON_INCLUSION, UNIT_IDENTITY and `req` below match the
 # Python vocabularies.)
 # conditional fields. Returns a character vector of problems (empty when fine).
-check_dataset_meta <- function(dataset, long, units = NULL) {
+check_dataset_meta <- function(dataset, long, units = NULL, part = FALSE) {
   p <- character()
   req <- c("title", "creator", "pubDate", "citation", "sourceURL", "intellectualRights",
            "samplingProtocol", "samplingProtocolCode", "responseType", "unitKind", "closure",
@@ -327,9 +327,11 @@ check_dataset_meta <- function(dataset, long, units = NULL) {
     grp <- intersect(c("unit", "taxon", "trap", "period"), names(long))
     if (any(as.data.table(long)[, uniqueN(occasion), by = grp]$V1 > 1)) p <- c(p, "E8: closure = none but some unit x taxon x period has several occasions")
   }
-  if (!is.null(dataset$taxonInclusion) && identical(dataset$taxonInclusion, "single") != (uniqueN(long$taxon) == 1))
+  # part = TRUE: `long` is one period part of a larger table; which taxa the table
+  # holds is checked on the union by write_table_parts()
+  if (!part && !is.null(dataset$taxonInclusion) && identical(dataset$taxonInclusion, "single") != (uniqueN(long$taxon) == 1))
     p <- c(p, sprintf("E10: taxonInclusion = %s with %d taxa (single exactly when one taxon)", dataset$taxonInclusion, uniqueN(long$taxon)))
-  if (identical(dataset$taxonInclusion, "recorded")) {
+  if (!part && identical(dataset$taxonInclusion, "recorded")) {
     never <- as.data.table(long)[, .(best = max(y)), by = taxon][best <= 0, taxon]
     if (length(never)) p <- c(p, sprintf("E10: taxonInclusion = recorded but %d taxon/taxa never recorded: %s",
                                          length(never), paste(head(never, 10), collapse = ", ")))
@@ -406,6 +408,82 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   fwrite(long, file.path(OUT_DIR, paste0(name, ".csv")))
   cat(sprintf("%s.csv: rows=%d units=%d taxa=%d periods=%d occasions=%d y={%s} zeros=%.0f%% floor=%s\n",
               name, s$n_rows, s$n_units, s$n_taxa, s$n_periods, s$n_occasions, s$y_values,
+              100 * s$prop_zero, dataset$sampleFloor))
+  invisible(dataset)
+}
+
+# A table too large for one file (standard E4: about five million rows) is stored
+# as period parts: output/<name>.parts/part-NN.csv, each holding whole periods,
+# with one set of side tables and one __dataset.json beside the directory, as for
+# any table; on Redivis it is one table. `parts` is a list of period sets (one per
+# part) and `build(periods)` returns the core rows of those periods, so only one
+# part is in memory at a time. Each part is validated as written; what needs the
+# whole table (taxonInclusion, __taxa against the core, the E4.2 taxon set across
+# parts, the summary) is checked on the union. __dataset.json gains `parts`
+# (file, periods, n_rows), which eco-validate checks against the files.
+write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods = NULL, units = NULL,
+                              traps = NULL, script = NULL) {
+  stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name), is.list(parts), length(parts) >= 2,
+            is.function(build), !anyDuplicated(unlist(parts)))
+  dir <- file.path(OUT_DIR, paste0(name, ".parts"))
+  unlink(dir, recursive = TRUE); dir.create(dir)
+  unlink(file.path(OUT_DIR, paste0(name, ".csv")))       # never a stale single-file twin
+  cols <- NULL; taxa_set <- NULL; best <- NULL; units_seen <- character(); occ_seen <- integer()
+  n_rows <- 0; n_surveys <- 0; n_zero <- 0; yvals <- numeric(); manifest <- vector("list", length(parts))
+  for (k in seq_along(parts)) {
+    long <- order_eco(build(parts[[k]]))
+    tag <- sprintf("%s part %d of %d", name, k, length(parts))
+    if (!nrow(long)) stop(tag, ": no rows")
+    if (!all(unique(long$period) %in% parts[[k]])) stop(tag, ": rows outside the part's periods")
+    mp <- check_dataset_meta(dataset, long, units, part = TRUE)
+    if (length(mp)) stop(sprintf("%s fails the metadata contract: %s", tag, paste(mp, collapse = "; ")))
+    v <- validate_eco(long, unit_kind = dataset$unitKind)
+    if (!v$ok) stop(sprintf("%s fails validate_eco: %s", tag, paste(v$problems, collapse = "; ")))
+    if (is.null(cols)) cols <- names(long) else if (!identical(names(long), cols)) stop(tag, ": columns differ from part 1")
+    tx <- sort(unique(long$taxon))
+    if (is.null(taxa_set)) taxa_set <- tx else if (!identical(tx, taxa_set))
+      stop(tag, ": taxon set differs from part 1 (E4.2: every survey carries every taxon)")
+    b <- long[, .(m = max(y)), by = taxon]
+    best <- if (is.null(best)) b else rbind(best, b)[, .(m = max(m)), by = taxon]
+    units_seen <- union(units_seen, unique(long$unit))
+    if ("occasion" %in% names(long)) occ_seen <- union(occ_seen, unique(long$occasion))
+    n_rows <- n_rows + nrow(long); n_zero <- n_zero + sum(long$y == 0)
+    n_surveys <- n_surveys + nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE]))
+    if (length(yvals) <= 12) yvals <- union(yvals, unique(long$y))
+    yr <- if (k == 1) range(long$y) else range(c(yr, range(long$y)))
+    fn <- sprintf("part-%02d.csv", k)
+    fwrite(long, file.path(dir, fn))
+    manifest[[k]] <- list(file = fn, periods = I(sort(unique(as.integer(long$period)))), n_rows = nrow(long))
+    cat(sprintf("  %s: %s rows, periods %d-%d\n", tag, format(nrow(long), big.mark = ",", scientific = FALSE), min(long$period), max(long$period)))
+    rm(long, b); gc(FALSE)
+  }
+  ti <- dataset$taxonInclusion
+  if (identical(ti, "single") != (length(taxa_set) == 1)) stop(sprintf("%s: taxonInclusion = %s with %d taxa", name, ti, length(taxa_set)))
+  if (identical(ti, "recorded") && any(best$m <= 0))
+    stop(sprintf("%s: taxonInclusion = recorded but %d taxa never recorded: %s", name, sum(best$m <= 0), paste(head(best[m <= 0, taxon], 10), collapse = ", ")))
+  if (!is.null(taxa) && "taxonID" %in% names(taxa)) {
+    rem <- if ("taxonRemarks" %in% names(taxa)) taxa$taxonRemarks else rep(NA_character_, nrow(taxa))
+    nokey <- taxa$taxon[(is.na(taxa$taxonID) | !nzchar(taxa$taxonID)) & (is.na(rem) | !nzchar(trimws(rem)))]
+    if (length(nokey)) stop(sprintf("%s: __taxa row(s) with no taxonID need taxonRemarks saying why (E6): %s", name, paste(nokey, collapse = ", ")))
+  }
+  if (!is.null(taxa)) { stopifnot(setequal(taxa$taxon, taxa_set)); fwrite(taxa, file.path(OUT_DIR, paste0(name, "__taxa.csv"))) }
+  if (!is.null(periods)) fwrite(periods, file.path(OUT_DIR, paste0(name, "__periods.csv")))
+  if (!is.null(units))   fwrite(units,   file.path(OUT_DIR, paste0(name, "__units.csv")))
+  if (!is.null(traps))   fwrite(traps,   file.path(OUT_DIR, paste0(name, "__traps.csv")))
+  s <- list(n_rows = n_rows, n_units = length(units_seen), n_taxa = length(taxa_set),
+            n_periods = length(unique(unlist(lapply(manifest, `[[`, "periods")))),
+            n_occasions = if (length(occ_seen)) length(occ_seen) else 1L, n_surveys = n_surveys,
+            y_values = if (length(yvals) <= 12) paste(sort(yvals), collapse = ",") else sprintf("%s-%s (more than 12 distinct)", yr[1], yr[2]),
+            prop_zero = round(n_zero / n_rows, 3))
+  if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))
+  dataset <- c(list(table = name), dataset,
+               list(summary = s, sampleFloor = floor_status(s, dataset$responseType), columns = cols,
+                    parts = manifest, standardVersion = STANDARD_VERSION,
+                    builtBy = "data/ script, see `script`", script = script %||% NA_character_,
+                    buildDate = format(Sys.Date())))
+  write_json(dataset, file.path(OUT_DIR, paste0(name, "__dataset.json")), auto_unbox = TRUE, pretty = TRUE, na = "null")
+  cat(sprintf("%s.parts: %d parts, rows=%s units=%d taxa=%d periods=%d occasions=%d zeros=%.0f%% floor=%s\n",
+              name, length(parts), format(n_rows, big.mark = ",", scientific = FALSE), s$n_units, s$n_taxa, s$n_periods, s$n_occasions,
               100 * s$prop_zero, dataset$sampleFloor))
   invisible(dataset)
 }

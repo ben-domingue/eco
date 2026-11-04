@@ -31,7 +31,8 @@ PREFIX_VOCAB <- list(
   design      = c("Single-season", "Multi-season", "Multi-session", "Robust design"),
   status      = c("tagged"))
 
-tables <- sort(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)))
+tables <- sort(c(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)),
+                 sub("\\.parts$", "", list.files(out_dir, "\\.parts$"))))   # period parts (standard E4)
 read_tags <- function(f) {
   if (!file.exists(f)) return(as.data.table(setNames(replicate(length(TAG_COLS), character(), simplify = FALSE), TAG_COLS)))
   d <- fread(f, colClasses = "character")

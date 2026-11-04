@@ -29,3 +29,8 @@ output/neon_2026_perleu_rd.csv
 output/neon_2026_perman_rd.csv
 output/nina_2026_norway_pollinator_count.csv
 output/nina_2026_norway_pollinator_exact_count.csv
+# Tables stored as period parts (standard E4) are never tracked; their side tables and __dataset.json are.
+output/*.parts/
+# Breeding Bird Survey (#24): the BCR 15 block and stop cores (104 MB, 334 MB); the national table is parts above.
+output/ziolkowski_2026_bbs_*.csv
+!output/ziolkowski_2026_bbs_*__*.csv
