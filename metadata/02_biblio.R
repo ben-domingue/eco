@@ -19,7 +19,8 @@ root <- normalizePath(if (file.exists("standard.md")) "." else "..")
 out_dir <- file.path(root, "output")
 `%||%` <- function(a, b) if (is.null(a)) b else a
 
-tables <- sort(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)))
+tables <- sort(c(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)),
+                 sub("\\.parts$", "", list.files(out_dir, "\\.parts$"))))   # period parts (standard E4)
 dict <- fread(file.path(root, "dictionary", "dictionary_auto.csv"), colClasses = "character")
 missing <- setdiff(tables, dict$table)
 if (length(missing)) stop("core table(s) without a dictionary row: ", paste(missing, collapse = ", "))

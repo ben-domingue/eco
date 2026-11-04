@@ -1053,18 +1053,23 @@ What this batch says about the standard:
   (second instance after Snapshot USA); `download_dryad()` has no token path.
 ## Breeding Bird Survey (#24) — 2026-11-04
 
-One deposit, the 2026 release (1966-2025, doi:10.5066/P144YU3S), one script, 39 tables. Design and every number:
-`notes/decisions/bbs_design.md`. All pass `eco-validate --irw` (exit 0). An independent check in Python from the raw
-files found 0 differences and 0 false zeros over 47,304,360 rows. Core CSVs are not tracked (3.86 GB), except
-`ziolkowski_2026_bbs_bcr15_count`.
+One deposit, the 2026 release (1966-2025, doi:10.5066/P144YU3S), one script, 3 tables. Built by Milan Gorislavets
+(PR #57). Ben's review of that PR set the national design: standard v1.1-draft (#56) had merged in the meantime, and its
+ruling #31 makes one protocol x response type one table. So the 37 per-BCR count tables Milan first built became one
+national table, stored as period parts (E4). Design and every number: `notes/decisions/bbs_design.md`, with an
+"After review" section. All pass `eco-validate --irw` (exit 0). Milan's independent check in Python from the raw files
+(0 differences, 0 false zeros over the 47.3 M rows of the BCR design) carries over: the national table holds the same
+records, with zeros for every taxon at every run. Cores are not tracked.
 
 | Table | Family | Source | Rows | Notes |
 |---|---|---|---|---|
-| ziolkowski_2026_bbs_bcr1_count to ziolkowski_2026_bbs_bcr37_count | annual route-run counts, 37 tables | USGS ScienceBase, CC0 | 42,067,219 (largest BCR 28, 3,302,915) | every run in the BCR, 144,146 in all; pool = taxa recorded in that BCR's runs, 44 to 381; `y` = run total including non-breeder records; `obs_nonbreeder_count` |
+| ziolkowski_2026_bbs_count | annual route-run counts | USGS ScienceBase, CC0 | 110,127,544 | every run nationally (144,146) x every taxon of the species list (764); 26 period parts of at most 5 M rows in `output/ziolkowski_2026_bbs_count.parts/` (8.4 GB), one table on Redivis; `y` = run total including non-breeder records; `obs_nonbreeder_count`; BCR and stratum in `__units` |
 | ziolkowski_2026_bbs_bcr15_block | 10-stop blocks along a route | same | 1,279,278 | Sierra Nevada, RPID 101, 1968-2025; survey set `inferred` |
 | ziolkowski_2026_bbs_bcr15_stop | stops along a route | same | 3,957,863 | RPID 101, 2009-2025, with vehicles and noise per stop; survey set `inferred`; a Western Tanager `pcount` runs, but stops are not closed repeat visits |
 
 Held: block and stop tables outside BCR 15 (`queue/human_review.csv`). Nationally they would be 17.6 GB and 112 GB.
+
+What changed in review (2026-11-04): the national table replaces the 37 BCR tables (ruling #31); E1 now says `y` is never an aggregate *across surveys* (the run total is accepted); E4's split is stated as period parts (`write_table_parts()`, `eco-validate` and the uploader read `<table>.parts/`); v1.1 fields (`closure` closed / dependent with `closureNote`, `occasionKind`, `taxonInclusion`, `taxonRemarks` for the 61 categories with no GBIF key: 50 species complexes, 8 hybrids, 3 functional groups; Porphyrio martinicus looked up as GBIF's *martinica*); ScienceBase downloads resolved from the item JSON (the files are not refused).
 
 What this batch says about the standard:
 
@@ -1077,15 +1082,14 @@ What this batch says about the standard:
 - **A survey set finer than the sample table (ruling).** No file says how many stops a run sampled. Stops past the last one with a bird,
   car or noise record have no row (16,088 of 4.28 M nationally), so `surveyEvidence` is `inferred`. A skipped stop mid-route cannot be seen.
 - **E4.2 and regional programmes (#31, #40).** One table with per-route pools would be 15.3 M rows; 37 BCR tables are 42.1 M; a national pool is
-  110.1 M (9.2 GB). A 1% species cut would save 41% at BCR level and was not applied.
-- **E4 split by period.** It says "under one `__dataset.json`", but `load_table()` reads `<name>__dataset.json`, so each shard would need its own. No
-  BBS table needed a split; a national design would.
+  110.1 M (9.2 GB). A 1% species cut would save 41% at BCR level and was not applied. Settled in review: the national pool, one table.
+- **E4 split by period.** It said "under one `__dataset.json`", but `load_table()` read `<name>__dataset.json`, so each shard would have needed its own.
+  Settled in review: the layout is now stated (`<table>.parts/part-NN.csv`, one `__dataset.json` with a `parts` manifest) and the tools read it.
 - **`eco_to_umf(type = "colext")`.** One column per `(period, occasion)` present and `numPrimary = max(period)`. Tested with `unmarked` 1.5.2 on BCR 12, 13 and 15: 13 and 15 error on the
   2020 gap, and BCR 12 is accepted silently because its column count happens to divide, which would misalign years after 2020. By arithmetic, 36 of 37 tables error. Notes in every table say to pad; the converter needs a fix.
 - **`eco_to_array()` reads `unit_*` from the core only.** BBS keeps them in `__units` because three columns in the core would cost 0.5 to 1 GB, so `siteCovs` starts empty.
-- **CI cannot see most of this.** A gitignored core's side tables are never gated in CI. ScienceBase refuses direct downloads, including the
-  URL pattern of the five older ScienceBase scripts, so `rebuild.yml` depends on its cache. The BBS script skips loudly in Actions when the raw files are absent, rather than
-  stopping `run_all.R` and with it the drift check for every table. Its download URL pattern is untested.
+- **CI cannot see most of this.** A gitignored core's side tables are never gated in CI. (ScienceBase downloads turned out to work at the URLs in the
+  item's JSON record; the script resolves them, so the CI skip is gone.)
 - **`site/data.qmd:79` links `data/<table>.R`,** dead for every multi-table script, now 39 more cards. The `script` column of `metadata.csv` has the right value.
 - **`gbif_taxon()` caches a network failure as a no-match.** The script asserts no `ERROR`; four 2024-on bird names needed `lookupName` to older names in GBIF.
 - **`occasion` means three things across BBS tables:** rank of a run in a route-year, position of a block, position of a stop. `eco_to_unmarked()` treats all as repeat visits; `closure` says so per table.

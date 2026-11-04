@@ -144,3 +144,29 @@ Held up under test: the stop rule (VehicleData moves K in 0.52% of runs, non-bre
 - `rebuild.yml`: the script skips loudly in Actions when raw files are absent, so it does not stop `run_all.R` for every other table. A fresh rebuild elsewhere needs the raw files downloaded by hand.
 - Corrections: 322 impossible `StopTotal` values, not 323; with the non-breeder files, 10 taxa occur only before 1997 and 86 only from 1997.
 
+
+## After review (2026-11-04, PR #57)
+
+Ben ruled on the PR. Standard v1.1-draft had merged after this design was written (#56), and its ruling #31 makes one
+protocol x response type one table. A different taxon list per region is allowed only where the source says the taxa
+surveyed for differ (`__survey_taxa`). BBS records every bird on every run, so the 37 per-BCR tables, whose purpose was
+fewer zero rows, are replaced by one national table:
+
+- `ziolkowski_2026_bbs_count`: all 144,146 runs x all 764 taxa (every taxon of SpeciesList is recorded somewhere),
+  110,127,544 rows. This is the "Route run, national" row of the measured grid above. It is stored as period parts of at most
+  5,000,000 rows (`output/ziolkowski_2026_bbs_count.parts/`, standard E4, now stated as a layout), and on Redivis it is
+  one table. The 4 GB budget came from the build machine's disk, not from the standard. To work by region, filter on
+  `unit_bcr` or `unit_stratum` from `__units`.
+- `ziolkowski_2026_bbs_bcr15_block` and `ziolkowski_2026_bbs_bcr15_stop` stay as built: the replication pilot.
+- The six ruling requests above are accepted as built: CC0 with the citation; non-breeders in `y` with
+  `obs_nonbreeder_count`; zeros before 1999 kept and flagged; the run total as `y` (E1 now says "never an aggregate
+  *across surveys*"); tail stops `inferred`; the #31 and #40 numbers, which #31 now settles.
+- v1.1 fields: `closure` is `closed` for the count table (occasions are replicate runs within one breeding season) and
+  `dependent` for the block and stop tables (consecutive stops along one route, one moving observer, a bird can be
+  counted twice). The prose that was in `closure` is now in `closureNote`. `occasionKind` is `time` for the count table
+  and `spatial` for the block and stop tables; `taxonInclusion` is `recorded`. Under v1.1's exact GBIF matching, the
+  survey's 61 categories that are not one backbone taxon (50 species complexes, 8 hybrids, 3 functional groups) have
+  no key, and `taxonRemarks` says why. Porphyrio martinicus is looked up as GBIF's *P. martinica*.
+- Downloads: ScienceBase serves the files at the URLs in the item's JSON record (`files[].url`, `?f=__disk__<hash>`).
+  The `?name=<file>` pattern returns 404. The script now resolves the URLs itself, so no hand download and no CI skip;
+  all ten sha256 match.

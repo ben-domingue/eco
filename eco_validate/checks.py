@@ -64,6 +64,11 @@ class Table:
     #: Which inputs were actually looked for (a frame validated alone has no
     #: side-table directory, so their absence is not a finding).
     side_searched: bool = True
+    #: One part of a table stored as period parts (standard E4): checks that need
+    #: the whole table (taxa never recorded, __taxa rows absent from the core,
+    #: individuals never detected, the sample floor) are left to
+    #: `whole_table_findings`, which sees the union of the parts.
+    part: bool = False
 
 
 def _f(check, severity, message, table, details=(), group="format"):
@@ -369,7 +374,7 @@ def _survey_taxa_sets(t: Table, cols):
 
 def check_never_detected(t: Table):
     """E4.4: an individual never detected in the table is not a unit."""
-    if (t.dataset or {}).get("unitKind") != "individual" or not {"unit", "y"} <= set(t.df.columns):
+    if t.part or (t.dataset or {}).get("unitKind") != "individual" or not {"unit", "y"} <= set(t.df.columns):
         return []
     y = pd.to_numeric(t.df["y"], errors="coerce").fillna(0)
     best = y.groupby(t.df["unit"]).max()
@@ -467,7 +472,7 @@ def _side_check(t: Table, suffix: str, required: bool, superset_of: str | None):
                           f"{len(missing)} core `{key}` value(s) absent from __{suffix}: "
                           f"{_sample(missing)}", t, details=missing))
         extra = sorted(side_vals - core_vals)
-        if extra and suffix == "taxa":
+        if extra and suffix == "taxa" and not t.part:
             out.append(_f(check, "error",
                           f"{len(extra)} __taxa row(s) not in the core table: "
                           f"{_sample(extra)}; every __taxa row must appear in the core",
@@ -726,7 +731,7 @@ def check_meta_conditional(t: Table):
                               "closure = none but some unit x taxon x period has more than one "
                               "occasion (E8)", t))
     ti = d.get("taxonInclusion")
-    if ti in TAXON_INCLUSION and "taxon" in df.columns:
+    if ti in TAXON_INCLUSION and "taxon" in df.columns and not t.part:
         n = df["taxon"].nunique()
         if (ti == "single") != (n == 1):
             out.append(_f("meta_conditional", "error",
@@ -789,8 +794,10 @@ def check_standard_version(t: Table):
     return []
 
 
-def check_sample_floor(t: Table):
-    s = table_stats(t.df)
+def check_sample_floor(t: Table, s: dict | None = None):
+    if t.part and s is None:
+        return []
+    s = s if s is not None else table_stats(t.df)
     if not s:
         return []
     reasons = []
@@ -806,8 +813,10 @@ def check_sample_floor(t: Table):
                f"not prioritised", t, group="intake")]
 
 
-def check_replication(t: Table):
-    s = table_stats(t.df)
+def check_replication(t: Table, s: dict | None = None):
+    if t.part and s is None:
+        return []
+    s = s if s is not None else table_stats(t.df)
     if not s or s["n_occasions"] > 1 or s["n_periods"] > 1:
         return []
     if t.dataset and t.dataset.get("responseType") == "binomial_count":

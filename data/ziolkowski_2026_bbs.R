@@ -1,14 +1,12 @@
 #!/usr/bin/env Rscript
-# Tables: 39 from one script and one deposit. Run `Rscript data/ziolkowski_2026_bbs.R` for all of them, or
-#   `Rscript data/ziolkowski_2026_bbs.R 15` / `... 1 15` for the tables of those Bird Conservation Regions only
-#   (BCR 15 also builds the block and stop tables; data/run_all.R forwards no argument, so it builds everything).
-#     ziolkowski_2026_bbs_bcr<N>_count   N = 1 to 37 (no zero padding): every run in the BCR, 1966-2025
+# Tables: 3 from one script and one deposit (`Rscript data/ziolkowski_2026_bbs.R`).
+#     ziolkowski_2026_bbs_count          every run of the release, 1966-2025, x all 764 taxa: 110,127,544 rows, stored as
+#                                        period parts output/ziolkowski_2026_bbs_count.parts/part-NN.csv (standard E4)
 #     ziolkowski_2026_bbs_bcr15_block    BCR 15, RPID 101, 50-stop routes, five 10-stop blocks per run, 1968-2025
 #     ziolkowski_2026_bbs_bcr15_stop     BCR 15, RPID 101, 50-stop routes, 2009-2025, one row per stop
-#   Why one script: the 37 count tables differ only in which BCR's runs and taxa they hold, and the three BCR 15
-#   tables share every file read, the stop-evidence rule and the non-breeder merge. Thirty-nine near-identical files
-#   would repeat 400 lines each and drift apart; the multi-table precedent is data/sandercock_2022_norway_alien.R.
-#   The reading of the six large files happens once per run, so the full build is one pass over the deposit.
+#   Why one script: the three tables share every file read, the stop-evidence rule and the non-breeder merge; the deposit is
+#   read once. Built by Milan Gorislavets (PR #57, issue #24); the national design follows Ben's ruling on that PR (2026-11-04):
+#   one table per protocol x response type (ruling #31), so one national count table, not 37 per-BCR tables.
 # Source: U.S. Geological Survey data release, "2026 Release - North American Breeding Bird Survey Dataset
 #   (1966 - 2025)", doi:10.5066/P144YU3S, ScienceBase item 6a0b0b0ab66b0188da36aedd, release metadata dated
 #   2026-05-28. Ziolkowski, D.J., Lutmerding, M., Skalos, S.M., English, W.B., and Hudson, M-A.R., 2026, North American
@@ -27,12 +25,10 @@
 #   doi:10.1093/condor/duz009 (the experimental 501/502 protocol); Rushing, C.S., Royle, J.A., Ziolkowski, D.J., Pardieck, K.L.
 #   (2019). Modeling spatially and temporally complex range dynamics when detection is imperfect. Sci. Rep. 9:12805,
 #   doi:10.1038/s41598-019-48851-5 (stops as spatial replicates, with a spatial-correlation model).
-# Access: ScienceBase refused direct downloads with HTTP 403 on
-#   2026-11-04, so the URL pattern in the download calls below, "https://www.sciencebase.gov/catalog/file/get/<item>?name=<file>", is
-#   untested: a best guess, unlike the "?f=__disk__<hash>" URLs of older scripts, whose hashes need the item's JSON. The files were downloaded by hand on 2026-11-04 into .cache/raw/ziolkowski_2026_bbs/ (download_cached() skips
-#   the network when a file is there) and their sha256 is asserted below. A fresh rebuild from an empty cache will hit the same
-#   403; the raw files must be in the cache. The metadata XML and the two PDFs (RunType.pdf, the Completeness Report)
-#   were read directly; the XML is also asserted (licence wording, citation, route length, stop spacing).
+# Access: the item's JSON record (catalog/item/<id>?format=json) gives each file's download URL ("?f=__disk__<hash>", the
+#   form of the older ScienceBase scripts); the files are fetched into .cache/raw/ziolkowski_2026_bbs/ and their sha256 is
+#   asserted below. (The "?name=<file>" pattern returns 404.) The metadata XML and the two PDFs (RunType.pdf, the
+#   Completeness Report) were read directly; the XML is also asserted (licence wording, citation, route length, stop spacing).
 # Data:   files as deposited, all fields space-padded and read with the padding stripped; codes read as text.
 #   Weather.csv: 144,146 rows, one per run (a route surveyed by one observer in one year under one protocol, RPID):
 #     RouteDataID (unique, one per run key CountryNum+StateNum+Route+RPID+Year in every file), date parts, ObsN (observer),
@@ -54,14 +50,14 @@
 # Mapping (all tables; responseType count; unit = route "840_46_012" = CountryNum_StateNum_Route; taxon = "A" + the AOU
 #   code, e.g. A04650; period = year - 1965, the same index in every table, year in __periods; date = the run's ISO date;
 #   observer = ObsN):
-#   Count tables: one row per run x taxon. occasion = rank of the run in its route-year by date, start time (blank last),
+#   Count table (national): one row per run x taxon. occasion = rank of the run in its route-year by date, start time (blank last),
 #     RPID: 103 route-years have 2 to 4 runs, so occasion is needed. y = States SpeciesTotal + MigrantSummary SpeciesTotal,
 #     the whole-run total over the route's stops, as the source publishes it. obs_nonbreeder_count = the recorded
 #     non-breeder count where a non-breeder record exists, 0 from 1999 where none does, NA before 1999 where none does
 #     (the deposit cannot say). So y - obs_nonbreeder_count (NA read as 0) is the published breeding count in every year.
-#     obs_last_stop = K (below) from 1997, NA before. Pool = every taxon recorded in this table's runs, in the breeding or
-#     the non-breeder file, in any year. Survey evidence sample_table: Weather.csv lists every run; every bird is recorded at
-#     every run, so a zero for a taxon recorded in the region is a fair zero.
+#     obs_last_stop = K (below) from 1997, NA before. Pool = every taxon recorded anywhere in the release, in the breeding or
+#     the non-breeder file, in any year (all 764 of SpeciesList). Survey evidence sample_table: Weather.csv lists every run;
+#     every bird is recorded at every run, so a zero is a fair zero. Period parts: consecutive years, at most 5,000,000 rows.
 #   Block table (BCR 15, RPID 101, RouteTypeDetailID 1 or 2): occasion 1 to 5 = 10-stop block, y = Count10..Count50 of States
 #     + MigrantSummary. Blocks after ceiling(K/10) have no row. Before 1997 K is unknown and the last non-zero block of the run
 #     is the last block. obs_block_stops = stops of the block up to K (1 to 10), from 1997; NA before.
@@ -75,7 +71,7 @@
 #     fields sit in __units (unit_*), joined by unit, to keep the core small. __taxa = make_taxa() plus taxon_aou and
 #     national taxon_first_year, taxon_last_year and taxon_nonbreeder_share_1999on.
 # Not shipped (counts per table in notShipped): TotalSpp (breeding records only: an assertion); per-taxon StopTotal (322
-#   impossible values before 1997); block and stop tables outside BCR 15 and stop rows of BCR 15 before 2009 (size); the 90
+#   impossible values before 1997); block and stop tables outside BCR 15 and stop rows of BCR 15 before 2009 (size: 17.6 GB and 112 GB nationally); the 90
 #   MigrantSummary records without a Migrants twin are in the count and block tables and cannot enter the stop table (all are
 #   from before 1997); the experimental distance bands and one-minute periods of RPID 501/502 (pooled in the deposit).
 # Coordinates: USGS-published route start points kept as published (E7 agency rule); not bird locations.
@@ -83,10 +79,6 @@ for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { so
 SCRIPT <- "data/ziolkowski_2026_bbs.R"
 CACHE <- "ziolkowski_2026_bbs"
 DOWNLOAD_DATE <- "2026-11-04"
-args <- unlist(strsplit(commandArgs(trailingOnly = TRUE), "[ ,]+")); args <- args[nzchar(args)]
-BCRS <- if (length(args)) sort(unique(as.integer(args))) else 1:37
-stopifnot(!anyNA(BCRS), all(BCRS %in% 1:37))
-DO_SET_B <- 15L %in% BCRS
 T0 <- Sys.time()
 say <- function(...) message(sprintf("[%6.1f min] ", as.numeric(difftime(Sys.time(), T0, units = "mins"))), sprintf(...))
 chk <- function(ok, what) if (!isTRUE(ok)) stop("assertion failed: ", what, call. = FALSE)
@@ -94,8 +86,10 @@ chk <- function(ok, what) if (!isTRUE(ok)) stop("assertion failed: ", what, call
 vcount <- function(x) { t <- table(x, useNA = "ifany"); nm <- names(t); nm[is.na(nm)] <- "NA"; v <- setNames(as.integer(t), nm); v[order(names(v))] }
 same_counts <- function(x, exp) identical(vcount(x), exp[order(names(exp))])
 
-# ---- files: names, real ScienceBase URLs, sha256 ------------------------------------------------
-SB <- "https://www.sciencebase.gov/catalog/file/get/6a0b0b0ab66b0188da36aedd?name=%s"
+# ---- files: names, ScienceBase URLs, sha256 ------------------------------------------------
+# The item's JSON record lists each file with its download URL (files[].url, the "?f=__disk__<hash>" form the older ScienceBase
+# scripts use); the "?name=<file>" pattern returns 404. The record is read only when a file is not yet in .cache/raw/.
+SB_ITEM <- "https://www.sciencebase.gov/catalog/item/6a0b0b0ab66b0188da36aedd?format=json"
 SHA256 <- c(
   "50-StopData.zip" = "eed5fc264a1af6074783685de96b433b1d5ce4a1f8e09528449dbd4f9ba03204",
   "Completeness_Report_NABBS_Dataset_1966-2025.pdf" = "ed307d352abc31ce6f4e66f61909c806680ae2b113e1872467804f8eedadec4a",
@@ -107,14 +101,14 @@ SHA256 <- c(
   "States.zip" = "568053a412e42f2974642d1961956174e8eaad6bc85c278ef50d6191cc56adcf",
   "VehicleData.csv" = "3c10db0928adb5134db99a918bb84bffd725b284ddb9d7d35ef46b6ff26e1664",
   "Weather.csv" = "4bcdb3346dcc44839690702f76c10306a19329260e99e16576b1a92f4465f67d")
-# ScienceBase refuses direct downloads, so rebuild.yml can only build these tables if the raw files are in its cache. Without them,
-# skip loudly rather than stop data/run_all.R, which would also stop the workflow's drift check for every other table.
-if (nzchar(Sys.getenv("GITHUB_ACTIONS")) && !all(file.exists(file.path(RAW_DIR, CACHE, names(SHA256))))) {
-  message("SKIPPED ", SCRIPT, ": the raw files are not in .cache/raw/", CACHE, " and ScienceBase refuses direct downloads. Nothing was rebuilt.")
-  quit(save = "no", status = 0)
-}
 options(timeout = 3600)
-RAWF <- vapply(names(SHA256), function(fn) download_cached(sprintf(SB, URLencode(fn, reserved = TRUE)), CACHE, filename = fn), "")
+cached <- file.path(RAW_DIR, CACHE, names(SHA256))
+SB_URL <- if (all(file.exists(cached) & file.size(cached) > 0)) setNames(rep(NA_character_, length(SHA256)), names(SHA256)) else {
+  item <- fromJSON(SB_ITEM, simplifyVector = TRUE)
+  chk(setequal(item$files$name, names(SHA256)), "the ScienceBase item lists the 10 files of the release")
+  setNames(item$files$url[match(names(SHA256), item$files$name)], names(SHA256))
+}
+RAWF <- vapply(names(SHA256), function(fn) download_cached(SB_URL[[fn]], CACHE, filename = fn), "")
 if (getRversion() < "4.5.0") stop("this script needs R >= 4.5 for tools::sha256sum")
 got_sha <- unname(tools::sha256sum(RAWF))
 bad <- names(SHA256)[got_sha != unname(SHA256)]
@@ -376,7 +370,8 @@ build_master_taxa <- function(d) {
   whole_family    <- c("04402", "03920")   # unid. hummingbird / woodpecker: the source Genus is a placeholder; the group is the whole family
   subset_of_genus <- c("02429", "07351")   # "sp." groups that are only part of their genus (peeps within Calidris; western chickadees within Poecile)
   # source spelling GBIF rejects -> the spelling sent to GBIF (scientificName keeps the source's): the AOS names of 2024+ against GBIF's backbone
-  lookup_fix <- c("02800" = "Charadrius wilsonia", "02810" = "Charadrius montanus", "02780" = "Charadrius nivosus", "01910" = "Ixobrychus exilis")
+  lookup_fix <- c("02800" = "Charadrius wilsonia", "02810" = "Charadrius montanus", "02780" = "Charadrius nivosus", "01910" = "Ixobrychus exilis",
+                  "02180" = "Porphyrio martinica")   # GBIF's spelling (v1.1 exact matching caught the fuzzy match)
   slash <- grepl("/", d$Genus, fixed = TRUE) | grepl("/", d$Species, fixed = TRUE)
   real_genera <- unique(d[Species != "sp." & !slash & !grepl(" x ", Species, fixed = TRUE), Genus])
   placeholder <- d$Species == "sp." & !d$Genus %in% real_genera
@@ -402,8 +397,19 @@ build_master_taxa <- function(d) {
     if (identical(g$matchType, "EXACT") && identical(g$rank, "subspecies")) nm else sub("^(\\S+ \\S+).*$", "\\1", nm)
   }
   d[taxonRank == "subspecies", lookupName := vapply(lookupName, parent_if_needed, "")]
+  # v1.1 exact matching (E6): the survey's categories that are not one backbone taxon, and names GBIF matches only at a
+  # higher rank, carry no key, and taxonRemarks says why
+  pre <- vapply(d$lookupName, function(nm) gbif_taxon(nm)$matchType %||% NA_character_, "")
+  stopifnot(!any(pre == "ERROR"))
+  d[, taxonRemarks := fcase(
+       taxonRank == "species complex", sprintf("survey category for a bird identified only to this group (%s); not one taxon of the GBIF backbone, so no key", English_Common_Name),
+       taxonRank == "hybrid", sprintf("hybrid (%s); the GBIF backbone holds no key for it", English_Common_Name),
+       taxonRank == "functional group", sprintf("survey category (%s), not a taxon of the GBIF backbone, so no key", English_Common_Name),
+       taxonRank %in% c("species", "genus", "family") & pre == "HIGHERRANK", sprintf("GBIF matches %s only at a higher rank, so no key at this rank", lookupName),
+       default = NA_character_)]
   taxa <- make_taxa(d$taxon, d$scientificName, vernacularName = d$English_Common_Name, taxonRank = d$taxonRank,
-                    lookupName = d$lookupName, taxon_aou = d$AOU)
+                    lookupName = d$lookupName, taxon_aou = d$AOU, taxonRemarks = d$taxonRemarks,
+                    no_key = d$taxon[!is.na(d$taxonRemarks)])
   stopifnot(!any(taxa$gbifMatchType == "ERROR"))   # a transient failure is cached as ERROR: delete .cache/gbif/<name>.json and rerun
   gj <- lapply(d$lookupName, function(nm) fromJSON(file.path(GBIF_DIR, paste0(gsub("[^A-Za-z0-9]+", "_", nm), ".json"))))
   gbif_rank <- vapply(gj, function(x) tolower(x$rank %||% NA_character_), "")
@@ -458,7 +464,7 @@ chk(identical(as.integer(sub(".*<edomv>([0-9]+)</edomv>.*", "\\1", bcr_dom)), 1:
 BCR_NAMES <- gsub("/ ", "/", sub(".*<edomvd>([^<]*)</edomvd>.*", "\\1", bcr_dom), fixed = TRUE)
 chk(BCR_NAMES[15] == "Sierra Nevada" && BCR_NAMES[26] == "Mississippi Alluvial Valley", "BCR names read from the XML")
 ISO3 <- c("124" = "CAN", "840" = "USA")
-nice <- function(x) format(x, big.mark = ",", trim = TRUE)
+nice <- function(x) format(x, big.mark = ",", trim = TRUE, scientific = FALSE)
 np <- function(n, w) sprintf("%d %s%s", n, w, ifelse(n == 1L, "", "s"))   # "1 route", "40 routes"
 PERIODS_NOTE <- function(runs) paste0("period = year - 1965 in every table, with the calendar year in __periods, which lists every year from the table's first to its last; a year without a run has n_runs = 0.",
   if (min(W$year[runs]) < 2020L && max(W$year[runs]) > 2020L) " 2020 had no field work (no row in any data file), so period 55 never occurs." else "")
@@ -517,82 +523,92 @@ NOTES_COMMON <- function(runs, extra = NULL) {
 }
 CODES_NOTE <- " Codes, from the release metadata: wind is Beaufort 0 to 8; sky is 0 clear or few clouds, 1 partly cloudy or variable, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers; obs_assistant is 1 if an assistant recorded the data; obs_quality_current is 1 if the run met all quality criteria (manual inspection before 1997, by rule from 1997); minutes are after midnight; wind or sky code 9 (no data) is NA."
 
-# ---- the count tables --------------------------------------------------------------------------------
-ST_BCR <- W$bcr[ST$run]; MS_BCR <- W$bcr[MS$run]
-build_count <- function(b) {
-  name <- sprintf("ziolkowski_2026_bbs_bcr%d_count", b)
-  runs <- which(W$bcr == b); n <- length(runs)
-  sst <- which(ST_BCR == b); sms <- which(MS_BCR == b)
-  pool <- sort(unique(c(ST$tax[sst], MS$tax[sms]))); m <- length(pool)
-  chk(n == EXP$runs[b] && m == EXP$pool[b] && uniqueN(W$unit[runs]) == EXP$routes[b], sprintf("BCR %d: runs, pool and routes as measured", b))
-  rpos <- match(seq_len(NRUN), runs)                      # run -> position in this table
+# ---- the national count table, stored as period parts -------------------------------------------------
+# One table (standard v1.1-draft, ruling #31: one protocol x response type is one table). Every bird is recorded at every run,
+# so every survey carries every taxon recorded anywhere in the release (E4.2): 764 taxa x 144,146 runs = 110,127,544 rows.
+# Stored as period parts of at most 5,000,000 rows (E4): consecutive years, a new part when the next year would pass the cap.
+NAT <- "ziolkowski_2026_bbs_count"
+POOL <- sort(unique(c(ST$tax, MS$tax))); M_POOL <- length(POOL)
+chk(M_POOL == 764L && identical(POOL, seq_len(NTAX)), "national pool: all 764 taxa of SpeciesList are recorded somewhere")
+PART_CAP <- 5000000
+ypr <- W[, .N, keyby = year]
+grp <- integer(nrow(ypr)); g <- 1L; cur <- 0
+for (i in seq_len(nrow(ypr))) { r <- ypr$N[i] * M_POOL; if (cur > 0 && cur + r > PART_CAP) { g <- g + 1L; cur <- 0 }; cur <- cur + r; grp[i] <- g }
+PARTS <- unname(split(ypr$year - 1965L, grp))
+chk(all(vapply(PARTS, function(pp) sum(ypr$N[match(pp + 1965L, ypr$year)]) * M_POOL, 0) <= PART_CAP), "every part holds at most 5,000,000 rows")
+ST_PER <- W$year[ST$run] - 1965L; MS_PER <- W$year[MS$run] - 1965L
+NAT_TOT <- new.env(); NAT_TOT$y <- 0; NAT_TOT$brd <- 0; NAT_TOT$rows <- 0; NAT_TOT$nz <- 0
+build_nat_part <- function(pers) {
+  runs <- which((W$year - 1965L) %in% pers); n <- length(runs); m <- M_POOL
+  sst <- which(ST_PER %in% pers); sms <- which(MS_PER %in% pers)
+  rpos <- match(seq_len(NRUN), runs)
   y <- integer(n * m); nbv <- rep(fifelse(W$year[runs] >= 1999L, 0L, NA_integer_), each = m)
-  p1 <- (rpos[ST$run[sst]] - 1) * m + match(ST$tax[sst], pool); y[p1] <- ST$spp[sst]
-  p2 <- (rpos[MS$run[sms]] - 1) * m + match(MS$tax[sms], pool); y[p2] <- y[p2] + MS$spp[sms]; nbv[p2] <- MS$spp[sms]
-  chk(sum(as.numeric(y)) == sum(as.numeric(ST$spp[sst])) + sum(as.numeric(MS$spp[sms])), sprintf("BCR %d: sum(y) = breeding + non-breeder SpeciesTotal", b))
-  chk(sum(as.numeric(y) - ifelse(is.na(nbv), 0, nbv)) == sum(as.numeric(ST$spp[sst])), sprintf("BCR %d: y - obs_nonbreeder_count = published breeding total", b))
+  p1 <- (rpos[ST$run[sst]] - 1) * m + match(ST$tax[sst], POOL); y[p1] <- ST$spp[sst]
+  p2 <- (rpos[MS$run[sms]] - 1) * m + match(MS$tax[sms], POOL); y[p2] <- y[p2] + MS$spp[sms]; nbv[p2] <- MS$spp[sms]
+  chk(sum(as.numeric(y)) == sum(as.numeric(ST$spp[sst])) + sum(as.numeric(MS$spp[sms])), "part: sum(y) = breeding + non-breeder SpeciesTotal")
+  chk(sum(as.numeric(y) - ifelse(is.na(nbv), 0, nbv)) == sum(as.numeric(ST$spp[sst])), "part: y - obs_nonbreeder_count = published breeding total")
+  nz <- sum(y > 0L); chk(nz == length(unique(c(ST$key[sst], MS$key[sms]))), "part: one non-zero row per source run x taxon")
+  NAT_TOT$y <- NAT_TOT$y + sum(as.numeric(y)); NAT_TOT$brd <- NAT_TOT$brd + sum(as.numeric(ST$spp[sst]))
+  NAT_TOT$rows <- NAT_TOT$rows + n * m; NAT_TOT$nz <- NAT_TOT$nz + nz
   lvl <- run_level(runs); lvl[, obs_last_stop := W$last_stop[runs]]
-  long <- dense_long(lvl, TAXON[pool], y, nbv)
-  chk(nrow(long) == n * m, sprintf("BCR %d: rows = runs x pool", b))
-  nz <- sum(y > 0L); chk(nz == length(unique(c(ST$key[sst], MS$key[sms]))), sprintf("BCR %d: one non-zero row per source run x taxon", b))
-  rm(y, nbv, lvl); gc(FALSE)
-  taxa <- MASTER[taxon %in% TAXON[pool]]; setorder(taxa, taxon)
+  long <- dense_long(lvl, TAXON[POOL], y, nbv)
+  chk(nrow(long) == n * m, "part: rows = runs x pool")
+  long
+}
+build_national <- function() {
+  runs <- seq_len(NRUN); n <- NRUN; m <- M_POOL
+  taxa <- MASTER[taxon %in% TAXON[POOL]]; setorder(taxa, taxon)
   units <- units_table(runs); periods <- periods_table(runs)
-  dates <- range(W$date[runs]); sts <- states_of(runs)
-  yrs <- range(W$year[runs]); nr1 <- sum(W$runtype[runs] == 1L); n_u <- uniqueN(W$unit[runs])
-  n_rows_taxa <- length(pool)
-  sib <- if (b == 15L) c("ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_stop") else NULL
+  dates <- range(W$date); yrs <- range(W$year); nr1 <- sum(W$runtype == 1L); n_u <- uniqueN(W$unit)
+  n_states <- length(states_of(runs))
+  ry <- W[, .(n = .N, first101 = rpid[1] == 101L), by = .(unit, year)]   # W is sorted by occasion within a route-year
   dataset <- list(
-    title = sprintf("North American Breeding Bird Survey, %s: run totals of %d bird taxa on %s, %d-%d", bcr_label(b), m, np(n_u, "roadside route"), yrs[1], yrs[2]),
+    title = sprintf("North American Breeding Bird Survey: run totals of %d bird taxa on %s roadside routes in the United States and Canada, %d-%d", m, nice(n_u), yrs[1], yrs[2]),
     creator = CREATOR, pubDate = "2026-05-28", doi = "10.5066/P144YU3S", sourceURL = "https://doi.org/10.5066/P144YU3S", citation = CITATION,
     intellectualRights = RIGHTS,
-    abstract = sprintf("The North American Breeding Bird Survey: each breeding season, mostly in June, a skilled observer drives a roadside route of about 39.2 km and counts every bird seen within 400 m or heard at 50 stops per route, one run per route and year (a route-year can have a replicate or secondary-observer run). This table holds the %s runs on the %s of Bird Conservation Region %d (%s) in %s, %d-%d. One row per run and bird taxon: y is the run total over the stops (breeding-category plus non-breeder records), zero for each of the %d taxa recorded in this region's runs and not seen on that run. The run's date, observer, weather, start and end time, the last stop with evidence of sampling and the non-breeder part of y come with it; route coordinates are in the __units table.",
-                       nice(n), np(n_u, "route"), b, BCR_NAMES[b], paste(sts, collapse = ", "), yrs[1], yrs[2], m),
+    abstract = sprintf("The North American Breeding Bird Survey: each breeding season, mostly in June, a skilled observer drives a roadside route of about 39.2 km and counts every bird seen within 400 m or heard at 50 stops per route, one run per route and year (a route-year can have a replicate or secondary-observer run). This table holds all %s runs on %s routes in %d US states and Canadian provinces, %d-%d. One row per run and bird taxon: y is the run total over the stops (breeding-category plus non-breeder records), zero for each of the %d taxa of the survey's species list not seen on that run. The run's date, observer, weather, start and end time, the last stop with evidence of sampling and the non-breeder part of y come with it; route coordinates, stratum and Bird Conservation Region are in the __units table.",
+                       nice(n), nice(n_u), n_states, yrs[1], yrs[2], m),
     samplingProtocol = "North American Breeding Bird Survey: 3-minute point counts of all birds seen within 400 m or heard at 50 stops per route, spaced about 800 m along a roadside route of about 39.2 km, once per year in the breeding season (mostly June), beginning 30 minutes before local sunrise, by one observer (an assistant may record); y is the run total over the stops.",
     samplingProtocolCode = "point_count", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
-    closure = paste("period = year (index year - 1965); occasion = rank of the run within its route-year by date, start time and RPID, so a route-year with several runs is several occasions and a route-year with one run has occasion 1. A table's rows across years are not a closed population, and the run is a total over its stops.", STOP_POINTS),
-    surveyEvidenceNote = sprintf("Weather.csv lists every run (one row per run, %s here), so the survey set is a sample table. Pool: every taxon recorded in this table's runs in the breeding (States) or the non-breeder (MigrantSummary) files, in any year; observers record every bird at every run, so a zero against a taxon recorded in the region is a fair not-detected, and a taxon never recorded in this region's runs has no rows. Before 1999 the non-breeder files hold almost nothing, so a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder.", nice(n)),
+    closure = "closed", occasionKind = "time", taxonInclusion = "recorded",
+    closureNote = paste(sprintf("period = year (index year - 1965); occasion = rank of the run within its route-year by date, start time and RPID. %d route-years have 2 to 4 runs (replicate, secondary-observer or experimental-protocol runs of one breeding season); every other route-year has occasion 1 only. Across years a route's rows are not a closed population, and the run is a total over its stops.", sum(ry$n > 1L)), STOP_POINTS),
+    surveyEvidenceNote = sprintf("Weather.csv lists every run (one row per run, %s), so the survey set is a sample table. Observers record every bird at every run, so every run carries every taxon recorded anywhere in the release (in the breeding States or the non-breeder MigrantSummary files, any year; all %d taxa of SpeciesList are), and y = 0 is a fair not-detected. Before 1999 the non-breeder files hold almost nothing, so a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder.", nice(n), m),
     temporalCoverage = sprintf("%s/%s", dates[1], dates[2]),
-    geographicCoverage = cover(b, runs), crs = "EPSG:4269 (NAD83)",
+    geographicCoverage = sprintf("United States and Canada: roadside routes in %s; Bird Conservation Regions 1 to 37 (BCR code and name as in this release's Routes.csv and metadata, in __units); route start points as published", paste(states_of(runs), collapse = ", ")),
+    crs = "EPSG:4269 (NAD83)",
     coordinatesCoarsened = list(value = FALSE, method = "route start points as USGS publishes them; agency coordinates are kept as published under E7"),
     covariateNote = paste0("obs_nonbreeder_count: ", nb_flag(runs), ". obs_last_stop: the last stop with evidence of sampling, 1997 on (NA before).", CODES_NOTE),
-    designNote = paste0(sprintf("One row per run and taxon; y = run total. occasion orders runs within a route-year. %s of the %s runs have RunType 1 (obs_run_type).", nice(nr1), nice(n)),
-                        if (any(W$detail[runs] == 3L)) " RouteTypeDetailID 3 routes (see __units) count fewer than the standard stops, so their run totals are not comparable; obs_run_type == 1 excludes them." else ""),
-    components = sib,
-    notShipped = Filter(Negate(is.null), list(
+    designNote = paste0(sprintf("One row per run and taxon; y = run total. occasion orders runs within a route-year. %s of the %s runs have RunType 1 (obs_run_type). ", nice(nr1), nice(n)),
+                        "RouteTypeDetailID 3 routes (see __units) count fewer than the standard stops, so their run totals are not comparable; obs_run_type == 1 excludes them. ",
+                        sprintf("Stored as %d period parts of at most 5,000,000 rows (standard E4); on Redivis one table. To work by region, filter on unit_bcr or unit_stratum from __units.", length(PARTS))),
+    components = c("ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_stop"),
+    notShipped = list(
       TotalSpp = sprintf("per-run count of breeding records; equals the number of breeding records of every one of the %s runs (asserted); not shipped", nice(n)),
-      StopTotal = sprintf("per-taxon number of stops with the taxon, %s breeding records of this table's runs; before 1997 it is impossible in %d records nationally; not shipped (it would also need a stop-level merge for the 18 breeding/non-breeder pairs)", nice(length(sst)), N_BAD_STOPTOTAL),
-      stop_and_block_level = if (b == 15L) "shipped in the sibling block and stop tables" else
-        sprintf("the 10-stop blocks and per-stop counts of this table's runs (%s runs from 1997 have 50-StopData rows) are in the deposit; only BCR 15 is built at that level, for size", nice(sum(W$year[runs] >= 1997L))),
-      experimental_protocol_detail = if (any(W$rpid[runs] %in% c(501L, 502L))) sprintf("distance bands and one-minute periods of the %s here (RPID 501/502) are pooled in the deposit", np(sum(W$rpid[runs] %in% c(501L, 502L)), "run")))),
-    notes = NOTES_COMMON(runs, c(
-      { ry <- W[runs, .(n = .N, first101 = rpid[1] == 101L), by = .(unit, year)]   # W is sorted by occasion within a route-year
-        if (any(ry$n > 1L)) sprintf("occasion is the rank of the run in its route-year; %d route-years here have several runs, and in %d of them occasion 1 is not the RPID 101 run, so use obs_rpid.", sum(ry$n > 1L), sum(ry$n > 1L & !ry$first101)) else
-          "occasion is the rank of the run in its route-year; every route-year here has one run." })))
-  dataset <- Filter(Negate(is.null), dataset)
-  ds <- write_table(long, name, dataset, taxa = taxa, periods = periods, units = units, script = SCRIPT)
-  stage_dict_row(name,
-    description = sprintf("Run totals of %d bird taxa on %s Breeding Bird Survey runs of %s in Bird Conservation Region %d (%s), %d-%d, one row per run and taxon with date, observer, weather and the non-breeder part of the count; route coordinates in __units.", m, nice(n), np(n_u, "roadside route"), b, BCR_NAMES[b], yrs[1], yrs[2]),
+      StopTotal = sprintf("per-taxon number of stops with the taxon, %s breeding records; before 1997 it is impossible in %d records; not shipped (it would also need a stop-level merge for the 18 breeding/non-breeder pairs)", nice(nrow(ST)), N_BAD_STOPTOTAL),
+      stop_and_block_level = sprintf("the 10-stop blocks and per-stop counts of these runs (%s runs from 1997 have 50-StopData rows) are in the deposit; only BCR 15 is built at that level (ziolkowski_2026_bbs_bcr15_block, _stop), for size: nationally 17.6 GB of blocks and 112 GB of stops", nice(sum(W$year >= 1997L))),
+      experimental_protocol_detail = sprintf("distance bands and one-minute periods of the %s here (RPID 501/502) are pooled in the deposit", np(sum(W$rpid %in% c(501L, 502L)), "run"))),
+    notes = NOTES_COMMON(runs, sprintf("occasion is the rank of the run in its route-year; %d route-years have several runs, and in %d of them occasion 1 is not the RPID 101 run, so use obs_rpid.", sum(ry$n > 1L), sum(ry$n > 1L & !ry$first101))))
+  ds <- write_table_parts(PARTS, build_nat_part, NAT, dataset, taxa = taxa, periods = periods, units = units, script = SCRIPT)
+  chk(NAT_TOT$rows == 110127544 && NAT_TOT$y == sum(as.numeric(ST$spp)) + sum(as.numeric(MS$spp)) && NAT_TOT$brd == sum(as.numeric(ST$spp)),
+      "national table: 110,127,544 rows; sum(y) = every breeding + non-breeder SpeciesTotal; the breeding part = every published SpeciesTotal")
+  chk(NAT_TOT$nz == length(unique(c(ST$key, MS$key))), "national table: one non-zero row per source run x taxon record")
+  stage_dict_row(NAT,
+    description = sprintf("Run totals of %d bird taxa on all %s North American Breeding Bird Survey runs of %s roadside routes in the United States and Canada, %d-%d, one row per run and taxon with date, observer, weather and the non-breeder part of the count; route coordinates, stratum and BCR in __units.", m, nice(n), nice(n_u), yrs[1], yrs[2]),
     url = "https://doi.org/10.5066/P144YU3S", reference = CITATION, doi_paper = "", doi_data = "10.5066/P144YU3S",
     original_license = ORIGINAL_LICENSE, derived_license = "CC0 1.0",
-    notes = "Pool = taxa recorded in the region's runs in the breeding or non-breeder files. y = run total including non-breeder records (obs_nonbreeder_count NA before 1999 where none is recorded). All runs shipped; filter obs_run_type == 1 for the standard set. Raw files downloaded by hand (ScienceBase refuses direct downloads), sha256 asserted.",
-    source_via = "USGS ScienceBase (downloaded by hand 2026-11-04)")
-  stage_tag_row(name, ds, taxon_group = "Birds", model_family = "N-mixture / annual count index (multi-species, multi-season)", sampling_protocol = "point_count",
+    notes = "Every taxon zero-filled at every run (national pool, ruling #31). y = run total including non-breeder records (obs_nonbreeder_count NA before 1999 where none is recorded). All runs shipped; filter obs_run_type == 1 for the standard set. Stored as period parts (E4); one table on Redivis. sha256 of the raw files asserted.",
+    source_via = "USGS ScienceBase")
+  stage_tag_row(NAT, ds, taxon_group = "Birds", model_family = "N-mixture / annual count index (multi-species, multi-season)", sampling_protocol = "point_count",
     design = "Multi-season (annual route runs; a route-year can have several runs; stops summed within the run)", realm = "Terrestrial", country = countries_of(runs),
     coordinates = "As published (USGS route start points, kept as published)",
-    notes = sprintf("Route runs of Bird Conservation Region %d; all runs shipped, RunType in obs_run_type; non-breeder counts in y with obs_nonbreeder_count.", b))
-  rm(long); gc(FALSE)
-  invisible(list(rows = n * m, runs = n))
+    notes = "All route runs of the release, every taxon at every run; RunType in obs_run_type; non-breeder counts in y with obs_nonbreeder_count; BCR and stratum in __units.")
+  invisible(NAT_TOT$rows)
 }
-if (any(BCRS %in% 1:37)) {
-  tot <- 0
-  for (b in BCRS) { r <- build_count(b); tot <- tot + r$rows; say("BCR %d count table done: %s rows", b, nice(r$rows)) }
-  if (length(BCRS) == 37L) chk(tot == 42067219, "37 count tables hold 42,067,219 rows")
-}
+r <- build_national(); say("national count table done: %s rows in %d parts", nice(r), length(PARTS))
 
 # ---- BCR 15: block and stop tables ---------------------------------------------------------------------
 build_block <- function() {
-  name <- "ziolkowski_2026_bbs_bcr15_block"; sib <- "ziolkowski_2026_bbs_bcr15_stop"; cnt <- "ziolkowski_2026_bbs_bcr15_count"
+  name <- "ziolkowski_2026_bbs_bcr15_block"; sib <- "ziolkowski_2026_bbs_bcr15_stop"; cnt <- NAT
   runs <- which(W$bcr == 15L & W$rpid == 101L & W$detail %in% 1:2); n <- length(runs)
   all15 <- which(W$bcr == 15L)
   sst <- which(W$bcr[ST$run] == 15L & W$rpid[ST$run] == 101L & W$detail[ST$run] %in% 1:2); sms <- which(W$bcr[MS$run] == 15L & W$rpid[MS$run] == 101L & W$detail[MS$run] %in% 1:2)
@@ -633,7 +649,8 @@ build_block <- function() {
                        paste(states_of(runs), collapse = ", "), yrs[1], yrs[2], m),
     samplingProtocol = "North American Breeding Bird Survey: 3-minute point counts of all birds seen within 400 m or heard at 50 stops per route; counts are published per 10-stop block (stops 1-10, 11-20, ... 41-50) for the whole record from 1966.",
     samplingProtocolCode = "point_count", surveyEvidence = "inferred", responseType = "count", unitKind = "site",
-    closure = paste("period = year (index year - 1965); occasion = 10-stop block along the route (1 to 5). Blocks are consecutive stretches of the route, counted in sequence once in a morning, not temporal repeats. Across years a route's rows are not a closed population.", STOP_GEOMETRY),
+    closure = "dependent", occasionKind = "spatial", taxonInclusion = "recorded",
+    closureNote = paste("period = year (index year - 1965); occasion = 10-stop block along the route (1 to 5). Blocks are consecutive stretches of the route, counted in sequence once in a morning, not temporal repeats. Across years a route's rows are not a closed population.", STOP_GEOMETRY),
     surveyEvidenceNote = "Weather.csv lists every run but no file says how many stops a run sampled. Evidence that a stop was sampled: a bird record in the 50-stop or non-breeder stop files, or Car > 0 or Noise > 0 in VehicleData. K = the last stop with evidence, from 1997 (when stop data are complete); before 1997 the last block with a non-zero count (breeding or non-breeder) is the last block. Blocks 1 to ceiling(K/10) are surveys; a zero in an empty block before the last is fair because the observer went on past it. Blocks after have no row. A mid-route skip inside a run cannot be seen, so a zero there could be unsupported; nationally obs_quality_current = 0 marks more than 85% of runs from 1997 with K below 45. Pool: every taxon recorded in this table's runs, in the breeding or the non-breeder files; observers record every bird at every run.",
     temporalCoverage = sprintf("%s/%s", dates[1], dates[2]),
     geographicCoverage = cover(15L, runs), crs = "EPSG:4269 (NAD83)",
@@ -643,7 +660,7 @@ build_block <- function() {
     components = c(cnt, sib),
     notShipped = list(
       runs_outside_the_design = if (length(all15) == n) sprintf("none: all %d runs of BCR 15 are RPID 101 on a Detail 1 or 2 route and are in this table", n) else
-        sprintf("%d of the %d runs in BCR 15 are not RPID 101 on a Detail 1 or 2 route (Detail 3: %d); they are in the count table", length(all15) - n, length(all15), sum(W$detail[all15] == 3L)),
+        sprintf("%d of the %d runs in BCR 15 are not RPID 101 on a Detail 1 or 2 route (Detail 3: %d); they are in the national count table", length(all15) - n, length(all15), sum(W$detail[all15] == 3L)),
       blocks_after_last_stop_with_evidence = sprintf("%s blocks of this table's runs, past ceiling(K/10) from 1997 or past the last non-zero block before 1997", nice(dropped_blocks)),
       TotalSpp = "per-run count of breeding records; an assertion; not shipped",
       StopTotal = sprintf("per-taxon number of stops with the taxon; impossible in %d records before 1997 nationally; not shipped", N_BAD_STOPTOTAL),
@@ -657,8 +674,8 @@ build_block <- function() {
     description = sprintf("Five 10-stop block counts of %d bird taxa on %s standard Breeding Bird Survey runs of %d routes in Bird Conservation Region 15 (Sierra Nevada), %d-%d, blocks past the last stop with evidence of sampling omitted; date, observer, weather and non-breeder part of the count; route coordinates in __units.", m, nice(n), n_u, yrs[1], yrs[2]),
     url = "https://doi.org/10.5066/P144YU3S", reference = CITATION, doi_paper = "", doi_data = "10.5066/P144YU3S",
     original_license = ORIGINAL_LICENSE, derived_license = "CC0 1.0",
-    notes = "Survey set inferred: blocks up to the last stop with a bird, car or noise record (from 1997) or the last non-zero block (before). Blocks are spatial, not temporal, replicates. Raw files downloaded by hand (ScienceBase refuses direct downloads), sha256 asserted.",
-    source_via = "USGS ScienceBase (downloaded by hand 2026-11-04)")
+    notes = "Survey set inferred: blocks up to the last stop with a bird, car or noise record (from 1997) or the last non-zero block (before). Blocks are spatial, not temporal, replicates. sha256 of the raw files asserted.",
+    source_via = "USGS ScienceBase")
   stage_tag_row(name, ds, taxon_group = "Birds", model_family = "N-mixture (spatial replicates: blocks along a route; closure not met)", sampling_protocol = "point_count",
     design = "Multi-season (annual runs; five consecutive 10-stop blocks per run as spatial replicates)", realm = "Terrestrial", country = countries_of(runs),
     coordinates = "As published (USGS route start points, kept as published)", notes = "Pilot region for replicated counts; survey set inferred from stop-level evidence.")
@@ -667,7 +684,7 @@ build_block <- function() {
 }
 
 build_stop <- function() {
-  name <- "ziolkowski_2026_bbs_bcr15_stop"; sib <- "ziolkowski_2026_bbs_bcr15_block"; cnt <- "ziolkowski_2026_bbs_bcr15_count"
+  name <- "ziolkowski_2026_bbs_bcr15_stop"; sib <- "ziolkowski_2026_bbs_bcr15_block"; cnt <- NAT
   runs <- STOP_RUNS; n <- length(runs)
   all15 <- which(W$bcr == 15L)
   br <- list(run = unlist(lapply(keep, `[[`, "run")), tax = unlist(lapply(keep, `[[`, "tax")), M = do.call(rbind, lapply(keep, `[[`, "M")))
@@ -717,7 +734,8 @@ build_stop <- function() {
                        paste(states_of(runs), collapse = ", "), yrs[1], yrs[2], m),
     samplingProtocol = "North American Breeding Bird Survey: a 3-minute point count of all birds seen within 400 m or heard at each of up to 50 stops per route; the stop-level record exists for every run from 1997, here from 2009.",
     samplingProtocolCode = "point_count", surveyEvidence = "inferred", responseType = "count", unitKind = "site",
-    closure = paste("period = year (index year - 1965); occasion = stop number along the route (1 to the last stop with evidence).", STOP_GEOMETRY, "Across years a route's rows are not a closed population."),
+    closure = "dependent", occasionKind = "spatial", taxonInclusion = "recorded",
+    closureNote = paste("period = year (index year - 1965); occasion = stop number along the route (1 to the last stop with evidence).", STOP_GEOMETRY, "Across years a route's rows are not a closed population."),
     surveyEvidenceNote = "Weather.csv lists every run but no file says how many stops a run sampled. Evidence that a stop was sampled: a bird record in 50-StopData or Migrants, or Car > 0 or Noise > 0 in VehicleData. K = the last stop with evidence; stops 1 to K are surveys, and a zero at an empty stop before K is fair because the observer went on past it. Stops after K have no row and their number is in notShipped. A mid-route skip inside a run cannot be seen in this deposit, so a stop zero there could be unsupported; nationally obs_quality_current = 0 marks more than 85% of runs from 1997 with K below 45. Pool: every taxon recorded in this table's runs, in the breeding or the non-breeder stop files.",
     temporalCoverage = sprintf("%s/%s", dates[1], dates[2]),
     geographicCoverage = cover(15L, runs), crs = "EPSG:4269 (NAD83)",
@@ -726,7 +744,7 @@ build_stop <- function() {
     designNote = "One row per run, stop and taxon; occasion = stop. Stops past the last stop with evidence of sampling have no row.",
     components = c(cnt, sib),
     notShipped = list(
-      runs_outside_the_design = sprintf("%d of the %d runs in BCR 15 are outside this table: %d before 2009 and %d from 2009 that are not RPID 101 on a Detail 1 or 2 route; they are in the count table",
+      runs_outside_the_design = sprintf("%d of the %d runs in BCR 15 are outside this table: %d before 2009 and %d from 2009 that are not RPID 101 on a Detail 1 or 2 route; they are in the national count table",
                                         length(all15) - n, length(all15), sum(W$year[all15] < 2009L), sum(W$year[all15] >= 2009L) - n),
       stops_after_last_stop_with_evidence = sprintf("%s stops of this table's runs, past K", nice(dropped_stops)),
       stop_rows_before_2009 = "stop-level rows of BCR 15 before 2009 are in the deposit and not shipped, for size; the block table covers all years",
@@ -740,16 +758,14 @@ build_stop <- function() {
     description = sprintf("Stop-level counts of %d bird taxa on %s standard Breeding Bird Survey runs of %d routes in Bird Conservation Region 15 (Sierra Nevada), %d-%d, stops past the last stop with evidence of sampling omitted; vehicle and noise per stop, date, observer and weather; route coordinates in __units.", m, nice(n), n_u, yrs[1], yrs[2]),
     url = "https://doi.org/10.5066/P144YU3S", reference = CITATION, doi_paper = "", doi_data = "10.5066/P144YU3S",
     original_license = ORIGINAL_LICENSE, derived_license = "CC0 1.0",
-    notes = "Survey set inferred: stops up to the last stop with a bird, car or noise record. Stops are sequential spatial points, not temporal replicates. Raw files downloaded by hand (ScienceBase refuses direct downloads), sha256 asserted.",
-    source_via = "USGS ScienceBase (downloaded by hand 2026-11-04)")
+    notes = "Survey set inferred: stops up to the last stop with a bird, car or noise record. Stops are sequential spatial points, not temporal replicates. sha256 of the raw files asserted.",
+    source_via = "USGS ScienceBase")
   stage_tag_row(name, ds, taxon_group = "Birds", model_family = "N-mixture (spatial replicates: stops along a route; closure not met)", sampling_protocol = "point_count",
     design = "Multi-season (annual runs; consecutive stops along the route as spatial replicates)", realm = "Terrestrial", country = countries_of(runs),
     coordinates = "As published (USGS route start points, kept as published)", notes = "Pilot region for stop-level counts; survey set inferred from stop-level evidence.")
   rm(long); gc(FALSE)
   invisible(list(rows = S * m))
 }
-if (DO_SET_B) {
-  r <- build_block(); say("BCR 15 block table done: %s rows", nice(r$rows))
-  r <- build_stop();  say("BCR 15 stop table done: %s rows", nice(r$rows))
-}
+r <- build_block(); say("BCR 15 block table done: %s rows", nice(r$rows))
+r <- build_stop();  say("BCR 15 stop table done: %s rows", nice(r$rows))
 say("done")

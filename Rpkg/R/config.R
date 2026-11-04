@@ -20,7 +20,8 @@
 
 #: Suffixes of the side tables that may sit beside a core table, with the key
 #: column each must carry.
-.eco_side_keys <- c("__taxa" = "taxon", "__periods" = "period", "__units" = "unit", "__traps" = "trap")
+.eco_side_keys <- c("__taxa" = "taxon", "__periods" = "period", "__units" = "unit", "__traps" = "trap",
+                    "__survey_taxa" = "taxon")   # v1.1-draft E4.2, E6
 
 .eco_user_agent <- function() {
   paste0("eco-R/", as.character(utils::packageVersion("eco")), " (https://github.com/ben-domingue/eco)")
