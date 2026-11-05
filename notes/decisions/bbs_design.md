@@ -88,7 +88,7 @@ Values are shipped as published, with these exceptions, all counted by assertion
 | 2020 | 0 runs | Asserted. Period 55 has no rows, and `eco_to_umf(colext)` builds `numPrimary = max(period)`, which by arithmetic breaks on 36 of 37 tables and is accepted silently on BCR 12, misaligning years after 2020 (tested on BCR 12, 13 and 15, see below). Notes say to filter and pad; the converter needs its own issue. Compressing `period` would make 2019 and 2021 look adjacent. |
 | Encoding | Routes and SpeciesList are Windows-1252 | Decoded, written as UTF-8. |
 | Pipeline drops rows for absent cores | six core tables are absent here | Stages run in a scratch root and merged, so old rows stay byte-identical; checked by a script. |
-| `rebuild.yml` | 180 min, one failure stops everything, ScienceBase refuses direct downloads | Build target under 60 min. The raw files must be in the Actions cache. Raised in the PR, along with the five older ScienceBase scripts. |
+| `rebuild.yml` | 180 min, one failure stops everything, ScienceBase refuses direct downloads | Build target under 60 min. The raw files must be in the Actions cache. Raised in the PR, along with the five older ScienceBase scripts. *Superseded:* the downloads work from the item's JSON record; see "After review". |
 
 **The survey set at stop and block level.** The evidence that a stop was sampled is a bird record in any file, or `Car > 0` or `Noise > 0`. Let K be the last stop with evidence. Stops 1 to K are surveys; zero at an empty stop before K is fair because the observer went on past it. Stops after K have no row and their count goes in `notShipped`. The rule costs 16,088 of 4.28M stops (0.38%) from 1997 nationally. It can drop a real zero at the tail. A mid-route skip inside a run cannot be seen in this deposit, and the notes say so: that is the one place a stop zero could be unsupported. `obs_quality_current = 0` marks most truncated runs. Blocks use the same rule on `ceiling(K / 10)`; before 1997, K comes from the last non-zero block.
 
@@ -141,7 +141,7 @@ Held up under test: the stop rule (VehicleData moves K in 0.52% of runs, non-bre
 - Independent check from the raw files with its own Python: 47,304,360 rows, 0 differences, 0 false zeros, all 144,146 runs in exactly one count table, 30 records traced back to the raw files, byte-identical double build of BCR 1.
 - `eco_to_unmarked(family = "colext")`, tested with `unmarked` 1.5.2: errors on BCR 13 and 15; accepts BCR 12 silently, as the review predicted. Filtering to `occasion == 1` alone still errors, so a user must pad periods.
 - BCR names come from the release XML; `RouteTypeDetailID` 3 routes count fewer stops and are flagged in the count tables' `designNote`.
-- `rebuild.yml`: the script skips loudly in Actions when raw files are absent, so it does not stop `run_all.R` for every other table. A fresh rebuild elsewhere needs the raw files downloaded by hand.
+- `rebuild.yml`: the script skips loudly in Actions when raw files are absent, so it does not stop `run_all.R` for every other table. A fresh rebuild elsewhere needs the raw files downloaded by hand. *Superseded:* the script now resolves the download URLs itself, with no CI skip; see "After review".
 - Corrections: 322 impossible `StopTotal` values, not 323; with the non-breeder files, 10 taxa occur only before 1997 and 86 only from 1997.
 
 
@@ -170,3 +170,5 @@ fewer zero rows, are replaced by one national table:
 - Downloads: ScienceBase serves the files at the URLs in the item's JSON record (`files[].url`, `?f=__disk__<hash>`).
   The `?name=<file>` pattern returns 404. The script now resolves the URLs itself, so no hand download and no CI skip;
   all ten sha256 match.
+- Milan reran the raw-file check on the national table at 5516d73 (#62): 0 differences and 0 false zeros over all 26
+  parts, all 7,573,059 source run x taxon records present, sum of `y` 107,000,446 on both sides.

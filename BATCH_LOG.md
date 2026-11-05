@@ -1058,8 +1058,10 @@ One deposit, the 2026 release (1966-2025, doi:10.5066/P144YU3S), one script, 3 t
 ruling #31 makes one protocol x response type one table. So the 37 per-BCR count tables Milan first built became one
 national table, stored as period parts (E4). Design and every number: `notes/decisions/bbs_design.md`, with an
 "After review" section. All pass `eco-validate --irw` (exit 0). Milan's independent check in Python from the raw files
-(0 differences, 0 false zeros over the 47.3 M rows of the BCR design) carries over: the national table holds the same
-records, with zeros for every taxon at every run. Cores are not tracked.
+was rerun on the national table at 5516d73 (the #62 merge): all 26 parts, 110,127,544 rows, 0 differences, 0 false
+zeros; all 7,573,059 source run x taxon records present, sum of `y` 107,000,446 on both sides, the 16 run-level columns,
+`__periods`, `__units` and `__taxa` year ranges matching; an independent rebuild byte-identical apart from build dates.
+Cores are not tracked.
 
 | Table | Family | Source | Rows | Notes |
 |---|---|---|---|---|
