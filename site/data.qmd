@@ -1,5 +1,6 @@
 ---
 title: "The tables"
+include-after-body: _search.html
 ---
 
 ```{r}
@@ -47,6 +48,16 @@ floor excludes them on `sample_floor` in the tags.
 
 ## Summary
 
+`r nrow(d)` tables. Start typing to search across names, model families, taxa,
+protocols and licences; each name links to the table's full entry below.
+
+```{=html}
+<input type="text" id="tableSearch" placeholder="Search tables..." oninput="filterRows('tableSearch', 'summary-table', 'table-count', 'table')" class="eco-search">
+<p id="table-count" class="eco-search-count"></p>
+```
+
+::: {#summary-table .eco-searchable}
+
 ```{r}
 #| label: summary
 #| output: asis
@@ -58,6 +69,8 @@ out <- d[, .(Table = name, Family = model_family, Taxa = taxon_group,
              Rows = format(n_rows, big.mark = ","), Licence = licence, Floor = floor)]
 cat(knitr::kable(out, format = "pipe"), sep = "\n")
 ```
+
+:::
 
 The four dimensions are counts of distinct `unit`, `taxon`, `period` and
 `occasion` values. The row count is the number of survey observations, which

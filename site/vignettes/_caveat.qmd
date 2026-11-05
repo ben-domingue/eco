@@ -1,0 +1,9 @@
+::: {.callout-warning title="How these vignettes were made"}
+These vignettes, including the choice of tables, the analysis design, the code
+and the writing, were produced largely by Claude (Anthropic), working from a
+task specification and reviewed by a psychometrician who is new to ecological
+modelling. Treat the methodological choices and interpretations accordingly,
+check the code on each page directly if you are relying on the numbers, and
+[open an issue](https://github.com/ben-domingue/eco/issues) if something looks
+wrong.
+:::

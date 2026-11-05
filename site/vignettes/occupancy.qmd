@@ -41,12 +41,7 @@ within a window short enough that the true state cannot change. This page
 walks through that model on one eco table, from fetch to goodness of fit, with
 `unmarked` doing the fitting.
 
-::: {.callout-note}
-This vignette, including the choice of table, the analysis and the writing,
-was produced largely by Claude (Anthropic) from a task specification, with
-human review. Treat the interpretations accordingly; the code is all on the
-page and runs from a clean session.
-:::
+{{< include _caveat.qmd >}}
 
 ## Try it first
 

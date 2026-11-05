@@ -61,3 +61,9 @@ code { font-size: .9em; }
 #summary table { font-size: .85rem; }
 
 .eco-release { color: #6c757d; font-size: 0.95rem; margin: 0.25rem 0 1.5rem; }
+
+// Search box above a filterable table (data notes, the tables summary)
+.eco-search { width: 100%; padding: 10px; margin-bottom: 6px; font-size: 1rem; border: 1px solid $gray-400; border-radius: 4px; }
+.eco-search-count { color: $gray-600; min-height: 1.5em; margin-bottom: 1rem; }
+.eco-searchable table { width: 100%; }
+.eco-searchable th, .eco-searchable td { vertical-align: top; }
