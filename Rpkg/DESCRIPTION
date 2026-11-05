@@ -20,8 +20,10 @@ Imports:
     tools,
     utils
 Suggests:
+    arrow,
     curl,
     knitr,
+    redivis,
     testthat (>= 3.0.0),
     unmarked
 URL: https://ben-domingue.github.io/eco/, https://github.com/ben-domingue/eco

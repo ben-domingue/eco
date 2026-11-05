@@ -22,6 +22,15 @@
 #' Redivis' public CSV endpoint. Nothing to log in to. Downloads are cached on
 #' disk (see [eco_cache_dir()]).
 #'
+#' @section Large tables:
+#' Redivis serves at most 100 MB to a request without a login, and a few eco
+#' tables are bigger (`needs_login` in [eco_list_tables()]). Those are read with
+#' the \pkg{redivis} client instead, which needs \pkg{redivis} and \pkg{arrow}
+#' installed and a free Redivis account: run `redivis::redivis$authenticate()`
+#' once, or set `REDIVIS_API_TOKEN`. The download counts against the account's
+#' export quota and is cached like any other. Without a login `eco_fetch()`
+#' stops and says what to do; it never opens a browser itself.
+#'
 #' @param x A table name, a character vector of names, or the data.frame
 #'   returned by [eco_filter()] or [eco_list_tables()].
 #' @return For one table, a data.frame in the eco format (`unit`, `taxon`,
@@ -88,6 +97,13 @@ eco_traps <- function(table) .eco_side(.eco_name_of(table), "__traps")
   x
 }
 
+# One line for eco_info() when a table is over the anonymous cap, else "".
+.eco_login_note <- function(table) {
+  l <- tryCatch(.eco_table_listing(.eco_core, .eco_tag_for(.eco_core)), error = function(e) NULL)
+  b <- if (is.null(l)) NA else l$bytes[l$name == table][1]
+  if (isTRUE(b > .eco_anon_cap)) paste0("\n  size:     ", .eco_mb(b), " on Redivis; needs a Redivis login (see ?eco_fetch)") else ""
+}
+
 #' Describe a table, or the corpus
 #'
 #' With a table name, prints its title, dimensions, model family, response
@@ -127,6 +143,7 @@ eco_info <- function(table = NULL) {
           "\n  protocol: ", g(t, "sampling_protocol"), "; taxa: ", g(t, "taxon_group"), "; ", g(t, "country"),
           "\n  floor:    ", row$sample_floor, "; surveys rest on: ", row$survey_evidence,
           if (isTRUE(as.logical(row$coordinates_coarsened))) "\n  coordinates coarsened (sensitive taxon)" else "",
+          .eco_login_note(table),
           "\n  licence:  ", g(b, "spdx"), " (source shows: ", g(b, "original_license"), ")",
           "\n  cite:     ", g(b, "citation"),
           "\n  columns:  ", gsub("|", ", ", row$variables, fixed = TRUE),
