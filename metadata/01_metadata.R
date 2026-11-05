@@ -23,8 +23,8 @@ root <- normalizePath(if (file.exists("standard.md")) "." else "..")
 out_dir <- file.path(root, "output")
 `%||%` <- function(a, b) if (is.null(a)) b else a
 
-tables <- sort(c(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)),
-                 sub("\\.parts$", "", list.files(out_dir, "\\.parts$"))))   # period parts (standard E4)
+source(file.path(root, "metadata", "tables.R"))
+tables <- eco_tables(out_dir)   # by __dataset.json, so a gitignored core does not drop its table (#66)
 # The counts of one core file, as pieces that add up across the period parts of a parted table (standard E4).
 file_stats <- function(f) {
   d <- fread(f)
@@ -49,9 +49,27 @@ core_stats <- function(t) {
   }
   acc
 }
+# A table whose core is not on this machine (gitignored, not rebuilt here) keeps its
+# existing metadata.csv row: its counts can only be computed where the core is (#66).
+meta_f <- file.path(root, "metadata", "metadata.csv")
+old <- if (file.exists(meta_f)) fread(meta_f, colClasses = "character") else NULL
+absent <- tables[!vapply(tables, function(t) has_core(out_dir, t), TRUE)]
+no_row <- setdiff(absent, old$table)
+if (length(no_row)) stop("no core in output/ and no existing metadata.csv row, so nothing to compute or keep: ",
+                         paste(no_row, collapse = ", "), "\n  build it first (Rscript data/<table>.R)", call. = FALSE)
+if (length(absent)) message("01_metadata.R: core not present here, keeping the existing row for ", length(absent),
+                            " table(s): ", paste(absent, collapse = ", "))
 rows <- lapply(tables, function(t) {
-  x <- core_stats(t)
   ds <- fromJSON(file.path(out_dir, paste0(t, "__dataset.json")), simplifyVector = FALSE)
+  if (t %in% absent) {
+    r <- old[table == t]
+    if (!identical(r$build_date, as.character(ds$buildDate %||% "")))
+      warning(t, ": the kept row is from build ", r$build_date, " but __dataset.json says ", ds$buildDate,
+              "; rebuild the core here to refresh its counts", call. = FALSE)
+    r[, components := NULL][, source_url := ds$sourceURL %||% ""]
+    return(r)
+  }
+  x <- core_stats(t)
   n_surveys <- x$n_surveys
   n_taxa <- length(x$taxa)
   up <- file.path(out_dir, paste0(t, "__units.csv"))
@@ -78,7 +96,7 @@ rows <- lapply(tables, function(t) {
     taxon_inclusion = ds$taxonInclusion %||% "", source_url = ds$sourceURL %||% "",
     standard_version = ds$standardVersion %||% "", build_date = ds$buildDate %||% "", script = ds$script %||% "")
 })
-meta <- rbindlist(rows)
+meta <- rbindlist(rows, use.names = TRUE, fill = TRUE)
 # components (E10): siblings from the same deposit, by sourceURL
 meta[, components := vapply(seq_len(.N), function(i)
   paste(setdiff(table[source_url == source_url[i] & source_url[i] != ""], table[i]), collapse = "|"), "")]
