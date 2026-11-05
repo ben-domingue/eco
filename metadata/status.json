@@ -1,10 +1,10 @@
 {
   "date": "2026-11-04",
-  "n_tables": 176,
-  "n_rows": 173512308,
-  "n_units": 205421,
-  "n_taxa_rows": 6214,
-  "n_surveys": 10023192,
+  "n_tables": 180,
+  "n_rows": 174404980,
+  "n_units": 205783,
+  "n_taxa_rows": 7077,
+  "n_surveys": 10026669,
   "n_families": 39,
   "families": {
     "CJS / multi-state capture-recapture": 2,
@@ -12,7 +12,7 @@
     "CJS capture-recapture with two-sided photo-ID": 1,
     "Closed-population capture-recapture": 1,
     "Community abundance": 2,
-    "Community occupancy": 30,
+    "Community occupancy": 32,
     "Community occupancy or N-mixture": 2,
     "Dead recovery / live-dead capture-recapture": 1,
     "Distance sampling": 7,
@@ -31,7 +31,7 @@
     "Multi-state occupancy": 1,
     "Multievent / multi-state robust design capture-recapture": 1,
     "Multinomial N-mixture": 2,
-    "N-mixture": 34,
+    "N-mixture": 36,
     "N-mixture / annual count index": 2,
     "N-mixture / robust-design counts": 1,
     "N-mixture with dynamic occupancy": 1,
@@ -48,37 +48,37 @@
     "Two-species occupancy with misidentification": 1
   },
   "response_types": {
-    "binomial_count": 5,
-    "count": 43,
-    "detection": 98,
+    "binomial_count": 6,
+    "count": 45,
+    "detection": 99,
     "multinomial_cell": 13,
     "ordinal": 1,
     "state": 16
   },
   "taxon_groups": {
     "Amphibians": 11,
-    "Birds": 35,
+    "Birds": 38,
     "Fish": 15,
     "Invertebrates": 31,
-    "Mammals": 59,
+    "Mammals": 60,
     "Multiple": 4,
     "Plants": 12,
     "Reptiles": 9
   },
   "survey_evidence": {
     "deposited_matrix": 86,
-    "effort_table": 27,
+    "effort_table": 28,
     "inferred": 15,
-    "row_presence": 15,
-    "sample_table": 33
+    "row_presence": 16,
+    "sample_table": 35
   },
-  "n_below_floor": 33,
-  "n_with_coordinates": 63,
+  "n_below_floor": 34,
+  "n_with_coordinates": 65,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 173,
-  "n_irw_conforms": 173,
+  "n_valid": 176,
+  "n_irw_conforms": 176,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 176
+    "eco v1.1-draft (2026-11-03)": 180
   }
 }

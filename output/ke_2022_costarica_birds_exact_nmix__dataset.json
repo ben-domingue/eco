@@ -1,0 +1,62 @@
+{
+  "table": "ke_2022_costarica_birds_exact_nmix",
+  "title": "Point counts of 164 bird species at 150 points in 25 forest and farm landscapes of northwest Costa Rica, 2016-2019, one to three visits per year (without IUCN CR/VU species, coordinates as deposited)",
+  "creator": "Ke, Alison; Sollmann, Rahel; Frishkoff, Luke O.; Karp, Daniel S.",
+  "pubDate": "2022",
+  "doi": "10.25338/B8VP85",
+  "sourceURL": "https://doi.org/10.25338/B8VP85",
+  "citation": "Ke, A., Sollmann, R., Frishkoff, L. O., & Karp, D. S. (2022). Data from: A hierarchical N-mixture model to estimate behavioral variation and a case study of Neotropical birds [Data set]. Dryad. https://doi.org/10.25338/B8VP85",
+  "paperDOI": "10.1002/eap.2632",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Breeding-season point counts in northwest Costa Rica (Guanacaste), from the Daily and Karp labs' countryside bird surveys: 25 landscapes of six points each in forest and agriculture, counted in May to July of 2016 to 2019. Every point was counted once a year (120 points in 2016, 150 from 2017), and a subset (60 in 2016, 72 later) three times. The deposit logs every visit with time, weather, people and noise, and records each observation instance with the number of individuals and their behaviours. y is the number of individuals of a species at a visit; the 21 visits with no bird recorded are all-zero surveys. Ke et al. (2022) used the behaviours to fit a behavioural N-mixture model. This table omits Crax rubra (VU), Aratinga canicularis (VU), Amazona auropalliata (CR) so that point coordinates and elevations ship as deposited; ke_2022_costarica_birds_nmix has all 167 species with coarsened coordinates.",
+  "samplingProtocol": "Point counts at fixed points, one observer recording every bird seen or heard with the number of individuals and their behaviours; one to three visits per point per breeding season (Ke et al. 2022, Ecological Applications 32:e2632).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "visit-data.csv lists every visit (1,122); a survey is a row of it. 21 visits have no detections and are all-zero surveys.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "occasion = repeat visit within a breeding season (May to July); period = year",
+  "geographicCoverage": "Northwest Costa Rica (Guanacaste), latitude 9.9 to 10.5, longitude -85.6 to -85.1; 25 landscapes (cluster_id); point coordinates as deposited",
+  "temporalCoverage": "2016-05/2019-07",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As deposited (8 decimal places): the IUCN-flagged species Crax rubra (VU), Aratinga canicularis (VU), Amazona auropalliata (CR) are not in this table (E7.3)"
+  },
+  "notShipped": {
+    "IUCN CR/VU species": "GRCU, OFPA, YNPA: in ke_2022_costarica_birds_nmix only, whose coordinates are coarsened",
+    "Behavior1-3, Number2-3": "behaviour codes and the individuals per behaviour (the paper's behavioural detail; the same individuals as Number1)",
+    "LU": "per-instance land use the bird was in (forest or agriculture)",
+    "aggression-cases.csv, species-vocal-info.csv, behavior-codes.csv": "behaviour detail",
+    "Noise_Description, Changes, Notes": "free text; names people living near the points"
+  },
+  "notes": "y = sum of Number1 over a species' observation instances at the visit; flyovers counted. The same 2016 visits are in Frishkoff et al. 2018 (doi:10.5061/dryad.7c652r8), whose counts match. obs_crop_type is as deposited (one 'pature' typo kept). The README calls Latitude/Longitude UTM; they are decimal degrees. __units carries forest cover at 105 buffer radii (60-1500 m).",
+  "summary": {
+    "n_rows": 184008,
+    "n_units": 150,
+    "n_taxa": 164,
+    "n_periods": 4,
+    "n_occasions": 3,
+    "n_surveys": 1122,
+    "y_values": "0-45 (28 distinct)",
+    "prop_zero": 0.935,
+    "n_traps": 1,
+    "n_zero": 171984,
+    "n_positive": 12024,
+    "n_units_detected": 150,
+    "max_y": 45
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_landuse", "unit_forest_cover_50m", "unit_annual_precip_mm", "unit_dist_river_m", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_time_hhmm", "obs_people_in_count", "obs_people_nearby", "obs_temp_start_c", "obs_temp_end_c", "obs_wind_start_ms", "obs_wind_end_ms", "obs_noise", "obs_crop_type"],
+  "coreMd5": "9b102000361ae180225f046b82585783",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ke_2022_costarica_birds_nmix.R",
+  "buildDate": "2026-11-04"
+}
