@@ -1,0 +1,356 @@
+---
+title: "Check a file against the eco standard"
+---
+
+<!--
+The browser validator (#8). It runs the eco_validate package unchanged, in
+Pyodide, so this page and the command line cannot disagree: there is one set of
+checks. Nothing is uploaded -- the dropped files are copied into Pyodide's
+in-memory filesystem under their own names and read there, exactly as
+`eco-validate` reads a core table with its side tables beside it.
+
+eco_validate is not on PyPI. prerender.R builds a wheel from this checkout's
+eco_validate/ on every render into wheels/<md5>/ (a site resource, untracked),
+and the chunk below pins the version: a render whose wheel is not
+ECO_VALIDATE_VERSION stops. Bump it with eco_validate/pyproject.toml.
+
+The page runs the CLI's default, `eco-validate <file> -v` (upload profile, no
+--irw). The IRW view check needs irw-validate as well, is a maintainer's check
+on the conversion rather than on the contributor's table, and the uploader runs
+it anyway.
+
+The Python the page runs is the text/x-python script block with id ecov-py
+below; the JavaScript only copies files in and draws the result.
+-->
+
+```{r}
+#| label: pin
+#| output: asis
+ECO_VALIDATE_VERSION <- "0.1.0"
+whl <- list.files("wheels", "\\.whl$", recursive = TRUE, full.names = TRUE)
+want <- sprintf("eco_validate-%s-py3-none-any.whl", ECO_VALIDATE_VERSION)
+if (length(whl) != 1 || basename(whl) != want)
+  stop("validate.qmd pins eco_validate ", ECO_VALIDATE_VERSION, " but prerender.R built ",
+       paste(whl, collapse = ", "), "; bump ECO_VALIDATE_VERSION with eco_validate/pyproject.toml")
+# Clause -> heading id on standard.html, from standard.md itself (pandoc's
+# auto-identifier rule), so a renamed heading cannot leave a dead link.
+std <- readLines("../standard.md", warn = FALSE)
+h <- grep("^## (E[0-9]+\\.|Intake policy)", std, value = TRUE)
+txt <- sub("^## ", "", h)
+id <- tolower(gsub("[^A-Za-z0-9_. -]", "", gsub("`", "", txt)))
+id <- gsub(" ", "-", id)
+key <- ifelse(grepl("^E[0-9]+\\.", txt), sub("\\..*", "", txt), "intake")
+cat("```{=html}\n<script>\nconst ECOV_WHEEL = ", jsonlite::toJSON(whl, auto_unbox = TRUE),
+    ";\nconst ECOV_VERSION = ", jsonlite::toJSON(ECO_VALIDATE_VERSION, auto_unbox = TRUE),
+    ";\nconst ECOV_ANCHORS = ", jsonlite::toJSON(as.list(setNames(id, key)), auto_unbox = TRUE),
+    ";\n</script>\n```\n", sep = "")
+```
+
+Drop a table below to check it against [the eco standard](standard.qmd) (version 1.1-draft). **Your files never leave your browser.** The checks run on your own computer, and nothing is sent to eco or anywhere else.
+
+::: {.callout-note}
+## Beta
+
+The standard and this validator are new and in beta. If the validator reports something about your table that you think is wrong, please [open an issue](https://github.com/ben-domingue/eco/issues) and include the plain-text report shown below the results. Knowing where the checks are wrong is how they get better.
+:::
+
+**Drop the whole table at once**: the core CSV and the files that go with it, named as the standard names them.
+
+| File | What it is |
+|---|---|
+| `<name>.csv` | the core table: `unit`, `taxon`, `y`, and the rest |
+| `<name>__taxa.csv` | one row per taxon (required) |
+| `<name>__periods.csv`, `__units.csv`, `__traps.csv`, `__survey_taxa.csv` | side tables, where the table has them |
+| `<name>__dataset.json` | the table's metadata (required) |
+
+The validator finds the side tables by name, beside the core table, as the command line does. If you drop only the core CSV, it says so: the missing `__taxa` and `__dataset.json` are reported as errors, and the checks that read them do not run.
+
+You get two answers. **Conforms to the standard** says whether the files are a valid eco table. **Passes the upload checks** also applies eco's intake policy, such as the table-naming rule and the standard version the metadata names; it is the check a table has to pass before it is published, and `eco-validate` exits 0 exactly when it is Yes. You only need that second answer if you plan to [contribute the table](contribute.qmd).
+
+```{=html}
+<style>
+  #ecov-drop {
+    border: 2px dashed #adb5bd; border-radius: .5rem; padding: 2.5rem 1rem;
+    text-align: center; cursor: pointer; transition: background .15s, border-color .15s;
+  }
+  #ecov-drop.ecov-over { background: #eef4ff; border-color: #2780e3; }
+  #ecov-drop:focus-visible { outline: 3px solid #2780e3; outline-offset: 2px; }
+  #ecov-drop[aria-disabled="true"] { cursor: progress; opacity: .7; }
+  .ecov-verdicts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .ecov-verdict { border-radius: .5rem; padding: 1rem 1.25rem; border: 1px solid; }
+  .ecov-yes { background: #edf7ee; border-color: #3fb618; }
+  .ecov-no { background: #fdeeee; border-color: #ff0039; }
+  .ecov-verdict .ecov-label { font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: #555; }
+  .ecov-verdict .ecov-answer { font-size: 1.35rem; font-weight: 600; }
+  #ecov-results table { font-size: .9rem; }
+  #ecov-results td { vertical-align: top; overflow-wrap: anywhere; }
+  #ecov-results td.ecov-sev-error { color: #c4002b; font-weight: 600; }
+  #ecov-results td.ecov-sev-warn { color: #9a6700; font-weight: 600; }
+  #ecov-results ul.ecov-details { margin: .25rem 0 0; padding-left: 1.1rem; font-size: .85rem; }
+  /* On a phone a four-column table leaves the message a few characters wide:
+     stack each finding instead, with its message on its own line. */
+  @media (max-width: 600px) {
+    #ecov-results thead { display: none; }
+    #ecov-results tr { display: block; padding: .5rem 0; border-bottom: 1px solid #dee2e6; }
+    #ecov-results td { display: inline; border: 0; padding: 0 .5rem 0 0; }
+    #ecov-results td:last-child { display: block; padding-top: .25rem; }
+  }
+  #ecov-results pre { white-space: pre-wrap; font-size: .8rem; }
+</style>
+
+<div id="ecov-drop" role="button" tabindex="0" aria-disabled="true"
+     aria-describedby="ecov-status">
+  <p class="mb-1"><strong>Drop the table's .csv files and its __dataset.json here</strong>, or click to choose them</p>
+  <p class="mb-0 text-muted small">Up to 100 MB in all. Larger tables, and tables stored as period parts, are better checked with <code>eco-validate</code> on your own computer.</p>
+  <input id="ecov-file" type="file" accept=".csv,.json" multiple hidden>
+</div>
+<p id="ecov-status" class="mt-2 text-muted small" role="status" aria-live="polite">Loading the validator (about 15 MB the first time; cached after that)…</p>
+<div id="ecov-results" aria-live="polite"></div>
+
+<script type="text/x-python" id="ecov-py">
+# The page's whole Python side. ecov_check(names) validates the files written
+# into ECOV_DIR under those names, the way `eco-validate <files> -v` does.
+import json, math
+from pathlib import Path
+from eco_validate import exit_code, format_report, validate_file
+from eco_validate.cli import expand_paths
+
+ECOV_DIR = Path("/tmp/ecov")
+REQUIRED = ("taxa",)   # __taxa (E6) and __dataset.json (E10) are required of every table
+
+def _plain(o):   # JSON.parse rejects NaN; numpy scalars arrive as strings
+    if isinstance(o, dict): return {str(k): _plain(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)): return [_plain(v) for v in o]
+    if hasattr(o, "item") and not isinstance(o, (str, bytes)): o = o.item()
+    if isinstance(o, float) and not math.isfinite(o): return None
+    return o
+
+def ecov_check(names):
+    names = list(names)
+    # The CLI's own resolution: a side table or __dataset.json names its core table.
+    cores, _ = expand_paths([str(ECOV_DIR / n) for n in names])
+    tables, reports = [], []
+    for c in cores:
+        p = Path(c)
+        name = p.stem
+        entry = {"name": name, "file": p.name,
+                 "given": sorted(n for n in names if n.startswith(name + "__"))}
+        if not p.exists():
+            entry["missing_core"] = True
+        else:
+            r = validate_file(p)               # the CLI's default: upload profile, no --irw
+            reports.append(r)
+            entry["missing"] = [f"{name}__{s}.csv" for s in REQUIRED if s not in r.side_tables]
+            if not p.with_name(f"{name}__dataset.json").exists():
+                entry["missing"].append(f"{name}__dataset.json")
+            entry["report"] = r.to_dict()
+            entry["text"] = format_report(r, verbose=True)
+        tables.append(entry)
+    text = "\n".join(t["text"] for t in tables if "text" in t)
+    if reports:
+        n_ok = sum(r.ok for r in reports)
+        text += f"\n\n{len(reports)} table(s): {n_ok} pass, {len(reports) - n_ok} blocked"
+    return json.dumps(_plain({"tables": tables, "text": text,
+                              "exit_code": exit_code(reports) if reports else 2}), default=str)
+</script>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+<script>
+(function () {
+  const MAX_MB = 100, SLOW_MB = 20;
+  const DIR = "/tmp/ecov";
+  const drop = document.getElementById("ecov-drop");
+  const input = document.getElementById("ecov-file");
+  const status = document.getElementById("ecov-status");
+  const results = document.getElementById("ecov-results");
+  let py = null, busy = false;
+
+  function el(tag, attrs, ...kids) {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v);
+    for (const kid of kids) n.append(kid);   // strings become text nodes: never HTML
+    return n;
+  }
+  function say(text, cls) { status.textContent = text; status.className = "mt-2 small " + (cls || "text-muted"); }
+  function ready(on) { drop.setAttribute("aria-disabled", on ? "false" : "true"); }
+  const LOCAL = "pip install ./eco_validate from a checkout of github.com/ben-domingue/eco, then eco-validate yourtable.csv -v";
+
+  async function boot() {
+    try {
+      py = await loadPyodide();
+      await py.loadPackage(["pandas", "micropip"]);
+      await py.pyimport("micropip").install(new URL(ECOV_WHEEL, location.href).href);
+      py.runPython(document.getElementById("ecov-py").textContent);
+      say("Ready. Checking uses eco-validate " + ECOV_VERSION + ".");
+      ready(true);
+    } catch (e) {
+      say("The validator could not load (" + (e && e.message ? e.message.split("\n")[0] : e) +
+          "). You can still run it on your own computer: " + LOCAL + ".", "text-danger");
+    }
+  }
+
+  function verdict(label, yes, yesText, noText) {
+    return el("div", { class: "ecov-verdict " + (yes ? "ecov-yes" : "ecov-no") },
+      el("div", { class: "ecov-label" }, label),
+      el("div", { class: "ecov-answer" }, yes ? yesText : noText));
+  }
+
+  function clauseLink(f) {
+    if (f.clause) {
+      const id = ECOV_ANCHORS[f.clause];
+      return el("a", { href: "standard.html" + (id ? "#" + id : "") }, f.clause);
+    }
+    return el("a", { href: "standard.html#" + (ECOV_ANCHORS.intake || ""),
+                     title: "eco's intake policy. Not part of the standard, so it does not affect conformance." },
+              "intake");
+  }
+
+  function renderTable(t) {
+    const box = el("section", {});
+    box.append(el("h2", {}, t.name));
+    if (t.missing_core) {
+      box.append(el("p", { class: "text-danger" },
+        "You dropped " + t.given.join(", ") + " but not the core table " + t.file +
+        ". Drop it together with its side tables."));
+      return box;
+    }
+    const r = t.report;
+    const errors = r.findings.filter(f => f.severity === "error").length;
+    const broken = r.nonconforming.length ? "No: breaks " + r.nonconforming.join(", ") : "No";
+    box.append(el("div", { class: "ecov-verdicts" },
+      verdict("Conforms to the eco standard " + r.standard_version, r.conforms, "Yes", broken),
+      verdict("Passes the upload checks", r.ok, "Yes",
+              "No: " + errors + " error" + (errors === 1 ? "" : "s"))));
+    const s = r.stats || {};
+    if (s.n_rows !== undefined) {
+      box.append(el("p", { class: "text-muted" },
+        s.n_rows.toLocaleString() + " rows · " + s.n_units.toLocaleString() + " units · " +
+        s.n_taxa + " taxa · " + s.n_periods + " period(s) · " + s.n_occasions + " occasion(s)"));
+    }
+    box.append(el("p", { class: "small" }, "Checked with: " +
+      [t.file].concat(t.given).join(", ") + "."));
+    if (t.missing.length) {
+      box.append(el("div", { class: "callout callout-style-simple callout-warning small" },
+        el("p", { class: "mb-1" }, "Not dropped: " + t.missing.join(", ") +
+          ". The validator reports each as an error, and the checks that need it did not run:"),
+        el("ul", { class: "mb-0" },
+          ...(t.missing.some(m => m.endsWith("__taxa.csv"))
+              ? [el("li", {}, "without __taxa: that __taxa lists every taxon in the table, and only those, with a GBIF taxonID (E6), and the sensitive-taxon coordinate check (E7)")] : []),
+          ...(t.missing.some(m => m.endsWith("__dataset.json"))
+              ? [el("li", {}, "without __dataset.json: y against its responseType (E2), survey evidence and the rules for individual animals (E4), the coordinate and CRS declarations (E7), the required metadata fields, their vocabularies and the rules between them (E10), and the standard version (intake)")] : []))));
+    }
+    const order = { error: 0, warn: 1, info: 2 };
+    const rows = r.findings.slice().sort((a, b) => order[a.severity] - order[b.severity]);
+    if (!rows.length) {
+      box.append(el("p", {}, "Nothing to report."));
+    } else {
+      const tbody = el("tbody");
+      for (const f of rows) {
+        const what = el("td", {}, f.message);
+        if (f.details && f.details.length) {
+          const shown = f.details.slice(0, 50);
+          what.append(el("details", {}, el("summary", { class: "small" },
+              f.details.length.toLocaleString() + " affected case" + (f.details.length === 1 ? "" : "s")),
+            el("ul", { class: "ecov-details" }, ...shown.map(d => el("li", {}, String(d))),
+              ...(f.details.length > shown.length ? [el("li", {}, "… and " +
+                (f.details.length - shown.length).toLocaleString() + " more in the plain-text report")] : []))));
+        }
+        tbody.append(el("tr", {},
+          el("td", { class: "ecov-sev-" + f.severity }, f.severity),
+          el("td", {}, clauseLink(f)),
+          el("td", {}, el("code", {}, f.check)),
+          what));
+      }
+      box.append(el("div", { class: "table-responsive" },
+        el("table", { class: "table table-sm" },
+          el("thead", {}, el("tr", {},
+            el("th", { scope: "col" }, "Severity"), el("th", { scope: "col" }, "Clause"),
+            el("th", { scope: "col" }, "Check"), el("th", { scope: "col" }, "What it found"))),
+          tbody)));
+      box.append(el("p", { class: "small text-muted" },
+        "Errors must be fixed. Warnings are worth a look, and some are legitimate for a particular design."));
+    }
+    return box;
+  }
+
+  function render(out) {
+    results.replaceChildren();
+    for (const t of out.tables) results.append(renderTable(t));
+    if (out.text) {
+      results.append(el("details", {}, el("summary", {}, "Plain-text report (to paste into an email or issue)"),
+        el("pre", {}, out.text)));
+    }
+  }
+
+  function clearDir() {
+    try {
+      for (const n of py.FS.readdir(DIR)) if (n !== "." && n !== "..") py.FS.unlink(DIR + "/" + n);
+    } catch (_) { try { py.FS.mkdirTree(DIR); } catch (_) {} }
+  }
+
+  async function check(fileList) {
+    if (!py || busy || !fileList || !fileList.length) return;
+    results.replaceChildren();   // never leave one table's findings under another's name
+    const files = Array.from(fileList);
+    input.value = "";
+    for (const f of files) {
+      const ext = (f.name.match(/\.[^.]+$/) || [""])[0].toLowerCase();
+      if ([".rdata", ".rda", ".rds"].includes(ext)) {
+        say("R data files can't be read in the browser. Save each table as CSV first (write.csv(d, \"mytable.csv\", row.names = FALSE)) and drop those.", "text-danger");
+        return;
+      }
+      if (ext === ".json" && !f.name.endsWith("__dataset.json")) {
+        say(f.name + ": the only JSON file a table has is <name>__dataset.json. Rename it to match the core table, or leave it out.", "text-danger");
+        return;
+      }
+      if (![".csv", ".json"].includes(ext)) {
+        say(f.name + " is not a .csv file or a __dataset.json. eco tables are CSV: save the table as CSV and try again.", "text-danger");
+        return;
+      }
+    }
+    const mb = files.reduce((a, f) => a + f.size, 0) / 1024 ** 2;
+    if (mb > MAX_MB) {
+      say("These files come to " + mb.toFixed(0) + " MB, over the " + MAX_MB + " MB this page handles. Run eco-validate on your own computer instead: " + LOCAL + ".", "text-danger");
+      return;
+    }
+    busy = true; ready(false);
+    const label = files.length === 1 ? files[0].name : files.length + " files";
+    say("Checking " + label + (mb > SLOW_MB ? " (large, so this may take a few minutes)" : "") + "…");
+    await new Promise(r => setTimeout(r, 30));   // let the status paint before Python blocks
+    try {
+      clearDir();
+      for (const f of files) py.FS.writeFile(DIR + "/" + f.name, new Uint8Array(await f.arrayBuffer()));
+      py.globals.set("ecov_names", py.toPy(files.map(f => f.name)));
+      const out = JSON.parse(py.runPython("ecov_check(ecov_names)"));
+      render(out);
+      say("Checked " + label + ".");
+    } catch (e) {
+      const msg = e && e.message ? e.message.trim().split("\n").pop() : String(e);
+      say("Could not read " + label + ": " + msg, "text-danger");
+    } finally {
+      clearDir();
+      busy = false; ready(true); input.value = "";
+    }
+  }
+
+  drop.addEventListener("click", () => { if (py && !busy) input.click(); });
+  drop.addEventListener("keydown", e => {
+    if ((e.key === "Enter" || e.key === " ") && py && !busy) { e.preventDefault(); input.click(); }
+  });
+  input.addEventListener("change", () => check(input.files));
+  ["dragenter", "dragover"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add("ecov-over"); }));
+  ["dragleave", "drop"].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove("ecov-over"); }));
+  drop.addEventListener("drop", e => check(e.dataTransfer.files));
+  boot();
+})();
+</script>
+```
+
+The same checks run on the command line, which is faster for large tables, reads tables stored as period parts, and can run in CI. From a checkout of [the repository](https://github.com/ben-domingue/eco):
+
+```
+pip install ./eco_validate
+eco-validate mytable.csv -v
+```
+
+When a maintainer uploads a table, the upload runs these checks again, together with one conversion check this page does not load.

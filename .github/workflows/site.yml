@@ -71,6 +71,12 @@ jobs:
           Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly", "marked", "R2ucare"))'
           R CMD INSTALL Rpkg
 
+      # prerender.R builds the eco_validate wheel the browser validator loads
+      # (site/validate.qmd, #8) from this checkout, so the page runs main's checks.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
         with:
