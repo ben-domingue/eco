@@ -47,6 +47,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "obs_effort_trapdays", "obs_rain_mm_day"],
   "coreMd5": "4069a85d7244c48274cde30fe5f048c7",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "n_occasions", "season", "rain_mean_mm_day", "rain_prev30_mm", "start_6mo", "trapdays", "note"],
+      "md5": "32ba37da0b38d7a36cb2494e682396e1"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "75390e8acb9f0c70b8c0a3765da36516"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/malachowski_2026_koloa_rd.R",

@@ -52,6 +52,13 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_year", "unit_fencing_m", "unit_cropdiv", "unit_weed_state", "unit_strata", "unit_seminatural", "unit_localdiv", "unit_seminat_nograze_1km", "unit_seminat_graze_1km", "obs_start_time", "obs_weather", "obs_temp_begin_f", "obs_temp_end_f", "obs_wind_begin_mph", "obs_wind_end_mph", "obs_noise"],
   "coreMd5": "da0ef818ac008591ed49fcd8bbbc8650",
+  "sideTables": {
+    "taxa": {
+      "rows": 99,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "bc4bebde12c9830944ec73b99bd0645b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/olimpi_2024_calfarms_nmix.R",

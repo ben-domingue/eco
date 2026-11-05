@@ -55,6 +55,13 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_prov", "unit_age_dom_180", "unit_age_dom_360", "unit_ba_abam_180", "unit_ba_abam_360", "unit_ba_abgrc_180", "unit_ba_abgrc_360", "unit_ba_acma_180", "unit_ba_acma_360", "unit_ba_alru_180", "unit_ba_alru_360", "unit_ba_pipo_180", "unit_ba_pipo_360", "unit_ba_psme_180", "unit_ba_psme_360", "unit_ba_thpl_180", "unit_ba_thpl_360", "unit_ba_tshe_180", "unit_ba_tshe_360", "unit_cc_layers_180", "unit_cc_layers_360", "unit_ccov_con_180", "unit_ccov_con_360", "unit_ccov_hdw_180", "unit_ccov_hdw_360", "unit_chili_180", "unit_chili_360", "unit_climwd_180", "unit_climwd_360", "unit_dbh_con_180", "unit_dbh_con_360", "unit_ddi_180", "unit_ddi_360", "unit_down_cov_180", "unit_down_cov_360", "unit_down_mass_180", "unit_down_mass_360", "unit_down_vol_180", "unit_down_vol_360", "unit_dstream", "unit_elev_mn_180", "unit_elev_mn_360", "unit_elev_sd_180", "unit_elev_sd_360", "unit_fr_180", "unit_fr_360", "unit_decimalLatitude", "unit_decimalLongitude", "unit_mtpi", "unit_ogsi_180", "unit_ogsi_360", "unit_snag_mass_180", "unit_snag_mass_360", "unit_snag_tph_180", "unit_snag_tph_360", "unit_snag_vol_180", "unit_snag_vol_360", "unit_stand_hgt_180", "unit_stand_hgt_360", "unit_topo_div", "unit_tph_50_180", "unit_tph_50_360", "unit_tph_75_180", "unit_tph_75_360", "obs_date_doy", "obs_effort_hours", "obs_noise", "obs_precip_mn", "obs_precip_total", "obs_temp_max", "obs_temp_mn", "obs_temp_mnmax"],
   "coreMd5": "2953a6e2980d59f04d65b5e2ec91e0eb",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c9bc8ef6f736d1c59664932d39f929f3"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ruff_2025_piwo_state.R",
