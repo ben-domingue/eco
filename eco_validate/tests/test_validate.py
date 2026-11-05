@@ -577,3 +577,22 @@ def test_parted_table_structure_errors(tmp_path):
     df.loc[df["period"] == 4, "unit_elev"] = 2.0
     r = validate_file(write_parted(tmp_path / "cov", df))
     assert "covariate_level" in checks_of(r, "error")
+
+
+def test_parted_table_irw_date_range_judged_on_the_whole_table(tmp_path):
+    # IRW's date_range* fires on a part whose dates all predate 1973. It is a check
+    # on the maximum, so a table running past 1973 must not inherit part 1's (#57).
+    from eco_validate.core import _import_irw_validate
+    if _import_irw_validate() is None:
+        pytest.skip("irw_validate not importable")
+    df = _parted_frame()
+    df["date"] = df["period"].map({1: "1966-06-01", 2: "1967-06-01", 3: "1968-06-01", 4: "2025-06-01"})
+    (tmp_path / "late").mkdir(); (tmp_path / "early").mkdir()
+    r = validate_file(write_parted(tmp_path / "late", df), irw=True)
+    assert "irw:date_range*" not in checks_of(r, "warn")
+    df["date"] = df["date"].str.replace("2025", "1969")
+    r = validate_file(write_parted(tmp_path / "early", df), irw=True)
+    f = [f for f in r.findings if f.check == "irw:date_range*"]
+    assert len(f) == 1 and "over all parts" in f[0].message
+    secs = int((pd.Timestamp("1969-06-01", tz="UTC") - pd.Timestamp(0, tz="UTC")).total_seconds())
+    assert f"date max={secs}" in f[0].message

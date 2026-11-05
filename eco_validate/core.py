@@ -146,6 +146,7 @@ class _PartsAccumulator:
         self.n_rows = self.n_surveys = self.n_zero = 0
         self.y_values = set()
         self.rows_by_part: dict = {}
+        self.date_max = None             # latest `date`, Unix seconds (IRW view)
 
     def add(self, part: Path, df: pd.DataFrame):
         cols = list(df.columns)
@@ -186,6 +187,10 @@ class _PartsAccumulator:
         self.n_surveys += int(df[_survey_cols(df)].drop_duplicates().shape[0])
         self.n_rows += len(df)
         self.rows_by_part[part.name] = len(df)
+        if "date" in df.columns:
+            m = eco_to_irw(pd.DataFrame({"date": pd.unique(df["date"].dropna())}))["date"].max()
+            if pd.notna(m):
+                self.date_max = int(m) if self.date_max is None else max(self.date_max, int(m))
 
     def stats(self) -> dict:
         yv = sorted(self.y_values)
@@ -272,6 +277,12 @@ def whole_table_findings(t: Table, acc: _PartsAccumulator, parts: list[Path]) ->
     return out
 
 
+# irw_validate's `date_range*` warns when the IRW view's maximum date is below this
+# (irw_validate/_checks.py); per part it misfires on a table whose early parts predate 1973.
+IRW_DATE_RANGE = "irw:date_range*"
+IRW_DATE_FLOOR = 1e8
+
+
 def validate_parts(path: str | Path, *, profile: str = "upload", irw: bool = False) -> Report:
     """Validate a table stored as period parts, one part in memory at a time."""
     d = Path(path)
@@ -285,6 +296,7 @@ def validate_parts(path: str | Path, *, profile: str = "upload", irw: bool = Fal
         return report
     acc = _PartsAccumulator()
     seen: dict = {}
+    irw_msgs: dict = {}                  # (check, severity) -> {part: message}
     for part in parts:
         df = _read_csv(part)
         t = Table(name=name, df=df, dataset=dataset, side=side, side_searched=True, part=True)
@@ -298,6 +310,8 @@ def validate_parts(path: str | Path, *, profile: str = "upload", irw: bool = Fal
         for f in found:
             # IRW-view findings carry per-part figures in the message; one per check is enough
             k = (f.check, f.severity) if f.group == "irw" else (f.check, f.severity, f.message)
+            if f.group == "irw":
+                irw_msgs.setdefault(k, {})[part.name] = f.message
             if k in seen:
                 seen[k] = (seen[k][0], seen[k][1] + [part.name])
             else:
@@ -305,9 +319,22 @@ def validate_parts(path: str | Path, *, profile: str = "upload", irw: bool = Fal
         acc.add(part, df)
         del df, t
     for f, where in seen.values():
-        details = tuple(f.details) + (f"in {len(where)} of {len(parts)} parts: {', '.join(where[:5])}"
-                                      + (", ..." if len(where) > 5 else ""),)
-        report.findings.append(Finding(f.check, f.severity, f.message, table=f.table,
+        if f.check == IRW_DATE_RANGE:
+            # A check on the maximum: judge it on the whole table's, not part 1's (#57).
+            if acc.date_max is None or acc.date_max >= IRW_DATE_FLOOR:
+                continue
+            f = Finding(f.check, f.severity, f"date max={acc.date_max} over all parts — looks too "
+                        f"small for Unix seconds; verify units", table=f.table, group=f.group)
+        msgs = irw_msgs.get((f.check, f.severity), {})
+        message, extra = f.message, ()
+        if len(set(msgs.values())) > 1:
+            # IRW checks run per part; when their figures differ, say whose figure the
+            # headline carries and list every part's.
+            message = f"{f.message} (figures from {where[0]}; each part's below)"
+            extra = tuple(f"{k}: {v}" for k, v in msgs.items())
+        details = tuple(f.details) + extra + (f"in {len(where)} of {len(parts)} parts: {', '.join(where[:5])}"
+                                              + (", ..." if len(where) > 5 else ""),)
+        report.findings.append(Finding(f.check, f.severity, message, table=f.table,
                                        group=f.group, details=details))
     whole = Table(name=name, df=pd.DataFrame(), dataset=dataset, side=side, side_searched=True, part=True)
     report.findings += [f for f in whole_table_findings(whole, acc, parts) if keep(f, profile)]
