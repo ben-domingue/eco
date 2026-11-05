@@ -1,0 +1,65 @@
+{
+  "table": "neubauer_2021_bialowieza_marshtit_nmix",
+  "title": "Repeated counts of singing Marsh Tit males on four plots in Bialowieza National Park, Poland, 1987-2019, with the breeding pairs from an independent census",
+  "creator": "Neubauer, Grzegorz; Wolska, Alicja; Rowinski, Patryk; Wesolowski, Tomasz",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.3bk3j9kkv",
+  "sourceURL": "https://doi.org/10.5061/dryad.3bk3j9kkv",
+  "citation": "Neubauer, G., Wolska, A., Rowinski, P., & Wesolowski, T. (2021). Data from: N-mixture models estimate abundance reliably: a field test on Marsh Tit using time-for-space substitution [Dataset]. Dryad. https://doi.org/10.5061/dryad.3bk3j9kkv",
+  "paperDOI": "10.1093/ornithapp/duab054",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Six springtime counts of singing Marsh Tit males per year on four permanent plots (24-33 ha) in the strictly protected primaeval forest of Bialowieza National Park, 1987-2019, with countersinging events per survey and the true number of breeding pairs from an exhaustive population study, used to test binomial N-mixture abundance estimates against known abundance.",
+  "samplingProtocol": "Six whole-plot counts of singing males per plot each April-May; the true number of pairs per plot-year comes from intensive territory mapping and nest searching on the same plots.",
+  "samplingProtocolCode": "site_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "closureNote": "Closed within a breeding season (April-May); open between years.",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Bialowieza National Park, Poland (no coordinates deposited)",
+  "temporalCoverage": "1987/2019",
+  "notShipped": {
+    "Total_cases, Total_males": "season sums of the per-survey countersinging columns, which ship; Total_cases disagrees with the per-survey sum at WW 2004 and CM 2011",
+    "R code": "on Zenodo (doi:10.5281/zenodo.5585708), not data"
+  },
+  "notes": "The paper treats plot-year as the site (time-for-space substitution); here unit = plot and period = year, so either view can be recovered. period_pairs_within counts half pairs for boundary territories.",
+  "summary": {
+    "n_rows": 792,
+    "n_units": 4,
+    "n_taxa": 1,
+    "n_periods": 33,
+    "n_occasions": 6,
+    "n_surveys": 792,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.145,
+    "n_traps": 1,
+    "n_zero": 115,
+    "n_positive": 677,
+    "n_units_detected": 4,
+    "max_y": 6
+  },
+  "sampleFloor": "below (4 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_area_ha", "period_pairs_within", "period_pairs_with_adjacent", "obs_countersinging_events", "obs_countersinging_males"],
+  "coreMd5": "e3903cbf645466156af06f90034ed41f",
+  "sideTables": {
+    "periods": {
+      "rows": 33,
+      "columns": ["period", "year", "season"],
+      "md5": "eed7e2cf58a1bf5e31cc336ace23a155"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "1154d787249730ba796a9522549e32ea"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neubauer_2021_bialowieza_marshtit_nmix.R",
+  "buildDate": "2026-11-05"
+}

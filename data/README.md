@@ -214,6 +214,10 @@ CSVs with `upload/red_up_eco.py`.
 | `olimpi_2024_calfarms_nmix.R` | community counts, repeated point counts on farms, flyovers excluded | Dryad | CC0 |
 | `ruff_2025_piwo_state.R` | multi-state occupancy, acoustic (ARU + classifier), weekly effort | Zenodo | CC BY 4.0 |
 | `malachowski_2026_koloa_rd.R` | robust design from a MARK `.inp`, untrapped primaries | Zenodo | CC BY 4.0 |
+| `dutta_2024_panna_carnivore_occ.R` | multispecies detection, camera traps, 5-night sessions, two seasons (stations not linked) | Dryad | CC0 |
+| `neubauer_2021_bialowieza_marshtit_nmix.R` | repeated counts, 33 years x 6 counts on 4 plots, census truth as `period_` covariates | Dryad | CC0 |
+| `law_2021_nsw_koala_occ.R` | single-species detection, acoustic (AudioMoth), nightly occasions | Dryad | CC0 |
+| `mills_2019_kibale_carnivore_comm.R` | community detection, camera traps, daily occasions from a station-day function table, coarsened | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

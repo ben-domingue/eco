@@ -1,0 +1,61 @@
+{
+  "table": "law_2021_nsw_koala_occ",
+  "title": "Passive acoustic detections of koala bellows over consecutive nights at 128 private native forest sites in north-east New South Wales, 2018-2020",
+  "creator": "Law, Brad; Kerr, Isobel; Gonsalves, Leroy; Brassil, Traecey; Eichinski, Philip; Truskinger, Anthony; Roe, Paul",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.2rbnzs7pq",
+  "sourceURL": "https://doi.org/10.5061/dryad.2rbnzs7pq",
+  "citation": "Law, B., Kerr, I., Gonsalves, L., Brassil, T., Eichinski, P., Truskinger, A., & Roe, P. (2021). Mini-acoustic sensors reveal occupancy and threats to koalas (Phascolarctos cinereus) in private native forests [Dataset]. Dryad. https://doi.org/10.5061/dryad.2rbnzs7pq",
+  "paperDOI": "10.1111/1365-2664.14099",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "AudioMoth acoustic sensors mailed to landholders recorded koala bellows on consecutive nights at 128 sites in private native forests of north-east New South Wales, Australia, in the spring-summer breeding seasons of 2018-2020, to model koala occupancy against roads, NDVI, fire, clearing, harvest history and a habitat suitability model.",
+  "samplingProtocol": "One AudioMoth sensor per site recording overnight on consecutive nights (up to 19); a night is an occasion, scored 1 if a male koala bellow was detected in the recording.",
+  "samplingProtocolCode": "acoustic",
+  "occasionLength": "1 night",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "closureNote": "Each site was surveyed once, for consecutive nights within one month.",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Private native forests, north-east New South Wales, Australia (no coordinates deposited)",
+  "temporalCoverage": "2018-10/2020-12",
+  "notShipped": {
+    "sep, oct, nov, dec, jan, yr2018, yr2019, yr2020": "dummy recodes of month and year, which ship as unit_survey_month and unit_survey_year",
+    "recent_harv, padd, youngR, regrowth, mat, euc": "forest-history class dummies that the deposited metadata describes as 0 = not sampled / 1 = sampled; meaning not recoverable from the deposit"
+  },
+  "notes": "obs_min_temp_c is NA on some surveyed nights in the source. The habitat suitability covariates are the NSW DPI koala model, independent of these detections.",
+  "summary": {
+    "n_rows": 1073,
+    "n_units": 128,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 19,
+    "n_surveys": 1073,
+    "y_values": "0,1",
+    "prop_zero": 0.8,
+    "n_traps": 1,
+    "n_zero": 858,
+    "n_positive": 215,
+    "n_units_detected": 53,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_survey_year", "unit_survey_month", "unit_n_nights", "unit_habitat_suitability_500m", "unit_habitat_suitability_1km", "unit_habitat_suitability_point", "unit_elevation_m", "unit_sealed_road_m_500m", "unit_sealed_road_m_1km", "unit_unsealed_road_m_500m", "unit_unsealed_road_m_1km", "unit_low_burn_pct_500m", "unit_low_burn_pct_1km", "unit_high_burn_pct_500m", "unit_high_burn_pct_1km", "unit_topographic_position", "unit_ndvi_sep_500m", "unit_ndvi_sep_1km", "unit_cleared_pct_500m", "unit_cleared_pct_1km", "unit_ktsi_500m", "unit_ktsi_1km", "obs_rain_mm", "obs_min_temp_c"],
+  "coreMd5": "828f6ef8733bbcf81424d0a7a4dc0188",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "1b07ffe508b48ccb906e328c0f8aacc0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/law_2021_nsw_koala_occ.R",
+  "buildDate": "2026-11-05"
+}

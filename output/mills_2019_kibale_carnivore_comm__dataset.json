@@ -1,0 +1,73 @@
+{
+  "table": "mills_2019_kibale_carnivore_comm",
+  "title": "Daily camera-trap detections of 19 carnivores and three prey species at 356 stations in nine surveys of Kibale National Park and Maramagambo Forest, Uganda, 2010-2014",
+  "creator": "Mills, David; Do Linh San, Emmanuel; Robinson, Hugh; Isoke, Sam; Slotow, Rob; Hunter, Luke",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.6fq3qv7",
+  "sourceURL": "https://doi.org/10.5061/dryad.6fq3qv7",
+  "citation": "Mills, D., Do Linh San, E., Robinson, H., Isoke, S., Slotow, R., & Hunter, L. (2019). Data from: Competition and specialization in an African forest carnivore community [Dataset]. Dryad. https://doi.org/10.5061/dryad.6fq3qv7",
+  "paperDOI": "10.1002/ece3.5391",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Nine systematic camera-trap surveys (2010-2014) in Kibale National Park and Maramagambo Forest, Uganda, recording all carnivores and three prey of the African golden cat, used to test habitat and activity segregation among cats, genets and mongooses with occupancy and co-occupancy models.",
+  "samplingProtocol": "Camera stations on trails in nine surveys of 24-61 stations each (one baited survey); daily camera function recorded per station; a day is an occasion, scored 1 if the species was photographed.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "1 day",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "closureNote": "Closure is the user's assumption: surveys run 2-5 months; each station belongs to one survey.",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Kibale National Park and Maramagambo Forest (Queen Elizabeth NP), western Uganda",
+  "temporalCoverage": "2010-10/2014-07",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "station decimal degrees (5 decimals in the source) coarsened to the 0.1 degree cell centre with coarsen_coords(): African golden cat, leopard and lion are IUCN VU; UTM coordinates not shipped"
+  },
+  "notShipped": {
+    "GPS_EW, GPS_NS, X, X.1, X.2": "UTM coordinates (finer than the coarsened cell) and empty columns",
+    "Individual": "individual ids on 2,809 records (no capture-history design stated)",
+    "baitnum, Model, FileName": "undocumented or camera-file fields",
+    "Altitude": "NA at most stations",
+    "safety, use, Logging.type, Trail_cross": "free-text placement notes overlapping the shipped columns"
+  },
+  "notes": "14 station-days with a photograph are marked not working in the trapfunction file; they are kept as surveyed and flagged obs_trapfunction_zero = 1. Survey 5 is baited.",
+  "summary": {
+    "n_rows": 538956,
+    "n_units": 356,
+    "n_taxa": 22,
+    "n_periods": 9,
+    "n_occasions": 139,
+    "n_surveys": 24498,
+    "y_values": "0,1",
+    "prop_zero": 0.982,
+    "n_traps": 1,
+    "n_zero": 529242,
+    "n_positive": 9714,
+    "n_units_detected": 350,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_survey_name", "unit_baited", "unit_forest", "unit_logging", "unit_current_use", "unit_wcs_vegetation", "unit_trail_junction", "unit_trail_purpose", "unit_dist_inside_pa_m", "unit_lat", "unit_lon", "unit_coord_uncertainty_m", "unit_veg_lrgStemDens", "unit_veg_BA", "unit_veg_dia_mean", "unit_veg_dia_max", "unit_veg_dia_sd", "unit_veg_tree_hgt_mean", "unit_veg_tree_hgt_max", "unit_veg_tree_hgt_sd", "unit_veg_cnpyhgt5_mean", "unit_veg_cnpyhgt5_max", "unit_veg_cnpyhgt5_sd", "unit_veg_cnpyhgt10_mean", "unit_veg_cnpyhgt10_max", "unit_veg_cnpyhgt10_sd", "unit_veg_cnpyunder_mean", "unit_veg_cnpyunder_max", "unit_veg_cnpyunder_sd", "unit_veg_dia_plot_sd", "unit_veg_hgt_plot_sd", "unit_veg_sm_stem", "unit_veg_sm_stem_sd", "unit_veg_smStemDens", "unit_veg_specnumber", "unit_veg_shanon", "unit_veg_fisher_alpha", "unit_veg_pielous", "unit_veg_trail_max", "unit_veg_trail_mean", "unit_veg_ugd_mean", "unit_veg_ugd_max", "unit_veg_ugd_min", "unit_veg_ugd_sd", "unit_veg_cnpy_mean", "unit_veg_cnpy_max", "unit_veg_cnpy_min", "unit_veg_cnpy_sd", "unit_veg_cnpygfw", "unit_veg_evi", "obs_trapfunction_zero"],
+  "coreMd5": "e40cfd81b1811bf48b1c15717ac94750",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "survey_name", "start", "end", "n_stations"],
+      "md5": "4bbc13b9f7c91dfff503573a9f6b920d"
+    },
+    "taxa": {
+      "rows": 22,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "9309e0bee937f266a5346bf733e86de1"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mills_2019_kibale_carnivore_comm.R",
+  "buildDate": "2026-11-05"
+}
