@@ -76,6 +76,11 @@ EXEMPT = {
     ("rooney_2025_snapshotusa_comm", "85 species at"): "the _exact sibling's count",
     ("rooney_2025_snapshotusa_exact_comm", "87 species with"): "the coarsened sibling's count",
     ("stallings_2025_gulfreefs_exact_count", "171 resolved taxa"): "the source's count; this sibling omits the flagged taxa",
+    ("ke_2022_costarica_birds_nmix", "120 points in"): "the 2016 subset; 150 points from 2017",
+    ("ke_2022_costarica_birds_exact_nmix", "120 points in"): "the 2016 subset; 150 points from 2017",
+    ("ke_2022_costarica_birds_nmix", "164 species at"): "the _exact sibling's count",
+    ("ke_2022_costarica_birds_exact_nmix", "167 species with"): "the coarsened sibling's count",
+    ("frishkoff_2014_costarica_birds_binom", "486 species"): "486 species plus 4 genus-only records = 490 taxa",
 }
 
 WORDS = {w: i for i, w in enumerate(
