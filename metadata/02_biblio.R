@@ -9,7 +9,13 @@
 # published (the liveness rule of irw's 02_biblio.R). A core table with no
 # dictionary row is an error: stage_dict_row() is part of every data/ script.
 #
-# The `bibtex` column is reserved for #11 and is empty until then. IRW names for
+# `bibtex` (#11): the deposit's entry, keyed `<table>`, then the paper's, keyed
+# `<table>_paper`, from metadata/bibtex/ (filled by metadata/fetch_bibtex.R, which
+# needs the network; this stage does not). A table whose deposit has no DOI, or
+# whose DOI is not cached, gets a @misc from creator, year, title and source URL.
+# `derived_license` is the SPDX id the table is redistributed under: eco
+# redistributes each table under its source's licence, so it equals `spdx`
+# (processing_guide.md); the source's wording stays in `original_license`. IRW names for
 # the same fields, for anyone unioning: DOI__for_paper_ = doi_paper,
 # DOI__for_data_ = doi_data, Original_License = original_license,
 # Derived_License = derived_license, Source_via = source_via, BibTex = bibtex.
@@ -37,7 +43,32 @@ ds <- rbindlist(lapply(tables, function(t) {
 }))
 b <- merge(dict, ds, by = "table")
 b[doi_paper == "" & paper_doi_meta != "", doi_paper := paper_doi_meta]
-b[, bibtex := ""]
+bib_dir <- file.path(root, "metadata", "bibtex")
+clean_doi <- function(x) tolower(trimws(sub("^(https?://(dx\\.)?doi\\.org/|doi:)", "", x, ignore.case = TRUE)))
+cached <- function(doi, key) {
+  if (is.na(doi) || !nzchar(doi)) return(NA_character_)
+  f <- file.path(bib_dir, paste0(gsub("[^a-z0-9._-]", "_", clean_doi(doi)), ".bib"))
+  if (!file.exists(f)) return(NA_character_)
+  txt <- paste(readLines(f, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+  sub("^\\s*(@[A-Za-z]+)\\{[^,]*,", paste0("\\1{", key, ","), txt)
+}
+misc <- function(r) {
+  esc <- function(x) gsub("([&%#])", "\\\\\\1", x)
+  f <- c(author = gsub(";\\s*", " and ", r$creator), title = r$title, year = substr(r$pub_date, 1, 4), howpublished = paste0("\\url{", r$source_url, "}"),
+         note = paste0("Distributed as eco table ", r$table, "; licence ", r$spdx))
+  f <- f[!is.na(f) & nzchar(f)]
+  paste0("@misc{", r$table, ",\n", paste0("  ", names(f), " = {", ifelse(names(f) == "howpublished", f, esc(f)), "}", collapse = ",\n"), "\n}")
+}
+b[, bibtex := vapply(seq_len(.N), function(i) {
+  r <- b[i]
+  data <- cached(r$doi_data, r$table)
+  if (is.na(data)) data <- misc(r)
+  paper <- cached(r$doi_paper, paste0(r$table, "_paper"))
+  paste(c(data, if (!is.na(paper) && clean_doi(r$doi_paper) != clean_doi(r$doi_data)) paper), collapse = "\n\n")
+}, "")]
+b[, derived_license := spdx]
+n_misc <- sum(startsWith(b$bibtex, "@misc{") & !vapply(b$doi_data, function(d) !is.na(d) && nzchar(d), TRUE))
+message(sprintf("02_biblio.R: bibtex from metadata/bibtex/ for %d tables; %d deposit entries are @misc built here", nrow(b), n_misc))
 cols <- c("table", "title", "description", "creator", "pub_date", "reference", "citation", "doi_paper", "doi_data",
           "source_url", "source_via", "original_license", "derived_license", "spdx", "license_url", "bibtex",
           "contributor", "date", "notes")

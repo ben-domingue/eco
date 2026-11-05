@@ -16,6 +16,12 @@ default. Intake policy in `standard.md`:
 - CC0, CC BY, CC BY-SA, public domain (USGS, government agencies): proceed.
 - CC BY-NC, ODbL, GPL (data shipped in R packages) and other propagating clauses:
   proceed; `derived_license` carries the clause so a reuser can exclude the table.
+- **What eco redistributes under.** eco does not relicense: each table is
+  redistributed under its source's licence, so `derived_license` in `biblio.csv` is
+  that licence's SPDX id (stage 02 sets it from `__dataset.json`'s
+  `intellectualRights.spdx`). CC0 stays CC0; CC BY stays CC BY, with the attribution
+  the citation carries; NC, SA and ODbL clauses pass through to anyone who reuses the
+  table. The source's own wording, conflicts included, stays in `original_license`.
 - No licence, an unresolvable licence UUID, "contact the author": **stop**. Record
   the candidate in `queue/human_review.csv` as `held`, set the queue row to
   `held: no licence`, and move on. Ben emails; process only once permission is
