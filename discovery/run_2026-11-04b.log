@@ -1,0 +1,1592 @@
+dataverse            term   "detection history"                      3 kept 3
+dataverse            term   "occupancy model"                        10 kept 10
+dataverse            term   "capture history"                        5 kept 5
+dataverse            term   "capture-recapture"                      14 kept 14
+dataverse            term   "N-mixture"                              0 kept 0
+dataverse            term   "repeated counts"                        1 kept 1
+dataverse            term   "point count"                            24 kept 24
+dataverse            term   "camera trap"                            57 kept 57
+dataverse            term   "detection/non-detection"                1 kept 1
+dataverse            term   "encounter history"                      2 kept 2
+zenodo               term   "detection history"                      18 kept 18
+zenodo               term   "occupancy model"                        140 kept 140
+zenodo               term   "capture history"                        39 kept 39
+zenodo               term   "capture-recapture"                      238 kept 238
+zenodo               term   "N-mixture"                              82 kept 82
+zenodo               term   "repeated counts"                        5 kept 5
+zenodo               term   "point count"                            92 kept 92
+zenodo               term   "camera trap"                            391 kept 391
+zenodo               term   "detection/non-detection"                37 kept 37
+zenodo               term   "encounter history"                      21 kept 21
+dryad                term   detection history                        1064 kept 1000
+dryad                term   occupancy model                          606 kept 606
+dryad                term   capture history                          533 kept 533
+dryad                term   capture-recapture                        402 kept 402
+dryad                term   N-mixture                                132 kept 132
+dryad                term   repeated counts                          76 kept 76
+dryad                term   point count                              188 kept 188
+dryad                term   camera trap                              483 kept 483
+dryad                term   detection/non-detection                  1254 kept 1000
+dryad                term   encounter history                        134 kept 134
+figshare             term   "detection history"                      41 kept 41
+figshare             term   "occupancy model"                        412 kept 412
+figshare             term   "capture history"                        67 kept 67
+figshare             term   "capture-recapture"                      489 kept 489
+figshare             term   "N-mixture"                              55 kept 55
+figshare             term   "repeated counts"                        20 kept 20
+figshare             term   "point count"                            276 kept 276
+figshare             term   "camera trap"                            794 kept 794
+figshare             term   "detection/non-detection"                49 kept 49
+figshare             term   "encounter history"                      33 kept 33
+osf                  term   detection history                        0 kept 0
+osf                  term   occupancy model                          2 kept 2
+osf                  term   capture history                          0 kept 0
+osf                  term   capture-recapture                        6 kept 6
+osf                  term   N-mixture                                0 kept 0
+osf                  term   repeated counts                          0 kept 0
+osf                  term   point count                              2 kept 2
+osf                  term   camera trap                              21 kept 21
+osf                  term   detection/non-detection                  0 kept 0
+osf                  term   encounter history                        0 kept 0
+edi                  term   detection history                        0 kept 0
+edi                  term   occupancy model                          12 kept 12
+edi                  term   capture history                          1 kept 1
+edi                  term   capture-recapture                        1 kept 1
+edi                  term   N-mixture                                0 kept 0
+edi                  term   repeated counts                          0 kept 0
+edi                  term   point count                              10 kept 10
+edi                  term   camera trap                              2 kept 2
+edi                  term   detection/non-detection                  0 kept 0
+edi                  term   encounter history                        0 kept 0
+dataone              term   detection history                        11 kept 11
+dataone              term   occupancy model                          117 kept 117
+dataone              term   capture history                          30 kept 30
+dataone              term   capture-recapture                        188 kept 188
+dataone              term   N-mixture                                50 kept 50
+dataone              term   repeated counts                          3 kept 3
+dataone              term   point count                              357 kept 357
+dataone              term   camera trap                              335 kept 335
+dataone              term   detection/non-detection                  20 kept 20
+dataone              term   encounter history                        14 kept 14
+sciencebase          term   detection history                        3 kept 3
+sciencebase          term   occupancy model                          29 kept 29
+sciencebase          term   capture history                          79 kept 79
+sciencebase          term   capture-recapture                        99 kept 99
+sciencebase          term   N-mixture                                3 kept 3
+sciencebase          term   repeated counts                          0 kept 0
+sciencebase          term   point count                              21 kept 21
+sciencebase          term   camera trap                              13 kept 13
+sciencebase          term   detection/non-detection                  11 kept 11
+sciencebase          term   encounter history                        5 kept 5
+gbif_sampling_event  term   detection history                        15 kept 15
+gbif_sampling_event  term   occupancy model                          0 kept 0
+gbif_sampling_event  term   capture history                          12 kept 12
+gbif_sampling_event  term   capture-recapture                        59 kept 59
+gbif_sampling_event  term   N-mixture                                18 kept 18
+gbif_sampling_event  term   repeated counts                          90 kept 90
+gbif_sampling_event  term   point count                              103 kept 103
+gbif_sampling_event  term   camera trap                              22 kept 22
+gbif_sampling_event  term   detection/non-detection                  57 kept 57
+gbif_sampling_event  term   encounter history                        0 kept 0
+498 seed authors
+dryad                author Luke A'Bear                              2 kept 2
+dryad                author Per Aass                                 1 kept 1
+dryad                author Jennifer Adams                           41 kept 41
+dryad                author Brett Addis                              3 kept 3
+dryad                author Michel Ahizi                             1 kept 1
+dryad                author Jorge Ahumada                            6 kept 6
+dryad                author Michael Allen                            55 kept 55
+dryad                author Res Altwegg                              13 kept 13
+dryad                author Sergio Ancona                            4 kept 4
+dryad                author David Anderson                           74 kept 74
+dryad                author T. Anderson                              63 kept 63
+dryad                author Kunal Angrish                            1 kept 1
+dryad                author Jennifer Archambault                     1 kept 1
+dryad                author Joshua Armstrong                         3 kept 3
+dryad                author Monica Arso Civil                        0 kept 0
+dryad                author Jens Astrom                              0 kept 0
+dryad                author Htet Aung                                1 kept 1
+dryad                author Zarni Aung                               1 kept 1
+dryad                author Ines Aust                                1 kept 1
+dryad                author Affef Baaloudj                           0 kept 0
+dryad                author Claus Baessler                           0 kept 0
+dryad                author Thomas Bamann                            1 kept 1
+dryad                author Arjun Banik                              1 kept 1
+dryad                author José Barea-Azcón                         2 kept 2
+dryad                author Barbara Barham                           3 kept 3
+dryad                author Peter Barham                             3 kept 3
+dryad                author Jay Barlow                               3 kept 3
+dryad                author Christopher Barton                       6 kept 6
+dryad                author Ashish Bashyal                           1 kept 1
+dryad                author Arthur Bayle                             4 kept 4
+dryad                author Carlos Bedson                            2 kept 2
+dryad                author Sara Beery                               0 kept 0
+dryad                author Lars Bejder                              15 kept 15
+dryad                author Dubi Benyamini                           1 kept 1
+dryad                author Ake Berg                                 1 kept 1
+dryad                author Ralf Bertscheit                          1 kept 1
+dryad                author Martine Berube                           0 kept 0
+dryad                author Marthan Bester                           2 kept 2
+dryad                author Ankita Bhattacharya                      2 kept 2
+dryad                author Santosh Bhattarai                        2 kept 2
+dryad                author Maria Bielsa                             1 kept 1
+dryad                author Marjorie Bison                           2 kept 2
+dryad                author Rakel Blaalid                            6 kept 6
+dryad                author Wade Blanchard                           10 kept 10
+dryad                author Erik Blomberg                            9 kept 9
+dryad                author Judson Blount                            0 kept 0
+dryad                author Fanny Boeraeve                           0 kept 0
+dryad                author Bazartseren Boldgiv                      8 kept 8
+dryad                author Simon Bonner                             8 kept 8
+dryad                author Michelle Boone                           5 kept 5
+dryad                author David Borchers                           5 kept 5
+dryad                author Tom Bradfer-Lawrence                     1 kept 1
+dryad                author Adrianne Brand                           3 kept 3
+dryad                author Shannon Brewer                           1 kept 1
+dryad                author Dimitri Brosens                          0 kept 0
+dryad                author William Brown                            50 kept 50
+dryad                author Alexis Bruce                             6 kept 6
+dryad                author Daniela Budach                           1 kept 1
+dryad                author Joanna Burgar                            5 kept 5
+dryad                author Derek Burkholder                         1 kept 1
+dryad                author Dawn Burnham                             3 kept 3
+dryad                author Kenneth Burnham                          0 kept 0
+dryad                author April Burt                               4 kept 4
+dryad                author A. Burton                                89 kept 89
+dryad                author Harry Burton                             1 kept 1
+dryad                author UiT COAT                                 0 kept 0
+dryad                author Mar Cabeza                               5 kept 5
+dryad                author Robert Cannings                          968 kept 100
+dryad                author Bradley Carlson                          5 kept 5
+dryad                author Alain Carpentier                         1 kept 1
+dryad                author Kristen Cecala                           2 kept 2
+dryad                author Delphine Chabanne                        2 kept 2
+dryad                author Thierry Chambert                         2 kept 2
+dryad                author Richard Chandler                         11 kept 11
+dryad                author Richard Chandler                         11 kept 11
+dryad                author Nilanjan Chatterjee                      2 kept 2
+dryad                author Barbara Cheney                           9 kept 9
+dryad                author Karen Chong-Seng                         0 kept 0
+dryad                author Mark Chynoweth                           0 kept 0
+dryad                author Alice Classen                            5 kept 5
+dryad                author Natalie Cleavitt                         1 kept 1
+dryad                author Nick Clemann                             3 kept 3
+dryad                author Hannah Clipp                             3 kept 3
+dryad                author Jean Clobert                             16 kept 16
+dryad                author Emrah Coban                              0 kept 0
+dryad                author Michael Conroy                           4 kept 4
+dryad                author Sarah Cooke                              17 kept 17
+dryad                author Michael Cove                             7 kept 7
+dryad                author Laura Cowen                              2 kept 2
+dryad                author John Cox                                 26 kept 26
+dryad                author Andrea Currylow                          1 kept 1
+dryad                author K. Curtis                                10 kept 10
+dryad                author Goncalo Curveira-Santos                  1 kept 1
+dryad                author Samuel Cushman                           14 kept 14
+dryad                author Gretchen Daily                           10 kept 10
+dryad                author Marie Davey                              12 kept 12
+dryad                author Amy Davis                                22 kept 22
+dryad                author Mark Davis                               70 kept 70
+dryad                author Carol Dawson                             2 kept 2
+dryad                author Geert De Knijf                           0 kept 0
+dryad                author Brett DeGregorio                         4 kept 4
+dryad                author Michelle DePrenger-Levin                 2 kept 2
+dryad                author Stephen DeStefano                        2 kept 2
+dryad                author Azani Dede                               1 kept 1
+dryad                author Julien Delarue                           1 kept 1
+dryad                author Anne Delestrade                          2 kept 2
+dryad                author Peter Desmet                             0 kept 0
+dryad                author Mark Dettling                            1 kept 1
+dryad                author Jesus Diaz                               1 kept 1
+dryad                author Christopher Dickman                      10 kept 10
+dryad                author Frank Dillon                             2 kept 2
+dryad                author Rodolfo Dirzo                            18 kept 18
+dryad                author Greg Distiller                           2 kept 2
+dryad                author Andrew Dobson                            10 kept 10
+dryad                author Kevin Donmoyer                           1 kept 1
+dryad                author Jeffrey Doser                            2 kept 2
+dryad                author Matthew Dougherty                        2 kept 2
+dryad                author Sarah Doyle                              1 kept 1
+dryad                author Andrea Drayer                            2 kept 2
+dryad                author Hugh Drummond                            14 kept 14
+dryad                author Marc Dufrêne                             0 kept 0
+dryad                author Gates Dupont                             0 kept 0
+dryad                author Kristen Dybala                           3 kept 3
+dryad                author Jörg Döring                              1 kept 1
+dryad                author Carl Edelstam                            1 kept 1
+dryad                author Scott Egan                               33 kept 33
+dryad                author Johan Elmberg                            10 kept 10
+dryad                author Meaghan Emory                            0 kept 0
+dryad                author Anders Endrestol                         0 kept 0
+dryad                author Willow English                           1 kept 1
+dryad                author Robert Erhardt                           3 kept 3
+dryad                author Daniel Erickson                          4 kept 4
+dryad                author Todd Esque                               8 kept 8
+dryad                author Bryn Evans                               0 kept 0
+dryad                author Henna Fabritius                          2 kept 2
+dryad                author Emilie Fairet                            1 kept 1
+dryad                author Erin Falcone                             7 kept 7
+dryad                author Matthew Farnsworth                       2 kept 2
+dryad                author Jia-Wei Feng                             5 kept 5
+dryad                author Paige Ferguson                           2 kept 2
+dryad                author Adrian Fernandez                         1 kept 1
+dryad                author Mason Fidino                             8 kept 8
+dryad                author Rachel Field                             79 kept 79
+dryad                author Tom Finch                                6 kept 6
+dryad                author Jason Fisher                             10 kept 10
+dryad                author Ian Fiske                                0 kept 0
+dryad                author Frode Fossoy                             1 kept 1
+  retry in 10s: 429
+dryad                author Rebecca Foster                           13 kept 13
+dryad                author Sara Freytag                             1 kept 1
+dryad                author Nicolas Friess                           4 kept 4
+dryad                author Emmanuel Frimpong                        3 kept 3
+dryad                author Luke Frishkoff                           11 kept 11
+dryad                author Sarah Fritts                             0 kept 0
+dryad                author Keiichi Fukaya                           4 kept 4
+dryad                author Colin Gallagher                          6 kept 6
+dryad                author Nicolas Galvez                           0 kept 0
+dryad                author Crysta Gantz                             1 kept 1
+dryad                author Thomas Gardali                           2 kept 2
+dryad                author Beth Gardner                             12 kept 12
+dryad                author Kirk Gastrich                            3 kept 3
+dryad                author Jianping Ge                              2 kept 2
+dryad                author Gijs Gerrits                             0 kept 0
+dryad                author Daniel Gibson                            19 kept 19
+dryad                author Laura Gigliotti                          5 kept 5
+dryad                author Scott Gilliland                          5 kept 5
+dryad                author Brad Glorioso                            3 kept 3
+dryad                author Jostein Gohli                            6 kept 6
+dryad                author Caren Goldberg                           11 kept 11
+dryad                author Ross Goldingay                           5 kept 5
+dryad                author Rajesh Gopal                             1 kept 1
+dryad                author Thomas Gottschalk                        3 kept 3
+dryad                author Luisa Granados-Hernandez                 0 kept 0
+dryad                author Thomas Grant III                         2 kept 2
+dryad                author Evan Grant                               34 kept 34
+dryad                author Claudio Gratton                          13 kept 13
+dryad                author Jeff Graves                              3 kept 3
+dryad                author Austin Green                             7 kept 7
+dryad                author Martin Green                             51 kept 51
+dryad                author Jennifer Grigg                           2 kept 2
+dryad                author Bilal Habib                              4 kept 4
+dryad                author Elizabeth Hadly                          8 kept 8
+dryad                author Mattias Hagman                           4 kept 4
+dryad                author Jeffrey Hall                             16 kept 16
+dryad                author Andrew Hamer                             5 kept 5
+dryad                author Christopher Hamm                         7 kept 7
+dryad                author Philip Hammond                           7 kept 7
+dryad                author Bart Harmsen                             5 kept 5
+dryad                author Nyeema Harris                            7 kept 7
+dryad                author Renée Hartley                            2 kept 2
+dryad                author Kelly Hastings                           6 kept 6
+dryad                author Philip Haupt                             0 kept 0
+dryad                author Mark Hebblewhite                         36 kept 36
+dryad                author Ola Hegge                                1 kept 1
+dryad                author Hanne Hegre                              2 kept 2
+dryad                author Michael Heithaus                         9 kept 9
+dryad                author J. Hendershot                            0 kept 0
+dryad                author Dominic Henry                            47 kept 47
+dryad                author Jeffrey Hepinstall-Cymerman              3 kept 3
+dryad                author Staci Hepler                             3 kept 3
+dryad                author Gabriel Hermann                          2 kept 2
+dryad                author Mariana Hernandez-Apolinar               0 kept 0
+dryad                author Karsten Heuer                            2 kept 2
+dryad                author Eric Hileman                             2 kept 2
+dryad                author Mark Hindell                             8 kept 8
+dryad                author Heiko Hinneberg                          2 kept 2
+dryad                author Dexter Hodder                            2 kept 2
+dryad                author Bernhard Hoiss                           0 kept 0
+dryad                author Matthijs Hollanders                      2 kept 2
+dryad                author Mevin Hooten                             9 kept 9
+dryad                author Sebastian Hopfenmueller                  0 kept 0
+dryad                author Julia Horanyi                            0 kept 0
+dryad                author Kimberly Howland                         9 kept 9
+dryad                author Saw Htun                                 2 kept 2
+dryad                author Marie-Anne Hudson                        1 kept 1
+dryad                author W. Humphries                             10 kept 10
+dryad                author Diana Humple                             2 kept 2
+dryad                author Barb Hunt                                1 kept 1
+dryad                author Jacob Hutton                             1 kept 1
+dryad                author Trevor Hébert                            0 kept 0
+dryad                author Jose Infante                             4 kept 4
+dryad                author David Irons                              22 kept 22
+dryad                author Valentina Islas-Villanueva               2 kept 2
+dryad                author Hanna Jackson                            3 kept 3
+dryad                author Rannveig Jacobsen                        4 kept 4
+dryad                author Vincent Janik                            5 kept 5
+dryad                author Devcharan Jathanna                       2 kept 2
+dryad                author Lauri Jemison                            3 kept 3
+dryad                author Yadvendradev Jhala                       7 kept 7
+dryad                author Jaime Jimenez                            1 kept 1
+dryad                author Chris Johnson                            26 kept 26
+dryad                author Sarah Johnson                            46 kept 46
+dryad                author Annelie Jönsson                          0 kept 0
+dryad                author Taku Kadoya                              5 kept 5
+dryad                author Yoichiro Kanno                           9 kept 9
+dryad                author K. Karanth                               4 kept 4
+dryad                author Daniel Karp                              25 kept 25
+dryad                author Zaneta Kaszta                            3 kept 3
+dryad                author Roland Kays                              26 kept 26
+  retry in 10s: 429
+  retry in 20s: 429
+dryad                author Erin Keene                               3 kept 3
+dryad                author Marcella Kelly                           8 kept 8
+dryad                author Janika Kerner                            1 kept 1
+dryad                author Marc Kery                                2 kept 2
+dryad                author Rassim Khelifa                           5 kept 5
+dryad                author Seoghyun Kim                             3 kept 3
+dryad                author David King                               51 kept 51
+dryad                author Eivind Kleiven                           3 kept 3
+dryad                author Jonas Knape                              12 kept 12
+dryad                author Bram Koese                               1 kept 1
+dryad                author Anna Koester                             0 kept 0
+dryad                author Lisa Koetke                              2 kept 2
+dryad                author Natsuko Kondo                            2 kept 2
+dryad                author N'Dri Kouamé                             0 kept 0
+dryad                author Christine Kouman                         1 kept 1
+dryad                author N. Kumar                                 36 kept 36
+dryad                author Josip Kusak                              10 kept 10
+dryad                author Pyae Kyaw                                1 kept 1
+dryad                author Simon Kärvemo                            6 kept 6
+dryad                author Marc Kéry                                9 kept 9
+dryad                author Kevin Lafferty                           18 kept 18
+dryad                author Babu Lamichhane                          7 kept 7
+dryad                author Saneer Lamichhane                        5 kept 5
+dryad                author Diane Larson                             0 kept 0
+dryad                author Eric Larson                              9 kept 9
+dryad                author Jennifer Larson                          2 kept 2
+dryad                author Billie Lazenby                           2 kept 2
+dryad                author Ellen Lea                                1 kept 1
+dryad                author Alan Leach                               10 kept 10
+dryad                author Isabelle Lebeuf-Taylor                   1 kept 1
+dryad                author Jean-Dominique Lebreton                  2 kept 2
+dryad                author Hannes Ledegen                           0 kept 0
+dryad                author Alan Lee                                 11 kept 11
+dryad                author Elizabeth Lehrer                         4 kept 4
+dryad                author Joona Lehtomaki                          0 kept 0
+dryad                author Freddie Leith                            1 kept 1
+dryad                author Julia Leone                              1 kept 1
+dryad                author Jesse Lewis                              5 kept 5
+dryad                author Hailong Li                               3 kept 3
+dryad                author David Lindenmayer                        45 kept 45
+dryad                author Åke Lindström                            2 kept 2
+dryad                author Julie Lockwood                           8 kept 8
+dryad                author David Lodge                              10 kept 10
+dryad                author Cynthia Loftin                           7 kept 7
+dryad                author Katrin Ludynia                           3 kept 3
+dryad                author Paul Lukacs                              10 kept 10
+dryad                author Espen Lund                               1 kept 1
+dryad                author Michael Lutmerding                       0 kept 0
+dryad                author Ryan Lynch                               5 kept 5
+dryad                author Leithen M'Gonigle                        13 kept 13
+dryad                author Darryl MacKenzie                         2 kept 2
+dryad                author David Macdonald                          59 kept 59
+dryad                author Seth Magle                               9 kept 9
+dryad                author Hayat Mahdjoub                           2 kept 2
+dryad                author Fabienne Maihoff                         2 kept 2
+dryad                author Markus Majaneva                          2 kept 2
+dryad                author Rumaan Malhotra                          4 kept 4
+dryad                author Rene Maragliano                          0 kept 0
+dryad                author Eric Margenau                            1 kept 1
+dryad                author Gregor Markl                             2 kept 2
+  retry in 10s: 429
+dryad                author Jorge Martinez-Villegas                  0 kept 0
+dryad                author Carlos Martorell                         6 kept 6
+dryad                author Gilbert Marzolin                         1 kept 1
+dryad                author Shin-ichiro Matsuzaki                    5 kept 5
+dryad                author Frank Mazzotti                           6 kept 6
+dryad                author Thomas McCarthy                          7 kept 7
+dryad                author Shawn McCracken                          0 kept 0
+dryad                author Cuan McGeorge                            3 kept 3
+dryad                author Darren McHugh                            0 kept 0
+dryad                author Shawn McKinney                           4 kept 4
+dryad                author Aly McKnight                             3 kept 3
+dryad                author Ryan McLeod                              2 kept 2
+dryad                author Clive McMahon                            10 kept 10
+dryad                author Darin McNeil                             14 kept 14
+dryad                author J. McNutt                                9 kept 9
+dryad                author William McShea                           14 kept 14
+dryad                author Leah McTigue                             4 kept 4
+dryad                author Andile Mdluli                            1 kept 1
+dryad                author Dharamveer Meena                         1 kept 1
+dryad                author Chase Mendenhall                         8 kept 8
+dryad                author David Miller                             104 kept 100
+dryad                author Melissa Miller                           16 kept 16
+dryad                author Ryan Miller                              29 kept 29
+dryad                author Charudutt Mishra                         10 kept 10
+dryad                author Kyaw Moe                                 1 kept 1
+dryad                author S. Moe                                   6 kept 6
+dryad                author Robert Mollenhauer                       0 kept 0
+dryad                author Diego Montalti                           1 kept 1
+dryad                author Nicholas Mooney                          2 kept 2
+dryad                author Jeffrey Moore                            18 kept 18
+dryad                author David Moretti                            8 kept 8
+dryad                author Michael Moxcey                           1 kept 1
+dryad                author Joerg Mueller                            2 kept 2
+dryad                author Kevin Mulder                             2 kept 2
+dryad                author Brenee' Muncy                            2 kept 2
+dryad                author Ninad Mungi                              2 kept 2
+dryad                author Sean Murphy                              18 kept 18
+dryad                author Sean Murphy                              18 kept 18
+dryad                author Maureen Murray                           7 kept 7
+dryad                author Saman Muthukumarana                      1 kept 1
+dryad                author Khin Myo                                 2 kept 2
+dryad                author Okka Myo                                 1 kept 1
+dryad                author Hla Naing                                2 kept 2
+dryad                author Chloe Nater                              0 kept 0
+dryad                author Saw Nay                                  2 kept 2
+dryad                author Johann Neumayer                          0 kept 0
+dryad                author James Nichols                            27 kept 27
+dryad                author Jana Niedermayer                         1 kept 1
+dryad                author Anne Nielsen                             4 kept 4
+dryad                author Hutton Noth                              1 kept 1
+dryad                author Robert Nowicki                           5 kept 5
+dryad                author Karen Oberhauser                         1 kept 1
+dryad                author Debora Obrist                            0 kept 0
+dryad                author Anders Often                             44 kept 44
+dryad                author W. Oosthuizen                            3 kept 3
+dryad                author Allassane Ouattara                       1 kept 1
+dryad                author Otso Ovaskainen                          32 kept 32
+dryad                author Krishna Pacifici                         3 kept 3
+dryad                author Facundo Palacio                          3 kept 3
+dryad                author Linda Palmheden                          0 kept 0
+dryad                author Per Palsboll                             1 kept 1
+dryad                author Jonathan Parkyn                          1 kept 1
+dryad                author Nola Parsons                             1 kept 1
+dryad                author Tomas Part                               19 kept 19
+dryad                author Guy Pe'er                                4 kept 4
+dryad                author Jonathan Peake                           38 kept 38
+dryad                author Israel Peer                              0 kept 0
+dryad                author Grey Pendleton                           5 kept 5
+dryad                author Nora Pennarola                           0 kept 0
+dryad                author Kim Pepin                                15 kept 15
+dryad                author Sarah Pesi                               0 kept 0
+dryad                author Donnie Peterson                          1 kept 1
+dryad                author Lisanne Petracca                         4 kept 4
+dryad                author Mauro Pichorim                           0 kept 0
+dryad                author Frederik Piesschaert                     0 kept 0
+dryad                author Irene Pisanty                            1 kept 1
+dryad                author Saw Po                                   1 kept 1
+dryad                author Saw Po                                   1 kept 1
+dryad                author Marc Pollet                              2 kept 2
+dryad                author Roger Pradel                             12 kept 12
+dryad                author Kasey Pregler                            2 kept 2
+dryad                author Steven Price                             19 kept 19
+dryad                author Steven Price                             19 kept 19
+dryad                author Julien Péters                            0 kept 0
+dryad                author Nicola Quick                             8 kept 8
+dryad                author Qamar Qureshi                            5 kept 5
+dryad                author Tore Qvenild                             2 kept 2
+dryad                author T. Raman                                 21 kept 21
+dryad                author Christian Ramp                           5 kept 5
+dryad                author H. Ray                                   57 kept 57
+dryad                author Trishna Rayamajhi                        4 kept 4
+dryad                author Eric Reed                                12 kept 12
+dryad                author Mark Renshaw                             8 kept 8
+dryad                author John Reynolds                            23 kept 23
+dryad                author Lindsey Rich                             12 kept 12
+dryad                author Thomas Riecke                            16 kept 16
+dryad                author Alicia Rissi                             1 kept 1
+dryad                author Hugh Robinson                            10 kept 10
+dryad                author Nicholas Rodenhouse                      1 kept 1
+dryad                author Cristina Rodriguez                       6 kept 6
+dryad                author David Rodriguez                          42 kept 42
+dryad                author Mariana Rodriguez-Sanchez                1 kept 1
+dryad                author Katja Ronka                              0 kept 0
+dryad                author Brigit Rooney                            2 kept 2
+dryad                author Andrea Ros Candeira                      0 kept 0
+dryad                author Christopher Rota                         9 kept 9
+dryad                author Christian Roy                            18 kept 18
+dryad                author J. Royle                                 25 kept 25
+dryad                author Atle Rustadbakken                        1 kept 1
+dryad                author Isaiah Samek                             1 kept 1
+dryad                author Michael Samways                          5 kept 5
+dryad                author Brett Sandercock                         10 kept 10
+dryad                author Cody Schank                              0 kept 0
+dryad                author Ben Scheele                              10 kept 10
+dryad                author Anna Schleimer                           4 kept 4
+dryad                author Hans Schmid                              6 kept 6
+dryad                author Christian Schmid-Egger                   1 kept 1
+dryad                author Gregory Schorr                           7 kept 7
+dryad                author Michael Schram                           0 kept 0
+dryad                author Mellesa Schroder                         4 kept 4
+dryad                author Gordon Schuett                           6 kept 6
+dryad                author Martin Schulz                            16 kept 16
+dryad                author Racheli Schwartz-Tzachor                 1 kept 1
+  retry in 10s: 429
+  retry in 20s: 429
+dryad                author Richard Sears                            6 kept 6
+dryad                author James Sedinger                           21 kept 21
+dryad                author Cagan Sekercioglu                        1 kept 1
+dryad                author Richard Sherley                          10 kept 10
+dryad                author Matthew Shirley                          5 kept 5
+dryad                author T. Sillett                               19 kept 19
+dryad                author Matthew Simon                            66 kept 66
+dryad                author Juniper Simonis                          2 kept 2
+dryad                author Bitapi Sinha                             1 kept 1
+dryad                author Shannon Skalos                           1 kept 1
+dryad                author James Smith                              118 kept 100
+dryad                author Matthew Smith                            104 kept 100
+dryad                author Samantha Smith                           13 kept 13
+dryad                author Leo Soldaat                              2 kept 2
+dryad                author Rahel Sollmann                           13 kept 13
+dryad                author Kate Sprogis                             3 kept 3
+dryad                author Christopher Stallings                    5 kept 5
+dryad                author Robin Steenweg                           6 kept 6
+dryad                author Frances Stewart                          4 kept 4
+dryad                author Jelle Stienstra                          1 kept 1
+dryad                author Kathryn Sullivan                         3 kept 3
+dryad                author Yi-Fei Sun                               3 kept 3
+dryad                author Kulbhushansingh Suryawanshi              10 kept 10
+dryad                author Chris Sutherland                         16 kept 16
+dryad                author Dusty Swedberg                           1 kept 1
+dryad                author John Symons                              3 kept 3
+dryad                author Eric Teitsworth                          1 kept 1
+dryad                author Theron Terhune                           4 kept 4
+dryad                author Sasha Tetzlaff                           3 kept 3
+dryad                author Dol Thanet                               1 kept 1
+dryad                author Jennifer Theobald                        1 kept 1
+dryad                author Wayne Thogmartin                         8 kept 8
+dryad                author Paul Thompson                            44 kept 44
+dryad                author Jordan Thomson                           3 kept 3
+dryad                author Jacquelyn Tleimat                        0 kept 0
+dryad                author Guilherme Toledo-Lima                    2 kept 2
+dryad                author Sarah Tomke                              4 kept 4
+dryad                author Claudia Trosen                           0 kept 0
+dryad                author Lkhagvasumberel Tumursukh                1 kept 1
+dryad                author Aung Tun                                 1 kept 1
+dryad                author Saw Tun                                  1 kept 1
+dryad                author Brian Uher-Koch                          1 kept 1
+dryad                author Andrés Valenzuela-Sánchez                2 kept 2
+dryad                author Teresa Valverde                          7 kept 7
+dryad                author Roel Van Klink                           4 kept 4
+dryad                author Rikjan Vermeulen                         1 kept 1
+dryad                author L. Vollestad                             0 kept 0
+dryad                author John Volpe                               1 kept 1
+dryad                author Sophia Volzke                            1 kept 1
+dryad                author Hardin Waddle                            5 kept 5
+dryad                author J. Waddle                                3 kept 3
+dryad                author Niklas Wahlberg                          17 kept 17
+dryad                author Lisette Waits                            38 kept 38
+dryad                author Kara Wall                                1 kept 1
+dryad                author Lauren Waller                            9 kept 9
+dryad                author Tian-Ming Wang                           5 kept 5
+dryad                author Toon Westra                              0 kept 0
+dryad                author Jesse Whittington                        11 kept 11
+dryad                author Ian Williams                             50 kept 50
+dryad                author Aaron Wirsing                            17 kept 17
+dryad                author Kirsten Work                             7 kept 7
+dryad                author Simon Wotherspoon                        5 kept 5
+dryad                author Michael Wunder                           7 kept 7
+dryad                author Yuqian Xiao                              0 kept 0
+dryad                author Amy Yackel Adams                         2 kept 2
+dryad                author Ramesh Yadav                             1 kept 1
+dryad                author Nigel Yoccoz                             37 kept 37
+dryad                author Than Zaw                                 3 kept 3
+dryad                author Dandan Zhang                             6 kept 6
+dryad                author David Ziolkowski                         1 kept 1
+dryad                author Elise Zipkin                             10 kept 10
+dryad                author Jaime Zuniga-Vega                        0 kept 0
+dryad                author Jose Zuniga-Vega                         0 kept 0
+dryad                author P. de Bruyn                              6 kept 6
+dryad                author Marnix de Zeeuw                          1 kept 1
+dryad                author Arco van Strien                          3 kept 3
+dryad                author Jens Åström                              5 kept 5
+zenodo               author creators.name:("A'Bear" AND "Luke")      0 kept 0
+zenodo               author creators.name:("Aass" AND "Per")         2 kept 2
+zenodo               author creators.name:("Adams" AND "Jennifer")   23 kept 23
+zenodo               author creators.name:("Addis" AND "Brett")      3 kept 3
+zenodo               author creators.name:("Ahizi" AND "Michel")     1 kept 1
+zenodo               author creators.name:("Ahumada" AND "Jorge")    7 kept 7
+zenodo               author creators.name:("Allen" AND "Michael")    78 kept 78
+zenodo               author creators.name:("Altwegg" AND "Res")      13 kept 13
+zenodo               author creators.name:("Ancona" AND "Sergio")    5 kept 5
+zenodo               author creators.name:("Anderson" AND "David")   142 kept 100
+zenodo               author creators.name:("Anderson" AND "T.")      535 kept 100
+zenodo               author creators.name:("Angrish" AND "Kunal")    1 kept 1
+zenodo               author creators.name:("Archambault" AND "Jennif 1 kept 1
+zenodo               author creators.name:("Armstrong" AND "Joshua") 7 kept 7
+zenodo               author creators.name:("Arso Civil" AND "Monica" 0 kept 0
+zenodo               author creators.name:("Astrom" AND "Jens")      5 kept 5
+zenodo               author creators.name:("Aung" AND "Htet")        2 kept 2
+zenodo               author creators.name:("Aung" AND "Zarni")       0 kept 0
+zenodo               author creators.name:("Aust" AND "Ines")        1 kept 1
+zenodo               author creators.name:("Baaloudj" AND "Affef")   1 kept 1
+zenodo               author creators.name:("Baessler" AND "Claus")   0 kept 0
+zenodo               author creators.name:("Bamann" AND "Thomas")    1 kept 1
+zenodo               author creators.name:("Banik" AND "Arjun")      0 kept 0
+zenodo               author creators.name:("Barea-Azcón" AND "José") 2 kept 2
+zenodo               author creators.name:("Barham" AND "Barbara")   2 kept 2
+zenodo               author creators.name:("Barham" AND "Peter")     2 kept 2
+zenodo               author creators.name:("Barlow" AND "Jay")       4 kept 4
+zenodo               author creators.name:("Barton" AND "Christopher 6 kept 6
+zenodo               author creators.name:("Bashyal" AND "Ashish")   1 kept 1
+zenodo               author creators.name:("Bayle" AND "Arthur")     10 kept 10
+zenodo               author creators.name:("Bedson" AND "Carlos")    1 kept 1
+zenodo               author creators.name:("Beery" AND "Sara")       0 kept 0
+zenodo               author creators.name:("Bejder" AND "Lars")      13 kept 13
+zenodo               author creators.name:("Benyamini" AND "Dubi")   1 kept 1
+zenodo               author creators.name:("Berg" AND "Ake")         7 kept 7
+zenodo               author creators.name:("Bertscheit" AND "Ralf")  1 kept 1
+zenodo               author creators.name:("Berube" AND "Martine")   8 kept 8
+zenodo               author creators.name:("Bester" AND "Marthan")   8 kept 8
+zenodo               author creators.name:("Bhattacharya" AND "Ankit 4 kept 4
+zenodo               author creators.name:("Bhattarai" AND "Santosh" 13 kept 13
+zenodo               author creators.name:("Bielsa" AND "Maria")     2 kept 2
+zenodo               author creators.name:("Bison" AND "Marjorie")   2 kept 2
+zenodo               author creators.name:("Blaalid" AND "Rakel")    7 kept 7
+zenodo               author creators.name:("Blanchard" AND "Wade")   10 kept 10
+zenodo               author creators.name:("Blomberg" AND "Erik")    9 kept 9
+zenodo               author creators.name:("Blount" AND "Judson")    2 kept 2
+zenodo               author creators.name:("Boeraeve" AND "Fanny")   3 kept 3
+zenodo               author creators.name:("Boldgiv" AND "Bazartsere 8 kept 8
+zenodo               author creators.name:("Bonner" AND "Simon")     8 kept 8
+zenodo               author creators.name:("Boone" AND "Michelle")   3 kept 3
+zenodo               author creators.name:("Borchers" AND "David")   6 kept 6
+zenodo               author creators.name:("Bradfer-Lawrence" AND "T 3 kept 3
+zenodo               author creators.name:("Brand" AND "Adrianne")   3 kept 3
+zenodo               author creators.name:("Brewer" AND "Shannon")   4 kept 4
+zenodo               author creators.name:("Brosens" AND "Dimitri")  8 kept 8
+zenodo               author creators.name:("Brown" AND "William")    12164 kept 100
+zenodo               author creators.name:("Bruce" AND "Alexis")     8 kept 8
+zenodo               author creators.name:("Budach" AND "Daniela")   1 kept 1
+zenodo               author creators.name:("Burgar" AND "Joanna")    5 kept 5
+zenodo               author creators.name:("Burkholder" AND "Derek") 1 kept 1
+zenodo               author creators.name:("Burnham" AND "Dawn")     3 kept 3
+zenodo               author creators.name:("Burnham" AND "Kenneth")  0 kept 0
+zenodo               author creators.name:("Burt" AND "April")       5 kept 5
+zenodo               author creators.name:("Burton" AND "A.")        28 kept 28
+zenodo               author creators.name:("Burton" AND "Harry")     1 kept 1
+zenodo               author creators.name:("COAT" AND "UiT")         0 kept 0
+zenodo               author creators.name:("Cabeza" AND "Mar")       4 kept 4
+zenodo               author creators.name:("Cannings" AND "Robert")  0 kept 0
+zenodo               author creators.name:("Carlson" AND "Bradley")  7 kept 7
+zenodo               author creators.name:("Carpentier" AND "Alain") 1 kept 1
+zenodo               author creators.name:("Cecala" AND "Kristen")   2 kept 2
+zenodo               author creators.name:("Chabanne" AND "Delphine" 1 kept 1
+zenodo               author creators.name:("Chambert" AND "Thierry") 3 kept 3
+zenodo               author creators.name:("Chandler" AND "Richard") 17 kept 17
+zenodo               author creators.name:("Chandler" AND "Richard") 17 kept 17
+zenodo               author creators.name:("Chatterjee" AND "Nilanja 5 kept 5
+zenodo               author creators.name:("Cheney" AND "Barbara")   9 kept 9
+zenodo               author creators.name:("Chong-Seng" AND "Karen") 0 kept 0
+zenodo               author creators.name:("Chynoweth" AND "Mark")   2 kept 2
+zenodo               author creators.name:("Classen" AND "Alice")    9 kept 9
+zenodo               author creators.name:("Cleavitt" AND "Natalie") 0 kept 0
+zenodo               author creators.name:("Clemann" AND "Nick")     3 kept 3
+zenodo               author creators.name:("Clipp" AND "Hannah")     3 kept 3
+zenodo               author creators.name:("Clobert" AND "Jean")     27 kept 27
+zenodo               author creators.name:("Coban" AND "Emrah")      1 kept 1
+zenodo               author creators.name:("Conroy" AND "Michael")   3 kept 3
+zenodo               author creators.name:("Cooke" AND "Sarah")      6 kept 6
+zenodo               author creators.name:("Cove" AND "Michael")     6 kept 6
+zenodo               author creators.name:("Cowen" AND "Laura")      1 kept 1
+zenodo               author creators.name:("Cox" AND "John")         34 kept 34
+zenodo               author creators.name:("Currylow" AND "Andrea")  8 kept 8
+zenodo               author creators.name:("Curtis" AND "K.")        13 kept 13
+zenodo               author creators.name:("Curveira-Santos" AND "Go 4 kept 4
+zenodo               author creators.name:("Cushman" AND "Samuel")   18 kept 18
+zenodo               author creators.name:("Daily" AND "Gretchen")   8 kept 8
+zenodo               author creators.name:("Davey" AND "Marie")      15 kept 15
+zenodo               author creators.name:("Davis" AND "Amy")        20 kept 20
+zenodo               author creators.name:("Davis" AND "Mark")       53 kept 53
+zenodo               author creators.name:("Dawson" AND "Carol")     2 kept 2
+zenodo               author creators.name:("De Knijf" AND "Geert")   1 kept 1
+zenodo               author creators.name:("DeGregorio" AND "Brett") 4 kept 4
+zenodo               author creators.name:("DePrenger-Levin" AND "Mi 1 kept 1
+zenodo               author creators.name:("DeStefano" AND "Stephen" 2 kept 2
+zenodo               author creators.name:("Dede" AND "Azani")       1 kept 1
+zenodo               author creators.name:("Delarue" AND "Julien")   2 kept 2
+zenodo               author creators.name:("Delestrade" AND "Anne")  2 kept 2
+zenodo               author creators.name:("Desmet" AND "Peter")     67 kept 67
+zenodo               author creators.name:("Dettling" AND "Mark")    1 kept 1
+zenodo               author creators.name:("Diaz" AND "Jesus")       53 kept 53
+zenodo               author creators.name:("Dickman" AND "Christophe 7 kept 7
+zenodo               author creators.name:("Dillon" AND "Frank")     1 kept 1
+zenodo               author creators.name:("Dirzo" AND "Rodolfo")    16 kept 16
+zenodo               author creators.name:("Distiller" AND "Greg")   2 kept 2
+zenodo               author creators.name:("Dobson" AND "Andrew")    11 kept 11
+zenodo               author creators.name:("Donmoyer" AND "Kevin")   0 kept 0
+zenodo               author creators.name:("Doser" AND "Jeffrey")    2 kept 2
+zenodo               author creators.name:("Dougherty" AND "Matthew" 1 kept 1
+zenodo               author creators.name:("Doyle" AND "Sarah")      2 kept 2
+zenodo               author creators.name:("Drayer" AND "Andrea")    2 kept 2
+zenodo               author creators.name:("Drummond" AND "Hugh")    12 kept 12
+zenodo               author creators.name:("Dufrêne" AND "Marc")     11 kept 11
+zenodo               author creators.name:("Dupont" AND "Gates")     0 kept 0
+zenodo               author creators.name:("Dybala" AND "Kristen")   10 kept 10
+zenodo               author creators.name:("Döring" AND "Jörg")      1 kept 1
+zenodo               author creators.name:("Edelstam" AND "Carl")    1 kept 1
+zenodo               author creators.name:("Egan" AND "Scott")       33 kept 33
+zenodo               author creators.name:("Elmberg" AND "Johan")    9 kept 9
+zenodo               author creators.name:("Emory" AND "Meaghan")    1 kept 1
+zenodo               author creators.name:("Endrestol" AND "Anders") 4 kept 4
+zenodo               author creators.name:("English" AND "Willow")   1 kept 1
+zenodo               author creators.name:("Erhardt" AND "Robert")   4 kept 4
+zenodo               author creators.name:("Erickson" AND "Daniel")  7 kept 7
+zenodo               author creators.name:("Esque" AND "Todd")       5 kept 5
+zenodo               author creators.name:("Evans" AND "Bryn")       0 kept 0
+zenodo               author creators.name:("Fabritius" AND "Henna")  2 kept 2
+zenodo               author creators.name:("Fairet" AND "Emilie")    1 kept 1
+zenodo               author creators.name:("Falcone" AND "Erin")     7 kept 7
+zenodo               author creators.name:("Farnsworth" AND "Matthew 4 kept 4
+zenodo               author creators.name:("Feng" AND "Jia-Wei")     10 kept 10
+zenodo               author creators.name:("Ferguson" AND "Paige")   2 kept 2
+zenodo               author creators.name:("Fernandez" AND "Adrian") 26 kept 26
+zenodo               author creators.name:("Fidino" AND "Mason")     8 kept 8
+zenodo               author creators.name:("Field" AND "Rachel")     3 kept 3
+zenodo               author creators.name:("Finch" AND "Tom")        6 kept 6
+zenodo               author creators.name:("Fisher" AND "Jason")     8 kept 8
+zenodo               author creators.name:("Fiske" AND "Ian")        0 kept 0
+zenodo               author creators.name:("Fossoy" AND "Frode")     9 kept 9
+zenodo               author creators.name:("Foster" AND "Rebecca")   7 kept 7
+zenodo               author creators.name:("Freytag" AND "Sara")     1 kept 1
+zenodo               author creators.name:("Friess" AND "Nicolas")   6 kept 6
+zenodo               author creators.name:("Frimpong" AND "Emmanuel" 6 kept 6
+zenodo               author creators.name:("Frishkoff" AND "Luke")   11 kept 11
+zenodo               author creators.name:("Fritts" AND "Sarah")     0 kept 0
+zenodo               author creators.name:("Fukaya" AND "Keiichi")   5 kept 5
+zenodo               author creators.name:("Gallagher" AND "Colin")  6 kept 6
+zenodo               author creators.name:("Galvez" AND "Nicolas")   3 kept 3
+zenodo               author creators.name:("Gantz" AND "Crysta")     1 kept 1
+zenodo               author creators.name:("Gardali" AND "Thomas")   4 kept 4
+zenodo               author creators.name:("Gardner" AND "Beth")     15 kept 15
+zenodo               author creators.name:("Gastrich" AND "Kirk")    2 kept 2
+zenodo               author creators.name:("Ge" AND "Jianping")      5 kept 5
+zenodo               author creators.name:("Gerrits" AND "Gijs")     2 kept 2
+zenodo               author creators.name:("Gibson" AND "Daniel")    72 kept 72
+zenodo               author creators.name:("Gigliotti" AND "Laura")  6 kept 6
+zenodo               author creators.name:("Gilliland" AND "Scott")  5 kept 5
+zenodo               author creators.name:("Glorioso" AND "Brad")    3 kept 3
+zenodo               author creators.name:("Gohli" AND "Jostein")    6 kept 6
+zenodo               author creators.name:("Goldberg" AND "Caren")   9 kept 9
+zenodo               author creators.name:("Goldingay" AND "Ross")   3 kept 3
+zenodo               author creators.name:("Gopal" AND "Rajesh")     2 kept 2
+zenodo               author creators.name:("Gottschalk" AND "Thomas" 5 kept 5
+zenodo               author creators.name:("Granados-Hernandez" AND  0 kept 0
+zenodo               author creators.name:("Grant III" AND "Thomas") 0 kept 0
+zenodo               author creators.name:("Grant" AND "Evan")       12 kept 12
+zenodo               author creators.name:("Gratton" AND "Claudio")  12 kept 12
+zenodo               author creators.name:("Graves" AND "Jeff")      3 kept 3
+zenodo               author creators.name:("Green" AND "Austin")     6 kept 6
+zenodo               author creators.name:("Green" AND "Martin")     18 kept 18
+zenodo               author creators.name:("Grigg" AND "Jennifer")   2 kept 2
+zenodo               author creators.name:("Habib" AND "Bilal")      7 kept 7
+zenodo               author creators.name:("Hadly" AND "Elizabeth")  7 kept 7
+zenodo               author creators.name:("Hagman" AND "Mattias")   4 kept 4
+zenodo               author creators.name:("Hall" AND "Jeffrey")     10 kept 10
+zenodo               author creators.name:("Hamer" AND "Andrew")     7 kept 7
+zenodo               author creators.name:("Hamm" AND "Christopher") 8 kept 8
+zenodo               author creators.name:("Hammond" AND "Philip")   7 kept 7
+zenodo               author creators.name:("Harmsen" AND "Bart")     4 kept 4
+zenodo               author creators.name:("Harris" AND "Nyeema")    6 kept 6
+zenodo               author creators.name:("Hartley" AND "Renée")    2 kept 2
+zenodo               author creators.name:("Hastings" AND "Kelly")   5 kept 5
+zenodo               author creators.name:("Haupt" AND "Philip")     0 kept 0
+zenodo               author creators.name:("Hebblewhite" AND "Mark") 32 kept 32
+zenodo               author creators.name:("Hegge" AND "Ola")        2 kept 2
+zenodo               author creators.name:("Hegre" AND "Hanne")      2 kept 2
+zenodo               author creators.name:("Heithaus" AND "Michael") 8 kept 8
+zenodo               author creators.name:("Hendershot" AND "J.")    0 kept 0
+zenodo               author creators.name:("Henry" AND "Dominic")    6 kept 6
+zenodo               author creators.name:("Hepinstall-Cymerman" AND 3 kept 3
+zenodo               author creators.name:("Hepler" AND "Staci")     2 kept 2
+zenodo               author creators.name:("Hermann" AND "Gabriel")  7 kept 7
+zenodo               author creators.name:("Hernandez-Apolinar" AND  0 kept 0
+zenodo               author creators.name:("Heuer" AND "Karsten")    2 kept 2
+zenodo               author creators.name:("Hileman" AND "Eric")     0 kept 0
+zenodo               author creators.name:("Hindell" AND "Mark")     11 kept 11
+zenodo               author creators.name:("Hinneberg" AND "Heiko")  2 kept 2
+zenodo               author creators.name:("Hodder" AND "Dexter")    1 kept 1
+zenodo               author creators.name:("Hoiss" AND "Bernhard")   0 kept 0
+zenodo               author creators.name:("Hollanders" AND "Matthij 2 kept 2
+zenodo               author creators.name:("Hooten" AND "Mevin")     10 kept 10
+zenodo               author creators.name:("Hopfenmueller" AND "Seba 0 kept 0
+zenodo               author creators.name:("Horanyi" AND "Julia")    0 kept 0
+zenodo               author creators.name:("Howland" AND "Kimberly") 5 kept 5
+zenodo               author creators.name:("Htun" AND "Saw")         1 kept 1
+zenodo               author creators.name:("Hudson" AND "Marie-Anne" 1 kept 1
+zenodo               author creators.name:("Humphries" AND "W.")     12 kept 12
+zenodo               author creators.name:("Humple" AND "Diana")     2 kept 2
+zenodo               author creators.name:("Hunt" AND "Barb")        0 kept 0
+zenodo               author creators.name:("Hutton" AND "Jacob")     1 kept 1
+zenodo               author creators.name:("Hébert" AND "Trevor")    1 kept 1
+zenodo               author creators.name:("Infante" AND "Jose")     3 kept 3
+zenodo               author creators.name:("Irons" AND "David")      4 kept 4
+zenodo               author creators.name:("Islas-Villanueva" AND "V 2 kept 2
+zenodo               author creators.name:("Jackson" AND "Hanna")    3 kept 3
+zenodo               author creators.name:("Jacobsen" AND "Rannveig" 5 kept 5
+zenodo               author creators.name:("Janik" AND "Vincent")    5 kept 5
+zenodo               author creators.name:("Jathanna" AND "Devcharan 2 kept 2
+zenodo               author creators.name:("Jemison" AND "Lauri")    3 kept 3
+zenodo               author creators.name:("Jhala" AND "Yadvendradev 20 kept 20
+zenodo               author creators.name:("Jimenez" AND "Jaime")    15 kept 15
+zenodo               author creators.name:("Johnson" AND "Chris")    48 kept 48
+zenodo               author creators.name:("Johnson" AND "Sarah")    64 kept 64
+zenodo               author creators.name:("Jönsson" AND "Annelie")  0 kept 0
+zenodo               author creators.name:("Kadoya" AND "Taku")      8 kept 8
+zenodo               author creators.name:("Kanno" AND "Yoichiro")   11 kept 11
+zenodo               author creators.name:("Karanth" AND "K.")       6 kept 6
+zenodo               author creators.name:("Karp" AND "Daniel")      21 kept 21
+zenodo               author creators.name:("Kaszta" AND "Zaneta")    6 kept 6
+zenodo               author creators.name:("Kays" AND "Roland")      30 kept 30
+zenodo               author creators.name:("Keene" AND "Erin")       1 kept 1
+zenodo               author creators.name:("Kelly" AND "Marcella")   6 kept 6
+zenodo               author creators.name:("Kerner" AND "Janika")    1 kept 1
+zenodo               author creators.name:("Kery" AND "Marc")        19 kept 19
+zenodo               author creators.name:("Khelifa" AND "Rassim")   5 kept 5
+zenodo               author creators.name:("Kim" AND "Seoghyun")     4 kept 4
+zenodo               author creators.name:("King" AND "David")       83 kept 83
+zenodo               author creators.name:("Kleiven" AND "Eivind")   2 kept 2
+zenodo               author creators.name:("Knape" AND "Jonas")      11 kept 11
+zenodo               author creators.name:("Koese" AND "Bram")       1 kept 1
+zenodo               author creators.name:("Koester" AND "Anna")     1 kept 1
+zenodo               author creators.name:("Koetke" AND "Lisa")      1 kept 1
+zenodo               author creators.name:("Kondo" AND "Natsuko")    3 kept 3
+zenodo               author creators.name:("Kouamé" AND "N'Dri")     2 kept 2
+zenodo               author creators.name:("Kouman" AND "Christine") 1 kept 1
+zenodo               author creators.name:("Kumar" AND "N.")         175 kept 100
+zenodo               author creators.name:("Kusak" AND "Josip")      7 kept 7
+zenodo               author creators.name:("Kyaw" AND "Pyae")        2 kept 2
+zenodo               author creators.name:("Kärvemo" AND "Simon")    5 kept 5
+zenodo               author creators.name:("Kéry" AND "Marc")        19 kept 19
+zenodo               author creators.name:("Lafferty" AND "Kevin")   19 kept 19
+zenodo               author creators.name:("Lamichhane" AND "Babu")  8 kept 8
+zenodo               author creators.name:("Lamichhane" AND "Saneer" 3 kept 3
+zenodo               author creators.name:("Larson" AND "Diane")     0 kept 0
+zenodo               author creators.name:("Larson" AND "Eric")      19 kept 19
+zenodo               author creators.name:("Larson" AND "Jennifer")  2 kept 2
+zenodo               author creators.name:("Lazenby" AND "Billie")   3 kept 3
+zenodo               author creators.name:("Lea" AND "Ellen")        1 kept 1
+zenodo               author creators.name:("Leach" AND "Alan")       7 kept 7
+zenodo               author creators.name:("Lebeuf-Taylor" AND "Isab 0 kept 0
+zenodo               author creators.name:("Lebreton" AND "Jean-Domi 3 kept 3
+zenodo               author creators.name:("Ledegen" AND "Hannes")   0 kept 0
+zenodo               author creators.name:("Lee" AND "Alan")         19 kept 19
+zenodo               author creators.name:("Lehrer" AND "Elizabeth") 4 kept 4
+zenodo               author creators.name:("Lehtomaki" AND "Joona")  4 kept 4
+zenodo               author creators.name:("Leith" AND "Freddie")    1 kept 1
+zenodo               author creators.name:("Leone" AND "Julia")      1 kept 1
+zenodo               author creators.name:("Lewis" AND "Jesse")      7 kept 7
+zenodo               author creators.name:("Li" AND "Hailong")       39 kept 39
+zenodo               author creators.name:("Lindenmayer" AND "David" 41 kept 41
+zenodo               author creators.name:("Lindström" AND "Åke")    3 kept 3
+zenodo               author creators.name:("Lockwood" AND "Julie")   9 kept 9
+zenodo               author creators.name:("Lodge" AND "David")      24 kept 24
+zenodo               author creators.name:("Loftin" AND "Cynthia")   7 kept 7
+zenodo               author creators.name:("Ludynia" AND "Katrin")   6 kept 6
+zenodo               author creators.name:("Lukacs" AND "Paul")      9 kept 9
+zenodo               author creators.name:("Lund" AND "Espen")       2 kept 2
+zenodo               author creators.name:("Lutmerding" AND "Michael 0 kept 0
+zenodo               author creators.name:("Lynch" AND "Ryan")       9 kept 9
+zenodo               author creators.name:("M'Gonigle" AND "Leithen" 11 kept 11
+zenodo               author creators.name:("MacKenzie" AND "Darryl") 5 kept 5
+zenodo               author creators.name:("Macdonald" AND "David")  112 kept 100
+zenodo               author creators.name:("Magle" AND "Seth")       8 kept 8
+zenodo               author creators.name:("Mahdjoub" AND "Hayat")   2 kept 2
+zenodo               author creators.name:("Maihoff" AND "Fabienne") 3 kept 3
+zenodo               author creators.name:("Majaneva" AND "Markus")  7 kept 7
+zenodo               author creators.name:("Malhotra" AND "Rumaan")  3 kept 3
+zenodo               author creators.name:("Maragliano" AND "Rene")  1 kept 1
+zenodo               author creators.name:("Margenau" AND "Eric")    1 kept 1
+zenodo               author creators.name:("Markl" AND "Gregor")     3 kept 3
+zenodo               author creators.name:("Martinez-Villegas" AND " 0 kept 0
+zenodo               author creators.name:("Martorell" AND "Carlos") 4 kept 4
+zenodo               author creators.name:("Marzolin" AND "Gilbert") 1 kept 1
+zenodo               author creators.name:("Matsuzaki" AND "Shin-ich 9 kept 9
+zenodo               author creators.name:("Mazzotti" AND "Frank")   12 kept 12
+zenodo               author creators.name:("McCarthy" AND "Thomas")  32 kept 32
+zenodo               author creators.name:("McCracken" AND "Shawn")  0 kept 0
+zenodo               author creators.name:("McGeorge" AND "Cuan")    2 kept 2
+zenodo               author creators.name:("McHugh" AND "Darren")    5 kept 5
+zenodo               author creators.name:("McKinney" AND "Shawn")   4 kept 4
+zenodo               author creators.name:("McKnight" AND "Aly")     3 kept 3
+zenodo               author creators.name:("McLeod" AND "Ryan")      1 kept 1
+zenodo               author creators.name:("McMahon" AND "Clive")    10 kept 10
+zenodo               author creators.name:("McNeil" AND "Darin")     4 kept 4
+zenodo               author creators.name:("McNutt" AND "J.")        9 kept 9
+zenodo               author creators.name:("McShea" AND "William")   20 kept 20
+zenodo               author creators.name:("McTigue" AND "Leah")     3 kept 3
+zenodo               author creators.name:("Mdluli" AND "Andile")    1 kept 1
+zenodo               author creators.name:("Meena" AND "Dharamveer") 1 kept 1
+zenodo               author creators.name:("Mendenhall" AND "Chase") 7 kept 7
+zenodo               author creators.name:("Miller" AND "David")     263 kept 100
+zenodo               author creators.name:("Miller" AND "Melissa")   19 kept 19
+zenodo               author creators.name:("Miller" AND "Ryan")      43 kept 43
+zenodo               author creators.name:("Mishra" AND "Charudutt") 12 kept 12
+zenodo               author creators.name:("Moe" AND "Kyaw")         14 kept 14
+zenodo               author creators.name:("Moe" AND "S.")           11 kept 11
+zenodo               author creators.name:("Mollenhauer" AND "Robert 1 kept 1
+zenodo               author creators.name:("Montalti" AND "Diego")   1 kept 1
+zenodo               author creators.name:("Mooney" AND "Nicholas")  1 kept 1
+zenodo               author creators.name:("Moore" AND "Jeffrey")    25 kept 25
+zenodo               author creators.name:("Moretti" AND "David")    20 kept 20
+zenodo               author creators.name:("Moxcey" AND "Michael")   1 kept 1
+zenodo               author creators.name:("Mueller" AND "Joerg")    3 kept 3
+zenodo               author creators.name:("Mulder" AND "Kevin")     7 kept 7
+zenodo               author creators.name:("Muncy" AND "Brenee'")    2 kept 2
+zenodo               author creators.name:("Mungi" AND "Ninad")      5 kept 5
+zenodo               author creators.name:("Murphy" AND "Sean")      15 kept 15
+zenodo               author creators.name:("Murphy" AND "Sean")      15 kept 15
+zenodo               author creators.name:("Murray" AND "Maureen")   8 kept 8
+zenodo               author creators.name:("Muthukumarana" AND "Sama 0 kept 0
+zenodo               author creators.name:("Myo" AND "Khin")         1 kept 1
+zenodo               author creators.name:("Myo" AND "Okka")         0 kept 0
+zenodo               author creators.name:("Naing" AND "Hla")        1 kept 1
+zenodo               author creators.name:("Nater" AND "Chloe")      7 kept 7
+zenodo               author creators.name:("Nay" AND "Saw")          0 kept 0
+zenodo               author creators.name:("Neumayer" AND "Johann")  9 kept 9
+zenodo               author creators.name:("Nichols" AND "James")    61 kept 61
+zenodo               author creators.name:("Niedermayer" AND "Jana") 1 kept 1
+zenodo               author creators.name:("Nielsen" AND "Anne")     8 kept 8
+zenodo               author creators.name:("Noth" AND "Hutton")      0 kept 0
+zenodo               author creators.name:("Nowicki" AND "Robert")   5 kept 5
+zenodo               author creators.name:("Oberhauser" AND "Karen") 1 kept 1
+zenodo               author creators.name:("Obrist" AND "Debora")    1 kept 1
+zenodo               author creators.name:("Often" AND "Anders")     1 kept 1
+zenodo               author creators.name:("Oosthuizen" AND "W.")    5 kept 5
+zenodo               author creators.name:("Ouattara" AND "Allassane 1 kept 1
+zenodo               author creators.name:("Ovaskainen" AND "Otso")  53 kept 53
+zenodo               author creators.name:("Pacifici" AND "Krishna") 3 kept 3
+zenodo               author creators.name:("Palacio" AND "Facundo")  4 kept 4
+zenodo               author creators.name:("Palmheden" AND "Linda")  0 kept 0
+zenodo               author creators.name:("Palsboll" AND "Per")     12 kept 12
+zenodo               author creators.name:("Parkyn" AND "Jonathan")  1 kept 1
+zenodo               author creators.name:("Parsons" AND "Nola")     1 kept 1
+zenodo               author creators.name:("Part" AND "Tomas")       24 kept 24
+zenodo               author creators.name:("Pe'er" AND "Guy")        9 kept 9
+zenodo               author creators.name:("Peake" AND "Jonathan")   1 kept 1
+zenodo               author creators.name:("Peer" AND "Israel")      10 kept 10
+zenodo               author creators.name:("Pendleton" AND "Grey")   4 kept 4
+zenodo               author creators.name:("Pennarola" AND "Nora")   0 kept 0
+zenodo               author creators.name:("Pepin" AND "Kim")        11 kept 11
+zenodo               author creators.name:("Pesi" AND "Sarah")       2 kept 2
+zenodo               author creators.name:("Peterson" AND "Donnie")  2 kept 2
+zenodo               author creators.name:("Petracca" AND "Lisanne") 4 kept 4
+zenodo               author creators.name:("Pichorim" AND "Mauro")   13 kept 13
+zenodo               author creators.name:("Piesschaert" AND "Freder 0 kept 0
+zenodo               author creators.name:("Pisanty" AND "Irene")    3 kept 3
+zenodo               author creators.name:("Po" AND "Saw")           0 kept 0
+zenodo               author creators.name:("Po" AND "Saw")           0 kept 0
+zenodo               author creators.name:("Pollet" AND "Marc")      11 kept 11
+zenodo               author creators.name:("Pradel" AND "Roger")     15 kept 15
+zenodo               author creators.name:("Pregler" AND "Kasey")    1 kept 1
+zenodo               author creators.name:("Price" AND "Steven")     14 kept 14
+zenodo               author creators.name:("Price" AND "Steven")     14 kept 14
+zenodo               author creators.name:("Péters" AND "Julien")    3 kept 3
+zenodo               author creators.name:("Quick" AND "Nicola")     5 kept 5
+zenodo               author creators.name:("Qureshi" AND "Qamar")    9 kept 9
+zenodo               author creators.name:("Qvenild" AND "Tore")     3 kept 3
+zenodo               author creators.name:("Raman" AND "T.")         38 kept 38
+zenodo               author creators.name:("Ramp" AND "Christian")   3 kept 3
+zenodo               author creators.name:("Ray" AND "H.")           30 kept 30
+zenodo               author creators.name:("Rayamajhi" AND "Trishna" 2 kept 2
+zenodo               author creators.name:("Reed" AND "Eric")        70 kept 70
+zenodo               author creators.name:("Renshaw" AND "Mark")     20 kept 20
+zenodo               author creators.name:("Reynolds" AND "John")    29 kept 29
+zenodo               author creators.name:("Rich" AND "Lindsey")     5 kept 5
+zenodo               author creators.name:("Riecke" AND "Thomas")    14 kept 14
+zenodo               author creators.name:("Rissi" AND "Alicia")     1 kept 1
+zenodo               author creators.name:("Robinson" AND "Hugh")    9 kept 9
+zenodo               author creators.name:("Rodenhouse" AND "Nichola 1 kept 1
+zenodo               author creators.name:("Rodriguez" AND "Cristina 51 kept 51
+zenodo               author creators.name:("Rodriguez" AND "David")  176 kept 100
+zenodo               author creators.name:("Rodriguez-Sanchez" AND " 8 kept 8
+zenodo               author creators.name:("Ronka" AND "Katja")      3 kept 3
+zenodo               author creators.name:("Rooney" AND "Brigit")    2 kept 2
+zenodo               author creators.name:("Ros Candeira" AND "Andre 0 kept 0
+zenodo               author creators.name:("Rota" AND "Christopher") 11 kept 11
+zenodo               author creators.name:("Roy" AND "Christian")    92 kept 92
+zenodo               author creators.name:("Royle" AND "J.")         26 kept 26
+zenodo               author creators.name:("Rustadbakken" AND "Atle" 2 kept 2
+zenodo               author creators.name:("Samek" AND "Isaiah")     0 kept 0
+zenodo               author creators.name:("Samways" AND "Michael")  4 kept 4
+zenodo               author creators.name:("Sandercock" AND "Brett") 11 kept 11
+zenodo               author creators.name:("Schank" AND "Cody")      3 kept 3
+zenodo               author creators.name:("Scheele" AND "Ben")      9 kept 9
+zenodo               author creators.name:("Schleimer" AND "Anna")   4 kept 4
+zenodo               author creators.name:("Schmid" AND "Hans")      10 kept 10
+zenodo               author creators.name:("Schmid-Egger" AND "Chris 13 kept 13
+zenodo               author creators.name:("Schorr" AND "Gregory")   7 kept 7
+zenodo               author creators.name:("Schram" AND "Michael")   2 kept 2
+zenodo               author creators.name:("Schroder" AND "Mellesa") 4 kept 4
+zenodo               author creators.name:("Schuett" AND "Gordon")   4 kept 4
+zenodo               author creators.name:("Schulz" AND "Martin")    18 kept 18
+zenodo               author creators.name:("Schwartz-Tzachor" AND "R 1 kept 1
+zenodo               author creators.name:("Sears" AND "Richard")    14 kept 14
+zenodo               author creators.name:("Sedinger" AND "James")   19 kept 19
+zenodo               author creators.name:("Sekercioglu" AND "Cagan" 11 kept 11
+zenodo               author creators.name:("Sherley" AND "Richard")  10 kept 10
+zenodo               author creators.name:("Shirley" AND "Matthew")  12 kept 12
+zenodo               author creators.name:("Sillett" AND "T.")       19 kept 19
+zenodo               author creators.name:("Simon" AND "Matthew")    141 kept 100
+zenodo               author creators.name:("Simonis" AND "Juniper")  7 kept 7
+zenodo               author creators.name:("Sinha" AND "Bitapi")     1 kept 1
+zenodo               author creators.name:("Skalos" AND "Shannon")   1 kept 1
+zenodo               author creators.name:("Smith" AND "James")      200 kept 100
+zenodo               author creators.name:("Smith" AND "Matthew")    192 kept 100
+zenodo               author creators.name:("Smith" AND "Samantha")   30 kept 30
+zenodo               author creators.name:("Soldaat" AND "Leo")      1 kept 1
+zenodo               author creators.name:("Sollmann" AND "Rahel")   13 kept 13
+zenodo               author creators.name:("Sprogis" AND "Kate")     3 kept 3
+zenodo               author creators.name:("Stallings" AND "Christop 7 kept 7
+zenodo               author creators.name:("Steenweg" AND "Robin")   6 kept 6
+zenodo               author creators.name:("Stewart" AND "Frances")  2 kept 2
+zenodo               author creators.name:("Stienstra" AND "Jelle")  0 kept 0
+zenodo               author creators.name:("Sullivan" AND "Kathryn") 8 kept 8
+zenodo               author creators.name:("Sun" AND "Yi-Fei")       16 kept 16
+zenodo               author creators.name:("Suryawanshi" AND "Kulbhu 15 kept 15
+zenodo               author creators.name:("Sutherland" AND "Chris") 17 kept 17
+zenodo               author creators.name:("Swedberg" AND "Dusty")   1 kept 1
+zenodo               author creators.name:("Symons" AND "John")      3 kept 3
+zenodo               author creators.name:("Teitsworth" AND "Eric")  0 kept 0
+zenodo               author creators.name:("Terhune" AND "Theron")   2 kept 2
+zenodo               author creators.name:("Tetzlaff" AND "Sasha")   1 kept 1
+zenodo               author creators.name:("Thanet" AND "Dol")       2 kept 2
+zenodo               author creators.name:("Theobald" AND "Jennifer" 1 kept 1
+zenodo               author creators.name:("Thogmartin" AND "Wayne") 7 kept 7
+zenodo               author creators.name:("Thompson" AND "Paul")    65 kept 65
+zenodo               author creators.name:("Thomson" AND "Jordan")   5 kept 5
+zenodo               author creators.name:("Tleimat" AND "Jacquelyn" 0 kept 0
+zenodo               author creators.name:("Toledo-Lima" AND "Guilhe 2 kept 2
+zenodo               author creators.name:("Tomke" AND "Sarah")      2 kept 2
+zenodo               author creators.name:("Trosen" AND "Claudia")   0 kept 0
+zenodo               author creators.name:("Tumursukh" AND "Lkhagvas 1 kept 1
+zenodo               author creators.name:("Tun" AND "Aung")         0 kept 0
+zenodo               author creators.name:("Tun" AND "Saw")          0 kept 0
+zenodo               author creators.name:("Uher-Koch" AND "Brian")  1 kept 1
+zenodo               author creators.name:("Valenzuela-Sánchez" AND  11 kept 11
+zenodo               author creators.name:("Valverde" AND "Teresa")  8 kept 8
+zenodo               author creators.name:("Van Klink" AND "Roel")   5 kept 5
+zenodo               author creators.name:("Vermeulen" AND "Rikjan") 1 kept 1
+zenodo               author creators.name:("Vollestad" AND "L.")     4 kept 4
+zenodo               author creators.name:("Volpe" AND "John")       2 kept 2
+zenodo               author creators.name:("Volzke" AND "Sophia")    1 kept 1
+zenodo               author creators.name:("Waddle" AND "Hardin")    6 kept 6
+zenodo               author creators.name:("Waddle" AND "J.")        6 kept 6
+zenodo               author creators.name:("Wahlberg" AND "Niklas")  41 kept 41
+zenodo               author creators.name:("Waits" AND "Lisette")    35 kept 35
+zenodo               author creators.name:("Wall" AND "Kara")        3 kept 3
+zenodo               author creators.name:("Waller" AND "Lauren")    7 kept 7
+zenodo               author creators.name:("Wang" AND "Tian-Ming")   12 kept 12
+zenodo               author creators.name:("Westra" AND "Toon")      14 kept 14
+zenodo               author creators.name:("Whittington" AND "Jesse" 6 kept 6
+zenodo               author creators.name:("Williams" AND "Ian")     83 kept 83
+zenodo               author creators.name:("Wirsing" AND "Aaron")    13 kept 13
+zenodo               author creators.name:("Work" AND "Kirsten")     1 kept 1
+zenodo               author creators.name:("Wotherspoon" AND "Simon" 4 kept 4
+zenodo               author creators.name:("Wunder" AND "Michael")   7 kept 7
+zenodo               author creators.name:("Xiao" AND "Yuqian")      1 kept 1
+zenodo               author creators.name:("Yackel Adams" AND "Amy") 15 kept 15
+zenodo               author creators.name:("Yadav" AND "Ramesh")     1 kept 1
+zenodo               author creators.name:("Yoccoz" AND "Nigel")     33 kept 33
+zenodo               author creators.name:("Zaw" AND "Than")         1 kept 1
+zenodo               author creators.name:("Zhang" AND "Dandan")     31 kept 31
+zenodo               author creators.name:("Ziolkowski" AND "David") 0 kept 0
+zenodo               author creators.name:("Zipkin" AND "Elise")     9 kept 9
+zenodo               author creators.name:("Zuniga-Vega" AND "Jaime" 10 kept 10
+zenodo               author creators.name:("Zuniga-Vega" AND "Jose") 3 kept 3
+zenodo               author creators.name:("de Bruyn" AND "P.")      6 kept 6
+zenodo               author creators.name:("de Zeeuw" AND "Marnix")  0 kept 0
+zenodo               author creators.name:("van Strien" AND "Arco")  3 kept 3
+zenodo               author creators.name:("Åström" AND "Jens")      5 kept 5
+dataverse            author authorName:"A'Bear, Luke"                0 kept 0
+dataverse            author authorName:"Aass, Per"                   0 kept 0
+dataverse            author authorName:"Adams, Jennifer"             0 kept 0
+dataverse            author authorName:"Addis, Brett"                0 kept 0
+dataverse            author authorName:"Ahizi, Michel"               0 kept 0
+dataverse            author authorName:"Ahumada, Jorge"              0 kept 0
+dataverse            author authorName:"Allen, Michael"              10 kept 10
+dataverse            author authorName:"Altwegg, Res"                0 kept 0
+dataverse            author authorName:"Ancona, Sergio"              0 kept 0
+dataverse            author authorName:"Anderson, David"             0 kept 0
+dataverse            author authorName:"Anderson, T."                2 kept 2
+dataverse            author authorName:"Angrish, Kunal"              0 kept 0
+dataverse            author authorName:"Archambault, Jennifer"       0 kept 0
+dataverse            author authorName:"Armstrong, Joshua"           0 kept 0
+dataverse            author authorName:"Arso Civil, Monica"          0 kept 0
+dataverse            author authorName:"Astrom, Jens"                1 kept 1
+dataverse            author authorName:"Aung, Htet"                  3 kept 3
+dataverse            author authorName:"Aung, Zarni"                 0 kept 0
+dataverse            author authorName:"Aust, Ines"                  0 kept 0
+dataverse            author authorName:"Baaloudj, Affef"             0 kept 0
+dataverse            author authorName:"Baessler, Claus"             0 kept 0
+dataverse            author authorName:"Bamann, Thomas"              0 kept 0
+dataverse            author authorName:"Banik, Arjun"                0 kept 0
+dataverse            author authorName:"Barea-Azcón, José"           0 kept 0
+dataverse            author authorName:"Barham, Barbara"             0 kept 0
+dataverse            author authorName:"Barham, Peter"               0 kept 0
+dataverse            author authorName:"Barlow, Jay"                 0 kept 0
+dataverse            author authorName:"Barton, Christopher"         0 kept 0
+dataverse            author authorName:"Bashyal, Ashish"             0 kept 0
+dataverse            author authorName:"Bayle, Arthur"               0 kept 0
+dataverse            author authorName:"Bedson, Carlos"              0 kept 0
+dataverse            author authorName:"Beery, Sara"                 0 kept 0
+dataverse            author authorName:"Bejder, Lars"                0 kept 0
+dataverse            author authorName:"Benyamini, Dubi"             0 kept 0
+dataverse            author authorName:"Berg, Ake"                   0 kept 0
+dataverse            author authorName:"Bertscheit, Ralf"            0 kept 0
+dataverse            author authorName:"Berube, Martine"             1 kept 1
+dataverse            author authorName:"Bester, Marthan"             0 kept 0
+dataverse            author authorName:"Bhattacharya, Ankita"        0 kept 0
+dataverse            author authorName:"Bhattarai, Santosh"          0 kept 0
+dataverse            author authorName:"Bielsa, Maria"               0 kept 0
+dataverse            author authorName:"Bison, Marjorie"             1 kept 1
+dataverse            author authorName:"Blaalid, Rakel"              0 kept 0
+dataverse            author authorName:"Blanchard, Wade"             0 kept 0
+dataverse            author authorName:"Blomberg, Erik"              0 kept 0
+dataverse            author authorName:"Blount, Judson"              0 kept 0
+dataverse            author authorName:"Boeraeve, Fanny"             0 kept 0
+dataverse            author authorName:"Boldgiv, Bazartseren"        2 kept 2
+dataverse            author authorName:"Bonner, Simon"               0 kept 0
+dataverse            author authorName:"Boone, Michelle"             0 kept 0
+dataverse            author authorName:"Borchers, David"             0 kept 0
+dataverse            author authorName:"Bradfer-Lawrence, Tom"       0 kept 0
+dataverse            author authorName:"Brand, Adrianne"             0 kept 0
+dataverse            author authorName:"Brewer, Shannon"             0 kept 0
+dataverse            author authorName:"Brosens, Dimitri"            0 kept 0
+dataverse            author authorName:"Brown, William"              10 kept 10
+dataverse            author authorName:"Bruce, Alexis"               0 kept 0
+dataverse            author authorName:"Budach, Daniela"             0 kept 0
+dataverse            author authorName:"Burgar, Joanna"              4 kept 4
+dataverse            author authorName:"Burkholder, Derek"           0 kept 0
+dataverse            author authorName:"Burnham, Dawn"               0 kept 0
+dataverse            author authorName:"Burnham, Kenneth"            0 kept 0
+dataverse            author authorName:"Burt, April"                 0 kept 0
+dataverse            author authorName:"Burton, A."                  60 kept 60
+dataverse            author authorName:"Burton, Harry"               0 kept 0
+dataverse            author authorName:"COAT, UiT"                   0 kept 0
+dataverse            author authorName:"Cabeza, Mar"                 0 kept 0
+dataverse            author authorName:"Cannings, Robert"            0 kept 0
+dataverse            author authorName:"Carlson, Bradley"            0 kept 0
+dataverse            author authorName:"Carpentier, Alain"           0 kept 0
+dataverse            author authorName:"Cecala, Kristen"             0 kept 0
+dataverse            author authorName:"Chabanne, Delphine"          0 kept 0
+dataverse            author authorName:"Chambert, Thierry"           0 kept 0
+dataverse            author authorName:"Chandler, Richard"           0 kept 0
+dataverse            author authorName:"Chandler, Richard"           0 kept 0
+dataverse            author authorName:"Chatterjee, Nilanjan"        0 kept 0
+dataverse            author authorName:"Cheney, Barbara"             0 kept 0
+dataverse            author authorName:"Chong-Seng, Karen"           0 kept 0
+dataverse            author authorName:"Chynoweth, Mark"             0 kept 0
+dataverse            author authorName:"Classen, Alice"              0 kept 0
+dataverse            author authorName:"Cleavitt, Natalie"           0 kept 0
+dataverse            author authorName:"Clemann, Nick"               0 kept 0
+dataverse            author authorName:"Clipp, Hannah"               0 kept 0
+dataverse            author authorName:"Clobert, Jean"               0 kept 0
+dataverse            author authorName:"Coban, Emrah"                0 kept 0
+dataverse            author authorName:"Conroy, Michael"             0 kept 0
+dataverse            author authorName:"Cooke, Sarah"                2 kept 2
+dataverse            author authorName:"Cove, Michael"               0 kept 0
+dataverse            author authorName:"Cowen, Laura"                0 kept 0
+dataverse            author authorName:"Cox, John"                   0 kept 0
+dataverse            author authorName:"Currylow, Andrea"            0 kept 0
+dataverse            author authorName:"Curtis, K."                  9 kept 9
+dataverse            author authorName:"Curveira-Santos, Goncalo"    0 kept 0
+dataverse            author authorName:"Cushman, Samuel"             0 kept 0
+dataverse            author authorName:"Daily, Gretchen"             0 kept 0
+dataverse            author authorName:"Davey, Marie"                1 kept 1
+dataverse            author authorName:"Davis, Amy"                  0 kept 0
+dataverse            author authorName:"Davis, Mark"                 8 kept 8
+dataverse            author authorName:"Dawson, Carol"               0 kept 0
+dataverse            author authorName:"De Knijf, Geert"             0 kept 0
+dataverse            author authorName:"DeGregorio, Brett"           0 kept 0
+dataverse            author authorName:"DePrenger-Levin, Michelle"   0 kept 0
+dataverse            author authorName:"DeStefano, Stephen"          1 kept 1
+dataverse            author authorName:"Dede, Azani"                 0 kept 0
+dataverse            author authorName:"Delarue, Julien"             0 kept 0
+dataverse            author authorName:"Delestrade, Anne"            0 kept 0
+dataverse            author authorName:"Desmet, Peter"               0 kept 0
+dataverse            author authorName:"Dettling, Mark"              0 kept 0
+dataverse            author authorName:"Diaz, Jesus"                 0 kept 0
+dataverse            author authorName:"Dickman, Christopher"        0 kept 0
+dataverse            author authorName:"Dillon, Frank"               0 kept 0
+dataverse            author authorName:"Dirzo, Rodolfo"              0 kept 0
+dataverse            author authorName:"Distiller, Greg"             0 kept 0
+dataverse            author authorName:"Dobson, Andrew"              0 kept 0
+dataverse            author authorName:"Donmoyer, Kevin"             0 kept 0
+dataverse            author authorName:"Doser, Jeffrey"              0 kept 0
+dataverse            author authorName:"Dougherty, Matthew"          0 kept 0
+dataverse            author authorName:"Doyle, Sarah"                0 kept 0
+dataverse            author authorName:"Drayer, Andrea"              0 kept 0
+dataverse            author authorName:"Drummond, Hugh"              1 kept 1
+dataverse            author authorName:"Dufrêne, Marc"               0 kept 0
+dataverse            author authorName:"Dupont, Gates"               0 kept 0
+dataverse            author authorName:"Dybala, Kristen"             0 kept 0
+dataverse            author authorName:"Döring, Jörg"                0 kept 0
+dataverse            author authorName:"Edelstam, Carl"              0 kept 0
+dataverse            author authorName:"Egan, Scott"                 1 kept 1
+dataverse            author authorName:"Elmberg, Johan"              0 kept 0
+dataverse            author authorName:"Emory, Meaghan"              0 kept 0
+dataverse            author authorName:"Endrestol, Anders"           0 kept 0
+dataverse            author authorName:"English, Willow"             3 kept 3
+dataverse            author authorName:"Erhardt, Robert"             0 kept 0
+dataverse            author authorName:"Erickson, Daniel"            0 kept 0
+dataverse            author authorName:"Esque, Todd"                 0 kept 0
+dataverse            author authorName:"Evans, Bryn"                 0 kept 0
+dataverse            author authorName:"Fabritius, Henna"            0 kept 0
+dataverse            author authorName:"Fairet, Emilie"              0 kept 0
+dataverse            author authorName:"Falcone, Erin"               0 kept 0
+dataverse            author authorName:"Farnsworth, Matthew"         0 kept 0
+dataverse            author authorName:"Feng, Jia-Wei"               0 kept 0
+dataverse            author authorName:"Ferguson, Paige"             0 kept 0
+dataverse            author authorName:"Fernandez, Adrian"           0 kept 0
+dataverse            author authorName:"Fidino, Mason"               0 kept 0
+dataverse            author authorName:"Field, Rachel"               2 kept 2
+dataverse            author authorName:"Finch, Tom"                  0 kept 0
+dataverse            author authorName:"Fisher, Jason"               19 kept 19
+dataverse            author authorName:"Fiske, Ian"                  0 kept 0
+dataverse            author authorName:"Fossoy, Frode"               0 kept 0
+dataverse            author authorName:"Foster, Rebecca"             1 kept 1
+dataverse            author authorName:"Freytag, Sara"               0 kept 0
+dataverse            author authorName:"Friess, Nicolas"             0 kept 0
+dataverse            author authorName:"Frimpong, Emmanuel"          1 kept 1
+dataverse            author authorName:"Frishkoff, Luke"             2 kept 2
+dataverse            author authorName:"Fritts, Sarah"               0 kept 0
+dataverse            author authorName:"Fukaya, Keiichi"             0 kept 0
+dataverse            author authorName:"Gallagher, Colin"            2 kept 2
+dataverse            author authorName:"Galvez, Nicolas"             1 kept 1
+dataverse            author authorName:"Gantz, Crysta"               0 kept 0
+dataverse            author authorName:"Gardali, Thomas"             0 kept 0
+dataverse            author authorName:"Gardner, Beth"               1 kept 1
+dataverse            author authorName:"Gastrich, Kirk"              0 kept 0
+dataverse            author authorName:"Ge, Jianping"                0 kept 0
+dataverse            author authorName:"Gerrits, Gijs"               0 kept 0
+dataverse            author authorName:"Gibson, Daniel"              0 kept 0
+dataverse            author authorName:"Gigliotti, Laura"            0 kept 0
+dataverse            author authorName:"Gilliland, Scott"            0 kept 0
+dataverse            author authorName:"Glorioso, Brad"              0 kept 0
+dataverse            author authorName:"Gohli, Jostein"              0 kept 0
+dataverse            author authorName:"Goldberg, Caren"             0 kept 0
+dataverse            author authorName:"Goldingay, Ross"             0 kept 0
+dataverse            author authorName:"Gopal, Rajesh"               0 kept 0
+dataverse            author authorName:"Gottschalk, Thomas"          0 kept 0
+dataverse            author authorName:"Granados-Hernandez, Luisa"   0 kept 0
+dataverse            author authorName:"Grant III, Thomas"           0 kept 0
+dataverse            author authorName:"Grant, Evan"                 0 kept 0
+dataverse            author authorName:"Gratton, Claudio"            1 kept 1
+dataverse            author authorName:"Graves, Jeff"                0 kept 0
+dataverse            author authorName:"Green, Austin"               0 kept 0
+dataverse            author authorName:"Green, Martin"               0 kept 0
+dataverse            author authorName:"Grigg, Jennifer"             0 kept 0
+dataverse            author authorName:"Habib, Bilal"                0 kept 0
+dataverse            author authorName:"Hadly, Elizabeth"            0 kept 0
+dataverse            author authorName:"Hagman, Mattias"             0 kept 0
+dataverse            author authorName:"Hall, Jeffrey"               4 kept 4
+dataverse            author authorName:"Hamer, Andrew"               0 kept 0
+dataverse            author authorName:"Hamm, Christopher"           0 kept 0
+dataverse            author authorName:"Hammond, Philip"             1 kept 1
+dataverse            author authorName:"Harmsen, Bart"               1 kept 1
+dataverse            author authorName:"Harris, Nyeema"              0 kept 0
+dataverse            author authorName:"Hartley, Renée"              0 kept 0
+dataverse            author authorName:"Hastings, Kelly"             0 kept 0
+dataverse            author authorName:"Haupt, Philip"               0 kept 0
+dataverse            author authorName:"Hebblewhite, Mark"           1 kept 1
+dataverse            author authorName:"Hegge, Ola"                  0 kept 0
+dataverse            author authorName:"Hegre, Hanne"                0 kept 0
+dataverse            author authorName:"Heithaus, Michael"           0 kept 0
+dataverse            author authorName:"Hendershot, J."              0 kept 0
+dataverse            author authorName:"Henry, Dominic"              1 kept 1
+dataverse            author authorName:"Hepinstall-Cymerman, Jeffrey 0 kept 0
+dataverse            author authorName:"Hepler, Staci"               0 kept 0
+dataverse            author authorName:"Hermann, Gabriel"            0 kept 0
+dataverse            author authorName:"Hernandez-Apolinar, Mariana" 0 kept 0
+dataverse            author authorName:"Heuer, Karsten"              0 kept 0
+dataverse            author authorName:"Hileman, Eric"               0 kept 0
+dataverse            author authorName:"Hindell, Mark"               0 kept 0
+dataverse            author authorName:"Hinneberg, Heiko"            0 kept 0
+dataverse            author authorName:"Hodder, Dexter"              3 kept 3
+dataverse            author authorName:"Hoiss, Bernhard"             0 kept 0
+dataverse            author authorName:"Hollanders, Matthijs"        0 kept 0
+dataverse            author authorName:"Hooten, Mevin"               0 kept 0
+dataverse            author authorName:"Hopfenmueller, Sebastian"    0 kept 0
+dataverse            author authorName:"Horanyi, Julia"              0 kept 0
+dataverse            author authorName:"Howland, Kimberly"           3 kept 3
+dataverse            author authorName:"Htun, Saw"                   0 kept 0
+dataverse            author authorName:"Hudson, Marie-Anne"          3 kept 3
+dataverse            author authorName:"Humphries, W."               0 kept 0
+dataverse            author authorName:"Humple, Diana"               0 kept 0
+dataverse            author authorName:"Hunt, Barb"                  0 kept 0
+dataverse            author authorName:"Hutton, Jacob"               2 kept 2
+dataverse            author authorName:"Hébert, Trevor"              0 kept 0
+dataverse            author authorName:"Infante, Jose"               1 kept 1
+dataverse            author authorName:"Irons, David"                0 kept 0
+dataverse            author authorName:"Islas-Villanueva, Valentina" 0 kept 0
+dataverse            author authorName:"Jackson, Hanna"              0 kept 0
+dataverse            author authorName:"Jacobsen, Rannveig"          0 kept 0
+dataverse            author authorName:"Janik, Vincent"              0 kept 0
+dataverse            author authorName:"Jathanna, Devcharan"         0 kept 0
+dataverse            author authorName:"Jemison, Lauri"              0 kept 0
+dataverse            author authorName:"Jhala, Yadvendradev"         0 kept 0
+dataverse            author authorName:"Jimenez, Jaime"              3 kept 3
+dataverse            author authorName:"Johnson, Chris"              3 kept 3
+dataverse            author authorName:"Johnson, Sarah"              0 kept 0
+dataverse            author authorName:"Jönsson, Annelie"            0 kept 0
+dataverse            author authorName:"Kadoya, Taku"                1 kept 1
+dataverse            author authorName:"Kanno, Yoichiro"             0 kept 0
+dataverse            author authorName:"Karanth, K."                 0 kept 0
+dataverse            author authorName:"Karp, Daniel"                6 kept 6
+dataverse            author authorName:"Kaszta, Zaneta"              0 kept 0
+dataverse            author authorName:"Kays, Roland"                2 kept 2
+dataverse            author authorName:"Keene, Erin"                 0 kept 0
+dataverse            author authorName:"Kelly, Marcella"             1 kept 1
+dataverse            author authorName:"Kerner, Janika"              0 kept 0
+dataverse            author authorName:"Kery, Marc"                  0 kept 0
+dataverse            author authorName:"Khelifa, Rassim"             2 kept 2
+dataverse            author authorName:"Kim, Seoghyun"               0 kept 0
+dataverse            author authorName:"King, David"                 3 kept 3
+dataverse            author authorName:"Kleiven, Eivind"             1 kept 1
+dataverse            author authorName:"Knape, Jonas"                0 kept 0
+dataverse            author authorName:"Koese, Bram"                 0 kept 0
+dataverse            author authorName:"Koester, Anna"               0 kept 0
+dataverse            author authorName:"Koetke, Lisa"                1 kept 1
+dataverse            author authorName:"Kondo, Natsuko"              0 kept 0
+dataverse            author authorName:"Kouamé, N'Dri"               0 kept 0
+dataverse            author authorName:"Kouman, Christine"           0 kept 0
+dataverse            author authorName:"Kumar, N."                   0 kept 0
+dataverse            author authorName:"Kusak, Josip"                0 kept 0
+dataverse            author authorName:"Kyaw, Pyae"                  0 kept 0
+dataverse            author authorName:"Kärvemo, Simon"              0 kept 0
+dataverse            author authorName:"Kéry, Marc"                  0 kept 0
+dataverse            author authorName:"Lafferty, Kevin"             1 kept 1
+dataverse            author authorName:"Lamichhane, Babu"            0 kept 0
+dataverse            author authorName:"Lamichhane, Saneer"          0 kept 0
+dataverse            author authorName:"Larson, Diane"               0 kept 0
+dataverse            author authorName:"Larson, Eric"                0 kept 0
+dataverse            author authorName:"Larson, Jennifer"            10 kept 10
+dataverse            author authorName:"Lazenby, Billie"             0 kept 0
+dataverse            author authorName:"Lea, Ellen"                  0 kept 0
+dataverse            author authorName:"Leach, Alan"                 0 kept 0
+dataverse            author authorName:"Lebeuf-Taylor, Isabelle"     2 kept 2
+dataverse            author authorName:"Lebreton, Jean-Dominique"    0 kept 0
+dataverse            author authorName:"Ledegen, Hannes"             0 kept 0
+dataverse            author authorName:"Lee, Alan"                   1 kept 1
+dataverse            author authorName:"Lehrer, Elizabeth"           0 kept 0
+dataverse            author authorName:"Lehtomaki, Joona"            0 kept 0
+dataverse            author authorName:"Leith, Freddie"              0 kept 0
+dataverse            author authorName:"Leone, Julia"                0 kept 0
+dataverse            author authorName:"Lewis, Jesse"                0 kept 0
+dataverse            author authorName:"Li, Hailong"                 0 kept 0
+dataverse            author authorName:"Lindenmayer, David"          2 kept 2
+dataverse            author authorName:"Lindström, Åke"              0 kept 0
+dataverse            author authorName:"Lockwood, Julie"             0 kept 0
+dataverse            author authorName:"Lodge, David"                0 kept 0
+dataverse            author authorName:"Loftin, Cynthia"             0 kept 0
+dataverse            author authorName:"Ludynia, Katrin"             0 kept 0
+dataverse            author authorName:"Lukacs, Paul"                0 kept 0
+dataverse            author authorName:"Lund, Espen"                 0 kept 0
+dataverse            author authorName:"Lutmerding, Michael"         3 kept 3
+dataverse            author authorName:"Lynch, Ryan"                 0 kept 0
+dataverse            author authorName:"M'Gonigle, Leithen"          1 kept 1
+dataverse            author authorName:"MacKenzie, Darryl"           0 kept 0
+dataverse            author authorName:"Macdonald, David"            25 kept 25
+dataverse            author authorName:"Magle, Seth"                 0 kept 0
+dataverse            author authorName:"Mahdjoub, Hayat"             0 kept 0
+dataverse            author authorName:"Maihoff, Fabienne"           0 kept 0
+dataverse            author authorName:"Majaneva, Markus"            0 kept 0
+dataverse            author authorName:"Malhotra, Rumaan"            0 kept 0
+dataverse            author authorName:"Maragliano, Rene"            0 kept 0
+dataverse            author authorName:"Margenau, Eric"              0 kept 0
+dataverse            author authorName:"Markl, Gregor"               0 kept 0
+dataverse            author authorName:"Martinez-Villegas, Jorge"    0 kept 0
+dataverse            author authorName:"Martorell, Carlos"           0 kept 0
+dataverse            author authorName:"Marzolin, Gilbert"           0 kept 0
+dataverse            author authorName:"Matsuzaki, Shin-ichiro"      0 kept 0
+dataverse            author authorName:"Mazzotti, Frank"             0 kept 0
+dataverse            author authorName:"McCarthy, Thomas"            0 kept 0
+dataverse            author authorName:"McCracken, Shawn"            0 kept 0
+dataverse            author authorName:"McGeorge, Cuan"              0 kept 0
+dataverse            author authorName:"McHugh, Darren"              0 kept 0
+dataverse            author authorName:"McKinney, Shawn"             0 kept 0
+dataverse            author authorName:"McKnight, Aly"               0 kept 0
+dataverse            author authorName:"McLeod, Ryan"                0 kept 0
+dataverse            author authorName:"McMahon, Clive"              0 kept 0
+dataverse            author authorName:"McNeil, Darin"               0 kept 0
+dataverse            author authorName:"McNutt, J."                  0 kept 0
+dataverse            author authorName:"McShea, William"             0 kept 0
+dataverse            author authorName:"McTigue, Leah"               0 kept 0
+dataverse            author authorName:"Mdluli, Andile"              0 kept 0
+dataverse            author authorName:"Meena, Dharamveer"           0 kept 0
+dataverse            author authorName:"Mendenhall, Chase"           0 kept 0
+dataverse            author authorName:"Miller, David"               17 kept 17
+dataverse            author authorName:"Miller, Melissa"             0 kept 0
+dataverse            author authorName:"Miller, Ryan"                2 kept 2
+dataverse            author authorName:"Mishra, Charudutt"           0 kept 0
+dataverse            author authorName:"Moe, Kyaw"                   0 kept 0
+dataverse            author authorName:"Moe, S."                     0 kept 0
+dataverse            author authorName:"Mollenhauer, Robert"         0 kept 0
+dataverse            author authorName:"Montalti, Diego"             0 kept 0
+dataverse            author authorName:"Mooney, Nicholas"            0 kept 0
+dataverse            author authorName:"Moore, Jeffrey"              0 kept 0
+dataverse            author authorName:"Moretti, David"              0 kept 0
+dataverse            author authorName:"Moxcey, Michael"             0 kept 0
+dataverse            author authorName:"Mueller, Joerg"              0 kept 0
+dataverse            author authorName:"Mulder, Kevin"               0 kept 0
+dataverse            author authorName:"Muncy, Brenee'"              0 kept 0
+dataverse            author authorName:"Mungi, Ninad"                0 kept 0
+dataverse            author authorName:"Murphy, Sean"                0 kept 0
+dataverse            author authorName:"Murphy, Sean"                0 kept 0
+dataverse            author authorName:"Murray, Maureen"             0 kept 0
+dataverse            author authorName:"Muthukumarana, Saman"        0 kept 0
+dataverse            author authorName:"Myo, Khin"                   0 kept 0
+dataverse            author authorName:"Myo, Okka"                   0 kept 0
+dataverse            author authorName:"Naing, Hla"                  0 kept 0
+dataverse            author authorName:"Nater, Chloe"                0 kept 0
+dataverse            author authorName:"Nay, Saw"                    0 kept 0
+dataverse            author authorName:"Neumayer, Johann"            0 kept 0
+dataverse            author authorName:"Nichols, James"              0 kept 0
+dataverse            author authorName:"Niedermayer, Jana"           0 kept 0
+dataverse            author authorName:"Nielsen, Anne"               0 kept 0
+dataverse            author authorName:"Noth, Hutton"                0 kept 0
+dataverse            author authorName:"Nowicki, Robert"             0 kept 0
+dataverse            author authorName:"Oberhauser, Karen"           1 kept 1
+dataverse            author authorName:"Obrist, Debora"              0 kept 0
+dataverse            author authorName:"Often, Anders"               0 kept 0
+dataverse            author authorName:"Oosthuizen, W."              0 kept 0
+dataverse            author authorName:"Ouattara, Allassane"         0 kept 0
+dataverse            author authorName:"Ovaskainen, Otso"            0 kept 0
+dataverse            author authorName:"Pacifici, Krishna"           0 kept 0
+dataverse            author authorName:"Palacio, Facundo"            0 kept 0
+dataverse            author authorName:"Palmheden, Linda"            0 kept 0
+dataverse            author authorName:"Palsboll, Per"               2 kept 2
+dataverse            author authorName:"Parkyn, Jonathan"            0 kept 0
+dataverse            author authorName:"Parsons, Nola"               0 kept 0
+dataverse            author authorName:"Part, Tomas"                 0 kept 0
+dataverse            author authorName:"Pe'er, Guy"                  0 kept 0
+dataverse            author authorName:"Peake, Jonathan"             0 kept 0
+dataverse            author authorName:"Peer, Israel"                0 kept 0
+dataverse            author authorName:"Pendleton, Grey"             0 kept 0
+dataverse            author authorName:"Pennarola, Nora"             0 kept 0
+dataverse            author authorName:"Pepin, Kim"                  0 kept 0
+dataverse            author authorName:"Pesi, Sarah"                 0 kept 0
+dataverse            author authorName:"Peterson, Donnie"            0 kept 0
+dataverse            author authorName:"Petracca, Lisanne"           0 kept 0
+dataverse            author authorName:"Pichorim, Mauro"             0 kept 0
+dataverse            author authorName:"Piesschaert, Frederik"       0 kept 0
+dataverse            author authorName:"Pisanty, Irene"              0 kept 0
+dataverse            author authorName:"Po, Saw"                     0 kept 0
+dataverse            author authorName:"Po, Saw"                     0 kept 0
+dataverse            author authorName:"Pollet, Marc"                0 kept 0
+dataverse            author authorName:"Pradel, Roger"               0 kept 0
+dataverse            author authorName:"Pregler, Kasey"              0 kept 0
+dataverse            author authorName:"Price, Steven"               0 kept 0
+dataverse            author authorName:"Price, Steven"               0 kept 0
+dataverse            author authorName:"Péters, Julien"              0 kept 0
+dataverse            author authorName:"Quick, Nicola"               0 kept 0
+dataverse            author authorName:"Qureshi, Qamar"              0 kept 0
+dataverse            author authorName:"Qvenild, Tore"               0 kept 0
+dataverse            author authorName:"Raman, T."                   0 kept 0
+dataverse            author authorName:"Ramp, Christian"             0 kept 0
+dataverse            author authorName:"Ray, H."                     0 kept 0
+dataverse            author authorName:"Rayamajhi, Trishna"          0 kept 0
+dataverse            author authorName:"Reed, Eric"                  2 kept 2
+dataverse            author authorName:"Renshaw, Mark"               0 kept 0
+dataverse            author authorName:"Reynolds, John"              5 kept 5
+dataverse            author authorName:"Rich, Lindsey"               0 kept 0
+dataverse            author authorName:"Riecke, Thomas"              0 kept 0
+dataverse            author authorName:"Rissi, Alicia"               0 kept 0
+dataverse            author authorName:"Robinson, Hugh"              1 kept 1
+dataverse            author authorName:"Rodenhouse, Nicholas"        0 kept 0
+dataverse            author authorName:"Rodriguez, Cristina"         1 kept 1
+dataverse            author authorName:"Rodriguez, David"            14 kept 14
+dataverse            author authorName:"Rodriguez-Sanchez, Mariana"  0 kept 0
+dataverse            author authorName:"Ronka, Katja"                0 kept 0
+dataverse            author authorName:"Rooney, Brigit"              0 kept 0
+dataverse            author authorName:"Ros Candeira, Andrea"        0 kept 0
+dataverse            author authorName:"Rota, Christopher"           0 kept 0
+dataverse            author authorName:"Roy, Christian"              0 kept 0
+dataverse            author authorName:"Royle, J."                   0 kept 0
+dataverse            author authorName:"Rustadbakken, Atle"          0 kept 0
+dataverse            author authorName:"Samek, Isaiah"               0 kept 0
+dataverse            author authorName:"Samways, Michael"            0 kept 0
+dataverse            author authorName:"Sandercock, Brett"           1 kept 1
+dataverse            author authorName:"Schank, Cody"                0 kept 0
+dataverse            author authorName:"Scheele, Ben"                0 kept 0
+dataverse            author authorName:"Schleimer, Anna"             0 kept 0
+dataverse            author authorName:"Schmid, Hans"                1 kept 1
+dataverse            author authorName:"Schmid-Egger, Christian"     0 kept 0
+dataverse            author authorName:"Schorr, Gregory"             0 kept 0
+dataverse            author authorName:"Schram, Michael"             0 kept 0
+dataverse            author authorName:"Schroder, Mellesa"           0 kept 0
+dataverse            author authorName:"Schuett, Gordon"             0 kept 0
+dataverse            author authorName:"Schulz, Martin"              0 kept 0
+dataverse            author authorName:"Schwartz-Tzachor, Racheli"   0 kept 0
+dataverse            author authorName:"Sears, Richard"              0 kept 0
+dataverse            author authorName:"Sedinger, James"             0 kept 0
+dataverse            author authorName:"Sekercioglu, Cagan"          0 kept 0
+dataverse            author authorName:"Sherley, Richard"            0 kept 0
+dataverse            author authorName:"Shirley, Matthew"            2 kept 2
+dataverse            author authorName:"Sillett, T."                 0 kept 0
+dataverse            author authorName:"Simon, Matthew"              0 kept 0
+dataverse            author authorName:"Simonis, Juniper"            0 kept 0
+dataverse            author authorName:"Sinha, Bitapi"               0 kept 0
+dataverse            author authorName:"Skalos, Shannon"             0 kept 0
+dataverse            author authorName:"Smith, James"                22 kept 22
+dataverse            author authorName:"Smith, Matthew"              8 kept 8
+dataverse            author authorName:"Smith, Samantha"             8 kept 8
+dataverse            author authorName:"Soldaat, Leo"                0 kept 0
+dataverse            author authorName:"Sollmann, Rahel"             1 kept 1
+dataverse            author authorName:"Sprogis, Kate"               0 kept 0
+dataverse            author authorName:"Stallings, Christopher"      0 kept 0
+dataverse            author authorName:"Steenweg, Robin"             0 kept 0
+dataverse            author authorName:"Stewart, Frances"            2 kept 2
+dataverse            author authorName:"Stienstra, Jelle"            0 kept 0
+dataverse            author authorName:"Sullivan, Kathryn"           0 kept 0
+dataverse            author authorName:"Sun, Yi-Fei"                 0 kept 0
+dataverse            author authorName:"Suryawanshi, Kulbhushansingh 0 kept 0
+dataverse            author authorName:"Sutherland, Chris"           0 kept 0
+dataverse            author authorName:"Swedberg, Dusty"             0 kept 0
+dataverse            author authorName:"Symons, John"                0 kept 0
+dataverse            author authorName:"Teitsworth, Eric"            0 kept 0
+dataverse            author authorName:"Terhune, Theron"             0 kept 0
+dataverse            author authorName:"Tetzlaff, Sasha"             0 kept 0
+dataverse            author authorName:"Thanet, Dol"                 0 kept 0
+dataverse            author authorName:"Theobald, Jennifer"          0 kept 0
+dataverse            author authorName:"Thogmartin, Wayne"           0 kept 0
+dataverse            author authorName:"Thompson, Paul"              1 kept 1
+dataverse            author authorName:"Thomson, Jordan"             0 kept 0
+dataverse            author authorName:"Tleimat, Jacquelyn"          0 kept 0
+dataverse            author authorName:"Toledo-Lima, Guilherme"      0 kept 0
+dataverse            author authorName:"Tomke, Sarah"                0 kept 0
+dataverse            author authorName:"Trosen, Claudia"             0 kept 0
+dataverse            author authorName:"Tumursukh, Lkhagvasumberel"  0 kept 0
+dataverse            author authorName:"Tun, Aung"                   0 kept 0
+dataverse            author authorName:"Tun, Saw"                    0 kept 0
+dataverse            author authorName:"Uher-Koch, Brian"            6 kept 6
+dataverse            author authorName:"Valenzuela-Sánchez, Andrés"  0 kept 0
+dataverse            author authorName:"Valverde, Teresa"            0 kept 0
+dataverse            author authorName:"Van Klink, Roel"             0 kept 0
+dataverse            author authorName:"Vermeulen, Rikjan"           0 kept 0
+dataverse            author authorName:"Vollestad, L."               0 kept 0
+dataverse            author authorName:"Volpe, John"                 2 kept 2
+dataverse            author authorName:"Volzke, Sophia"              0 kept 0
+dataverse            author authorName:"Waddle, Hardin"              0 kept 0
+dataverse            author authorName:"Waddle, J."                  0 kept 0
+dataverse            author authorName:"Wahlberg, Niklas"            0 kept 0
+dataverse            author authorName:"Waits, Lisette"              0 kept 0
+dataverse            author authorName:"Wall, Kara"                  0 kept 0
+dataverse            author authorName:"Waller, Lauren"              1 kept 1
+dataverse            author authorName:"Wang, Tian-Ming"             0 kept 0
+dataverse            author authorName:"Westra, Toon"                0 kept 0
+dataverse            author authorName:"Whittington, Jesse"          0 kept 0
+dataverse            author authorName:"Williams, Ian"               0 kept 0
+dataverse            author authorName:"Wirsing, Aaron"              0 kept 0
+dataverse            author authorName:"Work, Kirsten"               1 kept 1
+dataverse            author authorName:"Wotherspoon, Simon"          0 kept 0
+dataverse            author authorName:"Wunder, Michael"             0 kept 0
+dataverse            author authorName:"Xiao, Yuqian"                0 kept 0
+dataverse            author authorName:"Yackel Adams, Amy"           0 kept 0
+dataverse            author authorName:"Yadav, Ramesh"               0 kept 0
+dataverse            author authorName:"Yoccoz, Nigel"               2 kept 2
+dataverse            author authorName:"Zaw, Than"                   0 kept 0
+dataverse            author authorName:"Zhang, Dandan"               0 kept 0
+dataverse            author authorName:"Ziolkowski, David"           3 kept 3
+dataverse            author authorName:"Zipkin, Elise"               2 kept 2
+dataverse            author authorName:"Zuniga-Vega, Jaime"          0 kept 0
+dataverse            author authorName:"Zuniga-Vega, Jose"           0 kept 0
+dataverse            author authorName:"de Bruyn, P."                1 kept 1
+dataverse            author authorName:"de Zeeuw, Marnix"            0 kept 0
+dataverse            author authorName:"van Strien, Arco"            0 kept 0
+dataverse            author authorName:"Åström, Jens"                1 kept 1
+19200 hits, 13256 deposits, 13114 untriaged -> discovery/backlog.csv
