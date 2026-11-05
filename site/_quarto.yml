@@ -4,7 +4,7 @@ project:
   render:
     - "*.qmd"
   resources:
-    - figures.js
+    - specimen.js
   # Writes data/site_stats.json from the pipeline's staging files so the
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
@@ -19,29 +19,33 @@ website:
   site-url: https://ben-domingue.github.io/eco/
   repo-url: https://github.com/ben-domingue/eco
   repo-actions: [issue]
-  description: "A draft IRW-style warehouse for ecological detection data: occupancy, counts and capture histories in one long format."
+  description: "Ecological detection data in one format: occupancy surveys, repeated counts and capture histories from public deposits, validated and versioned."
   navbar:
     title: "eco"
     search: true
     left:
-      - href: index.qmd
-        text: Home
-      - href: data.qmd
-        text: Data
-      - href: r.qmd
-        text: R package
-      - href: standard.qmd
-        text: Standard
-      - href: firstlook.qmd
-        text: First look
-      - href: vignettes/index.qmd
-        text: Vignettes
-      - href: contribute.qmd
-        text: Contribute
-      - href: corrections.qmd
-        text: Releases
-      - href: data_notes.qmd
-        text: Notes
+      - text: Data
+        menu:
+          - href: data.qmd
+            text: Browse the tables
+          - href: data_notes.qmd
+            text: Data notes
+          - href: corrections.qmd
+            text: Releases and corrections
+      - text: Use it
+        menu:
+          - href: r.qmd
+            text: R package
+          - href: vignettes/index.qmd
+            text: Vignettes
+      - text: The format
+        menu:
+          - href: standard.qmd
+            text: The standard
+          - href: design.qmd
+            text: Design decisions
+          - href: contribute.qmd
+            text: Converting a deposit
       - href: about.qmd
         text: About
     right:

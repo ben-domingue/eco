@@ -66,7 +66,7 @@ pipeline has built but Redivis has not yet released are not offered by
 A few tables are bigger than the 100 MB Redivis serves without a login:
 `eco_list_tables()` marks them `needs_login`, and `eco_info()` says so. For
 those `eco_fetch()` uses the `redivis`
-client, as the `irw` package does for every table. That needs a free Redivis
+client. That needs a free Redivis
 account and two more packages, once:
 
 ```r
@@ -89,13 +89,4 @@ can be tried without a network:
 eco_to_unmarked(schank_2015_tapir_occ) |> unmarked::occu(~1 ~1, data = _)
 ```
 
-## Why not the `irw` package
-
-The [`irw`](https://itemresponsewarehouse.github.io/Rpkg/) R and Python
-packages are hard-wired to the IRW shard list (`Rpkg/R/redivis-config.R`,
-`Python-pkg/src/irw/config.py`) and their helpers expect `id`, `item`,
-`resp`, so they cannot read `datapages.eco` without a fork, and would give
-the wrong column names if they could. `eco` borrows their shape
-(`irw_list_tables`, `irw_filter`, `irw_fetch`, `irw_long2resp`,
-`irw_set_version`) and `eco_to_irw()` hands a table to IRW tooling when that
-is what you want. Source: [`Rpkg/`](https://github.com/ben-domingue/eco/tree/main/Rpkg).
+Source: [`Rpkg/`](https://github.com/ben-domingue/eco/tree/main/Rpkg).

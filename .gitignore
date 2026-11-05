@@ -34,3 +34,4 @@ output/*.parts/
 # Breeding Bird Survey (#24): the BCR 15 block and stop cores (104 MB, 334 MB); the national table is parts above.
 output/ziolkowski_2026_bbs_*.csv
 !output/ziolkowski_2026_bbs_*__*.csv
+site/data/specimens.json
