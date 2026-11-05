@@ -26,6 +26,12 @@
 #   AAAA_BB_Sex.csv    ANIMAL_ID, SEX (0 female, 1 male).
 #   Unstructured search-encounter survey: observers drove the reserve and conservancies and
 #   photographed cheetahs; each pixel driven on a day is a "trap" operated on that occasion.
+#   Under the E9 ruling on search-encounter SCR (2026-11-05): the source deposited the search
+#   already discretised (pixel locations, the pixel x day searched matrix, km driven per
+#   pixel-day), so the table is SCR under the existing form with no discretisation by the
+#   processor. Each decision below is read off the deposit: trap = deposited LOC_ID, survey =
+#   Traps == 1, effort = deposited log km. (Held 2026-11-05 until that ruling; the right whale
+#   line-transect SCR, which has no deposited discretisation, stays held.)
 #
 # Mapping (standard E9 experimental, spatial capture-recapture; responseType detection,
 # unitKind individual):
@@ -155,4 +161,4 @@ stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Spatial captur
   sampling_protocol = "search_encounter", design = "Multi-session (8 seasonal sessions x 90 days)",
   realm = "Terrestrial", country = "KEN", coordinates = "Coarsened (trap coordinates centred on the search grid, local metres; VU taxon)",
   notes = "Experimental (E9): search pixels as traps; session-scoped animal ids.",
-  status = "tagged; do_not_publish: search-encounter SCR awaits Ben's ruling (batch 21 held the right whale line-transect SCR for a rule; here the source already discretised the search into pixel x day traps with effort)")
+  status = "tagged")

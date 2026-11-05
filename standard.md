@@ -356,6 +356,18 @@ method; `y_raw` keeps the method's own code),
 per-detection rows with scores (`detection_event`). A table in this list is tagged
 `experimental` and may be restructured between versions.
 
+**Ruling (search-encounter SCR, 2026-11-05).** A search-encounter survey (observers
+search an area and detect individuals wherever they are, with no fixed detectors) is
+spatial capture–recapture under the form above when the source deposited the search
+already discretised: a set of detector locations (search pixels, grid cells, track
+segments), which of them were searched on each occasion, and optionally the effort per
+location × occasion. `trap` is the source's detector unit, `__traps` carries its
+location, a survey exists at every detector × occasion the source marks as searched
+(`surveyEvidence = effort_table`), and the source's effort goes in an `obs_` column
+named by `effortColumn`. Nothing is discretised by the processor. A survey whose
+detector is a continuous track or whose detections carry continuous locations without a
+deposited discretisation is held until the standard has a form for it.
+
 **Out of scope:** presence-only occurrence records, telemetry and movement,
 used–available resource selection, aggregated indices without unit-level data, model
 outputs. A deposit that fits none of the three lists is logged against the matching
@@ -478,4 +490,8 @@ shipped and why. Facts about the source are assertions, not comments.
   publishes it, is that survey's observation. E4: the split of a table over about five
   million rows is stated as period parts, `output/<table>.parts/part-NN.csv` with one
   `__dataset.json` and one set of side tables, one table on Redivis.
+- **v1.1-draft, search-encounter SCR ruling (2026-11-05).** E9: a search-encounter
+  survey the source deposited as detector locations × occasions searched (with effort)
+  is spatial capture–recapture under the existing form; one with continuous tracks or
+  locations is held. First table: `broekhuis_2020_mara_cheetah_scr`.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
