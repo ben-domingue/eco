@@ -6,7 +6,11 @@
 #   metadata/run_pipeline.sh 01 03      # just those stages
 #
 # 01 metadata.csv   computed per table from output/
-# 02 biblio.csv     dictionary_auto.csv joined to __dataset.json; drops rows with no core table
+# 02 biblio.csv     dictionary_auto.csv joined to __dataset.json; drops rows with no __dataset.json
+#
+# Tables are listed by output/<t>__dataset.json (metadata/tables.R), so the
+# pipeline is safe on a clone without the gitignored cores: stage 01 keeps the
+# existing row of a table whose core is absent, and nothing is dropped (#66).
 # 03 tags.csv       tags_auto.csv with tags_human.csv cells winning; vocabulary enforced
 # 11 status.json    counts and the appended history row; reads 01, 03 and validate/report.csv
 #
