@@ -20,7 +20,7 @@ prose <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names 
 d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url)], by = "table")
 d <- merge(d, num[, .(table, n_units, n_taxa, n_periods, n_occasions, n_rows, sample_floor,
                       columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened,
-                      survey_evidence)], by = "table")
+                      survey_evidence, script)], by = "table")
 d <- merge(d, prose, by = "table")
 d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
 dn <- as.data.table(read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character"))
@@ -100,7 +100,7 @@ for (i in seq_len(nrow(d))) {
   cat(sprintf("| Survey evidence | `%s` |\n", r$survey_evidence))
   cat(sprintf("| Columns | %s |\n", paste0("`", strsplit(r$columns, ", ")[[1]], "`", collapse = " ")))
   cat(sprintf("| Source | [%s](%s), %s |\n", r$sourceURL, r$sourceURL, r$licence))
-  cat(sprintf("| Script | [`data/%s.R`](%s/data/%s.R) |\n", r$table, gh, r$table))
+  cat(sprintf("| Script | [`%s`](%s/%s) |\n", r$script, gh, r$script))
   if (nzchar(r$notes)) cat(sprintf("\nNotes: %s\n", r$notes))
   for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
   # a dataset and its paper share one citation field; show each on its own line
