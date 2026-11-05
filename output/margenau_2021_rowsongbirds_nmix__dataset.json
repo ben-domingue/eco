@@ -39,7 +39,12 @@
     "n_occasions": 3,
     "n_surveys": 1206,
     "y_values": "0,1,2,3,4,5,6,7",
-    "prop_zero": 0.896
+    "prop_zero": 0.896,
+    "n_traps": 1,
+    "n_zero": 120967,
+    "n_positive": 14105,
+    "n_units_detected": 260,
+    "max_y": 7
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_treatment", "period_calendar_year", "obs_time_hhmm"],

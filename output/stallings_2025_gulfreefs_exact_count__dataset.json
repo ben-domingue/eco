@@ -52,7 +52,12 @@
     "n_occasions": 6,
     "n_surveys": 1349,
     "y_values": "0-10025 (154 distinct)",
-    "prop_zero": 0.937
+    "prop_zero": 0.937,
+    "n_traps": 1,
+    "n_zero": 199631,
+    "n_positive": 13511,
+    "n_units_detected": 14,
+    "max_y": 10025
   },
   "sampleFloor": "below (14 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_visibility_m", "obs_temperature_c"],

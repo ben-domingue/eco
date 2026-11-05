@@ -49,7 +49,12 @@
     "n_occasions": 5,
     "n_surveys": 1266237,
     "y_values": "0,1",
-    "prop_zero": 0.975
+    "prop_zero": 0.975,
+    "n_traps": 1,
+    "n_zero": 1234145,
+    "n_positive": 32092,
+    "n_units_detected": 13647,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_sex", "unit_first_capture", "obs_traps_set", "obs_grid_method", "obs_weight_g", "obs_life_stage", "obs_recapture_flag"],

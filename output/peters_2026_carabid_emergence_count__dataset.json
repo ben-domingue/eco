@@ -42,7 +42,12 @@
     "n_occasions": 3,
     "n_surveys": 1529,
     "y_values": "0-55 (31 distinct)",
-    "prop_zero": 0.967
+    "prop_zero": 0.967,
+    "n_traps": 1,
+    "n_zero": 75407,
+    "n_positive": 2572,
+    "n_units_detected": 185,
+    "max_y": 55
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_crop"],

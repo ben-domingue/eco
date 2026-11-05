@@ -36,7 +36,12 @@
     "n_occasions": 4,
     "n_surveys": 230,
     "y_values": "0-37 (21 distinct)",
-    "prop_zero": 0.566
+    "prop_zero": 0.566,
+    "n_traps": 1,
+    "n_zero": 912,
+    "n_positive": 698,
+    "n_units_detected": 22,
+    "max_y": 37
   },
   "sampleFloor": "below (23 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_mtr", "period_cover_objects", "obs_day_of_year", "obs_precip", "obs_conductivity"],

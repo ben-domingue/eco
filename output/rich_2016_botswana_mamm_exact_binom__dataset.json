@@ -43,7 +43,12 @@
     "n_occasions": 1,
     "n_surveys": 221,
     "y_values": "0-23 (22 distinct)",
-    "prop_zero": 0.733
+    "prop_zero": 0.733,
+    "n_traps": 1,
+    "n_zero": 5995,
+    "n_positive": 2182,
+    "n_units_detected": 221,
+    "max_y": 23
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "unit_humans_vehicles", "unit_distance_wildlife_area_km", "unit_floodplain_grassland", "unit_distance_water_km", "unit_road_density", "unit_vegetation_density", "unit_decimalLatitude", "unit_decimalLongitude", "obs_trials"],

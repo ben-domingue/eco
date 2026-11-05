@@ -41,7 +41,12 @@
     "n_occasions": 13,
     "n_surveys": 733,
     "y_values": "0,1",
-    "prop_zero": 0.718
+    "prop_zero": 0.718,
+    "n_traps": 1,
+    "n_zero": 526,
+    "n_positive": 207,
+    "n_units_detected": 75,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "observer", "cluster_id", "unit_contents", "unit_plot_area_m2", "obs_experience"],

@@ -51,7 +51,12 @@
     "n_occasions": 3,
     "n_surveys": 328,
     "y_values": "0,1",
-    "prop_zero": 0.797
+    "prop_zero": 0.797,
+    "n_traps": 1,
+    "n_zero": 14120,
+    "n_positive": 3592,
+    "n_units_detected": 125,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_survey_year", "unit_country", "unit_age_years", "unit_area_ha", "unit_shape_index", "unit_structure_sd_dbh", "unit_current_woodland_prop_3km", "unit_old_woodland_prop_3km", "unit_lost_woodland_prop_3km", "unit_trees_outside_woodland_prop_3km", "unit_arable_prop_3km", "unit_livestock_density_3km", "unit_x", "unit_y", "unit_coordinateUncertaintyInMeters"],

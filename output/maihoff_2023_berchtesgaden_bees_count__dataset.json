@@ -53,7 +53,12 @@
     "n_occasions": 6,
     "n_surveys": 356,
     "y_values": "0-71 (34 distinct)",
-    "prop_zero": 0.957
+    "prop_zero": 0.957,
+    "n_traps": 1,
+    "n_zero": 44646,
+    "n_positive": 1990,
+    "n_units_detected": 33,
+    "max_y": 71
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "period_temperature_sampling_c", "period_temperature_annual_c", "period_mean_flower_cover_pct", "period_management", "obs_n_days", "obs_first_hour", "obs_round", "obs_flower_cover_pct"],

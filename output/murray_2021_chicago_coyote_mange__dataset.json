@@ -58,7 +58,12 @@
     "n_occasions": 28,
     "n_surveys": 32898,
     "y_values": "0,1,2",
-    "prop_zero": 0.938
+    "prop_zero": 0.938,
+    "n_traps": 1,
+    "n_zero": 30871,
+    "n_positive": 2027,
+    "n_units_detected": 89,
+    "max_y": 2
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_house_km2", "unit_tree_cover", "unit_impervious_cover", "obs_week", "obs_n_images", "obs_n_mange_images", "obs_mean_blur", "obs_prop_in_color", "obs_max_propbodyvis"],

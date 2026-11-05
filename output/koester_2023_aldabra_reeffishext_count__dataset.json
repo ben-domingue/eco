@@ -46,7 +46,12 @@
     "n_occasions": 3,
     "n_surveys": 84,
     "y_values": "0-341 (37 distinct)",
-    "prop_zero": 0.885
+    "prop_zero": 0.885,
+    "n_traps": 1,
+    "n_zero": 14719,
+    "n_positive": 1913,
+    "n_units_detected": 21,
+    "max_y": 341
   },
   "sampleFloor": "below (21 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_depth_m", "unit_reef_zone"],

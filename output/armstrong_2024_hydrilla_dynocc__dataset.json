@@ -45,7 +45,12 @@
     "n_occasions": 10,
     "n_surveys": 4211,
     "y_values": "0,1",
-    "prop_zero": 0.911
+    "prop_zero": 0.911,
+    "n_traps": 1,
+    "n_zero": 3836,
+    "n_positive": 375,
+    "n_units_detected": 147,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_depth_cm", "unit_volume_cm3", "unit_flood_height_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_nearest_pool_m", "unit_dist_river_m", "unit_days_flooded", "unit_days_flooded_per_year", "unit_flood_events", "unit_flood_events_per_year", "obs_n_records"],

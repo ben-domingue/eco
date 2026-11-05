@@ -49,7 +49,12 @@
     "n_occasions": 1,
     "n_surveys": 1397,
     "y_values": "0,1,2,3,4",
-    "prop_zero": 0.863
+    "prop_zero": 0.863,
+    "n_traps": 1,
+    "n_zero": 1206,
+    "n_positive": 191,
+    "n_units_detected": 127,
+    "max_y": 4
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_identity", "unit_known", "unit_sex", "obs_precapture", "obs_age_class"],

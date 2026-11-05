@@ -34,7 +34,12 @@
     "n_occasions": 3,
     "n_surveys": 659,
     "y_values": "0,1,2,3,4,7,10,12",
-    "prop_zero": 0.874
+    "prop_zero": 0.874,
+    "n_traps": 1,
+    "n_zero": 576,
+    "n_positive": 83,
+    "n_units_detected": 40,
+    "max_y": 12
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_elev", "unit_length", "unit_forest", "obs_ivel_std", "obs_date_doy_std"],

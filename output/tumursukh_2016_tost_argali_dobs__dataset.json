@@ -45,7 +45,12 @@
     "n_occasions": 3,
     "n_surveys": 99,
     "y_values": "0,1",
-    "prop_zero": 0.667
+    "prop_zero": 0.667,
+    "n_traps": 1,
+    "n_zero": 66,
+    "n_positive": 33,
+    "n_units_detected": 33,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_group_size"],

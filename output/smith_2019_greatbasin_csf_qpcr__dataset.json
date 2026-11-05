@@ -42,7 +42,12 @@
     "n_occasions": 3,
     "n_surveys": 1512,
     "y_values": "0,1",
-    "prop_zero": 0.743
+    "prop_zero": 0.743,
+    "n_traps": 1,
+    "n_zero": 1123,
+    "n_positive": 389,
+    "n_units_detected": 153,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_visual_dipnet_detected"],

@@ -42,7 +42,12 @@
     "n_occasions": 4,
     "n_surveys": 6144,
     "y_values": "0,1",
-    "prop_zero": 0.993
+    "prop_zero": 0.993,
+    "n_traps": 64,
+    "n_zero": 6101,
+    "n_positive": 43,
+    "n_units_detected": 24,
+    "max_y": 1
   },
   "sampleFloor": "below (24 units < 30)",
   "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_sex"],

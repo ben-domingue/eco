@@ -46,7 +46,12 @@
     "n_occasions": 7,
     "n_surveys": 133,
     "y_values": "0-20 (20 distinct)",
-    "prop_zero": 0.94
+    "prop_zero": 0.94,
+    "n_traps": 1,
+    "n_zero": 14382,
+    "n_positive": 913,
+    "n_units_detected": 8,
+    "max_y": 20
   },
   "sampleFloor": "below (8 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_stratum", "obs_duration_min", "obs_weather", "obs_start_time"],

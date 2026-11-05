@@ -37,7 +37,12 @@
     "n_occasions": 4,
     "n_surveys": 1341,
     "y_values": "0,1",
-    "prop_zero": 0.761
+    "prop_zero": 0.761,
+    "n_traps": 1,
+    "n_zero": 1020,
+    "n_positive": 321,
+    "n_units_detected": 83,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_habitat_substrate_score", "unit_habitat_cover_score", "unit_habitat_total_score", "unit_developed_prop", "unit_grass_pasture_prop", "unit_crop_prop", "unit_wetland_prop", "unit_forest_prop", "unit_management_unit", "period_tq_mean", "period_drought_index_max", "obs_discharge_m3s_prev_day", "obs_bait_age_days"],

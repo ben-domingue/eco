@@ -38,7 +38,12 @@
     "n_occasions": 8,
     "n_surveys": 1404,
     "y_values": "0,1",
-    "prop_zero": 0.901
+    "prop_zero": 0.901,
+    "n_traps": 1,
+    "n_zero": 1265,
+    "n_positive": 139,
+    "n_units_detected": 44,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site_id", "unit_elevation_m", "unit_burnt_2019_20", "unit_grazing_index", "obs_time_hhmm", "obs_air_temp_c", "obs_tiles_available", "obs_tile_temp_mean_c", "obs_temp_diff", "obs_survey_no"],

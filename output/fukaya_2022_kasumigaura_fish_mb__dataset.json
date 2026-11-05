@@ -43,7 +43,12 @@
     "n_occasions": 3,
     "n_surveys": 144,
     "y_values": "0,1",
-    "prop_zero": 0.705
+    "prop_zero": 0.705,
+    "n_traps": 1,
+    "n_zero": 5077,
+    "n_positive": 2123,
+    "n_units_detected": 50,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_riverbank_unvegetated", "obs_replicate_label"],
