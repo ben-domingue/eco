@@ -44,7 +44,12 @@
     "n_occasions": 4,
     "n_surveys": 376,
     "y_values": "0,1",
-    "prop_zero": 0.864
+    "prop_zero": 0.864,
+    "n_traps": 1,
+    "n_zero": 325,
+    "n_positive": 51,
+    "n_units_detected": 15,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "obs_method", "obs_filters", "obs_volume_filtered_ml", "obs_volume_collected_ml", "obs_preservation", "obs_extract_volume_ul", "obs_qpcr_run", "obs_suspected_false_positive"],

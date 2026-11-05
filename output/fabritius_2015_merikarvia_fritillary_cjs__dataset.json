@@ -43,7 +43,12 @@
     "n_occasions": 1,
     "n_surveys": 3129,
     "y_values": "0,1",
-    "prop_zero": 0.937
+    "prop_zero": 0.937,
+    "n_traps": 1,
+    "n_zero": 2933,
+    "n_positive": 196,
+    "n_units_detected": 149,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_capture_area"],

@@ -46,7 +46,12 @@
     "n_occasions": 2,
     "n_surveys": 1624,
     "y_values": "0,1,2",
-    "prop_zero": 0.762
+    "prop_zero": 0.762,
+    "n_traps": 1,
+    "n_zero": 1238,
+    "n_positive": 386,
+    "n_units_detected": 116,
+    "max_y": 2
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_qpcr_runs", "obs_qpcr_positive", "obs_its_copies_mean"],

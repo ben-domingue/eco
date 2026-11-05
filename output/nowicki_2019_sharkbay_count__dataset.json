@@ -50,7 +50,12 @@
     "n_occasions": 12,
     "n_surveys": 3555,
     "y_values": "0-148 (52 distinct)",
-    "prop_zero": 0.703
+    "prop_zero": 0.703,
+    "n_traps": 1,
+    "n_zero": 13495,
+    "n_positive": 5688,
+    "n_units_detected": 11,
+    "max_y": 148
   },
   "sampleFloor": "below (11 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_habitat", "obs_transect_km", "obs_depth_m", "obs_start_time", "obs_n_observers", "obs_beaufort", "obs_visibility", "obs_season", "obs_unidentified_turtles"],

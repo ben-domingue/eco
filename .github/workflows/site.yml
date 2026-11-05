@@ -1,28 +1,21 @@
 # Renders site/ with Quarto and publishes it to GitHub Pages at
-# https://ben-domingue.github.io/eco/. Runs on every push to main that touches
-# the site or the files it reads (tags, dictionary, validator report, output
-# metadata, the standard), and on demand.
+# https://ben-domingue.github.io/eco/.
 #
-# Rule: every repository file a page under site/ reads must match a glob in
-# `paths:` below, or edits to it leave the page stale (#27).
-# tools/check_site_paths.py enforces this in CI (tests.yml).
+# Not on push: a render installs R, unmarked and friends and re-runs the
+# vignettes, and a batch day pushes main many times. It runs once a night,
+# and only if main has a commit since the last night's run (the `changed` job;
+# a night with no commits costs a few seconds). Every page reads main as of that
+# night, so there is no list of watched paths to keep in step with the pages.
+#
+# To publish now: Actions -> Publish site -> Run workflow, or
+#     gh workflow run site.yml
 #
 # One-time setup in the repository settings: Pages -> Source -> GitHub Actions.
 name: Publish site
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "site/**"
-      - "Rpkg/**"
-      - "standard.md"
-      - "metadata/**"
-      - "releases/**"
-      - "validate/report.csv"
-      - "output/*__dataset.json"
-      - "queue/**"
-      - ".github/workflows/site.yml"
+  schedule:
+    - cron: "23 7 * * *"   # 07:23 UTC daily (late evening US Pacific)
   workflow_dispatch:
 
 permissions:
@@ -35,7 +28,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Scheduled runs skip the render when nothing landed on main in the last
+  # 25 hours (an hour of slack for a late-starting cron). Manual runs always render.
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      render: ${{ steps.check.outputs.render }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+      - id: check
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ] || \
+             [ -n "$(git log -1 --since='25 hours ago' --format=%H)" ]; then
+            echo "render=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "render=false" >> "$GITHUB_OUTPUT"
+            echo "No commits on main in the last 25 hours; not rendering."
+          fi
+
   build-deploy:
+    needs: changed
+    if: needs.changed.outputs.render == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

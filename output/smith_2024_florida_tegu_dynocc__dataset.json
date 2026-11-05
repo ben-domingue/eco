@@ -40,7 +40,12 @@
     "n_occasions": 19,
     "n_surveys": 4527,
     "y_values": "0,1",
-    "prop_zero": 0.916
+    "prop_zero": 0.916,
+    "n_traps": 1,
+    "n_zero": 4147,
+    "n_positive": 380,
+    "n_units_detected": 55,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_dist_agriculture_m", "unit_dist_core_m", "unit_dist_urban_m", "unit_dist_release_point_m", "unit_habitat", "period_live_trap", "period_live_trap_dist_m", "period_live_trap_agency", "period_live_trap_cpue", "obs_window_end", "obs_camera_days", "obs_baited", "obs_temp_mean_f", "obs_precip_mean_in"],

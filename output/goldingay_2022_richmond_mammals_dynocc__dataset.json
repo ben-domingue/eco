@@ -36,7 +36,12 @@
     "n_occasions": 3,
     "n_surveys": 668,
     "y_values": "0,1",
-    "prop_zero": 0.853
+    "prop_zero": 0.853,
+    "n_traps": 1,
+    "n_zero": 1121,
+    "n_positive": 193,
+    "n_units_detected": 33,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_large_trees_n", "unit_primary_food_trees_pct", "unit_hollow_bearing_trees_n", "unit_ridge", "unit_mean_tree_height_m", "unit_elevation_m", "unit_rainforest_pct"],

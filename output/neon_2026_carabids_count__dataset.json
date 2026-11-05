@@ -47,7 +47,12 @@
     "n_occasions": 17,
     "n_surveys": 108657,
     "y_values": "0-361 (118 distinct)",
-    "prop_zero": 0.991
+    "prop_zero": 0.991,
+    "n_traps": 1,
+    "n_zero": 5922276,
+    "n_positive": 53859,
+    "n_units_detected": 1522,
+    "max_y": 361
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "unit_plot", "obs_trapping_days", "obs_cup_status", "obs_fluid_level"],

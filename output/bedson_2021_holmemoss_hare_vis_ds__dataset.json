@@ -39,7 +39,12 @@
     "n_occasions": 5,
     "n_surveys": 30,
     "y_values": "0,1,2,3,4,6",
-    "prop_zero": 0.3
+    "prop_zero": 0.3,
+    "n_traps": 1,
+    "n_zero": 9,
+    "n_positive": 21,
+    "n_units_detected": 6,
+    "max_y": 6
   },
   "sampleFloor": "below (6 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_line_length_km", "unit_site_area_km2", "obs_individuals"],

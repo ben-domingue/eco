@@ -46,7 +46,12 @@
     "n_occasions": 1,
     "n_surveys": 11011,
     "y_values": "0-5176 (505 distinct)",
-    "prop_zero": 0.835
+    "prop_zero": 0.835,
+    "n_traps": 1,
+    "n_zero": 2482101,
+    "n_positive": 490869,
+    "n_units_detected": 1256,
+    "max_y": 5176
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "date", "observer", "unit_county", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_day_of_year", "obs_start_time", "obs_end_time", "obs_transport"],

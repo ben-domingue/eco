@@ -45,7 +45,12 @@
     "n_occasions": 3,
     "n_surveys": 590520,
     "y_values": "0,1",
-    "prop_zero": 0.952
+    "prop_zero": 0.952,
+    "n_traps": 1,
+    "n_zero": 562267,
+    "n_positive": 28253,
+    "n_units_detected": 7845,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "unit_banded_year", "unit_banded_age_class", "unit_band_code", "unit_gosling_tarsus_mm"],

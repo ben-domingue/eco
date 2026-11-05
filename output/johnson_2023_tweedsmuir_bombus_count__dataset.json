@@ -52,7 +52,12 @@
     "n_occasions": 2,
     "n_surveys": 52,
     "y_values": "0-26 (13 distinct)",
-    "prop_zero": 0.792
+    "prop_zero": 0.792,
+    "n_traps": 1,
+    "n_zero": 412,
+    "n_positive": 108,
+    "n_units_detected": 26,
+    "max_y": 26
   },
   "sampleFloor": "below (26 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_burned", "obs_trap_hours", "obs_n_traps_disturbed", "obs_flower_count", "obs_flower_richness"],

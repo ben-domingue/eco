@@ -2,7 +2,10 @@
 
 Two kinds: the corpus in output/ passes (so a change to a check that breaks a
 shipped table is caught here, not at upload), and each check fires on a
-fixture built by breaking one thing. Run from the repo root:
+fixture built by breaking one thing. "The corpus" is the cores tracked in git:
+a gitignored core (over 100 MB, or period parts) lives on Redivis, and a local
+copy is only the leftover of a build, possibly an old one, so it is not tested
+here; write_table() and the upload gate validated it when it was built. Run from the repo root:
 
     python3 -m pytest eco_validate/tests -q
 """
@@ -11,6 +14,7 @@ from __future__ import annotations
 import json
 import re
 import shutil
+import subprocess
 from pathlib import Path
 
 import pandas as pd
@@ -22,7 +26,22 @@ from eco_validate.model import CLAUSES, INTAKE_CHECKS
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "output"
-CORE = sorted([p for p in OUT.glob("*.csv") if "__" not in p.stem] + list(OUT.glob("*.parts")))
+
+
+def _tracked_cores() -> list[Path]:
+    """Core tables tracked in git. Outside a git checkout (an installed wheel),
+    every core present, as before."""
+    present = [p for p in OUT.glob("*.csv") if "__" not in p.stem] + list(OUT.glob("*.parts"))
+    try:
+        ls = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--", "output"],
+                            capture_output=True, text=True, check=True).stdout.split()
+    except (OSError, subprocess.CalledProcessError):
+        return sorted(present)
+    tracked = {ROOT / f for f in ls}
+    return sorted(p for p in present if p in tracked)   # .parts/ is never tracked (.gitignore)
+
+
+CORE = _tracked_cores()
 
 
 # ---------------------------------------------------------------------------
@@ -39,7 +58,7 @@ def test_corpus_passes(path):
 
 @pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
 def test_cli_over_output_dir(capsys):
-    assert main([str(OUT), "--json"]) == 0
+    assert main([str(p) for p in CORE] + ["--json"]) == 0
     reports = json.loads(capsys.readouterr().out)
     assert len(reports) == len(CORE)
     assert all(r["ok"] for r in reports)

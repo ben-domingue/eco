@@ -54,7 +54,12 @@
     "n_occasions": 6,
     "n_surveys": 17704,
     "y_values": "0-69 (56 distinct)",
-    "prop_zero": 0.985
+    "prop_zero": 0.985,
+    "n_traps": 1,
+    "n_zero": 2492483,
+    "n_positive": 39189,
+    "n_units_detected": 329,
+    "max_y": 69
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_elevation", "unit_nlcdClass", "unit_plotType", "obs_traps_set", "obs_grid_method"],

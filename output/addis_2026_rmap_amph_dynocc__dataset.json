@@ -45,7 +45,12 @@
     "n_occasions": 8,
     "n_surveys": 6446,
     "y_values": "0,1",
-    "prop_zero": 0.889
+    "prop_zero": 0.889,
+    "n_traps": 1,
+    "n_zero": 26600,
+    "n_positive": 3329,
+    "n_units_detected": 271,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_forest", "unit_area_ha", "unit_ave_site_dist_m", "unit_med_site_dist_m", "unit_n_neighbors", "unit_decimalLatitude", "unit_decimalLongitude", "obs_date_doy", "obs_n_observers", "obs_citizen_scientist", "obs_air_temp_f_sq"],

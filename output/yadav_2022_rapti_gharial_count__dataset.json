@@ -38,7 +38,12 @@
     "n_occasions": 3,
     "n_surveys": 54,
     "y_values": "0-13 (14 distinct)",
-    "prop_zero": 0.074
+    "prop_zero": 0.074,
+    "n_traps": 1,
+    "n_zero": 4,
+    "n_positive": 50,
+    "n_units_detected": 17,
+    "max_y": 13
   },
   "sampleFloor": "below (18 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "unit_depth_m", "unit_width_m", "unit_sandbanks", "unit_human_disturbance"],

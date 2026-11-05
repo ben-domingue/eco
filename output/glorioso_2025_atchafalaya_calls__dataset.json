@@ -51,7 +51,12 @@
     "n_occasions": 6,
     "n_surveys": 2216,
     "y_values": "0,1,2,3",
-    "prop_zero": 0.94
+    "prop_zero": 0.94,
+    "n_traps": 1,
+    "n_zero": 29167,
+    "n_positive": 1857,
+    "n_units_detected": 69,
+    "max_y": 3
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_management_unit", "unit_owner", "unit_parish", "obs_duration_min", "obs_air_temp_c", "obs_humidity_pct", "obs_wind_ms", "obs_water_temp_c", "obs_water_depth_cm", "obs_weather", "obs_call_index_outside"],

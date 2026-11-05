@@ -51,7 +51,12 @@
     "n_occasions": 4,
     "n_surveys": 105452,
     "y_values": "0-14 (13 distinct)",
-    "prop_zero": 0.97
+    "prop_zero": 0.97,
+    "n_traps": 1,
+    "n_zero": 4705037,
+    "n_positive": 145755,
+    "n_units_detected": 3358,
+    "max_y": 14
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "observer", "unit_site", "obs_air_temp_c", "obs_wind_kmh", "obs_cloud_pct", "obs_rh_pct", "obs_habitat", "obs_individuals"],

@@ -42,7 +42,12 @@
     "n_occasions": 1,
     "n_surveys": 26271,
     "y_values": "0-21 (22 distinct)",
-    "prop_zero": 0.821
+    "prop_zero": 0.821,
+    "n_traps": 1,
+    "n_zero": 21577,
+    "n_positive": 4694,
+    "n_units_detected": 2184,
+    "max_y": 21
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_habitat_area", "unit_road_rail_length", "unit_human_pop_density", "unit_agriculture_area", "unit_settlement_area", "unit_armed_conflict", "unit_cumulative_threat", "unit_poverty", "period_prey_encounter_rate", "period_livestock_encounter_rate", "period_extractive_pressure_rate", "period_nighttime_light", "period_forest_loss", "obs_trials"],

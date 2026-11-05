@@ -39,7 +39,12 @@
     "n_occasions": 5,
     "n_surveys": 195,
     "y_values": "0,1",
-    "prop_zero": 0.728
+    "prop_zero": 0.728,
+    "n_traps": 1,
+    "n_zero": 284,
+    "n_positive": 106,
+    "n_units_detected": 23,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_mining", "unit_plantation", "obs_moon", "obs_wind", "obs_wave", "obs_vegetation", "obs_fishnets_per_km", "obs_rain_prev_day", "obs_temp_day_c", "obs_precip_day_mm", "obs_temp_48h_c", "obs_precip_48h_mm"],

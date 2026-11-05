@@ -44,7 +44,12 @@
     "n_occasions": 1,
     "n_surveys": 1199,
     "y_values": "0,1,2,3,4",
-    "prop_zero": 0.458
+    "prop_zero": 0.458,
+    "n_traps": 1,
+    "n_zero": 549,
+    "n_positive": 650,
+    "n_units_detected": 241,
+    "max_y": 4
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "obs_leaf_area_cm2"],

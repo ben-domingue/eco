@@ -31,8 +31,8 @@ PREFIX_VOCAB <- list(
   design      = c("Single-season", "Multi-season", "Multi-session", "Robust design"),
   status      = c("tagged"))
 
-tables <- sort(c(sub("\\.csv$", "", grep("__", list.files(out_dir, "\\.csv$"), value = TRUE, invert = TRUE)),
-                 sub("\\.parts$", "", list.files(out_dir, "\\.parts$"))))   # period parts (standard E4)
+source(file.path(root, "metadata", "tables.R"))
+tables <- eco_tables(out_dir)   # by __dataset.json, so a gitignored core does not drop its table (#66)
 read_tags <- function(f) {
   if (!file.exists(f)) return(as.data.table(setNames(replicate(length(TAG_COLS), character(), simplify = FALSE), TAG_COLS)))
   d <- fread(f, colClasses = "character")
@@ -50,7 +50,7 @@ if (anyDuplicated(auto$table) || anyDuplicated(human$table)) stop("duplicate tab
 missing <- setdiff(tables, union(auto$table, human$table))
 if (length(missing)) stop("core table(s) without a tags row: ", paste(missing, collapse = ", "))
 dropped <- setdiff(union(auto$table, human$table), tables)
-if (length(dropped)) message("03_tags.R: dropping tags row(s) with no core table: ", paste(dropped, collapse = ", "))
+if (length(dropped)) message("03_tags.R: dropping tags row(s) with no __dataset.json: ", paste(dropped, collapse = ", "))
 
 tags <- rbindlist(lapply(tables, function(t) {
   a <- auto[table == t]; h <- human[table == t]

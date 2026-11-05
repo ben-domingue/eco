@@ -53,7 +53,12 @@
     "n_occasions": 21,
     "n_surveys": 1725,
     "y_values": "0-500 (171 distinct)",
-    "prop_zero": 0.929
+    "prop_zero": 0.929,
+    "n_traps": 1,
+    "n_zero": 163504,
+    "n_positive": 12446,
+    "n_units_detected": 22,
+    "max_y": 500
   },
   "sampleFloor": "below (22 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_n_observers", "obs_start_time", "obs_end_time", "obs_wind_beaufort", "obs_cloud_cover_pct", "obs_temperature_c"],

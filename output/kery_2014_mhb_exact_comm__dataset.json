@@ -37,7 +37,12 @@
     "n_occasions": 3,
     "n_surveys": 751,
     "y_values": "0-299 (93 distinct)",
-    "prop_zero": 0.824
+    "prop_zero": 0.824,
+    "n_traps": 1,
+    "n_zero": 97185,
+    "n_positive": 20722,
+    "n_units_detected": 266,
+    "max_y": 299
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "observer", "unit_x", "unit_y", "unit_elev", "unit_rlength", "unit_forest", "unit_nsurvey_planned", "obs_date_doy", "obs_dur_min", "taxon_body_length_cm", "taxon_body_mass_g", "taxon_wing_span_cm", "taxon_specid"],

@@ -29,7 +29,7 @@ pipeline; eco does not, and one repo means one place to look.
 | `queue/` | `candidates.csv`: inspected deposits, their `status` (`available`, `built: <table>`, `held: ...`, `blocked: ...`, `deferred: ...`) and `claimed_by`. `human_review.csv`: what was held and why. |
 | `BATCH_LOG.md` | One entry per conversion batch: built, held, what strained the standard. |
 | `site/` | Quarto website, published to GitHub Pages by `.github/workflows/site.yml`; pages read the repo's own files at render time. |
-| `.github/workflows/` | `tests.yml`: on every PR and push, `eco-validate output/`, the validator's tests, `tools/check_coverage.py` (every core table has `__taxa`, `__dataset.json`, dictionary, tags and metadata rows) and an R parse check; offline by design. `release-eco-validate.yml`: an `eco-validate-vX.Y.Z` tag builds the wheel and attaches it to a GitHub release. `rebuild.yml`: `data/run_all.R` from source, on demand and monthly, never on push (network-bound). `site.yml`: the website. |
+| `.github/workflows/` | `tests.yml`: on every PR and push, `eco-validate output/`, the validator's tests, `tools/check_coverage.py` (every core table has `__taxa`, `__dataset.json`, dictionary, tags and metadata rows) and an R parse check; offline by design. `release-eco-validate.yml`: an `eco-validate-vX.Y.Z` tag builds the wheel and attaches it to a GitHub release. `rebuild.yml`: `data/run_all.R` from source, on demand and monthly, never on push (network-bound). `site.yml`: the website, rendered nightly when main changed and on demand, never on push. |
 | `discovery/`, `discovery_log.csv`, `discovery_summary.md` | The repository search that fed the queue. |
 | `analysis/`, `report.html`, `roundtrip_report.md` | The exploratory study's figures and reports. |
 

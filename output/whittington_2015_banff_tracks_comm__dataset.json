@@ -44,7 +44,12 @@
     "n_occasions": 14,
     "n_surveys": 872,
     "y_values": "0,1",
-    "prop_zero": 0.888
+    "prop_zero": 0.888,
+    "n_traps": 1,
+    "n_zero": 5419,
+    "n_positive": 685,
+    "n_units_detected": 244,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_transect", "unit_interval", "unit_prev_segment_within_1500m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_days_snow"],
