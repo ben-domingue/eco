@@ -1,0 +1,73 @@
+{
+  "table": "martel_2020_tidewatergoby_edna",
+  "title": "Rangewide eDNA qPCR detections of tidewater goby in 813 water samples at 192 California coastal sites, 2016-2017",
+  "creator": "Kinziger, Andrew",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.vdncjsxs9",
+  "sourceURL": "https://doi.org/10.5061/dryad.vdncjsxs9",
+  "citation": "Kinziger, A. (2020). Data: Using environmental DNA and occupancy modeling to estimate rangewide metapopulation dynamics [Dataset]. Dryad. https://doi.org/10.5061/dryad.vdncjsxs9",
+  "paperDOI": "10.1111/mec.15693",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Water samples from estuaries, lagoons and ponds across the California range of the endangered tidewater goby, each tested with 3 to 6 qPCR replicates, at the same 192 sites in 2016 and 2017, with water quality, vegetation, ocean connection and estuary size per sample.",
+  "samplingProtocol": "Environmental DNA: 1 to 10 water samples per site and season, each filtered and assayed by species-specific qPCR in 3, 4 or 6 replicates.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "qPCR replicates of one water sample; samples nest in sites (cluster_id), seasons are periods",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = site, unit = water sample, occasion = qPCR replicate, period = season (a sample belongs to one season; site dynamics are across cluster_id).",
+  "geographicCoverage": "coastal California, USA, Del Norte to San Diego counties; coordinates coarsened to 0.1 degree",
+  "temporalCoverage": "2016-05/2017-11",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Sample coordinates (to 1e-5 to 1e-7 degree in the deposit) coarsened to 0.1 degree with coarsen_coords(): the tidewater goby is federally endangered (US ESA), as the source states. Site names not shipped (E7.4); cluster_id is the deposit's numeric siteID."
+  },
+  "crs": "EPSG:4326",
+  "notShipped": {
+    "site_names": "place names of the sites (E7.4: coordinates are coarsened for the endangered goby)",
+    "neighborhood_matrix": "Neighborhood_MatrixV6.3.csv, shoreline distances between sites in a sub-unit: a model input whose exact distances would undo the coarsening",
+    "SL_covariates": "SL_do, SL_temp, SL_sal, SL_turb, SL_veg: site-season means of the shipped sample values",
+    "model_output": "dynamic multi-scale occupancy estimates"
+  },
+  "notes": "date is NA on 27 season-2 samples whose deposited date is not an unambiguous 2017 MM/DD/YYYY date (a 2016 year typo, a DD/MM date and 13 dates in the same block that read either way); the deposited string is on every row as obs_date_as_deposited.",
+  "summary": {
+    "n_rows": 2788,
+    "n_units": 813,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 6,
+    "n_surveys": 2788,
+    "y_values": "0,1",
+    "prop_zero": 0.777,
+    "n_traps": 1,
+    "n_zero": 2166,
+    "n_positive": 622,
+    "n_units_detected": 247,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_sample", "unit_recovery_unit", "unit_recovery_subunit", "unit_do_mgl", "unit_temp_c", "unit_salinity_ppt", "unit_turb_s", "unit_veg", "unit_tide", "unit_estuary_ha", "unit_estuary_size", "unit_decimalLatitude", "unit_decimalLongitude", "obs_date_as_deposited"],
+  "coreMd5": "8dbcc697ade888975102607053a2a4d3",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "4ceacf872dbf0422299e643b6adaf6f5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d207951d9a484559e837b887aae00824"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/martel_2020_tidewatergoby_edna.R",
+  "buildDate": "2026-11-05"
+}
