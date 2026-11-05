@@ -1,0 +1,69 @@
+{
+  "table": "twining_2024_adirondack_carniv_occ",
+  "title": "Weekly camera detections of coyote, fisher and American marten at 195 baited camera sites in the Adirondacks and Tug Hill, New York, winters 2016-2018",
+  "creator": "Twining, Joshua; Jensen, Paul; Fuller, Angela; Brazeal, Jen",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.pc866t1rz",
+  "sourceURL": "https://doi.org/10.5061/dryad.pc866t1rz",
+  "citation": "Twining, J., Jensen, P., Fuller, A., & Brazeal, J. (2024). Intraguild interactions and abiotic conditions mediate occupancy of mammalian carnivores: co-occurrence of coyotes-fishers-martens [Dataset]. Dryad. https://doi.org/10.5061/dryad.pc866t1rz",
+  "paperDOI": "10.1111/oik.10577",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Winter camera trap survey of carnivores in New York's Northern Zone (Adirondacks and Tug Hill): one baited camera in each of 195 stratified-random 15-km2 sample units, run for three weeks each January-March of 2016, 2017 (13 units not sampled) and 2018. Detection/non-detection of coyote, fisher and American marten per 7-day occasion, with camera model, bait, temperature and year-specific landscape and winter covariates in a 6 km2 buffer.",
+  "samplingProtocol": "One camera 1.0-1.5 m up a tree facing a bait station (beaver, deer, moose or other carcass) on the opposite tree, three weeks per winter; detections summarised by 7-day occasion.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "three consecutive weeks within a winter; the authors fit single-season and co-occurrence occupancy models per year",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Adirondack and Tug Hill regions, northern New York, USA (no coordinates deposited)",
+  "temporalCoverage": "2016-01-04/2018-03-27",
+  "coordinatesCoarsened": null,
+  "covariateNote": "obs_mean_temp_as_deposited is labelled degrees C in the README but runs from -18.7 to 33.2 in January-March, which reads as Fahrenheit; units unverified. period_*_6km are the authors' 6 km2-buffer covariates for the site-year (NLCD 2019 proportions, road density, winter severity index WSI, elevation, forest edge density, SNODAS snow depth, MODIS GPP); NA for the 13 site-years without a covariate row.",
+  "notShipped": {
+    "wider_buffers": "the same covariates in 15 km2 and 20 km2 buffers (alternative scales of the shipped 6 km2 set)",
+    "undescribed": "covariate columns FID, random, corerange, deer, which the README does not describe",
+    "ordinal_dates": "NZdataJulianDay7dayocc.csv (0-based ordinal of each occasion start; date carries it)",
+    "model_output": "occupancy and co-occurrence estimates"
+  },
+  "notes": "Sites not sampled in 2017 (13) have no 2017 rows; 13 further site-years are entirely NA (camera not working) and also have no rows. The fisher detection file is in a different row order from the other files and is matched by Location and SurveyYear.",
+  "summary": {
+    "n_rows": 4683,
+    "n_units": 195,
+    "n_taxa": 3,
+    "n_periods": 3,
+    "n_occasions": 3,
+    "n_surveys": 1561,
+    "y_values": "0,1",
+    "prop_zero": 0.773,
+    "n_traps": 1,
+    "n_zero": 3618,
+    "n_positive": 1065,
+    "n_units_detected": 184,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_region", "period_open_water_6km", "period_developed_open_6km", "period_developed_low_6km", "period_developed_mid_6km", "period_developed_high_6km", "period_barren_6km", "period_deciduous_6km", "period_coniferous_6km", "period_mixed_6km", "period_scrub_6km", "period_grassland_6km", "period_pasture_6km", "period_cultivated_crops_6km", "period_woody_wetlands_6km", "period_herbaceus_wetlands_6km", "period_roadden_6km", "period_wsi_6km", "period_elevation_6km", "period_forest_edge_6km", "period_snowdepth_6km", "period_gpp_6km", "obs_camera", "obs_bait", "obs_mean_temp_as_deposited"],
+  "coreMd5": "7661032796e853bc707ff854bc440528",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "period_start", "period_end", "n_sites_sampled"],
+      "md5": "4bf886cfe61557bb41bc4c175d8a4934"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "1e53aae0557ca0d7b8bcd77509a5a833"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/twining_2024_adirondack_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

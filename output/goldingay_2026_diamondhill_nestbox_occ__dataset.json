@@ -1,0 +1,68 @@
+{
+  "table": "goldingay_2026_diamondhill_nestbox_occ",
+  "title": "Nest-box detections of brush-tailed phascogale and inland sugar glider at 74 box clusters, Diamond Hill, Victoria, 12 censuses 2018-2023",
+  "creator": "Goldingay, Ross; Thomas, Karen; Quin, Darren",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.j3tx95xwd",
+  "sourceURL": "https://doi.org/10.5061/dryad.j3tx95xwd",
+  "citation": "Goldingay, R., Thomas, K., & Quin, D. (2026). Can artificial tree cavities provide population support to cavity-dependent non-flying mammals? [Dataset]. Dryad. https://doi.org/10.5061/dryad.j3tx95xwd",
+  "paperDOI": "10.1002/ece3.74280",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Nest boxes in 74 clusters of 2-4 boxes along management trails of a 600-ha block of Bendigo Regional Park (Diamond Hill), Victoria, Australia, checked twice a year (May/June and October/November) from May 2018 to October 2023. Detection of the brush-tailed phascogale and the inland sugar glider in any box of a cluster at each census.",
+  "samplingProtocol": "Box inspection from a ladder at each census; animals in the boxes recorded (phascogales hand-captured and sexed from 2019). A cluster counts as a detection if any of its boxes held the species.",
+  "samplingProtocolCode": "nest_box_check",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one box check per census; censuses five to seven months apart",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Diamond Hill, Bendigo Regional Park, Victoria, Australia (no coordinates deposited)",
+  "temporalCoverage": "2018-05/2023-10",
+  "coordinatesCoarsened": null,
+  "covariateNote": "unit_n_boxes: boxes in the cluster (the box counts sum to 165; the paper says 164 boxes).",
+  "notShipped": {
+    "female_file": "Table_2 female phascogale detections: 1 where the all-phascogale file has 0 in 9 cells, so not a subset of it as the README implies",
+    "camera_study": "Table_4/5 weekly camera detection histories (30 sites, 60 weeks from January 2023): a separate design, not built in this batch",
+    "model_output": "occupancy and population-support estimates"
+  },
+  "notes": "Cluster 74 at census 5 (May-20) has no rows: the glider file says not surveyed and the phascogale file 0; treated as not surveyed for both. Census months are as labelled in the phascogale file; the glider file labels census 10 Oct-22 where the phascogale file has Nov-22 (both in __periods).",
+  "summary": {
+    "n_rows": 1746,
+    "n_units": 74,
+    "n_taxa": 2,
+    "n_periods": 12,
+    "n_occasions": 1,
+    "n_surveys": 873,
+    "y_values": "0,1",
+    "prop_zero": 0.51,
+    "n_traps": 1,
+    "n_zero": 891,
+    "n_positive": 855,
+    "n_units_detected": 74,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_n_boxes"],
+  "coreMd5": "1ac0bf36f5d56fef7a4e812644c78d56",
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "census_label", "glider_file_label", "year", "month"],
+      "md5": "abf215f9fa6553597d8065ff1a855f5f"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "ed13040276f7d799dd2f0b7436919d06"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldingay_2026_diamondhill_nestbox_occ.R",
+  "buildDate": "2026-11-05"
+}

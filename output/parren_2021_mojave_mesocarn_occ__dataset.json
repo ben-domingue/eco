@@ -1,0 +1,68 @@
+{
+  "table": "parren_2021_mojave_mesocarn_occ",
+  "title": "Camera detections of coyote, bobcat and kit fox in nine 3-day surveys at 319 baited sites in the Mojave Desert, California, 2016 and 2017",
+  "creator": "Parren, Molly",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.6t1g1jx08",
+  "sourceURL": "https://doi.org/10.5061/dryad.6t1g1jx08",
+  "citation": "Parren, M. (2021). Drought and coyotes mediate mesopredator response to human disturbance [Dataset]. Dryad. https://doi.org/10.5061/dryad.6t1g1jx08",
+  "paperDOI": "10.1002/ecs2.4258",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "California Department of Fish and Wildlife drought study: baited camera traps at 319 sites (176 cells, mostly two cameras each) in the Mojave Desert in a drought year (2016) and a post-drought year (2017), each site surveyed in one year. Detection/non-detection of coyote, bobcat and kit fox in nine 3-day survey periods, with elevation, distance to water, human disturbance and guzzler covariates.",
+  "samplingProtocol": "Baited camera trap per site; a survey is a 3-day period; a period in which the camera was not functional is not a survey.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "nine 3-day periods per site in one season; the authors fit single-season and two-species occupancy models",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Mojave Desert ecoregion, California, USA (no coordinates deposited)",
+  "temporalCoverage": "2016-03-23/2017-06-27",
+  "coordinatesCoarsened": null,
+  "covariateNote": "unit_first_survey_date is the first survey day (from julian1); the nine 3-day periods presumably follow it consecutively (27 days), which the README does not state, so there is no per-row date. unit_hd: human disturbance 1-10 within 1 km; unit_guzzler: wildlife water guzzler at the site (1/0).",
+  "notShipped": {
+    "standardised": "standardised covariates, year interactions and bait age b1..b9 in the detection-history files (derivable)",
+    "two_species_files": "the same detections interleaved for co-occurrence models",
+    "model_output": "Single_ and Two_Species_Parameter_Estimates_Figures.csv"
+  },
+  "notes": "The Central Valley half of the deposit, with daily surveys, is parren_2021_centralvalley_mesocarn_occ. temporalCoverage ends 26 days after the last first-survey date, assuming consecutive 3-day periods.",
+  "summary": {
+    "n_rows": 8529,
+    "n_units": 319,
+    "n_taxa": 3,
+    "n_periods": 2,
+    "n_occasions": 9,
+    "n_surveys": 2843,
+    "y_values": "0,1",
+    "prop_zero": 0.911,
+    "n_traps": 1,
+    "n_zero": 7770,
+    "n_positive": 759,
+    "n_units_detected": 227,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_first_survey_date", "unit_elev_km", "unit_d_water_km", "unit_hd", "unit_guzzler"],
+  "coreMd5": "9188f0b8360020a6fba0f9639b0e1ad1",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "first_survey_min", "first_survey_max", "n_sites"],
+      "md5": "8098aa53ddee1bd73bcb257533f4983a"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "c792725ab846cb86cfa6af297f731559"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/parren_2021_mojave_mesocarn_occ.R",
+  "buildDate": "2026-11-05"
+}

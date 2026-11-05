@@ -1306,3 +1306,39 @@ What this batch says about the standard:
   taxa; residential garden locations may deserve the E7.4 treatment, which the standard does not say.
 - **Species-specific survey sets in a stacked file** (owls): per-species NA patterns at one site-year are the
   per-species occasion question again, which is still deferred.
+
+## Batch 28 — 2026-11-05 (card-sorted queue rows: Sacramento green sturgeon sonar, Illinois coyotes, Adirondack carnivores, California mesocarnivores, Victorian nest boxes)
+
+One agent in `~/eco-b28` (branch `batch-28`, from main at 9bff2dc after batch 27). Rows from the 2026-11-05 card sort
+(#85). Eleven deposits downloaded and read (about a dozen more screened from Dryad metadata only and left `available`),
+six tables built from five deposits and uploaded to the Redivis draft, six deposits not built.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| battaile_2023_sacramento_sturgeon_count | repeated counts, side scan sonar | Dryad (UCSC) CC0 | 483 | green sturgeon (IUCN EN, southern DPS ESA threatened; pools deliberately not geolocated by the authors) in 70 upper Sacramento River pools, June 2020, June 2021, July 2022, 1-7 sonar passes per pool per year; the 2022 recount of fish >= 1.5 m ships as `obs_n_ge_1_5m` (it exceeds the full count in 2 of 295 passes, unexplained) and pass direction as `obs_downstream`; the methods say 32 pools in 2020, the file has 30 |
+| proudman_2026_illinois_coyote_count | repeated counts, camera detections per week | Dryad CC0 | 3,745 | 164 INHS cameras across Illinois, winters 2021/22-2023/24 (each camera in one), up to 28 weeks; the history file has no ids and is matched to the deployments by alphabetical Site.ID, confirmed by every row's active-week count equalling its deployment length; effort and weather deposited for weeks 1-24 only; README's "2024/25" is 2023/24 in the file |
+| twining_2024_adirondack_carniv_occ | multi-species detection, baited cameras | Dryad CC0 | 4,683 | coyote, fisher, marten at 195 sites in the Adirondacks and Tug Hill, 3 x 7-day occasions in each of 2016-2018; the fisher file is in another row order (matched by key); temperature labelled C but reads as F, shipped as `obs_mean_temp_as_deposited`; 6 km2-buffer covariates as `period_*`; fisher IUCN LC set by hand (iucn_category() gives NE) |
+| parren_2021_centralvalley_mesocarn_occ | multi-species detection, baited cameras | Dryad CC0 | 20,787 | CDFW drought study, coyote, bobcat, raccoon at 266 Central Valley cameras (137 cells), 2016 or 2017, up to 27 daily surveys with dates from the deposited ordinal days; latitude only deposited |
+| parren_2021_mojave_mesocarn_occ | multi-species detection, baited cameras | Dryad CC0 | 8,529 | same deposit, coyote, bobcat, kit fox at 319 Mojave cameras (176 cells), nine 3-day surveys; only the first survey day is deposited, so no `date` (unit_first_survey_date instead); the README says the two-species files list the subordinate species first, but the coyote is first |
+| goldingay_2026_diamondhill_nestbox_occ | multi-species detection, nest-box censuses | Dryad CC0 | 1,746 | brush-tailed phascogale (NT) and inland sugar glider at 74 box clusters, Bendigo Regional Park, Victoria, 12 twice-yearly censuses 2018-2023; one cell (cluster 74, May-20) is "-" for gliders and 0 for phascogales and is treated as unsurveyed for both; the female-phascogale file is not a subset of the all-phascogale file (9 cells) and is not shipped; the deposit's separate camera study (30 sites x 60 weeks, 2023-24) is buildable but not built (batch cap) |
+
+Not built (`queue/human_review.csv`): Santa Cruz rats (blocked: paper; which of two trapping periods the 14-site
+file holds), NSW woodland bird CJS (blocked: paper; 36 species codes undefined), Connecticut/Rhode Island point
+counts (held: no location id or year per survey), Oregon Coast Range winter birds (held: one count per point; would
+need the 5-min halves as occasions), great crested newts (blocked: paper; calendar years per population not deposited),
+Konza grasshopper sparrows (held: raw captures and resights with reused and misread colour combos; the authors'
+cleaning rule is not deposited).
+
+What this batch says about the standard:
+
+- **A filtered recount of the same survey** (sturgeon): the authors recounted the 2022 sonar images keeping only
+  fish >= 1.5 m. It is an observation, not a covariate, but a second `y` of the same survey has no slot; it rides as
+  an `obs_` column. A rule for "alternative counts of one survey" would settle where it goes.
+- **Id-less detection matrices** (coyotes, Turkiye before it): matching rows to sites on the README's word is safe
+  only when something in the data checks it; here the active-week counts matched the deployment lengths row by row.
+  The guide could ask for such a check whenever rows carry no id.
+- **One cell where one species is unsurveyed** (nest boxes): a single "-" disagreement between two species files
+  from the same box check was resolved by dropping both rows; the deferred per-species survey-set ruling would cover it.
+- **Occasions known only by their first day** (Mojave): when the deposit gives only the first survey date of
+  consecutive multi-day occasions, the table ships no `date`; a sentence in the guide on inferring later occasion
+  dates would make this consistent.
