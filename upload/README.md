@@ -15,3 +15,9 @@ publishes; the release is a human click. The checklist, in order:
 A table that must not ship carries `do_not_publish: <reason>` in its tags `status`
 and the uploader refuses it. A table that has shipped and must go is a withdrawal:
 `tools/withdrawals/`.
+
+A core too big for git (over 100 MB, or period parts) lives on Redivis; the copy in
+`output/` exists only between `Rscript data/<table>.R` and the upload. The uploader
+ships a core only if it is the build its `__dataset.json` describes (`coreMd5`, or an
+`md5` per part, recorded by `write_table()`), and refuses a leftover from an older
+build as stale (#75). Rebuild, then upload, in one sitting.
