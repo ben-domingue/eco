@@ -15,10 +15,19 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 DEFAULT_ORDER=(01 02 03 11)
-declare -A STAGE=([01]=01_metadata.R [02]=02_biblio.R [03]=03_tags.R [11]=11_status.R)
-stages=("${@:-${DEFAULT_ORDER[@]}}")
+# A case, not an associative array: macOS ships bash 3.2, which has no declare -A (#65).
+stage_script() {
+  case "$1" in
+    01) echo 01_metadata.R ;;
+    02) echo 02_biblio.R ;;
+    03) echo 03_tags.R ;;
+    11) echo 11_status.R ;;
+    *)  echo "" ;;
+  esac
+}
+if [[ $# -gt 0 ]]; then stages=("$@"); else stages=("${DEFAULT_ORDER[@]}"); fi
 for s in "${stages[@]}"; do
-  f="${STAGE[$s]:-}"
+  f="$(stage_script "$s")"
   if [[ -z "$f" ]]; then echo "run_pipeline.sh: unknown stage $s" >&2; exit 2; fi
   Rscript "metadata/$f"
 done
