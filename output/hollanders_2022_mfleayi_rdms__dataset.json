@@ -1,0 +1,75 @@
+{
+  "table": "hollanders_2022_mfleayi_rdms",
+  "title": "Robust-design capture histories with Bd infection state for 686 adult Fleay's barred frogs at three creeks in New South Wales, 2017-2021",
+  "creator": "Hollanders, Matthijs; Grogan, Laura F.; Nock, Catherine J.; McCallum, Hamish I.; Newell, David A.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.g1jwstqtb",
+  "sourceURL": "https://doi.org/10.5061/dryad.g1jwstqtb",
+  "citation": "Hollanders, M., Grogan, L. F., Nock, C. J., McCallum, H. I., & Newell, D. A. (2022). Recovered frog populations coexist with endemic Batrachochytrium dendrobatidis despite load-dependent mortality [Dataset]. Dryad. https://doi.org/10.5061/dryad.g1jwstqtb",
+  "paperDOI": "10.1002/eap.2724",
+  "abstract": "Mark-recapture of adult Fleay's barred frogs (Mixophyes fleayi, IUCN EN) at Brindle, Tuntable and Bat Cave Creeks in northern New South Wales, Australia, from August 2017 to March 2021: 23 primary occasions of 2-3 consecutive nights, about six weeks apart in the breeding seasons. Each captured frog was swabbed and the swab assayed by qPCR for the amphibian chytrid fungus Batrachochytrium dendrobatidis (Bd), giving an observed infection state per capture; frogs were weighed and measured, and the Bd load is recorded. The authors fitted a multisite robust-design multistate model to ask how Bd infection and load affect survival in these recovered populations.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Night-time capture surveys of creek transects on 2-3 consecutive nights per primary occasion; frogs individually marked, sexed, weighed, measured and swabbed for Bd (qPCR); no swabs in the last primary.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured, Bd-negative",
+    "2": "captured, Bd-positive",
+    "3": "captured in the last primary (23), not swabbed: infection state not assessed"
+  },
+  "closure": "closed",
+  "closureNote": "occasion = night within a primary occasion (robust design); open between primaries, about six weeks apart",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "none",
+  "geographicCoverage": "Brindle Creek, Tuntable Creek and Bat Cave Creek, northern New South Wales, Australia (no coordinates deposited; IUCN EN taxon)",
+  "temporalCoverage": "2017-08/2021-03",
+  "designNote": "Three populations stacked, with the site in cluster_id and as the unit prefix; the period index is shared, and each site's own primary dates are in __periods and on date. Not every primary was surveyed at every site (Brindle 21, Tuntable 19, Bat Cave 21 primaries), and the number of nights per primary is 1-3.",
+  "covariateNote": "unit_sex: 0 male, 1 female (NA unknown). obs_weight_g, obs_svl_mm, obs_bd_load (Bd ITS copies per swab, NA when negative or not swabbed): measured at capture in the primary and repeated on each of its nights. obs_temp_max_c, obs_temp_min_c, obs_vp_hpa, obs_rain_mm: SILO interpolated weather on the survey day. obs_int_*: SILO mean maximum and minimum temperature and cumulative rainfall over the interval before the primary.",
+  "notes": "Every frog has a row at every survey of its site from the study's first primary (E4.4); the deposit's histories start at or near first capture, and those earlier cells are y = 0 with y_raw = 'NA'. The date of the second and third night is the primary's first night plus one or two days (the README: consecutive nights). Tuntable primary 22 is dated 1/2/20 in the deposit, between 28/12/20 and 13/3/21, and is read as 2021-02-01. A survey shows in the deposit only through frogs already marked, so a survey before a site's first capture is invisible: Tuntable primary 1 and Bat Cave primaries 1-2 have dates in dates.csv but no rows (the authors' code treats them as unsurveyed too). A juvenile study at Brindle Creek by the same first author is hollanders_2022_brindle_mfleayi_msdis.",
+  "notShipped": {
+    "ints": "intervals between primaries in 6-week units: derivable from the dates",
+    "community": "community.csv: Bd loads of swabbed frogs of sympatric species, an infection survey without a detection design",
+    "code": "the authors' Quarto/NIMBLE code (Zenodo 10.5281/zenodo.6981761)"
+  },
+  "summary": {
+    "n_rows": 30964,
+    "n_units": 686,
+    "n_taxa": 1,
+    "n_periods": 23,
+    "n_occasions": 3,
+    "n_surveys": 30964,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.923,
+    "n_traps": 1,
+    "n_zero": 28580,
+    "n_positive": 2384,
+    "n_units_detected": 686,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_sex", "obs_weight_g", "obs_svl_mm", "obs_bd_load", "obs_temp_max_c", "obs_temp_min_c", "obs_vp_hpa", "obs_rain_mm", "obs_int_temp_max_c", "obs_int_temp_min_c", "obs_int_rain_mm"],
+  "coreMd5": "bff309f11a4af74b07adf40b405c2ab9",
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "period_first_night_brindle", "period_first_night_tuntable", "period_first_night_batcave"],
+      "md5": "fb95f80fb3ae345cceed87477059456e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "8351b9869b57baa7b837176a16f497c0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hollanders_2022_mfleayi_rdms.R",
+  "buildDate": "2026-11-05"
+}
