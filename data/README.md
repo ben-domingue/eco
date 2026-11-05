@@ -223,6 +223,12 @@ CSVs with `upload/red_up_eco.py`.
 | `leipold_2025_duskygrouse_offtrail_count.R` | repeated counts, visit x playback treatment occasions | Dryad | CC0 |
 | `ruppel_2025_richmond_pollinator_comm.R` | community detection, pollinator flower watches, plant x inflorescence occasions | Dryad | CC0 |
 | `martel_2020_tidewatergoby_edna.R` | multi-scale eDNA (site, water sample, qPCR replicate), two seasons, coarsened | Dryad | CC0 |
+| `battaile_2023_sacramento_sturgeon_count.R` | repeated counts, side scan sonar passes, fish, 3 years | Dryad (UCSC) | CC0 |
+| `proudman_2026_illinois_coyote_count.R` | repeated counts, camera detections per week, 3 winters | Dryad | CC0 |
+| `twining_2024_adirondack_carniv_occ.R` | multi-species detection, baited cameras, 3 winters x 3 weeks | Dryad | CC0 |
+| `parren_2021_centralvalley_mesocarn_occ.R` | multi-species detection, baited cameras, daily occasions | Dryad | CC0 |
+| `parren_2021_mojave_mesocarn_occ.R` | multi-species detection, baited cameras, 3-day occasions | Dryad | CC0 |
+| `goldingay_2026_diamondhill_nestbox_occ.R` | multi-species detection, nest-box censuses, 12 periods | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

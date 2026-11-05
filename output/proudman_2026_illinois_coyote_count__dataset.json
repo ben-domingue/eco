@@ -1,0 +1,70 @@
+{
+  "table": "proudman_2026_illinois_coyote_count",
+  "title": "Weekly coyote detections at 164 camera traps across Illinois, three winter seasons 2021/22 to 2023/24",
+  "creator": "Proudman, Nathan; Allen, Maximilian",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.p8cz8wb5w",
+  "sourceURL": "https://doi.org/10.5061/dryad.p8cz8wb5w",
+  "citation": "Proudman, N., & Allen, M. (2026). Camera trap detections and environmental covariates for modeling scale-dependent coyote (Canis latrans) site-use intensity [Dataset]. Dryad. https://doi.org/10.5061/dryad.p8cz8wb5w",
+  "paperDOI": null,
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Illinois Natural History Survey statewide camera network (CTAP forest, grassland and wetland strata): 164 cameras, each deployed once for 13 to 28 weeks between November and June in 2021/22, 2022/23 or 2023/24. Number of coyote detections per camera-week, with weekly effort and weather and site land cover, prey (deer) and harvest covariates at three scales.",
+  "samplingProtocol": "One camera trap per site, deployed November to February and collected May to June; detections summarised in seven-day windows from the deployment date.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors fit N-mixture models treating each deployment's weeks as replicates of site-use intensity",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Illinois, USA (statewide)",
+  "temporalCoverage": "2021-12-13/2024-05-22",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published (6 decimals); Canis latrans is IUCN LC"
+  },
+  "effortColumn": "obs_effort_days",
+  "covariateNote": "y counts detections, not individuals; the independence interval is not stated. obs_* weather and effort cover weeks 1-24 only (the deposited files stop there); 126 active camera-weeks 25-28 have them NA. unit_Harvest is county trapper harvest per km2 from state reports; unit_WTD_RAB is deer detections per 100 trap nights at the camera.",
+  "notShipped": {
+    "model_output": "the authors' site-use intensity estimates (not deposited)"
+  },
+  "notes": "The detection history has no id column; its rows are matched to the deployments by alphabetical Site.ID as the README states, confirmed by every row's number of active weeks equalling its deployment length. The README's Study.Year '2024/25' is 2023/24 in the file.",
+  "summary": {
+    "n_rows": 3745,
+    "n_units": 164,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 28,
+    "n_surveys": 3745,
+    "y_values": "0-41 (23 distinct)",
+    "prop_zero": 0.583,
+    "n_traps": 1,
+    "n_zero": 2185,
+    "n_positive": 1560,
+    "n_units_detected": 162,
+    "max_y": 41
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude", "unit_deploy_begin", "unit_deploy_end", "unit_herb_100m", "unit_water_100m", "unit_shrub_100m", "unit_ag_100m", "unit_forest_100m", "unit_imperv_100m", "unit_wetland_100m", "unit_herb_1km", "unit_water_1km", "unit_shrub_1km", "unit_ag_1km", "unit_forest_1km", "unit_imperv_1km", "unit_wetland_1km", "unit_herb_5km", "unit_water_5km", "unit_shrub_5km", "unit_ag_5km", "unit_forest_5km", "unit_imperv_5km", "unit_wetland_5km", "unit_edge_dist", "unit_dist_water", "unit_Harvest", "unit_road_dens_100m", "unit_road_dens_1km", "unit_road_dens_5km", "unit_hous_dens_100m", "unit_hous_dens_1km", "unit_hous_dens_5km", "unit_WTD_RAB", "unit_HF_100m", "unit_HF_1km", "unit_HF_5km", "unit_NDVI_100m", "unit_NDVI_1km", "unit_NDVI_5km", "obs_effort_days", "obs_tmin_c", "obs_tmax_c", "obs_prcp_mm"],
+  "coreMd5": "a3140ece0cf3a1338a7324ec136e0637",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "season", "period_start", "period_end", "n_cameras"],
+      "md5": "1383a6db8495798164ad197ef841a31e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "2645f1f41e03f1947280a62fa729af42"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/proudman_2026_illinois_coyote_count.R",
+  "buildDate": "2026-11-05"
+}
