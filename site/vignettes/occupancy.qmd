@@ -713,12 +713,18 @@ cat(sprintf("R %s; eco %s; unmarked %s; AICcmodavg %s\n",
             packageVersion("AICcmodavg")))
 ```
 
-References. MacKenzie, D. I., Nichols, J. D., Lachman, G. B., Droege, S.,
-Royle, J. A. and Langtimm, C. A. (2002). Estimating site occupancy rates when
-detection probabilities are less than one. *Ecology* 83, 2248–2255.
+## References
+
+MacKenzie, D. I., Nichols, J. D., Lachman, G. B., Droege, S., Royle, J. A. and
+Langtimm, C. A. (2002). Estimating site occupancy rates when detection
+probabilities are less than one. *Ecology* 83, 2248–2255.
+
 MacKenzie, D. I. and Bailey, L. L. (2004). Assessing the fit of site-occupancy
-models. *JABES* 9, 300–318. Kéry, M. and Royle, J. A. (2016). *Applied
-Hierarchical Modeling in Ecology*, volume 1, chapters 10 and 11. Academic
-Press. Fiske, I. and Chandler, R. (2011). unmarked: an R package for fitting
+models. *JABES* 9, 300–318.
+
+Kéry, M. and Royle, J. A. (2016). *Applied Hierarchical Modeling in Ecology*,
+volume 1, chapters 10 and 11. Academic Press.
+
+Fiske, I. and Chandler, R. (2011). unmarked: an R package for fitting
 hierarchical models of wildlife occurrence and abundance. *Journal of
 Statistical Software* 43(10).
