@@ -95,11 +95,18 @@ the harness.
 
 ```bash
 Rscript data/<table>.R
-python3 -m eco_validate.cli output/<table>.csv -v --irw
-python3 -m pytest eco_validate/tests -q
+python3 -m eco_validate.cli output/<table>.csv -v --irw   # each table you built
 ```
 
-Exit 0 on the validator and all tests passing are required. Read every warning: a
+Validate the tables you built, not the corpus. CI (`tests.yml`) checks every
+tracked table, the validator tests, coverage and prose numbers on every push, so
+running those locally only repeats it. Run the corpus checks
+(`eco_validate.cli output/`, `pytest eco_validate/tests -q`, `tools/check_coverage.py`)
+yourself only when the batch changed shared code: `lib/`, `Rpkg/R/`,
+`converters/`, `eco_validate/`, `tools/` or `metadata/`. When PRs are stacked, do
+not re-run anything after merging one into the next; CI re-checks each branch.
+
+Exit 0 on the validator is required. Read every warning: a
 `survey_evidence` warning is expected for `inferred`; a `sample_floor` warning is a
 fact to carry into the batch log; a `column_order` warning means the converter was
 bypassed, look at why. Then read `output/<table>__dataset.json` against the paper's
@@ -118,14 +125,15 @@ reported design.
 ## Step 6. Ship
 
 ```bash
-Rscript validate/validate_all.R           # corpus report; the site reads it
 python3 upload/red_up_eco.py --dry-run    # every new table CORE/SIDE, nothing SKIP
 python3 upload/red_up_eco.py              # to the draft; confirms first
 ```
 
 Commit the script, its outputs, the dictionary and tags rows, the queue, the batch
-log, `data/README.md` and `validate/report.csv`, with the issue number (`#10`).
-Pull before pushing. Tell Ben the draft is ready to release; never release it.
+log and `data/README.md`, with the issue number (`#10`). Do not commit
+`validate/report.csv` from a batch: it covers the whole corpus, so stacked batches
+conflict on it. Regenerate it once on `main` after the batches merge. Pull before
+pushing. Read the CI result on the PR; a red check is yours to fix. Tell Ben the draft is ready to release; never release it.
 
 ## When to stop and ask
 
