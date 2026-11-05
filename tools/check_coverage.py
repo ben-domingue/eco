@@ -47,7 +47,9 @@ def tables_in(path: pathlib.Path) -> set[str]:
 
 def core_tables() -> list[str]:
     # Side tables carry a double underscore; core tables never do (standard E10).
-    return sorted(p.stem for p in OUT.glob("*.csv") if "__" not in p.name)
+    # A table stored as period parts is the directory <name>.parts/ (standard E4).
+    return sorted([p.stem for p in OUT.glob("*.csv") if "__" not in p.name]
+                  + [p.name.removesuffix(".parts") for p in OUT.glob("*.parts") if p.is_dir()])
 
 
 def main(argv: list[str] | None = None) -> int:

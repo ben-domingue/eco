@@ -22,7 +22,7 @@ from eco_validate.model import CLAUSES, INTAKE_CHECKS
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "output"
-CORE = sorted(p for p in OUT.glob("*.csv") if "__" not in p.stem)
+CORE = sorted([p for p in OUT.glob("*.csv") if "__" not in p.stem] + list(OUT.glob("*.parts")))
 
 
 # ---------------------------------------------------------------------------
@@ -30,7 +30,7 @@ CORE = sorted(p for p in OUT.glob("*.csv") if "__" not in p.stem)
 # ---------------------------------------------------------------------------
 
 @pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
-@pytest.mark.parametrize("path", CORE, ids=[p.stem for p in CORE])
+@pytest.mark.parametrize("path", CORE, ids=[p.name.removesuffix(".parts").removesuffix(".csv") for p in CORE])
 def test_corpus_passes(path):
     r = validate_file(path)
     assert r.ok, [f"{f.check}: {f.message}" for f in r.errors]
@@ -480,3 +480,81 @@ def test_crossed_occasion_kind_and_recorded_taxa():
     df = good_frame(); df.loc[df["taxon"] == "BBB", "y"] = 0
     assert "meta_conditional" in checks_of(run(df), "error")
     assert "meta_conditional" not in checks_of(run(df, good_meta(taxonInclusion="target")))
+
+
+# ---------------------------------------------------------------------------
+# Tables stored as period parts (standard E4)
+# ---------------------------------------------------------------------------
+
+def _parted_frame():
+    rows = []
+    for per in (1, 2, 3, 4):
+        for u in range(1, 41):
+            for tx in ("AAA", "BBB"):
+                rows.append({"unit": f"u{u}", "taxon": tx, "y": int((u + per) % 3 == 0),
+                             "period": per, "occasion": 1})
+    return pd.DataFrame(rows)
+
+
+def write_parted(tmp_path, df=None, groups=((1, 2), (3, 4)), meta=None, manifest=True):
+    df = _parted_frame() if df is None else df
+    name = "smith_2020_place_count"
+    d = tmp_path / f"{name}.parts"
+    d.mkdir()
+    parts = []
+    for k, g in enumerate(groups, 1):
+        sub = df[df["period"].isin(g)]
+        fn = f"part-{k:02d}.csv"
+        sub.to_csv(d / fn, index=False)
+        parts.append({"file": fn, "periods": list(g), "n_rows": len(sub)})
+    m = meta or good_meta(closure="open", responseType="detection")
+    if manifest:
+        m["parts"] = parts
+    (tmp_path / f"{name}__dataset.json").write_text(json.dumps(m))
+    good_taxa().to_csv(tmp_path / f"{name}__taxa.csv", index=False)
+    pd.DataFrame({"period": [1, 2, 3, 4]}).to_csv(tmp_path / f"{name}__periods.csv", index=False)
+    return d
+
+
+def test_parted_table_passes_and_counts_the_union(tmp_path):
+    d = write_parted(tmp_path)
+    r = validate_file(d)
+    assert r.ok and r.conforms, [f"{f.check}: {f.message}" for f in r.findings]
+    assert r.stats["n_rows"] == len(_parted_frame()) and r.stats["n_periods"] == 4
+    # the CLI finds the directory, and `<name>.csv` resolves to it
+    assert main([str(tmp_path)]) == 0
+    assert main([str(d)]) == 0                # the directory named itself is one table
+    assert validate_file(tmp_path / "smith_2020_place_count.csv").ok
+
+
+def test_parted_table_whole_table_checks(tmp_path):
+    df = _parted_frame()
+    # a taxon recorded only in one part is recorded in the table: no finding
+    df.loc[df["taxon"] == "BBB", "y"] = 0
+    df.loc[(df["taxon"] == "BBB") & (df["period"] == 4) & (df["unit"] == "u1"), "y"] = 1
+    (tmp_path / "a").mkdir(); (tmp_path / "b").mkdir()
+    assert validate_file(write_parted(tmp_path / "a", df)).ok
+    # never recorded anywhere: an error only the union can see
+    df.loc[df["taxon"] == "BBB", "y"] = 0
+    r = validate_file(write_parted(tmp_path / "b", df))
+    assert "meta_conditional" in checks_of(r, "error")
+
+
+def test_parted_table_structure_errors(tmp_path):
+    for sub, kw in (("overlap", {"groups": ((1, 2), (2, 3, 4))}),
+                    ("nomanifest", {"manifest": False})):
+        (tmp_path / sub).mkdir()
+        r = validate_file(write_parted(tmp_path / sub, **kw))
+        assert "table_parts" in checks_of(r, "error"), sub
+    # a part missing a taxon breaks E4.2 across parts
+    (tmp_path / "short").mkdir()
+    df = _parted_frame()
+    df = df[~((df["taxon"] == "BBB") & df["period"].isin([3, 4]))]
+    r = validate_file(write_parted(tmp_path / "short", df))
+    assert "explicit_zero_taxa" in checks_of(r, "error")
+    # a unit covariate that differs between parts
+    (tmp_path / "cov").mkdir()
+    df = _parted_frame(); df["unit_elev"] = 1.0
+    df.loc[df["period"] == 4, "unit_elev"] = 2.0
+    r = validate_file(write_parted(tmp_path / "cov", df))
+    assert "covariate_level" in checks_of(r, "error")

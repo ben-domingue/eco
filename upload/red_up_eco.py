@@ -43,13 +43,15 @@ import sys
 from pathlib import Path
 
 from red_up.auth import authenticate
-from red_up.checks import check_all
-from red_up.push import open_draft, push_one
+from red_up.checks import FileReport, check_all, scan
+from red_up.push import UploadResult, open_draft, push_one
+from red_up.verify import verify
 from red_up.targets import load_registry
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))            # eco_validate/ lives at the repo root
 from eco_validate import validate_file   # noqa: E402
+from eco_validate.core import is_parted, part_files, table_name   # noqa: E402
 from eco_validate.model import STANDARD_URL   # noqa: E402
 
 OUT = ROOT / "output"
@@ -130,6 +132,57 @@ def describe(table: str) -> str | None:
     return f"{head}\n\n{body}"
 
 
+def scan_parts(d: Path) -> FileReport:
+    """A table stored as period parts (standard E4): one Redivis table, rows = the sum."""
+    name = table_name(d)
+    r = FileReport(path=d, table=name)
+    parts = part_files(d)
+    if not parts:
+        r.errors.append("no part-*.csv files in the parts directory")
+        return r
+    for part in parts:
+        pr = scan(part, name)
+        if r.columns and pr.columns != r.columns:
+            r.errors.append(f"{part.name}: columns differ from {parts[0].name}")
+        r.columns = r.columns or pr.columns
+        r.rows += pr.rows
+        r.errors.extend(f"{part.name}: {e}" for e in pr.errors)
+    return r
+
+
+def push_parts(dataset, d: Path, table_name_: str, expected_rows: int) -> UploadResult:
+    """Upload every part of a parted table into ONE table (Redivis uploads append),
+    replacing any existing table of that name, then verify count(*) against the sum."""
+    result = UploadResult(table=table_name_, dataset=dataset.name, expected=expected_rows)
+    try:
+        table = dataset.table(table_name_)
+        description = None
+        if table.exists():
+            description = table.get().properties.get("description")
+            table.delete()                       # the only true replace (red_up/push.py)
+            table = dataset.table(table_name_)
+        table = table.create(description=description) if description else table.create()
+        try:
+            for part in part_files(d):
+                print(f"        {part.name}", flush=True)
+                with part.open("rb") as handle:
+                    table.upload(part.name).create(handle, type="delimited", delimiter=",",
+                                                   remove_on_fail=True, wait_for_finish=True, raise_on_fail=True)
+        except Exception:
+            try:
+                table.delete()                   # never leave a partial table in the draft
+            except Exception:
+                pass
+            raise
+        ok, actual = verify(table, expected_rows)
+        result.actual = actual
+        if not ok:
+            result.error = f"row count mismatch: uploaded {expected_rows:,} from the parts, count(*) reports {actual:,}"
+    except Exception as exc:
+        result.error = f"{type(exc).__name__}: {exc}"
+    return result
+
+
 def blocked_by_tags() -> dict[str, str]:
     """Core tables whose tags status says not to ship, mapped to the reason."""
     if not TAGS.exists():
@@ -174,20 +227,27 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
 
     csvs: list[Path] = []
+    parted: list[Path] = []                   # tables stored as period parts: <name>.parts/
     for p in args.paths:
         p = Path(p).expanduser().resolve()
-        csvs += [p] if p.is_file() else sorted(p.glob("*.csv"))
-    csvs = list(dict.fromkeys(csvs))
-    if not csvs:
+        if is_parted(p):
+            parted.append(p)
+        elif p.is_file():
+            csvs.append(p)
+        else:
+            csvs += sorted(p.glob("*.csv"))
+            parted += sorted(q for q in p.glob("*.parts") if is_parted(q))
+    csvs = list(dict.fromkeys(csvs)); parted = list(dict.fromkeys(parted))
+    if not csvs and not parted:
         print("no CSV files", file=sys.stderr); return 2
 
     if args.describe:
         print(dataset_description(), end="\n\n")
         bad = 0
-        for p in csvs:
-            print(f"=== {p.stem}")
+        for p in csvs + parted:
+            print(f"=== {table_name(p)}")
             try:
-                print(describe(p.stem) or "(no __dataset.json)", end="\n\n")
+                print(describe(table_name(p)) or "(no __dataset.json)", end="\n\n")
             except KeyError as exc:
                 bad += 1
                 print(f"ERROR: __dataset.json lacks {exc}\n")
@@ -196,6 +256,11 @@ def main(argv=None) -> int:
     owner, _ = load_registry()          # the owner (datapages) from IRW's config; eco is not a shard
 
     reports = check_all([(p, p.stem) for p in csvs])
+    for d in parted:
+        r = scan_parts(d)
+        if any(x.table == r.table for x in reports):
+            r.errors.append(f"table name '{r.table}' is claimed by a CSV and a parts directory")
+        reports.append(r)
     core = [r for r in reports if side_suffix(r.table) is None]
     side = [r for r in reports if side_suffix(r.table) is not None]
     for r in core:
@@ -232,13 +297,15 @@ def main(argv=None) -> int:
         key = SIDE_KEYS[side_suffix(r.table)]
         if r.columns and key not in r.columns:
             r.errors.append(f"side table lacks its key column `{key}`")
-        if not (OUT / f"{r.table.split('__')[0]}.csv").exists():
+        base = r.table.split('__')[0]
+        if not ((OUT / f"{base}.csv").exists() or is_parted(OUT / f"{base}.parts")):
             r.errors.append("no core table for this side table")
 
     print(f"red_up_eco -- {len(reports)} CSV file(s) -> {owner}.{args.dataset}:next\n")
     for r in sorted(reports, key=lambda r: r.table):
         status = "SKIP" if r.errors else ("CORE" if r in core else "SIDE")
-        print(f"  {status:<5} {r.table:<40} {r.rows:>8,} rows  {len(r.columns):>3} cols")
+        parts = f"  ({len(part_files(r.path))} parts -> one table)" if is_parted(r.path) else ""
+        print(f"  {status:<5} {r.table:<40} {r.rows:>8,} rows  {len(r.columns):>3} cols{parts}")
         for e in r.errors:
             print(f"        error: {e}")
         for w in r.warnings:
@@ -261,7 +328,8 @@ def main(argv=None) -> int:
     results = []
     for n, r in enumerate(sorted(live, key=lambda r: r.table), 1):
         print(f"  [{n}/{len(live)}] {r.table}", flush=True)
-        res = push_one(dataset, r.path, r.table, r.rows)
+        res = (push_parts(dataset, r.path, r.table, r.rows) if is_parted(r.path)
+               else push_one(dataset, r.path, r.table, r.rows))
         if res.ok:
             desc = descriptions[r.table]
             if desc:

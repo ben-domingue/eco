@@ -41,7 +41,7 @@ columns).
 |---|---|---|
 | `unit` | yes | Identifier of the unit carrying the latent state: a site, point, transect, camera station, pond or territory for occupancy, N-mixture and community data; an individual animal for capture–recapture. Unique per unit, not per row. |
 | `taxon` | yes | Identifier of the taxon probed for: a short stable code (`CHAFFINCH`, `TAPBAI`, the source's species code), resolved in `__taxa` (E6). Single-species tables have one value. |
-| `y` | yes | The observation, numeric, per E2. Never a missing code, never an aggregate. |
+| `y` | yes | The observation, numeric, per E2. Never a missing code, never an aggregate across surveys (a total over the sub-units of one survey, as the source defines and publishes it, such as a Breeding Bird Survey run's total over its stops, is that survey's observation). |
 | `y_raw` | no | The observation as recorded when `y` is a recode: the uncollapsed count behind a 0/1 `y`, a multinomial cell label, a state letter. |
 | `trap` | conditional | Trap identifier in spatial capture–recapture; a key column (E3) with a `__traps` side table. |
 | `period` | conditional | Primary period (season, year, session): integer, ordered in time. Required whenever the latent state may change between surveys (dynamic occupancy, capture–recapture, robust design). |
@@ -152,8 +152,12 @@ where the source deposited separate analysis sets or populations.
 detections-only table is not accepted as a core table. Across twelve deposits the
 rule was never ambiguous once the survey set was fixed; its cost is size (a 267 × 3 ×
 158 array becomes 118k rows, 95% zeros), which is trivial at the scale seen. A table
-that would exceed about five million rows MAY be split by `period` into several core
-tables under one `__dataset.json`.
+that would exceed about five million rows MAY be stored as period parts: the
+directory `output/<table>.parts/` holds `part-01.csv`, `part-02.csv`, ..., each with
+the same columns and whole periods (no period in two parts), and the table keeps one
+`__dataset.json` (whose `parts` lists each file, its periods and its row count) and
+one set of side tables beside the directory. It is one table: every clause applies to
+the union of the parts, and on Redivis the parts are one table.
 
 **The survey set is evidence, not assumption (Q7).** Because the rows *are* the
 record of which surveys happened, the standard requires each table to say what that
@@ -469,4 +473,9 @@ shipped and why. Facts about the source are assertions, not comments.
   only when each has its own survey set; a paired design (both methods on the same unit
   at the same visit) is one table with `obs_method` (E9), as the published
   `dougherty_2016_rustycrayfish_edna` and `lafferty_2024_tidewatergoby_edna` already are.
+- **v1.1-draft, E1 and E4 (2026-11-04, Breeding Bird Survey, #24).** E1: `y` is never an
+  aggregate *across surveys*; a run total over the stops of one survey, as the source
+  publishes it, is that survey's observation. E4: the split of a table over about five
+  million rows is stated as period parts, `output/<table>.parts/part-NN.csv` with one
+  `__dataset.json` and one set of side tables, one table on Redivis.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

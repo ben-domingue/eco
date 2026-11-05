@@ -18,7 +18,7 @@
   d
 }
 
-.eco_is_side <- function(name) grepl("__(taxa|periods|units|traps)$", name)
+.eco_is_side <- function(name) grepl(paste0("(", paste(names(.eco_side_keys), collapse = "|"), ")$"), name)
 .eco_core_names <- function() {
   l <- .eco_table_listing(.eco_core, .eco_tag_for(.eco_core))
   l$name[!.eco_is_side(l$name)]

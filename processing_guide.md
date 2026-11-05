@@ -161,6 +161,9 @@ table to avoid them. Two methods are two tables.
 
 **Rules learned in batches 17 to 20.** Each is a fact to assert, not a judgement:
 
+- A table over about five million rows is written with `write_table_parts()` (period parts in
+  `output/<table>.parts/`, standard E4), not split into sibling tables by region or taxon; its
+  core is gitignored and `red_up_eco.py` uploads the parts as one table.
 - A code the source does not define gets no row; count it in `notShipped`.
 - A lost mark (tag, flag) ends the history after the last period it was known present.
 - A catalogue entry never detected in the deposit is not a unit; drop all-zero histories.

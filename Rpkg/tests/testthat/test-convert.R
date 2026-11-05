@@ -52,6 +52,26 @@ test_that("counts become pcount, several periods colext", {
   expect_equal(umf@numPrimary, 2L)
 })
 
+test_that("colext puts every survey in its own primary when the grid is ragged (#61)", {
+  skip_if_not_installed("unmarked")
+  library(data.table)
+  # period 4 missing, period 2 has a second occasion
+  x <- rbind(CJ(unit = c("a", "b"), period = c(1:3, 5:6), occasion = 1L),
+             CJ(unit = c("a", "b"), period = 2L, occasion = 2L))
+  x[, `:=`(taxon = "SP1", y = as.numeric(period %% 2L), period_v = period * 10)]
+  umf <- eco_to_umf(x, "colext")
+  expect_equal(umf@numPrimary, 6L)
+  expect_equal(ncol(unmarked::getY(umf)), 12L)
+  back <- umf_to_eco(umf, taxon = "SP1", site_ids = c("a", "b"))
+  setkey(back, unit, period, occasion); setkey(x, unit, period, occasion)
+  expect_equal(back[, .(unit, period, occasion, y)], x[, .(unit, period, occasion, y)])
+  # period covariates stay on their period
+  expect_equal(back$period_v, back$period * 10)
+  # a taxon first seen in period 2 still has primary p = period p
+  late <- x[period >= 2]
+  expect_equal(eco_to_umf(late, "colext")@numPrimary, 6L)
+})
+
 test_that("binomial_count rows expand to an exchangeable history", {
   b <- data.frame(unit = c("a", "b"), taxon = "X", y = c(2L, 0L), obs_trials = c(3L, 2L), unit_elev = c(1, 2))
   expect_true(eco_check(b)$ok)
