@@ -553,7 +553,8 @@ The ordering is roughly the slow-fast continuum. The dolphins, the fin
 whale and the perennial plants sit near or above 0.9 a year; the booby,
 the sea lions, the terrapin and the rattlesnake between 0.85 and 0.9; the
 elephant seals (with juveniles in "later", as above), the brant and the grass
-snake between 0.75 and 0.85; Darwin's frog at about 0.5; and the three
+snake between 0.75 and 0.85; the dipper, a small passerine, and Darwin's
+frog at about 0.55; and the three
 stream fishes at about 0.3, which is less a statement about fish lifespans
 than about streams. Every
 $\phi$ here is **apparent survival**: an animal that leaves the study area
