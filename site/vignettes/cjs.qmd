@@ -1,0 +1,474 @@
+---
+title: "Survival from capture histories: the Cormack-Jolly-Seber model"
+description: |
+  The Cormack-Jolly-Seber model fit with marked to Lebreton et al.'s
+  European dipper, the textbook capture-recapture table, and then to every
+  individual-level capture-history table in eco, from elephant seals to cacti.
+  A simulator at the top shows why recapture is what separates survival from
+  detection.
+date: today
+format:
+  html:
+    code-fold: false
+    toc: true
+    toc-depth: 2
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| echo: false
+suppressPackageStartupMessages({
+  library(eco)
+  library(marked)
+  library(R2ucare)
+  library(data.table)
+  library(ggplot2)
+  library(plotly)
+})
+theme_set(theme_minimal(base_size = 13))
+options(digits = 3)
+fmt <- function(x, d = 2) formatC(x, digits = d, format = "f")
+```
+
+An animal that is marked and never seen again either died or was alive and
+missed. Those are two different coin flips, and the history of a single
+animal cannot tell them apart. The Cormack-Jolly-Seber model (Cormack 1964;
+Jolly 1965; Seber 1965) separates them by following many marked animals
+over many occasions: an animal seen at occasion 5 was alive at occasions 2 to
+4 whether or not it was seen there, and those known-alive misses estimate the
+recapture probability $p$. Once $p$ is known, the disappearances that $p$
+cannot explain are deaths, or emigrations, and estimate the survival
+probability $\phi$. This page fits the model to one eco table, the European
+dipper of Lebreton et al. (1992), and then to every capture-history table in
+the warehouse, with `marked` doing the fitting.
+
+::: {.callout-note}
+This vignette, including the choice of tables, the analysis and the writing,
+was produced largely by Claude (Anthropic) from a task specification, with
+human review. Treat the interpretations accordingly; the code is all on the
+page and runs from a clean session.
+:::
+
+## Try it first
+
+Animals are marked at the first occasion. Between occasions each live animal
+survives with probability $\phi$; at each occasion each live animal is seen
+with probability $p$. Drag the sliders and watch the amber cells: those are
+animals alive and missed, which a count of sightings reads as dead.
+
+```{=html}
+<div class="cjs-widget" style="border:1px solid #dee2e6;border-radius:6px;padding:1rem 1.25rem;margin:1rem 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 24px;margin-bottom:.75rem;">
+    <label style="font-size:.9rem;">Survival per interval &phi;
+      <input id="cjs-phi" type="range" min="0.3" max="0.98" step="0.02" value="0.7" style="width:100%;">
+      <span id="cjs-phi-val" style="font-family:monospace;font-size:.85rem;"></span>
+    </label>
+    <label style="font-size:.9rem;">Recapture per occasion <i>p</i>
+      <input id="cjs-p" type="range" min="0.05" max="1" step="0.05" value="0.4" style="width:100%;">
+      <span id="cjs-p-val" style="font-family:monospace;font-size:.85rem;"></span>
+    </label>
+    <label style="font-size:.9rem;">Occasions <i>K</i>
+      <input id="cjs-k" type="range" min="3" max="12" step="1" value="7" style="width:100%;">
+      <span id="cjs-k-val" style="font-family:monospace;font-size:.85rem;"></span>
+    </label>
+    <label style="font-size:.9rem;">Animals marked <i>n</i>
+      <input id="cjs-n" type="range" min="10" max="150" step="10" value="60" style="width:100%;">
+      <span id="cjs-n-val" style="font-family:monospace;font-size:.85rem;"></span>
+    </label>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;margin-bottom:.6rem;font-size:.82rem;">
+    <button id="cjs-resim" type="button" style="font-size:.82rem;padding:.2rem .6rem;">Resimulate</button>
+    <span><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#1e8a5a;vertical-align:-1px;"></span> seen</span>
+    <span><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:#ededea;border:1px solid #c9ccc8;vertical-align:-1px;"></span> alive, not seen, seen later</span>
+    <span><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:repeating-linear-gradient(45deg,#c08a1e 0 2px,#fff 2px 4px);border:1px solid #c08a1e;vertical-align:-1px;"></span> alive, not seen, never seen again</span>
+    <span><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:transparent;border:1px dashed #c9ccc8;vertical-align:-1px;"></span> dead</span>
+  </div>
+  <div id="cjs-grid" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.8rem;"></div>
+  <table style="font-size:.88rem;width:auto;margin:0 0 .5rem;border-collapse:collapse;">
+    <tbody>
+      <tr><td style="padding:2px 14px 2px 0;">True survival per interval (survivals / live animal-intervals)</td><td id="cjs-true" style="font-family:monospace;text-align:right;"></td></tr>
+      <tr><td style="padding:2px 14px 2px 0;">Naive survival (last sighting taken as death)</td><td id="cjs-naive" style="font-family:monospace;text-align:right;"></td></tr>
+      <tr><td style="padding:2px 14px 2px 0;">Return rate (share of marked animals ever seen again)</td><td id="cjs-return" style="font-family:monospace;text-align:right;"></td></tr>
+      <tr><td style="padding:2px 14px 2px 0;">Known-alive misses (grey cells): <i>p</i> estimated from them</td><td id="cjs-phat" style="font-family:monospace;text-align:right;"></td></tr>
+      <tr><td style="padding:2px 14px 2px 0;">Animals alive at the last occasion but never seen after marking, or after their last sighting</td><td id="cjs-missed" style="font-family:monospace;text-align:right;"></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:.8rem;color:#666;margin:.4rem 0 0;">Each strip is one animal, its cells the <i>K</i> occasions; the first cell is the marking. Hover a strip for its history. The grey cells are the only misses the data can see as misses: the animal was seen later, so it was alive. The share of sightings among the occasions strictly between an animal's marking and its last sighting is a model-free estimate of <i>p</i>.</p>
+</div>
+
+<script>
+(function () {
+  var ids = ["phi", "p", "k", "n"], el = {}, val = {};
+  ids.forEach(function (k) { el[k] = document.getElementById("cjs-" + k); val[k] = document.getElementById("cjs-" + k + "-val"); });
+  var grid = document.getElementById("cjs-grid");
+  var out = {};
+  ["true", "naive", "return", "phat", "missed"].forEach(function (k) { out[k] = document.getElementById("cjs-" + k); });
+  var z = [], y = [];
+
+  function simulate() {
+    var phi = +el.phi.value, p = +el.p.value, K = +el.k.value, n = +el.n.value;
+    z = []; y = [];
+    for (var i = 0; i < n; i++) {
+      z[i] = [1]; y[i] = [1];
+      for (var t = 1; t < K; t++) {
+        z[i][t] = (z[i][t - 1] === 1 && Math.random() < phi) ? 1 : 0;
+        y[i][t] = (z[i][t] === 1 && Math.random() < p) ? 1 : 0;
+      }
+    }
+  }
+
+  function draw() {
+    var phi = +el.phi.value, p = +el.p.value, K = +el.k.value, n = +el.n.value;
+    val.phi.textContent = "φ = " + phi.toFixed(2);
+    val.p.textContent = "p = " + p.toFixed(2);
+    val.k.textContent = "K = " + K;
+    val.n.textContent = "n = " + n;
+    var html = "", atRisk = 0, survived = 0, kaNum = 0, kaDen = 0, returned = 0, seenKA = 0, missKA = 0, missedEnd = 0;
+    for (var i = 0; i < n; i++) {
+      var last = 0;
+      for (var t = 0; t < K; t++) if (y[i][t]) last = t;
+      if (last > 0) returned++;
+      for (var t = 0; t < K - 1; t++) {
+        if (z[i][t]) { atRisk++; survived += z[i][t + 1]; }
+        if (t <= last) { kaDen++; if (t + 1 <= last) kaNum++; }
+      }
+      for (var t = 1; t < last; t++) { if (y[i][t]) seenKA++; else missKA++; }
+      if (z[i][K - 1] === 1 && last < K - 1) missedEnd++;
+      var when = [];
+      y[i].forEach(function (v, t) { if (v) when.push(t + 1); });
+      var alive = z[i].reduce(function (a, b) { return a + b; }, 0);
+      var title = "animal " + (i + 1) + ": seen at " + when.join(", ") +
+        "; " + (alive === K ? "alive at the end" : "died after occasion " + alive);
+      html += '<div title="' + title + '" style="display:flex;gap:2px;padding:2px;border-radius:3px;">';
+      for (var t = 0; t < K; t++) {
+        var s;
+        if (y[i][t]) s = "background:#1e8a5a;";
+        else if (z[i][t] && t < last) s = "background:#ededea;border:1px solid #c9ccc8;box-sizing:border-box;";
+        else if (z[i][t]) s = "background:repeating-linear-gradient(45deg,#c08a1e 0 2px,#fff 2px 4px);border:1px solid #c08a1e;box-sizing:border-box;";
+        else s = "background:transparent;border:1px dashed #c9ccc8;box-sizing:border-box;";
+        html += '<span style="display:inline-block;width:11px;height:14px;border-radius:2px;' + s + '"></span>';
+      }
+      html += "</div>";
+    }
+    grid.innerHTML = html;
+    out["true"].textContent = (atRisk ? survived / atRisk : 0).toFixed(2) + "  (φ = " + phi.toFixed(2) + ")";
+    out.naive.textContent = (kaDen ? kaNum / kaDen : 0).toFixed(2);
+    out["return"].textContent = (returned / n).toFixed(2) + "  (" + returned + "/" + n + ")";
+    out.phat.textContent = (seenKA + missKA ? (seenKA / (seenKA + missKA)).toFixed(2) : "–") + "  (" + missKA + " misses of " + (seenKA + missKA) + ")";
+    out.missed.textContent = String(missedEnd);
+  }
+
+  ids.forEach(function (k) { el[k].addEventListener("input", function () { simulate(); draw(); }); });
+  document.getElementById("cjs-resim").addEventListener("click", function () { simulate(); draw(); });
+  simulate(); draw();
+})();
+</script>
+```
+
+Three things to notice. Naive survival, which reads every animal's last
+sighting as its death, is always below $\phi$, and the gap closes only as
+$p$ approaches 1. The grey cells give an estimate of $p$ that needs no model
+at all, because an animal seen later was certainly alive: that is the whole
+identification argument of CJS in one line. And the amber cells pile up at
+the end of the study, where an animal has no later occasion to prove it was
+alive; this is why the last survival and recapture probabilities in a fully
+time-varying model cannot be separated.
+
+## The model
+
+Condition on animal $i$'s first capture, at occasion $f_i$. From then on it
+carries a latent state $z_{it} \in \{0, 1\}$, alive or dead, that can only go
+from 1 to 0,
+
+$$
+z_{i,t+1} \mid z_{it} \sim \text{Bernoulli}(z_{it}\, \phi_{it}^{\Delta_t}),
+$$
+
+where $\Delta_t$ is the time between occasions $t$ and $t+1$, so that $\phi$
+is survival per unit of time (per year, below) whatever the spacing of the
+surveys. Each occasion returns a sighting that is possible only when the
+animal is alive,
+
+$$
+y_{it} \mid z_{it} \sim \text{Bernoulli}(z_{it}\, p_{it}).
+$$
+
+Summing the $z$s out gives the likelihood of one history. Up to the last
+sighting $l_i$ the animal is known to be alive, so that part is a product of
+survivals and of $p$ or $1-p$; after it, the animal either died or survived
+and was missed, which is the probability $\chi_{l_i}$ of never being seen
+again, defined backwards from the last occasion $K$:
+
+$$
+L_i = \prod_{t=f_i}^{l_i - 1} \phi_t^{\Delta_t} \, p_{t+1}^{y_{i,t+1}} (1 - p_{t+1})^{1 - y_{i,t+1}} \times \chi_{l_i},
+\qquad
+\chi_K = 1, \quad \chi_t = (1 - \phi_t^{\Delta_t}) + \phi_t^{\Delta_t} (1 - p_{t+1})\, \chi_{t+1}.
+$$
+
+The known-alive stretch informs $p$ directly. The tail $\chi$ is where
+survival and detection are mixed together, and it is identified only
+because $p$ has been pinned by the known-alive stretches of other animals.
+With $\phi$ and $p$ both free at every occasion, the last pair appears only
+as the product $\phi_{K-1} p_K$: the CJS version of the occupancy model's
+"$J = 1$" problem.
+
+::: {.callout-tip title="A psychometric reading"}
+This is a hidden Markov model with an absorbing state, which makes it a
+close cousin of a latent transition model with one irreversible transition:
+the occasions are repeated items, $p$ is the item's endorsement probability
+for respondents in the "alive" class, the dead class endorses nothing, and
+$\phi$ is the probability of not dropping out. Read that way, the CJS model is
+the dropout model of a longitudinal study in which dropout is unobserved:
+a non-response may be a skipped wave or a respondent who is gone for good,
+and the waves the respondent came back after tell you how often people skip.
+Conditioning on first capture is conditioning on enrolment.
+:::
+
+## The data
+
+The table is `lebreton_1992_dipper_cjs`: 294 European dippers (*Cinclus
+cinclus*) marked in eastern France and recaptured each spring from 1981 to
+1987, the dataset Lebreton, Burnham, Clobert and Anderson (1992) used to set
+out the model-selection approach to capture-recapture, and the one that ships
+with `marked`, RMark and MARK. Reads are pinned to eco version 10 so the
+numbers on this page do not move when the warehouse grows.
+
+```{r}
+#| label: fetch
+#| message: true
+eco_set_version(10)
+eco_info("lebreton_1992_dipper_cjs")
+d <- as.data.table(eco_fetch("lebreton_1992_dipper_cjs"))
+eco_periods("lebreton_1992_dipper_cjs")
+head(d[order(unit, period)], 8)
+```
+
+One row per bird per year. `unit` is the bird, `period` the year's
+capture session, `y` whether it was caught. The table carries a row for every
+bird in every year from 1981, including years before it was first caught,
+where `y` is 0: the standard keeps a row wherever the animal was at risk of
+being recorded, and an unmarked bird is part of the population being
+searched. CJS conditions on first capture, so those rows drop out of the
+likelihood on their own.
+
+```{r}
+#| label: ch
+M <- dcast(d, unit + unit_sex ~ period, value.var = "y")
+ch <- data.frame(ch = apply(as.matrix(M[, -(1:2)]), 1, paste, collapse = ""),
+                 sex = factor(M$unit_sex), stringsAsFactors = FALSE)
+table(captures = nchar(gsub("0", "", ch$ch)))
+head(ch[nchar(gsub("0", "", ch$ch)) >= 3, ])
+data(dipper, package = "marked")
+identical(sort(ch$ch), sort(as.character(dipper$ch)))
+```
+
+The histories are the ones that ship with `marked`.
+
+## Fitting
+
+```{r}
+#| label: fit-null
+pr <- process.data(ch, model = "CJS", groups = "sex")
+ddl <- make.design.data(pr)
+fit <- function(phi, p) {
+  invisible(capture.output(m <- crm(pr, ddl, hessian = TRUE,
+    model.parameters = list(Phi = list(formula = phi), p = list(formula = p)))))
+  m
+}
+m0 <- fit(~1, ~1)
+m0$results$reals
+```
+
+Annual survival is about 0.56 and the recapture probability about 0.90,
+Lebreton et al.'s numbers. A high $p$ is why the dipper is a good teaching
+table: few animals are alive and missed, so the naive and model-based
+answers are close, and the interesting structure is in $\phi$.
+
+### Lebreton's flood
+
+A flood in the spring of 1983 hit the study streams. Lebreton et al. compared
+a model in which survival differs in the two intervals around it
+(1982 to 1983 and 1983 to 1984) against constant and fully time-varying
+survival, and against a sex effect.
+
+```{r}
+#| label: fit-set
+ddl$Phi$flood <- as.integer(ddl$Phi$time %in% c(2, 3))
+models <- list(
+  "phi(.) p(.)"     = m0,
+  "phi(flood) p(.)" = fit(~flood, ~1),
+  "phi(sex) p(.)"   = fit(~sex, ~1),
+  "phi(t) p(.)"     = fit(~time, ~1),
+  "phi(t) p(t)"     = fit(~time, ~time))
+aic <- data.frame(model = names(models),
+                  k = sapply(models, function(m) length(unlist(m$results$beta))),
+                  AIC = sapply(models, function(m) m$results$AIC))
+aic$dAIC <- aic$AIC - min(aic$AIC)
+knitr::kable(aic[order(aic$AIC), ], row.names = FALSE, digits = 1)
+unique(predict(models[["phi(flood) p(.)"]])$Phi[, c("flood", "estimate", "lcl", "ucl")])
+```
+
+The flood model wins: survival of about 0.61 in ordinary years and 0.47 in
+the flood years, with no support for a sex difference and nothing gained by
+letting every year have its own survival. The fully time-varying model pays
+for parameters that are, in part, not identified (the last $\phi$ and $p$
+come only as a product).
+
+### Does the model fit?
+
+The standard goodness-of-fit battery for CJS (Pradel, Gimenez and Lebreton
+2005; implemented in U-CARE and in `R2ucare`) breaks the deviation from the
+fully time-dependent model into components with a biological reading. Test
+3.SR asks whether newly marked animals are seen again as often as previously
+marked ones; a failure means **transients**, animals passing through, or
+animals marked young with lower first-year survival. Test 2.CT asks whether
+being caught now changes the chance of being caught next time; a failure
+means **trap dependence**. Tests 3.SM and 2.CL are the remaining, less
+specific components; the four sum to an overall statistic whose ratio to its
+degrees of freedom is the overdispersion factor $\hat c$.
+
+```{r}
+#| label: gof
+X <- as.matrix(M[, -(1:2)])
+g <- overall_CJS(X, rep(1, nrow(X)))
+g
+c(test3sr = test3sr(X, rep(1, nrow(X)))$test3sr[["p_val"]],
+  test2ct = test2ct(X, rep(1, nrow(X)))$test2ct[["p_val"]])
+```
+
+The dipper passes, with $\hat c$ = `r fmt(g$chi2 / g$degree_of_freedom)`,
+no sign of transients, and trap dependence just short of the 5% line: the
+model's assumptions hold for this table about as well as they ever do.
+Most of the corpus will not be this tidy.
+
+## The same model across the corpus
+
+eco holds 27 more capture-history tables that fit the model as they are or
+after collapsing secondary occasions:
+seabirds, geese and a tyrant flycatcher; sea lions, fin whales, elephant
+seals and bottlenose dolphins; grass snakes, rattlesnakes and terrapins; a
+frog; three species of stream fish; a damselfly and three populations of a
+fritillary butterfly; and five species of plant. The companion script
+[`cjs_corpus_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/cjs_corpus_compute.R)
+fits the same three models to each and runs the U-CARE tests; it caches the
+results in `cjs_data/cjs_corpus.rds` because the two Macquarie Island
+elephant seal tables, with 7,500 and 18,000 animals, take a few minutes.
+
+Turning a table into a history matrix needs three rules, all of which follow
+from the standard:
+
+- **Rows before first capture are dropped.** CJS conditions on first capture.
+- **A missing row after first capture is not a miss.** The standard says a
+  row exists exactly when the animal was at risk of being recorded (E4.4), so
+  a gap is an animal that could not have been seen (a branded sea lion pup in
+  a year with no resighting effort, a bird removed after capture). It enters
+  the history as a 0 with $p$ fixed at 0 for that animal and occasion, so it
+  says nothing about survival.
+- **Robust-design tables are collapsed to the period.** Where a period has
+  several secondary occasions (the brant, the Marion Island seals, the two
+  dolphin studies, the frog), an animal counts as seen in the period if it
+  was seen on any occasion.
+
+The time between periods comes from each table's `__periods`: years for
+annual studies, months for the stream fish and the frog, season dates for the
+Bunbury dolphins, the authors' own MARK intervals for the rattlesnakes, and
+search days for the two within-season insect studies. The Brazilian
+flycatcher's session dates were not deposited, so its survival is per
+session. Every $\phi$ below is per year unless the table says otherwise.
+
+The models are $\phi(\cdot)\,p(\cdot)$; $\phi(\cdot)\,p(t)$, because effort is
+never constant across years; and $\phi(\text{tsm})\,p(t)$, which gives the
+first interval after marking its own survival (time since marking; Pradel et
+al. 1997). The last is the standard response to a failed test 3.SR, and the
+right comparison across species: in a table of animals marked as pups or
+chicks, the first interval is juvenile survival and the rest is adult
+survival.
+
+```{r}
+#| label: corpus-load
+cache <- "cjs_data/cjs_corpus.rds"
+have_corpus <- file.exists(cache)
+if (have_corpus) {
+  corpus <- readRDS(cache)
+  f <- as.data.table(corpus$fits)
+}
+```
+
+```{r}
+#| label: corpus-table
+#| echo: false
+#| eval: !expr have_corpus
+f[, chat := gof_chi2 / gof_df]
+f[, best := c("phi(.) p(.)", "phi(.) p(t)", "phi(tsm) p(t)")[apply(cbind(aic_a, aic_b, aic_c), 1, which.min)]]
+tab <- f[order(taxon_group, -n_ind), .(table, group = taxon_group, animals = n_ind, periods = n_periods,
+          per = interval_unit, `naive phi` = naive_phi, `phi(.)` = phi_a, `p(.)` = p_a,
+          `phi later` = phi_later, `phi first` = phi_first, best, `c-hat` = chat)]
+knitr::kable(tab, digits = 2)
+```
+
+::: {.callout-warning}
+Placeholder: the figures and their reading go here once
+`cjs_corpus_compute.R` has run. Planned: estimated against naive survival
+coloured by $p$ (the simulator's gap, read from real tables); first-interval
+against later survival (the transience and juvenile-survival effect, and
+how often test 3.SR flags it); the distribution of $\hat c$; and annual
+survival by taxonomic group.
+:::
+
+## Where this goes
+
+Everything above changes by one piece of the state or observation process,
+and eco carries tables for each.
+
+- **More states.** Let the latent state be a site, a breeding status or a
+  disease class instead of just alive, and CJS becomes the multistate
+  (Arnason-Schwarz) model. The kittiwake, penguin, Dolly Varden and Bunbury
+  female-calf tables are multistate histories (`responseType` `state`), fit
+  with `marked`'s `"Multistrata"` model or with `nimbleEcology`.
+- **Closed sessions inside open years.** The robust-design tables collapsed
+  above keep their secondary occasions in the table; Pollock's robust design
+  uses them to estimate abundance within each period and temporary
+  emigration between periods.
+- **Space.** The spatial capture-recapture tables (`_scr`) add the trap at
+  which each animal was caught, and estimate density instead of survival.
+
+## Reproducibility
+
+Source: [`site/vignettes/cjs.qmd`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/cjs.qmd)
+and [`cjs_corpus_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/cjs_corpus_compute.R)
+in the eco repository. Data were read with `eco_set_version(10)`, so a later
+release of the warehouse does not change the page.
+
+```{r}
+#| label: versions
+#| echo: false
+v <- eco_version()
+cat(sprintf("eco version %s (Redivis eco %s, eco_meta %s, released %s)\n",
+            v$eco_version, v$eco, v$eco_meta, substr(v$released, 1, 10)))
+cat(sprintf("R %s; eco %s; marked %s; R2ucare %s\n",
+            getRversion(), packageVersion("eco"), packageVersion("marked"),
+            packageVersion("R2ucare")))
+```
+
+References. Cormack, R. M. (1964). Estimates of survival from the sighting of
+marked animals. *Biometrika* 51, 429–438. Jolly, G. M. (1965). Explicit
+estimates from capture-recapture data with both death and
+immigration-stochastic model. *Biometrika* 52, 225–247. Seber, G. A. F.
+(1965). A note on the multiple-recapture census. *Biometrika* 52, 249–259.
+Lebreton, J.-D., Burnham, K. P., Clobert, J. and Anderson, D. R. (1992).
+Modeling survival and testing biological hypotheses using marked animals: a
+unified approach with case studies. *Ecological Monographs* 62, 67–118.
+Pradel, R., Hines, J. E., Lebreton, J.-D. and Nichols, J. D. (1997).
+Capture-recapture survival models taking account of transients. *Biometrics*
+53, 60–72. Pradel, R., Gimenez, O. and Lebreton, J.-D. (2005). Principles and
+interest of GOF tests for multistate capture-recapture models. *Animal
+Biodiversity and Conservation* 28, 189–204. Laake, J. L., Johnson, D. S. and
+Conn, P. B. (2013). marked: an R package for maximum likelihood and Markov
+chain Monte Carlo analysis of capture-recapture data. *Methods in Ecology
+and Evolution* 4, 885–890. Gimenez, O., Lebreton, J.-D., Choquet, R. and
+Pradel, R. (2018). R2ucare: an R package to perform goodness-of-fit tests for
+capture-recapture models. *Methods in Ecology and Evolution* 9, 1749–1754.

@@ -9,4 +9,5 @@ clean session.
 
 ::: {.eco-cards}
 <div class="card"><h3><a href="occupancy.html">Single-species site occupancy</a></h3><p>The MacKenzie et al. (2002) model as Kéry and Royle present it in <em>Applied Hierarchical Modeling</em> chapter 10, fit with <code>unmarked</code> to the Swiss willow tit table. A simulator shows why repeat surveys separate ψ from p; then the fit, conditional occupancy of undetected sites, and a goodness-of-fit test that rejects.</p></div>
+<div class="card"><h3><a href="cjs.html">Survival from capture histories</a></h3><p>The Cormack-Jolly-Seber model fit with <code>marked</code> to Lebreton et al.'s European dipper, reproducing the 1983 flood effect, then to 28 capture-history tables from elephant seals to cacti. A simulator shows why recapture separates survival from detection; U-CARE tests show where the model fails.</p></div>
 :::
