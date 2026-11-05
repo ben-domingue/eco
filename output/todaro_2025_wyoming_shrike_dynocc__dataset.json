@@ -1,0 +1,52 @@
+{
+  "table": "todaro_2025_wyoming_shrike_dynocc",
+  "title": "Loggerhead shrike detection / non-detection at 445 point-count locations in a grassland-sagebrush ecotone, northeastern Wyoming, 2015-2024",
+  "creator": "Todaro, Holly; Loss, Scott; Lonsinger, Robert; Duchardt, Courtney",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.rbnzs7hr9",
+  "sourceURL": "https://doi.org/10.5061/dryad.rbnzs7hr9",
+  "citation": "Todaro, H., Loss, S., Lonsinger, R., & Duchardt, C. (2026). Data from: Factors influencing spatial and temporal patterns of Lanius ludovicianus (Loggerhead Shrike) occupancy at a grassland-sagebrush ecotone [Dataset]. Dryad. https://doi.org/10.5061/dryad.rbnzs7hr9",
+  "paperDOI": "10.1093/ornithapp/duaf055",
+  "abstract": "Ten years of point-count surveys for Loggerhead Shrike at fixed points 250 m apart along transects in a grassland-sagebrush ecotone of northeastern Wyoming, with two visits a year in 2015-2017 and one in 2018-2024, survey conditions, observer, point habitat and yearly ground cover. The paper fits dynamic occupancy models (initial occupancy, colonisation, local extinction) with an adjacent-detection autocovariate.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Standardised point counts at fixed points spaced 250 m apart on transects, surveyed in the morning between late May and early July; two visits per point in 2015-2017 and one in 2018-2024, recording detection of Loggerhead Shrike, observer, time, sky, wind and temperature.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasions within a breeding season (May-July) are assumed closed; colonisation and extinction between years",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "temporalCoverage": "2015-05/2024-07",
+  "geographicCoverage": "Grassland-sagebrush ecotone, northeastern Wyoming, USA (no coordinates deposited)",
+  "notes": "Visits re-ordered by date within each year (the deposit's _1/_2 labels are not in date order for some point-years). obs_adjacent_det is the authors' recorded flag that a shrike was detected at an adjacent point on the same survey (an autocovariate built from observations, not a model output). Clock time is local (obs_time_local). cluster_id = transect.",
+  "notShipped": {
+    "stray_cells": "three observer / adjacent-detection values recorded on point-years with no detection and no date (not surveys)"
+  },
+  "summary": {
+    "n_rows": 4252,
+    "n_units": 445,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 2,
+    "n_surveys": 4252,
+    "y_values": "0,1",
+    "prop_zero": 0.955,
+    "n_traps": 1,
+    "n_zero": 4062,
+    "n_positive": 190,
+    "n_units_detected": 105,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_veg_height", "unit_fence_length", "unit_tree", "period_herb", "period_litter", "period_shrub", "obs_time_local", "obs_sky", "obs_wind", "obs_temp", "obs_adjacent_det"],
+  "coreMd5": "7e3a75eb2cdf9a70aef3331d5989724d",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/todaro_2025_wyoming_shrike_dynocc.R",
+  "buildDate": "2026-11-05"
+}

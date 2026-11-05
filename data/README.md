@@ -141,6 +141,12 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `neon_2026_smallmammals_rd.R` | four single-species robust-design capture histories (Peromyscus maniculatus, P. leucopus, Sigmodon hispidus, Microtus pennsylvanicus), individuals x bouts x nights at the home grid | NEON DP1.10072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `neon_2026_carabids_count.R` | biweekly pitfall counts, 55 carabid species x 2,029 NEON traps x 2013-2023, trapping days as effort; core CSV not tracked (354 MB) | NEON DP1.10022.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `tetzlaff_2026_crotalus_cjs.R` | CJS histories, 707 adult female timber rattlesnakes, New York, 1983-2019, den group, annual covariates | Dryad | CC0 |
+| `gelle_2026_mauritius_parakeet_ms.R` | multi-state CJS, 2,734 echo parakeets ringed as nestlings, Mauritius, 1994-2022 | Dryad | CC0 |
+| `cubaynes_2021_svalbard_polarbear_ms.R` | multievent capture-recapture, 158 female polar bear family units, Svalbard, 1992-2019 | Dryad | CC0 |
+| `moinet_2024_nz_mouse_scr.R` | SCR with a removal phase, house mice on two Longworth grids, New Zealand | Dryad | CC0 |
+| `broekhuis_2020_mara_cheetah_scr.R` | search-encounter SCR (pixel x day traps, km driven), cheetahs, Maasai Mara; do_not_publish pending ruling | Dryad | CC0 |
+| `todaro_2025_wyoming_shrike_dynocc.R` | dynamic occupancy, loggerhead shrike point counts, Wyoming, 2015-2024 | Dryad | CC0 |
+| `betancur_2021_antioquia_birds_count.R` | two-species repeated counts, endemic Andean birds, Colombia, coarsened coordinates | Dryad | CC0 |
 | `cecala_2026_kiawah_terrapin_cjs.R` | annual CJS histories, 1,553 diamondback terrapins, Kiawah River SC, 1983-2012, sex and size | Dryad | CC0 |
 | `karvemo_2024_nacka_grasssnake_cjs.R` | annual CJS histories, 1,113 grass snakes, Nacka, Sweden, 66 years, snow cover | Dryad | CC0 |
 | `doyle_2025_chinalake_tortoise_scr.R` | search-track SCR, 24 Mojave desert tortoises x 548 cells x 4 days, detectors centred (CR) | Dryad | CC0 |

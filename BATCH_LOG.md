@@ -1128,3 +1128,36 @@ What this batch says about the standard:
   record nothing, so `row_presence` is defensible. The table says so in `surveyEvidenceNote`.
 - **A deposited model array** (Frank 2017) zero-pads visits beyond `nrep`. The padded cells are
   asserted to carry no capture and get no row.
+
+## Batch 23 — 2026-11-05 (card-sorted queue rows: Mauritius parakeet, Svalbard polar bears, NZ mice, Mara cheetahs, Wyoming shrike, Colombian endemics)
+
+One agent in `~/eco-b23` (branch `batch-23`), from the 2026-11-05 card sort (#85). Twelve deposits inspected,
+six tables built, six held. All six pass `eco-validate` (exit 0).
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| gelle_2026_mauritius_parakeet_ms | multi-state CJS (pre-breeder / breeder / non-breeder) | Dryad CC0 | 27,969 | 2,734 echo parakeets ringed as nestlings, 29 seasons 1994-2022; rows from the ringing season (E4.4); 995 resighted (Dryad methods say 997); IUCN VU set by hand (GBIF's IUCN endpoint has no record for the key); first table for Mauritius |
+| cubaynes_2021_svalbard_polarbear_ms | multi-state (multievent) capture-recapture, 11 family-unit states | Dryad CC0 | 3,789 | 158 females, 28 springs; event codes from the paper's Table 1 (the Dryad text mislabels code 4); adults from 1992, known-age females from age 2 (the model's first state); dates rebuilt from day of year; IUCN VU, no coordinates |
+| moinet_2024_nz_mouse_scr | SCR, live traps with a removal phase | Dryad CC0 | 180,288 | 230 house mice, 2 grids x 36 traps, 4 sessions of 10-12 nights; `obs_removed` on 186 euthanasia captures; trap usage inferred (as the authors' secr script); anonymised trap coordinates; Leptospira test results as `unit_`; first table for New Zealand |
+| broekhuis_2020_mara_cheetah_scr | SCR, search-encounter (pixel x day traps with km driven) | Dryad CC0 | 2,206,029 | 8 sessions, 258 session-scoped ids; `effort_table` from the deposited pixel operation matrix; coordinates centred (VU); core gitignored (105 MB); **tagged do_not_publish** pending a ruling on search-encounter SCR |
+| todaro_2025_wyoming_shrike_dynocc | dynamic occupancy | Dryad CC0 | 4,252 | 445 points, 2015-2024, 2 visits a year to 2017 and 1 after; the deposit's `_1/_2` visit labels are out of date order for 644 point-years, so occasions follow the date |
+| betancur_2021_antioquia_birds_count | two-species repeated counts | Dryad CC0 | 560 | 70 points x 2 years x 2 visits; counts bound to points by row order as in the authors' scripts; coordinates coarsened because the source calls both species endangered (GBIF IUCN says LC); first table for Colombia |
+
+Held (`queue/human_review.csv`): Serra do Amolar cameras (per-species occasion lengths), little brown bat robust design
+(weeks with no antenna operating are zeros in the MARK matrix), Columbia steelhead CRR (blocked: paper), Spiti snow
+leopards (count-detector SCR with one occasion), harlequin duck (three methods, unit unclear), Melbourne diadromous fish
+(NA patterns differ between species and files).
+
+What this batch says about the standard:
+
+- **Search-encounter SCR.** The right whale was held in batch 21 for want of a line-transect rule. The cheetah deposit is the
+  discretised form: the source already turned the search into pixel x day traps with an operation matrix and km driven, so it
+  fits `trap` + `__traps` + `effort_table` without new columns. Built, but held from publication until Ben rules.
+- **Identities not linked across sessions** (cheetah): E4.4 says a wild animal is at risk from the first period, but an id that
+  exists only within one session cannot carry rows in other sessions without duplicating animals. Rows only in the id's own
+  session; the rule does not say so.
+- **Known-age individuals not marked at birth** (polar bear females first caught at 2-5 years): E4.4 covers unknown-age and
+  marked-at-birth animals. Rows start at the first age the model's state space admits (independent at 2).
+- **Count-detector SCR** (snow leopard) and **per-taxon occasion lengths** (Amolar) have no stated layout.
+- **The IUCN lookup** returned NE for the echo parakeet (no GBIF record) and LC for two species the source calls endangered;
+  the E7 flag followed the source.

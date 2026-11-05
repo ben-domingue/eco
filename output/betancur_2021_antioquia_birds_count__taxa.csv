@@ -1,0 +1,3 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+CAPHYP,Capito hypoleucus,White-mantled barbet,species,https://www.gbif.org/species/2479046,EXACT,,LC
+HABGUT,Habia gutturalis,Sooty ant-tanager,species,https://www.gbif.org/species/5230724,EXACT,,LC
