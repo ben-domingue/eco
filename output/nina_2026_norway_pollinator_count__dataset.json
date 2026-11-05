@@ -45,7 +45,12 @@
     "n_occasions": 7,
     "n_surveys": 50363,
     "y_values": "0-81 (45 distinct)",
-    "prop_zero": 0.99
+    "prop_zero": 0.99,
+    "n_traps": 1,
+    "n_zero": 4688853,
+    "n_positive": 45269,
+    "n_units_detected": 2488,
+    "max_y": 81
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_temperature_c", "obs_cloud_cover_pct", "obs_flower_cover", "obs_time_start", "obs_time_end", "obs_visit"],

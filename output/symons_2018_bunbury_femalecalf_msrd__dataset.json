@@ -42,7 +42,12 @@
     "n_occasions": 6,
     "n_surveys": 6552,
     "y_values": "0,1,2",
-    "prop_zero": 0.812
+    "prop_zero": 0.812,
+    "n_traps": 1,
+    "n_zero": 5320,
+    "n_positive": 1232,
+    "n_units_detected": 91,
+    "max_y": 2
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_calf_code", "obs_date_sighted"],

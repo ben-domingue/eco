@@ -43,7 +43,12 @@
     "n_occasions": 5,
     "n_surveys": 1627,
     "y_values": "0,1",
-    "prop_zero": 0.907
+    "prop_zero": 0.907,
+    "n_traps": 1,
+    "n_zero": 50188,
+    "n_positive": 5130,
+    "n_units_detected": 556,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_position", "unit_position_m", "unit_forest_type", "unit_tsh_years", "unit_spruce_pct_regen_side", "unit_spruce_pct_forest_side", "unit_decimalLatitude", "unit_decimalLongitude", "obs_day_z", "obs_time_z"],

@@ -41,7 +41,12 @@
     "n_occasions": 7,
     "n_surveys": 653,
     "y_values": "0-622 (94 distinct)",
-    "prop_zero": 0.282
+    "prop_zero": 0.282,
+    "n_traps": 1,
+    "n_zero": 184,
+    "n_positive": 469,
+    "n_units_detected": 85,
+    "max_y": 622
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_project", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_transect_length_m"],

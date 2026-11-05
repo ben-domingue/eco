@@ -43,7 +43,12 @@
     "n_occasions": 3,
     "n_surveys": 177,
     "y_values": "1-370 (67 distinct)",
-    "prop_zero": 0
+    "prop_zero": 0,
+    "n_traps": 1,
+    "n_zero": 0,
+    "n_positive": 177,
+    "n_units_detected": 49,
+    "max_y": 370
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_county", "unit_state", "obs_effort_h", "obs_episode_start", "obs_episode_end"],

@@ -11,9 +11,13 @@ followed by metadata/run_pipeline.sh; this is the mechanical check that it
 happened, run on every PR (issue #4) rather than by a monthly audit (IRW's
 17_coverage.R).
 
-Missing companions FAIL (exit 1). A dictionary, tags or metadata row that names
-a table no longer in output/ is WARNED about and does not fail: withdrawals are
-ledgered in releases/withdrawals.csv and the pipeline prunes on its own schedule.
+Missing companions FAIL (exit 1). A table is known by its `__dataset.json`, which
+is always tracked; a table whose core CSV (or `.parts/` directory) is not on this
+machine, because it is gitignored and has not been rebuilt here, is checked like
+any other and reported as `core absent here`, not as stale (#66). A dictionary,
+tags or metadata row that names a table with no `__dataset.json` is WARNED about
+and does not fail: withdrawals are ledgered in releases/withdrawals.csv and the
+pipeline prunes on its own schedule.
 
 Offline, standard library only. Run from anywhere: paths are relative to the
 repository root this file lives in.
@@ -52,12 +56,18 @@ def core_tables() -> list[str]:
                   + [p.name.removesuffix(".parts") for p in OUT.glob("*.parts") if p.is_dir()])
 
 
+def tables_by_dataset() -> set[str]:
+    return {p.name.removesuffix("__dataset.json") for p in OUT.glob("*__dataset.json")}
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--quiet", action="store_true", help="print only problems")
     args = ap.parse_args(argv)
 
-    core = core_tables()
+    present = set(core_tables())
+    known = tables_by_dataset()
+    core = sorted(present | known)
     if not core:
         print(f"no core tables under {OUT}", file=sys.stderr)
         return 2
@@ -82,16 +92,17 @@ def main(argv: list[str] | None = None) -> int:
         if missing:
             problems.append(f"{t}: missing " + "; ".join(missing))
         elif not args.quiet:
-            print(f"ok   {t}")
+            print(f"ok   {t}" + ("" if t in present else "   (core absent here: gitignored, not rebuilt)"))
 
+    absent = sorted(known - present)
     stale = (in_dict | in_tags | in_meta) - set(core)
     for t in sorted(stale):
         where = [n for n, s in (("dictionary", in_dict), ("tags", in_tags), ("metadata", in_meta)) if t in s]
-        print(f"WARN {t}: row in {', '.join(where)} but no output/{t}.csv")
+        print(f"WARN {t}: row in {', '.join(where)} but no output/{t}__dataset.json")
 
     for p in problems:
         print(f"FAIL {p}")
-    print(f"{len(core)} core tables, {len(problems)} incomplete, {len(stale)} stale rows")
+    print(f"{len(core)} tables ({len(absent)} with the core absent here), {len(problems)} incomplete, {len(stale)} stale rows")
     return 1 if problems else 0
 
 

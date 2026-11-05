@@ -44,7 +44,12 @@
     "n_occasions": 20,
     "n_surveys": 1055,
     "y_values": "0,1",
-    "prop_zero": 0.94
+    "prop_zero": 0.94,
+    "n_traps": 1,
+    "n_zero": 62450,
+    "n_positive": 4015,
+    "n_units_detected": 61,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "obs_decimalLatitude", "obs_decimalLongitude", "obs_temperature_c", "obs_cloud_pct", "obs_wind_ms", "obs_rain_class", "obs_mins_after_dawn_start", "obs_ttd_s", "obs_distance_m", "obs_detection_mode", "obs_behaviour"],

@@ -48,7 +48,12 @@
     "n_occasions": 77,
     "n_surveys": 8920,
     "y_values": "0,1",
-    "prop_zero": 0.989
+    "prop_zero": 0.989,
+    "n_traps": 1,
+    "n_zero": 414546,
+    "n_positive": 4694,
+    "n_units_detected": 140,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_detection_distance_m", "unit_camera_working_at_retrieval", "obs_camera_hours"],

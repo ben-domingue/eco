@@ -47,7 +47,12 @@
     "n_occasions": 4,
     "n_surveys": 144146,
     "y_values": "0-7782 (more than 12 distinct)",
-    "prop_zero": 0.931
+    "prop_zero": 0.931,
+    "n_traps": 1,
+    "n_zero": 102554485,
+    "n_positive": 7573059,
+    "n_units_detected": 5655,
+    "max_y": 7782
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_rpid", "obs_run_type", "obs_quality_current", "obs_start_temp", "obs_end_temp", "obs_temp_scale", "obs_start_wind", "obs_end_wind", "obs_start_sky", "obs_end_sky", "obs_start_minute", "obs_end_minute", "obs_assistant", "obs_last_stop", "obs_nonbreeder_count"],

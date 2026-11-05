@@ -43,7 +43,12 @@
     "n_occasions": 3,
     "n_surveys": 8770,
     "y_values": "0,1",
-    "prop_zero": 0.803
+    "prop_zero": 0.803,
+    "n_traps": 1,
+    "n_zero": 84477,
+    "n_positive": 20763,
+    "n_units_detected": 373,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_utm19_easting_m", "unit_utm19_northing_m", "obs_day_of_year", "obs_time_of_day_min"],

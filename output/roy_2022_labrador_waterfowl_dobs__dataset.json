@@ -40,7 +40,12 @@
     "n_occasions": 2,
     "n_surveys": 54,
     "y_values": "0-16 (13 distinct)",
-    "prop_zero": 0.794
+    "prop_zero": 0.794,
+    "n_traps": 1,
+    "n_zero": 643,
+    "n_positive": 167,
+    "n_units_detected": 22,
+    "max_y": 16
   },
   "sampleFloor": "below (27 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_plot_area_km2", "unit_front_seat_observer", "unit_primary_position"],

@@ -37,7 +37,12 @@
     "n_occasions": 1,
     "n_surveys": 39645,
     "y_values": "0,1",
-    "prop_zero": 0.77
+    "prop_zero": 0.77,
+    "n_traps": 1,
+    "n_zero": 30514,
+    "n_positive": 9131,
+    "n_units_detected": 2795,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_natal_rookery", "unit_cohort_year"],

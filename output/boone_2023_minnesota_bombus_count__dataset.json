@@ -52,7 +52,12 @@
     "n_occasions": 5,
     "n_surveys": 121,
     "y_values": "0-507 (72 distinct)",
-    "prop_zero": 0.685
+    "prop_zero": 0.685,
+    "n_traps": 1,
+    "n_zero": 1244,
+    "n_positive": 571,
+    "n_units_detected": 25,
+    "max_y": 507
   },
   "sampleFloor": "below (25 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertainty_m", "unit_dominant_landuse", "unit_region", "obs_females", "obs_males", "obs_queens", "obs_id_confidence", "obs_survey_minutes", "obs_time_start", "obs_time_end", "obs_temp_f", "obs_wind_mph", "obs_cloud_pct", "obs_bloom_cover_class", "obs_native_plants_in_bloom_class", "obs_honey_bees_seen", "obs_bombus_apis_ratio"],

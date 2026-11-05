@@ -274,7 +274,11 @@ table_summary <- function(long) {
        n_surveys = nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE])),
        y_values = if (uniqueN(long$y) <= 12) paste(sort(unique(long$y)), collapse = ",") else
          sprintf("%s-%s (%d distinct)", min(long$y), max(long$y), uniqueN(long$y)),
-       prop_zero = round(mean(long$y == 0), 3))
+       prop_zero = round(mean(long$y == 0), 3),
+       # exact counts, so metadata/01_metadata.R reads __dataset.json and never the core (#66)
+       n_traps = if ("trap" %in% names(long)) uniqueN(long$trap) else 1L,
+       n_zero = sum(long$y == 0), n_positive = sum(long$y > 0),
+       n_units_detected = uniqueN(long$unit[long$y > 0]), max_y = max(long$y))
 }
 
 # Sample floor (standard section 10, ruled 2026-11-01 a reported attribute, not an
@@ -429,6 +433,7 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
   unlink(dir, recursive = TRUE); dir.create(dir)
   unlink(file.path(OUT_DIR, paste0(name, ".csv")))       # never a stale single-file twin
   cols <- NULL; taxa_set <- NULL; best <- NULL; units_seen <- character(); occ_seen <- integer()
+  traps_seen <- character(); units_hit <- character(); n_pos <- 0; max_y <- -Inf
   n_rows <- 0; n_surveys <- 0; n_zero <- 0; yvals <- numeric(); manifest <- vector("list", length(parts))
   for (k in seq_along(parts)) {
     long <- order_eco(build(parts[[k]]))
@@ -448,6 +453,9 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
     units_seen <- union(units_seen, unique(long$unit))
     if ("occasion" %in% names(long)) occ_seen <- union(occ_seen, unique(long$occasion))
     n_rows <- n_rows + nrow(long); n_zero <- n_zero + sum(long$y == 0)
+    n_pos <- n_pos + sum(long$y > 0); max_y <- max(max_y, long$y)
+    units_hit <- union(units_hit, unique(long$unit[long$y > 0]))
+    if ("trap" %in% names(long)) traps_seen <- union(traps_seen, unique(as.character(long$trap)))
     n_surveys <- n_surveys + nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE]))
     if (length(yvals) <= 12) yvals <- union(yvals, unique(long$y))
     yr <- if (k == 1) range(long$y) else range(c(yr, range(long$y)))
@@ -474,7 +482,9 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
             n_periods = length(unique(unlist(lapply(manifest, `[[`, "periods")))),
             n_occasions = if (length(occ_seen)) length(occ_seen) else 1L, n_surveys = n_surveys,
             y_values = if (length(yvals) <= 12) paste(sort(yvals), collapse = ",") else sprintf("%s-%s (more than 12 distinct)", yr[1], yr[2]),
-            prop_zero = round(n_zero / n_rows, 3))
+            prop_zero = round(n_zero / n_rows, 3),
+            n_traps = if (length(traps_seen)) length(traps_seen) else 1L,
+            n_zero = n_zero, n_positive = n_pos, n_units_detected = length(units_hit), max_y = max_y)
   if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s, dataset$responseType), columns = cols,

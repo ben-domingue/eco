@@ -50,7 +50,12 @@
     "n_occasions": 3,
     "n_surveys": 150,
     "y_values": "0,1,2,3,4,5,6,8,10,11",
-    "prop_zero": 0.866
+    "prop_zero": 0.866,
+    "n_traps": 1,
+    "n_zero": 5196,
+    "n_positive": 804,
+    "n_units_detected": 50,
+    "max_y": 11
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_island", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude", "obs_start_time", "obs_temp_c", "obs_weather"],
