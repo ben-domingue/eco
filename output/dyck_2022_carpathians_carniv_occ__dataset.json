@@ -1,0 +1,67 @@
+{
+  "table": "dyck_2022_carpathians_carniv_occ",
+  "title": "Camera-trap detections of Eurasian lynx, European wildcat and grey wolf at 140 stations in the Southern Carpathians, Romania, winter 2018/19 and autumn 2019",
+  "creator": "Dyck, Marissa A.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.47d7wm3gp",
+  "sourceURL": "https://doi.org/10.5061/dryad.47d7wm3gp",
+  "citation": "Dyck, M. A. (2022). Data for: Dracula's menagerie: A multispecies occupancy analysis of lynx, wildcat, and wolf in the Romanian Carpathians [Dataset]. Dryad. https://doi.org/10.5061/dryad.47d7wm3gp",
+  "paperDOI": "10.1002/ece3.8921",
+  "abstract": "Camera trapping by Foundation Conservation Carpathia rangers in the forests of the Southern Carpathians, Romania, in two seasons (December 2018 to March 2019 at 64 stations; October 2019 to January 2020 at 76 other stations), pooled into 14-day sessions, with each station's terrain, road, settlement and land-cover covariates. The authors fitted multispecies occupancy models to ask how the three carnivores co-occur.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Camera-trap stations (paired cameras) run for a season; detections pooled to 14-day sessions; obs_effort_days counts the session's days with at least one working camera.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "effortColumn": "obs_effort_days",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "sessions within one season; each season is a separate set of stations",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Southern Carpathians (Fagaras mountains area), Romania; station coordinates as published",
+  "temporalCoverage": "2018-12/2020-01",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "station coordinates as deposited (decimal degrees, 6 decimals); all three species IUCN Least Concern and none flagged by the source"
+  },
+  "covariateNote": "unit_impact: anthropogenic impact at the station as recorded (None, Low, Logging, Tourism, Village, Isolated buildings). Distances in metres; unit_local_road_density in km/km2; unit_tri5: terrain roughness index in a 50 m buffer; unit_clc2018: CORINE 2018 class at the station; unit_prop_clcNNN: proportion of CORINE class NNN in the station's 2.7 x 2.7 km cell.",
+  "notes": "Winter has 8 sessions and autumn 7. Stations are different in the two seasons, so period separates two station sets rather than revisits. Station-sessions with no working camera have no rows, except three winter sessions with recorded effort 0 and a detection, which are kept as surveyed with obs_effort_days = 0 as deposited.",
+  "summary": {
+    "n_rows": 3012,
+    "n_units": 140,
+    "n_taxa": 3,
+    "n_periods": 2,
+    "n_occasions": 8,
+    "n_surveys": 1004,
+    "y_values": "0,1",
+    "prop_zero": 0.853,
+    "n_traps": 1,
+    "n_zero": 2569,
+    "n_positive": 443,
+    "n_units_detected": 114,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_lon", "unit_lat", "unit_elev_m", "unit_impact", "unit_dist_natl_road_m", "unit_dist_settlement_m", "unit_dist_stream_m", "unit_local_road_density", "unit_dist_local_road_m", "unit_tri5", "unit_clc2018", "unit_prop_clc112", "unit_prop_clc211", "unit_prop_clc222", "unit_prop_clc231", "unit_prop_clc242", "unit_prop_clc243", "unit_prop_clc311", "unit_prop_clc312", "unit_prop_clc313", "unit_prop_clc321", "unit_prop_clc322", "unit_prop_clc324", "unit_prop_clc332", "unit_prop_clc512", "obs_effort_days"],
+  "coreMd5": "e90912d92b2c16e40baaa636ea221e80",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "period_season", "period_start", "period_end"],
+      "md5": "828e3eac7479804f1c04310c79acadd5"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "53e0f43da2637b9da919cb68bbfd1509"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dyck_2022_carpathians_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

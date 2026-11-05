@@ -1,0 +1,66 @@
+{
+  "table": "ludwig_2026_lusatia_capercaillie_cjs",
+  "title": "Annual encounter histories of 552 capercaillie released in Lower Lusatia, Germany, 2012-2024",
+  "creator": "Ludwig, Tobias; Alexander, Erdbeer; Ludwig, Arne; Lieckfeldt, Dietmar; Höglund, Jacob; Thielemann, Lars",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.73n5tb3cn",
+  "sourceURL": "https://doi.org/10.5061/dryad.73n5tb3cn",
+  "citation": "Ludwig, T., Alexander, E., Ludwig, A., Lieckfeldt, D., Höglund, J., & Thielemann, L. (2026). Data from: Long-term apparent survival of capercaillie (Tetrao urogallus) translocated from Sweden to East Germany [Dataset]. Dryad. https://doi.org/10.5061/dryad.73n5tb3cn",
+  "paperDOI": "10.1002/wlb3.01532",
+  "abstract": "Every capercaillie released in a reintroduction programme in Lower Lusatia, eastern Germany, 2012-2024: adults caught in Sweden and translocated, and juveniles reared by translocated hens under the 'born to be free' method. Each bird's release, sex, body mass, transmitter, confirmed death and annual encounters from summer feather genotyping and telemetry; the authors used the histories to estimate apparent survival after release.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Birds ringed and released (the release year is the marking occasion); thereafter encountered each year by non-invasive genetic monitoring (feathers collected at dust-bathing and other sites, June-August, identified by mitochondrial sequencing and microsatellite genotyping) and, for transmitter-carrying birds, by telemetry (intensive in 2012-2014).",
+  "samplingProtocolCode": "feather_genotyping",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one encounter record per bird per year (genetic and telemetry detections pooled in the deposit)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "none",
+  "geographicCoverage": "Lower Lusatia (Niederlausitz), Brandenburg, Germany; no coordinates deposited",
+  "temporalCoverage": "2012/2024",
+  "covariateNote": "obs_release: 1 on the release-year row (y = 1 there is the release, not a monitoring detection). unit_origin: SE (wild-caught adult from Sweden) or btbf (reared by its translocated mother, 'born to be free'). unit_radio_track: 1 if the bird carried a GPS/radio transmitter (telemetry detections are near-certain while it worked). unit_death_date: confirmed death, NA otherwise.",
+  "notShipped": {
+    "mortyear": "the year of unit_death_date"
+  },
+  "notes": "Rows run from the release year to 2024, or to the year of a confirmed death. Bird 212 was confirmed dead on 2019-09-11 but is encountered in 2020 in the deposit (possibly a feather shed before death); its rows run to 2020 as deposited. 40 of the 58 confirmed deaths fall in the release year.",
+  "summary": {
+    "n_rows": 3220,
+    "n_units": 552,
+    "n_taxa": 1,
+    "n_periods": 13,
+    "n_occasions": 1,
+    "n_surveys": 3220,
+    "y_values": "0,1",
+    "prop_zero": 0.764,
+    "n_traps": 1,
+    "n_zero": 2460,
+    "n_positive": 760,
+    "n_units_detected": 552,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_origin", "unit_sex", "unit_catch_weight_g", "unit_radio_track", "unit_release_date", "unit_death_date", "obs_release"],
+  "coreMd5": "b8bee49cc70e7dd911c3225d039da46a",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "period_year"],
+      "md5": "bf3673270e75936d75101e4f61a94b77"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "c9817013074f59cea1c6c7929e43b3c3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ludwig_2026_lusatia_capercaillie_cjs.R",
+  "buildDate": "2026-11-05"
+}
