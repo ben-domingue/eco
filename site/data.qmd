@@ -93,7 +93,8 @@ for (i in seq_len(nrow(d))) {
   cat(sprintf("| Script | [`data/%s.R`](%s/data/%s.R) |\n", r$table, gh, r$table))
   if (nzchar(r$notes)) cat(sprintf("\nNotes: %s\n", r$notes))
   for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
-  cat(sprintf("\nCitation: %s\n", r$citation))
+  # a dataset and its paper share one citation field; show each on its own line
+  cat(sprintf("\nCitation: %s\n", gsub("\\. (Paper|Data): ", ".\n\n\\1: ", r$citation)))
 }
 ```
 
