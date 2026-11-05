@@ -6,8 +6,8 @@
 .eco_core <- list(name = "eco", ref = "4j5q")
 .eco_meta <- list(name = "eco_meta", ref = "241c")
 
-#: Redivis refuses an unauthenticated rows request over 100 MB. Every eco table
-#: is far under this; the check is here so a future one fails with a sentence.
+#: Redivis refuses an unauthenticated rows request over 100 MB. Most eco tables
+#: are far under it; the few over it are read with a Redivis login (auth.R).
 .eco_anon_cap <- 100 * 1024^2
 
 .eco_api <- "https://redivis.com/api/v1"

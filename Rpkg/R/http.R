@@ -5,6 +5,7 @@
 #   GET /tables/<owner>.<dataset>[:<tag>].<table>/rows?format=csv -> the data
 # The Stata package in ben-domingue/irw found this route; it needs no token for a
 # dataset whose public access level is "data" and refuses results over 100 MB.
+# A table over that goes through the redivis client with a login instead (auth.R).
 
 # "v1.0" -> "v1_0", the form Redivis takes inside a path.
 .eco_tag_path <- function(tag) if (is.null(tag)) NULL else gsub(".", "_", tag, fixed = TRUE)
@@ -84,8 +85,7 @@
     stop("no table `", table, "` in ", dataset$name, " ", tag,
          ". eco_list_tables() shows what this version holds.", call. = FALSE)
   if (isTRUE(row$bytes > .eco_anon_cap))
-    stop("`", table, "` is ", format(row$bytes, big.mark = ","), " bytes; Redivis serves at most ",
-         "100 MB to an anonymous request. Download it from ", .eco_table_url(dataset, table), call. = FALSE)
+    return(.eco_download_rows_auth(dataset, table, tag, row$bytes, dest))
   url <- paste0(.eco_api, "/tables/", .eco_dataset_ref(dataset, tag), ".", table, "/rows?format=csv")
   .eco_download(url, dest, what = table)
 }

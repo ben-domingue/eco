@@ -29,8 +29,9 @@
 #' One row per core table in the eco version being read (see [eco_version()]),
 #' with its size on Redivis and which side tables it has.
 #'
-#' @return A data.frame: `table`, `n_rows`, `bytes`, `taxa`, `periods`, `units`,
-#'   `traps` (logical: the side table exists).
+#' @return A data.frame: `table`, `n_rows`, `bytes`, `needs_login` (over the
+#'   100 MB Redivis serves without a login; see [eco_fetch()]), `taxa`,
+#'   `periods`, `units`, `traps` (logical: the side table exists).
 #' @examples
 #' \donttest{
 #' eco_list_tables()
@@ -39,7 +40,8 @@
 eco_list_tables <- function() {
   l <- .eco_table_listing(.eco_core, .eco_tag_for(.eco_core))
   core <- l[!.eco_is_side(l$name), , drop = FALSE]
-  out <- data.frame(table = core$name, n_rows = core$rows, bytes = core$bytes, stringsAsFactors = FALSE)
+  out <- data.frame(table = core$name, n_rows = core$rows, bytes = core$bytes,
+                    needs_login = !is.na(core$bytes) & core$bytes > .eco_anon_cap, stringsAsFactors = FALSE)
   for (s in names(.eco_side_keys)) out[[sub("^__", "", s)]] <- paste0(core$name, s) %in% l$name
   rownames(out) <- NULL
   out

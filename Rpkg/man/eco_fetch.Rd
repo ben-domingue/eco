@@ -20,6 +20,17 @@ Reads a core table from the eco version in force (see \code{\link[=eco_version]{
 Redivis' public CSV endpoint. Nothing to log in to. Downloads are cached on
 disk (see \code{\link[=eco_cache_dir]{eco_cache_dir()}}).
 }
+\section{Large tables}{
+
+Redivis serves at most 100 MB to a request without a login, and a few eco
+tables are bigger (\code{needs_login} in \code{\link[=eco_list_tables]{eco_list_tables()}}). Those are read with
+the \pkg{redivis} client instead, which needs \pkg{redivis} and \pkg{arrow}
+installed and a free Redivis account: run \code{redivis::redivis$authenticate()}
+once, or set \code{REDIVIS_API_TOKEN}. The download counts against the account's
+export quota and is cached like any other. Without a login \code{eco_fetch()}
+stops and says what to do; it never opens a browser itself.
+}
+
 \examples{
 \donttest{
 d <- eco_fetch("schank_2015_tapir_occ")
