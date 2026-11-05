@@ -402,14 +402,17 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   s <- table_summary(long)
   if (!is.null(dataset$taxaWithheld)) dataset$taxaWithheld <- I(as.character(dataset$taxaWithheld))   # a JSON array even with one name
   if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))   # crossed: a JSON array
+  core_f <- file.path(OUT_DIR, paste0(name, ".csv"))
+  fwrite(long, core_f)
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s, dataset$responseType),
                     columns = names(long),
+                    # the build this __dataset.json describes: the uploader refuses a core that is not it (#75)
+                    coreMd5 = unname(tools::md5sum(core_f)),
                     standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
                     buildDate = format(Sys.Date())))
   write_json(dataset, file.path(OUT_DIR, paste0(name, "__dataset.json")), auto_unbox = TRUE, pretty = TRUE, na = "null")
-  fwrite(long, file.path(OUT_DIR, paste0(name, ".csv")))
   cat(sprintf("%s.csv: rows=%d units=%d taxa=%d periods=%d occasions=%d y={%s} zeros=%.0f%% floor=%s\n",
               name, s$n_rows, s$n_units, s$n_taxa, s$n_periods, s$n_occasions, s$y_values,
               100 * s$prop_zero, dataset$sampleFloor))
@@ -461,7 +464,8 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
     yr <- if (k == 1) range(long$y) else range(c(yr, range(long$y)))
     fn <- sprintf("part-%02d.csv", k)
     fwrite(long, file.path(dir, fn))
-    manifest[[k]] <- list(file = fn, periods = I(sort(unique(as.integer(long$period)))), n_rows = nrow(long))
+    manifest[[k]] <- list(file = fn, periods = I(sort(unique(as.integer(long$period)))), n_rows = nrow(long),
+                          md5 = unname(tools::md5sum(file.path(dir, fn))))   # checked by the uploader (#75)
     cat(sprintf("  %s: %s rows, periods %d-%d\n", tag, format(nrow(long), big.mark = ",", scientific = FALSE), min(long$period), max(long$period)))
     rm(long, b); gc(FALSE)
   }
