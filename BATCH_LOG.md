@@ -1096,6 +1096,39 @@ What this batch says about the standard:
 - **`gbif_taxon()` caches a network failure as a no-match.** The script asserts no `ERROR`; four 2024-on bird names needed `lookupName` to older names in GBIF.
 - **`occasion` means three things across BBS tables:** rank of a run in a route-year, position of a block, position of a stop. `eco_to_unmarked()` treats all as repeat visits; `closure` says so per table.
 
+## Batch 22 — 2026-11-04 (Stanford-linked Costa Rica countryside surveys: Daily, Karp, Hadly labs)
+
+Five queue rows from the Daily-lab Costa Rica countryside programme, built in `~/eco-stanford`
+(branch `batch-stanford-costarica`). Four tables from three deposits; two deposits not built as
+duplicates. All pass `eco-validate` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| ke_2022_costarica_birds_nmix | community counts, repeated point counts | Dryad CC0 | 187,374 | 150 points in 25 Guanacaste landscapes x 1,122 logged visits (2016-2019, 1-3 per year) x 167 species; `sample_table`; y = sum of Number1 per species x visit; coordinates coarsened (Amazona auropalliata CR, Crax rubra and Aratinga canicularis VU), elevation to 100 m; forest cover at 105 radii in `__units` |
+| ke_2022_costarica_birds_exact_nmix | E7.3 sibling | same | 184,008 | without the three flagged species; coordinates and elevation as deposited |
+| frishkoff_2014_costarica_birds_binom | binomial counts (ruling #34), transects x season | Dryad CC0 | 513,520 | 44 transects x 24 seasons (2001-2012 dry/wet; 1,048 surveyed) x 490 taxa (4 genus-only); detections out of 3; survey set from row presence |
+| frank_2017_costarica_bats_comm | community detection, mist nets | Dryad CC0 | 7,770 | 18 sites x 185 netting visits (2009-2013) x 42 bats; JAGS input array, nrep = visits per site-year; below the sample floor (18 units) |
+
+Not built:
+- Frishkoff et al. 2018 (doi:10.5061/dryad.7c652r8): the same 240 visits in 2016 as Ke 2022, with counts that match. Its per-observation distance (to the nearest 10 m) is new, so it could become a distance-sampling table.
+- Frishkoff et al. 2019 (doi:10.5061/dryad.fg8kq66): the 2016-2017 subset of Ke 2022.
+
+What this batch says about the standard:
+
+- **Behaviour-coded counts.** Ke 2022 records each observation with up to three (number,
+  behaviour) pairs. Number2 and Number3 count the same individuals as Number1 doing a second or
+  third behaviour. y is the sum of Number1, which the 2018 deposit of the same visits confirms.
+  No rule covers multi-behaviour records. Here the earlier deposit settles it.
+- **Two source codes lumped onto one name.** In Frishkoff 2014, Empidonax traillii has two rows
+  in six transect-seasons. A union of two "detections out of 3" cannot be rebuilt, so the taxon
+  is not shipped. E6's "not reliably separated" rule needs the source to say so, and this
+  source does not.
+- **A survey set from row presence in a binomial_count table.** The 8 absent transect-seasons
+  are all wet seasons of the three H-SI transects. Three bird surveys of a transect never
+  record nothing, so `row_presence` is defensible. The table says so in `surveyEvidenceNote`.
+- **A deposited model array** (Frank 2017) zero-pads visits beyond `nrep`. The padded cells are
+  asserted to carry no capture and get no row.
+
 ## Batch 23 — 2026-11-05 (card-sorted queue rows: Mauritius parakeet, Svalbard polar bears, NZ mice, Mara cheetahs, Wyoming shrike, Colombian endemics)
 
 One agent in `~/eco-b23` (branch `batch-23`), from the 2026-11-05 card sort (#85). Twelve deposits inspected,
