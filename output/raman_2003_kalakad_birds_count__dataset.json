@@ -1,0 +1,60 @@
+{
+  "table": "raman_2003_kalakad_birds_count",
+  "title": "Repeated line-transect counts of 60 rainforest bird taxa on 12 transects in Kalakad-Mundanthurai Tiger Reserve, Western Ghats, India, 1997-1999",
+  "creator": "Raman, T. R. Shankar",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.0gb5mkm3n",
+  "sourceURL": "https://doi.org/10.5061/dryad.0gb5mkm3n",
+  "citation": "Raman, T. R. S. (2022). Data on rainforest birds from line transect surveys in the Kalakad - Mundathurai Tiger Reserve, Tamil Nadu, India [Dataset]. Dryad. https://doi.org/10.5061/dryad.0gb5mkm3n",
+  "paperDOI": "10.1046/j.1474-919X.2003.00105.x",
+  "abstract": "Bird detections from 104 walks of 600 m line transects in mid-elevation rainforest, plantations and forest edges of Kalakad-Mundanthurai Tiger Reserve, southern Western Ghats, March 1997 to February 1999, collected for T. R. S. Raman's doctoral research on rainforest bird communities; transects T2 and T3 were used to compare census techniques (Raman 2003, Ibis).",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "600 m line transects walked in about one hour at a slow, uniform pace within three hours after sunrise; every bird seen (perched or flying under the canopy) or heard recorded with its number (an uncountable flock as 1) and perpendicular distance class (0-5 to 50-100 m).",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "walks spread over two years (March 1997 to February 1999); no within-season grouping is given",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "1997-03/1999-02",
+  "geographicCoverage": "Kalakad-Mundanthurai Tiger Reserve (Sengaltheri, Kakachi, Neterikal, Kannikatti areas), Tamil Nadu, India; transect midpoints coarsened to 0.1 degree",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "approximate transect midpoints (WGS 84, 6 decimals) coarsened to the 0.1 degree cell centre with coarsen_coords(): IUCN threatened species present in their native range (Buceros bicornis, Montecincla meridionalis, Ocyceros griseus)"
+  },
+  "notes": "y is the sum of Number over a taxon's records on the walk; a flock that could not be counted is recorded as 1 (obs_uncounted_flock = 1), so y is a lower bound there. Walks per transect range from 1 (T13, T15, T16) to 30 (T2, T3). PHYNTR is the Green/Greenish Warbler pair (Phylloscopus nitidus / trochiloides), not separated in the field. The Malabar Trogon's scientific name is truncated in the deposit ('Harpac') and is Harpactes fasciatus. Common names are eBird India 2022 (vernacularName). taxon_iucnCategory from GBIF's IUCN record.",
+  "notShipped": {
+    "mammals": "146 mammal records (squirrels, primates, mouse deer, wild boar) recorded incidentally, without scientific names",
+    "unidentified": "29 records of birds not identified to species or species pair (bird sp., woodpecker sp., leafbird sp.)",
+    "detection_details": "per-record distance class, heard/seen/flying code, 25 m segment, side, remarks, mixed-flock flag",
+    "end_weather": "weather at the end of the walk",
+    "exact_coordinates": "coarsened to 0.1 degree (threatened species present)"
+  },
+  "summary": {
+    "n_rows": 6240,
+    "n_units": 12,
+    "n_taxa": 60,
+    "n_periods": 1,
+    "n_occasions": 30,
+    "n_surveys": 104,
+    "y_values": "0-40 (25 distinct)",
+    "prop_zero": 0.719,
+    "n_traps": 1,
+    "n_zero": 4486,
+    "n_positive": 1754,
+    "n_units_detected": 12,
+    "max_y": 40
+  },
+  "sampleFloor": "below (12 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_location", "unit_lat", "unit_lon", "obs_start_time", "obs_duration_min", "obs_weather_start", "obs_uncounted_flock"],
+  "coreMd5": "16b07f16e9f786056bbc2d7fd6f2945b",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/raman_2003_kalakad_birds_count.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,61 @@
+taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory
+FICNIG,Ficedula nigrorufa,Black-and-orange Flycatcher,species,https://www.gbif.org/species/5231280,EXACT,,LC
+ACCVIR,Accipiter virgatus,Besra,species,https://www.gbif.org/species/2480595,EXACT,,LC
+HYPGAN,Hypsipetes ganeesa,Square-tailed Bulbul (Black Bulbul),species,https://www.gbif.org/species/7342071,EXACT,,LC
+DUMATR,Dumetia atriceps,Dark-fronted Babbler,species,https://www.gbif.org/species/11046005,EXACT,Rhopocichla atriceps,LC
+HYPAZU,Hypothymis azurea,Black-naped Monarch,species,https://www.gbif.org/species/2486625,EXACT,,LC
+LARBRU,Larvivora brunnea,Indian Blue Robin,species,https://www.gbif.org/species/7341256,EXACT,Luscinia brunnea,LC
+PSICOL,Psittacula columboides,Malabar Parakeet (Blue-winged Parakeet),species,https://www.gbif.org/species/5229054,EXACT,,LC
+DICAEN,Dicrurus aeneus,Bronzed Drongo,species,https://www.gbif.org/species/2493971,EXACT,,LC
+KETZEY,Ketupa zeylonensis,Brown Fish-Owl,species,https://www.gbif.org/species/5232229,EXACT,,LC
+STRLEP,Strix leptogrammica,Brown Wood-Owl,species,https://www.gbif.org/species/2497546,EXACT,,LC
+MUSMUT,Muscicapa muttui,Brown-breasted Flycatcher,species,https://www.gbif.org/species/2492557,EXACT,,LC
+SPICHE,Spilornis cheela,Crested Serpent-Eagle,species,https://www.gbif.org/species/2480433,EXACT,,LC
+PSIMAL,Psilopogon malabaricus,Malabar Barbet (Crimson-throated Barbet),species,https://www.gbif.org/species/8157718,EXACT,,LC
+CHAIND,Chalcophaps indica,Asian Emerald Dove,species,https://www.gbif.org/species/2495840,EXACT,,LC
+IREPUE,Irena puella,Asian Fairy-bluebird,species,https://www.gbif.org/species/2488929,EXACT,,LC
+CHLAUR,Chloropsis aurifrons,Golden-fronted Leafbird (Golden-fronted Chloropsis),species,https://www.gbif.org/species/5230726,EXACT,,LC
+DRYJAV,Dryocopus javensis,White-bellied Woodpecker (Great Black Woodpecker),species,https://www.gbif.org/species/5228839,EXACT,,LC
+BUCBIC,Buceros bicornis,Great Hornbill (Great Pied Hornbill),species,https://www.gbif.org/species/2476012,EXACT,,VU
+CHRGUT,Chrysocolaptes guttacristatus,Greater Flameback,species,https://www.gbif.org/species/7387276,EXACT,,LC
+DICPAR,Dicrurus paradiseus,Greater Racket-tailed Drongo,species,https://www.gbif.org/species/2493969,EXACT,,LC
+PHYNTR,Phylloscopus nitidus/trochiloides,Green/Greenish Warbler,species complex,https://www.gbif.org/species/2493047,EXACT,,
+DICLEU,Dicrurus leucophaeus,Ashy Drongo,species,https://www.gbif.org/species/9600020,EXACT,,LC
+GALSON,Gallus sonneratii,Grey Junglefowl,species,https://www.gbif.org/species/5227765,EXACT,,LC
+CULCEY,Culicicapa ceylonensis,Grey-headed Canary-Flycatcher,species,https://www.gbif.org/species/2492634,EXACT,,LC
+GRAIND,Gracula indica,Southern Hill Myna,species,https://www.gbif.org/species/6092114,EXACT,,LC
+DUCBAD,Ducula badia,Mountain Imperial-Pigeon,species,https://www.gbif.org/species/2495993,EXACT,,LC
+MONMER,Montecincla meridionalis,Ashambu Laughingthrush (Ashambu Chilappan),species,https://www.gbif.org/species/10785624,EXACT,,VU
+PHYMAG,Phylloscopus magnirostris,Large-billed Leaf Warbler,species,https://www.gbif.org/species/2493069,EXACT,,LC
+ARALON,Arachnothera longirostra,Little Spiderhunter,species,https://www.gbif.org/species/2484653,EXACT,,LC
+LORVER,Loriculus vernalis,Vernal Hanging-Parrot (Indian Lorikeet),species,https://www.gbif.org/species/2479399,EXACT,,LC
+OCYGRI,Ocyceros griseus,Malabar Grey Hornbill,species,https://www.gbif.org/species/2475924,EXACT,,VU
+HARFAS,Harpactes fasciatus,Malabar Trogon,species,https://www.gbif.org/species/5232051,EXACT,,LC
+MYOHOR,Myophonus horsfieldii,Malabar Whistling-Thrush,species,https://www.gbif.org/species/5789039,EXACT,,LC
+DICCON,Dicaeum concolor,Nilgiri Flowerpecker,species,https://www.gbif.org/species/2484722,EXACT,,LC
+EUMALB,Eumyias albicaudatus,Nilgiri Flycatcher,species,https://www.gbif.org/species/5788902,EXACT,,LC
+GEOCIT,Geokichla citrina,Orange-headed Thrush,species,https://www.gbif.org/species/6100882,EXACT,,LC
+HEMPIC,Hemipus picatus,Bar-winged Flycatcher-shrike,species,https://www.gbif.org/species/2486748,EXACT,,LC
+ALCPOI,Alcippe poioicephala,Brown-cheeked Fulvetta,species,https://www.gbif.org/species/5231383,EXACT,,LC
+RUBGUL,Rubigula gularis,Flame-throated Bulbul (Ruby-throated Bulbul),species,https://www.gbif.org/species/10960431,EXACT,Pycnonotus gularis,LC
+MICBRA,Micropternus brachyurus,Rufous Woodpecker,species,https://www.gbif.org/species/5844053,EXACT,,LC
+LONKEL,Lonchura kelaarti,Black-throated Munia,species,https://www.gbif.org/species/2493608,EXACT,,LC
+FICRUF,Ficedula ruficauda,Rusty-tailed Flycatcher,species,https://www.gbif.org/species/9574669,EXACT,Muscicapa ruficauda,LC
+CLACOR,Clamator coromandus,Chestnut-winged Cuckoo,species,https://www.gbif.org/species/2496467,EXACT,,LC
+PERFLA,Pericrocotus flammeus,Orange Minivet,species,https://www.gbif.org/species/2486819,EXACT,,LC
+POMHOR,Pomatorhinus horsfieldii,Indian Scimitar-Babbler,species,https://www.gbif.org/species/2493332,EXACT,,LC
+PSIVIR,Psilopogon viridis,White-cheeked Barbet (Small Green Barbet),species,https://www.gbif.org/species/7796884,EXACT,,LC
+LEPMIN,Leptocoma minima,Crimson-backed Sunbird (Small Sunbird),species,https://www.gbif.org/species/6088706,EXACT,,LC
+PICINN,Picumnus innominatus,Speckled Piculet,species,https://www.gbif.org/species/5228719,EXACT,,LC
+PELRUF,Pellorneum ruficeps,Puff-throated Babbler,species,https://www.gbif.org/species/2493248,EXACT,,LC
+GALSPA,Galloperdix spadicea,Red Spurfowl,species,https://www.gbif.org/species/2473696,EXACT,,LC
+DINJAV,Dinopium javanense,Common Flameback (Goldenbacked Three-toed Woodpecker),species,https://www.gbif.org/species/5228803,EXACT,,LC
+GORMEL,Gorsachius melanolophus,Malayan Night-Heron,species,https://www.gbif.org/species/2480841,EXACT,,LC
+SITFRO,Sitta frontalis,Velvet-fronted Nuthatch,species,https://www.gbif.org/species/9610931,EXACT,,LC
+ZOSPAL,Zosterops palpebrosus,Indian White-eye (Oriental White-eye),species,https://www.gbif.org/species/2489362,EXACT,,LC
+CYOPAL,Cyornis pallidipes,White-bellied Blue Flycatcher,species,https://www.gbif.org/species/9758793,EXACT,,LC
+SHOALB,Sholicola albiventris,White-bellied Sholakili,species,https://www.gbif.org/species/9465431,EXACT,Myiomela albiventris,NT
+DENLEU,Dendrocitta leucogastra,White-bellied Treepie,species,https://www.gbif.org/species/2482455,EXACT,,LC
+PTEDEL,Pterorhinus delesserti,Wayanad Laughingthrush,species,https://www.gbif.org/species/11062506,EXACT,Garrulax delesserti,LC
+IOLIND,Iole indica,Yellow-browed Bulbul,species,https://www.gbif.org/species/5230292,EXACT,Acritillas indica,LC
+MACAPL,Machlolophus aplonotus,Indian Yellow Tit,species,https://www.gbif.org/species/7738682,EXACT,Parus aplonotus,NE

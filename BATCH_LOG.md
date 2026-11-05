@@ -1128,3 +1128,36 @@ What this batch says about the standard:
 - **Count-detector SCR** (snow leopard) and **per-taxon occasion lengths** (Amolar) have no stated layout.
 - **The IUCN lookup** returned NE for the echo parakeet (no GBIF record) and LC for two species the source calls endangered;
   the E7 flag followed the source.
+
+## Batch 24 — 2026-11-05 (card-sorted queue rows: Kooragang frogs, Japanese salmonids, Lake Ngami birds, Sumatran and Western Ghats birds)
+
+One agent in `~/eco-b24` (branch `batch-24`, stacked on `batch-23`), from the 2026-11-05 card sort (#85), choosing
+for thin taxa and regions (amphibians, fish; Australia, Japan, Botswana, Indonesia, India). Ten deposits inspected,
+six tables built from five deposits, five not built. All six pass `eco-validate` (exit 0).
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| hamer_2021_kooragang_amph_comm | multi-season community occupancy | Dryad CC0 | 10,780 | 11 frogs x 55 wetlands, 2 breeding seasons, 2-15 surveys per season (mark-recapture sites far more often); 10 zero cells in `crisig.csv` outside the survey set dropped (every other species NA, year 0, covariates mean-filled); covariates standardised as deposited; species codes expanded from the paper (author copy) |
+| tsuboi_2020_japan_charr_ms | multi-state CJS (juvenile/adult x tributary/connected/fragmented mainstem) | Dryad CC0 | 7,147 | 1,373 charr, 9 annual October surveys; YOY rows start at marking (born that year), adults from 2009 (unknown age, E4.4); first table for Japan |
+| tsuboi_2020_japan_masu_ms | same, red-spotted masu salmon | Dryad CC0 | 7,345 | 1,335 fish; split from the charr by ruling #20 (one taxon per individual table) |
+| cumming_2021_ngami_waterbird_count | repeated community point counts | Dryad CC0 | 41,496 | 182 species x 228 half-hour counts at 14 points over 6 trips; Roberts common names mapped through the eBird/Clements taxonomy (en, en_ZA; 14 by hand, 6 GBIF genus spellings); y = foraging + not foraging + flying over, parts as `obs_`; coordinates coarsened (7 threatened species incl. white-backed vulture CR) |
+| prabowo_2016_jambi_birds_count | repeated community point counts | Dryad CC0 | 8,733 | 71 species x 32 plots x 3-4 visits; `sample_table` survey set; y = the authors' max-per-visit rule; homegardens not shipped (no survey table, paper and script disagree on visits) |
+| raman_2003_kalakad_birds_count | repeated line-transect counts | Dryad CC0 | 6,240 | 60 taxa x 104 walks of 12 transects; uncountable flocks flagged (`obs_uncounted_flock`, y a minimum); mammals and unidentified birds dropped; coordinates coarsened (3 VU) |
+
+Not built (`queue/human_review.csv`): Endau Rompin leeches (held: per-analysis files disagree for the same point-visit),
+Western Ghats agroforest amphibians (blocked: paper, what a "replicate" is), Kapitia skink robust design (blocked: paper,
+plus which identification set to ship), Valparai tea birds (deferred: single visit), Tiwi mammal trapping (inspected:
+SCR impossible without the trap layout; per-species closed-capture tables left for a later batch).
+
+What this batch says about the standard:
+
+- **Common names only.** The Ngami deposit has no scientific names. Matching through a published taxonomy (eBird/Clements,
+  in the locale the names come from) with a hand list for the remainder, asserted complete, worked; `make_taxa()` then needs
+  the GBIF backbone's older genus for six recent eBird moves (Ixobrychus, Charadrius, Bugeranus).
+- **IUCN synonym direction.** `iucn_category()` returns NA when GBIF's accepted name differs from the assessed name, even when
+  the IUCN record carries the deposit's own name (Litoria/Ranoidea, Turdinus, Brunhilda). Scripts fill those from the
+  record when its binomial equals the deposit's name (the `same_name` pattern already in two scripts); a harness option
+  would remove the copies.
+- **Known-age young of the year** (salmonids): fish first caught as YOY were born that year, so their rows start at marking,
+  the newborn branch of E4.4; adults are unknown-age and start in 2009. The rule fits, but "marked as a newborn" could say
+  "first caught in its birth year".

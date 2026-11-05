@@ -1,0 +1,53 @@
+{
+  "table": "hamer_2021_kooragang_amph_comm",
+  "title": "Detection/non-detection of eleven frog species at 55 wetlands on Kooragang Island, New South Wales, Australia, over two breeding seasons, 2000-2002",
+  "creator": "Hamer, Andrew J.; Schmera, Dénes; Mahony, Michael J.",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.b8gtht7b5",
+  "sourceURL": "https://doi.org/10.5061/dryad.b8gtht7b5",
+  "citation": "Hamer, A. J., Schmera, D., & Mahony, M. J. (2020). Multi-species occupancy modeling provides novel insights into amphibian metacommunity structure and wetland restoration [Dataset]. Dryad. https://doi.org/10.5061/dryad.b8gtht7b5",
+  "paperDOI": "10.1002/eap.2293",
+  "abstract": "Repeated nocturnal frog surveys (call listening then visual encounter search) at 55 waterbodies on Kooragang Island in the Hunter River estuary, New South Wales, over the 2000-01 and 2001-02 breeding seasons: 32 sites surveyed up to 14 times a year as part of a green and golden bell frog mark-recapture study, the other 23 mostly five times. Eleven species from three families were detected; the paper fits a multi-species occupancy model with wetland area, connectivity, Gambusia presence, emergent vegetation, ephemerality and canopy cover.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Nocturnal surveys, mostly by one person: about 10 minutes of quiet listening for calling males at the waterbody, then a head-torch visual encounter search of the waterbody and of trees and shrubs within 10 m, effort in proportion to waterbody area and vegetation complexity; air temperature and water level recorded at the start.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occupancy assumed constant within each breeding season (September-April); the paper treats the species pool as closed across both years with a year effect on detection",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "2000-09/2002-04",
+  "geographicCoverage": "Kooragang Island, Hunter River estuary, Newcastle, New South Wales, Australia (no site coordinates deposited)",
+  "notes": "occasion is the survey's order within the site and season as deposited (surveys are packed left in the source matrices). obs_days_std (days since 1 September) and obs_temp_std are the authors' standardised values; the means and sds are not deposited. Some temperatures were filled by the authors from other sites that night or the nearest weather station (paper). Site covariates other than the 0/1 ones are standardised as deposited. taxon_iucnCategory from the IUCN record via GBIF; Litoria aurea is the green and golden bell frog.",
+  "notShipped": {
+    "days2": "quadratic term of days (derived by the authors)",
+    "crisig_padding": "10 cells of crisig.csv (sites 47-48, 2001-02) coded 0 where no survey happened (all other species NA, year 0, covariates mean-filled)"
+  },
+  "summary": {
+    "n_rows": 10780,
+    "n_units": 55,
+    "n_taxa": 11,
+    "n_periods": 2,
+    "n_occasions": 15,
+    "n_surveys": 980,
+    "y_values": "0,1",
+    "prop_zero": 0.914,
+    "n_traps": 1,
+    "n_zero": 9850,
+    "n_positive": 930,
+    "n_units_detected": 53,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_distsite_std", "unit_area_std", "unit_gambusia", "unit_aqveg_std", "unit_ephemeral", "unit_canopy_std", "obs_days_std", "obs_temp_std", "obs_wet"],
+  "coreMd5": "288c647e733df3878d8a832f01367afd",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hamer_2021_kooragang_amph_comm.R",
+  "buildDate": "2026-11-05"
+}

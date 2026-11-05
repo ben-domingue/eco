@@ -1,10 +1,10 @@
 {
   "date": "2026-11-05",
-  "n_tables": 182,
-  "n_rows": 175935195,
-  "n_units": 209316,
-  "n_taxa_rows": 6221,
-  "n_surveys": 12445799,
+  "n_tables": 188,
+  "n_rows": 176016936,
+  "n_units": 212137,
+  "n_taxa_rows": 6547,
+  "n_surveys": 12461726,
   "n_families": 40,
   "families": {
     "CJS / multi-state capture-recapture": 2,
@@ -12,7 +12,7 @@
     "CJS capture-recapture with two-sided photo-ID": 1,
     "Closed-population capture-recapture": 1,
     "Community abundance": 2,
-    "Community occupancy": 30,
+    "Community occupancy": 31,
     "Community occupancy or N-mixture": 2,
     "Dead recovery / live-dead capture-recapture": 1,
     "Distance sampling": 7,
@@ -25,13 +25,13 @@
     "Multi-scale occupancy with false positives": 1,
     "Multi-state": 2,
     "Multi-state capture-recapture": 1,
-    "Multi-state CJS capture-recapture": 7,
+    "Multi-state CJS capture-recapture": 9,
     "Multi-state closed robust design capture-recapture": 3,
     "Multi-state dynamic occupancy": 2,
     "Multi-state occupancy": 1,
     "Multievent / multi-state robust design capture-recapture": 1,
     "Multinomial N-mixture": 2,
-    "N-mixture": 34,
+    "N-mixture": 37,
     "N-mixture / annual count index": 2,
     "N-mixture / occupancy": 1,
     "N-mixture / robust-design counts": 1,
@@ -50,16 +50,16 @@
   },
   "response_types": {
     "binomial_count": 5,
-    "count": 44,
-    "detection": 101,
+    "count": 47,
+    "detection": 102,
     "multinomial_cell": 13,
     "ordinal": 1,
-    "state": 18
+    "state": 20
   },
   "taxon_groups": {
-    "Amphibians": 11,
-    "Birds": 38,
-    "Fish": 15,
+    "Amphibians": 12,
+    "Birds": 41,
+    "Fish": 17,
     "Invertebrates": 31,
     "Mammals": 62,
     "Multiple": 4,
@@ -67,19 +67,19 @@
     "Reptiles": 9
   },
   "survey_evidence": {
-    "deposited_matrix": 90,
+    "deposited_matrix": 93,
     "effort_table": 28,
     "inferred": 16,
-    "row_presence": 15,
-    "sample_table": 33
+    "row_presence": 17,
+    "sample_table": 34
   },
-  "n_below_floor": 33,
+  "n_below_floor": 35,
   "n_with_coordinates": 63,
   "n_do_not_publish": 1,
   "n_human_tagged": 0,
   "n_valid": 176,
   "n_irw_conforms": 176,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 182
+    "eco v1.1-draft (2026-11-03)": 188
   }
 }
