@@ -1,0 +1,66 @@
+{
+  "table": "neateclegg_2018_cusuco_birds_count",
+  "title": "Repeated point-count transect surveys of 209 bird taxa on 25 transects in Cusuco National Park, Honduras, 2007-2016",
+  "creator": "Neate-Clegg, Montague H. C.; Jones, Simon E. I.; Burdekin, Oliver; Jocque, Merlijn; Sekercioglu, Cagan H.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.b025kp0",
+  "sourceURL": "https://doi.org/10.5061/dryad.b025kp0",
+  "citation": "Neate-Clegg, M. H. C., Jones, S. E. I., Burdekin, O., Jocque, M., & Sekercioglu, C. H. (2018). Data from: Elevational changes in the avian community of a Mesoamerican cloud forest park [Dataset]. Dryad. https://doi.org/10.5061/dryad.b025kp0",
+  "paperDOI": "10.1111/btp.12596",
+  "abstract": "Bird counts from ten years (2007-2016) of annual Operation Wallacea field seasons in Cusuco National Park, a cloud forest park in north-western Honduras: 25 transects of 2 to 8 point-count stations with mean elevations from 775 to 2,113 m, each surveyed 1 to 7 times a year, every species counted at every survey. The authors used the series to show that the community's diversity peak moved upslope over the decade.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Transects of 2 to 8 point-count stations (unit_n_stations) walked by 1 to 7 observers; every bird species counted, the counts deposited per transect survey (the stations of one survey together).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "a period is one year's summer field season; the paper treats years as the time series, surveys within a season as replicates",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "2007/2016",
+  "geographicCoverage": "Cusuco National Park, Cortes, Honduras (Merendon mountains); no coordinates deposited",
+  "notes": "y is the count for the species on the transect survey as deposited. Survey dates are not deposited; occasion is the deposited survey number within the year. Transects were surveyed in 5 to 10 of the 10 years. Names are as deposited, in the older taxonomy of the source (Dendroica, for instance); Accipiter striatus chionogaster is matched at the species. AMAUSP and POLISP are genus-level records (Amaurospiza sp., Polioptila sp.).",
+  "notShipped": {
+    "row_totals": "Abund and SR, the row sum and number of species counted (asserted equal to the species columns)",
+    "never_counted": "Dendroica nigrescens, a species column that is zero in every survey",
+    "row_id": "Order, a row number"
+  },
+  "summary": {
+    "n_rows": 149017,
+    "n_units": 25,
+    "n_taxa": 209,
+    "n_periods": 10,
+    "n_occasions": 7,
+    "n_surveys": 713,
+    "y_values": "0-101 (31 distinct)",
+    "prop_zero": 0.918,
+    "n_traps": 1,
+    "n_zero": 136849,
+    "n_positive": 12168,
+    "n_units_detected": 25,
+    "max_y": 101
+  },
+  "sampleFloor": "below (25 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_side", "unit_camp", "unit_n_stations", "unit_mean_elev_m", "unit_elev_range_m", "obs_n_observers"],
+  "coreMd5": "b52fb31602d9eaf38800866c8f9af02d",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "period_year"],
+      "md5": "8799b20363b6bccb603ea64605c75991"
+    },
+    "taxa": {
+      "rows": 209,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "61eb63c6caf7f72ded4bb7d0d73b2d0e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neateclegg_2018_cusuco_birds_count.R",
+  "buildDate": "2026-11-05"
+}

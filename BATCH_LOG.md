@@ -1342,3 +1342,39 @@ What this batch says about the standard:
 - **Occasions known only by their first day** (Mojave): when the deposit gives only the first survey date of
   consecutive multi-day occasions, the table ships no `date`; a sentence in the guide on inferring later occasion
   dates would make this consistent.
+
+## Batch 29 — 2026-11-05 (card-sorted queue rows: Honduran cloud-forest birds, French toads, Kerguelen cats, Lusatian capercaillie, Lake Erie watersnakes, Carpathian carnivores)
+
+One agent in `~/eco-b29` (branch `batch-29`, from main at e9fb601 after batch 28). Rows from the 2026-11-05 card sort
+(#85), chosen for regions and taxa the corpus lacks. Eleven deposits downloaded and read (the Goldingay camera study
+left by batch 28 among them), six tables built from six deposits and uploaded to the Redivis draft, five not built.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neateclegg_2018_cusuco_birds_count | community counts, point-count transects | Dryad CC0 | 149,017 | 209 bird taxa on 25 transects (2-8 stations each) in Cusuco NP, Honduras, 1-7 surveys a year 2007-2016 (Operation Wallacea); one row per transect survey in the deposit (row_presence); one all-zero species column (Dendroica nigrescens) dropped; two misspellings matched under the correct name; no dates or coordinates; below the unit floor (25) |
+| cayuela_2020_bombina_cjs | CJS, annual histories | Dryad CC0 | 63,833 | 11,919 yellow-bellied toads in four French populations (two harvested woodland, two riverine), 5-9 years each within 2000-2014, stacked with population as cluster_id; birth year known for 6,714, always 1-2 years before first capture; rows start at the later of study start and birth year |
+| fouchet_2016_kerguelen_cat_cjs | CJS, trapping sessions | Dryad CC0 | 45,749 | 684 feral cats at three Grande Terre sites, Kerguelen, 196 dated sessions 1994-2013 (5-28 days); every capture date falls in exactly one session of its site (asserted); captures pooled to sessions (obs_n_captures); session dates and site NDVI in __periods; age column not shipped (does not advance with date) |
+| ludwig_2026_lusatia_capercaillie_cjs | CJS, annual encounters | Dryad CC0 | 3,220 | 552 capercaillie released in Lower Lusatia, Germany, 2012-2024 (Swedish adults and hen-reared juveniles), encountered by feather genotyping and telemetry; release-year 1 flagged obs_release; histories end at confirmed death (58), except bird 212 encountered a year after its recorded death (kept to 2020 as deposited) |
+| king_2018_lakeerie_watersnake_cjs | CJS, annual histories | Dryad CC0 | 186,399 | 13,198 Lake Erie watersnakes at 14 island shoreline sites, 2000-2015, from a MARK .inp with 28 site x sex groups; surveyed site-years inferred from captures (193), matching the paper's account of sites added by 2005 and two dropped in 2011-2012 |
+| dyck_2022_carpathians_carniv_occ | multi-species detection, cameras | Dryad CC0 | 3,012 | lynx, wildcat and wolf at 64 winter 2018/19 and 76 autumn 2019 stations (different stations), Southern Carpathians, 14-day sessions with active-day effort; three winter sessions with effort 0 and a detection are kept as surveyed (obs_effort_days = 0 as deposited); coordinates as published (all LC) |
+
+Not built (`queue/human_review.csv`): Bolivian Andes bird counts (blocked: paper; the 5 seasons have no years and the
+300-species axis no names), Goldingay Diamond Hill camera study (held: 14 of 1,610 site-weeks are "-" for one species
+and 0 for the other; the deferred species-specific survey-set ruling), Nui Chua camera traps, Vietnam (held: 43+ records
+inside declared camera-failure periods, records at stations with no camera row, common names only), Von der Decken's
+hornbill 10-m grid (blocked: paper; what makes a 10-m cell surveyed, coordinates need the raster package), common eider
+E-SURGE histories (held: meaning of RC = -1 for 1,009 East Bay birds).
+
+What this batch says about the standard:
+
+- **At-risk start for known-age animals caught in the wild** (toads): E4.4 names the study's first period for
+  wild-caught animals and the marking period for animals marked at birth. A toad whose birth year is known but who was
+  first caught a year or two later fits neither; the table starts its rows at the later of study start and birth year.
+  A sentence in E4.4 would settle it.
+- **Known deaths in CJS** (capercaillie): a confirmed death ends the history, like a lost mark; the deposit's one
+  encounter after a recorded death (likely a feather shed before death) shows why the rule should say which wins.
+- **Detections in zero-effort cells** (Carpathians, Nui Chua): a detection proves a camera worked, so a cell with
+  effort 0 and a detection was kept as surveyed in the small Carpathian case (3 cells); Nui Chua's 43 records inside a
+  declared failure period are too many to treat that way without a ruling.
+- **Sessions of unequal length as periods** (Kerguelen): 196 sessions of 5-28 days at uneven intervals across three
+  sites go in one period index with dates in `__periods`; the CJS interval is a user's computation from those dates.
