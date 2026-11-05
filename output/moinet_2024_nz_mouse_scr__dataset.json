@@ -1,0 +1,61 @@
+{
+  "table": "moinet_2024_nz_mouse_scr",
+  "title": "Spatial capture-recapture of 230 house mice on two 36-trap Longworth grids in New Zealand farmland, 4 sessions 2016-2018",
+  "creator": "Moinet, Marie; Abrahão, Carlos; Gasparotto, Vinícius; Wilkinson, David; Vallee, Emilie; Benschop, Jackie; Russell, James",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.x69p8czsq",
+  "sourceURL": "https://doi.org/10.5061/dryad.x69p8czsq",
+  "citation": "Moinet, M., Abrahão, C., Gasparotto, V., Wilkinson, D., Vallee, E., Benschop, J., & Russell, J. (2024). Data from: Density matters: How population dynamics of house mice (Mus musculus) inform the epidemiology of Leptospira [Dataset]. Dryad. https://doi.org/10.5061/dryad.x69p8czsq",
+  "paperDOI": "10.1111/1365-2664.14714",
+  "abstract": "Introduced house mice live-trapped on two grids in spring and autumn sessions between 2016 and 2018 near Massey University, New Zealand: a five-night capture-mark-recapture phase followed by a removal phase in which mice were sampled and euthanised and tested for Leptospira (MAT, culture, PCR). The paper estimates density and activity areas with SECR and relates them to infection status.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Two grids of 36 Longworth live traps, four sessions; each session a five-night capture-mark-recapture phase (mice ear-tagged, sexed, weighed and released) followed by a removal phase (mice blood-sampled, euthanised and their kidneys tested for Leptospira), 10 nights in total (12 in the last session). History is mouse x trap x night.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited. Every trap of a grid is taken as set on every night of the session (10 nights; 12 in the last), as in the authors' secr script (noccasions 10,10,10,10,12,12,12,12 and no usage). Each mouse has rows at its own grid's 36 traps for every session it was at risk.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (closed within a session, removals on capture; open between sessions)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "obs_removed",
+  "temporalCoverage": "2016-10/2018-04",
+  "geographicCoverage": "Two trapping grids on farmland near Massey University, Palmerston North, New Zealand (trap coordinates anonymised by the source)",
+  "crs": "local anonymised metres (a different anonymisation per session)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "trap coordinates anonymised by the source (local metres, per session); shipped as deposited"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Trap ids carry the session because the source anonymised coordinates per session; grids are cluster_id. Removal phase: obs_removed = 1 on the capture of a euthanised mouse, no rows after it.",
+  "notes": "Mice first caught as adults (unknown age) have rows from session 1 at their grid's traps; juveniles (<= 11 g) from their capture session; mice not euthanised to session 4. 186 of 230 mice were euthanised. Leptospira results are laboratory tests on the same mouse (unit_ columns, NA when not tested). Session dates are not deposited; season and year per session from the authors' script.",
+  "notShipped": {
+    "FirstCapt_LastCapt_Occaz": "derived from the capture rows",
+    "CultPCR_ballum": "recodes of the shipped culture, PCR and Ballum MAT columns"
+  },
+  "summary": {
+    "n_rows": 180288,
+    "n_units": 230,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 12,
+    "n_surveys": 180288,
+    "y_values": "0,1",
+    "prop_zero": 0.998,
+    "n_traps": 288,
+    "n_zero": 179944,
+    "n_positive": 344,
+    "n_units_detected": 230,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id", "unit_sex", "unit_age", "unit_newage", "unit_weight", "unit_mat_positive", "unit_ballum_positive", "unit_culture_positive", "unit_pcr_positive", "unit_tested", "unit_exposed", "unit_phase", "obs_removed"],
+  "coreMd5": "364ef75145f02293a32d20ad78c1a7ba",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/moinet_2024_nz_mouse_scr.R",
+  "buildDate": "2026-11-05"
+}

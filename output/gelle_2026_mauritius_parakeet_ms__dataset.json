@@ -1,0 +1,60 @@
+{
+  "table": "gelle_2026_mauritius_parakeet_ms",
+  "title": "Annual multistate encounter histories (pre-breeder / breeder / non-breeder) of 2,734 echo parakeets ringed as nestlings in Mauritius, 1994-2022",
+  "creator": "Gellé, Adrien; Nicoll, Malcolm A. C.; Kettel, Esther; Pernetta, Angelo; Gath, Christopher; Groombridge, Jim J.; Henshaw, Sion; Jones, Carl G.; Ruhomaun, Kevin; Tatayah, Vikash; Norris, Ken; Tollington, Simon",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.dz08kpsdk",
+  "sourceURL": "https://doi.org/10.5061/dryad.dz08kpsdk",
+  "citation": "Gellé, A., Nicoll, M. A. C., Kettel, E., Pernetta, A., Gath, C., Groombridge, J. J., Henshaw, S., Jones, C. G., Ruhomaun, K., Tatayah, V., Norris, K., & Tollington, S. (2026). Data from: Demographic responses to population recovery illustrated by 30-years of monitoring a once critically endangered parrot [Dataset]. Dryad. https://doi.org/10.5061/dryad.dz08kpsdk",
+  "paperDOI": "10.1111/1365-2664.70523",
+  "abstract": "Echo parakeets (Alexandrinus eques, formerly Psittacula eques), endemic to Mauritius, recovered from fewer than 20 to over 500 birds during the study. Known-age birds ringed in the nest (1994-2021 cohorts) were encountered each breeding season through 2022 in one of three states; the paper fits multistate CJS models of age- and state-specific survival and breeding transitions.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Mauritian Wildlife Foundation biologists checked all known nest boxes and natural cavities several times each austral breeding season (September to March), identifying parents by unique colour-ring combinations and ringing nestlings before fledging; further sightings came from field and feeding observations. Encounters were summarised into one state per bird per season; sightings at supplementary feeding stations were excluded by the authors.",
+  "samplingProtocolCode": "resighting",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period (one state per breeding season; survival and state transitions between seasons)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "none",
+  "stateCodes": {
+    "0": "not seen",
+    "1": "pre-breeder (y_raw PB): never recorded breeding; also the ringing of the nestling (obs_ringing = 1)",
+    "2": "breeder (y_raw B): identified as a parent at a monitored nest with at least one egg laid",
+    "3": "non-breeder (y_raw NB): previously recorded breeding, not breeding this season"
+  },
+  "temporalCoverage": "1994/2023",
+  "geographicCoverage": "Black River Gorges and surrounding upland forest, south-west Mauritius (the species' range, about 41 km2)",
+  "notes": "Unit ids are the deposited row ids. Rows begin in each bird's cohort season (ringed as a nestling, E4.4): that row is the ringing (y = 1, obs_ringing = 1); unit_cohort is the deposited fledging year. Period labels are the starting year of the September-March season (season in __periods). 995 of 2,734 birds were seen after ringing (the Dryad methods say 997). The deposit is the authors' analysis set: birds ringed as adults, translocated, taken into captivity, breeding before age 2, and the 2022 cohort were removed before deposit, and encounters at supplementary feeding stations are excluded.",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "none": "every deposited history is shipped; excluded birds and feeding-station sightings were removed by the authors before deposit"
+  },
+  "summary": {
+    "n_rows": 27969,
+    "n_units": 2734,
+    "n_taxa": 1,
+    "n_periods": 29,
+    "n_occasions": 1,
+    "n_surveys": 27969,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.747,
+    "n_traps": 1,
+    "n_zero": 20896,
+    "n_positive": 7073,
+    "n_units_detected": 2734,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_cohort", "obs_ringing"],
+  "coreMd5": "f5390498fea66b4a84707510e782b27e",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/gelle_2026_mauritius_parakeet_ms.R",
+  "buildDate": "2026-11-05"
+}

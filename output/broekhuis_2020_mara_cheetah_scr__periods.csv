@@ -1,0 +1,9 @@
+period,year,session,season,n_pixels,n_pixel_days_searched,n_animals,n_detections,n_female,n_male
+1,2015,S1,out of the migration (1 February-2 May),1462,6453,19,62,10,9
+2,2015,S2,during the migration (1 August-30 October),1809,7061,20,85,11,9
+3,2016,S1,out of the migration (1 February-2 May),2092,9870,22,84,14,8
+4,2016,S2,during the migration (1 August-30 October),1953,7257,34,84,18,16
+5,2017,S1,out of the migration (1 February-2 May),2162,10403,34,142,17,17
+6,2017,S2,during the migration (1 August-30 October),2281,10364,43,192,21,22
+7,2018,S1,out of the migration (1 February-2 May),2193,8147,43,150,21,22
+8,2018,S2,during the migration (1 August-30 October),2174,7643,43,145,20,23

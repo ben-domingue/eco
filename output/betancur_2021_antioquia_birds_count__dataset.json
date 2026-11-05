@@ -1,0 +1,57 @@
+{
+  "table": "betancur_2021_antioquia_birds_count",
+  "title": "Repeated point counts of two endemic birds (white-mantled barbet, sooty ant-tanager) at 70 points in fragmented Andean forest, Antioquia, Colombia, 2014-2015",
+  "creator": "Parra, Juan; Betancur, Jefry; Morales, Andrea",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.w9ghx3fmc",
+  "sourceURL": "https://doi.org/10.5061/dryad.w9ghx3fmc",
+  "citation": "Parra, J., Betancur, J., & Morales, A. (2024). Occupancy of two Colombian endemic birds (Habia gutturalis) and White-Mantled Barbet (Capito hypoleucus) in fragmented forests of the Central Andes in Colombia [Dataset]. Dryad. https://doi.org/10.5061/dryad.w9ghx3fmc",
+  "paperDOI": "10.59517/oc.e383",
+  "abstract": "Counts of Capito hypoleucus and Habia gutturalis, endemic birds of Colombia, at 70 point counts in fragmented secondary forest in the buffer zones of two hydroelectric impoundments in the Central Andes (Antioquia), each surveyed on two consecutive days in June-July of 2014 and 2015, with landscape, weather and nest-predation covariates. The paper fits single-season occupancy models to the detections.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Point counts of 125 m radius on 14 transects of five points 250 m apart; after three minutes of silence an observer recorded all individuals of the two target species seen or heard during 30 minutes between 06:00 and 10:00, on two consecutive days per year (one observer in 2014, another in 2015).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "two visits on consecutive days within each year; the paper treats all four visits as one season",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "temporalCoverage": "2014-06/2015-07",
+  "geographicCoverage": "Buffer zones of the Punchiná and San Lorenzo hydroelectric impoundments, San Carlos, San Rafael, Alejandría and San Roque, Antioquia, Colombia (580-1420 m)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "point coordinates (WGS 84, deposited to 1e-8 degree) coarsened to the 0.1 degree cell centre with coarsen_coords(): the source describes both species as endangered endemics"
+  },
+  "notes": "The count rows are bound to point ids by row order, as in the authors' scripts (Detection_histories.csv has no id column; the order of the covariate files is asserted identical). obs_time_local is the species' own survey time and differs between the two species at some visits. The paper analyses detection / non-detection (counts > 0); the deposit gives counts. Observers per year from the Dryad methods. taxon_iucnCategory is GBIF's IUCN record (LC for both); coordinates are coarsened because the source itself calls both species endangered (E7 flag: the source says so).",
+  "notShipped": {
+    "time_transforms": "arcsine-square-root transforms of survey time (derived by the authors)",
+    "exact_coordinates": "coarsened to 0.1 degree (flagged taxa)"
+  },
+  "summary": {
+    "n_rows": 560,
+    "n_units": 70,
+    "n_taxa": 2,
+    "n_periods": 2,
+    "n_occasions": 2,
+    "n_surveys": 280,
+    "y_values": "0,1,2,3,4",
+    "prop_zero": 0.823,
+    "n_traps": 1,
+    "n_zero": 461,
+    "n_positive": 99,
+    "n_units_detected": 48,
+    "max_y": 4
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "cluster_id", "unit_department", "unit_municipality", "unit_lat", "unit_lon", "unit_elevation", "unit_forest", "unit_mosaic", "unit_dist_stream", "unit_dist_impoundment", "period_nests_depredated", "obs_time_local", "obs_temp", "obs_precip_prev_day"],
+  "coreMd5": "dff4fc079d8aeec4427a7c042742872f",
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/betancur_2021_antioquia_birds_count.R",
+  "buildDate": "2026-11-05"
+}
