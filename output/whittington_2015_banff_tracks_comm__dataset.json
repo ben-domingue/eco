@@ -53,6 +53,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_transect", "unit_interval", "unit_prev_segment_within_1500m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_days_snow"],
+  "sideTables": {
+    "taxa": {
+      "rows": 7,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_group", "taxon_sourceName"],
+      "md5": "de8ce4644fd4a7e984bb0048d28088ae"
+    },
+    "units": {
+      "rows": 443,
+      "columns": ["unit", "cluster_id", "transect", "interval", "utm_easting", "utm_northing", "decimalLatitude", "decimalLongitude", "prev_segment_within_1500m", "n_surveys"],
+      "md5": "2325b33227a8fab21868371cac1ae57a"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/whittington_2015_banff_tracks_comm.R",

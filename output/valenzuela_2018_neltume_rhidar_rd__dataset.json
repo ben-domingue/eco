@@ -58,6 +58,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_x_m", "obs_y_m", "obs_svl_mm"],
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "primary_index_in_file", "months_after_first_primary", "n_secondary_occasions", "n_captures", "n_frogs_captured"],
+      "md5": "147f0147b3bdbee0b1ea6f3ad6843754"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "23c976f4775cf89299e803ca0f3a94f7"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/valenzuela_2018_neltume_rhidar_rd.R",

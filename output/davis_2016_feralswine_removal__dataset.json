@@ -52,6 +52,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_county", "unit_state", "obs_effort_h", "obs_episode_start", "obs_episode_end"],
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "n_episodes"],
+      "md5": "6d34554f01c8388299d8ba68c8cfdb74"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "ac7f9b495f2bacb4c2e83ef58271304c"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/davis_2016_feralswine_removal.R",

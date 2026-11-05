@@ -51,6 +51,18 @@
   "sampleFloor": "below (14 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_lat", "unit_lon", "obs_start_time", "obs_duration_min", "obs_n_foraging", "obs_n_not_foraging", "obs_n_flying_over"],
   "coreMd5": "ba728c00a6344bca6868f215b4f7900d",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "mission", "months", "lake_area_km2_modis", "n_sites_counted"],
+      "md5": "df46e9767a5d5519d32a1ae8389bdee7"
+    },
+    "taxa": {
+      "rows": 182,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a37c23384ed10aa38bb37508557a8c0c"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cumming_2021_ngami_waterbird_count.R",

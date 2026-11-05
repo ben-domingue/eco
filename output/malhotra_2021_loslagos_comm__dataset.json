@@ -46,6 +46,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_trapnights", "unit_understory_10m", "unit_smallmammal_rate", "unit_forest", "unit_isolation", "unit_edge"],
+  "sideTables": {
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "aaa21f2effc8397330fe8729cc358370"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/malhotra_2021_loslagos_comm.R",

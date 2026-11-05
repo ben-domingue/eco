@@ -56,6 +56,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "unit_plot", "obs_trapping_days", "obs_cup_status", "obs_fluid_level"],
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "year"],
+      "md5": "e42a5375f330c0c19c862b7d4fb45bea"
+    },
+    "taxa": {
+      "rows": 55,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d4dc178aa2cf5c6fc800625ce780af9a"
+    },
+    "units": {
+      "rows": 2029,
+      "columns": ["unit", "site", "domain", "plot", "trap", "named_location", "plot_type", "nlcd_class", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "bd30e7536251f062ce8bc5a6acd58ede"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_carabids_count.R",

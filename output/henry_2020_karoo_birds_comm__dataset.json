@@ -53,6 +53,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "obs_decimalLatitude", "obs_decimalLongitude", "obs_temperature_c", "obs_cloud_pct", "obs_wind_ms", "obs_rain_class", "obs_mins_after_dawn_start", "obs_ttd_s", "obs_distance_m", "obs_detection_mode", "obs_behaviour"],
+  "sideTables": {
+    "taxa": {
+      "rows": 63,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_sourceName", "taxon_iucnCategory"],
+      "md5": "2764fb8582dfeb48dca45b2b72d986f0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/henry_2020_karoo_birds_comm.R",

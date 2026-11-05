@@ -42,6 +42,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "season", "season_type", "n_stations_active"],
+      "md5": "61058b86a7dcdbe63410a0f3642e7289"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "cee50044493f059bfb14cabf7a507be0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/evans_2021_maine_marten_dynocc.R",

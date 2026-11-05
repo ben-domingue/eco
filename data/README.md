@@ -15,8 +15,9 @@ writes four things:
 Shared code is in `../lib/eco_common.R`; the converters and the R validator twin are in
 `../converters/eco_standard.R`. The gate is `eco-validate` (`../eco_validate/`). Run one
 script from the repo root (`Rscript data/<table>.R`) or all of them
-(`Rscript data/run_all.R`), then `python3 -m eco_validate.cli output/` (or
-`Rscript validate/validate_all.R`, which also runs the IRW check and writes the report).
+(`Rscript data/run_all.R`), then `python3 -m eco_validate.cli output/<table>.csv`.
+The CSVs in `output/` are not tracked (#88): commit `__dataset.json`, and ship the
+CSVs with `upload/red_up_eco.py`.
 
 ## Conventions
 

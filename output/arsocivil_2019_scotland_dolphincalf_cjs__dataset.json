@@ -45,6 +45,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_mark_group"],
+  "sideTables": {
+    "periods": {
+      "rows": 26,
+      "columns": ["period", "year", "n_detected", "n_first_sighted", "note"],
+      "md5": "0289f5bcb556b301ea2f51fb275b3f2d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "86f187be67481bdbb344883c7a44bb8d"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/arsocivil_2019_scotland_dolphincalf_cjs.R",

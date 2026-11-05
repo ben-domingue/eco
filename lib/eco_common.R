@@ -373,6 +373,20 @@ check_dataset_meta <- function(dataset, long, units = NULL, part = FALSE) {
   p
 }
 
+# The side tables beside a core, as __dataset.json records them (#88): suffix ->
+# {rows, columns, md5}. Tables live on Redivis, not in git, so anything that needs
+# to know about a side table (metadata stage 01, check_coverage.py, the uploader)
+# reads this record instead of the file.
+side_tables_meta <- function(name) {
+  fs <- list.files(OUT_DIR, paste0("^", name, "__[a-z_]+\\.csv$"), full.names = TRUE)
+  out <- lapply(fs, function(f) {
+    h <- fread(f, nrows = 0)
+    list(rows = nrow(fread(f, select = 1L)), columns = I(names(h)), md5 = unname(tools::md5sum(f)))
+  })
+  names(out) <- sub(paste0("^", name, "__(.*)\\.csv$"), "\\1", basename(fs))
+  out
+}
+
 write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units = NULL, traps = NULL,
                         survey_taxa = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name))
@@ -409,6 +423,7 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
                     columns = names(long),
                     # the build this __dataset.json describes: the uploader refuses a core that is not it (#75)
                     coreMd5 = unname(tools::md5sum(core_f)),
+                    sideTables = side_tables_meta(name),
                     standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
                     buildDate = format(Sys.Date())))
@@ -492,7 +507,7 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
   if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s, dataset$responseType), columns = cols,
-                    parts = manifest, standardVersion = STANDARD_VERSION,
+                    parts = manifest, sideTables = side_tables_meta(name), standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
                     buildDate = format(Sys.Date())))
   write_json(dataset, file.path(OUT_DIR, paste0(name, "__dataset.json")), auto_unbox = TRUE, pretty = TRUE, na = "null")

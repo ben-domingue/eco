@@ -1,7 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_band_width_km,taxonRemarks,taxon_iucnCategory
-DUGDUG,Dugong dugon,dugong,species,https://www.gbif.org/species/9729967,EXACT,,0.2,,VU
-HYDROPHIINAE,Hydrophiinae,sea snakes,subfamily,,NONE,,0.01,"Several sea snake species (Hydrophiinae) pooled by the source; the GBIF backbone holds no Hydrophiinae (it treats Hydrophiidae as a synonym of Elapidae), so no taxonID rather than a family match",
-PHALACROCORAX,Phalacrocorax,cormorants,genus,https://www.gbif.org/species/2481854,EXACT,,0.06,Cormorants pooled to genus by the source,NE
-CHEMYD,Chelonia mydas,green turtle,species,https://www.gbif.org/species/2442225,EXACT,,0.06,,LC
-CARCAR,Caretta caretta,loggerhead turtle,species,https://www.gbif.org/species/8894817,EXACT,,0.06,,VU
-TURADU,Tursiops aduncus,Indo-Pacific bottlenose dolphin,species,https://www.gbif.org/species/2440455,EXACT,,0.4,,NT

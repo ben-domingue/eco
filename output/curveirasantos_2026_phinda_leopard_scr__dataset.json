@@ -55,6 +55,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_sex", "unit_identity", "obs_side"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "8bad2513e044b2c3cd9b37b5d2b0a9e4"
+    },
+    "traps": {
+      "rows": 100,
+      "columns": ["trap", "x_m", "y_m", "half", "brand", "grid_allocation", "n_days_operating"],
+      "md5": "f843f4a7be51a3f82f705bf481176af7"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/curveirasantos_2026_phinda_carniv_scr.R",

@@ -60,6 +60,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_start_time", "obs_end_time", "obs_temperature_c", "obs_wind", "obs_cloudiness"],
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "period_season", "period_start", "period_end", "period_n_visits"],
+      "md5": "7725319a280cba661571820b2b213a94"
+    },
+    "taxa": {
+      "rows": 88,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "0f10a4e061b93955510537b309ffee51"
+    },
+    "units": {
+      "rows": 39,
+      "columns": ["unit", "unit_locality", "unit_n_sections", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "5f839820784c106011f16b9312364ba0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/peer_2014_bmsil_butterfly_count.R",

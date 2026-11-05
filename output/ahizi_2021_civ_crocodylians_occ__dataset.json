@@ -48,6 +48,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_mining", "unit_plantation", "obs_moon", "obs_wind", "obs_wave", "obs_vegetation", "obs_fishnets_per_km", "obs_rain_prev_day", "obs_temp_day_c", "obs_precip_day_mm", "obs_temp_48h_c", "obs_precip_48h_mm"],
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "63cfbfa1010bb8d4200ebf553d5c4422"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ahizi_2021_civ_crocodylians_occ.R",

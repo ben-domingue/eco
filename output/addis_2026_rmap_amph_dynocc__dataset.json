@@ -54,6 +54,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_forest", "unit_area_ha", "unit_ave_site_dist_m", "unit_med_site_dist_m", "unit_n_neighbors", "unit_decimalLatitude", "unit_decimalLongitude", "obs_date_doy", "obs_n_observers", "obs_citizen_scientist", "obs_air_temp_f_sq"],
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year", "n_sites_surveyed"],
+      "md5": "0681c4b509147fbb22f48bcd85683a94"
+    },
+    "survey_taxa": {
+      "rows": 1520,
+      "columns": ["taxon", "unit"],
+      "md5": "e47d42af797a6d654dbc8316d55fcde4"
+    },
+    "taxa": {
+      "rows": 6,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e67610bd304f43a8f79963504f05318b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/addis_2026_rmap_amph_dynocc.R",

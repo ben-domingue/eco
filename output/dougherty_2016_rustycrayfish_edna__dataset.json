@@ -58,6 +58,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_date_set", "unit_date_retrieved", "obs_method", "obs_rusticus_male_form1", "obs_rusticus_male_form2", "obs_rusticus_female", "obs_propinquus_caught", "obs_virilis_caught"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "c63399d0082788a14edd1077e5fd40af"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/dougherty_2016_rustycrayfish_edna.R",

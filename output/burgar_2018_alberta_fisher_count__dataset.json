@@ -46,6 +46,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "99f48623399b2a2c14a4b35273d3d6d5"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/burgar_2018_alberta_fisher_count.R",

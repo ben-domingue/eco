@@ -52,6 +52,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_river", "unit_sex"],
+  "sideTables": {
+    "periods": {
+      "rows": 14,
+      "columns": ["period", "year", "n_captured_babbage_river", "n_captured_big_fish_river", "n_captured_firth_river", "n_captured_joe_creek", "n_captured_rat_river", "rivers_sampled"],
+      "md5": "632574f96312812d8d8ee905c2e2cd46"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "9a73c9269ee9bef655d1a7ffb11ae783"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/banik_2025_dollyvarden_ms.R",

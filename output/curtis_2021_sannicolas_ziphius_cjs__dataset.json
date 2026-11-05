@@ -58,6 +58,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_identity", "unit_known", "unit_sex", "obs_precapture", "obs_age_class"],
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "start", "end", "label", "effort_min", "effort_min_bss02", "effort_min_bss03", "effort_days", "n_captured"],
+      "md5": "85528dc27ed1ff39090418c4f3c84fcd"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "6068cae64077b96ed39756e6e891c407"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/curtis_2021_sannicolas_ziphius_cjs.R",

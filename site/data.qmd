@@ -122,12 +122,11 @@ eco_filter(model_family = "Single-season occupancy") |> head(1) |>
 ```
 
 The standard is still a draft, so names and columns may change between
-versions; released versions do not. The CSVs in the repository's `output/`
-directory are the same files and can be read directly; rebuild them from
-source with
+versions; released versions do not. Every table is rebuilt from its source
+deposit by its script in the repository's `data/` directory:
 
 ```sh
-Rscript data/run_all.R && Rscript validate/validate_all.R
+Rscript data/<table>.R
 ```
 
 from the repository root. The scripts cache downloads and are deterministic,

@@ -52,6 +52,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_capture_area"],
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "period_year", "period_n_areas_searched", "period_areas_searched"],
+      "md5": "da38ae64c3fe557fa086184cd0d87744"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2399128b11856650bde88a6dcc5ab458"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/fabritius_2015_fritillary_cjs.R",

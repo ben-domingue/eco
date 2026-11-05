@@ -60,6 +60,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "obs_trap_days"],
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "period_year", "period_start", "period_end", "period_n_traps"],
+      "md5": "52169e5c5cfd35ba13fec85953188149"
+    },
+    "taxa": {
+      "rows": 134,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "scientificNameAuthorship", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "66d772be2721fb703df1c1d52da7ba7b"
+    },
+    "units": {
+      "rows": 156,
+      "columns": ["unit", "unit_trap_type", "unit_location", "unit_locality", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "628b3bf40723a1e16e7ce80e0ffec657"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/vanklink_2025_wijster_carabid_count.R",

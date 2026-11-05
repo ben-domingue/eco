@@ -55,6 +55,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_year", "unit_deployment_rank_at_site", "unit_camera_model", "unit_camera_height", "unit_fov_score", "unit_decimalLongitude", "unit_decimalLatitude", "unit_elevation_m", "unit_slope_deg", "unit_aspect_deg", "unit_land_type_clc", "unit_forest_pct_500m", "unit_buffer_area_500m_m2", "unit_dist_main_roads_m", "unit_dist_f_rds_m", "unit_dist_urban_m", "unit_dist_fe_m", "unit_dist_dump_m", "unit_human_rate", "unit_vehicle_rate"],
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "eed889ab8f1f44b522539c4211556275"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/blount_2025_neturkiye_carniv_count.R",

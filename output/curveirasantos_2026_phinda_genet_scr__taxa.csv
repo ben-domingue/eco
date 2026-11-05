@@ -1,2 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,taxon_iucnCategory,taxonRemarks
-GENSPP,Genetta,Genet (large-spotted genet complex),genus,https://www.gbif.org/species/10960770,EXACT,Genetta Oken,,"Recorded only as 'genet' in the deposit; the Phinda genets are the large-spotted genet complex (Genetta tigrina / G. maculata), not separated, so the taxon is the genus"

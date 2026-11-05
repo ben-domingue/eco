@@ -47,6 +47,13 @@
   },
   "sampleFloor": "below (18 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "unit_depth_m", "unit_width_m", "unit_sandbanks", "unit_human_disturbance"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "ca190a85a0be412c36dcf1be9d500d42"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/yadav_2022_rapti_gharial_count.R",

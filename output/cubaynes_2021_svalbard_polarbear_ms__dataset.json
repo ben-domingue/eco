@@ -61,6 +61,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "date", "unit_birthyear"],
   "coreMd5": "c60b3f5ed821a613bb8e7752196315f2",
+  "sideTables": {
+    "periods": {
+      "rows": 28,
+      "columns": ["period", "year", "n_captured", "n_with_cubs"],
+      "md5": "cd6c1d909e5447e451729beefcf25b3c"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "bce54055a23877624a684cc0c2cc3a26"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cubaynes_2021_svalbard_polarbear_ms.R",

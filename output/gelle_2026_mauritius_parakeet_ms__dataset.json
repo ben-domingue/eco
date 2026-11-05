@@ -53,6 +53,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_cohort", "obs_ringing"],
   "coreMd5": "f5390498fea66b4a84707510e782b27e",
+  "sideTables": {
+    "periods": {
+      "rows": 29,
+      "columns": ["period", "season_start_year", "season", "n_ringed", "n_resighted"],
+      "md5": "4d67cf447cb251440f2bedcaf35176d8"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "61bd860df92a999b73a332f3402302de"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/gelle_2026_mauritius_parakeet_ms.R",

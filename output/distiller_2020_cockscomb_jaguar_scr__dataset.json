@@ -52,6 +52,18 @@
   },
   "sampleFloor": "below (29 units < 30)",
   "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_sex", "obs_capture_time"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "cf894bf0a9c80832d88d6f2c92d869e1"
+    },
+    "traps": {
+      "rows": 20,
+      "columns": ["trap", "name", "x", "y", "n_days_operating"],
+      "md5": "b8e6747dc8e78bdbb9bbd799fc594f96"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/distiller_2020_cockscomb_jaguar_scr.R",

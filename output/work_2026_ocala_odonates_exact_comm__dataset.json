@@ -51,6 +51,18 @@
   },
   "sampleFloor": "below (16 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_size_m2", "unit_depth_m", "unit_nearest_neighbour_m", "unit_forest_distance_m", "unit_open_water_pct", "unit_open_water_area_m2", "unit_grass_pct", "unit_lily_pct", "unit_sunfish", "unit_fish", "unit_crayfish", "unit_decimalLatitude", "unit_decimalLongitude", "obs_survey_month"],
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_occasions", "visit_months"],
+      "md5": "c617a03ff2b485f2d26083dff87c8b91"
+    },
+    "taxa": {
+      "rows": 29,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_sourceName", "taxon_iucnCategory"],
+      "md5": "7e344eb1bb8d20622ddae78ff875a8c4"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/work_2026_ocala_odonates_comm.R",
