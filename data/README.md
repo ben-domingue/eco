@@ -235,6 +235,10 @@ CSVs with `upload/red_up_eco.py`.
 | `ludwig_2026_lusatia_capercaillie_cjs.R` | CJS, reintroduced grouse, release year flagged, ends at confirmed death | Dryad | CC0 |
 | `king_2018_lakeerie_watersnake_cjs.R` | CJS, MARK .inp with site x sex groups, surveyed site-years inferred | Dryad | CC0 |
 | `dyck_2022_carpathians_carniv_occ.R` | multi-species detection, cameras, 14-day sessions with effort, two seasons, Romania | Dryad | CC0 |
+| `asfaw_2025_omo_carniv_occ.R` | multi-species detection, cameras, 3-day occasions from a deposited 0/1/NA matrix, Ethiopia | Dryad | CC0 |
+| `hollanders_2022_mfleayi_rdms.R` | multi-state (Bd infection) robust design, three sites, histories padded to study start | Dryad | CC0 |
+| `pilger_2022_gila_fish_count.R` | community counts, electrofishing and seining, area file as sample table, annual | Dryad | CC0 |
+| `crunchant_2020_issa_chimp_occ.R` | single-species detection, cameras, daily occasions from a deposited matrix, coordinates coarsened (EN), Tanzania | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

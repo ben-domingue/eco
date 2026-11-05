@@ -1378,3 +1378,35 @@ What this batch says about the standard:
   declared failure period are too many to treat that way without a ruling.
 - **Sessions of unequal length as periods** (Kerguelen): 196 sessions of 5-28 days at uneven intervals across three
   sites go in one period index with dates in `__periods`; the CJS interval is a user's computation from those dates.
+
+## Batch 30 — 2026-11-05 (card-sorted queue rows: Omo carnivores, Fleay's barred frogs, Gila River fishes, Issa Valley chimpanzees)
+
+One agent in `~/eco-b30` (branch `batch-30`, from main at 4ffe373 after batch 29). Rows from the 2026-11-05 card sort
+(#85), chosen for regions and taxa the corpus has less of (Africa, Oceania, amphibians, fish, invertebrates). Seven
+deposits downloaded and read, four tables built from four deposits and uploaded to the Redivis draft, three not built.
+Dryad rate-limited the version zips for about 40 minutes mid-batch (429 on every zip, metadata still answered), and
+two older deposits (Chure leopard, Churia sloth bear) answered 404 on their version zips, so the batch stopped at four
+tables to stay inside the token budget.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| asfaw_2025_omo_carniv_occ | multi-species detection, cameras | Dryad CC0 | 1,876 | leopard and spotted hyaena at 36 stations in Omo NP, Ethiopia, May-August 2021, 3-day occasions (up to 30, NA trailing, same pattern for both species, asserted); the Chebera Churchura matrices in the same deposit have no survey year or dates and are not shipped; prey "abundance" columns not shipped (undocumented, shared floor values suggest imputation); no coordinates |
+| hollanders_2022_mfleayi_rdms | multi-state (Bd infection) robust design | Dryad CC0 | 30,964 | 686 adult Fleay's barred frogs (IUCN EN) at three NSW creeks, 23 primaries x 1-3 nights, 2017-2021; layout from the authors' m2-cmr.qmd (Zenodo); y = 0/1/2 (not caught / Bd- / Bd+), 3 for captures in the unswabbed last primary (y_raw keeps the source 1); histories padded to the study start; one dates.csv typo (1/2/20 for 1/2/21) corrected with an assertion; companion of the juvenile table hollanders_2022_brindle_mfleayi_msdis |
+| pilger_2022_gila_fish_count | community counts, electrofishing and seining | Dryad CC0 | 3,146 | 26 taxa (native and introduced fishes, bullfrog, crayfish, tadpoles) at 16 upper Gila sites each October 2008-2017; area file as sample table plus four 2014 site-years with catch but no area; Black Canyon 2013-2014 (area, no catch) not shipped; four IUCN categories set by hand (GBIF accepted name differs); below the unit floor (16) |
+| crunchant_2020_issa_chimp_occ | single-species detection, cameras | Dryad CC0 | 11,342 | chimpanzee (IUCN EN) at 53 systematic and targeted cameras, Issa Valley, Tanzania, 280 daily occasions March-December 2018; coordinates coarsened to 0.1 degree; the acoustic (PAM) sheet held |
+
+Not built (`queue/human_review.csv`): Colorado ant communities (held: JAGS inputs only, no survey year, San Juan species
+unnamed), Kalakad-Mundanthurai birds (held: detection records with no list of points counted per visit), W-Arly-Pendjari
+lions (held: lion matrix NA at 193 grid-occasions the other matrices survey, the deferred per-species survey-set
+ruling; plus a pooled "competitor" history), and the Issa Valley acoustic sheet (held: one row per valley vs four
+sensor positions per valley).
+
+What this batch says about the standard:
+
+- **Surveys before the first capture are invisible in first-capture histories** (frogs): a deposit that starts each
+  history at first capture shows a survey only through frogs already marked, so a site's surveys before its first
+  capture cannot be recovered (Tuntable primary 1, Bat Cave primaries 1-2 have dates but no rows). Padding to the
+  study start (E4.4) cannot create them; a sentence in E4.4 saying such surveys are lost unless a survey list is
+  deposited would make this explicit.
+- **A state the protocol could not observe** (frogs): captures in a primary where no swabs were taken get their own
+  state code rather than the source's "uninfected" code; worth a line in the guide next to the y_raw recode rule.
