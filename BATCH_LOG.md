@@ -1445,3 +1445,39 @@ What this batch says about the standard:
   detection list with the authors' own occasion rule, checked against the matrices they did deposit, keeps the
   community table complete without a per-species survey set. Worth a line in the guide, as the alternative is the
   deferred per-species survey-set ruling.
+
+## Batch 32 — 2026-11-05 (non-Dryad queue rows: Snapshot Europe cameras, Zwin butterflies)
+
+One agent in `~/eco-b32` (branch `batch-32`, from main at 25f9e0b after batch 31). Dryad's anonymous daily quota was
+spent, so the batch made no Dryad requests and worked only the non-Dryad `available` / `needs-look` rows. Twelve
+deposits read, two tables built and uploaded to the Redivis draft, eight held, two left `needs-look`. The Sollmann
+et al. Zenodo deposit (a re-use of Snapshot USA and Europe records) pointed at the Snapshot Europe source deposit on
+Edmond, which has the deployment table the re-use lacks; that became the batch's main table (new queue row).
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| iannarilli_2026_snapshoteurope_comm | community detection, cameras | Edmond CC BY-SA 4.0 (derived CC BY-NC-SA 4.0) | 878,157 | Snapshot Europe 2021-2022: 63 mammal species (humans excluded, domestic included) at 2,503 deployments in 106 arrays, 24 European countries and Israel; camera-weeks from the deployment dates (effort_table), y_raw = sequences; the 93 deployments that declare a camera failure dropped with their sequences (end_date is the retrieval date, failure date not recorded); coordinates coarsened to 0.1 deg and ids made sequential (European rabbit and mountain gazelle EN, garden dormouse and Italian hare VU in native ranges); mouflon IUCN category set by hand (Ovis gmelini NT); birds not shipped |
+| faveyts_2026_zwin_butterfly_count | community counts, butterfly transects | GBIF / Belgian IPT CC BY 4.0 | 2,700 | 27 checklist taxa (incl. Pieris at genus rank) x 100 counts on 12 mapped routes in the Zwin Nature Park, Belgium, April-September 2025, explicit zeros, route length as effort; 2023-2024 counts not shipped (no route identity); below the sample floor (12 units) |
+
+Not built (`queue/human_review.csv`): Sollmann et al. camera re-use (held: records only, sources built), Eresus
+sandaliatus transects (held: events within a visit undefined), LIFE RIPARIAS crayfish (held: event, `code` and
+`kreeften` columns undefined; street-address localities), the three Huynh-Royle-Hwang N-mixture Zenodo records (held:
+two have no files, the third is an unlabelled 50 x 11 BBS wood thrush matrix), the ASF wild boar Frontiers data sheet
+(held: supplementary figures only), Lake Constance quagga mussels (held: grab density sampling, scope question). Left
+`needs-look`: the jaguar continuous-time SCR DataONE row (its authoritative member node is Dryad, so it waits for
+the Dryad quota) and the Borealis camera/genetic SCR row (Borealis in maintenance). The grey wolf RAR files remain
+unreadable here (no unrar, 7z or bsdtar).
+
+What this batch says about the standard:
+
+- **A licence field on every data row that differs from the repository's** (Snapshot Europe): Edmond shows CC BY-SA
+  4.0; the Wildlife Insights export says metadata CC-BY, images CC-BY-NC, and every sequence row carries
+  `license = CC-BY-NC`. The row field is almost certainly WI's image licence (no images ship), but the guide's
+  stricter-governs rule was applied and the derived licence is CC BY-NC-SA 4.0. If Ben reads the row field as the
+  image licence only, the table can be relabelled CC BY-SA 4.0 with no rebuild of the data.
+- **Deployments that declare a failure but no failure date** (Snapshot Europe, 93 of 2,596): the end date is the
+  retrieval date (in some the last photograph is up to 36 days earlier), so the deployment's camera-days
+  cannot be evidenced. Dropping the whole deployment claims no zero it cannot support; it differs from the deferred
+  ruling on records inside a dated failure window, where the window is known.
+- **A checklist that grows between years** (Zwin): 21 taxa in 2023-2024, 27 in 2025. Not tested here because only
+  2025 has route identity, but a multi-year build would need `__survey_taxa` by period (E4.2).

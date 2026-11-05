@@ -1,0 +1,85 @@
+{
+  "table": "iannarilli_2026_snapshoteurope_comm",
+  "title": "Snapshot Europe 2021-2022: weekly camera-trap detections of 63 mammal species at 2,503 deployments in 106 arrays across Europe and Israel",
+  "creator": "Iannarilli, Fabiola; Keeves von Wolff, Brigitta; Wikelski, Martin; Heurich, Marco; Kays, Roland; Cagnacci, Francesca; and the Snapshot Europe contributors",
+  "pubDate": "2026",
+  "doi": "10.17617/3.7YLWMU",
+  "sourceURL": "https://doi.org/10.17617/3.7YLWMU",
+  "citation": "Iannarilli, F., et al. (2026). Dataset associated with \"Snapshot Europe 2021-2022: The first public dataset from a Europe-wide camera-trap survey of terrestrial vertebrates\" (version 2) [Data set]. Edmond. https://doi.org/10.17617/3.7YLWMU",
+  "intellectualRights": {
+    "spdx": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "note": "Edmond record: CC BY-SA 4.0; Wildlife Insights export: metadata CC-BY, every sequence row license = CC-BY-NC (the image licence). The stricter combination governs."
+  },
+  "abstract": "Snapshot Europe is a coordinated camera-trap survey run each autumn (mid-August to mid-November) by more than 160 contributors with a shared protocol: arrays of unbaited cameras at knee height, images classified in Wildlife Insights and reviewed by a contributor. This table aggregates the 2021 and 2022 sequence file to camera-weeks: one row per deployment x 7-day window x species for the 63 mammal species identified to species (humans excluded, domestic animals included), y = detected in that week, y_raw = number of sequences, obs_camera_days = days of the window inside the deployment. The deployment table is the survey set; the 93 deployments that declare a camera failure are not shipped because their operating days are unknown. Camera coordinates are coarsened to 0.1-degree cells and deployment, location and array names replaced by sequential ids because IUCN-flagged species are among the taxa.",
+  "samplingProtocol": "Unbaited passive-infrared camera traps, mostly at knee height, in arrays of about 10-60 cameras per area, deployed for several weeks between mid-August and mid-November; sequences of images identified in Wildlife Insights (AI pre-classification reviewed by at least one participant)",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "7 days (last window of a deployment partial)",
+  "effortColumn": "obs_camera_days",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "A camera-day exists iff start_date <= day <= end_date (inclusive) in Snapshot_Europe_2021_2022_deployments.csv, for deployments whose camera_functioning is 'Camera Functioning'; camera-days are grouped into 7-day windows from the start date. Every sequence in the deposit falls inside its deployment's dates. The 93 deployments declaring a failure (Unknown Failure, Memory Card, Theft, Camera Hardware Failure, Vandalism, Wildlife Damage) are excluded with their sequences.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "period = survey year (2021, 2022; a deployment is in one year); occasion = camera-week within the deployment, 1-13 weeks",
+  "geographicCoverage": "Europe (24 countries from Portugal to Turkey, Norway to Greece) and Israel; camera coordinates coarsened to 0.1-degree cells; latitude 32.5 to 64.3, longitude -8.8 to 42.6",
+  "temporalCoverage": "2021-08-18/2022-11-15",
+  "crs": "EPSG:4326 (WGS 84, as published), coarsened",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "0.1-degree grid cell centre for every deployment (one unit set serves all taxa); IUCN-flagged species among the shipped taxa: European rabbit (Oryctolagus cuniculus, EN, recorded in its native Iberian range), mountain gazelle (Gazella gazella, EN, Israel), garden dormouse (Eliomys quercinus, VU) and Italian hare (Lepus corsicanus, VU) in their native ranges; water deer (Hydropotes inermis, VU) is recorded only outside its native range; the source publishes camera coordinates to 5-6 decimals; deployment ids, placenames and array names replaced by sequential ids (E7.4)"
+  },
+  "covariateNote": "unit_feature_type is the contributor's description of the camera placement (None, Trail game, Trail hiking, Road dirt, Water source, ...). site_id in __units links deployments at one camera location (placename) within and across years; sensor height, quiet period and deployment dates are in __units.",
+  "designNote": "Community detection table aggregated to camera-weeks (E9 core). The deposit is sequence-level with timestamps, so daily occasions can be rebuilt from the source. A location can have several consecutive deployments (card or camera swaps) in one year, each its own unit; a dynamic or multi-deployment model needs site_id from __units.",
+  "notes": "Taxa are every mammal identified to species except humans (63 species, 90,477 sequences in functioning deployments). Identifications are Wildlife Insights labels as deposited; Hydromys chrysogaster ('Common Water Rat', Australasian) is kept with a taxonRemarks warning. y_raw counts distinct sequence_ids (a sequence with two rows for one species counts once). Sequence rows in failed deployments not shipped: 3595.",
+  "notShipped": {
+    "failed deployments": "93 deployments with camera_functioning other than 'Camera Functioning' (Unknown Failure 43, Memory Card 24, Camera Hardware Failure 11, Theft 12, Vandalism 2, Wildlife Damage 1): end_date is the retrieval date and the failure date is not recorded, so operating days cannot be evidenced",
+    "birds": "78 species-level bird labels (9,658 sequence rows): the survey and its project objective target mammals; bird tagging differs by contributor",
+    "labels above species rank": "Rodent, Mammal, Cervidae Family, Mustelidae Family, etc.",
+    "humans": "Homo sapiens under 11 common names (Human-Camera Trapper, Human-Pedestrian, Horseback Rider, ...)",
+    "place names": "deployment_id, placename and subproject names name places (E7.4): replaced by sequential unit, cluster_id and site_id",
+    "per-sequence attributes": "group_size, age, sex, behaviour, identified_by",
+    "images": "Snapshot_Europe_2021_2022_images.csv (420 MB, one row per image): the sequences file is the detection record"
+  },
+  "summary": {
+    "n_rows": 878157,
+    "n_units": 2503,
+    "n_taxa": 63,
+    "n_periods": 2,
+    "n_occasions": 13,
+    "n_surveys": 13939,
+    "y_values": "0,1",
+    "prop_zero": 0.973,
+    "n_traps": 1,
+    "n_zero": 854769,
+    "n_positive": 23388,
+    "n_units_detected": 2337,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_feature_type", "obs_camera_days"],
+  "coreMd5": "564f1e969d67470025203335e3d66d27",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_deployments", "n_arrays", "first_start", "last_end"],
+      "md5": "2874b96c7acea21de15ed24dc4f10dfc"
+    },
+    "taxa": {
+      "rows": 63,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_class", "taxon_order", "taxon_family", "taxon_n_sequences", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "e57da43fe902c88e6f69cab0ae7a320c"
+    },
+    "units": {
+      "rows": 2503,
+      "columns": ["unit", "cluster_id", "site_id", "year", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "start_date", "end_date", "camera_days", "n_weeks", "feature_type", "sensor_height", "quiet_period_s"],
+      "md5": "13629c0fd82a7ea8d55c829406497196"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/iannarilli_2026_snapshoteurope_comm.R",
+  "buildDate": "2026-11-05"
+}
