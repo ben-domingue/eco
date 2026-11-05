@@ -87,3 +87,23 @@ for (sp in SPECIMENS) {
 }
 jsonlite::write_json(spec, "data/specimens.json", auto_unbox = TRUE, pretty = TRUE)
 cat("prerender.R: data/specimens.json written,", length(spec), "specimens\n")
+
+# The AI-assistant briefing (#12): llms_template.txt with its {{counts}} filled
+# from the same catalog as the homepage, written to llms.txt (untracked, a site
+# resource). Prose is hand-written in the template; only numbers are generated,
+# and a placeholder left unfilled stops the render.
+fmt <- function(x) format(x, big.mark = ",", scientific = FALSE, trim = TRUE)
+tab_str <- function(x) { t <- sort(table(x), decreasing = TRUE); paste(names(t), t, sep = " ", collapse = ", ") }
+fill <- list(
+  as_of = substr(last$date, 1, 10), eco_version = last$eco_version,
+  eco_redivis = last$eco_redivis_version, eco_meta_redivis = last$eco_meta_redivis_version,
+  n_tables = fmt(nrow(meta)), n_rows = fmt(sum(meta$n_rows)), n_units = fmt(sum(meta$n_units)),
+  by_response_type = tab_str(meta$response_type), by_closure = tab_str(meta$closure),
+  n_inferred = fmt(sum(meta$survey_evidence == "inferred")),
+  n_below_floor = fmt(sum(meta$sample_floor != "meets")))
+guide <- readLines("llms_template.txt", warn = FALSE)
+for (k in names(fill)) guide <- gsub(paste0("{{", k, "}}"), fill[[k]], guide, fixed = TRUE)
+left <- regmatches(guide, regexpr("\\{\\{[a-z_]+\\}\\}", guide))
+if (length(left)) stop("prerender.R: llms_template.txt has unfilled placeholders: ", paste(unique(left), collapse = ", "))
+writeLines(guide, "llms.txt")
+cat("prerender.R: llms.txt written\n")
