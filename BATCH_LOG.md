@@ -1231,3 +1231,41 @@ What this batch says about the standard:
 - **Repository metadata as the only documentation** (leopard, weasel, nightjars): clean secr/MARK files with no survey
   year cannot meet E10's `temporalCoverage`; these wait for papers.
 - `iucn_category()` NA from a genus move again (Dryocopus/Hylatomus); filled by hand as batch 24 did.
+
+## Batch 26 — 2026-11-05 (card-sorted queue rows: Panna carnivores, Białowieża Marsh Tit, NSW koala acoustics, Kibale carnivore community)
+
+One agent in `~/eco-b26` (branch `batch-26`, from main at 0691377 after batch 25). Rows from the 2026-11-05 card sort
+(#85). Twelve deposits inspected (the cap), four tables built and uploaded to the Redivis draft, eight not built.
+Dryad answered without 429s this time. `lib/eco_common.R`'s user agent was changed to the PR #94 line at the
+coordinator's request (no email in request headers); it does not change any output.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| dutta_2024_panna_carnivore_occ | multispecies detection, camera traps | Dryad CC0 | 17,352 | tiger, leopard, striped hyena; 476 winter + 338 summer stations in 2019, 5-night sessions; `effort_table` (trap nights 0 exactly where the matrix is NA); station codes are numbered per season (covariates differ for the same code), so unit = season x station, period = season; no coordinates |
+| neubauer_2021_bialowieza_marshtit_nmix | repeated counts | Dryad CC0 | 792 | Marsh Tit, 4 plots x 33 years (1987-2019) x 6 counts; the breeding pairs from the independent territory census ship as `period_pairs_within` / `period_pairs_with_adjacent` (a known-truth N-mixture benchmark); countersinging events and males per survey as `obs_`; deposited Total_cases disagrees with the per-survey sum at two plot-years (totals not shipped); below the unit floor |
+| law_2021_nsw_koala_occ | single-species detection, acoustic | Dryad CC0 | 1,073 | koala (VU), 128 sites surveyed once each in 2018-2020, up to 19 nights; `deposited_matrix` (trailing NA = `length`, rain NA on the same cells); six forest-history dummies not shipped because the metadata describes them as "0 = not sampled / 1 = sampled" |
+| mills_2019_kibale_carnivore_comm | community detection, camera traps | Dryad CC0 | 538,956 | 22 species (19 carnivores incl. dog and cat, 3 golden-cat prey) at 356 stations in 9 surveys, daily occasions; `effort_table` from the station x calendar-day function file plus 9 station-days with a photograph that the file marks 0 (`obs_trapfunction_zero = 1`); coordinates coarsened (golden cat, leopard, lion VU); IUCN filled by hand for five taxa |
+
+Not built (`queue/human_review.csv`): Virginia marsh rope-drag (held: no transect id; a proprietary data-use clause
+beside the CC0 badge), St. Marks amphibian metacommunity (blocked: paper; trap method and species-specific dashes),
+Svalbard voles SCR (held: occasions per session and trap operation not deposited), White Mountains small mammals
+(held: plot-year structure unclear between files; kill-trap daily catches may be removal data), northern Nevada
+cameras (blocked: paper; six season blocks unlabelled), range-wide red-backed salamander (held: no trap layout or
+visit table), cinereous vultures (blocked: paper; occasion years and group codes in appendices), Wakhan snow leopard
+SCR (held: files embargoed to 2027-04-19).
+
+What this batch says about the standard:
+
+- **Station ids reused across seasons for different places** (Panna, also Kibale's surveys): the unit is the
+  season-station and `period` only orders the seasons; no unit appears in two periods. Nothing in E4/E8 forbids it,
+  but a user fitting colext on such a table gets nothing; a sentence in the guide ("period without revisits") or a
+  metadata flag might help.
+- **An effort table contradicted by detections** (Kibale): 14 records on 9 station-days that the function file marks 0. Kept as
+  surveyed (a photograph shows the camera worked) and flagged per row; the standard does not say which source wins.
+- **Independent known truth as a covariate** (Marsh Tit): census pairs ship as `period_` because they come from a
+  separate field method, not from the counts; worth naming in the processing guide's "what is not a covariate" list
+  as the converse case.
+- **Kill traps** (White Mountains): daily catches from snap and pitfall traps are removal data in structure even when
+  the authors model them as counts; a ruling on `count` vs `multinomial_cell` for kill-trap series would settle it.
+- `iucn_category()` NA again from genus moves (Profelis/Caracal, Lupulella, Herpestes/Galerella, Aonyx capensis vs
+  congicus) and NE for Genetta maculata; filled by hand with the reason in the script.
