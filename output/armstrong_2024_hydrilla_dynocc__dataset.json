@@ -54,6 +54,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_depth_cm", "unit_volume_cm3", "unit_flood_height_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_nearest_pool_m", "unit_dist_river_m", "unit_days_flooded", "unit_days_flooded_per_year", "unit_flood_events", "unit_flood_events_per_year", "obs_n_records"],
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "first_date", "last_date", "n_dates", "n_pools"],
+      "md5": "7082df364e5de2b0975f13517ef9e291"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_status"],
+      "md5": "97f65379fa780aba49ddd6780860539d"
+    },
+    "units": {
+      "rows": 744,
+      "columns": ["unit", "unit_decimalLatitude", "unit_decimalLongitude", "unit_nearest_pool_m", "unit_dist_river_m", "surveyed"],
+      "md5": "c11476f7316fb7e0eb55496c7464c609"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/armstrong_2024_hydrilla_dynocc.R",

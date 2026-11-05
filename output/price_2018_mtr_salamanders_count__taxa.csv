@@ -1,8 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,lifeStage,taxonRemarks,taxon_deposited_column
-DESFUSA,Desmognathus fuscus,Northern dusky salamander,species,https://www.gbif.org/species/2431224,EXACT,,adult,,DF.A
-DESMONA,Desmognathus monticola,Seal salamander,species,https://www.gbif.org/species/2431233,EXACT,,adult,,DM.A
-EURCIRA,Eurycea cirrigera,Southern two-lined salamander,species,https://www.gbif.org/species/5218366,EXACT,,adult,,EC.A
-GYRPOR,Gyrinophilus porphyriticus,Spring salamander,species,https://www.gbif.org/species/2431423,EXACT,,,all life stages pooled in the deposited column,GP
-PSERUB,Pseudotriton ruber,Red salamander,species,https://www.gbif.org/species/2431459,EXACT,,,all life stages pooled in the deposited column,PR
-EURCIRL,Eurycea cirrigera,Southern two-lined salamander,species,https://www.gbif.org/species/5218366,EXACT,,larva,,EC.L
-DESSPPL,Desmognathus,Dusky salamanders,genus,https://www.gbif.org/species/2431198,EXACT,,larva,Desmognathus larvae not identified to species (recorded at genus rank),DU.L

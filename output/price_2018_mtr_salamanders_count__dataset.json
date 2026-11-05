@@ -45,6 +45,18 @@
   },
   "sampleFloor": "below (23 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_mtr", "period_cover_objects", "obs_day_of_year", "obs_precip", "obs_conductivity"],
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "study_year", "year", "n_visits"],
+      "md5": "aacaff2ed4a9566e345a6ee78b98aaec"
+    },
+    "taxa": {
+      "rows": 7,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxonRemarks", "taxon_deposited_column"],
+      "md5": "fbe2099dce1e6a75741cfb638ec60fb4"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/price_2018_mtr_salamanders_count.R",

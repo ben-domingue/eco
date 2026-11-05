@@ -50,6 +50,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "cluster_id", "obs_camera_days"],
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "label", "start", "end", "n_weeks"],
+      "md5": "6193b06105af08d924baee004c37c08b"
+    },
+    "taxa": {
+      "rows": 18,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "23751e84ab0701464b1ce979c4c236ce"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/mctigue_2023_nwarkansas_comm.R",

@@ -57,6 +57,18 @@
   },
   "sampleFloor": "below (21 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_depth_m", "unit_reef_zone"],
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "period_season_label", "period_first_date", "period_last_date", "period_n_transects"],
+      "md5": "7f36bdd8bea3b1d020e05f9b8733fe1e"
+    },
+    "taxa": {
+      "rows": 82,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_sourceName", "taxon_feeding_guild", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "5472045c90e9ced714b0b5bbda3e81ef"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/koester_2023_aldabra_reeffish_count.R",

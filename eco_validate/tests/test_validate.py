@@ -1,11 +1,10 @@
 """Regression tests for eco-validate.
 
-Two kinds: the corpus in output/ passes (so a change to a check that breaks a
-shipped table is caught here, not at upload), and each check fires on a
-fixture built by breaking one thing. "The corpus" is the cores tracked in git:
-a gitignored core (over 100 MB, or period parts) lives on Redivis, and a local
-copy is only the leftover of a build, possibly an old one, so it is not tested
-here; write_table() and the upload gate validated it when it was built. Run from the repo root:
+Two kinds: a real shipped table, kept as a fixture (fixtures/, Kery's crossbill
+dynamic-occupancy table as built for eco v1.1), passes; and each check fires on a
+fixture built by breaking one thing. The corpus itself lives on Redivis, not in
+git (#88): the upload gate validates every table, and the scheduled Redivis check
+(validate/validate_redivis.py) re-validates the corpus. Run from the repo root:
 
     python3 -m pytest eco_validate/tests -q
 """
@@ -14,7 +13,6 @@ from __future__ import annotations
 import json
 import re
 import shutil
-import subprocess
 from pathlib import Path
 
 import pandas as pd
@@ -25,43 +23,26 @@ from eco_validate.cli import main
 from eco_validate.model import CLAUSES, INTAKE_CHECKS
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "output"
 
 
-def _tracked_cores() -> list[Path]:
-    """Core tables tracked in git. Outside a git checkout (an installed wheel),
-    every core present, as before."""
-    present = [p for p in OUT.glob("*.csv") if "__" not in p.stem] + list(OUT.glob("*.parts"))
-    try:
-        ls = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--", "output"],
-                            capture_output=True, text=True, check=True).stdout.split()
-    except (OSError, subprocess.CalledProcessError):
-        return sorted(present)
-    tracked = {ROOT / f for f in ls}
-    return sorted(p for p in present if p in tracked)   # .parts/ is never tracked (.gitignore)
-
-
-CORE = _tracked_cores()
+FIX = Path(__file__).resolve().parent / "fixtures"
+SHIPPED = FIX / "kery_2010_crossbill_dynocc.csv"
 
 
 # ---------------------------------------------------------------------------
-# The corpus
+# A shipped table
 # ---------------------------------------------------------------------------
 
-@pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
-@pytest.mark.parametrize("path", CORE, ids=[p.name.removesuffix(".parts").removesuffix(".csv") for p in CORE])
-def test_corpus_passes(path):
-    r = validate_file(path)
+def test_shipped_table_passes():
+    r = validate_file(SHIPPED)
     assert r.ok, [f"{f.check}: {f.message}" for f in r.errors]
     assert r.conforms
 
 
-@pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
-def test_cli_over_output_dir(capsys):
-    assert main([str(p) for p in CORE] + ["--json"]) == 0
+def test_cli_over_fixture_dir(capsys):
+    assert main([str(FIX), "--json"]) == 0
     reports = json.loads(capsys.readouterr().out)
-    assert len(reports) == len(CORE)
-    assert all(r["ok"] for r in reports)
+    assert len(reports) == 1 and all(r["ok"] for r in reports)
 
 
 # ---------------------------------------------------------------------------
@@ -315,10 +296,8 @@ def test_intake_profile_split():
 # Files: side tables found by name, exit codes, the peer's regression
 # ---------------------------------------------------------------------------
 
-@pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
 def test_removing_survey_evidence_blocks(tmp_path):
-    src = OUT / "kery_2010_crossbill_dynocc"
-    for f in OUT.glob("kery_2010_crossbill_dynocc*"):
+    for f in FIX.glob("kery_2010_crossbill_dynocc*"):
         shutil.copy(f, tmp_path / f.name)
     mp = tmp_path / "kery_2010_crossbill_dynocc__dataset.json"
     d = json.loads(mp.read_text()); del d["surveyEvidence"]; mp.write_text(json.dumps(d))

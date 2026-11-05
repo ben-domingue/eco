@@ -42,6 +42,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "obs_days_since_19mar", "obs_effort_ves_min", "obs_water_temp_c", "obs_water_level_pct", "obs_wind", "obs_rain", "obs_fish_detected", "obs_emergent_veg_pct"],
+  "sideTables": {
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "632c825b2be9384bbbd87d627d9ea402"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hamer_2024_hungary_amph_comm.R",

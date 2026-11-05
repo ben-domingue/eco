@@ -55,6 +55,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_qpcr_runs", "obs_qpcr_positive", "obs_its_copies_mean"],
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "n_secondaries_surveyed", "nominal_interval_weeks", "note"],
+      "md5": "e30a4653c6db48c451e114955ce38814"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "8351b9869b57baa7b837176a16f497c0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hollanders_2022_brindle_mfleayi_msdis.R",

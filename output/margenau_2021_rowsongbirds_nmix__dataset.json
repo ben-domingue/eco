@@ -48,6 +48,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_treatment", "period_calendar_year", "obs_time_hhmm"],
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "treatment_year", "note"],
+      "md5": "15efffe586eefaa33de6c8051d593fab"
+    },
+    "taxa": {
+      "rows": 112,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "6abfe49929ba3925dcb0a9a6af65e15a"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/margenau_2021_rowsongbirds_nmix.R",

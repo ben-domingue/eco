@@ -64,6 +64,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_volume_ml", "unit_depth_m", "unit_water_temp_c", "unit_conductivity", "unit_do_mg_l", "unit_site_seine_goby_count", "obs_method", "obs_replicate"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d207951d9a484559e837b887aae00824"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lafferty_2024_socal_estuary_edna.R",

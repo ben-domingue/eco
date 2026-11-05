@@ -1,6 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
-GUIGNA,Leopardus guigna,Guigna (kodkod),species,https://www.gbif.org/species/2434923,EXACT,
-SKUNK,Conepatus chinga,Molina's hog-nosed skunk,species,https://www.gbif.org/species/2434870,EXACT,
-CAT,Felis catus,Domestic cat,species,https://www.gbif.org/species/2435035,EXACT,
-FOX,Lycalopex,Foxes (culpeo / chilla),genus,https://www.gbif.org/species/2434325,EXACT,
-DOG,Canis familiaris,Domestic dog,species,https://www.gbif.org/species/5219200,EXACT,Canis lupus

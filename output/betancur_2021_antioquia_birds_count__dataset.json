@@ -50,6 +50,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "cluster_id", "unit_department", "unit_municipality", "unit_lat", "unit_lon", "unit_elevation", "unit_forest", "unit_mosaic", "unit_dist_stream", "unit_dist_impoundment", "period_nests_depredated", "obs_time_local", "obs_temp", "obs_precip_prev_day"],
   "coreMd5": "dff4fc079d8aeec4427a7c042742872f",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "observer", "months"],
+      "md5": "f883f4872229967347bf39edd661333b"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "46ac3f0dda38d5af399380b6932026c3"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/betancur_2021_antioquia_birds_count.R",

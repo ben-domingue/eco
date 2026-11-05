@@ -48,6 +48,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_den", "unit_morph"],
+  "sideTables": {
+    "periods": {
+      "rows": 26,
+      "columns": ["period", "year", "interval_to_next_yr", "popmass_g", "precip_11yr_mm", "note"],
+      "md5": "9b73837a3df3cf0c561a87173641c686"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d2d7011d89a928ebab3ac158bc28ee8f"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tetzlaff_2026_crotalus_cjs.R",

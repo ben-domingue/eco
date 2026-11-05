@@ -53,6 +53,18 @@
   },
   "sampleFloor": "below (24 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "trap", "occasion", "unit_sex", "unit_age", "unit_sexage", "unit_temp_id", "obs_effort", "obs_location"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "97d54387eda6f278a475e8f41f83fa74"
+    },
+    "traps": {
+      "rows": 548,
+      "columns": ["trap", "x_m", "y_m", "effort_day1", "effort_day2", "effort_day3", "effort_day4"],
+      "md5": "0c377d0b9dbc5a505f49703c1bca80b2"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/doyle_2025_chinalake_tortoise_scr.R",

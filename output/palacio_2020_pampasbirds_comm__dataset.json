@@ -43,6 +43,18 @@
   },
   "sampleFloor": "below (10 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "season", "note"],
+      "md5": "1eb738f1672350af4e4269c5acca3387"
+    },
+    "taxa": {
+      "rows": 43,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_body_mass", "taxon_vertebrates", "taxon_invertebrates", "taxon_leaves", "taxon_fruits", "taxon_seeds", "taxon_nectar", "taxon_water", "taxon_mud", "taxon_ground", "taxon_vegetation", "taxon_air", "taxon_pursuit", "taxon_gleaning", "taxon_reaching", "taxon_pecking", "taxon_screening", "taxon_scavenging", "taxon_probing"],
+      "md5": "3f7d1cb69ff701c7e9c3e9213d4be9d2"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/palacio_2020_pampasbirds_comm.R",

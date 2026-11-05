@@ -45,6 +45,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_veg_height", "unit_fence_length", "unit_tree", "period_herb", "period_litter", "period_shrub", "obs_time_local", "obs_sky", "obs_wind", "obs_temp", "obs_adjacent_det"],
   "coreMd5": "7e3a75eb2cdf9a70aef3331d5989724d",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year", "n_points", "n_surveys", "n_detections", "first_date", "last_date"],
+      "md5": "1e8c7c638a948d713f9ee411211b4076"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "dab51033a81a66880fee55f58f77af17"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/todaro_2025_wyoming_shrike_dynocc.R",

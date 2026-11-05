@@ -55,6 +55,13 @@
   },
   "sampleFloor": "below (22 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "unit_trapdays", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "220002b976c7341f76f5609a94eca004"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/schank_2015_tapir_occ.R",

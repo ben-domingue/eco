@@ -57,6 +57,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_detection_distance_m", "unit_camera_working_at_retrieval", "obs_camera_hours"],
+  "sideTables": {
+    "taxa": {
+      "rows": 47,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_class"],
+      "md5": "394b61e3821b8f14588ee086925a7f74"
+    },
+    "units": {
+      "rows": 146,
+      "columns": ["unit", "cluster_id", "decimalLatitude", "decimalLongitude", "detection_distance_m", "camera_working_at_retrieval", "deployed", "retrieved", "camera_days", "modelled_in_paper"],
+      "md5": "cf7101d932f900f109c6661509e0af33"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/clipp_2024_wvprivate_comm.R",

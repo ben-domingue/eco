@@ -47,6 +47,18 @@
   "sampleFloor": "below (18 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_coffee", "unit_terrain_scaled", "unit_tree_cover_scaled"],
   "coreMd5": "28d787ebb10423dbe2b213a458e9b129",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "period_year", "period_n_visits"],
+      "md5": "c516937ce4518dc57d3461bc0086a9ab"
+    },
+    "taxa": {
+      "rows": 42,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3b0efbb4c79a03065ba80432d459e589"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/frank_2017_costarica_bats_comm.R",

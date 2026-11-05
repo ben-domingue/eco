@@ -49,6 +49,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "unit_cam_type", "unit_trap_days", "unit_human_detection_rate", "unit_cattle_detection_rate", "unit_elev_m", "unit_dist_settlement_m", "unit_dist_border_m", "unit_dist_road_m", "unit_dist_river_m", "unit_ndvi", "unit_basal_area", "unit_canopy_transparency", "obs_trials"],
+  "sideTables": {
+    "taxa": {
+      "rows": 18,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_sourceCode", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "1f6c74198868b6443171b630b916c7ed"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/feng_2021_nechina_mamm_binom.R",

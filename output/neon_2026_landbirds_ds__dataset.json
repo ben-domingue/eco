@@ -60,6 +60,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "observer", "unit_site", "obs_air_temp_c", "obs_wind_kmh", "obs_cloud_pct", "obs_rh_pct", "obs_habitat", "obs_individuals"],
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "year", "bout"],
+      "md5": "0e8df0dc2f672a4ce640c9a552fdd7ac"
+    },
+    "taxa": {
+      "rows": 46,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "1b005201ada5c7a7a12e553812938140"
+    },
+    "units": {
+      "rows": 3434,
+      "columns": ["unit", "site", "domain", "named_location", "plot_type", "nlcd_class", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "fa005ddfbf434804678a424a8923b8b3"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_landbirds_ds.R",

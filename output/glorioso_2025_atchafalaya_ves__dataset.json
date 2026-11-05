@@ -59,6 +59,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_management_unit", "unit_owner", "unit_parish", "obs_duration_min", "obs_air_temp_c", "obs_humidity_pct", "obs_wind_ms", "obs_water_temp_c", "obs_water_depth_cm", "obs_weather"],
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year"],
+      "md5": "745c10b9ceb5ddd61a8243b244afb633"
+    },
+    "taxa": {
+      "rows": 47,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_group"],
+      "md5": "b4ca67c20f95bebb61979248f27734c5"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/glorioso_2025_atchafalaya_ves.R",

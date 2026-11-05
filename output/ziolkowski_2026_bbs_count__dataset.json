@@ -188,6 +188,23 @@
       "n_rows": 4305904
     }
   ],
+  "sideTables": {
+    "periods": {
+      "rows": 60,
+      "columns": ["period", "year", "n_runs", "n_routes", "nonbreeder_records_preserved"],
+      "md5": "be2c04948346a7a6d5c80979e527ebeb"
+    },
+    "taxa": {
+      "rows": 764,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_aou", "taxonRemarks", "taxon_gbifRank", "taxon_first_year", "taxon_last_year", "taxon_nonbreeder_share_1999on"],
+      "md5": "639a8a360861c0dc95cceeba5e266e89"
+    },
+    "units": {
+      "rows": 5655,
+      "columns": ["unit", "unit_route_name", "unit_country_num", "unit_state_num", "unit_route", "unit_stratum", "unit_bcr", "unit_route_type_id", "unit_route_type_detail_id", "unit_active", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "d8c55c49fb7214ec84d302f2f24ecc90"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ziolkowski_2026_bbs.R",

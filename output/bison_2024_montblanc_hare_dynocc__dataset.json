@@ -55,6 +55,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_elevation_m", "unit_slope_deg", "unit_aspect", "unit_habitat", "unit_camera_model", "unit_relief_homogeneity", "unit_slope_class", "unit_cover_bare_class", "unit_cover_lt10cm_class", "unit_cover_10_40cm_class", "unit_cover_40_130cm_class", "unit_cover_130_400cm_class", "unit_cover_tree_class"],
+  "sideTables": {
+    "periods": {
+      "rows": 20,
+      "columns": ["period", "season_label", "season", "year", "start", "end", "n_units", "n_camera_days"],
+      "md5": "4509c19ad18b4494a6e24cb411b303db"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_subspecies", "taxon_iucnCategory"],
+      "md5": "7cbcd67f47861ae8cfca4d5490c6d330"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bison_2024_montblanc_hare_dynocc.R",

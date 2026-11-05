@@ -59,6 +59,23 @@
   },
   "sampleFloor": "below (11 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_habitat", "obs_transect_km", "obs_depth_m", "obs_start_time", "obs_n_observers", "obs_beaufort", "obs_visibility", "obs_season", "obs_unidentified_turtles"],
+  "sideTables": {
+    "periods": {
+      "rows": 109,
+      "columns": ["period", "period_year", "period_month", "period_heatwave_phase", "period_mean_water_temp_c", "period_shark_cpue_all", "period_shark_cpue_over3m", "period_tigershark_cpue", "period_tigershark_cpue_over3m"],
+      "md5": "3fd2fe60f3c075f1527e29a1288c14b9"
+    },
+    "survey_taxa": {
+      "rows": 19183,
+      "columns": ["taxon", "unit", "period", "occasion"],
+      "md5": "4073cb4ad75e09afa3d5b0d2417ee481"
+    },
+    "taxa": {
+      "rows": 6,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_band_width_km", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "fa606258f6593c5ac57fee4cf3edf325"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/nowicki_2019_sharkbay_count.R",

@@ -47,6 +47,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_landuse", "obs_trials"],
   "coreMd5": "55bfcd66dbec9ae945b0e6b50cd6957c",
+  "sideTables": {
+    "periods": {
+      "rows": 24,
+      "columns": ["period", "period_year", "period_season", "period_n_transects"],
+      "md5": "b41eadc53956fe53596c55fc00ebd3f9"
+    },
+    "taxa": {
+      "rows": 490,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "0fe6b2d7d0eff3ccd302a853a9ab9ea2"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/frishkoff_2014_costarica_birds_binom.R",

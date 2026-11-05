@@ -180,19 +180,19 @@ What building 30 tables established, beyond the round trips:
 | `lib/eco_common.R` | Shared harness: cached downloads, GBIF taxon lookup, coordinate coarsening, `write_table()`, dictionary and tag staging |
 | `eco_validate/` | **The validator**: `eco-validate`, one pandas package with clause ids (E1-E10), intake profile, `--irw` for the IRW view, exit codes, `--json`; gates the uploader; `pytest eco_validate/tests` |
 | `Rpkg/R/convert.R` → `eco_to_irw()` | The IRW view (id/item/resp names, Unix-second dates) that `irw-validate` checks; mirrored in `eco_validate.eco_to_irw` |
-| `output/` | Clean CSV per table plus `__taxa.csv`, `__periods.csv`, `__units.csv`, `__traps.csv` and `__dataset.json` side files |
-| `metadata/` | `run_pipeline.sh` builds `metadata.csv`, `biblio.csv`, `tags.csv`, `status.json` from `output/`, `dictionary/`, `tags/`; the site and the R package read these |
+| `output/` | Build area: `data/<table>.R` writes the table CSV and its side tables here for upload; only `<table>__dataset.json` is tracked (the tables live on Redivis, #88) |
+| `metadata/` | `run_pipeline.sh` builds `metadata.csv`, `biblio.csv`, `tags.csv`, `status.json` from `output/*__dataset.json`, `dictionary/`, `tags/`; the site and the R package read these |
 | `releases/` | The release ledger: `manifest.csv` (eco version ↔ Redivis versions), `table_changes.csv` (corrections), `data_notes.csv` (caveats about sources) |
 | `site/` | The Quarto website, rendered by GitHub Pages on push |
 | `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
 | `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |
-| `validate/validate_all.R`, `validate/report.csv` | Runs `eco-validate --irw --json` over `output/` and writes the report the site reads |
+| `validate/report.csv`, `validate/validate_redivis.py` | One eco-validate verdict per table, the report the site reads; written by the uploader and by a scheduled re-validation of the tables on Redivis |
 | `upload/red_up_eco.py` | Ships `output/` to Redivis `datapages.eco` (reference `eco:4j5q`) with IRW's `red_up`: true replace, row counts verified, descriptions from `__dataset.json`; draft only |
 | `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built` / held with a reason) |
 | `analysis/*.R`, `analysis/build_report.py` | The illustrative figures and the assembly of `report.html` from the repo's own files |
 | `discovery_log.csv`, `discovery_summary.md` | Per-source hit counts, curated candidates with difficulty scores, and the narrative |
 
-To rebuild the tables: `Rscript data/run_all.R && Rscript validate/validate_all.R` (from the repo root; needs `data.table`, `jsonlite`, python3 with pandas, network access for the first run, and the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or `IRW_SRC` for the IRW check). To validate alone: `python3 -m eco_validate.cli output/`.
+The tables are on Redivis; read them with the R package (`eco_fetch()`). To rebuild one from source: `Rscript data/<table>.R` (from the repo root; needs `data.table`, `jsonlite`, and network access for the first run), then `python3 -m eco_validate.cli output/<table>.csv --irw` (python3 with pandas, and `irw-validate` installed or the `ben-domingue/irw` checkout at `~/Dropbox/projects/irw/src` or `IRW_SRC`).
 
 To rerun the round-trip tests: `cd converters && Rscript run_all.R` (needs `unmarked`,
 `AHMbook`, `marked`, `nimble`, `nimbleEcology`, `data.table`, `jsonlite`).

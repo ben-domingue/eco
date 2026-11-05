@@ -54,6 +54,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_temperature_c", "obs_cloud_cover_pct", "obs_flower_cover", "obs_time_start", "obs_time_end", "obs_visit"],
+  "sideTables": {
+    "periods": {
+      "rows": 17,
+      "columns": ["period", "period_year"],
+      "md5": "34c096e513d3b721975eb9c81557613a"
+    },
+    "taxa": {
+      "rows": 93,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_family", "taxon_iucnCategory"],
+      "md5": "c2e78771f273011f57b4bb8003f97117"
+    },
+    "units": {
+      "rows": 2651,
+      "columns": ["unit", "unit_habitat", "unit_county", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_locationID", "unit_section_code", "unit_municipality", "unit_locality", "unit_footprintWKT"],
+      "md5": "00f4790fc35f4c71d6c5cb6cf4c90d89"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/nina_2026_norway_pollinator_count.R",

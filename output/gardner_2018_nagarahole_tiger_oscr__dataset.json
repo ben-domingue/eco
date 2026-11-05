@@ -53,6 +53,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "trap", "period", "obs_trials"],
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "n_days", "n_stations_active", "note"],
+      "md5": "429eee366141012210f1c14b18dfe693"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b5bae96b706a789e93a6496d4e9e774b"
+    },
+    "traps": {
+      "rows": 195,
+      "columns": ["trap", "x", "y"],
+      "md5": "173b1e5feeb6635205dd532f8d60a54e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/gardner_2018_nagarahole_tiger_oscr.R",

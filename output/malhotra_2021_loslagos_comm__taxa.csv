@@ -1,5 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName
-CHILLA,Lycalopex griseus,Chilla (South American grey fox),species,https://www.gbif.org/species/2434328,EXACT,Lycalopex gymnocercus
-CULPEO,Lycalopex culpaeus,Culpeo,species,https://www.gbif.org/species/2434340,EXACT,
-GUIGNA,Leopardus guigna,Guigna (kodkod),species,https://www.gbif.org/species/2434923,EXACT,
-DOG,Canis familiaris,Domestic dog,species,https://www.gbif.org/species/5219200,EXACT,Canis lupus
