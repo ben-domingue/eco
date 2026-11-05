@@ -1273,8 +1273,9 @@ What this batch says about the standard:
 ## Batch 27 — 2026-11-05 (card-sorted queue rows: Boston sweat bees, Montana dusky grouse, Richmond pollinators, rangewide tidewater goby eDNA)
 
 One agent in `~/eco-b27` (branch `batch-27`, from main at c60b7a2 after batch 26). Rows from the 2026-11-05 card sort
-(#85). Twelve deposits inspected (the cap), five tables built from four deposits and uploaded to the Redivis draft,
-eight deposits not built. Dryad answered one version download with 429s; a 90 s back-off cleared it.
+(#85). Eleven deposits downloaded and read (two more screened from Dryad metadata only and left `available`: Colorado
+ant JAGS lists, yellow-legged frog eDNA), five tables built from four deposits and uploaded to the Redivis draft,
+seven deposits not built. Dryad answered one version download with 429s; a 90 s back-off cleared it.
 
 | Table | Family | Source | Rows | Notes |
 |---|---|---|---|---|
