@@ -1194,3 +1194,40 @@ What this batch says about the standard:
 - **Known-age young of the year** (salmonids): fish first caught as YOY were born that year, so their rows start at marking,
   the newborn branch of E4.4; adults are unknown-age and start in 2009. The rule fits, but "marked as a newborn" could say
   "first caught in its birth year".
+
+## Batch 25 — 2026-11-05 (card-sorted queue rows: California farm birds, Pacific Northwest woodpecker acoustics, Hawaiian Duck robust design)
+
+One agent in `~/eco-b25` (branch `batch-25`, from main after batches 22-24; merged with main after #92, so tables are
+uploaded to the Redivis draft and only `__dataset.json` is committed). Rows from the 2026-11-05 card sort (#85),
+preferring repeated-visit, multi-state and capture-history designs. Twelve deposits inspected (the cap), three tables
+built, nine not built. Dryad rate-limited hard (429 on metadata and zips), so most inspections were Zenodo/USGS rows.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| olimpi_2024_calfarms_nmix | repeated community point counts | Dryad CC0 | 67,419 | 99 species x 227 point-years on 30 California farms x 3 visits; `row_presence` (every point-year has exactly three dated visits); flyovers excluded from y (12 flyover-only codes, incl. the two "spp." groups, have no taxon); unit = point-year because the readme does not say a replicate number is the same place across years; the authors' occupancy/N-mixture posteriors not shipped |
+| ruff_2025_piwo_state | multi-state occupancy (0 / 1-3 days / 4+ days per week) | Zenodo CC BY 4.0 | 23,290 | Pileated Woodpecker at 3,948 ARU stations in 1,008 hexagons, 6 weekly occasions, 2023; `effort_table` (hours recorded, NA exactly where the week is missed); PNW-Cnet classifier detections; 62 raw station covariates; coordinates as published (LC); IUCN filled by hand (assessed as Hylatomus pileatus) |
+| malachowski_2026_koloa_rd | robust design | Zenodo CC BY 4.0 | 22,968 | 792 Hawaiian Ducks (150 F, 642 M), 29 trapping secondaries in 7 trapped primaries of the MARK design's 11 (untrapped primaries keep their numbers and have no rows); trap-days and rainfall per secondary, season and elapsed time in `__periods`; IUCN VU, no coordinates in source |
+
+Not built (`queue/human_review.csv`): Rio Grande giant reed birds and butterflies (held: only N-mixture estimates and
+max counts deposited), Swiss MHB 1999-2025 (held: three kinds of per-visit NA, one of which drops 33k positive
+territory totals; needs a ruling, and overlaps `kery_2014_mhb_comm`), Broadway nightjars (held: survey years only as a
+0/1 code, paper not yet out, mean-imputed covariates), dusky grouse (held: what the four same-day "visits" are),
+Tutakoke brant fitness (held: Dryad version zip returns 404), USGS Emperor Goose (held: split-history segments do not
+chain), Bardia leopard SCR (held: no survey year or CRS), Valenzuela 2017 Darwin's frogs (held: headerless matrices,
+trailing columns undefined), Portuguese weasels (blocked: paper).
+
+What this batch says about the standard:
+
+- **Per-visit NA with three meanings in one matrix** (Swiss MHB): protocol (2-visit squares), species breeding windows
+  (not surveyed for: `__survey_taxa`), and values not retained (surveyed, aggregated only). E4.2 covers the first two;
+  the third is neither "not surveyed" nor a zero, and the standard has no place for a surveyed-but-unrecorded cell
+  other than dropping it. Ruling requested.
+- **Untrapped primaries in a MARK design** (Koloa): the source's period numbering is kept with gaps, so the elapsed
+  time from the deposited intervals goes in `__periods` (`start_6mo`); nothing in E8 forbids gaps, but a sentence saying
+  "keep the source numbering" would settle it.
+- **Split-history MARK inputs** (Emperor Goose): a multi-state study encoded as pseudo-individuals with losses on
+  capture is a MARK device, not a data structure; E4.4 assumes one unit per animal. Rebuilding animals needs the
+  segments to chain, which this deposit's do not.
+- **Repository metadata as the only documentation** (leopard, weasel, nightjars): clean secr/MARK files with no survey
+  year cannot meet E10's `temporalCoverage`; these wait for papers.
+- `iucn_category()` NA from a genus move again (Dryocopus/Hylatomus); filled by hand as batch 24 did.
