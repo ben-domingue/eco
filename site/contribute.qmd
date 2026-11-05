@@ -20,6 +20,14 @@ convert another public deposit and see what breaks. There are
 or a design the standard does not yet cover). Each conversion is one R script, one dictionary row and
 one tags row.
 
+## Before you start: check a file
+
+If you already have a table in the format, or want to see what the format
+asks of one, [check it in your browser](validate.qmd): drop the core CSV with
+its `__taxa.csv` and `__dataset.json` and the validator reports every finding
+against a clause of the standard. Nothing is uploaded, and it runs the same
+checks as `eco-validate` on the command line.
+
 ## How a table is built
 
 One script per source lives in `data/`. It downloads the deposit into a local

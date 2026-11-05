@@ -110,3 +110,29 @@ left <- regmatches(guide, regexpr("\\{\\{[a-z_]+\\}\\}", guide))
 if (length(left)) stop("prerender.R: llms_template.txt has unfilled placeholders: ", paste(unique(left), collapse = ", "))
 writeLines(guide, "llms.txt")
 cat("prerender.R: llms.txt written\n")
+
+# The browser validator (#8, validate.qmd) runs eco_validate in Pyodide from a
+# wheel built here, from this checkout's eco_validate/, on every render: the
+# page cannot run a validator that differs from the source. Not committed and
+# not from a release (untracked, see ../.gitignore). The wheel sits under a
+# directory named for its md5, so a changed wheel of the same version gets a
+# new URL and no browser runs a cached old one. validate.qmd pins the version
+# and stops the render if this wheel is a different one.
+unlink("wheels", recursive = TRUE)
+src <- file.path(tempdir(), "eco_validate")             # build a copy: setuptools writes build/ in-tree
+dir.create(src)
+invisible(file.copy(list.files("../eco_validate", full.names = TRUE, no.. = TRUE),
+                    src, recursive = TRUE))
+unlink(file.path(src, c("tests", "build", "__pycache__")), recursive = TRUE)
+out <- file.path(tempdir(), "wheel")
+py <- Sys.getenv("PYTHON", "python3")
+# A fixed zip timestamp makes the wheel's bytes, and so its directory, a
+# function of the source alone: an unchanged validator keeps its URL.
+st <- system2(py, env = "SOURCE_DATE_EPOCH=315532800", c("-m", "pip", "wheel", "--quiet", "--no-deps", "-w", shQuote(out), shQuote(src)))
+if (st != 0) stop("prerender.R: could not build the eco_validate wheel (", py, " -m pip wheel ", src, ")")
+whl <- list.files(out, "^eco_validate-.*-py3-none-any\\.whl$", full.names = TRUE)
+if (length(whl) != 1) stop("prerender.R: expected one eco_validate wheel, found ", length(whl))
+tag <- substr(unname(tools::md5sum(whl)), 1, 12)
+dir.create(file.path("wheels", tag), recursive = TRUE)
+invisible(file.copy(whl, file.path("wheels", tag, basename(whl))))
+cat("prerender.R: wheels/", tag, "/", basename(whl), " written\n", sep = "")

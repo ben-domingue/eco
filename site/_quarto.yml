@@ -6,6 +6,7 @@ project:
   resources:
     - specimen.js
     - llms.txt
+    - wheels/**/*.whl     # the browser validator's wheel, built by prerender.R (#8)
   # Writes data/site_stats.json from the pipeline's staging files so the
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
@@ -45,6 +46,8 @@ website:
         menu:
           - href: standard.qmd
             text: The standard
+          - href: validate.qmd
+            text: Check a file
           - href: design.qmd
             text: Design decisions
           - href: contribute.qmd
