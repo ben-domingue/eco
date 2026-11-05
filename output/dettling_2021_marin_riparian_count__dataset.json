@@ -37,10 +37,27 @@
     "n_occasions": 3,
     "n_surveys": 4712,
     "y_values": "0,1,2,3,4,5,6,7,8,9,10",
-    "prop_zero": 0.719
+    "prop_zero": 0.719,
+    "n_traps": 1,
+    "n_zero": 47437,
+    "n_positive": 18531,
+    "n_units_detected": 183,
+    "max_y": 10
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id"],
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "year", "n_points", "n_point_visits"],
+      "md5": "970d1e59dc570c4d16f6103626bdfc57"
+    },
+    "taxa": {
+      "rows": 14,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f308dd70fea496b2e146267048c06a8f"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/dettling_2021_marin_riparian_count.R",

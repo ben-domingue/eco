@@ -1,0 +1,69 @@
+{
+  "table": "parren_2021_centralvalley_mesocarn_occ",
+  "title": "Daily camera detections of coyote, bobcat and raccoon at 266 baited sites in California's Central Valley, 2016 and 2017",
+  "creator": "Parren, Molly",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.6t1g1jx08",
+  "sourceURL": "https://doi.org/10.5061/dryad.6t1g1jx08",
+  "citation": "Parren, M. (2021). Drought and coyotes mediate mesopredator response to human disturbance [Dataset]. Dryad. https://doi.org/10.5061/dryad.6t1g1jx08",
+  "paperDOI": "10.1002/ecs2.4258",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "California Department of Fish and Wildlife drought study: baited camera traps at 266 sites (137 cells, mostly two cameras each) in the Central Valley in a drought year (2016) and a post-drought year (2017), each site surveyed in one year for up to 27 days. Daily detection/non-detection of coyote, bobcat and raccoon, with human disturbance, tree cover and water covariates.",
+  "samplingProtocol": "Baited camera trap per site; a survey is one day; a day on which the camera was not aimed at the bait for 24 h is not a survey.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "up to 27 consecutive days per site; the authors fit single-season and two-species occupancy models",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Central Valley ecoregion, California, USA (latitude only deposited, 35.3 to 40.2 N)",
+  "temporalCoverage": "2016-03-23/2017-06-28",
+  "coordinatesCoarsened": null,
+  "covariateNote": "unit_lat is the only coordinate deposited (no longitude). unit_hd: human disturbance 1-10 within 1 km; unit_trees: proportion tree cover (incl. orchards) within 1 km; unit_water_at_deploy: water at the site at deployment (1/0); unit_d_water_km: distance to water.",
+  "notShipped": {
+    "standardised": "standardised covariates and year interactions in the detection-history files (derivable)",
+    "coyote_lag": "3lag1..27, an indicator of a coyote detection in the previous 3 days (derivable from the coyote rows)",
+    "two_species_files": "the same detections interleaved for co-occurrence models",
+    "model_output": "Single_ and Two_Species_Parameter_Estimates_Figures.csv"
+  },
+  "notes": "The Mojave Desert half of the deposit, with 3-day surveys, is parren_2021_mojave_mesocarn_occ.",
+  "summary": {
+    "n_rows": 20787,
+    "n_units": 266,
+    "n_taxa": 3,
+    "n_periods": 2,
+    "n_occasions": 27,
+    "n_surveys": 6929,
+    "y_values": "0,1",
+    "prop_zero": 0.962,
+    "n_traps": 1,
+    "n_zero": 20003,
+    "n_positive": 784,
+    "n_units_detected": 174,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_lat", "unit_hd", "unit_trees", "unit_water_at_deploy", "unit_d_water_km"],
+  "coreMd5": "b21a19f8061fe2aa0bf1e172f733013d",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "period_start", "period_end", "n_sites"],
+      "md5": "3c45b5a75c0bc016247e85517222d0bc"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "c9c12192d381f9000d4187c5b14564f0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/parren_2021_centralvalley_mesocarn_occ.R",
+  "buildDate": "2026-11-05"
+}

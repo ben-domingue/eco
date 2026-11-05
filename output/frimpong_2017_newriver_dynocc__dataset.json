@@ -32,10 +32,27 @@
     "n_occasions": 3,
     "n_surveys": 1008,
     "y_values": "0,1",
-    "prop_zero": 0.851
+    "prop_zero": 0.851,
+    "n_traps": 1,
+    "n_zero": 63506,
+    "n_positive": 11086,
+    "n_units_detected": 100,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_effort"],
+  "sideTables": {
+    "periods": {
+      "rows": 26,
+      "columns": ["period", "start_year", "median_year", "end_year"],
+      "md5": "64e406893e3dffab63f235f4d910acc4"
+    },
+    "taxa": {
+      "rows": 74,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "8b6358d67c7fa465de2a68efc5803e66"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/frimpong_2017_newriver_dynocc.R",

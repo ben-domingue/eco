@@ -41,10 +41,22 @@
     "n_occasions": 12,
     "n_surveys": 1092,
     "y_values": "0-212 (50 distinct)",
-    "prop_zero": 0.692
+    "prop_zero": 0.692,
+    "n_traps": 1,
+    "n_zero": 756,
+    "n_positive": 336,
+    "n_units_detected": 76,
+    "max_y": 212
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "cluster_id", "unit_effort_seconds", "unit_site_area_km2", "obs_individuals"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "6c1dfe6bbbf3dc03ec25f3abc6e04706"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bedson_2021_holmemoss_hare_cam_ds.R",

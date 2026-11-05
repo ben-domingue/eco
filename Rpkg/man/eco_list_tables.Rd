@@ -7,8 +7,9 @@
 eco_list_tables()
 }
 \value{
-A data.frame: \code{table}, \code{n_rows}, \code{bytes}, \code{taxa}, \code{periods}, \code{units},
-\code{traps} (logical: the side table exists).
+A data.frame: \code{table}, \code{n_rows}, \code{bytes}, \code{needs_login} (over the
+100 MB Redivis serves without a login; see \code{\link[=eco_fetch]{eco_fetch()}}), \code{taxa},
+\code{periods}, \code{units}, \code{traps} (logical: the side table exists).
 }
 \description{
 One row per core table in the eco version being read (see \code{\link[=eco_version]{eco_version()}}),

@@ -58,10 +58,27 @@
     "n_occasions": 28,
     "n_surveys": 32898,
     "y_values": "0,1,2",
-    "prop_zero": 0.938
+    "prop_zero": 0.938,
+    "n_traps": 1,
+    "n_zero": 30871,
+    "n_positive": 2027,
+    "n_units_detected": 89,
+    "max_y": 2
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_house_km2", "unit_tree_cover", "unit_impervious_cover", "obs_week", "obs_n_images", "obs_n_mange_images", "obs_mean_blur", "obs_prop_in_color", "obs_max_propbodyvis"],
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "code", "season", "year", "start", "end", "n_units_active", "n_units_mange"],
+      "md5": "cc7983dbadcb774f25911268d39cf561"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "2645f1f41e03f1947280a62fa729af42"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/murray_2021_chicago_coyote_mange.R",

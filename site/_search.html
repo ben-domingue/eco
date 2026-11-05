@@ -1,0 +1,16 @@
+<script>
+// Filter the rows of a pipe table inside a div with id `tableId`, as the IRW
+// site does for its notes and known-issues pages.
+function filterRows(inputId, tableId, countId, noun) {
+  const filter = document.getElementById(inputId).value.toLowerCase().trim();
+  const rows = document.querySelectorAll('#' + tableId + ' tbody tr');
+  let shown = 0;
+  rows.forEach(r => {
+    const hit = filter === '' || (r.textContent || '').toLowerCase().includes(filter);
+    r.style.display = hit ? '' : 'none';
+    if (hit) shown++;
+  });
+  document.getElementById(countId).textContent = filter === '' ? '' :
+    shown + ' ' + noun + (shown === 1 ? ' matches "' : 's match "') + filter + '"';
+}
+</script>

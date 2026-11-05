@@ -1,0 +1,77 @@
+{
+  "table": "davis_2019_kasungu_leopard_scr",
+  "title": "Spatial capture-recapture of leopard (Panthera pardus) from camera traps in Kasungu National Park, Malawi, annual surveys 2016 to 2018, with partial (single-flank) identities",
+  "creator": "Davis, Robert Scott",
+  "pubDate": "2019",
+  "doi": "10.5281/zenodo.3540503",
+  "sourceURL": "https://doi.org/10.5281/zenodo.3540503",
+  "citation": "Davis, R. S. (2019). Spatial partial identity model for spatial capture-recapture analysis of large carnivores in Kasungu National Park, Malawi [Data set]. Zenodo. https://doi.org/10.5281/zenodo.3540503",
+  "paperDOI": "10.1111/jzo.12838",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Daily camera-trap detections of individually identified leopard (Panthera pardus) in Kasungu National Park, Malawi, a miombo woodland, from three annual surveys (2016, 2017, 2018) of 90, 120 and 90 days at 17, 50 and 25 camera traps. Individuals were identified from pelage patterns; some are known from both flanks and some from one flank only, so a left-only and a right-only id may be the same animal (unit_identity; the authors fitted the two-flank spatial partial identity model). One row per individual x active trap-day; the deposited active-inactive matrix is the survey set. Sibling table for the other species of the same survey: davis_2019_kasungu_hyaena_scr. Trap coordinates are centred on the array (local metres) because the leopard is IUCN Vulnerable.",
+  "samplingProtocol": "Camera traps at trap stations in three annual surveys; each 24-hour day is an occasion and a binary matrix gives each trap's active days. Individuals identified from left and right flank pelage patterns; complete (two-flank) identities only where flanks were certainly from the same animal.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "tdf_<year>.csv gives each trap x day as active (1) or inactive (0); a trap-day is surveyed iff 1 (5990 trap-days). One leopard photograph (id 42, trap B20, 2017 day 16) falls on a day the matrix marks inactive; the photograph is believed and that trap-day is added to the survey set of both tables.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "each annual survey (period) treated as closed by the authors; open between years",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Kasungu National Park, Malawi; trap array centre -13.1, 33.1 (0.1 degree); trap positions in __traps as local metres centred on the array",
+  "temporalCoverage": "2016/2018",
+  "crs": "local: metres, UTM 36S (EPSG:32736) easting/northing minus the mean trap position (processor-centred)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "trap coordinates centred on the array by the processor (local metres; exact UTM 36S positions withheld) because the leopard (IUCN VU) shares the camera array with the hyaena table; the array centre is given at 0.1 degree in geographicCoverage"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps, three annual sessions as periods; partial identity (E2) in unit_identity. One species per table (ruling #20); the two tables share traps and survey set.",
+  "notes": "unit_identity = the flanks from which the individual is known (both / left / right); single-flank ids may duplicate an animal known from the other flank. obs_side = the flank photographed on detection rows. unit_sex from the catalogue (N/A shipped as missing).",
+  "notShipped": {
+    "scripts": "process leopard.R / process hyaena.R: the authors' SPIM fitting code",
+    "exact_coordinates": "UTM 36S trap positions withheld (VU taxon on the array); __traps carries them centred on the array"
+  },
+  "summary": {
+    "n_rows": 287568,
+    "n_units": 48,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 120,
+    "n_surveys": 287568,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 92,
+    "n_zero": 287364,
+    "n_positive": 204,
+    "n_units_detected": 48,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "unit_identity", "unit_sex", "obs_side"],
+  "coreMd5": "53ddf088e123518d012e6e426d8870dd",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "label", "n_days", "n_traps"],
+      "md5": "5cf53166c8a2ac3e17d5af01bc338289"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a35a96621c1d9b29ee5c88b91545fb1e"
+    },
+    "traps": {
+      "rows": 92,
+      "columns": ["trap", "x_m", "y_m", "years_operated", "n_days_operating"],
+      "md5": "957494a8b79cdd230c1c0750e7468cc0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/davis_2019_kasungu_scr.R",
+  "buildDate": "2026-11-05"
+}

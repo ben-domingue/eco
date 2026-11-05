@@ -53,10 +53,22 @@
     "n_occasions": 3,
     "n_surveys": 816,
     "y_values": "0,1,2",
-    "prop_zero": 0.808
+    "prop_zero": 0.808,
+    "n_traps": 1,
+    "n_zero": 659,
+    "n_positive": 157,
+    "n_units_detected": 108,
+    "max_y": 2
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_decimalLatitude", "unit_decimalLongitude", "unit_pforest_pct", "unit_year_sampled"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f8f30b29c4f5e122730a9ac9529d6572"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ferguson_2015_macon_bawa_fpocc.R",

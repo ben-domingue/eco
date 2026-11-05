@@ -114,15 +114,26 @@ array_to_eco <- function(y, taxon = "SP1", site_ids = NULL, site_covs = NULL,
 #' @param long A table in the eco format (data.frame or data.table).
 #' @param taxa Taxon codes in the order wanted on the third dimension.
 #' @param drop_species Drop the third dimension when there is one taxon.
+#' @param full_grid Lay the columns out on the full grid, periods `1:max(period)`
+#'   by every `occasion` value in the table, with `NA` where no survey happened,
+#'   so column `(p - 1) * n_occasions + j` is always period `p`, occasion `j`.
+#'   The default (`FALSE`) makes one column per `(period, occasion)` pair present.
+#'   `eco_to_umf(type = "colext")` needs the full grid (#61).
 #' @rdname array_to_eco
 #' @export
-eco_to_array <- function(long, site_ids = NULL, taxa = NULL, drop_species = TRUE) {
+eco_to_array <- function(long, site_ids = NULL, taxa = NULL, drop_species = TRUE,
+                         full_grid = FALSE) {
   long <- as.data.table(long)
   if (!"period" %in% names(long)) long[, period := 1L]
   if (!"occasion" %in% names(long)) long[, occasion := 1L]
   if (is.null(site_ids)) site_ids <- unique(long$unit)
   if (is.null(taxa)) taxa <- unique(long$taxon)
-  cols <- unique(long[, .(period, occasion)])[order(period, occasion)]
+  if (full_grid) {
+    if (min(long$period) < 1) stop("full_grid needs period >= 1 (standard: integers ordered in time)", call. = FALSE)
+    cols <- CJ(period = seq_len(max(long$period)), occasion = sort(unique(long$occasion)))
+  } else {
+    cols <- unique(long[, .(period, occasion)])[order(period, occasion)]
+  }
   cols[, .col := .I]
   long <- merge(long, cols, by = c("period", "occasion"))
   long[, .site := match(unit, site_ids)]
@@ -219,13 +230,18 @@ umf_to_eco <- function(umf, taxon = "SP1", site_ids = NULL) {
 # long -> unmarked frame of the requested type
 #' @param long A table in the eco format.
 #' @param type For `eco_to_umf()`: `"occu"`, `"pcount"` or `"colext"`
-#'   (multi-period). For `eco_to_mpois()`: `"removal"`, `"double"` or
+#'   (multi-period).  A `"colext"` frame has one primary period per
+#'   period in `1:max(period)` and the same occasion slots in each, with `NA`
+#'   for a period or occasion with no survey, so primary `p` is always `period` `p`. For `eco_to_mpois()`: `"removal"`, `"double"` or
 #'   `"depDouble"`, as `unmarked::unmarkedFrameMPois()` takes it.
 #' @rdname umf_to_eco
 #' @export
 eco_to_umf <- function(long, type = c("occu", "pcount", "colext"), site_ids = NULL) {
   type <- match.arg(type)
-  a <- eco_to_array(long, site_ids = site_ids)
+  # colext: unmarkedMultFrame reads y as numPrimary equal blocks of columns, so
+  # build it on the full period x occasion grid; a missing period or an occasion
+  # some periods lack would otherwise shift later columns into the wrong primary (#61).
+  a <- eco_to_array(long, site_ids = site_ids, full_grid = type == "colext")
   y <- a$y; M <- nrow(y); J <- ncol(y)
   obsCovs <- NULL
   if (length(a$obs_covs)) obsCovs <- as.data.frame(lapply(a$obs_covs, function(m) as.vector(t(m))))

@@ -1,0 +1,64 @@
+{
+  "table": "crunchant_2020_issa_chimp_occ",
+  "title": "Daily camera-trap detections of chimpanzees at 53 cameras in the Issa Valley, western Tanzania, March to December 2018",
+  "creator": "Crunchant, Anne-Sophie; Borchers, David; Kuehl, Hjalmar; Piel, Alex K.",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.5dv41ns34",
+  "sourceURL": "https://doi.org/10.5061/dryad.5dv41ns34",
+  "citation": "Crunchant, A.-S., Borchers, D., Kuehl, H., & Piel, A. K. (2020). Listening and watching: do camera traps or acoustic sensors more efficiently detect wild chimpanzees in an open habitat? [Dataset]. Dryad. https://doi.org/10.5061/dryad.5dv41ns34",
+  "paperDOI": "10.1111/2041-210X.13362",
+  "abstract": "Camera traps in the savanna-woodland mosaic of the Issa Valley, western Tanzania, from March to December 2018: 21 on a systematic grid and 32 at targeted places, with videos checked by hand for chimpanzees and summarised as detection or non-detection per day of deployment. The authors compared these cameras with passive acoustic monitoring in occupancy models, using the number of sampling days needed to establish chimpanzee absence with 95% probability as the measure of efficacy.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Video camera traps, systematic (grid) and targeted (trails, feeding trees) placements, run for up to 280 days; chimpanzee presence confirmed by hand per day; days a camera was not deployed or not working are missing.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors treat the nine months as one season (8-day occasions in their models)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Issa Valley, Greater Mahale Ecosystem, western Tanzania; camera coordinates coarsened to 0.1 degree",
+  "temporalCoverage": "2018-03/2018-12",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "camera coordinates (deposited to 5 decimals) coarsened to the 0.1 degree cell centre with coarsen_coords(); Pan troglodytes is IUCN Endangered in its native range"
+  },
+  "covariateNote": "unit_method: systematic (grid) or targeted placement; unit_vegetation: closed or open; unit_topography as deposited (valley, plateau, slope, ...). unit_coord_uncertainty_m: half-diagonal of the 0.1 degree cell.",
+  "notShipped": {
+    "pam": "PAM_PresenceAbsence and PAM_Metadata (12 valleys x 3,741 30-min recordings): the matrix has one row per valley but the metadata lists four sensor positions per valley, and the deposit does not say whether a row pools four recorders or one recorder moved among them; held with a question in queue/human_review.csv."
+  },
+  "notes": "occasion is the day index from 2018-03-24 (date gives the day). The authors pooled days into 8-day occasions for their models; pooling is left to the user.",
+  "summary": {
+    "n_rows": 11342,
+    "n_units": 53,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 280,
+    "n_surveys": 11342,
+    "y_values": "0,1",
+    "prop_zero": 0.939,
+    "n_traps": 1,
+    "n_zero": 10650,
+    "n_positive": 692,
+    "n_units_detected": 44,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_lat", "unit_lon", "unit_coord_uncertainty_m", "unit_method", "unit_vegetation", "unit_topography"],
+  "coreMd5": "0a8fe47756bf796378ae266f2e362d5a",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "4091c07958257566b899767b0a5a4ae8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/crunchant_2020_issa_chimp_occ.R",
+  "buildDate": "2026-11-05"
+}

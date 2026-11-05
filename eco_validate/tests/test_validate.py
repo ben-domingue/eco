@@ -1,8 +1,10 @@
 """Regression tests for eco-validate.
 
-Two kinds: the corpus in output/ passes (so a change to a check that breaks a
-shipped table is caught here, not at upload), and each check fires on a
-fixture built by breaking one thing. Run from the repo root:
+Two kinds: a real shipped table, kept as a fixture (fixtures/, Kery's crossbill
+dynamic-occupancy table as built for eco v1.1), passes; and each check fires on a
+fixture built by breaking one thing. The corpus itself lives on Redivis, not in
+git (#88): the upload gate validates every table, and after a validator change
+validate/validate_redivis.py re-validates the corpus on Redivis. Run from the repo root:
 
     python3 -m pytest eco_validate/tests -q
 """
@@ -21,28 +23,26 @@ from eco_validate.cli import main
 from eco_validate.model import CLAUSES, INTAKE_CHECKS
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "output"
-CORE = sorted([p for p in OUT.glob("*.csv") if "__" not in p.stem] + list(OUT.glob("*.parts")))
+
+
+FIX = Path(__file__).resolve().parent / "fixtures"
+SHIPPED = FIX / "kery_2010_crossbill_dynocc.csv"
 
 
 # ---------------------------------------------------------------------------
-# The corpus
+# A shipped table
 # ---------------------------------------------------------------------------
 
-@pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
-@pytest.mark.parametrize("path", CORE, ids=[p.name.removesuffix(".parts").removesuffix(".csv") for p in CORE])
-def test_corpus_passes(path):
-    r = validate_file(path)
+def test_shipped_table_passes():
+    r = validate_file(SHIPPED)
     assert r.ok, [f"{f.check}: {f.message}" for f in r.errors]
     assert r.conforms
 
 
-@pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
-def test_cli_over_output_dir(capsys):
-    assert main([str(OUT), "--json"]) == 0
+def test_cli_over_fixture_dir(capsys):
+    assert main([str(FIX), "--json"]) == 0
     reports = json.loads(capsys.readouterr().out)
-    assert len(reports) == len(CORE)
-    assert all(r["ok"] for r in reports)
+    assert len(reports) == 1 and all(r["ok"] for r in reports)
 
 
 # ---------------------------------------------------------------------------
@@ -296,10 +296,8 @@ def test_intake_profile_split():
 # Files: side tables found by name, exit codes, the peer's regression
 # ---------------------------------------------------------------------------
 
-@pytest.mark.skipif(not CORE, reason="no output/ corpus in this checkout")
 def test_removing_survey_evidence_blocks(tmp_path):
-    src = OUT / "kery_2010_crossbill_dynocc"
-    for f in OUT.glob("kery_2010_crossbill_dynocc*"):
+    for f in FIX.glob("kery_2010_crossbill_dynocc*"):
         shutil.copy(f, tmp_path / f.name)
     mp = tmp_path / "kery_2010_crossbill_dynocc__dataset.json"
     d = json.loads(mp.read_text()); del d["surveyEvidence"]; mp.write_text(json.dumps(d))
@@ -558,3 +556,22 @@ def test_parted_table_structure_errors(tmp_path):
     df.loc[df["period"] == 4, "unit_elev"] = 2.0
     r = validate_file(write_parted(tmp_path / "cov", df))
     assert "covariate_level" in checks_of(r, "error")
+
+
+def test_parted_table_irw_date_range_judged_on_the_whole_table(tmp_path):
+    # IRW's date_range* fires on a part whose dates all predate 1973. It is a check
+    # on the maximum, so a table running past 1973 must not inherit part 1's (#57).
+    from eco_validate.core import _import_irw_validate
+    if _import_irw_validate() is None:
+        pytest.skip("irw_validate not importable")
+    df = _parted_frame()
+    df["date"] = df["period"].map({1: "1966-06-01", 2: "1967-06-01", 3: "1968-06-01", 4: "2025-06-01"})
+    (tmp_path / "late").mkdir(); (tmp_path / "early").mkdir()
+    r = validate_file(write_parted(tmp_path / "late", df), irw=True)
+    assert "irw:date_range*" not in checks_of(r, "warn")
+    df["date"] = df["date"].str.replace("2025", "1969")
+    r = validate_file(write_parted(tmp_path / "early", df), irw=True)
+    f = [f for f in r.findings if f.check == "irw:date_range*"]
+    assert len(f) == 1 and "over all parts" in f[0].message
+    secs = int((pd.Timestamp("1969-06-01", tz="UTC") - pd.Timestamp(0, tz="UTC")).total_seconds())
+    assert f"date max={secs}" in f[0].message

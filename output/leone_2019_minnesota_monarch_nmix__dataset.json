@@ -37,10 +37,27 @@
     "n_occasions": 3,
     "n_surveys": 117,
     "y_values": "0-17 (13 distinct)",
-    "prop_zero": 0.53
+    "prop_zero": 0.53,
+    "n_traps": 1,
+    "n_zero": 62,
+    "n_positive": 55,
+    "n_units_detected": 20,
+    "max_y": 17
   },
   "sampleFloor": "below (20 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_management", "unit_area_ha", "unit_years_managed_2005_2017", "unit_stocking_rate", "unit_pct_prairie_1500m", "period_forb_freq", "period_milkweed_freq", "period_years_since_mgmt"],
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_sites", "note"],
+      "md5": "1438ae714c994b75572efab4f06c29cd"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "77c514c52e3b21eb693cd3eb01beea8d"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/leone_2019_minnesota_monarch_nmix.R",

@@ -39,10 +39,27 @@
     "n_occasions": 1,
     "n_surveys": 9708,
     "y_values": "0,1",
-    "prop_zero": 0.416
+    "prop_zero": 0.416,
+    "n_traps": 1,
+    "n_zero": 4037,
+    "n_positive": 5671,
+    "n_units_detected": 809,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period"],
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "note", "n_detected", "n_first_detected"],
+      "md5": "4983c4d96d099a31e22adc25f3ee5d08"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_growthForm", "taxon_iucnCategory"],
+      "md5": "b061df4765e56c6ac72fd3b5de9f0331"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/martinezvillegas_2024_plants_cjs.R",

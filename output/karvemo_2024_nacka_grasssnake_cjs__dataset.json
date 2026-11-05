@@ -39,10 +39,27 @@
     "n_occasions": 1,
     "n_surveys": 73458,
     "y_values": "0,1",
-    "prop_zero": 0.973
+    "prop_zero": 0.973,
+    "n_traps": 1,
+    "n_zero": 71457,
+    "n_positive": 2001,
+    "n_units_detected": 1113,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_n_captures", "obs_seasons"],
+  "sideTables": {
+    "periods": {
+      "rows": 66,
+      "columns": ["period", "year", "n_captures", "n_snakes", "max_snow_cm", "note"],
+      "md5": "44b938c8f38fb49055726bfac50debd1"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d021e9a813ff7b19be771128696b8d69"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/karvemo_2024_nacka_grasssnake_cjs.R",

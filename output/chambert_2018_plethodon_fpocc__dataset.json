@@ -48,10 +48,27 @@
     "n_occasions": 5,
     "n_surveys": 680,
     "y_values": "0,1",
-    "prop_zero": 0.736
+    "prop_zero": 0.736,
+    "n_traps": 1,
+    "n_zero": 1001,
+    "n_positive": 359,
+    "n_units_detected": 83,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "obs_dna_state"],
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year", "n_occasions", "n_sites_surveyed"],
+      "md5": "06846ea9e7791c3cc919b61f166fea53"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_conservationStatus"],
+      "md5": "ad505b4b2df4c7a3a1e10f22d487f747"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/chambert_2018_plethodon_fpocc.R",

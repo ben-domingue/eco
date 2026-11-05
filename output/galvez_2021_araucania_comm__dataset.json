@@ -40,10 +40,22 @@
     "n_occasions": 14,
     "n_surveys": 1827,
     "y_values": "0,1",
-    "prop_zero": 0.848
+    "prop_zero": 0.848,
+    "n_traps": 1,
+    "n_zero": 7746,
+    "n_positive": 1389,
+    "n_units_detected": 176,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_habitat_type", "unit_forest_pct_400ha", "unit_largest_patch_index_400ha", "unit_total_edge_m_400ha", "unit_edge_density_400ha", "unit_gyration_mean_m_400ha", "unit_n_patches_400ha", "unit_landscape_shape_index_400ha", "unit_cohesion_400ha", "unit_n_land_subdivisions_400ha", "unit_forest_pct_10ha", "unit_n_patches_10ha", "unit_edge_density_10ha", "unit_n_land_subdivisions_10ha", "obs_camera_nights", "obs_human_detections"],
+  "sideTables": {
+    "taxa": {
+      "rows": 5,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "89d0093e8c5326db347f6dc1a09c69c6"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/galvez_2021_araucania_comm.R",

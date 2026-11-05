@@ -1058,8 +1058,10 @@ One deposit, the 2026 release (1966-2025, doi:10.5066/P144YU3S), one script, 3 t
 ruling #31 makes one protocol x response type one table. So the 37 per-BCR count tables Milan first built became one
 national table, stored as period parts (E4). Design and every number: `notes/decisions/bbs_design.md`, with an
 "After review" section. All pass `eco-validate --irw` (exit 0). Milan's independent check in Python from the raw files
-(0 differences, 0 false zeros over the 47.3 M rows of the BCR design) carries over: the national table holds the same
-records, with zeros for every taxon at every run. Cores are not tracked.
+was rerun on the national table at 5516d73 (the #62 merge): all 26 parts, 110,127,544 rows, 0 differences, 0 false
+zeros; all 7,573,059 source run x taxon records present, sum of `y` 107,000,446 on both sides, the 16 run-level columns,
+`__periods`, `__units` and `__taxa` year ranges matching; an independent rebuild byte-identical apart from build dates.
+Cores are not tracked.
 
 | Table | Family | Source | Rows | Notes |
 |---|---|---|---|---|
@@ -1094,6 +1096,392 @@ What this batch says about the standard:
 - **`gbif_taxon()` caches a network failure as a no-match.** The script asserts no `ERROR`; four 2024-on bird names needed `lookupName` to older names in GBIF.
 - **`occasion` means three things across BBS tables:** rank of a run in a route-year, position of a block, position of a stop. `eco_to_unmarked()` treats all as repeat visits; `closure` says so per table.
 
+## Batch 22 — 2026-11-04 (Stanford-linked Costa Rica countryside surveys: Daily, Karp, Hadly labs)
+
+Five queue rows from the Daily-lab Costa Rica countryside programme, built in `~/eco-stanford`
+(branch `batch-stanford-costarica`). Four tables from three deposits; two deposits not built as
+duplicates. All pass `eco-validate` (exit 0); `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| ke_2022_costarica_birds_nmix | community counts, repeated point counts | Dryad CC0 | 187,374 | 150 points in 25 Guanacaste landscapes x 1,122 logged visits (2016-2019, 1-3 per year) x 167 species; `sample_table`; y = sum of Number1 per species x visit; coordinates coarsened (Amazona auropalliata CR, Crax rubra and Aratinga canicularis VU), elevation to 100 m; forest cover at 105 radii in `__units` |
+| ke_2022_costarica_birds_exact_nmix | E7.3 sibling | same | 184,008 | without the three flagged species; coordinates and elevation as deposited |
+| frishkoff_2014_costarica_birds_binom | binomial counts (ruling #34), transects x season | Dryad CC0 | 513,520 | 44 transects x 24 seasons (2001-2012 dry/wet; 1,048 surveyed) x 490 taxa (4 genus-only); detections out of 3; survey set from row presence |
+| frank_2017_costarica_bats_comm | community detection, mist nets | Dryad CC0 | 7,770 | 18 sites x 185 netting visits (2009-2013) x 42 bats; JAGS input array, nrep = visits per site-year; below the sample floor (18 units) |
+
+Not built:
+- Frishkoff et al. 2018 (doi:10.5061/dryad.7c652r8): the same 240 visits in 2016 as Ke 2022, with counts that match. Its per-observation distance (to the nearest 10 m) is new, so it could become a distance-sampling table.
+- Frishkoff et al. 2019 (doi:10.5061/dryad.fg8kq66): the 2016-2017 subset of Ke 2022.
+
+What this batch says about the standard:
+
+- **Behaviour-coded counts.** Ke 2022 records each observation with up to three (number,
+  behaviour) pairs. Number2 and Number3 count the same individuals as Number1 doing a second or
+  third behaviour. y is the sum of Number1, which the 2018 deposit of the same visits confirms.
+  No rule covers multi-behaviour records. Here the earlier deposit settles it.
+- **Two source codes lumped onto one name.** In Frishkoff 2014, Empidonax traillii has two rows
+  in six transect-seasons. A union of two "detections out of 3" cannot be rebuilt, so the taxon
+  is not shipped. E6's "not reliably separated" rule needs the source to say so, and this
+  source does not.
+- **A survey set from row presence in a binomial_count table.** The 8 absent transect-seasons
+  are all wet seasons of the three H-SI transects. Three bird surveys of a transect never
+  record nothing, so `row_presence` is defensible. The table says so in `surveyEvidenceNote`.
+- **A deposited model array** (Frank 2017) zero-pads visits beyond `nrep`. The padded cells are
+  asserted to carry no capture and get no row.
+
+## Batch 23 — 2026-11-05 (card-sorted queue rows: Mauritius parakeet, Svalbard polar bears, NZ mice, Mara cheetahs, Wyoming shrike, Colombian endemics)
+
+One agent in `~/eco-b23` (branch `batch-23`), from the 2026-11-05 card sort (#85). Twelve deposits inspected,
+six tables built, six held. All six pass `eco-validate` (exit 0).
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| gelle_2026_mauritius_parakeet_ms | multi-state CJS (pre-breeder / breeder / non-breeder) | Dryad CC0 | 27,969 | 2,734 echo parakeets ringed as nestlings, 29 seasons 1994-2022; rows from the ringing season (E4.4); 995 resighted (Dryad methods say 997); IUCN VU set by hand (GBIF's IUCN endpoint has no record for the key); first table for Mauritius |
+| cubaynes_2021_svalbard_polarbear_ms | multi-state (multievent) capture-recapture, 11 family-unit states | Dryad CC0 | 3,789 | 158 females, 28 springs; event codes from the paper's Table 1 (the Dryad text mislabels code 4); adults from 1992, known-age females from age 2 (the model's first state); dates rebuilt from day of year; IUCN VU, no coordinates |
+| moinet_2024_nz_mouse_scr | SCR, live traps with a removal phase | Dryad CC0 | 180,288 | 230 house mice, 2 grids x 36 traps, 4 sessions of 10-12 nights; `obs_removed` on 186 euthanasia captures; trap usage inferred (as the authors' secr script); anonymised trap coordinates; Leptospira test results as `unit_`; first table for New Zealand |
+| broekhuis_2020_mara_cheetah_scr | SCR, search-encounter (pixel x day traps with km driven) | Dryad CC0 | 2,206,029 | 8 sessions, 258 session-scoped ids; `effort_table` from the deposited pixel operation matrix; coordinates centred (VU); core gitignored (105 MB); **tagged do_not_publish** pending a ruling on search-encounter SCR |
+| todaro_2025_wyoming_shrike_dynocc | dynamic occupancy | Dryad CC0 | 4,252 | 445 points, 2015-2024, 2 visits a year to 2017 and 1 after; the deposit's `_1/_2` visit labels are out of date order for 644 point-years, so occasions follow the date |
+| betancur_2021_antioquia_birds_count | two-species repeated counts | Dryad CC0 | 560 | 70 points x 2 years x 2 visits; counts bound to points by row order as in the authors' scripts; coordinates coarsened because the source calls both species endangered (GBIF IUCN says LC); first table for Colombia |
+
+Held (`queue/human_review.csv`): Serra do Amolar cameras (per-species occasion lengths), little brown bat robust design
+(weeks with no antenna operating are zeros in the MARK matrix), Columbia steelhead CRR (blocked: paper), Spiti snow
+leopards (count-detector SCR with one occasion), harlequin duck (three methods, unit unclear), Melbourne diadromous fish
+(NA patterns differ between species and files).
+
+What this batch says about the standard:
+
+- **Search-encounter SCR.** The right whale was held in batch 21 for want of a line-transect rule. The cheetah deposit is the
+  discretised form: the source already turned the search into pixel x day traps with an operation matrix and km driven, so it
+  fits `trap` + `__traps` + `effort_table` without new columns. Built, but held from publication until Ben rules.
+- **Identities not linked across sessions** (cheetah): E4.4 says a wild animal is at risk from the first period, but an id that
+  exists only within one session cannot carry rows in other sessions without duplicating animals. Rows only in the id's own
+  session; the rule does not say so.
+- **Known-age individuals not marked at birth** (polar bear females first caught at 2-5 years): E4.4 covers unknown-age and
+  marked-at-birth animals. Rows start at the first age the model's state space admits (independent at 2).
+- **Count-detector SCR** (snow leopard) and **per-taxon occasion lengths** (Amolar) have no stated layout.
+- **The IUCN lookup** returned NE for the echo parakeet (no GBIF record) and LC for two species the source calls endangered;
+  the E7 flag followed the source.
+
+## Batch 24 — 2026-11-05 (card-sorted queue rows: Kooragang frogs, Japanese salmonids, Lake Ngami birds, Sumatran and Western Ghats birds)
+
+One agent in `~/eco-b24` (branch `batch-24`, stacked on `batch-23`), from the 2026-11-05 card sort (#85), choosing
+for thin taxa and regions (amphibians, fish; Australia, Japan, Botswana, Indonesia, India). Ten deposits inspected,
+six tables built from five deposits, five not built. All six pass `eco-validate` (exit 0).
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| hamer_2021_kooragang_amph_comm | multi-season community occupancy | Dryad CC0 | 10,780 | 11 frogs x 55 wetlands, 2 breeding seasons, 2-15 surveys per season (mark-recapture sites far more often); 10 zero cells in `crisig.csv` outside the survey set dropped (every other species NA, year 0, covariates mean-filled); covariates standardised as deposited; species codes expanded from the paper (author copy) |
+| tsuboi_2020_japan_charr_ms | multi-state CJS (juvenile/adult x tributary/connected/fragmented mainstem) | Dryad CC0 | 7,147 | 1,373 charr, 9 annual October surveys; YOY rows start at marking (born that year), adults from 2009 (unknown age, E4.4); first table for Japan |
+| tsuboi_2020_japan_masu_ms | same, red-spotted masu salmon | Dryad CC0 | 7,345 | 1,335 fish; split from the charr by ruling #20 (one taxon per individual table) |
+| cumming_2021_ngami_waterbird_count | repeated community point counts | Dryad CC0 | 41,496 | 182 species x 228 half-hour counts at 14 points over 6 trips; Roberts common names mapped through the eBird/Clements taxonomy (en, en_ZA; 14 by hand, 6 GBIF genus spellings); y = foraging + not foraging + flying over, parts as `obs_`; coordinates coarsened (7 threatened species incl. white-backed vulture CR) |
+| prabowo_2016_jambi_birds_count | repeated community point counts | Dryad CC0 | 8,733 | 71 species x 32 plots x 3-4 visits; `sample_table` survey set; y = the authors' max-per-visit rule; homegardens not shipped (no survey table, paper and script disagree on visits) |
+| raman_2003_kalakad_birds_count | repeated line-transect counts | Dryad CC0 | 6,240 | 60 taxa x 104 walks of 12 transects; uncountable flocks flagged (`obs_uncounted_flock`, y a minimum); mammals and unidentified birds dropped; coordinates coarsened (3 VU) |
+
+Not built (`queue/human_review.csv`): Endau Rompin leeches (held: per-analysis files disagree for the same point-visit),
+Western Ghats agroforest amphibians (blocked: paper, what a "replicate" is), Kapitia skink robust design (blocked: paper,
+plus which identification set to ship), Valparai tea birds (deferred: single visit), Tiwi mammal trapping (inspected:
+SCR impossible without the trap layout; per-species closed-capture tables left for a later batch).
+
+What this batch says about the standard:
+
+- **Common names only.** The Ngami deposit has no scientific names. Matching through a published taxonomy (eBird/Clements,
+  in the locale the names come from) with a hand list for the remainder, asserted complete, worked; `make_taxa()` then needs
+  the GBIF backbone's older genus for six recent eBird moves (Ixobrychus, Charadrius, Bugeranus).
+- **IUCN synonym direction.** `iucn_category()` returns NA when GBIF's accepted name differs from the assessed name, even when
+  the IUCN record carries the deposit's own name (Litoria/Ranoidea, Turdinus, Brunhilda). Scripts fill those from the
+  record when its binomial equals the deposit's name (the `same_name` pattern already in two scripts); a harness option
+  would remove the copies.
+- **Known-age young of the year** (salmonids): fish first caught as YOY were born that year, so their rows start at marking,
+  the newborn branch of E4.4; adults are unknown-age and start in 2009. The rule fits, but "marked as a newborn" could say
+  "first caught in its birth year".
+
+## Batch 25 — 2026-11-05 (card-sorted queue rows: California farm birds, Pacific Northwest woodpecker acoustics, Hawaiian Duck robust design)
+
+One agent in `~/eco-b25` (branch `batch-25`, from main after batches 22-24; merged with main after #92, so tables are
+uploaded to the Redivis draft and only `__dataset.json` is committed). Rows from the 2026-11-05 card sort (#85),
+preferring repeated-visit, multi-state and capture-history designs. Twelve deposits inspected (the cap), three tables
+built, nine not built. Dryad rate-limited hard (429 on metadata and zips), so most inspections were Zenodo/USGS rows.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| olimpi_2024_calfarms_nmix | repeated community point counts | Dryad CC0 | 67,419 | 99 species x 227 point-years on 30 California farms x 3 visits; `row_presence` (every point-year has exactly three dated visits); flyovers excluded from y (12 flyover-only codes, incl. the two "spp." groups, have no taxon); unit = point-year because the readme does not say a replicate number is the same place across years; the authors' occupancy/N-mixture posteriors not shipped |
+| ruff_2025_piwo_state | multi-state occupancy (0 / 1-3 days / 4+ days per week) | Zenodo CC BY 4.0 | 23,290 | Pileated Woodpecker at 3,948 ARU stations in 1,008 hexagons, 6 weekly occasions, 2023; `effort_table` (hours recorded, NA exactly where the week is missed); PNW-Cnet classifier detections; 62 raw station covariates; coordinates as published (LC); IUCN filled by hand (assessed as Hylatomus pileatus) |
+| malachowski_2026_koloa_rd | robust design | Zenodo CC BY 4.0 | 22,968 | 792 Hawaiian Ducks (150 F, 642 M), 29 trapping secondaries in 7 trapped primaries of the MARK design's 11 (untrapped primaries keep their numbers and have no rows); trap-days and rainfall per secondary, season and elapsed time in `__periods`; IUCN VU, no coordinates in source |
+
+Not built (`queue/human_review.csv`): Rio Grande giant reed birds and butterflies (held: only N-mixture estimates and
+max counts deposited), Swiss MHB 1999-2025 (held: three kinds of per-visit NA, one of which drops 33k positive
+territory totals; needs a ruling, and overlaps `kery_2014_mhb_comm`), Broadway nightjars (held: survey years only as a
+0/1 code, paper not yet out, mean-imputed covariates), dusky grouse (held: what the four same-day "visits" are),
+Tutakoke brant fitness (held: Dryad version zip returns 404), USGS Emperor Goose (held: split-history segments do not
+chain), Bardia leopard SCR (held: no survey year or CRS), Valenzuela 2017 Darwin's frogs (held: headerless matrices,
+trailing columns undefined), Portuguese weasels (blocked: paper).
+
+What this batch says about the standard:
+
+- **Per-visit NA with three meanings in one matrix** (Swiss MHB): protocol (2-visit squares), species breeding windows
+  (not surveyed for: `__survey_taxa`), and values not retained (surveyed, aggregated only). E4.2 covers the first two;
+  the third is neither "not surveyed" nor a zero, and the standard has no place for a surveyed-but-unrecorded cell
+  other than dropping it. Ruling requested.
+- **Untrapped primaries in a MARK design** (Koloa): the source's period numbering is kept with gaps, so the elapsed
+  time from the deposited intervals goes in `__periods` (`start_6mo`); nothing in E8 forbids gaps, but a sentence saying
+  "keep the source numbering" would settle it.
+- **Split-history MARK inputs** (Emperor Goose): a multi-state study encoded as pseudo-individuals with losses on
+  capture is a MARK device, not a data structure; E4.4 assumes one unit per animal. Rebuilding animals needs the
+  segments to chain, which this deposit's do not.
+- **Repository metadata as the only documentation** (leopard, weasel, nightjars): clean secr/MARK files with no survey
+  year cannot meet E10's `temporalCoverage`; these wait for papers.
+- `iucn_category()` NA from a genus move again (Dryocopus/Hylatomus); filled by hand as batch 24 did.
+
+## Batch 26 — 2026-11-05 (card-sorted queue rows: Panna carnivores, Białowieża Marsh Tit, NSW koala acoustics, Kibale carnivore community)
+
+One agent in `~/eco-b26` (branch `batch-26`, from main at 0691377 after batch 25). Rows from the 2026-11-05 card sort
+(#85). Twelve deposits inspected (the cap), four tables built and uploaded to the Redivis draft, eight not built.
+Dryad answered without 429s this time. `lib/eco_common.R`'s user agent was changed to the PR #94 line at the
+coordinator's request (no email in request headers); it does not change any output.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| dutta_2024_panna_carnivore_occ | multispecies detection, camera traps | Dryad CC0 | 17,352 | tiger, leopard, striped hyena; 476 winter + 338 summer stations in 2019, 5-night sessions; `effort_table` (trap nights 0 exactly where the matrix is NA); station codes are numbered per season (covariates differ for the same code), so unit = season x station, period = season; no coordinates |
+| neubauer_2021_bialowieza_marshtit_nmix | repeated counts | Dryad CC0 | 792 | Marsh Tit, 4 plots x 33 years (1987-2019) x 6 counts; the breeding pairs from the independent territory census ship as `period_pairs_within` / `period_pairs_with_adjacent` (a known-truth N-mixture benchmark); countersinging events and males per survey as `obs_`; deposited Total_cases disagrees with the per-survey sum at two plot-years (totals not shipped); below the unit floor |
+| law_2021_nsw_koala_occ | single-species detection, acoustic | Dryad CC0 | 1,073 | koala (VU), 128 sites surveyed once each in 2018-2020, up to 19 nights; `deposited_matrix` (trailing NA = `length`, rain NA on the same cells); six forest-history dummies not shipped because the metadata describes them as "0 = not sampled / 1 = sampled" |
+| mills_2019_kibale_carnivore_comm | community detection, camera traps | Dryad CC0 | 538,956 | 22 species (19 carnivores incl. dog and cat, 3 golden-cat prey) at 356 stations in 9 surveys, daily occasions; `effort_table` from the station x calendar-day function file plus 9 station-days with a photograph that the file marks 0 (`obs_trapfunction_zero = 1`); coordinates coarsened (golden cat, leopard, lion VU); IUCN filled by hand for five taxa |
+
+Not built (`queue/human_review.csv`): Virginia marsh rope-drag (held: no transect id; a proprietary data-use clause
+beside the CC0 badge), St. Marks amphibian metacommunity (blocked: paper; trap method and species-specific dashes),
+Svalbard voles SCR (held: occasions per session and trap operation not deposited), White Mountains small mammals
+(held: plot-year structure unclear between files; kill-trap daily catches may be removal data), northern Nevada
+cameras (blocked: paper; six season blocks unlabelled), range-wide red-backed salamander (held: no trap layout or
+visit table), cinereous vultures (blocked: paper; occasion years and group codes in appendices), Wakhan snow leopard
+SCR (held: files embargoed to 2027-04-19).
+
+What this batch says about the standard:
+
+- **Station ids reused across seasons for different places** (Panna, also Kibale's surveys): the unit is the
+  season-station and `period` only orders the seasons; no unit appears in two periods. Nothing in E4/E8 forbids it,
+  but a user fitting colext on such a table gets nothing; a sentence in the guide ("period without revisits") or a
+  metadata flag might help.
+- **An effort table contradicted by detections** (Kibale): 14 records on 9 station-days that the function file marks 0. Kept as
+  surveyed (a photograph shows the camera worked) and flagged per row; the standard does not say which source wins.
+- **Independent known truth as a covariate** (Marsh Tit): census pairs ship as `period_` because they come from a
+  separate field method, not from the counts; worth naming in the processing guide's "what is not a covariate" list
+  as the converse case.
+- **Kill traps** (White Mountains): daily catches from snap and pitfall traps are removal data in structure even when
+  the authors model them as counts; a ruling on `count` vs `multinomial_cell` for kill-trap series would settle it.
+- `iucn_category()` NA again from genus moves (Profelis/Caracal, Lupulella, Herpestes/Galerella, Aonyx capensis vs
+  congicus) and NE for Genetta maculata; filled by hand with the reason in the script.
+
+## Batch 27 — 2026-11-05 (card-sorted queue rows: Boston sweat bees, Montana dusky grouse, Richmond pollinators, rangewide tidewater goby eDNA)
+
+One agent in `~/eco-b27` (branch `batch-27`, from main at c60b7a2 after batch 26). Rows from the 2026-11-05 card sort
+(#85). Eleven deposits downloaded and read (two more screened from Dryad metadata only and left `available`: Colorado
+ant JAGS lists, yellow-legged frog eDNA), five tables built from four deposits and uploaded to the Redivis draft,
+seven deposits not built. Dryad answered one version download with 429s; a 90 s back-off cleared it.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| dooley_2025_agapostemon_cjs | CJS, insect mark-resight | Dryad CC0 | 1,200 | bicolored sweat bee at 14 Echinacea patches (in/out of 7 Boston-area gardens), 16 survey days in July 2023, each patch watched on 8; histories rebuilt from the raw captures and asserted equal to the deposited MARK file patch by patch; the README says bees seen at both patches were excluded, but the file carries 7 such bees once per patch (14 units, `unit_two_patch = 1`); the deposited survey intervals do not match the calendar, dates shipped instead |
+| leipold_2025_duskygrouse_roads_count | repeated counts | Dryad CC0 | 12,492 | dusky grouse, 2,286 road/trail points in western Montana, 2020-2021, 4 playback counts per morning (outbound and return pass), exact dates from the deposited day number, weather/noise/observer covariates; male/female split of the counts not shipped (35 cells do not sum) |
+| leipold_2025_duskygrouse_offtrail_count | repeated counts | Dryad CC0 | 1,180 | same deposit, 2019 off-trail experiment: 150 points, spring and summer, 3 visits x (no playback, playback) as `occasionKind = [time, method]`; spring survey conditions joined from route_type_data.csv, none deposited for summer (NA) |
+| ruppel_2025_richmond_pollinator_comm | community detection, flower watches | Dryad CC0 | 4,900 | 14 visitor taxa (4 at genus/family/superfamily; Vespoidea has no GBIF key) on 5 inflorescences of Liatris and/or Pycnanthemum at 50 urban gardens, 2021; occasions stack plant x inflorescence in the authors' order; garden coordinates shipped as published |
+| martel_2020_tidewatergoby_edna | multi-scale eDNA | Dryad CC0 | 2,788 | endangered tidewater goby, 813 water samples at 192 sites from the Oregon border to San Diego, 2016 and 2017, 3-6 qPCR replicates; cluster_id = site, unit = sample, period = season; coordinates coarsened and site names withheld (E7); 27 season-2 dates set NA (a 2016 year typo, a DD/MM date, and 13 in the same block that read either way), deposited string kept as `obs_date_as_deposited` |
+
+Not built (`queue/human_review.csv`): Kentucky MTR salamanders 2016 (held: exact duplicate of year 1 of
+price_2018_mtr_salamanders_count), saltmarsh sparrow (blocked: paper; no survey year in the deposit), Swiss territory
+mapping N-mixture (held: three editors' territory delineations of the same visits; is an editor's interpretation an
+observation?), RMBL marmots (blocked: paper; states A/B/C and the 5 within-year occasions undefined), Sierra Nevada
+owls (held: the three species files disagree on surveyed weeks and site ids), Atlantic salmon eDNA (held: Ct values
+only, no detection call), boreal caribou CKMR (blocked: paper; 26 occasions undated).
+
+What this batch says about the standard:
+
+- **A README contradicted by its own file** (sweat bees): the history file keeps the two-patch bees the README says
+  were dropped. The table follows the file (it is what the authors' model saw) and flags the units; the guide could
+  say which wins.
+- **Dates that are partly DD/MM** (goby): once one row in a block is provably DD/MM, the other ambiguous rows in that
+  block cannot be trusted either way. NA plus the deposited string was the least lossy choice; a sentence in the guide
+  would make it the rule.
+- **eDNA without a detection call** (salmon): Ct values with "Undetermined" are a detection in all but name, but the
+  threshold is the analyst's; a ruling on whether "any amplification" may define y would unblock similar deposits.
+- **Coordinates of private gardens** (pollinators): shipped at the source's 1e-10 degree because E7 only protects
+  taxa; residential garden locations may deserve the E7.4 treatment, which the standard does not say.
+- **Species-specific survey sets in a stacked file** (owls): per-species NA patterns at one site-year are the
+  per-species occasion question again, which is still deferred.
+
+## Batch 28 — 2026-11-05 (card-sorted queue rows: Sacramento green sturgeon sonar, Illinois coyotes, Adirondack carnivores, California mesocarnivores, Victorian nest boxes)
+
+One agent in `~/eco-b28` (branch `batch-28`, from main at 9bff2dc after batch 27). Rows from the 2026-11-05 card sort
+(#85). Eleven deposits downloaded and read (about a dozen more screened from Dryad metadata only and left `available`),
+six tables built from five deposits and uploaded to the Redivis draft, six deposits not built.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| battaile_2023_sacramento_sturgeon_count | repeated counts, side scan sonar | Dryad (UCSC) CC0 | 483 | green sturgeon (IUCN EN, southern DPS ESA threatened; pools deliberately not geolocated by the authors) in 70 upper Sacramento River pools, June 2020, June 2021, July 2022, 1-7 sonar passes per pool per year; the 2022 recount of fish >= 1.5 m ships as `obs_n_ge_1_5m` (it exceeds the full count in 2 of 295 passes, unexplained) and pass direction as `obs_downstream`; the methods say 32 pools in 2020, the file has 30 |
+| proudman_2026_illinois_coyote_count | repeated counts, camera detections per week | Dryad CC0 | 3,745 | 164 INHS cameras across Illinois, winters 2021/22-2023/24 (each camera in one), up to 28 weeks; the history file has no ids and is matched to the deployments by alphabetical Site.ID, confirmed by every row's active-week count equalling its deployment length; effort and weather deposited for weeks 1-24 only; README's "2024/25" is 2023/24 in the file |
+| twining_2024_adirondack_carniv_occ | multi-species detection, baited cameras | Dryad CC0 | 4,683 | coyote, fisher, marten at 195 sites in the Adirondacks and Tug Hill, 3 x 7-day occasions in each of 2016-2018; the fisher file is in another row order (matched by key); temperature labelled C but reads as F, shipped as `obs_mean_temp_as_deposited`; 6 km2-buffer covariates as `period_*`; fisher IUCN LC set by hand (iucn_category() gives NE) |
+| parren_2021_centralvalley_mesocarn_occ | multi-species detection, baited cameras | Dryad CC0 | 20,787 | CDFW drought study, coyote, bobcat, raccoon at 266 Central Valley cameras (137 cells), 2016 or 2017, up to 27 daily surveys with dates from the deposited ordinal days; latitude only deposited |
+| parren_2021_mojave_mesocarn_occ | multi-species detection, baited cameras | Dryad CC0 | 8,529 | same deposit, coyote, bobcat, kit fox at 319 Mojave cameras (176 cells), nine 3-day surveys; only the first survey day is deposited, so no `date` (unit_first_survey_date instead); the README says the two-species files list the subordinate species first, but the coyote is first |
+| goldingay_2026_diamondhill_nestbox_occ | multi-species detection, nest-box censuses | Dryad CC0 | 1,746 | brush-tailed phascogale (NT) and inland sugar glider at 74 box clusters, Bendigo Regional Park, Victoria, 12 twice-yearly censuses 2018-2023; one cell (cluster 74, May-20) is "-" for gliders and 0 for phascogales and is treated as unsurveyed for both; the female-phascogale file is not a subset of the all-phascogale file (9 cells) and is not shipped; the deposit's separate camera study (30 sites x 60 weeks, 2023-24) is buildable but not built (batch cap) |
+
+Not built (`queue/human_review.csv`): Santa Cruz rats (blocked: paper; which of two trapping periods the 14-site
+file holds), NSW woodland bird CJS (blocked: paper; 36 species codes undefined), Connecticut/Rhode Island point
+counts (held: no location id or year per survey), Oregon Coast Range winter birds (held: one count per point; would
+need the 5-min halves as occasions), great crested newts (blocked: paper; calendar years per population not deposited),
+Konza grasshopper sparrows (held: raw captures and resights with reused and misread colour combos; the authors'
+cleaning rule is not deposited).
+
+What this batch says about the standard:
+
+- **A filtered recount of the same survey** (sturgeon): the authors recounted the 2022 sonar images keeping only
+  fish >= 1.5 m. It is an observation, not a covariate, but a second `y` of the same survey has no slot; it rides as
+  an `obs_` column. A rule for "alternative counts of one survey" would settle where it goes.
+- **Id-less detection matrices** (coyotes, Turkiye before it): matching rows to sites on the README's word is safe
+  only when something in the data checks it; here the active-week counts matched the deployment lengths row by row.
+  The guide could ask for such a check whenever rows carry no id.
+- **One cell where one species is unsurveyed** (nest boxes): a single "-" disagreement between two species files
+  from the same box check was resolved by dropping both rows; the deferred per-species survey-set ruling would cover it.
+- **Occasions known only by their first day** (Mojave): when the deposit gives only the first survey date of
+  consecutive multi-day occasions, the table ships no `date`; a sentence in the guide on inferring later occasion
+  dates would make this consistent.
+
+## Batch 29 — 2026-11-05 (card-sorted queue rows: Honduran cloud-forest birds, French toads, Kerguelen cats, Lusatian capercaillie, Lake Erie watersnakes, Carpathian carnivores)
+
+One agent in `~/eco-b29` (branch `batch-29`, from main at e9fb601 after batch 28). Rows from the 2026-11-05 card sort
+(#85), chosen for regions and taxa the corpus lacks. Eleven deposits downloaded and read (the Goldingay camera study
+left by batch 28 among them), six tables built from six deposits and uploaded to the Redivis draft, five not built.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neateclegg_2018_cusuco_birds_count | community counts, point-count transects | Dryad CC0 | 149,017 | 209 bird taxa on 25 transects (2-8 stations each) in Cusuco NP, Honduras, 1-7 surveys a year 2007-2016 (Operation Wallacea); one row per transect survey in the deposit (row_presence); one all-zero species column (Dendroica nigrescens) dropped; two misspellings matched under the correct name; no dates or coordinates; below the unit floor (25) |
+| cayuela_2020_bombina_cjs | CJS, annual histories | Dryad CC0 | 63,833 | 11,919 yellow-bellied toads in four French populations (two harvested woodland, two riverine), 5-9 years each within 2000-2014, stacked with population as cluster_id; birth year known for 6,714, always 1-2 years before first capture; rows start at the later of study start and birth year |
+| fouchet_2016_kerguelen_cat_cjs | CJS, trapping sessions | Dryad CC0 | 45,749 | 684 feral cats at three Grande Terre sites, Kerguelen, 196 dated sessions 1994-2013 (5-28 days); every capture date falls in exactly one session of its site (asserted); captures pooled to sessions (obs_n_captures); session dates and site NDVI in __periods; age column not shipped (does not advance with date) |
+| ludwig_2026_lusatia_capercaillie_cjs | CJS, annual encounters | Dryad CC0 | 3,220 | 552 capercaillie released in Lower Lusatia, Germany, 2012-2024 (Swedish adults and hen-reared juveniles), encountered by feather genotyping and telemetry; release-year 1 flagged obs_release; histories end at confirmed death (58), except bird 212 encountered a year after its recorded death (kept to 2020 as deposited) |
+| king_2018_lakeerie_watersnake_cjs | CJS, annual histories | Dryad CC0 | 186,399 | 13,198 Lake Erie watersnakes at 14 island shoreline sites, 2000-2015, from a MARK .inp with 28 site x sex groups; surveyed site-years inferred from captures (193), matching the paper's account of sites added by 2005 and two dropped in 2011-2012 |
+| dyck_2022_carpathians_carniv_occ | multi-species detection, cameras | Dryad CC0 | 3,012 | lynx, wildcat and wolf at 64 winter 2018/19 and 76 autumn 2019 stations (different stations), Southern Carpathians, 14-day sessions with active-day effort; three winter sessions with effort 0 and a detection are kept as surveyed (obs_effort_days = 0 as deposited); coordinates as published (all LC) |
+
+Not built (`queue/human_review.csv`): Bolivian Andes bird counts (blocked: paper; the 5 seasons have no years and the
+300-species axis no names), Goldingay Diamond Hill camera study (held: 14 of 1,610 site-weeks are "-" for one species
+and 0 for the other; the deferred species-specific survey-set ruling), Nui Chua camera traps, Vietnam (held: 43+ records
+inside declared camera-failure periods, records at stations with no camera row, common names only), Von der Decken's
+hornbill 10-m grid (blocked: paper; what makes a 10-m cell surveyed, coordinates need the raster package), common eider
+E-SURGE histories (held: meaning of RC = -1 for 1,009 East Bay birds).
+
+What this batch says about the standard:
+
+- **At-risk start for known-age animals caught in the wild** (toads): E4.4 names the study's first period for
+  wild-caught animals and the marking period for animals marked at birth. A toad whose birth year is known but who was
+  first caught a year or two later fits neither; the table starts its rows at the later of study start and birth year.
+  A sentence in E4.4 would settle it.
+- **Known deaths in CJS** (capercaillie): a confirmed death ends the history, like a lost mark; the deposit's one
+  encounter after a recorded death (likely a feather shed before death) shows why the rule should say which wins.
+- **Detections in zero-effort cells** (Carpathians, Nui Chua): a detection proves a camera worked, so a cell with
+  effort 0 and a detection was kept as surveyed in the small Carpathian case (3 cells); Nui Chua's 43 records inside a
+  declared failure period are too many to treat that way without a ruling.
+- **Sessions of unequal length as periods** (Kerguelen): 196 sessions of 5-28 days at uneven intervals across three
+  sites go in one period index with dates in `__periods`; the CJS interval is a user's computation from those dates.
+
+## Batch 30 — 2026-11-05 (card-sorted queue rows: Omo carnivores, Fleay's barred frogs, Gila River fishes, Issa Valley chimpanzees)
+
+One agent in `~/eco-b30` (branch `batch-30`, from main at 4ffe373 after batch 29). Rows from the 2026-11-05 card sort
+(#85), chosen for regions and taxa the corpus has less of (Africa, Oceania, amphibians, fish, invertebrates). Seven
+deposits downloaded and read, four tables built from four deposits and uploaded to the Redivis draft, three not built.
+Dryad rate-limited the version zips for about 40 minutes mid-batch (429 on every zip, metadata still answered), and
+two older deposits (Chure leopard, Churia sloth bear) answered 404 on their version zips, so the batch stopped at four
+tables to stay inside the token budget.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| asfaw_2025_omo_carniv_occ | multi-species detection, cameras | Dryad CC0 | 1,876 | leopard and spotted hyaena at 36 stations in Omo NP, Ethiopia, May-August 2021, 3-day occasions (up to 30, NA trailing, same pattern for both species, asserted); the Chebera Churchura matrices in the same deposit have no survey year or dates and are not shipped; prey "abundance" columns not shipped (undocumented, shared floor values suggest imputation); no coordinates |
+| hollanders_2022_mfleayi_rdms | multi-state (Bd infection) robust design | Dryad CC0 | 30,964 | 686 adult Fleay's barred frogs (IUCN EN) at three NSW creeks, 23 primaries x 1-3 nights, 2017-2021; layout from the authors' m2-cmr.qmd (Zenodo); y = 0/1/2 (not caught / Bd- / Bd+), 3 for captures in the unswabbed last primary (y_raw keeps the source 1); histories padded to the study start; one dates.csv typo (1/2/20 for 1/2/21) corrected with an assertion; companion of the juvenile table hollanders_2022_brindle_mfleayi_msdis |
+| pilger_2022_gila_fish_count | community counts, electrofishing and seining | Dryad CC0 | 3,146 | 26 taxa (native and introduced fishes, bullfrog, crayfish, tadpoles) at 16 upper Gila sites each October 2008-2017; area file as sample table plus four 2014 site-years with catch but no area; Black Canyon 2013-2014 (area, no catch) not shipped; four IUCN categories set by hand (GBIF accepted name differs); below the unit floor (16) |
+| crunchant_2020_issa_chimp_occ | single-species detection, cameras | Dryad CC0 | 11,342 | chimpanzee (IUCN EN) at 53 systematic and targeted cameras, Issa Valley, Tanzania, 280 daily occasions March-December 2018; coordinates coarsened to 0.1 degree; the acoustic (PAM) sheet held |
+
+Not built (`queue/human_review.csv`): Colorado ant communities (held: JAGS inputs only, no survey year, San Juan species
+unnamed), Kalakad-Mundanthurai birds (held: detection records with no list of points counted per visit), W-Arly-Pendjari
+lions (held: lion matrix NA at 193 grid-occasions the other matrices survey, the deferred per-species survey-set
+ruling; plus a pooled "competitor" history), and the Issa Valley acoustic sheet (held: one row per valley vs four
+sensor positions per valley).
+
+What this batch says about the standard:
+
+- **Surveys before the first capture are invisible in first-capture histories** (frogs): a deposit that starts each
+  history at first capture shows a survey only through frogs already marked, so a site's surveys before its first
+  capture cannot be recovered (Tuntable primary 1, Bat Cave primaries 1-2 have dates but no rows). Padding to the
+  study start (E4.4) cannot create them; a sentence in E4.4 saying such surveys are lost unless a survey list is
+  deposited would make this explicit.
+- **A state the protocol could not observe** (frogs): captures in a primary where no swabs were taken get their own
+  state code rather than the source's "uninfected" code; worth a line in the guide next to the y_raw recode rule.
+
+## Batch 31 — 2026-11-05 (card-sorted queue rows: Zakouma carnivores, India invasive plants, Kasungu leopards and hyaenas)
+
+One agent in `~/eco-b31` (branch `batch-31`, from main at 9d7e104 after batch 30). Rows from the 2026-11-05 card sort
+(#85), favouring Africa, Asia, plants and non-Dryad sources. Seven deposits read, four tables built from three deposits
+and uploaded to the Redivis draft (after Ben published eco v2.3), four not built. Dryad stopped answering version zips
+early in the batch: the 429 carries `ratelimit-limit: 100`, `ratelimit-remaining: 0` and a reset at midnight UTC, so
+the anonymous API allowance is about 100 requests per day, not a short burst limit; batch 30's long 429 run was the
+same daily quota. Screen Dryad candidates with as few metadata calls as possible, and expect a batch that starts late
+in the UTC day to get only a few zips. The rest of the batch used Zenodo deposits.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| fraticelli_2026_zakouma_carniv_occ | multi-species detection, cameras | Dryad CC0 | 10,140 | cheetah, leopard, lion, spotted and striped hyaena at 121 stations in Zakouma NP, Chad, dry (Jan-Apr) and wet (Jul-Sep) 2020, 18 five-day occasions per season with trap-days of effort; effort table is the survey set (blank iff effort 0 in every matrix, asserted); wet-season cheetah (no records) and striped hyaena (one record), which the authors did not tabulate, rebuilt from the detection list by the rule that reproduces the deposited matrices (7 of 8 exactly, dry spotted hyaena all but 4 of 1,598 cells; deposited matrices shipped as deposited); prey RAI covariates not shipped; no coordinates |
+| mungi_2025_india_invplant_binom | binomial_count, plants | Zenodo CC BY 4.0 | 1,193,665 | 11 invasive plants (Lantana, Prosopis, Parthenium, Chromolaena, Mikania, ...) in 21,703 25 km2 cells of India's tiger landscapes, five All-India estimation cycles 2006-2022; y = replicates with the species of obs_trials replicates (1-19; every cell surveyed every cycle); habitat-suitability model outputs not shipped; standardised covariates; no coordinates; first plant binomial_count table |
+| davis_2019_kasungu_leopard_scr | SCR, multi-session, partial identity | Zenodo CC BY 4.0 | 287,568 | 48 leopards (IUCN VU; 15 both-flank, 17 left-only, 16 right-only ids) at 92 camera traps in Kasungu NP, Malawi, annual surveys 2016-2018 (90/120/90 days, 17/50/25 traps); individual x active trap-day; one 2017 photograph on a trap-day the effort matrix marks inactive is believed and the trap-day added to the survey set; traps centred on the array (E7.2) |
+| davis_2019_kasungu_hyaena_scr | SCR, multi-session, partial identity | Zenodo CC BY 4.0 | 299,550 | 50 spotted hyaenas (19 both-flank, 14 left, 17 right) on the same array and survey set; traps centred as for the leopard table (shared array) |
+
+Not built (`queue/human_review.csv`): Mongolia snow leopard sign survey (blocked: no survey years in the deposit and
+the DDI paper returns a bot wall; otherwise a clean 1,017-cell x 40-segment matrix), Amur tiger and leopard (held:
+days-detected per month with no camera effort), Chitwan-Parsa cameras (held: species totals only), Canada warbler
+Allee experiment (held: Zenodo "Other (Open)" with no licence text; unlabelled arrays). Serengeti grazers (Dryad
+7sqv9s4zk) stays `available`: its zip hit the daily 429 before it could be read. The grey wolf figshare files
+(7164929, 7164893) are RAR archives and this machine has no RAR extractor; left `available`.
+
+What this batch says about the standard:
+
+- **A detection on a day the effort matrix calls inactive** (Kasungu leopard, one record): E4 asks the script to say
+  which record it believed; a sentence in the processing guide that a dated photograph beats an effort flag (the
+  trap-day joins the survey set), unless failures are declared at scale (Ben's deferred ruling), would make this the
+  default rather than a per-script choice.
+- **Taxa a camera survey recorded but the authors did not tabulate** (Zakouma wet season): rebuilding them from the
+  detection list with the authors' own occasion rule, checked against the matrices they did deposit, keeps the
+  community table complete without a per-species survey set. Worth a line in the guide, as the alternative is the
+  deferred per-species survey-set ruling.
+
+## Batch 32 — 2026-11-05 (non-Dryad queue rows: Snapshot Europe cameras, Zwin butterflies)
+
+One agent in `~/eco-b32` (branch `batch-32`, from main at 25f9e0b after batch 31). Dryad's anonymous daily quota was
+spent, so the batch made no Dryad requests and worked only the non-Dryad `available` / `needs-look` rows. Twelve
+deposits read, two tables built and uploaded to the Redivis draft, eight held, two left `needs-look`. The Sollmann
+et al. Zenodo deposit (a re-use of Snapshot USA and Europe records) pointed at the Snapshot Europe source deposit on
+Edmond, which has the deployment table the re-use lacks; that became the batch's main table (new queue row).
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| iannarilli_2026_snapshoteurope_comm | community detection, cameras | Edmond CC BY-SA 4.0 (derived CC BY-NC-SA 4.0) | 878,157 | Snapshot Europe 2021-2022: 63 mammal species (humans excluded, domestic included) at 2,503 deployments in 106 arrays, 24 European countries and Israel; camera-weeks from the deployment dates (effort_table), y_raw = sequences; the 93 deployments that declare a camera failure dropped with their sequences (end_date is the retrieval date, failure date not recorded); coordinates coarsened to 0.1 deg and ids made sequential (European rabbit and mountain gazelle EN, garden dormouse and Italian hare VU in native ranges); mouflon IUCN category set by hand (Ovis gmelini NT); birds not shipped |
+| faveyts_2026_zwin_butterfly_count | community counts, butterfly transects | GBIF / Belgian IPT CC BY 4.0 | 2,700 | 27 checklist taxa (incl. Pieris at genus rank) x 100 counts on 12 mapped routes in the Zwin Nature Park, Belgium, April-September 2025, explicit zeros, route length as effort; 2023-2024 counts not shipped (no route identity); below the sample floor (12 units) |
+
+Not built (`queue/human_review.csv`): Sollmann et al. camera re-use (held: records only, sources built), Eresus
+sandaliatus transects (held: events within a visit undefined), LIFE RIPARIAS crayfish (held: event, `code` and
+`kreeften` columns undefined; street-address localities), the three Huynh-Royle-Hwang N-mixture Zenodo records (held:
+two have no files, the third is an unlabelled 50 x 11 BBS wood thrush matrix), the ASF wild boar Frontiers data sheet
+(held: supplementary figures only), Lake Constance quagga mussels (held: grab density sampling, scope question). Left
+`needs-look`: the jaguar continuous-time SCR DataONE row (its authoritative member node is Dryad, so it waits for
+the Dryad quota) and the Borealis camera/genetic SCR row (Borealis in maintenance). The grey wolf RAR files remain
+unreadable here (no unrar, 7z or bsdtar).
+
+What this batch says about the standard:
+
+- **A licence field on every data row that differs from the repository's** (Snapshot Europe): Edmond shows CC BY-SA
+  4.0; the Wildlife Insights export says metadata CC-BY, images CC-BY-NC, and every sequence row carries
+  `license = CC-BY-NC`. The row field is almost certainly WI's image licence (no images ship), but the guide's
+  stricter-governs rule was applied and the derived licence is CC BY-NC-SA 4.0. If Ben reads the row field as the
+  image licence only, the table can be relabelled CC BY-SA 4.0 with no rebuild of the data.
+- **Deployments that declare a failure but no failure date** (Snapshot Europe, 93 of 2,596): the end date is the
+  retrieval date (in some the last photograph is up to 36 days earlier), so the deployment's camera-days
+  cannot be evidenced. Dropping the whole deployment claims no zero it cannot support; it differs from the deferred
+  ruling on records inside a dated failure window, where the window is known.
+- **A checklist that grows between years** (Zwin): 21 taxa in 2023-2024, 27 in 2025. Not tested here because only
+  2025 has route identity, but a multi-year build would need `__survey_taxa` by period (E4.2).
+
 ## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
 
 One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.
@@ -1105,5 +1493,5 @@ One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) wit
 What this table says about the standard and the tools:
 
 - **E8 and the year.** The data file and README give only an ordinal day; the year is in the abstract on the Dryad page. `date` is built from 2024 + the ordinal, and the script asserts that the ordinals span exactly the abstract's two dates. The queue note's "2024 per README" is wrong.
-- **Closure over seven weeks.** `closure = closed` because the authors fit single-season occupancy, though the counts span about seven weeks. For review.
-- **`metadata/run_pipeline.sh`** uses `declare -A`, which macOS's bash 3.2 cannot run, and on a clone without the gitignored cores stages 01 to 03 would drop those tables' rows. Only this table's `metadata.csv` row was added, computed by the unmodified `01_metadata.R`; `biblio.csv`, `tags.csv` and `status.json` were not regenerated.
+- **Closure over seven weeks.** `closure = open` (changed from `closed` in review, PR #64): the counts span about seven weeks across the end of the calling season. `closureNote` records that the authors fit single-season occupancy.
+- **`metadata/run_pipeline.sh`** uses `declare -A`, which macOS's bash 3.2 cannot run, and on a clone without the gitignored cores stages 01 to 03 would drop those tables' rows. Only this table's `metadata.csv` row was added, computed by the unmodified `01_metadata.R`; `biblio.csv`, `tags.csv` and `status.json` were not regenerated. Since fixed on `main`: bash 3.2 by #67 (filed as #65), the dropped rows by #74 (filed as #66).

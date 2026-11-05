@@ -39,10 +39,27 @@
     "n_occasions": 1,
     "n_surveys": 18382,
     "y_values": "0,1",
-    "prop_zero": 0.94
+    "prop_zero": 0.94,
+    "n_traps": 1,
+    "n_zero": 17283,
+    "n_positive": 1099,
+    "n_units_detected": 707,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_den", "unit_morph"],
+  "sideTables": {
+    "periods": {
+      "rows": 26,
+      "columns": ["period", "year", "interval_to_next_yr", "popmass_g", "precip_11yr_mm", "note"],
+      "md5": "9b73837a3df3cf0c561a87173641c686"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d2d7011d89a928ebab3ac158bc28ee8f"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tetzlaff_2026_crotalus_cjs.R",

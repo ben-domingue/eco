@@ -1,0 +1,79 @@
+{
+  "table": "broekhuis_2020_mara_cheetah_scr",
+  "title": "Spatial capture-recapture (search-encounter) of cheetahs in the Maasai Mara, Kenya: 8 seasonal sessions in and out of the wildebeest migration, 2015-2018",
+  "creator": "Broekhuis, Femke; Elliot, Nicholas; Keiwua, Kosiom; Koinet, Kelvin; Macdonald, David; Mogensen, Niels; Thuo, David; Gopalaswamy, Arjun",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.z34tmpgc2",
+  "sourceURL": "https://doi.org/10.5061/dryad.z34tmpgc2",
+  "citation": "Broekhuis, F., Elliot, N., Keiwua, K., Koinet, K., Macdonald, D., Mogensen, N., Thuo, D., & Gopalaswamy, A. (2020). Resource pulses influence the spatio-temporal dynamics of a large carnivore population [Dataset]. Dryad. https://doi.org/10.5061/dryad.z34tmpgc2",
+  "paperDOI": "10.1111/ecog.05154",
+  "abstract": "Unstructured search-encounter data on individually identified cheetahs collected during eight 90-day sessions in the Maasai Mara, four out of (February-May) and four during (August-October) the annual wildebeest migration, 2015-2018. The paper fits Bayesian SECR models with sex-specific detection to relate cheetah density and space use to the resource pulse.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Search-encounter survey: observers drove through the Maasai Mara National Reserve and surrounding conservancies, photographing cheetahs and identifying them from coat patterns. The study area is divided into pixels; a pixel driven on a day is a trap operated on that occasion, with the distance driven recorded as effort. 90 daily occasions per session.",
+  "samplingProtocolCode": "search_encounter",
+  "surveyEvidence": "effort_table",
+  "effortColumn": "obs_log_km",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (population assumed closed within a 90-day session; identities not linked across sessions)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "none",
+  "temporalCoverage": "2015-02/2018-10",
+  "geographicCoverage": "Maasai Mara National Reserve and adjacent conservancies, Kenya; search-pixel centroid -1.45, 35.15 (0.1 degree cell centre)",
+  "crs": "local metres centred on the pixel centroid (source: WGS 84 / UTM zone 36S)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "pixel coordinates centred on the all-session centroid by the processor (local metres; exact UTM 36S positions withheld) because Acinonyx jubatus is IUCN VU in its native range; the centroid is given at 0.1 degree in geographicCoverage"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps, here a search-encounter design (pixels as traps, daily occasions, km driven as effort). Animal ids and pixel ids are session-scoped: the source assigned animal ids per session, so each animal has rows only in its own session.",
+  "notes": "Session-scoped animal ids (the same cheetah may appear under different ids in different sessions). A detection line repeated in the deposit is one y = 1 row (4 such lines). The deposited ReadMe asks users to contact the authors before using the data in a report or publication. obs_log_km is the natural log of km driven in the pixel that day, as deposited.",
+  "notShipped": {
+    "Habitat.csv": "the SECR state-space mask (51,912 pixel centres, suitable 1/0): a model input built by the authors",
+    "utm_coordinates": "exact UTM pixel centres (VU taxon); shipped centred in local metres",
+    "duplicate_lines": "4 exact duplicate detection lines collapsed"
+  },
+  "summary": {
+    "n_rows": 2206029,
+    "n_units": 258,
+    "n_taxa": 1,
+    "n_periods": 8,
+    "n_occasions": 90,
+    "n_surveys": 2206029,
+    "y_values": "0,1",
+    "prop_zero": 1,
+    "n_traps": 16125,
+    "n_zero": 2205085,
+    "n_positive": 944,
+    "n_units_detected": 258,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "unit_sex", "obs_log_km"],
+  "coreMd5": "449da0dc39bb7ca0cd9f25e7b1c758d2",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year", "session", "season", "n_pixels", "n_pixel_days_searched", "n_animals", "n_detections", "n_female", "n_male"],
+      "md5": "44d2cb24594f50704b768657b237e9ac"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "43f5b484d6e088c37a3de248a2aa4d15"
+    },
+    "traps": {
+      "rows": 16126,
+      "columns": ["trap", "x_m", "y_m", "period", "loc_id", "n_occasions_searched"],
+      "md5": "d8167348fa310401b013c192c9e34a28"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/broekhuis_2020_mara_cheetah_scr.R",
+  "buildDate": "2026-11-05"
+}

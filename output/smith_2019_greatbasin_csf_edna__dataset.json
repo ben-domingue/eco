@@ -36,10 +36,22 @@
     "n_occasions": 3,
     "n_surveys": 504,
     "y_values": "0,1",
-    "prop_zero": 0.692
+    "prop_zero": 0.692,
+    "n_traps": 1,
+    "n_zero": 349,
+    "n_positive": 155,
+    "n_units_detected": 64,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_water_temp_c", "unit_ph", "unit_emergent_veg_class", "unit_livestock_class", "unit_ppt", "unit_temp", "unit_elev", "unit_pond", "unit_stream", "unit_bpond", "unit_ws_ppt_mean", "unit_ws_temp_mean", "unit_ws_stream_length", "unit_ws_slope"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "0bca12e4d8e21996c171bf49004216df"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/smith_2019_greatbasin_csf_edna.R",

@@ -12,7 +12,7 @@ chg <- chg[order(chg$date, decreasing = TRUE), ]
 eco tables will sometimes be wrong: a script reads a blank as a zero, a covariate
 turns out to be a model estimate, an upload doubles a table. This page says how
 that is handled, lists every release, and lists every correction to a published
-table. The policy is IRW's, which this project borrows.
+table.
 
 ## How eco records change
 

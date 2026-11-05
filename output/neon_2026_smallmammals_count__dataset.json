@@ -54,10 +54,32 @@
     "n_occasions": 6,
     "n_surveys": 17704,
     "y_values": "0-69 (56 distinct)",
-    "prop_zero": 0.985
+    "prop_zero": 0.985,
+    "n_traps": 1,
+    "n_zero": 2492483,
+    "n_positive": 39189,
+    "n_units_detected": 329,
+    "max_y": 69
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_elevation", "unit_nlcdClass", "unit_plotType", "obs_traps_set", "obs_grid_method"],
+  "sideTables": {
+    "periods": {
+      "rows": 1612,
+      "columns": ["period", "eventID", "site", "year", "bout_start", "bout_end", "n_nights", "n_grids"],
+      "md5": "e7e7c4a284a6a13f8c00762946659a52"
+    },
+    "taxa": {
+      "rows": 143,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_n_captures", "taxon_n_sites", "taxon_sites"],
+      "md5": "a821a4aee283dc6a8999483dfce9d264"
+    },
+    "units": {
+      "rows": 332,
+      "columns": ["unit", "site", "domain", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation", "nlcdClass", "plotType", "n_published_coordinates", "n_bouts", "n_nights", "first_night", "last_night"],
+      "md5": "37b93476564b75117b0e220a9af04e9f"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_smallmammals_count.R",

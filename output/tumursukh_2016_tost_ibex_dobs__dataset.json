@@ -45,10 +45,27 @@
     "n_occasions": 3,
     "n_surveys": 801,
     "y_values": "0,1",
-    "prop_zero": 0.667
+    "prop_zero": 0.667,
+    "n_traps": 1,
+    "n_zero": 534,
+    "n_positive": 267,
+    "n_units_detected": 267,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_group_size"],
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_groups", "n_animals"],
+      "md5": "94e2846f91dcccceb520d1283aa4db20"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a6a173941c509947d82220e42caddce0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tumursukh_2016_tost_ungulates_dobs.R",

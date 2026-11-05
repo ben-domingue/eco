@@ -50,10 +50,27 @@
     "n_occasions": 3,
     "n_surveys": 295,
     "y_values": "0,1",
-    "prop_zero": 0.975
+    "prop_zero": 0.975,
+    "n_traps": 1,
+    "n_zero": 40827,
+    "n_positive": 1063,
+    "n_units_detected": 206,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_round", "unit_site_name", "unit_alt_name", "unit_municipality", "unit_county", "unit_history", "unit_selection", "unit_population", "unit_buildings", "unit_hotspot_prediction", "unit_mean_precip_mm", "unit_mean_temp_c", "unit_area_fieldsfulldepth_m2", "unit_area_fieldsshallowdepth_m2", "unit_area_forest_m2", "unit_area_freshwater_m2", "unit_area_housing_m2", "unit_area_mire_m2", "unit_area_openland_m2", "unit_area_pasture_m2", "unit_area_roads_m2", "unit_area_sea_m2", "unit_decimalLatitude", "unit_decimalLongitude", "obs_method"],
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "n_plots", "rounds", "dna_source", "preservative"],
+      "md5": "15d849109daffaa290a5d2c02f03b5fc"
+    },
+    "taxa": {
+      "rows": 142,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_alienRisk", "taxon_alienRiskLabel", "taxonRemarks"],
+      "md5": "85374dbd3d330c8c59b498a9b26a5682"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/sandercock_2022_norway_alien.R",

@@ -1,0 +1,67 @@
+{
+  "table": "dooley_2025_agapostemon_cjs",
+  "title": "Mark-resight histories of 143 bicolored sweat bees (150 bee-patch histories) at 14 flower patches over 16 survey days, greater Boston, July 2023",
+  "creator": "Dooley, Karen; Murphy, Atticus; Crone, Elizabeth",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.80gb5mm2j",
+  "sourceURL": "https://doi.org/10.5061/dryad.80gb5mm2j",
+  "citation": "Dooley, K., Murphy, A., & Crone, E. (2025). Landscape context affects both capture probability and abundance of solitary bees in cities [Dataset]. Dryad. https://doi.org/10.5061/dryad.80gb5mm2j",
+  "paperDOI": "10.1002/eap.70099",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Individually colour-marked Agapostemon virescens watched for 30 minutes at experimental Echinacea purpurea patches inside and outside seven community gardens along an impervious-surface gradient in Cambridge, Somerville and Medford, Massachusetts. Each garden pair of patches was watched on 8 of 16 days in July 2023.",
+  "samplingProtocol": "Colour-marked bees resighted during 30-minute morning watches at potted Echinacea patches; each patch watched on 8 of 16 survey days (two groups of gardens alternating in pairs of days).",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "open population across the 16 days (CJS); one watch per patch per survey day",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Cambridge, Somerville and Medford, Massachusetts, USA (no coordinates deposited)",
+  "temporalCoverage": "2023-07/2023-07",
+  "notShipped": {
+    "other_sites": "captures at BAR, TIS and WIN, which have no capture histories (WIN excluded by the authors because the surrounding landscape is mostly river)",
+    "int": "the deposited 15 survey intervals (approximate); the calendar dates are shipped in date and __periods",
+    "capture_time": "time of each capture within the 30-minute watch",
+    "model_output": "RMark estimates"
+  },
+  "notes": "Unit = one bee at one patch (site_pot_colour code), the authors' history unit; 7 bees seen at both patches of their garden appear as two units each (unit_two_patch = 1), as in the deposited history file although its README says they were excluded. The script rebuilds every history from the raw capture file and asserts it equals the deposited capture-history file patch by patch.",
+  "summary": {
+    "n_rows": 1200,
+    "n_units": 150,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 1,
+    "n_surveys": 1200,
+    "y_values": "0,1",
+    "prop_zero": 0.812,
+    "n_traps": 1,
+    "n_zero": 974,
+    "n_positive": 226,
+    "n_units_detected": 150,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "unit_site", "unit_pot", "unit_mark_id", "unit_two_patch", "unit_imperv_pct", "unit_garden_area_m2", "unit_garden_flowers"],
+  "coreMd5": "6378650a406fdd69af5a42ffde4b0ceb",
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "date", "sites_watched"],
+      "md5": "270dfaff4d4906948c0d4ab281925f70"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "9513d00f82f701754dce0f1677af379b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dooley_2025_agapostemon_cjs.R",
+  "buildDate": "2026-11-05"
+}

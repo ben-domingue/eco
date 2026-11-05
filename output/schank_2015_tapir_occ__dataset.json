@@ -46,10 +46,22 @@
     "n_occasions": 72,
     "n_surveys": 1008,
     "y_values": "0,1",
-    "prop_zero": 0.989
+    "prop_zero": 0.989,
+    "n_traps": 1,
+    "n_zero": 997,
+    "n_positive": 11,
+    "n_units_detected": 6,
+    "max_y": 1
   },
   "sampleFloor": "below (22 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "unit_trapdays", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "220002b976c7341f76f5609a94eca004"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/schank_2015_tapir_occ.R",

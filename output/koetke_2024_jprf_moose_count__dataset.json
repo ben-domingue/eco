@@ -39,10 +39,22 @@
     "n_occasions": 91,
     "n_surveys": 5935,
     "y_values": "0,1,2,3,4,6",
-    "prop_zero": 0.981
+    "prop_zero": 0.981,
+    "n_traps": 1,
+    "n_zero": 5822,
+    "n_positive": 113,
+    "n_units_detected": 44,
+    "max_y": 6
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "obs_detections_30min", "obs_detections_8hr"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3c171360a11d9a8bae695a9f5b83d694"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/koetke_2024_jprf_moose_count.R",

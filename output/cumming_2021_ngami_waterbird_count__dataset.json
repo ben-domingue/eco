@@ -1,0 +1,70 @@
+{
+  "table": "cumming_2021_ngami_waterbird_count",
+  "title": "Half-hour point counts of 182 bird species at 14 points around Lake Ngami, Botswana, over six field trips during lake dry-downs, 2007-2009",
+  "creator": "Cumming, Graeme S.; Henry, Dominic A. W.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.w0vt4b8rd",
+  "sourceURL": "https://doi.org/10.5061/dryad.w0vt4b8rd",
+  "citation": "Cumming, G. S., & Henry, D. A. W. (2021). Understanding arid-region waterbird community dynamics during lake dry-downs [Dataset]. Dryad. https://doi.org/10.5061/dryad.w0vt4b8rd",
+  "paperDOI": "10.1002/ecs2.3668",
+  "abstract": "Standardised half-hour point counts of all birds within 150 m of a stationary observer at up to 14 fixed points on the shore of Lake Ngami, an ephemeral lake in north-west Botswana, repeated on several days during each of six week-long field trips from October 2007 to June 2009 as the lake shrank from about 50 to 10 km2. Birds were recorded as foraging, not foraging or flying over. The paper analyses changes in waterbird community composition with water level.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Half-hour daylight point counts by a stationary observer recording every bird within 150 m, as foraging, not foraging or flying over, at fixed counting points around the lake; each point counted on several days of each week-long field trip.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "counts within a field trip span about a week; the community changes between trips with the lake level",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "2007-10/2009-06",
+  "geographicCoverage": "Lake Ngami, North-West District, Botswana (about 20.46 S, 22.80 E); site coordinates coarsened to 0.1 degree",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "site coordinates (WGS 84, deposited to 1e-8 degree) coarsened to the 0.1 degree cell centre with coarsen_coords(): the community includes IUCN threatened species in their native range (Aquila rapax, Calidris ferruginea, Egretta vinaceigula, Grus carunculata, Gyps africanus, Polemaetus bellicosus, Terathopius ecaudatus)"
+  },
+  "notes": "y is all birds counted (foraging + not foraging + flying over), as in the authors' averaged data; the three parts are obs_ columns and vary across taxa within a count. Species are the Roberts (2005) common names as deposited (vernacularName) with scientific names from the eBird/Clements taxonomy; 14 names mapped by hand (Woolly-necked Stork as the African Ciconia microscelis, Yellow-billed Kite as Milvus aegyptius); six eBird names are looked up on GBIF under the backbone's older genus or spelling (Ixobrychus, Charadrius, Buphagus erythrorhynchus, Bugeranus). Records of one species on two lines of one count are summed. Site 14 was counted only on trip NGA5 and has no coordinates in the deposit (unit_lat/unit_lon NA; the averaged file gives it -20, 23). One count (NGA6 site 11, 2009-06-02) recorded no birds and has zero rows for every species. obs_duration_min is NA for one count whose recorded end precedes its start. Not every site was counted on every trip (sites dry out); n_sites_counted per trip is in __periods with the MODIS lake area. taxon_iucnCategory from GBIF's IUCN record. The readme asks users to cite the Dryad deposit and the Ecosphere paper.",
+  "notShipped": {
+    "averaged_data": "sheets 2-4 of the workbook and NgamiCountData2.txt: the authors' per-trip averages (derived)",
+    "guilds": "NgamiGuilds.txt numeric class and guild codes (undefined in the deposit)",
+    "exact_coordinates": "coarsened to 0.1 degree (threatened species present)"
+  },
+  "summary": {
+    "n_rows": 41496,
+    "n_units": 14,
+    "n_taxa": 182,
+    "n_periods": 6,
+    "n_occasions": 7,
+    "n_surveys": 228,
+    "y_values": "0-56200 (231 distinct)",
+    "prop_zero": 0.899,
+    "n_traps": 1,
+    "n_zero": 37299,
+    "n_positive": 4197,
+    "n_units_detected": 14,
+    "max_y": 56200
+  },
+  "sampleFloor": "below (14 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_lat", "unit_lon", "obs_start_time", "obs_duration_min", "obs_n_foraging", "obs_n_not_foraging", "obs_n_flying_over"],
+  "coreMd5": "ba728c00a6344bca6868f215b4f7900d",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "mission", "months", "lake_area_km2_modis", "n_sites_counted"],
+      "md5": "df46e9767a5d5519d32a1ae8389bdee7"
+    },
+    "taxa": {
+      "rows": 182,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a37c23384ed10aa38bb37508557a8c0c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cumming_2021_ngami_waterbird_count.R",
+  "buildDate": "2026-11-05"
+}

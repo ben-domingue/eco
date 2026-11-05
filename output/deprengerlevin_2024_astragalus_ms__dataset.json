@@ -50,10 +50,27 @@
     "n_occasions": 1,
     "n_surveys": 62755,
     "y_values": "0,1,2,3",
-    "prop_zero": 0.825
+    "prop_zero": 0.825,
+    "n_traps": 1,
+    "n_zero": 51781,
+    "n_positive": 10974,
+    "n_units_detected": 4042,
+    "max_y": 3
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "cluster_id", "unit_site", "period_fenced", "obs_length_cm", "obs_fruits", "obs_browsed"],
+  "sideTables": {
+    "periods": {
+      "rows": 28,
+      "columns": ["period", "year", "n_plots", "n_plots_fenced"],
+      "md5": "6231584bef350323b1c7e583711bc911"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_status", "taxon_iucnCategory"],
+      "md5": "9d57b5d0dcb2ac8c699d498e9d64cf69"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/deprengerlevin_2024_astragalus_cmr.R",

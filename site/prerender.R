@@ -27,3 +27,112 @@ stats <- list(
 )
 jsonlite::write_json(stats, "data/site_stats.json", auto_unbox = TRUE, pretty = TRUE)
 cat("prerender.R: data/site_stats.json written\n")
+
+# Specimens for the homepage card: a few real rows from tables of each kind,
+# fetched from Redivis with the eco package so they cannot drift from what
+# ships. One unit with at least one non-zero y, its first rows in key order. A
+# table that cannot be fetched is skipped, never invented.
+SPECIMENS <- list(
+  list(group = "Occupancy",          table = "kery_2008_willowtit_occ"),
+  list(group = "Occupancy",          table = "kery_2010_crossbill_dynocc"),
+  list(group = "Occupancy",          table = "schank_2015_tapir_occ"),
+  list(group = "Counts",             table = "knape_2018_shoveler_count"),
+  list(group = "Counts",             table = "yadav_2022_rapti_gharial_count"),
+  list(group = "Communities",        table = "galvez_2021_araucania_comm"),
+  list(group = "Communities",        table = "malhotra_2021_loslagos_comm"),
+  list(group = "Capture-recapture",  table = "toledolima_2024_elaenia_cjs"),
+  list(group = "Capture-recapture",  table = "murphy_2021_riogrande_otter_scr"),
+  list(group = "eDNA",               table = "dougherty_2016_rustycrayfish_edna"),
+  list(group = "eDNA",               table = "tomke_2025_hellbender_edna")
+)
+KEY <- c("cluster_id", "unit", "taxon", "trap", "period", "occasion", "y")
+spec <- list()
+for (sp in SPECIMENS) {
+  d <- tryCatch(eco::eco_fetch(sp$table), error = function(e) NULL)   # from Redivis, as a user gets it (#88)
+  if (is.null(d)) { message("prerender.R: could not fetch ", sp$table, "; specimen skipped"); next }
+  d <- data.table::as.data.table(lapply(d, function(v) ifelse(is.na(v), "", as.character(v))))
+  key <- intersect(KEY, names(d))
+  extra <- head(c(intersect("date", names(d)), grep("^obs_", names(d), value = TRUE),
+                  grep("^unit_", names(d), value = TRUE)), max(0, 7 - length(key)))
+  cols <- c(key, extra)
+  yy <- suppressWarnings(as.numeric(d$y))
+  hit <- unique(d$unit[!is.na(yy) & yy > 0])
+  nr <- table(d$unit)[hit]
+  hit <- sort(names(nr)[nr >= min(6, max(nr))])
+  u <- hit[ceiling(length(hit) / 2)]             # a middle unit, not the first
+  rows <- d[unit == u]
+  ord <- intersect(c("period", "occasion", "trap", "taxon"), names(rows))
+  for (o in rev(ord)) rows <- rows[order(suppressWarnings(as.numeric(rows[[o]])), rows[[o]])]
+  # start just before the unit's first detection, so the card shows one
+  first <- which(suppressWarnings(as.numeric(rows$y)) > 0)[1]
+  start <- max(1, min(first - 2, nrow(rows) - 7))
+  rows <- rows[start:min(nrow(rows), start + 7), ..cols]
+  # long decimals (standardised covariates) to three significant digits
+  for (cc in cols) {
+    v <- suppressWarnings(as.numeric(rows[[cc]]))
+    if (all(!is.na(v)) && any(grepl("\\.[0-9]{4,}", rows[[cc]])))
+      data.table::set(rows, j = cc, value = as.character(signif(v, 3)))
+  }
+  m <- meta[meta$table == sp$table, ]
+  b <- bib[bib$table == sp$table, ]
+  tg <- tags[tags$table == sp$table, ]
+  dims <- paste0(format(m$n_units, big.mark = ","), " units · ", m$n_taxa, " taxa · ",
+                 if (m$n_periods > 1) paste0(m$n_periods, " periods · ") else "",
+                 m$n_occasions, " occasions")
+  spec[[length(spec) + 1]] <- list(
+    group = sp$group, table = sp$table, title = b$title, family = tg$model_family,
+    dims = dims, n_rows = m$n_rows, columns = cols,
+    rows = lapply(seq_len(nrow(rows)), function(i) unname(as.character(rows[i]))),
+    fetch = sprintf('library(eco)\nd <- eco_fetch("%s")', sp$table))
+}
+jsonlite::write_json(spec, "data/specimens.json", auto_unbox = TRUE, pretty = TRUE)
+cat("prerender.R: data/specimens.json written,", length(spec), "specimens\n")
+
+# The AI-assistant briefing (#12): llms_template.txt with its {{counts}} filled
+# from the same catalog as the homepage, written to llms.txt (untracked, a site
+# resource). Prose is hand-written in the template; only numbers are generated,
+# and a placeholder left unfilled stops the render.
+fmt <- function(x) format(x, big.mark = ",", scientific = FALSE, trim = TRUE)
+tab_str <- function(x) { t <- sort(table(x), decreasing = TRUE); paste(names(t), t, sep = " ", collapse = ", ") }
+# Count only tables that can ship: a do_not_publish table is in metadata.csv
+# but never on Redivis, so eco_filter() would not show it.
+pub <- meta[!meta$table %in% tags$table[grepl("do_not_publish", tags$status)], ]
+fill <- list(
+  as_of = substr(last$date, 1, 10), eco_version = last$eco_version,
+  eco_redivis = last$eco_redivis_version, eco_meta_redivis = last$eco_meta_redivis_version,
+  n_tables = fmt(nrow(pub)), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
+  by_response_type = tab_str(pub$response_type), by_closure = tab_str(pub$closure),
+  n_inferred = fmt(sum(pub$survey_evidence == "inferred")),
+  n_below_floor = fmt(sum(pub$sample_floor != "meets")))
+guide <- readLines("llms_template.txt", warn = FALSE)
+for (k in names(fill)) guide <- gsub(paste0("{{", k, "}}"), fill[[k]], guide, fixed = TRUE)
+left <- regmatches(guide, regexpr("\\{\\{[a-z_]+\\}\\}", guide))
+if (length(left)) stop("prerender.R: llms_template.txt has unfilled placeholders: ", paste(unique(left), collapse = ", "))
+writeLines(guide, "llms.txt")
+cat("prerender.R: llms.txt written\n")
+
+# The browser validator (#8, validate.qmd) runs eco_validate in Pyodide from a
+# wheel built here, from this checkout's eco_validate/, on every render: the
+# page cannot run a validator that differs from the source. Not committed and
+# not from a release (untracked, see ../.gitignore). The wheel sits under a
+# directory named for its md5, so a changed wheel of the same version gets a
+# new URL and no browser runs a cached old one. validate.qmd pins the version
+# and stops the render if this wheel is a different one.
+unlink("wheels", recursive = TRUE)
+src <- file.path(tempdir(), "eco_validate")             # build a copy: setuptools writes build/ in-tree
+dir.create(src)
+invisible(file.copy(list.files("../eco_validate", full.names = TRUE, no.. = TRUE),
+                    src, recursive = TRUE))
+unlink(file.path(src, c("tests", "build", "__pycache__")), recursive = TRUE)
+out <- file.path(tempdir(), "wheel")
+py <- Sys.getenv("PYTHON", "python3")
+# A fixed zip timestamp makes the wheel's bytes, and so its directory, a
+# function of the source alone: an unchanged validator keeps its URL.
+st <- system2(py, env = "SOURCE_DATE_EPOCH=315532800", c("-m", "pip", "wheel", "--quiet", "--no-deps", "-w", shQuote(out), shQuote(src)))
+if (st != 0) stop("prerender.R: could not build the eco_validate wheel (", py, " -m pip wheel ", src, ")")
+whl <- list.files(out, "^eco_validate-.*-py3-none-any\\.whl$", full.names = TRUE)
+if (length(whl) != 1) stop("prerender.R: expected one eco_validate wheel, found ", length(whl))
+tag <- substr(unname(tools::md5sum(whl)), 1, 12)
+dir.create(file.path("wheels", tag), recursive = TRUE)
+invisible(file.copy(whl, file.path("wheels", tag, basename(whl))))
+cat("prerender.R: wheels/", tag, "/", basename(whl), " written\n", sep = "")

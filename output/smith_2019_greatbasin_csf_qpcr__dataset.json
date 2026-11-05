@@ -42,10 +42,22 @@
     "n_occasions": 3,
     "n_surveys": 1512,
     "y_values": "0,1",
-    "prop_zero": 0.743
+    "prop_zero": 0.743,
+    "n_traps": 1,
+    "n_zero": 1123,
+    "n_positive": 389,
+    "n_units_detected": 153,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_visual_dipnet_detected"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "0bca12e4d8e21996c171bf49004216df"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/smith_2019_greatbasin_csf_edna.R",

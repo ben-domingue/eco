@@ -50,10 +50,27 @@
     "n_occasions": 3,
     "n_surveys": 352,
     "y_values": "0-61 (13 distinct)",
-    "prop_zero": 0.423
+    "prop_zero": 0.423,
+    "n_traps": 1,
+    "n_zero": 149,
+    "n_positive": 203,
+    "n_units_detected": 57,
+    "max_y": 61
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_region", "unit_decimalLatitude", "unit_decimalLongitude", "unit_patch_area_ha", "unit_avgpatch_area_10km_ha", "unit_isolation_patch_enn_m", "unit_isolation_avg_enn_10km_m", "unit_cohesion_10km", "unit_grass_prop_10km", "unit_road_density_10km", "unit_forest_edge_density_10km", "obs_nectar_species", "obs_milkweed_per_m2"],
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_sites", "note"],
+      "md5": "10e17baf08c969d8e067e49aaaec5d70"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "77c514c52e3b21eb693cd3eb01beea8d"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bruce_2021_wisconsin_monarch_nmix.R",

@@ -1,0 +1,68 @@
+{
+  "table": "battaile_2023_sacramento_sturgeon_count",
+  "title": "Side scan sonar counts of spawning Green Sturgeon in 70 upper Sacramento River pools, 2020-2022, 3 to 7 passes per pool",
+  "creator": "Battaile, Brian; Mora, Ethan; Lehman, Brendan; Dudley, Peter",
+  "pubDate": "2023",
+  "doi": "10.7291/D1738V",
+  "sourceURL": "https://doi.org/10.7291/D1738V",
+  "citation": "Battaile, B., Mora, E., Lehman, B., & Dudley, P. (2023). Estimating spawning Green Sturgeon (Acipenser medirostris Ayres, 1854) abundance using side scan sonar and N-mixture models [Dataset]. Dryad. https://doi.org/10.7291/D1738V",
+  "paperDOI": "10.1139/cjfas-2023-0228",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Adult Green Sturgeon (southern distinct population segment) counted on side scan sonar images of deep pools (> 5 m) in the upper Sacramento River, California, in June 2020, June 2021 and July 2022. Each pool was ensonified on 3 passes in one day (in 2022 up to 4 more where fish were seen), and the fish images on each pass counted; the 2022 passes were also recounted keeping only images at least 1.5 m long.",
+  "samplingProtocol": "Humminbird Helix 10 side scan sonar (1.2 MHz) from a jet boat at 4-8 knots, passes alternating upstream and downstream through each pool; each pass rendered to one image (SonarTRX) and every fish image showing Green Sturgeon behaviour marked in QGIS.",
+  "samplingProtocolCode": "sonar_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "all passes at a pool on one day; the authors fit closed N-mixture models per year",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "upper Sacramento River, California, USA, river miles ~200 to 296; pools deliberately not geolocated by the authors (poaching risk)",
+  "temporalCoverage": "2020-06-01/2022-07-21",
+  "coordinatesCoarsened": null,
+  "covariateNote": "obs_n_ge_1_5m (2022 only) is the authors' recount of the same pass keeping fish images >= 1.5 m (approximate minimum adult spawner length); it exceeds y in 2 of 295 passes (pool 30 pass 1, pool 31 pass 5), unexplained by the source and shipped as deposited. obs_downstream (2022 only): 1 = pass heading downstream, 0 = upstream.",
+  "notShipped": {
+    "model_output": "N-mixture and plot-sampling abundance/density estimates",
+    "didson_aris": "the 7 DIDSON/ARIS passes per pool in 2020-2021 are not deposited",
+    "pass_dates": "no per-pool survey date; the year's survey window is in __periods"
+  },
+  "notes": "Taxon flagged under E7 (IUCN EN; southern DPS ESA threatened); no coordinates exist in the source, the authors having deliberately not geolocated the pools. The Dryad methods give 32 surveyed pools in 2020; Count2020.csv has 30 non-empty rows, which the table follows.",
+  "summary": {
+    "n_rows": 483,
+    "n_units": 70,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 7,
+    "n_surveys": 483,
+    "y_values": "0-261 (87 distinct)",
+    "prop_zero": 0.449,
+    "n_traps": 1,
+    "n_zero": 217,
+    "n_positive": 266,
+    "n_units_detected": 44,
+    "max_y": 261
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_n_ge_1_5m", "obs_downstream"],
+  "coreMd5": "6b1cdb53fa1b92b3facd102afb884d6d",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "period_start", "period_end", "n_pools_surveyed", "upper_river_mile", "didson_aris_also_used"],
+      "md5": "3e9f8fa8c76342d153957c0623d07e76"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "20bd913cf52e0736926da9f332291054"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/battaile_2023_sacramento_sturgeon_count.R",
+  "buildDate": "2026-11-05"
+}

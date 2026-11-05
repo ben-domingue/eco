@@ -49,10 +49,27 @@
     "n_occasions": 3,
     "n_surveys": 73710,
     "y_values": "0,1",
-    "prop_zero": 0.811
+    "prop_zero": 0.811,
+    "n_traps": 1,
+    "n_zero": 59784,
+    "n_positive": 13926,
+    "n_units_detected": 1729,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion"],
+  "sideTables": {
+    "periods": {
+      "rows": 28,
+      "columns": ["period", "year", "label", "note"],
+      "md5": "2855fef349089587affb7c54b19d4f5a"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "03cd9c2a3f1aff0837e015f0c1812bcd"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/oosthuizen_2019_marion_seal_rd.R",

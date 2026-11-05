@@ -48,10 +48,32 @@
     "n_occasions": 5,
     "n_surveys": 5467,
     "y_values": "0-431 (166 distinct)",
-    "prop_zero": 0.896
+    "prop_zero": 0.896,
+    "n_traps": 1,
+    "n_zero": 1145598,
+    "n_positive": 133680,
+    "n_units_detected": 40,
+    "max_y": 431
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_rpid", "obs_run_type", "obs_quality_current", "obs_start_temp", "obs_end_temp", "obs_temp_scale", "obs_start_wind", "obs_end_wind", "obs_start_sky", "obs_end_sky", "obs_start_minute", "obs_end_minute", "obs_assistant", "obs_block_stops", "obs_nonbreeder_count"],
+  "sideTables": {
+    "periods": {
+      "rows": 58,
+      "columns": ["period", "year", "n_runs", "n_routes", "nonbreeder_records_preserved", "stop_data_complete"],
+      "md5": "db2c5cb18c0308e648c19dc2130444c4"
+    },
+    "taxa": {
+      "rows": 234,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_aou", "taxonRemarks", "taxon_gbifRank", "taxon_first_year", "taxon_last_year", "taxon_nonbreeder_share_1999on"],
+      "md5": "abff8ea8fc4f516a7eb53f4519b2a888"
+    },
+    "units": {
+      "rows": 40,
+      "columns": ["unit", "unit_route_name", "unit_country_num", "unit_state_num", "unit_route", "unit_stratum", "unit_bcr", "unit_route_type_id", "unit_route_type_detail_id", "unit_active", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "779bd03b4bb5d3cc1feafc897b045249"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ziolkowski_2026_bbs.R",

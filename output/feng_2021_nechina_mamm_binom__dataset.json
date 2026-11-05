@@ -40,10 +40,22 @@
     "n_occasions": 1,
     "n_surveys": 138,
     "y_values": "0-12 (13 distinct)",
-    "prop_zero": 0.632
+    "prop_zero": 0.632,
+    "n_traps": 1,
+    "n_zero": 1570,
+    "n_positive": 914,
+    "n_units_detected": 138,
+    "max_y": 12
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "unit_cam_type", "unit_trap_days", "unit_human_detection_rate", "unit_cattle_detection_rate", "unit_elev_m", "unit_dist_settlement_m", "unit_dist_border_m", "unit_dist_road_m", "unit_dist_river_m", "unit_ndvi", "unit_basal_area", "unit_canopy_transparency", "obs_trials"],
+  "sideTables": {
+    "taxa": {
+      "rows": 18,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_sourceCode", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "1f6c74198868b6443171b630b916c7ed"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/feng_2021_nechina_mamm_binom.R",

@@ -1,0 +1,62 @@
+{
+  "table": "asfaw_2025_omo_carniv_occ",
+  "title": "Camera-trap detections of leopard and spotted hyaena at 36 stations in Omo National Park, Ethiopia, May to August 2021",
+  "creator": "Asfaw, Tsyon; Sillero-Zubiri, Claudio; Leirs, Herwig; Gebresenbet, Fikirte; Bauer, Hans",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.nk98sf83t",
+  "sourceURL": "https://doi.org/10.5061/dryad.nk98sf83t",
+  "citation": "Asfaw, T., Sillero-Zubiri, C., Leirs, H., Gebresenbet, F., & Bauer, H. (2025). Data from: Anthropogenic and environmental factors determine occupancy and rarity of large carnivores in the Omo valley, Southwest Ethiopia [Dataset]. Dryad. https://doi.org/10.5061/dryad.nk98sf83t",
+  "paperDOI": "10.1002/2688-8319.70019",
+  "abstract": "Un-baited camera traps on a 25 km2 grid in Omo National Park, southwest Ethiopia, set in May 2021 and retrieved in July and August 2021, part of the Large Carnivore Occupancy Project in the Omo Valley. Detections of leopard and spotted hyaena are pooled into 3-day occasions, up to 30 per station, with each station's distance to river and canal, habitat, elevation and distance to the Omo-Kuraz sugar factory. The authors fitted occupancy models to relate carnivore occupancy to environmental and human factors.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Un-baited camera traps, one station per 25 km2 grid cell, run for about two and a half months; detections pooled into consecutive 3-day occasions from setup; occasions after the camera stopped are missing.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one deployment per station within one dry-to-wet season",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Omo National Park, Southwest Ethiopia (no station coordinates in the deposit)",
+  "temporalCoverage": "2021-03/2021-08",
+  "covariateNote": "unit_dense_habitat: 1 forest with thick vegetation, 0 grassland. unit_dist_kuraz_km: distance to the Omo-Kuraz sugar factory built-up area (unit not stated; km by its range). unit_setup_date and unit_retrieval_date: camera deployment dates as deposited.",
+  "notShipped": {
+    "ccnp": "The two Chebera Churchura National Park matrices (36 stations x 40 occasions, leopard and spotted hyaena): the deposit gives no survey year or setup date for that park, only 2020-2022 for the project as a whole.",
+    "prey_abundance": "Fifteen prey 'abundance' columns plus SP, LP and Sum_Prey_Abundance: the measure is undocumented and most stations share one small floor value per species, the signature of imputed or modelled values.",
+    "setup_time": "Time: setup time in mixed 12- and 24-hour formats without AM/PM on most rows."
+  },
+  "notes": "Station ids are as deposited, including 'DCIM' and 'FG empety'. Station FG28 was set in March 2021; like every station its history is truncated at 30 occasions. Occasion dates are not reconstructed: the count of non-missing occasions does not match each station's deployment length exactly.",
+  "summary": {
+    "n_rows": 1876,
+    "n_units": 36,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 30,
+    "n_surveys": 938,
+    "y_values": "0,1",
+    "prop_zero": 0.967,
+    "n_traps": 1,
+    "n_zero": 1815,
+    "n_positive": 61,
+    "n_units_detected": 14,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_dist_river_m", "unit_dense_habitat", "unit_dist_canal_m", "unit_elev_m", "unit_dist_kuraz_km", "unit_setup_date", "unit_retrieval_date"],
+  "coreMd5": "7ef248c6a33f72ad641056816219781d",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "81bfd9617ca9f06e01daa3dc42560831"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/asfaw_2025_omo_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

@@ -43,10 +43,27 @@
     "n_occasions": 1,
     "n_surveys": 6435,
     "y_values": "0,1",
-    "prop_zero": 0.847
+    "prop_zero": 0.847,
+    "n_traps": 1,
+    "n_zero": 5449,
+    "n_positive": 986,
+    "n_units_detected": 429,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period"],
+  "sideTables": {
+    "periods": {
+      "rows": 15,
+      "columns": ["period", "label", "month", "year", "n_captured"],
+      "md5": "affe4d2cce56da112568135bbe4dbab5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "866997923182cd2962b7c29661382660"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/kanno_2022_indiancreek_fish_cjs.R",

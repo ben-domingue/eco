@@ -53,10 +53,32 @@
     "n_occasions": 6,
     "n_surveys": 356,
     "y_values": "0-71 (34 distinct)",
-    "prop_zero": 0.957
+    "prop_zero": 0.957,
+    "n_traps": 1,
+    "n_zero": 44646,
+    "n_positive": 1990,
+    "n_units_detected": 33,
+    "max_y": 71
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "period_temperature_sampling_c", "period_temperature_annual_c", "period_mean_flower_cover_pct", "period_management", "obs_n_days", "obs_first_hour", "obs_round", "obs_flower_cover_pct"],
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "period_year", "period_start", "period_end"],
+      "md5": "15d65cd29931375ebef8fd3bd770d27f"
+    },
+    "taxa": {
+      "rows": 131,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "fb3c6456631a5d9a93759a71ab02e2c0"
+    },
+    "units": {
+      "rows": 33,
+      "columns": ["unit", "unit_transect", "unit_decimalLatitude", "unit_decimalLongitude", "unit_elevation_m"],
+      "md5": "12c6de312c838ec3b60b1a1e82e6ab7d"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/maihoff_2023_berchtesgaden_bees_count.R",

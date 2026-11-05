@@ -1,0 +1,66 @@
+{
+  "table": "dutta_2024_panna_carnivore_occ",
+  "title": "Camera-trap detections of tiger, leopard and striped hyena at 814 station-seasons in Panna Tiger Reserve, India, winter and summer 2019",
+  "creator": "Dutta, Supratim; Maheswaran, Gopinathan; Krishnamurthy, Ramesh",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.djh9w0w8h",
+  "sourceURL": "https://doi.org/10.5061/dryad.djh9w0w8h",
+  "citation": "Dutta, S., Maheswaran, G., & Krishnamurthy, R. (2024). Data from: Interspecific interactions among major carnivores in Panna Tiger Reserve: A multispecies occupancy approach [Dataset]. Dryad. https://doi.org/10.5061/dryad.djh9w0w8h",
+  "paperDOI": "10.1111/btp.13389",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Paired camera traps in a 2-km2 grid across Panna Tiger Reserve, Madhya Pradesh, India, in winter (January-February) and summer (May-June) 2019, used to fit multispecies occupancy models of tiger, leopard and striped hyena with canopy, land surface temperature, NDVI, slope and distances to village and water.",
+  "samplingProtocol": "Paired motion-triggered camera traps on trails, forest roads and riverbeds, one station per 2-km2 cell; detection histories in 5-night sessions (the last session 3 nights); trap nights per session is the effort.",
+  "samplingProtocolCode": "camera_trap",
+  "occasionLength": "5 nights",
+  "effortColumn": "obs_trap_nights",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "closureNote": "Closed within a season; a unit is a station in one season, because the deposit numbers stations separately per season.",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Panna Tiger Reserve, Madhya Pradesh, India (no coordinates deposited)",
+  "temporalCoverage": "2019-01/2019-06",
+  "notShipped": {
+    "station identity across seasons": "TrapCode is numbered per season (covariates differ for the same code), so a winter and a summer station with the same code are different units"
+  },
+  "notes": "Winter has 476 stations in the deposit; the Dryad methods text says 475.",
+  "summary": {
+    "n_rows": 17352,
+    "n_units": 814,
+    "n_taxa": 3,
+    "n_periods": 2,
+    "n_occasions": 8,
+    "n_surveys": 5784,
+    "y_values": "0,1",
+    "prop_zero": 0.78,
+    "n_traps": 1,
+    "n_zero": 13540,
+    "n_positive": 3812,
+    "n_units_detected": 733,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_season", "unit_canopy_pct", "unit_land_surface_temp_c", "unit_dist_village_m", "unit_dist_water_m", "unit_ndvi", "unit_slope_deg", "obs_trap_nights"],
+  "coreMd5": "3cae3d999cbd31c1f9c4daefc4f8ae1e",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "season", "year", "months", "n_stations", "n_sessions"],
+      "md5": "c3ba13ab525876eb455a215c2b3fc2fe"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "ed86a3e780243297b1dc14a9c2f679dd"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dutta_2024_panna_carnivore_occ.R",
+  "buildDate": "2026-11-05"
+}

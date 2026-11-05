@@ -1,0 +1,68 @@
+{
+  "table": "pilger_2022_gila_fish_count",
+  "title": "Fish and other aquatic animals caught by electrofishing and seining at 16 sites in the upper Gila River basin, New Mexico, each October 2008-2017",
+  "creator": "Pilger, Tyler",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.sxksn0332",
+  "sourceURL": "https://doi.org/10.5061/dryad.sxksn0332",
+  "citation": "Pilger, T. (2022). Data from: Demography predicts genetic effective size in a desert stream fish community [Dataset]. Dryad. https://doi.org/10.5061/dryad.sxksn0332",
+  "paperDOI": "10.1086/720208",
+  "abstract": "Annual October surveys of stream reaches in the upper Gila River basin, New Mexico (Gila, West, Middle and East Forks and tributaries), by electrofishing and seining in one or two passes, from the short-term ecological studies that accompany the New Mexico Department of Game and Fish long-term monitoring; 6 sites a year in 2008-2010, 11-16 from 2011. Catch is summed per site, year and taxon, with the reach length, width and area sampled. Native desert fishes (longfin dace, spikedace, loach minnow, headwater chub, Sonora and desert suckers, speckled dace) are caught alongside introduced fishes, bullfrogs and crayfish. The authors used the densities of nine native and introduced species, with genetic data, to relate demography to genetic effective size.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Each October, a reach of about 100-400 m at each site sampled by backpack electrofishing and seining (one or two passes) across its mesohabitats; every fish counted and measured; reach length and mean width recorded.",
+  "samplingProtocolCode": "electrofishing",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one survey per site per year; period = year",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Upper Gila River basin, Grant and Catron Counties, New Mexico, USA (no coordinates in the deposit)",
+  "temporalCoverage": "2008-10/2017-10",
+  "covariateNote": "obs_length_m, obs_width_m, obs_area_m2: reach length sampled, mean wetted width and area (area file; NA for four 2014 site-years absent from it). obs_n_passes: 1 or 2. obs_gear: gears recorded in the site-year's catch rows. date: the first day of the site-year's sampling; obs_n_days: days it spanned (1-2).",
+  "notShipped": {
+    "black_canyon": "Black Canyon 2013 and 2014: the area file records a sampled reach but the catch file has no rows; the deposit does not say whether nothing was caught or the records are missing.",
+    "individual_records": "total lengths, marks, mesohabitat, location within reach and pass of each fish: sub-survey detail, summed into y",
+    "ltpa": "Pilger_etal_metaNe_LTPA.csv (annual presence/absence of nine species at long-term sites 1988-2010): rows exist only for species documented at a site, so the zeros for the others cannot be told from 'not listed'",
+    "estimates": "the effective-size, Fst, migration and occupancy estimates in the metaNe files"
+  },
+  "notes": "Catch codes are the authors' six-letter codes; 'PYlOLI' is merged into PYLOLI and the two spellings of 'Native tadpole' into NATTAD (order Anura); ICTSPP is an unidentified Ictalurus. 'Sunset' (2017) is 'Sunset Canal' in the area file and is merged. The survey set is the area file's 119 site-years less the two Black Canyon years, plus four 2014 site-years with catch but no area. Every recorded taxon has a row at every survey, so a non-fish taxon (bullfrog, crayfish, tadpoles) has zeros where it was not caught; whether those were always recorded is not stated.",
+  "summary": {
+    "n_rows": 3146,
+    "n_units": 16,
+    "n_taxa": 26,
+    "n_periods": 10,
+    "n_occasions": 1,
+    "n_surveys": 121,
+    "y_values": "0-1746 (196 distinct)",
+    "prop_zero": 0.682,
+    "n_traps": 1,
+    "n_zero": 2147,
+    "n_positive": 999,
+    "n_units_detected": 16,
+    "max_y": 1746
+  },
+  "sampleFloor": "below (16 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "date", "obs_length_m", "obs_width_m", "obs_area_m2", "obs_n_days", "obs_n_passes", "obs_gear"],
+  "coreMd5": "5116b901547844213615d28021bf022f",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "period_year", "period_month"],
+      "md5": "5e3dcf035e7407e31b71b69ad404ccc0"
+    },
+    "taxa": {
+      "rows": 26,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "15b2aec6960359652ce2d66b2b7a6f88"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/pilger_2022_gila_fish_count.R",
+  "buildDate": "2026-11-05"
+}

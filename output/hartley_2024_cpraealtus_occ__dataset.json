@@ -38,10 +38,27 @@
     "n_occasions": 8,
     "n_surveys": 1404,
     "y_values": "0,1",
-    "prop_zero": 0.901
+    "prop_zero": 0.901,
+    "n_traps": 1,
+    "n_zero": 1265,
+    "n_positive": 139,
+    "n_units_detected": 44,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site_id", "unit_elevation_m", "unit_burnt_2019_20", "unit_grazing_index", "obs_time_hhmm", "obs_air_temp_c", "obs_tiles_available", "obs_tile_temp_mean_c", "obs_temp_diff", "obs_survey_no"],
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "season_code", "season_label", "start", "end", "n_units", "n_surveys"],
+      "md5": "cb6643b588648a26ab787c19f8516414"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_conservationStatus"],
+      "md5": "9905a0abedeacba8f341b41753ff110b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hartley_2024_cpraealtus_occ.R",

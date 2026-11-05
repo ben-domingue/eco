@@ -1,11 +1,12 @@
 ---
 title: "Data notes"
+include-after-body: _search.html
 ---
 
 ```{r}
 #| label: load
 notes <- read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character")
-notes <- notes[order(notes$table, notes$date), ]
+notes <- notes[order(tolower(notes$table), notes$date, method = "radix"), ]
 ```
 
 Some things a user of a table should know cannot be expressed by the table
@@ -13,18 +14,37 @@ itself: a covariate the source derived from the same detections and eco did not
 ship, coordinates generalised for a threatened species, how a loss on capture is
 encoded. eco reproduces its sources as released ([Corrections](corrections.qmd),
 rule 6), so these are recorded as notes rather than fixed. Each note also appears
-on the table's card on the [Data](data.qmd) page. A note is not a defect report;
-released fixes are on [Corrections](corrections.qmd).
+on the table's entry on [Browse the tables](data.qmd).
+
+**What is listed here.** A note records something about a table that a careful
+user would want before fitting a model to it and could not learn from the
+columns. It is not a defect report: a table that does not match its source is
+corrected in a new release, and released fixes are listed on
+[Corrections](corrections.qmd). A table missing from this list has no note; that
+does not mean its source is free of caveats, which the script that built it
+states in its header.
 
 The file is [`releases/data_notes.csv`](https://github.com/ben-domingue/eco/blob/main/releases/data_notes.csv),
-appended by hand.
+appended by hand. `r nrow(notes)` notes cover `r length(unique(notes$table))`
+tables. Start typing to search.
+
+```{=html}
+<input type="text" id="noteSearch" placeholder="Search notes..." oninput="filterRows('noteSearch', 'notes-table', 'note-count', 'note')" class="eco-search">
+<p id="note-count" class="eco-search-count"></p>
+```
+
+::: {#notes-table .eco-searchable}
 
 ```{r}
 #| label: notes
 #| output: asis
-for (i in seq_len(nrow(notes))) {
-  r <- notes[i, ]
-  issue <- if (nzchar(r$issue)) sprintf(" ([%s](https://github.com/ben-domingue/eco/issues/%s))", r$issue, sub("#", "", r$issue)) else ""
-  cat(sprintf("### [`%s`](data.qmd#%s)\n\n%s%s *(%s)*\n\n", r$table, r$table, r$note, issue, r$date))
-}
+cell <- function(x) gsub("|", "\\|", gsub("\n", " ", x), fixed = TRUE)
+issue <- ifelse(grepl("^#[0-9]+$", notes$issue),
+                sprintf("[%s](https://github.com/ben-domingue/eco/issues/%s)", notes$issue, sub("#", "", notes$issue)),
+                notes$issue)
+cat("| Table | Note | Issue | Added |\n|---|---|---|---|\n")
+cat(sprintf("| [`%s`](data.qmd#%s) | %s | %s | %s |", notes$table, notes$table, cell(notes$note), issue, notes$date), sep = "\n")
+cat("\n")
 ```
+
+:::

@@ -45,10 +45,27 @@
     "n_occasions": 3,
     "n_surveys": 590520,
     "y_values": "0,1",
-    "prop_zero": 0.952
+    "prop_zero": 0.952,
+    "n_traps": 1,
+    "n_zero": 562267,
+    "n_positive": 28253,
+    "n_units_detected": 7845,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "unit_banded_year", "unit_banded_age_class", "unit_band_code", "unit_gosling_tarsus_mm"],
+  "sideTables": {
+    "periods": {
+      "rows": 27,
+      "columns": ["period", "year", "n_occasions", "n_detected", "note"],
+      "md5": "02017d89fc6df346315e85dcb1e141d4"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_subspecies", "taxon_iucnCategory"],
+      "md5": "6320bef542c12fdc567374ce09f4b648"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/riecke_2018_tutakoke_brant_rd.R",

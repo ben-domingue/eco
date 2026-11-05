@@ -1,0 +1,66 @@
+{
+  "table": "frishkoff_2014_costarica_birds_binom",
+  "title": "Bird detections on 44 transects in forest, diversified and intensive farmland across four regions of Costa Rica, dry and wet seasons 2001-2012: surveys with a detection out of three (binomial counts)",
+  "creator": "Frishkoff, Luke O.; Karp, Daniel S.; M'Gonigle, Leithen K.; Mendenhall, Chase D.; Zook, Jim; Kremen, Claire; Hadly, Elizabeth A.; Daily, Gretchen C.",
+  "pubDate": "2014",
+  "doi": "10.5061/dryad.fv921",
+  "sourceURL": "https://doi.org/10.5061/dryad.fv921",
+  "citation": "Frishkoff, L. O., Karp, D. S., M'Gonigle, L. K., Mendenhall, C. D., Zook, J., Kremen, C., Hadly, E. A., & Daily, G. C. (2014). Data from: Loss of avian phylogenetic diversity in neotropical agricultural systems [Data set]. Dryad. https://doi.org/10.5061/dryad.fv921",
+  "paperDOI": "10.1126/science.1254610",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Twelve years of bird surveys behind Frishkoff et al. (2014, Science): 44 transects in forest reserves, diversified agriculture and intensive monoculture in four regions of Costa Rica, each surveyed three times in the dry season and three times in the wet season of every year 2001-2012. The deposit gives, for each transect, year, season and detected species, the number of the three surveys on which the species was detected. The table is one row per transect x season x species with y = surveys with a detection and obs_trials = 3 (binomial_count, ruling #34); species not listed for a surveyed transect-season are explicit zeros. These are the long-term surveys later analysed by Hendershot et al. (2020, Nature).",
+  "samplingProtocol": "Fixed transects surveyed three times per season (dry and wet) each year 2001-2012 by trained observers recording every bird seen or heard; the authors collapsed each season's three surveys to the number with a detection per species (Frishkoff et al. 2014, Science 345:1343).",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "A transect x year x season is a survey iff the deposit has at least one detection row for it (1,048 of 1,056 cells); three bird surveys of a transect never record nothing, and the eight absent cells are all wet-season cells of the three H-SI transects. Within a surveyed cell an unlisted species is y = 0.",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "closureNote": "period = one season of one year (three surveys, collapsed by the authors); occupancy may change between seasons and years",
+  "geographicCoverage": "Costa Rica, four regions coded GU, LC, PV and SI (cluster_id); no coordinates deposited",
+  "temporalCoverage": "2001/2012",
+  "notShipped": {
+    "Empidonax traillii": "two rows in six transect-season cells (two source codes lumped onto one name); the union's detections out of 3 cannot be recovered, so the taxon is not shipped"
+  },
+  "notes": "taxon codes are Genus_epithet (Genus_sp for the four genus-only records) from the deposited names (2014 taxonomy; __taxa carries the GBIF accepted name where the backbone treats the name as a synonym). Transect H-, I- and L- prefixes are the authors' agricultural transect codes; unit_landuse is the deposited LUI. Seasons are ordered dry before wet within a calendar year.",
+  "summary": {
+    "n_rows": 513520,
+    "n_units": 44,
+    "n_taxa": 490,
+    "n_periods": 24,
+    "n_occasions": 1,
+    "n_surveys": 1048,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.921,
+    "n_traps": 1,
+    "n_zero": 472827,
+    "n_positive": 40693,
+    "n_units_detected": 44,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_landuse", "obs_trials"],
+  "coreMd5": "55bfcd66dbec9ae945b0e6b50cd6957c",
+  "sideTables": {
+    "periods": {
+      "rows": 24,
+      "columns": ["period", "period_year", "period_season", "period_n_transects"],
+      "md5": "b41eadc53956fe53596c55fc00ebd3f9"
+    },
+    "taxa": {
+      "rows": 490,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "0fe6b2d7d0eff3ccd302a853a9ab9ea2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/frishkoff_2014_costarica_birds_binom.R",
+  "buildDate": "2026-11-04"
+}

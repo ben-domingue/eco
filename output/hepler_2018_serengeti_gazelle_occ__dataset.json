@@ -47,10 +47,22 @@
     "n_occasions": 46,
     "n_surveys": 5669,
     "y_values": "0,1",
-    "prop_zero": 0.845
+    "prop_zero": 0.845,
+    "n_traps": 1,
+    "n_zero": 4791,
+    "n_positive": 878,
+    "n_units_detected": 140,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_river_distance_m", "unit_sparse_tree", "unit_moderate_tree", "unit_dense_tree", "unit_forest", "unit_decimalLatitude", "unit_decimalLongitude", "obs_camera_days", "obs_ndvi", "obs_rain_gt100mm", "obs_fire"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "097758f065cd93c1543b9153ad90c28d"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hepler_2018_serengeti_gazelle_occ.R",

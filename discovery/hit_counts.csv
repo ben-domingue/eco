@@ -1,92 +1,1586 @@
-source,query,hit_count,status
-dataverse,detection history,3,ok
-dataverse,occupancy model,10,ok
-dataverse,capture history,5,ok
-dataverse,capture-recapture,14,ok
-dataverse,N-mixture,0,ok
-dataverse,repeated counts,1,ok
-dataverse,point count,24,ok
-dataverse,camera trap,57,ok
-dataverse,detection/non-detection,1,ok
-dataverse,encounter history,2,ok
-zenodo,detection history,18,ok
-zenodo,occupancy model,140,ok
-zenodo,capture history,39,ok
-zenodo,capture-recapture,238,ok
-zenodo,N-mixture,82,ok
-zenodo,repeated counts,5,ok
-zenodo,point count,92,ok
-zenodo,camera trap,391,ok
-zenodo,detection/non-detection,37,ok
-zenodo,encounter history,21,ok
-dryad,detection history,1063,ok
-dryad,occupancy model,606,ok
-dryad,capture history,533,ok
-dryad,capture-recapture,401,ok
-dryad,N-mixture,132,ok
-dryad,repeated counts,76,ok
-dryad,point count,188,ok
-dryad,camera trap,482,ok
-dryad,detection/non-detection,1254,ok
-dryad,encounter history,134,ok
-figshare,detection history,20,ok
-figshare,occupancy model,20,ok
-figshare,capture history,20,ok
-figshare,capture-recapture,20,ok
-figshare,N-mixture,20,ok
-figshare,repeated counts,20,ok
-figshare,point count,20,ok
-figshare,camera trap,20,ok
-figshare,detection/non-detection,20,ok
-figshare,encounter history,20,ok
-osf,detection history,0,ok
-osf,occupancy model,2,ok
-osf,capture history,0,ok
-osf,capture-recapture,6,ok
-osf,N-mixture,0,ok
-osf,repeated counts,0,ok
-osf,point count,2,ok
-osf,camera trap,21,ok
-osf,detection/non-detection,0,ok
-osf,encounter history,0,ok
-edi,detection history,0,ok
-edi,occupancy model,12,ok
-edi,capture history,1,ok
-edi,capture-recapture,1,ok
-edi,N-mixture,0,ok
-edi,repeated counts,0,ok
-edi,point count,10,ok
-edi,camera trap,2,ok
-edi,detection/non-detection,0,ok
-edi,encounter history,0,ok
-dataone,detection history,11,ok
-dataone,occupancy model,117,ok
-dataone,capture history,30,ok
-dataone,capture-recapture,188,ok
-dataone,N-mixture,50,ok
-dataone,repeated counts,3,ok
-dataone,point count,357,ok
-dataone,camera trap,335,ok
-dataone,detection/non-detection,20,ok
-dataone,encounter history,14,ok
-sciencebase,detection history,3,ok
-sciencebase,occupancy model,29,ok
-sciencebase,capture history,79,ok
-sciencebase,capture-recapture,99,ok
-sciencebase,N-mixture,3,ok
-sciencebase,repeated counts,0,ok
-sciencebase,point count,21,ok
-sciencebase,camera trap,13,ok
-sciencebase,detection/non-detection,11,ok
-sciencebase,encounter history,5,ok
-gbif_sampling_event,detection history,15,ok
-gbif_sampling_event,occupancy model,0,ok
-gbif_sampling_event,capture history,12,ok
-gbif_sampling_event,capture-recapture,59,ok
-gbif_sampling_event,N-mixture,18,ok
-gbif_sampling_event,repeated counts,90,ok
-gbif_sampling_event,point count,103,ok
-gbif_sampling_event,camera trap,22,ok
-gbif_sampling_event,detection/non-detection,57,ok
-gbif_sampling_event,encounter history,0,ok
-neon,"(product catalogue, organismal products)",26,ok
+source,query,query_kind,hit_count,kept,status
+dataverse,"""detection history""",term,3,3,ok
+dataverse,"""occupancy model""",term,10,10,ok
+dataverse,"""capture history""",term,5,5,ok
+dataverse,"""capture-recapture""",term,14,14,ok
+dataverse,"""N-mixture""",term,0,0,ok
+dataverse,"""repeated counts""",term,1,1,ok
+dataverse,"""point count""",term,24,24,ok
+dataverse,"""camera trap""",term,57,57,ok
+dataverse,"""detection/non-detection""",term,1,1,ok
+dataverse,"""encounter history""",term,2,2,ok
+zenodo,"""detection history""",term,18,18,ok
+zenodo,"""occupancy model""",term,140,140,ok
+zenodo,"""capture history""",term,39,39,ok
+zenodo,"""capture-recapture""",term,238,238,ok
+zenodo,"""N-mixture""",term,82,82,ok
+zenodo,"""repeated counts""",term,5,5,ok
+zenodo,"""point count""",term,92,92,ok
+zenodo,"""camera trap""",term,391,391,ok
+zenodo,"""detection/non-detection""",term,37,37,ok
+zenodo,"""encounter history""",term,21,21,ok
+dryad,detection history,term,1064,1000,ok
+dryad,occupancy model,term,606,606,ok
+dryad,capture history,term,533,533,ok
+dryad,capture-recapture,term,402,402,ok
+dryad,N-mixture,term,132,132,ok
+dryad,repeated counts,term,76,76,ok
+dryad,point count,term,188,188,ok
+dryad,camera trap,term,483,483,ok
+dryad,detection/non-detection,term,1254,1000,ok
+dryad,encounter history,term,134,134,ok
+figshare,"""detection history""",term,41,41,ok
+figshare,"""occupancy model""",term,412,412,ok
+figshare,"""capture history""",term,67,67,ok
+figshare,"""capture-recapture""",term,489,489,ok
+figshare,"""N-mixture""",term,55,55,ok
+figshare,"""repeated counts""",term,20,20,ok
+figshare,"""point count""",term,276,276,ok
+figshare,"""camera trap""",term,794,794,ok
+figshare,"""detection/non-detection""",term,49,49,ok
+figshare,"""encounter history""",term,33,33,ok
+osf,detection history,term,0,0,ok
+osf,occupancy model,term,2,2,ok
+osf,capture history,term,0,0,ok
+osf,capture-recapture,term,6,6,ok
+osf,N-mixture,term,0,0,ok
+osf,repeated counts,term,0,0,ok
+osf,point count,term,2,2,ok
+osf,camera trap,term,21,21,ok
+osf,detection/non-detection,term,0,0,ok
+osf,encounter history,term,0,0,ok
+edi,detection history,term,0,0,ok
+edi,occupancy model,term,12,12,ok
+edi,capture history,term,1,1,ok
+edi,capture-recapture,term,1,1,ok
+edi,N-mixture,term,0,0,ok
+edi,repeated counts,term,0,0,ok
+edi,point count,term,10,10,ok
+edi,camera trap,term,2,2,ok
+edi,detection/non-detection,term,0,0,ok
+edi,encounter history,term,0,0,ok
+dataone,detection history,term,11,11,ok
+dataone,occupancy model,term,117,117,ok
+dataone,capture history,term,30,30,ok
+dataone,capture-recapture,term,188,188,ok
+dataone,N-mixture,term,50,50,ok
+dataone,repeated counts,term,3,3,ok
+dataone,point count,term,357,357,ok
+dataone,camera trap,term,335,335,ok
+dataone,detection/non-detection,term,20,20,ok
+dataone,encounter history,term,14,14,ok
+sciencebase,detection history,term,3,3,ok
+sciencebase,occupancy model,term,29,29,ok
+sciencebase,capture history,term,79,79,ok
+sciencebase,capture-recapture,term,99,99,ok
+sciencebase,N-mixture,term,3,3,ok
+sciencebase,repeated counts,term,0,0,ok
+sciencebase,point count,term,21,21,ok
+sciencebase,camera trap,term,13,13,ok
+sciencebase,detection/non-detection,term,11,11,ok
+sciencebase,encounter history,term,5,5,ok
+gbif_sampling_event,detection history,term,15,15,ok
+gbif_sampling_event,occupancy model,term,0,0,ok
+gbif_sampling_event,capture history,term,12,12,ok
+gbif_sampling_event,capture-recapture,term,59,59,ok
+gbif_sampling_event,N-mixture,term,18,18,ok
+gbif_sampling_event,repeated counts,term,90,90,ok
+gbif_sampling_event,point count,term,103,103,ok
+gbif_sampling_event,camera trap,term,22,22,ok
+gbif_sampling_event,detection/non-detection,term,57,57,ok
+gbif_sampling_event,encounter history,term,0,0,ok
+dryad,Luke A'Bear,author,2,2,ok
+dryad,Per Aass,author,1,1,ok
+dryad,Jennifer Adams,author,41,41,ok
+dryad,Brett Addis,author,3,3,ok
+dryad,Michel Ahizi,author,1,1,ok
+dryad,Jorge Ahumada,author,6,6,ok
+dryad,Michael Allen,author,55,55,ok
+dryad,Res Altwegg,author,13,13,ok
+dryad,Sergio Ancona,author,4,4,ok
+dryad,David Anderson,author,74,74,ok
+dryad,T. Anderson,author,63,63,ok
+dryad,Kunal Angrish,author,1,1,ok
+dryad,Jennifer Archambault,author,1,1,ok
+dryad,Joshua Armstrong,author,3,3,ok
+dryad,Monica Arso Civil,author,0,0,ok
+dryad,Jens Astrom,author,0,0,ok
+dryad,Htet Aung,author,1,1,ok
+dryad,Zarni Aung,author,1,1,ok
+dryad,Ines Aust,author,1,1,ok
+dryad,Affef Baaloudj,author,0,0,ok
+dryad,Claus Baessler,author,0,0,ok
+dryad,Thomas Bamann,author,1,1,ok
+dryad,Arjun Banik,author,1,1,ok
+dryad,José Barea-Azcón,author,2,2,ok
+dryad,Barbara Barham,author,3,3,ok
+dryad,Peter Barham,author,3,3,ok
+dryad,Jay Barlow,author,3,3,ok
+dryad,Christopher Barton,author,6,6,ok
+dryad,Ashish Bashyal,author,1,1,ok
+dryad,Arthur Bayle,author,4,4,ok
+dryad,Carlos Bedson,author,2,2,ok
+dryad,Sara Beery,author,0,0,ok
+dryad,Lars Bejder,author,15,15,ok
+dryad,Dubi Benyamini,author,1,1,ok
+dryad,Ake Berg,author,1,1,ok
+dryad,Ralf Bertscheit,author,1,1,ok
+dryad,Martine Berube,author,0,0,ok
+dryad,Marthan Bester,author,2,2,ok
+dryad,Ankita Bhattacharya,author,2,2,ok
+dryad,Santosh Bhattarai,author,2,2,ok
+dryad,Maria Bielsa,author,1,1,ok
+dryad,Marjorie Bison,author,2,2,ok
+dryad,Rakel Blaalid,author,6,6,ok
+dryad,Wade Blanchard,author,10,10,ok
+dryad,Erik Blomberg,author,9,9,ok
+dryad,Judson Blount,author,0,0,ok
+dryad,Fanny Boeraeve,author,0,0,ok
+dryad,Bazartseren Boldgiv,author,8,8,ok
+dryad,Simon Bonner,author,8,8,ok
+dryad,Michelle Boone,author,5,5,ok
+dryad,David Borchers,author,5,5,ok
+dryad,Tom Bradfer-Lawrence,author,1,1,ok
+dryad,Adrianne Brand,author,3,3,ok
+dryad,Shannon Brewer,author,1,1,ok
+dryad,Dimitri Brosens,author,0,0,ok
+dryad,William Brown,author,50,50,ok
+dryad,Alexis Bruce,author,6,6,ok
+dryad,Daniela Budach,author,1,1,ok
+dryad,Joanna Burgar,author,5,5,ok
+dryad,Derek Burkholder,author,1,1,ok
+dryad,Dawn Burnham,author,3,3,ok
+dryad,Kenneth Burnham,author,0,0,ok
+dryad,April Burt,author,4,4,ok
+dryad,A. Burton,author,89,89,ok
+dryad,Harry Burton,author,1,1,ok
+dryad,UiT COAT,author,0,0,ok
+dryad,Mar Cabeza,author,5,5,ok
+dryad,Robert Cannings,author,968,100,ok
+dryad,Bradley Carlson,author,5,5,ok
+dryad,Alain Carpentier,author,1,1,ok
+dryad,Kristen Cecala,author,2,2,ok
+dryad,Delphine Chabanne,author,2,2,ok
+dryad,Thierry Chambert,author,2,2,ok
+dryad,Richard Chandler,author,11,11,ok
+dryad,Richard Chandler,author,11,11,ok
+dryad,Nilanjan Chatterjee,author,2,2,ok
+dryad,Barbara Cheney,author,9,9,ok
+dryad,Karen Chong-Seng,author,0,0,ok
+dryad,Mark Chynoweth,author,0,0,ok
+dryad,Alice Classen,author,5,5,ok
+dryad,Natalie Cleavitt,author,1,1,ok
+dryad,Nick Clemann,author,3,3,ok
+dryad,Hannah Clipp,author,3,3,ok
+dryad,Jean Clobert,author,16,16,ok
+dryad,Emrah Coban,author,0,0,ok
+dryad,Michael Conroy,author,4,4,ok
+dryad,Sarah Cooke,author,17,17,ok
+dryad,Michael Cove,author,7,7,ok
+dryad,Laura Cowen,author,2,2,ok
+dryad,John Cox,author,26,26,ok
+dryad,Andrea Currylow,author,1,1,ok
+dryad,K. Curtis,author,10,10,ok
+dryad,Goncalo Curveira-Santos,author,1,1,ok
+dryad,Samuel Cushman,author,14,14,ok
+dryad,Gretchen Daily,author,10,10,ok
+dryad,Marie Davey,author,12,12,ok
+dryad,Amy Davis,author,22,22,ok
+dryad,Mark Davis,author,70,70,ok
+dryad,Carol Dawson,author,2,2,ok
+dryad,Geert De Knijf,author,0,0,ok
+dryad,Brett DeGregorio,author,4,4,ok
+dryad,Michelle DePrenger-Levin,author,2,2,ok
+dryad,Stephen DeStefano,author,2,2,ok
+dryad,Azani Dede,author,1,1,ok
+dryad,Julien Delarue,author,1,1,ok
+dryad,Anne Delestrade,author,2,2,ok
+dryad,Peter Desmet,author,0,0,ok
+dryad,Mark Dettling,author,1,1,ok
+dryad,Jesus Diaz,author,1,1,ok
+dryad,Christopher Dickman,author,10,10,ok
+dryad,Frank Dillon,author,2,2,ok
+dryad,Rodolfo Dirzo,author,18,18,ok
+dryad,Greg Distiller,author,2,2,ok
+dryad,Andrew Dobson,author,10,10,ok
+dryad,Kevin Donmoyer,author,1,1,ok
+dryad,Jeffrey Doser,author,2,2,ok
+dryad,Matthew Dougherty,author,2,2,ok
+dryad,Sarah Doyle,author,1,1,ok
+dryad,Andrea Drayer,author,2,2,ok
+dryad,Hugh Drummond,author,14,14,ok
+dryad,Marc Dufrêne,author,0,0,ok
+dryad,Gates Dupont,author,0,0,ok
+dryad,Kristen Dybala,author,3,3,ok
+dryad,Jörg Döring,author,1,1,ok
+dryad,Carl Edelstam,author,1,1,ok
+dryad,Scott Egan,author,33,33,ok
+dryad,Johan Elmberg,author,10,10,ok
+dryad,Meaghan Emory,author,0,0,ok
+dryad,Anders Endrestol,author,0,0,ok
+dryad,Willow English,author,1,1,ok
+dryad,Robert Erhardt,author,3,3,ok
+dryad,Daniel Erickson,author,4,4,ok
+dryad,Todd Esque,author,8,8,ok
+dryad,Bryn Evans,author,0,0,ok
+dryad,Henna Fabritius,author,2,2,ok
+dryad,Emilie Fairet,author,1,1,ok
+dryad,Erin Falcone,author,7,7,ok
+dryad,Matthew Farnsworth,author,2,2,ok
+dryad,Jia-Wei Feng,author,5,5,ok
+dryad,Paige Ferguson,author,2,2,ok
+dryad,Adrian Fernandez,author,1,1,ok
+dryad,Mason Fidino,author,8,8,ok
+dryad,Rachel Field,author,79,79,ok
+dryad,Tom Finch,author,6,6,ok
+dryad,Jason Fisher,author,10,10,ok
+dryad,Ian Fiske,author,0,0,ok
+dryad,Frode Fossoy,author,1,1,ok
+dryad,Rebecca Foster,author,13,13,ok
+dryad,Sara Freytag,author,1,1,ok
+dryad,Nicolas Friess,author,4,4,ok
+dryad,Emmanuel Frimpong,author,3,3,ok
+dryad,Luke Frishkoff,author,11,11,ok
+dryad,Sarah Fritts,author,0,0,ok
+dryad,Keiichi Fukaya,author,4,4,ok
+dryad,Colin Gallagher,author,6,6,ok
+dryad,Nicolas Galvez,author,0,0,ok
+dryad,Crysta Gantz,author,1,1,ok
+dryad,Thomas Gardali,author,2,2,ok
+dryad,Beth Gardner,author,12,12,ok
+dryad,Kirk Gastrich,author,3,3,ok
+dryad,Jianping Ge,author,2,2,ok
+dryad,Gijs Gerrits,author,0,0,ok
+dryad,Daniel Gibson,author,19,19,ok
+dryad,Laura Gigliotti,author,5,5,ok
+dryad,Scott Gilliland,author,5,5,ok
+dryad,Brad Glorioso,author,3,3,ok
+dryad,Jostein Gohli,author,6,6,ok
+dryad,Caren Goldberg,author,11,11,ok
+dryad,Ross Goldingay,author,5,5,ok
+dryad,Rajesh Gopal,author,1,1,ok
+dryad,Thomas Gottschalk,author,3,3,ok
+dryad,Luisa Granados-Hernandez,author,0,0,ok
+dryad,Thomas Grant III,author,2,2,ok
+dryad,Evan Grant,author,34,34,ok
+dryad,Claudio Gratton,author,13,13,ok
+dryad,Jeff Graves,author,3,3,ok
+dryad,Austin Green,author,7,7,ok
+dryad,Martin Green,author,51,51,ok
+dryad,Jennifer Grigg,author,2,2,ok
+dryad,Bilal Habib,author,4,4,ok
+dryad,Elizabeth Hadly,author,8,8,ok
+dryad,Mattias Hagman,author,4,4,ok
+dryad,Jeffrey Hall,author,16,16,ok
+dryad,Andrew Hamer,author,5,5,ok
+dryad,Christopher Hamm,author,7,7,ok
+dryad,Philip Hammond,author,7,7,ok
+dryad,Bart Harmsen,author,5,5,ok
+dryad,Nyeema Harris,author,7,7,ok
+dryad,Renée Hartley,author,2,2,ok
+dryad,Kelly Hastings,author,6,6,ok
+dryad,Philip Haupt,author,0,0,ok
+dryad,Mark Hebblewhite,author,36,36,ok
+dryad,Ola Hegge,author,1,1,ok
+dryad,Hanne Hegre,author,2,2,ok
+dryad,Michael Heithaus,author,9,9,ok
+dryad,J. Hendershot,author,0,0,ok
+dryad,Dominic Henry,author,47,47,ok
+dryad,Jeffrey Hepinstall-Cymerman,author,3,3,ok
+dryad,Staci Hepler,author,3,3,ok
+dryad,Gabriel Hermann,author,2,2,ok
+dryad,Mariana Hernandez-Apolinar,author,0,0,ok
+dryad,Karsten Heuer,author,2,2,ok
+dryad,Eric Hileman,author,2,2,ok
+dryad,Mark Hindell,author,8,8,ok
+dryad,Heiko Hinneberg,author,2,2,ok
+dryad,Dexter Hodder,author,2,2,ok
+dryad,Bernhard Hoiss,author,0,0,ok
+dryad,Matthijs Hollanders,author,2,2,ok
+dryad,Mevin Hooten,author,9,9,ok
+dryad,Sebastian Hopfenmueller,author,0,0,ok
+dryad,Julia Horanyi,author,0,0,ok
+dryad,Kimberly Howland,author,9,9,ok
+dryad,Saw Htun,author,2,2,ok
+dryad,Marie-Anne Hudson,author,1,1,ok
+dryad,W. Humphries,author,10,10,ok
+dryad,Diana Humple,author,2,2,ok
+dryad,Barb Hunt,author,1,1,ok
+dryad,Jacob Hutton,author,1,1,ok
+dryad,Trevor Hébert,author,0,0,ok
+dryad,Jose Infante,author,4,4,ok
+dryad,David Irons,author,22,22,ok
+dryad,Valentina Islas-Villanueva,author,2,2,ok
+dryad,Hanna Jackson,author,3,3,ok
+dryad,Rannveig Jacobsen,author,4,4,ok
+dryad,Vincent Janik,author,5,5,ok
+dryad,Devcharan Jathanna,author,2,2,ok
+dryad,Lauri Jemison,author,3,3,ok
+dryad,Yadvendradev Jhala,author,7,7,ok
+dryad,Jaime Jimenez,author,1,1,ok
+dryad,Chris Johnson,author,26,26,ok
+dryad,Sarah Johnson,author,46,46,ok
+dryad,Annelie Jönsson,author,0,0,ok
+dryad,Taku Kadoya,author,5,5,ok
+dryad,Yoichiro Kanno,author,9,9,ok
+dryad,K. Karanth,author,4,4,ok
+dryad,Daniel Karp,author,25,25,ok
+dryad,Zaneta Kaszta,author,3,3,ok
+dryad,Roland Kays,author,26,26,ok
+dryad,Erin Keene,author,3,3,ok
+dryad,Marcella Kelly,author,8,8,ok
+dryad,Janika Kerner,author,1,1,ok
+dryad,Marc Kery,author,2,2,ok
+dryad,Rassim Khelifa,author,5,5,ok
+dryad,Seoghyun Kim,author,3,3,ok
+dryad,David King,author,51,51,ok
+dryad,Eivind Kleiven,author,3,3,ok
+dryad,Jonas Knape,author,12,12,ok
+dryad,Bram Koese,author,1,1,ok
+dryad,Anna Koester,author,0,0,ok
+dryad,Lisa Koetke,author,2,2,ok
+dryad,Natsuko Kondo,author,2,2,ok
+dryad,N'Dri Kouamé,author,0,0,ok
+dryad,Christine Kouman,author,1,1,ok
+dryad,N. Kumar,author,36,36,ok
+dryad,Josip Kusak,author,10,10,ok
+dryad,Pyae Kyaw,author,1,1,ok
+dryad,Simon Kärvemo,author,6,6,ok
+dryad,Marc Kéry,author,9,9,ok
+dryad,Kevin Lafferty,author,18,18,ok
+dryad,Babu Lamichhane,author,7,7,ok
+dryad,Saneer Lamichhane,author,5,5,ok
+dryad,Diane Larson,author,0,0,ok
+dryad,Eric Larson,author,9,9,ok
+dryad,Jennifer Larson,author,2,2,ok
+dryad,Billie Lazenby,author,2,2,ok
+dryad,Ellen Lea,author,1,1,ok
+dryad,Alan Leach,author,10,10,ok
+dryad,Isabelle Lebeuf-Taylor,author,1,1,ok
+dryad,Jean-Dominique Lebreton,author,2,2,ok
+dryad,Hannes Ledegen,author,0,0,ok
+dryad,Alan Lee,author,11,11,ok
+dryad,Elizabeth Lehrer,author,4,4,ok
+dryad,Joona Lehtomaki,author,0,0,ok
+dryad,Freddie Leith,author,1,1,ok
+dryad,Julia Leone,author,1,1,ok
+dryad,Jesse Lewis,author,5,5,ok
+dryad,Hailong Li,author,3,3,ok
+dryad,David Lindenmayer,author,45,45,ok
+dryad,Åke Lindström,author,2,2,ok
+dryad,Julie Lockwood,author,8,8,ok
+dryad,David Lodge,author,10,10,ok
+dryad,Cynthia Loftin,author,7,7,ok
+dryad,Katrin Ludynia,author,3,3,ok
+dryad,Paul Lukacs,author,10,10,ok
+dryad,Espen Lund,author,1,1,ok
+dryad,Michael Lutmerding,author,0,0,ok
+dryad,Ryan Lynch,author,5,5,ok
+dryad,Leithen M'Gonigle,author,13,13,ok
+dryad,Darryl MacKenzie,author,2,2,ok
+dryad,David Macdonald,author,59,59,ok
+dryad,Seth Magle,author,9,9,ok
+dryad,Hayat Mahdjoub,author,2,2,ok
+dryad,Fabienne Maihoff,author,2,2,ok
+dryad,Markus Majaneva,author,2,2,ok
+dryad,Rumaan Malhotra,author,4,4,ok
+dryad,Rene Maragliano,author,0,0,ok
+dryad,Eric Margenau,author,1,1,ok
+dryad,Gregor Markl,author,2,2,ok
+dryad,Jorge Martinez-Villegas,author,0,0,ok
+dryad,Carlos Martorell,author,6,6,ok
+dryad,Gilbert Marzolin,author,1,1,ok
+dryad,Shin-ichiro Matsuzaki,author,5,5,ok
+dryad,Frank Mazzotti,author,6,6,ok
+dryad,Thomas McCarthy,author,7,7,ok
+dryad,Shawn McCracken,author,0,0,ok
+dryad,Cuan McGeorge,author,3,3,ok
+dryad,Darren McHugh,author,0,0,ok
+dryad,Shawn McKinney,author,4,4,ok
+dryad,Aly McKnight,author,3,3,ok
+dryad,Ryan McLeod,author,2,2,ok
+dryad,Clive McMahon,author,10,10,ok
+dryad,Darin McNeil,author,14,14,ok
+dryad,J. McNutt,author,9,9,ok
+dryad,William McShea,author,14,14,ok
+dryad,Leah McTigue,author,4,4,ok
+dryad,Andile Mdluli,author,1,1,ok
+dryad,Dharamveer Meena,author,1,1,ok
+dryad,Chase Mendenhall,author,8,8,ok
+dryad,David Miller,author,104,100,ok
+dryad,Melissa Miller,author,16,16,ok
+dryad,Ryan Miller,author,29,29,ok
+dryad,Charudutt Mishra,author,10,10,ok
+dryad,Kyaw Moe,author,1,1,ok
+dryad,S. Moe,author,6,6,ok
+dryad,Robert Mollenhauer,author,0,0,ok
+dryad,Diego Montalti,author,1,1,ok
+dryad,Nicholas Mooney,author,2,2,ok
+dryad,Jeffrey Moore,author,18,18,ok
+dryad,David Moretti,author,8,8,ok
+dryad,Michael Moxcey,author,1,1,ok
+dryad,Joerg Mueller,author,2,2,ok
+dryad,Kevin Mulder,author,2,2,ok
+dryad,Brenee' Muncy,author,2,2,ok
+dryad,Ninad Mungi,author,2,2,ok
+dryad,Sean Murphy,author,18,18,ok
+dryad,Sean Murphy,author,18,18,ok
+dryad,Maureen Murray,author,7,7,ok
+dryad,Saman Muthukumarana,author,1,1,ok
+dryad,Khin Myo,author,2,2,ok
+dryad,Okka Myo,author,1,1,ok
+dryad,Hla Naing,author,2,2,ok
+dryad,Chloe Nater,author,0,0,ok
+dryad,Saw Nay,author,2,2,ok
+dryad,Johann Neumayer,author,0,0,ok
+dryad,James Nichols,author,27,27,ok
+dryad,Jana Niedermayer,author,1,1,ok
+dryad,Anne Nielsen,author,4,4,ok
+dryad,Hutton Noth,author,1,1,ok
+dryad,Robert Nowicki,author,5,5,ok
+dryad,Karen Oberhauser,author,1,1,ok
+dryad,Debora Obrist,author,0,0,ok
+dryad,Anders Often,author,44,44,ok
+dryad,W. Oosthuizen,author,3,3,ok
+dryad,Allassane Ouattara,author,1,1,ok
+dryad,Otso Ovaskainen,author,32,32,ok
+dryad,Krishna Pacifici,author,3,3,ok
+dryad,Facundo Palacio,author,3,3,ok
+dryad,Linda Palmheden,author,0,0,ok
+dryad,Per Palsboll,author,1,1,ok
+dryad,Jonathan Parkyn,author,1,1,ok
+dryad,Nola Parsons,author,1,1,ok
+dryad,Tomas Part,author,19,19,ok
+dryad,Guy Pe'er,author,4,4,ok
+dryad,Jonathan Peake,author,38,38,ok
+dryad,Israel Peer,author,0,0,ok
+dryad,Grey Pendleton,author,5,5,ok
+dryad,Nora Pennarola,author,0,0,ok
+dryad,Kim Pepin,author,15,15,ok
+dryad,Sarah Pesi,author,0,0,ok
+dryad,Donnie Peterson,author,1,1,ok
+dryad,Lisanne Petracca,author,4,4,ok
+dryad,Mauro Pichorim,author,0,0,ok
+dryad,Frederik Piesschaert,author,0,0,ok
+dryad,Irene Pisanty,author,1,1,ok
+dryad,Saw Po,author,1,1,ok
+dryad,Saw Po,author,1,1,ok
+dryad,Marc Pollet,author,2,2,ok
+dryad,Roger Pradel,author,12,12,ok
+dryad,Kasey Pregler,author,2,2,ok
+dryad,Steven Price,author,19,19,ok
+dryad,Steven Price,author,19,19,ok
+dryad,Julien Péters,author,0,0,ok
+dryad,Nicola Quick,author,8,8,ok
+dryad,Qamar Qureshi,author,5,5,ok
+dryad,Tore Qvenild,author,2,2,ok
+dryad,T. Raman,author,21,21,ok
+dryad,Christian Ramp,author,5,5,ok
+dryad,H. Ray,author,57,57,ok
+dryad,Trishna Rayamajhi,author,4,4,ok
+dryad,Eric Reed,author,12,12,ok
+dryad,Mark Renshaw,author,8,8,ok
+dryad,John Reynolds,author,23,23,ok
+dryad,Lindsey Rich,author,12,12,ok
+dryad,Thomas Riecke,author,16,16,ok
+dryad,Alicia Rissi,author,1,1,ok
+dryad,Hugh Robinson,author,10,10,ok
+dryad,Nicholas Rodenhouse,author,1,1,ok
+dryad,Cristina Rodriguez,author,6,6,ok
+dryad,David Rodriguez,author,42,42,ok
+dryad,Mariana Rodriguez-Sanchez,author,1,1,ok
+dryad,Katja Ronka,author,0,0,ok
+dryad,Brigit Rooney,author,2,2,ok
+dryad,Andrea Ros Candeira,author,0,0,ok
+dryad,Christopher Rota,author,9,9,ok
+dryad,Christian Roy,author,18,18,ok
+dryad,J. Royle,author,25,25,ok
+dryad,Atle Rustadbakken,author,1,1,ok
+dryad,Isaiah Samek,author,1,1,ok
+dryad,Michael Samways,author,5,5,ok
+dryad,Brett Sandercock,author,10,10,ok
+dryad,Cody Schank,author,0,0,ok
+dryad,Ben Scheele,author,10,10,ok
+dryad,Anna Schleimer,author,4,4,ok
+dryad,Hans Schmid,author,6,6,ok
+dryad,Christian Schmid-Egger,author,1,1,ok
+dryad,Gregory Schorr,author,7,7,ok
+dryad,Michael Schram,author,0,0,ok
+dryad,Mellesa Schroder,author,4,4,ok
+dryad,Gordon Schuett,author,6,6,ok
+dryad,Martin Schulz,author,16,16,ok
+dryad,Racheli Schwartz-Tzachor,author,1,1,ok
+dryad,Richard Sears,author,6,6,ok
+dryad,James Sedinger,author,21,21,ok
+dryad,Cagan Sekercioglu,author,1,1,ok
+dryad,Richard Sherley,author,10,10,ok
+dryad,Matthew Shirley,author,5,5,ok
+dryad,T. Sillett,author,19,19,ok
+dryad,Matthew Simon,author,66,66,ok
+dryad,Juniper Simonis,author,2,2,ok
+dryad,Bitapi Sinha,author,1,1,ok
+dryad,Shannon Skalos,author,1,1,ok
+dryad,James Smith,author,118,100,ok
+dryad,Matthew Smith,author,104,100,ok
+dryad,Samantha Smith,author,13,13,ok
+dryad,Leo Soldaat,author,2,2,ok
+dryad,Rahel Sollmann,author,13,13,ok
+dryad,Kate Sprogis,author,3,3,ok
+dryad,Christopher Stallings,author,5,5,ok
+dryad,Robin Steenweg,author,6,6,ok
+dryad,Frances Stewart,author,4,4,ok
+dryad,Jelle Stienstra,author,1,1,ok
+dryad,Kathryn Sullivan,author,3,3,ok
+dryad,Yi-Fei Sun,author,3,3,ok
+dryad,Kulbhushansingh Suryawanshi,author,10,10,ok
+dryad,Chris Sutherland,author,16,16,ok
+dryad,Dusty Swedberg,author,1,1,ok
+dryad,John Symons,author,3,3,ok
+dryad,Eric Teitsworth,author,1,1,ok
+dryad,Theron Terhune,author,4,4,ok
+dryad,Sasha Tetzlaff,author,3,3,ok
+dryad,Dol Thanet,author,1,1,ok
+dryad,Jennifer Theobald,author,1,1,ok
+dryad,Wayne Thogmartin,author,8,8,ok
+dryad,Paul Thompson,author,44,44,ok
+dryad,Jordan Thomson,author,3,3,ok
+dryad,Jacquelyn Tleimat,author,0,0,ok
+dryad,Guilherme Toledo-Lima,author,2,2,ok
+dryad,Sarah Tomke,author,4,4,ok
+dryad,Claudia Trosen,author,0,0,ok
+dryad,Lkhagvasumberel Tumursukh,author,1,1,ok
+dryad,Aung Tun,author,1,1,ok
+dryad,Saw Tun,author,1,1,ok
+dryad,Brian Uher-Koch,author,1,1,ok
+dryad,Andrés Valenzuela-Sánchez,author,2,2,ok
+dryad,Teresa Valverde,author,7,7,ok
+dryad,Roel Van Klink,author,4,4,ok
+dryad,Rikjan Vermeulen,author,1,1,ok
+dryad,L. Vollestad,author,0,0,ok
+dryad,John Volpe,author,1,1,ok
+dryad,Sophia Volzke,author,1,1,ok
+dryad,Hardin Waddle,author,5,5,ok
+dryad,J. Waddle,author,3,3,ok
+dryad,Niklas Wahlberg,author,17,17,ok
+dryad,Lisette Waits,author,38,38,ok
+dryad,Kara Wall,author,1,1,ok
+dryad,Lauren Waller,author,9,9,ok
+dryad,Tian-Ming Wang,author,5,5,ok
+dryad,Toon Westra,author,0,0,ok
+dryad,Jesse Whittington,author,11,11,ok
+dryad,Ian Williams,author,50,50,ok
+dryad,Aaron Wirsing,author,17,17,ok
+dryad,Kirsten Work,author,7,7,ok
+dryad,Simon Wotherspoon,author,5,5,ok
+dryad,Michael Wunder,author,7,7,ok
+dryad,Yuqian Xiao,author,0,0,ok
+dryad,Amy Yackel Adams,author,2,2,ok
+dryad,Ramesh Yadav,author,1,1,ok
+dryad,Nigel Yoccoz,author,37,37,ok
+dryad,Than Zaw,author,3,3,ok
+dryad,Dandan Zhang,author,6,6,ok
+dryad,David Ziolkowski,author,1,1,ok
+dryad,Elise Zipkin,author,10,10,ok
+dryad,Jaime Zuniga-Vega,author,0,0,ok
+dryad,Jose Zuniga-Vega,author,0,0,ok
+dryad,P. de Bruyn,author,6,6,ok
+dryad,Marnix de Zeeuw,author,1,1,ok
+dryad,Arco van Strien,author,3,3,ok
+dryad,Jens Åström,author,5,5,ok
+zenodo,"creators.name:(""A'Bear"" AND ""Luke"")",author,0,0,ok
+zenodo,"creators.name:(""Aass"" AND ""Per"")",author,2,2,ok
+zenodo,"creators.name:(""Adams"" AND ""Jennifer"")",author,23,23,ok
+zenodo,"creators.name:(""Addis"" AND ""Brett"")",author,3,3,ok
+zenodo,"creators.name:(""Ahizi"" AND ""Michel"")",author,1,1,ok
+zenodo,"creators.name:(""Ahumada"" AND ""Jorge"")",author,7,7,ok
+zenodo,"creators.name:(""Allen"" AND ""Michael"")",author,78,78,ok
+zenodo,"creators.name:(""Altwegg"" AND ""Res"")",author,13,13,ok
+zenodo,"creators.name:(""Ancona"" AND ""Sergio"")",author,5,5,ok
+zenodo,"creators.name:(""Anderson"" AND ""David"")",author,142,100,ok
+zenodo,"creators.name:(""Anderson"" AND ""T."")",author,535,100,ok
+zenodo,"creators.name:(""Angrish"" AND ""Kunal"")",author,1,1,ok
+zenodo,"creators.name:(""Archambault"" AND ""Jennifer"")",author,1,1,ok
+zenodo,"creators.name:(""Armstrong"" AND ""Joshua"")",author,7,7,ok
+zenodo,"creators.name:(""Arso Civil"" AND ""Monica"")",author,0,0,ok
+zenodo,"creators.name:(""Astrom"" AND ""Jens"")",author,5,5,ok
+zenodo,"creators.name:(""Aung"" AND ""Htet"")",author,2,2,ok
+zenodo,"creators.name:(""Aung"" AND ""Zarni"")",author,0,0,ok
+zenodo,"creators.name:(""Aust"" AND ""Ines"")",author,1,1,ok
+zenodo,"creators.name:(""Baaloudj"" AND ""Affef"")",author,1,1,ok
+zenodo,"creators.name:(""Baessler"" AND ""Claus"")",author,0,0,ok
+zenodo,"creators.name:(""Bamann"" AND ""Thomas"")",author,1,1,ok
+zenodo,"creators.name:(""Banik"" AND ""Arjun"")",author,0,0,ok
+zenodo,"creators.name:(""Barea-Azcón"" AND ""José"")",author,2,2,ok
+zenodo,"creators.name:(""Barham"" AND ""Barbara"")",author,2,2,ok
+zenodo,"creators.name:(""Barham"" AND ""Peter"")",author,2,2,ok
+zenodo,"creators.name:(""Barlow"" AND ""Jay"")",author,4,4,ok
+zenodo,"creators.name:(""Barton"" AND ""Christopher"")",author,6,6,ok
+zenodo,"creators.name:(""Bashyal"" AND ""Ashish"")",author,1,1,ok
+zenodo,"creators.name:(""Bayle"" AND ""Arthur"")",author,10,10,ok
+zenodo,"creators.name:(""Bedson"" AND ""Carlos"")",author,1,1,ok
+zenodo,"creators.name:(""Beery"" AND ""Sara"")",author,0,0,ok
+zenodo,"creators.name:(""Bejder"" AND ""Lars"")",author,13,13,ok
+zenodo,"creators.name:(""Benyamini"" AND ""Dubi"")",author,1,1,ok
+zenodo,"creators.name:(""Berg"" AND ""Ake"")",author,7,7,ok
+zenodo,"creators.name:(""Bertscheit"" AND ""Ralf"")",author,1,1,ok
+zenodo,"creators.name:(""Berube"" AND ""Martine"")",author,8,8,ok
+zenodo,"creators.name:(""Bester"" AND ""Marthan"")",author,8,8,ok
+zenodo,"creators.name:(""Bhattacharya"" AND ""Ankita"")",author,4,4,ok
+zenodo,"creators.name:(""Bhattarai"" AND ""Santosh"")",author,13,13,ok
+zenodo,"creators.name:(""Bielsa"" AND ""Maria"")",author,2,2,ok
+zenodo,"creators.name:(""Bison"" AND ""Marjorie"")",author,2,2,ok
+zenodo,"creators.name:(""Blaalid"" AND ""Rakel"")",author,7,7,ok
+zenodo,"creators.name:(""Blanchard"" AND ""Wade"")",author,10,10,ok
+zenodo,"creators.name:(""Blomberg"" AND ""Erik"")",author,9,9,ok
+zenodo,"creators.name:(""Blount"" AND ""Judson"")",author,2,2,ok
+zenodo,"creators.name:(""Boeraeve"" AND ""Fanny"")",author,3,3,ok
+zenodo,"creators.name:(""Boldgiv"" AND ""Bazartseren"")",author,8,8,ok
+zenodo,"creators.name:(""Bonner"" AND ""Simon"")",author,8,8,ok
+zenodo,"creators.name:(""Boone"" AND ""Michelle"")",author,3,3,ok
+zenodo,"creators.name:(""Borchers"" AND ""David"")",author,6,6,ok
+zenodo,"creators.name:(""Bradfer-Lawrence"" AND ""Tom"")",author,3,3,ok
+zenodo,"creators.name:(""Brand"" AND ""Adrianne"")",author,3,3,ok
+zenodo,"creators.name:(""Brewer"" AND ""Shannon"")",author,4,4,ok
+zenodo,"creators.name:(""Brosens"" AND ""Dimitri"")",author,8,8,ok
+zenodo,"creators.name:(""Brown"" AND ""William"")",author,12164,100,ok
+zenodo,"creators.name:(""Bruce"" AND ""Alexis"")",author,8,8,ok
+zenodo,"creators.name:(""Budach"" AND ""Daniela"")",author,1,1,ok
+zenodo,"creators.name:(""Burgar"" AND ""Joanna"")",author,5,5,ok
+zenodo,"creators.name:(""Burkholder"" AND ""Derek"")",author,1,1,ok
+zenodo,"creators.name:(""Burnham"" AND ""Dawn"")",author,3,3,ok
+zenodo,"creators.name:(""Burnham"" AND ""Kenneth"")",author,0,0,ok
+zenodo,"creators.name:(""Burt"" AND ""April"")",author,5,5,ok
+zenodo,"creators.name:(""Burton"" AND ""A."")",author,28,28,ok
+zenodo,"creators.name:(""Burton"" AND ""Harry"")",author,1,1,ok
+zenodo,"creators.name:(""COAT"" AND ""UiT"")",author,0,0,ok
+zenodo,"creators.name:(""Cabeza"" AND ""Mar"")",author,4,4,ok
+zenodo,"creators.name:(""Cannings"" AND ""Robert"")",author,0,0,ok
+zenodo,"creators.name:(""Carlson"" AND ""Bradley"")",author,7,7,ok
+zenodo,"creators.name:(""Carpentier"" AND ""Alain"")",author,1,1,ok
+zenodo,"creators.name:(""Cecala"" AND ""Kristen"")",author,2,2,ok
+zenodo,"creators.name:(""Chabanne"" AND ""Delphine"")",author,1,1,ok
+zenodo,"creators.name:(""Chambert"" AND ""Thierry"")",author,3,3,ok
+zenodo,"creators.name:(""Chandler"" AND ""Richard"")",author,17,17,ok
+zenodo,"creators.name:(""Chandler"" AND ""Richard"")",author,17,17,ok
+zenodo,"creators.name:(""Chatterjee"" AND ""Nilanjan"")",author,5,5,ok
+zenodo,"creators.name:(""Cheney"" AND ""Barbara"")",author,9,9,ok
+zenodo,"creators.name:(""Chong-Seng"" AND ""Karen"")",author,0,0,ok
+zenodo,"creators.name:(""Chynoweth"" AND ""Mark"")",author,2,2,ok
+zenodo,"creators.name:(""Classen"" AND ""Alice"")",author,9,9,ok
+zenodo,"creators.name:(""Cleavitt"" AND ""Natalie"")",author,0,0,ok
+zenodo,"creators.name:(""Clemann"" AND ""Nick"")",author,3,3,ok
+zenodo,"creators.name:(""Clipp"" AND ""Hannah"")",author,3,3,ok
+zenodo,"creators.name:(""Clobert"" AND ""Jean"")",author,27,27,ok
+zenodo,"creators.name:(""Coban"" AND ""Emrah"")",author,1,1,ok
+zenodo,"creators.name:(""Conroy"" AND ""Michael"")",author,3,3,ok
+zenodo,"creators.name:(""Cooke"" AND ""Sarah"")",author,6,6,ok
+zenodo,"creators.name:(""Cove"" AND ""Michael"")",author,6,6,ok
+zenodo,"creators.name:(""Cowen"" AND ""Laura"")",author,1,1,ok
+zenodo,"creators.name:(""Cox"" AND ""John"")",author,34,34,ok
+zenodo,"creators.name:(""Currylow"" AND ""Andrea"")",author,8,8,ok
+zenodo,"creators.name:(""Curtis"" AND ""K."")",author,13,13,ok
+zenodo,"creators.name:(""Curveira-Santos"" AND ""Goncalo"")",author,4,4,ok
+zenodo,"creators.name:(""Cushman"" AND ""Samuel"")",author,18,18,ok
+zenodo,"creators.name:(""Daily"" AND ""Gretchen"")",author,8,8,ok
+zenodo,"creators.name:(""Davey"" AND ""Marie"")",author,15,15,ok
+zenodo,"creators.name:(""Davis"" AND ""Amy"")",author,20,20,ok
+zenodo,"creators.name:(""Davis"" AND ""Mark"")",author,53,53,ok
+zenodo,"creators.name:(""Dawson"" AND ""Carol"")",author,2,2,ok
+zenodo,"creators.name:(""De Knijf"" AND ""Geert"")",author,1,1,ok
+zenodo,"creators.name:(""DeGregorio"" AND ""Brett"")",author,4,4,ok
+zenodo,"creators.name:(""DePrenger-Levin"" AND ""Michelle"")",author,1,1,ok
+zenodo,"creators.name:(""DeStefano"" AND ""Stephen"")",author,2,2,ok
+zenodo,"creators.name:(""Dede"" AND ""Azani"")",author,1,1,ok
+zenodo,"creators.name:(""Delarue"" AND ""Julien"")",author,2,2,ok
+zenodo,"creators.name:(""Delestrade"" AND ""Anne"")",author,2,2,ok
+zenodo,"creators.name:(""Desmet"" AND ""Peter"")",author,67,67,ok
+zenodo,"creators.name:(""Dettling"" AND ""Mark"")",author,1,1,ok
+zenodo,"creators.name:(""Diaz"" AND ""Jesus"")",author,53,53,ok
+zenodo,"creators.name:(""Dickman"" AND ""Christopher"")",author,7,7,ok
+zenodo,"creators.name:(""Dillon"" AND ""Frank"")",author,1,1,ok
+zenodo,"creators.name:(""Dirzo"" AND ""Rodolfo"")",author,16,16,ok
+zenodo,"creators.name:(""Distiller"" AND ""Greg"")",author,2,2,ok
+zenodo,"creators.name:(""Dobson"" AND ""Andrew"")",author,11,11,ok
+zenodo,"creators.name:(""Donmoyer"" AND ""Kevin"")",author,0,0,ok
+zenodo,"creators.name:(""Doser"" AND ""Jeffrey"")",author,2,2,ok
+zenodo,"creators.name:(""Dougherty"" AND ""Matthew"")",author,1,1,ok
+zenodo,"creators.name:(""Doyle"" AND ""Sarah"")",author,2,2,ok
+zenodo,"creators.name:(""Drayer"" AND ""Andrea"")",author,2,2,ok
+zenodo,"creators.name:(""Drummond"" AND ""Hugh"")",author,12,12,ok
+zenodo,"creators.name:(""Dufrêne"" AND ""Marc"")",author,11,11,ok
+zenodo,"creators.name:(""Dupont"" AND ""Gates"")",author,0,0,ok
+zenodo,"creators.name:(""Dybala"" AND ""Kristen"")",author,10,10,ok
+zenodo,"creators.name:(""Döring"" AND ""Jörg"")",author,1,1,ok
+zenodo,"creators.name:(""Edelstam"" AND ""Carl"")",author,1,1,ok
+zenodo,"creators.name:(""Egan"" AND ""Scott"")",author,33,33,ok
+zenodo,"creators.name:(""Elmberg"" AND ""Johan"")",author,9,9,ok
+zenodo,"creators.name:(""Emory"" AND ""Meaghan"")",author,1,1,ok
+zenodo,"creators.name:(""Endrestol"" AND ""Anders"")",author,4,4,ok
+zenodo,"creators.name:(""English"" AND ""Willow"")",author,1,1,ok
+zenodo,"creators.name:(""Erhardt"" AND ""Robert"")",author,4,4,ok
+zenodo,"creators.name:(""Erickson"" AND ""Daniel"")",author,7,7,ok
+zenodo,"creators.name:(""Esque"" AND ""Todd"")",author,5,5,ok
+zenodo,"creators.name:(""Evans"" AND ""Bryn"")",author,0,0,ok
+zenodo,"creators.name:(""Fabritius"" AND ""Henna"")",author,2,2,ok
+zenodo,"creators.name:(""Fairet"" AND ""Emilie"")",author,1,1,ok
+zenodo,"creators.name:(""Falcone"" AND ""Erin"")",author,7,7,ok
+zenodo,"creators.name:(""Farnsworth"" AND ""Matthew"")",author,4,4,ok
+zenodo,"creators.name:(""Feng"" AND ""Jia-Wei"")",author,10,10,ok
+zenodo,"creators.name:(""Ferguson"" AND ""Paige"")",author,2,2,ok
+zenodo,"creators.name:(""Fernandez"" AND ""Adrian"")",author,26,26,ok
+zenodo,"creators.name:(""Fidino"" AND ""Mason"")",author,8,8,ok
+zenodo,"creators.name:(""Field"" AND ""Rachel"")",author,3,3,ok
+zenodo,"creators.name:(""Finch"" AND ""Tom"")",author,6,6,ok
+zenodo,"creators.name:(""Fisher"" AND ""Jason"")",author,8,8,ok
+zenodo,"creators.name:(""Fiske"" AND ""Ian"")",author,0,0,ok
+zenodo,"creators.name:(""Fossoy"" AND ""Frode"")",author,9,9,ok
+zenodo,"creators.name:(""Foster"" AND ""Rebecca"")",author,7,7,ok
+zenodo,"creators.name:(""Freytag"" AND ""Sara"")",author,1,1,ok
+zenodo,"creators.name:(""Friess"" AND ""Nicolas"")",author,6,6,ok
+zenodo,"creators.name:(""Frimpong"" AND ""Emmanuel"")",author,6,6,ok
+zenodo,"creators.name:(""Frishkoff"" AND ""Luke"")",author,11,11,ok
+zenodo,"creators.name:(""Fritts"" AND ""Sarah"")",author,0,0,ok
+zenodo,"creators.name:(""Fukaya"" AND ""Keiichi"")",author,5,5,ok
+zenodo,"creators.name:(""Gallagher"" AND ""Colin"")",author,6,6,ok
+zenodo,"creators.name:(""Galvez"" AND ""Nicolas"")",author,3,3,ok
+zenodo,"creators.name:(""Gantz"" AND ""Crysta"")",author,1,1,ok
+zenodo,"creators.name:(""Gardali"" AND ""Thomas"")",author,4,4,ok
+zenodo,"creators.name:(""Gardner"" AND ""Beth"")",author,15,15,ok
+zenodo,"creators.name:(""Gastrich"" AND ""Kirk"")",author,2,2,ok
+zenodo,"creators.name:(""Ge"" AND ""Jianping"")",author,5,5,ok
+zenodo,"creators.name:(""Gerrits"" AND ""Gijs"")",author,2,2,ok
+zenodo,"creators.name:(""Gibson"" AND ""Daniel"")",author,72,72,ok
+zenodo,"creators.name:(""Gigliotti"" AND ""Laura"")",author,6,6,ok
+zenodo,"creators.name:(""Gilliland"" AND ""Scott"")",author,5,5,ok
+zenodo,"creators.name:(""Glorioso"" AND ""Brad"")",author,3,3,ok
+zenodo,"creators.name:(""Gohli"" AND ""Jostein"")",author,6,6,ok
+zenodo,"creators.name:(""Goldberg"" AND ""Caren"")",author,9,9,ok
+zenodo,"creators.name:(""Goldingay"" AND ""Ross"")",author,3,3,ok
+zenodo,"creators.name:(""Gopal"" AND ""Rajesh"")",author,2,2,ok
+zenodo,"creators.name:(""Gottschalk"" AND ""Thomas"")",author,5,5,ok
+zenodo,"creators.name:(""Granados-Hernandez"" AND ""Luisa"")",author,0,0,ok
+zenodo,"creators.name:(""Grant III"" AND ""Thomas"")",author,0,0,ok
+zenodo,"creators.name:(""Grant"" AND ""Evan"")",author,12,12,ok
+zenodo,"creators.name:(""Gratton"" AND ""Claudio"")",author,12,12,ok
+zenodo,"creators.name:(""Graves"" AND ""Jeff"")",author,3,3,ok
+zenodo,"creators.name:(""Green"" AND ""Austin"")",author,6,6,ok
+zenodo,"creators.name:(""Green"" AND ""Martin"")",author,18,18,ok
+zenodo,"creators.name:(""Grigg"" AND ""Jennifer"")",author,2,2,ok
+zenodo,"creators.name:(""Habib"" AND ""Bilal"")",author,7,7,ok
+zenodo,"creators.name:(""Hadly"" AND ""Elizabeth"")",author,7,7,ok
+zenodo,"creators.name:(""Hagman"" AND ""Mattias"")",author,4,4,ok
+zenodo,"creators.name:(""Hall"" AND ""Jeffrey"")",author,10,10,ok
+zenodo,"creators.name:(""Hamer"" AND ""Andrew"")",author,7,7,ok
+zenodo,"creators.name:(""Hamm"" AND ""Christopher"")",author,8,8,ok
+zenodo,"creators.name:(""Hammond"" AND ""Philip"")",author,7,7,ok
+zenodo,"creators.name:(""Harmsen"" AND ""Bart"")",author,4,4,ok
+zenodo,"creators.name:(""Harris"" AND ""Nyeema"")",author,6,6,ok
+zenodo,"creators.name:(""Hartley"" AND ""Renée"")",author,2,2,ok
+zenodo,"creators.name:(""Hastings"" AND ""Kelly"")",author,5,5,ok
+zenodo,"creators.name:(""Haupt"" AND ""Philip"")",author,0,0,ok
+zenodo,"creators.name:(""Hebblewhite"" AND ""Mark"")",author,32,32,ok
+zenodo,"creators.name:(""Hegge"" AND ""Ola"")",author,2,2,ok
+zenodo,"creators.name:(""Hegre"" AND ""Hanne"")",author,2,2,ok
+zenodo,"creators.name:(""Heithaus"" AND ""Michael"")",author,8,8,ok
+zenodo,"creators.name:(""Hendershot"" AND ""J."")",author,0,0,ok
+zenodo,"creators.name:(""Henry"" AND ""Dominic"")",author,6,6,ok
+zenodo,"creators.name:(""Hepinstall-Cymerman"" AND ""Jeffrey"")",author,3,3,ok
+zenodo,"creators.name:(""Hepler"" AND ""Staci"")",author,2,2,ok
+zenodo,"creators.name:(""Hermann"" AND ""Gabriel"")",author,7,7,ok
+zenodo,"creators.name:(""Hernandez-Apolinar"" AND ""Mariana"")",author,0,0,ok
+zenodo,"creators.name:(""Heuer"" AND ""Karsten"")",author,2,2,ok
+zenodo,"creators.name:(""Hileman"" AND ""Eric"")",author,0,0,ok
+zenodo,"creators.name:(""Hindell"" AND ""Mark"")",author,11,11,ok
+zenodo,"creators.name:(""Hinneberg"" AND ""Heiko"")",author,2,2,ok
+zenodo,"creators.name:(""Hodder"" AND ""Dexter"")",author,1,1,ok
+zenodo,"creators.name:(""Hoiss"" AND ""Bernhard"")",author,0,0,ok
+zenodo,"creators.name:(""Hollanders"" AND ""Matthijs"")",author,2,2,ok
+zenodo,"creators.name:(""Hooten"" AND ""Mevin"")",author,10,10,ok
+zenodo,"creators.name:(""Hopfenmueller"" AND ""Sebastian"")",author,0,0,ok
+zenodo,"creators.name:(""Horanyi"" AND ""Julia"")",author,0,0,ok
+zenodo,"creators.name:(""Howland"" AND ""Kimberly"")",author,5,5,ok
+zenodo,"creators.name:(""Htun"" AND ""Saw"")",author,1,1,ok
+zenodo,"creators.name:(""Hudson"" AND ""Marie-Anne"")",author,1,1,ok
+zenodo,"creators.name:(""Humphries"" AND ""W."")",author,12,12,ok
+zenodo,"creators.name:(""Humple"" AND ""Diana"")",author,2,2,ok
+zenodo,"creators.name:(""Hunt"" AND ""Barb"")",author,0,0,ok
+zenodo,"creators.name:(""Hutton"" AND ""Jacob"")",author,1,1,ok
+zenodo,"creators.name:(""Hébert"" AND ""Trevor"")",author,1,1,ok
+zenodo,"creators.name:(""Infante"" AND ""Jose"")",author,3,3,ok
+zenodo,"creators.name:(""Irons"" AND ""David"")",author,4,4,ok
+zenodo,"creators.name:(""Islas-Villanueva"" AND ""Valentina"")",author,2,2,ok
+zenodo,"creators.name:(""Jackson"" AND ""Hanna"")",author,3,3,ok
+zenodo,"creators.name:(""Jacobsen"" AND ""Rannveig"")",author,5,5,ok
+zenodo,"creators.name:(""Janik"" AND ""Vincent"")",author,5,5,ok
+zenodo,"creators.name:(""Jathanna"" AND ""Devcharan"")",author,2,2,ok
+zenodo,"creators.name:(""Jemison"" AND ""Lauri"")",author,3,3,ok
+zenodo,"creators.name:(""Jhala"" AND ""Yadvendradev"")",author,20,20,ok
+zenodo,"creators.name:(""Jimenez"" AND ""Jaime"")",author,15,15,ok
+zenodo,"creators.name:(""Johnson"" AND ""Chris"")",author,48,48,ok
+zenodo,"creators.name:(""Johnson"" AND ""Sarah"")",author,64,64,ok
+zenodo,"creators.name:(""Jönsson"" AND ""Annelie"")",author,0,0,ok
+zenodo,"creators.name:(""Kadoya"" AND ""Taku"")",author,8,8,ok
+zenodo,"creators.name:(""Kanno"" AND ""Yoichiro"")",author,11,11,ok
+zenodo,"creators.name:(""Karanth"" AND ""K."")",author,6,6,ok
+zenodo,"creators.name:(""Karp"" AND ""Daniel"")",author,21,21,ok
+zenodo,"creators.name:(""Kaszta"" AND ""Zaneta"")",author,6,6,ok
+zenodo,"creators.name:(""Kays"" AND ""Roland"")",author,30,30,ok
+zenodo,"creators.name:(""Keene"" AND ""Erin"")",author,1,1,ok
+zenodo,"creators.name:(""Kelly"" AND ""Marcella"")",author,6,6,ok
+zenodo,"creators.name:(""Kerner"" AND ""Janika"")",author,1,1,ok
+zenodo,"creators.name:(""Kery"" AND ""Marc"")",author,19,19,ok
+zenodo,"creators.name:(""Khelifa"" AND ""Rassim"")",author,5,5,ok
+zenodo,"creators.name:(""Kim"" AND ""Seoghyun"")",author,4,4,ok
+zenodo,"creators.name:(""King"" AND ""David"")",author,83,83,ok
+zenodo,"creators.name:(""Kleiven"" AND ""Eivind"")",author,2,2,ok
+zenodo,"creators.name:(""Knape"" AND ""Jonas"")",author,11,11,ok
+zenodo,"creators.name:(""Koese"" AND ""Bram"")",author,1,1,ok
+zenodo,"creators.name:(""Koester"" AND ""Anna"")",author,1,1,ok
+zenodo,"creators.name:(""Koetke"" AND ""Lisa"")",author,1,1,ok
+zenodo,"creators.name:(""Kondo"" AND ""Natsuko"")",author,3,3,ok
+zenodo,"creators.name:(""Kouamé"" AND ""N'Dri"")",author,2,2,ok
+zenodo,"creators.name:(""Kouman"" AND ""Christine"")",author,1,1,ok
+zenodo,"creators.name:(""Kumar"" AND ""N."")",author,175,100,ok
+zenodo,"creators.name:(""Kusak"" AND ""Josip"")",author,7,7,ok
+zenodo,"creators.name:(""Kyaw"" AND ""Pyae"")",author,2,2,ok
+zenodo,"creators.name:(""Kärvemo"" AND ""Simon"")",author,5,5,ok
+zenodo,"creators.name:(""Kéry"" AND ""Marc"")",author,19,19,ok
+zenodo,"creators.name:(""Lafferty"" AND ""Kevin"")",author,19,19,ok
+zenodo,"creators.name:(""Lamichhane"" AND ""Babu"")",author,8,8,ok
+zenodo,"creators.name:(""Lamichhane"" AND ""Saneer"")",author,3,3,ok
+zenodo,"creators.name:(""Larson"" AND ""Diane"")",author,0,0,ok
+zenodo,"creators.name:(""Larson"" AND ""Eric"")",author,19,19,ok
+zenodo,"creators.name:(""Larson"" AND ""Jennifer"")",author,2,2,ok
+zenodo,"creators.name:(""Lazenby"" AND ""Billie"")",author,3,3,ok
+zenodo,"creators.name:(""Lea"" AND ""Ellen"")",author,1,1,ok
+zenodo,"creators.name:(""Leach"" AND ""Alan"")",author,7,7,ok
+zenodo,"creators.name:(""Lebeuf-Taylor"" AND ""Isabelle"")",author,0,0,ok
+zenodo,"creators.name:(""Lebreton"" AND ""Jean-Dominique"")",author,3,3,ok
+zenodo,"creators.name:(""Ledegen"" AND ""Hannes"")",author,0,0,ok
+zenodo,"creators.name:(""Lee"" AND ""Alan"")",author,19,19,ok
+zenodo,"creators.name:(""Lehrer"" AND ""Elizabeth"")",author,4,4,ok
+zenodo,"creators.name:(""Lehtomaki"" AND ""Joona"")",author,4,4,ok
+zenodo,"creators.name:(""Leith"" AND ""Freddie"")",author,1,1,ok
+zenodo,"creators.name:(""Leone"" AND ""Julia"")",author,1,1,ok
+zenodo,"creators.name:(""Lewis"" AND ""Jesse"")",author,7,7,ok
+zenodo,"creators.name:(""Li"" AND ""Hailong"")",author,39,39,ok
+zenodo,"creators.name:(""Lindenmayer"" AND ""David"")",author,41,41,ok
+zenodo,"creators.name:(""Lindström"" AND ""Åke"")",author,3,3,ok
+zenodo,"creators.name:(""Lockwood"" AND ""Julie"")",author,9,9,ok
+zenodo,"creators.name:(""Lodge"" AND ""David"")",author,24,24,ok
+zenodo,"creators.name:(""Loftin"" AND ""Cynthia"")",author,7,7,ok
+zenodo,"creators.name:(""Ludynia"" AND ""Katrin"")",author,6,6,ok
+zenodo,"creators.name:(""Lukacs"" AND ""Paul"")",author,9,9,ok
+zenodo,"creators.name:(""Lund"" AND ""Espen"")",author,2,2,ok
+zenodo,"creators.name:(""Lutmerding"" AND ""Michael"")",author,0,0,ok
+zenodo,"creators.name:(""Lynch"" AND ""Ryan"")",author,9,9,ok
+zenodo,"creators.name:(""M'Gonigle"" AND ""Leithen"")",author,11,11,ok
+zenodo,"creators.name:(""MacKenzie"" AND ""Darryl"")",author,5,5,ok
+zenodo,"creators.name:(""Macdonald"" AND ""David"")",author,112,100,ok
+zenodo,"creators.name:(""Magle"" AND ""Seth"")",author,8,8,ok
+zenodo,"creators.name:(""Mahdjoub"" AND ""Hayat"")",author,2,2,ok
+zenodo,"creators.name:(""Maihoff"" AND ""Fabienne"")",author,3,3,ok
+zenodo,"creators.name:(""Majaneva"" AND ""Markus"")",author,7,7,ok
+zenodo,"creators.name:(""Malhotra"" AND ""Rumaan"")",author,3,3,ok
+zenodo,"creators.name:(""Maragliano"" AND ""Rene"")",author,1,1,ok
+zenodo,"creators.name:(""Margenau"" AND ""Eric"")",author,1,1,ok
+zenodo,"creators.name:(""Markl"" AND ""Gregor"")",author,3,3,ok
+zenodo,"creators.name:(""Martinez-Villegas"" AND ""Jorge"")",author,0,0,ok
+zenodo,"creators.name:(""Martorell"" AND ""Carlos"")",author,4,4,ok
+zenodo,"creators.name:(""Marzolin"" AND ""Gilbert"")",author,1,1,ok
+zenodo,"creators.name:(""Matsuzaki"" AND ""Shin-ichiro"")",author,9,9,ok
+zenodo,"creators.name:(""Mazzotti"" AND ""Frank"")",author,12,12,ok
+zenodo,"creators.name:(""McCarthy"" AND ""Thomas"")",author,32,32,ok
+zenodo,"creators.name:(""McCracken"" AND ""Shawn"")",author,0,0,ok
+zenodo,"creators.name:(""McGeorge"" AND ""Cuan"")",author,2,2,ok
+zenodo,"creators.name:(""McHugh"" AND ""Darren"")",author,5,5,ok
+zenodo,"creators.name:(""McKinney"" AND ""Shawn"")",author,4,4,ok
+zenodo,"creators.name:(""McKnight"" AND ""Aly"")",author,3,3,ok
+zenodo,"creators.name:(""McLeod"" AND ""Ryan"")",author,1,1,ok
+zenodo,"creators.name:(""McMahon"" AND ""Clive"")",author,10,10,ok
+zenodo,"creators.name:(""McNeil"" AND ""Darin"")",author,4,4,ok
+zenodo,"creators.name:(""McNutt"" AND ""J."")",author,9,9,ok
+zenodo,"creators.name:(""McShea"" AND ""William"")",author,20,20,ok
+zenodo,"creators.name:(""McTigue"" AND ""Leah"")",author,3,3,ok
+zenodo,"creators.name:(""Mdluli"" AND ""Andile"")",author,1,1,ok
+zenodo,"creators.name:(""Meena"" AND ""Dharamveer"")",author,1,1,ok
+zenodo,"creators.name:(""Mendenhall"" AND ""Chase"")",author,7,7,ok
+zenodo,"creators.name:(""Miller"" AND ""David"")",author,263,100,ok
+zenodo,"creators.name:(""Miller"" AND ""Melissa"")",author,19,19,ok
+zenodo,"creators.name:(""Miller"" AND ""Ryan"")",author,43,43,ok
+zenodo,"creators.name:(""Mishra"" AND ""Charudutt"")",author,12,12,ok
+zenodo,"creators.name:(""Moe"" AND ""Kyaw"")",author,14,14,ok
+zenodo,"creators.name:(""Moe"" AND ""S."")",author,11,11,ok
+zenodo,"creators.name:(""Mollenhauer"" AND ""Robert"")",author,1,1,ok
+zenodo,"creators.name:(""Montalti"" AND ""Diego"")",author,1,1,ok
+zenodo,"creators.name:(""Mooney"" AND ""Nicholas"")",author,1,1,ok
+zenodo,"creators.name:(""Moore"" AND ""Jeffrey"")",author,25,25,ok
+zenodo,"creators.name:(""Moretti"" AND ""David"")",author,20,20,ok
+zenodo,"creators.name:(""Moxcey"" AND ""Michael"")",author,1,1,ok
+zenodo,"creators.name:(""Mueller"" AND ""Joerg"")",author,3,3,ok
+zenodo,"creators.name:(""Mulder"" AND ""Kevin"")",author,7,7,ok
+zenodo,"creators.name:(""Muncy"" AND ""Brenee'"")",author,2,2,ok
+zenodo,"creators.name:(""Mungi"" AND ""Ninad"")",author,5,5,ok
+zenodo,"creators.name:(""Murphy"" AND ""Sean"")",author,15,15,ok
+zenodo,"creators.name:(""Murphy"" AND ""Sean"")",author,15,15,ok
+zenodo,"creators.name:(""Murray"" AND ""Maureen"")",author,8,8,ok
+zenodo,"creators.name:(""Muthukumarana"" AND ""Saman"")",author,0,0,ok
+zenodo,"creators.name:(""Myo"" AND ""Khin"")",author,1,1,ok
+zenodo,"creators.name:(""Myo"" AND ""Okka"")",author,0,0,ok
+zenodo,"creators.name:(""Naing"" AND ""Hla"")",author,1,1,ok
+zenodo,"creators.name:(""Nater"" AND ""Chloe"")",author,7,7,ok
+zenodo,"creators.name:(""Nay"" AND ""Saw"")",author,0,0,ok
+zenodo,"creators.name:(""Neumayer"" AND ""Johann"")",author,9,9,ok
+zenodo,"creators.name:(""Nichols"" AND ""James"")",author,61,61,ok
+zenodo,"creators.name:(""Niedermayer"" AND ""Jana"")",author,1,1,ok
+zenodo,"creators.name:(""Nielsen"" AND ""Anne"")",author,8,8,ok
+zenodo,"creators.name:(""Noth"" AND ""Hutton"")",author,0,0,ok
+zenodo,"creators.name:(""Nowicki"" AND ""Robert"")",author,5,5,ok
+zenodo,"creators.name:(""Oberhauser"" AND ""Karen"")",author,1,1,ok
+zenodo,"creators.name:(""Obrist"" AND ""Debora"")",author,1,1,ok
+zenodo,"creators.name:(""Often"" AND ""Anders"")",author,1,1,ok
+zenodo,"creators.name:(""Oosthuizen"" AND ""W."")",author,5,5,ok
+zenodo,"creators.name:(""Ouattara"" AND ""Allassane"")",author,1,1,ok
+zenodo,"creators.name:(""Ovaskainen"" AND ""Otso"")",author,53,53,ok
+zenodo,"creators.name:(""Pacifici"" AND ""Krishna"")",author,3,3,ok
+zenodo,"creators.name:(""Palacio"" AND ""Facundo"")",author,4,4,ok
+zenodo,"creators.name:(""Palmheden"" AND ""Linda"")",author,0,0,ok
+zenodo,"creators.name:(""Palsboll"" AND ""Per"")",author,12,12,ok
+zenodo,"creators.name:(""Parkyn"" AND ""Jonathan"")",author,1,1,ok
+zenodo,"creators.name:(""Parsons"" AND ""Nola"")",author,1,1,ok
+zenodo,"creators.name:(""Part"" AND ""Tomas"")",author,24,24,ok
+zenodo,"creators.name:(""Pe'er"" AND ""Guy"")",author,9,9,ok
+zenodo,"creators.name:(""Peake"" AND ""Jonathan"")",author,1,1,ok
+zenodo,"creators.name:(""Peer"" AND ""Israel"")",author,10,10,ok
+zenodo,"creators.name:(""Pendleton"" AND ""Grey"")",author,4,4,ok
+zenodo,"creators.name:(""Pennarola"" AND ""Nora"")",author,0,0,ok
+zenodo,"creators.name:(""Pepin"" AND ""Kim"")",author,11,11,ok
+zenodo,"creators.name:(""Pesi"" AND ""Sarah"")",author,2,2,ok
+zenodo,"creators.name:(""Peterson"" AND ""Donnie"")",author,2,2,ok
+zenodo,"creators.name:(""Petracca"" AND ""Lisanne"")",author,4,4,ok
+zenodo,"creators.name:(""Pichorim"" AND ""Mauro"")",author,13,13,ok
+zenodo,"creators.name:(""Piesschaert"" AND ""Frederik"")",author,0,0,ok
+zenodo,"creators.name:(""Pisanty"" AND ""Irene"")",author,3,3,ok
+zenodo,"creators.name:(""Po"" AND ""Saw"")",author,0,0,ok
+zenodo,"creators.name:(""Po"" AND ""Saw"")",author,0,0,ok
+zenodo,"creators.name:(""Pollet"" AND ""Marc"")",author,11,11,ok
+zenodo,"creators.name:(""Pradel"" AND ""Roger"")",author,15,15,ok
+zenodo,"creators.name:(""Pregler"" AND ""Kasey"")",author,1,1,ok
+zenodo,"creators.name:(""Price"" AND ""Steven"")",author,14,14,ok
+zenodo,"creators.name:(""Price"" AND ""Steven"")",author,14,14,ok
+zenodo,"creators.name:(""Péters"" AND ""Julien"")",author,3,3,ok
+zenodo,"creators.name:(""Quick"" AND ""Nicola"")",author,5,5,ok
+zenodo,"creators.name:(""Qureshi"" AND ""Qamar"")",author,9,9,ok
+zenodo,"creators.name:(""Qvenild"" AND ""Tore"")",author,3,3,ok
+zenodo,"creators.name:(""Raman"" AND ""T."")",author,38,38,ok
+zenodo,"creators.name:(""Ramp"" AND ""Christian"")",author,3,3,ok
+zenodo,"creators.name:(""Ray"" AND ""H."")",author,30,30,ok
+zenodo,"creators.name:(""Rayamajhi"" AND ""Trishna"")",author,2,2,ok
+zenodo,"creators.name:(""Reed"" AND ""Eric"")",author,70,70,ok
+zenodo,"creators.name:(""Renshaw"" AND ""Mark"")",author,20,20,ok
+zenodo,"creators.name:(""Reynolds"" AND ""John"")",author,29,29,ok
+zenodo,"creators.name:(""Rich"" AND ""Lindsey"")",author,5,5,ok
+zenodo,"creators.name:(""Riecke"" AND ""Thomas"")",author,14,14,ok
+zenodo,"creators.name:(""Rissi"" AND ""Alicia"")",author,1,1,ok
+zenodo,"creators.name:(""Robinson"" AND ""Hugh"")",author,9,9,ok
+zenodo,"creators.name:(""Rodenhouse"" AND ""Nicholas"")",author,1,1,ok
+zenodo,"creators.name:(""Rodriguez"" AND ""Cristina"")",author,51,51,ok
+zenodo,"creators.name:(""Rodriguez"" AND ""David"")",author,176,100,ok
+zenodo,"creators.name:(""Rodriguez-Sanchez"" AND ""Mariana"")",author,8,8,ok
+zenodo,"creators.name:(""Ronka"" AND ""Katja"")",author,3,3,ok
+zenodo,"creators.name:(""Rooney"" AND ""Brigit"")",author,2,2,ok
+zenodo,"creators.name:(""Ros Candeira"" AND ""Andrea"")",author,0,0,ok
+zenodo,"creators.name:(""Rota"" AND ""Christopher"")",author,11,11,ok
+zenodo,"creators.name:(""Roy"" AND ""Christian"")",author,92,92,ok
+zenodo,"creators.name:(""Royle"" AND ""J."")",author,26,26,ok
+zenodo,"creators.name:(""Rustadbakken"" AND ""Atle"")",author,2,2,ok
+zenodo,"creators.name:(""Samek"" AND ""Isaiah"")",author,0,0,ok
+zenodo,"creators.name:(""Samways"" AND ""Michael"")",author,4,4,ok
+zenodo,"creators.name:(""Sandercock"" AND ""Brett"")",author,11,11,ok
+zenodo,"creators.name:(""Schank"" AND ""Cody"")",author,3,3,ok
+zenodo,"creators.name:(""Scheele"" AND ""Ben"")",author,9,9,ok
+zenodo,"creators.name:(""Schleimer"" AND ""Anna"")",author,4,4,ok
+zenodo,"creators.name:(""Schmid"" AND ""Hans"")",author,10,10,ok
+zenodo,"creators.name:(""Schmid-Egger"" AND ""Christian"")",author,13,13,ok
+zenodo,"creators.name:(""Schorr"" AND ""Gregory"")",author,7,7,ok
+zenodo,"creators.name:(""Schram"" AND ""Michael"")",author,2,2,ok
+zenodo,"creators.name:(""Schroder"" AND ""Mellesa"")",author,4,4,ok
+zenodo,"creators.name:(""Schuett"" AND ""Gordon"")",author,4,4,ok
+zenodo,"creators.name:(""Schulz"" AND ""Martin"")",author,18,18,ok
+zenodo,"creators.name:(""Schwartz-Tzachor"" AND ""Racheli"")",author,1,1,ok
+zenodo,"creators.name:(""Sears"" AND ""Richard"")",author,14,14,ok
+zenodo,"creators.name:(""Sedinger"" AND ""James"")",author,19,19,ok
+zenodo,"creators.name:(""Sekercioglu"" AND ""Cagan"")",author,11,11,ok
+zenodo,"creators.name:(""Sherley"" AND ""Richard"")",author,10,10,ok
+zenodo,"creators.name:(""Shirley"" AND ""Matthew"")",author,12,12,ok
+zenodo,"creators.name:(""Sillett"" AND ""T."")",author,19,19,ok
+zenodo,"creators.name:(""Simon"" AND ""Matthew"")",author,141,100,ok
+zenodo,"creators.name:(""Simonis"" AND ""Juniper"")",author,7,7,ok
+zenodo,"creators.name:(""Sinha"" AND ""Bitapi"")",author,1,1,ok
+zenodo,"creators.name:(""Skalos"" AND ""Shannon"")",author,1,1,ok
+zenodo,"creators.name:(""Smith"" AND ""James"")",author,200,100,ok
+zenodo,"creators.name:(""Smith"" AND ""Matthew"")",author,192,100,ok
+zenodo,"creators.name:(""Smith"" AND ""Samantha"")",author,30,30,ok
+zenodo,"creators.name:(""Soldaat"" AND ""Leo"")",author,1,1,ok
+zenodo,"creators.name:(""Sollmann"" AND ""Rahel"")",author,13,13,ok
+zenodo,"creators.name:(""Sprogis"" AND ""Kate"")",author,3,3,ok
+zenodo,"creators.name:(""Stallings"" AND ""Christopher"")",author,7,7,ok
+zenodo,"creators.name:(""Steenweg"" AND ""Robin"")",author,6,6,ok
+zenodo,"creators.name:(""Stewart"" AND ""Frances"")",author,2,2,ok
+zenodo,"creators.name:(""Stienstra"" AND ""Jelle"")",author,0,0,ok
+zenodo,"creators.name:(""Sullivan"" AND ""Kathryn"")",author,8,8,ok
+zenodo,"creators.name:(""Sun"" AND ""Yi-Fei"")",author,16,16,ok
+zenodo,"creators.name:(""Suryawanshi"" AND ""Kulbhushansingh"")",author,15,15,ok
+zenodo,"creators.name:(""Sutherland"" AND ""Chris"")",author,17,17,ok
+zenodo,"creators.name:(""Swedberg"" AND ""Dusty"")",author,1,1,ok
+zenodo,"creators.name:(""Symons"" AND ""John"")",author,3,3,ok
+zenodo,"creators.name:(""Teitsworth"" AND ""Eric"")",author,0,0,ok
+zenodo,"creators.name:(""Terhune"" AND ""Theron"")",author,2,2,ok
+zenodo,"creators.name:(""Tetzlaff"" AND ""Sasha"")",author,1,1,ok
+zenodo,"creators.name:(""Thanet"" AND ""Dol"")",author,2,2,ok
+zenodo,"creators.name:(""Theobald"" AND ""Jennifer"")",author,1,1,ok
+zenodo,"creators.name:(""Thogmartin"" AND ""Wayne"")",author,7,7,ok
+zenodo,"creators.name:(""Thompson"" AND ""Paul"")",author,65,65,ok
+zenodo,"creators.name:(""Thomson"" AND ""Jordan"")",author,5,5,ok
+zenodo,"creators.name:(""Tleimat"" AND ""Jacquelyn"")",author,0,0,ok
+zenodo,"creators.name:(""Toledo-Lima"" AND ""Guilherme"")",author,2,2,ok
+zenodo,"creators.name:(""Tomke"" AND ""Sarah"")",author,2,2,ok
+zenodo,"creators.name:(""Trosen"" AND ""Claudia"")",author,0,0,ok
+zenodo,"creators.name:(""Tumursukh"" AND ""Lkhagvasumberel"")",author,1,1,ok
+zenodo,"creators.name:(""Tun"" AND ""Aung"")",author,0,0,ok
+zenodo,"creators.name:(""Tun"" AND ""Saw"")",author,0,0,ok
+zenodo,"creators.name:(""Uher-Koch"" AND ""Brian"")",author,1,1,ok
+zenodo,"creators.name:(""Valenzuela-Sánchez"" AND ""Andrés"")",author,11,11,ok
+zenodo,"creators.name:(""Valverde"" AND ""Teresa"")",author,8,8,ok
+zenodo,"creators.name:(""Van Klink"" AND ""Roel"")",author,5,5,ok
+zenodo,"creators.name:(""Vermeulen"" AND ""Rikjan"")",author,1,1,ok
+zenodo,"creators.name:(""Vollestad"" AND ""L."")",author,4,4,ok
+zenodo,"creators.name:(""Volpe"" AND ""John"")",author,2,2,ok
+zenodo,"creators.name:(""Volzke"" AND ""Sophia"")",author,1,1,ok
+zenodo,"creators.name:(""Waddle"" AND ""Hardin"")",author,6,6,ok
+zenodo,"creators.name:(""Waddle"" AND ""J."")",author,6,6,ok
+zenodo,"creators.name:(""Wahlberg"" AND ""Niklas"")",author,41,41,ok
+zenodo,"creators.name:(""Waits"" AND ""Lisette"")",author,35,35,ok
+zenodo,"creators.name:(""Wall"" AND ""Kara"")",author,3,3,ok
+zenodo,"creators.name:(""Waller"" AND ""Lauren"")",author,7,7,ok
+zenodo,"creators.name:(""Wang"" AND ""Tian-Ming"")",author,12,12,ok
+zenodo,"creators.name:(""Westra"" AND ""Toon"")",author,14,14,ok
+zenodo,"creators.name:(""Whittington"" AND ""Jesse"")",author,6,6,ok
+zenodo,"creators.name:(""Williams"" AND ""Ian"")",author,83,83,ok
+zenodo,"creators.name:(""Wirsing"" AND ""Aaron"")",author,13,13,ok
+zenodo,"creators.name:(""Work"" AND ""Kirsten"")",author,1,1,ok
+zenodo,"creators.name:(""Wotherspoon"" AND ""Simon"")",author,4,4,ok
+zenodo,"creators.name:(""Wunder"" AND ""Michael"")",author,7,7,ok
+zenodo,"creators.name:(""Xiao"" AND ""Yuqian"")",author,1,1,ok
+zenodo,"creators.name:(""Yackel Adams"" AND ""Amy"")",author,15,15,ok
+zenodo,"creators.name:(""Yadav"" AND ""Ramesh"")",author,1,1,ok
+zenodo,"creators.name:(""Yoccoz"" AND ""Nigel"")",author,33,33,ok
+zenodo,"creators.name:(""Zaw"" AND ""Than"")",author,1,1,ok
+zenodo,"creators.name:(""Zhang"" AND ""Dandan"")",author,31,31,ok
+zenodo,"creators.name:(""Ziolkowski"" AND ""David"")",author,0,0,ok
+zenodo,"creators.name:(""Zipkin"" AND ""Elise"")",author,9,9,ok
+zenodo,"creators.name:(""Zuniga-Vega"" AND ""Jaime"")",author,10,10,ok
+zenodo,"creators.name:(""Zuniga-Vega"" AND ""Jose"")",author,3,3,ok
+zenodo,"creators.name:(""de Bruyn"" AND ""P."")",author,6,6,ok
+zenodo,"creators.name:(""de Zeeuw"" AND ""Marnix"")",author,0,0,ok
+zenodo,"creators.name:(""van Strien"" AND ""Arco"")",author,3,3,ok
+zenodo,"creators.name:(""Åström"" AND ""Jens"")",author,5,5,ok
+dataverse,"authorName:""A'Bear, Luke""",author,0,0,ok
+dataverse,"authorName:""Aass, Per""",author,0,0,ok
+dataverse,"authorName:""Adams, Jennifer""",author,0,0,ok
+dataverse,"authorName:""Addis, Brett""",author,0,0,ok
+dataverse,"authorName:""Ahizi, Michel""",author,0,0,ok
+dataverse,"authorName:""Ahumada, Jorge""",author,0,0,ok
+dataverse,"authorName:""Allen, Michael""",author,10,10,ok
+dataverse,"authorName:""Altwegg, Res""",author,0,0,ok
+dataverse,"authorName:""Ancona, Sergio""",author,0,0,ok
+dataverse,"authorName:""Anderson, David""",author,0,0,ok
+dataverse,"authorName:""Anderson, T.""",author,2,2,ok
+dataverse,"authorName:""Angrish, Kunal""",author,0,0,ok
+dataverse,"authorName:""Archambault, Jennifer""",author,0,0,ok
+dataverse,"authorName:""Armstrong, Joshua""",author,0,0,ok
+dataverse,"authorName:""Arso Civil, Monica""",author,0,0,ok
+dataverse,"authorName:""Astrom, Jens""",author,1,1,ok
+dataverse,"authorName:""Aung, Htet""",author,3,3,ok
+dataverse,"authorName:""Aung, Zarni""",author,0,0,ok
+dataverse,"authorName:""Aust, Ines""",author,0,0,ok
+dataverse,"authorName:""Baaloudj, Affef""",author,0,0,ok
+dataverse,"authorName:""Baessler, Claus""",author,0,0,ok
+dataverse,"authorName:""Bamann, Thomas""",author,0,0,ok
+dataverse,"authorName:""Banik, Arjun""",author,0,0,ok
+dataverse,"authorName:""Barea-Azcón, José""",author,0,0,ok
+dataverse,"authorName:""Barham, Barbara""",author,0,0,ok
+dataverse,"authorName:""Barham, Peter""",author,0,0,ok
+dataverse,"authorName:""Barlow, Jay""",author,0,0,ok
+dataverse,"authorName:""Barton, Christopher""",author,0,0,ok
+dataverse,"authorName:""Bashyal, Ashish""",author,0,0,ok
+dataverse,"authorName:""Bayle, Arthur""",author,0,0,ok
+dataverse,"authorName:""Bedson, Carlos""",author,0,0,ok
+dataverse,"authorName:""Beery, Sara""",author,0,0,ok
+dataverse,"authorName:""Bejder, Lars""",author,0,0,ok
+dataverse,"authorName:""Benyamini, Dubi""",author,0,0,ok
+dataverse,"authorName:""Berg, Ake""",author,0,0,ok
+dataverse,"authorName:""Bertscheit, Ralf""",author,0,0,ok
+dataverse,"authorName:""Berube, Martine""",author,1,1,ok
+dataverse,"authorName:""Bester, Marthan""",author,0,0,ok
+dataverse,"authorName:""Bhattacharya, Ankita""",author,0,0,ok
+dataverse,"authorName:""Bhattarai, Santosh""",author,0,0,ok
+dataverse,"authorName:""Bielsa, Maria""",author,0,0,ok
+dataverse,"authorName:""Bison, Marjorie""",author,1,1,ok
+dataverse,"authorName:""Blaalid, Rakel""",author,0,0,ok
+dataverse,"authorName:""Blanchard, Wade""",author,0,0,ok
+dataverse,"authorName:""Blomberg, Erik""",author,0,0,ok
+dataverse,"authorName:""Blount, Judson""",author,0,0,ok
+dataverse,"authorName:""Boeraeve, Fanny""",author,0,0,ok
+dataverse,"authorName:""Boldgiv, Bazartseren""",author,2,2,ok
+dataverse,"authorName:""Bonner, Simon""",author,0,0,ok
+dataverse,"authorName:""Boone, Michelle""",author,0,0,ok
+dataverse,"authorName:""Borchers, David""",author,0,0,ok
+dataverse,"authorName:""Bradfer-Lawrence, Tom""",author,0,0,ok
+dataverse,"authorName:""Brand, Adrianne""",author,0,0,ok
+dataverse,"authorName:""Brewer, Shannon""",author,0,0,ok
+dataverse,"authorName:""Brosens, Dimitri""",author,0,0,ok
+dataverse,"authorName:""Brown, William""",author,10,10,ok
+dataverse,"authorName:""Bruce, Alexis""",author,0,0,ok
+dataverse,"authorName:""Budach, Daniela""",author,0,0,ok
+dataverse,"authorName:""Burgar, Joanna""",author,4,4,ok
+dataverse,"authorName:""Burkholder, Derek""",author,0,0,ok
+dataverse,"authorName:""Burnham, Dawn""",author,0,0,ok
+dataverse,"authorName:""Burnham, Kenneth""",author,0,0,ok
+dataverse,"authorName:""Burt, April""",author,0,0,ok
+dataverse,"authorName:""Burton, A.""",author,60,60,ok
+dataverse,"authorName:""Burton, Harry""",author,0,0,ok
+dataverse,"authorName:""COAT, UiT""",author,0,0,ok
+dataverse,"authorName:""Cabeza, Mar""",author,0,0,ok
+dataverse,"authorName:""Cannings, Robert""",author,0,0,ok
+dataverse,"authorName:""Carlson, Bradley""",author,0,0,ok
+dataverse,"authorName:""Carpentier, Alain""",author,0,0,ok
+dataverse,"authorName:""Cecala, Kristen""",author,0,0,ok
+dataverse,"authorName:""Chabanne, Delphine""",author,0,0,ok
+dataverse,"authorName:""Chambert, Thierry""",author,0,0,ok
+dataverse,"authorName:""Chandler, Richard""",author,0,0,ok
+dataverse,"authorName:""Chandler, Richard""",author,0,0,ok
+dataverse,"authorName:""Chatterjee, Nilanjan""",author,0,0,ok
+dataverse,"authorName:""Cheney, Barbara""",author,0,0,ok
+dataverse,"authorName:""Chong-Seng, Karen""",author,0,0,ok
+dataverse,"authorName:""Chynoweth, Mark""",author,0,0,ok
+dataverse,"authorName:""Classen, Alice""",author,0,0,ok
+dataverse,"authorName:""Cleavitt, Natalie""",author,0,0,ok
+dataverse,"authorName:""Clemann, Nick""",author,0,0,ok
+dataverse,"authorName:""Clipp, Hannah""",author,0,0,ok
+dataverse,"authorName:""Clobert, Jean""",author,0,0,ok
+dataverse,"authorName:""Coban, Emrah""",author,0,0,ok
+dataverse,"authorName:""Conroy, Michael""",author,0,0,ok
+dataverse,"authorName:""Cooke, Sarah""",author,2,2,ok
+dataverse,"authorName:""Cove, Michael""",author,0,0,ok
+dataverse,"authorName:""Cowen, Laura""",author,0,0,ok
+dataverse,"authorName:""Cox, John""",author,0,0,ok
+dataverse,"authorName:""Currylow, Andrea""",author,0,0,ok
+dataverse,"authorName:""Curtis, K.""",author,9,9,ok
+dataverse,"authorName:""Curveira-Santos, Goncalo""",author,0,0,ok
+dataverse,"authorName:""Cushman, Samuel""",author,0,0,ok
+dataverse,"authorName:""Daily, Gretchen""",author,0,0,ok
+dataverse,"authorName:""Davey, Marie""",author,1,1,ok
+dataverse,"authorName:""Davis, Amy""",author,0,0,ok
+dataverse,"authorName:""Davis, Mark""",author,8,8,ok
+dataverse,"authorName:""Dawson, Carol""",author,0,0,ok
+dataverse,"authorName:""De Knijf, Geert""",author,0,0,ok
+dataverse,"authorName:""DeGregorio, Brett""",author,0,0,ok
+dataverse,"authorName:""DePrenger-Levin, Michelle""",author,0,0,ok
+dataverse,"authorName:""DeStefano, Stephen""",author,1,1,ok
+dataverse,"authorName:""Dede, Azani""",author,0,0,ok
+dataverse,"authorName:""Delarue, Julien""",author,0,0,ok
+dataverse,"authorName:""Delestrade, Anne""",author,0,0,ok
+dataverse,"authorName:""Desmet, Peter""",author,0,0,ok
+dataverse,"authorName:""Dettling, Mark""",author,0,0,ok
+dataverse,"authorName:""Diaz, Jesus""",author,0,0,ok
+dataverse,"authorName:""Dickman, Christopher""",author,0,0,ok
+dataverse,"authorName:""Dillon, Frank""",author,0,0,ok
+dataverse,"authorName:""Dirzo, Rodolfo""",author,0,0,ok
+dataverse,"authorName:""Distiller, Greg""",author,0,0,ok
+dataverse,"authorName:""Dobson, Andrew""",author,0,0,ok
+dataverse,"authorName:""Donmoyer, Kevin""",author,0,0,ok
+dataverse,"authorName:""Doser, Jeffrey""",author,0,0,ok
+dataverse,"authorName:""Dougherty, Matthew""",author,0,0,ok
+dataverse,"authorName:""Doyle, Sarah""",author,0,0,ok
+dataverse,"authorName:""Drayer, Andrea""",author,0,0,ok
+dataverse,"authorName:""Drummond, Hugh""",author,1,1,ok
+dataverse,"authorName:""Dufrêne, Marc""",author,0,0,ok
+dataverse,"authorName:""Dupont, Gates""",author,0,0,ok
+dataverse,"authorName:""Dybala, Kristen""",author,0,0,ok
+dataverse,"authorName:""Döring, Jörg""",author,0,0,ok
+dataverse,"authorName:""Edelstam, Carl""",author,0,0,ok
+dataverse,"authorName:""Egan, Scott""",author,1,1,ok
+dataverse,"authorName:""Elmberg, Johan""",author,0,0,ok
+dataverse,"authorName:""Emory, Meaghan""",author,0,0,ok
+dataverse,"authorName:""Endrestol, Anders""",author,0,0,ok
+dataverse,"authorName:""English, Willow""",author,3,3,ok
+dataverse,"authorName:""Erhardt, Robert""",author,0,0,ok
+dataverse,"authorName:""Erickson, Daniel""",author,0,0,ok
+dataverse,"authorName:""Esque, Todd""",author,0,0,ok
+dataverse,"authorName:""Evans, Bryn""",author,0,0,ok
+dataverse,"authorName:""Fabritius, Henna""",author,0,0,ok
+dataverse,"authorName:""Fairet, Emilie""",author,0,0,ok
+dataverse,"authorName:""Falcone, Erin""",author,0,0,ok
+dataverse,"authorName:""Farnsworth, Matthew""",author,0,0,ok
+dataverse,"authorName:""Feng, Jia-Wei""",author,0,0,ok
+dataverse,"authorName:""Ferguson, Paige""",author,0,0,ok
+dataverse,"authorName:""Fernandez, Adrian""",author,0,0,ok
+dataverse,"authorName:""Fidino, Mason""",author,0,0,ok
+dataverse,"authorName:""Field, Rachel""",author,2,2,ok
+dataverse,"authorName:""Finch, Tom""",author,0,0,ok
+dataverse,"authorName:""Fisher, Jason""",author,19,19,ok
+dataverse,"authorName:""Fiske, Ian""",author,0,0,ok
+dataverse,"authorName:""Fossoy, Frode""",author,0,0,ok
+dataverse,"authorName:""Foster, Rebecca""",author,1,1,ok
+dataverse,"authorName:""Freytag, Sara""",author,0,0,ok
+dataverse,"authorName:""Friess, Nicolas""",author,0,0,ok
+dataverse,"authorName:""Frimpong, Emmanuel""",author,1,1,ok
+dataverse,"authorName:""Frishkoff, Luke""",author,2,2,ok
+dataverse,"authorName:""Fritts, Sarah""",author,0,0,ok
+dataverse,"authorName:""Fukaya, Keiichi""",author,0,0,ok
+dataverse,"authorName:""Gallagher, Colin""",author,2,2,ok
+dataverse,"authorName:""Galvez, Nicolas""",author,1,1,ok
+dataverse,"authorName:""Gantz, Crysta""",author,0,0,ok
+dataverse,"authorName:""Gardali, Thomas""",author,0,0,ok
+dataverse,"authorName:""Gardner, Beth""",author,1,1,ok
+dataverse,"authorName:""Gastrich, Kirk""",author,0,0,ok
+dataverse,"authorName:""Ge, Jianping""",author,0,0,ok
+dataverse,"authorName:""Gerrits, Gijs""",author,0,0,ok
+dataverse,"authorName:""Gibson, Daniel""",author,0,0,ok
+dataverse,"authorName:""Gigliotti, Laura""",author,0,0,ok
+dataverse,"authorName:""Gilliland, Scott""",author,0,0,ok
+dataverse,"authorName:""Glorioso, Brad""",author,0,0,ok
+dataverse,"authorName:""Gohli, Jostein""",author,0,0,ok
+dataverse,"authorName:""Goldberg, Caren""",author,0,0,ok
+dataverse,"authorName:""Goldingay, Ross""",author,0,0,ok
+dataverse,"authorName:""Gopal, Rajesh""",author,0,0,ok
+dataverse,"authorName:""Gottschalk, Thomas""",author,0,0,ok
+dataverse,"authorName:""Granados-Hernandez, Luisa""",author,0,0,ok
+dataverse,"authorName:""Grant III, Thomas""",author,0,0,ok
+dataverse,"authorName:""Grant, Evan""",author,0,0,ok
+dataverse,"authorName:""Gratton, Claudio""",author,1,1,ok
+dataverse,"authorName:""Graves, Jeff""",author,0,0,ok
+dataverse,"authorName:""Green, Austin""",author,0,0,ok
+dataverse,"authorName:""Green, Martin""",author,0,0,ok
+dataverse,"authorName:""Grigg, Jennifer""",author,0,0,ok
+dataverse,"authorName:""Habib, Bilal""",author,0,0,ok
+dataverse,"authorName:""Hadly, Elizabeth""",author,0,0,ok
+dataverse,"authorName:""Hagman, Mattias""",author,0,0,ok
+dataverse,"authorName:""Hall, Jeffrey""",author,4,4,ok
+dataverse,"authorName:""Hamer, Andrew""",author,0,0,ok
+dataverse,"authorName:""Hamm, Christopher""",author,0,0,ok
+dataverse,"authorName:""Hammond, Philip""",author,1,1,ok
+dataverse,"authorName:""Harmsen, Bart""",author,1,1,ok
+dataverse,"authorName:""Harris, Nyeema""",author,0,0,ok
+dataverse,"authorName:""Hartley, Renée""",author,0,0,ok
+dataverse,"authorName:""Hastings, Kelly""",author,0,0,ok
+dataverse,"authorName:""Haupt, Philip""",author,0,0,ok
+dataverse,"authorName:""Hebblewhite, Mark""",author,1,1,ok
+dataverse,"authorName:""Hegge, Ola""",author,0,0,ok
+dataverse,"authorName:""Hegre, Hanne""",author,0,0,ok
+dataverse,"authorName:""Heithaus, Michael""",author,0,0,ok
+dataverse,"authorName:""Hendershot, J.""",author,0,0,ok
+dataverse,"authorName:""Henry, Dominic""",author,1,1,ok
+dataverse,"authorName:""Hepinstall-Cymerman, Jeffrey""",author,0,0,ok
+dataverse,"authorName:""Hepler, Staci""",author,0,0,ok
+dataverse,"authorName:""Hermann, Gabriel""",author,0,0,ok
+dataverse,"authorName:""Hernandez-Apolinar, Mariana""",author,0,0,ok
+dataverse,"authorName:""Heuer, Karsten""",author,0,0,ok
+dataverse,"authorName:""Hileman, Eric""",author,0,0,ok
+dataverse,"authorName:""Hindell, Mark""",author,0,0,ok
+dataverse,"authorName:""Hinneberg, Heiko""",author,0,0,ok
+dataverse,"authorName:""Hodder, Dexter""",author,3,3,ok
+dataverse,"authorName:""Hoiss, Bernhard""",author,0,0,ok
+dataverse,"authorName:""Hollanders, Matthijs""",author,0,0,ok
+dataverse,"authorName:""Hooten, Mevin""",author,0,0,ok
+dataverse,"authorName:""Hopfenmueller, Sebastian""",author,0,0,ok
+dataverse,"authorName:""Horanyi, Julia""",author,0,0,ok
+dataverse,"authorName:""Howland, Kimberly""",author,3,3,ok
+dataverse,"authorName:""Htun, Saw""",author,0,0,ok
+dataverse,"authorName:""Hudson, Marie-Anne""",author,3,3,ok
+dataverse,"authorName:""Humphries, W.""",author,0,0,ok
+dataverse,"authorName:""Humple, Diana""",author,0,0,ok
+dataverse,"authorName:""Hunt, Barb""",author,0,0,ok
+dataverse,"authorName:""Hutton, Jacob""",author,2,2,ok
+dataverse,"authorName:""Hébert, Trevor""",author,0,0,ok
+dataverse,"authorName:""Infante, Jose""",author,1,1,ok
+dataverse,"authorName:""Irons, David""",author,0,0,ok
+dataverse,"authorName:""Islas-Villanueva, Valentina""",author,0,0,ok
+dataverse,"authorName:""Jackson, Hanna""",author,0,0,ok
+dataverse,"authorName:""Jacobsen, Rannveig""",author,0,0,ok
+dataverse,"authorName:""Janik, Vincent""",author,0,0,ok
+dataverse,"authorName:""Jathanna, Devcharan""",author,0,0,ok
+dataverse,"authorName:""Jemison, Lauri""",author,0,0,ok
+dataverse,"authorName:""Jhala, Yadvendradev""",author,0,0,ok
+dataverse,"authorName:""Jimenez, Jaime""",author,3,3,ok
+dataverse,"authorName:""Johnson, Chris""",author,3,3,ok
+dataverse,"authorName:""Johnson, Sarah""",author,0,0,ok
+dataverse,"authorName:""Jönsson, Annelie""",author,0,0,ok
+dataverse,"authorName:""Kadoya, Taku""",author,1,1,ok
+dataverse,"authorName:""Kanno, Yoichiro""",author,0,0,ok
+dataverse,"authorName:""Karanth, K.""",author,0,0,ok
+dataverse,"authorName:""Karp, Daniel""",author,6,6,ok
+dataverse,"authorName:""Kaszta, Zaneta""",author,0,0,ok
+dataverse,"authorName:""Kays, Roland""",author,2,2,ok
+dataverse,"authorName:""Keene, Erin""",author,0,0,ok
+dataverse,"authorName:""Kelly, Marcella""",author,1,1,ok
+dataverse,"authorName:""Kerner, Janika""",author,0,0,ok
+dataverse,"authorName:""Kery, Marc""",author,0,0,ok
+dataverse,"authorName:""Khelifa, Rassim""",author,2,2,ok
+dataverse,"authorName:""Kim, Seoghyun""",author,0,0,ok
+dataverse,"authorName:""King, David""",author,3,3,ok
+dataverse,"authorName:""Kleiven, Eivind""",author,1,1,ok
+dataverse,"authorName:""Knape, Jonas""",author,0,0,ok
+dataverse,"authorName:""Koese, Bram""",author,0,0,ok
+dataverse,"authorName:""Koester, Anna""",author,0,0,ok
+dataverse,"authorName:""Koetke, Lisa""",author,1,1,ok
+dataverse,"authorName:""Kondo, Natsuko""",author,0,0,ok
+dataverse,"authorName:""Kouamé, N'Dri""",author,0,0,ok
+dataverse,"authorName:""Kouman, Christine""",author,0,0,ok
+dataverse,"authorName:""Kumar, N.""",author,0,0,ok
+dataverse,"authorName:""Kusak, Josip""",author,0,0,ok
+dataverse,"authorName:""Kyaw, Pyae""",author,0,0,ok
+dataverse,"authorName:""Kärvemo, Simon""",author,0,0,ok
+dataverse,"authorName:""Kéry, Marc""",author,0,0,ok
+dataverse,"authorName:""Lafferty, Kevin""",author,1,1,ok
+dataverse,"authorName:""Lamichhane, Babu""",author,0,0,ok
+dataverse,"authorName:""Lamichhane, Saneer""",author,0,0,ok
+dataverse,"authorName:""Larson, Diane""",author,0,0,ok
+dataverse,"authorName:""Larson, Eric""",author,0,0,ok
+dataverse,"authorName:""Larson, Jennifer""",author,10,10,ok
+dataverse,"authorName:""Lazenby, Billie""",author,0,0,ok
+dataverse,"authorName:""Lea, Ellen""",author,0,0,ok
+dataverse,"authorName:""Leach, Alan""",author,0,0,ok
+dataverse,"authorName:""Lebeuf-Taylor, Isabelle""",author,2,2,ok
+dataverse,"authorName:""Lebreton, Jean-Dominique""",author,0,0,ok
+dataverse,"authorName:""Ledegen, Hannes""",author,0,0,ok
+dataverse,"authorName:""Lee, Alan""",author,1,1,ok
+dataverse,"authorName:""Lehrer, Elizabeth""",author,0,0,ok
+dataverse,"authorName:""Lehtomaki, Joona""",author,0,0,ok
+dataverse,"authorName:""Leith, Freddie""",author,0,0,ok
+dataverse,"authorName:""Leone, Julia""",author,0,0,ok
+dataverse,"authorName:""Lewis, Jesse""",author,0,0,ok
+dataverse,"authorName:""Li, Hailong""",author,0,0,ok
+dataverse,"authorName:""Lindenmayer, David""",author,2,2,ok
+dataverse,"authorName:""Lindström, Åke""",author,0,0,ok
+dataverse,"authorName:""Lockwood, Julie""",author,0,0,ok
+dataverse,"authorName:""Lodge, David""",author,0,0,ok
+dataverse,"authorName:""Loftin, Cynthia""",author,0,0,ok
+dataverse,"authorName:""Ludynia, Katrin""",author,0,0,ok
+dataverse,"authorName:""Lukacs, Paul""",author,0,0,ok
+dataverse,"authorName:""Lund, Espen""",author,0,0,ok
+dataverse,"authorName:""Lutmerding, Michael""",author,3,3,ok
+dataverse,"authorName:""Lynch, Ryan""",author,0,0,ok
+dataverse,"authorName:""M'Gonigle, Leithen""",author,1,1,ok
+dataverse,"authorName:""MacKenzie, Darryl""",author,0,0,ok
+dataverse,"authorName:""Macdonald, David""",author,25,25,ok
+dataverse,"authorName:""Magle, Seth""",author,0,0,ok
+dataverse,"authorName:""Mahdjoub, Hayat""",author,0,0,ok
+dataverse,"authorName:""Maihoff, Fabienne""",author,0,0,ok
+dataverse,"authorName:""Majaneva, Markus""",author,0,0,ok
+dataverse,"authorName:""Malhotra, Rumaan""",author,0,0,ok
+dataverse,"authorName:""Maragliano, Rene""",author,0,0,ok
+dataverse,"authorName:""Margenau, Eric""",author,0,0,ok
+dataverse,"authorName:""Markl, Gregor""",author,0,0,ok
+dataverse,"authorName:""Martinez-Villegas, Jorge""",author,0,0,ok
+dataverse,"authorName:""Martorell, Carlos""",author,0,0,ok
+dataverse,"authorName:""Marzolin, Gilbert""",author,0,0,ok
+dataverse,"authorName:""Matsuzaki, Shin-ichiro""",author,0,0,ok
+dataverse,"authorName:""Mazzotti, Frank""",author,0,0,ok
+dataverse,"authorName:""McCarthy, Thomas""",author,0,0,ok
+dataverse,"authorName:""McCracken, Shawn""",author,0,0,ok
+dataverse,"authorName:""McGeorge, Cuan""",author,0,0,ok
+dataverse,"authorName:""McHugh, Darren""",author,0,0,ok
+dataverse,"authorName:""McKinney, Shawn""",author,0,0,ok
+dataverse,"authorName:""McKnight, Aly""",author,0,0,ok
+dataverse,"authorName:""McLeod, Ryan""",author,0,0,ok
+dataverse,"authorName:""McMahon, Clive""",author,0,0,ok
+dataverse,"authorName:""McNeil, Darin""",author,0,0,ok
+dataverse,"authorName:""McNutt, J.""",author,0,0,ok
+dataverse,"authorName:""McShea, William""",author,0,0,ok
+dataverse,"authorName:""McTigue, Leah""",author,0,0,ok
+dataverse,"authorName:""Mdluli, Andile""",author,0,0,ok
+dataverse,"authorName:""Meena, Dharamveer""",author,0,0,ok
+dataverse,"authorName:""Mendenhall, Chase""",author,0,0,ok
+dataverse,"authorName:""Miller, David""",author,17,17,ok
+dataverse,"authorName:""Miller, Melissa""",author,0,0,ok
+dataverse,"authorName:""Miller, Ryan""",author,2,2,ok
+dataverse,"authorName:""Mishra, Charudutt""",author,0,0,ok
+dataverse,"authorName:""Moe, Kyaw""",author,0,0,ok
+dataverse,"authorName:""Moe, S.""",author,0,0,ok
+dataverse,"authorName:""Mollenhauer, Robert""",author,0,0,ok
+dataverse,"authorName:""Montalti, Diego""",author,0,0,ok
+dataverse,"authorName:""Mooney, Nicholas""",author,0,0,ok
+dataverse,"authorName:""Moore, Jeffrey""",author,0,0,ok
+dataverse,"authorName:""Moretti, David""",author,0,0,ok
+dataverse,"authorName:""Moxcey, Michael""",author,0,0,ok
+dataverse,"authorName:""Mueller, Joerg""",author,0,0,ok
+dataverse,"authorName:""Mulder, Kevin""",author,0,0,ok
+dataverse,"authorName:""Muncy, Brenee'""",author,0,0,ok
+dataverse,"authorName:""Mungi, Ninad""",author,0,0,ok
+dataverse,"authorName:""Murphy, Sean""",author,0,0,ok
+dataverse,"authorName:""Murphy, Sean""",author,0,0,ok
+dataverse,"authorName:""Murray, Maureen""",author,0,0,ok
+dataverse,"authorName:""Muthukumarana, Saman""",author,0,0,ok
+dataverse,"authorName:""Myo, Khin""",author,0,0,ok
+dataverse,"authorName:""Myo, Okka""",author,0,0,ok
+dataverse,"authorName:""Naing, Hla""",author,0,0,ok
+dataverse,"authorName:""Nater, Chloe""",author,0,0,ok
+dataverse,"authorName:""Nay, Saw""",author,0,0,ok
+dataverse,"authorName:""Neumayer, Johann""",author,0,0,ok
+dataverse,"authorName:""Nichols, James""",author,0,0,ok
+dataverse,"authorName:""Niedermayer, Jana""",author,0,0,ok
+dataverse,"authorName:""Nielsen, Anne""",author,0,0,ok
+dataverse,"authorName:""Noth, Hutton""",author,0,0,ok
+dataverse,"authorName:""Nowicki, Robert""",author,0,0,ok
+dataverse,"authorName:""Oberhauser, Karen""",author,1,1,ok
+dataverse,"authorName:""Obrist, Debora""",author,0,0,ok
+dataverse,"authorName:""Often, Anders""",author,0,0,ok
+dataverse,"authorName:""Oosthuizen, W.""",author,0,0,ok
+dataverse,"authorName:""Ouattara, Allassane""",author,0,0,ok
+dataverse,"authorName:""Ovaskainen, Otso""",author,0,0,ok
+dataverse,"authorName:""Pacifici, Krishna""",author,0,0,ok
+dataverse,"authorName:""Palacio, Facundo""",author,0,0,ok
+dataverse,"authorName:""Palmheden, Linda""",author,0,0,ok
+dataverse,"authorName:""Palsboll, Per""",author,2,2,ok
+dataverse,"authorName:""Parkyn, Jonathan""",author,0,0,ok
+dataverse,"authorName:""Parsons, Nola""",author,0,0,ok
+dataverse,"authorName:""Part, Tomas""",author,0,0,ok
+dataverse,"authorName:""Pe'er, Guy""",author,0,0,ok
+dataverse,"authorName:""Peake, Jonathan""",author,0,0,ok
+dataverse,"authorName:""Peer, Israel""",author,0,0,ok
+dataverse,"authorName:""Pendleton, Grey""",author,0,0,ok
+dataverse,"authorName:""Pennarola, Nora""",author,0,0,ok
+dataverse,"authorName:""Pepin, Kim""",author,0,0,ok
+dataverse,"authorName:""Pesi, Sarah""",author,0,0,ok
+dataverse,"authorName:""Peterson, Donnie""",author,0,0,ok
+dataverse,"authorName:""Petracca, Lisanne""",author,0,0,ok
+dataverse,"authorName:""Pichorim, Mauro""",author,0,0,ok
+dataverse,"authorName:""Piesschaert, Frederik""",author,0,0,ok
+dataverse,"authorName:""Pisanty, Irene""",author,0,0,ok
+dataverse,"authorName:""Po, Saw""",author,0,0,ok
+dataverse,"authorName:""Po, Saw""",author,0,0,ok
+dataverse,"authorName:""Pollet, Marc""",author,0,0,ok
+dataverse,"authorName:""Pradel, Roger""",author,0,0,ok
+dataverse,"authorName:""Pregler, Kasey""",author,0,0,ok
+dataverse,"authorName:""Price, Steven""",author,0,0,ok
+dataverse,"authorName:""Price, Steven""",author,0,0,ok
+dataverse,"authorName:""Péters, Julien""",author,0,0,ok
+dataverse,"authorName:""Quick, Nicola""",author,0,0,ok
+dataverse,"authorName:""Qureshi, Qamar""",author,0,0,ok
+dataverse,"authorName:""Qvenild, Tore""",author,0,0,ok
+dataverse,"authorName:""Raman, T.""",author,0,0,ok
+dataverse,"authorName:""Ramp, Christian""",author,0,0,ok
+dataverse,"authorName:""Ray, H.""",author,0,0,ok
+dataverse,"authorName:""Rayamajhi, Trishna""",author,0,0,ok
+dataverse,"authorName:""Reed, Eric""",author,2,2,ok
+dataverse,"authorName:""Renshaw, Mark""",author,0,0,ok
+dataverse,"authorName:""Reynolds, John""",author,5,5,ok
+dataverse,"authorName:""Rich, Lindsey""",author,0,0,ok
+dataverse,"authorName:""Riecke, Thomas""",author,0,0,ok
+dataverse,"authorName:""Rissi, Alicia""",author,0,0,ok
+dataverse,"authorName:""Robinson, Hugh""",author,1,1,ok
+dataverse,"authorName:""Rodenhouse, Nicholas""",author,0,0,ok
+dataverse,"authorName:""Rodriguez, Cristina""",author,1,1,ok
+dataverse,"authorName:""Rodriguez, David""",author,14,14,ok
+dataverse,"authorName:""Rodriguez-Sanchez, Mariana""",author,0,0,ok
+dataverse,"authorName:""Ronka, Katja""",author,0,0,ok
+dataverse,"authorName:""Rooney, Brigit""",author,0,0,ok
+dataverse,"authorName:""Ros Candeira, Andrea""",author,0,0,ok
+dataverse,"authorName:""Rota, Christopher""",author,0,0,ok
+dataverse,"authorName:""Roy, Christian""",author,0,0,ok
+dataverse,"authorName:""Royle, J.""",author,0,0,ok
+dataverse,"authorName:""Rustadbakken, Atle""",author,0,0,ok
+dataverse,"authorName:""Samek, Isaiah""",author,0,0,ok
+dataverse,"authorName:""Samways, Michael""",author,0,0,ok
+dataverse,"authorName:""Sandercock, Brett""",author,1,1,ok
+dataverse,"authorName:""Schank, Cody""",author,0,0,ok
+dataverse,"authorName:""Scheele, Ben""",author,0,0,ok
+dataverse,"authorName:""Schleimer, Anna""",author,0,0,ok
+dataverse,"authorName:""Schmid, Hans""",author,1,1,ok
+dataverse,"authorName:""Schmid-Egger, Christian""",author,0,0,ok
+dataverse,"authorName:""Schorr, Gregory""",author,0,0,ok
+dataverse,"authorName:""Schram, Michael""",author,0,0,ok
+dataverse,"authorName:""Schroder, Mellesa""",author,0,0,ok
+dataverse,"authorName:""Schuett, Gordon""",author,0,0,ok
+dataverse,"authorName:""Schulz, Martin""",author,0,0,ok
+dataverse,"authorName:""Schwartz-Tzachor, Racheli""",author,0,0,ok
+dataverse,"authorName:""Sears, Richard""",author,0,0,ok
+dataverse,"authorName:""Sedinger, James""",author,0,0,ok
+dataverse,"authorName:""Sekercioglu, Cagan""",author,0,0,ok
+dataverse,"authorName:""Sherley, Richard""",author,0,0,ok
+dataverse,"authorName:""Shirley, Matthew""",author,2,2,ok
+dataverse,"authorName:""Sillett, T.""",author,0,0,ok
+dataverse,"authorName:""Simon, Matthew""",author,0,0,ok
+dataverse,"authorName:""Simonis, Juniper""",author,0,0,ok
+dataverse,"authorName:""Sinha, Bitapi""",author,0,0,ok
+dataverse,"authorName:""Skalos, Shannon""",author,0,0,ok
+dataverse,"authorName:""Smith, James""",author,22,22,ok
+dataverse,"authorName:""Smith, Matthew""",author,8,8,ok
+dataverse,"authorName:""Smith, Samantha""",author,8,8,ok
+dataverse,"authorName:""Soldaat, Leo""",author,0,0,ok
+dataverse,"authorName:""Sollmann, Rahel""",author,1,1,ok
+dataverse,"authorName:""Sprogis, Kate""",author,0,0,ok
+dataverse,"authorName:""Stallings, Christopher""",author,0,0,ok
+dataverse,"authorName:""Steenweg, Robin""",author,0,0,ok
+dataverse,"authorName:""Stewart, Frances""",author,2,2,ok
+dataverse,"authorName:""Stienstra, Jelle""",author,0,0,ok
+dataverse,"authorName:""Sullivan, Kathryn""",author,0,0,ok
+dataverse,"authorName:""Sun, Yi-Fei""",author,0,0,ok
+dataverse,"authorName:""Suryawanshi, Kulbhushansingh""",author,0,0,ok
+dataverse,"authorName:""Sutherland, Chris""",author,0,0,ok
+dataverse,"authorName:""Swedberg, Dusty""",author,0,0,ok
+dataverse,"authorName:""Symons, John""",author,0,0,ok
+dataverse,"authorName:""Teitsworth, Eric""",author,0,0,ok
+dataverse,"authorName:""Terhune, Theron""",author,0,0,ok
+dataverse,"authorName:""Tetzlaff, Sasha""",author,0,0,ok
+dataverse,"authorName:""Thanet, Dol""",author,0,0,ok
+dataverse,"authorName:""Theobald, Jennifer""",author,0,0,ok
+dataverse,"authorName:""Thogmartin, Wayne""",author,0,0,ok
+dataverse,"authorName:""Thompson, Paul""",author,1,1,ok
+dataverse,"authorName:""Thomson, Jordan""",author,0,0,ok
+dataverse,"authorName:""Tleimat, Jacquelyn""",author,0,0,ok
+dataverse,"authorName:""Toledo-Lima, Guilherme""",author,0,0,ok
+dataverse,"authorName:""Tomke, Sarah""",author,0,0,ok
+dataverse,"authorName:""Trosen, Claudia""",author,0,0,ok
+dataverse,"authorName:""Tumursukh, Lkhagvasumberel""",author,0,0,ok
+dataverse,"authorName:""Tun, Aung""",author,0,0,ok
+dataverse,"authorName:""Tun, Saw""",author,0,0,ok
+dataverse,"authorName:""Uher-Koch, Brian""",author,6,6,ok
+dataverse,"authorName:""Valenzuela-Sánchez, Andrés""",author,0,0,ok
+dataverse,"authorName:""Valverde, Teresa""",author,0,0,ok
+dataverse,"authorName:""Van Klink, Roel""",author,0,0,ok
+dataverse,"authorName:""Vermeulen, Rikjan""",author,0,0,ok
+dataverse,"authorName:""Vollestad, L.""",author,0,0,ok
+dataverse,"authorName:""Volpe, John""",author,2,2,ok
+dataverse,"authorName:""Volzke, Sophia""",author,0,0,ok
+dataverse,"authorName:""Waddle, Hardin""",author,0,0,ok
+dataverse,"authorName:""Waddle, J.""",author,0,0,ok
+dataverse,"authorName:""Wahlberg, Niklas""",author,0,0,ok
+dataverse,"authorName:""Waits, Lisette""",author,0,0,ok
+dataverse,"authorName:""Wall, Kara""",author,0,0,ok
+dataverse,"authorName:""Waller, Lauren""",author,1,1,ok
+dataverse,"authorName:""Wang, Tian-Ming""",author,0,0,ok
+dataverse,"authorName:""Westra, Toon""",author,0,0,ok
+dataverse,"authorName:""Whittington, Jesse""",author,0,0,ok
+dataverse,"authorName:""Williams, Ian""",author,0,0,ok
+dataverse,"authorName:""Wirsing, Aaron""",author,0,0,ok
+dataverse,"authorName:""Work, Kirsten""",author,1,1,ok
+dataverse,"authorName:""Wotherspoon, Simon""",author,0,0,ok
+dataverse,"authorName:""Wunder, Michael""",author,0,0,ok
+dataverse,"authorName:""Xiao, Yuqian""",author,0,0,ok
+dataverse,"authorName:""Yackel Adams, Amy""",author,0,0,ok
+dataverse,"authorName:""Yadav, Ramesh""",author,0,0,ok
+dataverse,"authorName:""Yoccoz, Nigel""",author,2,2,ok
+dataverse,"authorName:""Zaw, Than""",author,0,0,ok
+dataverse,"authorName:""Zhang, Dandan""",author,0,0,ok
+dataverse,"authorName:""Ziolkowski, David""",author,3,3,ok
+dataverse,"authorName:""Zipkin, Elise""",author,2,2,ok
+dataverse,"authorName:""Zuniga-Vega, Jaime""",author,0,0,ok
+dataverse,"authorName:""Zuniga-Vega, Jose""",author,0,0,ok
+dataverse,"authorName:""de Bruyn, P.""",author,1,1,ok
+dataverse,"authorName:""de Zeeuw, Marnix""",author,0,0,ok
+dataverse,"authorName:""van Strien, Arco""",author,0,0,ok
+dataverse,"authorName:""Åström, Jens""",author,1,1,ok
+neon,"(product catalogue, organismal products)",catalogue,26,26,ok

@@ -41,10 +41,32 @@
     "n_occasions": 7,
     "n_surveys": 653,
     "y_values": "0-622 (94 distinct)",
-    "prop_zero": 0.282
+    "prop_zero": 0.282,
+    "n_traps": 1,
+    "n_zero": 184,
+    "n_positive": 469,
+    "n_units_detected": 85,
+    "max_y": 622
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_project", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_transect_length_m"],
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year"],
+      "md5": "23cd006240a46a6ecab8f8a790c7f983"
+    },
+    "survey_taxa": {
+      "rows": 92,
+      "columns": ["taxon", "unit"],
+      "md5": "ccbdfd32a8008ad38510b3f285fbd705"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7d21e7320b13be29c22357887ece88e3"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/inbo_2026_flanders_dragonfly_count.R",

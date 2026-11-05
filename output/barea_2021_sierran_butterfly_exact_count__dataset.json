@@ -52,10 +52,32 @@
     "n_occasions": 21,
     "n_surveys": 1725,
     "y_values": "0-500 (171 distinct)",
-    "prop_zero": 0.928
+    "prop_zero": 0.928,
+    "n_traps": 1,
+    "n_zero": 160119,
+    "n_positive": 12381,
+    "n_units_detected": 22,
+    "max_y": 500
   },
   "sampleFloor": "below (22 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_n_observers", "obs_start_time", "obs_end_time", "obs_wind_beaufort", "obs_cloud_cover_pct", "obs_temperature_c"],
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "period_year", "period_n_walks", "period_n_transects"],
+      "md5": "7666b81515759cd86861e98844536c30"
+    },
+    "taxa": {
+      "rows": 100,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "fac93807c2e5b0a6d5ab9a52628a475e"
+    },
+    "units": {
+      "rows": 22,
+      "columns": ["unit", "unit_locality", "unit_length_m", "unit_minimumElevationInMeters", "unit_maximumElevationInMeters", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude"],
+      "md5": "0b3021cc70eb6521b0b9bcb644ef856b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/barea_2021_sierranevada_butterfly_count.R",

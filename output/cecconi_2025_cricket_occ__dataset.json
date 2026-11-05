@@ -17,8 +17,8 @@
   "surveyEvidence": "deposited_matrix",
   "responseType": "detection",
   "unitKind": "site",
-  "closure": "closed",
-  "closureNote": "occasion (three aural point counts of one site over about seven weeks, analysed by the authors as single-season occupancy)",
+  "closure": "open",
+  "closureNote": "occasions span 19 September to 5 November, across the end of the calling season; the authors analysed them as single-season (closed) occupancy",
   "occasionKind": "time",
   "taxonInclusion": "single",
   "geographicCoverage": "Inner Bluegrass Region, central Kentucky, USA; no coordinates deposited",
@@ -27,7 +27,7 @@
   "notShipped": {
     "none": "every deposited column is shipped; ordinal1-3 as date"
   },
-  "notes": "date = 2024 + the deposited ordinal day; the year is from the abstract on the Dryad page, not the data file or README, and the ordinals span exactly the abstract's dates. At 5 sites occasions 2 and 3 share a date, with occasion 3 later by minutes since sunset. obs_barometric_pressure is as deposited; the README states no unit and the values are consistent with inHg. obs_minutes_since_sunset runs 10-1431 as deposited, never negative. An invasive species, so the flagged-taxon coordinate rule does not apply; no coordinates are deposited in any case.",
+  "notes": "date = 2024 + the deposited ordinal day; the year is from the abstract on the Dryad page, not the data file or README, and the ordinals span exactly the abstract's dates. At 5 sites occasions 2 and 3 share a date, with occasion 3 later by minutes since sunset. obs_barometric_pressure is as deposited; the README states no unit, and the values are consistent with station pressure in inHg at about 300 m. obs_minutes_since_sunset runs 10-1431 as deposited, never negative. An invasive species, so the flagged-taxon coordinate rule does not apply; no coordinates are deposited in any case.",
   "summary": {
     "n_rows": 147,
     "n_units": 49,
@@ -36,12 +36,25 @@
     "n_occasions": 3,
     "n_surveys": 147,
     "y_values": "0,1",
-    "prop_zero": 0.85
+    "prop_zero": 0.85,
+    "n_traps": 1,
+    "n_zero": 125,
+    "n_positive": 22,
+    "n_units_detected": 16,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "obs_temp_f", "obs_barometric_pressure", "obs_wind_mph", "obs_minutes_since_sunset"],
+  "coreMd5": "240d92f678947450c3476e5e81b35599",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "92d61e42a8f45a63aed4bb541798c8e0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cecconi_2025_cricket_occ.R",
-  "buildDate": "2026-11-04"
+  "buildDate": "2026-11-05"
 }

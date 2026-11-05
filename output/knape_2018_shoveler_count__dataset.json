@@ -36,10 +36,22 @@
     "n_occasions": 10,
     "n_surveys": 481,
     "y_values": "0-20 (20 distinct)",
-    "prop_zero": 0.453
+    "prop_zero": 0.453,
+    "n_traps": 1,
+    "n_zero": 218,
+    "n_positive": 263,
+    "n_units_detected": 40,
+    "max_y": 20
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_water_ha", "unit_reedcover_frac", "unit_rt90_northing_m", "obs_julian_day"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a82848f021bdc64343a7aae7acda31ef"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/knape_2018_shoveler_count.R",

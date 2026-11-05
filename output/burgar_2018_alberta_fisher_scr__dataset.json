@@ -42,10 +42,27 @@
     "n_occasions": 4,
     "n_surveys": 6144,
     "y_values": "0,1",
-    "prop_zero": 0.993
+    "prop_zero": 0.993,
+    "n_traps": 64,
+    "n_zero": 6101,
+    "n_positive": 43,
+    "n_units_detected": 24,
+    "max_y": 1
   },
   "sampleFloor": "below (24 units < 30)",
   "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_sex"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "99f48623399b2a2c14a4b35273d3d6d5"
+    },
+    "traps": {
+      "rows": 64,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "69d8a6bb90cb9a448638e3fc71f64342"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/burgar_2018_alberta_fisher_scr.R",

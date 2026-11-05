@@ -33,10 +33,27 @@
     "n_occasions": 1,
     "n_surveys": 1559,
     "y_values": "0,1",
-    "prop_zero": 0.818
+    "prop_zero": 0.818,
+    "n_traps": 1,
+    "n_zero": 1276,
+    "n_positive": 283,
+    "n_units_detected": 175,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "obs_removed"],
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "note"],
+      "md5": "36adc1036a7d075dc68945e0c90327b5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "18abdf6b3822e8fc23404f9634f90e97"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/toledolima_2024_elaenia_cjs.R",

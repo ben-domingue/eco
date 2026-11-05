@@ -1,0 +1,601 @@
+key,decision,data_type,reason
+10.5061/dryad.6djh9w1c3,candidate,leopard camera-trap capture histories,CC0 capture data present
+10.5061/dryad.p5hqbzkwt,candidate,camera-trap occupancy with effort,detection histories and effort csvs
+10.5061/dryad.hqbzkh1gt,candidate,MSOM mammal/bird detection arrays,RData detection data
+10.5061/dryad.ns1rn8pz2,candidate,bird point counts with visits,pointcount.csv
+10.5061/dryad.j0zpc86s4,reject,,ant longevity survival experiment
+10.5061/dryad.djh9w0w8h,candidate,camera-trap species matrix with effort,species matrices and effort
+10.5061/dryad.5qfttdzff,needs-look,snake occupancy,mostly rasters; unclear detection data
+10.5281/zenodo.18480886,candidate,Swiss MHB breeding bird territories/counts,CC-BY bird monitoring
+10.5061/dryad.6q573n65q,needs-look,tiger habitat use detections,single csv unclear visit structure
+10.5061/dryad.0k6djhb68,needs-look,urban bird/pollinator occupancy,data.zip small
+10.5061/dryad.dz08kpsdk,candidate,multistate encounter histories parrot,capture histories
+10.5061/dryad.c866t1gkt,candidate,owl occupancy detection data,stacked detection csvs
+10.5061/dryad.m63xsj42m,reject,,trait-based pathogen risk
+10.5061/dryad.g79cnp5wv,candidate,spatial mark-resight grizzly camera,detections and trap locations
+10.5061/dryad.4j0zpc8k0,candidate,acoustic detection histories and point counts,det hist csvs
+10.5061/dryad.p8cz8wb5w,candidate,camera-trap coyote detection history,detection histories and deployments
+10.5061/dryad.0cfxpnw2g,needs-look,tayra camera detection covariates,only covariates xlsx
+10.5061/dryad.rbnzs7hhx,needs-look,lynx SCR camera data,zip only
+10.5061/dryad.j6q573nh4,candidate,capture histories marked animals,capture_histories.txt
+10.5061/dryad.qbzkh18qz,reject,,tiger demography summary
+10.5061/dryad.v41ns1rw2,reject,,derived abundance estimates
+10.5061/dryad.2bvq83bz2,candidate,camera-trap weekly counts multi-species,occasion count csvs
+10.5061/dryad.pzgmsbd0h,needs-look,ruffed grouse use of forests,unclear survey structure
+10.5281/zenodo.804948,reject,,non-commercial licence
+10.5281/zenodo.10080469,reject,,literature review data
+10.5061/dryad.mg5kv,candidate,jaguar SCR camera-trap detections,xlsx with detections
+10.5061/dryad.kkwh70s8v,reject,,RAI summary indices
+10.5061/dryad.z08kprrdg,candidate,brant capture histories,capture_history.csv
+10.5061/dryad.5dv41ns34,candidate,chimp camera/acoustic presence-absence matrices,detection matrices
+10.5061/dryad.m905qfv5w,reject,,bear reproduction locations
+10.5061/dryad.xwdbrv1g2,needs-look,hair-tube/live-trap capture data,tiny files density comparison
+10.5061/dryad.rxwdbrvrt,needs-look,carnivore SCR,zip only
+10.5061/dryad.rbnzs7hr9,candidate,shrike detection/nondetection 10 years,detection-nondetection csv
+10.5061/dryad.2v6wwpzq4,candidate,feral cat camera presence-absence,det and covariate csvs
+10.5061/dryad.fttdz091v,candidate,camera SCR and counts French Guiana,dataTable csv large
+10.5061/dryad.931zcrjgp,needs-look,carnivore camera co-occurrence,xlsx unclear
+10.5061/dryad.4558p38,needs-look,iDNA leech and camera detections,R inputs; data unclear
+10.5061/dryad.gf1vhhn0r,needs-look,mammal/bird occupancy post-wildfire,zipped csvs
+10.5281/zenodo.5840377,reject,,integrated model code supplement
+10.5061/dryad.xksn02vf2,reject,,code only
+10.5061/dryad.rfj6q57s4,needs-look,camera-trap lynx/fox Norway,large zips unclear
+10.5061/dryad.qfttdz0gc,candidate,bird records occupancy Oaxaca,bird records with covariates
+10.5061/dryad.8gtht76rj,candidate,rat detection histories,detHis.csv
+10.5061/dryad.cvdncjt23,reject,,annual occupancy estimates with traits
+10.5061/dryad.nzs7h450x,reject,,pathogen survival experiment
+10.5061/dryad.fn4nf,needs-look,spatial mark-resight grizzly,zip scripts and data
+10.5061/dryad.573n5tb8s,needs-look,tit community detection RData,RData only
+10.5061/dryad.3r2280gfx,candidate,snow leopard SCR captures and traps,captures and traps csv
+10.5061/dryad.12jm63xv7,needs-look,tapir/jaguar camera survey data,activity focus; effort unclear
+10.5061/dryad.63xsj3v66,candidate,predator camera occupancy data,alpine and arctic csv
+10.5061/dryad.sj3tx96h8,needs-look,CMR model outputs RData,mostly output RData; raw CMR unclear
+10.5061/dryad.g1jwstqqx,candidate,camera-trap SCR database,SCR csv
+10.5061/dryad.f1vhhmgv0,candidate,TEAM camera-trap occupancy,All_TEAM_Occupancy.csv
+10.5061/dryad.kwh70rzmn,candidate,coyote capture histories,capture history file
+10.5061/dryad.ns1rn8pnx,needs-look,community occupancy input zip,input zip small
+10.5061/dryad.wm37pvmpn,reject,,analysis data with sentiment/services
+10.5281/zenodo.21653154,candidate,nightjar point observations with visits,raw csv
+10.5061/dryad.x69p8czsq,candidate,mouse live-trap SECR captures,txt capture files
+10.5061/dryad.s4mw6m96d,candidate,bird point counts and ARU detections,unmarked-format csvs
+10.5061/dryad.vq83bk40k,needs-look,marsh bird max counts,max counts may drop visits
+10.5061/dryad.w9ghx3fmc,candidate,bird point counts occupancy,point counts and covariates
+10.5061/dryad.k6djh9wj8,candidate,puma camera-trap effort and detection,rangewide csv
+10.5061/dryad.d3q4q,candidate,fisher SCR and occupancy data,scr and occ data txt
+10.5061/dryad.mk44c,needs-look,cooperative bird survival data,xlsx maybe encounter histories
+10.5061/dryad.dfn2z34zq,reject,,livestock predation summary
+10.5061/dryad.8gtht76t5,candidate,Singapore camera-trap captures with metadata,captures and deployments
+10.5061/dryad.pp0jp,candidate,bird/mammal occupancy data,occupancy analysis xlsx
+10.5061/dryad.mq8r2,needs-look,Madagascar carnivore camera data,single xlsx
+10.5061/dryad.djh9w0wdr,reject,,simulation results
+10.5061/dryad.ns1rn8ptd,reject,,model weights
+10.5061/dryad.69p8cz95w,needs-look,camera trap fox/cat raw data,huge zip
+10.5061/dryad.jh9w0vt8b,needs-look,agroforest bird community,single csv unclear
+10.5061/dryad.x0k6djhqp,candidate,camera detection data with effort,raw camera detections
+10.5061/dryad.djh9w0w94,needs-look,gyrfalcon prey counts,transect counts maybe
+10.5061/dryad.brv15dvk2,candidate,deer camera capture histories,capture history and trap nights
+10.5061/dryad.fxpnvx0v7,needs-look,eagle counts,7z only
+10.5061/dryad.905qfttrp,candidate,camera-trap record table mammals,record table and site covs
+10.5061/dryad.dz08kps09,candidate,camera captures multiple species,captures all species
+10.5061/dryad.nvx0k6dvf,candidate,black bear camera detections 30-min,detection csv
+10.5061/dryad.p8cz8w9vz,candidate,grizzly hair-snag encounter histories,EH txt
+10.5281/zenodo.3540503,candidate,SCR leopard/hyaena trap data,tdf csv
+10.5061/dryad.dncjsxkwg,needs-look,nocturnal bird survey detections,single xlsx
+10.5061/dryad.2jm63xszp,needs-look,leopard occupancy covariates,only one small csv
+10.5061/dryad.m0cfxpp2b,candidate,bird resight CJS histories,resight_recap CJS csv
+10.5061/dryad.2806394,needs-look,acoustic and camera surveys,xlsx unclear
+10.5061/dryad.gmsbcc2sh,candidate,mammal co-occurrence camera data,cooc csv
+10.5061/dryad.8sf5v66,needs-look,bird transect community,zip small
+10.5061/dryad.6m905qfxp,candidate,shorebird survival encounter data,resight histories
+10.5061/dryad.73n5tb3cn,candidate,capercaillie monitoring capture-recapture,individual monitoring csv
+10.5061/dryad.7sqv9s4zk,candidate,Serengeti camera occupancy 4-day,occupancy data zips
+10.25338/b84k77,needs-look,Belize mammal camera database,xlsx unclear
+10.5281/zenodo.21645413,needs-look,felid camera trap data,xlsx unclear
+10.5061/dryad.fn2z34tsq,candidate,polar bear capture-recapture,CR.txt
+10.5061/dryad.9w0vt4bn5,reject,,coat color selection RData
+10.6078/d1dt4s,needs-look,carnivore camera detection RData,RData only
+10.5061/dryad.bc0d8,needs-look,marked animal lifespans zip,zip unclear
+10.5061/dryad.xsj3tx9xz,candidate,fish detection histories 3 visits,detections wide csv
+10.5061/dryad.sxksn0332,candidate,desert stream fish catch,catch csv with area
+10.5061/dryad.2v6wwq039,candidate,eDNA and survey duck detections,eDNA replicate csvs
+10.5281/zenodo.21516105,candidate,duck encounter histories CMR,inp encounter histories
+10.5061/dryad.9zw3r22f3,candidate,grassland bird point counts large,point-count csv
+10.5061/dryad.0gb5mkm45,candidate,boreal bird multispecies detections,detection csvs and Rdata
+10.5061/dryad.sj3tx964r,candidate,bat robust-design capture histories,MYLU robust txt
+10.5061/dryad.64p5c,candidate,grizzly camera occupancy detections,detection csvs
+10.5061/dryad.4mt00,candidate,marten/fisher trap histories SCR and occupancy,TrapHist and encounters
+10.5061/dryad.mr1pt,candidate,leopard camera SCR,camera trapping csv
+10.5061/dryad.rxwdbrv77,candidate,mesocarnivore camera-trap RData,camera detections
+10.5061/dryad.748pd64,candidate,rabbit/cat camera detections,data csv
+10.5061/dryad.n02v6wx0n,needs-look,pantropical TEAM occupancy covariates,mostly covariates
+10.5061/dryad.z34tmpghh,candidate,wolverine SCR zip,SCR data
+10.5061/dryad.mf6h7,candidate,Cerrado mammal records camera,records xlsx plus covariates
+10.25349/d9ck5q,needs-look,savanna camera occupancy zip,zip small
+10.5061/dryad.w6m905qrp,candidate,carnivore detection history RData,detection histories
+10.5061/dryad.5hqbzkhcz,candidate,owl acoustic array detections,owl_data csv
+10.5061/dryad.cz8w9gj81,candidate,leopard hyena camera dataset,dat csv
+10.5061/dryad.rv15dv49j,candidate,amphibian capture surveys and histories,capture histories txt
+10.5061/dryad.r4xgxd2mf,candidate,bird capture-resight histories by year,crh xlsx
+10.5061/dryad.0zpc867d2,candidate,piping plover stopover surveys and capture histories,surveys csv and chs
+10.5061/dryad.cz8w9gj0f,candidate,frog detection histories on grid,detection histories csv
+10.5061/dryad.b2rbnzs9r,candidate,amphibian CMR and presence-absence,CMR xlsx
+10.5061/dryad.c59zw3rdb,candidate,MSOM detection matrix camera,detection matrix csv
+10.5281/zenodo.7561951,candidate,weasel camera/box detections,detection csv
+10.5061/dryad.j3tx95xwd,candidate,camera detection histories marsupials,detection histories csv
+10.5061/dryad.80gb5mm2j,candidate,solitary bee mark-recapture,Mark_recap_raw csv
+10.5061/dryad.ghx3ffbwf,needs-look,camera detection non-detection NY,grid covariates; detection files unclear
+10.5061/dryad.jq2bvq8bc,reject,,seedling survival experiments
+10.5061/dryad.p8cz8w9m2,candidate,camera trap raw detections design study,raw detections csv
+10.5061/dryad.k5mp137,needs-look,multistate dynamic occupancy zip,zip
+10.5061/dryad.0nm8t,needs-look,herp SCR results RData,appear to be results
+10.5061/dryad.41ns1rnnn,needs-look,fox camera data,7z archive
+10.5061/dryad.v6wwpzgr3,needs-look,elephant seal capture-recapture,txt files unclear
+10.5061/dryad.g4f4qrfsv,reject,,RSF outputs telemetry comparison
+10.5061/dryad.7c57r,candidate,camera trap captures African mammals,captures csv
+10.5281/zenodo.14680764,reject,,model inputs and results packet
+10.5061/dryad.vc3143h,candidate,tiger capture histories MARK,inp file
+10.5061/dryad.jsxksn0g4,candidate,wetland camera detections,det csvs
+10.5061/dryad.tqjq2bw30,needs-look,plantation wildlife model data rds,rds model data
+10.5061/dryad.pd612qp,candidate,wolverine SCR RData,SCR data
+10.5061/dryad.53j96,candidate,petrel capture-recapture Kerguelen,xls capture data
+10.5061/dryad.6fq3qv7,candidate,Uganda camera trap detections,detections and station files
+10.5061/dryad.9b4g92k,needs-look,field and simulated CR datasets,zip mixed simulated
+10.5061/dryad.ft64m,candidate,MAPS banding and BBS counts,MAPS data and BBS
+10.5061/dryad.5d8s7,candidate,dynamic occupancy case study data,Case Study Data csv
+10.5061/dryad.bk3j9kdcg,reject,,species list only
+10.5061/dryad.nk98sf7xc,candidate,genetic mark-recapture pellet histories,inp files
+10.5061/dryad.p2r8r,needs-look,flying squirrel N-mixture,zip
+10.5061/dryad.cnp5hqc5p,needs-look,grassland bird survey data,large xls unclear
+10.5281/zenodo.4549508,reject,,simulation code
+10.5061/dryad.pc866t1rz,candidate,camera occupancy carnivores NZ,camera site csvs
+10.5061/dryad.47d7wm3gp,candidate,camera multispecies occupancy Carpathians,cams data seasons
+10.5061/dryad.ncjsxksvp,reject,,SDM suitability predictors
+10.5061/dryad.d51c59zzf,reject,,raw eDNA fastq only
+10.5281/zenodo.20727691,needs-look,Nepal camera trap events,event xlsx; effort unclear
+10.5061/dryad.5mkkwh76b,needs-look,lizard counts plots,counts maybe single visit
+10.5061/dryad.sf7m0cg8b,reject,,raw fastq metabarcoding
+10.5061/dryad.bvq83bkfm,needs-look,Italian camera trap data,single csv
+10.5061/dryad.73n5tb33c,reject,,flower counts interaction networks
+10.5061/dryad.tqjq2bw76,candidate,moose camera counts N-mixture,rds counts
+10.5061/dryad.m63xsj4dm,candidate,grouse N-mixture repeated counts,Nmix csv
+10.5061/dryad.jk6rf,reject,,interview data
+10.5061/dryad.pq624,needs-look,multispecies occupancy data zip,zip small
+10.5061/dryad.866t1g1zf,needs-look,amphibian multispecies occupancy,only script visible
+10.25338/b8vp85,candidate,bird point counts with visit data,community and visit csv
+10.5061/dryad.1h8sr94,reject,,bear foraging neighborhoods
+10.5061/dryad.fttdz08nx,candidate,bird subsite repeated counts N-mixture,subsite data csv
+10.5061/dryad.h70rxwdpf,needs-look,deer coyote camera data,xlsx unclear
+10.5061/dryad.66t1g1jzq,needs-look,lynx dynamic occupancy RData,RData only
+10.5061/dryad.fj6q573rr,candidate,vole capture-recapture,Vole dataset zip
+10.5061/dryad.34tmpg4fm,reject,,museum record richness trends
+10.5281/zenodo.17939002,needs-look,camera trap independent records,rds records
+10.5061/dryad.jq2bvq8sj,candidate,wolverine SCR RData,SCR data
+10.5061/dryad.8931zcrrv,needs-look,plover survival encounter,xlsx unclear
+10.5061/dryad.dfn2z356g,reject,,phenology rates of change
+10.5061/dryad.396v8n4,candidate,lion leopard camera trap data,camera trap csv
+10.6078/d1w70r,candidate,camera detection histories mammals,detection histories csv
+10.5061/dryad.0cfxpnw3p,candidate,snow leopard captures and traps,capture and trap csv
+10.5061/dryad.2s910,needs-look,GSD photo SCR,xlsx
+10.5061/dryad.pc866t1r9,reject,,simulation example
+10.5061/dryad.s04h8,needs-look,genetic sampling captures,xlsx
+10.5061/dryad.f1h1t,needs-look,N-mixture open population zip,zip
+10.5061/dryad.b8gtht7h3,needs-look,camera co-abundance data,huge zip/RData
+10.5061/dryad.r2280gb8j,reject,,butterfly wing damage traits
+10.5061/dryad.cnp5hqc5v,candidate,bird community matrix and survey data,site by species matrix
+10.5061/dryad.3bk3j9kh5,reject,,weaning age
+10.5061/dryad.31zcrjdqn,candidate,bird repeated counts N-mixture,visit covariates
+10.5061/dryad.fttdz08tp,reject,,hunting household survey
+10.25338/b8vd1r,needs-look,N-mixture community data zips,zip
+10.5061/dryad.c866t1g7n,candidate,shrubland bird point counts,pointcount xls
+10.5061/dryad.bcc2fqzb2,needs-look,mineral lick camera events,event data only
+10.5061/dryad.r2280gb8k,needs-look,camera trap data zip,zip small
+10.5061/dryad.bg79cnpbb,candidate,bird point count detections,Full_detection csv
+10.5061/dryad.7d7wm387j,needs-look,spatial mark-resight zip,large zip
+10.5061/dryad.dncjsxm6k,reject,,foraging behaviour experiment
+10.5281/zenodo.15706949,candidate,acoustic woodpecker occupancy,occupancy zip
+10.5061/dryad.t5b72qv,reject,,simulation outputs
+10.5061/dryad.bzkh189br,candidate,breeding bird transect and point counts,observations csv
+10.5061/dryad.hqbzkh1g6,needs-look,campus bird point counts,mixed collisions and counts
+10.5061/dryad.kd51c5bb6,candidate,mammal camera trap NW Arkansas,camera csv
+10.5061/dryad.72j20,needs-look,raptor detection surveys,xls unclear
+10.5061/dryad.c59zw3rgg,candidate,bird counts with obs covariates,observation covariates csv
+10.5061/dryad.d51c5b0ck,needs-look,urban canid camera and citizen sightings,sightings csv; effort unclear
+10.5061/dryad.n02v6wx0m,needs-look,marten camera occupancy zip,zip
+10.5061/dryad.1c59zw481,candidate,bird capture-resight histories,crh xlsx
+10.5061/dryad.dz08kps2v,candidate,vole enclosure capture data,capture_data csv
+10.5061/dryad.b8gtht7rx,reject,,sea lion weaning
+10.5061/dryad.j3tx95xfc,candidate,puma camera detections by day,Detectionsbyday csv
+10.5061/dryad.5dv41nsh0,candidate,warbler raw point counts,raw point count data
+10.5061/dryad.2fqz612xb,needs-look,capuchin camera data,behaviour focus
+10.5061/dryad.5m8f6,candidate,stream salamander repeated counts,count data csv
+10.5061/dryad.qb3q5f3,reject,,seabird reproduction experiment
+10.5061/dryad.949nc,needs-look,acoustic detection occupancy appendices,files unclear
+10.5061/dryad.dbrv15dws,needs-look,brant mark-recapture RData,RData
+10.5061/dryad.g79cnp5qn,candidate,carnivore camera burn data,camera zip
+10.5061/dryad.478kp63,candidate,squirrel/marten detections,detections csv
+10.5061/dryad.s1rn8pk9q,reject,,simulation outputs
+10.5061/dryad.p7410jm,needs-look,ocelot occupancy data zip,zip
+10.5061/dryad.qt0jq,candidate,carnivore occupancy data txt,occupancy data covars
+10.5061/dryad.j9kd51chz,needs-look,bird surveys historical RData,RData
+10.5061/dryad.r17n5,candidate,robust-design SCR data,rdat
+10.5061/dryad.42m96c8,needs-look,SCR data script zip,zip
+10.5061/dryad.ck5vv,candidate,crocodile captures,captures csv
+10.5061/dryad.5qfttdz42,needs-look,carnivore camera xlsx,single xlsx
+10.5061/dryad.n7h91,candidate,badger occupancy data,occupancy csv
+10.5061/dryad.vr15t,candidate,camera occupancy tables RData,Finland occ tables
+10.5061/dryad.vdncjsxs9,candidate,eDNA salamander replicates,eDNA csv replicates
+10.5061/dryad.qb8m4,needs-look,dynamic occupancy carnivores zip,zip
+10.5061/dryad.41ns1rnph,needs-look,camera and interview African mammals,files unclear
+10.5061/dryad.2280gb5vg,candidate,camera occupancy and point counts rds,occupancy and counts
+10.5061/dryad.xpnvx0kj0,needs-look,bird before-after harvest,unclear survey structure
+10.5061/dryad.g1jwstqtb,candidate,frog capture histories and community,ch csv
+10.5061/dryad.hdr7sqvrn,reject,,microsatellite genotypes
+10.5061/dryad.b0b18,needs-look,sea duck demography zip,zip
+10.5061/dryad.6kp2j,candidate,bat CJS capture-recapture,CJS zips
+10.5061/dryad.g1jwstr3p,reject,,rasters and density outputs
+10.5061/dryad.6n65q,candidate,occupancy camera data covariates,OCC_DATA xlsx
+10.5281/zenodo.22662228,reject,,diet metabarcoding
+10.5281/zenodo.22750198,reject,,simulation results
+10.5061/dryad.8g8r675,needs-look,hybrid capture-recapture,tiny data txt
+10.5061/dryad.dz08kprz8,candidate,deer camera and DNA traps,cam data csv
+10.5061/dryad.46tp6,reject,,distance bias figure data
+10.5061/dryad.msbcc2g4p,candidate,presence-absence fox camera survey,raw pa csv
+10.5061/dryad.7d7wm37xs,candidate,mesopredator presence-absence,PA xlsx
+10.5061/dryad.brv15dv5j,candidate,mammal count rds seasons,counts rds
+10.5061/dryad.20j3v31,needs-look,mesocarnivore data supplement,xlsx
+10.5061/dryad.pzgmsbch7,candidate,squirrel/marten site occurrence,all species occurrence csv
+10.5061/dryad.djh9w0wbb,needs-look,sooty grouse survey summaries,summarized by centroid
+10.5061/dryad.c83j2,candidate,avian community occupancy data,occupancy xlsx
+10.5061/dryad.bvq83bkkh,candidate,lizard encounter histories,inp files
+10.5061/dryad.931zcrjhg,candidate,duck capture histories and ponds,ch csv
+10.5061/dryad.23k27,needs-look,noninvasive genetic samples carnivores,sample counts
+10.5068/d1m38q,reject,,eDNA reads sequencing files
+10.5061/dryad.6t1g1jx08,candidate,carnivore detection histories camera,detection history csvs
+10.5068/d1t68m,candidate,woodpecker and beetle occupancy data,Rdata detection data
+10.5061/dryad.573n5tb46,candidate,amphibian capture-recapture,capture-recapture txt
+10.5061/dryad.fxpnvx0qj,candidate,bird abundance by site and visit,AbundData Rdata
+10.25349/d9p32j,needs-look,wild pig timelapse camera data,timelapse csv
+10.5061/dryad.83bk3j9vp,reject,,IUCN range comparison summaries
+10.5061/dryad.tht76hf4b,reject,,alga community diversity
+10.5061/dryad.bg79cnpqn,candidate,radio-tagged sandpiper capture histories,capture histories xlsx
+10.5061/dryad.kprr4xhdj,needs-look,guan camera data covariates,single csv
+10.5061/dryad.m0cfxpp9f,candidate,bat acoustic multispecies occupancy,sfMSOM data xlsx
+10.5061/dryad.v6wwpzgrg,reject,,microsatellite genotypes
+10.5061/dryad.9cnp5hr28,candidate,wolf camera detections 2015-2023,detections csv
+10.5061/dryad.gqnk98t0k,needs-look,lizard demography large zip,zip rds
+10.5061/dryad.w9ghx3g3f,candidate,raptor photographic capture-recapture,RData histories
+10.5061/dryad.2jm63xt3j,candidate,leopard SCR input files,SCR inputs zip
+10.5061/dryad.t4b8gtj9k,needs-look,seabird survival individual data,individual csv
+10.5061/dryad.8cz8w9gnp,candidate,bird point counts RI CT,point counts csv
+10.5061/dryad.qnk98sfgt,needs-look,marten survey data large zip,predicted distribution focus
+10.5061/dryad.2hm27nc,needs-look,urban camera zip,behaviour focus
+10.5061/dryad.90cg565,reject,,host-pathogen experiment
+10.5061/dryad.gv1dq,candidate,camera trap raw data mammals,raw data xlsx
+10.5061/dryad.98sf7m0mg,needs-look,ungulate event data camera,event data
+10.5061/dryad.w0vt4b8s1,candidate,leopard presence-absence replicate surveys,presence-absence csv
+10.5061/dryad.0gb5mkkzf,reject,,citizen science detection probabilities derived
+10.5061/dryad.v23517k,needs-look,rabies surveillance multi-method,surveillance data unclear
+10.5061/dryad.sf7m0cg8t,needs-look,butterfly transect data zip,zip
+10.5061/dryad.s81k3,candidate,bear camera raw data,Raw data zip
+10.5061/dryad.08kprr508,candidate,piping plover capture histories,caphist csv
+10.5061/dryad.4g87s,needs-look,leopard density Cambodia,docx; data unclear
+10.5061/dryad.v9s4mw6st,needs-look,caribou SCR designs zip,zip
+10.5061/dryad.573n5tbb5,candidate,mammal occupancy data tropical forest,occupancy data
+10.5061/dryad.pzgmsbcj6,candidate,bird counts with visit data,community and visit csv
+10.5061/dryad.bk3j9kd6f,needs-look,multispecies occupancy zip,zip
+10.5061/dryad.b8ch0,candidate,multi-event capture-recapture,DATA.txt
+10.5061/dryad.3ffbg79n1,candidate,open SCR formatted data,formattedData RData
+10.5061/dryad.cvdncjt46,reject,,genotypes dispersal
+10.5281/zenodo.21860502,reject,,grid-level group size summary
+10.5061/dryad.br86d,candidate,Ruaha camera trap data random vs trail,camera csv
+10.5061/dryad.2jm63xszb,reject,,vigilance behaviour
+10.5061/dryad.b8gtht7b5,candidate,amphibian multispecies occupancy,days and temp csvs
+10.5061/dryad.59zw3r263,candidate,urban carnivore camera detections,species csvs
+10.5061/dryad.59zw3r247,needs-look,carnivore camera zip,zip
+10.5061/dryad.2547d7wmf,reject,,eDNA sequence zips
+10.5061/dryad.rm2n805,candidate,bird community point counts,formatted csv
+10.5061/dryad.32464qs,candidate,rainforest camera occupancy canopy,occ data txt
+10.5061/dryad.kwh70rz68,candidate,hyena SECR sampling occasions,TrapSECR txt
+10.5061/dryad.pk0p2ngtg,reject,,migration genetics dataset
+10.5061/dryad.9p8cz8wgv,needs-look,iguana population data,viability study
+10.5061/dryad.v676m,needs-look,cavity-nesting bird survey zip,zip
+10.5061/dryad.t40f2,candidate,occupancy detection histories datasets,Hutchinson data xlsx
+10.5061/dryad.4mw6m907q,candidate,bird point counts rainforest fragments,PointCountData csv
+10.5061/dryad.m0cfxpp3m,reject,,camera hardware test
+10.5061/dryad.8s27g9f,needs-look,camera intensity-of-use data,large csv; effort unclear
+10.5061/dryad.9ghx3ffgn,needs-look,sparse observation locations,filtered location records
+10.5061/dryad.wpzgmsbp2,reject,,raw eDNA fastq
+10.5061/dryad.fj6q573td,reject,,mandrill tracking and camera
+10.5061/dryad.69p8cz9cs,candidate,Vietnam camera record table,recordTable csv
+10.5061/dryad.c2fqz6192,candidate,amphibian encounter histories,EH csv
+10.5061/dryad.w0vt4b91v,needs-look,redlining bird grid data,summary grid csv
+10.5061/dryad.59zw3r26t,needs-look,co-occurrence code with data,code mostly
+10.5061/dryad.hx3ffbghb,candidate,remote camera data and stations,camera xlsx
+10.5061/dryad.x95x69pkr,needs-look,ARU recordings classified occupancy,huge zip
+10.5061/dryad.xpnvx0kn2,needs-look,right whale SCR RData,RData large
+10.5061/dryad.44v7p60,candidate,rodent trapping Borneo movement,capture csv
+10.5061/dryad.c866t1g4g,candidate,chamois multi-event capture histories,inp files
+10.5061/dryad.9zw3r229w,needs-look,beluga IPM zip,zip
+10.5061/dryad.bk8p4,candidate,understory bird capture-recapture,xls capture data
+10.5061/dryad.q83bk3jdz,candidate,amphibian capture-recapture,capture-recapture xlsx
+10.5061/dryad.0k6djhb0r,reject,,tracking data
+10.5061/dryad.83bk3j9nm,candidate,bird site by species matrix,species by site matrix
+10.25338/b8802q,needs-look,camera trap experimental data,zip
+10.5061/dryad.6m905qfvx,needs-look,camera data activity lists,activity focus
+10.5061/dryad.rn8pk0pjc,reject,,banteng dispersal records
+10.5061/dryad.5pt92,candidate,Snapshot Serengeti camera records,annotated images records
+10.5061/dryad.1g1jwstz9,candidate,sloth bear detection histories,detection csv
+10.5061/dryad.pg4f4qs58,needs-look,bird interactions inputs,rds inputs
+10.5061/dryad.kkwh70sbn,needs-look,time-to-detection camera RData,RData
+10.5061/dryad.w3r2280z2,candidate,leopard occupancy data,Leopard_data csv
+10.5061/dryad.nk98sf83t,candidate,carnivore detection histories Omo,detection history csvs
+10.5061/dryad.j9kd51cvc,candidate,Chad carnivore camera dataset,carnivore dataset xlsx
+10.5061/dryad.2fqz612q3,reject,,salamander growth
+10.5061/dryad.cnp5hqcgm,candidate,lynx SCR hunter monitoring,tdf ss edf csv
+10.5061/dryad.9p8cz8wvp,needs-look,black bear IPM,model scripts
+10.5061/dryad.hqbzkh1s7,candidate,grouse repeated survey detections,duskydata_det csv
+10.5061/dryad.fbg79cp8s,needs-look,paludiculture bird counts,single file
+10.5061/dryad.73n5tb3bz,needs-look,urban camera trap records,xlsx
+10.5061/dryad.7d7wm38c3,reject,,wolf activity patterns
+10.5061/dryad.6wwpzgmw7,reject,,elk survival telemetry
+10.5061/dryad.jm63xsj6t,candidate,fish CJS capture histories,CJS csvs
+10.5061/dryad.3n5tb2rmq,candidate,shorebird resight histories,FPT capture files
+10.5061/dryad.d2547d849,needs-look,herbivore dung plots,unclear
+10.5061/dryad.vdncjsxs7,reject,,model code archive
+10.5683/sp2/lldorl,needs-look,camera SCR and genetic SCR,card truncated
+10.5061/dryad.rq9453m,reject,,literature review
+10.5061/dryad.s7ph4,candidate,mink SCR data,minkData zip
+10.5061/dryad.c7v41,reject,,genotypes
+10.5061/dryad.k20q2,needs-look,butterfly observations phenology,obs_data large
+10.5061/dryad.h44j0zpvf,candidate,salamander captures by visit,CapturesVisitData csv
+10.5061/dryad.rn5c0,reject,,gene expression assays
+10.5061/dryad.j1sb5,candidate,Tasmanian devil capture histories,collated capture histories
+10.5061/dryad.4p7g1,reject,,media reports
+10.5061/dryad.pg4f4qrzw,reject,,penguin breeding success
+10.5061/dryad.11rf64v,candidate,mammal camera raw data developed areas,Raw_Data xlsx
+10.5061/dryad.4bq41sg,candidate,salamander capture-recapture spatial,edf csv
+10.5061/dryad.r4xgxd2dv,candidate,squirrel/marten site detection data,detection csvs and covariates
+10.5061/dryad.np5hqbzqt,candidate,snake observation resight data,ObservationData csv
+10.5061/dryad.452n6d3,needs-look,marten fisher camera data,single data file
+10.5061/dryad.f79n4,reject,,genotype survival
+10.5061/dryad.c59zw3r81,needs-look,salmonid survival data zip,zip
+10.5061/dryad.0gb5mkm3n,candidate,rainforest bird line transects,transect birds csv
+10.5061/dryad.b2rbnzsff,candidate,tea plantation bird counts,teabirds csv
+10.25338/b8g64d,reject,,bird stress physiology
+10.5281/zenodo.17210906,reject,,wildlife disease occurrence
+10.5281/zenodo.5348544,reject,,interview surveys
+10.5061/dryad.pc14j,reject,,fish adaptation
+10.5061/dryad.ttdz08m2n,candidate,multi-sign occupancy data,post_process and JAGS data
+10.5061/dryad.m931jh7,candidate,amphibian metapopulation capture data,data.txt
+10.5061/dryad.4f0bh,reject,,photo-matching algorithm archive
+10.5061/dryad.b1t42,needs-look,swift return rates,xlsx
+10.5061/dryad.xsj3tx9kf,reject,,sample data code
+10.5061/dryad.8n5d7,needs-look,cloud forest bird population data,unclear
+10.5061/dryad.jr934,needs-look,personality bird encounter history,small encounter file
+10.5281/zenodo.19684290,reject,,model fit RDS
+10.5061/dryad.3bk3j9kkv,candidate,marsh tit repeated counts,count txt files
+10.5061/dryad.2547d7wwp,reject,,parasitology
+10.5061/dryad.b025kp0,candidate,cloud forest bird survey,elevational bird csv
+10.5061/dryad.rxwdbrvc8,candidate,winter bird point surveys,bird survey csv
+10.5061/dryad.5dv41ns95,candidate,camera trapping 14 mammals 100 sites,camera data set
+10.5061/dryad.j9kd51ct3,reject,,detection locations only
+10.5061/dryad.f7m0cfz20,needs-look,madtom fish surveys,raw data unclear
+10.5061/dryad.36g41fd,candidate,mesocarnivore occupancy data,occupancy xlsx
+10.5061/dryad.sn02v6xfg,candidate,mesopredator camera data large,Mesopredator_Data csv
+10.5061/dryad.4722kf7,reject,,citizen science presence records
+10.5061/dryad.2280gb5n1,reject,,tree cover transects
+10.5066/p9v4rxzl,candidate,goose mark-resight encounter histories,USGS public domain
+10.5061/dryad.0cfxpnwg2,reject,,wetland condition index
+10.5061/dryad.rfj6q57gg,reject,,raw fastq diet
+10.5061/dryad.43j74d0,needs-look,genetic SCR deer,script only visible
+10.5061/dryad.4429j,candidate,bobcat SECR analysis,SECR zip
+10.5061/dryad.7wm37pvtz,candidate,bear genetic SCR captures,caps txt
+10.5061/dryad.q9h2ds8,reject,,fossil ichthyoliths
+10.5061/dryad.6wwpzgmxw,reject,,posterior samples
+10.5061/dryad.nzs7h44q7,candidate,crocodile captures 1978-2015,captures csv
+10.5061/dryad.80gb5mkrj,needs-look,goose capture data,capture csvs
+10.5281/zenodo.19864790,candidate,leopard SCR trap and captures,TRAP and CAPTURE csv
+10.5061/dryad.2rbnzs7jh,reject,,wind fatality table
+10.5281/zenodo.14263062,needs-look,breeding bird survey N-mixture,no files listed
+10.5281/zenodo.14263045,needs-look,breeding bird survey N-mixture,no files listed
+10.5061/dryad.7gt4m,needs-look,amphibian monitoring xlsx,unclear
+10.5061/dryad.r7sqv9sch,needs-look,grassland bird abundance rds,rds only; visits unclear
+10.5061/dryad.js76054,needs-look,fox camera-trap ID surveys,summary files unclear
+10.5061/dryad.95x69p8q5,needs-look,squirrel camera index data,summary index xlsx
+10.5061/dryad.xpnvx0knf,needs-look,marten camera data,single csv
+10.5061/dryad.brv15dvcq,reject,,bear behaviour tracking
+10.5061/dryad.1g53b,candidate,mammal camera photos stations,photo archive and stations
+10.5061/dryad.7h44j0zqr,candidate,small mammal presence by method,presence xlsx per method
+10.5061/dryad.1ns1rn92h,reject,,wolf RSF data
+10.5061/dryad.x0k6djhjg,reject,,ungulate site fidelity telemetry
+10.5061/dryad.sn02v6xfn,needs-look,badger hedgehog data zip,habitat selection focus
+10.5061/dryad.2864hc8,needs-look,Caatinga camera occupancy,metadata; data unclear
+10.5061/dryad.5tb2rbpbk,needs-look,tiger occurrence csv,single small csv
+10.5061/dryad.m605m,needs-look,camera density xls,single xls
+10.5061/dryad.kd51c5bj3,needs-look,multi-taxa acoustic detections,predictions listed first
+10.5061/dryad.5bh0587,candidate,dolphin multistate capture histories,capture histories
+10.5061/dryad.b8gtht7s3,needs-look,fire predator camera data,huge zip
+10.6084/m9.figshare.34692975.v1,candidate,snow leopard camera SCR encounter histories,encounter histories and code
+10.5061/dryad.3xsj3txrc,reject,,distribution maps
+10.5061/dryad.bcc2fqz7h,needs-look,elephant seal breeding histories,life-history data
+10.5061/dryad.4qrfj6qgc,candidate,sea lion mark-resight reproduction,resight dataset csv
+10.5061/dryad.7f9j57n,needs-look,carnivore co-occurrence input data,input csv
+10.5061/dryad.s3s7p,reject,,nesting data
+10.5061/dryad.hx3ffbg9x,candidate,mammal camera daily occurrence seismic lines,daily occurrence csv
+10.5061/dryad.8pk0p2nnz,needs-look,boreal multispecies camera and bird data,mixed files
+10.5061/dryad.2bvq83bqm,reject,,GLM results appendices
+10.5061/dryad.fxpnvx0rv,needs-look,occupancy availability data zip,huge zip
+10.5061/dryad.n026d,candidate,eider capture-recapture datasets,txt encounter data
+10.5061/dryad.sj3tx968z,reject,,turtle basking assessment
+10.5061/dryad.48j0m,needs-look,sea lion resight prn,prn files
+10.5061/dryad.ghx3ffbp9,candidate,carnivore occupancy data files,Species_Occupancy_data xlsx
+10.5061/dryad.v15dv420s,needs-look,deer fecal sample SCR,xlsx samples
+10.5061/dryad.474jc10,candidate,MHB passerine species counts,count txt
+10.5061/dryad.hp4b3,needs-look,snow leopard interview/occupancy,interview-based
+10.5061/dryad.bnzs7h4qf,candidate,SNAPSHOT USA 2024 camera sequences,sequences and deployments
+10.5061/dryad.fs348,reject,,tick disease surveillance
+10.5061/dryad.hhmgqnkhd,candidate,vole capture-recapture with trap locations,captures xlsx
+10.5061/dryad.x95x69pt7,candidate,goose capture histories,capture_histories prn
+10.5061/dryad.z34tmpgc2,candidate,carnivore SCR with effort,effort and detection csvs
+10.5061/dryad.vr4bh74,needs-look,waterbird integrated data RData,RData
+10.5061/dryad.vhhmgqnqg,candidate,saltmarsh sparrow repeated counts,survey covariates csv
+10.5061/dryad.hx3ffbghc,candidate,raccoon coyote camera captures,station csvs
+10.5061/dryad.47d7wm3kc,candidate,mesocarnivore camera detections,Detections csv
+10.5061/dryad.98sf7m0vg,reject,,rattlesnake inbreeding genetics
+10.5061/dryad.9kd51c5n2,candidate,eDNA salmon replicates,eDNA xls
+10.5061/dryad.r4xgxd28g,candidate,lion detection histories 14d,DetHist csv
+10.5061/dryad.1fp259b,needs-look,observation process occupancy,no files shown
+10.5061/dryad.w3r2280rb,needs-look,historical bird survey replicates,bird files unclear
+10.5281/zenodo.5257572,needs-look,snow leopard Mongolia occupancy zip,zip data and code
+10.5061/dryad.0645r,reject,,tables in docx
+10.5061/dryad.9046k0r,needs-look,amphibian adult capture txt,small txt
+10.5061/dryad.3tx95x6n8,needs-look,house mouse live-trap captures,capture files
+10.5061/dryad.x3ffbg7k3,reject,,genomic SNP data
+10.5281/zenodo.4238700,needs-look,Allee experiment N-mixture counts,experimental population counts
+10.5061/dryad.jdfn2z3gg,candidate,moose hunter-observation counts by district,count_data csv
+10.5061/dryad.z8w9ghx8z,reject,,pathogen food safety
+10.5061/dryad.00000008k,needs-look,camera trap and eDNA vertebrates,huge raw files
+10.5061/dryad.8cz8w9gv7,needs-look,bird interference competition,behaviour focus
+10.5061/dryad.9qg57,needs-look,anuran richness dams,R script listed
+10.5061/dryad.rjdfn2zc3,candidate,rainforest bird surveys restoration,data csv
+10.5061/dryad.djh9w0w6v,candidate,REM camera data coyote jackrabbit,camera data
+10.5061/dryad.fn208,needs-look,co-abundance models data,no files shown
+10.6084/m9.figshare.7164929.v1,candidate,wolf camera SCR additional file,camera trap data
+10.5281/zenodo.20282975,reject,,soundscape acoustic indices
+10.5061/dryad.ffbg79cxr,reject,,hawk IPM html
+10.5281/zenodo.5711345,reject,,package example data
+10.5061/dryad.rjdfn2zj2,reject,,simulation results
+10.5061/dryad.ksn02v707,candidate,butterfly metapopulation surveys,long-term demographic surveys
+10.5061/dryad.k98sf7m3r,candidate,steelhead capture-recapture-recovery,recaptured released csv
+10.5061/dryad.r7sqv9s9r,candidate,salamander capture-recapture Sur Rep,txt capture data
+10.5061/dryad.1zcrjdfts,needs-look,seabird bycatch demography zip,small zip
+10.5061/dryad.c2fqz616r,reject,,posterior samples
+10.5061/dryad.rn8pk0p9h,needs-look,transect counts GLM zip,butterfly counts maybe
+10.5281/zenodo.3673893,candidate,vulture capture-recapture histories,CR histories
+10.5061/dryad.83bk3j9zg,candidate,bird communities by fragment,Communities xlsx
+10.5061/dryad.mkkwh715x,reject,,roe deer morphology
+10.5061/dryad.kkwh70s4n,reject,,chipmunk identification
+10.5061/dryad.b2rbnzsp4,needs-look,camera trap tool trial data,simpl_data csv
+10.5061/dryad.dv41ns22w,candidate,songbird resight histories,GRSPResights csv
+10.5061/dryad.nzs7h450q,candidate,pollinator community occupancy,urban gardens survey
+10.5061/dryad.4b8gthtvh,needs-look,urban multi-species framework,files unclear
+10.5061/dryad.s4h53,reject,,fossil brachiopods
+10.5061/dryad.547d7wmd9,needs-look,Trans-Himalaya carnivore camera,files unclear
+10.5061/dryad.xsj3tx9rg,reject,,simulation
+10.5061/dryad.cjsxksn3d,needs-look,canopy camera photo data,huge xlsx
+10.5061/dryad.73n5tb3bs,needs-look,moose camera demography,classification focus
+10.5061/dryad.ns1rn8q5r,candidate,sturgeon capture-mark-recapture,CMR xlsx
+10.5061/dryad.15dv41nw6,candidate,plant transect data,transectData csv
+10.5061/dryad.rr4xgxd8v,reject,,shell colour selection
+10.5061/dryad.0p2ngf2hr,needs-look,Hato Pinero camera data,activity focus
+10.5061/dryad.zs7h44jbn,candidate,leech counts human-bait,counts with covariates
+10.5061/dryad.j3tx95xws,reject,,primate sleep video
+10.5061/dryad.gb5mkkwrn,reject,,larval parasitism
+10.5061/dryad.0k6djh9x5,reject,,butterfly morphology energy budget
+10.5061/dryad.k3b7d,needs-look,pellet DNA mark-recapture,no files shown
+10.5061/dryad.d7d7b2t,reject,,habitat model rasters
+10.5061/dryad.6275j,reject,,elephant seal selection
+10.5061/dryad.9t3js,candidate,recruitment capture-recapture seabird,Recruitment txt
+10.5061/dryad.st8f5n7,needs-look,camera image labels huge,labels without effort
+10.5061/dryad.9mf02,needs-look,urban mammal camera zip,zip
+10.5061/dryad.djh9w0vx9,candidate,mate fidelity capture histories,inp txt
+10.25338/b8gg8p,needs-look,community occupancy simulation and case study,case data mixed with simulations
+10.5061/dryad.bd7q6,candidate,adult survival capture data,raw data xlsx
+10.5061/dryad.b42j56r,reject,,digital data taxa counts
+10.5061/dryad.bk3j9kdfr,reject,,scoter distribution tracking
+10.5061/dryad.jp34d,candidate,amphibian metacommunity surveys,survey xlsx
+10.5061/dryad.zcrjdfn6q,reject,,finch selection traits
+10.5061/dryad.bk3j9kdhk,reject,,disease management simulation
+10.5061/dryad.pn3623b,candidate,grassland bird dynamic occupancy,plot bird data
+10.5061/dryad.8nh60,reject,,corticosterone experiment
+10.5061/dryad.cvdncjt6m,needs-look,underpass camera mammals,files unclear
+10.5061/dryad.w3r2280v7,reject,,nocturnality modelling
+10.5061/dryad.1vhhmgr44,reject,,fossil bryozoa
+10.5061/dryad.g4f4qrfqb,needs-look,harvest IPM RData,RData small
+10.5061/dryad.50kn1p0,needs-look,farm bird surveys xlsx,visits unclear
+10.5061/dryad.h44j0zpp2,reject,,arthropod biomass trapping
+10.5061/dryad.cf04g,needs-look,porpoise acoustic and visual survey,survey data
+10.5061/dryad.51c59zw8b,reject,,museum herbarium records
+10.5068/d1v097,candidate,community occupancy raw data,Data_EmpiricalRaw Rdata
+10.5061/dryad.8463q13,needs-look,plant demographic data,plot data unclear
+10.5061/dryad.8w9ghx3j8,reject,,acoustic telemetry detections
+10.5061/dryad.n572r,candidate,tiger SPACECAP inputs,camera SCR inputs zip
+10.5061/dryad.584g6qg,reject,,genetics
+10.5061/dryad.vt4b8gtnm,candidate,toad capture-recapture,CR xlsx
+10.5061/dryad.hmgqnk9h6,reject,,tag-recovery simulation focus
+10.5061/dryad.n2z34tn29,candidate,wolverine SCR RData,SCR sex files
+10.5061/dryad.41ns1rngj,candidate,rainforest bird communities altitude,bird community data
+10.5061/dryad.kh022n1,candidate,watersnake CJS capture histories,inp
+10.5061/dryad.5d29r,reject,,lemur mate choice
+10.5061/dryad.7h8f15s,needs-look,tiger and prey occupancy Thailand,files unclear
+10.5061/dryad.5b8t8,needs-look,SABAP2 bird atlas lists,atlas checklists
+10.5061/dryad.bs87m,needs-look,tundra riparian bird surveys,files unclear
+10.5061/dryad.7m0cfxpv1,needs-look,songbird monitoring burnt,PPN csv
+10.5061/dryad.zw3r228g6,reject,,bee movement RData
+10.5061/dryad.5c84j,reject,,predicted distributions
+10.5061/dryad.w0vt4b8rd,candidate,waterbird counts Ngami,count data xlsx
+10.5061/dryad.np5hqbzwn,needs-look,hunting human-wildlife camera dataset,large csv
+10.5061/dryad.xsj3tx9rv,reject,,diel activity compiled
+10.5061/dryad.nk98sf84h,reject,,mosquito infection pools
+10.5061/dryad.0cfxpnw8m,needs-look,murrelet survey zip,large zip
+10.3389/fvets.2021.726117.s001,needs-look,wild boar camera occupancy,data sheet unclear
+10.5061/dryad.3r2280gd1,needs-look,migratory bird survival,output and code
+10.5061/dryad.2v6wwpzhx,reject,,wolf habitat use buffers
+10.5281/zenodo.17287410,needs-look,invasive plant occupancy matrix,matrix large xlsx
+10.5061/dryad.6rs23,candidate,eDNA vs field methods occupancy,replicate detection data
+10.5061/dryad.8sf7m0cqw,needs-look,frog eDNA protocol,code and paper files
+10.5061/dryad.rt679ng,candidate,ant community occupancy JAGS data,rds detection data
+10.5061/dryad.59zw3r25c,needs-look,citizen science large mammal ALAN,csv
+10.5061/dryad.vq83bk3vp,needs-look,occupancy field samples,simulations plus field
+10.5061/dryad.ht76hdrcd,candidate,marmot capture histories,capture histories csv
+10.5061/dryad.vv7s70m,candidate,mountain lion SCR data,minimal dataset csv
+10.5281/zenodo.583629,candidate,host CJS capture histories,CJS data txt
+10.5061/dryad.pk0p2ngq7,needs-look,integrated SCR movement zip,zip
+10.7291/d1738v,candidate,sturgeon sonar repeat counts N-mixture,Count csv by year
+10.5061/dryad.prr4xgxr0,candidate,marsh songbird rope-drag surveys,survey csv
+10.5281/zenodo.14263007,needs-look,N-mixture count data,csv plus code
+10.5061/dryad.gtht76hp7,needs-look,leopard prey and kill site data,covariates focus
+10.5061/dryad.90kp2,needs-look,distance sampling temporary emigration,SAVS csv
+10.5061/dryad.76jr5,candidate,small mammal daily counts trapping,daily counts xlsx
+10.5061/dryad.g77m8,candidate,Sumatra bird detections by plot,Bird Detections csv
+10.5061/dryad.ksn02v7b6,reject,,species list summary
+10.5061/dryad.5nn3hf3,reject,,meta-analysis
+10.5061/dryad.9fg6p,needs-look,subnivean camera trap data,txt camera data
+10.5061/dryad.5tb2rbp9d,candidate,ungulate camera contact data,contact and count csv
+10.5061/dryad.w6m905qn8,reject,,activity tables
+10.5061/dryad.5hqbzkh6h,needs-look,boar sign staying time and effort,indices
+10.5061/dryad.hh2kj,needs-look,detection data carnivore signaling,detection files
+10.5061/dryad.7m0cfxq2w,needs-look,mustelid infrared camera sites,xls
+10.5061/dryad.bg79cnp82,candidate,Kananaskis camera data,camera csv
+10.5061/dryad.ns1rn8q20,needs-look,elephant pathway survey results,survey results
+10.5061/dryad.2rbnzs7pq,candidate,koala acoustic occupancy long,survey long csv
+10.5061/dryad.6t1g1jxbn,needs-look,bumble bee nest density mark,R and climate csv
+10.5061/dryad.j3tx95xrs,reject,,insect traits
+10.5061/dryad.zgmsbccn3,candidate,tayra camera occupancy,varocc csv
+10.5061/dryad.bk3j9kdpn,needs-look,moose occupancy,predictor variables only
+10.5061/dryad.r4xgxd2mp,candidate,bank vole live-trapping captures,fulltrap capture csv
+10.5061/dryad.jh9w0vtk2,candidate,caribou capture history,Capture_History csv
+10.5061/dryad.hhmgqnkkc,reject,,demography time series
+10.5061/dryad.n8pk0p2w6,candidate,Tiwi live-trapping 2019,trapping csv
+10.5061/dryad.st61k,needs-look,gorilla fecal detection dog,genetic census samples
+10.5061/dryad.8fh54,reject,,noninvasive genetics markers
+10.5061/dryad.v41ns1s6v,needs-look,sage-grouse lek counts drone,repeated counts maybe
+10.5061/dryad.j0zpc86ss,reject,,activity corticosterone
+10.5061/dryad.p5k25,candidate,camera photo data feeders,photo data csv
+10.5061/dryad.k98sf7mhh,reject,,eDNA frugivory interactions
+10.1371/journal.pone.0217543.t002,reject,,model table only
+10.6084/m9.figshare.7164893.v1,needs-look,wolf SCR additional file,camera data unclear
+10.1371/journal.pone.0179505.t002,reject,,model estimate table
+https://search.dataone.org/view/sha256%3a39a8d8ccb2c31f79a8adff5e300eba8ca946e6ff3aa2a9cf82fae4d64e84463c,needs-look,jaguar continuous-time SCR,dataone record; same as Dryad mg5kv
+10.5061/dryad.2jm63xsjv,candidate,eDNA replicate detections,eDNA detection data
+10.5061/dryad.2ngf1vhpv,reject,,scat locations kills
+10.5061/dryad.280gb5n0v,reject,,geolocator tracks
+10.5061/dryad.w6m905qx2,candidate,bat acoustic occupancy inputs,input txt by species
+10.5061/dryad.9s4mw6mm9,reject,,bee colony experiment
+10.5061/dryad.pg4f4qrzc,needs-look,fungal occurrence plots,occurrence data
+10.5061/dryad.96bk480,candidate,duck capture-mark-recapture,cmr_file csv
+10.5061/dryad.bvq83bk9w,needs-look,diel occupancy zip,zip
+10.5061/dryad.b5mkkwhg3,reject,,isotopes
+10.5061/dryad.866t1g1r4,needs-look,plant richness plots,invasive focus
+10.5061/dryad.f83c6,needs-look,amphibian occupancy wetland,files unclear
+10.5061/dryad.97h25b0,needs-look,eider harvest management data,files unclear

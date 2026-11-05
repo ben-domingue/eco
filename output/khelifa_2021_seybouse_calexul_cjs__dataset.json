@@ -37,10 +37,27 @@
     "n_occasions": 1,
     "n_surveys": 7825,
     "y_values": "0,1",
-    "prop_zero": 0.889
+    "prop_zero": 0.889,
+    "n_traps": 1,
+    "n_zero": 6954,
+    "n_positive": 871,
+    "n_units_detected": 313,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "period_water_depth_cm"],
+  "sideTables": {
+    "periods": {
+      "rows": 25,
+      "columns": ["period", "julian_day", "water_depth_cm", "note"],
+      "md5": "73689f18d7ead0a647bfbbe8318cf639"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "93668df4e81b9efd93bb0284eecb4424"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/khelifa_2021_seybouse_calexul_cjs.R",

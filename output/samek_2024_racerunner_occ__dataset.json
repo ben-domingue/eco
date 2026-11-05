@@ -36,10 +36,22 @@
     "n_occasions": 3,
     "n_surveys": 300,
     "y_values": "0,1",
-    "prop_zero": 0.86
+    "prop_zero": 0.86,
+    "n_traps": 1,
+    "n_zero": 258,
+    "n_positive": 42,
+    "n_units_detected": 33,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_ocular_bare", "unit_ocular_wat", "unit_ocular_lit", "unit_ocular_cwd", "unit_ocular_moss", "unit_ocular_grass", "unit_ocular_forb", "unit_ocular_fern", "unit_ocular_shrub", "unit_ocular_sap", "unit_ocular_can", "unit_nudds_board", "unit_ndvi", "unit_mpine_prop", "unit_grassy_prop", "unit_decid_prop", "unit_bf_prop", "unit_water_prop", "unit_dist_road_m", "unit_dist_mpine_m", "unit_dist_grassy_m", "unit_dist_decid_m", "unit_dist_bf_m", "unit_dist_water_m", "unit_burned_past_year_prop", "unit_burned_past_year", "obs_wind_beaufort", "obs_cloud_pct", "obs_minutes_since_sunrise", "obs_temp_f"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f617b68ab69395f47617de9f32a9e2cd"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/samek_2024_racerunner_occ.R",

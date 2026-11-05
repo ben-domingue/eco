@@ -42,10 +42,32 @@
     "n_occasions": 3,
     "n_surveys": 1529,
     "y_values": "0-55 (31 distinct)",
-    "prop_zero": 0.967
+    "prop_zero": 0.967,
+    "n_traps": 1,
+    "n_zero": 75407,
+    "n_positive": 2572,
+    "n_units_detected": 185,
+    "max_y": 55
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "obs_crop"],
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "period_year", "period_code", "period_season", "period_n_collections"],
+      "md5": "d58805d528d6766350ecf70516e5c8d0"
+    },
+    "taxa": {
+      "rows": 51,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_writtenAs"],
+      "md5": "71307e5e0aee192f41dd4477d1ce1702"
+    },
+    "units": {
+      "rows": 185,
+      "columns": ["unit", "unit_plot", "unit_line", "unit_cycle"],
+      "md5": "c6ea43b991af92cb569695f2520bcaa4"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/peters_2026_carabid_count.R",

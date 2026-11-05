@@ -52,10 +52,32 @@
     "n_occasions": 6,
     "n_surveys": 1349,
     "y_values": "0-10025 (154 distinct)",
-    "prop_zero": 0.937
+    "prop_zero": 0.937,
+    "n_traps": 1,
+    "n_zero": 199631,
+    "n_positive": 13511,
+    "n_units_detected": 14,
+    "max_y": 10025
   },
   "sampleFloor": "below (14 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_visibility_m", "obs_temperature_c"],
+  "sideTables": {
+    "periods": {
+      "rows": 41,
+      "columns": ["period", "period_year", "period_season", "period_n_reefs"],
+      "md5": "2028095088ec4fbb188403b3964ad51b"
+    },
+    "taxa": {
+      "rows": 158,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_family", "taxon_order", "taxon_lw_coef_a", "taxon_lw_coef_b", "taxon_max_length_cm", "taxon_trophic_position", "taxon_lateral_profile", "taxon_cross_section", "taxon_mouth_position", "taxon_caudal_aspect_ratio", "taxon_iucnCategory"],
+      "md5": "e03c4d352f064ccdb74284b87655cf4e"
+    },
+    "units": {
+      "rows": 14,
+      "columns": ["unit", "unit_reef_name", "unit_reef_type", "unit_pair", "unit_depth_m", "unit_deployment_year", "unit_first_survey_year", "unit_decimalLatitude", "unit_decimalLongitude"],
+      "md5": "4e1c45abe7045019b9a9e3e1e90ff552"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/stallings_2025_gulfreefs_count.R",

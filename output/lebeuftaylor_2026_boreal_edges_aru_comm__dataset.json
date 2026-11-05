@@ -43,10 +43,22 @@
     "n_occasions": 5,
     "n_surveys": 1627,
     "y_values": "0,1",
-    "prop_zero": 0.907
+    "prop_zero": 0.907,
+    "n_traps": 1,
+    "n_zero": 50188,
+    "n_positive": 5130,
+    "n_units_detected": 556,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_position", "unit_position_m", "unit_forest_type", "unit_tsh_years", "unit_spruce_pct_regen_side", "unit_spruce_pct_forest_side", "unit_decimalLatitude", "unit_decimalLongitude", "obs_day_z", "obs_time_z"],
+  "sideTables": {
+    "taxa": {
+      "rows": 34,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "70a85f3993336afd681dd28b300d936d"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lebeuftaylor_2026_boreal_edges_aru_comm.R",

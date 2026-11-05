@@ -1,0 +1,100 @@
+# Re-validate the corpus on Redivis and open a PR with validate/report.csv (#88).
+#
+# Tables live on Redivis, not in git, as in IRW. The gate on a table is the
+# upload (upload/red_up_eco.py runs eco-validate --irw and writes the table's
+# report row), so routine work never needs this job. It exists for one case: a
+# change to eco_validate/ that could flip the verdict on a table already
+# shipped. It downloads every table in the eco draft (or the latest release when
+# there is no draft, or with `released`), validates it beside its tracked
+# __dataset.json, and proposes the refreshed report as a pull request.
+#
+# By hand only (Actions > validate-redivis > Run workflow), after a validator
+# change; no schedule. Tables over five million rows are not downloaded; their
+# rows are kept from the upload gate. Nothing here publishes.
+#
+# Needs the REDIVIS_API_TOKEN repository secret to read the draft (the released
+# version reads anonymously).
+name: validate-redivis
+
+on:
+  workflow_dispatch:
+    inputs:
+      released:
+        description: "Check the latest released version instead of the draft"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: validate-redivis
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas redivis irw-validate
+          python -m pip install -e eco_validate
+
+      - name: Validate the tables on Redivis
+        id: run
+        env:
+          REDIVIS_API_TOKEN: ${{ secrets.REDIVIS_API_TOKEN }}
+        run: |
+          set +e
+          python validate/validate_redivis.py ${{ inputs.released && '--released' || '' }} 2> stderr.log | tee validate.log
+          code=${PIPESTATUS[0]}
+          # stderr is mostly the redivis client's download progress bars; show its end on a setup error
+          [ "$code" -ge 2 ] && tail -40 stderr.log
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          [ "$code" -le 1 ]   # 1 = some table not eco-valid: still propose the report
+
+      - name: Open a pull request if the report changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- validate/report.csv; then
+            echo "validate/report.csv unchanged"; exit 0
+          fi
+          date=$(date -u +%Y-%m-%d)
+          branch="validate/redivis-$date-$GITHUB_RUN_ID"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add validate/report.csv
+          git commit -m "validate/report.csv from Redivis, $date (#88)"
+          git push -u origin "$branch"
+          {
+            echo "validate-redivis run $GITHUB_RUN_ID re-validated the eco tables on Redivis (#88)."
+            echo
+            if [ "${{ steps.run.outputs.code }}" = "1" ]; then
+              echo "**At least one table is not eco-valid.** Look at the FAIL lines before merging, and before publishing the draft."
+              echo
+            fi
+            echo '```'
+            grep -v '^ok ' validate.log | tail -60
+            echo '```'
+          } > pr_body.md
+          gh pr create --base main --head "$branch" \
+            --title "validate/report.csv from Redivis, $date" \
+            --body-file pr_body.md --assignee ben-domingue
+
+      - name: Fail the run if a table is not eco-valid
+        if: steps.run.outputs.code == '1'
+        run: |
+          grep '^FAIL ' validate.log
+          exit 1

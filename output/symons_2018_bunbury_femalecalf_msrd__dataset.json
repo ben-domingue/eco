@@ -42,10 +42,27 @@
     "n_occasions": 6,
     "n_surveys": 6552,
     "y_values": "0,1,2",
-    "prop_zero": 0.812
+    "prop_zero": 0.812,
+    "n_traps": 1,
+    "n_zero": 5320,
+    "n_positive": 1232,
+    "n_units_detected": 91,
+    "max_y": 2
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_calf_code", "obs_date_sighted"],
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "period_season", "period_study_year", "period_start", "period_end", "period_first_female_sighting", "period_last_female_sighting"],
+      "md5": "26c9d7e01244cb64c8f1c3996dcb4b65"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d78a818f9290da3b98212e7771c97565"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/symons_2018_bunbury_dolphin.R",

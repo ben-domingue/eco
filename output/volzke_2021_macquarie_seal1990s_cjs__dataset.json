@@ -45,10 +45,27 @@
     "n_occasions": 2,
     "n_surveys": 678760,
     "y_values": "0,1",
-    "prop_zero": 0.907
+    "prop_zero": 0.907,
+    "n_traps": 1,
+    "n_zero": 615560,
+    "n_positive": 63200,
+    "n_units_detected": 18371,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_sex", "unit_cohort_year", "unit_tag_type", "unit_first_age_class"],
+  "sideTables": {
+    "periods": {
+      "rows": 32,
+      "columns": ["period", "year", "label", "n_sightings_breeding", "n_sightings_other", "n_seals_breeding", "n_seals_other", "surveyed_occasions"],
+      "md5": "f6f12b005255e144cdc7fe6a25c78296"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "34e1858b45cce5a46700054c157c9291"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/volzke_2021_macquarie_seal_cjs.R",

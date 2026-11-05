@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Every core table in output/ has its full set of companions, or the build is red.
+"""Every table has its full set of companions, or the build is red.
 
 A table is a set of files, not one CSV: the core table, its `__taxa` side table
-and `__dataset.json` (standard.md E10), a row in dictionary/dictionary_auto.csv,
+and `__dataset.json` (standard.md E10). The CSVs live on Redivis, not in git
+(#88), so the table is known by its tracked `__dataset.json` and its `__taxa` by
+the `sideTables` record write_table() puts there. It also needs a row in dictionary/dictionary_auto.csv,
 a row in tags/tags_auto.csv (or tags_human.csv), and, because the site and the R
 package read the derived pipeline outputs rather than those staging files, a row
 in metadata/metadata.csv. CLAUDE.md asks every data/ script to end with
@@ -11,9 +13,10 @@ followed by metadata/run_pipeline.sh; this is the mechanical check that it
 happened, run on every PR (issue #4) rather than by a monthly audit (IRW's
 17_coverage.R).
 
-Missing companions FAIL (exit 1). A dictionary, tags or metadata row that names
-a table no longer in output/ is WARNED about and does not fail: withdrawals are
-ledgered in releases/withdrawals.csv and the pipeline prunes on its own schedule.
+Missing companions FAIL (exit 1). A dictionary,
+tags or metadata row that names a table with no `__dataset.json` is WARNED about
+and does not fail: withdrawals are ledgered in releases/withdrawals.csv and the
+pipeline prunes on its own schedule.
 
 Offline, standard library only. Run from anywhere: paths are relative to the
 repository root this file lives in.
@@ -25,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import pathlib
 import sys
 
@@ -45,11 +49,8 @@ def tables_in(path: pathlib.Path) -> set[str]:
         return {row["table"] for row in reader if row.get("table")}
 
 
-def core_tables() -> list[str]:
-    # Side tables carry a double underscore; core tables never do (standard E10).
-    # A table stored as period parts is the directory <name>.parts/ (standard E4).
-    return sorted([p.stem for p in OUT.glob("*.csv") if "__" not in p.name]
-                  + [p.name.removesuffix(".parts") for p in OUT.glob("*.parts") if p.is_dir()])
+def tables_by_dataset() -> set[str]:
+    return {p.name.removesuffix("__dataset.json") for p in OUT.glob("*__dataset.json")}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -57,7 +58,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--quiet", action="store_true", help="print only problems")
     args = ap.parse_args(argv)
 
-    core = core_tables()
+    # A table is its __dataset.json: the CSVs live on Redivis, not in git (#88).
+    core = sorted(tables_by_dataset())
     if not core:
         print(f"no core tables under {OUT}", file=sys.stderr)
         return 2
@@ -69,10 +71,9 @@ def main(argv: list[str] | None = None) -> int:
     problems: list[str] = []
     for t in core:
         missing = []
-        if not (OUT / f"{t}__taxa.csv").exists():
-            missing.append("output/<t>__taxa.csv")
-        if not (OUT / f"{t}__dataset.json").exists():
-            missing.append("output/<t>__dataset.json")
+        ds = json.loads((OUT / f"{t}__dataset.json").read_text())
+        if "taxa" not in (ds.get("sideTables") or {}):
+            missing.append("__taxa side table (sideTables.taxa in __dataset.json)")
         if t not in in_dict:
             missing.append("dictionary/dictionary_auto.csv row")
         if t not in in_tags:
@@ -87,11 +88,11 @@ def main(argv: list[str] | None = None) -> int:
     stale = (in_dict | in_tags | in_meta) - set(core)
     for t in sorted(stale):
         where = [n for n, s in (("dictionary", in_dict), ("tags", in_tags), ("metadata", in_meta)) if t in s]
-        print(f"WARN {t}: row in {', '.join(where)} but no output/{t}.csv")
+        print(f"WARN {t}: row in {', '.join(where)} but no output/{t}__dataset.json")
 
     for p in problems:
         print(f"FAIL {p}")
-    print(f"{len(core)} core tables, {len(problems)} incomplete, {len(stale)} stale rows")
+    print(f"{len(core)} tables, {len(problems)} incomplete, {len(stale)} stale rows")
     return 1 if problems else 0
 
 

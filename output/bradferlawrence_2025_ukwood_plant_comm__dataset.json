@@ -50,10 +50,22 @@
     "n_occasions": 1,
     "n_surveys": 129,
     "y_values": "0,1",
-    "prop_zero": 0.864
+    "prop_zero": 0.864,
+    "n_traps": 1,
+    "n_zero": 22293,
+    "n_positive": 3507,
+    "n_units_detected": 129,
+    "max_y": 1
   },
   "sampleFloor": "below (no replication)",
   "columns": ["unit", "taxon", "y", "unit_country", "unit_age_years", "unit_area_ha", "unit_shape_index", "unit_structure_sd_dbh", "unit_current_woodland_prop_3km", "unit_old_woodland_prop_3km", "unit_lost_woodland_prop_3km", "unit_trees_outside_woodland_prop_3km", "unit_arable_prop_3km", "unit_livestock_density_3km", "unit_x", "unit_y", "unit_coordinateUncertaintyInMeters"],
+  "sideTables": {
+    "taxa": {
+      "rows": 200,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_sourceName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "d5c43a1a138777c881595b61eaca55c1"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bradferlawrence_2025_ukwood_comm.R",

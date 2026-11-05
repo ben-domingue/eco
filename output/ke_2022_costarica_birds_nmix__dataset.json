@@ -1,0 +1,78 @@
+{
+  "table": "ke_2022_costarica_birds_nmix",
+  "title": "Point counts of 167 bird species at 150 points in 25 forest and farm landscapes of northwest Costa Rica, 2016-2019, one to three visits per year",
+  "creator": "Ke, Alison; Sollmann, Rahel; Frishkoff, Luke O.; Karp, Daniel S.",
+  "pubDate": "2022",
+  "doi": "10.25338/B8VP85",
+  "sourceURL": "https://doi.org/10.25338/B8VP85",
+  "citation": "Ke, A., Sollmann, R., Frishkoff, L. O., & Karp, D. S. (2022). Data from: A hierarchical N-mixture model to estimate behavioral variation and a case study of Neotropical birds [Data set]. Dryad. https://doi.org/10.25338/B8VP85",
+  "paperDOI": "10.1002/eap.2632",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Breeding-season point counts in northwest Costa Rica (Guanacaste), from the Daily and Karp labs' countryside bird surveys: 25 landscapes of six points each in forest and agriculture, counted in May to July of 2016 to 2019. Every point was counted once a year (120 points in 2016, 150 from 2017), and a subset (60 in 2016, 72 later) three times. The deposit logs every visit with time, weather, people and noise, and records each observation instance with the number of individuals and their behaviours. y is the number of individuals of a species at a visit; the 21 visits with no bird recorded are all-zero surveys. Ke et al. (2022) used the behaviours to fit a behavioural N-mixture model. Point coordinates are coarsened to 0.1-degree cells and elevations rounded to 100 m because Crax rubra (VU), Aratinga canicularis (VU), Amazona auropalliata (CR) are counted; ke_2022_costarica_birds_exact_nmix has the other 164 species at the deposited coordinates.",
+  "samplingProtocol": "Point counts at fixed points, one observer recording every bird seen or heard with the number of individuals and their behaviours; one to three visits per point per breeding season (Ke et al. 2022, Ecological Applications 32:e2632).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "visit-data.csv lists every visit (1,122); a survey is a row of it. 21 visits have no detections and are all-zero surveys.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "occasion = repeat visit within a breeding season (May to July); period = year",
+  "geographicCoverage": "Northwest Costa Rica (Guanacaste), latitude 9.9 to 10.5, longitude -85.6 to -85.1; 25 landscapes (cluster_id); point coordinates coarsened to 0.1-degree cells",
+  "temporalCoverage": "2016-05/2019-07",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "0.1-degree grid cell centre (coarsen_coords) for all 150 points, uncertainty = cell half-diagonal; elevation rounded to 100 m (E7.4); flagged taxa in their native range: Crax rubra (VU), Aratinga canicularis (VU), Amazona auropalliata (CR); the deposit has coordinates to 8 decimal places"
+  },
+  "notShipped": {
+    "Behavior1-3, Number2-3": "behaviour codes and the individuals per behaviour (the paper's behavioural detail; the same individuals as Number1)",
+    "LU": "per-instance land use the bird was in (forest or agriculture)",
+    "aggression-cases.csv, species-vocal-info.csv, behavior-codes.csv": "behaviour detail",
+    "Noise_Description, Changes, Notes": "free text; names people living near the points"
+  },
+  "notes": "y = sum of Number1 over a species' observation instances at the visit; flyovers counted. The same 2016 visits are in Frishkoff et al. 2018 (doi:10.5061/dryad.7c652r8), whose counts match. obs_crop_type is as deposited (one 'pature' typo kept). The README calls Latitude/Longitude UTM; they are decimal degrees. __units carries forest cover at 105 buffer radii (60-1500 m).",
+  "summary": {
+    "n_rows": 187374,
+    "n_units": 150,
+    "n_taxa": 167,
+    "n_periods": 4,
+    "n_occasions": 3,
+    "n_surveys": 1122,
+    "y_values": "0-45 (29 distinct)",
+    "prop_zero": 0.935,
+    "n_traps": 1,
+    "n_zero": 175254,
+    "n_positive": 12120,
+    "n_units_detected": 150,
+    "max_y": 45
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_landuse", "unit_forest_cover_50m", "unit_annual_precip_mm", "unit_dist_river_m", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_time_hhmm", "obs_people_in_count", "obs_people_nearby", "obs_temp_start_c", "obs_temp_end_c", "obs_wind_start_ms", "obs_wind_end_ms", "obs_noise", "obs_crop_type"],
+  "coreMd5": "d8aa6961f7fa4bd1b9ba09d610adc561",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_year", "period_n_points", "period_n_visits"],
+      "md5": "494de9c3282335aec94e6d313c25a6ca"
+    },
+    "taxa": {
+      "rows": 167,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_iucnCategory"],
+      "md5": "4a4c901e6f09b2c0d955c37913213bd6"
+    },
+    "units": {
+      "rows": 150,
+      "columns": ["unit", "unit_landuse", "unit_forest_cover_50m", "unit_annual_precip_mm", "unit_dist_river_m", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_forest_cover_60m", "unit_forest_cover_70m", "unit_forest_cover_80m", "unit_forest_cover_90m", "unit_forest_cover_100m", "unit_forest_cover_110m", "unit_forest_cover_120m", "unit_forest_cover_130m", "unit_forest_cover_140m", "unit_forest_cover_150m", "unit_forest_cover_160m", "unit_forest_cover_170m", "unit_forest_cover_180m", "unit_forest_cover_190m", "unit_forest_cover_200m", "unit_forest_cover_210m", "unit_forest_cover_220m", "unit_forest_cover_230m", "unit_forest_cover_240m", "unit_forest_cover_250m", "unit_forest_cover_260m", "unit_forest_cover_270m", "unit_forest_cover_280m", "unit_forest_cover_290m", "unit_forest_cover_300m", "unit_forest_cover_310m", "unit_forest_cover_320m", "unit_forest_cover_330m", "unit_forest_cover_340m", "unit_forest_cover_350m", "unit_forest_cover_360m", "unit_forest_cover_370m", "unit_forest_cover_380m", "unit_forest_cover_390m", "unit_forest_cover_400m", "unit_forest_cover_410m", "unit_forest_cover_420m", "unit_forest_cover_430m", "unit_forest_cover_440m", "unit_forest_cover_450m", "unit_forest_cover_460m", "unit_forest_cover_470m", "unit_forest_cover_480m", "unit_forest_cover_490m", "unit_forest_cover_500m", "unit_forest_cover_510m", "unit_forest_cover_520m", "unit_forest_cover_530m", "unit_forest_cover_540m", "unit_forest_cover_550m", "unit_forest_cover_560m", "unit_forest_cover_570m", "unit_forest_cover_580m", "unit_forest_cover_590m", "unit_forest_cover_600m", "unit_forest_cover_610m", "unit_forest_cover_620m", "unit_forest_cover_630m", "unit_forest_cover_640m", "unit_forest_cover_650m", "unit_forest_cover_660m", "unit_forest_cover_670m", "unit_forest_cover_680m", "unit_forest_cover_690m", "unit_forest_cover_700m", "unit_forest_cover_710m", "unit_forest_cover_720m", "unit_forest_cover_730m", "unit_forest_cover_740m", "unit_forest_cover_750m", "unit_forest_cover_760m", "unit_forest_cover_770m", "unit_forest_cover_780m", "unit_forest_cover_790m", "unit_forest_cover_800m", "unit_forest_cover_810m", "unit_forest_cover_820m", "unit_forest_cover_830m", "unit_forest_cover_840m", "unit_forest_cover_850m", "unit_forest_cover_860m", "unit_forest_cover_870m", "unit_forest_cover_880m", "unit_forest_cover_890m", "unit_forest_cover_900m", "unit_forest_cover_910m", "unit_forest_cover_920m", "unit_forest_cover_930m", "unit_forest_cover_940m", "unit_forest_cover_950m", "unit_forest_cover_960m", "unit_forest_cover_970m", "unit_forest_cover_980m", "unit_forest_cover_990m", "unit_forest_cover_1000m", "unit_forest_cover_1050m", "unit_forest_cover_1100m", "unit_forest_cover_1150m", "unit_forest_cover_1200m", "unit_forest_cover_1250m", "unit_forest_cover_1300m", "unit_forest_cover_1350m", "unit_forest_cover_1400m", "unit_forest_cover_1450m", "unit_forest_cover_1500m"],
+      "md5": "b5573226029d8a2f335a707db26aae7d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ke_2022_costarica_birds_nmix.R",
+  "buildDate": "2026-11-04"
+}

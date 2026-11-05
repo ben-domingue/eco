@@ -42,10 +42,27 @@
     "n_occasions": 6,
     "n_surveys": 15675,
     "y_values": "0,1,2,3",
-    "prop_zero": 0.909
+    "prop_zero": 0.909,
+    "n_traps": 1,
+    "n_zero": 14243,
+    "n_positive": 1432,
+    "n_units_detected": 209,
+    "max_y": 3
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "season", "year_start", "year_end", "months", "n_occasions", "n_occasions_completed", "survey_hours", "survey_km", "mean_days_in_occasion", "mean_days_between_occasions", "days_since_previous_season"],
+      "md5": "fb73bf706bbc23b771af99df992c4883"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d78a818f9290da3b98212e7771c97565"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/chabanne_2017_perth_dolphin_msrd.R",

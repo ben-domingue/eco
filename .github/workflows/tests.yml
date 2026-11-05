@@ -1,14 +1,14 @@
-# The gate on every change (issue #4): is every table in output/ still a valid
-# eco table, does the validator still pass its own tests, and does every core
-# table have its companions (side tables, __dataset.json, dictionary, tags and
-# metadata rows)? A PR that edits a data/ script or an output/ file shows
-# green or red from the validator here. Before this file, "did this change
-# break a table" was a question only a human with a clone could answer.
+# The code checks on every change: does the validator still pass its own tests,
+# does every table have its companions (__dataset.json with a __taxa record,
+# dictionary, tags and metadata rows), do numbers in prose match, and do the R
+# scripts parse? No table is validated here: tables live on Redivis, not in git
+# (#88). As in IRW, the gate on a table is the upload (upload/red_up_eco.py runs
+# eco-validate and refuses a table it blocks); after a validator change,
+# validate-redivis.yml re-validates the corpus on Redivis, by hand.
 #
 # Deliberately offline: no Redivis, no deposit downloads, no GBIF, no
 # credentials. A job that depends on a third party's uptime teaches people to
-# ignore red marks. The rebuild from source (Rscript data/run_all.R) is
-# network-bound and lives in rebuild.yml, on demand only.
+# ignore red marks.
 #
 # Borrowed from irw/src/.github/workflows/tests.yml, cut to eco's size.
 name: tests
@@ -22,8 +22,7 @@ permissions:
   contents: read
 
 jobs:
-  # Python: the validator over the corpus, its unit tests, and the companion
-  # check. About a minute.
+  # Python: the validator's tests, the companion check and the prose check.
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -47,28 +46,13 @@ jobs:
       - name: Package version is consistent
         run: python .github/scripts/check_eco_validate_version.py ""
 
-      # The gate. Exit 1 on a blocking finding fails the job; the human-readable
-      # report is in the log and the JSON (every affected case) is an artifact.
-      - name: eco-validate output/
-        run: python -m eco_validate.cli output/
-
-      - name: eco-validate output/ --json
-        if: always()
-        run: python -m eco_validate.cli output/ --json > eco-validate.json || true
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: eco-validate-report
-          path: eco-validate.json
-
-      # Includes the corpus test: every table under output/ passes, so a change
-      # to a check that breaks a shipped table fails here and not on Redivis.
+      # Each check fires on a broken fixture, and one real shipped table
+      # (eco_validate/tests/fixtures/) passes.
       - name: Validator tests
         run: python -m pytest eco_validate/tests -q
 
-      # Every output/<t>.csv has __taxa.csv, __dataset.json, a dictionary row, a
-      # tags row and a metadata.csv row (IRW's 17_coverage.R, at PR time).
+      # Every output/<t>__dataset.json records a __taxa side table and has a
+      # dictionary row, a tags row and a metadata.csv row (IRW's 17_coverage.R, at PR time).
       - name: Every table has its companions
         run: python tools/check_coverage.py --quiet
 
@@ -79,15 +63,10 @@ jobs:
       - name: Numbers in prose agree with computed metadata
         run: python tools/check_prose_numbers.py --strict
 
-      # Every repository file a site page reads is in site.yml's paths:, so an
-      # edit to it rebuilds the site (#27).
-      - name: Site rebuild paths cover what the site reads
-        run: python tools/check_site_paths.py
-
   # R: the data/ scripts, lib/eco_common.R and the converters still parse, and
   # the R package installs. Nothing is executed against data: the scripts
-  # download deposits and the package tests read Redivis, both of which belong
-  # in rebuild.yml. setup-r with the public RSPM serves binaries, so no compile.
+  # download deposits and the package tests read Redivis; neither runs in a PR
+  # check. setup-r with the public RSPM serves binaries, so no compile.
   r-parse:
     runs-on: ubuntu-latest
     timeout-minutes: 20

@@ -46,10 +46,27 @@
     "n_occasions": 2,
     "n_surveys": 2202,
     "y_values": "0-107 (30 distinct)",
-    "prop_zero": 0.914
+    "prop_zero": 0.914,
+    "n_traps": 1,
+    "n_zero": 211257,
+    "n_positive": 19953,
+    "n_units_detected": 101,
+    "max_y": 107
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_lat", "unit_lon", "unit_elevation_m", "obs_temp_c", "obs_wind_beaufort", "obs_cloud_cover"],
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "year", "time_bins", "n_points", "n_counts", "note"],
+      "md5": "76b72826fe84d0259d956212e8a259ff"
+    },
+    "taxa": {
+      "rows": 105,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f084a6275578c7ce67b1837f42986021"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/sullivan_2026_powdermill_count.R",

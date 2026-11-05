@@ -30,8 +30,11 @@
 #   dates under 2024's leap-year calendar. No unit covariates are deposited.
 #   Survey evidence: the deposited site x occasion matrix (deposited_matrix; complete, no NA).
 #   Nothing is a model output; every deposited column is shipped (ordinal as date).
-#   v1.1: closure = closed (the authors fit single-season occupancy across the three counts),
-#   occasionKind = time, taxonInclusion = single.
+#   v1.1: closure = open (E8 ruling: the dates span 19 September to 5 November, across the end
+#   of the calling season, over which the state may change; the authors fit a closed
+#   single-season model, as closureNote records), occasionKind = time, taxonInclusion = single.
+#   Barometric pressure is taken as station pressure in inHg: 28.34-29.48 is what station
+#   pressure reads at Lexington's elevation of about 300 m (per review, PR #64).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "cecconi_2025_cricket_occ"
 dir <- download_dryad("10.5061/dryad.ns1rn8q4k", TABLE)
@@ -82,14 +85,14 @@ dataset <- list(
   abstract = "Aural detection/non-detection of the invasive Japanese burrowing cricket (Velarifictorus micado) at 49 point-count sites in the Inner Bluegrass Region of central Kentucky, USA, each surveyed three times at varying hours of the day between 19 September and 5 November 2024, with the temperature, barometric pressure, wind speed, minutes since sunset and date of every count. No site covariates and no coordinates are deposited.",
   samplingProtocol = "Aural point counts at all hours of the day, three per site between 19 September and 5 November 2024; temperature, barometric pressure, wind speed and time relative to sunset recorded per count. Count duration and site spacing are not in the deposit; see the paper.",
   samplingProtocolCode = "point_count", surveyEvidence = "deposited_matrix", responseType = "detection",
-  unitKind = "site", closure = "closed",
-  closureNote = "occasion (three aural point counts of one site over about seven weeks, analysed by the authors as single-season occupancy)",
+  unitKind = "site", closure = "open",
+  closureNote = "occasions span 19 September to 5 November, across the end of the calling season; the authors analysed them as single-season (closed) occupancy",
   occasionKind = "time", taxonInclusion = "single",
   geographicCoverage = "Inner Bluegrass Region, central Kentucky, USA; no coordinates deposited",
   temporalCoverage = "2024-09-19/2024-11-05",
   coordinatesCoarsened = NA,
   notShipped = list(none = "every deposited column is shipped; ordinal1-3 as date"),
-  notes = "date = 2024 + the deposited ordinal day; the year is from the abstract on the Dryad page, not the data file or README, and the ordinals span exactly the abstract's dates. At 5 sites occasions 2 and 3 share a date, with occasion 3 later by minutes since sunset. obs_barometric_pressure is as deposited; the README states no unit and the values are consistent with inHg. obs_minutes_since_sunset runs 10-1431 as deposited, never negative. An invasive species, so the flagged-taxon coordinate rule does not apply; no coordinates are deposited in any case.")
+  notes = "date = 2024 + the deposited ordinal day; the year is from the abstract on the Dryad page, not the data file or README, and the ordinals span exactly the abstract's dates. At 5 sites occasions 2 and 3 share a date, with occasion 3 later by minutes since sunset. obs_barometric_pressure is as deposited; the README states no unit, and the values are consistent with station pressure in inHg at about 300 m. obs_minutes_since_sunset runs 10-1431 as deposited, never negative. An invasive species, so the flagged-taxon coordinate rule does not apply; no coordinates are deposited in any case.")
 dataset$temporalCoverage <- paste(min(long$date), max(long$date), sep = "/")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, script = "data/cecconi_2025_cricket_occ.R")
 

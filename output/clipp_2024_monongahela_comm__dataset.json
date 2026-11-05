@@ -43,10 +43,27 @@
     "n_occasions": 12,
     "n_surveys": 1149,
     "y_values": "0,1",
-    "prop_zero": 0.985
+    "prop_zero": 0.985,
+    "n_traps": 1,
+    "n_zero": 39608,
+    "n_positive": 607,
+    "n_units_detected": 127,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "unit_year", "unit_camera_model", "unit_study_area", "unit_habitat", "obs_camera_hours"],
+  "sideTables": {
+    "taxa": {
+      "rows": 35,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_class"],
+      "md5": "761dc5d30a6e4dd87811824bd352e319"
+    },
+    "units": {
+      "rows": 129,
+      "columns": ["unit", "year", "camera_model", "deployed", "retrieved", "camera_days"],
+      "md5": "e80b7c336ae2a02a7afc90fdb900289c"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/clipp_2024_monongahela_comm.R",

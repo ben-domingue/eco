@@ -61,3 +61,32 @@ code { font-size: .9em; }
 #summary table { font-size: .85rem; }
 
 .eco-release { color: #6c757d; font-size: 0.95rem; margin: 0.25rem 0 1.5rem; }
+
+// Search box above a filterable table (data notes, the tables summary)
+.eco-search { width: 100%; padding: 10px; margin-bottom: 6px; font-size: 1rem; border: 1px solid $gray-400; border-radius: 4px; }
+.eco-search-count { color: $gray-600; min-height: 1.5em; margin-bottom: 1rem; }
+.eco-searchable table { width: 100%; }
+.eco-searchable th, .eco-searchable td { vertical-align: top; }
+
+// Homepage specimen card (after the IRW homepage)
+.eco-specimen { border: 1px solid $gray-300; border-radius: 8px; padding: 1.1rem 1.2rem; margin: 1rem 0 1.5rem; background: #fbfcfb; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+.spec-top { display: flex; justify-content: space-between; align-items: center; font-size: .78rem; color: $gray-600; }
+.spec-chip { background: rgba(47,107,79,.1); color: $primary; border-radius: 999px; padding: 2px 10px; font-weight: 600; letter-spacing: .02em; }
+.spec-title { font-size: 1.15rem; margin: .6rem 0 .25rem; }
+.spec-meta { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .88rem; color: $gray-600; margin-bottom: .7rem; }
+.spec-grid-wrap { overflow-x: auto; font-family: $font-family-monospace; font-size: .82rem; border: 1px solid $gray-200; border-radius: 6px; }
+.spec-row { display: grid; min-width: max-content; }
+.spec-row span { padding: 4px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.spec-row.head { background: #eef3f0; font-weight: 700; color: #1f3d2f; }
+.spec-row.alt { background: #f6f8f7; }
+.spec-row span.y { font-weight: 700; }
+.spec-row span.hit { color: $primary; background: rgba(47,107,79,.12); }
+.spec-more { padding: 4px 10px; color: $gray-600; font-style: italic; }
+.spec-fetch { margin-top: .6rem; }
+.spec-code { margin: .4rem 0 0; font-size: .82rem; }
+.spec-code-toggle, .spec-next, .spec-pill { font-size: .85rem; border: 1px solid $gray-400; background: #fff; border-radius: 999px; padding: 3px 12px; cursor: pointer; }
+.spec-code-toggle { border: none; padding: 0; color: $primary; text-decoration: underline; background: none; }
+.spec-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem; margin-top: .8rem; }
+.spec-pills { display: flex; flex-wrap: wrap; gap: .35rem; }
+.spec-pill[aria-pressed="true"] { background: $primary; border-color: $primary; color: #fff; }
+.spec-next:disabled { opacity: .4; cursor: default; }

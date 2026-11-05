@@ -1,0 +1,66 @@
+{
+  "table": "malachowski_2026_koloa_rd",
+  "title": "Robust-design capture histories of 792 Hawaiian Ducks (Koloa maoli), Hanalei National Wildlife Refuge, Kaua'i, 2010-2015",
+  "creator": "Malachowski, Christopher P.; Uyehara, Kimberly J.; Reynolds, Michelle H.; Dugger, Bruce D.",
+  "pubDate": "2026",
+  "doi": "10.5281/zenodo.21516105",
+  "sourceURL": "https://doi.org/10.5281/zenodo.21516105",
+  "citation": "Malachowski, C. P., Uyehara, K. J., Reynolds, M. H., & Dugger, B. D. (2026). Data for: Heavily male-biased adult sex ratio is associated with lower female survival in the federally endangered Anas wyvilliana (Koloa Maoli or Hawaiian Duck) on north Kaua'i, Hawai'i, USA [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.21516105",
+  "paperDOI": "10.1093/ornithapp/duag068",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Capture-mark-recapture of the endangered Hawaiian Duck at Hanalei National Wildlife Refuge, north Kaua'i: 792 adult and first-year birds (150 females, 642 males) captured 1,236 times in 29 trapping secondaries within 7 trapped primary occasions (winter and summer seasons) between December 2010 and November 2015, used in robust-design models of abundance, sex ratio, survival and temporary emigration.",
+  "samplingProtocol": "Robust-design live trapping of ducks on the refuge: primary occasions in winter and summer, each with 2-6 secondary trapping occasions; trap-days and rainfall recorded per secondary. Four of the eleven primaries in the study's MARK design had no trapping.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "effortColumn": "obs_effort_trapdays",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "occasion = secondary trapping occasion within a primary (robust design); the paper finds random temporary emigration between primaries",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Hanalei National Wildlife Refuge, north Kaua'i, Hawai'i, USA (no coordinates deposited)",
+  "temporalCoverage": "2010-12/2015-11",
+  "notShipped": {
+    "log_covariates": "effort_log, rainPO_log, rain30_log, rainSO_log (derivable)",
+    "R_script": "processing of MARK model outputs (not data)"
+  },
+  "notes": "Periods keep the source's primary numbering (1-11); primaries 3, 6, 9 and 10 were not trapped and have no rows. All birds were wild-caught (age at capture not deposited), so each carries every surveyed secondary of the study (E4.4); condition on first capture to reproduce MARK's robust design. __periods start_6mo gives the elapsed time for survival intervals.",
+  "summary": {
+    "n_rows": 22968,
+    "n_units": 792,
+    "n_taxa": 1,
+    "n_periods": 7,
+    "n_occasions": 6,
+    "n_surveys": 22968,
+    "y_values": "0,1",
+    "prop_zero": 0.946,
+    "n_traps": 1,
+    "n_zero": 21732,
+    "n_positive": 1236,
+    "n_units_detected": 792,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "obs_effort_trapdays", "obs_rain_mm_day"],
+  "coreMd5": "4069a85d7244c48274cde30fe5f048c7",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "n_occasions", "season", "rain_mean_mm_day", "rain_prev30_mm", "start_6mo", "trapdays", "note"],
+      "md5": "32ba37da0b38d7a36cb2494e682396e1"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "75390e8acb9f0c70b8c0a3765da36516"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/malachowski_2026_koloa_rd.R",
+  "buildDate": "2026-11-05"
+}

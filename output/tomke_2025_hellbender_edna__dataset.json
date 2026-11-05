@@ -42,10 +42,22 @@
     "n_occasions": 9,
     "n_surveys": 3462,
     "y_values": "0,1",
-    "prop_zero": 0.951
+    "prop_zero": 0.951,
+    "n_traps": 1,
+    "n_zero": 3291,
+    "n_positive": 171,
+    "n_units_detected": 55,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_season", "unit_spatial_rep", "unit_conductivity_us", "unit_toc_mg_l", "unit_turbidity_ntu", "unit_ph", "unit_water_temp_c", "unit_flow_m_s", "unit_site_ecoregion", "unit_site_prop_water", "unit_site_prop_devel", "unit_site_prop_forest", "unit_site_prop_herb", "unit_site_prop_agric", "unit_site_watershed_area", "unit_site_stream_order", "unit_site_volume_l", "unit_site_perc_trees", "unit_site_perc_bareground", "unit_site_perc_bedrock", "unit_site_perc_boulder", "unit_site_perc_cobble", "unit_site_perc_gravel", "unit_site_perc_sand", "unit_site_perc_fine", "unit_site_ripar_quant", "unit_site_nutrientload"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f484bbfc1a65074195d138a8c32817fc"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/tomke_2025_hellbender_edna.R",

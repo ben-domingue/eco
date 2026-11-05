@@ -50,10 +50,27 @@
     "n_occasions": 3,
     "n_surveys": 150,
     "y_values": "0,1,2,3,4,5,6,8,10,11",
-    "prop_zero": 0.866
+    "prop_zero": 0.866,
+    "n_traps": 1,
+    "n_zero": 5196,
+    "n_positive": 804,
+    "n_units_detected": 50,
+    "max_y": 11
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_island", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude", "obs_start_time", "obs_temp_c", "obs_weather"],
+  "sideTables": {
+    "taxa": {
+      "rows": 40,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "789e3c88bd8e0df6bfbe9be4cf8d6757"
+    },
+    "units": {
+      "rows": 50,
+      "columns": ["unit", "island", "habitat", "decimalLatitude", "decimalLongitude", "source_note"],
+      "md5": "1f644d52e3769f0e239d308a831f3fbc"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/obrist_2024_gooseisland_birds_count.R",

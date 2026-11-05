@@ -37,10 +37,27 @@
     "n_occasions": 1,
     "n_surveys": 39645,
     "y_values": "0,1",
-    "prop_zero": 0.77
+    "prop_zero": 0.77,
+    "n_traps": 1,
+    "n_zero": 30514,
+    "n_positive": 9131,
+    "n_units_detected": 2795,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_natal_rookery", "unit_cohort_year"],
+  "sideTables": {
+    "periods": {
+      "rows": 18,
+      "columns": ["period", "year", "n_marked", "n_resighted", "n_at_risk", "kind"],
+      "md5": "d41957b5af19ab8ca3435189b3718b07"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e3d0cfe442180ceedb1b6631d9e1bde2"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hastings_2018_seak_sealion_cjs.R",

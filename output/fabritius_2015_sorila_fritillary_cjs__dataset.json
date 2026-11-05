@@ -43,10 +43,27 @@
     "n_occasions": 1,
     "n_surveys": 3514,
     "y_values": "0,1",
-    "prop_zero": 0.883
+    "prop_zero": 0.883,
+    "n_traps": 1,
+    "n_zero": 3104,
+    "n_positive": 410,
+    "n_units_detected": 251,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_capture_area"],
+  "sideTables": {
+    "periods": {
+      "rows": 14,
+      "columns": ["period", "period_year", "period_n_areas_searched", "period_areas_searched"],
+      "md5": "7b203660bbcb0716f37a772df5db52f3"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2399128b11856650bde88a6dcc5ab458"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/fabritius_2015_fritillary_cjs.R",

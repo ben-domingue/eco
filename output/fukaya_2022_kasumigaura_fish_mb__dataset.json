@@ -43,10 +43,22 @@
     "n_occasions": 3,
     "n_surveys": 144,
     "y_values": "0,1",
-    "prop_zero": 0.705
+    "prop_zero": 0.705,
+    "n_traps": 1,
+    "n_zero": 5077,
+    "n_positive": 2123,
+    "n_units_detected": 50,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_riverbank_unvegetated", "obs_replicate_label"],
+  "sideTables": {
+    "taxa": {
+      "rows": 50,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_primer_mismatches"],
+      "md5": "97277e81949d49308d98dddf572193c5"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/fukaya_2022_kasumigaura_fish_mb.R",

@@ -44,10 +44,22 @@
     "n_occasions": 4,
     "n_surveys": 552,
     "y_values": "0,1",
-    "prop_zero": 0.66
+    "prop_zero": 0.66,
+    "n_traps": 1,
+    "n_zero": 2186,
+    "n_positive": 1126,
+    "n_units_detected": 153,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_ecoregion", "unit_stream", "unit_fine_substrate_pct", "unit_area_pool_m2", "unit_area_run_m2", "unit_area_riffle_m2", "unit_area_backwater_m2", "unit_pool_depth_cm", "unit_riffle_crest_cm", "unit_residual_pool_depth_cm", "unit_seepage_up", "unit_seepage_down", "unit_seepage_difference", "unit_gaining_losing", "unit_discharge", "unit_two_week_temp_c", "unit_drainage_area_km2", "unit_disturbance_250m", "unit_disturbance_catch", "unit_disturbance_sub", "unit_prop_pool", "unit_prop_run", "unit_prop_riffle", "unit_prop_backwater", "unit_backwater_present", "unit_total_area_m2", "unit_velocity_occ_m_s", "unit_vegetation_occ_pct", "unit_coarse_wood_occ_pct", "unit_prop_agriculture", "unit_year", "obs_visit", "obs_gear", "obs_duration_recorded", "obs_coarse_wood_pct", "obs_coarse_substrate_pct", "obs_vegetation_pct", "obs_velocity_m_s", "obs_depth_m", "obs_clarity_m", "obs_water_temp_c"],
+  "sideTables": {
+    "taxa": {
+      "rows": 6,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage"],
+      "md5": "c0f8289225c03ee3e32941e7339dcf2e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/swedberg_2023_springfish_occ.R",

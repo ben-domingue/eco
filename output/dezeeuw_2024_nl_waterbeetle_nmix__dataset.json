@@ -36,10 +36,27 @@
     "n_occasions": 2,
     "n_surveys": 1336,
     "y_values": "0-52 (33 distinct)",
-    "prop_zero": 0.635
+    "prop_zero": 0.635,
+    "n_traps": 1,
+    "n_zero": 3391,
+    "n_positive": 1953,
+    "n_units_detected": 322,
+    "max_y": 52
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_n2000", "obs_selector"],
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "year", "round", "note"],
+      "md5": "c3c5cccf4fd345aa24b6a7746e830ef1"
+    },
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxon_habitatsDirective"],
+      "md5": "5884cc9e29ec817aeed56a2f61abe853"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/dezeeuw_2024_nl_waterbeetle_nmix.R",

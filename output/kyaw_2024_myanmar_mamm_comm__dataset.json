@@ -41,10 +41,22 @@
     "n_occasions": 17,
     "n_surveys": 3060,
     "y_values": "0,1",
-    "prop_zero": 0.968
+    "prop_zero": 0.968,
+    "n_traps": 1,
+    "n_zero": 136191,
+    "n_positive": 4569,
+    "n_units_detected": 485,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "unit_survey", "unit_site", "unit_water_density_500m", "unit_water_density_1000m", "unit_water_density_1500m", "unit_water_density_2000m", "unit_water_density_4000m", "unit_elevation_m_500m", "unit_elevation_m_1000m", "unit_elevation_m_1500m", "unit_elevation_m_2000m", "unit_elevation_m_4000m", "unit_terrain_roughness_500m", "unit_terrain_roughness_1000m", "unit_terrain_roughness_1500m", "unit_terrain_roughness_2000m", "unit_terrain_roughness_4000m", "unit_population_density_500m", "unit_population_density_1000m", "unit_population_density_1500m", "unit_population_density_2000m", "unit_population_density_4000m", "unit_gpp_500m", "unit_gpp_1000m", "unit_gpp_1500m", "unit_gpp_2000m", "unit_gpp_4000m", "unit_ndvi_500m", "unit_ndvi_1000m", "unit_ndvi_1500m", "unit_ndvi_2000m", "unit_ndvi_4000m", "obs_camera_days"],
+  "sideTables": {
+    "taxa": {
+      "rows": 46,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f467fd9fafb944583f57983c6256bf8e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/kyaw_2024_myanmar_mamm_comm.R",

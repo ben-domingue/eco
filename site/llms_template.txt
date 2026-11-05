@@ -1,0 +1,306 @@
+# eco — guide for AI assistants
+
+You are helping a researcher analyse ecological detection data from eco: occupancy
+surveys, repeated counts, capture histories and community surveys from public
+deposits, all in one long format. This file tells you what you cannot guess. Read
+it before writing code.
+
+The researcher runs the code; you write it. Assume R (the only client package) and
+no Redivis account unless they say otherwise. Python users can read the tables
+directly (section 8).
+
+Site: https://ben-domingue.github.io/eco/
+Standard: https://ben-domingue.github.io/eco/standard.html
+R package: https://ben-domingue.github.io/eco/r.html
+Data: https://redivis.com/datasets/4j5q (Redivis dataset datapages.eco)
+
+AS OF: {{as_of}} · eco v{{eco_version}} (Redivis eco {{eco_redivis}}, eco_meta {{eco_meta_redivis}})
+Every count in this file is generated from the repository's catalog when the site
+is built, by site/prerender.R. A copy older than a few weeks has smaller numbers
+than the live corpus; the structure is the same.
+
+The corpus has {{n_tables}} tables, {{n_rows}} rows and {{n_units}} units. By
+response type: {{by_response_type}}.
+
+--------------------------------------------------------------------------
+## 0. START HERE — a fit with no account and no download
+--------------------------------------------------------------------------
+
+The package ships one real table, so the first thing the researcher runs works
+offline and proves the install:
+
+    remotes::install_github("ben-domingue/eco", subdir = "Rpkg")
+    install.packages("unmarked")
+    library(eco); library(unmarked)
+
+    data(schank_2015_tapir_occ)      # 22 camera stations x 72 days, one tapir
+    umf <- eco_to_unmarked(schank_2015_tapir_occ)   # message: family = "occu"
+    fit <- occu(~1 ~1, umf)
+    backTransform(fit, "state")      # psi about 0.38
+    backTransform(fit, "det")        # p about 0.03 per camera-day
+
+Then a table from the warehouse (no login for most tables; cached on disk after
+the first fetch):
+
+    d <- eco_fetch("kery_2008_willowtit_occ")   # Swiss willow tit, 237 sites, 3 visits
+    umf <- eco_to_unmarked(d)
+    occu(~ ivel_std + date_doy_std ~ elev + forest, umf)
+
+Note the covariate names: eco_to_unmarked() strips the level prefix, so the
+column obs_ivel_std is the obsCov ivel_std and unit_elev is the siteCov elev.
+Covariates arrive as the source recorded them, not standardised (that table's
+_std columns came standardised from the source). To scale one:
+
+    sc <- siteCovs(umf); sc$elev_z <- as.numeric(scale(sc$elev)); siteCovs(umf) <- sc
+    oc <- obsCovs(umf);  oc$ivel_z <- as.numeric(scale(oc$ivel_std)); obsCovs(umf) <- oc
+
+--------------------------------------------------------------------------
+## 1. The format — what every table looks like
+--------------------------------------------------------------------------
+
+One long table per survey design x response type. One row per survey
+observation of one unit for one taxon.
+
+    unit      the thing with the latent state: a site, camera, pond, transect,
+              or an individual animal (capture-recapture)
+    taxon     short species code, ALWAYS present, even with one species;
+              resolved in the __taxa side table (scientificName, GBIF taxonID)
+    y         the observation, numeric, never NA; meaning set by response type
+    y_raw     the recorded value behind a recode (a count behind a 0/1 y)
+    trap      spatial capture-recapture only; coordinates in __traps
+    period    primary period (season, year, session), integer, ordered in time;
+              the state may change between periods
+    occasion  replicate survey within a period, integer; closure is assumed
+              across occasions only when closure = "closed" (section 2)
+    date      ISO 8601 per row, when the source gives it
+    observer, treat, cluster_id   observer id; 1/0 manipulation; a design
+              grouping above unit (transect for points, grid for animals)
+
+The key is (unit, taxon, trap, period, occasion), absent columns treated as one
+level. No duplicate keys.
+
+Covariates are prefixed by the level at which they are constant, which is
+exactly unmarked's three inputs:
+
+    unit_*    constant within unit           -> siteCovs
+    period_*  constant within unit x period  -> yearlySiteCovs
+    obs_*     varies by row                  -> obsCovs
+    taxon_*   constant within taxon          -> (or join __taxa)
+
+Side tables, fetched separately: eco_taxa(), eco_periods(), eco_units() (the
+sampling frame, including units never surveyed), eco_traps().
+
+Response types (the `response_type` column of eco_metadata()):
+
+    detection         0/1
+    count             integer >= 0 (N-mixture, removal, trap counts)
+    state             integer state code, 0 = not detected (multistate)
+    ordinal           ordered index, 0 = none (calling index, abundance class)
+    multinomial_cell  count in a cell; occasion indexes the cell, y_raw labels it
+                      (double-observer, removal interval, distance bin)
+    detection_event   one row per detection plus a y = 0 row per empty survey
+    binomial_count    occasions with a detection out of obs_trials; the source
+                      kept no history, so only constant-p models are possible
+
+--------------------------------------------------------------------------
+## 2. THE THINGS THAT SILENTLY PRODUCE WRONG ANSWERS
+--------------------------------------------------------------------------
+
+None of these throws an error. Each gives numbers that look fine.
+
+(a) A MISSING ROW IS NOT A ZERO. A row exists if and only if a survey happened.
+    y = 0 means surveyed and not detected; no row means not surveyed. When you
+    pivot to a unit x occasion matrix the gaps must stay NA:
+
+        d <- eco_fetch("kery_2008_willowtit_occ")      # 665 rows
+        y <- tapply(d$y, list(d$unit, d$occasion), sum) # 237 x 3, 46 NA cells
+        # NEVER y[is.na(y)] <- 0: that turns 46 unsurveyed visits into
+        # non-detections and biases p down and psi up.
+
+    eco_to_unmarked(), eco_to_array() and eco_to_ch() pad with NA correctly.
+    Prefer them to hand-rolled pivots, and never complete() / fill = 0.
+
+(b) COMMUNITY TABLES ALREADY CARRY THE ZEROS. Every taxon surveyed for has a row
+    at every survey, so do not add zeros for absent species. Where the taxa
+    surveyed for differ between surveys (different lists by region or run), the
+    table has a __survey_taxa side table and a taxon is absent from a survey
+    because nobody looked for it. Do not fill those cells either.
+
+(c) CHECK `closure` BEFORE TREATING OCCASIONS AS REPLICATES. In eco_metadata():
+    "closed" (state assumed constant across a period's occasions), "open"
+    (occasions span a time over which occupancy or abundance may change, e.g. a
+    season of weekly walks), "dependent" (simultaneous or non-independent
+    observers), "none" (one occasion per period). Corpus now:
+    {{by_closure}}. A static occu() or pcount() on an "open"
+    or "dependent" table violates its assumptions; say so, and consider colext,
+    a time trend in p, or a different model. `occasion_kind` says what the
+    occasion indexes (time, observer, method, spatial, cell).
+
+(d) ONE TAXON PER UNMARKED FRAME. eco_to_unmarked() stops on a multi-taxon table.
+    Subset first, d[d$taxon == "GUIGNA", ], or use eco_to_array() to keep the
+    species dimension. eco_to_array(d)$y is site x (period, occasion) x taxon;
+    spOccupancy wants species x site x visit: aperm(a$y, c(3, 1, 2)).
+
+(e) eco_to_unmarked() GUESSES THE FAMILY and prints which: several periods ->
+    colext, any y > 1 -> pcount, cell labels on occasion -> mpois, else occu.
+    Read the message and pass family = when the guess is wrong (a count table
+    you want as detection/non-detection: d$y <- as.integer(d$y > 0) first).
+
+(f) COORDINATES MAY BE COARSENED. Threatened taxa (IUCN CR/EN/VU in their native
+    range, or flagged by the source) are published on a 0.1 degree grid
+    (~10 km), with unit_coordinateUncertaintyInMeters saying so. Spatial models
+    on those tables must allow for it. `coordinates_coarsened` in
+    eco_metadata() is the flag; a coarsened multi-species table may have an
+    `_exact` sibling without the flagged taxa at full precision. Some SCR trap
+    arrays are centred on local metres (crs = "local").
+
+(g) CAPTURE-RECAPTURE ROWS ARE THE TIME AT RISK. An individual has rows only from
+    when it could be caught (marked as a newborn: from its marking period; lost
+    tag: none after). Sessions inside that span with no capture are y = 0.
+    eco_to_ch() builds histories; fill = c(before = "0", gap = ".", after = ".")
+    is the default coding of periods outside the span. obs_removed = 1 marks a
+    loss on capture.
+
+(h) THE LICENCE PROPAGATES. Most tables are CC0 or CC BY, but some carry a
+    propagating clause (ODbL, CC BY-NC). eco_info(table)$derived_license is the
+    licence a reuser inherits; check it before redistributing a derived table.
+
+--------------------------------------------------------------------------
+## 3. Finding tables
+--------------------------------------------------------------------------
+
+    eco_list_tables()            # every table: rows, bytes, needs_login, side tables
+    eco_metadata()               # computed facts, one row per table
+    eco_tags()                   # taxon_group, model_family, sampling_protocol, ...
+    eco_tag_options()            # the tag columns; eco_tag_options("taxon_group")
+    eco_info("galvez_2021_araucania_comm")   # one table: everything, incl. citation
+    eco_filter(model_family = "occupancy", min_units = 30)
+    eco_filter(response_type = "count", taxon_group = "Birds", sample_floor = TRUE)
+    eco_filter(protocol = "camera_trap", multi_species = TRUE) |> eco_fetch()
+
+eco_filter() matches substrings, case-insensitive, and returns a data.frame that
+goes straight into eco_fetch() (several tables -> a named list).
+
+Useful columns of eco_metadata(): n_units, n_taxa, n_periods, n_occasions,
+n_rows, naive_occupancy, mean_detection, prop_zero, closure, occasion_kind,
+survey_evidence, sample_floor, has_effort, has_coordinates,
+coordinates_coarsened. On a multi-species table these are computed over all
+taxa together (naive_occupancy is the share of units where any taxon was
+detected): compute a species' own figures from the table, not from here.
+eco_info(table) prints a summary and returns the list invisibly.
+
+`survey_evidence` says what the survey set (which rows exist) rests on:
+sample_table, effort_table, deposited_matrix, row_presence, or inferred. The
+{{n_inferred}} "inferred" tables reconstructed the survey set by a rule; treat
+their zeros with more caution.
+
+`sample_floor` is "meets" at >= 30 units and >= 2 occasions (or periods), else
+"below (reason)": {{n_below_floor}} tables are below it. They are in the corpus
+on purpose; do not fit a multi-parameter model to 8 sites without saying so.
+
+--------------------------------------------------------------------------
+## 4. Size and login
+--------------------------------------------------------------------------
+
+Most tables are small (hundreds to tens of thousands of rows) and come without
+an account. Redivis refuses anonymous requests over 100 MB; those tables are
+needs_login = TRUE in eco_list_tables(). For them, once:
+
+    install.packages(c("redivis", "arrow"))
+    redivis::redivis$authenticate()    # opens a browser; or set REDIVIS_API_TOKEN
+
+Check needs_login before suggesting a table. The largest, the North American
+Breeding Bird Survey route counts, is over 100 million rows: subset after the
+fetch, and warn the researcher about memory.
+
+Fetches are cached under tools::R_user_dir("eco", "cache"), per release.
+
+--------------------------------------------------------------------------
+## 5. Converters
+--------------------------------------------------------------------------
+
+    eco_to_unmarked(d)             # unmarkedFrameOccu / PCount / MultFrame / MPois
+    eco_to_umf(d, type = "colext") # explicit type
+    eco_to_array(d)                # list(y = site x occasion x taxon, site_covs, obs_covs, ...)
+    eco_to_ch(d)                   # capture histories, ch + freq (marked, RMark)
+    eco_to_mpois(d, type = "removal")    # multinomial cells; or "double", "depDouble"
+    binomial_to_history(d)         # binomial_count -> exchangeable 0/1 history
+    eco_to_irw(d)                  # the item-response view (id, item, resp)
+    eco_check(d)                   # validate a table you built in this format
+
+colext: the frame is built on the full period x occasion grid, so a missing
+visit is NA, as unmarked needs. Yearly covariates come from period_* columns.
+
+--------------------------------------------------------------------------
+## 6. Fitting — what holds up
+--------------------------------------------------------------------------
+
+- With one occasion per unit, occu() cannot separate psi from p (the package
+  warns). Only the product is identified.
+- Low naive detection (mean_detection well under 0.1 per occasion, as camera-day
+  tables often are) gives wide intervals on psi; aggregating occasions into
+  weeks is a defensible choice, state it.
+- Goodness of fit: unmarked::parboot() with a chi-square or Freeman-Tukey
+  statistic, or AICcmodavg::mb.gof.test(). Lack of fit is common and
+  informative; report it rather than tuning it away.
+- Check has_effort and the obs_ columns (trap days, duration, effort) before
+  fitting a constant p; effort is usually the first detection covariate.
+- Avoid Bayesian samplers (JAGS, NIMBLE, Stan) for a first pass in a chat
+  session unless asked: unmarked fits in seconds and is enough to check the
+  data are what you think.
+
+--------------------------------------------------------------------------
+## 7. Versions and reproducibility
+--------------------------------------------------------------------------
+
+The package reads the current release by default. To reproduce an analysis:
+
+    eco_version()          # what is being read
+    eco_set_version({{eco_version}})    # pin every later fetch to that release
+    eco_manifest()         # every release
+
+Put eco_set_version(n) at the top of any script meant to be rerun. Released
+versions never change; corrections arrive as new versions and are listed at
+https://ben-domingue.github.io/eco/corrections.html.
+
+--------------------------------------------------------------------------
+## 8. Python
+--------------------------------------------------------------------------
+
+There is no Python package yet. Tables are CSV over the Redivis API, no account
+needed under 100 MB:
+
+    import pandas as pd
+    base = "https://redivis.com/api/v1/tables/datapages.{}/rows?format=csv"
+    ua = {"User-Agent": "eco-python (https://github.com/ben-domingue/eco)"}
+    d    = pd.read_csv(base.format("eco:4j5q.kery_2008_willowtit_occ"), storage_options=ua)
+    taxa = pd.read_csv(base.format("eco:4j5q.kery_2008_willowtit_occ__taxa"), storage_options=ua)
+    meta = pd.read_csv(base.format("eco_meta:241c.metadata"), storage_options=ua)
+    tags = pd.read_csv(base.format("eco_meta:241c.tags"), storage_options=ua)
+    y = d.pivot(index="unit", columns="occasion", values="y")   # NaN = not surveyed
+
+Every rule in section 2 applies; in particular never fillna(0) on that pivot.
+This reads the current release, unpinned.
+
+--------------------------------------------------------------------------
+## 9. Citing
+--------------------------------------------------------------------------
+
+Cite the original deposit and paper for every table used, not only eco:
+
+    eco_info(table)$citation      # the deposit
+    eco_info(table)$reference     # the paper
+    eco_save_bibtex(c("kery_2008_willowtit_occ", "schank_2015_tapir_occ"), "refs.bib")
+
+and name the eco version read (eco_version()).
+
+--------------------------------------------------------------------------
+## 10. When something looks wrong
+--------------------------------------------------------------------------
+
+Each table is built by a public R script (eco_info(table)$script, under
+https://github.com/ben-domingue/eco/tree/main/data) whose header says what the
+source deposited and what was not shipped. Read it before concluding the data
+are wrong. Known problems are in data notes:
+https://ben-domingue.github.io/eco/data_notes.html. Report anything else at
+https://github.com/ben-domingue/eco/issues.

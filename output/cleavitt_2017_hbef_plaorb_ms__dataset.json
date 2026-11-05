@@ -44,10 +44,27 @@
     "n_occasions": 1,
     "n_surveys": 1199,
     "y_values": "0,1,2,3,4",
-    "prop_zero": 0.458
+    "prop_zero": 0.458,
+    "n_traps": 1,
+    "n_zero": 549,
+    "n_positive": 650,
+    "n_units_detected": 241,
+    "max_y": 4
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "obs_leaf_area_cm2"],
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_observed", "n_above_ground"],
+      "md5": "076dfe195f403087a04b6b0b9766e87d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c1beafe37cb939dd9846f54e1e7571c9"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cleavitt_2017_hbef_plaorb_ms.R",

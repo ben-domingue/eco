@@ -20,7 +20,7 @@ halts on a value outside the closed vocabularies below. The counts and
 | `design` | starts with `Single-season`, `Multi-season`, `Multi-session` or `Robust design`; detail in parentheses |
 | `realm` | `Terrestrial`, `Freshwater`, `Marine`; closed |
 | `country` | ISO 3166-1 alpha-3; several separated by commas |
-| `coordinates` | starts with `None in source`, `As published`, `Coarsened (0.1 deg)`, `Coarsened (10 km` (projected coordinates, E7.1), `Coarsened (by the source` or `Coarsened (trap coordinates centred` (SCR arrays of flagged taxa keep inter-trap geometry); a qualifier in parentheses may follow |
+| `coordinates` | starts with `None in source`, `As published`, `Coarsened (0.1 deg)`, `Coarsened (10 km` (projected coordinates, E7.1), `Coarsened (by the source`, `Coarsened (trap coordinates centred` (SCR arrays of flagged taxa keep inter-trap geometry) or `Coarsened (0.01 deg` (private residential sites such as home gardens, pending a rule under E7.4); a qualifier in parentheses may follow |
 | `notes` | anything a user filtering on the above should know |
 | `status` | `tagged`, or `tagged; do_not_publish: <reason>` for a table that must not ship (the uploader refuses it). The earlier `hold: below sample floor` value is retired |
 

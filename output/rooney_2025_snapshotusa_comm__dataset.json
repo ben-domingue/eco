@@ -53,10 +53,32 @@
     "n_occasions": 21,
     "n_surveys": 59182,
     "y_values": "0,1",
-    "prop_zero": 0.975
+    "prop_zero": 0.975,
+    "n_traps": 1,
+    "n_zero": 5022363,
+    "n_positive": 126471,
+    "n_units_detected": 9338,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_year", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_habitat", "unit_development_level", "obs_camera_days"],
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_deployments", "n_arrays", "first_start", "last_end"],
+      "md5": "ce757d20e8ffccf0ae4db4aadc584bf9"
+    },
+    "taxa": {
+      "rows": 87,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_class", "taxon_order", "taxon_family", "taxon_iucnCategory", "taxon_n_sequences"],
+      "md5": "05067bd86795a02ff0e11b951e94b727"
+    },
+    "units": {
+      "rows": 9694,
+      "columns": ["unit", "cluster_id", "site_id", "year", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "start_date", "end_date", "survey_nights", "n_weeks", "habitat", "development_level", "feature_type"],
+      "md5": "847981e4cfba9f55fb0c0e9d7eaa3437"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/rooney_2025_snapshotusa_comm.R",

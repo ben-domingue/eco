@@ -1,0 +1,68 @@
+{
+  "table": "fouchet_2016_kerguelen_cat_cjs",
+  "title": "Capture histories of 684 feral cats over 196 trapping sessions at three sites on Grande Terre, Kerguelen Islands, 1994-2013",
+  "creator": "Fouchet, David; Santin-Janin, Hugues; Sauvage, Frank; Yoccoz, Nigel Gilles; Pontier, Dominique",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.53j96",
+  "sourceURL": "https://doi.org/10.5061/dryad.53j96",
+  "citation": "Fouchet, D., Santin-Janin, H., Sauvage, F., Yoccoz, N. G., & Pontier, D. (2015). Data from: An R package for analyzing survival using continuous-time open capture-recapture models [Dataset]. Dryad. https://doi.org/10.5061/dryad.53j96",
+  "paperDOI": "10.1111/2041-210X.12497",
+  "abstract": "A long-term capture-mark-recapture study of introduced feral cats at three sites on Grande Terre, the main island of the sub-Antarctic Kerguelen archipelago, October 1994 to August 2013: trapping sessions of 5 to 28 days, several a year at each site, with the date, sex and physical condition of every capture. The authors used it to illustrate survival analysis for continuous-time capture protocols.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Capture sessions of 5 to 28 days at each of three sites; cats captured, individually marked, sexed and assessed for physical condition, with the date of every capture recorded. Here each session is a period and a cat's captures in it are pooled.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "captures within a session are pooled to one record (obs_n_captures counts them); sessions are the primary periods",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "not recorded in the deposit",
+  "geographicCoverage": "Three sites on Grande Terre, Kerguelen Islands (French Southern and Antarctic Lands); site names and coordinates not deposited",
+  "temporalCoverage": "1994-10/2013-08",
+  "covariateNote": "cluster_id and unit_population: the deposit's population (site) 1, 2 or 3. unit_sex: NA for one cat recorded with both sexes. obs_body_condition: the deposited physical-condition index (PC, centred) at the cat's first capture in the session. __periods: session start and end dates, the population trapped, and that population's NDVI for the start year (NA after 2010, the last NDVI year deposited).",
+  "notShipped": {
+    "age": "age in months: does not advance with capture date within a cat and is undocumented",
+    "capture_dates": "the date of each capture within a session (continuous-time detail; obs_n_captures gives the number)",
+    "ndvi_extra": "NDVI for population 4, which has no sessions, and for years without sessions"
+  },
+  "notes": "Each cat has rows for every session of its own population (wild-caught, so from the population's first session, E4.4); rows before first capture are 0. Periods are numbered across all three populations in order of start date, so period indices are not consecutive within a population; use period_start for intervals.",
+  "summary": {
+    "n_rows": 45749,
+    "n_units": 684,
+    "n_taxa": 1,
+    "n_periods": 196,
+    "n_occasions": 1,
+    "n_surveys": 45749,
+    "y_values": "0,1",
+    "prop_zero": 0.974,
+    "n_traps": 1,
+    "n_zero": 44554,
+    "n_positive": 1195,
+    "n_units_detected": 684,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_population", "unit_sex", "obs_body_condition", "obs_n_captures"],
+  "coreMd5": "528789f1d7cdef52465748f1233c0b18",
+  "sideTables": {
+    "periods": {
+      "rows": 196,
+      "columns": ["period", "period_start", "period_end", "period_population", "period_ndvi"],
+      "md5": "7ef89c91145992e297cbbda806783eda"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "9890937ff557f9511c41578a67d8060b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fouchet_2016_kerguelen_cat_cjs.R",
+  "buildDate": "2026-11-05"
+}

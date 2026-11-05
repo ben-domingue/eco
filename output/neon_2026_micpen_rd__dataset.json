@@ -49,10 +49,32 @@
     "n_occasions": 4,
     "n_surveys": 295541,
     "y_values": "0,1",
-    "prop_zero": 0.982
+    "prop_zero": 0.982,
+    "n_traps": 1,
+    "n_zero": 290220,
+    "n_positive": 5321,
+    "n_units_detected": 3435,
+    "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_sex", "unit_first_capture", "obs_traps_set", "obs_grid_method", "obs_weight_g", "obs_life_stage", "obs_recapture_flag"],
+  "sideTables": {
+    "periods": {
+      "rows": 602,
+      "columns": ["period", "eventID", "site", "year", "bout_start", "bout_end", "n_nights", "n_grids"],
+      "md5": "25355f5ab27df55dcb05ae0ba1d5b118"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_n_individuals", "taxon_n_captures"],
+      "md5": "ade121a9c9c70363a76a14e05cfec989"
+    },
+    "units": {
+      "rows": 3435,
+      "columns": ["unit", "home_grid", "site", "domain", "sex", "mark", "first_capture", "n_species_labels", "n_grids_caught", "n_captures_home", "n_bouts", "n_nights", "last_night"],
+      "md5": "c301708b861de9b8942fc1a45ebed516"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_smallmammals_rd.R",

@@ -15,8 +15,9 @@ writes four things:
 Shared code is in `../lib/eco_common.R`; the converters and the R validator twin are in
 `../converters/eco_standard.R`. The gate is `eco-validate` (`../eco_validate/`). Run one
 script from the repo root (`Rscript data/<table>.R`) or all of them
-(`Rscript data/run_all.R`), then `python3 -m eco_validate.cli output/` (or
-`Rscript validate/validate_all.R`, which also runs the IRW check and writes the report).
+(`Rscript data/run_all.R`), then `python3 -m eco_validate.cli output/<table>.csv`.
+The CSVs in `output/` are not tracked (#88): commit `__dataset.json`, and ship the
+CSVs with `upload/red_up_eco.py`.
 
 ## Conventions
 
@@ -141,6 +142,18 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `neon_2026_smallmammals_rd.R` | four single-species robust-design capture histories (Peromyscus maniculatus, P. leucopus, Sigmodon hispidus, Microtus pennsylvanicus), individuals x bouts x nights at the home grid | NEON DP1.10072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `neon_2026_carabids_count.R` | biweekly pitfall counts, 55 carabid species x 2,029 NEON traps x 2013-2023, trapping days as effort; core CSV not tracked (354 MB) | NEON DP1.10022.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `tetzlaff_2026_crotalus_cjs.R` | CJS histories, 707 adult female timber rattlesnakes, New York, 1983-2019, den group, annual covariates | Dryad | CC0 |
+| `gelle_2026_mauritius_parakeet_ms.R` | multi-state CJS, 2,734 echo parakeets ringed as nestlings, Mauritius, 1994-2022 | Dryad | CC0 |
+| `cubaynes_2021_svalbard_polarbear_ms.R` | multievent capture-recapture, 158 female polar bear family units, Svalbard, 1992-2019 | Dryad | CC0 |
+| `moinet_2024_nz_mouse_scr.R` | SCR with a removal phase, house mice on two Longworth grids, New Zealand | Dryad | CC0 |
+| `broekhuis_2020_mara_cheetah_scr.R` | search-encounter SCR (pixel x day traps, km driven), cheetahs, Maasai Mara; do_not_publish pending ruling | Dryad | CC0 |
+| `todaro_2025_wyoming_shrike_dynocc.R` | dynamic occupancy, loggerhead shrike point counts, Wyoming, 2015-2024 | Dryad | CC0 |
+| `betancur_2021_antioquia_birds_count.R` | two-species repeated counts, endemic Andean birds, Colombia, coarsened coordinates | Dryad | CC0 |
+| `hamer_2021_kooragang_amph_comm.R` | multi-season community occupancy, 11 frog species x 55 wetlands, Kooragang Island NSW, 2000-2002 | Dryad | CC0 |
+| `tsuboi_2020_japan_charr_ms.R` | multi-state CJS (age x stream location), 1,373 white-spotted charr, Japanese headwater network, 2009-2017 | Dryad | CC0 |
+| `tsuboi_2020_japan_masu_ms.R` | multi-state CJS (age x stream location), 1,335 red-spotted masu salmon, same surveys as the charr | Dryad | CC0 |
+| `cumming_2021_ngami_waterbird_count.R` | repeated community point counts, 182 bird species x 14 points x 6 trips, Lake Ngami, Botswana, coarsened | Dryad | CC0 |
+| `prabowo_2016_jambi_birds_count.R` | repeated community point counts, 71 bird species x 32 land-use plots, Jambi, Sumatra, 2013 | Dryad | CC0 |
+| `raman_2003_kalakad_birds_count.R` | repeated line-transect counts, 60 rainforest bird taxa x 12 transects, Western Ghats, 1997-1999, coarsened | Dryad | CC0 |
 | `cecala_2026_kiawah_terrapin_cjs.R` | annual CJS histories, 1,553 diamondback terrapins, Kiawah River SC, 1983-2012, sex and size | Dryad | CC0 |
 | `karvemo_2024_nacka_grasssnake_cjs.R` | annual CJS histories, 1,113 grass snakes, Nacka, Sweden, 66 years, snow cover | Dryad | CC0 |
 | `doyle_2025_chinalake_tortoise_scr.R` | search-track SCR, 24 Mojave desert tortoises x 548 cells x 4 days, detectors centred (CR) | Dryad | CC0 |
@@ -195,6 +208,42 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `fabritius_2015_fritillary_cjs.R` | CJS from daily MRR with searched-area effort, three populations | Dryad | CC0 |
 | `maihoff_2023_berchtesgaden_bees_count.R` | community counts, wild bee transect walks, 2009 vs 2019 | Dryad | CC0 |
 | `johnson_2023_tweedsmuir_bombus_count.R` | community counts, bumble bee vane traps, postfire | Dryad | CC0 |
+| `ke_2022_costarica_birds_nmix.R` | community counts, repeated point counts, coarsened + `_exact` sibling | Dryad | CC0 |
+| `frishkoff_2014_costarica_birds_binom.R` | binomial counts, bird transects x season, 12 years | Dryad | CC0 |
+| `frank_2017_costarica_bats_comm.R` | community detection, bat mist nets, from a JAGS array | Dryad | CC0 |
+| `olimpi_2024_calfarms_nmix.R` | community counts, repeated point counts on farms, flyovers excluded | Dryad | CC0 |
+| `ruff_2025_piwo_state.R` | multi-state occupancy, acoustic (ARU + classifier), weekly effort | Zenodo | CC BY 4.0 |
+| `malachowski_2026_koloa_rd.R` | robust design from a MARK `.inp`, untrapped primaries | Zenodo | CC BY 4.0 |
+| `dutta_2024_panna_carnivore_occ.R` | multispecies detection, camera traps, 5-night sessions, two seasons (stations not linked) | Dryad | CC0 |
+| `neubauer_2021_bialowieza_marshtit_nmix.R` | repeated counts, 33 years x 6 counts on 4 plots, census truth as `period_` covariates | Dryad | CC0 |
+| `law_2021_nsw_koala_occ.R` | single-species detection, acoustic (AudioMoth), nightly occasions | Dryad | CC0 |
+| `mills_2019_kibale_carnivore_comm.R` | community detection, camera traps, daily occasions from a station-day function table, coarsened | Dryad | CC0 |
+| `dooley_2025_agapostemon_cjs.R` | CJS, bee mark-resight at flower patches, histories rebuilt from raw captures | Dryad | CC0 |
+| `leipold_2025_duskygrouse_roads_count.R` | repeated counts, playback point counts, 2 years x 4 counts | Dryad | CC0 |
+| `leipold_2025_duskygrouse_offtrail_count.R` | repeated counts, visit x playback treatment occasions | Dryad | CC0 |
+| `ruppel_2025_richmond_pollinator_comm.R` | community detection, pollinator flower watches, plant x inflorescence occasions | Dryad | CC0 |
+| `martel_2020_tidewatergoby_edna.R` | multi-scale eDNA (site, water sample, qPCR replicate), two seasons, coarsened | Dryad | CC0 |
+| `battaile_2023_sacramento_sturgeon_count.R` | repeated counts, side scan sonar passes, fish, 3 years | Dryad (UCSC) | CC0 |
+| `proudman_2026_illinois_coyote_count.R` | repeated counts, camera detections per week, 3 winters | Dryad | CC0 |
+| `twining_2024_adirondack_carniv_occ.R` | multi-species detection, baited cameras, 3 winters x 3 weeks | Dryad | CC0 |
+| `parren_2021_centralvalley_mesocarn_occ.R` | multi-species detection, baited cameras, daily occasions | Dryad | CC0 |
+| `parren_2021_mojave_mesocarn_occ.R` | multi-species detection, baited cameras, 3-day occasions | Dryad | CC0 |
+| `goldingay_2026_diamondhill_nestbox_occ.R` | multi-species detection, nest-box censuses, 12 periods | Dryad | CC0 |
+| `neateclegg_2018_cusuco_birds_count.R` | community counts, point-count transects, 10 years x 1-7 surveys, Honduras | Dryad | CC0 |
+| `cayuela_2020_bombina_cjs.R` | CJS, annual toad histories, four populations stacked (cluster_id), birth year | Dryad | CC0 |
+| `fouchet_2016_kerguelen_cat_cjs.R` | CJS, feral cat captures pooled to dated trapping sessions from a session table | Dryad | CC0 |
+| `ludwig_2026_lusatia_capercaillie_cjs.R` | CJS, reintroduced grouse, release year flagged, ends at confirmed death | Dryad | CC0 |
+| `king_2018_lakeerie_watersnake_cjs.R` | CJS, MARK .inp with site x sex groups, surveyed site-years inferred | Dryad | CC0 |
+| `dyck_2022_carpathians_carniv_occ.R` | multi-species detection, cameras, 14-day sessions with effort, two seasons, Romania | Dryad | CC0 |
+| `asfaw_2025_omo_carniv_occ.R` | multi-species detection, cameras, 3-day occasions from a deposited 0/1/NA matrix, Ethiopia | Dryad | CC0 |
+| `hollanders_2022_mfleayi_rdms.R` | multi-state (Bd infection) robust design, three sites, histories padded to study start | Dryad | CC0 |
+| `pilger_2022_gila_fish_count.R` | community counts, electrofishing and seining, area file as sample table, annual | Dryad | CC0 |
+| `crunchant_2020_issa_chimp_occ.R` | single-species detection, cameras, daily occasions from a deposited matrix, coordinates coarsened (EN), Tanzania | Dryad | CC0 |
+| `fraticelli_2026_zakouma_carniv_occ.R` | multi-species detection, cameras, 5-day occasions with an effort table, dry and wet seasons, Chad | Dryad | CC0 |
+| `mungi_2025_india_invplant_binom.R` | binomial_count (replicates with presence of replicates surveyed), 11 invasive plants, 25 km2 cells, five cycles, India | Zenodo | CC BY 4.0 |
+| `davis_2019_kasungu_scr.R` | SCR, multi-session (three annual surveys), partial identity (single-flank ids), two species tables (`davis_2019_kasungu_leopard_scr`, `davis_2019_kasungu_hyaena_scr`), traps centred (VU), Malawi | Zenodo | CC BY 4.0 |
+| `iannarilli_2026_snapshoteurope_comm.R` | community detection, cameras, camera-weeks from a Wildlife Insights deployment + sequence export, failed deployments dropped, coordinates coarsened (EN/VU), 24 European countries and Israel | Edmond (Dataverse) | CC BY-SA 4.0 (derived CC BY-NC-SA 4.0) |
+| `faveyts_2026_zwin_butterfly_count.R` | community counts, butterfly transects, checklist with explicit zeros, 12 routes, one season, Belgium | GBIF (Belgian IPT) | CC BY 4.0 |
 | `cecconi_2025_cricket_occ.R` | single-season occupancy, Japanese burrowing cricket x 49 sites x 3 aural point counts, Kentucky 2024 | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip

@@ -1,0 +1,71 @@
+{
+  "table": "mungi_2025_india_invplant_binom",
+  "title": "Invasive plant sign-survey replicates in 25 km2 grid cells across India's forests in five estimation cycles, 2006 to 2022: replicates with each of 11 species out of replicates surveyed",
+  "creator": "Jhala, Yadvendradev; Qureshi, Qamar; Mungi, Ninad",
+  "pubDate": "2025",
+  "doi": "10.5281/zenodo.17287410",
+  "sourceURL": "https://doi.org/10.5281/zenodo.17287410",
+  "citation": "Jhala, Y., Qureshi, Q., & Mungi, N. (2025). Trends in invasive plants in India [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17287410",
+  "paperDOI": "10.1038/s41893-025-01690-x",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Occupancy survey data behind Mungi et al. (2025, Nature Sustainability) on the spread of invasive plants in India. For each 25 km2 grid cell of the forested landscapes surveyed in the All-India tiger estimation, and each of its five cycles (2006, 2010, 2014, 2018, 2022), the number of survey replicates on which each of 11 invasive plants (among them Lantana camara, Prosopis juliflora, Parthenium hysterophorus, Chromolaena odorata and Mikania micrantha) was present, out of the replicates surveyed. The replicate-level records are not deposited, so each cell-cycle-species is one row with y = replicates with presence and obs_trials = replicates surveyed (responseType binomial_count). Thirteen static cell covariates (vegetation change, herbivore densities, timber extraction, urbanization, fire, soil moisture, climate and agriculture trends) are the authors' standardised values. No coordinates are deposited.",
+  "samplingProtocol": "Field surveys of the All-India tiger estimation, in which invasive plants are recorded on replicate surveys within each forest grid cell in each cycle; the deposit gives per 25 km2 cell and cycle the number of replicates and, per species, the number with the species present (1 to 19 replicates). Protocol details are in the paper and the NTCA/WII status reports.",
+  "samplingProtocolCode": "botanical_survey",
+  "surveyEvidence": "deposited_matrix",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "occupancy is treated as closed within a cycle and open between the five cycles; the replicates of a cycle are collapsed into obs_trials",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Forested tiger landscapes of India (25 km2 grid cells; no coordinates deposited)",
+  "temporalCoverage": "2006/2022",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit (grid cell ids only)"
+  },
+  "covariateNote": "All unit_ covariates are the authors' standardised values (mean 0; no means or SDs are given, so raw values cannot be recovered), with the sheet's own labels: vegetation change (long-term), wild / domestic / all herbivore densities, timber extraction signs, urbanization index, fire frequency, soil moisture availability, annual rainfall trend, hot-wet and cold season temperature trends, change in agriculture area, trend in domestic herbivore density.",
+  "notes": "Every cell was surveyed in every cycle (1 to 19 replicates), and every species is recorded for every cell-cycle. Grid cell ids are as deposited, prefixed with C.",
+  "notShipped": {
+    "habitat_suitability": "Eleven 'habitat suitability' columns, one per species: species distribution model outputs derived from these records.",
+    "header": "The sheet's variable dictionary, reproduced in the script header."
+  },
+  "summary": {
+    "n_rows": 1193665,
+    "n_units": 21703,
+    "n_taxa": 11,
+    "n_periods": 5,
+    "n_occasions": 1,
+    "n_surveys": 108515,
+    "y_values": "0-16 (17 distinct)",
+    "prop_zero": 0.777,
+    "n_traps": 1,
+    "n_zero": 927199,
+    "n_positive": 266466,
+    "n_units_detected": 21474,
+    "max_y": 16
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_vegetation_change", "unit_wild_herbivore_density", "unit_domestic_herbivore_density", "unit_herbivore_density", "unit_timber_extraction", "unit_urbanization", "unit_fire_frequency", "unit_soil_moisture", "unit_rainfall_trend", "unit_hot_season_temp_trend", "unit_cold_season_temp_trend", "unit_agriculture_change", "unit_domestic_herbivore_trend", "obs_trials"],
+  "coreMd5": "1945ea500f8659e5f47eaa6909566962",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "label", "n_replicates"],
+      "md5": "c60fea81c2dc645b3932c9d3992b789e"
+    },
+    "taxa": {
+      "rows": 11,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "25ea97b0e51d17d40811dc9a966a094e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mungi_2025_india_invplant_binom.R",
+  "buildDate": "2026-11-05"
+}

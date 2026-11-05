@@ -46,10 +46,27 @@
     "n_occasions": 114,
     "n_surveys": 26820,
     "y_values": "0,1",
-    "prop_zero": 0.999
+    "prop_zero": 0.999,
+    "n_traps": 99,
+    "n_zero": 26800,
+    "n_positive": 20,
+    "n_units_detected": 6,
+    "max_y": 1
   },
   "sampleFloor": "below (6 units < 30)",
   "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_sex", "unit_group"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "239b41e14a8d5bfcbd530fa6cac67af6"
+    },
+    "traps": {
+      "rows": 100,
+      "columns": ["trap", "x_m", "y_m", "half", "brand", "grid_allocation", "n_days_operating"],
+      "md5": "f843f4a7be51a3f82f705bf481176af7"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/curveirasantos_2026_phinda_carniv_scr.R",

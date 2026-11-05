@@ -29,7 +29,7 @@ GBIF_DIR <- file.path(ECO_ROOT, ".cache", "gbif")
 DICT_FILE <- file.path(ECO_ROOT, "dictionary", "dictionary_auto.csv")
 TAGS_FILE <- file.path(ECO_ROOT, "tags", "tags_auto.csv")
 for (d in c(OUT_DIR, RAW_DIR, GBIF_DIR)) dir.create(d, showWarnings = FALSE, recursive = TRUE)
-UA <- "eco-irw-builder/0.1 (ben.domingue@gmail.com)"
+UA <- "eco-irw-builder/0.2 (research; https://github.com/ben-domingue/eco)"
 
 # ---------------------------------------------------------------------------
 # Sources
@@ -274,7 +274,11 @@ table_summary <- function(long) {
        n_surveys = nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE])),
        y_values = if (uniqueN(long$y) <= 12) paste(sort(unique(long$y)), collapse = ",") else
          sprintf("%s-%s (%d distinct)", min(long$y), max(long$y), uniqueN(long$y)),
-       prop_zero = round(mean(long$y == 0), 3))
+       prop_zero = round(mean(long$y == 0), 3),
+       # exact counts, so metadata/01_metadata.R reads __dataset.json and never the core (#66)
+       n_traps = if ("trap" %in% names(long)) uniqueN(long$trap) else 1L,
+       n_zero = sum(long$y == 0), n_positive = sum(long$y > 0),
+       n_units_detected = uniqueN(long$unit[long$y > 0]), max_y = max(long$y))
 }
 
 # Sample floor (standard section 10, ruled 2026-11-01 a reported attribute, not an
@@ -369,6 +373,20 @@ check_dataset_meta <- function(dataset, long, units = NULL, part = FALSE) {
   p
 }
 
+# The side tables beside a core, as __dataset.json records them (#88): suffix ->
+# {rows, columns, md5}. Tables live on Redivis, not in git, so anything that needs
+# to know about a side table (metadata stage 01, check_coverage.py, the uploader)
+# reads this record instead of the file.
+side_tables_meta <- function(name) {
+  fs <- list.files(OUT_DIR, paste0("^", name, "__[a-z_]+\\.csv$"), full.names = TRUE)
+  out <- lapply(fs, function(f) {
+    h <- fread(f, nrows = 0)
+    list(rows = nrow(fread(f, select = 1L)), columns = I(names(h)), md5 = unname(tools::md5sum(f)))
+  })
+  names(out) <- sub(paste0("^", name, "__(.*)\\.csv$"), "\\1", basename(fs))
+  out
+}
+
 write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units = NULL, traps = NULL,
                         survey_taxa = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name))
@@ -398,14 +416,18 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
   s <- table_summary(long)
   if (!is.null(dataset$taxaWithheld)) dataset$taxaWithheld <- I(as.character(dataset$taxaWithheld))   # a JSON array even with one name
   if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))   # crossed: a JSON array
+  core_f <- file.path(OUT_DIR, paste0(name, ".csv"))
+  fwrite(long, core_f)
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s, dataset$responseType),
                     columns = names(long),
+                    # the build this __dataset.json describes: the uploader refuses a core that is not it (#75)
+                    coreMd5 = unname(tools::md5sum(core_f)),
+                    sideTables = side_tables_meta(name),
                     standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
                     buildDate = format(Sys.Date())))
   write_json(dataset, file.path(OUT_DIR, paste0(name, "__dataset.json")), auto_unbox = TRUE, pretty = TRUE, na = "null")
-  fwrite(long, file.path(OUT_DIR, paste0(name, ".csv")))
   cat(sprintf("%s.csv: rows=%d units=%d taxa=%d periods=%d occasions=%d y={%s} zeros=%.0f%% floor=%s\n",
               name, s$n_rows, s$n_units, s$n_taxa, s$n_periods, s$n_occasions, s$y_values,
               100 * s$prop_zero, dataset$sampleFloor))
@@ -429,6 +451,7 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
   unlink(dir, recursive = TRUE); dir.create(dir)
   unlink(file.path(OUT_DIR, paste0(name, ".csv")))       # never a stale single-file twin
   cols <- NULL; taxa_set <- NULL; best <- NULL; units_seen <- character(); occ_seen <- integer()
+  traps_seen <- character(); units_hit <- character(); n_pos <- 0; max_y <- -Inf
   n_rows <- 0; n_surveys <- 0; n_zero <- 0; yvals <- numeric(); manifest <- vector("list", length(parts))
   for (k in seq_along(parts)) {
     long <- order_eco(build(parts[[k]]))
@@ -448,12 +471,16 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
     units_seen <- union(units_seen, unique(long$unit))
     if ("occasion" %in% names(long)) occ_seen <- union(occ_seen, unique(long$occasion))
     n_rows <- n_rows + nrow(long); n_zero <- n_zero + sum(long$y == 0)
+    n_pos <- n_pos + sum(long$y > 0); max_y <- max(max_y, long$y)
+    units_hit <- union(units_hit, unique(long$unit[long$y > 0]))
+    if ("trap" %in% names(long)) traps_seen <- union(traps_seen, unique(as.character(long$trap)))
     n_surveys <- n_surveys + nrow(unique(long[, intersect(c("unit", "trap", "period", "occasion"), names(long)), with = FALSE]))
     if (length(yvals) <= 12) yvals <- union(yvals, unique(long$y))
     yr <- if (k == 1) range(long$y) else range(c(yr, range(long$y)))
     fn <- sprintf("part-%02d.csv", k)
     fwrite(long, file.path(dir, fn))
-    manifest[[k]] <- list(file = fn, periods = I(sort(unique(as.integer(long$period)))), n_rows = nrow(long))
+    manifest[[k]] <- list(file = fn, periods = I(sort(unique(as.integer(long$period)))), n_rows = nrow(long),
+                          md5 = unname(tools::md5sum(file.path(dir, fn))))   # checked by the uploader (#75)
     cat(sprintf("  %s: %s rows, periods %d-%d\n", tag, format(nrow(long), big.mark = ",", scientific = FALSE), min(long$period), max(long$period)))
     rm(long, b); gc(FALSE)
   }
@@ -474,11 +501,13 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
             n_periods = length(unique(unlist(lapply(manifest, `[[`, "periods")))),
             n_occasions = if (length(occ_seen)) length(occ_seen) else 1L, n_surveys = n_surveys,
             y_values = if (length(yvals) <= 12) paste(sort(yvals), collapse = ",") else sprintf("%s-%s (more than 12 distinct)", yr[1], yr[2]),
-            prop_zero = round(n_zero / n_rows, 3))
+            prop_zero = round(n_zero / n_rows, 3),
+            n_traps = if (length(traps_seen)) length(traps_seen) else 1L,
+            n_zero = n_zero, n_positive = n_pos, n_units_detected = length(units_hit), max_y = max_y)
   if (length(unlist(dataset$occasionKind)) == 2) dataset$occasionKind <- I(as.character(unlist(dataset$occasionKind)))
   dataset <- c(list(table = name), dataset,
                list(summary = s, sampleFloor = floor_status(s, dataset$responseType), columns = cols,
-                    parts = manifest, standardVersion = STANDARD_VERSION,
+                    parts = manifest, sideTables = side_tables_meta(name), standardVersion = STANDARD_VERSION,
                     builtBy = "data/ script, see `script`", script = script %||% NA_character_,
                     buildDate = format(Sys.Date())))
   write_json(dataset, file.path(OUT_DIR, paste0(name, "__dataset.json")), auto_unbox = TRUE, pretty = TRUE, na = "null")

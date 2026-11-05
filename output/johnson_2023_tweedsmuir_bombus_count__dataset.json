@@ -52,10 +52,27 @@
     "n_occasions": 2,
     "n_surveys": 52,
     "y_values": "0-26 (13 distinct)",
-    "prop_zero": 0.792
+    "prop_zero": 0.792,
+    "n_traps": 1,
+    "n_zero": 412,
+    "n_positive": 108,
+    "n_units_detected": 26,
+    "max_y": 26
   },
   "sampleFloor": "below (26 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_burned", "obs_trap_hours", "obs_n_traps_disturbed", "obs_flower_count", "obs_flower_richness"],
+  "sideTables": {
+    "taxa": {
+      "rows": 10,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "8c791d4a9e2ff23a3ac249984e568b1d"
+    },
+    "units": {
+      "rows": 26,
+      "columns": ["unit", "unit_fire_year", "unit_burned", "unit_decimalLatitude", "unit_decimalLongitude", "unit_canopy_openness_pct"],
+      "md5": "c32feb666a591e3af665360fa21bb602"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/johnson_2023_tweedsmuir_bombus_count.R",
