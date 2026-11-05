@@ -36,10 +36,15 @@ Shared helpers (cached downloads, GBIF taxon matching, coordinate coarsening,
 the writer and the staging functions) are in `lib/eco_common.R`; the
 converters are the R package's `Rpkg/R/convert.R`. Run one script from the
 repository root with `Rscript data/<table>.R`, or all of them with
-`Rscript data/run_all.R`. The gate is the Python validator,
-`python3 -m eco_validate.cli output/`, which reports every finding against a
-clause of the standard; the writer runs its R twin and refuses a bad table,
-and CI runs the gate on every pull request.
+`Rscript data/run_all.R`. Check your table with the Python validator,
+`python3 -m eco_validate.cli output/<table>.csv`, which reports every finding
+against a clause of the standard; the writer runs its R twin and refuses a bad
+table.
+
+The tables themselves live on Redivis, not in the repository: commit your
+script, its `__dataset.json`, and the dictionary and tags rows, but not the
+CSVs (they are gitignored). A maintainer runs the script, and the upload to
+Redivis validates the table again before it ships.
 
 ## Conventions the scripts follow
 
@@ -73,7 +78,7 @@ deposits that have recoverable non-detections and a conversion difficulty of
 [`ben-domingue/eco`](https://github.com/ben-domingue/eco/issues) titled with
 the table name you intend to use, set the row's status to `claimed` with your
 name in the same pull request as your `data/` script, and change it to
-`built: <table>` when the script and its outputs land. New candidates go at
+`built: <table>` when the script lands. New candidates go at
 the bottom with status `available`.
 
 ```{r}

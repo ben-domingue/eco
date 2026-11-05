@@ -41,6 +41,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex"],
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "year"],
+      "md5": "5abde088a9f2eaa320cb546e7d2f3f97"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "240b4f59f5b0e19ab79c068b09bd534b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lebreton_1992_dipper_cjs.R",

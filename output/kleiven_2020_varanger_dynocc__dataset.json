@@ -52,6 +52,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "cluster_id"],
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "n_cameras_active", "note"],
+      "md5": "9f77c019169130251158e7340793ebc3"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "ed929afb92e4b6169ec0f1232d511920"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/kleiven_2020_varanger_dynocc.R",

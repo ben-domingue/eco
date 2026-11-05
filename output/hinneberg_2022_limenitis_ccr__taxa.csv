@@ -1,2 +1,0 @@
-taxon,scientificName,vernacularName,taxonRank,taxonID,gbifMatchType,gbifAcceptedName,lifeStage,taxonRemarks
-LIMENI,Limenitis,Admirals (hibernacula of L. reducta and L. camilla),genus,https://www.gbif.org/species/5131972,EXACT,,larva,"Genus rank on purpose: the units are larval hibernacula whose contents (39 L. reducta, 2 L. camilla, 34 empty) were identified only after all searches; the species is the unit covariate unit_contents"

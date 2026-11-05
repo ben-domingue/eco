@@ -49,6 +49,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_dist_agriculture_m", "unit_dist_core_m", "unit_dist_urban_m", "unit_dist_release_point_m", "unit_habitat", "period_live_trap", "period_live_trap_dist_m", "period_live_trap_agency", "period_live_trap_cpue", "obs_window_end", "obs_camera_days", "obs_baited", "obs_temp_mean_f", "obs_precip_mean_in"],
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year", "n_cameras", "start", "end"],
+      "md5": "24fc33ccefa48844601da22dc2f6c203"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_nativeStatus"],
+      "md5": "89d1be4d87832d61ed6c7878597e52af"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/smith_2024_florida_tegu_dynocc.R",

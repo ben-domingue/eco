@@ -2,10 +2,10 @@
 # Stage 01: metadata.csv, one row per table, from tracked files alone.
 #
 # Everything here comes from each table's __dataset.json (the `summary` and
-# `columns` that write_table() records from the data at build time) and its
-# __units header, all tracked in git. The core CSV is never read: cores over
-# 100 MB and period parts are gitignored, and the metadata must not depend on
-# which of them happen to be on this machine (#66). Nothing is typed by hand,
+# `columns` and `sideTables` that write_table() records from the data at build
+# time), the only part of a table tracked in git. No table CSV is read: tables
+# live on Redivis, and the metadata must not depend on which of them happen to
+# be on this machine (#66, #88). Nothing is typed by hand,
 # and a rebuilt table rewrites its own summary, so it cannot disagree with its row. Human-entered attributes live in tags (03); origin and
 # licence in biblio (02). This is the eco analogue of irw/src/metadata/01_metadata.R
 # without the Redivis round trip: the corpus is small enough to recompute whole.
@@ -37,8 +37,8 @@ rows <- lapply(tables, function(t) {
   if (length(miss)) stop(t, ": __dataset.json summary lacks ", paste(miss, collapse = ", "),
                          "; rebuild the table (Rscript data/<table>.R) so write_table() records them", call. = FALSE)
   vars <- unlist(ds$columns)
-  up <- file.path(out_dir, paste0(t, "__units.csv"))
-  cols <- c(vars, if (file.exists(up)) names(fread(up, nrows = 0)))
+  if (is.null(ds$sideTables)) stop(t, ": __dataset.json has no sideTables; rebuild the table (Rscript data/<table>.R)", call. = FALSE)
+  cols <- c(vars, unlist(ds$sideTables$units$columns))   # the __units header, as write_table() recorded it (#88)
   data.table(
     table = t, n_rows = s$n_rows, n_units = s$n_units, n_taxa = s$n_taxa,
     n_periods = s$n_periods, n_occasions = s$n_occasions, n_traps = s$n_traps,

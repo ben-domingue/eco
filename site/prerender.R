@@ -29,9 +29,9 @@ jsonlite::write_json(stats, "data/site_stats.json", auto_unbox = TRUE, pretty = 
 cat("prerender.R: data/site_stats.json written\n")
 
 # Specimens for the homepage card: a few real rows from tables of each kind,
-# taken from output/ so they cannot drift from what ships. One unit with at
-# least one non-zero y, its first rows in key order. A table missing from
-# output/ is skipped, never invented.
+# fetched from Redivis with the eco package so they cannot drift from what
+# ships. One unit with at least one non-zero y, its first rows in key order. A
+# table that cannot be fetched is skipped, never invented.
 SPECIMENS <- list(
   list(group = "Occupancy",          table = "kery_2008_willowtit_occ"),
   list(group = "Occupancy",          table = "kery_2010_crossbill_dynocc"),
@@ -48,9 +48,9 @@ SPECIMENS <- list(
 KEY <- c("cluster_id", "unit", "taxon", "trap", "period", "occasion", "y")
 spec <- list()
 for (sp in SPECIMENS) {
-  f <- file.path("../output", paste0(sp$table, ".csv"))
-  if (!file.exists(f)) next
-  d <- data.table::fread(f, colClasses = "character")
+  d <- tryCatch(eco::eco_fetch(sp$table), error = function(e) NULL)   # from Redivis, as a user gets it (#88)
+  if (is.null(d)) { message("prerender.R: could not fetch ", sp$table, "; specimen skipped"); next }
+  d <- data.table::as.data.table(lapply(d, function(v) ifelse(is.na(v), "", as.character(v))))
   key <- intersect(KEY, names(d))
   extra <- head(c(intersect("date", names(d)), grep("^obs_", names(d), value = TRUE),
                   grep("^unit_", names(d), value = TRUE)), max(0, 7 - length(key)))

@@ -62,6 +62,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_year", "unit_decimalLatitude", "unit_decimalLongitude", "unit_habitat", "unit_development_level", "obs_camera_days"],
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_deployments", "n_arrays", "first_start", "last_end"],
+      "md5": "ce757d20e8ffccf0ae4db4aadc584bf9"
+    },
+    "taxa": {
+      "rows": 85,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_class", "taxon_order", "taxon_family", "taxon_iucnCategory", "taxon_n_sequences"],
+      "md5": "28a3dfd58628fa325ef023665c618da9"
+    },
+    "units": {
+      "rows": 9694,
+      "columns": ["unit", "cluster_id", "project", "site", "deployment_id", "year", "decimalLatitude", "decimalLongitude", "start_date", "end_date", "survey_nights", "n_weeks", "habitat", "development_level", "feature_type"],
+      "md5": "1d5416a04da443653ef41ca6401f8f3c"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/rooney_2025_snapshotusa_comm.R",

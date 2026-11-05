@@ -53,6 +53,13 @@
   "sampleFloor": "below (12 units < 30)",
   "columns": ["unit", "taxon", "y", "occasion", "date", "unit_location", "unit_lat", "unit_lon", "obs_start_time", "obs_duration_min", "obs_weather_start", "obs_uncounted_flock"],
   "coreMd5": "16b07f16e9f786056bbc2d7fd6f2945b",
+  "sideTables": {
+    "taxa": {
+      "rows": 60,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0dfb6aa592cf5d4863c19b9bc396948e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/raman_2003_kalakad_birds_count.R",

@@ -55,6 +55,23 @@
   },
   "sampleFloor": "below (8 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_stratum", "obs_duration_min", "obs_weather", "obs_start_time"],
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "note"],
+      "md5": "265204442060353f3718568fbe5eaf33"
+    },
+    "taxa": {
+      "rows": 114,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "d60c538ea18530c429d9dcb1555a466f"
+    },
+    "units": {
+      "rows": 8,
+      "columns": ["unit", "stratum", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "transect_length_m"],
+      "md5": "a4d939234dab38c227590b7ee8f50732"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/raman_2024_nilgiris_birds_ds.R",

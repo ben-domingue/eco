@@ -54,6 +54,23 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id", "unit_sex", "unit_age", "unit_newage", "unit_weight", "unit_mat_positive", "unit_ballum_positive", "unit_culture_positive", "unit_pcr_positive", "unit_tested", "unit_exposed", "unit_phase", "obs_removed"],
   "coreMd5": "364ef75145f02293a32d20ad78c1a7ba",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "deposit_session", "season", "year", "nights", "label", "n_mice", "n_captures", "n_euthanised"],
+      "md5": "f221fce4cc904812a13ad97538442a40"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "e3dd256de950b6531e174319195d0592"
+    },
+    "traps": {
+      "rows": 288,
+      "columns": ["trap", "x", "y", "grid", "period"],
+      "md5": "eb8606db62dbf48672be4be46a40127e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/moinet_2024_nz_mouse_scr.R",

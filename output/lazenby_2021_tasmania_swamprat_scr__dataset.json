@@ -49,6 +49,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id"],
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "label", "month", "year", "note"],
+      "md5": "6e5c38962f083b1f48846a258479bd64"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3c51bf855d05209371bad552f6ea65a8"
+    },
+    "traps": {
+      "rows": 240,
+      "columns": ["trap", "x", "y", "site"],
+      "md5": "61d3f574ae083dc22f35885d147bc016"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lazenby_2021_tasmania_smallmammal_scr.R",

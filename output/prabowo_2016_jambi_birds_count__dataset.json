@@ -48,6 +48,13 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "date", "cluster_id", "unit_landuse", "unit_landscape", "obs_start_time", "obs_cloud_cover_pct"],
   "coreMd5": "51606ee43ce00e557f943c93e32a2c34",
+  "sideTables": {
+    "taxa": {
+      "rows": 71,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "bf882b7665608b8824e74bb952664f1e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/prabowo_2016_jambi_birds_count.R",

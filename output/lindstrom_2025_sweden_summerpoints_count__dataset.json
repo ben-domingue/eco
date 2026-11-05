@@ -55,6 +55,23 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "date", "observer", "unit_county", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_day_of_year", "obs_start_time", "obs_end_time", "obs_transport"],
+  "sideTables": {
+    "periods": {
+      "rows": 50,
+      "columns": ["period", "year", "n_routes"],
+      "md5": "745ae3bcdad643840be877f4536f18d0"
+    },
+    "taxa": {
+      "rows": 270,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_dyntaxaID", "taxonRemarks"],
+      "md5": "e919cd2d2410bd5ee16a4b82541f747f"
+    },
+    "units": {
+      "rows": 1256,
+      "columns": ["unit", "station_register_url", "county", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "first_year", "last_year", "n_years"],
+      "md5": "6fb186b99165240c425e7530b82f799a"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lindstrom_2025_sweden_summerpoints_count.R",

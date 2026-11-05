@@ -14,25 +14,11 @@ site/data/site_stats.json
 queue/papers/
 *.egg-info/
 
-# Core tables above GitHub's 100 MB file limit are not tracked: the script rebuilds
-# them (CI runs data/run_all.R) and upload/red_up_eco.py ships them to Redivis.
-# Side tables, __dataset.json, dictionary, tags and metadata rows stay tracked.
-output/rooney_2025_snapshotusa_comm.csv
-output/lindstrom_2025_sweden_summerpoints_count.csv
-.claude/settings.local.json
-output/neon_2026_landbirds_count.csv
-output/neon_2026_landbirds_ds.csv
-output/neon_2026_carabids_count.csv
-output/neon_2026_smallmammals_count.csv
-output/rooney_2025_snapshotusa_exact_comm.csv
-output/neon_2026_perleu_rd.csv
-output/neon_2026_perman_rd.csv
-output/nina_2026_norway_pollinator_count.csv
-output/nina_2026_norway_pollinator_exact_count.csv
-output/broekhuis_2020_mara_cheetah_scr.csv
-# Tables stored as period parts (standard E4) are never tracked; their side tables and __dataset.json are.
+# Tables live on Redivis, not in git (#88), as in IRW. output/ is a build area:
+# data/<t>.R writes the CSVs there, upload/red_up_eco.py validates and ships them,
+# and only each table's __dataset.json (its summary, columns, side-table record
+# and md5s) is tracked.
+output/*.csv
 output/*.parts/
-# Breeding Bird Survey (#24): the BCR 15 block and stop cores (104 MB, 334 MB); the national table is parts above.
-output/ziolkowski_2026_bbs_*.csv
-!output/ziolkowski_2026_bbs_*__*.csv
 site/data/specimens.json
+.claude/settings.local.json

@@ -49,6 +49,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_first_site", "obs_n_captures", "obs_n_crabtrap"],
+  "sideTables": {
+    "periods": {
+      "rows": 28,
+      "columns": ["period", "year", "n_records", "n_terrapins", "note"],
+      "md5": "73114cd82f20042a87f0220782730f96"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "66729a0969c4f90799243be56d9fcf1a"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/cecala_2026_kiawah_terrapin_cjs.R",

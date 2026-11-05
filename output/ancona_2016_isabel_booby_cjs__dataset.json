@@ -43,6 +43,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_sex"],
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "year", "season"],
+      "md5": "378425ec643bde4fd236eee028863ff9"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "37145d0612049535067c35d6250d91d6"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ancona_2016_isabel_booby_cjs.R",

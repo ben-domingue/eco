@@ -48,6 +48,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_sex", "unit_calf"],
+  "sideTables": {
+    "periods": {
+      "rows": 35,
+      "columns": ["period", "year"],
+      "md5": "cc56a7f885634fe1b248867407141a94"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "9c0500c179976ee3c9649d1f0380cc8b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/schleimer_2019_gsl_finwhale_cjs.R",

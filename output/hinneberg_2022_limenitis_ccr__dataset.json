@@ -50,6 +50,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "occasion", "observer", "cluster_id", "unit_contents", "unit_plot_area_m2", "obs_experience"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxonRemarks"],
+      "md5": "a28f1d75baf7234bd06345ffecbcb496"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hinneberg_2022_limenitis_ccr.R",

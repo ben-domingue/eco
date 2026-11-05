@@ -54,6 +54,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "trap", "occasion", "unit_conservative_id", "unit_sex"],
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2e685bb861411a5b320fdfb7752aedf0"
+    },
+    "traps": {
+      "rows": 20,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "fd1cd60b25b144919a3b865afc2b8a06"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/murphy_2021_riogrande_otter_scr.R",

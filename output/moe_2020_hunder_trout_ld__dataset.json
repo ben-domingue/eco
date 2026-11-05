@@ -61,6 +61,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_sex", "unit_origin", "unit_mark_year", "unit_length_mark_mm", "unit_weight_mark_g", "unit_tag_series", "obs_length_mm", "obs_weight_g", "obs_recovery_type", "obs_recovery_area", "obs_recovery_gear"],
+  "sideTables": {
+    "periods": {
+      "rows": 51,
+      "columns": ["period", "year", "n_marked", "n_dead_recoveries", "n_live_recaptures", "note"],
+      "md5": "6a8ff7665e5404f070c13f851d363a30"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "4ecac9ecd8bbe4c937251c668e5fc70a"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/moe_2020_hunder_trout_ld.R",

@@ -52,6 +52,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_cohort", "obs_banding", "obs_release"],
+  "sideTables": {
+    "periods": {
+      "rows": 18,
+      "columns": ["period", "year", "n_resighted", "n_banded", "n_released"],
+      "md5": "ed74d1fb3919cab38283b41c42ccd70d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "980280054271911ebf8dfa06bf5ef1b3"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/mcknight_2019_kittiwake_ms.R",

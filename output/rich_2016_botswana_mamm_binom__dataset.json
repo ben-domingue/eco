@@ -50,6 +50,13 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "unit_humans_vehicles", "unit_distance_wildlife_area_km", "unit_floodplain_grassland", "unit_distance_water_km", "unit_road_density", "unit_vegetation_density", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_trials"],
+  "sideTables": {
+    "taxa": {
+      "rows": 44,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_diet", "taxon_body_size_class", "taxon_iucnCategory"],
+      "md5": "33e226927bd375c9a74d650e23117cda"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/rich_2016_botswana_mamm_binom.R",

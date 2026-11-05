@@ -62,6 +62,23 @@
   },
   "sampleFloor": "below (22 units < 30)",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_n_observers", "obs_start_time", "obs_end_time", "obs_wind_beaufort", "obs_cloud_cover_pct", "obs_temperature_c"],
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "period_year", "period_n_walks", "period_n_transects"],
+      "md5": "7666b81515759cd86861e98844536c30"
+    },
+    "taxa": {
+      "rows": 102,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a369cc75cda052623044fbff77761c26"
+    },
+    "units": {
+      "rows": 22,
+      "columns": ["unit", "unit_length_m", "unit_minimumElevationInMeters", "unit_maximumElevationInMeters", "unit_habitat", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "2fcd22bc207e9279b49c7d589a8bd523"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/barea_2021_sierranevada_butterfly_count.R",

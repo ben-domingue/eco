@@ -41,6 +41,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "obs_effort"],
+  "sideTables": {
+    "periods": {
+      "rows": 26,
+      "columns": ["period", "start_year", "median_year", "end_year"],
+      "md5": "64e406893e3dffab63f235f4d910acc4"
+    },
+    "taxa": {
+      "rows": 74,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "8b6358d67c7fa465de2a68efc5803e66"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/frimpong_2017_newriver_dynocc.R",

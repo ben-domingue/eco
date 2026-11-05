@@ -1,9 +1,0 @@
-unit,stratum,decimalLatitude,decimalLongitude,coordinateUncertaintyInMeters,transect_length_m
-T1,MoistDeciduous,11.55,76.55,7792,1200
-T2,Eucalyptus,11.55,76.65,7792,1200
-T3,Teak,11.55,76.65,7792,1200
-T4,DryDeciduous,11.55,76.55,7792,1200
-T5,Shola,11.25,76.65,7796,1200
-T6,Coffee,11.55,76.55,7792,1200
-T7,Grasslands,11.25,76.55,7796,1200
-T8,Wattle,11.25,76.55,7796,1200

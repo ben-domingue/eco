@@ -45,7 +45,6 @@ import argparse
 import csv
 import hashlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 
@@ -58,6 +57,8 @@ from red_up.targets import load_registry
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))            # eco_validate/ lives at the repo root
 from eco_validate import validate_file   # noqa: E402
+sys.path.insert(0, str(ROOT / "validate"))
+from report import dataset_meta, report_row, update_report   # noqa: E402
 from eco_validate.core import is_parted, part_files, table_name   # noqa: E402
 from eco_validate.model import STANDARD_URL   # noqa: E402
 
@@ -148,22 +149,14 @@ def md5_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def tracked_in_git(path: Path) -> bool:
-    try:
-        return subprocess.run(["git", "-C", str(ROOT), "ls-files", "--error-unmatch", "--", str(path)],
-                              capture_output=True).returncode == 0
-    except OSError:
-        return False
-
-
 def stale_core(path: Path, table: str) -> str | None:
     """Is this core the build its __dataset.json describes? (#75)
 
-    A gitignored core (over 100 MB, or period parts) exists locally only between
-    `Rscript data/<table>.R` and this upload; a copy left over from an older build
-    must not ship beside newer side tables. write_table() records `coreMd5` (and
-    write_table_parts() an `md5` per part) as it writes the core. A tracked core
-    without a hash is covered by git; an untracked one without a hash is refused.
+    Tables live on Redivis, not in git (#88): a core exists locally only between
+    `Rscript data/<table>.R` and this upload, and a copy left over from an older
+    build must not ship beside newer side tables. write_table() records `coreMd5`
+    (and write_table_parts() an `md5` per part) as it writes the core; a core
+    without a hash is refused.
     """
     meta_path = OUT / f"{table}__dataset.json"
     if not meta_path.exists():
@@ -180,9 +173,7 @@ def stale_core(path: Path, table: str) -> str | None:
         return None
     want = meta.get("coreMd5")
     if want is None:
-        if tracked_in_git(path):
-            return None
-        return f"untracked core and __dataset.json records no coreMd5, so it cannot be shown to be the current build; {fix}"
+        return f"__dataset.json records no coreMd5, so it cannot be shown to be the current build; {fix}"
     if md5_file(path) != want:
         return f"this core is not the build its __dataset.json describes (coreMd5 differs); {fix}"
     return None
@@ -319,6 +310,7 @@ def main(argv=None) -> int:
         reports.append(r)
     core = [r for r in reports if side_suffix(r.table) is None]
     side = [r for r in reports if side_suffix(r.table) is not None]
+    verdicts: dict[str, dict] = {}   # table -> eco-validate --irw result, for validate/report.csv
     for r in core:
         missing = [c for c in ("unit", "taxon", "y") if c not in r.columns]
         if missing:
@@ -335,6 +327,8 @@ def main(argv=None) -> int:
         # surveyEvidence), plus irw-validate on the IRW view unless --no-irw.
         try:
             rep = validate_file(r.path, profile="upload", irw=not args.no_irw)
+            if not args.no_irw:
+                verdicts[r.table] = rep.to_dict()
         except Exception as exc:
             r.errors.append(f"eco-validate could not read this table: {exc}")
             continue
@@ -357,6 +351,14 @@ def main(argv=None) -> int:
         key = SIDE_KEYS[side_suffix(r.table)]
         if r.columns and key not in r.columns:
             r.errors.append(f"side table lacks its key column `{key}`")
+        # the side table __dataset.json describes (#88): same rule as the core
+        base, suf = r.table.split("__", 1)
+        mp = OUT / f"{base}__dataset.json"
+        rec = (json.loads(mp.read_text()).get("sideTables") or {}).get(suf) if mp.exists() else None
+        if rec is None:
+            r.errors.append(f"__dataset.json has no sideTables.{suf} record; rebuild the table")
+        elif md5_file(r.path) != rec.get("md5"):
+            r.errors.append("stale side table: not the build its __dataset.json describes (md5 differs); rebuild the table")
         base = r.table.split('__')[0]
         if not ((OUT / f"{base}.csv").exists() or is_parted(OUT / f"{base}.parts")):
             r.errors.append("no core table for this side table")
@@ -400,6 +402,13 @@ def main(argv=None) -> int:
         results.append(res)
     failed = [x for x in results if not x.ok]
     print(f"\n{len(results) - len(failed)}/{len(results)} uploaded and row-count verified.")
+    # The upload gate's verdict is the report row (#88): tables are not in git, so
+    # validate/report.csv is written where a table is validated, here and in
+    # validate/validate_redivis.py. Commit it with the batch.
+    shipped = [x.table for x in results if x.ok and x.table in verdicts]
+    if shipped:
+        update_report([report_row(verdicts[t], dataset_meta(t)) for t in shipped])
+        print(f"validate/report.csv: {len(shipped)} row(s) written from the upload gate")
     for x in failed:
         print(f"  FAILED {x.table}: {x.error}", file=sys.stderr)
     if skipped:

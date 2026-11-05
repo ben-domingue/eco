@@ -55,6 +55,23 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_landuse", "unit_forest_cover_50m", "unit_annual_precip_mm", "unit_dist_river_m", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_time_hhmm", "obs_people_in_count", "obs_people_nearby", "obs_temp_start_c", "obs_temp_end_c", "obs_wind_start_ms", "obs_wind_end_ms", "obs_noise", "obs_crop_type"],
   "coreMd5": "9b102000361ae180225f046b82585783",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_year", "period_n_points", "period_n_visits"],
+      "md5": "494de9c3282335aec94e6d313c25a6ca"
+    },
+    "taxa": {
+      "rows": 164,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_iucnCategory"],
+      "md5": "fd3cd99aa423e5413f39549bdaed122b"
+    },
+    "units": {
+      "rows": 150,
+      "columns": ["unit", "unit_landuse", "unit_forest_cover_50m", "unit_annual_precip_mm", "unit_dist_river_m", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_forest_cover_60m", "unit_forest_cover_70m", "unit_forest_cover_80m", "unit_forest_cover_90m", "unit_forest_cover_100m", "unit_forest_cover_110m", "unit_forest_cover_120m", "unit_forest_cover_130m", "unit_forest_cover_140m", "unit_forest_cover_150m", "unit_forest_cover_160m", "unit_forest_cover_170m", "unit_forest_cover_180m", "unit_forest_cover_190m", "unit_forest_cover_200m", "unit_forest_cover_210m", "unit_forest_cover_220m", "unit_forest_cover_230m", "unit_forest_cover_240m", "unit_forest_cover_250m", "unit_forest_cover_260m", "unit_forest_cover_270m", "unit_forest_cover_280m", "unit_forest_cover_290m", "unit_forest_cover_300m", "unit_forest_cover_310m", "unit_forest_cover_320m", "unit_forest_cover_330m", "unit_forest_cover_340m", "unit_forest_cover_350m", "unit_forest_cover_360m", "unit_forest_cover_370m", "unit_forest_cover_380m", "unit_forest_cover_390m", "unit_forest_cover_400m", "unit_forest_cover_410m", "unit_forest_cover_420m", "unit_forest_cover_430m", "unit_forest_cover_440m", "unit_forest_cover_450m", "unit_forest_cover_460m", "unit_forest_cover_470m", "unit_forest_cover_480m", "unit_forest_cover_490m", "unit_forest_cover_500m", "unit_forest_cover_510m", "unit_forest_cover_520m", "unit_forest_cover_530m", "unit_forest_cover_540m", "unit_forest_cover_550m", "unit_forest_cover_560m", "unit_forest_cover_570m", "unit_forest_cover_580m", "unit_forest_cover_590m", "unit_forest_cover_600m", "unit_forest_cover_610m", "unit_forest_cover_620m", "unit_forest_cover_630m", "unit_forest_cover_640m", "unit_forest_cover_650m", "unit_forest_cover_660m", "unit_forest_cover_670m", "unit_forest_cover_680m", "unit_forest_cover_690m", "unit_forest_cover_700m", "unit_forest_cover_710m", "unit_forest_cover_720m", "unit_forest_cover_730m", "unit_forest_cover_740m", "unit_forest_cover_750m", "unit_forest_cover_760m", "unit_forest_cover_770m", "unit_forest_cover_780m", "unit_forest_cover_790m", "unit_forest_cover_800m", "unit_forest_cover_810m", "unit_forest_cover_820m", "unit_forest_cover_830m", "unit_forest_cover_840m", "unit_forest_cover_850m", "unit_forest_cover_860m", "unit_forest_cover_870m", "unit_forest_cover_880m", "unit_forest_cover_890m", "unit_forest_cover_900m", "unit_forest_cover_910m", "unit_forest_cover_920m", "unit_forest_cover_930m", "unit_forest_cover_940m", "unit_forest_cover_950m", "unit_forest_cover_960m", "unit_forest_cover_970m", "unit_forest_cover_980m", "unit_forest_cover_990m", "unit_forest_cover_1000m", "unit_forest_cover_1050m", "unit_forest_cover_1100m", "unit_forest_cover_1150m", "unit_forest_cover_1200m", "unit_forest_cover_1250m", "unit_forest_cover_1300m", "unit_forest_cover_1350m", "unit_forest_cover_1400m", "unit_forest_cover_1450m", "unit_forest_cover_1500m"],
+      "md5": "4660e0be3ab37fce81fe1c33f0502d83"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ke_2022_costarica_birds_nmix.R",

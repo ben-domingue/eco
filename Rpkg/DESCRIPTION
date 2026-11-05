@@ -23,6 +23,7 @@ Suggests:
     arrow,
     curl,
     knitr,
+    readxl,
     redivis,
     testthat (>= 3.0.0),
     unmarked

@@ -46,6 +46,18 @@
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_distsite_std", "unit_area_std", "unit_gambusia", "unit_aqveg_std", "unit_ephemeral", "unit_canopy_std", "obs_days_std", "obs_temp_std", "obs_wet"],
   "coreMd5": "288c647e733df3878d8a832f01367afd",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "season", "months"],
+      "md5": "5d430b9eb9a52408462627ddd4045211"
+    },
+    "taxa": {
+      "rows": 11,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e83286c274925eed03929a2359bdefa0"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/hamer_2021_kooragang_amph_comm.R",

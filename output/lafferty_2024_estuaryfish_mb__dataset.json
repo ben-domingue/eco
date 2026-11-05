@@ -57,6 +57,13 @@
   },
   "sampleFloor": "below (14 units < 30)",
   "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "obs_filter_id", "obs_volume_ml"],
+  "sideTables": {
+    "taxa": {
+      "rows": 17,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d409afd295afe66d76d407beb309074e"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/lafferty_2024_socal_estuary_edna.R",

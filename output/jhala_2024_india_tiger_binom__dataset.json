@@ -51,6 +51,18 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "unit_habitat_area", "unit_road_rail_length", "unit_human_pop_density", "unit_agriculture_area", "unit_settlement_area", "unit_armed_conflict", "unit_cumulative_threat", "unit_poverty", "period_prey_encounter_rate", "period_livestock_encounter_rate", "period_extractive_pressure_rate", "period_nighttime_light", "period_forest_loss", "obs_trials"],
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year", "label", "n_cells_surveyed", "n_replicates"],
+      "md5": "22dc87521d3ec39b3d03201ad694306b"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b5bae96b706a789e93a6496d4e9e774b"
+    }
+  },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/jhala_2024_india_tiger_binom.R",
