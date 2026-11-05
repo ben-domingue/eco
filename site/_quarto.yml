@@ -5,6 +5,7 @@ project:
     - "*.qmd"
   resources:
     - specimen.js
+    - llms.txt
   # Writes data/site_stats.json from the pipeline's staging files so the
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
@@ -38,6 +39,8 @@ website:
             text: R package
           - href: vignettes/index.qmd
             text: Vignettes
+          - href: agents.qmd
+            text: Using an AI assistant
       - text: The format
         menu:
           - href: standard.qmd

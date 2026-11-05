@@ -22,3 +22,4 @@ output/*.csv
 output/*.parts/
 site/data/specimens.json
 .claude/settings.local.json
+site/llms.txt

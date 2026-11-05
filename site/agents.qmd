@@ -1,0 +1,55 @@
+---
+title: "Using an AI assistant"
+---
+
+An AI assistant (Claude, ChatGPT, Gemini) knows occupancy models and `unmarked`.
+What it does not know is this format, and the mistakes it makes because of that
+throw no errors. The commonest is turning a missing row into a zero: in eco a
+missing row means *not surveyed*, and filling it with 0 biases detection down
+and occupancy up. Others are fitting a closed model to occasions the source says
+were open, or putting several species in one `unmarked` frame.
+
+The fix is a briefing the assistant reads before it writes code:
+[`llms.txt`](llms.txt). It covers the format, the converters, how to find
+tables, the defaults that change results, and how to cite. Its counts are
+regenerated each time the site is built.
+
+## Paste this
+
+Start the conversation with this, followed by your question:
+
+``` text
+You are helping me analyse ecological detection data from the eco warehouse.
+Before writing any code, fetch and follow
+https://ben-domingue.github.io/eco/llms.txt. It documents the data format,
+the eco R package, and several mistakes that give wrong answers without an
+error.
+
+Then help me with: <your question>
+```
+
+The assistant fetches the current briefing each time, so there is no copy to
+keep up to date.
+
+## If your assistant cannot fetch a URL
+
+Copy the full text below into the conversation instead.
+
+::: {.callout-note collapse="true"}
+## Full text of the briefing
+
+```{r}
+#| output: asis
+cat("````text\n", paste(readLines("llms.txt", warn = FALSE), collapse = "\n"), "\n````\n", sep = "")
+```
+:::
+
+## Check what it gives you
+
+The briefing makes the usual mistakes less likely, not impossible. Before you
+rely on a fit, check that the detection matrix has `NA` where no survey
+happened (`sum(is.na(getY(umf)))` should not be zero for an unbalanced
+design), that one species went into each `unmarked` frame, and that the
+table's `closure` (in `eco_info()`) suits the model. Each table's processing
+script, linked from [the tables page](data.html), says what the source
+deposited.
