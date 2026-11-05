@@ -1269,3 +1269,40 @@ What this batch says about the standard:
   the authors model them as counts; a ruling on `count` vs `multinomial_cell` for kill-trap series would settle it.
 - `iucn_category()` NA again from genus moves (Profelis/Caracal, Lupulella, Herpestes/Galerella, Aonyx capensis vs
   congicus) and NE for Genetta maculata; filled by hand with the reason in the script.
+
+## Batch 27 — 2026-11-05 (card-sorted queue rows: Boston sweat bees, Montana dusky grouse, Richmond pollinators, rangewide tidewater goby eDNA)
+
+One agent in `~/eco-b27` (branch `batch-27`, from main at c60b7a2 after batch 26). Rows from the 2026-11-05 card sort
+(#85). Eleven deposits downloaded and read (two more screened from Dryad metadata only and left `available`: Colorado
+ant JAGS lists, yellow-legged frog eDNA), five tables built from four deposits and uploaded to the Redivis draft,
+seven deposits not built. Dryad answered one version download with 429s; a 90 s back-off cleared it.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| dooley_2025_agapostemon_cjs | CJS, insect mark-resight | Dryad CC0 | 1,200 | bicolored sweat bee at 14 Echinacea patches (in/out of 7 Boston-area gardens), 16 survey days in July 2023, each patch watched on 8; histories rebuilt from the raw captures and asserted equal to the deposited MARK file patch by patch; the README says bees seen at both patches were excluded, but the file carries 7 such bees once per patch (14 units, `unit_two_patch = 1`); the deposited survey intervals do not match the calendar, dates shipped instead |
+| leipold_2025_duskygrouse_roads_count | repeated counts | Dryad CC0 | 12,492 | dusky grouse, 2,286 road/trail points in western Montana, 2020-2021, 4 playback counts per morning (outbound and return pass), exact dates from the deposited day number, weather/noise/observer covariates; male/female split of the counts not shipped (35 cells do not sum) |
+| leipold_2025_duskygrouse_offtrail_count | repeated counts | Dryad CC0 | 1,180 | same deposit, 2019 off-trail experiment: 150 points, spring and summer, 3 visits x (no playback, playback) as `occasionKind = [time, method]`; spring survey conditions joined from route_type_data.csv, none deposited for summer (NA) |
+| ruppel_2025_richmond_pollinator_comm | community detection, flower watches | Dryad CC0 | 4,900 | 14 visitor taxa (4 at genus/family/superfamily; Vespoidea has no GBIF key) on 5 inflorescences of Liatris and/or Pycnanthemum at 50 urban gardens, 2021; occasions stack plant x inflorescence in the authors' order; garden coordinates shipped as published |
+| martel_2020_tidewatergoby_edna | multi-scale eDNA | Dryad CC0 | 2,788 | endangered tidewater goby, 813 water samples at 192 sites from the Oregon border to San Diego, 2016 and 2017, 3-6 qPCR replicates; cluster_id = site, unit = sample, period = season; coordinates coarsened and site names withheld (E7); 27 season-2 dates set NA (a 2016 year typo, a DD/MM date, and 13 in the same block that read either way), deposited string kept as `obs_date_as_deposited` |
+
+Not built (`queue/human_review.csv`): Kentucky MTR salamanders 2016 (held: exact duplicate of year 1 of
+price_2018_mtr_salamanders_count), saltmarsh sparrow (blocked: paper; no survey year in the deposit), Swiss territory
+mapping N-mixture (held: three editors' territory delineations of the same visits; is an editor's interpretation an
+observation?), RMBL marmots (blocked: paper; states A/B/C and the 5 within-year occasions undefined), Sierra Nevada
+owls (held: the three species files disagree on surveyed weeks and site ids), Atlantic salmon eDNA (held: Ct values
+only, no detection call), boreal caribou CKMR (blocked: paper; 26 occasions undated).
+
+What this batch says about the standard:
+
+- **A README contradicted by its own file** (sweat bees): the history file keeps the two-patch bees the README says
+  were dropped. The table follows the file (it is what the authors' model saw) and flags the units; the guide could
+  say which wins.
+- **Dates that are partly DD/MM** (goby): once one row in a block is provably DD/MM, the other ambiguous rows in that
+  block cannot be trusted either way. NA plus the deposited string was the least lossy choice; a sentence in the guide
+  would make it the rule.
+- **eDNA without a detection call** (salmon): Ct values with "Undetermined" are a detection in all but name, but the
+  threshold is the analyst's; a ruling on whether "any amplification" may define y would unblock similar deposits.
+- **Coordinates of private gardens** (pollinators): shipped at the source's 1e-10 degree because E7 only protects
+  taxa; residential garden locations may deserve the E7.4 treatment, which the standard does not say.
+- **Species-specific survey sets in a stacked file** (owls): per-species NA patterns at one site-year are the
+  per-species occasion question again, which is still deferred.

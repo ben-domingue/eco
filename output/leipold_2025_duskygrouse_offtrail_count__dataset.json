@@ -1,0 +1,65 @@
+{
+  "table": "leipold_2025_duskygrouse_offtrail_count",
+  "title": "Paired no-playback and playback point counts of dusky grouse at 150 off-trail points, western Montana, spring and summer 2019",
+  "creator": "Leipold, Elizabeth; Gower, Claire; McNew, Lance B.",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.hqbzkh1s7",
+  "sourceURL": "https://doi.org/10.5061/dryad.hqbzkh1s7",
+  "citation": "Leipold, E., Gower, C., & McNew, L. B. (2025). Data from: Maximizing the detection probabilities of dusky grouse for population monitoring [Dataset]. Dryad. https://doi.org/10.5061/dryad.hqbzkh1s7",
+  "paperDOI": "10.1002/wlb3.01411",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Off-trail point counts in Montana FWP region 3 in 2019: each point visited on three mornings within two weeks, with a 4-minute count without playback followed by a 4-minute count with electronic playback (female calls in spring, chick distress call in summer).",
+  "samplingProtocol": "Point counts at off-trail transect points, three visits on different mornings within two weeks per season; at each visit a 4-minute count without playback then a 4-minute count with playback.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "three visits within two weeks per season; spring and summer are separate periods",
+  "occasionKind": ["time", "method"],
+  "taxonInclusion": "single",
+  "geographicCoverage": "western Montana, USA, Montana FWP region 3 (no coordinates deposited)",
+  "temporalCoverage": "2019-04/2019-08",
+  "notShipped": {
+    "route_type_X": "route_type_data.csv's 2019 per-visit counts X1-X3, whose relation to the two treatment counts is not documented",
+    "model_output": "detection-model estimates"
+  },
+  "notes": "Survey conditions (date, time, weather) are deposited for the spring visits only; summer rows have them NA. The 2020-2021 road/trail counts in the same deposit are leipold_2025_duskygrouse_roads_count.",
+  "summary": {
+    "n_rows": 1180,
+    "n_units": 150,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 6,
+    "n_surveys": 1180,
+    "y_values": "0,1,2",
+    "prop_zero": 0.96,
+    "n_traps": 1,
+    "n_zero": 1133,
+    "n_positive": 47,
+    "n_units_detected": 24,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_transect", "obs_visit", "obs_playback", "obs_minutes_since_sunrise", "obs_cloud_cover", "obs_precip", "obs_wind_kmh", "obs_temp_c"],
+  "coreMd5": "bc715030a7ce9a7d08e4cddab9c86e1e",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "season", "playback_call"],
+      "md5": "1080ae69a470e2d0daf7af54c980f7b8"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "08063062e4cb5fb1f2dc6e85d4e3ad0c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/leipold_2025_duskygrouse_offtrail_count.R",
+  "buildDate": "2026-11-05"
+}

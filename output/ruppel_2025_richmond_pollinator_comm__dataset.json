@@ -1,0 +1,64 @@
+{
+  "table": "ruppel_2025_richmond_pollinator_comm",
+  "title": "Pollinator visits to five watched inflorescences of two native plants in 50 urban gardens, Richmond, Virginia, summer 2021",
+  "creator": "Ruppel, Nicholas; Nipko, Robert B.; Dingus, Mackenzie; Ortiz, Allison C.; Weir, Teresa; Kelly, Marcella J.; Coster, Stephanie S.",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.nzs7h450q",
+  "sourceURL": "https://doi.org/10.5061/dryad.nzs7h450q",
+  "citation": "Ruppel, N., Nipko, R. B., Dingus, M., Ortiz, A. C., Weir, T., Kelly, M. J., & Coster, S. S. (2025). Influence of environmental covariates on pollinator community occupancy, detection, and richness across urban gardens in Richmond, Virginia (U.S.A.) [Dataset]. Dryad. https://doi.org/10.5061/dryad.nzs7h450q",
+  "paperDOI": "10.1002/ece3.72502",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Visual pollinator surveys at 50 Richmond-area gardens, 28 June to 27 July 2021: at each garden five inflorescences of Liatris spicata and/or Pycnanthemum muticum were each watched for 5 minutes and every visitor identified to the lowest possible level (14 taxa detected).",
+  "samplingProtocol": "Five-minute visual watches of five inflorescences on different plants of each study plant species present at a garden (one visit per plant species), all flower visitors identified.",
+  "samplingProtocolCode": "visual_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one season; the two plant species were watched on different days at the 20 gardens with both, and the authors treat all ten watches as replicates of garden occupancy",
+  "occasionKind": ["method", "spatial"],
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "greater Richmond, Virginia, USA (garden coordinates coarsened to 0.01 degree)",
+  "temporalCoverage": "2021-06/2021-07",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Private residential gardens: coordinates (deposited to 1e-10 degree) moved to the centre of a 0.01-degree cell (about 1 km); unit_coord_uncertainty_m gives the radius. No taxon is flagged under E7; this protects the households."
+  },
+  "crs": "EPSG:4326",
+  "notShipped": {
+    "model_output": "JAGS occupancy and richness estimates"
+  },
+  "notes": "Taxa are those detected at least once (the deposit's 14 sheets); four are genus, family or superfamily groups. Wasps, ErHo, MaLi and HaHa were seen only on P. muticum, PiRa, AtCa, Megachile and EpBo only on L. spicata.",
+  "summary": {
+    "n_rows": 4900,
+    "n_units": 50,
+    "n_taxa": 14,
+    "n_periods": 1,
+    "n_occasions": 10,
+    "n_surveys": 350,
+    "y_values": "0,1",
+    "prop_zero": 0.926,
+    "n_traps": 1,
+    "n_zero": 4539,
+    "n_positive": 361,
+    "n_units_detected": 49,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_lat", "unit_lon", "unit_coord_uncertainty_m", "unit_urban_distance_m", "unit_garden_area_m2", "obs_lux", "obs_start_time", "obs_plant", "obs_flower", "obs_temp_c", "obs_bloom_richness"],
+  "coreMd5": "e4e80031b5881da271acd11621c8e8d8",
+  "sideTables": {
+    "taxa": {
+      "rows": 14,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "f414625c600a220f6715fb8a923edf18"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ruppel_2025_richmond_pollinator_comm.R",
+  "buildDate": "2026-11-05"
+}

@@ -218,6 +218,11 @@ CSVs with `upload/red_up_eco.py`.
 | `neubauer_2021_bialowieza_marshtit_nmix.R` | repeated counts, 33 years x 6 counts on 4 plots, census truth as `period_` covariates | Dryad | CC0 |
 | `law_2021_nsw_koala_occ.R` | single-species detection, acoustic (AudioMoth), nightly occasions | Dryad | CC0 |
 | `mills_2019_kibale_carnivore_comm.R` | community detection, camera traps, daily occasions from a station-day function table, coarsened | Dryad | CC0 |
+| `dooley_2025_agapostemon_cjs.R` | CJS, bee mark-resight at flower patches, histories rebuilt from raw captures | Dryad | CC0 |
+| `leipold_2025_duskygrouse_roads_count.R` | repeated counts, playback point counts, 2 years x 4 counts | Dryad | CC0 |
+| `leipold_2025_duskygrouse_offtrail_count.R` | repeated counts, visit x playback treatment occasions | Dryad | CC0 |
+| `ruppel_2025_richmond_pollinator_comm.R` | community detection, pollinator flower watches, plant x inflorescence occasions | Dryad | CC0 |
+| `martel_2020_tidewatergoby_edna.R` | multi-scale eDNA (site, water sample, qPCR replicate), two seasons, coarsened | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
