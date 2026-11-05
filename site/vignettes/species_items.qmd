@@ -1,0 +1,606 @@
+---
+title: "Species as items: community occupancy as a model of sites and species"
+description: |
+  A community survey is a site-by-species table, and a multispecies occupancy
+  model is a model with one latent quantity per site and one set of
+  parameters per species, the species drawn from a community distribution.
+  This page fits that model to a boreal bird table in eco twice, once ignoring
+  imperfect detection and once with spOccupancy, and shows where the two
+  disagree; a sparse camera-trap table shows what pooling species can and
+  cannot do.
+date: today
+bibliography: species_items.bib
+format:
+  html:
+    code-fold: false
+    toc: true
+    toc-depth: 2
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| echo: false
+suppressPackageStartupMessages({
+  library(eco)
+  library(data.table)
+  library(lme4)
+  library(unmarked)
+  library(ggplot2)
+  library(plotly)
+})
+theme_set(theme_minimal(base_size = 13))
+options(digits = 3)
+fmt <- function(x, d = 2) formatC(x, digits = d, format = "f")
+cache <- readRDS("species_items_data/species_items.rds")
+```
+
+A community survey visits a set of sites, listens or looks for every species
+on a list, and writes down which ones it found. Laid out as a table, that is
+one row per site and one column per species, filled with zeros and ones. A
+model for that table needs something about each site (some sites hold more
+species, or a different set of them, than others) and something about each
+species (some are common, some rare, some found mostly where others are not).
+The multispecies occupancy model [@dorazio2005; @dorazio2006; @kery2016,
+chapter 11] is such a model, with one extra layer: a zero can mean the species
+is absent or that it was there and missed.
+
+This page builds the model up from the site-by-species table, fits it to one
+eco table first without and then with the detection layer, and shows what
+the detection layer changes. It then fits a second, much sparser table to show
+what treating species as draws from a community buys and what it cannot.
+
+{{< include _caveat.qmd >}}
+
+## Sites and species: the idea
+
+Write $z_{ik} = 1$ if species $k$ occurs at site $i$. The simplest model with
+something for each site and something for each species is
+
+$$
+\Pr(z_{ik} = 1) = \text{logit}^{-1}(\beta_k + \lambda_k w_i).
+$$
+
+- $w_i$ is a single number for the site that is not observed: a position on
+  whatever gradient most separates the community's sites (wet to dry, young
+  forest to old, disturbed to not). It is a latent variable, inferred from
+  which species the site holds.
+- $\beta_k$ says how common species $k$ is at a typical site ($w_i = 0$).
+- $\lambda_k$ says how strongly, and in which direction, species $k$ tracks the
+  gradient: a large positive $\lambda_k$ is a species found almost only at the
+  high end, a negative one a species of the low end, and $\lambda_k$ near zero
+  a species that does not care.
+
+So far each species has its own free parameters. The step that makes this a
+*community* model is to treat the species themselves as a sample: the
+$\beta_k$ are drawn from one normal distribution with a community mean $\mu$ and
+spread $\tau$,
+
+$$
+\beta_k \sim \text{Normal}(\mu_\beta, \tau^2_\beta).
+$$
+
+Species whose own data say little, the ones seen twice, are then estimated
+partly from the community: their $\hat\beta_k$ is pulled toward $\mu_\beta$, more
+so the less the data say. The distribution also describes the species that
+were never seen at all, which is how these models estimate total species
+richness [@dorazio2006]. In psychometrics the same structure, with test
+questions in place of species and test-takers in place of sites, is called a
+random-item response model [@deboeck2008].
+
+The ecological model adds the survey. Species $k$ at site $i$ is surveyed on
+$J_i$ visits, and a visit finds it only if it is there:
+
+$$
+y_{ijk} \mid z_{ik} \sim \text{Bernoulli}(z_{ik}\, p_k),
+\qquad
+\text{logit}(p_k) = \alpha_k \sim \text{Normal}(\mu_\alpha, \tau^2_\alpha).
+$$
+
+The model of sites and species is on $z$, which is never observed. What is
+observed is $y$, and the probability that a survey of $J_i$ visits ever records
+species $k$ is
+
+$$
+\Pr\Big(\max_j y_{ijk} = 1\Big) = \psi_{ik} \left[ 1 - (1 - p_k)^{J_i} \right],
+\qquad \psi_{ik} = \text{logit}^{-1}(\beta_k + \lambda_k w_i).
+$$
+
+Fit the site-and-species model directly to the "ever detected" table and its
+species parameter estimates the whole of that product: how common the species
+is *and* how easy it is to find, in one number. Its site parameter absorbs how
+hard the site was searched. Repeat visits are what pull the two apart, as in
+the [single-species case](occupancy.html).
+
+The standard multispecies model of @dorazio2005 sets $\lambda_k = 0$: species
+have their own $\beta_k$ and $\alpha_k$ drawn from the community, and sites differ
+only through covariates. Adding $\lambda_k w_i$ gives the latent-factor version
+of @tobler2019, which is what puts a site parameter back into the model.
+Both are fit below.
+
+## Choosing the tables
+
+The tables are chosen from `eco_metadata()` by rule. The model needs a site
+unit, a 0/1 detection response, more than one taxon, replicate visits that can
+be treated as repeats of the same state (`closure` "closed", one season, and
+occasions that index time rather than observers, methods or sub-plots), enough
+sites to see a pattern ($\geq 30$) and a community size where pooling matters
+and a page can show every species (10 to 40). Tables that need a Redivis login
+and tables whose survey set was reconstructed by rule (`survey_evidence`
+"inferred") are left out.
+
+```{r}
+#| label: rule
+eco_set_version(12)
+cand <- as.data.table(eco_filter(unit_kind = "site", response_type = "detection",
+                                 multi_species = TRUE, min_units = 30, min_occasions = 2))
+cand <- merge(cand, as.data.table(eco_list_tables())[, .(table, needs_login, survey_taxa)], by = "table")
+picked <- cand[closure == "closed" & n_periods == 1 & occasion_kind == "time" &
+                 n_taxa >= 10 & n_taxa <= 40 & !needs_login & survey_evidence != "inferred" &
+                 !grepl("_exact", table)]
+picked[, .(table, n_units, n_taxa, n_occasions, survey_evidence, survey_taxa)]
+stopifnot(setequal(picked$table, names(cache$fits)))
+```
+
+Of the `r nrow(cand)` multi-taxon site detection tables with at least 30 sites
+and two occasions, the rule keeps two. The others fall out on the number of
+seasons, the number of taxa (several community tables carry 50 to 240), or
+occasions that are spatial subsamples or methods. Neither table has a
+`__survey_taxa` side table, so every species was looked for on every visit and
+the zeros in the table are real non-detections; a table with one would have
+species-specific gaps, which `eco_to_array()` keeps as `NA` and which the
+model would have to respect.
+
+The two are very different communities, which is the point of fitting both:
+
+- `lebeuftaylor_2026_boreal_edges_aru_comm` [@lebeuftaylor2026]: 34 bird
+  species recorded within 150 m of autonomous recording units at 564 locations
+  in northern Alberta, three per transect across a timber-harvest edge (150 m
+  into the regenerating cut, the edge itself, 150 m into the forest), with one
+  to five recording visits each. Every species was detected at 12 or more
+  locations. This is the main example.
+- `clipp_2024_monongahela_comm` [@clipp2024]: 35 bird and mammal species on
+  129 camera traps at wildlife openings in West Virginia, one occasion per
+  camera-day. White-tailed deer are detected at 114 cameras; 15 of the 35
+  species at exactly one.
+
+## The boreal table
+
+```{r}
+#| label: fetch
+#| message: true
+eco_info("lebeuftaylor_2026_boreal_edges_aru_comm")
+d <- as.data.table(eco_fetch("lebeuftaylor_2026_boreal_edges_aru_comm"))
+taxa <- as.data.table(eco_taxa("lebeuftaylor_2026_boreal_edges_aru_comm"))
+```
+
+One row per species per recording visit. `eco_to_array()` turns it into a
+site $\times$ visit $\times$ species array, with `NA` wherever a location had
+fewer than five visits: a missing row is a visit that did not happen, not a
+miss. Permuting the dimensions gives the species $\times$ site $\times$ visit
+array that spOccupancy expects.
+
+```{r}
+#| label: array
+a <- eco_to_array(d)
+y <- aperm(a$y, c(3, 1, 2))                       # species x site x visit
+dim(y)
+J <- rowSums(!is.na(y[1, , ]))                    # visits per location
+table(visits = J)
+# a community table without __survey_taxa: the same visits for every species
+stopifnot(all(apply(y, 1, function(m) identical(is.na(m), is.na(y[1, , ])))))
+ever <- apply(y, c(1, 2), max, na.rm = TRUE)      # species x site, detected on any visit
+```
+
+## Ignoring detection: sites and species on the "ever detected" table
+
+The first fit is the site-and-species model on `ever`, with no detection
+layer, as a generalised linear mixed model: a random intercept for each
+location (its latent quantity) and a random intercept for each species (drawn
+from the community), crossed. It is the special case of the model above in which
+every species has the same loading, so every species tracks the site quantity
+equally.
+
+```{r}
+#| label: naive
+long <- data.table(species = rep(dimnames(y)[[1]], ncol(ever)),
+                   site = rep(colnames(ever), each = nrow(ever)),
+                   ever = as.vector(ever))
+naive <- glmer(ever ~ 1 + (1 | site) + (1 | species), family = binomial, data = long)
+VarCorr(naive)
+```
+
+The species spread (a standard deviation of
+`r fmt(attr(VarCorr(naive)$species, "stddev"))` on the logit scale) dwarfs
+the site spread (`r fmt(attr(VarCorr(naive)$site, "stddev"))`): which species
+is asked about matters far more than where. The site intercept is easy to read
+in this model, because with every species weighted equally the only thing
+that moves a site up is detecting more species. Its correlation with the
+count of species detected at the location is
+`r fmt(cor(lme4::ranef(naive)$site[colnames(ever), 1], colSums(ever)), 3)`. It
+is a detected-richness score, and detected richness depends on how often
+the site was visited:
+
+```{r}
+#| label: naive-visits
+site_naive <- data.table(unit = colnames(ever), visits = J, detected = colSums(ever),
+                         score = lme4::ranef(naive)$site[colnames(ever), 1])
+site_naive[, .(locations = .N, mean_species_detected = mean(detected), mean_score = mean(score)), keyby = visits]
+```
+
+A location recorded once scores lower than one recorded three times, not
+because it holds fewer birds but because fewer were heard. Most locations here
+have three visits, so the damage is limited; in a table with uneven effort it
+is not.
+
+## Separating occupancy from detection
+
+The community occupancy model puts the species distribution on two
+parameters per species, occupancy $\psi_k$ and detection $p_k$, each drawn from
+its own community normal. It is fit with `spOccupancy::msPGOcc()`
+[@doser2022], a Gibbs sampler that takes about two minutes on this table. The
+call, from the companion script
+[`species_items_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/species_items_compute.R),
+is
+
+```{r}
+#| label: ms-code
+#| eval: false
+library(spOccupancy)
+ms <- msPGOcc(occ.formula = ~1, det.formula = ~1, data = list(y = y),
+              n.samples = 6000, n.burn = 2000, n.thin = 4, n.chains = 3)
+```
+
+and the page reads its saved summaries. Both formulas are intercept-only on
+purpose: every species has one $\psi_k$ and one $p_k$, nothing else, so the
+comparison with the model above is like for like. (The table carries
+standardised day and time of each visit, `obs_day_z` and `obs_time_z`, which a
+real analysis of these birds would put on $p$.)
+
+```{r}
+#| label: ms-load
+fb <- cache$fits[["lebeuftaylor_2026_boreal_edges_aru_comm"]]
+fb$comm_ms[, .(parameter = param, median = med, lower = lo, upper = hi, Rhat = rhat)]
+fb$conv
+sp <- as.data.table(fb$species)
+sp[, `:=`(psi = plogis(ms_beta), psi_lo = plogis(ms_beta_lo), psi_hi = plogis(ms_beta_hi),
+          p = plogis(ms_alpha), p3 = 1 - (1 - plogis(ms_alpha))^3)]
+```
+
+All chains agree (largest $\hat R$ `r fmt(max(fb$conv$max_rhat))`). The
+community's median species occupies `r fmt(plogis(fb$comm_ms[param == "mu_psi", med]))`
+of locations and is detected on `r fmt(plogis(fb$comm_ms[param == "mu_p", med]))`
+of visits where present. Detection varies less between species than
+occupancy does, but it varies: per-visit $\hat p_k$ runs from
+`r fmt(min(sp$p))` to `r fmt(max(sp$p))`, so the chance of ever recording a
+species present at a three-visit location runs from `r fmt(min(sp$p3))` to
+`r fmt(max(sp$p3))`.
+
+```{r}
+#| label: fig-naive-psi
+#| fig-cap: "For each species, the share of locations where it was ever detected (the quantity the model without detection describes) against its occupancy under msPGOcc, with 95% credible intervals. Colour is the estimated per-visit detection probability. The gap below the diagonal is the occupied locations where the species was missed on every visit. Hover for the species."
+sp[, label := sprintf("%s (%s)\ndetected at %d of %d locations\nnaive share %.2f, psi %.2f [%.2f, %.2f]\np per visit %.2f",
+                      vernacularName, taxon, n_sites_detected, fb$n_sites, naive_share, psi, psi_lo, psi_hi, p)]
+g <- ggplot(sp, aes(psi, naive_share, colour = p, text = label)) +
+  geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
+  geom_errorbarh(aes(xmin = psi_lo, xmax = psi_hi), height = 0, linewidth = 0.4, alpha = 0.6) +
+  geom_point(size = 2.6) +
+  scale_colour_gradient(low = "#bfe3d2", high = "#0b4f33", name = "p", limits = c(0, 1)) +
+  coord_equal(xlim = c(0, 0.9), ylim = c(0, 0.9)) +
+  labs(x = "Occupancy, msPGOcc", y = "Share of locations where detected")
+plotly::ggplotly(g, tooltip = "text", width = 620, height = 560) |>
+  plotly::config(displayModeBar = FALSE)
+```
+
+```{r}
+#| label: naive-stats
+#| echo: false
+sp[, gap := psi - naive_share]
+worst <- sp[which.max(gap / psi)]
+amro <- sp[taxon == "AMRO"]; lisp <- sp[taxon == "LISP"]
+fit_check <- max(abs(sp$ms_pever - sp$naive_share))
+cor_p_gap <- cor(sp$p, sp$gap / sp$psi)
+```
+
+Every species sits below the diagonal. The model without detection is not
+wrong about what it estimates: the occupancy model's implied probability of
+ever detecting each species, $\psi_k[1 - (1 - p_k)^{J_i}]$ averaged over the
+locations' visit counts, matches the observed share to within
+`r fmt(fit_check, 3)` for every species. It is wrong about what that number
+means. Read as "how common is this species", it understates every species,
+by a fraction that is set by detection: across species the correlation
+between $\hat p_k$ and the relative shortfall is
+`r fmt(cor_p_gap)`. The worst case is the `r worst$vernacularName`, detected on
+`r fmt(worst$p)` of visits where present; it occupies an estimated
+`r fmt(worst$psi)` of locations but was recorded at `r fmt(worst$naive_share)`.
+The ordering of species changes too. American Robin and Lincoln's Sparrow
+were recorded at almost the same number of locations
+(`r amro$n_sites_detected` and `r lisp$n_sites_detected`), but the robin is
+the harder of the two to pick up on a visit ($\hat p$ `r fmt(amro$p)` against
+`r fmt(lisp$p)`), and its estimated occupancy is `r fmt(amro$psi)` against
+`r fmt(lisp$psi)`.
+
+### What the community distribution buys
+
+Fitting each species on its own, with `unmarked::occu()` [@fiske2011], gives
+the no-pooling answer: the same $\psi_k$ and $p_k$, but every species estimated
+from its own detections alone.
+
+```{r}
+#| label: nopool
+nopool <- rbindlist(lapply(dimnames(y)[[1]], function(k) {
+  umf <- suppressMessages(eco_to_unmarked(d[taxon == k], family = "occu"))
+  m <- suppressWarnings(occu(~1 ~1, umf))
+  se <- tryCatch(suppressWarnings(sqrt(diag(vcov(m)))), error = function(e) c(NA, NA))
+  data.table(taxon = k, np_psi = plogis(coef(m)[1]), np_psi_se = se[1])
+}))
+nopool[order(-np_psi)][1:4]
+```
+
+```{r}
+#| label: nopool-stats
+#| echo: false
+sh <- merge(sp, nopool, by = "taxon")
+sh[, boundary := np_psi > 0.99 | is.na(np_psi_se) | np_psi_se > 10]
+ww <- sh[taxon == "WWCR"]
+```
+
+For most species the two answers agree closely. They part where a species'
+own data are thin: `r sum(sh$boundary)` of the `r nrow(sh)` single-species fits
+run to the boundary, $\hat\psi_k$ near 1 with no usable standard error
+(missing, or above 10 on the logit scale),
+because on its own a species heard at a few locations, and rarely more than
+once there, is fit about as well by "present nearly everywhere, almost never
+heard" as by "present at a few locations". The White-winged Crossbill is the
+clearest case: `r ww$n_detections` detections at `r ww$n_sites_detected` of
+`r fb$n_sites` locations. The community model does not let a species be that
+unlike the others without evidence; it puts the crossbill's occupancy at
+`r fmt(ww$psi)` [`r fmt(ww$psi_lo)`, `r fmt(ww$psi_hi)`], with a per-visit
+detection probability near the community's.
+
+```{r}
+#| label: fig-shrink-boreal
+#| fig-cap: "Occupancy with no pooling (each species fit alone with unmarked) against occupancy under the community model, boreal table. Point size is the number of locations where the species was detected; open points are single-species fits at the boundary (psi above 0.99, or a standard error missing or above 10). Hover for the species."
+sh[, label2 := sprintf("%s\ndetected at %d locations\nalone: psi %.2f%s\ncommunity: psi %.2f [%.2f, %.2f]",
+                       vernacularName, n_sites_detected, np_psi, ifelse(boundary, " (boundary)", ""), psi, psi_lo, psi_hi)]
+g <- ggplot(sh, aes(psi, np_psi, size = n_sites_detected, text = label2)) +
+  geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
+  geom_point(aes(fill = boundary), shape = 21, colour = "#1e8a5a", alpha = 0.9) +
+  scale_fill_manual(values = c(`FALSE` = "#1e8a5a", `TRUE` = "white"), guide = "none") +
+  scale_size_area(max_size = 7, guide = "none") +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(x = "Occupancy, community model (msPGOcc)", y = "Occupancy, each species alone (occu)")
+plotly::ggplotly(g, tooltip = "text", width = 620, height = 560) |>
+  plotly::config(displayModeBar = FALSE)
+```
+
+## Putting the site back
+
+The community model above has no site quantity at all: two locations with
+the same visits are, before seeing data, the same. The last fit adds it back,
+one latent $w_i$ per location with a loading $\lambda_k$ per species on
+occupancy, which is the model the first section wrote down, now with
+detection underneath. `spOccupancy::lfMsPGOcc()` fits it [@tobler2019;
+@doser2022]:
+
+```{r}
+#| label: lf-code
+#| eval: false
+lf <- lfMsPGOcc(occ.formula = ~1, det.formula = ~1, n.factors = 1,
+                data = list(y = y[c(anchor, setdiff(dimnames(y)[[1]], anchor)), , ],
+                            coords = matrix(0, dim(y)[2], 2)),   # required, unused without space
+                n.samples = 6000, n.burn = 2000, n.thin = 4, n.chains = 3)
+```
+
+The latent variable has no units, so something has to fix its direction and
+scale. spOccupancy fixes the first species' loading at 1. That species should
+be one that clearly tracks whatever the gradient is: a species present
+almost everywhere carries no information about $w_i$, and with the
+Swainson's Thrush, the most-detected species, in first place the three chains
+settled on opposite signs. The rule used here is to put first, among the
+species detected at between 10% and 90% of locations, the one with the
+steepest slope in a quick fit of the same model to the `ever` table
+[`mirt`, @chalmers2012]. On this table that is the
+`r taxa[taxon == fb$anchor, vernacularName]`, so a high $w_i$ means "more like
+where `r taxa[taxon == fb$anchor, vernacularName]`s are".
+
+```{r}
+#| label: fig-loadings
+#| fig-height: 8
+#| fig-cap: "Loading of each species on the site latent variable under lfMsPGOcc, with 95% credible intervals. The anchor species' loading is fixed at 1."
+ld <- copy(sp)
+ld[, name := factor(vernacularName, levels = vernacularName[order(lf_lambda)])]
+ggplot(ld, aes(lf_lambda, name)) +
+  geom_vline(xintercept = 0, colour = "#c9ccc8") +
+  geom_errorbarh(aes(xmin = lf_lambda_lo, xmax = lf_lambda_hi), height = 0, colour = "#1e8a5a", linewidth = 0.5) +
+  geom_point(colour = "#1e8a5a", size = 2.2) +
+  labs(x = expression("Loading " * lambda[k]), y = NULL) +
+  theme(axis.text.y = element_text(size = 9))
+```
+
+```{r}
+#| label: lf-stats
+#| echo: false
+st <- as.data.table(fb$site)
+pos <- st[, .(w = mean(lf_w)), keyby = .(unit_forest_type, unit_position)]
+r_lam <- cor(sp$lf_lambda, sp$twopl_a)
+r_vis_naive <- cor(st$visits, st$rasch_theta); r_vis_w <- cor(st$visits, st$lf_w)
+hab <- summary(lm(lf_w ~ unit_position + unit_forest_type + unit_tsh_years, data = st))
+```
+
+The gradient is legible from the species alone. At the positive end are
+White-throated Sparrow, Black-and-white and Mourning Warblers, Alder and Least
+Flycatchers, Common Yellowthroat and American Redstart, birds of deciduous
+woods and shrubby regrowth; at the negative end the White-winged Crossbill,
+Yellow-rumped Warbler, the two kinglets, Hermit Thrush and Dark-eyed Junco,
+birds of conifer. Ovenbird, a mature-forest ground nester that is
+common on both sides, loads at zero. Most loadings are positive, so $w_i$ is also
+partly a richness axis (its correlation with the posterior number of species
+present at a location is `r fmt(cor(fb$site$lf_w, fb$site$ms_rich))`):
+deciduous regrowth holds more of these 34 species than conifer does. The site scores agree with what the
+deposit records about each location:
+
+```{r}
+#| label: fig-w
+#| fig-width: 7
+#| fig-height: 4
+#| fig-cap: "Posterior mean of the site latent variable for each location, by forest type and position across the harvest edge (N15: 150 m into the regenerating cut; E0: the edge; P15: 150 m into the forest). Bars are group means."
+st[, position := factor(unit_position, levels = c("N15", "E0", "P15"),
+                        labels = c("in the cut", "edge", "in the forest"))]
+ggplot(st, aes(position, lf_w)) +
+  geom_jitter(width = 0.15, height = 0, alpha = 0.35, colour = "#1e8a5a", size = 1.2) +
+  stat_summary(fun = mean, geom = "crossbar", width = 0.5, colour = "#0b4f33", linewidth = 0.4) +
+  facet_wrap(~ unit_forest_type) +
+  labs(x = NULL, y = expression("Site latent variable " * w[i]))
+```
+
+Locations in aspen stands score higher than in spruce, and within a stand
+type the forest side scores lowest; time since harvest pulls scores down as
+the cut regrows. Together, position, forest type and years since harvest
+explain `r sprintf("%.0f%%", 100 * hab$r.squared)` of the variation in
+$w_i$. None of those covariates was in the model: the site quantity was found
+from the species. Its correlation with the number of visits is
+`r fmt(r_vis_w)`, against `r fmt(r_vis_naive)` for the site score of the model
+without detection, so it is a position on a habitat gradient rather than a
+record of effort.
+
+The species slopes from the quick fit to the `ever` table, the same model
+without detection, correlate with these loadings at `r fmt(r_lam)`. For the
+*direction* each species takes on the gradient, ignoring detection does little
+harm here; for *how common* each species is, it does the damage shown above.
+The reason is that detection which is the same everywhere for a species
+scales that species' row of the table down, which moves its intercept a lot
+and its pattern across sites less. Detection that changes along the gradient
+(a bird easier to hear in open regrowth than in closed forest) would bias the
+loadings as well, and these fits, with one $p_k$ per species, cannot see it.
+
+## A sparse community: the Monongahela cameras
+
+The camera table is the other extreme. Most species were photographed at a
+handful of the 129 cameras, and per camera-day detection probabilities are
+low, so most species carry almost no information about their own $\psi_k$ and
+$p_k$.
+
+```{r}
+#| label: mono-load
+fm <- cache$fits[["clipp_2024_monongahela_comm"]]
+fm$conv
+fm$comm_ms[, .(parameter = param, median = med, lower = lo, upper = hi, Rhat = rhat)]
+mo <- as.data.table(fm$species)
+mo[, `:=`(psi = plogis(ms_beta), psi_lo = plogis(ms_beta_lo), psi_hi = plogis(ms_beta_hi),
+          np_psi = plogis(np_beta), p = plogis(ms_alpha))]
+mo[, boundary := np_psi > 0.99 | is.na(np_beta_se) | np_beta_se > 10]
+```
+
+```{r}
+#| label: mono-stats
+#| echo: false
+n_single <- sum(mo$n_sites_detected == 1)
+n_bound <- sum(mo$boundary)
+sing <- mo[n_sites_detected == 1]
+```
+
+`r n_single` of the `r nrow(mo)` species were detected at exactly one camera,
+and `r n_bound` of the single-species fits end at the boundary or with a
+standard error above 10 on the logit scale, typically "present at every
+camera and almost never photographed". The community model gives each of
+the single-camera species nearly the same answer, an occupancy around
+`r fmt(median(sing$psi))` (median interval `r fmt(median(sing$psi_lo))` to
+`r fmt(median(sing$psi_hi))`), about `r round(median(sing$psi) * fm$n_sites)` cameras in `r fm$n_sites` against the one at which
+each was seen. That number is what the community distribution, and the low
+per-day detection of the species that were seen often, say about a species
+whose own data say almost nothing.
+
+```{r}
+#| label: fig-shrink-mono
+#| fig-cap: "Occupancy with no pooling against occupancy under the community model, Monongahela cameras, with the community model's 95% credible intervals. Open points are single-species fits at the boundary. Hover for the species."
+mo[, label := sprintf("%s\ndetected at %d cameras (%d camera-days)\nalone: psi %.2f%s\ncommunity: psi %.2f [%.2f, %.2f], p %.3f",
+                      vernacularName, n_sites_detected, n_detections, np_psi,
+                      ifelse(boundary, " (boundary)", ""), psi, psi_lo, psi_hi, p)]
+g <- ggplot(mo, aes(psi, np_psi, text = label)) +
+  geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
+  geom_errorbarh(aes(xmin = psi_lo, xmax = psi_hi), height = 0, colour = "#1e8a5a", alpha = 0.4, linewidth = 0.4) +
+  geom_point(aes(fill = boundary, size = n_sites_detected), shape = 21, colour = "#1e8a5a") +
+  scale_fill_manual(values = c(`FALSE` = "#1e8a5a", `TRUE` = "white"), guide = "none") +
+  scale_size_area(max_size = 7, guide = "none") +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(x = "Occupancy, community model (msPGOcc)", y = "Occupancy, each species alone (occu)")
+plotly::ggplotly(g, tooltip = "text", width = 620, height = 560) |>
+  plotly::config(displayModeBar = FALSE)
+```
+
+That is the honest reading of shrinkage. Treating species as draws from a
+community turns an impossible single-species fit into a finite estimate, but
+for a species seen once the estimate is mostly the community, and its
+interval says so. The camera table also shows the price in computing. At
+the default chain length both spOccupancy fits had parameters with
+$\hat R$ above 1.1 and were rerun with chains five times as long (about
+`r fmt(fm$conv$minutes[1], 1)` minutes each); the community model then
+converges (largest $\hat R$ `r fmt(fm$conv$max_rhat[1])`), the latent-factor
+model does not (`r fmt(fm$conv$max_rhat[2])`).
+
+The site side is weaker still. In the model without detection the camera
+variance is `r fmt(fm$rasch_var[["site"]], 3)` on the logit scale, against
+`r fmt(fm$rasch_var[["species"]])` for species: with two species detected per
+camera on average there is almost nothing from which to place a camera on a
+gradient, and the latent-factor loadings (not shown) have intervals that span
+zero for every species but the anchor, white-tailed deer. With this little
+information per camera, the site side of the model is not estimable, and
+only the species side is.
+
+## What the correspondence buys, and where it stops
+
+- **It is exact on the latent state.** The occupancy part of the
+  latent-factor community model, $\text{logit}\,\psi_{ik} = \beta_k + \lambda_k w_i$ with
+  $\beta_k$ drawn from a community normal, is a model with one latent quantity
+  per site and random species parameters. With the same loading for every
+  species it is the crossed random-effects model fit above to `ever`.
+- **The standard community model has no site quantity.** The model of
+  @dorazio2005, `msPGOcc()` here, has random species but treats sites as
+  exchangeable apart from covariates. Saying "a community occupancy model is a
+  model of sites and species" is true of the latent-factor version; for the
+  standard one, the site side is whatever covariates are put on $\psi$.
+- **Detection is an extra layer, and it is the one that matters for
+  "how common".** Fitting the site-and-species model to the detections instead
+  of the latent state estimates $\psi_k$ times the chance of detection, and
+  ranks species partly by how detectable they are. A site score from the same
+  fit is partly a record of effort.
+- **The rest of the model carries over.** More than one latent variable is
+  `n.factors > 1`. Species traits on $\beta_k$ (body mass, diet; see
+  `eco_traits()`) explain why species differ instead of only how much. Site
+  covariates on $\psi$ explain $w_i$ instead of discovering it.
+
+The fits here are deliberately bare: intercept-only detection, no spatial
+structure (the boreal locations come in transects of three, recorded in
+`cluster_id`, and neighbouring locations share birds), and default priors.
+Each is a line in the spOccupancy call.
+
+## Reproducibility
+
+Source: [`site/vignettes/species_items.qmd`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/species_items.qmd)
+and [`species_items_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/species_items_compute.R)
+in the eco repository. The spOccupancy and mirt fits were run on
+`r cache$date_run` (3 chains of `r cache$mcmc$n.samples` iterations, `r cache$mcmc$n.burn`
+burn-in, thinning `r cache$mcmc$n.thin`, rerun five times longer where any
+$\hat R$ exceeded 1.1); the model without detection and the single-species
+fits run live on this page. Data were read with `eco_set_version(12)`, so a
+later release of the warehouse does not change the page.
+
+```{r}
+#| label: versions
+#| echo: false
+v <- eco_version()
+cat(sprintf("eco version %s (Redivis eco %s, eco_meta %s, released %s)\n",
+            v$eco_version, v$eco, v$eco_meta, substr(v$released, 1, 10)))
+cat(sprintf("R %s; eco %s; lme4 %s; unmarked %s\n",
+            getRversion(), packageVersion("eco"), packageVersion("lme4"), packageVersion("unmarked")))
+cat("cached fits:", paste(names(cache$versions), cache$versions, collapse = "; "), "\n")
+```
+
+## References
+
+::: {#refs}
+:::
