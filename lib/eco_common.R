@@ -29,7 +29,7 @@ GBIF_DIR <- file.path(ECO_ROOT, ".cache", "gbif")
 DICT_FILE <- file.path(ECO_ROOT, "dictionary", "dictionary_auto.csv")
 TAGS_FILE <- file.path(ECO_ROOT, "tags", "tags_auto.csv")
 for (d in c(OUT_DIR, RAW_DIR, GBIF_DIR)) dir.create(d, showWarnings = FALSE, recursive = TRUE)
-UA <- "eco-irw-builder/0.1 (ben.domingue@gmail.com)"
+UA <- "eco-irw-builder/0.2 (research; https://github.com/ben-domingue/eco)"
 
 # ---------------------------------------------------------------------------
 # Sources
