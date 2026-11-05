@@ -80,7 +80,8 @@ def dataset_description() -> str:
         "prefixed unit_ / period_ / obs_ / taxon_ by the level at which they are "
         "constant. A row exists iff a survey happened; y = 0 is surveyed and not "
         "detected. Each core table <t> has the side table <t>__taxa (scientific name, "
-        "GBIF key) and, where relevant, <t>__periods, <t>__units and <t>__traps. "
+        "GBIF key) and, where relevant, <t>__periods, <t>__units, <t>__traps and "
+        "<t>__survey_taxa. "
         f"Standard: {', '.join(versions)}, {STANDARD_URL}. Sources are openly licensed "
         "deposits; each table's description gives its citation and licence.")
 
