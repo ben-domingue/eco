@@ -3,8 +3,8 @@
 Two kinds: a real shipped table, kept as a fixture (fixtures/, Kery's crossbill
 dynamic-occupancy table as built for eco v1.1), passes; and each check fires on a
 fixture built by breaking one thing. The corpus itself lives on Redivis, not in
-git (#88): the upload gate validates every table, and the scheduled Redivis check
-(validate/validate_redivis.py) re-validates the corpus. Run from the repo root:
+git (#88): the upload gate validates every table, and after a validator change
+validate/validate_redivis.py re-validates the corpus on Redivis. Run from the repo root:
 
     python3 -m pytest eco_validate/tests -q
 """

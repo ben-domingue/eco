@@ -186,7 +186,7 @@ What building 30 tables established, beyond the round trips:
 | `site/` | The Quarto website, rendered by GitHub Pages on push |
 | `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
 | `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |
-| `validate/report.csv`, `validate/validate_redivis.py` | One eco-validate verdict per table, the report the site reads; written by the uploader and by a scheduled re-validation of the tables on Redivis |
+| `validate/report.csv`, `validate/validate_redivis.py` | One eco-validate verdict per table, the report the site reads; written by the uploader, and by a re-validation of the tables on Redivis after a validator change |
 | `upload/red_up_eco.py` | Ships `output/` to Redivis `datapages.eco` (reference `eco:4j5q`) with IRW's `red_up`: true replace, row counts verified, descriptions from `__dataset.json`; draft only |
 | `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built` / held with a reason) |
 | `analysis/*.R`, `analysis/build_report.py` | The illustrative figures and the assembly of `report.html` from the repo's own files |

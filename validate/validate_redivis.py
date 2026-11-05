@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Re-validate the eco corpus on Redivis and update validate/report.csv (#88).
 
-Tables live on Redivis, not in git, so the corpus check reads Redivis, as IRW's
-scheduled jobs do. For each core table in the chosen version of `datapages.eco`
+Tables live on Redivis, not in git, and the upload is the gate, so this is
+needed only after a change to eco_validate/ that could flip the verdict on a
+table already shipped. For each core table in the chosen version of `datapages.eco`
 that has an output/<t>__dataset.json in the repo, the core and its side tables
 are downloaded to a temporary directory, validated with eco-validate --irw
 beside the tracked __dataset.json, and deleted. Nothing is read from output/
 except the __dataset.json files.
 
-The draft (`next`) is checked when one exists, so a bad table is flagged before
-Ben publishes it; otherwise the latest released version. A table over
+The draft (`next`) is checked when one exists, otherwise the latest released
+version (--released forces that). A table over
 --max-rows (default five million, the size at which the standard splits a table
 into period parts) is not downloaded: its row is kept from the last report,
 which the uploader wrote when the table passed the upload gate.

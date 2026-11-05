@@ -22,14 +22,14 @@ pipeline; eco does not, and one repo means one place to look.
 | `dictionary/dictionary_auto.csv` | One description / origin / licence row per table (`stage_dict_row`). The biblio. |
 | `tags/tags_auto.csv`, `tags/tags_human.csv`, `tags/vocab.md` | One row of filterable attributes per table: automated (`stage_tag_row`, rater `claude-auto`) and human (initials); `status` carries `do_not_publish`. The vocabulary. |
 | `metadata/` | **The metadata pipeline**: numbered stages, `run_pipeline.sh` is the run order. `metadata.csv` (computed from each `__dataset.json`), `biblio.csv` (dictionary + `__dataset.json`), `tags.csv` (auto with human cells winning, vocabulary enforced), `status.json` + `status_history.tsv`. What the site reads; `upload_meta.py` ships them to `eco_meta`. |
-| `validate/` | `report.csv`, one eco-validate `--irw` verdict per table, which the site reads. Rows are written where a table is validated (`report.py`): by the uploader for what it ships, and by `validate_redivis.py`, which re-validates the tables on Redivis (scheduled in `validate-redivis.yml`). |
+| `validate/` | `report.csv`, one eco-validate `--irw` verdict per table, which the site reads. Rows are written where a table is validated (`report.py`): by the uploader for what it ships, and by `validate_redivis.py`, which re-validates the tables on Redivis after a validator change (`validate-redivis.yml`, run by hand). |
 | `upload/red_up_eco.py` | The one uploader, a wrapper on IRW's `red_up`, and **the gate on a table**, as `red_up` is in IRW: eco-validate `--irw`, refuses a core or side table whose md5 is not the build its `__dataset.json` records, true replace, row counts verified, descriptions from `__dataset.json`, refuses `do_not_publish`, writes the shipped tables' `validate/report.csv` rows. Draft only. |
 | `releases/` | **The release ledger**: `manifest.csv` (eco version -> Redivis versions, written by `manifest.py` from Redivis' history, append-only), `table_changes.csv`, `withdrawals.csv`, `data_notes.csv`. Rendered by `site/corrections.qmd` and `site/data_notes.qmd`. |
 | `tools/withdrawals/` | `withdraw_table.py` (dry run by default) removes a shipped table from the Redivis draft and `ledger.py` records it. |
 | `queue/` | `candidates.csv`: inspected deposits, their `status` (`available`, `built: <table>`, `held: ...`, `blocked: ...`, `deferred: ...`) and `claimed_by`. `human_review.csv`: what was held and why. |
 | `BATCH_LOG.md` | One entry per conversion batch: built, held, what strained the standard. |
 | `site/` | Quarto website, published to GitHub Pages by `.github/workflows/site.yml`; pages read the repo's tracked files (`metadata/`, `validate/report.csv`, `__dataset.json`) at render time, and the homepage specimens and vignettes fetch tables from Redivis with the eco package. |
-| `.github/workflows/` | `tests.yml`: on every PR and push, the validator's tests (fixtures, one real table), `tools/check_coverage.py` (every `__dataset.json` records a `__taxa` side table and has dictionary, tags and metadata rows), `tools/check_prose_numbers.py` and an R parse check; offline by design, and no table is validated (#88). `validate-redivis.yml`: Mondays and on demand, re-validates every table in the Redivis draft (or latest release) and opens a PR with `validate/report.csv`. `release-eco-validate.yml`: an `eco-validate-vX.Y.Z` tag builds the wheel and attaches it to a GitHub release. `site.yml`: the website, rendered nightly when main changed and on demand, never on push. |
+| `.github/workflows/` | `tests.yml`: on every PR and push, the validator's tests (fixtures, one real table), `tools/check_coverage.py` (every `__dataset.json` records a `__taxa` side table and has dictionary, tags and metadata rows), `tools/check_prose_numbers.py` and an R parse check; offline by design, and no table is validated (#88). `validate-redivis.yml`: by hand, after a change to `eco_validate/`, re-validates every table in the Redivis draft (or latest release) and opens a PR with `validate/report.csv`. `release-eco-validate.yml`: an `eco-validate-vX.Y.Z` tag builds the wheel and attaches it to a GitHub release. `site.yml`: the website, rendered nightly when main changed and on demand, never on push. |
 | `discovery/`, `discovery_log.csv`, `discovery_summary.md` | The repository search that fed the queue. |
 | `analysis/`, `report.html`, `roundtrip_report.md` | The exploratory study's figures and reports. |
 
@@ -61,8 +61,7 @@ of each dataset each eco version names; the release checklist is `upload/README.
 5. **Shipped**: `upload/red_up_eco.py` to the draft, which writes the table's
    `validate/report.csv` row; `BATCH_LOG.md` gets its entry; the queue row becomes
    `built: <table>`; commit the script, `__dataset.json`, staging rows and report
-   (never the CSVs) with the issue number. `validate-redivis.yml` re-checks the
-   draft before Ben publishes.
+   (never the CSVs) with the issue number.
 6. **Published**: Ben releases the Redivis version; `releases/manifest.py` appends the
    eco version; any correction to an already-published table gets its
    `releases/table_changes.csv` row. The site rebuilds on push.

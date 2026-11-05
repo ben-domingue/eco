@@ -101,7 +101,8 @@ python3 -m eco_validate.cli output/<table>.csv -v --irw   # each table you built
 Validate the tables you built, nothing else. Tables live on Redivis, not in git
 (#88), so there is no local corpus to check: the uploader is the gate, CI
 (`tests.yml`) runs the validator's tests, coverage and prose numbers on every
-push, and `validate-redivis.yml` re-validates the corpus on Redivis. Run
+push, and after a validator change `validate-redivis.yml` re-validates the corpus
+on Redivis. Run
 `pytest eco_validate/tests -q` yourself only when the batch changed shared code
 (`lib/`, `Rpkg/R/`, `converters/`, `eco_validate/`, `tools/` or `metadata/`).
 When PRs are stacked, do not re-run anything after merging one into the next; CI

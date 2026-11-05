@@ -2,24 +2,21 @@
 #
 # Tables live on Redivis, not in git, as in IRW. The gate on a table is the
 # upload (upload/red_up_eco.py runs eco-validate --irw and writes the table's
-# report row). This job is the second look: it downloads every table in the
-# eco draft (or the latest release when there is no draft), validates it beside
-# its tracked __dataset.json, and proposes the refreshed report as a pull
-# request, the way IRW's metadata-pipeline.yml proposes its metadata. Checking
-# the draft means a bad table is flagged before Ben publishes it.
+# report row), so routine work never needs this job. It exists for one case: a
+# change to eco_validate/ that could flip the verdict on a table already
+# shipped. It downloads every table in the eco draft (or the latest release when
+# there is no draft, or with `released`), validates it beside its tracked
+# __dataset.json, and proposes the refreshed report as a pull request.
 #
-# Runs Mondays, and by hand (Actions > validate-redivis > Run workflow), for
-# example after a change to eco_validate/ that could flip the verdict on a
-# shipped table. Tables over five million rows are not downloaded; their rows
-# are kept from the upload gate. Nothing here publishes.
+# By hand only (Actions > validate-redivis > Run workflow), after a validator
+# change; no schedule. Tables over five million rows are not downloaded; their
+# rows are kept from the upload gate. Nothing here publishes.
 #
 # Needs the REDIVIS_API_TOKEN repository secret to read the draft (the released
 # version reads anonymously).
 name: validate-redivis
 
 on:
-  schedule:
-    - cron: "0 13 * * 1"
   workflow_dispatch:
     inputs:
       released:

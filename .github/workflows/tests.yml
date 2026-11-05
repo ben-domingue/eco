@@ -3,8 +3,8 @@
 # dictionary, tags and metadata rows), do numbers in prose match, and do the R
 # scripts parse? No table is validated here: tables live on Redivis, not in git
 # (#88). As in IRW, the gate on a table is the upload (upload/red_up_eco.py runs
-# eco-validate and refuses a table it blocks), and validate-redivis.yml
-# re-validates the corpus on Redivis on a schedule.
+# eco-validate and refuses a table it blocks); after a validator change,
+# validate-redivis.yml re-validates the corpus on Redivis, by hand.
 #
 # Deliberately offline: no Redivis, no deposit downloads, no GBIF, no
 # credentials. A job that depends on a third party's uptime teaches people to
