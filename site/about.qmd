@@ -144,11 +144,14 @@ in an [issue](https://github.com/ben-domingue/eco/issues); the
 
 ## People and code
 
-The project is run by [Ben Domingue](https://github.com/ben-domingue) at
-Stanford, as an offshoot of the Item Response Warehouse.
-[Milan Gorislavets](https://github.com/themilan1337) contributes tables, starting with
-the North American Breeding Bird Survey
-([#24](https://github.com/ben-domingue/eco/issues/24)). The code, the
+The code, the
 standard and this site are at
 [github.com/ben-domingue/eco](https://github.com/ben-domingue/eco). Questions
 and claims on candidates go through the repository's issues.
+
+The project is run by [Ben Domingue](https://github.com/ben-domingue) at
+Stanford, as an offshoot of the Item Response Warehouse.
+
+Additional contributors include:
+
+- [Milan Gorislavets](https://github.com/themilan1337)
