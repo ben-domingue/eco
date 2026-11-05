@@ -26,8 +26,11 @@
 #         (taxonInclusion = recorded: every visitor was identified, and the 14 sheets are the
 #         taxa ever detected). date = 2021-01-01 + JulianDay - 1 (exact). obs_temp_c,
 #         obs_bloom_richness (per garden x plant visit), obs_lux, obs_start_time (per flower).
-#         unit_lat, unit_lon (as published; no taxon is flagged under E7: the genus- and
-#         family-level groups and the named species are not CR/EN/VU), unit_urban_distance_m,
+#         unit_lat, unit_lon coarsened to the centre of a 0.01-degree cell (about 1 km), with
+#         unit_coord_uncertainty_m: the gardens are private residential yards and the source gives
+#         them to 1e-10 degree, i.e. a house. No taxon is flagged under E7 (the genus- and
+#         family-level groups and the named species are not CR/EN/VU); this is a privacy coarsening
+#         pending Ben's ruling on residential sites (E7.4). unit_urban_distance_m,
 #         unit_garden_area_m2. surveyEvidence = deposited_matrix (blank vs 0).
 # Not shipped: model output; nothing else.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -75,7 +78,9 @@ long <- rbindlist(lapply(names(plants), function(pl) {
   out[, c("JulianDay", "Temperature", "BloomRichness", "flower") := NULL]
   out
 }))
-long <- merge(long, sc[, .(Site, unit_lat = Latitude, unit_lon = Longitude, unit_urban_distance_m = UrbanDistance,
+cc <- coarsen_coords(sc$Latitude, sc$Longitude, cell = 0.01)
+sc[, `:=`(c_lat = cc$lat, c_lon = cc$lon, c_unc = cc$uncertainty_m)]
+long <- merge(long, sc[, .(Site, unit_lat = c_lat, unit_lon = c_lon, unit_coord_uncertainty_m = c_unc, unit_urban_distance_m = UrbanDistance,
                            unit_garden_area_m2 = GardenArea)], by = "Site")
 setnames(long, "Site", "unit"); long[, unit := as.integer(unit)]
 long <- order_eco(long)
@@ -108,9 +113,9 @@ dataset <- list(
   responseType = "detection", unitKind = "site",
   closure = "closed", closureNote = "one season; the two plant species were watched on different days at the 20 gardens with both, and the authors treat all ten watches as replicates of garden occupancy",
   occasionKind = c("method", "spatial"), taxonInclusion = "recorded",
-  geographicCoverage = "greater Richmond, Virginia, USA (garden coordinates as published)",
+  geographicCoverage = "greater Richmond, Virginia, USA (garden coordinates coarsened to 0.01 degree)",
   temporalCoverage = "2021-06/2021-07",
-  coordinatesCoarsened = list(value = FALSE, method = "Garden coordinates shipped as published (WGS84); no taxon is flagged under E7 (CR/EN/VU)."),
+  coordinatesCoarsened = list(value = TRUE, method = "Private residential gardens: coordinates (deposited to 1e-10 degree) moved to the centre of a 0.01-degree cell (about 1 km); unit_coord_uncertainty_m gives the radius. No taxon is flagged under E7; this protects the households."),
   crs = "EPSG:4326",
   notShipped = list(model_output = "JAGS occupancy and richness estimates"),
   notes = "Taxa are those detected at least once (the deposit's 14 sheets); four are genus, family or superfamily groups. Wasps, ErHo, MaLi and HaHa were seen only on P. muticum, PiRa, AtCa, Megachile and EpBo only on L. spicata.")
@@ -126,5 +131,5 @@ stage_dict_row(TABLE,
   source_via = "Dryad")
 stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "Community occupancy (single season)",
   sampling_protocol = "visual_survey", design = "Single-season (2 plant species x 5 inflorescence watches)",
-  realm = "Terrestrial", country = "USA", coordinates = "As published",
+  realm = "Terrestrial", country = "USA", coordinates = "Coarsened (0.01 deg; private residential gardens)",
   notes = "Urban pollinators; plant species as a method on occasions.")
