@@ -17,7 +17,6 @@ on:
       - "site/**"
       - "Rpkg/**"
       - "standard.md"
-      - "analysis/figures.json"
       - "metadata/**"
       - "releases/**"
       - "validate/report.csv"

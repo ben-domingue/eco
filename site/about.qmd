@@ -45,8 +45,8 @@ surveyed, which matter to no likelihood but need a side table if the sampling
 frame matters.
 
 **Real deposits behave.** The corpus now holds `r s$n_tables` tables from
-`r s$n_deposits` public deposits and `r s$n_packages` textbook datasets, built
-the way the IRW builds tables. The first twenty deposits, from Dryad, Zenodo,
+`r s$n_deposits` public deposits and `r s$n_packages` textbook datasets, one
+script per source. The first twenty deposits, from Dryad, Zenodo,
 figshare, Dataverse and ScienceBase (30 tables with the six package datasets
 then included), settled the questions below. The explicit-zero rule was
 never ambiguous where the source deposited a matrix: blank meant "not

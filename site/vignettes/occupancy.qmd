@@ -211,20 +211,6 @@ pinned the share of all-zero sites that must be occupied follows. With $J = 1$
 there is no within-site pattern, the likelihood depends on $\psi p$ only, and
 the model is unidentified.
 
-::: {.callout-tip title="A psychometric reading"}
-This is a two-class latent class model with $J$ binary items. Class
-membership $z_i$ has prevalence $\psi$; items are conditionally independent
-given the class (local independence); and one class has every item-endorsement
-probability fixed at zero. That constraint is what distinguishes occupancy
-from a general two-class LCA, and it is also what makes the model identified
-with so few items: with $p$ constant across surveys the $J = 3$ history has
-three free cells and the model two parameters, leaving one degree of freedom
-to test. The survey occasions are the items, the sites are the respondents,
-and $\psi$ is the mixing proportion. Kéry and Royle's chapter 11 community
-model, which gives every species its own $\psi$ and $p$ drawn from a common
-distribution, is then a random-item version of the same thing.
-:::
-
 ## The data
 
 The table is `kery_2008_willowtit_occ`: the Swiss breeding bird survey's
@@ -686,10 +672,9 @@ eco carries a table for each.
   model of chapter 16 (`unmarked::colext()`), which is also the model that
   relaxes closure. `kery_2010_crossbill_dynocc` is the MHB crossbill table
   over nine years.
-- **Species as random items.** Give every species in a community table its
+- **Species as random effects.** Give every species in a community table its
   own $(\psi_k, p_k)$ drawn from a shared distribution and you have the
-  community occupancy model of chapter 11, a random-item IRT model with sites
-  as respondents. `galvez_2021_araucania_comm` and
+  community occupancy model of chapter 11. `galvez_2021_araucania_comm` and
   `hamer_2024_hungary_amph_comm` are community tables with one period and
   several surveys; `eco_to_array()` keeps the species dimension that
   `eco_to_unmarked()` refuses.

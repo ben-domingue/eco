@@ -18,8 +18,7 @@ convert another public deposit and see what breaks. There are
 `r n("available")` inspected candidates waiting, `r n("claimed")` claimed,
 `r n("built")` built and `r n("held")` held back (an access wall, no licence,
 or a design the standard does not yet cover). Each conversion is one R script, one dictionary row and
-one tags row, modelled directly on how the Item Response Warehouse builds its
-tables.
+one tags row.
 
 ## How a table is built
 

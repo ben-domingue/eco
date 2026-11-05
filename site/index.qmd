@@ -6,7 +6,13 @@ toc: false
 ```{r}
 #| label: stats
 s <- jsonlite::read_json("data/site_stats.json")
-fmt <- function(x) format(x, big.mark = ",")
+# 6214 -> 6.2K, 205421 -> 205K, 173512308 -> 174M
+km <- function(x) {
+  if (x < 1e3) return(format(x))
+  u <- if (x >= 1e6) c(1e6, "M") else c(1e3, "K")
+  v <- x / as.numeric(u[1])
+  paste0(if (v < 10) format(round(v, 1), nsmall = 1) else format(round(v)), u[2])
+}
 ```
 
 ::: {.eco-hero}
@@ -16,80 +22,69 @@ fmt <- function(x) format(x, big.mark = ",")
 
 <p class="lead">
 Occupancy surveys, repeated counts, capture histories and community
-detection matrices share a structure: a unit carries a latent state that is
-observed imperfectly across repeated probes. **eco** asks whether the
-<a href="https://itemresponsewarehouse.org">Item Response Warehouse</a>'s
-one-long-table approach works for that structure, and builds real tables to
-find out.
+detection matrices share a structure: a site or an animal carries a latent
+state that is observed imperfectly across repeated surveys. **eco** puts
+public deposits of all of these into one long table format, checks each
+against a written standard, and versions the result so an analysis can be
+rerun on exactly the data it used.
 </p>
 :::
 
 ::: {.eco-stats}
-<div class="stat"><div class="n">`r s$n_tables`</div><div class="l">tables built from public deposits</div></div>
-<div class="stat"><div class="n">`r fmt(s$n_rows)`</div><div class="l">survey observations</div></div>
-<div class="stat"><div class="n">`r fmt(s$n_units)`</div><div class="l">sites and individuals</div></div>
-<div class="stat"><div class="n">`r s$n_families`</div><div class="l">model families</div></div>
-<div class="stat"><div class="n">`r s$n_valid` / `r s$n_tables`</div><div class="l">pass both validators</div></div>
+<div class="stat"><div class="n">`r s$n_tables`</div><div class="l">tables</div></div>
+<div class="stat"><div class="n">`r s$n_deposits + s$n_packages`</div><div class="l">public sources</div></div>
+<div class="stat"><div class="n">`r km(s$n_species)`</div><div class="l">species</div></div>
+<div class="stat"><div class="n">`r km(s$n_units)`</div><div class="l">sites and individual animals</div></div>
+<div class="stat"><div class="n">`r km(s$n_rows)`</div><div class="l">survey observations</div></div>
 :::
 
 <p class="eco-release">Current release: <strong>eco v`r s$eco_version`</strong> (Redivis `eco` `r s$release_redivis`, `r s$release_date`). Tables built since then are in the repository and the Redivis draft until the next release. <a href="corrections.html">Releases and corrections</a>.</p>
 
 ## The idea in one table
 
-Every table has the IRW's three-column core under local names, plus two time
-indices that ecologists will recognise as primary and secondary sampling
-periods.
+Every table has the same three-column core, plus the two time indices of a
+robust design: primary periods and the secondary surveys within them.
 
-| Column | What it holds | IRW name |
-|---|---|---|
-| `unit` | the thing carrying the latent state: a site, camera, transect, or an individual animal | `id` |
-| `taxon` | the species probed for, even when there is only one | `item` |
-| `y` | the observation: 0/1 detection, a count, or a coded state | `resp` |
-| `period` | primary period, across which the latent state may change | occasion column |
-| `occasion` | replicate survey within a period, across which closure is assumed | occasion column |
+| Column | What it holds |
+|---|---|
+| `unit` | the thing carrying the latent state: a site, camera, transect, or an individual animal |
+| `taxon` | the species surveyed for, even when there is only one |
+| `y` | the observation: 0/1 detection, a count, or a coded state |
+| `period` | primary period, across which the latent state may change |
+| `occasion` | replicate survey within a period, across which closure is assumed |
 
 Covariates are prefixed by the level at which they are constant (`unit_`,
 `period_` for unit by period, `obs_` for the survey row, `taxon_` for the
 species), which is exactly the three-level split that `unmarked`,
 `spOccupancy` and the AHM BUGS code expect. A row exists if and only if a
-survey happened; a missing row is never a zero. A one-line rename gives the
-IRW view, and that view validates under IRW v1.0 unchanged.
+survey happened; a missing row is never a zero. One function call turns a
+table into an `unmarked` frame, a detection array or a capture history.
 
 ::: {.eco-cards}
 <div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>v1.1-draft: ten numbered clauses covering the core table, the explicit-zero rule and its evidence, covariate levels, side tables, coordinates, scope and storage, plus the intake policy.</p></div>
 <div class="card"><h3><a href="r.html">Read it from R</a></h3><p>No account needed: <code>eco_filter()</code>, <code>eco_fetch()</code>, <code>eco_to_unmarked()</code> over Redivis' public CSV endpoint, with version pinning.</p></div>
 <div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>`r s$n_tables` tables from `r s$n_deposits` public deposits and `r s$n_packages` textbook datasets: camera traps, point counts, eDNA, distance sampling, mist nets and live traps, every one validated and released on Redivis.</p></div>
-<div class="card"><h3><a href="firstlook.html">A first look</a></h3><p>Species behave like items: prevalence against detectability across three community tables, what an occupancy model adds, effort as a covariate, and a capture history.</p></div>
-<div class="card"><h3><a href="vignettes/index.html">Fit a model</a></h3><p>Worked analyses on eco tables: single-species site occupancy with <code>unmarked</code>, with a simulator for building intuition about ψ and p.</p></div>
+<div class="card"><h3><a href="vignettes/index.html">Fit a model</a></h3><p>Worked analyses on eco tables: single-species site occupancy with <code>unmarked</code>, a simulator for building intuition about ψ and p, and the same model fit to every occupancy table in the corpus.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
-<div class="card"><h3><a href="about.html">Why this might work</a></h3><p>A community occupancy model is a random-item IRT model with species as items. The analogy, the evidence, and the open decisions.</p></div>
+<div class="card"><h3><a href="about.html">About the project</a></h3><p>Where the idea came from, what building the corpus showed, the design decisions and how they were ruled, and what an ecologist could tell us.</p></div>
 :::
 
 ## Where things stand
 
-The work ran in four passes.
+The [standard](standard.html) is at v1.1-draft, written against the data
+structures of `unmarked`, `marked`, `spOccupancy` and the AHM code. Six
+datasets bundled with R packages convert to it and back with identical arrays
+and identical model estimates. The corpus is now `r s$n_tables` tables covering
+single- and multi-season occupancy, N-mixture and other repeated counts,
+community surveys, capture-recapture (including spatial), removal and
+double-observer counts, distance sampling and multi-scale eDNA; each stretch of the format is declared in the table's metadata rather
+than implied by its columns. A validator that cites the standard's clauses
+gates every table, CI runs it on every change, and each release is recorded
+on [Releases and corrections](corrections.html).
 
-1. A [standard](standard.html) was drafted against IRW v1.0 and the data
-   structures of `unmarked`, `marked`, `spOccupancy` and the AHM code.
-2. Six datasets bundled with R packages were converted to it and back, with
-   identical arrays and identical model estimates on either side.
-3. Six real deposits from Dryad, Zenodo, Dataverse and ScienceBase were run
-   through an IRW-style pipeline, to see the standard meet messy data. The
-   open design decisions were then ruled on and the standard frozen as
-   v1.0-draft; the [about](about.html) page records each ruling.
-4. The pipeline was run as a pipeline: a validator that cites clauses, CI
-   that runs it on every change, a metadata layer the site and the R package
-   read, and a release ledger. Five further batches took the corpus to
-   `r s$n_tables` tables across `r s$n_families` model families, including the
-   first spatial capture-recapture, distance-sampling, double-observer and
-   eDNA multi-scale tables, each of which stretches the format in a declared
-   way.
-
-Every table passes both validators. `r s$n_below_floor` of the `r s$n_tables`
-are below the sample floor and say so; `r s$n_experimental` are tagged
-experimental and may be restructured between versions. What is not yet done:
-the queue holds more inspected candidates than have been built, citations and
-per-table landing pages are planned but not built, and nothing has been
-fitted across the corpus beyond the [first look](firstlook.html).
+`r s$n_below_floor` of the `r s$n_tables` tables are below the sample floor
+and say so; `r s$n_experimental` are tagged experimental and may be
+restructured between versions. The queue of inspected candidates is longer
+than the corpus, and per-table landing pages are planned but not built.
 
 *Tables last built `r s$built`.*

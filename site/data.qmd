@@ -29,8 +29,7 @@ gh <- "https://github.com/ben-domingue/eco/blob/main"
 ```
 
 Every table below was built by a script in the repository's `data/`
-directory from a public deposit, validated against the draft standard and
-against the IRW v1.0 validator, and published on Redivis as the dataset
+directory from a public deposit, validated against the draft standard, and published on Redivis as the dataset
 [`datapages.eco`](`r redivis`). Each table ships with a `__taxa`
 side table (taxon resolution via GBIF, plus traits where the source has them),
 a `__periods` side table where there are primary periods, `__units` or
@@ -86,8 +85,6 @@ for (i in seq_len(nrow(d))) {
               r$n_units, r$n_taxa, r$n_periods, r$n_occasions, format(r$n_rows, big.mark = ",")))
   cat(sprintf("| Sample floor | %s |\n", r$sample_floor))
   cat(sprintf("| Survey evidence | `%s` |\n", r$survey_evidence))
-  cat(sprintf("| Validation | eco-validate passes; IRW v1.0 %s%s |\n", r$irw_v1,
-              if (nzchar(r$irw_warnings)) sprintf(" (warnings: %s)", r$irw_warnings) else ""))
   cat(sprintf("| Columns | %s |\n", paste0("`", strsplit(r$columns, ", ")[[1]], "`", collapse = " ")))
   cat(sprintf("| Source | [%s](%s), %s |\n", r$sourceURL, r$sourceURL, r$licence))
   cat(sprintf("| Script | [`data/%s.R`](%s/data/%s.R) |\n", r$table, gh, r$table))
@@ -111,10 +108,7 @@ eco_filter(model_family = "Single-season occupancy") |> head(1) |>
   eco_fetch() |> eco_to_unmarked() |> unmarked::occu(~1 ~1, data = _)
 ```
 
-The `irw` R and Python packages cannot read this dataset: their dataset lists
-are hard-wired to the IRW shards and their readers expect `id`, `item`,
-`resp`. `eco::eco_to_irw()` gives an IRW view of a table when IRW tooling is
-wanted. The standard is still a draft, so names and columns may change between
+The standard is still a draft, so names and columns may change between
 versions; released versions do not. The CSVs in the repository's `output/`
 directory are the same files and can be read directly; rebuild them from
 source with
