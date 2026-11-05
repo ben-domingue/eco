@@ -244,11 +244,14 @@ def seed_authors():
 
 def triaged_keys():
     keys = set()
-    for f in ("discovery_log.csv", "queue/candidates.csv", "queue/human_review.csv"):
+    # built tables (biblio) count as triaged too: batch 22 was built from the backlog itself
+    for f, cols in (("discovery_log.csv", ("doi_or_url",)), ("queue/candidates.csv", ("doi_or_url",)),
+                    ("queue/human_review.csv", ("doi_or_url",)), ("metadata/biblio.csv", ("doi_data", "doi_paper", "source_url"))):
         path = os.path.join(ROOT, f)
         if not os.path.exists(path): continue
         for row in csv.DictReader(open(path, newline="", encoding="utf-8")):
-            v = row.get("doi_or_url") or ""
+          for col in cols:
+            v = row.get(col) or ""
             for part in re.split(r"[;\s]+", v):
                 k = norm_doi(part) or part.strip().lower()
                 if k: keys.add(k)
