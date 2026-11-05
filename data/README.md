@@ -239,6 +239,9 @@ CSVs with `upload/red_up_eco.py`.
 | `hollanders_2022_mfleayi_rdms.R` | multi-state (Bd infection) robust design, three sites, histories padded to study start | Dryad | CC0 |
 | `pilger_2022_gila_fish_count.R` | community counts, electrofishing and seining, area file as sample table, annual | Dryad | CC0 |
 | `crunchant_2020_issa_chimp_occ.R` | single-species detection, cameras, daily occasions from a deposited matrix, coordinates coarsened (EN), Tanzania | Dryad | CC0 |
+| `fraticelli_2026_zakouma_carniv_occ.R` | multi-species detection, cameras, 5-day occasions with an effort table, dry and wet seasons, Chad | Dryad | CC0 |
+| `mungi_2025_india_invplant_binom.R` | binomial_count (replicates with presence of replicates surveyed), 11 invasive plants, 25 km2 cells, five cycles, India | Zenodo | CC BY 4.0 |
+| `davis_2019_kasungu_scr.R` | SCR, multi-session (three annual surveys), partial identity (single-flank ids), two species tables (`davis_2019_kasungu_leopard_scr`, `davis_2019_kasungu_hyaena_scr`), traps centred (VU), Malawi | Zenodo | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
