@@ -102,9 +102,10 @@ the name plus `__taxa` (required), `__periods`, `__units`, `__traps`, `__survey_
 - The converters (`array_to_eco()`, `ch_to_eco()`, `eco_to_irw()`, `eco_check()`, ...) live
   in `Rpkg/R/convert.R`; `converters/eco_standard.R` only sources that file. A change
   there changes the installed package too: run its tests.
-- Scripts are self-contained apart from `lib/eco_common.R`. The table name is the
-  script name: `data/<table>.R` builds `output/<table>.csv`; there is no separate
-  table-to-script map.
+- Scripts are self-contained apart from `lib/eco_common.R`. A script is usually
+  named for its table (`data/<table>.R` builds `output/<table>.csv`), but one script
+  may build several tables; the `script` field of `__dataset.json` (the `script`
+  column of `metadata/metadata.csv`) is the table-to-script map.
 - Reference issues in commit messages (`#10`). Commit only the files you changed;
   other sessions may be building batches in the same tree.
 

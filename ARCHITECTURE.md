@@ -105,7 +105,7 @@ Facts about a table live in exactly one place:
 
 **Never duplicate a fact.** Point at where it lives. The counts in `tags_auto.csv`
 are copied from `__dataset.json` by code, not retyped; the table-to-script map is
-the naming convention, not a file; the validator's clause ids are the standard's
+the `script` field each table's `__dataset.json` records, not a separate file; the validator's clause ids are the standard's
 numbering, not a parallel one.
 
 **Run the check rather than trust the paragraph.** A sentence saying a table passes
