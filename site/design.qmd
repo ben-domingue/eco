@@ -1,0 +1,123 @@
+---
+title: "Design decisions"
+---
+
+```{r}
+#| label: stats
+#| include: false
+s <- jsonlite::read_json("data/site_stats.json")
+```
+
+The [standard](standard.html) records the rules; this page records why they
+are what they are. It covers what converting real deposits showed, the design
+choices the first drafts left open and how each was ruled, and the questions
+an ecologist's view would most help with. The full alternatives considered
+are in the superseded
+[`standard_draft.md`](https://github.com/ben-domingue/eco/blob/main/standard_draft.md).
+
+## What building the corpus showed
+
+**It round-trips.** Six datasets bundled with R packages, covering
+single-season occupancy, N-mixture, removal sampling, CJS, dynamic occupancy
+and a 158-species community dataset, convert to the format, validate, convert
+back to identical arrays, and give identical model estimates in `unmarked`,
+`marked` and NIMBLE on native and reconstructed data. The only things lost are
+covariate values at surveys that never happened and units that were never
+surveyed, which matter to no likelihood but need a side table if the sampling
+frame matters.
+
+**Real deposits behave.** The corpus now holds `r s$n_tables` tables from
+`r s$n_deposits` public deposits and `r s$n_packages` textbook datasets, one
+script per source. The first twenty deposits, from Dryad, Zenodo,
+figshare, Dataverse and ScienceBase (30 tables with the six package datasets
+then included), settled the questions below. The explicit-zero rule was
+never ambiguous where the source deposited a matrix: blank meant "not
+surveyed" and 0 "not detected", and in three deposits the pattern could be
+cross-checked against an effort table. It was ambiguous where the source was a
+record table with no survey list, so every table now declares what its survey
+set rests on (`surveyEvidence`), and three tables carry a set reconstructed by
+a stated rule. Coarsening was needed twice, for an Endangered tapir deposited with exact
+camera coordinates and for a bird community that includes Vulnerable taxa. A
+multi-state loon table fit with `y` as a species-specific state code. A MARK
+input file with losses on capture exercised the `obs_removed` encoding.
+Covariates that were really model outputs were dropped and logged. The
+stretched designs, binned distance sampling, dependent double-observer
+counts, spatial capture-recapture with a trap key, and eDNA with site, sample
+and qPCR replicate as three nested levels, all fit, each with its semantics
+declared in the metadata rather than implied by the columns.
+
+**The data exists and is open.** Dryad alone has on the order of a thousand
+hits for the core search terms, nearly all CC0, usually deposited as the very
+site-by-occasion matrix the standard targets. A seed corpus of 50 to 100
+tables is weeks of work; a harvested corpus of several hundred to a thousand,
+most with 20 to 300 units and 2 to 12 occasions, is months. The corpus is one
+of small tables, so a floor of 100 units would exclude most of ecology.
+
+## The decisions, and how they were ruled
+
+These are the design choices the draft left open. All were ruled on
+2026-11-01, after twelve datasets had been through the pipeline, and the
+standard was frozen as v1.0-draft. The ruling follows each item. Two later
+rulings, made when the eDNA tables arrived, are listed after them.
+
+1. **What plays the role of the item?** The draft puts the species on
+   `taxon`, so a single-species table has one taxon and many occasions and a
+   community table has one row per species per survey. Putting the visit
+   there instead makes every table a unit-by-visit matrix, but does not
+   generalise to multi-species data. *Ruled: species on `taxon`;
+   the visit view is a derived pivot.*
+2. **Dense zeros or a surveys table?** The explicit-zero rule makes community
+   tables large and repeats observation covariates across species. The
+   alternative is Darwin Core's event-core model: a sparse detections table
+   plus a surveys table. The draft recommends dense for self-containment. *Ruled: dense. Each table must also declare what the
+   survey set rests on (`surveyEvidence`), because three of the second batch's
+   deposits were record tables with no survey list and the set had to be
+   inferred.*
+3. **The sample floor** (settled). It is a reported attribute, not an intake
+   rule: every table carries `sample_floor`, `meets` at 30 or more units and 2
+   or more occasions, otherwise `below` with the reason, and users filter on
+   it. Five of the 30 built tables are below it. One has 10 sites with 43
+   species and 20 surveys each, which is why a flat unit floor was the wrong
+   kind of rule for this corpus. Small tables are not sought out, but they
+   ship when they come.
+4. **Sensitive-species coordinates.** Coarsen by rule to a 0.1-degree grid
+   with the uncertainty recorded, or drop coordinates for any flagged taxon.
+   *Ruled: coarsen, never drop; a taxon is flagged by the source, by IUCN
+   CR/EN/VU, or by a cited national red list.*
+5. **How far to stretch.** Double-observer and binned distance sampling fit by
+   using `occasion` for a category rather than a time-ordered replicate;
+   spatial capture-recapture adds a `trap` index. Accept the stretched
+   semantics with a declared unit kind and response type, or keep
+   version 1 to the families where the format is unforced. *Ruled: three lists.
+   Removal, double-observer and binned distance sampling are in as declared
+   stretches with their metadata required; spatial capture-recapture,
+   multi-scale and per-detection designs are experimental.*
+6. **A fourth nesting level.** eDNA designs can have watershed, site, sample
+   and qPCR replicate. *Ruled: three levels in the key (`cluster_id`, `unit`,
+   `occasion`); a fourth is a `unit_<group>` covariate, so the deposit stays
+   one table.*
+7. **Confirmation surveys.** False-positive models pair an uncertain method
+   with a certain one. *Ruled: the certain method is a `unit_` covariate when
+   it sits above the rows, or an `obs_method` value when the two share a
+   level, and `detectionCertainty` in the metadata says which.*
+
+## Open questions
+
+The project would benefit most from an ecologist's view on four things.
+
+- **Species as items.** Is anything lost by putting the species on `taxon`
+  and the visit on `occasion`, for designs beyond the ones built so far?
+- **The stretches.** Distance bins, observer cells and traps each borrow a
+  column whose name says "time". The metadata declares the borrowing. Is that
+  enough, or should those designs have their own columns?
+- **The sample floor.** 30 units and 2 occasions as a reported attribute. Is
+  it the right floor, and is reporting rather than excluding the right use of
+  it?
+- **The survey-evidence rule.** Three tables have survey sets reconstructed
+  from detection spans. Should such tables ship at all, and if so is
+  `surveyEvidence = inferred` a strong enough warning?
+
+Each [table](data.html) links to the script that built it, which states the
+mapping and what was left out. A reader who finds a table wrong should say so
+in an [issue](https://github.com/ben-domingue/eco/issues); the
+[corrections](corrections.html) page says what happens next.

@@ -3,6 +3,8 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
+  resources:
+    - specimen.js
   # Writes data/site_stats.json from the pipeline's staging files so the
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
@@ -40,6 +42,8 @@ website:
         menu:
           - href: standard.qmd
             text: The standard
+          - href: design.qmd
+            text: Design decisions
           - href: contribute.qmd
             text: Converting a deposit
       - href: about.qmd

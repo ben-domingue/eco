@@ -40,25 +40,25 @@ rerun on exactly the data it used.
 
 <p class="eco-release">Current release: <strong>eco v`r s$eco_version`</strong> (Redivis `eco` `r s$release_redivis`, `r s$release_date`). Tables built since then are in the repository and the Redivis draft until the next release. <a href="corrections.html">Releases and corrections</a>.</p>
 
-## The idea in one table
+## What a table looks like
 
-Every table has the same three-column core, plus the two time indices of a
-robust design: primary periods and the secondary surveys within them.
+Each row is one survey of one `unit` (a site, a camera, a sample, an
+individual animal) for one `taxon`, with the observation in `y`: a 0/1
+detection, a count, or a coded state. `period` and `occasion` are the two
+time indices of a robust design, and covariates are prefixed by the level at
+which they are constant (`unit_`, `obs_`, `period_`, `taxon_`). A row exists
+only where a survey happened, so a 0 is a survey that found nothing and a
+missing row is never a zero. These rows are real:
 
-| Column | What it holds |
-|---|---|
-| `unit` | the thing carrying the latent state: a site, camera, transect, or an individual animal |
-| `taxon` | the species surveyed for, even when there is only one |
-| `y` | the observation: 0/1 detection, a count, or a coded state |
-| `period` | primary period, across which the latent state may change |
-| `occasion` | replicate survey within a period, across which closure is assumed |
+::: {#eco-specimen .eco-specimen}
+:::
 
-Covariates are prefixed by the level at which they are constant (`unit_`,
-`period_` for unit by period, `obs_` for the survey row, `taxon_` for the
-species), which is exactly the three-level split that `unmarked`,
-`spOccupancy` and the AHM BUGS code expect. A row exists if and only if a
-survey happened; a missing row is never a zero. One function call turns a
-table into an `unmarked` frame, a detection array or a capture history.
+```{r}
+#| label: specimens
+#| output: asis
+cat('<script>const SPECIMENS = ', paste(readLines("data/specimens.json", warn = FALSE), collapse = "\n"), ';</script>\n')
+cat('<script src="specimen.js"></script>\n')
+```
 
 ::: {.eco-cards}
 <div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>v1.1-draft: ten numbered clauses covering the core table, the explicit-zero rule and its evidence, covariate levels, side tables, coordinates, scope and storage, plus the intake policy.</p></div>
@@ -66,7 +66,8 @@ table into an `unmarked` frame, a detection array or a capture history.
 <div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>`r s$n_tables` tables from `r s$n_deposits` public deposits and `r s$n_packages` textbook datasets: camera traps, point counts, eDNA, distance sampling, mist nets and live traps, every one validated and released on Redivis.</p></div>
 <div class="card"><h3><a href="vignettes/index.html">Fit a model</a></h3><p>Worked analyses on eco tables: single-species site occupancy with <code>unmarked</code>, a simulator for building intuition about ψ and p, and the same model fit to every occupancy table in the corpus.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
-<div class="card"><h3><a href="about.html">About the project</a></h3><p>Where the idea came from, what building the corpus showed, the design decisions and how they were ruled, and what an ecologist could tell us.</p></div>
+<div class="card"><h3><a href="design.html">Design decisions</a></h3><p>What converting real deposits showed, the choices the standard had to make and how each was ruled, and the open questions an ecologist could help with.</p></div>
+<div class="card"><h3><a href="about.html">About eco</a></h3><p>Who it is for, where it came from, how the tables are made, and how to cite them.</p></div>
 :::
 
 ## Where things stand
