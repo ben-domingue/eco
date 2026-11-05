@@ -147,6 +147,12 @@ script from the repo root (`Rscript data/<table>.R`) or all of them
 | `broekhuis_2020_mara_cheetah_scr.R` | search-encounter SCR (pixel x day traps, km driven), cheetahs, Maasai Mara; do_not_publish pending ruling | Dryad | CC0 |
 | `todaro_2025_wyoming_shrike_dynocc.R` | dynamic occupancy, loggerhead shrike point counts, Wyoming, 2015-2024 | Dryad | CC0 |
 | `betancur_2021_antioquia_birds_count.R` | two-species repeated counts, endemic Andean birds, Colombia, coarsened coordinates | Dryad | CC0 |
+| `hamer_2021_kooragang_amph_comm.R` | multi-season community occupancy, 11 frog species x 55 wetlands, Kooragang Island NSW, 2000-2002 | Dryad | CC0 |
+| `tsuboi_2020_japan_charr_ms.R` | multi-state CJS (age x stream location), 1,373 white-spotted charr, Japanese headwater network, 2009-2017 | Dryad | CC0 |
+| `tsuboi_2020_japan_masu_ms.R` | multi-state CJS (age x stream location), 1,335 red-spotted masu salmon, same surveys as the charr | Dryad | CC0 |
+| `cumming_2021_ngami_waterbird_count.R` | repeated community point counts, 182 bird species x 14 points x 6 trips, Lake Ngami, Botswana, coarsened | Dryad | CC0 |
+| `prabowo_2016_jambi_birds_count.R` | repeated community point counts, 71 bird species x 32 land-use plots, Jambi, Sumatra, 2013 | Dryad | CC0 |
+| `raman_2003_kalakad_birds_count.R` | repeated line-transect counts, 60 rainforest bird taxa x 12 transects, Western Ghats, 1997-1999, coarsened | Dryad | CC0 |
 | `cecala_2026_kiawah_terrapin_cjs.R` | annual CJS histories, 1,553 diamondback terrapins, Kiawah River SC, 1983-2012, sex and size | Dryad | CC0 |
 | `karvemo_2024_nacka_grasssnake_cjs.R` | annual CJS histories, 1,113 grass snakes, Nacka, Sweden, 66 years, snow cover | Dryad | CC0 |
 | `doyle_2025_chinalake_tortoise_scr.R` | search-track SCR, 24 Mojave desert tortoises x 548 cells x 4 days, detectors centred (CR) | Dryad | CC0 |
