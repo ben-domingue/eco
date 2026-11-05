@@ -94,13 +94,16 @@ cat("prerender.R: data/specimens.json written,", length(spec), "specimens\n")
 # and a placeholder left unfilled stops the render.
 fmt <- function(x) format(x, big.mark = ",", scientific = FALSE, trim = TRUE)
 tab_str <- function(x) { t <- sort(table(x), decreasing = TRUE); paste(names(t), t, sep = " ", collapse = ", ") }
+# Count only tables that can ship: a do_not_publish table is in metadata.csv
+# but never on Redivis, so eco_filter() would not show it.
+pub <- meta[!meta$table %in% tags$table[grepl("do_not_publish", tags$status)], ]
 fill <- list(
   as_of = substr(last$date, 1, 10), eco_version = last$eco_version,
   eco_redivis = last$eco_redivis_version, eco_meta_redivis = last$eco_meta_redivis_version,
-  n_tables = fmt(nrow(meta)), n_rows = fmt(sum(meta$n_rows)), n_units = fmt(sum(meta$n_units)),
-  by_response_type = tab_str(meta$response_type), by_closure = tab_str(meta$closure),
-  n_inferred = fmt(sum(meta$survey_evidence == "inferred")),
-  n_below_floor = fmt(sum(meta$sample_floor != "meets")))
+  n_tables = fmt(nrow(pub)), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
+  by_response_type = tab_str(pub$response_type), by_closure = tab_str(pub$closure),
+  n_inferred = fmt(sum(pub$survey_evidence == "inferred")),
+  n_below_floor = fmt(sum(pub$sample_floor != "meets")))
 guide <- readLines("llms_template.txt", warn = FALSE)
 for (k in names(fill)) guide <- gsub(paste0("{{", k, "}}"), fill[[k]], guide, fixed = TRUE)
 left <- regmatches(guide, regexpr("\\{\\{[a-z_]+\\}\\}", guide))
