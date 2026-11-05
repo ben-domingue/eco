@@ -31,7 +31,8 @@
 #     butterfly and damselfly studies.
 #
 # Run from site/vignettes/:   nice -n 15 Rscript cjs_corpus_compute.R
-# Takes about ten minutes, most of it the two Macquarie elephant seal tables.
+# Takes about 25 minutes, most of it the brant, grass snake and two Macquarie
+# elephant seal tables.
 
 suppressPackageStartupMessages({
   library(eco); library(data.table); library(marked); library(R2ucare)
