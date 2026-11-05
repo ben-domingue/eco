@@ -7,6 +7,7 @@ description: |
   A simulator at the top shows why recapture is what separates survival from
   detection.
 date: today
+bibliography: cjs.bib
 format:
   html:
     code-fold: false
@@ -36,15 +37,15 @@ fmt <- function(x, d = 2) formatC(x, digits = d, format = "f")
 
 An animal that is marked and never seen again either died or was alive and
 missed. Those are two different coin flips, and the history of a single
-animal cannot tell them apart. The Cormack-Jolly-Seber model (Cormack 1964;
-Jolly 1965; Seber 1965) separates them by following many marked animals
+animal cannot tell them apart. The Cormack-Jolly-Seber model [@cormack1964;
+@jolly1965; @seber1965] separates them by following many marked animals
 over many occasions: an animal seen at occasion 5 was alive at occasions 2 to
 4 whether or not it was seen there, and those known-alive misses estimate the
 recapture probability $p$. Once $p$ is known, the disappearances that $p$
 cannot explain are deaths, or emigrations, and estimate the survival
 probability $\phi$. This page fits the model to one eco table, the European
-dipper of Lebreton et al. (1992), and then to every capture-history table in
-the warehouse, with `marked` doing the fitting.
+dipper of @lebreton1992, and then to every capture-history table in
+the warehouse, with `marked` [@laake2013] doing the fitting.
 
 ::: {.callout-note}
 This vignette, including the choice of tables, the analysis and the writing,
@@ -232,7 +233,7 @@ Conditioning on first capture is conditioning on enrolment.
 
 The table is `lebreton_1992_dipper_cjs`: 294 European dippers (*Cinclus
 cinclus*) marked in eastern France and recaptured each spring from 1981 to
-1987, the dataset Lebreton, Burnham, Clobert and Anderson (1992) used to set
+1987, the dataset @lebreton1992 used to set
 out the model-selection approach to capture-recapture, and the one that ships
 with `marked`, RMark and MARK. Reads are pinned to eco version 10 so the
 numbers on this page do not move when the warehouse grows.
@@ -320,8 +321,8 @@ come only as a product).
 
 ### Does the model fit?
 
-The standard goodness-of-fit battery for CJS (Pradel, Gimenez and Lebreton
-2005; implemented in U-CARE and in `R2ucare`) breaks the deviation from the
+The standard goodness-of-fit battery for CJS [@pradel2005], implemented in
+U-CARE and in `R2ucare` [@gimenez2018], breaks the deviation from the
 fully time-dependent model into components with a biological reading. Test
 3.SR asks whether newly marked animals are seen again as often as previously
 marked ones; a failure means **transients**, animals passing through, or
@@ -382,8 +383,7 @@ session. Every $\phi$ below is per year unless the table says otherwise.
 
 The models are $\phi(\cdot)\,p(\cdot)$; $\phi(\cdot)\,p(t)$, because effort is
 never constant across years; and $\phi(\text{tsm})\,p(t)$, which gives the
-first interval after marking its own survival (time since marking; Pradel et
-al. 1997). The last is the standard response to a failed test 3.SR, and the
+first interval after marking its own survival (time since marking, @pradel1997). The last is the standard response to a failed test 3.SR, and the
 right comparison across species: in a table of animals marked as pups or
 chicks, the first interval is juvenile survival and the rest is adult
 survival.
@@ -454,21 +454,7 @@ cat(sprintf("R %s; eco %s; marked %s; R2ucare %s\n",
             packageVersion("R2ucare")))
 ```
 
-References. Cormack, R. M. (1964). Estimates of survival from the sighting of
-marked animals. *Biometrika* 51, 429–438. Jolly, G. M. (1965). Explicit
-estimates from capture-recapture data with both death and
-immigration-stochastic model. *Biometrika* 52, 225–247. Seber, G. A. F.
-(1965). A note on the multiple-recapture census. *Biometrika* 52, 249–259.
-Lebreton, J.-D., Burnham, K. P., Clobert, J. and Anderson, D. R. (1992).
-Modeling survival and testing biological hypotheses using marked animals: a
-unified approach with case studies. *Ecological Monographs* 62, 67–118.
-Pradel, R., Hines, J. E., Lebreton, J.-D. and Nichols, J. D. (1997).
-Capture-recapture survival models taking account of transients. *Biometrics*
-53, 60–72. Pradel, R., Gimenez, O. and Lebreton, J.-D. (2005). Principles and
-interest of GOF tests for multistate capture-recapture models. *Animal
-Biodiversity and Conservation* 28, 189–204. Laake, J. L., Johnson, D. S. and
-Conn, P. B. (2013). marked: an R package for maximum likelihood and Markov
-chain Monte Carlo analysis of capture-recapture data. *Methods in Ecology
-and Evolution* 4, 885–890. Gimenez, O., Lebreton, J.-D., Choquet, R. and
-Pradel, R. (2018). R2ucare: an R package to perform goodness-of-fit tests for
-capture-recapture models. *Methods in Ecology and Evolution* 9, 1749–1754.
+## References
+
+::: {#refs}
+:::
