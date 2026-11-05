@@ -48,6 +48,11 @@ the first fetch):
 
 Note the covariate names: eco_to_unmarked() strips the level prefix, so the
 column obs_ivel_std is the obsCov ivel_std and unit_elev is the siteCov elev.
+Covariates arrive as the source recorded them, not standardised (that table's
+_std columns came standardised from the source). To scale one:
+
+    sc <- siteCovs(umf); sc$elev_z <- as.numeric(scale(sc$elev)); siteCovs(umf) <- sc
+    oc <- obsCovs(umf);  oc$ivel_z <- as.numeric(scale(oc$ivel_std)); obsCovs(umf) <- oc
 
 --------------------------------------------------------------------------
 ## 1. The format — what every table looks like
@@ -179,7 +184,10 @@ goes straight into eco_fetch() (several tables -> a named list).
 Useful columns of eco_metadata(): n_units, n_taxa, n_periods, n_occasions,
 n_rows, naive_occupancy, mean_detection, prop_zero, closure, occasion_kind,
 survey_evidence, sample_floor, has_effort, has_coordinates,
-coordinates_coarsened.
+coordinates_coarsened. On a multi-species table these are computed over all
+taxa together (naive_occupancy is the share of units where any taxon was
+detected): compute a species' own figures from the table, not from here.
+eco_info(table) prints a summary and returns the list invisibly.
 
 `survey_evidence` says what the survey set (which rows exist) rests on:
 sample_table, effort_table, deposited_matrix, row_presence, or inferred. The
