@@ -41,6 +41,27 @@ rows <- lapply(j, function(r) {
              irw_warnings = paste(sub("^irw:", "", chk[grp == "irw" & sev == "warn" & chk != "irw:conformance"]), collapse = "; "))
 })
 rep <- rbindlist(rows)
-fwrite(rep, file.path(ECO_ROOT, "validate", "report.csv"))
+# A core too big for git lives only on Redivis, so it is usually absent from
+# output/ even though its __dataset.json is tracked. Keep its row from the last
+# report, written when it was built and uploaded, rather than dropping it: the
+# site reads this file, and no step should depend on local data (#74).
+rep_f <- file.path(ECO_ROOT, "validate", "report.csv")
+listed <- sub("__dataset\\.json$", "", list.files(OUT_DIR, pattern = "__dataset\\.json$"))
+absent <- setdiff(listed, rep$table)
+if (length(absent) && file.exists(rep_f)) {
+  old <- fread(rep_f, colClasses = "character", na.strings = NULL)  # keep "" as "", so kept rows round-trip unchanged
+  keep <- old[table %in% absent]
+  if (nrow(keep)) {
+    message(sprintf("kept %d row(s) from the previous report for cores not in output/: %s",
+                    nrow(keep), paste(keep$table, collapse = ", ")))
+    for (col in intersect(names(keep), names(rep))) if (!identical(class(keep[[col]]), class(rep[[col]])))
+      set(keep, j = col, value = as(keep[[col]], class(rep[[col]])[1]))
+    rep <- rbindlist(list(rep, keep), use.names = TRUE, fill = TRUE)
+  }
+  missing <- setdiff(absent, keep$table)
+  if (length(missing)) warning("no report row, old or new, for: ", paste(missing, collapse = ", "))
+}
+setorder(rep, table)
+fwrite(rep, rep_f)
 print(rep[, .(table, rows, units, taxa, eco_valid, conforms, sample_floor, irw_v1)])
 if (!all(rep$eco_valid)) quit(status = 1)
