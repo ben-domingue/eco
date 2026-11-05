@@ -17,7 +17,7 @@ prose <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names 
   j <- jsonlite::read_json(f)
   data.table(table = j$table, protocol = j$samplingProtocol, coverage = j$temporalCoverage)
 }))
-d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url)], by = "table")
+d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url, bibtex)], by = "table")
 d <- merge(d, num[, .(table, n_units, n_taxa, n_periods, n_occasions, n_rows, sample_floor,
                       columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened,
                       survey_evidence, script)], by = "table")
@@ -105,6 +105,9 @@ for (i in seq_len(nrow(d))) {
   for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
   # a dataset and its paper share one citation field; show each on its own line
   cat(sprintf("\nCitation: %s\n", gsub("\\. (Paper|Data): ", ".\n\n\\1: ", r$citation)))
+  if (nzchar(r$bibtex))   # the deposit and the paper, from metadata/biblio.csv (#11)
+    cat("\n<details><summary>Cite (BibTeX)</summary>\n\n```bibtex\n", r$bibtex, "\n```\n\n",
+        sprintf("Or in R: `eco_save_bibtex(\"%s\", \"refs.bib\")`\n\n", r$table), "</details>\n", sep = "")
 }
 ```
 
