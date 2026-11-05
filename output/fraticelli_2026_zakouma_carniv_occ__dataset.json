@@ -1,0 +1,68 @@
+{
+  "table": "fraticelli_2026_zakouma_carniv_occ",
+  "title": "Camera-trap detections of five large carnivores in Zakouma National Park, Chad, dry and wet seasons 2020",
+  "creator": "Fraticelli, Chiara; Shams, Ali; Verschueren, Stijn; Ourde, Ousmane; Fekoua, Baudin; Zayed, Abdoulaye Abakar; Leirs, Herwig; Bauer, Hans",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.j9kd51cvc",
+  "sourceURL": "https://doi.org/10.5061/dryad.j9kd51cvc",
+  "citation": "Fraticelli, C., Shams, A., Verschueren, S., Ourde, O., Fekoua, B., Zayed, A. A., Leirs, H., & Bauer, H. (2026). Data from: Seasonal dynamics of resource availability and human presence shape habitat use of large carnivores in Chad [Dataset]. Dryad. https://doi.org/10.5061/dryad.j9kd51cvc",
+  "paperDOI": "10.1002/ece3.73957",
+  "abstract": "A systematic camera-trap survey of Zakouma National Park, Chad, in the dry season (January to April 2020) and the wet season (July to September 2020). Detections of cheetah, leopard, lion, spotted hyaena and striped hyaena are pooled into 5-day occasions, 18 per season, at the stations active in each season, with trap-days of effort per occasion, camera type, placement on roads or near water, distances to the park boundary and villages, road density and seasonal NDVI. The authors fitted occupancy models to compare carnivore space use between seasons.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Camera traps at fixed stations run continuously through each season; detections pooled into consecutive 5-day occasions from the season's first day; obs_effort_days gives the trap-days active (1 to 5) in each occasion, and occasions with no active days are not surveys.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occupancy assumed constant within each roughly 90-day season; the two seasons are separate periods",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Zakouma National Park, southeastern Chad (no station coordinates in the deposit)",
+  "temporalCoverage": "2020-01-15/2020-09-28",
+  "covariateNote": "obs_effort_days: trap-days the camera was active in the 5-day occasion. obs_occasion_start: first day of the occasion. unit_camera_model and unit_flash (W white, CV covert, IR infra-red) as deposited. unit_on_road, unit_near_water: 1 if the camera was on a park road / near surface water. unit_road_density_log: log density of park roads in the 5 x 5 km cell. Continuous covariates are as deposited (the README says the authors standardised them for analysis). period_ndvi: mean Sentinel-2 NDVI of the cell over the season.",
+  "notShipped": {
+    "rai": "Log relative abundance indices of prey (all, large, medium, small) and livestock per season: summaries of other species' detections at the same cameras, whose records are not deposited.",
+    "single_season_covs": "DryWater_GEEdist_m_log (dry season only) and Flood_area (wet season only).",
+    "sta05f": "Three wet-season spotted hyaena records at Sta05F, a station with no row in the wet-season effort table.",
+    "scripts": "The spOccupancy analysis scripts."
+  },
+  "notes": "Wet-season cheetah (no records) and striped hyaena (one record) are in the table although the authors did not model them: the camera survey recorded every large carnivore, and their rows are built from the detection list with the rule that reproduces the deposited matrices. The deposited dry-season spotted hyaena matrix is shipped as deposited; it differs from the rebuilt one in 4 cells.",
+  "summary": {
+    "n_rows": 10140,
+    "n_units": 121,
+    "n_taxa": 5,
+    "n_periods": 2,
+    "n_occasions": 18,
+    "n_surveys": 2028,
+    "y_values": "0,1",
+    "prop_zero": 0.909,
+    "n_traps": 1,
+    "n_zero": 9213,
+    "n_positive": 927,
+    "n_units_detected": 100,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_camera_model", "unit_flash", "unit_on_road", "unit_near_water", "unit_dist_border_m", "unit_dist_village_m", "unit_road_density_log", "period_ndvi", "obs_effort_days", "obs_occasion_start"],
+  "coreMd5": "8400f27dc48f15bf34225d240a0de24b",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "period_label", "period_start", "period_end"],
+      "md5": "13b12e736205c32c108b96648b2001ec"
+    },
+    "taxa": {
+      "rows": 5,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b13368fec86555c5d9c36471b27a0718"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fraticelli_2026_zakouma_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

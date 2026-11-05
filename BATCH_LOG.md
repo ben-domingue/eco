@@ -1410,3 +1410,38 @@ What this batch says about the standard:
   deposited would make this explicit.
 - **A state the protocol could not observe** (frogs): captures in a primary where no swabs were taken get their own
   state code rather than the source's "uninfected" code; worth a line in the guide next to the y_raw recode rule.
+
+## Batch 31 — 2026-11-05 (card-sorted queue rows: Zakouma carnivores, India invasive plants, Kasungu leopards and hyaenas)
+
+One agent in `~/eco-b31` (branch `batch-31`, from main at 9d7e104 after batch 30). Rows from the 2026-11-05 card sort
+(#85), favouring Africa, Asia, plants and non-Dryad sources. Seven deposits read, four tables built from three deposits
+and uploaded to the Redivis draft (after Ben published eco v2.3), four not built. Dryad stopped answering version zips
+early in the batch: the 429 carries `ratelimit-limit: 100`, `ratelimit-remaining: 0` and a reset at midnight UTC, so
+the anonymous API allowance is about 100 requests per day, not a short burst limit; batch 30's long 429 run was the
+same daily quota. Screen Dryad candidates with as few metadata calls as possible, and expect a batch that starts late
+in the UTC day to get only a few zips. The rest of the batch used Zenodo deposits.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| fraticelli_2026_zakouma_carniv_occ | multi-species detection, cameras | Dryad CC0 | 10,140 | cheetah, leopard, lion, spotted and striped hyaena at 121 stations in Zakouma NP, Chad, dry (Jan-Apr) and wet (Jul-Sep) 2020, 18 five-day occasions per season with trap-days of effort; effort table is the survey set (blank iff effort 0 in every matrix, asserted); wet-season cheetah (no records) and striped hyaena (one record), which the authors did not tabulate, rebuilt from the detection list by the rule that reproduces the deposited matrices (7 of 8 exactly, dry spotted hyaena all but 4 of 1,598 cells; deposited matrices shipped as deposited); prey RAI covariates not shipped; no coordinates |
+| mungi_2025_india_invplant_binom | binomial_count, plants | Zenodo CC BY 4.0 | 1,193,665 | 11 invasive plants (Lantana, Prosopis, Parthenium, Chromolaena, Mikania, ...) in 21,703 25 km2 cells of India's tiger landscapes, five All-India estimation cycles 2006-2022; y = replicates with the species of obs_trials replicates (1-19; every cell surveyed every cycle); habitat-suitability model outputs not shipped; standardised covariates; no coordinates; first plant binomial_count table |
+| davis_2019_kasungu_leopard_scr | SCR, multi-session, partial identity | Zenodo CC BY 4.0 | 287,568 | 48 leopards (IUCN VU; 15 both-flank, 17 left-only, 16 right-only ids) at 92 camera traps in Kasungu NP, Malawi, annual surveys 2016-2018 (90/120/90 days, 17/50/25 traps); individual x active trap-day; one 2017 photograph on a trap-day the effort matrix marks inactive is believed and the trap-day added to the survey set; traps centred on the array (E7.2) |
+| davis_2019_kasungu_hyaena_scr | SCR, multi-session, partial identity | Zenodo CC BY 4.0 | 299,550 | 50 spotted hyaenas (19 both-flank, 14 left, 17 right) on the same array and survey set; traps centred as for the leopard table (shared array) |
+
+Not built (`queue/human_review.csv`): Mongolia snow leopard sign survey (blocked: no survey years in the deposit and
+the DDI paper returns a bot wall; otherwise a clean 1,017-cell x 40-segment matrix), Amur tiger and leopard (held:
+days-detected per month with no camera effort), Chitwan-Parsa cameras (held: species totals only), Canada warbler
+Allee experiment (held: Zenodo "Other (Open)" with no licence text; unlabelled arrays). Serengeti grazers (Dryad
+7sqv9s4zk) stays `available`: its zip hit the daily 429 before it could be read. The grey wolf figshare files
+(7164929, 7164893) are RAR archives and this machine has no RAR extractor; left `available`.
+
+What this batch says about the standard:
+
+- **A detection on a day the effort matrix calls inactive** (Kasungu leopard, one record): E4 asks the script to say
+  which record it believed; a sentence in the processing guide that a dated photograph beats an effort flag (the
+  trap-day joins the survey set), unless failures are declared at scale (Ben's deferred ruling), would make this the
+  default rather than a per-script choice.
+- **Taxa a camera survey recorded but the authors did not tabulate** (Zakouma wet season): rebuilding them from the
+  detection list with the authors' own occasion rule, checked against the matrices they did deposit, keeps the
+  community table complete without a per-species survey set. Worth a line in the guide, as the alternative is the
+  deferred per-species survey-set ruling.

@@ -1,10 +1,10 @@
 {
   "date": "2026-11-05",
-  "n_tables": 220,
-  "n_rows": 178142549,
-  "n_units": 250614,
-  "n_taxa_rows": 7815,
-  "n_surveys": 12923016,
+  "n_tables": 224,
+  "n_rows": 179933472,
+  "n_units": 272536,
+  "n_taxa_rows": 7833,
+  "n_surveys": 13620677,
   "n_families": 42,
   "families": {
     "CJS / multi-state capture-recapture": 2,
@@ -12,13 +12,13 @@
     "CJS capture-recapture with two-sided photo-ID": 1,
     "Closed-population capture-recapture": 1,
     "Community abundance": 2,
-    "Community occupancy": 37,
+    "Community occupancy": 38,
     "Community occupancy or N-mixture": 2,
     "Dead recovery / live-dead capture-recapture": 1,
     "Distance sampling": 7,
     "Double-observer": 2,
     "Dynamic co-occurrence occupancy": 1,
-    "Dynamic occupancy": 12,
+    "Dynamic occupancy": 13,
     "Multi-scale / multi-method occupancy": 1,
     "Multi-scale community occupancy": 1,
     "Multi-scale dynamic occupancy": 1,
@@ -47,13 +47,13 @@
     "Single-season occupancy": 12,
     "Single-season occupancy / spatial count": 1,
     "Single-visit presence / absence": 1,
-    "Spatial capture-recapture": 14,
+    "Spatial capture-recapture": 16,
     "Two-species occupancy with misidentification": 1
   },
   "response_types": {
-    "binomial_count": 6,
+    "binomial_count": 7,
     "count": 57,
-    "detection": 121,
+    "detection": 124,
     "multinomial_cell": 13,
     "ordinal": 1,
     "state": 22
@@ -63,14 +63,14 @@
     "Birds": 52,
     "Fish": 20,
     "Invertebrates": 33,
-    "Mammals": 75,
+    "Mammals": 78,
     "Multiple": 4,
-    "Plants": 12,
+    "Plants": 13,
     "Reptiles": 10
   },
   "survey_evidence": {
-    "deposited_matrix": 111,
-    "effort_table": 33,
+    "deposited_matrix": 112,
+    "effort_table": 36,
     "inferred": 17,
     "row_presence": 21,
     "sample_table": 38
@@ -79,9 +79,9 @@
   "n_with_coordinates": 68,
   "n_do_not_publish": 1,
   "n_human_tagged": 0,
-  "n_valid": 220,
-  "n_irw_conforms": 220,
+  "n_valid": 224,
+  "n_irw_conforms": 224,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 220
+    "eco v1.1-draft (2026-11-03)": 224
   }
 }
