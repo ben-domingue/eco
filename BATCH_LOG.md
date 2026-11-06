@@ -1893,3 +1893,57 @@ What this batch says about the standard and the tools:
   429s began after about 120 requests in a few minutes (03:22 UTC); pacing at one deposit per 20 s then fetched about
   20 more, but from about 04:20 UTC Dryad answered 429 to every request, with the token and anonymously, even at one
   request per 75-90 s, so the batch stopped asking. The token never returned 401. Roughly 220 Dryad requests in all.
+
+## Batch 38 — 2026-11-06 (NEON follow-up: Ben's rulings 17 to 21, plant presence, stream macroinvertebrates)
+
+One agent in `~/eco-b38` (branch `batch-38-neon`, from origin/main at dc8187a), using the batch 36 raw cache. Rulings
+17 to 21 (2026-11-06) are written into `standard.md` (E2, E4.2, E6, E10, changelog) and `processing_guide.md`; three
+batch 36 tables were rebuilt under them and two new NEON products built. All `RELEASE-2026`, basic package, CC BY 4.0,
+agency-published coordinates.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_fish_removal (rebuilt) | removal (multinomial_cell), community | NEON DP1.20107.001 | 386,260 | ruling 17: the 23 reach-bouts with a bulk count NEON marks estimated (13,768 fish) are kept, with `obs_count_estimated` = 1 on the 81 pass x taxon rows whose y includes one; 2,492 passes, 278 bouts (was 2,441 and 272). GBIF fix: Cyprinella, Fundulus and Micropterus had matched the kingdom Animalia (strict match on a homonym, accepted under `allow_higher`); now matched with their authors, and Cyprinidae (no strict match at all) set by hand to the fish family's key 7336 |
+| neon_2026_ticks_count (rebuilt) | repeated counts, community | NEON DP1.10093.001 | 216,104 | ruling 18: `obs_count_likely_estimated` = 1 on the 20 rows built from a larval laboratory count in an exact multiple of 1,000; no sample from 2019 is marked "Tick count estimated" (asserted, so ruling 17 adds no flag here) |
+| neon_2026_mosquitoes_count (rebuilt) | repeated counts, community | NEON DP1.10043.001 | 7,464,149 | ruling 21: `subsampleColumn = "obs_proportion_identified"`; data unchanged |
+| neon_2026_plants_occ | community occupancy (multi-season), detection | NEON DP1.10058.001 | 24,458,465 | ruling 19: 85,349 visits to 12,622 permanent 1 m2 subplots (1,598 plots, 47 sites), 2013-2025 in 12 yearly periods, 4,980 taxa; per-site pools (median 264 taxa, 66-756) in `__survey_taxa` (3,567,548 rows); `obs_percent_cover`; year parts |
+| neon_2026_macroinverts_count | repeated counts, community | NEON DP1.20120.001 | 4,833,657 | 3,933 benthic samples at 24 wadeable-stream sites, 539 bouts (spring, summer, fall) 2014-2024, about 8 samples per bout (occasion, spatial), 1,229 taxa national pool; y = animals counted in the sorted fraction, `obs_subsample_fraction` (subsampleColumn), benthic area as effort; year parts |
+
+Scale for plants (ruling 19 asked for care). NEON nests eight 1 m2 subplots, 10 m2 and 100 m2 subplots in each 400 m2
+plot. Only the 1 m2 subplot has a complete species list at every visit: the 10 m2 and 100 m2 rows hold only the
+species new at that scale, and the product remarks say the implied nested records are "not always populated", so
+presence at the larger scales is a union the table would have to construct. The 1 m2 subplots are permanent and
+listed every year (median eight years), twice a year at bimodal sites, so the table is unit = subplot (cluster_id =
+plot), period = year, occasion = visit; 398 subplots listed twice within one bout are kept as extra visits. The
+per-site pool is the taxa this table records at the site; `surveyEvidenceNote` says the zeros rest on it.
+
+Macroinvertebrates: the design fits (bouts of about eight spatial samples in the two dominant habitats, three bouts
+a year), so the product was built rather than held. Lakes and rivers (ponar near the buoy, littoral sweeps) are other
+protocols, not built. Dropped samples: 27 of a second reach filed under another site's bout (STCU, STKG, STMA, STWA),
+3 '.DNA' samples, one MAYF bout whose snag samples came 36 days after its cores, and 347 samples with an N row naming
+a taxon, a counted taxon with no count, or a row marked "damaged, affecting analysis".
+
+Shared code: `eco_validate` checks `subsampleColumn` (an `obs_` column of the core, values in (0, 1] or empty; R twin in
+`lib/eco_common.R`; test `test_subsample_column`); `write_table_parts()` takes `survey_taxa` (each part checked against
+the rows for its units); `gbif_kingdom()` and `gbif_taxon_hinted()` repair taxa whose strict match is not in the
+expected kingdom.
+
+What this batch says about the standard and the tools:
+
+- **The strict GBIF match is not safe at higher ranks.** `make_taxa(allow_higher = ...)` accepted a HIGHERRANK match to
+  the kingdom (gbif.org/species/1) for three fish genera in batch 36, so the published fish table carried Animalia as
+  their taxonID. Strict matching also fails for many common animal and plant genera with homonyms (Orthocladius, Physa,
+  Nais, Pinus, Salix, Viola), even with hints; a hinted non-strict match returns the genus itself, labelled
+  HIGHERRANK. The new tables accept a hinted match only when its canonical name is the name asked for and its
+  kingdom is the expected one. `allow_higher` should probably refuse a kingdom-rank match outright; the other NEON
+  tables (carabids, landbirds, small mammals) were not re-checked in this batch.
+- **Subsample fractions are not one number per sample.** NEON's macroinvertebrate laboratory picks large or rare taxa
+  from the whole sample, so the fraction differs between taxa of one sample (4% of samples), and inv_persample's
+  subsamplePercent disagrees with the taxonomy rows' in about a fifth of samples. `obs_subsample_fraction` is
+  therefore per row: counted / NEON's estimated total for a taxon found, the persample share for a taxon not found.
+  Ruling 21 fits, because E5 lets an `obs_` column vary across taxa within a survey.
+- **Life stages in macroinvertebrates** are pooled in y: the laboratory's larva / pupa / adult / immature / none /
+  unknown labels are its convention per taxon, not a survey-level split of one species, so E6's life-stage exception
+  (used for ticks) was not applied. A question for Ben.
+- **Plant pools are large.** The plant table is 24.5M rows with a 3.6M-row `__survey_taxa`, because a per-site pool of
+  a few hundred taxa is carried at every 1 m2 visit; it is still about a third of a national-pool table.

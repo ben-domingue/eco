@@ -29,44 +29,43 @@
     "value": false,
     "method": "As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); 4 reaches were re-surveyed by a few metres between bouts and __units carries the latest"
   },
-  "covariateNote": "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured).",
-  "notes": "y = per-fish records plus bulk counts of the taxon on the pass. Taxa: 123 species (subspecies rolled up) and 32 records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: 2441 passes in 1252 reach-bouts; 556 reach-bouts sampling impractical have no rows; 23 reach-bouts with a bulk count NEON marks estimated (13768 fish), 26 filed by NEON as net-compromised, 5 other whose passes are not numbered 1..k and 1 with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.",
+  "covariateNote": "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured); obs_count_estimated = 1 where y includes a bulk count NEON marks 'estimated' (ruling 17), else 0.",
+  "notes": "y = per-fish records plus bulk counts of the taxon on the pass. Taxa: 123 species (subspecies rolled up) and 32 records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: 2492 passes in 1275 reach-bouts; 556 reach-bouts sampling impractical have no rows; 26 filed by NEON as net-compromised, 5 other whose passes are not numbered 1..k and 1 with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Estimated counts (ruling 17, 2026-11-06): 23 reach-bouts carry a bulk count NEON marks estimated (13768 fish); they are kept, and obs_count_estimated = 1 on the 81 pass x taxon rows whose y includes one. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts, flag 0. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.",
   "notShipped": {
     "lake surveys": "gill net, mini-fyke net and shoreline electrofishing at the 5 lake sites (CRAM, LIRO, PRLA, PRPO, TOOK): other protocols",
-    "estimated bulk counts": "23 stream reach-bouts with a bulk count marked 'estimated' (13768 fish in those counts), dropped with all their passes: an eyeballed total is not a count (E2), and keeping the other passes would break the removal series",
     "net-compromised bouts": "26 reach-bouts NEON filed under an eventID ending .netCompromised (a block net failed; the passes after the failure are split from the bout)",
     "incomplete pass series": "5 other reach-bouts whose passes are not numbered 1..k; 1 reach-bouts with a pass marked targetTaxaPresent = Y but no fish records",
     "per-fish measurements": "fsh_perFish lengths, weights, life stages, DELT and injury flags, voucher and DNA sample ids",
     "invertebrate bycatch": "fsh_invertBycatch (D04 decapods)"
   },
   "summary": {
-    "n_rows": 378355,
+    "n_rows": 386260,
     "n_units": 223,
     "n_taxa": 155,
-    "n_periods": 272,
+    "n_periods": 278,
     "n_occasions": 3,
-    "n_surveys": 2441,
-    "y_values": "0-2075 (282 distinct)",
-    "prop_zero": 0.98,
+    "n_surveys": 2492,
+    "y_values": "0-2075 (310 distinct)",
+    "prop_zero": 0.979,
     "n_traps": 1,
-    "n_zero": 370688,
-    "n_positive": 7667,
+    "n_zero": 378286,
+    "n_positive": 7974,
     "n_units_detected": 223,
     "max_y": 2075
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_site", "period_reach_type", "period_reach_length_m", "obs_sampler_type", "obs_ef_time_s", "obs_water_temp_c", "obs_habitat_type"],
-  "coreMd5": "e4538124616ea2873ec1a24966e907a5",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_site", "period_reach_type", "period_reach_length_m", "obs_sampler_type", "obs_ef_time_s", "obs_water_temp_c", "obs_habitat_type", "obs_count_estimated"],
+  "coreMd5": "afe8cce7b9271e2f10d55ccbdf06d4b4",
   "sideTables": {
     "periods": {
-      "rows": 272,
+      "rows": 278,
       "columns": ["period", "eventID", "site", "year", "season", "first_pass_date", "last_pass_date"],
-      "md5": "d3defe539b19ad350364242f1b73052c"
+      "md5": "a0aa0269028aa9a9c1c389536ccacaef"
     },
     "taxa": {
       "rows": 155,
       "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_fish"],
-      "md5": "b02278478ba86b6142ca9183c72265b0"
+      "md5": "f3cfb5de8229cf94bae77d9e1e8ed498"
     },
     "units": {
       "rows": 223,

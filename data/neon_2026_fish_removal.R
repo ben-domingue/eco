@@ -36,7 +36,9 @@
 #   site, year, season, first and last pass date); occasion = pass 1-3 (the removal cell), y_raw =
 #   "pass<k>"; y = fish of the taxon caught on the pass = perFish rows + bulkFishCount; date = the
 #   pass start time as published (UTC). obs_sampler_type, obs_ef_time_s, obs_water_temp_c,
-#   obs_habitat_type per pass; period_reach_type (fixed / random; NEON relabelled a few reaches
+#   obs_habitat_type per pass; obs_count_estimated = 1 where y includes a bulk count NEON marks
+#   'estimated' (actualOrEstimated), else 0 (ruling 17, 2026-11-06: counts the source labels as
+#   estimated are kept with an obs_ flag, not dropped; standard E2); period_reach_type (fixed / random; NEON relabelled a few reaches
 #   between bouts) and period_reach_length_m per reach-bout.
 #   Survey evidence = sample_table: fsh_fieldData lists every reach-bout and fsh_perPass every pass;
 #   a survey is a pass of a reach-bout with samplingImpractical blank. Every taxon has a row on
@@ -48,9 +50,8 @@
 #   or family and are counted there.
 #   Not shipped: lake surveys and gear (other protocols); reach-bouts NEON filed under an eventID
 #   ending '.netCompromised' (a block net failed mid-bout and the later passes were split off), and
-#   the bout's remaining passes when they are then not numbered 1..k; reach-bouts with any bulk count NEON marks
-#   'estimated' (an eyeballed total is not a count, E2; all passes of the reach-bout go, so the
-#   removal series stays whole); reach-bouts whose passes are not numbered 1..k; reach-bouts with a
+#   the bout's remaining passes when they are then not numbered 1..k; reach-bouts whose passes are
+#   not numbered 1..k; reach-bouts with a
 #   pass marked targetTaxaPresent = Y but no fish records; the per-fish lengths, weights, life
 #   stages and sample ids; fsh_invertBycatch.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -88,16 +89,17 @@ rb_gap  <- setdiff(ps[, .(ok = identical(sort(pass), seq_len(.N))), by = rb][ok 
 rb_miss <- unique(ps[targetTaxaPresent == "Y" & !pass_key %in% recs, rb])
 rb_est  <- unique(bc[actualOrEstimated == "estimated" & siteID %in% streams, paste(namedLocation, eventID)])
 n_est_fish <- bc[actualOrEstimated == "estimated" & siteID %in% streams, sum(as.integer(bulkFishCount))]
-drop_rb <- unique(c(rb_net, rb_gap, rb_miss, rb_est))
-cat(sprintf("  stream reach-bouts: %d with passes, %d sampling impractical; dropped: %d net-compromised, %d other with passes not 1..k, %d with a Y pass and no fish records, %d with an estimated bulk count (%d fish); %d dropped in all\n",
-            uniqueN(ps$rb), n_impr, length(rb_net), length(rb_gap), length(rb_miss), length(rb_est), n_est_fish, length(drop_rb)))
+drop_rb <- unique(c(rb_net, rb_gap, rb_miss))
+cat(sprintf("  stream reach-bouts: %d with passes, %d sampling impractical; dropped: %d net-compromised, %d other with passes not 1..k, %d with a Y pass and no fish records; %d dropped in all; %d with an estimated bulk count (%d fish), kept and flagged\n",
+            uniqueN(ps$rb), n_impr, length(rb_net), length(rb_gap), length(rb_miss), length(drop_rb), length(rb_est), n_est_fish))
 stopifnot(length(rb_gap) == 5L, length(rb_miss) == 1L, length(rb_est) == 23L)
 sv <- ps[!rb %in% drop_rb]
 sv <- merge(sv, fs[, .(rb, period_reach_type = fixedRandomReach, period_reach_length_m = as.numeric(measuredReachLength))], by = "rb")
 
 # --- counts per pass x taxon ------------------------------------------------------------------------
-recs_f <- rbind(pf[pass_key %in% sv$pass_key, .(pass_key, taxonID, scientificName, taxonRank, n = 1L)],
-                bc[pass_key %in% sv$pass_key, .(pass_key, taxonID, scientificName, taxonRank = NA_character_, n = as.integer(bulkFishCount))])
+recs_f <- rbind(pf[pass_key %in% sv$pass_key, .(pass_key, taxonID, scientificName, taxonRank, n = 1L, est = 0L)],
+                bc[pass_key %in% sv$pass_key, .(pass_key, taxonID, scientificName, taxonRank = NA_character_, n = as.integer(bulkFishCount),
+                                                est = as.integer(actualOrEstimated %in% "estimated"))])
 # bulk rows carry no rank: take it from the per-fish rows of the same taxonID, else from the name
 rk <- unique(pf[, .(taxonID, rk = taxonRank)]); stopifnot(!anyDuplicated(rk$taxonID))
 recs_f[is.na(taxonRank), taxonRank := rk$rk[match(taxonID, rk$taxonID)]]
@@ -111,7 +113,9 @@ stopifnot(!any(grepl(" ", recs_f[taxonRank != "species", name])))
 code <- recs_f[, .N, by = .(name, taxonRank, taxonID)][order(-N)][, .(taxon = taxonID[1], codes = paste(sort(unique(taxonID)), collapse = "/")), by = .(name, taxonRank)]
 stopifnot(!anyDuplicated(code$name), !anyDuplicated(code$taxon))
 recs_f <- merge(recs_f, code[, .(name, taxon)], by = "name")
-counts <- recs_f[, .(y = sum(n)), by = .(pass_key, taxon)]
+counts <- recs_f[, .(y = sum(n), obs_count_estimated = as.integer(any(est == 1L))), by = .(pass_key, taxon)]
+n_est_rows <- counts[obs_count_estimated == 1L, .N]; n_est_kept <- recs_f[est == 1L, sum(n)]
+stopifnot(n_est_kept == n_est_fish)      # every estimated bulk count is on a shipped pass
 tot <- recs_f[, .(n_fish = sum(n)), by = .(taxon, name, taxonRank)][order(-n_fish)]
 cat(sprintf("  %d taxa (%d species, %d higher rank); %d fish on the shipped passes\n", nrow(tot), tot[taxonRank == "species", .N], tot[taxonRank != "species", .N], sum(tot$n_fish)))
 
@@ -138,8 +142,9 @@ base <- sv[, .(unit = namedLocation, period, occasion = pass, y_raw = paste0("pa
 taxa_codes <- tot$taxon
 long <- base[rep(seq_len(.N), each = length(taxa_codes))][, taxon := rep(taxa_codes, times = nrow(base))]
 long <- merge(long, counts, by = c("pass_key", "taxon"), all.x = TRUE)
-long[is.na(y), y := 0L]; long[, pass_key := NULL]
+long[is.na(y), `:=`(y = 0L, obs_count_estimated = 0L)]; long[, pass_key := NULL]
 setcolorder(long, c("unit", "taxon", "y", "y_raw", "period", "occasion", "date"))
+stopifnot(long[obs_count_estimated == 1L, .N] == n_est_rows, all(long[obs_count_estimated == 1L, y] >= 1))
 stopifnot(nrow(long) == nrow(sv) * length(taxa_codes), sum(long$y) == sum(tot$n_fish),
           !anyDuplicated(long[, .(unit, taxon, period, occasion)]))
 cat(sprintf("  %d passes in %d reach-bouts at %d reaches, %d sites, %d bouts; %d rows\n",
@@ -147,8 +152,10 @@ cat(sprintf("  %d passes in %d reach-bouts at %d reaches, %d sites, %d bouts; %d
 
 higher <- tot[taxonRank != "species", taxon]
 # GBIF needs: the current spelling of the cutthroat trout, the author to separate the goby genus from a
-# plant homonym; it does not match the class Actinopterygii strictly (one fish, no key)
-look <- c("Oncorhynchus clarki" = "Oncorhynchus clarkii", "Sicydium" = "Sicydium Valenciennes, 1837")
+# plant homonym; it does not match the class Actinopterygii strictly (one fish, no key). Three genera need their
+# authors too: without them the strict match falls through to the kingdom (gbif.org/species/1)
+look <- c("Oncorhynchus clarki" = "Oncorhynchus clarkii", "Sicydium" = "Sicydium Valenciennes, 1837",
+          "Cyprinella" = "Cyprinella Girard, 1856", "Fundulus" = "Fundulus Lacepède, 1803", "Micropterus" = "Micropterus Lacepède, 1802")
 stopifnot(all(names(look) %in% tot$name), "Actinopterygii" %in% tot$name)
 nokey <- tot[name == "Actinopterygii", taxon]
 rem <- ifelse(tot$taxonRank == "species", NA_character_,
@@ -158,6 +165,12 @@ rem[tot$taxon %in% nokey] <- paste0(rem[tot$taxon %in% nokey], "; the GBIF backb
 taxa <- make_taxa(tot$taxon, tot$name, taxonRank = tot$taxonRank, lookupName = ifelse(tot$name %in% names(look), look[tot$name], tot$name),
                   allow_higher = setdiff(higher, nokey), no_key = nokey, taxonRemarks = rem,
                   taxon_n_fish = tot$n_fish)
+# Cyprinidae: the strict match resolves to the kingdom whatever the authorship (a bivalve homonym in the backbone);
+# the accepted fish family is backbone key 7336, set by hand and recorded
+stopifnot(taxa[scientificName == "Cyprinidae", taxonID] == "https://www.gbif.org/species/1")
+taxa[scientificName == "Cyprinidae", `:=`(taxonID = "https://www.gbif.org/species/7336", gbifMatchType = "MANUAL",
+     taxonRemarks = paste0(taxonRemarks, "; GBIF's strict match for Cyprinidae falls to the kingdom (a homonym), so taxonID is the accepted fish family's backbone key, set by hand"))]
+stopifnot(!any(taxa$taxonID %in% "https://www.gbif.org/species/1"))
 periods <- ev[, .(period, eventID, site = siteID, year, season, first_pass_date = first, last_pass_date = last)]
 dataset <- list(
   title = sprintf("NEON wadeable-stream fish, three-pass electrofishing removal, RELEASE-2026: fish of %d taxa per pass at %d reaches on %d NEON stream sites, %d-%d", nrow(tot), uniqueN(sv$namedLocation), uniqueN(sv$siteID), min(ev$year), max(ev$year)),
@@ -176,11 +189,10 @@ dataset <- list(
   temporalCoverage = sprintf("%s/%s", substr(min(ev$first), 1, 7), substr(max(ev$last), 1, 7)),
   crs = "EPSG:4326 (WGS 84), as published",
   coordinatesCoarsened = list(value = FALSE, method = sprintf("As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); %d reaches were re-surveyed by a few metres between bouts and __units carries the latest", n_moved)),
-  covariateNote = "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured).",
-  notes = sprintf("y = per-fish records plus bulk counts of the taxon on the pass. Taxa: %d species (subspecies rolled up) and %d records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: %d passes in %d reach-bouts; %d reach-bouts sampling impractical have no rows; %d reach-bouts with a bulk count NEON marks estimated (%d fish), %d filed by NEON as net-compromised, %d other whose passes are not numbered 1..k and %d with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.", tot[taxonRank == "species", .N], tot[taxonRank != "species", .N], nrow(sv), uniqueN(sv$rb), n_impr, length(rb_est), n_est_fish, length(rb_net), length(rb_gap), length(rb_miss)),
+  covariateNote = "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured); obs_count_estimated = 1 where y includes a bulk count NEON marks 'estimated' (ruling 17), else 0.",
+  notes = sprintf("y = per-fish records plus bulk counts of the taxon on the pass. Taxa: %d species (subspecies rolled up) and %d records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: %d passes in %d reach-bouts; %d reach-bouts sampling impractical have no rows; %d filed by NEON as net-compromised, %d other whose passes are not numbered 1..k and %d with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Estimated counts (ruling 17, 2026-11-06): %d reach-bouts carry a bulk count NEON marks estimated (%d fish); they are kept, and obs_count_estimated = 1 on the %d pass x taxon rows whose y includes one. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts, flag 0. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.", tot[taxonRank == "species", .N], tot[taxonRank != "species", .N], nrow(sv), uniqueN(sv$rb), n_impr, length(rb_net), length(rb_gap), length(rb_miss), length(rb_est), n_est_fish, n_est_rows),
   notShipped = list(
     `lake surveys` = sprintf("gill net, mini-fyke net and shoreline electrofishing at the %d lake sites (%s): other protocols", length(setdiff(unique(fd$siteID), streams)), paste(setdiff(sort(unique(fd$siteID)), streams), collapse = ", ")),
-    `estimated bulk counts` = sprintf("%d stream reach-bouts with a bulk count marked 'estimated' (%d fish in those counts), dropped with all their passes: an eyeballed total is not a count (E2), and keeping the other passes would break the removal series", length(rb_est), n_est_fish),
     `net-compromised bouts` = sprintf("%d reach-bouts NEON filed under an eventID ending .netCompromised (a block net failed; the passes after the failure are split from the bout)", length(rb_net)),
     `incomplete pass series` = sprintf("%d other reach-bouts whose passes are not numbered 1..k; %d reach-bouts with a pass marked targetTaxaPresent = Y but no fish records", length(rb_gap), length(rb_miss)),
     `per-fish measurements` = "fsh_perFish lengths, weights, life stages, DELT and injury flags, voucher and DNA sample ids",
@@ -193,7 +205,7 @@ stage_dict_row(TABLE,
   reference = "NEON (National Ecological Observatory Network). Fish electrofishing, gill netting, and fyke netting counts (DP1.20107.001), RELEASE-2026. https://doi.org/10.48443/s1e6-df79",
   doi_paper = "", doi_data = "10.48443/s1e6-df79",
   original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; reach-bouts with estimated bulk counts dropped; higher-rank (incl. fuzzed) ids are their own taxa.",
+  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; estimated bulk counts kept with obs_count_estimated (ruling 17); higher-rank (incl. fuzzed) ids are their own taxa.",
   source_via = "NEON Data API, basic package")
 stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "Removal (multi-species, multinomial N-mixture)",
   sampling_protocol = "electrofishing", design = sprintf("Multi-season (%d bouts, 1 or 3 removal passes)", nrow(ev)), realm = "Freshwater", country = "USA",

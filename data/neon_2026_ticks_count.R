@@ -33,13 +33,16 @@
 #   y = number of ticks of the taxon in the plot's sample; taxon = species x life stage (E6's life-stage
 #   exception: NEON records adults, nymphs and larvae separately in one sample), with Male, Female and
 #   Adult pooled as adult; lifeStage in __taxa. obs_area_m2 = totalSampledArea (effortColumn);
-#   obs_method = drag / flag / drag and flag. __units: site, domain, plot, plot type, NLCD class,
+#   obs_method = drag / flag / drag and flag; obs_count_likely_estimated = 1 where a larval laboratory
+#   count behind y is an exact multiple of 1,000 (ruling 18, 2026-11-06: count likely estimated), else 0.
+#   __units: site, domain, plot, plot type, NLCD class,
 #   plot-centre coordinates as published, uncertainty, elevation.
 #   Survey evidence = sample_table: tck_fielddata lists every plot-bout; a survey is a row with
 #   samplingImpractical OK or blank and a sampled area; targetTaxaPresent = N is y = 0 for every taxon;
 #   a Y sample's counts are its tck_taxonomyProcessed rows. Taxon pool national (every taxon at every
 #   survey, as neon_2026_carabids_count).
-#   Not shipped: collections before 2019; samples NEON marks lost, incomplete or with an estimated count;
+#   Not shipped: collections before 2019; samples NEON marks lost or incomplete (none from 2019 is marked
+#   'Tick count estimated', asserted; one would be kept and flagged, ruling 17);
 #   Y samples with no laboratory rows; the second collection of a plot within one bout (the first is
 #   kept, as in the carabid table); field counts; the pathogen and archive tables.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -73,8 +76,10 @@ stopifnot(all(sv$targetTaxaPresent %in% c("Y", "N")), all(!is.na(sv$sampleID) | 
           all(as.numeric(sv$totalSampledArea) > 0), all(sv$samplingMethod %in% c("drag", "flag", "drag and flag")))
 n_pre <- fd[day < FROM & (is.na(samplingImpractical) | samplingImpractical == "OK") & !is.na(totalSampledArea), .N]
 n_impr <- fd[day >= FROM & !is.na(samplingImpractical) & samplingImpractical != "OK", .N]
-BAD_COND <- c("Entire sample lost", "Tick count estimated (error and instar specified in remarks)",
-              "Sample incomplete by < 10% (described in remarks)", "Sample incomplete by > 10% (described in remarks)")
+BAD_COND <- c("Entire sample lost", "Sample incomplete by < 10% (described in remarks)", "Sample incomplete by > 10% (described in remarks)")
+# a sample NEON marks "Tick count estimated" would be kept with obs_count_estimated = 1 (ruling 17); there is none
+# from 2019, so the flag is not built: assert it, and a later release that adds one fails here
+stopifnot(!any(grepl("count estimated", sv$sampleCondition, ignore.case = TRUE)))
 n_cond <- sv[sampleCondition %in% BAD_COND, .N]
 lab_ids <- unique(tx$sampleID)
 n_nolab <- sv[targetTaxaPresent == "Y" & !sampleID %in% lab_ids, .N]
@@ -85,7 +90,7 @@ sv <- sv[targetTaxaPresent == "N" | sampleID %in% lab_ids]
 setorder(sv, plotID, eventID, collectDate)
 n_dup <- sum(duplicated(sv, by = c("plotID", "eventID")))
 sv <- sv[!duplicated(sv, by = c("plotID", "eventID"))]
-cat(sprintf("  from %s: %d surveys kept; %d plot-bouts not sampled; %d samples lost / incomplete / estimated, %d Y samples with no laboratory rows, %d repeat collections of a plot in one bout dropped; %d surveys before %s not shipped\n",
+cat(sprintf("  from %s: %d surveys kept; %d plot-bouts not sampled; %d samples lost / incomplete, %d Y samples with no laboratory rows, %d repeat collections of a plot in one bout dropped; %d surveys before %s not shipped\n",
             FROM, nrow(sv), n_impr, n_cond, n_nolab, n_dup, n_pre, FROM))
 stopifnot(n_dup == 7L, n_nolab == 11L, n_cond == 13L)
 bouts <- sv[, .(first = min(day)), by = .(siteID, year, eventID)]
@@ -110,7 +115,10 @@ code <- lab[, .N, by = .(name, taxonRank, acceptedTaxonID)][order(-N)][, .(code 
 stopifnot(!anyDuplicated(code$code))
 lab <- merge(lab, code[, .(name, code)], by = "name")
 lab[, taxon := paste(code, toupper(substr(stage, 1, 1)), sep = "_")]
-counts <- lab[, .(y = sum(as.integer(individualCount))), by = .(sampleID, taxon)]
+# ruling 18 (2026-11-06): a larval laboratory count in an exact multiple of 1,000 is likely an estimate
+lab[, k1000 := as.integer(stage == "larva" & as.integer(individualCount) %% 1000L == 0L)]
+counts <- lab[, .(y = sum(as.integer(individualCount)), obs_count_likely_estimated = as.integer(any(k1000 == 1L))), by = .(sampleID, taxon)]
+n_k1000 <- counts[obs_count_likely_estimated == 1L, .N]
 tot <- lab[, .(n_ticks = sum(as.integer(individualCount)), n_samples = uniqueN(sampleID)), by = .(taxon, code, name, taxonRank, stage)][order(-n_ticks)]
 cat(sprintf("  %d species x stage taxa (%d names); %d ticks in %d positive samples\n", nrow(tot), uniqueN(tot$name), sum(tot$n_ticks), uniqueN(counts$sampleID)))
 
@@ -125,10 +133,12 @@ base <- sv[, .(unit = plotID, period, occasion, date = collectDate, unit_site = 
                obs_area_m2 = as.numeric(totalSampledArea), obs_method = samplingMethod, sampleID)]
 long <- base[rep(seq_len(.N), each = nrow(tot))][, taxon := rep(tot$taxon, times = nrow(base))]
 long <- merge(long, counts, by = c("sampleID", "taxon"), all.x = TRUE)
-long[is.na(y), y := 0L]; long[, sampleID := NULL]
+long[is.na(y), `:=`(y = 0L, obs_count_likely_estimated = 0L)]; long[, sampleID := NULL]
 setcolorder(long, c("unit", "taxon", "y", "period", "occasion", "date"))
 stopifnot(nrow(long) == nrow(sv) * nrow(tot), sum(long$y) == sum(tot$n_ticks), !anyDuplicated(long[, .(unit, taxon, period, occasion)]))
 n_round <- long[y >= 1000 & y %% 1000 == 0, .N]; n_big <- long[y >= 1000, .N]
+stopifnot(long[obs_count_likely_estimated == 1L, .N] == n_k1000, all(long[obs_count_likely_estimated == 1L, y] >= 1000),
+          all(grepl("_L$", long[obs_count_likely_estimated == 1L, taxon])))
 cat(sprintf("  %d counts >= 1000 (all %s), %d of them whole thousands\n", n_big, paste(unique(long[y >= 1000, taxon]), collapse = ", "), n_round))
 cat(sprintf("  %d surveys at %d plots, %d sites, %d years; %d rows\n", nrow(sv), uniqueN(sv$plotID), uniqueN(sv$siteID), nrow(periods), nrow(long)))
 
@@ -156,11 +166,11 @@ dataset <- list(
   temporalCoverage = sprintf("%s/%s", substr(min(sv$day), 1, 7), substr(max(sv$day), 1, 7)),
   crs = "EPSG:4326 (WGS 84), as published",
   coordinatesCoarsened = list(value = FALSE, method = sprintf("As published by NEON (agency-published plot-centre coordinates with coordinateUncertaintyInMeters); no coarsening; %d plots were re-surveyed by a few metres and __units carries the latest", n_moved)),
-  covariateNote = "obs_area_m2 = area dragged or flagged (m2; effort); obs_method = drag, flag or drag and flag. Plot-level facts (site, domain, plot type, NLCD class, NEON namedLocation, plot-centre coordinates, uncertainty, elevation) are in __units.",
-  notes = sprintf("Taxa: species x life stage (adult = Male + Female + Adult; nymph; larva), lifeStage in __taxa; records identified only to genus or family (most larvae: Ixodidae) are their own taxa (E6), NEON's 'sp.' and 'spp.' codes of one name merged. From %s only: before 2019 the laboratory's counts may be subsamples (NEON issue log), %d earlier surveys not shipped. Surveys dropped: %d samples NEON marks lost, incomplete or with an estimated count; %d targetTaxaPresent = Y samples with no laboratory rows; %d repeat collections of a plot within one bout (first kept). Very large larval counts: %d rows have y >= 1000 and %d of them are whole thousands (10000, 20000, 35000), which look like the laboratory's estimates for larval clumps; NEON publishes them as individualCount without a flag, and they are shipped as published. Laboratory rows with no taxon (remarks 'Not a tick', 'insects!', 'empty vial') contribute nothing.", FROM, n_pre, n_cond, n_nolab, n_dup, n_big, n_round),
+  covariateNote = "obs_area_m2 = area dragged or flagged (m2; effort); obs_method = drag, flag or drag and flag; obs_count_likely_estimated = 1 where y includes a larval laboratory count that is an exact multiple of 1,000 (ruling 18: count likely estimated), else 0. Plot-level facts (site, domain, plot type, NLCD class, NEON namedLocation, plot-centre coordinates, uncertainty, elevation) are in __units.",
+  notes = sprintf("Taxa: species x life stage (adult = Male + Female + Adult; nymph; larva), lifeStage in __taxa; records identified only to genus or family (most larvae: Ixodidae) are their own taxa (E6), NEON's 'sp.' and 'spp.' codes of one name merged. From %s only: before 2019 the laboratory's counts may be subsamples (NEON issue log), %d earlier surveys not shipped. Surveys dropped: %d samples NEON marks lost, incomplete or with an estimated count; %d targetTaxaPresent = Y samples with no laboratory rows; %d repeat collections of a plot within one bout (first kept). Very large larval counts: %d rows have y >= 1000 and %d of them are whole thousands (10000, 20000, 35000). Ruling 18 (2026-11-06): a larval laboratory count in an exact multiple of 1,000 is likely the laboratory's estimate for a clump of larvae; NEON publishes it as individualCount without a flag, it ships as published, and obs_count_likely_estimated = 1 on the %d rows built from one (0 elsewhere). Laboratory rows with no taxon (remarks 'Not a tick', 'insects!', 'empty vial') contribute nothing.", FROM, n_pre, n_cond, n_nolab, n_dup, n_big, n_round, n_k1000),
   notShipped = list(
     `collections before 2019` = sprintf("%d surveys, 2014-2018: the laboratory counts of that period may be unreported subsamples (invoice limits; >500 larvae subsampled to 500 in 2016-2018), so y would not be the count in the drag", n_pre),
-    `unusable samples` = sprintf("%d samples marked Entire sample lost, Sample incomplete or Tick count estimated; %d Y samples with no laboratory rows; %d repeat collections of a plot within one bout", n_cond, n_nolab, n_dup),
+    `unusable samples` = sprintf("%d samples marked Entire sample lost or Sample incomplete; %d Y samples with no laboratory rows; %d repeat collections of a plot within one bout", n_cond, n_nolab, n_dup),
     `field counts` = "tck_fielddata adultCount / nymphCount / larvaCount (field counts, discontinued in 2019; the laboratory counts are y)",
     `other tables` = "tck_taxonomyRaw (pre-synonymy names), tck_identificationHistory, pathogen and archive tables"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/neon_2026_ticks_count.R")
@@ -171,7 +181,7 @@ stage_dict_row(TABLE,
   reference = "NEON (National Ecological Observatory Network). Ticks sampled using drag cloths (DP1.10093.001), RELEASE-2026. https://doi.org/10.48443/5e20-3763",
   doi_paper = "", doi_data = "10.48443/5e20-3763",
   original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. 2019 onward only (earlier lab counts may be subsamples); species x life stage taxa; national pool.",
+  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. 2019 onward only (earlier lab counts may be subsamples); species x life stage taxa; national pool; larval counts in whole thousands flagged obs_count_likely_estimated (ruling 18).",
   source_via = "NEON Data API, basic package")
 stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (multi-species, multi-season)",
   sampling_protocol = "drag_sampling", design = sprintf("Multi-season (%d years x up to %d bouts)", nrow(periods), max(sv$occasion)), realm = "Terrestrial", country = "USA",

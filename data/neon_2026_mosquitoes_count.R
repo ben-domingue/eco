@@ -31,7 +31,7 @@
 #   setDate as published (UTC); y = mosquitoes of the taxon counted in the identified subsample, all
 #   sexes pooled (a count of identified individuals, not an estimate of the trap's catch: the
 #   estimate y / proportionIdentified is not shipped); obs_proportion_identified (NA where the trap
-#   held no mosquitoes and no sample was kept); obs_trap_hours (effortColumn); obs_night_or_day,
+#   held no mosquitoes and no sample was kept), named by subsampleColumn (E10, ruling 21, 2026-11-06); obs_trap_hours (effortColumn); obs_night_or_day,
 #   obs_trap_type, obs_fan_status, obs_co2_status, obs_cup_status, obs_sample_timing (field season
 #   / off season) as published. __units: site, domain, plot type, NLCD class, plot-centre
 #   coordinates as published (latest where NEON re-surveyed a plot), uncertainty, elevation.
@@ -53,7 +53,7 @@ MIN_N   <- 1000L
 nx <- download_neon(PRODUCT, TABLE, RELEASE, tables = c("mos_trapping", "mos_sorting", "mos_expertTaxonomistIDProcessed"))
 stopifnot(identical(attr(nx, "release"), RELEASE), attr(nx, "n_site_months") == 3824L, identical(attr(nx, "productDoi"), DOI))
 tr <- nx$mos_trapping; so <- nx$mos_sorting; id <- nx$mos_expertTaxonomistIDProcessed
-rm(nx); gc(FALSE)
+rm(nx); invisible(gc(FALSE))
 cat(sprintf("  mos_trapping %d, mos_sorting %d, mos_expertTaxonomistIDProcessed %d rows\n", nrow(tr), nrow(so), nrow(id)))
 
 # --- the source as deposited --------------------------------------------------------------------
@@ -171,14 +171,14 @@ dataset <- list(
   samplingProtocol = "CDC-style CO2 light trap (dry ice, or a CO2 canister from 2022-2024) hung about 1.5 m high at a plot, set at dusk and collected after about 12 hours (night) or set in the morning and collected at dusk (day); catch frozen, sorted, and a subsample identified and counted by sex by a taxonomist (NEON TOS mosquito sampling protocol)",
   samplingProtocolCode = "light_trap", surveyEvidence = "sample_table",
   surveyEvidenceNote = "mos_trapping lists every trap collection (with samplingImpractical where a plot was not trapped); a survey is a row with samplingImpractical OK or blank, targetTaxaPresent Y or N and trapHours > 0. N keeps no sample and is y = 0 for every taxon; a Y sample's counts are its taxonomist rows (a subsample with no mosquitoes is y = 0). Taxon pool national.",
-  responseType = "count", unitKind = "site", effortColumn = "obs_trap_hours",
+  responseType = "count", unitKind = "site", effortColumn = "obs_trap_hours", subsampleColumn = "obs_proportion_identified",
   closure = "open", closureNote = "occasion = trap collection within the plot-year (bouts every two to four weeks through the season, each one to three collections), ordered by set time; period = calendar year", occasionKind = "time",
   taxonInclusion = "recorded",
   geographicCoverage = sprintf("%d NEON terrestrial sites, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", uniqueN(sv$siteID), min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
   temporalCoverage = sprintf("%s/%s", substr(min(sv$setDate), 1, 7), substr(max(sv$setDate), 1, 7)),
   crs = "EPSG:4326 (WGS 84), as published",
   coordinatesCoarsened = list(value = FALSE, method = sprintf("As published by NEON (agency-published plot-centre coordinates with coordinateUncertaintyInMeters); no coarsening; %d plots were re-surveyed by a few metres and __units carries the latest", n_moved)),
-  covariateNote = "obs_trap_hours = hours between set and collection (effort); obs_proportion_identified = share of the catch (by wet weight) the taxonomist identified, NA where the trap held no mosquitoes; obs_night_or_day, obs_trap_type (dry ice / CO2 canister, blank before NEON recorded it), obs_fan_status, obs_co2_status, obs_cup_status and obs_sample_timing as published.",
+  covariateNote = "obs_trap_hours = hours between set and collection (effort); obs_proportion_identified = share of the catch (by wet weight) the taxonomist identified, NA where the trap held no mosquitoes (subsampleColumn); obs_night_or_day, obs_trap_type (dry ice / CO2 canister, blank before NEON recorded it), obs_fan_status, obs_co2_status, obs_cup_status and obs_sample_timing as published.",
   notes = sprintf("y = identified individuals in the subsample, all sexes pooled (taxon is never species x sex, E6); the whole-catch estimate y / obs_proportion_identified is not shipped. Taxa: the %d taxa (species with subspecies rolled up, and records identified only to genus or family, E6) with >= %d identified individuals; %d below the cut are listed in notShipped. Surveys dropped: %d targetTaxaPresent U, %d trapHours = 0, %d samples marked damaged / handling error / incomplete, %d Y collections with no sorting record, %d sorted samples with no taxonomist rows, %d repeat records of one set, %d targetTaxaPresent N records that nevertheless kept a sample, %d collections whose taxonomist rows give two different counts for one taxon x sex; %d exact duplicate taxonomist rows counted once.", nrow(keep), MIN_N, nrow(below), n_u, n_h0, n_bad, n_noso, n_noid, n_dup, n_nsamp, n_conf, n_iddup),
   notShipped = list(
     `taxa below the cut` = paste(sprintf("%s (%s, %d)", below$taxon, below$name, below$n_ind), collapse = "; "),
