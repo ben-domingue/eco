@@ -2034,3 +2034,14 @@ as published (agency rule); the waterbird table holds six IUCN VU species at 8 k
 What strained the standard: summing ABV point counts per square visit is the Pollard-walk rule applied to points,
 chosen because point identity is broken in the source; it is a processing choice Ben may want stated as a rule (or
 a point-level table built for the 4,375 visits whose points are identifiable).
+
+Discovery (part 2): API searches of Zenodo, Harvard and Borealis Dataverse, figshare, PANGAEA, UK EIDC, TERN, OSF
+and NPS IRMA (twelve design queries each, 13 on TERN and OSF; 4,878 distinct hits, 1,307 after keyword screening and
+deduplication against the queue, human_review, the discovery log, the dictionary and every `__dataset.json` DOI),
+read by title and description; licences checked through each repository's API. 50 rows appended to
+`queue/candidates.csv` and `discovery_log.csv` (26 `available`, 24 `needs-look`): Zenodo 28 (16 of them Dryad deposits
+mirrored on Zenodo, fetchable without the Dryad quota), figshare 6, EIDC 6 (Open Government Licence), Borealis 5,
+Harvard Dataverse 2, TERN 2, NPS IRMA 1; PANGAEA and OSF gave nothing in scope (PANGAEA's hits are
+oceanographic and plankton series, OSF's are code and preregistrations). One Borealis hit (Calopteryx exul CMR) was
+the Dryad deposit already built as khelifa_2021_seybouse_calexul_cjs and was dropped. EDI and DataONE were skipped
+(403).
