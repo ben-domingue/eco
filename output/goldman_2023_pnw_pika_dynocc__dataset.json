@@ -26,9 +26,10 @@
   "notShipped": {
     "recodes": "ssn, Month and Yday (recodes of Season and the date)",
     "identifiers": "Survey_ID, Location_ID and Plot_ID (concatenations or parts of plot, year and date)",
+    "hassign": "the source's any-sign flag, which counts old sign the paper did not analyse; recoverable as y or any obs_n_old_* > 0",
     "jags_data": "DataForJAGS_MultiSign.RData: the same surveys reshaped and scaled for the authors' JAGS model"
   },
-  "notes": "y = hassign, the source's any-sign indicator, which includes old scat and old haypiles; for the paper's multi-sign or false-positive models use the obs_n_* counts (fresh scat, fresh haypile, call, sighting). obs_n_fresh_scat_unambiguous is NA on 682 surveys where it was not recorded. obs_cover_* are Daubenmire class codes as deposited (T = trace). No coordinates are deposited. The README asks that use of the data attribute the OSU-Cascades Human and Ecosystem Resilience and Sustainability Lab, with support from the National Park Service.",
+  "notes": "y = any fresh sign (fresh scat, fresh haypile, call or sighting), the paper's detection definition (old sign was not analysed); the source's hassign also counts old scat and old haypiles and is not shipped (it equals y or any obs_n_old_* > 0). For the paper's multi-sign or false-positive models use the obs_n_* counts. obs_n_fresh_scat_unambiguous is NA on 682 surveys where it was not recorded. obs_cover_* are Daubenmire class codes as deposited (T = trace). No coordinates are deposited. The README asks that use of the data attribute the OSU-Cascades Human and Ecosystem Resilience and Sustainability Lab, with support from the National Park Service.",
   "summary": {
     "n_rows": 5126,
     "n_units": 771,
@@ -37,16 +38,16 @@
     "n_occasions": 3,
     "n_surveys": 5126,
     "y_values": "0,1",
-    "prop_zero": 0.455,
+    "prop_zero": 0.64,
     "n_traps": 1,
-    "n_zero": 2333,
-    "n_positive": 2793,
-    "n_units_detected": 566,
+    "n_zero": 3282,
+    "n_positive": 1844,
+    "n_units_detected": 442,
     "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_park", "unit_lava_complexity", "obs_n_old_scat", "obs_n_old_haypile", "obs_n_fresh_haypile", "obs_n_sighting", "obs_n_call", "obs_n_fresh_scat", "obs_n_fresh_scat_unambiguous", "obs_resurvey", "obs_season", "obs_cover_rock", "obs_cover_bare", "obs_cover_grass", "obs_cover_shrub", "obs_cover_tree", "obs_cover_forb", "obs_tmax_mean_c", "obs_precip_sum_mm"],
-  "coreMd5": "2c0dda8fe887ec3582bf637e9a0d2c34",
+  "coreMd5": "ce1b2c1c714c1590f4f54be96696a8b8",
   "sideTables": {
     "periods": {
       "rows": 10,
