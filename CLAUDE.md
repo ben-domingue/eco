@@ -30,6 +30,7 @@ python3 tools/check_config_parity.py        # redivis_config.py and Rpkg/R/confi
 python3 tools/check_prose_numbers.py --strict   # a count in a title/description near but not equal to n_units/n_periods/n_taxa (CI runs this)
 python3 validate/validate_redivis.py         # re-validate the tables on the Redivis draft, update validate/report.csv (after a validator change; validate-redivis.yml runs it by hand)
 Rscript metadata/fetch_bibtex.R              # after a batch: BibTeX for new DOIs into metadata/bibtex/ (network; commit them)
+python3 tools/table_locations.py            # after a batch: homepage map points (Redivis); lists tables needing a tags/locations_human.csv row
 metadata/run_pipeline.sh                     # metadata.csv, biblio.csv, tags.csv, status.json from output/*__dataset.json, dictionary/, tags/
 python3 metadata/upload_meta.py --dry-run    # ship those three to Redivis eco_meta (draft)
 python3 releases/manifest.py --check         # is releases/manifest.csv up to date with Redivis? (run after Ben publishes)
