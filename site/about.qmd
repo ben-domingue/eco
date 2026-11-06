@@ -78,3 +78,4 @@ Additional contributors include:
 
 - [Milan Gorislavets](https://github.com/themilan1337)
 - Stacy Cremer
+- [Yashil Shukla](https://github.com/yashilshukla)
