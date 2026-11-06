@@ -25,7 +25,7 @@
   "crs": "EPSG:32630 (UTM zone 30N assumed: the deposit gives UTM northing and easting without the zone; the values fall in zone 30 over north-west England)",
   "coordinatesCoarsened": {
     "value": true,
-    "method": "The source calls the Large Heath threatened (E7 a); the UTM pair is snapped to the centre of its 10 km cell (E7 ruling 1), uncertainty 7,071 m. unit_centroid_dist_m keeps each compartment's distance from the colony centroid."
+    "method": "The deposit's README summary calls the Large Heath threatened in its own text about the data (E7 a; IUCN LC globally); the UTM pair is snapped to the centre of its 10 km cell (E7 ruling 1), uncertainty 7,071 m. unit_centroid_dist_m keeps each compartment's distance from the colony centroid."
   },
   "covariateNote": "obs_day_of_month: day of the month of the visit (month not deposited). obs_air_temp_c, obs_5day_temp_c: air temperature at the visit and mean of the 5 days before. obs_days_from_peak_presence / _detections: days of the visit from the site-wide peak of presence / detections (computed by the authors from all compartments' detections). unit_eriovag_*: Eriophorum vaginatum cover (%), tussock counts and nearest distances; unit_erictet_*: Erica tetralix likewise; *_presence 0/1.",
   "notShipped": {
@@ -68,5 +68,5 @@
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/osborne_2026_largeheath_dynocc.R",
-  "buildDate": "2026-11-05"
+  "buildDate": "2026-11-06"
 }

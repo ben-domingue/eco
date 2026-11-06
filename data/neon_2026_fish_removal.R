@@ -54,6 +54,12 @@
 #   not numbered 1..k; reach-bouts with a
 #   pass marked targetTaxaPresent = Y but no fish records; the per-fish lengths, weights, life
 #   stages and sample ids; fsh_invertBycatch.
+# Coordinates (E7; batch 46, #10): American eel (Anguilla rostrata, EN) and egg-mimic darter (Etheostoma
+#   pseudovulatum, VU) are recorded within their native ranges (GBIF IUCN records, asserted). Under the ruling on the
+#   publisher (2026-11-06, which withdrew the agency exception) two tables ship (E7 scope, 3): this one, every taxon,
+#   with the reach coordinates in __units snapped to their 0.1-degree cell centre and elevation rounded to 100 m; and
+#   neon_2026_fish_exact_removal, at NEON's coordinates, without the two species (records identified only to a higher rank
+#   stay in both tables). NEON namedLocation and site codes are kept.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE   <- "neon_2026_fish_removal"
 PRODUCT <- "DP1.20107.001"; RELEASE <- "RELEASE-2026"; DOI <- "https://doi.org/10.48443/s1e6-df79"
@@ -164,50 +170,76 @@ rem <- ifelse(tot$taxonRank == "species", NA_character_,
 rem[tot$taxon %in% nokey] <- paste0(rem[tot$taxon %in% nokey], "; the GBIF backbone gives no strict match for the class Actinopterygii, so taxonID is empty")
 taxa <- make_taxa(tot$taxon, tot$name, taxonRank = tot$taxonRank, lookupName = ifelse(tot$name %in% names(look), look[tot$name], tot$name),
                   allow_higher = setdiff(higher, nokey), no_key = nokey, taxonRemarks = rem,
-                  taxon_n_fish = tot$n_fish)
+                  taxon_n_fish = tot$n_fish, exact = FALSE)
+# exact = FALSE (batch 46): make_taxa() now refuses the Cyprinidae kingdom match outright; it is repaired below, and
+# every other row must be an EXACT match or an intended higher-rank match (asserted after the repair)
 # Cyprinidae: the strict match resolves to the kingdom whatever the authorship (a bivalve homonym in the backbone);
 # the accepted fish family is backbone key 7336, set by hand and recorded
 stopifnot(taxa[scientificName == "Cyprinidae", taxonID] == "https://www.gbif.org/species/1")
 taxa[scientificName == "Cyprinidae", `:=`(taxonID = "https://www.gbif.org/species/7336", gbifMatchType = "MANUAL",
      taxonRemarks = paste0(taxonRemarks, "; GBIF's strict match for Cyprinidae falls to the kingdom (a homonym), so taxonID is the accepted fish family's backbone key, set by hand"))]
 stopifnot(!any(taxa$taxonID %in% "https://www.gbif.org/species/1"))
+stopifnot(taxa[!taxon %in% nokey & scientificName != "Cyprinidae", all(gbifMatchType == "EXACT" | (gbifMatchType == "HIGHERRANK" & taxon %in% higher))])
 periods <- ev[, .(period, eventID, site = siteID, year, season, first_pass_date = first, last_pass_date = last)]
-dataset <- list(
-  title = sprintf("NEON wadeable-stream fish, three-pass electrofishing removal, RELEASE-2026: fish of %d taxa per pass at %d reaches on %d NEON stream sites, %d-%d", nrow(tot), uniqueN(sv$namedLocation), uniqueN(sv$siteID), min(ev$year), max(ev$year)),
-  creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = "10.48443/s1e6-df79",
-  sourceURL = "https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026",
-  citation = "NEON (National Ecological Observatory Network). Fish electrofishing, gill netting, and fyke netting counts (DP1.20107.001), RELEASE-2026. https://doi.org/10.48443/s1e6-df79. Dataset accessed from https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026 on 2026-11-05",
-  intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
-  abstract = sprintf("NEON's fish survey in wadeable streams: ten reaches of about 100 m per site, three fixed reaches fished by three-pass electrofishing removal and the others by a single pass, in spring and fall bouts. Every fish is identified (to species where possible) and up to 50-100 per taxon per pass are measured; the rest are bulk-counted. This table is the number of fish of each taxon per pass, with every taxon on every pass (national pool, %d taxa). Reach-centre coordinates are as NEON publishes them.", nrow(tot)),
-  samplingProtocol = "Backpack (or two-unit) electrofishing of a ~100 m reach in an upstream direction; fixed reaches fished in three consecutive removal passes, random reaches in one; fish netted, identified, a subset measured and weighed, and released after the bout (NEON AOS fish sampling protocol, NEON.DOC.001295)",
-  samplingProtocolCode = "electrofishing", surveyEvidence = "sample_table",
-  surveyEvidenceNote = "fsh_fieldData lists every reach-bout (with samplingImpractical where it was not fished) and fsh_perPass every pass; a survey is a pass of a reach-bout with samplingImpractical blank. A pass with targetTaxaPresent = N is y = 0 for every taxon.",
-  responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site",
-  closure = "closed", closureNote = "occasion = removal pass within one reach-bout; passes are consecutive, almost all on one day (at most 3 days apart, asserted); period = bout (spring or fall, a few 'other'), indexed globally by first pass date", occasionKind = "cell",
-  taxonInclusion = "recorded",
-  geographicCoverage = sprintf("23 NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; reach-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
-  temporalCoverage = sprintf("%s/%s", substr(min(ev$first), 1, 7), substr(max(ev$last), 1, 7)),
-  crs = "EPSG:4326 (WGS 84), as published",
-  coordinatesCoarsened = list(value = FALSE, method = sprintf("As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); %d reaches were re-surveyed by a few metres between bouts and __units carries the latest", n_moved)),
-  covariateNote = "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured); obs_count_estimated = 1 where y includes a bulk count NEON marks 'estimated' (ruling 17), else 0.",
-  notes = sprintf("y = per-fish records plus bulk counts of the taxon on the pass. Taxa: %d species (subspecies rolled up) and %d records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: %d passes in %d reach-bouts; %d reach-bouts sampling impractical have no rows; %d filed by NEON as net-compromised, %d other whose passes are not numbered 1..k and %d with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Estimated counts (ruling 17, 2026-11-06): %d reach-bouts carry a bulk count NEON marks estimated (%d fish); they are kept, and obs_count_estimated = 1 on the %d pass x taxon rows whose y includes one. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts, flag 0. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.", tot[taxonRank == "species", .N], tot[taxonRank != "species", .N], nrow(sv), uniqueN(sv$rb), n_impr, length(rb_net), length(rb_gap), length(rb_miss), length(rb_est), n_est_fish, n_est_rows),
-  notShipped = list(
-    `lake surveys` = sprintf("gill net, mini-fyke net and shoreline electrofishing at the %d lake sites (%s): other protocols", length(setdiff(unique(fd$siteID), streams)), paste(setdiff(sort(unique(fd$siteID)), streams), collapse = ", ")),
-    `net-compromised bouts` = sprintf("%d reach-bouts NEON filed under an eventID ending .netCompromised (a block net failed; the passes after the failure are split from the bout)", length(rb_net)),
-    `incomplete pass series` = sprintf("%d other reach-bouts whose passes are not numbered 1..k; %d reach-bouts with a pass marked targetTaxaPresent = Y but no fish records", length(rb_gap), length(rb_miss)),
-    `per-fish measurements` = "fsh_perFish lengths, weights, life stages, DELT and injury flags, voucher and DNA sample ids",
-    `invertebrate bycatch` = "fsh_invertBycatch (D04 decapods)"))
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/neon_2026_fish_removal.R")
+# E7 (batch 46, #10; ruling on the publisher, 2026-11-06, which withdrew the agency exception): taxa IUCN CR/EN/VU in
+# their native range are in the table, so it ships with coarsened reach / plot coordinates, and neon_2026_fish_exact_removal without them
+# at NEON's published coordinates (E7 scope, 3)
+NONNATIVE <- character()
+taxa[, taxon_iucnCategory := unname(mapply(iucn_category, taxonID, scientificName))]
+fl_sp <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU") & !taxon %in% NONNATIVE, taxon]
+stopifnot(setequal(fl_sp, c("ETHPSE", "ANGROS")))
+fl <- fl_sp   # E7 scope 3: the sibling drops the flagged taxa; records identified only to a higher rank stay
+flag <- taxa[taxon %in% fl_sp, sprintf("%s (%s)", scientificName, taxon_iucnCategory)]
+cat("  flagged:", paste(flag, collapse = "; "), "\n")
+cg <- coarsen_coords(units$decimalLatitude, units$decimalLongitude, 0.1)
+units_c <- copy(units)[, `:=`(decimalLatitude = cg$lat, decimalLongitude = cg$lon, coordinateUncertaintyInMeters = cg$uncertainty_m)]
+if ("elevation_m" %in% names(units_c)) units_c[, elevation_m := round(elevation_m, -2)]
+EXACT <- "neon_2026_fish_exact_removal"
+emit <- function(TABLE, exact) {
+  lt <- if (exact) long[!taxon %in% fl] else long
+  tt <- if (exact) taxa[!taxon %in% fl] else taxa
+  ut <- if (exact) units else units_c
+  nt <- nrow(tt)
+  dataset <- list(
+    title = paste0(sprintf("NEON wadeable-stream fish, three-pass electrofishing removal, RELEASE-2026: fish of %d taxa per pass at %d reaches on %d NEON stream sites, %d-%d", nt, uniqueN(sv$namedLocation), uniqueN(sv$siteID), min(ev$year), max(ev$year)), if (exact) " (without IUCN-threatened taxa; coordinates as published)" else ""),
+    creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = "10.48443/s1e6-df79",
+    sourceURL = "https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026",
+    citation = "NEON (National Ecological Observatory Network). Fish electrofishing, gill netting, and fyke netting counts (DP1.20107.001), RELEASE-2026. https://doi.org/10.48443/s1e6-df79. Dataset accessed from https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026 on 2026-11-05",
+    intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
+    abstract = sprintf("NEON's fish survey in wadeable streams: ten reaches of about 100 m per site, three fixed reaches fished by three-pass electrofishing removal and the others by a single pass, in spring and fall bouts. Every fish is identified (to species where possible) and up to 50-100 per taxon per pass are measured; the rest are bulk-counted. This table is the number of fish of each taxon per pass, with every taxon on every pass (national pool, %d taxa). Reach-centre coordinates are as NEON publishes them.", nt),
+    samplingProtocol = "Backpack (or two-unit) electrofishing of a ~100 m reach in an upstream direction; fixed reaches fished in three consecutive removal passes, random reaches in one; fish netted, identified, a subset measured and weighed, and released after the bout (NEON AOS fish sampling protocol, NEON.DOC.001295)",
+    samplingProtocolCode = "electrofishing", surveyEvidence = "sample_table",
+    surveyEvidenceNote = "fsh_fieldData lists every reach-bout (with samplingImpractical where it was not fished) and fsh_perPass every pass; a survey is a pass of a reach-bout with samplingImpractical blank. A pass with targetTaxaPresent = N is y = 0 for every taxon.",
+    responseType = "multinomial_cell", multinomialType = "removal", unitKind = "site",
+    closure = "closed", closureNote = "occasion = removal pass within one reach-bout; passes are consecutive, almost all on one day (at most 3 days apart, asserted); period = bout (spring or fall, a few 'other'), indexed globally by first pass date", occasionKind = "cell",
+    taxonInclusion = "recorded",
+    geographicCoverage = sprintf("23 NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; reach-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
+    temporalCoverage = sprintf("%s/%s", substr(min(ev$first), 1, 7), substr(max(ev$last), 1, 7)),
+    crs = "EPSG:4326 (WGS 84), as published",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("As published by NEON (coordinates with coordinateUncertaintyInMeters in __units). The IUCN-threatened taxa (%s) are not in this table (E7 scope, 3); neon_2026_fish_removal has them, with coordinates coarsened.", paste(flag, collapse = ", "))) else
+      list(value = TRUE, method = sprintf("coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (%s; E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_fish_exact_removal keeps the other taxa at published precision.", paste(flag, collapse = ", "))),
+    covariateNote = "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured); obs_count_estimated = 1 where y includes a bulk count NEON marks 'estimated' (ruling 17), else 0.",
+    notes = sprintf("y = per-fish records plus bulk counts of the taxon on the pass. Taxa: %d species (subspecies rolled up) and %d records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: %d passes in %d reach-bouts; %d reach-bouts sampling impractical have no rows; %d filed by NEON as net-compromised, %d other whose passes are not numbered 1..k and %d with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Estimated counts (ruling 17, 2026-11-06): %d reach-bouts carry a bulk count NEON marks estimated (%d fish); they are kept, and obs_count_estimated = 1 on the %d pass x taxon rows whose y includes one. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts, flag 0. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.", tot[taxonRank == "species", .N], tot[taxonRank != "species", .N], nrow(sv), uniqueN(sv$rb), n_impr, length(rb_net), length(rb_gap), length(rb_miss), length(rb_est), n_est_fish, n_est_rows),
+    notShipped = c(if (exact) list(threatened = sprintf("%s; records identified only to a higher rank stay in both tables: in neon_2026_fish_removal only, with coarsened coordinates (E7 scope, 3)", paste(flag, collapse = ", "))), list(
+      `lake surveys` = sprintf("gill net, mini-fyke net and shoreline electrofishing at the %d lake sites (%s): other protocols", length(setdiff(unique(fd$siteID), streams)), paste(setdiff(sort(unique(fd$siteID)), streams), collapse = ", ")),
+      `net-compromised bouts` = sprintf("%d reach-bouts NEON filed under an eventID ending .netCompromised (a block net failed; the passes after the failure are split from the bout)", length(rb_net)),
+      `incomplete pass series` = sprintf("%d other reach-bouts whose passes are not numbered 1..k; %d reach-bouts with a pass marked targetTaxaPresent = Y but no fish records", length(rb_gap), length(rb_miss)),
+      `per-fish measurements` = "fsh_perFish lengths, weights, life stages, DELT and injury flags, voucher and DNA sample ids",
+      `invertebrate bycatch` = "fsh_invertBycatch (D04 decapods)")))
+  ds <- write_table(lt, TABLE, dataset, taxa = tt, periods = periods, units = ut, script = "data/neon_2026_fish_removal.R")
 
-stage_dict_row(TABLE,
-  description = sprintf("Fish of %d taxa per electrofishing pass (three-pass removal at fixed reaches, one pass at random reaches) at %d reaches on 23 NEON wadeable-stream sites, spring and fall bouts %d-%d, built from NEON's per-fish and bulk-count records (RELEASE-2026), with electrofishing time, water temperature, habitat and reach-centre coordinates as published.", nrow(tot), uniqueN(sv$namedLocation), min(ev$year), max(ev$year)),
-  url = "https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026",
-  reference = "NEON (National Ecological Observatory Network). Fish electrofishing, gill netting, and fyke netting counts (DP1.20107.001), RELEASE-2026. https://doi.org/10.48443/s1e6-df79",
-  doi_paper = "", doi_data = "10.48443/s1e6-df79",
-  original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; estimated bulk counts kept with obs_count_estimated (ruling 17); higher-rank (incl. fuzzed) ids are their own taxa.",
-  source_via = "NEON Data API, basic package")
-stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "Removal (multi-species, multinomial N-mixture)",
-  sampling_protocol = "electrofishing", design = sprintf("Multi-season (%d bouts, 1 or 3 removal passes)", nrow(ev)), realm = "Freshwater", country = "USA",
-  coordinates = "As published", notes = "NEON national scheme; wadeable streams; every taxon on every pass.",
-  status = "tagged")
+  stage_dict_row(TABLE,
+    description = sprintf("Fish of %d taxa per electrofishing pass (three-pass removal at fixed reaches, one pass at random reaches) at %d reaches on 23 NEON wadeable-stream sites, spring and fall bouts %d-%d, built from NEON's per-fish and bulk-count records (RELEASE-2026), with electrofishing time, water temperature, habitat and reach-centre coordinates as published.", nt, uniqueN(sv$namedLocation), min(ev$year), max(ev$year)),
+    url = "https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026",
+    reference = "NEON (National Ecological Observatory Network). Fish electrofishing, gill netting, and fyke netting counts (DP1.20107.001), RELEASE-2026. https://doi.org/10.48443/s1e6-df79",
+    doi_paper = "", doi_data = "10.48443/s1e6-df79",
+    original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
+    notes = "Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; estimated bulk counts kept with obs_count_estimated (ruling 17); higher-rank (incl. fuzzed) ids are their own taxa.",
+    source_via = "NEON Data API, basic package")
+  stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "Removal (multi-species, multinomial N-mixture)",
+    sampling_protocol = "electrofishing", design = sprintf("Multi-season (%d bouts, 1 or 3 removal passes)", nrow(ev)), realm = "Freshwater", country = "USA",
+    coordinates = if (exact) "As published" else "Coarsened (0.1 deg)", notes = "NEON national scheme; wadeable streams; every taxon on every pass.",
+    status = "tagged")
+}
+emit("neon_2026_fish_removal", exact = FALSE)
+emit(EXACT, exact = TRUE)

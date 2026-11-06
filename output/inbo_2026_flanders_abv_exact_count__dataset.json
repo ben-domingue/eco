@@ -1,0 +1,72 @@
+{
+  "table": "inbo_2026_flanders_abv_exact_count",
+  "title": "ABV common breeding bird monitoring, Flanders: point counts of 178 bird taxa summed per visit in 757 1 km squares, 2017-2025 (without IUCN-threatened species; square centroids as published)",
+  "creator": "Piesschaert, Frederik; Vermeersch, Glenn; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Feys, Sam; Van de Poel, Sander; Pollet, Marc; Cooleman, Stijn (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/pj2v6h",
+  "sourceURL": "https://doi.org/10.15468/pj2v6h",
+  "citation": "Piesschaert F, Vermeersch G, Brosens D, Westra T, Desmet P, Feys S, Van de Poel S, Pollet M, Cooleman S (2026). ABV - Common breeding birds in Flanders, Belgium (post 2016). Version 1.23. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/pj2v6h",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "The Flemish common breeding bird monitoring scheme (Algemene Broedvogelmonitoring Vlaanderen, ABV), run by INBO and Natuurpunt Studie with volunteers through Meetnetten.be: up to six random points in each of a stratified random sample of 1 km UTM squares, all counted on one day, three times in a breeding season in fixed windows, five minutes per point, every adult breeding bird seen or heard counted. One row per square-date (a visit) and taxon, y the number of adults counted over the visit's point counts (obs_points_counted gives how many); zeros by complement of the complete count.",
+  "samplingProtocol": "Five-minute point count of all adult breeding birds seen or heard at up to six random points in a 1 x 1 km UTM square, all points on the same day, three visits a year in fixed windows (1 March-15 April, 16 April-31 May, 1 June-15 July) at least two weeks apart (Vermeersch, Ledegen & Feys 2018); foraging gulls and herons breeding elsewhere and flocks flying over are excluded.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasion = the point's counts within a breeding season (March to mid-July), across which arrivals and breeding change detectability and numbers; period = calendar year; squares are counted in some years only (at least once every three years)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Flanders, Belgium (coordinates are the centroids of 1 km UTM squares, as published by INBO)",
+  "temporalCoverage": "2017-03/2025-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "INBO publishes only the centroid of each 1 km UTM square (uncertainty 707 m; point locations withheld); kept as published. The IUCN VU species (Aythya ferina (VU), Streptopelia turtur (VU)) are not in this table (E7 scope, 3); inbo_2026_flanders_abv_count has them, coarsened."
+  },
+  "covariateNote": "obs_points_counted = number of five-minute point counts made in the square that day (1-6; effort); obs_start_time = start time of the day's first count (HH:MM, local; NA where not recorded).",
+  "notes": "y sums all records of a taxon over the point counts of one square-date (the app stores groups as separate records; 10234 point-count x taxon pairs had more than one record). The point is not the unit: 598 visits record every point under one locationID, so points cannot be told apart. Three subspecies are their own taxa alongside their species, as recorded. 18 point counts (3 square-dates) are dated January-February, outside the protocol windows, probably day and month swapped in entry; kept as published.",
+  "notShipped": {
+    "threatened": "Aythya ferina (VU), Streptopelia turtur (VU): in inbo_2026_flanders_abv_count only, with coarsened coordinates (E7 scope, 3)",
+    "per-point counts": "summed per square-date (point identity is not recoverable in 598 visits)",
+    "double entries": "14 square-dates with 7 to 12 point counts from two or three visits entered for one square and date (the protocol allows six): FS3696 2018-03-31; ES7968 2018-04-15; DS9855 2018-04-04; FS7151 2019-03-27; FS0963 2019-04-07; FS5531 2019-05-01; FS0196 2019-05-11; FS3980 2022-04-20; ES3933 2022-05-02; ES3523 2022-05-07; FS2985 2023-03-25; ES2268 2023-04-11; ES3666 2023-04-13; FS2496 2024-05-12",
+    "taxa only in dropped surveys": "Netta rufina (red-crested pochard), recorded only in a dropped double-entered square-date",
+    "Humboldt effort fields": "person-minutes per visit (5 minutes x points counted; obs_points_counted carries it)"
+  },
+  "summary": {
+    "n_rows": 876116,
+    "n_units": 757,
+    "n_taxa": 178,
+    "n_periods": 9,
+    "n_occasions": 6,
+    "n_surveys": 4922,
+    "y_values": "0-1106 (193 distinct)",
+    "prop_zero": 0.878,
+    "n_traps": 1,
+    "n_zero": 768820,
+    "n_positive": 107296,
+    "n_units_detected": 757,
+    "max_y": 1106
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_points_counted", "obs_start_time"],
+  "coreMd5": "5fb7721dd263defa7641fbd1c40c9bf0",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "n_squares_counted"],
+      "md5": "74ac7ee5e9cb8ffd555c4ff6e727a891"
+    },
+    "taxa": {
+      "rows": 178,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "001bde0220bed387525863abbe3f46f8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_abv_exact_count.R",
+  "buildDate": "2026-11-06"
+}

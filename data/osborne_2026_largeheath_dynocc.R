@@ -29,9 +29,12 @@
 #   obs_days_from_peak_presence, obs_days_from_peak_detections (computed by the authors from the whole site's
 #   detections and visit dates; they carry the visit timing the deposit otherwise lacks). unit_ habitat covariates
 #   and unit_centroid_dist_m.
-#   Coordinates (E7): the source calls the Large Heath a threatened butterfly (it is IUCN LC globally; a UK
-#   priority species), so it is treated as flagged by the source (E7 a): the projected UTM pair is snapped to the
-#   centre of its 10 km cell (E7 ruling 1, floor(x / 10000) * 10000 + 5000, uncertainty 7,071 m). The
+#   Coordinates (E7; re-checked in batch 46, #10, under the 2026-11-06 wording of (a), where a word in a paper's title
+#   is not enough): the deposit's own text about the data, the README summary (and the identical record description),
+#   states the aim as monitoring "a reintroduction programme for the threatened Large Heath butterfly Coenonympha
+#   tullia" (asserted), so the source says the taxon is threatened in its own text about the data and (a) still holds
+#   (it is IUCN LC globally). The projected UTM pair is snapped to the centre of its 10 km cell (E7 scope 1,
+#   floor(x / 10000) * 10000 + 5000, uncertainty 7,071 m). The
 #   compartments' relative layout is not shipped; the distance from the colony centroid is.
 # Not shipped: the 'Individuals' and 'Detections' total rows and siteCovs' C.tullia_Count / C.tullia_Pres / Presence
 #   (summaries of the detections); the 26th temperature slot of each year and the two unnamed columns (no visit);
@@ -48,6 +51,8 @@ rd <- function(n) { d <- fread(get(n), na.strings = c("NA", ""), encoding = "UTF
 norm <- function(s) { s <- tolower(s); k <- grepl("^site[12]\\.[0-9]+$", s)
   s[k] <- sprintf("%s.%03d", sub("\\..*$", "", s[k]), as.integer(sub("^.*\\.", "", s[k]))); s }
 stopifnot(any(grepl("ODC_BY Open Data Commons Attribution", readLines(get("README_MultiSeasonOccupancy.txt"), warn = FALSE), useBytes = TRUE)))
+# E7 (a): the README's summary calls the species threatened in the deposit's own text (not only in the title)
+stopifnot(any(grepl("reintroduction programme for the threatened Large Heath butterfly", readLines(get("README_MultiSeasonOccupancy.txt"), warn = FALSE), useBytes = TRUE)))
 
 slots <- sprintf("V%d.%02d", rep(21:25, each = 25), rep(1:25, 5))
 y <- rd("y_LHB_Detections.csv")
@@ -112,7 +117,7 @@ dataset <- list(
   geographicCoverage = "A restored lowland raised bog in north-west England (UTM zone 30N, 10 km cell centred near 53.4 N, 2.5 W); compartment coordinates coarsened",
   temporalCoverage = "2021/2025",
   crs = "EPSG:32630 (UTM zone 30N assumed: the deposit gives UTM northing and easting without the zone; the values fall in zone 30 over north-west England)",
-  coordinatesCoarsened = list(value = TRUE, method = "The source calls the Large Heath threatened (E7 a); the UTM pair is snapped to the centre of its 10 km cell (E7 ruling 1), uncertainty 7,071 m. unit_centroid_dist_m keeps each compartment's distance from the colony centroid."),
+  coordinatesCoarsened = list(value = TRUE, method = "The deposit's README summary calls the Large Heath threatened in its own text about the data (E7 a; IUCN LC globally); the UTM pair is snapped to the centre of its 10 km cell (E7 ruling 1), uncertainty 7,071 m. unit_centroid_dist_m keeps each compartment's distance from the colony centroid."),
   covariateNote = "obs_day_of_month: day of the month of the visit (month not deposited). obs_air_temp_c, obs_5day_temp_c: air temperature at the visit and mean of the 5 days before. obs_days_from_peak_presence / _detections: days of the visit from the site-wide peak of presence / detections (computed by the authors from all compartments' detections). unit_eriovag_*: Eriophorum vaginatum cover (%), tussock counts and nearest distances; unit_erictet_*: Erica tetralix likewise; *_presence 0/1.",
   notShipped = list(totals = "the 'Individuals' and 'Detections' rows of the detection file (site-wide totals per visit) and siteCovs C.tullia_Count / C.tullia_Pres / Presence (summaries of the detections)",
                     extra_temperature_slots = "a 26th visit slot per year and two unnamed columns in the temperature files, which have no detection slot and which the authors' script drops",

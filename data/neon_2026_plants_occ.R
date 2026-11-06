@@ -53,6 +53,14 @@
 #   Not shipped: the 10 m2 and 100 m2 records (another scale); subplot visits with only ground-cover rows
 #   and no targetTaxaPresent (2013-2016), or with both Y and N; the otherVariables rows (ground cover);
 #   plant heights; vouchers and the genetic archive.
+# Coordinates (E7; batch 46, #10): 27 taxa IUCN CR, EN or VU are recorded within their native ranges (GBIF IUCN
+#   records, asserted): among them the ashes Fraxinus americana, F. nigra, F. pennsylvanica (CR) and F. caroliniana
+#   (EN), American chestnut (CR), American elm, Fraser fir, longleaf and whitebark pines (EN), and Hawaiian and Puerto
+#   Rican endemics; Forsythia ovata (EN) is introduced here and not flagged (non-native ruling). Under the ruling on the
+#   publisher (2026-11-06, which withdrew the agency exception) two tables ship (E7 scope, 3): this one, every taxon,
+#   with the plot coordinates in __units snapped to their 0.1-degree cell centre and elevation rounded to 100 m; and
+#   neon_2026_plants_exact_occ, at NEON's coordinates, without the 27 taxa (records identified only to a higher rank,
+#   such as Fraxinus sp., stay in both tables). NEON site, plot and subplot codes are kept.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE   <- "neon_2026_plants_occ"
 PRODUCT <- "DP1.10058.001"; RELEASE <- "RELEASE-2026"
@@ -137,15 +145,15 @@ cat(sprintf("  per-site pools: median %d taxa (range %d-%d); %d subplots at %d p
 
 base <- s[, .(unit, period, occasion, date = endDate, cluster_id = plotID, unit_site = siteID, obs_bout = as.integer(boutNumber), sk)]
 setkey(det, sk, taxon)
-build <- function(pp) {
+build <- function(pp, stx = survey_taxa) {
   b <- base[period %in% pp]
-  long <- merge(b, survey_taxa, by = "unit", allow.cartesian = TRUE)
+  long <- merge(b, stx, by = "unit", allow.cartesian = TRUE)
   m <- det[.(long$sk, long$taxon)]
   long[, `:=`(y = m$y, obs_percent_cover = m$obs_percent_cover)]
   long[is.na(y), `:=`(y = 0L, obs_percent_cover = 0)]
   long[, sk := NULL]
   setcolorder(long, c("unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "obs_bout", "obs_percent_cover"))
-  stopifnot(sum(long$y) == nrow(det[sk %in% b$sk]))
+  stopifnot(sum(long$y) == nrow(det[sk %in% b$sk & taxon %in% stx$taxon]))
   long
 }
 stopifnot(nrow(det) == nrow(merge(det, unique(x[, .(sk, unit, siteID)]), by = "sk")))
@@ -175,42 +183,65 @@ cat(sprintf("  GBIF: %d taxa re-matched with NEON's family as a hint, %d without
 taxa[, kingdom := NULL]
 stopifnot(!any(taxa$taxonID %in% "https://www.gbif.org/species/1"), all(!is.na(taxa$taxonID) | !is.na(taxa$taxonRemarks)))
 
-dataset <- list(
-  title = sprintf("NEON plant presence in 1 m2 subplots, RELEASE-2026: detection of %d plant taxa per subplot visit at %d permanent subplots across %d NEON sites, %d-%d, per-site species pools", nrow(tot), nrow(units), uniqueN(units$site), min(periods$year), max(periods$year)),
-  creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = sub("^https://doi.org/", "", DOI),
-  sourceURL = "https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026",
-  citation = sprintf("NEON (National Ecological Observatory Network). Plant presence and percent cover (DP1.10058.001), RELEASE-2026. %s. Dataset accessed from https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026 on 2026-11-06", DOI),
-  intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
-  abstract = sprintf("NEON's plant diversity survey: in up to 30 distributed and 3 tower plots of 400 m2 per terrestrial site, botanists list every plant species rooted in eight permanent 1 m2 subplots and estimate its percent cover, once a year at peak greenness or twice a year at sites with two peaks; larger nested subplots (10 m2, 100 m2) record only the species new at that scale. This table is the 1 m2 scale, the only one with a complete species list at every visit: y = 1 when NEON lists the taxon in the subplot, 0 otherwise, with its cover. The taxa surveyed for at a subplot are the per-site pool of taxa this table records at its site (median %d; __survey_taxa), so a taxon never found at a site has no zeros there. Plot-centre coordinates are as NEON publishes them.", as.integer(median(pool_n$N))),
-  samplingProtocol = "Every vascular plant species rooted in a permanent 1 m2 subplot listed and its percent cover estimated, eight subplots per 400 m2 plot, at peak greenness once a year (twice at sites with two peaks) (NEON TOS plant diversity sampling protocol, NEON.DOC.014042); species of concern fuzzed by NEON to a higher rank",
-  samplingProtocolCode = "botanical_survey", surveyEvidence = "sample_table",
-  surveyEvidenceNote = "div_1m2Data has rows for every 1 m2 subplot visit (samplingImpractical where it was not sampled, targetTaxaPresent N where no plant was rooted in it); a survey is a subplot x eventID x endDate with samplingImpractical blank or OK and data rows. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a subplot are every taxon this table records at the subplot's site at any visit (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other visit to that site.",
-  responseType = "detection", unitKind = "site",
-  closure = "open", closureNote = "occasion = visit to the subplot within the calendar year, ordered by bout and date; at the bimodal sites the two bouts are timed to two peaks in greenness and species composition (product design description), so presence may change between them; a few subplots were listed twice within one bout (both kept). Most site-years have one visit; period = calendar year", occasionKind = "time",
-  taxonInclusion = "recorded",
-  geographicCoverage = sprintf("%d NEON terrestrial sites, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", uniqueN(units$site), min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
-  temporalCoverage = sprintf("%s/%s", substr(min(s$endDate), 1, 7), substr(max(s$endDate), 1, 7)),
-  crs = "EPSG:4326 (WGS 84), as published",
-  coordinatesCoarsened = list(value = FALSE, method = sprintf("As published by NEON (agency-published plot-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); subplots carry their plot's centre; %d plots were re-surveyed by a few metres and __units carries the latest", n_moved)),
-  covariateNote = "cluster_id = NEON plotID (the 400 m2 plot holding the subplot); unit_site = NEON site; obs_bout = NEON boutNumber (1, or 2 at bimodal sites); obs_percent_cover = the taxon's percent cover in the subplot at the visit, summed over NEON's rows for it (morphospecies, infraspecific taxa), 0 where y = 0, empty where NEON left a cover blank; it varies across taxa within a visit (E5).",
-  notes = sprintf("Scale: the 1 m2 subplot (ruling 19), the only NEON plant scale with a complete list per visit; the 10 m2 and 100 m2 records (div_10m2Data100m2Data, %d rows) are not used. Taxa: %d species (varieties and subspecies rolled up) and %d records identified, or fuzzed by NEON, only to a higher rank, or to a species group, each its own taxon (E6); %d names carried several NEON codes and were merged (%d sp./spp. pairs, ruling 20; %d species with infraspecific codes; the four kingdom-level codes as Plantae), taxonRemarks lists the codes. Surveys: %d subplot visits; %d not sampled have no rows; %d visits with only ground-cover rows and no targetTaxaPresent (2013-2016) and %d with both Y and N dropped; %d repeat visits within one bout kept as occasions. Per-site pools: median %d taxa (range %d-%d).", n_big, tot[rank == "species", .N], tot[rank != "species", .N], code[n_codes > 1, .N], n_spspp, n_infra, nrow(s), n_impr, n_na, n_yn, n_rep, as.integer(median(pool_n$N)), min(pool_n$N), max(pool_n$N)),
-  notShipped = list(
-    `larger nested subplots` = sprintf("div_10m2Data100m2Data (%d rows): species new at the 10 m2, 100 m2 and 400 m2 scales; another scale, whose presence lists are unions over nested subplots that NEON says are not always populated", n_big),
-    `unusable visits` = sprintf("%d visits with only ground-cover rows and no targetTaxaPresent (2013-2016); %d with both targetTaxaPresent Y and N", n_na, n_yn),
-    `other fields` = "otherVariables rows (ground cover of litter, rock, soil, wood, water), plant heights, vouchers, genetic archive, identification history"))
 parts <- as.list(periods$period)
-ds <- write_table_parts(parts, build, TABLE, dataset, taxa = taxa, periods = periods[, .(period, year)], units = units,
-                        survey_taxa = survey_taxa, script = "data/neon_2026_plants_occ.R")
+# E7 (batch 46, #10; ruling on the publisher, 2026-11-06, which withdrew the agency exception): taxa IUCN CR/EN/VU in
+# their native range are in the table, so it ships with coarsened reach / plot coordinates, and neon_2026_plants_exact_occ without them
+# at NEON's published coordinates (E7 scope, 3)
+NONNATIVE <- "FOOV80"   # Forsythia ovata (EN): a Korean shrub, introduced in the USA (E7, non-native ruling)
+taxa[, taxon_iucnCategory := unname(mapply(iucn_category, taxonID, scientificName))]
+fl_sp <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU") & !taxon %in% NONNATIVE, taxon]
+stopifnot(setequal(fl_sp, c("ABFR", "TRSI3", "QUGE", "MAPO6", "COOC3", "COMO3", "MIPO2", "GYDI", "PEBO", "PEPA37", "CHTR2", "FEWI", "FRAM2", "FRCA3", "FRPE", "FRNI", "MEPO5", "GUOF", "SIAL13", "PIAL", "PIPA2", "CADE12", "ULAM", "LEQU", "CLMO5", "CLCA5", "CYLY2")))
+fl <- fl_sp   # E7 scope 3: the sibling drops the flagged taxa; records identified only to a higher rank stay
+flag <- taxa[taxon %in% fl_sp, sprintf("%s (%s)", scientificName, taxon_iucnCategory)]
+cat("  flagged:", paste(flag, collapse = "; "), "\n")
+cg <- coarsen_coords(units$decimalLatitude, units$decimalLongitude, 0.1)
+units_c <- copy(units)[, `:=`(decimalLatitude = cg$lat, decimalLongitude = cg$lon, coordinateUncertaintyInMeters = cg$uncertainty_m)]
+if ("elevation_m" %in% names(units_c)) units_c[, elevation_m := round(elevation_m, -2)]
+EXACT <- "neon_2026_plants_exact_occ"
+emit <- function(TABLE, exact) {
+  tt <- if (exact) taxa[!taxon %in% fl] else taxa
+  ut <- if (exact) units else units_c
+  nt <- nrow(tt)
+  dataset <- list(
+    title = paste0(sprintf("NEON plant presence in 1 m2 subplots, RELEASE-2026: detection of %d plant taxa per subplot visit at %d permanent subplots across %d NEON sites, %d-%d, per-site species pools", nt, nrow(units), uniqueN(units$site), min(periods$year), max(periods$year)), if (exact) " (without IUCN-threatened taxa; coordinates as published)" else ""),
+    creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = sub("^https://doi.org/", "", DOI),
+    sourceURL = "https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026",
+    citation = sprintf("NEON (National Ecological Observatory Network). Plant presence and percent cover (DP1.10058.001), RELEASE-2026. %s. Dataset accessed from https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026 on 2026-11-06", DOI),
+    intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
+    abstract = sprintf("NEON's plant diversity survey: in up to 30 distributed and 3 tower plots of 400 m2 per terrestrial site, botanists list every plant species rooted in eight permanent 1 m2 subplots and estimate its percent cover, once a year at peak greenness or twice a year at sites with two peaks; larger nested subplots (10 m2, 100 m2) record only the species new at that scale. This table is the 1 m2 scale, the only one with a complete species list at every visit: y = 1 when NEON lists the taxon in the subplot, 0 otherwise, with its cover. The taxa surveyed for at a subplot are the per-site pool of taxa this table records at its site (median %d; __survey_taxa), so a taxon never found at a site has no zeros there. Plot-centre coordinates are as NEON publishes them.", as.integer(median(pool_n$N))),
+    samplingProtocol = "Every vascular plant species rooted in a permanent 1 m2 subplot listed and its percent cover estimated, eight subplots per 400 m2 plot, at peak greenness once a year (twice at sites with two peaks) (NEON TOS plant diversity sampling protocol, NEON.DOC.014042); species of concern fuzzed by NEON to a higher rank",
+    samplingProtocolCode = "botanical_survey", surveyEvidence = "sample_table",
+    surveyEvidenceNote = "div_1m2Data has rows for every 1 m2 subplot visit (samplingImpractical where it was not sampled, targetTaxaPresent N where no plant was rooted in it); a survey is a subplot x eventID x endDate with samplingImpractical blank or OK and data rows. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a subplot are every taxon this table records at the subplot's site at any visit (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other visit to that site.",
+    responseType = "detection", unitKind = "site",
+    closure = "open", closureNote = "occasion = visit to the subplot within the calendar year, ordered by bout and date; at the bimodal sites the two bouts are timed to two peaks in greenness and species composition (product design description), so presence may change between them; a few subplots were listed twice within one bout (both kept). Most site-years have one visit; period = calendar year", occasionKind = "time",
+    taxonInclusion = "recorded",
+    geographicCoverage = sprintf("%d NEON terrestrial sites, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", uniqueN(units$site), min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
+    temporalCoverage = sprintf("%s/%s", substr(min(s$endDate), 1, 7), substr(max(s$endDate), 1, 7)),
+    crs = "EPSG:4326 (WGS 84), as published",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("As published by NEON (coordinates with coordinateUncertaintyInMeters in __units). The IUCN-threatened taxa (%s) are not in this table (E7 scope, 3); neon_2026_plants_occ has them, with coordinates coarsened.", paste(flag, collapse = ", "))) else
+      list(value = TRUE, method = sprintf("coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because %d taxa IUCN CR/EN/VU in their native range are in the table (taxon_iucnCategory in __taxa; E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and plot codes are kept. neon_2026_plants_exact_occ keeps the other taxa at published precision.", length(flag))),
+    covariateNote = "cluster_id = NEON plotID (the 400 m2 plot holding the subplot); unit_site = NEON site; obs_bout = NEON boutNumber (1, or 2 at bimodal sites); obs_percent_cover = the taxon's percent cover in the subplot at the visit, summed over NEON's rows for it (morphospecies, infraspecific taxa), 0 where y = 0, empty where NEON left a cover blank; it varies across taxa within a visit (E5).",
+    notes = sprintf("Scale: the 1 m2 subplot (ruling 19), the only NEON plant scale with a complete list per visit; the 10 m2 and 100 m2 records (div_10m2Data100m2Data, %d rows) are not used. Taxa: %d species (varieties and subspecies rolled up) and %d records identified, or fuzzed by NEON, only to a higher rank, or to a species group, each its own taxon (E6); %d names carried several NEON codes and were merged (%d sp./spp. pairs, ruling 20; %d species with infraspecific codes; the four kingdom-level codes as Plantae), taxonRemarks lists the codes. Surveys: %d subplot visits; %d not sampled have no rows; %d visits with only ground-cover rows and no targetTaxaPresent (2013-2016) and %d with both Y and N dropped; %d repeat visits within one bout kept as occasions. Per-site pools: median %d taxa (range %d-%d).", n_big, tot[rank == "species", .N], tot[rank != "species", .N], code[n_codes > 1, .N], n_spspp, n_infra, nrow(s), n_impr, n_na, n_yn, n_rep, as.integer(median(pool_n$N)), min(pool_n$N), max(pool_n$N)),
+    notShipped = c(if (exact) list(threatened = sprintf("%s; records identified only to a higher rank stay in both tables: in neon_2026_plants_occ only, with coarsened coordinates (E7 scope, 3)", paste(flag, collapse = ", "))), list(
+      `larger nested subplots` = sprintf("div_10m2Data100m2Data (%d rows): species new at the 10 m2, 100 m2 and 400 m2 scales; another scale, whose presence lists are unions over nested subplots that NEON says are not always populated", n_big),
+      `unusable visits` = sprintf("%d visits with only ground-cover rows and no targetTaxaPresent (2013-2016); %d with both targetTaxaPresent Y and N", n_na, n_yn),
+      `other fields` = "otherVariables rows (ground cover of litter, rock, soil, wood, water), plant heights, vouchers, genetic archive, identification history")))
+  st <- if (exact) survey_taxa[!taxon %in% fl] else survey_taxa
+  ds <- write_table_parts(parts, function(pp) build(pp, st), TABLE, dataset, taxa = tt, periods = periods[, .(period, year)], units = ut,
+                          survey_taxa = st, script = "data/neon_2026_plants_occ.R")
 
-stage_dict_row(TABLE,
-  description = sprintf("Detection of %d plant taxa per visit to %d permanent 1 m2 subplots in 400 m2 plots at %d NEON terrestrial sites, %d-%d (once a year, twice at bimodal sites), with percent cover, built from NEON's plant presence and percent cover records (RELEASE-2026); per-site species pools in __survey_taxa; plot-centre coordinates as published.", nrow(tot), nrow(units), uniqueN(units$site), min(periods$year), max(periods$year)),
-  url = "https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026",
-  reference = sprintf("NEON (National Ecological Observatory Network). Plant presence and percent cover (DP1.10058.001), RELEASE-2026. %s", DOI),
-  doi_paper = "", doi_data = sub("^https://doi.org/", "", DOI),
-  original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. 1 m2 scale only; per-site pool from detections (ruling 19); year parts.",
-  source_via = "NEON Data API, basic package")
-stage_tag_row(TABLE, ds, taxon_group = "Plants", model_family = "Community occupancy (multi-season)",
-  sampling_protocol = "botanical_survey", design = sprintf("Multi-season (%d years x 1-2 visits)", nrow(periods)), realm = "Terrestrial", country = "USA",
-  coordinates = "As published", notes = "NEON national scheme; 1 m2 subplot presence lists; per-site species pools (__survey_taxa).",
-  status = "tagged")
+  stage_dict_row(TABLE,
+    description = sprintf("Detection of %d plant taxa per visit to %d permanent 1 m2 subplots in 400 m2 plots at %d NEON terrestrial sites, %d-%d (once a year, twice at bimodal sites), with percent cover, built from NEON's plant presence and percent cover records (RELEASE-2026); per-site species pools in __survey_taxa; plot-centre coordinates as published.", nt, nrow(units), uniqueN(units$site), min(periods$year), max(periods$year)),
+    url = "https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026",
+    reference = sprintf("NEON (National Ecological Observatory Network). Plant presence and percent cover (DP1.10058.001), RELEASE-2026. %s", DOI),
+    doi_paper = "", doi_data = sub("^https://doi.org/", "", DOI),
+    original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
+    notes = "Token-gated NEON API (NEON_TOKEN); release pinned. 1 m2 scale only; per-site pool from detections (ruling 19); year parts.",
+    source_via = "NEON Data API, basic package")
+  stage_tag_row(TABLE, ds, taxon_group = "Plants", model_family = "Community occupancy (multi-season)",
+    sampling_protocol = "botanical_survey", design = sprintf("Multi-season (%d years x 1-2 visits)", nrow(periods)), realm = "Terrestrial", country = "USA",
+    coordinates = if (exact) "As published" else "Coarsened (0.1 deg)", notes = "NEON national scheme; 1 m2 subplot presence lists; per-site species pools (__survey_taxa).",
+    status = "tagged")
+}
+emit("neon_2026_plants_occ", exact = FALSE)
+emit(EXACT, exact = TRUE)

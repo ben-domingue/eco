@@ -20,15 +20,16 @@
   "closureNote": "occasion = the point's counts within a breeding season (March to mid-July), across which arrivals and breeding change detectability and numbers; period = calendar year; squares are counted in some years only (at least once every three years)",
   "occasionKind": "time",
   "taxonInclusion": "recorded",
-  "geographicCoverage": "Flanders, Belgium (coordinates are the centroids of 1 km UTM squares, as published by INBO)",
+  "geographicCoverage": "Flanders, Belgium (1 km UTM square centroids coarsened to 0.1-degree cell centres)",
   "temporalCoverage": "2017-03/2025-07",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "INBO, a government agency, publishes only the centroid of each 1 km UTM square (uncertainty 707 m); point locations are withheld. Kept as published."
+    "value": true,
+    "method": "coarsen_coords(): the 1 km square centroids INBO publishes snapped to their 0.1-degree cell centre, uncertainty 707 m plus the cell half-diagonal, and the square codes (ABV_<UTM square>) replaced by sequential ids (E7 scope, 4), because IUCN VU species are in the table within their native range (Aythya ferina (VU), Streptopelia turtur (VU); E7, ruling on the publisher 2026-11-06). inbo_2026_flanders_abv_exact_count keeps the other taxa with centroids and square codes as published."
   },
   "covariateNote": "obs_points_counted = number of five-minute point counts made in the square that day (1-6; effort); obs_start_time = start time of the day's first count (HH:MM, local; NA where not recorded).",
   "notes": "y sums all records of a taxon over the point counts of one square-date (the app stores groups as separate records; 10234 point-count x taxon pairs had more than one record). The point is not the unit: 598 visits record every point under one locationID, so points cannot be told apart. Three subspecies are their own taxa alongside their species, as recorded. 18 point counts (3 square-dates) are dated January-February, outside the protocol windows, probably day and month swapped in entry; kept as published.",
   "notShipped": {
+    "square codes": "the 1 km square codes (ABV_<UTM square>) locate the square; replaced by sequential ids Q0001.. (E7 scope, 4); inbo_2026_flanders_abv_exact_count has them",
     "per-point counts": "summed per square-date (point identity is not recoverable in 598 visits)",
     "double entries": "14 square-dates with 7 to 12 point counts from two or three visits entered for one square and date (the protocol allows six): FS3696 2018-03-31; ES7968 2018-04-15; DS9855 2018-04-04; FS7151 2019-03-27; FS0963 2019-04-07; FS5531 2019-05-01; FS0196 2019-05-11; FS3980 2022-04-20; ES3933 2022-05-02; ES3523 2022-05-07; FS2985 2023-03-25; ES2268 2023-04-11; ES3666 2023-04-13; FS2496 2024-05-12",
     "taxa only in dropped surveys": "Netta rufina (red-crested pochard), recorded only in a dropped double-entered square-date",
@@ -51,7 +52,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_points_counted", "obs_start_time"],
-  "coreMd5": "b96bad3202f1198bad484e6bd5152851",
+  "coreMd5": "8b4c7f8a8a546deea169d8ed7346464c",
   "sideTables": {
     "periods": {
       "rows": 9,

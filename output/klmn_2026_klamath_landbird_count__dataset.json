@@ -23,8 +23,8 @@
   "geographicCoverage": "Six NPS units of the Klamath Network: Crater Lake NP and Oregon Caves NM (Oregon), Lava Beds NM, Lassen Volcanic NP, Redwood National and State Parks, Whiskeytown NRA (California), USA",
   "temporalCoverage": "2010-05/2025-08",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "Station coordinates as published by the National Park Service on its own land (agency rule, E7), although the table includes IUCN-listed species (Tricolored Blackbird EN; Evening Grosbeak and Pinyon Jay VU); median of the station's records; 5 surveyed stations have no coordinates in the source"
+    "value": true,
+    "method": "coarsen_coords(): station coordinates (median of the station's records) snapped to the 0.1-degree cell centre, uncertainty the cell half-diagonal, and elevation rounded to the nearest 100 m, because IUCN-threatened species are in the table within their native range (Coccothraustes vespertinus (VU), Gymnorhinus cyanocephalus (VU), Agelaius tricolor (EN); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception); 5 surveyed stations have no coordinates in the source. klmn_2026_klamath_landbird_exact_count keeps the other taxa at published precision."
   },
   "covariateNote": "cluster_id: route. unit_park: NPS unit code. unit_elevation_m: station elevation. obs_n_previous_station: individuals of the taxon in y that were flagged as detected at a previous station on the route.",
   "notShipped": {
@@ -51,8 +51,8 @@
     "max_y": 150
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "period", "date", "cluster_id", "unit_park", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_n_previous_station"],
-  "coreMd5": "4a7c924f0df814ee3e6e1dc4ec8a8662",
+  "columns": ["unit", "taxon", "y", "period", "date", "cluster_id", "unit_park", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_previous_station"],
+  "coreMd5": "95bd575cdf3c4e243edadde95c418fd9",
   "sideTables": {
     "periods": {
       "rows": 15,

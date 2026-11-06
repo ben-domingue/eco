@@ -40,8 +40,13 @@
 #   names recorded in the kept surveys; Netta rufina is recorded only in a dropped one). 14 square-dates hold more
 #   than the six point counts the protocol allows (7 to 12, each from two or three visits of the same square entered
 #   on the same date, i.e. double entry): dropped (asserted, notShipped). 4,936 - 14 = 4,922 square-dates x 180 taxa = 885,960 rows.
-#   Coordinates: INBO publishes only the centroid of each 1 km square (point locations withheld): agency-published,
-#   kept as published (E7).
+#   Coordinates (E7; batch 46, #10): INBO publishes only the centroid of each 1 km square (point locations withheld;
+#   uncertainty 707 m), finer than 0.1 degree, and turtle dove (Streptopelia turtur) and common pochard (Aythya ferina)
+#   are IUCN VU (GBIF IUCN records, asserted) within their native range. Under the ruling on the publisher
+#   (2026-11-06, which withdrew the agency exception) two tables ship (E7 scope, 3): this one, every taxon, with the
+#   centroid snapped to its 0.1-degree cell centre (uncertainty = 707 m plus the cell half-diagonal) and the square
+#   code (ABV_<UTM square>, which locates the square) replaced by a sequential id Q0001.. (E7 scope, 4); and
+#   inbo_2026_flanders_abv_exact_count, without the two species, with centroids and square codes as published.
 # Not shipped: the per-point counts (point identity is not recoverable for 598 visits; the square-date sum is
 #   shipped); the 14 double-entered square-dates; vernacular names in Dutch (in __taxa, as the source gives them).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -140,39 +145,58 @@ cat("  IUCN CR/EN/VU: ", paste(sprintf("%s=%s", taxa$taxon, iu)[iu %in% c("CR", 
 periods <- data.table(period = seq_along(years), year = years,
                       n_squares_counted = sapply(years, function(y) uniqueN(sv[year == y]$unit)))
 
-dataset <- list(
-  title = sprintf("ABV common breeding bird monitoring, Flanders: point counts of %d bird taxa summed per visit in %d 1 km squares, 2017-2025", nrow(tx), uniqueN(sv$unit)),
-  creator = "Piesschaert, Frederik; Vermeersch, Glenn; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Feys, Sam; Van de Poel, Sander; Pollet, Marc; Cooleman, Stijn (Research Institute for Nature and Forest, INBO)",
-  pubDate = "2026", doi = "10.15468/pj2v6h", sourceURL = "https://doi.org/10.15468/pj2v6h",
-  citation = "Piesschaert F, Vermeersch G, Brosens D, Westra T, Desmet P, Feys S, Van de Poel S, Pollet M, Cooleman S (2026). ABV - Common breeding birds in Flanders, Belgium (post 2016). Version 1.23. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/pj2v6h",
-  intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "The Flemish common breeding bird monitoring scheme (Algemene Broedvogelmonitoring Vlaanderen, ABV), run by INBO and Natuurpunt Studie with volunteers through Meetnetten.be: up to six random points in each of a stratified random sample of 1 km UTM squares, all counted on one day, three times in a breeding season in fixed windows, five minutes per point, every adult breeding bird seen or heard counted. One row per square-date (a visit) and taxon, y the number of adults counted over the visit's point counts (obs_points_counted gives how many); zeros by complement of the complete count.",
-  samplingProtocol = "Five-minute point count of all adult breeding birds seen or heard at up to six random points in a 1 x 1 km UTM square, all points on the same day, three visits a year in fixed windows (1 March-15 April, 16 April-31 May, 1 June-15 July) at least two weeks apart (Vermeersch, Ledegen & Feys 2018); foraging gulls and herons breeding elsewhere and flocks flying over are excluded.",
-  samplingProtocolCode = "point_count", surveyEvidence = "sample_table",
-  responseType = "count", unitKind = "site",
-  closure = "open", closureNote = "occasion = the point's counts within a breeding season (March to mid-July), across which arrivals and breeding change detectability and numbers; period = calendar year; squares are counted in some years only (at least once every three years)",
-  occasionKind = "time", taxonInclusion = "recorded",
-  geographicCoverage = "Flanders, Belgium (coordinates are the centroids of 1 km UTM squares, as published by INBO)",
-  temporalCoverage = "2017-03/2025-07",
-  coordinatesCoarsened = list(value = FALSE, method = "INBO, a government agency, publishes only the centroid of each 1 km UTM square (uncertainty 707 m); point locations are withheld. Kept as published."),
-  covariateNote = "obs_points_counted = number of five-minute point counts made in the square that day (1-6; effort); obs_start_time = start time of the day's first count (HH:MM, local; NA where not recorded).",
-  notes = sprintf("y sums all records of a taxon over the point counts of one square-date (the app stores groups as separate records; %d point-count x taxon pairs had more than one record). The point is not the unit: 598 visits record every point under one locationID, so points cannot be told apart. Three subspecies are their own taxa alongside their species, as recorded. 18 point counts (3 square-dates) are dated January-February, outside the protocol windows, probably day and month swapped in entry; kept as published.", 10234L),
-  notShipped = list(
-    `per-point counts` = "summed per square-date (point identity is not recoverable in 598 visits)",
-    `double entries` = sprintf("%d square-dates with 7 to 12 point counts from two or three visits entered for one square and date (the protocol allows six): %s", nrow(dbl), paste(sprintf("%s %s", dbl$unit, dbl$eventDate), collapse = "; ")),
-    `taxa only in dropped surveys` = "Netta rufina (red-crested pochard), recorded only in a dropped double-entered square-date",
-    `Humboldt effort fields` = "person-minutes per visit (5 minutes x points counted; obs_points_counted carries it)"))
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = sprintf("data/%s.R", TABLE))
+fl <- taxa[iu %in% c("CR", "EN", "VU"), taxon]
+stopifnot(setequal(fl, c("STRTUR", "AYTFER")))
+flag <- taxa[taxon %in% fl, sprintf("%s (%s)", scientificName, taxon_iucnCategory)]
+EXACT <- "inbo_2026_flanders_abv_exact_count"
+cc <- coarsen_coords(long$unit_decimalLatitude, long$unit_decimalLongitude, 0.1)
+sq <- sort(unique(long$unit))
+long_c <- copy(long)[, `:=`(unit = sprintf("Q%04d", match(unit, sq)), unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon,
+                             unit_coordinateUncertaintyInMeters = as.integer(707L + cc$uncertainty_m))]
+long_c <- order_eco(long_c)
+emit <- function(TABLE, exact) {
+  lt <- if (exact) long[!taxon %in% fl] else long_c
+  tt <- if (exact) taxa[!taxon %in% fl] else taxa
+  nt <- nrow(tt)
+  stopifnot(nrow(lt) == 4922L * nt)
+  dataset <- list(
+    title = paste0(sprintf("ABV common breeding bird monitoring, Flanders: point counts of %d bird taxa summed per visit in %d 1 km squares, 2017-2025", nt, uniqueN(sv$unit)), if (exact) " (without IUCN-threatened species; square centroids as published)" else ""),
+    creator = "Piesschaert, Frederik; Vermeersch, Glenn; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Feys, Sam; Van de Poel, Sander; Pollet, Marc; Cooleman, Stijn (Research Institute for Nature and Forest, INBO)",
+    pubDate = "2026", doi = "10.15468/pj2v6h", sourceURL = "https://doi.org/10.15468/pj2v6h",
+    citation = "Piesschaert F, Vermeersch G, Brosens D, Westra T, Desmet P, Feys S, Van de Poel S, Pollet M, Cooleman S (2026). ABV - Common breeding birds in Flanders, Belgium (post 2016). Version 1.23. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/pj2v6h",
+    intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
+    abstract = "The Flemish common breeding bird monitoring scheme (Algemene Broedvogelmonitoring Vlaanderen, ABV), run by INBO and Natuurpunt Studie with volunteers through Meetnetten.be: up to six random points in each of a stratified random sample of 1 km UTM squares, all counted on one day, three times in a breeding season in fixed windows, five minutes per point, every adult breeding bird seen or heard counted. One row per square-date (a visit) and taxon, y the number of adults counted over the visit's point counts (obs_points_counted gives how many); zeros by complement of the complete count.",
+    samplingProtocol = "Five-minute point count of all adult breeding birds seen or heard at up to six random points in a 1 x 1 km UTM square, all points on the same day, three visits a year in fixed windows (1 March-15 April, 16 April-31 May, 1 June-15 July) at least two weeks apart (Vermeersch, Ledegen & Feys 2018); foraging gulls and herons breeding elsewhere and flocks flying over are excluded.",
+    samplingProtocolCode = "point_count", surveyEvidence = "sample_table",
+    responseType = "count", unitKind = "site",
+    closure = "open", closureNote = "occasion = the point's counts within a breeding season (March to mid-July), across which arrivals and breeding change detectability and numbers; period = calendar year; squares are counted in some years only (at least once every three years)",
+    occasionKind = "time", taxonInclusion = "recorded",
+    geographicCoverage = if (exact) "Flanders, Belgium (coordinates are the centroids of 1 km UTM squares, as published by INBO)" else "Flanders, Belgium (1 km UTM square centroids coarsened to 0.1-degree cell centres)",
+    temporalCoverage = "2017-03/2025-07",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("INBO publishes only the centroid of each 1 km UTM square (uncertainty 707 m; point locations withheld); kept as published. The IUCN VU species (%s) are not in this table (E7 scope, 3); inbo_2026_flanders_abv_count has them, coarsened.", paste(flag, collapse = ", "))) else
+      list(value = TRUE, method = sprintf("coarsen_coords(): the 1 km square centroids INBO publishes snapped to their 0.1-degree cell centre, uncertainty 707 m plus the cell half-diagonal, and the square codes (ABV_<UTM square>) replaced by sequential ids (E7 scope, 4), because IUCN VU species are in the table within their native range (%s; E7, ruling on the publisher 2026-11-06). inbo_2026_flanders_abv_exact_count keeps the other taxa with centroids and square codes as published.", paste(flag, collapse = ", "))),
+    covariateNote = "obs_points_counted = number of five-minute point counts made in the square that day (1-6; effort); obs_start_time = start time of the day's first count (HH:MM, local; NA where not recorded).",
+    notes = sprintf("y sums all records of a taxon over the point counts of one square-date (the app stores groups as separate records; %d point-count x taxon pairs had more than one record). The point is not the unit: 598 visits record every point under one locationID, so points cannot be told apart. Three subspecies are their own taxa alongside their species, as recorded. 18 point counts (3 square-dates) are dated January-February, outside the protocol windows, probably day and month swapped in entry; kept as published.", 10234L),
+    notShipped = c(if (exact) list(threatened = sprintf("%s: in inbo_2026_flanders_abv_count only, with coarsened coordinates (E7 scope, 3)", paste(flag, collapse = ", "))) else
+                     list(`square codes` = "the 1 km square codes (ABV_<UTM square>) locate the square; replaced by sequential ids Q0001.. (E7 scope, 4); inbo_2026_flanders_abv_exact_count has them"), list(
+      `per-point counts` = "summed per square-date (point identity is not recoverable in 598 visits)",
+      `double entries` = sprintf("%d square-dates with 7 to 12 point counts from two or three visits entered for one square and date (the protocol allows six): %s", nrow(dbl), paste(sprintf("%s %s", dbl$unit, dbl$eventDate), collapse = "; ")),
+      `taxa only in dropped surveys` = "Netta rufina (red-crested pochard), recorded only in a dropped double-entered square-date",
+      `Humboldt effort fields` = "person-minutes per visit (5 minutes x points counted; obs_points_counted carries it)")))
+  ds <- write_table(lt, TABLE, dataset, taxa = tt, periods = periods, script = sprintf("data/%s.R", TABLE))
 
-stage_dict_row(TABLE,
-  description = sprintf("Counts of %d bird taxa in %d 1 km UTM squares of the Flemish common breeding bird monitoring scheme (ABV), summed over up to six five-minute point counts per visit, three visits a breeding season, 2017-2025, with explicit zeros from the complete-count protocol.", nrow(tx), uniqueN(sv$unit)),
-  url = "https://doi.org/10.15468/pj2v6h",
-  reference = "Piesschaert F, Vermeersch G, Brosens D, Westra T, Desmet P, Feys S, Van de Poel S, Pollet M, Cooleman S (2026). ABV - Common breeding birds in Flanders, Belgium (post 2016). Version 1.23. INBO.",
-  doi_paper = "", doi_data = "10.15468/pj2v6h",
-  original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "INBO IPT DwC-A (meetnetten-abv2-occurrences v1.23); square-date sums of point counts; square-centroid coordinates as published.",
-  source_via = "GBIF")
-stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "N-mixture (multi-species, multi-season)",
-  sampling_protocol = "point_count", design = sprintf("Multi-season (%d years x up to %d visits)", length(years), max(sv$occasion)),
-  realm = "Terrestrial", country = "BEL", coordinates = "As published",
-  notes = "National (regional) breeding bird scheme; unit = 1 km square, point counts summed per visit; squares rotate across years.")
+  stage_dict_row(TABLE,
+    description = sprintf("Counts of %d bird taxa in %d 1 km UTM squares of the Flemish common breeding bird monitoring scheme (ABV), summed over up to six five-minute point counts per visit, three visits a breeding season, 2017-2025, with explicit zeros from the complete-count protocol.", nt, uniqueN(sv$unit)),
+    url = "https://doi.org/10.15468/pj2v6h",
+    reference = "Piesschaert F, Vermeersch G, Brosens D, Westra T, Desmet P, Feys S, Van de Poel S, Pollet M, Cooleman S (2026). ABV - Common breeding birds in Flanders, Belgium (post 2016). Version 1.23. INBO.",
+    doi_paper = "", doi_data = "10.15468/pj2v6h",
+    original_license = "CC0 1.0", derived_license = "CC0 1.0",
+    notes = paste0("INBO IPT DwC-A (meetnetten-abv2-occurrences v1.23); square-date sums of point counts; ", if (exact) "without IUCN VU species; square centroids as published." else "square centroids coarsened to 0.1 degree (IUCN VU species)."),
+    source_via = "GBIF")
+  stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "N-mixture (multi-species, multi-season)",
+    sampling_protocol = "point_count", design = sprintf("Multi-season (%d years x up to %d visits)", length(years), max(sv$occasion)),
+    realm = "Terrestrial", country = "BEL", coordinates = if (exact) "As published" else "Coarsened (0.1 deg)",
+    notes = "National (regional) breeding bird scheme; unit = 1 km square, point counts summed per visit; squares rotate across years.")
+}
+emit("inbo_2026_flanders_abv_count", exact = FALSE)
+emit(EXACT, exact = TRUE)

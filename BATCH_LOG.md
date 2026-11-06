@@ -2296,6 +2296,108 @@ at 8 km sector centres: both under the agency-published rule, the open question 
 What strained the standard: nothing new. The fire-salamander archive marks every row 'casual observation' (absences
 included), read as an export constant, not a record type.
 
+## Batch 46 — 2026-11-06 (rework under the rulings of 2026-11-06: re-coarsen, un-coarsen check, spatial mark-resight, repeated rows within a visit)
+
+One agent in `~/eco-b46` (branch `batch-46-rework`, from main at 7acd58b). No Dryad requests: the two SMR deposits
+not yet downloaded (fn4nf, 7d7wm387j) wait for the quota after 00:00 UTC. IUCN categories for every taxon of every
+table whose script or `coordinatesCoarsened` cited the agency exception were read from GBIF (`iucn_category()`).
+
+**Part A, re-coarsen (E7, ruling on the publisher).** A flagged taxon is now coarsened whoever published the
+coordinates. Rebuilt, each with an `_exact` sibling without the flagged taxa (E7 scope 3) where the table has several:
+
+| Table | Flagged taxa (IUCN, native range) | Change | `_exact` sibling |
+|---|---|---|---|
+| haas_2025_sweden_waterbird_count | 6 VU (pochard, velvet scoter, long-tailed duck, Steller's eider, horned grebe, puffin) | sector centres to 0.1° cell, uncertainty 8,000 m + half-diagonal | haas_2025_sweden_waterbird_exact_count (64 taxa) |
+| haas_2025_sweden_waterbirdsep_count | the same 6 VU | as above | haas_2025_sweden_waterbirdse_exact_count (42; name cut to 40 characters) |
+| klmn_2026_klamath_landbird_count | tricolored blackbird EN; pinyon jay, evening grosbeak VU | station coordinates to 0.1° cell, elevation to 100 m | klmn_2026_klamath_landbird_exact_count (231) |
+| inbo_2026_flanders_firesalamander_count | fire salamander VU | INBO 5 km centroids to 0.1° cell, uncertainty 3,536 m + half-diagonal | single species: none |
+| inbo_2026_flanders_abv_count | turtle dove, pochard VU | 1 km square centroids to 0.1° cell; square codes (ABV_<UTM>) replaced by Q0001.. (E7 scope 4) | inbo_2026_flanders_abv_exact_count (178) |
+| neon_2026_fish_removal | American eel EN, egg-mimic darter VU | reach coordinates in `__units` to 0.1° cell, elevation to 100 m | neon_2026_fish_exact_removal (153) |
+| neon_2026_macroinverts_count | Valvata mergella EN (Alaska) | site coordinates in `__units` (on batch 47's rebuild, see below) | neon_2026_macroinverts_exact_count (1,228) |
+| neon_2026_landbirds_count | chimney swift, pinyon jay, long-tailed duck, Puerto Rican bullfinch, Puerto Rican nightjar VU | point coordinates in `__units`; now period parts (over 5 M rows) | neon_2026_landbirds_exact_count (278) |
+| neon_2026_plants_occ | 27 CR/EN/VU (four ashes, American chestnut, American elm, Fraser fir, longleaf and whitebark pines, Hawaiian and Puerto Rican endemics); Forsythia ovata EN is introduced, not flagged | plot coordinates in `__units` | neon_2026_plants_exact_occ (4,953) |
+
+Records identified only to a higher rank (Melanitta sp., Icteridae sp., Fraxinus sp.) stay in both tables: the
+standard drops the flagged taxa, and a genus record is not one (question for Ben below). Coordinates in the core
+(haas, klamath, ABV, fire salamander) change; the NEON cores do not (coordinates live in `__units`; `coreMd5` of the
+fish core is unchanged).
+
+Checked and not flagged, so coordinates stay, with the `coordinatesCoarsened` note rewritten (the agency reason is
+withdrawn; data unchanged, `coreMd5` asserted equal for the core files):
+nrm_2024_sweden_porpoise_occ (harbour porpoise LC; the Baltic Proper CR assessment is of a subpopulation, not a taxon
+with a key, so (b) as written does not reach it; the deposit states no sensitivity, (a), and cites no red list, (c));
+whittington_2025_banff_grizzly_occ (grizzly LC; the deposit's abstract speaks of "species at risk" in general, not of
+the bear; SARA Special Concern is not cited); bruce_2021_wisconsin_monarch_nmix (Danaus plexippus LC per GBIF; the
+migratory subspecies is VU at IUCN but GBIF has no record for it and the source records the species; `__taxa` gains
+`taxon_iucnCategory`).
+
+Not rebuilt in this batch: ziolkowski_2026_bbs_count, _bcr15_block and _bcr15_stop cite the agency exception and hold
+38, 5 and 4 flagged taxa, but their only coordinates are route start points of 39 km routes, not bird locations: a
+question for Ben before a 2 x 110-million-row rebuild. neon_2026_smallmammals_count cites the exception for Podomys
+floridanus, which GBIF now gives as NT: nothing is flagged, only the note is stale (needs a NEON download to rebuild).
+The INBO tables generalised by the publisher (bats, butterflies, priority butterflies, crested newt, dragonflies,
+Odonata sites, Alcon blue eggs), ukpoms_2026_uk_pantrap_count, sepulveda_2019_streamgage_fish_edna and the other NEON
+tables hold no flagged taxon (checked), so they stand.
+
+**NEON macroinvertebrates and batch 47.** This batch first rebuilt neon_2026_macroinverts_count from the script as
+it stood on main at 7acd58b (4,833,657 rows in year parts, a national pool) and uploaded it, with its `_exact`
+sibling, to the eco_2 draft, overwriting batch 47's rebuild (#143: per-site pools, life-stage obs_n_stage_ columns,
+1,099,575 rows); the upload of the stale `_exact` sibling failed. After merging main, batch 47's script was taken as
+it is and only the E7 change re-applied (coarsened `__units`, `_exact` sibling without Valvata mergella); both tables
+were rebuilt from it (the core is byte-identical to batch 47's, coreMd5 1544045d...) and re-uploaded, core and every
+side table, so the draft holds batch 47's design plus the coarsening.
+
+**Part B, un-coarsen check.** osborne_2026_largeheath_dynocc stays coarsened: the deposit's own README summary (not
+only the title) describes "a reintroduction programme for the threatened Large Heath butterfly", which is (a) as the
+2026-11-06 wording states it ("threatened in its own text about the data"); asserted in the script, note rewritten.
+
+**Part D, new builds.**
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| rees_2023_victoria_cat_smr | spatial mark-resight, natural marks, reserved units | count | 1,355,315 | 137 | 1 | 10 |
+| ford_2025_iowa_grassbirds_count | point counts, 3 intervals x 4 distance cells as obs_ columns | count | 62,315 | 162 | 103 | 2 |
+| roberts_2025_arkansas_birds_count | point counts, 4 distance cells as obs_ columns, coarsened (chimney swift VU) | count | 111,072 | 416 | 89 | 2 |
+| roberts_2025_arkansas_birds_exact_count | the same without chimney swift, coordinates as published | count | 109,824 | 416 | 88 | 2 |
+
+Held: the Whittington grizzly SMR (`data/whittington_2025_banff_grizzly_smr.R` is written): three collared bears were
+never resighted while collared, and E4.4 / `never_detected` refuse an individual with every y = 0 while the SMR
+ruling gives every marked individual its rows (#141). fn4nf and 7d7wm387j: not downloaded (Dryad quota, after 00:00
+UTC).
+
+Facts carried into the tables: the Rees capthists' occasion is a 24-hour period counted from each station's own
+deployment (every usage run starts at occasion 1), not a calendar day, so no date ships (obs_deployment_date does);
+the capthist trap positions move by up to 161 m between Otway years while the station-year file keeps one position
+per station (trap = the capthist's station-year name); Tu = unmarked + unidentified sightings exactly; two capthist
+"individuals" are pairs of cats photographed together (kept, unit_pair = 1). Iowa: one exact duplicate row, one
+point-visit entered twice (temperature differs: NA), one entered under two sites; ten rows whose code and common name
+disagree follow the name; Site_type and Practice change between visits at 9 points (obs_ columns). Arkansas: 50 exact
+repeats and one block entered twice with another StartTime dropped; StartTime varies within 365 of 1,248 point-visits
+(not shipped); two visits have one row with another date (the visit takes its rows' majority); six blank count cells
+(obs_n_blank_cells); despite the NAOMIT file name every point has its three visits.
+
+What strained the standard: E4.4 against the SMR ruling (#141); E7 coarsening of a point already generalised by its
+publisher (uncertainty = the publisher's plus the cell half-diagonal, rather than the half-diagonal alone); whether
+`_exact` siblings should also drop higher-rank records that could be a flagged taxon; subpopulation and subspecies
+IUCN assessments that GBIF does not carry (Baltic Proper porpoise CR, migratory monarch VU); route start points
+(BBS) as coordinates "finer than 0.1°".
+
+Suggested `releases/table_changes.csv` rows, to add once the release carrying them is live (eco v15 if it is the next):
+
+    <date>,haas_2025_sweden_waterbird_count,v15,correction,"Sector centres coarsened to 0.1-degree cells (six IUCN VU taxa; the agency exception is withdrawn, ruling 2026-11-06); haas_2025_sweden_waterbird_exact_count holds the other taxa at published precision",#10,,
+    <date>,haas_2025_sweden_waterbirdsep_count,v15,correction,"Sector centres coarsened to 0.1-degree cells (six IUCN VU taxa); haas_2025_sweden_waterbirdse_exact_count holds the other taxa at published precision",#10,,
+    <date>,klmn_2026_klamath_landbird_count,v15,correction,"Station coordinates coarsened to 0.1-degree cells and elevation rounded to 100 m (tricolored blackbird EN, pinyon jay and evening grosbeak VU); klmn_2026_klamath_landbird_exact_count holds the other taxa at published precision",#10,,
+    <date>,inbo_2026_flanders_firesalamander_count,v15,correction,"INBO 5 km centroids coarsened to 0.1-degree cells (fire salamander IUCN VU; agency exception withdrawn)",#10,,
+    <date>,inbo_2026_flanders_abv_count,v15,correction,"1 km square centroids coarsened to 0.1-degree cells and square codes replaced by sequential ids (turtle dove, pochard VU); inbo_2026_flanders_abv_exact_count holds the other taxa with centroids and codes as published",#10,,
+    <date>,neon_2026_fish_removal,v15,correction,"__units reach coordinates coarsened to 0.1-degree cells, elevation rounded (American eel EN, egg-mimic darter VU); neon_2026_fish_exact_removal holds the other taxa at NEON's coordinates",#10,,
+    <date>,neon_2026_macroinverts_count,v15,correction,"__units site coordinates coarsened to 0.1-degree cells, elevation rounded (Valvata mergella EN); neon_2026_macroinverts_exact_count holds the other taxa at NEON's coordinates",#10,,
+    <date>,neon_2026_landbirds_count,v15,correction,"__units point coordinates coarsened to 0.1-degree cells, elevation rounded (five IUCN VU species); neon_2026_landbirds_exact_count holds the other species at NEON's coordinates",#10,,
+    <date>,neon_2026_plants_occ,v15,correction,"__units plot coordinates coarsened to 0.1-degree cells, elevation rounded (27 IUCN CR/EN/VU taxa); neon_2026_plants_exact_occ holds the other taxa at NEON's coordinates",#10,,
+
+nrm_2024_sweden_porpoise_occ, whittington_2025_banff_grizzly_occ, bruce_2021_wisconsin_monarch_nmix and
+osborne_2026_largeheath_dynocc changed only their metadata text (and the monarch's `__taxa` gained
+`taxon_iucnCategory`): no row suggested.
+
 ## Batch 47 — 2026-11-06 (second set of 2026-11-06 rulings, PR #140: validator #120, table fixes, admitted single-visit designs, papers Ben fetched)
 
 One agent in `~/eco-b47` (branch `batch-47-followups`, from main at 8e90f61), alongside batch 46 in `~/eco-b46`. No Dryad

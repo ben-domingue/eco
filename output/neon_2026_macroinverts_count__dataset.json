@@ -27,8 +27,8 @@
   "temporalCoverage": "2014-09/2024-11",
   "crs": "EPSG:4326 (WGS 84), as published",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); 0 sites' reach centres were re-surveyed between samples and __units carries the latest"
+    "value": true,
+    "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Valvata mergella (EN); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_macroinverts_exact_count keeps the other taxa at published precision."
   },
   "covariateNote": "obs_habitat_type (riffle, run, pool, step pool) and obs_sampler_type (surber, hess, core, modifiedKicknet, snag) per sample; obs_benthic_area_m2 = area sampled (effort); obs_substratum = dominant substratum size class; obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's whole-sample estimate of it (the fraction it was counted in), for a taxon not found, the share of the sample sorted (inv_persample subsamplePercent / 100). It may vary across taxa within a sample (E5). obs_n_stage_<stage> = animals of the taxon counted in that life stage (larva, pupa, adult, immature, none = NEON's stage for taxa without one, unknown; missing = no stage on the laboratory row, where present); they sum to y.",
   "notes": "y = animals counted by the laboratory, summed over size classes and life stages, with each stage's count as obs_n_stage_<stage> (E8 ruling of 2026-11-06); the whole-sample estimate (estimatedTotalCount) is not shipped. Per-site pools (ruling 19; rebuilt 2026-11-06, batch 47, from the national pool of batch 38): median 276 taxa a site (range 184-392). Taxa: 357 species (subspecies rolled up) and 872 records identified only to a higher rank, a subgenus or a species group, each its own taxon (E6); 2 pairs of NEON 'sp.' and 'spp.' codes for one name merged (ruling 20, taxonRemarks lists the codes); life stages pooled. Subsample fractions: NEON's per-row subsamplePercent differs between taxa of one sample (large or rare taxa picked from the whole sample) and from inv_persample's in a fifth of samples, so the fraction is given per row, as above. Surveys: 3933 samples in 539 bouts; 623 samples not taken; 27 samples of a second reach filed under another site's bout and 3 DNA samples not in the table; 28 with no persample row and 0 with no laboratory rows; 347 dropped (39 with a targetTaxaPresent N row naming a taxon, 136 with a counted taxon missing its count, 222 marked damaged, affecting analysis).",
@@ -70,13 +70,13 @@
     },
     "taxa": {
       "rows": 1229,
-      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_counted"],
-      "md5": "e9e57aba297691c8da66ddff8ea231be"
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_counted", "taxon_iucnCategory"],
+      "md5": "d1417eafdc00e39bc7774c15a0adac6c"
     },
     "units": {
       "rows": 24,
       "columns": ["unit", "domain", "named_location", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
-      "md5": "379fa7163a4e6935326df902858a6e12"
+      "md5": "d224c80a05ad485c123a47a435a64abc"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",

@@ -25,7 +25,7 @@
   "crs": "EPSG:26911",
   "coordinatesCoarsened": {
     "value": false,
-    "method": "camera positions as published by Parks Canada (UTM zone 11N NAD83, also embedded in every site name) on public land; grizzly bear is IUCN LC and Special Concern under Canada's SARA, kept under the E7 agency rule"
+    "method": "camera positions as published (UTM zone 11N NAD83, also embedded in every site name). Not flagged (E7): grizzly bear is IUCN LC (GBIF IUCN record), the deposit states no sensitivity or threatened status and cites no red list."
   },
   "geographicCoverage": "Banff, Kootenay and Yoho National Parks and the Ya Ha Tinda ecosystem, Rocky Mountains, Alberta and British Columbia, Canada (UTM 11N 482334-629027 E, 5607028-5787216 N)",
   "temporalCoverage": "2012-05/2021-10",
@@ -69,5 +69,5 @@
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/whittington_2025_banff_grizzly_occ.R",
-  "buildDate": "2026-11-05"
+  "buildDate": "2026-11-06"
 }

@@ -434,6 +434,9 @@ CSVs with `upload/red_up_eco.py`.
 | `haas_2025_sweden_waterbirdsep_count.R` | Swedish September waterbird census, 48 species on 1,645 sectors, 1973-2024, method as occasion | GBIF (Swedish IPT) | CC0 |
 | `lindstrom_2025_sweden_winterpoints_count.R` | Swedish winter point count routes, 262 taxa, 2,452 routes, survey period as occasion, winter parts | GBIF (Swedish IPT) | CC0 |
 | `carro_2023_donana_tracks_count.R` | Doñana carnivore track counts, nine per-taxon GBIF datasets joined, 12 transects, coarsened (lynx) | GBIF (GBIF Spain IPT) | CC BY 4.0 |
+| `rees_2023_victoria_cat_smr.R` | spatial mark-resight, feral cats with natural marks + reserved unmarked / marked_unidentified units, 10 camera sessions, Victoria, 2017-2019 | Dryad | CC0 |
+| `ford_2025_iowa_grassbirds_count.R` | grassland bird point counts, 3 intervals x 4 distance cells as obs_ columns (repeated rows within a visit summed), southern Iowa, 2022-2023 | USGS ScienceBase | CC0 |
+| `roberts_2025_arkansas_birds_count.R` | grassland bird point counts with distance cells, 416 points on five Arkansas sites, 2022-2023; coarsened (chimney swift VU) + `_exact` sibling | USGS ScienceBase | CC0 |
 | `klymus_2023_niobrara_mussel_edna.R` | eDNA qPCR, all-zero table (admitted 2026-11-06) | USGS ScienceBase | US public domain |
 | `nakashima_2024_japan_ttd_occ.R` | time to detection at ephemeral resources (nests, carcasses), two tables | Dryad | CC0 |
 | `gustafson_2024_seward_prey_count.R` | single-visit time-removal point counts, intervals as obs_ | Dryad | CC0 |

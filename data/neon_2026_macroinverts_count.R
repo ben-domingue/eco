@@ -65,6 +65,11 @@
 #   missing its count, or with a row NEON marks 'damaged, affecting analysis'; the whole-sample
 #   estimate estimatedTotalCount (an estimate: y and the fraction are shipped); size classes; the
 #   identification history; zeros for taxa never recorded at a site (per-site pool).
+# Coordinates (E7; batch 46, #10): Valvata mergella (EN; GBIF IUCN record, asserted) is recorded at Alaskan sites,
+#   within its native range. Under the ruling on the publisher (2026-11-06, which withdrew the agency exception) two
+#   tables ship (E7 scope, 3): this one, every taxon, with the site coordinates in __units snapped to their 0.1-degree
+#   cell centre and elevation rounded to 100 m; and neon_2026_macroinverts_exact_count, at NEON's coordinates, without
+#   V. mergella (records identified only to a higher rank stay in both tables).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE   <- "neon_2026_macroinverts_count"
 PRODUCT <- "DP1.20120.001"; RELEASE <- "RELEASE-2026"
@@ -224,45 +229,69 @@ cat(sprintf("  GBIF: %d taxa re-matched with NEON's classification as hints, %d 
 taxa[, kingdom := NULL]
 stopifnot(!any(taxa$taxonID %in% "https://www.gbif.org/species/1"), all(!is.na(taxa$taxonID) | !is.na(taxa$taxonRemarks)))
 
-dataset <- list(
-  title = sprintf("NEON wadeable-stream benthic macroinvertebrates, RELEASE-2026: animals of %d taxa counted per sample, about eight samples per bout and three bouts a year at %d NEON stream sites, %d-%d", nrow(tot), uniqueN(base$unit), min(ev$year), max(ev$year)),
-  creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = sub("^https://doi.org/", "", DOI),
-  sourceURL = "https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026",
-  citation = sprintf("NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. %s. Dataset accessed from https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026 on 2026-11-06", DOI),
-  intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
-  abstract = sprintf("NEON's benthic macroinvertebrate survey of wadeable streams: in spring, summer and fall bouts, about eight samples are taken in the two dominant habitat types of the reach (riffles, runs, pools, step pools) with the sampler suited to each (Surber, Hess, core, modified kicknet, snag), preserved, and sent to a taxonomy laboratory, which sorts a fraction of each sample and counts and identifies every animal in it (large or rare taxa are picked from the whole sample). This table is the number of animals of each taxon counted in each sample, with each life stage's count beside it; the taxa surveyed for at a site are the per-site pool of taxa this table records there (median %d of %d; __survey_taxa), so a taxon never found at a site has no zeros there. obs_subsample_fraction gives the fraction they were counted in. Reach-centre coordinates are as NEON publishes them.", as.integer(median(pool_n$N)), nrow(tot)),
-  samplingProtocol = "Benthic samples in the two dominant habitat types of a wadeable-stream reach, with a Surber, Hess, core, modified kicknet or snag sampler of known area, three bouts a year; samples preserved in ethanol and sorted, counted and identified by a taxonomy laboratory from a subsample (NEON AOS aquatic macroinvertebrate sampling protocol, NEON.DOC.003046)",
-  samplingProtocolCode = "benthic_sampler", surveyEvidence = "sample_table",
-  surveyEvidenceNote = "inv_fieldData lists every sample (with samplingImpractical where one was not taken); a survey is a stream sample with samplingImpractical blank or OK, a sampleID, an inv_persample row and laboratory rows in inv_taxonomyProcessed. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a site are every taxon this table records at that site in any sample (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other sample there.",
-  responseType = "count", unitKind = "site", effortColumn = "obs_benthic_area_m2", subsampleColumn = "obs_subsample_fraction",
-  closure = "closed", closureNote = "occasion = sample within one bout, taken on one day in different patches of the two dominant habitat types (asserted: one bout spread over three days; a bout whose samples are 36 days apart is dropped); period = bout (spring, summer, fall), indexed globally by date", occasionKind = "spatial",
-  taxonInclusion = "recorded",
-  geographicCoverage = sprintf("%d NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; reach-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", nrow(units), min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
-  temporalCoverage = sprintf("%s/%s", substr(min(ev$day), 1, 7), substr(max(ev$day), 1, 7)),
-  crs = "EPSG:4326 (WGS 84), as published",
-  coordinatesCoarsened = list(value = FALSE, method = sprintf("As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); %d sites' reach centres were re-surveyed between samples and __units carries the latest", n_moved)),
-  covariateNote = "obs_habitat_type (riffle, run, pool, step pool) and obs_sampler_type (surber, hess, core, modifiedKicknet, snag) per sample; obs_benthic_area_m2 = area sampled (effort); obs_substratum = dominant substratum size class; obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's whole-sample estimate of it (the fraction it was counted in), for a taxon not found, the share of the sample sorted (inv_persample subsamplePercent / 100). It may vary across taxa within a sample (E5). obs_n_stage_<stage> = animals of the taxon counted in that life stage (larva, pupa, adult, immature, none = NEON's stage for taxa without one, unknown; missing = no stage on the laboratory row, where present); they sum to y.",
-  notes = sprintf("y = animals counted by the laboratory, summed over size classes and life stages, with each stage's count as obs_n_stage_<stage> (E8 ruling of 2026-11-06); the whole-sample estimate (estimatedTotalCount) is not shipped. Per-site pools (ruling 19; rebuilt 2026-11-06, batch 47, from the national pool of batch 38): median %d taxa a site (range %d-%d). Taxa: %d species (subspecies rolled up) and %d records identified only to a higher rank, a subgenus or a species group, each its own taxon (E6); %d pairs of NEON 'sp.' and 'spp.' codes for one name merged (ruling 20, taxonRemarks lists the codes); life stages pooled. Subsample fractions: NEON's per-row subsamplePercent differs between taxa of one sample (large or rare taxa picked from the whole sample) and from inv_persample's in a fifth of samples, so the fraction is given per row, as above. Surveys: %d samples in %d bouts; %d samples not taken; %d samples of a second reach filed under another site's bout and %d DNA samples not in the table; %d with no persample row and %d with no laboratory rows; %d dropped (%d with a targetTaxaPresent N row naming a taxon, %d with a counted taxon missing its count, %d marked damaged, affecting analysis).", as.integer(median(pool_n$N)), min(pool_n$N), max(pool_n$N), tot[rank == "species", .N], tot[rank != "species", .N], code[n_codes > 1, .N], nrow(base), nrow(ev), n_impr, length(other_reach), length(dna), n_nops, n_nolab, length(drop_s), length(bad_n), length(bad_cnt), length(bad_dmg)),
-  notShipped = list(
-    `lake and river samples` = sprintf("%d lake and river sites (petite ponar near the buoy and other deep-water points, sweeps in the littoral): other protocols; %d samples with no aquaticSiteType (a grab sample and macroalgae samples)", length(setdiff(unique(fd$siteID), streams)), n_notype),
-    `excluded samples` = sprintf("%d samples of a second reach (site prefixes STCU, STKG, STMA, STWA) filed under another site's eventID; %d '.DNA' samples; %d samples of the bout %s, whose snag samples were taken 36 days after its cores; %d with a targetTaxaPresent N row naming a taxon; %d with a counted taxon missing its count (fragments, headless animals); %d marked damaged, affecting analysis", length(other_reach), length(dna), n_split, ev_split, length(bad_n), length(bad_cnt), length(bad_dmg)),
-    `whole-sample estimate` = "estimatedTotalCount (the laboratory's estimate of the whole sample; y and obs_subsample_fraction are shipped)",
-    `other fields` = "size classes (sizeClass, mm), sorting QC, identification history, inv_taxonomyRaw (expanded package)",
-    `zeros outside the site pool` = "a taxon never recorded at a site has no rows there (per-site pool, ruling 19)"))
 long <- build(periods$period)
 stopifnot(nrow(long) == n_rows, sum(long$y) == sum(tot$n_ind))
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, survey_taxa = survey_taxa,
-                  script = "data/neon_2026_macroinverts_count.R")
+# E7 (batch 46, #10; ruling on the publisher, 2026-11-06, which withdrew the agency exception): taxa IUCN CR/EN/VU in
+# their native range are in the table, so it ships with coarsened reach / plot coordinates, and neon_2026_macroinverts_exact_count without them
+# (and without the higher-rank taxa that could be one of them) at NEON's published coordinates (E7 scope, 3)
+NONNATIVE <- character()
+taxa[, taxon_iucnCategory := unname(mapply(iucn_category, taxonID, scientificName))]
+fl_sp <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU") & !taxon %in% NONNATIVE, taxon]
+stopifnot(setequal(fl_sp, c("VALMER")))
+fl <- fl_sp   # E7 scope 3: the sibling drops the flagged taxa; records identified only to a higher rank stay
+flag <- taxa[taxon %in% fl_sp, sprintf("%s (%s)", scientificName, taxon_iucnCategory)]
+cat("  flagged:", paste(flag, collapse = "; "), "\n")
+cg <- coarsen_coords(units$decimalLatitude, units$decimalLongitude, 0.1)
+units_c <- copy(units)[, `:=`(decimalLatitude = cg$lat, decimalLongitude = cg$lon, coordinateUncertaintyInMeters = cg$uncertainty_m)]
+if ("elevation_m" %in% names(units_c)) units_c[, elevation_m := round(elevation_m, -2)]
+EXACT <- "neon_2026_macroinverts_exact_count"
+emit <- function(TABLE, exact) {
+  lt <- if (exact) long[!taxon %in% fl] else long
+  tt <- if (exact) taxa[!taxon %in% fl] else taxa
+  ut <- if (exact) units else units_c
+  nt <- nrow(tt)
+  dataset <- list(
+    title = paste0(sprintf("NEON wadeable-stream benthic macroinvertebrates, RELEASE-2026: animals of %d taxa counted per sample, about eight samples per bout and three bouts a year at %d NEON stream sites, %d-%d", nt, uniqueN(base$unit), min(ev$year), max(ev$year)), if (exact) " (without IUCN-threatened taxa; coordinates as published)" else ""),
+    creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = sub("^https://doi.org/", "", DOI),
+    sourceURL = "https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026",
+    citation = sprintf("NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. %s. Dataset accessed from https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026 on 2026-11-06", DOI),
+    intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
+    abstract = sprintf("NEON's benthic macroinvertebrate survey of wadeable streams: in spring, summer and fall bouts, about eight samples are taken in the two dominant habitat types of the reach (riffles, runs, pools, step pools) with the sampler suited to each (Surber, Hess, core, modified kicknet, snag), preserved, and sent to a taxonomy laboratory, which sorts a fraction of each sample and counts and identifies every animal in it (large or rare taxa are picked from the whole sample). This table is the number of animals of each taxon counted in each sample, with each life stage's count beside it; the taxa surveyed for at a site are the per-site pool of taxa this table records there (median %d of %d; __survey_taxa), so a taxon never found at a site has no zeros there. obs_subsample_fraction gives the fraction they were counted in. Reach-centre coordinates are as NEON publishes them.", as.integer(median(pool_n$N)), nt),
+    samplingProtocol = "Benthic samples in the two dominant habitat types of a wadeable-stream reach, with a Surber, Hess, core, modified kicknet or snag sampler of known area, three bouts a year; samples preserved in ethanol and sorted, counted and identified by a taxonomy laboratory from a subsample (NEON AOS aquatic macroinvertebrate sampling protocol, NEON.DOC.003046)",
+    samplingProtocolCode = "benthic_sampler", surveyEvidence = "sample_table",
+    surveyEvidenceNote = "inv_fieldData lists every sample (with samplingImpractical where one was not taken); a survey is a stream sample with samplingImpractical blank or OK, a sampleID, an inv_persample row and laboratory rows in inv_taxonomyProcessed. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a site are every taxon this table records at that site in any sample (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other sample there.",
+    responseType = "count", unitKind = "site", effortColumn = "obs_benthic_area_m2", subsampleColumn = "obs_subsample_fraction",
+    closure = "closed", closureNote = "occasion = sample within one bout, taken on one day in different patches of the two dominant habitat types (asserted: one bout spread over three days; a bout whose samples are 36 days apart is dropped); period = bout (spring, summer, fall), indexed globally by date", occasionKind = "spatial",
+    taxonInclusion = "recorded",
+    geographicCoverage = sprintf("%d NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; reach-centre coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", nrow(units), min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
+    temporalCoverage = sprintf("%s/%s", substr(min(ev$day), 1, 7), substr(max(ev$day), 1, 7)),
+    crs = "EPSG:4326 (WGS 84), as published",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("As published by NEON (coordinates with coordinateUncertaintyInMeters in __units). The IUCN-threatened taxa (%s) are not in this table (E7 scope, 3); neon_2026_macroinverts_count has them, with coordinates coarsened.", paste(flag, collapse = ", "))) else
+      list(value = TRUE, method = sprintf("coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (%s; E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_macroinverts_exact_count keeps the other taxa at published precision.", paste(flag, collapse = ", "))),
+    covariateNote = "obs_habitat_type (riffle, run, pool, step pool) and obs_sampler_type (surber, hess, core, modifiedKicknet, snag) per sample; obs_benthic_area_m2 = area sampled (effort); obs_substratum = dominant substratum size class; obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's whole-sample estimate of it (the fraction it was counted in), for a taxon not found, the share of the sample sorted (inv_persample subsamplePercent / 100). It may vary across taxa within a sample (E5). obs_n_stage_<stage> = animals of the taxon counted in that life stage (larva, pupa, adult, immature, none = NEON's stage for taxa without one, unknown; missing = no stage on the laboratory row, where present); they sum to y.",
+    notes = sprintf("y = animals counted by the laboratory, summed over size classes and life stages, with each stage's count as obs_n_stage_<stage> (E8 ruling of 2026-11-06); the whole-sample estimate (estimatedTotalCount) is not shipped. Per-site pools (ruling 19; rebuilt 2026-11-06, batch 47, from the national pool of batch 38): median %d taxa a site (range %d-%d). Taxa: %d species (subspecies rolled up) and %d records identified only to a higher rank, a subgenus or a species group, each its own taxon (E6); %d pairs of NEON 'sp.' and 'spp.' codes for one name merged (ruling 20, taxonRemarks lists the codes); life stages pooled. Subsample fractions: NEON's per-row subsamplePercent differs between taxa of one sample (large or rare taxa picked from the whole sample) and from inv_persample's in a fifth of samples, so the fraction is given per row, as above. Surveys: %d samples in %d bouts; %d samples not taken; %d samples of a second reach filed under another site's bout and %d DNA samples not in the table; %d with no persample row and %d with no laboratory rows; %d dropped (%d with a targetTaxaPresent N row naming a taxon, %d with a counted taxon missing its count, %d marked damaged, affecting analysis).", as.integer(median(pool_n$N)), min(pool_n$N), max(pool_n$N), tot[rank == "species", .N], tot[rank != "species", .N], code[n_codes > 1, .N], nrow(base), nrow(ev), n_impr, length(other_reach), length(dna), n_nops, n_nolab, length(drop_s), length(bad_n), length(bad_cnt), length(bad_dmg)),
+    notShipped = c(if (exact) list(threatened = sprintf("%s; records identified only to a higher rank stay in both tables: in neon_2026_macroinverts_count only, with coarsened coordinates (E7 scope, 3)", paste(flag, collapse = ", "))), list(
+      `lake and river samples` = sprintf("%d lake and river sites (petite ponar near the buoy and other deep-water points, sweeps in the littoral): other protocols; %d samples with no aquaticSiteType (a grab sample and macroalgae samples)", length(setdiff(unique(fd$siteID), streams)), n_notype),
+      `excluded samples` = sprintf("%d samples of a second reach (site prefixes STCU, STKG, STMA, STWA) filed under another site's eventID; %d '.DNA' samples; %d samples of the bout %s, whose snag samples were taken 36 days after its cores; %d with a targetTaxaPresent N row naming a taxon; %d with a counted taxon missing its count (fragments, headless animals); %d marked damaged, affecting analysis", length(other_reach), length(dna), n_split, ev_split, length(bad_n), length(bad_cnt), length(bad_dmg)),
+      `whole-sample estimate` = "estimatedTotalCount (the laboratory's estimate of the whole sample; y and obs_subsample_fraction are shipped)",
+      `other fields` = "size classes (sizeClass, mm), sorting QC, identification history, inv_taxonomyRaw (expanded package)",
+      `zeros outside the site pool` = "a taxon never recorded at a site has no rows there (per-site pool, ruling 19)")))
+  st <- if (exact) survey_taxa[!taxon %in% fl] else survey_taxa
+  ds <- write_table(lt, TABLE, dataset, taxa = tt, periods = periods, units = ut, survey_taxa = st,
+                    script = "data/neon_2026_macroinverts_count.R")
 
-stage_dict_row(TABLE,
-  description = sprintf("Animals of %d benthic macroinvertebrate taxa counted per sample (about eight samples per bout in the two dominant habitats, spring, summer and fall bouts) at %d NEON wadeable-stream sites, %d-%d, built from NEON's field, sorting and taxonomy-laboratory records (RELEASE-2026), with habitat, sampler, area sampled, the fraction counted and reach-centre coordinates as published.", nrow(tot), uniqueN(base$unit), min(ev$year), max(ev$year)),
-  url = "https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026",
-  reference = sprintf("NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. %s", DOI),
-  doi_paper = "", doi_data = sub("^https://doi.org/", "", DOI),
-  original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = "Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; y = counted subsample with obs_subsample_fraction (subsampleColumn) and life-stage counts as obs_; per-site pool from detections (ruling 19).",
-  source_via = "NEON Data API, basic package")
-stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (multi-species, multi-season)",
-  sampling_protocol = "benthic_sampler", design = sprintf("Multi-season (%d bouts x about 8 samples)", nrow(ev)), realm = "Freshwater", country = "USA",
-  coordinates = "As published", notes = "NEON national scheme; wadeable streams; counted-subsample counts per benthic sample; per-site species pools (__survey_taxa); life-stage counts as obs_.",
-  status = "tagged")
+  stage_dict_row(TABLE,
+    description = sprintf("Animals of %d benthic macroinvertebrate taxa counted per sample (about eight samples per bout in the two dominant habitats, spring, summer and fall bouts) at %d NEON wadeable-stream sites, %d-%d, built from NEON's field, sorting and taxonomy-laboratory records (RELEASE-2026), with habitat, sampler, area sampled, the fraction counted and reach-centre coordinates as published.", nt, uniqueN(base$unit), min(ev$year), max(ev$year)),
+    url = "https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026",
+    reference = sprintf("NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. %s", DOI),
+    doi_paper = "", doi_data = sub("^https://doi.org/", "", DOI),
+    original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
+    notes = "Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; y = counted subsample with obs_subsample_fraction (subsampleColumn) and life-stage counts as obs_; per-site pool from detections (ruling 19).",
+    source_via = "NEON Data API, basic package")
+  stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (multi-species, multi-season)",
+    sampling_protocol = "benthic_sampler", design = sprintf("Multi-season (%d bouts x about 8 samples)", nrow(ev)), realm = "Freshwater", country = "USA",
+    coordinates = if (exact) "As published" else "Coarsened (0.1 deg)", notes = "NEON national scheme; wadeable streams; counted-subsample counts per benthic sample; per-site species pools (__survey_taxa); life-stage counts as obs_.",
+    status = "tagged")
+}
+emit("neon_2026_macroinverts_count", exact = FALSE)
+emit(EXACT, exact = TRUE)
