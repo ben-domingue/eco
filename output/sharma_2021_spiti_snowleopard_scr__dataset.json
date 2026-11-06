@@ -1,0 +1,73 @@
+{
+  "table": "sharma_2021_spiti_snowleopard_scr",
+  "title": "Count-detector spatial capture-recapture of 16 snow leopards at 30 camera traps, Spiti Valley, India, October 2011 to January 2012",
+  "creator": "Sharma, Rishi Kumar; Sharma, Koustubh; Borchers, David; Bhatnagar, Yash Veer; Suryawanshi, Kulbhushan Singh; Mishra, Charudutt",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.3r2280gfx",
+  "sourceURL": "https://doi.org/10.5061/dryad.3r2280gfx",
+  "citation": "Sharma, R. K., Sharma, K., Borchers, D., Bhatnagar, Y. V., Suryawanshi, K. S., & Mishra, C. (2021). Spatial variation in population-density, movement and detectability of snow leopards in a multiple use landscape in Spiti Valley, Trans-Himalaya [Dataset]. Dryad. https://doi.org/10.5061/dryad.3r2280gfx",
+  "paperDOI": "10.1371/journal.pone.0250900",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera traps at 30 sites over 953 km2 of Spiti Valley, Himachal Pradesh, India, operated for 80 days from October 2011 to January 2012; 16 adult snow leopards identified from pelage, 112 identifiable encounters. The authors fitted count-detector SCR (secr) with density depending on wild prey density. One row per leopard x camera site: the number of encounters (sets of photographs at least four hours apart) over the deployment, with the site's days of operation.",
+  "samplingProtocol": "Unbaited camera traps (single or paired to photograph both flanks) at sites with snow leopard sign, operated 14-44 days each over 80 days; encounters are sets of photographs of one individual separated by at least four hours (the authors' independence rule for count detectors).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "count",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "a single deployment of 80 days treated by the authors as closed, with no temporal effect on detection; the count over the deployment is the observation",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_effort_days",
+  "geographicCoverage": "Spiti Valley, Lahaul and Spiti district, Himachal Pradesh, India (about 32.2 N, 78.0 E); trap coordinates displaced by the source",
+  "temporalCoverage": "2011-10/2012-01",
+  "crs": "local: World Mercator metres with an undisclosed constant added to x and to y by the source (distances between traps are true)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Displaced by the source: the authors added two undisclosed constants to the World Mercator x and y of every trap (and the mask) to hide the locations of a VU species; shipped as published (E7 ruling 5)"
+  },
+  "covariateNote": "obs_effort_days: days the camera site operated (the deposit's trap Effort), the same on every row of a trap. __traps topography_code is the deposit's Z (C, N, R); the paper's topography levels are ridgeline, cliff and gully bed.",
+  "notShipped": {
+    "mask": "Rishi_mask_encrypted.csv: the SCR habitat mask (20,513 points with prey density, ruggedness, altitude, livestock covariates), a model input, not a survey record",
+    "unidentified": "12 encounters the authors discarded as unidentifiable are not in the deposit",
+    "model_output": "density, movement and detectability estimates"
+  },
+  "notes": "Encounters, not photographs: 2,830 images make 124 encounters under the four-hour rule, of which the 112 identified are here. All 16 individuals are adults with complete identification (paper p. 4).",
+  "summary": {
+    "n_rows": 480,
+    "n_units": 16,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 480,
+    "y_values": "0,1,2,3,4,11,13",
+    "prop_zero": 0.892,
+    "n_traps": 30,
+    "n_zero": 428,
+    "n_positive": 52,
+    "n_units_detected": 16,
+    "max_y": 13
+  },
+  "sampleFloor": "below (16 units < 30; no replication)",
+  "columns": ["unit", "taxon", "y", "trap", "obs_effort_days"],
+  "coreMd5": "5188901dbe0f9aa06576829cf042bb06",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "815b2ee7e4c0f534a39609489e1d849c"
+    },
+    "traps": {
+      "rows": 30,
+      "columns": ["trap", "x", "y", "effort_days", "topography_code", "two_camera"],
+      "md5": "df6fa0fc5e5c4f8e97e0fbe011788be7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sharma_2021_spiti_snowleopard_scr.R",
+  "buildDate": "2026-11-05"
+}

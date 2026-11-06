@@ -1,0 +1,80 @@
+{
+  "table": "strebel_2026_swiss_mhb_total_exact_count",
+  "title": "Swiss Common Breeding Bird Monitoring (MHB) 1999-2025: season territory totals of 161 bird species on 267 1-km squares, without the turtle dove, coordinates as published",
+  "creator": "Strebel, Nicolas; Wechsler, Samuel; Buehler, Roman; Haefliger, Guido; Keller, Verena; Kery, Marc; Rogenmoser, Christian; Spiess, Martin; Varga, Katarina; Volet, Bernard; Zbinden, Niklaus; Schmid, Hans (Swiss Ornithological Institute)",
+  "pubDate": "2026-02-04",
+  "doi": "10.5281/zenodo.18480886",
+  "paperDOI": "10.1002/ecy.70268",
+  "sourceURL": "https://doi.org/10.5281/zenodo.18480886",
+  "citation": "Strebel, N., Wechsler, S., Buehler, R., Haefliger, G., Keller, V., Kery, M., Rogenmoser, C., Spiess, M., Varga, K., Volet, B., Zbinden, N. & Schmid, H. (2026). Supplementary material for «Data of the Swiss Common Breeding Bird Monitoring Program» [Data set]. Zenodo. https://doi.org/10.5281/zenodo.18480886. Data paper: Strebel, N. et al. (2025). Data of the Swiss common breeding bird monitoring program. Ecology 106(12): e70268. https://doi.org/10.1002/ecy.70268",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "The Swiss Common Breeding Bird Monitoring (MHB) of the Swiss Ornithological Institute surveys 267 1-km squares on a systematic grid across Switzerland (250-2750 m) every breeding season since 1999 by simplified territory mapping. This table carries the number of territories delimited per species, square and year from all two or three visits (territories_total), the basis of the Swiss population indices; for 39,211 species x square-years (mostly 1999-2012) no per-visit values exist because the mapping data are not digital, so these totals are the only record of those surveys. obs_per_visit_values says which totals have a per-visit series in the sibling table.",
+  "samplingProtocol": "Simplified territory mapping (Swiss Common Breeding Bird Monitoring, MHB): one skilled observer walks a fixed 4-6 km route through a 1-km square in early morning in good weather, three visits per breeding season (two above the timberline) within 4-6 weeks between mid-April and early July, mapping every bird seen or heard; records meeting species-specific breeding-period and behaviour criteria are grouped into territories (manually, by Autoterri since 2022).",
+  "samplingProtocolCode": "territory_survey",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "occasionKind": "none",
+  "closureNote": "one season total per square-year; territories may change between years",
+  "taxonInclusion": "recorded",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "The survey list is header-species-count.csv (one row per conducted and accepted square-year, with n_visits); every species has a total at every survey except 188 records the source marks as not valid (all values NA), which __survey_taxa (taxon, unit, period) leaves out.",
+  "surveyTaxaNote": "__survey_taxa (taxon, unit, period): the species with a valid total at each square-year; 188 records the source marks as not valid are absent.",
+  "geographicCoverage": "Switzerland, 267 1-km squares of the Swiss Biodiversity Monitoring grid (CH1903+ / LV95), 250-2750 m a.s.l.",
+  "temporalCoverage": "1999/2025",
+  "crs": "unit_decimalLatitude / unit_decimalLongitude: WGS84 (EPSG:4326); unit_x / unit_y: CH1903+ / LV95 (EPSG:2056); square centroids",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published (centroids of the 1-km squares, uncertainty 707 m, the half-diagonal); the flagged European turtle dove (Streptopelia turtur, IUCN VU) is not in this table (E7.3); the coarsened table with every species is strebel_2026_swiss_mhb_total_count"
+  },
+  "taxaWithheld": ["Tetrao urogallus", "Aquila chrysaetos", "Falco peregrinus", "Bubo bubo"],
+  "notShipped": {
+    "n_recorded_species": "header-species-count.csv: the number of species with a positive total at the survey; a count of the total column (asserted), not an observation",
+    "visit_dates": "not deposited (no visit dates or durations in the release)",
+    "territories_visit": "the per-visit series is in strebel_2026_swiss_mhb_count",
+    "STRTUR": "the European turtle dove (IUCN VU) is left out of this precise-coordinate table (E7.3); it is in strebel_2026_swiss_mhb_total_count with coarsened coordinates"
+  },
+  "notes": "Two tables per E7 pair from one deposit (ruling 2026-11-06, per-visit series and season total): the per-visit counts and the season totals; the other is strebel_2026_swiss_mhb_count (per-visit territory counts, with __survey_taxa). 36530 positive season totals (33407 at three-visit squares) have no per-visit values. The totals are delimited from all visits, not summed: 4,050 exceed the visit sum and 3,432 positive totals have every visit 0. Four sensitive species are withheld by the source (taxaWithheld). Taxon codes are genus+epithet initials as in kery_2014_mhb_comm (BirdLife names; Curruca for Sylvia communis / curruca). Overlap: kery_2014_mhb_comm (AHMbook::MHB2014) and the kery single-species MHB tables are subsets of the same scheme from other deposits; this release is the scheme's own, 1999-2025.",
+  "summary": {
+    "n_rows": 1145005,
+    "n_units": 267,
+    "n_taxa": 161,
+    "n_periods": 27,
+    "n_occasions": 1,
+    "n_surveys": 7113,
+    "y_values": "0-386 (177 distinct)",
+    "prop_zero": 0.788,
+    "n_traps": 1,
+    "n_zero": 902051,
+    "n_positive": 242954,
+    "n_units_detected": 267,
+    "max_y": 386
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_x", "unit_y", "unit_route_length_m", "unit_median_elevation_m", "period_n_visits", "obs_per_visit_values"],
+  "coreMd5": "d4326240e18a229fa9154834486f180c",
+  "sideTables": {
+    "periods": {
+      "rows": 27,
+      "columns": ["period", "year"],
+      "md5": "1242ea67d85fb68f95ecfe829f165ba7"
+    },
+    "survey_taxa": {
+      "rows": 1145005,
+      "columns": ["taxon", "unit", "period"],
+      "md5": "0303ca187c96322bcdfc2621aeefd273"
+    },
+    "taxa": {
+      "rows": 161,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_species_id", "taxon_euring_id", "taxon_iucnCategory"],
+      "md5": "a292cff3e86dc500c8bb3f1ca17962a7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/strebel_2026_swiss_mhb_count.R",
+  "buildDate": "2026-11-05"
+}

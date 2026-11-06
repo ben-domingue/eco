@@ -1,0 +1,70 @@
+{
+  "table": "shyvers_2020_ppr_sagegrouse_rd",
+  "title": "Robust-design genetic capture histories of 543 Greater Sage-Grouse from winter faecal pellets, Parachute-Piceance-Roan, Colorado, 2012-2014",
+  "creator": "Shyvers, Jessica E.; Walker, Brett L.; Oyler-McCance, Sara J.; Fike, Jennifer A.; Noon, Barry R.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.nk98sf7xc",
+  "sourceURL": "https://doi.org/10.5061/dryad.nk98sf7xc",
+  "citation": "Shyvers, J. E., Walker, B. L., Oyler-McCance, S. J., Fike, J. A., & Noon, B. R. (2023). Data from: Genetic mark-recapture analysis of winter faecal pellets allows estimation of population size in sage grouse Centrocercus urophasianus [Dataset]. Dryad. https://doi.org/10.5061/dryad.nk98sf7xc",
+  "paperDOI": "10.1111/ibi.12768",
+  "relatedWorks": [
+    "Shyvers, J. E., Walker, B. L., Oyler-McCance, S. J., Fike, J. A., & Noon, B. R. (2023). Genetic mark-recapture analysis reveals large annual variation in pre-breeding sex ratio of greater sage-grouse. Wildlife Biology. doi:10.1002/wlb3.01085"
+  ],
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Non-invasive genetic capture-recapture of Greater Sage-Grouse (Centrocercus urophasianus) in the small, isolated Parachute-Piceance-Roan population of northwest Colorado over two winters: 543 birds identified from microsatellite genotypes of faecal pellets, shed feathers and capture feathers (62 males and 173 females in 2012-13, 154 males and 236 females in 2013-14, 82 in both), across 7 and 8 sampling occasions. Sex is from the sexing locus; region (North/South) is where each bird was first detected. Used for closed-population abundance (Huggins) and robust-design multi-state sex-ratio models.",
+  "samplingProtocol": "Each winter, rotating panels of 60 spatially balanced random survey plots per sampling occasion were searched on foot or snowshoe along transects ~50 m apart for flock-use sites, where roost piles, faecal pellets and shed feathers were collected and genotyped at seven microsatellite loci and a sexing locus. The first occasion is feather samples from birds trapped before the winter and alive at its start.",
+  "samplingProtocolCode": "scat_genotyping",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every sampling occasion the paper reports (7 in season 1, 8 in season 2) is a survey; the history characters beyond them are all-zero padding, identified by reproducing the paper's Table 3 detection probabilities. Season 2 occasion 7 was surveyed and detected no bird.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "occasion = sampling occasion within a winter season (robust design; the authors assume demographic and geographic closure within each winter). Occasions are rotating plot panels that may overlap in time; occasion 1 is the capture-feather sample of birds trapped before the winter and alive at its start. GMR-IDs are valid across both seasons.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Parachute-Piceance-Roan Greater Sage-Grouse population, Garfield and Rio Blanco counties, northwest Colorado, USA (no coordinates deposited)",
+  "temporalCoverage": "2012/2014",
+  "notShipped": {
+    "group": "the MARK group column (1 for every bird)",
+    "padding": "history characters 8-9 (season 1) and 9-10 (season 2): all 0, beyond the occasions the paper reports",
+    "model_estimates": "abundance, detection probability and sex-ratio estimates (model outputs)"
+  },
+  "notes": "y_raw is the deposited history letter (M, F or 0) and rebuilds the CRDMS input; unit_sex is the same letter per bird. Each bird carries both seasons (E4.4: genetic identification, age unknown); the per-season closed models of the paper use only birds detected in that season, which eco_to_ch(by_period = TRUE) gives. Telemetry mortalities are not deposited, so no removals are marked. IUCN VU (flagged); no coordinates are deposited.",
+  "summary": {
+    "n_rows": 8145,
+    "n_units": 543,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 8,
+    "n_surveys": 8145,
+    "y_values": "0,1",
+    "prop_zero": 0.891,
+    "n_traps": 1,
+    "n_zero": 7258,
+    "n_positive": 887,
+    "n_units_detected": 543,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_sex", "unit_region", "obs_sample_source"],
+  "coreMd5": "60fc89a43238920459e8f096dae51a53",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "season", "n_occasions", "note"],
+      "md5": "3eee66804a5da40f52d046a71ccde48e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "118d4cfc0d784b6a9b714e1ab85c93dc"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/shyvers_2020_ppr_sagegrouse_rd.R",
+  "buildDate": "2026-11-05"
+}

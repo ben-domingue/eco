@@ -1,0 +1,67 @@
+{
+  "table": "bauer_2022_neshrubland_birds_count",
+  "title": "Repeated 10-minute bird point counts (three visits a year) at 66 points in New England cottontail shrublands, Maine, New Hampshire and Massachusetts, 2015-2016",
+  "creator": "Bauer, Melissa; O'Brien, Kathleen; Kovach, Adrienne",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.c866t1g7n",
+  "sourceURL": "https://doi.org/10.5061/dryad.c866t1g7n",
+  "citation": "Bauer, M., O'Brien, K., & Kovach, A. (2022). Can at-risk species serve as effective conservation surrogates? Case study in northeastern US shrublands [Dataset]. Dryad. https://doi.org/10.5061/dryad.c866t1g7n",
+  "paperDOI": "10.1002/ecs2.4081",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Bird point counts at shrubland sites managed for, or occupied by, the New England cottontail in southern Maine, seacoast New Hampshire and Cape Cod, to test whether management for this at-risk rabbit benefits shrubland-obligate birds. Three 10-minute counts per point in May-July of 2015 (44 points) and 2016 (66 points), birds recorded by minute, distance bin and detection type; vegetation measured at the points in 2017.",
+  "samplingProtocol": "U.S. Fish and Wildlife Service landbird monitoring SOP: 10-minute point counts, three visits per point per breeding season, every bird recorded by minute, distance bin (0-25, 26-50, 51-100, >100 m) and detection type (visual, auditory, both, flyover), with weather and noise; y is the count within 50 m excluding flyovers (the authors' analysed set).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "three visits per point within one breeding season (May-July) are the occasions; years are periods",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Southern Maine, seacoast New Hampshire and Cape Cod, Massachusetts, USA (coordinates withheld by the source to protect private landowners and a state-endangered species)",
+  "temporalCoverage": "2015-05/2016-07",
+  "covariateNote": "y: birds within 50 m, flyovers excluded. obs_int1..obs_int10: the same birds by minute 0..9 of the count (as deposited; sum equals y except two records, see notes). obs_n_51_100m, obs_n_over100m: non-flyover birds at 51-100 m and >100 m. obs_n_flyover: flyovers at any distance. obs_sky_code: 0 clear or few clouds, 1 partly cloudy, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers. obs_wind_code: 0 <1 mph, 1 1-3, 2 4-7, 3 8-12, 4 13-18, 5 19-24, 6 >=25 mph (NA = no data). obs_wind_dir as deposited (n/a = calm, NR = not recorded, VBL = variable). obs_noise_code: 0 none (<40 dB), 1 faint, 2 moderate, 3 loud, 4 intense (NA = no data). obs_temp_f: degrees F at start. obs_recorder: assistant's initials (NA = none). unit_* vegetation: 2017 means over 20 plots within 50 m of the point (snags and woody debris by size class, brush piles, stems per 1x2 m plot, overstory proportion, representative understory height, proportion woody invasive, pole hits by height band, woody plant richness); unit_patch_area_ha: area of the management unit (cluster_id).",
+  "notShipped": {
+    "outer_only_taxa": "14 taxa recorded only beyond 50 m or as flyovers, never in the analysed set (BLACKBIRD_SP, BWHA, CUCKOO_SP, DCCO, DUCK_SP, GBBG, GLIB, GREG, GULL_SP, HAWK_SP, RTHA, TERN_SP, TUVU, WOTH): no rows, since taxonInclusion = recorded lists taxa counted within 50 m",
+    "WOSP": "3 auditory records under WOSP, which is not an AOU / IBP alpha code and is not defined by the source",
+    "model_output": "indicator-species, occupancy and richness model results"
+  },
+  "notes": "Every taxon counted within 50 m at least once (79 of the 93 labels in the deposit) has a row at every point-visit; the obs_ distance and flyover columns carry those taxa's other records, and the 14 taxa recorded only beyond 50 m or as flyovers are not in the table. TotalCount and the minute counts disagree in two within-50-m records (Cutts2 2015 visit 2 BCCH: total 1, minute 2 = 3; Houde1 2015 visit 2 PRAW: total 1, no minute recorded); y uses the total. Gull3 2015 visit 1 has 12 different start times in the deposit (the earliest is obs_start_time); two visits have two end times (the latest is used). Vegetation was measured in 2017, after the counts. 22 points were counted in 2016 only.",
+  "summary": {
+    "n_rows": 26070,
+    "n_units": 66,
+    "n_taxa": 79,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 330,
+    "y_values": "0,1,2,3,4,5,6,8,9,16",
+    "prop_zero": 0.89,
+    "n_traps": 1,
+    "n_zero": 23205,
+    "n_positive": 2865,
+    "n_units_detected": 66,
+    "max_y": 16
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_patch_area_ha", "unit_state", "unit_snags_small", "unit_snags_medium", "unit_snags_large", "unit_debris_small", "unit_debris_medium", "unit_debris_large", "unit_brushpiles", "unit_stem_count", "unit_prop_overstory", "unit_understory_height", "unit_prop_woody_invasives", "unit_hits_0_1m", "unit_hits_1_2m", "unit_hits_2_3m", "unit_woody_richness", "obs_int1", "obs_int2", "obs_int3", "obs_int4", "obs_int5", "obs_int6", "obs_int7", "obs_int8", "obs_int9", "obs_int10", "obs_n_51_100m", "obs_n_over100m", "obs_n_flyover", "obs_recorder", "obs_start_time", "obs_end_time", "obs_temp_f", "obs_sky_code", "obs_wind_code", "obs_wind_dir", "obs_noise_code"],
+  "coreMd5": "53143c3a6cc2f9d68a895babc1609c52",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "season", "n_points"],
+      "md5": "912b09619719db1d0335bd9ecb25acfe"
+    },
+    "taxa": {
+      "rows": 79,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "d63c40c4a2d4577c6816c25463ee6311"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bauer_2022_neshrubland_birds_count.R",
+  "buildDate": "2026-11-05"
+}

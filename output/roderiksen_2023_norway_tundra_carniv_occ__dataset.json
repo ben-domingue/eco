@@ -1,0 +1,67 @@
+{
+  "table": "roderiksen_2023_norway_tundra_carniv_occ",
+  "title": "Daily detections of red fox, Arctic fox, wolverine and golden eagle at 96 baited camera stations in alpine and Arctic tundra, Norway, late winters 2011-2020",
+  "creator": "Rød-Eriksen, Lars; Killengreen, Siw; Ehrich, Dorothee; Ims, Rolf; Herfindal, Ivar; Landa, Arild; Eide, Nina",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.63xsj3v66",
+  "sourceURL": "https://doi.org/10.5061/dryad.63xsj3v66",
+  "citation": "Rød-Eriksen, L., Killengreen, S., Ehrich, D., Ims, R., Herfindal, I., Landa, A., & Eide, N. (2022). Data for: Predator co-occurrence in alpine and Arctic tundra in relation to fluctuating prey [Dataset]. Dryad. https://doi.org/10.5061/dryad.63xsj3v66",
+  "paperDOI": "10.1111/1365-2656.13875",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Baited camera traps in four alpine regions and one Arctic region of Norway, run each late winter (March-May) 2011-2020, used to model the occurrence and co-occurrence of Arctic fox and red fox in relation to wolverine, golden eagle and small-rodent abundance. Daily detection/non-detection of each species per active camera-day.",
+  "samplingProtocol": "One camera per station, baited with 15-20 kg of reindeer slaughter scraps simulating a carcass, active March-May each year, checked and re-baited once after about three weeks, time-lapse every 5 minutes; the authors aggregated images to daily presence/absence per species.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasions are the active camera-days of one late-winter season (up to 54 alpine, 37 Arctic); the authors treat occupancy as constant within a station-year. occasion k is the k-th active day, so the same k is a different calendar day at different stations; date gives the day.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Alpine tundra (four regions, station prefixes bfj, bsl, dfj, ksf) and Arctic tundra (Varanger, prefixes gsn, ifj, kom, nky, nyb, stj), Norway (no coordinates deposited)",
+  "temporalCoverage": "2011/2020",
+  "covariateNote": "obs_bait_present: 1 if the simulated carcass was present that day (source carc 'Present'), 0 if absent. period_rodent_index: small-rodent snap-trapping index (rodents per 100 trap nights) for the station's area and year, from a separate survey. unit_region: alpine / arctic (the authors model them separately). unit_area: station-code prefix (sub-region).",
+  "notShipped": {
+    "lalo": "the product of station longitude and latitude (a spatial-autocorrelation covariate); a function of station coordinates for a species on the Norwegian red list (Arctic fox), and coordinates were not deposited",
+    "analysis_script": "Occupancy.R (unmarked occuMulti models)",
+    "model_output": "occupancy and co-occurrence estimates"
+  },
+  "notes": "The deposit says 98 sites; its two files hold 96 stations. The alpine and Arctic data are one protocol and one table; filter on unit_region to reproduce the authors' separate models.",
+  "summary": {
+    "n_rows": 93892,
+    "n_units": 96,
+    "n_taxa": 4,
+    "n_periods": 10,
+    "n_occasions": 54,
+    "n_surveys": 23473,
+    "y_values": "0,1",
+    "prop_zero": 0.912,
+    "n_traps": 1,
+    "n_zero": 85674,
+    "n_positive": 8218,
+    "n_units_detected": 94,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_region", "unit_area", "period_rodent_index", "obs_bait_present"],
+  "coreMd5": "c68ae6746d79a54526a187bae794d476",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year", "season"],
+      "md5": "dcb3728c9b15c472166de281f88f3a48"
+    },
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f272d5220eb00d3d92570154ea9551fd"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/roderiksen_2023_norway_tundra_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

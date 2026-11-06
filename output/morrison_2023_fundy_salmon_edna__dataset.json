@@ -1,0 +1,80 @@
+{
+  "table": "morrison_2023_fundy_salmon_edna",
+  "title": "Endangered Inner Bay of Fundy Atlantic salmon eDNA: three qPCR replicates of 547 water samples at 53 river stations on 21 sampling days, New Brunswick, 2020-2021",
+  "creator": "Morrison, Melissa K.; Lacoursière-Roussel, Anaïs; Wood, Zachary T.; Trudel, Marc; Gagné, Nellie; LeBlanc, Francis; Samways, Kurt; Kinnison, Michael T.; Pavey, Scott A.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.9kd51c5n2",
+  "sourceURL": "https://doi.org/10.5061/dryad.9kd51c5n2",
+  "paperDOI": "10.1002/edn3.424",
+  "citation": "Morrison, M. K., Lacoursière-Roussel, A., Wood, Z. T., Trudel, M., Gagné, N., LeBlanc, F., Samways, K., Kinnison, M. T., & Pavey, S. A. (2023). Data from: Including environmental covariates clarifies the relationship between endangered Atlantic salmon (Salmo salar) abundance and environmental DNA [Dataset]. Dryad. https://doi.org/10.5061/dryad.9kd51c5n2",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Water samples for Atlantic salmon eDNA in one Inner Bay of Fundy river, New Brunswick, Canada, from three surveys with one protocol: a summer 2020 parr survey (three bottles at each of 11 stations around three pools, nine days), a 2020 full-transect survey (one bottle at 38 stations along 7 km of river, tributaries and upstream, on three of those days), and a spring 2021 smolt survey (three bottles at each of four stations near a rotary screw trap, twelve days, with the trap's daily smolt counts). Each bottle was filtered and assayed in three salmon qPCR replicates. cluster_id = station, period = sampling day, unit = bottle, occasion = qPCR replicate; y = 1 where the replicate amplified, with the Ct in y_raw. Water quality, flow, inhibition, field-blank result and coarsened coordinates ship as covariates.",
+  "samplingProtocol": "Environmental DNA: water grab samples (bottles A, B, C per station; one bottle per transect station), filtered (volume in unit_filtration_vol_ml, hours from collection in unit_hrs_to_filtration), DNA extracted after LeBlanc et al. (2020), and assayed in three qPCR replicates with an Atlantic salmon assay and an internal positive control; field blanks (2-6 per day), filtration, extraction and qPCR controls. No detection call is stated: a replicate with a Ct value is a detection (y = 1), 'Undetermined' (All_df) or '0' (Full_trans) is not.",
+  "samplingProtocolCode": "eDNA",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = three qPCR replicates of one bottle's extract; a bottle belongs to one sampling day; days (3-14 days apart) are open periods; stations are revisited across days (cluster_id)",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "surveyEvidence": "deposited_matrix",
+  "temporalCoverage": "2020-07/2021-06",
+  "geographicCoverage": "One river of the Inner Bay of Fundy, New Brunswick, Canada (about 45.6-45.7 N, 65.0 W); coordinates coarsened to 0.1 degree",
+  "crs": "EPSG:4326 (datum not stated)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Bottle positions (5-6 decimals in the deposit) given as the 0.1-degree cell centre (coarsen_coords()), uncertainty the cell half-diagonal: the Inner Bay of Fundy Atlantic salmon population is listed as endangered under Canada's Species at Risk Act, as the source's title says (E7(a); global IUCN category via GBIF: NT). One transect position keyed with a positive longitude (USR30, 2020-07-15) is given the sign of the station's other visits before coarsening. River, pool and station names are not shipped (E7.4): pool reaches keep the source's codes (PP, BH, TF) and transect stations are FT<n> for the source's USR<n>."
+  },
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = station, period = sampling day, unit = bottle (nested in one day), occasion = qPCR replicate. The three surveys share the protocol and the assay (one table, ruling #31); unit_survey says which survey a bottle belongs to and period_full_transect which days carry the transect.",
+  "notShipped": {
+    "controls": "48 field blanks, 49 filtration blanks, 27 extraction blanks and 30 qPCR controls are not units; the field-blank result is obs_blank_positive (field blank FB3iv, Summer day iv, amplified in all three replicates, as did filtration blank LB3iv); every extraction blank and qPCR negative is Undetermined / No Ct and every qPCR positive amplified",
+    "full_trans_pool_repeats": "the 96 pool bottles of Summer days i, vii and ix that Full_trans repeats from All_df (shipped once, from All_df); 272 of their 288 replicates agree, the rest are one PP1i B replicate (35.95 in Full_trans, 35.86 in All_df) and day-ix bottles TF1ix A-C and TF2ix B-C, whose results Full_trans lists one bottle earlier than All_df (Full_trans TF1ix A = All_df TF1ix B)",
+    "transect_samples_without_qpcr": "USR40Bi and USR41Bi (2020-07-15; one row each, every field empty) and USR15Bi (2020-07-15) and USR25Bix (2020-09-08) (three rows, Ct NA): no qPCR result, so no survey rows",
+    "Full_rls_mean": "an October 2020 survey (70 rows, FR stations) deposited as per-sample mean Ct and concentration only: no replicate-level results and no blanks",
+    "Std_curve": "the standard-curve plate (calibration of the quantities in obs_quantity_pg_l)",
+    "Analyses": "the authors' regressions of concentration on environmental covariates (model output)",
+    "RecordedBy": "people's initials",
+    "place_names": "river, pool and station names (E7.4; coordinates coarsened for the endangered population); pool reaches keep the source's codes",
+    "exact_coordinates": "bottle positions at 5-6 decimals (coarsened to 0.1 degree)",
+    "filtration_extraction_dates": "lab dates (filtration time and duration, extraction date); hours to filtration ships as unit_hrs_to_filtration",
+    "summer_day_v_date": "Summer day v carries the EventDate of day iv (2020-08-07) but was filtered on 2020-08-14 and has its own precipitation and day mean temperature; the date is a keying error, so date and period_date are empty for period 5"
+  },
+  "notes": "obs_blank_positive is NA on Summer days vii and ix (periods 7 and 9), which have no field blank in the deposit, 1 on Summer day iv (period 4), whose field blank FB3iv amplified, and 0 on the other days, whose field blanks were run and did not amplify (on Summer day i three of six field blanks have a result). unit_distance_m is the distance from the rotary screw trap (smolt survey, -50 to 150 m, sign as deposited), from the station's pool (parr survey, 0-500 m), or along the river (full transect, 0-7096 m; NA at the six tributary and upstream stations, unit_transect_position). unit_inhibited follows the README's rule (IPC dCt >= 3; NA for the 2 bottles without a dCt, BH1ix A and FT29Bi A). y_raw keeps the sheet's own no-amplification code: 'Undetermined' for parr and smolt bottles, '0' for full-transect bottles. obs_quantity_pg_l is the deposited standard-curve quantity per replicate. period_smolts_in_river and period_smolts_in_trap are the screw trap's estimated smolt run and daily catch (smolt survey only; a separate survey, not derived from the eDNA).",
+  "summary": {
+    "n_rows": 1641,
+    "n_units": 547,
+    "n_taxa": 1,
+    "n_periods": 21,
+    "n_occasions": 3,
+    "n_surveys": 1641,
+    "y_values": "0,1",
+    "prop_zero": 0.168,
+    "n_traps": 1,
+    "n_zero": 276,
+    "n_positive": 1365,
+    "n_units_detected": 507,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_survey", "unit_reach", "unit_transect_position", "unit_distance_m", "unit_temp_c", "unit_daymean_temp_c", "unit_conductivity_us_cm", "unit_salinity_psu", "unit_ph", "unit_turbidity_fnu", "unit_chlorophyll_ug_l", "unit_velocity_m_s", "unit_depth_m", "unit_width_m", "unit_discharge_m3_s", "unit_sampling_time", "unit_filtration_vol_ml", "unit_hrs_to_filtration", "unit_ipc_ct", "unit_ipc_dct", "unit_inhibited", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_blank_positive", "obs_quantity_pg_l"],
+  "coreMd5": "8c2d969a1f8c874f82de36e1e9ccc90f",
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "period_label", "period_year", "period_date", "period_full_transect", "period_precip_mm", "period_smolts_in_river", "period_smolts_in_trap"],
+      "md5": "23b2ab558c4e40e8c5d7520ecf9acd03"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "84ab3e4f7a442827f78b8acfdd72662f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/morrison_2023_fundy_salmon_edna.R",
+  "buildDate": "2026-11-05"
+}

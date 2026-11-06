@@ -1,0 +1,67 @@
+{
+  "table": "jordan_2025_kapitia_skink_rd",
+  "title": "Robust-design photo-identification capture histories of 360 Kapitia skinks (AI-supplemented identities), West Coast, New Zealand, 2019-2021",
+  "creator": "Jordan, Emily A.; Ewen, John; Hitchmough, Rod; Moran, Les R.; Murrell, David J.; Rowcliffe, J. Marcus; Adams, Lynn K.",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.bvq83bkkh",
+  "sourceURL": "https://doi.org/10.5061/dryad.bvq83bkkh",
+  "citation": "Jordan, E. A., Ewen, J., Hitchmough, R., Moran, L. R., Murrell, D. J., Rowcliffe, J. M., & Adams, L. K. (2025). Data from: Supplementing human observation with artificial intelligence impacts demographic estimates for a Critically Endangered lizard [Dataset]. Dryad. https://doi.org/10.5061/dryad.bvq83bkkh",
+  "paperDOI": "10.1002/2688-8319.70018",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture-recapture of the critically endangered Kapitia skink (Oligosoma salmo) across its only wild site, a strip of coastal grass and scrub on the West Coast of South Island, New Zealand, after cyclone Fehi: five primary periods (January 2019 to February 2021) of 10 or 11 artificial-cover-object surveys each, skinks identified from photographs of their scale pattern with the aid of HotSpotter (AI-supplemented identities, which the paper's verification found to be the 360 true individuals). 793 captures. Used in Huggins robust-design models of abundance, survival and temporary emigration.",
+  "samplingProtocol": "At each survey (about 1.5 h, starting 09:00-13:00) every artificial cover object along the site was lifted inside a bottomless box; skinks were caught, measured, photographed on the left side and released. Five 12-day primary periods, 10 or 11 surveys each, 2-10 months apart. Individuals identified from photographs with HotSpotter candidate matches reviewed by a researcher.",
+  "samplingProtocolCode": "cover_object_search",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every one of the 52 history columns is a survey (each has a capture). The split into primaries (10, 10, 11, 10, 11) is the only 10-or-11 split (paper s. 2.2) that reproduces the deposited collapsed per-primary histories.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "occasion = survey within a 12-day primary period (robust design; closed within primaries, open between). Ids are valid across the study.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "The species' only wild site, a coastal strip about 1 km long on the West Coast of South Island, New Zealand (no coordinates deposited; IUCN CR, so none are given here)",
+  "temporalCoverage": "2019-01/2021-02",
+  "notShipped": {
+    "human_only": "HumanOnlyEncounterHistory.inp: the same photographs identified by human observers alone (390 histories in the deposit, 402 individuals in the paper's Table 1, 792 captures). Not a recode of the AI-supplemented set (32 ids absent from it, 31 shared ids with different histories); the paper's verification found the AI-supplemented identities correct (360 individuals, no false rejections) and the human-only set to split 42 recaptured animals into new individuals.",
+    "collapsed": "the two _Collapsed.inp files: per-primary presence, rebuilt exactly from the full histories (asserted)",
+    "model_estimates": "abundance, survival, temporary emigration and capture-probability estimates (model outputs)"
+  },
+  "notes": "unit ids are the deposit's MARK ids with an S prefix (one id is 578A). The skinks were wild-caught with unknown age, so each carries all 52 surveys (E4.4); condition on first capture to reproduce MARK's robust design. Oligosoma salmo is IUCN CR; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 18720,
+    "n_units": 360,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 11,
+    "n_surveys": 18720,
+    "y_values": "0,1",
+    "prop_zero": 0.958,
+    "n_traps": 1,
+    "n_zero": 17927,
+    "n_positive": 793,
+    "n_units_detected": 360,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "c12d187759e61b87eeeaf2483ff511e5",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "month", "n_occasions", "note"],
+      "md5": "a6f6da7b7a09e374c8304aa9fe5ccd7d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "ba4fb987c423682b8cd93b8f98cf59ad"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/jordan_2025_kapitia_skink_rd.R",
+  "buildDate": "2026-11-05"
+}

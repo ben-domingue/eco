@@ -1,0 +1,71 @@
+{
+  "table": "inbo_2026_flanders_butterfly_count",
+  "title": "Flemish butterfly monitoring scheme: Pollard-walk counts of 50 butterfly taxa on 112 routes, Flanders, Belgium, 1991-2020",
+  "creator": "Maes, Dirk; Piesschaert, Frederik; Brosens, Dimitri; Desmet, Peter (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2025",
+  "doi": "10.15468/wwrgcd",
+  "sourceURL": "https://doi.org/10.15468/wwrgcd",
+  "citation": "Maes D, Piesschaert F, Brosens D, Desmet P (2025). Butterfly monitoring scheme in Flanders, Belgium. Version 1.7. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/wwrgcd",
+  "intellectualRights": {
+    "spdx": "CC-BY-NC-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "note": "GBIF registry and EML intellectualRights: CC BY-NC 4.0; EML abstract and event rows: CC0 1.0; the stricter governs"
+  },
+  "abstract": "Butterfly transect counts (Pollard walks) of the Flemish butterfly monitoring scheme, run by INBO with volunteers since 1991: routes of up to 1 km in 50 m sections walked repeatedly through the flight season, every butterfly within the transect counted. One row per route visit and taxon: imagos counted on the visit summed over the sections, with the visit's weather.",
+  "samplingProtocol": "Pollard walk: a fixed route of up to 1 km divided into 50 m sections, walked at a steady pace in suitable weather through the flight season; all butterflies within a band along the route counted per section (Maes et al. 2019).",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "visits span the whole flight season (April to October), across which species emerge and decline",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Flanders, Belgium (route coordinates generalised by INBO to 5 km or 10 km UTM square centroids)",
+  "temporalCoverage": "1991/2020",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 km (uncertainty in coordinateUncertaintyInMeters) or 10 km UTM square before publication; kept as published."
+  },
+  "covariateNote": "obs_n_sections_recorded: number of the route's 50 m sections with a record on the visit (sections with nothing seen are not in the archive, so this is a lower bound on sections walked, not effort). obs_cloudiness (eighths, as text), obs_temperature (deg C), obs_wind_bft (Beaufort, as text) as deposited; NA where not recorded.",
+  "notShipped": {
+    "sections": "section-level counts: the archive keeps a section only where something was seen (8 of 75,051 section events are empty), so the survey is the visit and counts are summed over sections",
+    "undefined_measurements": "68,915 measurement rows (on 34,683 section events) with an empty measurementType",
+    "model_output": "none in the source"
+  },
+  "notes": "Routes can lose sections over the years (the protocol drops a section that becomes inaccessible or unsuitable), so a route's visit total is not a fixed-effort count. Most routes are walked in a subset of years.",
+  "summary": {
+    "n_rows": 445300,
+    "n_units": 112,
+    "n_taxa": 50,
+    "n_periods": 30,
+    "n_occasions": 43,
+    "n_surveys": 8906,
+    "y_values": "0-1035 (231 distinct)",
+    "prop_zero": 0.888,
+    "n_traps": 1,
+    "n_zero": 395319,
+    "n_positive": 49981,
+    "n_units_detected": 112,
+    "max_y": 1035
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_locality", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_sections_recorded", "obs_cloudiness", "obs_temperature", "obs_wind_bft"],
+  "coreMd5": "2db124d0f69c932fd62c664e14b5735e",
+  "sideTables": {
+    "periods": {
+      "rows": 30,
+      "columns": ["period", "year"],
+      "md5": "ef7588b94be2b3e6bbfaeb43bdae8d01"
+    },
+    "taxa": {
+      "rows": 50,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "d7dbffe36da7255c945f5780d1a04742"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_butterfly_count.R",
+  "buildDate": "2026-11-05"
+}
