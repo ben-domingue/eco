@@ -21,6 +21,8 @@ barea_2021_sierranevada_butterfly_count,37.1,-3.4,region,66,7,unit coordinates,u
 barrile_2022_bridgerteton_toad_msrd,43.0,-110.3,region,100,,place name,centre of Wyoming Range and Wind River Range creeks
 barros_2024_mostela_weasel_occ,38.5,-8.7,region,80,,place name,centre of 2 stated site coords
 barrueto_2023_nwt_grizzly_scr,64.0,-110.0,region,200,,place name,stated array centroid
+barry_2025_sierra_gho_occ,40.2,-121.0,region,150,,place name,"centre of Lassen and Plumas National Forests, northern Sierra Nevada (no coordinates deposited)"
+barry_2025_sierra_owls_comm,40.2,-121.0,region,150,,place name,"centre of Lassen and Plumas National Forests, northern Sierra Nevada (no coordinates deposited)"
 battaile_2023_sacramento_sturgeon_count,40.2,-122.2,region,150,,place name,"upper Sacramento River, Red Bluff to Redding reach"
 bauer_2022_neshrubland_birds_count,42.9,-70.6,multi,300,,place name,"centre of S Maine, seacoast NH, Cape Cod"
 bauwens_2019_belgium_adder_ms,50.6,4.6,country,250,,place name,Belgium centroid
@@ -226,6 +228,7 @@ inbo_2026_flanders_firesalamander_count,50.8,4.0,region,106,31,unit coordinates,
 inbo_2026_flanders_odonatasite_count,51.1,5.2,region,107,31,unit coordinates,unit_decimalLatitude
 inbo_2026_flanders_priobutterfly_count,51.1,4.3,region,241,126,unit coordinates,unit_decimalLatitude
 jacobson_2020_cookinlet_beluga_cjs,61.0,-150.5,region,250,,place name,Cook Inlet
+jenkins_2019_olympic_fisher_occ,47.7,-123.7,region,222,,bounding box,geographicCoverage.boundingBox
 jhala_2024_india_tiger_binom,22.0,79.0,country,2500,,place name,India tiger landscapes
 johnson_2023_tweedsmuir_bombus_count,52.5,-125.7,locality,26,26,unit coordinates,unit_decimalLatitude in __units
 jones_2021_mdg_kittlitzplover_cjs,-23.4,43.7,region,300,,place name,south-west Madagascar saltmarsh (site not named)

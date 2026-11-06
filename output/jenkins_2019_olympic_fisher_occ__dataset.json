@@ -1,0 +1,81 @@
+{
+  "table": "jenkins_2019_olympic_fisher_occ",
+  "title": "Fisher detections in three 14-day intervals at 144 hexagons on the Olympic Peninsula, Washington, 2013-2016",
+  "creator": "Jenkins, Kurt J.",
+  "pubDate": "2019",
+  "doi": "10.5066/P9Q8SITV",
+  "sourceURL": "https://doi.org/10.5066/P9Q8SITV",
+  "citation": "Jenkins, K.J., 2019, Fisher (Pekania pennanti) detections and analysis covariates from Washington's Olympic Peninsula, 2013-2016: U.S. Geological Survey data release, https://doi.org/10.5066/P9Q8SITV.",
+  "paperDOI": "10.1002/jwmg.21788",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release, US public domain; USGS and NPS ask to be acknowledged as originators. Their request to be contacted before use was met on 2026-11-06 (USGS FRESC: free to modify; citing the data release with its link appreciated)."
+  },
+  "abstract": "Ninety fishers were translocated from British Columbia to Olympic National Park in 2008-2010. From 2013 to 2016, three baited camera and hair-snare stations were run for six weeks in each sampled 24-km2 hexagon of a systematic grid over the primary study area, checked every 14 days, to measure occupancy of the reestablishing population and its habitat associations. Each hexagon was sampled in one to three years.",
+  "samplingProtocol": "Three stations per 24-km2 hexagon, each a motion-sensing camera paired with a hair-snaring box, baited with chicken and lure, checked at three 14-day intervals; a fisher detection in an interval is a fisher photographed or genotyped from hair at any of the hexagon's stations.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "six weeks within a year at a hexagon; period = calendar year, each hexagon sampled in 1-3 of the 4 years",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "EPSG:26910",
+  "geographicCoverage": {
+    "description": "Primary study area of the Olympic Peninsula, Washington, USA (Olympic National Park, Olympic National Forest and surrounding state, tribal and private land)",
+    "boundingBox": {
+      "west": -124.7607,
+      "east": -122.5854,
+      "south": 47.0701,
+      "north": 48.4292
+    }
+  },
+  "temporalCoverage": "2013-05/2016-11",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Hexagon centres (NAD83 UTM 10N) as published in the source shapefile; Pekania pennanti is IUCN Least Concern and the source flags no sensitivity, so not coarsened (state-endangered in Washington, not an E7 flag). Hexagons 199 and 564 have no centre in the source."
+  },
+  "notShipped": {
+    "expansion_hexagons": "Hexes_expansion.zip: 36 expansion-area hexagons sampled 2014-2016; no detection data deposited for them",
+    "occupancy_field": "the shapefiles' Occupancy field (all 0; not a measurement)",
+    "incidental_2016": "hexagon 309 flagged '2016_i' in the shapefile; no detection row in the spreadsheet",
+    "shapefile_attributes": "hexagon polygons, landowner codes, selection flags and field notes"
+  },
+  "notes": "y pools the three stations of a hexagon (no station-level detections deposited). Landscape covariates are measured in the combined 1,262-m station buffers each year and vary slightly between a hexagon's years, so they are period_ columns. The data release's acknowledgement request: cite the release and acknowledge USGS and the National Park Service (Olympic National Park) as originators.",
+  "summary": {
+    "n_rows": 787,
+    "n_units": 144,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 3,
+    "n_surveys": 787,
+    "y_values": "0,1",
+    "prop_zero": 0.929,
+    "n_traps": 1,
+    "n_zero": 731,
+    "n_positive": 56,
+    "n_units_detected": 22,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_x", "unit_y", "unit_name", "period_rep", "period_lead", "period_pct_fed_nonwilderness", "period_pct_fed_wilderness", "period_pct_other_ownership", "period_pct_small_tree", "period_pct_medium_tree", "period_pct_large_tree", "period_stand_class_simpson", "period_pct_open_canopy", "period_pct_moderate_canopy", "period_pct_dense_canopy", "period_precip_mm", "period_dist_wilderness_m", "period_elev_m", "obs_date_doy", "obs_bait_functional"],
+  "coreMd5": "e5a7ee0c29ffe7129af2298f758b4b40",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "label", "year"],
+      "md5": "71b4e1e001d98f4c57c7750ab85814da"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "76345068af2d2cf3e76d05ba65633bc0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/jenkins_2019_olympic_fisher_occ.R",
+  "buildDate": "2026-11-06"
+}

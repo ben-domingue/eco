@@ -2455,3 +2455,35 @@ and said in notes. (2) A table replicated only within the visit still reads `sam
 since the floor counts occasions and periods; the floor's wording may want the replication ruling's exceptions.
 (3) Hastings: rows before a female's artificial natal release are zeros by construction (no female can be seen with a
 pup before her first pup); kept from the study's first year or birth (E4.4), as the kittiwake tables do.
+
+## Batch 48 — 2026-11-06 (two holds cleared by author replies: Olympic fisher, Sierra owl ARUs)
+
+Two agents in `~/eco-b48` (branch `batch-48`, from main at b2c2f21), one per deposit; records written after both finished.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| jenkins_2019_olympic_fisher_occ | occupancy (detection), hexagon x year x 14-day interval | USGS ScienceBase doi:10.5066/P9Q8SITV (US PD) | 787 | 144 hexagons, 4 years, 3 intervals; 56 detections in 30 of 263 hexagon-years (the paper's 263 PSUs); deposited_matrix |
+| barry_2025_sierra_owls_comm | acoustic ARU community occupancy (FLM, NPO), weekly, stacked years | Dryad doi:10.5061/dryad.c866t1gkt (CC0), author-corrected files | 20,764 | 517 ARUs in 265 cells (`cluster_id`), 4 years, 11 weeks; deposited_matrix |
+| barry_2025_sierra_gho_occ | acoustic ARU occupancy (GHO), cell level (two ARUs pooled), weekly | the same | 5,480 | 265 cells, 4 years, 11 weeks; deposited_matrix |
+
+**Fisher.** Held for a contact-prior-to-use clause; Ben emailed K. Jenkins and USGS FRESC, who replied 2026-11-06
+(public domain, free to modify, citation of the release appreciated). `y` pools three camera + hair-snare stations per
+hexagon (no station-level data deposited). Landscape covariates are `period_` because buffers were re-measured each
+year. The 36 expansion-area hexagons have no detection data. Not an E7 flag (IUCN LC; a US state listing is not a
+flag), so hexagon centres ship as published (NAD83 UTM 10N). The shapefile's attribute table is read with
+`foreign::read.dbf` (recommended package shipped with R), new to the data scripts.
+
+**Owls.** Held 2026-11-05 because the three species files disagreed. J. Barry replied 2026-11-06 with corrected files
+(recorder recovery-date typos at about a dozen sites; GHO is scored per cell, FLM/NPO per ARU; one 2018 barred-owl
+record fixed) and will update the public copy. Ben ruled to build from the corrected files, the author's clear intent.
+First table built from author-supplied files: they are cached in `.cache/author_supplied/barry_owls_2026-11-06/` (not
+in git), md5s asserted, and the script stops if the Dryad files change ("switch this script to the public files").
+Diff vs deposit: 38 detection cells, 32 ARUhours cells, 2 BOpresence cell-years, 1 NPO row added. The deposited files
+had 19 hours/NA contradictions (the hold note said 16). Fire and removal covariates were computed over species-specific
+home-range buffers (FLM 50 ha, NPO 300 ha, GHO 700 ha), so the community table ships each once per buffer
+(`_50ha`, `_300ha`). ARUhours is shipped as `obs_aruhours` as deposited; its values look like ln(hours) (max 4.43 =
+ln 84), said in notes.
+
+Strained the standard: E10 has no provenance field for author-supplied files; the statement is in `notes` and
+`notShipped$author_corrections`. Questions for the author: what FR11-FR23 are (not shipped), and whether ARUhours is
+ln(hours).
