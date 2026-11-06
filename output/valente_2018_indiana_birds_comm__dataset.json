@@ -1,0 +1,65 @@
+{
+  "table": "valente_2018_indiana_birds_comm",
+  "title": "Point-count detections of 19 forest bird species at 193 stations on 12 plots in southern Indiana, three visits, June-July 2014",
+  "creator": "Valente, Jonathon J.; Hutchinson, Rebecca A.; Betts, Matthew G.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.5d8s7",
+  "sourceURL": "https://doi.org/10.5061/dryad.5d8s7",
+  "citation": "Valente, J. J., Hutchinson, R. A., & Betts, M. G. (2018). Data from: Distinguishing distribution dynamics from temporary emigration using dynamic occupancy models [Dataset]. Dryad. https://doi.org/10.5061/dryad.5d8s7",
+  "paperDOI": "10.1111/2041-210x.12840",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Ten-minute, 50 m radius point counts at 193 stations on 12 forest plots within six public properties in southern Indiana, each visited three times between 16 June and 16 July 2014 by one of four observers, with detection of each of 19 forest bird species recorded in three 3 min 20 s intervals. The paper uses the data to ask whether repeat visits within a season are closed or open to temporary emigration.",
+  "samplingProtocol": "10-minute point count, 50 m fixed radius, split into three 3 min 20 s intervals; three visits per station in the 2014 breeding season; time, temperature, wind and cloud recorded per visit.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "the three visits span 16 June to 16 July 2014; the paper's question is whether visits within a season are closed, and it found dynamic (open) models better supported than closed ones for all 19 species in its empirical data. obs_det_interval1-3 are the three intervals within one count.",
+  "geographicCoverage": "Southern Indiana, USA: Crane Army Ammunition Plant, Big Oaks National Wildlife Refuge, Martin and Owen-Putnam State Forests, Spring Mill and McCormick's Creek State Parks",
+  "temporalCoverage": "2014-06/2014-07",
+  "crs": "UTM zone 16N metres as the README states (datum not stated; NAD83 / WGS 84 differ by about 1 m): unit_x = easting, unit_y = northing",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Station coordinates kept as published: none of the 19 species is IUCN CR, EN or VU, and the source flags none"
+  },
+  "notShipped": {
+    "julian": "day of year of the shipped date",
+    "other_species": "species recorded at the counts other than the 19 of the case study are not in the deposit (the authors' selection)"
+  },
+  "notes": "y = detection in any interval (det.visit); obs_det_interval1-3 hold the interval detections for time-to-detection or removal-type models. Taxon codes are the 4-letter banding codes. Only detections inside 50 m were recorded.",
+  "summary": {
+    "n_rows": 11001,
+    "n_units": 193,
+    "n_taxa": 19,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 579,
+    "y_values": "0,1",
+    "prop_zero": 0.728,
+    "n_traps": 1,
+    "n_zero": 8014,
+    "n_positive": 2987,
+    "n_units_detected": 193,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "cluster_id", "unit_property", "unit_x", "unit_y", "obs_det_interval1", "obs_det_interval2", "obs_det_interval3", "obs_time_min", "obs_temp_f", "obs_wind_beaufort", "obs_cloud_pct"],
+  "coreMd5": "06dfe17e7ad1fe50ef9c17fbecfca34c",
+  "sideTables": {
+    "taxa": {
+      "rows": 19,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "8e13a5d73bb2f516ac42b254cddc56ae"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/valente_2018_indiana_birds_comm.R",
+  "buildDate": "2026-11-05"
+}

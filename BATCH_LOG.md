@@ -1519,6 +1519,47 @@ What this batch says about the standard:
 - **Dryad's version zip has a size ceiling** for anonymous users (the puma deposit, 703 MB, returns 405).
   `download_dryad()` cannot fetch such deposits; per-file downloads need a token.
 
+## Batch 34 — 2026-11-05 (small Dryad deposits: Porsanger voles, Indiana forest birds, Pacific Northwest pika, Ingula grassland birds)
+
+One agent in `~/eco-b34` (branch `batch-34`, from main at 70eba21 after batch 33). Small Dryad deposits, chosen for
+designs the corpus is thin on (closed capture-recapture, multi-sign occupancy, interval detections), on a budget of
+23 anonymous Dryad requests (12 dataset records, 11 version zips; no 429). Eleven deposits read, four tables built and
+uploaded to the Redivis draft, three held, four blocked.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| nicolau_2021_porsanger_vole_ccr | closed capture-recapture, multi-session | Dryad CC0 | 6,290 | 3,145 gray-sided voles x 2 visits in 36 spring and autumn sessions (2000-2017) at 21 roadside stations, Porsanger, Norway; cluster_id = station, period = session; ids are session-scoped (the source treats animals in different sessions as different), so each vole has rows only in its session, as in the Mara cheetah table; station UTM 33 coordinates as published (LC); zero-capture station-sessions are not in the deposit |
+| valente_2018_indiana_birds_comm | community occupancy, point counts | Dryad CC0 | 11,001 | 19 forest bird species x 193 stations x 3 visits, southern Indiana, June-July 2014; the three 3 min 20 s intervals of each count as obs_det_interval1-3 (time-to-detection refittable); closure = open, since the paper's own finding is that visits within the season are not closed; the authors deposited only their 19 case-study species |
+| goldman_2023_pnw_pika_dynocc | dynamic occupancy, sign surveys | Dryad CC0 | 5,126 | American pika at 771 plots in five park units (OR, ID, CA), 2010-2014 and 2017-2021, 1-3 surveys per plot-year (sample table); y = the source's any-sign flag, with counts of old and fresh scat and haypiles, calls and sightings as obs_ columns so the paper's multi-sign / false-positive model can be refitted |
+| maphisa_2019_ingula_birds_comm | community occupancy, walked plot surveys | Dryad CC0 | 32,292 | 92 grassland bird taxa x 20 plots x 351 surveys in 11 months (March 2010 to February 2012), Ingula, South Africa; a record table (row_presence), months as periods, y_raw = records per survey; English names resolved by hand; below the sample floor (20 units) |
+
+Not built (`queue/human_review.csv`): Colorado sage-grouse faecal-pellet genetic CMR (held: the .inp headers say 7 and 8
+occasions but the histories have 9 and 10 characters), Swiss MHB passerine territory totals 1999-2014 (held: same
+territory-total question as the Swiss MHB 1999-2025 hold, and no quadrat ids), Hutchinson et al. penalised-likelihood
+occupancy data (held: species are numbered 1-35 with no names, and no place or year). Blocked: Corbett tigers (paper:
+252 MARK occasions with no primary-period boundaries), the tidewater goby eDNA + seine comparison (paper: no sampling
+year anywhere in the deposit), and the Chure leopard and Trijuga sloth bear occupancy deposits (Dryad answers 404 to
+the anonymous version zip, as Tutakoke brant did).
+
+What this batch says about the standard and the tools:
+
+- **Session-scoped ids in closed CR** (voles): the second table, after the Mara cheetahs, where an animal id lives in
+  one session. E4.4 still says a wild animal is at risk from the study's first period; the cheetah precedent (rows only
+  in the id's session) was followed. A sentence in E4.4 would make this objective rather than a precedent.
+- **Sub-occasion detections** (Indiana birds): the within-count intervals were shipped as obs_ columns on the visit
+  row, keeping `occasion` = visit. The alternative (occasion = visit x interval, occasionKind time) would also be
+  legal; the standard does not say which, and the choice decides what the IRW view treats as an item.
+- **Multi-sign occupancy** (pika): sign-type counts as obs_ columns with `y` = any sign. The paper's model treats each
+  sign type as its own detection process with false positives for old sign; E9's multi-method form (`obs_method`, one
+  row set per method) could carry that instead, at four times the rows. Left as obs_ because the source records all
+  sign types in one search, which is one survey, not a paired method.
+- **Common names to taxa** (Ingula): spelling variants and the source's own synonyms (Fan-tailed / Zitting Cisticola,
+  White-bellied Bustard / Korhaan, Wattled / African Wattled Lapwing) were merged; three names that do not identify a
+  species were kept at genus or family rank with taxonRemarks. The merge of synonyms is a judgement the processing
+  guide does not state; each is listed in `__taxa`.
+- **Dryad 404 on the version zip** for small deposits (7 KB and 27 KB) is a second failure mode besides the 405 on large
+  ones; both need a token.
+
 ## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
 
 One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.

@@ -248,6 +248,10 @@ CSVs with `upload/red_up_eco.py`.
 | `siren_2024_vtnh_moose_count.R` | open multistate N-mixture counts, moose calves and adult cows (species x stage taxa), 225 camera sites x 6 years x 4 months, Vermont and New Hampshire | Dryad | CC0 |
 | `finnegan_2024_afognak_deer_scr.R` | closed SCR, 23 Sitka black-tailed deer bucks x 26 cameras x 32 nights, Afognak Island, Alaska | Dryad | CC0 |
 | `pakanen_2020_dunlin_ms.R` | multi-state CJS by geolocator status, 337 southern dunlins, 2002-2018, removals flagged, Finland | Dryad | CC0 |
+| `nicolau_2021_porsanger_vole_ccr.R` | closed capture-recapture, multi-session: 3,145 gray-sided voles x 2 visits in 36 spring and autumn sessions at 21 stations, session-scoped ids, Porsanger, Norway, 2000-2017 | Dryad | CC0 |
+| `valente_2018_indiana_birds_comm.R` | community occupancy, 19 forest birds x 193 point-count stations x 3 visits with three within-count intervals as obs_, southern Indiana 2014 | Dryad | CC0 |
+| `goldman_2023_pnw_pika_dynocc.R` | dynamic occupancy, American pika sign surveys at 771 plots in five park units, 2010-2021, counts per sign type as obs_ (multi-sign model), Oregon / Idaho / California | Dryad | CC0 |
+| `maphisa_2019_ingula_birds_comm.R` | community occupancy from a record table, 92 grassland bird taxa x 20 plots, 11 months 2010-2012, English names resolved by hand, Ingula, South Africa | Dryad | CC0 |
 | `cecconi_2025_cricket_occ.R` | single-season occupancy, Japanese burrowing cricket x 49 sites x 3 aural point counts, Kentucky 2024 | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
