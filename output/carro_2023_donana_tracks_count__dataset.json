@@ -1,0 +1,69 @@
+{
+  "table": "carro_2023_donana_tracks_count",
+  "title": "Track counts of nine carnivores, hedgehog and dog on 12 permanent transects, Doñana National Park, Spain, 2007-2022",
+  "creator": "Carro, Francisco; Román, Isidro; Laffite Alaminos, Rafael; Paz, David; Ceballos, Olga; Chico, Antonio; Torrijo-Salesa, María; Díaz-Delgado, Ricardo; Bustamante, Javier; Márquez-Ferrando, Rubén (Estación Biológica de Doñana, CSIC)",
+  "pubDate": "2023",
+  "doi": "10.15470/2us9py",
+  "sourceURL": "https://doi.org/10.15470/2us9py",
+  "citation": "Carro F, Román I, Laffite Alaminos R, Paz D, Ceballos O, Chico A, Torrijo-Salesa M, Díaz-Delgado R, Bustamante J, Márquez-Ferrando R (2023). Long-term monitoring of the relative density of [taxon] with track counts in Doñana National Park 2007-2022. Estación Biológica de Doñana (CSIC). Sampling event datasets (nine, one per taxon): https://doi.org/10.15470/yvoou1, https://doi.org/10.15470/xavass, https://doi.org/10.15470/oaffix, https://doi.org/10.15470/2us9py, https://doi.org/10.15470/zmqncw, https://doi.org/10.15470/pjpxhp, https://doi.org/10.15470/up1q9h, https://doi.org/10.15470/4pcvqq, https://doi.org/10.15470/p09dsf",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Long-term monitoring of the relative density of the main carnivores in Doñana National Park: after the first autumn rains, 12 permanent 2 km sand-track transects are driven slowly in the morning and every group of footprints of each target taxon is counted, usually three runs per transect a year. The Doñana Monitoring Program published one GBIF dataset per taxon on a shared event set; this table joins the nine. One row per run and taxon, y the groups of footprints.",
+  "samplingProtocol": "Track count on a permanent 2 km x 1.5 m sand transect driven slowly by car in the morning after the first autumn rains; every group of footprints of each target taxon is counted (Carro 2014, Protocolo de muestreo 13, ICTS-RBD); usually three runs per transect in a hydrological year.",
+  "samplingProtocolCode": "track_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = run within a hydrological year (runs a few days apart in October-January); period = hydrological year (October-September)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Doñana National Park, Huelva, Andalusia, Spain (transect positions coarsened to 0.1 degree)",
+  "temporalCoverage": "2007-10/2022-11",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Iberian lynx (Lynx pardinus) is IUCN-listed (E7): each transect's median GPS start point (six decimals in the source) is moved to the centre of its 0.1 degree cell with coarsen_coords(); the per-track GPS points are not shipped."
+  },
+  "notes": "Felis is at genus rank (wildcat and domestic cat tracks not separated). Dog tracks are domestic dogs. Hydrological year 2022 (October 2021-September 2022) has no runs. Joined from nine per-taxon GBIF datasets with identical event sets (asserted).",
+  "notShipped": {
+    "track positions": "GPS position and time of each group of footprints (dynamicProperties)",
+    "fox rows without an event": "3 red fox occurrence rows whose eventIDs are not in the event core: DONANA:CARN:TRACKS:Manecorro:LS1:2011-11-08, DONANA:CARN:TRACKS:Manecorro:LS1:2014-01-28, DONANA:CARN:TRACKS:Mogea:MG1:2016-11-10",
+    "observers": "recordedBy / identifiedBy names"
+  },
+  "summary": {
+    "n_rows": 3996,
+    "n_units": 12,
+    "n_taxa": 9,
+    "n_periods": 15,
+    "n_occasions": 4,
+    "n_surveys": 444,
+    "y_values": "0-67 (54 distinct)",
+    "prop_zero": 0.691,
+    "n_traps": 1,
+    "n_zero": 2762,
+    "n_positive": 1234,
+    "n_units_detected": 12,
+    "max_y": 67
+  },
+  "sampleFloor": "below (12 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "104aa9cf19da925a3c5faf4f9e9004da",
+  "sideTables": {
+    "periods": {
+      "rows": 15,
+      "columns": ["period", "hydrological_year", "season"],
+      "md5": "a77a00dba781bfc99fe54f7f398c1254"
+    },
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "d7f55cefdd8114c19fd4da238434b5ef"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/carro_2023_donana_tracks_count.R",
+  "buildDate": "2026-11-06"
+}

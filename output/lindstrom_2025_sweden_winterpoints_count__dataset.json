@@ -1,0 +1,111 @@
+{
+  "table": "lindstrom_2025_sweden_winterpoints_count",
+  "title": "Swedish Bird Survey winter point count routes: route totals of 262 bird taxa on 2,452 routes, five survey periods a winter, 1975-2024",
+  "creator": "Lindström, Åke; Green, Martin; Jönsson, Annelie (Department of Biology, Lund University)",
+  "pubDate": "2025",
+  "doi": "10.15468/n5nuuc",
+  "sourceURL": "https://doi.org/10.15468/n5nuuc",
+  "citation": "Lindström Å, Green M, Jönsson A (2025). Swedish Bird Survey: Winter point count routes (Vinterpunktrutterna). Version 1.7. Department of Biology, Lund University. Sampling event dataset. https://doi.org/10.15468/n5nuuc",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
+  },
+  "abstract": "The winter point count routes (vinterpunktrutterna) of the Swedish Bird Survey, run by Lund University since 1975: volunteers count all birds seen or heard for 5 minutes at each of 20 self-chosen points, in up to five fixed survey periods per winter (October-November, November, Christmas-New Year, January-February, March). The deposit gives one event per route count with the total individuals per taxon over the 20 points, the observer id, date, times, transport, snow cover, county and the centre of the 25 x 25 km grid square containing the route. Eleven security-class-4 species are withheld by the publisher.",
+  "samplingProtocol": "Point count route: 20 points, 5 minutes per point, all birds seen or heard registered; one count per route in any of five three-week survey periods per winter; y is the route total of individuals per taxon (summed by the source).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "period = winter (October to March); occasion = the scheme's survey period (1-5), across which wintering populations change (migration, weather); at most one count per route per survey period",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "taxaWithheld": ["Anser erythropus", "Aquila chrysaetos", "Clanga clanga", "Haliaeetus albicilla", "Circus macrourus", "Falco peregrinus", "Falco rusticolus", "Tyto alba", "Bubo bubo", "Bubo scandiacus", "Dendrocopos leucotos"],
+  "geographicCoverage": "Sweden, all counties, concentrated in the south (route positions as 25 x 25 km grid-square centres)",
+  "temporalCoverage": "1975-10/2024-03",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "by the source: the centre of the 25 x 25 km survey grid square containing the route (coordinateUncertaintyInMeters 17,700), coarser than the 0.1 degree rule; IUCN-listed taxa in the table: Aythya ferina (VU), Branta ruficollis (VU), Clangula hyemalis (VU), Falco vespertinus (VU), Fratercula arctica (VU), Melanitta fusca (VU), Pluvialis squatarola (VU), Podiceps auritus (VU), Polysticta stelleri (VU), Rissa tridactyla (VU)"
+  },
+  "surveyEvidenceNote": "The event core lists every route count; the protocol registers every bird at every point, and the 6 counts that saw no bird are published (noObservations = true), so a taxon absent from a count's occurrences was counted zero.",
+  "covariateNote": "obs_snow_cover and obs_transport as the source records them, NA where not recorded; obs_start_time/obs_end_time HH:MM, NA where not given; observer = pseudonymous recorder id.",
+  "notes": "Genus-level Loxia, Larus and Passer and the subspecies Acanthis flammea exilipes are taxa as recorded; their species-level records are separate taxa. Names are the source's (Dyntaxa) spelling; vernacularName is Swedish. Companion of lindstrom_2025_sweden_summerpoints_count. Stored in winter parts (E4).",
+  "notShipped": {
+    "withheld_species": "eleven security-class-4 species are not in the deposit: Anser erythropus, Aquila chrysaetos, Clanga clanga, Haliaeetus albicilla, Circus macrourus, Falco peregrinus, Falco rusticolus, Tyto alba, Bubo bubo, Bubo scandiacus, Dendrocopos leucotos - no rows; their absence is not a zero",
+    "Aves zero rows": "6 placeholder rows marking counts with no bird; those counts are y = 0 for every taxon",
+    "point_level": "the 20 points per route are summed by the source",
+    "euTaxonID": "EU Article 12 species codes per occurrence (eMoF)",
+    "locationProtected_locationType": "constants (no / Point)"
+  },
+  "summary": {
+    "n_rows": 10376772,
+    "n_units": 2452,
+    "n_taxa": 262,
+    "n_periods": 49,
+    "n_occasions": 5,
+    "n_surveys": 39606,
+    "y_values": "0-503353 (more than 12 distinct)",
+    "prop_zero": 0.913,
+    "n_traps": 1,
+    "n_zero": 9477004,
+    "n_positive": 899768,
+    "n_units_detected": 2452,
+    "max_y": 503353
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_county", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_start_time", "obs_end_time", "obs_snow_cover", "obs_transport"],
+  "parts": [
+    {
+      "file": "part-01.csv",
+      "periods": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "n_rows": 2326822,
+      "md5": "f92f4ffd59fe4c7b59edb92a605c6bd2"
+    },
+    {
+      "file": "part-02.csv",
+      "periods": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "n_rows": 2828290,
+      "md5": "0873d4a525da9e2b068c9187ca2decc3"
+    },
+    {
+      "file": "part-03.csv",
+      "periods": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+      "n_rows": 2224118,
+      "md5": "a73ae85995b1da0a14a6cc06c0af67cc"
+    },
+    {
+      "file": "part-04.csv",
+      "periods": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+      "n_rows": 1679682,
+      "md5": "2fa7f02e86bb2ec4d81d78c419deef94"
+    },
+    {
+      "file": "part-05.csv",
+      "periods": [41, 42, 43, 44, 45, 46, 47, 48, 49],
+      "n_rows": 1317860,
+      "md5": "4087ef8fe97b7f2ebf07aa7e64de5b61"
+    }
+  ],
+  "sideTables": {
+    "periods": {
+      "rows": 49,
+      "columns": ["period", "winter", "n_counts", "n_routes"],
+      "md5": "e1b1be03990d4a1bfc02982a937d51b6"
+    },
+    "taxa": {
+      "rows": 262,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_dyntaxaID", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "7ed4d17113a390447b64f576bb21d60d"
+    },
+    "units": {
+      "rows": 2452,
+      "columns": ["unit", "station_register_url", "first_winter", "last_winter", "n_counts"],
+      "md5": "f8b073a3026b0f8439fcbc59bc56d355"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lindstrom_2025_sweden_winterpoints_count.R",
+  "buildDate": "2026-11-06"
+}

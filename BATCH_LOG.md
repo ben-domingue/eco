@@ -2251,3 +2251,47 @@ lost, but the source names the lost tag only as "probably X"; the tables flag th
 histories open; a rule for unidentified lost marks would help. (2) The agency-coordinates question now also covers a locator
 that is an id (PLSS section in StopID), handled under E7.4 with an `_exact` sibling. (3) Classifier detections at the authors'
 thresholds (Alberta ARUs) are treated like an author's eDNA call; worth stating as a rule.
+
+## Batch 45 — 2026-11-06 (GBIF sampling-event datasets, round 2)
+
+One agent in `~/eco-b45` (branch `batch-45-gbif2`, from main at 7e9a3c3). No Dryad requests. Discovery: the GBIF occurrence
+facet `occurrenceStatus = ABSENT` by dataset, split by licence (CC0 1.0: 256 datasets; CC BY 4.0: 2,379), intersected with the
+5,326 datasets of type SAMPLING_EVENT: 734, of which 697 not already in eco (deduplicated by GBIF key and DOI against
+`queue/candidates.csv`, `queue/human_review.csv`, `discovery_log.csv`, the dictionary, every `__dataset.json` and every
+`data/` script). Each was triaged from GBIF metadata (description, sampling text) and occurrence facets (years, event ids,
+distinct latitudes); every decision and its reason is in `discovery/gbif_se_absent_b45.csv`: 67 queued (59 queue rows; the
+nine Doñana per-taxon track datasets are one row), 332 rejected (single visit per location, one or two locations,
+stratified-random stations, one year per dataset, landings, inventories and incidental records, NEON duplicates), 287 not
+queued (plankton, microbial and benthic sample series; per-year CREMP and EDIA datasets that need a family merge; other
+repeat sampling outside this batch's priorities), 11 held (9 CC BY-NC, PISCO kelp licence terms, the discontinued Swedish
+NFI sample). The batch was shrunk mid-run to the cleanest five tables; the other ten claimed rows were released
+(`available`, unclaimed).
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| inbo_2026_flanders_batwinter_count | Meetnetten.be hibernation-site bat counts, totals per site | count | 260,337 | 1,380 | 23 | 81 |
+| inbo_2026_flanders_firesalamander_count | Meetnetten.be night transect counts, fire salamander | count | 998 | 83 | 1 | 10 |
+| haas_2025_sweden_waterbirdsep_count | Swedish September waterbird census, method as occasion | count | 564,528 | 1,645 | 48 | 52 |
+| lindstrom_2025_sweden_winterpoints_count | Swedish winter point count routes, survey period as occasion (5 winter parts) | count | 10,376,772 | 2,452 | 262 | 49 |
+| carro_2023_donana_tracks_count | Doñana track counts, nine per-taxon datasets joined | count | 3,996 | 12 | 9 | 15 |
+
+Held (`queue/human_review.csv`): PISCO kelp forest surveys (CC BY with a request to discuss analyses with the authors:
+request or consult-the-PIs clause?), Meetnetten bat maternity roosts (two protocols, target-species projects with
+non-target bats), the discontinued Swedish NFI vegetation sample (as batch 42). Not built and left `available`: Meetnetten
+amphibian chorus and larvae counts, Swedish coastal birds, Taiwan New Year Bird Count, Taiwan butterfly census, Budai salt
+pans, Doñana lizards, EDP Baixo Sabor acoustic bats, CDFW bull kelp (archives cached in `.cache/raw/` of the worktree).
+
+Facts carried into the tables: the bat winter archive has 12 occurrence rows whose eventIDs are missing from the event core
+(dropped) and two species-aggregate classes (Myotis mystacinus/brandtii, Plecotus auritus/austriacus) sharing a
+scientificName with a species-level class (keyed on scientificName + identificationQualifier; species-level zeros are not
+absences, taxonRemarks). Pipistrellus and Passer are GBIF homonyms (hinted matches). The nine Doñana archives share one
+event set but differ cosmetically (date format in one, a tilde in one locality, one empty coordinate); dates come from the
+eventID; three fox rows have no event (dropped). The Swedish winter routes carry one count per route per survey period
+(asserted); eleven security-class-4 species are withheld by the publisher (taxaWithheld).
+
+Coordinates: Iberian lynx (IUCN VU per GBIF) on the Doñana transects: transect positions coarsened to 0.1 degree. Fire
+salamander is IUCN VU (2022) and is kept at INBO's 5 km UTM centroids, and the September waterbird census holds six VU species
+at 8 km sector centres: both under the agency-published rule, the open question for Ben from batches 40-44.
+
+What strained the standard: nothing new. The fire-salamander archive marks every row 'casual observation' (absences
+included), read as an export constant, not a record type.
