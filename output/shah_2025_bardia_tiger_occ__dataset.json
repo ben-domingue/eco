@@ -1,0 +1,60 @@
+{
+  "table": "shah_2025_bardia_tiger_occ",
+  "title": "Tiger camera-trap detections in 719 grid cells of Bardia and Banke National Parks, Nepal, 20 replicates each, winter 2021-22",
+  "creator": "Shah, Shyam Kumar; Karki, Jhamak Bahadur; Bhatta, Balram; Subedi, Naresh; K. C., Rabin Bahadur; Kadariya, Rabin; Karki, Ajay; Poudel, Umesh; Lamichhane, Babu Ram; Thapa, Arjun",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.6q573n65q",
+  "sourceURL": "https://doi.org/10.5061/dryad.6q573n65q",
+  "citation": "Shah, S. K. et al. (2025). Ecological factors at fine spatial scale associated with habitat use by tigers in western Terai Arc landscape, Nepal [Dataset]. Dryad. https://doi.org/10.5061/dryad.6q573n65q",
+  "paperDOI": "10.1002/ece3.71109",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of tiger (Panthera tigris) from camera traps in 719 2 x 2 km grid cells covering Bardia and Banke National Parks and adjoining forest in the western Terai Arc Landscape, Nepal, 16 December 2021 to 12 March 2022, as 20 replicates per cell, with nine remotely sensed landscape covariates per cell.",
+  "samplingProtocol": "Paired camera traps on trails, roads and riverbeds in each 2 x 2 km grid cell for one 15-16 day session, under Nepal's tiger and prey monitoring protocol (DNPWC 2017); the deposit gives 20 replicates per cell, which its README calls spatial replicates.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one 15-16 day camera session per grid cell; the authors fit single-season occupancy",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Bardia and Banke National Parks and adjoining forest, western Terai Arc Landscape, Nepal; no coordinates deposited",
+  "temporalCoverage": "2021-12/2022-03",
+  "notShipped": {
+    "prey": "prey index, derived from the same camera survey's detections of prey species",
+    "carnivores": "carnivore index, derived from the same camera survey's detections of other carnivores"
+  },
+  "notes": "occasion is the deposited replicate column in file order (R1-R4, then R1.1-R1.16, names as deposited); the README calls them spatial replicates and does not say how a replicate is defined within a cell. A '-' cell (43, 42 grids) is read as not surveyed and has no row; the README does not define it. The README says 720 grid ids, the file has 719. Tiger is IUCN EN; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 14337,
+    "n_units": 719,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 20,
+    "n_surveys": 14337,
+    "y_values": "0,1",
+    "prop_zero": 0.947,
+    "n_traps": 1,
+    "n_zero": 13582,
+    "n_positive": 755,
+    "n_units_detected": 275,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_dist_build", "unit_dist_river", "unit_dist_road", "unit_ndvi", "unit_tri", "unit_slope", "unit_aspect", "unit_ele", "unit_dist_waterholes"],
+  "coreMd5": "f8a6154f1f3aa88b962d868d62f15fa4",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "4798520657c2a5e17261ffdd6a320ec0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/shah_2025_bardia_tiger_occ.R",
+  "buildDate": "2026-11-05"
+}

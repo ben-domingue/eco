@@ -1,0 +1,64 @@
+{
+  "table": "morganti_2017_modena_commonswift_cjs",
+  "title": "Capture-recapture histories of 213 common swifts with and without geolocators at Modena, Italy, six annual occasions",
+  "creator": "Morganti, Michelangelo; Rubolini, Diego; Åkesson, Susanne; Bermejo, Ana; De la Puente, Javier; Lardelli, Roberto; Liechti, Felix; Boano, Giovanni; Tomassetto, Erika; Ferri, Mauro; Caffi, Mario; Saino, Nicola; Ambrosini, Roberto",
+  "pubDate": "2017",
+  "doi": "10.5061/dryad.b1t42",
+  "sourceURL": "https://doi.org/10.5061/dryad.b1t42",
+  "citation": "Morganti, M. et al. (2017). Data from: Effect of light-level geolocators on apparent survival of two highly aerial swift species [Dataset]. Dryad. https://doi.org/10.5061/dryad.b1t42",
+  "paperDOI": "10.1111/jav.01521",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Six-occasion annual capture-recapture histories of 213 breeding common swifts (Apus apus) at Modena, Italy, each bird either fitted with a light-level geolocator or an unequipped control: part of the MARK input of Morganti et al.'s survival comparison (the other species and colony is morganti_2017_carmagnola_pallidswift_cjs).",
+  "samplingProtocol": "Annual capture of breeding adults at colony nest sites; birds ringed and a subset fitted with light-level geolocators; recapture recorded at later annual occasions.",
+  "samplingProtocolCode": "nest_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one capture occasion per year; open between years (CJS)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Breeding colony at Modena, Italy; no coordinates deposited",
+  "temporalCoverage": "six annual occasions; calendar years not stated in the deposit (paper 2018)",
+  "notShipped": {
+    "glmm_workbooks": "all geolocator birds, biometries and return-rate workbooks (return-rate GLMM data for 14 colonies, not capture histories)"
+  },
+  "notes": "Unit ids follow the sheet order of the combined MARK sheet. unit_geolocator marks birds fitted with a geolocator (the treatment groups mod1 / car1).",
+  "summary": {
+    "n_rows": 1278,
+    "n_units": 213,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 1,
+    "n_surveys": 1278,
+    "y_values": "0,1",
+    "prop_zero": 0.74,
+    "n_traps": 1,
+    "n_zero": 946,
+    "n_positive": 332,
+    "n_units_detected": 213,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_geolocator"],
+  "coreMd5": "5a81f6b9e4745c7f4279cc290cf4420e",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "period_note"],
+      "md5": "1135d1bec81605341d4eddcaf0eb17e5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a0db561cc74f04c063335ae29c190055"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/morganti_2017_swift_cjs.R",
+  "buildDate": "2026-11-05"
+}

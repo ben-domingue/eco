@@ -1,0 +1,67 @@
+{
+  "table": "zuberogoitia_2021_basque_owls_count",
+  "title": "Counts of nine owl and nightjar species on up to eight playback surveys at 526 points in the Basque Country, Spain, January-July 2018",
+  "creator": "Zuberogoitia, Iñigo; Martínez, José Enrique; González-Oreja, José Antonio; González de Buitrago, Carlos; Belamendia, Gorka; Zabala, Jabi; Laso, Maite; Pagaldai, Nerea; Jiménez-Franco, María Victoria",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.dncjsxkwg",
+  "sourceURL": "https://doi.org/10.5061/dryad.dncjsxkwg",
+  "citation": "Zuberogoitia, I. et al. (2021). Maximizing detection probability to optimize nocturnal bird surveys in large areas [Dataset]. Dryad. https://doi.org/10.5061/dryad.dncjsxkwg",
+  "paperDOI": "10.1111/ddi.13075",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of individuals of nine nocturnal bird species (seven owls, long- and short-eared owl, Tengmalm's owl and European nightjar) on 15-minute playback surveys after dusk at 526 survey points (one more deposited point was never surveyed) in 65 random 5 x 5 km UTM squares across the Basque Country, northern Spain, in up to eight survey rounds from January to July 2018, with date, observer, time, playback species and its response, and point covariates (altitude, vegetation types).",
+  "samplingProtocol": "15-minute surveys in the first hours after dusk: 5 min listening for spontaneous calls, 5 min playback of one species' call, 5 min silent listening; all owls and nightjars counted; 4-8 of the 8 points per 5 x 5 km square surveyed per monthly round, January to July 2018.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "seven months of the breeding cycle; the authors fit hierarchical abundance models with survey-level detection covariates",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Basque Country (Araba, Bizkaia, Gipuzkoa) and adjoining Burgos, northern Spain; point coordinates in decimal degrees as deposited",
+  "temporalCoverage": "2018-01/2019-03",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published (4 decimal places): all nine species are IUCN LC"
+  },
+  "notShipped": {
+    "partial_surveys": "9 survey cells with counts for some species and NA for the others (8 in the February round at square 30TWN25NW, 1 in March at 30TVN78NW), dropped whole",
+    "empty_dated_cells": "9 dated survey cells with no counts (not surveys)",
+    "totals_row": "the sheet's column-total row (asserted equal to the column sums)",
+    "analysis_matrices": "the 'Database used for the analysis' per-visit matrices, a recoded model input in different visit slots; only its site covariates are used"
+  },
+  "notes": "occasion is the deposited survey block in sheet order (JANUARY, FEBRUARY, MARCH, MARCH-2, APRIL, MAY, EXTRA, JUNE/JULY); EXTRA surveys fall on 30-31 May, so occasion order is not strictly date order: use date. The obs_broadcast_resp_ columns describe the playback species named in obs_broadcast_species (0-2, as deposited). One January survey has counts but no date. Four MARCH-2 surveys are dated March 2019 in the deposit (the study ran January-July 2018), and a few dates fall outside their block's month; dates are shipped as deposited. The paper reports 521 survey points; the deposit has 527 rows, of which 526 have a survey.",
+  "summary": {
+    "n_rows": 23175,
+    "n_units": 526,
+    "n_taxa": 9,
+    "n_periods": 1,
+    "n_occasions": 8,
+    "n_surveys": 2575,
+    "y_values": "0,1,2,3,4,5,6,9",
+    "prop_zero": 0.937,
+    "n_traps": 1,
+    "n_zero": 21716,
+    "n_positive": 1459,
+    "n_units_detected": 471,
+    "max_y": 9
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_province", "unit_decimalLongitude", "unit_decimalLatitude", "unit_region", "unit_altitude_m", "unit_pct_field", "unit_pct_agriculture", "unit_pct_urban", "unit_pct_forest", "unit_pct_scrub", "unit_pct_holm_oak", "unit_pct_deciduous", "unit_pct_pine", "unit_pct_eucalyptus", "obs_time", "obs_broadcast_species", "obs_broadcast_resp_spontaneous", "obs_broadcast_resp_during", "obs_broadcast_resp_after"],
+  "coreMd5": "eeaf20a87ac1ba22045d8b93066637e5",
+  "sideTables": {
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f37f6e38206123fef1d1646aaa37187f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/zuberogoitia_2021_basque_owls_count.R",
+  "buildDate": "2026-11-05"
+}

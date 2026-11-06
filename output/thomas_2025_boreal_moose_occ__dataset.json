@@ -1,0 +1,59 @@
+{
+  "table": "thomas_2025_boreal_moose_occ",
+  "creator": "Thomas, Julie P.; Reid, Mary L.; Barclay, Robert M. R.; Jung, Thomas S.",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.bk3j9kdpn",
+  "sourceURL": "https://doi.org/10.5061/dryad.bk3j9kdpn",
+  "citation": "Thomas, J., Reid, M., Barclay, R., & Jung, T. (2025). Data from: Influence of reproductive status on occupancy of salvage-logged boreal forest by moose (Alces americanus) [Dataset]. Dryad. https://doi.org/10.5061/dryad.bk3j9kdpn",
+  "paperDOI": "10.1002/ece3.71302",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Camera traps in salvage-logged (low and high retention) and unsalvaged burned boreal forest stands, June to September; detections summarised per 15-day survey period.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one summer season (five 15-day periods), analysed as single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Burned and salvage-logged boreal forest (see the paper); no coordinates deposited",
+  "temporalCoverage": "survey year not stated in the deposit; periods fall in June-September",
+  "notShipped": {
+    "bears": "grizzly and black bear detection rate on the same cameras (an index from the same detections)"
+  },
+  "title": "Camera-trap detections of moose (any sex) at 89 burned boreal forest sites, five 15-day periods in one summer",
+  "abstract": "Detection/non-detection of moose of any sex or reproductive status per 15-day survey period at 89 camera sites in salvage-logged and unsalvaged burned boreal forest, with stand and landscape covariates and survey month; the companion multi-state table is thomas_2025_boreal_moose_ms.",
+  "responseType": "detection",
+  "notes": "Includes males and unsexed moose: 22 survey periods have a moose but no female.",
+  "summary": {
+    "n_rows": 358,
+    "n_units": 89,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 358,
+    "y_values": "0,1",
+    "prop_zero": 0.824,
+    "n_traps": 1,
+    "n_zero": 295,
+    "n_positive": 63,
+    "n_units_detected": 44,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_stand_type", "unit_stand_age", "unit_canopy_pct", "unit_deciduous_stems_10m2", "unit_lateral_cover_pct", "unit_cwd_count", "unit_water_distance_km", "unit_linear_density_km_km2", "unit_forest_cover_pct_500m", "obs_month"],
+  "coreMd5": "51de430e54c54a9b7ddc39852c54bfc3",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "397c095c81db7c4fa12e8eec25ffe979"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/thomas_2025_boreal_moose.R",
+  "buildDate": "2026-11-05"
+}

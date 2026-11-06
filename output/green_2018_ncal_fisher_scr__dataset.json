@@ -1,0 +1,77 @@
+{
+  "table": "green_2018_ncal_fisher_scr",
+  "creator": "Green, David S.; Matthews, Sean M.; Swiers, Robert C.; Callas, Richard L.; Yaeger, J. Scott; Farber, Stuart L.; Schwartz, Michael K.; Powell, Roger A.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.qb8m4",
+  "sourceURL": "https://doi.org/10.5061/dryad.qb8m4",
+  "citation": "Green, D. S. et al. (2018). Data from: Dynamic occupancy modeling reveals a hierarchy of competition among fishers, grey foxes, and ringtails [Dataset]. Dryad. https://doi.org/10.5061/dryad.qb8m4",
+  "paperDOI": "10.1111/1365-2656.12791",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "geographicCoverage": "100 paired survey sites in northwestern California, USA (site coordinates in UTM, zone not named)",
+  "title": "Hair-snare genetic spatial capture-recapture of 138 fishers at 100 sites in northwestern California, 2006-2013",
+  "abstract": "Fisher (Pekania pennanti) individuals identified from hair samples at 100 hair-snare sites in northwestern California, checked three to seven times each autumn 2006-2013: one row per fisher x snare x year the snare was checked, y = checks with a sample of that fisher, obs_trials = checks made, with sex and snare coordinates.",
+  "samplingProtocol": "Hair snares at 100 fixed sites checked repeatedly each autumn (3-7 checks per site-year); hair genotyped to individual and sex.",
+  "samplingProtocolCode": "noninvasive_genetic",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "SiteVisits.csv lists every snare check (3,475); a snare-year is surveyed with obs_trials = its number of checks. Checks fall on different days at different snares, so the table is at the snare-year level (binomial count), not by check.",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "no occasion column; closed within an autumn, open between the eight years (the authors' multi-session SCR)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "crs": "UTM as deposited, zone not named (values consistent with UTM zone 10N)",
+  "temporalCoverage": "2006-09/2013-12",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: fisher is IUCN LC and this population is not the ESA-listed southern Sierra Nevada DPS"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps; binomial observation per snare-year (checks are not aligned across snares).",
+  "notShipped": {
+    "sample_ids": "individual hair-sample ids and check times / surveyors (several samples of one fisher at one check count once)"
+  },
+  "notes": "Fishers removed for translocation are not flagged in the deposit; every fisher has rows in all eight years. The track-plate occupancy data from the same sites are green_2018_ncal_mesocarn_dynocc.",
+  "summary": {
+    "n_rows": 107364,
+    "n_units": 138,
+    "n_taxa": 1,
+    "n_periods": 8,
+    "n_occasions": 1,
+    "n_surveys": 107364,
+    "y_values": "0,1,2,3,4,5",
+    "prop_zero": 0.997,
+    "n_traps": 100,
+    "n_zero": 107003,
+    "n_positive": 361,
+    "n_units_detected": 138,
+    "max_y": 5
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "unit_sex", "obs_trials"],
+  "coreMd5": "b33ed45ddb6ba227d7e5aedd217ed4ea",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "period_year"],
+      "md5": "d9672ff21958b5db214ef75150d5e991"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "fd8a5691aab12b576d6f447ff27a2911"
+    },
+    "traps": {
+      "rows": 100,
+      "columns": ["trap", "x", "y"],
+      "md5": "322f03e4797d14e572ef4a471e0b1eb7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/green_2018_ncal_mesocarnivores.R",
+  "buildDate": "2026-11-05"
+}

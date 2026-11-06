@@ -1,0 +1,66 @@
+{
+  "table": "goldman_2025_pennsylvania_grouse_occ",
+  "title": "Ruffed grouse drumming detections by autonomous recorders at 299 managed-forest points in Pennsylvania, five weekly occasions, 2021-2023",
+  "creator": "Goldman, Jacob; McNeil, Darin; Chronister, Lauren; Koleck, Randall; Lapp, Samuel; Larkin, Jeffery; Tyl, Reina; Kitzes, Justin",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.pzgmsbd0h",
+  "sourceURL": "https://doi.org/10.5061/dryad.pzgmsbd0h",
+  "citation": "Goldman, J. et al. (2025). Data from: Does a decision support tool designed to depict West Nile Virus risk explain variation in ruffed grouse (Bonasa umbellus) use of managed forests? [Dataset]. Dryad. https://doi.org/10.5061/dryad.pzgmsbd0h",
+  "paperDOI": "10.1002/wlb3.01389",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Weekly detection/non-detection of ruffed grouse (Bonasa umbellus) drumming on autonomous recording units at 299 points (six more deposited points have no recorded week) in managed forest stands across Pennsylvania, each recorded for five consecutive weeks in one spring of 2021-2023, with minutes recorded per week, stand structure and landscape covariates including a West Nile Virus risk map.",
+  "samplingProtocol": "Autonomous recording units programmed to record 1.5 or 2 h per day in managed forest stands; recordings processed and verified for ruffed grouse drumming and summarised as detection per survey week, five consecutive weeks per point.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "five consecutive weeks of one drumming season per point; the authors fit single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_minutes_recorded",
+  "geographicCoverage": "Managed forest stands, Commonwealth of Pennsylvania, USA; no coordinates deposited",
+  "temporalCoverage": "2021-04/2023-05",
+  "notShipped": {
+    "pres_abs": "detection in any week, the maximum of the weekly columns (asserted)",
+    "zero_minute_weeks": "39 week cells coded 0 with 0 minutes of recording: no recording, so not a survey"
+  },
+  "notes": "A survey is a week with a non-missing detection value and minutes recorded > 0. 39 deposited zeros have no recording behind them and are dropped; 18 NA weeks had recording minutes but no detection value and have no row. date is the first day of the survey week (deposited ordinal date + the point's year). Six of the 305 points have no week with both a value and a recording and so have no rows. Each point was surveyed in one year, so period is the year with no revisits across periods.",
+  "summary": {
+    "n_rows": 1431,
+    "n_units": 299,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 5,
+    "n_surveys": 1431,
+    "y_values": "0,1",
+    "prop_zero": 0.338,
+    "n_traps": 1,
+    "n_zero": 484,
+    "n_positive": 947,
+    "n_units_detected": 230,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_rec_duration_h", "unit_basal_area_m2_ha", "unit_stem_density", "unit_stem_density_lt_1_5m", "unit_stem_density_gt_1_5m", "unit_stand_age_yr", "unit_connectivity_5km", "unit_wnv_high_risk_500m", "unit_pct_mixed_oak_500m", "unit_pct_northern_hardwood_500m", "obs_minutes_recorded"],
+  "coreMd5": "918a5aa3162dc72d8bf0b7100c63aef1",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "period_year"],
+      "md5": "99d62b3c436da442d59e8de36f7b58c1"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "93c0d012ea1a03fcf37dad1e89665b61"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldman_2025_pennsylvania_grouse_occ.R",
+  "buildDate": "2026-11-05"
+}

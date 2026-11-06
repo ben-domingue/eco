@@ -1,0 +1,64 @@
+{
+  "table": "fidino_2018_chicago_mesocarn_dynocc",
+  "title": "Daily camera-trap detections of coyote, Virginia opossum and raccoon at 111 Chicago-area stations over 13 seasons, 2010-2013",
+  "creator": "Fidino, Mason; Simonis, Juniper L.; Magle, Seth B.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.k5mp137",
+  "sourceURL": "https://doi.org/10.5061/dryad.k5mp137",
+  "citation": "Fidino, M., Simonis, J. L., & Magle, S. B. (2018). Data from: A multi-state dynamic occupancy model to estimate local colonization-extinction rates and patterns of co-occurrence between two or more interacting species [Dataset]. Dryad. https://doi.org/10.5061/dryad.k5mp137",
+  "paperDOI": "10.1111/2041-210X.13117",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily detection/non-detection of coyote, Virginia opossum and raccoon at 111 camera stations (12 more stations in the file were never sampled) of the Urban Wildlife Information Network along an urban gradient in the Chicago region, in four-week sampling seasons four times a year from spring 2010 to spring 2013 (13 seasons), with housing density, tree cover and impervious cover around 103 stations.",
+  "samplingProtocol": "Motion-triggered camera stations along transects radiating from downtown Chicago, each run for 28 days per season in spring, summer, fall and winter; detections per species per day.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a 28-day season, open between the 13 seasons (dynamic co-occurrence model)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Chicago metropolitan region, Illinois, USA; no coordinates deposited",
+  "temporalCoverage": "2010-05/2013-05",
+  "notShipped": {
+    "none": "every observation column is shipped; Week, SeasonWeek and SurveyID are recodes of Date, Season and StationID"
+  },
+  "notes": "The same camera network's coyote days scored for mange are murray_2021_chicago_coyote_mange (state response). 20 of the 123 stations have fewer than two seasons of data and no covariates (the authors dropped them from the analysis); they are kept here with NA covariates.",
+  "summary": {
+    "n_rows": 78201,
+    "n_units": 111,
+    "n_taxa": 3,
+    "n_periods": 13,
+    "n_occasions": 28,
+    "n_surveys": 26067,
+    "y_values": "0,1",
+    "prop_zero": 0.909,
+    "n_traps": 1,
+    "n_zero": 71072,
+    "n_positive": 7129,
+    "n_units_detected": 100,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_housing_density", "unit_tree_cover_1km", "unit_impervious_1km"],
+  "coreMd5": "b9f0eee5991fa6a6c9c9ccbde8260630",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "period_label", "period_season", "period_year", "period_first_day"],
+      "md5": "5902477d7eafea9fecb7414dd073c76c"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "746295cd29993ac7fadd61a973b7b240"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fidino_2018_chicago_mesocarn_dynocc.R",
+  "buildDate": "2026-11-05"
+}

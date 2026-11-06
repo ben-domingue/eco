@@ -1,0 +1,67 @@
+{
+  "table": "hostetter_2020_minnesota_lynx_dynocc",
+  "title": "Canada lynx snow-track detections in 431 grid cells of northeastern Minnesota, up to 18 surveys per winter, five winters 2014-15 to 2018-19",
+  "creator": "Hostetter, Nathan J.; Ryan, Daniel; Grosshuesch, David; Catton, Timothy; Malick-Wahls, Sarah; Smith, Tamara; Gardner, Beth",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.66t1g1jzq",
+  "sourceURL": "https://doi.org/10.5061/dryad.66t1g1jzq",
+  "citation": "Hostetter, N., Ryan, D., Grosshuesch, D., Catton, T., Malick-Wahls, S., Smith, T., & Gardner, B. (2020). Data from: Quantifying spatiotemporal occupancy dynamics and multi-year core-use areas at a species range boundary [Dataset]. Dryad. https://doi.org/10.5061/dryad.66t1g1jzq",
+  "paperDOI": "10.1111/ddi.13066",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of Canada lynx (Lynx canadensis) tracks on repeated snow-track surveys of grid cells in the northeastern Minnesota lynx geographic unit (Superior National Forest), winters 2014-15 to 2018-19, with log survey effort, snow and road conditions, standardized survey date and standardized forest, snow-depth and lidar canopy covariates per cell.",
+  "samplingProtocol": "Spatially and temporally replicated snow-track surveys along roads and trails in grid cells after fresh snow, up to 18 surveys per cell per winter; survey effort and snow conditions recorded.",
+  "samplingProtocolCode": "track_survey",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a winter, open between the five winters (dynamic occupancy)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_log_effort",
+  "geographicCoverage": "Northeastern Minnesota lynx geographic unit and Superior National Forest, Minnesota, USA; grid-cell indices only, no coordinates deposited",
+  "temporalCoverage": "2014-11/2019-04",
+  "notShipped": {
+    "zik": "the model's initial / known occupancy states per cell and winter (not observations)",
+    "SDaySurv2": "square of the standardized day of year (asserted)",
+    "zero_effort": "25 surveys with effort -Inf (zero effort) and y = 0: not surveys"
+  },
+  "notes": "obs_log_effort is the deposited log effort (unit not stated in the deposit). obs_doy_std and the unit_ covariates are standardized as deposited. temporalCoverage is the five winters; exact survey dates are not deposited. Canada lynx is listed as threatened under the US Endangered Species Act; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 4399,
+    "n_units": 431,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 17,
+    "n_surveys": 4399,
+    "y_values": "0,1",
+    "prop_zero": 0.86,
+    "n_traps": 1,
+    "n_zero": 3783,
+    "n_positive": 616,
+    "n_units_detected": 123,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_pct_evergreen_std", "unit_avg_snow_depth_std", "unit_lidar_high_std", "unit_lidar_mid_std", "period_road_condition", "obs_log_effort", "obs_snow_condition", "obs_doy_std"],
+  "coreMd5": "a36ba96b09271075a724e2e43f2df902",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "period_winter"],
+      "md5": "4dbaa97dd04f5440c0567b941b57dbe2"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b03338afd8d63ef5896b5302eb568472"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hostetter_2020_minnesota_lynx_dynocc.R",
+  "buildDate": "2026-11-05"
+}

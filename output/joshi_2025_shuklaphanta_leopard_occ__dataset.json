@@ -1,0 +1,61 @@
+{
+  "table": "joshi_2025_shuklaphanta_leopard_occ",
+  "title": "Leopard camera-trap detections in 92 grid cells of Shuklaphanta National Park, Nepal, four 4-day blocks, winter 2022-23",
+  "creator": "Joshi, Laxmi Raj; K C, Rabin Bahadur; Chhetri, Madhu; Odden, Morten; Devineau, Olivier; Karki, Ajay; Dahal, Bhagwan Raj; Subedi, Naresh",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.2jm63xszp",
+  "sourceURL": "https://doi.org/10.5061/dryad.2jm63xszp",
+  "citation": "Joshi, L. R. et al. (2025). Data from: Tigers, terrain, and human settlement influence the occupancy of leopards (Panthera pardus) in southwestern Tarai, Nepal [Dataset]. Dryad. https://doi.org/10.5061/dryad.2jm63xszp",
+  "paperDOI": "10.1002/ece3.70898",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of leopard (Panthera pardus) from paired camera traps in 92 4 km2 grid cells of Shuklaphanta National Park, Nepal, December 2022 to January 2023, in four 4-day blocks per cell, with distance to settlement, distance to river and terrain ruggedness.",
+  "samplingProtocol": "Paired Panthera V5/V6 camera traps on roads, fire lines, riverbeds and trails in each 4 km2 grid cell, 15-19 nights per cell, under Nepal's 2017 tiger and prey monitoring protocol; detections summarised in four consecutive 4-day blocks.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one 15-19 night camera session per grid cell; the authors fit single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Shuklaphanta National Park, southwestern Tarai, Nepal; no coordinates deposited",
+  "temporalCoverage": "2022-12/2023-01",
+  "notShipped": {
+    "det_tiger": "tiger relative abundance index from the same camera survey",
+    "det_prey": "prey relative abundance index from the same camera survey",
+    "det_livestock": "livestock relative abundance index from the same camera survey"
+  },
+  "notes": "Leopard is IUCN VU; no coordinates are deposited. The three RAI covariates come from the same cameras' detections and are not shipped.",
+  "summary": {
+    "n_rows": 368,
+    "n_units": 92,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 368,
+    "y_values": "0,1",
+    "prop_zero": 0.78,
+    "n_traps": 1,
+    "n_zero": 287,
+    "n_positive": 81,
+    "n_units_detected": 47,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_dist_human_m", "unit_dist_river_m", "unit_terrain_tri"],
+  "coreMd5": "48d29014e5ec4fa724b2e354e147d293",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b234c475bd2eb783accfdd2d4aba1c5a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/joshi_2025_shuklaphanta_leopard_occ.R",
+  "buildDate": "2026-11-05"
+}

@@ -256,6 +256,37 @@ CSVs with `upload/red_up_eco.py`.
 | `goldman_2023_pnw_pika_dynocc.R` | dynamic occupancy, American pika sign surveys at 771 plots in five park units, 2010-2021, counts per sign type as obs_ (multi-sign model), Oregon / Idaho / California | Dryad | CC0 |
 | `maphisa_2019_ingula_birds_comm.R` | community occupancy from a record table, 92 grassland bird taxa x 20 plots, 11 months 2010-2012, English names resolved by hand, Ingula, South Africa | Dryad | CC0 |
 | `cecconi_2025_cricket_occ.R` | single-season occupancy, Japanese burrowing cricket x 49 sites x 3 aural point counts, Kentucky 2024 | Dryad | CC0 |
+| `shah_2025_bardia_tiger_occ.R` | single-season occupancy, tiger camera traps x 719 grid cells x 20 replicates, Bardia-Banke, Nepal 2021-22 (batch 37) | Dryad | CC0 |
+| `joshi_2025_shuklaphanta_leopard_occ.R` | single-season occupancy, leopard camera traps x 92 grid cells x 4 blocks, Shuklaphanta, Nepal 2022-23 (batch 37) | Dryad | CC0 |
+| `goldman_2025_pennsylvania_grouse_occ.R` | single-season occupancy, ruffed grouse drumming on ARUs x 305 points x 5 weeks, Pennsylvania 2021-23; zero-minute weeks dropped (batch 37) | Dryad | CC0 |
+| `palmero_2023_lynx_scr.R` | three SCR tables (binomial counts per station, days operated), Eurasian lynx in Chornobyl, Skolivski Beskydy and Pripyat-Polesia (batch 37) | Dryad | CC0 |
+| `visagie_2026_tswalu_carniv_scr.R` | three SCR tables (daily occasions, operation matrix), leopard, brown and spotted hyaena, Tswalu Kalahari; stations centred (batch 37) | Dryad | CC0 |
+| `rich_2019_mojave_binom.R` | two binomial_count community tables, Mojave camera mammals and acoustic songbirds x 210 sites (batch 37) | Dryad | CC0 |
+| `zuberogoitia_2021_basque_owls_count.R` | community repeated counts, 9 owls and nightjar x 527 playback points x 8 rounds, Basque Country 2018 (batch 37) | Dryad | CC0 |
+| `gaynor_2020_gorongosa_mamm_binom.R` | binomial_count community, 38 mammals x 60 cameras, Gorongosa (batch 37) | Dryad | CC0 |
+| `rota_2016_midatlantic_carniv_occ.R` | multi-species occupancy, 4 carnivores x 1,906 camera sites x camera days, Mid-Atlantic USA (batch 37) | Dryad | CC0 |
+| `fidino_2018_chicago_mesocarn_dynocc.R` | dynamic community occupancy, coyote/opossum/raccoon x 111 Chicago stations x 13 seasons x 28 days (batch 37) | Dryad | CC0 |
+| `burgstahler_2026_wa_shrubsteppe_mamm_occ.R` | occupancy with spatial replicates, 5 mammals x 141 sites x 4 cameras, eastern Washington 2021-24 (batch 37) | Dryad | CC0 |
+| `gustafson_2024_seward_gyrfalcon_dynocc.R` | dynamic occupancy, gyrfalcon territories x 6 years x 2 helicopter surveys, Seward Peninsula (batch 37) | Dryad | CC0 |
+| `furnas_2021_ncalifornia_carniv_comm.R` | multi-season community occupancy, 15 carnivores x 1,451 site-years x 30 days, northern California 2009-18; coordinates coarsened (batch 37) | Dryad | CC0 |
+| `wong_2022_sabah_acacia_mamm_comm.R` | community occupancy with effort, 25 taxa x 142 cameras x 31 occasions, Sabah (batch 37) | Dryad | CC0 |
+| `higgins_2022_utila_anole_ccr.R` | closed capture-recapture, Utila anole (CR) x 10 plots x 4 visits (batch 37) | Dryad | CC0 |
+| `iknayan_2023_svalley_pollinator_occ.R` | community occupancy, 42 pollinator taxa x 41 plots x 1-4 visual surveys, Silicon Valley 2017 (batch 37) | Dryad | CC0 |
+| `priol_2014_quebec_flyingsquirrel_rd.R` | robust design CMR, northern flying squirrel x 56 sites, 2008 and 2012 x 2 occasions, nest-box BACI (batch 37) | Dryad | CC0 |
+| `warretrodrigues_2022_iguana_msrd.R` | multi-state robust design, Lesser Antillean iguana (CR) x 9 years x 5 days, age-sex class at capture (batch 37) | Dryad | CC0 |
+| `morganti_2017_swift_cjs.R` | two CJS tables, common and pallid swifts with and without geolocators, Italy (batch 37) | Dryad | CC0 |
+| `poutanen_2018_finland_whitetail_scr.R` | SCR, faecal-DNA white-tailed deer x 180 plots x 3 visits, Finland 2015 (batch 37) | Dryad | CC0 |
+| `vandeweyer_2024_australia_mouse_scr.R` | multi-session SCR, house mice x 8 live-trap grids x 4 sessions; nights and trap positions inferred (batch 37) | Dryad | CC0 |
+| `lindenmayer_2022_nsw_woodland_birds_comm.R` | dynamic community occupancy, 31 woodland birds x 259 sites x 17 years (batch 37) | Dryad | CC0 |
+| `henden_2013_finnmark_birds_dynocc.R` | dynamic community occupancy, 17 tundra birds x 37 willow plots x 4 years x 3 visits (batch 37) | Dryad | CC0 |
+| `thomas_2025_boreal_moose.R` | occupancy and multi-state occupancy (female, female with calf), moose x 89 cameras (batch 37) | Dryad | CC0 |
+| `mcnew_2025_sagegrouse_lek_count.R` | N-mixture lek counts, greater sage-grouse x 23 leks, 2021-22 (batch 37) | Dryad | CC0 |
+| `rivera_2022_diel_msocc.R` | three multi-state diel occupancy tables: Chicago coyote, Makira and Ranomafana fosa (batch 37) | Dryad | CC0 |
+| `tjornlov_2020_eider_ld.R` | two Burnham live-dead tables, common eiders at Christianso and Vlieland (batch 37) | Dryad | CC0 |
+| `hostetter_2020_minnesota_lynx_dynocc.R` | dynamic occupancy, Canada lynx snow tracks x 431 cells x 5 winters (batch 37) | Dryad | CC0 |
+| `jones_2021_madagascar_plovers_cjs.R` | three CJS tables, Kittlitz's, Madagascar (VU) and white-fronted plovers, 2008-2020 (batch 37) | Dryad | CC0 |
+| `wang_2019_amazon_ocelot_occ.R` | single-season occupancy with effort, ocelot x 899 cameras, Brazilian Amazon (batch 37) | Dryad | CC0 |
+| `green_2018_ncal_mesocarnivores.R` | dynamic occupancy of fisher, grey fox and ringtail on track plates, and fisher hair-snare SCR, northwestern California (batch 37) | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

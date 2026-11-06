@@ -1,0 +1,64 @@
+{
+  "table": "green_2018_ncal_mesocarn_dynocc",
+  "creator": "Green, David S.; Matthews, Sean M.; Swiers, Robert C.; Callas, Richard L.; Yaeger, J. Scott; Farber, Stuart L.; Schwartz, Michael K.; Powell, Roger A.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.qb8m4",
+  "sourceURL": "https://doi.org/10.5061/dryad.qb8m4",
+  "citation": "Green, D. S. et al. (2018). Data from: Dynamic occupancy modeling reveals a hierarchy of competition among fishers, grey foxes, and ringtails [Dataset]. Dryad. https://doi.org/10.5061/dryad.qb8m4",
+  "paperDOI": "10.1111/1365-2656.12791",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "geographicCoverage": "100 paired survey sites in northwestern California, USA (site coordinates in UTM, zone not named)",
+  "title": "Track-plate detections of fisher, grey fox and ringtail at 100 sites in northwestern California, autumn 2007-2013",
+  "abstract": "Detection/non-detection of fisher (Pekania pennanti), grey fox (Urocyon cinereoargenteus) and ringtail (Bassariscus astutus) on baited track plates collected one to six times each autumn at 100 sites in northwestern California, 2007-2013: the input of the authors' dynamic occupancy model with species interactions.",
+  "samplingProtocol": "Baited enclosed track plates at fixed paired sites, checked and collected repeatedly each autumn (September-December); tracks identified to species.",
+  "samplingProtocolCode": "track_plate",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within an autumn season, open between years (dynamic occupancy)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "temporalCoverage": "2007-09/2013-12",
+  "notShipped": {
+    "duplicate": "one exact duplicate plate row (site 40A, 7 October 2013)"
+  },
+  "notes": "occasion is the k-th plate collection of the site-year in date order (1-6). The fisher hair-snare SCR from the same sites is green_2018_ncal_fisher_scr.",
+  "summary": {
+    "n_rows": 4416,
+    "n_units": 100,
+    "n_taxa": 3,
+    "n_periods": 7,
+    "n_occasions": 6,
+    "n_surveys": 1472,
+    "y_values": "0,1",
+    "prop_zero": 0.731,
+    "n_traps": 1,
+    "n_zero": 3229,
+    "n_positive": 1187,
+    "n_units_detected": 92,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date"],
+  "coreMd5": "d92ec4cd576024009bd7034af284b14c",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "period_year"],
+      "md5": "052ea239410bdbb90d270bddea686c45"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "50e65da220434a5d54c8c1329063da27"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/green_2018_ncal_mesocarnivores.R",
+  "buildDate": "2026-11-05"
+}
