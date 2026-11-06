@@ -1,0 +1,72 @@
+{
+  "table": "benoit_2018_costello_fish_count",
+  "title": "Minnow-trap catches of 14 stream fish species at 36 traps over three days, Costello Creek, Algonquin Provincial Park, Ontario, 2009 and 2015",
+  "creator": "Benoit, David M.; Jackson, Donald A.; Ridgway, Mark S.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.ft71172",
+  "sourceURL": "https://doi.org/10.5061/dryad.ft71172",
+  "citation": "Benoit, D. M., Jackson, D. A., & Ridgway, M. S. (2018). Data from: Assessing the impacts of imperfect detection on estimates of diversity and community structure through multispecies occupancy modeling [Dataset]. Dryad. https://doi.org/10.5061/dryad.ft71172",
+  "paperDOI": "10.1002/ece3.4023",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Stream fish caught in minnow traps at 36 trap locations (two grids of 18) in Costello Creek, Algonquin Provincial Park, Ontario, each trap checked on three consecutive days, in two sampling years; per-trap per-day catch by species. The authors used the presence/absence form in multispecies occupancy models of the effect of imperfect detection on richness and community structure.",
+  "samplingProtocol": "Baited minnow traps at fixed locations along Costello Creek in two grids (A01-A18, B01-B18), each grid fished for three consecutive days; catch per trap per day counted by species.",
+  "samplingProtocolCode": "minnow_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "The three days of a grid's trapping are assumed closed; the two years are periods.",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Costello Creek, Algonquin Provincial Park, Ontario, Canada (no trap coordinates deposited)",
+  "temporalCoverage": "2009/2015",
+  "covariateNote": "unit_grid: trap grid A or B. unit_habitat, unit_substrate: the trap's habitat and substrate description (2009 file). obs_water_temp_c: water temperature at the trap-day where recorded (2009 only).",
+  "notShipped": {
+    "abundance_summary": "the 2009 per-trap 'Abundance' (sum over days)",
+    "dates": "block dates in the 2009 file are July 2008 although the file is labelled 2009; no dates in 2015",
+    "presence_absence": "the Presence/Absence column (Total Catch > 0 except one cell, 2009 Pumpkinseed A14 day 3, where the catch of 1 is shipped)"
+  },
+  "notes": "The deposit has a sheet only for species caught in a year: __survey_taxa lists them per period, so Finescale Dace has no 2015 rows. Year labels follow the file names.",
+  "summary": {
+    "n_rows": 2916,
+    "n_units": 36,
+    "n_taxa": 14,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 216,
+    "y_values": "0-180 (72 distinct)",
+    "prop_zero": 0.639,
+    "n_traps": 1,
+    "n_zero": 1862,
+    "n_positive": 1054,
+    "n_units_detected": 36,
+    "max_y": 180
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_habitat", "unit_substrate", "unit_grid", "obs_water_temp_c"],
+  "coreMd5": "65e1057643cdf22aeab247b1c5497717",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "file"],
+      "md5": "457d572f7421dc7384feb9e454e08a56"
+    },
+    "survey_taxa": {
+      "rows": 27,
+      "columns": ["period", "taxon"],
+      "md5": "d5833ccfdfab77cfaa09eb9f79e671e6"
+    },
+    "taxa": {
+      "rows": 14,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "edb52fac1c10dceadeddcbe7d9a97909"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/benoit_2018_costello_fish_count.R",
+  "buildDate": "2026-11-06"
+}

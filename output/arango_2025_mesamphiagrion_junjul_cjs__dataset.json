@@ -1,0 +1,64 @@
+{
+  "table": "arango_2025_mesamphiagrion_junjul_cjs",
+  "title": "Daily capture histories of 1591 marked Mesamphiagrion gaudiimontanum, June-July 2024, high Andes of Colombia, 2024",
+  "creator": "Arango Quintero, Sebastian; Bota-Sierra, Cornelio Andres",
+  "pubDate": "2025",
+  "doi": "10.6084/m9.figshare.30117457.v2",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.30117457.v2",
+  "citation": "Arango Quintero, S., & Bota-Sierra, C. A. (2025). Capture histories of the damselfly Mesamphiagrion gaudiimontanum Bota-Sierra, 2013 (Odonata: Coenagrionidae) [Dataset]. figshare. https://doi.org/10.6084/m9.figshare.30117457.v2",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Capture-mark-recapture of Mesamphiagrion gaudiimontanum, an odonate endemic to the high mountains of the Colombian Central Cordillera, Andes, sampled daily in two seasons of 2024 (April and June-July) for Cormack-Jolly-Seber survival estimation. This table is the June-July 2024 file (23 sampling days).",
+  "samplingProtocol": "Daily capture, marking and recapture of adult odonates over a sampling season (days of effective sampling); sex, wing length and (for the damselfly) age class and mite load recorded at marking.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "Each sampling day is a period (CJS over days). The other season is a separate table with unlinked individuals.",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "High mountains of the Colombian Central Cordillera, Andes (no site or coordinates deposited)",
+  "temporalCoverage": "2024-04/2024-07",
+  "covariateNote": "unit_sex: male or female. unit_wing_mm: wing length (mm). unit_age_class: adult, juvenile (immature) or teneral (newly emerged), at marking. unit_acari: number of water mites on the individual at marking.",
+  "notShipped": {
+    "dates": "the calendar dates of the sampling days are not deposited"
+  },
+  "notes": "Teneral individuals have rows from the day they were marked; adults and juveniles from day 1 (E4.4). ",
+  "summary": {
+    "n_rows": 36236,
+    "n_units": 1591,
+    "n_taxa": 1,
+    "n_periods": 23,
+    "n_occasions": 1,
+    "n_surveys": 36236,
+    "y_values": "0,1",
+    "prop_zero": 0.945,
+    "n_traps": 1,
+    "n_zero": 34238,
+    "n_positive": 1998,
+    "n_units_detected": 1591,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_age_class", "unit_acari", "unit_wing_mm"],
+  "coreMd5": "b1d13bed1a1ee84941f4d1e665bb8713",
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "note"],
+      "md5": "1a862bf5d6f4fb6e8e29706b9d81c4df"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "1467476435f8a1fbb1a166958220aea5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/arango_odonata_andes_cjs.R",
+  "buildDate": "2026-11-06"
+}
