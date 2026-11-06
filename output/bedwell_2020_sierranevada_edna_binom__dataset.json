@@ -1,0 +1,70 @@
+{
+  "table": "bedwell_2020_sierranevada_edna_binom",
+  "title": "Sites positive for yellow-legged frog and Bd eDNA at five lakes and five streams, monthly May to August 2016, Sierra Nevada, California",
+  "creator": "Bedwell, Mallory E.; Goldberg, Caren S.",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.2jm63xsjv",
+  "sourceURL": "https://doi.org/10.5061/dryad.2jm63xsjv",
+  "citation": "Bedwell, M. E., & Goldberg, C. S. (2020). Data from: Spatial and temporal patterns of environmental DNA detection to inform sampling protocols in lentic and lotic systems [Dataset]. Dryad. https://doi.org/10.5061/dryad.2jm63xsjv",
+  "paperDOI": "10.1002/ece3.6014",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "eDNA sampling-design study for the Sierra Nevada yellow-legged frog (Rana sierrae) and the foothill yellow-legged frog (R. boylii), with the chytrid fungus Bd from the same filters: five lakes and five streams sampled monthly from May to August 2016. At each visit the authors called each sampling site (a stream point, or a lake composite of five shore grabs) positive when at least two of six qPCR replicates from its 1 L and 2 L filters amplified. One row per location x month x target: y = sites called positive, obs_trials = sites sampled (1-7).",
+  "samplingProtocol": "Water filtered through 0.45 um cellulose nitrate filters (1 L and 2 L per site) at up to seven stream sites 100 m apart or at lake sites each made of five shore grabs 50 m apart; each filter run in triplicate in a qPCR multiplex (R. sierrae, R. boylii, Bd); a replicate is positive at Cq <= 45 and a site is positive with >= 2 of its 6 replicates positive (the authors' call).",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "sample_table",
+  "responseType": "binomial_count",
+  "effortColumn": "obs_trials",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one row per location x month (period); the spatial replicates within the visit (sampling sites) are collapsed by the source into obs_trials. Months are periods, across which occupancy may change.",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Five lakes and five streams with historical yellow-legged frog presence, Sierra Nevada, California, USA (locations given only as letters; no coordinates deposited)",
+  "temporalCoverage": "2016-05/2016-08",
+  "covariateNote": "unit_system: lake (sampling site = composite of five shore grabs 50 m apart) or stream (sampling site = one point, seven points 100 m apart). obs_trials: sites sampled that month (streams: fewer than 7 when the bed was dry).",
+  "notShipped": {
+    "volume_files": "<target>_<system>_volume.csv, per-filter qPCR replicates: a subset of filter samples (the analysis code removed samples with no detection at either volume), so the filter-level survey set and its zeros cannot be recovered; the location-month summaries are shipped instead",
+    "percent_pos_sites": "the ratio num_pos_sites / num_sites of two shipped columns",
+    "date_value": "days since the first sampling day, recoverable from date",
+    "test_filters": "PES and MCE test filters at lakes (in the volume files only) and the 2017 filter comparison (not deposited)",
+    "model_output": "GLMM estimates of volume, filter and season effects"
+  },
+  "notes": "The authors' site calls are shipped as deposited. Rebuilt from the volume files by the stated rule (>= 2 of 6 CN-filter replicates), the YLF calls agree at all 40 location-months and the Bd calls at 38: lake F in July is called Bd-positive with no positive CN replicate (its MCE test filter had 4 of 6), and stream C in May has 1 positive site in the summary and 2 by the rule. RANA_YLF pools the two frog assays as the source does.",
+  "summary": {
+    "n_rows": 80,
+    "n_units": 10,
+    "n_taxa": 2,
+    "n_periods": 4,
+    "n_occasions": 1,
+    "n_surveys": 40,
+    "y_values": "0,1,2,3,4,5,6,7",
+    "prop_zero": 0.45,
+    "n_traps": 1,
+    "n_zero": 36,
+    "n_positive": 44,
+    "n_units_detected": 10,
+    "max_y": 7
+  },
+  "sampleFloor": "below (10 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "date", "unit_system", "obs_trials"],
+  "coreMd5": "ed613452fe7bab5f814666223da4a66e",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "month", "first_date", "last_date"],
+      "md5": "c7a29d914e57cb683cabe36476ee0f9a"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "144bca236b1f097d0324986429d8507c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bedwell_2020_sierranevada_edna_binom.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,69 @@
+{
+  "table": "whitworth_2019_manu_terr_mamm_binom",
+  "title": "Terrestrial camera-trap detections of 26 mammal species at 77 station-years across a disturbance gradient, Manu Biosphere Reserve, Peru, 2015 and 2016: six-day sessions with a detection out of sessions surveyed",
+  "creator": "Whitworth, Andrew; Beirne, Chris; Pillco Huarcaya, Ruthmery; Whittaker, Lawrence; Serrano Rojas, Shirley Jennifer; Tobler, Mathias; MacLeod, Ross",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.32464qs",
+  "sourceURL": "https://doi.org/10.5061/dryad.32464qs",
+  "citation": "Whitworth, A., Beirne, C., Pillco Huarcaya, R., Whittaker, L., Serrano Rojas, S. J., Tobler, M., & MacLeod, R. (2019). Data from: Human disturbance impacts on rainforest mammals are most notable in the canopy; especially for larger-bodied species [Dataset]. Dryad. https://doi.org/10.5061/dryad.32464qs",
+  "paperDOI": "10.1111/ddi.12930",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Arboreal and terrestrial camera traps across a gradient of rainforest disturbance in the Manu Biosphere Reserve, southeast Peru, to compare how the canopy and ground mammal communities respond. This table is the terrestrial survey: 77 station-years at six sites (2015 and 2016; 9 stations resurveyed in both years at two sites), 26 species. For each station-year and species the deposit gives the number of six-day sessions with a detection out of the sessions surveyed, as the authors' multi-season Royle-Nichols community model uses it, with habitat and disturbance covariates.",
+  "samplingProtocol": "Terrestrial camera traps at stations along a forest disturbance gradient; each deployment divided into six-day sessions (9-32 per station-year), y = sessions in which the species was photographed.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "binomial_count",
+  "effortColumn": "obs_trials",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one row per station x species x year; the six-day sessions of a deployment are collapsed by the source into obs_trials. Years are periods (2015, 2016); 9 stations (MLC, DIA) were surveyed in both years.",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Manu Biosphere Reserve, Madre de Dios, southeast Peru: six sites (AGU, DIA, MLC, ROM, SHIN, SHIP; codes as deposited, no coordinates)",
+  "temporalCoverage": "2015/2016",
+  "covariateNote": "unit_site: study site code. cc_pct canopy cover (%), shrub_density, tree_connectivity (estimated connectivity of the focal tree), tree_density (surrounding), canopy_height_m (surrounding canopy layer), cam_bearing_deg, elev_m (m asl), dist_river_m (to the nearest navigable river), forest_loss (surrounding canopy loss), dist_community_m (to the nearest community), disturbance_pc1/pc2 (first two principal components of the disturbance features, as deposited). Each is unit_ when constant across a station's two years, otherwise period_.",
+  "notShipped": {
+    "arboreal_survey": "occ_data_arb_6d.txt / occ_effort_arb_6d.txt (145 arboreal station-years x 24 species): held, because 13 of its 24 species codes (the primates, porcupine_bicolor, squirrel_dwarf) have no scientific name in species_data.txt",
+    "cam_height": "CAM.HEIGHT, the height of the arboreal camera",
+    "survey_name": "SurveyName (site x year, recoverable from unit_site and period)",
+    "model_output": "Royle-Nichols occupancy and abundance estimates (the JAGS code is deposited, its outputs are not)"
+  },
+  "notes": "Body mass, family, order and IUCN category in __taxa are the deposit's (species_data.txt, 2019); the kinkajou's family and order are swapped in the deposit and are corrected in __taxa. Several species are IUCN VU (tapir, giant armadillo, giant anteater, white-lipped peccary, pacarana); no coordinates are deposited.",
+  "summary": {
+    "n_rows": 2002,
+    "n_units": 68,
+    "n_taxa": 26,
+    "n_periods": 2,
+    "n_occasions": 1,
+    "n_surveys": 77,
+    "y_values": "0-25 (25 distinct)",
+    "prop_zero": 0.627,
+    "n_traps": 1,
+    "n_zero": 1256,
+    "n_positive": 746,
+    "n_units_detected": 68,
+    "max_y": 25
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_site", "unit_cc_pct", "unit_shrub_density", "unit_tree_connectivity", "unit_tree_density", "unit_canopy_height_m", "unit_dist_river_m", "unit_forest_loss", "period_cam_bearing_deg", "period_elev_m", "period_dist_community_m", "period_disturbance_pc1", "period_disturbance_pc2", "obs_trials"],
+  "coreMd5": "c19b0c7698305abe8b221481f6b71e41",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "source_year_code", "n_stations", "sites"],
+      "md5": "012bfcd5d46f2e426fcc36b79dc9fbe2"
+    },
+    "taxa": {
+      "rows": 26,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_order", "taxon_body_mass_kg", "taxon_iucnCategory", "taxon_sourceCode"],
+      "md5": "209be47c1560d653f7f20aaa557a6a28"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/whitworth_2019_manu_terr_mamm_binom.R",
+  "buildDate": "2026-11-05"
+}

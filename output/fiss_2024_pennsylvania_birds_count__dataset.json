@@ -1,0 +1,65 @@
+{
+  "table": "fiss_2024_pennsylvania_birds_count",
+  "title": "Two-visit point counts of Wood Thrush and Cerulean Warbler at 573 forest points in Pennsylvania, 2020-2021, with time to first detection and distance bins",
+  "creator": "Fiss, Cameron; Lapp, Samuel; Cohen, Jonathan; Parker, Halie; Larkin, Jeffery T.; Larkin, Jeffery L.; Kitzes, Justin",
+  "pubDate": "2024-08-27",
+  "doi": "10.5061/dryad.4j0zpc8k0",
+  "paperDOI": "10.1002/ecs2.4954",
+  "sourceURL": "https://doi.org/10.5061/dryad.4j0zpc8k0",
+  "citation": "Fiss, C., Lapp, S., Cohen, J., Parker, H., Larkin, J. T., Larkin, J. L., & Kitzes, J. (2024). Data from: Performance of unmarked abundance models with data from machine-learning classification of passive acoustic recordings [Dataset]. Dryad. https://doi.org/10.5061/dryad.4j0zpc8k0",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Point counts and autonomous recording units at the same points in forests of Pennsylvania, spring 2020 and 2021, for Wood Thrush and Cerulean Warbler; the authors compared Royle-Nichols, time-to-detection, N-mixture and distance abundance models fitted to point counts and to classifier-derived ARU detection histories.",
+  "unitKind": "site",
+  "surveyEvidence": "deposited_matrix",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Forests of south-western Pennsylvania, USA (study blocks Laurel Ridge, Ohiopyle, State Game Lands 025, 060 and 089); no coordinates deposited",
+  "temporalCoverage": "2020/2021",
+  "responseType": "count",
+  "samplingProtocolCode": "point_count",
+  "samplingProtocol": "Two point-count visits per point in spring; the number of individuals of each species counted, with the minute interval of first detection and counts by distance bin.",
+  "closure": "closed",
+  "closureNote": "two visits within one breeding season; each point surveyed in one year only",
+  "covariateNote": "obs_ttd: minute interval (1-10) of the species' first detection on the visit; 10 with obs_ttd_censored = 1 where not detected (deposited code 11). obs_dist_bin1..5: individuals counted in five distance bins, nearest first (breaks not deposited; the bins sum to y except on 7 rows). obs_wind: wind on the visit (0-5 scale as deposited). obs_date_index: the deposited Date1/Date2 day index (origin not documented). unit_block: study block.",
+  "notShipped": {
+    "model_output": "abundance and detection estimates"
+  },
+  "notes": "Each point was surveyed in one year only (period 1 = 2020, 2 = 2021). The ARU histories at the same points are fiss_2024_pennsylvania_birds_aru_occ.",
+  "summary": {
+    "n_rows": 2292,
+    "n_units": 573,
+    "n_taxa": 2,
+    "n_periods": 2,
+    "n_occasions": 2,
+    "n_surveys": 1146,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.808,
+    "n_traps": 1,
+    "n_zero": 1852,
+    "n_positive": 440,
+    "n_units_detected": 310,
+    "max_y": 6
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_block", "obs_ttd", "obs_ttd_censored", "obs_wind", "obs_date_index", "obs_dist_bin1", "obs_dist_bin2", "obs_dist_bin3", "obs_dist_bin4", "obs_dist_bin5"],
+  "coreMd5": "ae916cd00236cff6646653e185030752",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "f5d8e8e973f2379658b101b12a2525ec"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "47a086f892d51fe7b45d07966935c3c4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fiss_2024_pennsylvania_birds_count.R",
+  "buildDate": "2026-11-05"
+}

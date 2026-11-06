@@ -1,0 +1,64 @@
+{
+  "table": "barros_2024_mostela_weasel_occ",
+  "title": "Least weasel detections by a Mostela box and a tree-mounted camera at 56 paired stations over seven five-day occasions, Companhia das Lezirias and Herdade da Ribeira Abaixo, Portugal, 2021",
+  "creator": "Barros, Ana Luisa; Marques, Margarida; Alcobia, Sandra; MacKenzie, Darryl I.; Santos-Reis, Margarida",
+  "pubDate": "2023",
+  "doi": "10.5281/zenodo.7561951",
+  "sourceURL": "https://doi.org/10.5281/zenodo.7561951",
+  "citation": "Barros, A. L., Marques, M., Alcobia, S., MacKenzie, D. I., & Santos-Reis, M. (2023). Comparing the performance of two camera trap-based methods to survey small mustelids [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.7561951",
+  "paperDOI": "10.1016/j.baae.2024.01.004",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "A test of the Mostela (a wooden box with a tracking tube and an internal camera trap) against a tree-mounted camera trap for detecting the least weasel. At each of 30 stations on a 350 m grid at Companhia das Lezirias (January-February 2021) and 26 at Herdade da Ribeira Abaixo (March-April 2021), Portugal, a Mostela and a tree-camera were set up to 6 m apart; detections were collapsed into seven five-day occasions per device. The authors fit a multi-scale occupancy model with device-specific detection. Vegetation cover ranks and the small-mammal trapping rate inside the Mostela are station covariates.",
+  "samplingProtocol": "Paired devices at each station, run 24 h without bait for about 35 days and visited every 15 days: a Mostela box with an internal camera (Browning Dark Ops HD Pro-X) and a tree-camera (Cuddelink J-1521) 20-30 cm above ground; a weasel photographed by a device in a five-day occasion is a detection.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "dependent",
+  "closureNote": "Station occupancy is assumed closed across the seven five-day occasions (the authors note it may be read as use). The two devices at one occasion are simultaneous and the authors model their dependence through an availability parameter per station-occasion (temporal multi-scale model, Nichols et al. 2008): group rows by unit and obs_window.",
+  "occasionKind": ["time", "method"],
+  "taxonInclusion": "single",
+  "designNote": "Experimental list of E9 (paired methods, multi-scale): occasion = 2 * (window - 1) + device, device 1 = Mostela, 2 = tree-camera; obs_window and obs_method recover both components.",
+  "geographicCoverage": "Companhia das Lezirias (38.84 N, 8.83 W) and Herdade da Ribeira Abaixo (38.11 N, 8.57 W), Portugal (no station coordinates deposited)",
+  "temporalCoverage": "2021-01/2021-04",
+  "covariateNote": "unit_area: CL (Companhia das Lezirias, January-February 2021) or HRA (Herdade da Ribeira Abaixo, March-April 2021). unit_tree_cover, unit_shrub_cover, unit_herb_cover: cover rank of the stratum in a 50 m buffer, 1 low (5-25 %), 2 medium (25-75 %), 3 high (75-100 %). unit_small_mammal_rate: small-mammal (rodent and insectivore) independent events (30 min apart) per trap-night recorded inside the Mostela. obs_window: five-day occasion 1-7. obs_method: mostela or tree_camera. obs_station_trap_nights: the device's total trap-nights at the station (per-occasion effort not deposited).",
+  "notShipped": {
+    "mostela_not_operating": "3 device-occasions with NA (station 19, Mostela, occasions 1-3; the Mostela ran 19 trap-nights against 35 for the tree-camera): no rows; the tree-camera rows of those occasions are kept",
+    "logSM_TrapRate": "log10 of SM_TrapRate (0 where the rate is 0): recomputable from unit_small_mammal_rate",
+    "pilot_2020": "the 2020 pilot (25 stations on a 2 km grid at CL) is not in the deposit",
+    "model_output": "the authors' multi-scale occupancy, availability and detection estimates"
+  },
+  "notes": "Sparse: seven Mostela detections at six stations and one tree-camera detection. The deposit's tree-camera trap-nights sum to 1068 at CL against 1029 in the paper's Table 1; Mostela and HRA totals agree with Table 1. No dates per station: CL ran January-February 2021, HRA March-April 2021.",
+  "summary": {
+    "n_rows": 781,
+    "n_units": 56,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 14,
+    "n_surveys": 781,
+    "y_values": "0,1",
+    "prop_zero": 0.99,
+    "n_traps": 1,
+    "n_zero": 773,
+    "n_positive": 8,
+    "n_units_detected": 7,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_area", "unit_tree_cover", "unit_shrub_cover", "unit_herb_cover", "unit_small_mammal_rate", "obs_window", "obs_method", "obs_station_trap_nights"],
+  "coreMd5": "000199d4d5cb2a63cd02000597c8ff2f",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c47efb9bbabd056dd7554f9d1c63e17d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/barros_2024_mostela_weasel_occ.R",
+  "buildDate": "2026-11-05"
+}

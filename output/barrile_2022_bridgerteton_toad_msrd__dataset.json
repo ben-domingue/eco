@@ -1,0 +1,72 @@
+{
+  "table": "barrile_2022_bridgerteton_toad_msrd",
+  "title": "Multi-state robust-design capture histories of 1415 adult boreal toads at four breeding sites, two burned by wildfire, Bridger-Teton National Forest, Wyoming, 2015-2020",
+  "creator": "Barrile, Gabriel M.; Chalfoun, Anna D.; Estes-Zumpf, Wendy A.; Walters, Annika W.",
+  "pubDate": "2022-06-15",
+  "doi": "10.5061/dryad.rv15dv49j",
+  "paperDOI": "10.1002/ecs2.4212",
+  "sourceURL": "https://doi.org/10.5061/dryad.rv15dv49j",
+  "citation": "Barrile, G. M., Chalfoun, A. D., Estes-Zumpf, W. A., & Walters, A. W. (2022). Data from: Wildfire influences individual growth and breeding dispersal, but not survival and recruitment in a montane amphibian [Dataset]. Dryad. https://doi.org/10.5061/dryad.rv15dv49j",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture-mark-recapture of PIT-tagged adult boreal toads at four stream-reach breeding sites in western Wyoming over six breeding seasons (2015-2020), with three to nine capture occasions per season; the 2018 Roosevelt wildfire burned two sites. Each capture records whether the toad was at its primary site or an alternative breeding site. The authors fitted robust design models of growth, breeding dispersal, survival and recruitment.",
+  "samplingProtocol": "Repeated capture surveys of adult toads at breeding sites in May-June each year; toads PIT-tagged at first capture, weighed, and recorded as captured at their primary site or an alternative site.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "The deposit lists captures, not surveys. A site counts as surveyed at a history column where any toad of that site was captured at its primary site ('A'); every toad of the site has a row at each such column, from the study's first season (adults of unknown age, E4.4). Columns at which a site was surveyed and no toad was caught are absent (Upper Gypsum has no 2020 capture and so no 2020 rows).",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured at its primary site (A)",
+    "2": "captured at an alternative breeding site (B)"
+  },
+  "closure": "closed",
+  "closureNote": "robust design: closure assumed within a breeding season, open between seasons; several field dates share one occasion at some site-years",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Bridger-Teton National Forest, western Wyoming, USA: Buck and Chall creeks (Wyoming Range, burned 2018) and Lower and Upper Gypsum creeks (Wind River Range, unburned); no coordinates deposited",
+  "temporalCoverage": "2015-05/2020-06",
+  "covariateNote": "unit_site, unit_mountain_range, unit_wildfire: the toad's primary site, its range, and whether the site burned in the 2018 Roosevelt fire. period_avg_mass_g: the toad's mean body mass (g) over its weighings that season (NA if not weighed).",
+  "notShipped": {
+    "capture_dates": "per-capture dates and body masses (ECS21-0740_Capture-Surveys): at some site-years several field dates share one history column, so a date does not identify the occasion, and uncaptured rows have none; the season mean mass ships as period_avg_mass_g",
+    "model_output": "growth, dispersal, survival and recruitment estimates"
+  },
+  "notes": "History column layout per season (6, 9, 6, 6, 5, 3) derived from the capture dates and asserted. In 10 toad-seasons the history and the capture file disagree by one capture (6 with an extra history capture, 4 with an extra capture date); the history is shipped.",
+  "summary": {
+    "n_rows": 45318,
+    "n_units": 1415,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 9,
+    "n_surveys": 45318,
+    "y_values": "0,1,2",
+    "prop_zero": 0.924,
+    "n_traps": 1,
+    "n_zero": 41892,
+    "n_positive": 3426,
+    "n_units_detected": 1415,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_site", "unit_mountain_range", "unit_wildfire", "period_avg_mass_g"],
+  "coreMd5": "d7035f58fb89c2aa4407dfeab9d28b0e",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "year", "n_occasions", "first_capture_date", "last_capture_date"],
+      "md5": "cd79433ae6769d43c830de799075d231"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "6ca306bdfa883164124e6a031df4edd7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/barrile_2022_bridgerteton_toad_msrd.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,71 @@
+{
+  "table": "feldman_2023_quebec_wetland_comm",
+  "title": "Daily lured-camera detections of 56 mammal and bird species at 50 boreal ponds, northern Quebec, 2018-2019 (latitude coarsened)",
+  "creator": "Feldman, Mariano J.; Mazerolle, Marc J.; Imbeau, Louis; Fenton, Nicole J.",
+  "pubDate": "2023-10-10",
+  "doi": "10.5061/dryad.jsxksn0g4",
+  "paperDOI": "10.1007/s13157-024-01773-z",
+  "sourceURL": "https://doi.org/10.5061/dryad.jsxksn0g4",
+  "citation": "Feldman, M. J., Mazerolle, M. J., Imbeau, L., & Fenton, N. J. (2023). Data from: Using camera traps to estimate habitat preferences and occupancy patterns of vertebrates in boreal wetlands [Dataset]. Dryad. https://doi.org/10.5061/dryad.jsxksn0g4",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Lured camera arrays (three cameras per pond) at 50 beaver and peatland ponds in northern Quebec, two 7-day sessions in each of 2018 and 2019; daily detection of 11 mammal and 45 bird species, with rainfall, days since snowmelt, active cameras, pond type, distance to road, forest cover and latitude. The authors fitted a multispecies occupancy model.",
+  "samplingProtocol": "Three infrared cameras per pond in a triangle at the pond edge with a scent lure, run 24 h for two sessions of seven consecutive days each summer; records of a species from any of the three cameras on a day are one daily detection.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors treat each pond-year as a closed site over its 14 daily visits, although its two 7-day sessions are about seven weeks apart (obs_session; days since snowmelt jumps about 50 days between them); open between years",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "2018-05/2019-08",
+  "covariateNote": "obs_session: 7-day session 1 or 2 within the year. obs_rain_cumulative: cumulative rainfall on the day (units not given). obs_days_since_snowmelt. obs_cameras_active: cameras of the three that were working that day. unit_pond_type: beaver or peatland pond. unit_dist_road_m: distance to the nearest road. unit_forest_cover_pct: forest cover within 1 km (NA for 3 ponds). unit_decimalLatitude: latitude only (no longitude deposited).",
+  "notes": "Pond-year CASA_TO_8 2019 has no second session (no rows). Taxa are those recorded (11 mammals, 45 birds); vernacular names are the deposit's French names.",
+  "geographicCoverage": "Northern Quebec, Canada, about 49.1-52.8 N (beaver and peatland ponds); latitude coarsened to 0.1 deg, no longitude deposited",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "The Rusty Blackbird is IUCN VU in its native range (E7 b); the deposited latitude (0.01 deg; no longitude) is snapped to the centre of its 0.1 deg band. feldman_2023_quebec_wetland_exact_comm keeps the deposited latitude for the other 55 taxa."
+  },
+  "notShipped": {
+    "exact_latitude": "latitude at the deposited 0.01 deg (coarsened, E7; exact in feldman_2023_quebec_wetland_exact_comm without the flagged taxon)",
+    "model_output": "occupancy and detection estimates",
+    "dates": "not deposited"
+  },
+  "summary": {
+    "n_rows": 78008,
+    "n_units": 50,
+    "n_taxa": 56,
+    "n_periods": 2,
+    "n_occasions": 14,
+    "n_surveys": 1393,
+    "y_values": "0,1",
+    "prop_zero": 0.988,
+    "n_traps": 1,
+    "n_zero": 77053,
+    "n_positive": 955,
+    "n_units_detected": 50,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_pond_type", "unit_dist_road_m", "unit_forest_cover_pct", "unit_decimalLatitude", "obs_session", "obs_rain_cumulative", "obs_days_since_snowmelt", "obs_cameras_active"],
+  "coreMd5": "b8d78d83f3e03cb200bda68e1e3e4abe",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "575f1b45c061fa1a0fa69d525ca2cdcd"
+    },
+    "taxa": {
+      "rows": 56,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_class"],
+      "md5": "12b8aedb39bf9d0cf753c3636ba919d9"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/feldman_2023_quebec_wetland_comm.R",
+  "buildDate": "2026-11-05"
+}
