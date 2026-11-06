@@ -9,6 +9,7 @@
   if (!is.null(.eco_env[[key]])) return(.eco_env[[key]])
   tag <- .eco_resolved_tag(.eco_meta)
   d <- .eco_read_csv(.eco_table_file(.eco_meta, name, tag))
+  .eco_env[[paste0("meta_full:", name)]] <- d
   released <- .eco_core_names()
   extra <- setdiff(d$table, released)
   d <- d[d$table %in% released, , drop = FALSE]
@@ -74,6 +75,77 @@ eco_list_tables <- function() {
   out$dataset <- core$dataset
   rownames(out) <- NULL
   out
+}
+
+#' The source deposits
+#'
+#' One row per deposit: the source record (one DOI, or one archive record such
+#' as an R package) that one or more eco tables were built from. A deposit
+#' yields one table per survey design and response type, so it can yield
+#' several; `n_tables` counts them. Built from [eco_biblio()], so it covers the
+#' same tables as [eco_list_tables()] in the eco version being read (see
+#' [eco_version()]).
+#'
+#' @return A data.frame, one row per deposit, most tables first: `deposit` (the
+#'   deposit's DOI as a `https://doi.org/` URL, or its source URL when it has
+#'   no data DOI), `doi` (the data DOI, `NA` without one), `source_via`,
+#'   `citation`, `creator`, `n_tables`, and `tables` (the table names,
+#'   separated by `", "`). Deposits whose tables are built but not yet released
+#'   are in `attr(x, "unreleased")`, as deposit ids.
+#' @seealso [eco_list_tables()] for the tables themselves; the glossary at
+#'   <https://ben-domingue.github.io/eco/glossary.html>.
+#' @examples
+#' \donttest{
+#' d <- eco_list_deposits()
+#' nrow(d)                     # deposits
+#' sum(d$n_tables)             # tables
+#' head(d[d$n_tables > 1, c("deposit", "n_tables", "tables")])
+#' }
+#' @export
+eco_list_deposits <- function() {
+  b <- eco_biblio()
+  b$deposit <- .eco_deposit_id(b)
+  first <- function(x) { x <- x[!is.na(x) & nzchar(x)]; if (length(x)) x[1] else NA_character_ }
+  ids <- unique(b$deposit)
+  out <- do.call(rbind, lapply(ids, function(id) {
+    r <- b[b$deposit == id, , drop = FALSE]
+    col <- function(n) if (n %in% names(r)) first(as.character(r[[n]])) else NA_character_
+    data.frame(deposit = id, doi = col("doi_data"), source_via = col("source_via"),
+               citation = col("citation"), creator = col("creator"),
+               n_tables = nrow(r), tables = paste(sort(r$table), collapse = ", "),
+               stringsAsFactors = FALSE)
+  }))
+  if (is.null(out)) out <- data.frame(deposit = character(), doi = character(), source_via = character(),
+                                      citation = character(), creator = character(), n_tables = integer(),
+                                      tables = character(), stringsAsFactors = FALSE)
+  out <- out[order(-out$n_tables, out$deposit), , drop = FALSE]; rownames(out) <- NULL
+  attr(out, "unreleased") <- .eco_unreleased_deposits(b)
+  out
+}
+
+# The deposit a biblio row's table came from: the pipeline's `deposit` column
+# (metadata/02_biblio.R) when the eco_meta version has it, else the same rule
+# here: the data DOI as a lower-case https://doi.org/ URL, else the source URL.
+.eco_deposit_id <- function(b) {
+  if ("deposit" %in% names(b)) {
+    d <- as.character(b$deposit)
+    if (all(!is.na(d) & nzchar(d))) return(d)
+  }
+  doi <- if ("doi_data" %in% names(b)) as.character(b$doi_data) else rep(NA_character_, nrow(b))
+  url <- if ("source_url" %in% names(b)) as.character(b$source_url) else rep(NA_character_, nrow(b))
+  clean <- tolower(trimws(sub("^(https?://(dx\\.)?doi\\.org/|doi:)", "", doi, ignore.case = TRUE)))
+  ifelse(!is.na(doi) & nzchar(trimws(doi)), paste0("https://doi.org/", clean), sub("/+$", "", trimws(url)))
+}
+
+# Deposits with no released table: their tables are all in the biblio's
+# "unreleased" attribute. The rows for those tables were dropped by
+# .eco_meta_table(), so they are re-read from the cached full table if present.
+.eco_unreleased_deposits <- function(b) {
+  extra <- attr(b, "unreleased")
+  full <- .eco_env[["meta_full:biblio"]]
+  if (!length(extra) || is.null(full)) return(character())
+  f <- full[full$table %in% extra, , drop = FALSE]
+  setdiff(unique(.eco_deposit_id(f)), unique(b$deposit))
 }
 
 #' Computed metadata, bibliography and tags

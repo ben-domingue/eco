@@ -33,7 +33,7 @@ gh <- "https://github.com/ben-domingue/eco/blob/main"
 Every table below was built by a script in the repository's `data/`
 directory from a public deposit, validated against the draft standard, and published on Redivis in the datasets
 `r shard_links_md`
-(Redivis caps a dataset at 1000 tables; a table and its side tables are always in the same one). Each table ships with a `__taxa`
+(the core [shards](glossary.html#shard); Redivis caps a dataset at 1000 [entries](glossary.html#entry), side tables included, and a table and its side tables are always in the same shard). Each table ships with a `__taxa`
 side table (taxon resolution via GBIF, plus traits where the source has them),
 a `__periods` side table where there are primary periods, `__units` or
 `__traps` where the sampling frame or trap layout needs one, and a

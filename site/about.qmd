@@ -8,18 +8,19 @@ title: "About eco"
 s <- jsonlite::read_json("data/site_stats.json")
 ```
 
-**eco** is a collection of ecological detection data in one format. Each of
-its `r s$n_tables` tables is a public survey deposit (occupancy surveys,
-repeated counts, capture histories, community surveys, eDNA) converted to a
-single long table with the same core columns, a species list resolved
-against GBIF, and metadata that says how the survey was run and what was
-left out. The tables are versioned on Redivis and readable from R without an
+**eco** is a collection of ecological detection data in one format. Its
+`r s$n_tables` tables come from `r s$n_deposits` public deposits (occupancy
+surveys, repeated counts, capture histories, community surveys, eDNA). Each
+table is one survey design from one deposit, converted to a single long table
+with the same core columns, a species list resolved against GBIF, and metadata
+that says how the survey was run and what was left out. The tables are versioned on Redivis and readable from R without an
 account.
 
-It is for anyone who wants many real datasets rather than one: to see how a
+It is for anyone who wants many real surveys rather than one: to see how a
 method behaves across designs and taxa, to compare models on data they did
-not simulate, or to find a dataset with a particular structure without
-reformatting it first.
+not simulate, or to find a survey with a particular structure without
+reformatting it first. The [glossary](glossary.html) says what eco means by
+table, deposit, unit, period and the other words used here.
 
 ## Where it came from
 
@@ -57,8 +58,8 @@ read the one that built it, and if a table is wrong, say so in an
 - **Use it**: the [R package](r.html) that reads tables and reshapes them
   for `unmarked`, `marked` and the AHM code, and [worked vignettes](vignettes/index.html).
 - **The format**: [the standard](standard.html), the
-  [design decisions](design.html) behind it, and how to
-  [convert a deposit](contribute.html).
+  [design decisions](design.html) behind it, how to
+  [convert a deposit](contribute.html), and a [glossary](glossary.html).
 
 ## Citing and licences
 

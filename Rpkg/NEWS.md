@@ -1,5 +1,11 @@
 # eco 0.1.0
 
+`eco_list_deposits()` lists the source deposits, one row per DOI or archive
+record, with the number of tables built from each and their names, over the
+same released tables as `eco_list_tables()`. `eco_info()` with no table now
+reports "N tables from M deposits". The package help (`?eco`) defines table,
+core, side table, deposit, shard and entry (ben-domingue/eco#10).
+
 The core tables are split across Redivis datasets (`eco`, `eco_2`, ...), since
 Redivis caps one at 1000 tables. Every reader searches them newest-first, so
 nothing changes for a user; `eco_list_tables()` gains a `dataset` column, a

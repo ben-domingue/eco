@@ -1,9 +1,14 @@
 # eco — an IRW-style warehouse for ecological detection data?
 
-*Exploratory project, started 2026-10-30. As of 2026-11-01: 30 tables from 20
-public deposits and 6 package datasets, built by one script each, validated
-against standard v1.0-draft, and released on Redivis as `datapages.eco` (eco v2).
-The standard is a draft and may change between releases; released versions do not.*
+*Exploratory project, started 2026-10-30. As of 2026-11-01: 30 tables from 23
+deposits (20 public deposits and the example data of three R packages), built by
+one script each, validated against standard v1.0-draft, and released on Redivis
+as `datapages.eco` (eco v2). The corpus has grown since: the current count, N
+tables from M deposits, is on the website's homepage and in
+`metadata/status.json` (`n_tables`, `n_deposits`). The standard is a draft and
+may change between releases; released versions do not. The words table,
+deposit, core, side table, shard and entry are defined in the site's
+[glossary](https://ben-domingue.github.io/eco/glossary.html).*
 
 *Website: <https://ben-domingue.github.io/eco/> (source in `site/`, rendered by
 `.github/workflows/site.yml`; preview locally with `cd site && quarto preview`).*
