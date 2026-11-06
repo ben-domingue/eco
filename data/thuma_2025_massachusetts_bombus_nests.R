@@ -58,6 +58,6 @@ for (X in SP) {
     doi_paper = "10.1098/rspb.2025.1010", doi_data = "10.5061/dryad.6t1g1jxbn", original_license = "CC0 1.0", derived_license = "CC0 1.0",
     notes = "Nest capture-recapture within seasons.", source_via = "Dryad")
   stage_tag_row(X$table, ds, taxon_group = "Invertebrates", model_family = "Capture-recapture (nests, within-season)",
-    sampling_protocol = "nest_search", design = "Multi-season (7 years x 5 surveys)", realm = "Terrestrial",
+    sampling_protocol = "nest_search", design = sprintf("Multi-season (%d years with nests x 5 surveys)", uniqueN(long$period)), realm = "Terrestrial",
     country = "USA", coordinates = "None in source", notes = "Bumble bee nests.")
 }

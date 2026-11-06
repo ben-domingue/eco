@@ -68,7 +68,7 @@ dataset <- list(
   citation = "Fidino, M., Simonis, J. L., & Magle, S. B. (2018). Data from: A multi-state dynamic occupancy model to estimate local colonization-extinction rates and patterns of co-occurrence between two or more interacting species [Dataset]. Dryad. https://doi.org/10.5061/dryad.k5mp137",
   paperDOI = "10.1111/2041-210X.13117",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Daily detection/non-detection of coyote, Virginia opossum and raccoon at 111 camera stations (12 more stations in the file were never sampled) of the Urban Wildlife Information Network along an urban gradient in the Chicago region, in four-week sampling seasons four times a year from spring 2010 to spring 2013 (13 seasons), with housing density, tree cover and impervious cover around 103 stations.",
+  abstract = "Daily detection/non-detection of coyote, Virginia opossum and raccoon at 111 camera stations (12 more stations in the file were never sampled) of the Urban Wildlife Information Network along an urban gradient in the Chicago region, in four-week sampling seasons four times a year from spring 2010 to spring 2013 (13 seasons), with housing density, tree cover and impervious cover for all but eight of the sampled stations.",
   samplingProtocol = "Motion-triggered camera stations along transects radiating from downtown Chicago, each run for 28 days per season in spring, summer, fall and winter; detections per species per day.",
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix", responseType = "detection",
   unitKind = "site", closure = "closed", closureNote = "closed within a 28-day season, open between the 13 seasons (dynamic co-occurrence model)",

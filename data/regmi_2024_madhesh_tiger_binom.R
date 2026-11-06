@@ -34,13 +34,13 @@ stopifnot(nrow(long) == 94 * 7)
 taxa <- make_taxa(unname(code), unname(SP), vernacularName = c("Tiger", "Northern red muntjac (barking deer)", "Nilgai (blue bull)", "Chital", "Gaur", "Sambar", "Wild boar"),
                   taxonRemarks = c(NA, "deposited as 'Barkingdeer'; Muntiacus vaginalis is the barking deer of the Nepal Tarai", NA, NA, NA, NA, NA))
 dataset <- list(
-  title = "Camera-trap detections of tiger and six prey species at 94 stations in Madhesh Province, Nepal: weeks with a detection out of three, winter 2022-23",
+  title = "Camera-trap detections of tiger and its ungulate prey at 94 stations in Madhesh Province, Nepal: weeks with a detection out of three, winter 2022-23",
   creator = "Regmi, Sandeep; Sharma, Hari Prasad; Bhattarai, Bishnu Prasad; Shaner, Pei-Jen Lee; Bhandari, Shivish; Nepali, Amrit; Aryal, Bishnu; Tamang, Krishna; K. C., Sabin; Karki, Ajay; Ram, Ashok Kumar; Belant, Jerrold L.; Katuwal, Hem Bahadur",
   pubDate = "2024", doi = "10.5061/dryad.5tb2rbpbk", sourceURL = "https://doi.org/10.5061/dryad.5tb2rbpbk",
   citation = "Regmi, S. et al. (2024). Tiger occurrence in response to prey and anthropogenic disturbances [Dataset]. Dryad. https://doi.org/10.5061/dryad.5tb2rbpbk",
   paperDOI = "10.1098/rspb.2024.1939",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Weeks with a detection out of three surveyed weeks for tiger and six prey species (barking deer, nilgai, chital, gaur, sambar, wild boar) at 94 camera-trap stations in Parsa, Bara and Rautahat districts, Nepal, December 2022 - March 2023, with canopy cover and distances to roads, water and buildings.",
+  abstract = "Weeks with a detection out of three surveyed weeks for tiger and its prey (barking deer, nilgai, chital, gaur, sambar, wild boar) at 94 camera-trap stations in Parsa, Bara and Rautahat districts, Nepal, December 2022 - March 2023, with canopy cover and distances to roads, water and buildings.",
   samplingProtocol = "Camera-trap stations surveyed for three weeks each in Parsa National Park and adjoining districts; detections collapsed by the authors to the number of weeks with a detection per species.",
   samplingProtocolCode = "camera_trap", surveyEvidence = "deposited_matrix",
   surveyEvidenceNote = "Every station has a value for every species and the README states three surveyed weeks per station; which weeks were detections is not deposited (ruling #34).",
@@ -51,7 +51,7 @@ dataset <- list(
   notShipped = list(Human = "people detected on the same cameras", Livestock = "livestock detected on the same cameras"),
   notes = "Tiger is IUCN EN, gaur and sambar VU; no coordinates are deposited. Distances are as deposited (units not stated; metres by their magnitude).")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, script = "data/regmi_2024_madhesh_tiger_binom.R")
-stage_dict_row(TABLE, description = "Camera-trap weeks-with-detection out of three for tiger and six prey at 94 stations in Madhesh Province, Nepal, 2022-23.",
+stage_dict_row(TABLE, description = "Camera-trap weeks-with-detection out of three for tiger and its prey at 94 stations in Madhesh Province, Nepal, 2022-23.",
   url = "https://doi.org/10.5061/dryad.5tb2rbpbk", reference = "Regmi, S. et al. (2025). Tiger occurrence in response to prey and anthropogenic disturbances. Proceedings of the Royal Society B.",
   doi_paper = "10.1098/rspb.2024.1939", doi_data = "10.5061/dryad.5tb2rbpbk", original_license = "CC0 1.0", derived_license = "CC0 1.0",
   notes = "binomial_count (ruling #34).", source_via = "Dryad")
