@@ -231,6 +231,13 @@ set inferred from detections alone omits every survey at which nothing was detec
 disagrees with its detections (deployment dates that contradict detection dates),
 the script MUST say which was believed and why.
 
+**Ruling (protocol-only zeros, 2026-11-06).** A survey the source's protocol schedules but
+nothing in the deposit records (no survey record, no detection of any taxon there) is not
+shipped: a zero is only as good as the evidence that the survey happened. Such surveys
+are counted in `notShipped`. A survey set that is one study-wide occasion while the sites
+monitored vary between years keeps, for each year, only the sites with evidence of
+monitoring that year.
+
 ## E5. Covariates and their levels
 
 A covariate column MUST carry the prefix of the level at which it is constant, and
@@ -398,6 +405,9 @@ bands). Nothing is lost: interval, removal and distance models rebuild the cells
 record whose cell is missing is counted in `y` and in an `obs_n_cell_unknown` column. Rows
 that repeat a record exactly (the same visit entered twice) are a source error: drop the
 duplicate and say so in `notShipped`.
+The same applies to counts a source splits by life stage or sex within a visit, when it
+does not deposit them as separate analysis sets (ruling #31): `y` is the total, and each
+stage's or sex's count is an `obs_` column.
 
 ## E9. Scope
 
@@ -487,6 +497,12 @@ NA) and `y = 0` otherwise, with the Ct as deposited in `y_raw`. A sampling event
 field blank amplified ships as recorded, with `obs_blank_positive = 1` on its rows and
 0 on every other row.
 
+**Ruling (automated detections, 2026-11-06).** A detection an automated recogniser or
+classifier made, under a threshold the source states, is the source's call, as for eDNA:
+`y` as the source records it, with the score and the threshold as `obs_` columns when
+deposited. A threshold the source applied to an unstated subset of samples is not a
+stated call: hold.
+
 **Ruling (time to detection, 2026-11-06).** A survey that records the time to first
 detection is `responseType = detection`, `y` = 0/1 per survey; there is no
 time-to-detection response type. The time to first detection is an `obs_` column, set
@@ -553,13 +569,15 @@ These rules govern what enters the corpus; they are not part of the format and
 `eco-validate` reports them under a separate intake profile.
 
 **Licence.** Verify on the source page before writing a script. CC0, CC BY, CC BY-SA,
-ODC-By 1.0 (attribution only), public domain: proceed. CC BY-NC, ODbL, GPL and other
+ODC-By 1.0 and the UK Open Government Licence v3 (`OGL-UK-3.0`; attribution only), public domain: proceed. CC BY-NC, ODbL, GPL and other
 licences with a propagating clause: proceed, and `derived_license` carries the clause so a reuser can exclude the
 table. No licence, an unresolvable licence UUID, or "contact the author": stop and ask
 by email (IRW's template, `processing_notes/Licensing.txt` in `ben-domingue/irw`);
 process only once permission is written. A repository licence that names no licence
 text (Zenodo's "Other (Open)"), or a CC0 badge alongside a data-use clause asking users
-to consult the PIs, is unclear terms: stop and ask by email. A use-constraint sentence that only
+to consult the PIs, is unclear terms: stop and ask by email. So is a request to discuss
+analyses with the dataset authors (PISCO), and a "not-for-profit use only" line on a
+record whose licence badge says otherwise. A use-constraint sentence that only
 routes questions, such as the USGS default "users direct any questions pertaining to appropriate use
 ... to the Point of Contact" (or "contact the authors regarding intended use"), is not a restriction:
 proceed under the release's licence and name the point of contact in the script header (ruled
@@ -586,7 +604,13 @@ call, made case by case and recorded in the table's `notes`; the first is
 `bradferlawrence_2025_ukwood_plant_comm` (129 woodlands x 200 plant species, kept
 2026-11-06). A `binomial_count` table is not single-visit (its occasions are
 `obs_trials`), and neither is an individual-unit table replicated over traps
-(count-detector SCR, E9).
+(count-detector SCR, E9). A visit split into timed intervals the source recorded, or a
+time-to-detection record (E8), is replicated within the visit and is not single-visit
+(ruled 2026-11-06).
+
+**Overlapping deposits (ruled 2026-11-06).** Two deposits whose surveys partly overlap
+(a statewide survey that contains an earlier regional one) both ship as deposited; each
+table's `notes` name the other and the overlap.
 
 **All-zero tables (ruled 2026-11-06).** A table in which nothing was detected (every
 `y = 0`) is admitted. Its `notes` say that nothing was detected and that detection
@@ -668,6 +692,12 @@ shipped and why. Facts about the source are assertions, not comments.
   - E7: a flagged taxon is coarsened whoever published it (the agency exception is withdrawn); (a) needs the source's own statement about the data, not a word in a paper's title.
   - E9: spatial mark-resight admitted as count SCR: marked individuals as units, unattributable sightings under the reserved units `unmarked` and `marked_unidentified`.
   - E8: repeated rows of one taxon within a visit (interval × distance band): `y` is the visit total, each cell an `obs_` column; exact duplicate entries are dropped.
+  - E4: a survey only the protocol schedules (no record, no detection) is not shipped; a study-wide occasion keeps only the sites monitored that year.
+  - Intake: OGL-UK-3.0 proceeds; a request to discuss analyses with the authors, and a not-for-profit line on a record badged otherwise, are unclear terms.
+  - Intake: recorded within-visit intervals and time to detection are replication, not single-visit.
+  - Intake: partly overlapping deposits both ship; each table's notes name the other.
+  - E2: an automated recogniser's thresholded detection is the source's call; a threshold on an unstated subset is held.
+  - E8: counts split by life stage or sex within a visit: `y` is the total, each class an `obs_` column.
 - **v1.1-draft, rulings 17 to 21 of 2026-11-06** (NEON batch 38, #10):
   - E2: a count the source labels as estimated is kept with `obs_count_estimated` (17); an unlabelled count is flagged only by a rule stated in the standard, the first being tick larval counts in exact multiples of 1,000, `obs_count_likely_estimated` (18).
   - E4.2: a complete-list protocol with no target list may take the per-site pool of taxa recorded in the table as the taxa surveyed for, through `__survey_taxa`, with `surveyEvidenceNote` saying the pool is derived from detections (19).
