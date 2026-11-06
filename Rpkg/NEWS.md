@@ -1,5 +1,13 @@
 # eco 0.1.0
 
+`eco_cite(tables, format = c("text", "bibtex"), file = NULL)` cites the sources
+behind a set of tables: one entry per source deposit and one per paper, not one
+per table, with stable BibTeX keys (the deposit's first table name), then eco
+itself at the version read (ben-domingue/eco#149). `eco_save_bibtex()` is now
+`eco_cite(tables, "bibtex", file)`, so its entries are deduplicated and end with
+eco's. The first `eco_fetch()` in a session prints a one-line reminder to cite
+the original deposits; `options(eco.cite_reminder = FALSE)` silences it.
+
 `eco_list_deposits()` lists the source deposits, one row per DOI or archive
 record, with the number of tables built from each and their names, over the
 same released tables as `eco_list_tables()`. `eco_info()` with no table now

@@ -299,13 +299,18 @@ datapages.{{newest_ref}}), newest first, and read the table from the one that ha
 ## 9. Citing
 --------------------------------------------------------------------------
 
-Cite the original deposit and paper for every table used, not only eco:
+Every table is fieldwork by the people who deposited it. When you write up an
+analysis, or code that will become one, cite the original deposit and paper for
+every table used, not only eco, and tell the user to do the same:
 
-    eco_info(table)$citation      # the deposit
-    eco_info(table)$reference     # the paper
-    eco_save_bibtex(c("kery_2008_willowtit_occ", "schank_2015_tapir_occ"), "refs.bib")
+    eco_cite(c("kery_2008_willowtit_occ", "schank_2015_tapir_occ"))            # reference list
+    eco_cite(tables, "bibtex", file = "eco_sources.bib")                      # BibTeX
 
-and name the eco version read (eco_version()).
+eco_cite() gives one entry per deposit and per paper (tables from one deposit
+share one), then eco itself at the version read; name that version too
+(eco_version()). From Python, the `citation` (deposit) and `reference` (paper)
+columns of the eco_meta `biblio` table hold the same text.
+See https://ben-domingue.github.io/eco/r.html#how-to-cite.
 
 --------------------------------------------------------------------------
 ## 10. When something looks wrong

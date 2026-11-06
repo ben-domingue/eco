@@ -88,6 +88,8 @@ for (i in seq_len(nrow(d))) {
   r <- d[i]
   cat(sprintf("\n### `%s` {#%s}\n\n", r$table, r$table))
   cat(sprintf("**%s**\n\n", r$title))
+  # the deposit's citation first (#149): the table is someone's fieldwork
+  cat(sprintf("Cite: %s\n\n", gsub("\\. (Paper|Data): ", ".\n\n\\1: ", r$citation)))
   cat(sprintf("%s\n\n", r$description))
   cat("| | |\n|---|---|\n")
   cat(sprintf("| Family | %s |\n", r$model_family))
@@ -105,11 +107,9 @@ for (i in seq_len(nrow(d))) {
   cat(sprintf("| Script | [`%s`](%s/%s) |\n", r$script, gh, r$script))
   if (nzchar(r$notes)) cat(sprintf("\nNotes: %s\n", r$notes))
   for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
-  # a dataset and its paper share one citation field; show each on its own line
-  cat(sprintf("\nCitation: %s\n", gsub("\\. (Paper|Data): ", ".\n\n\\1: ", r$citation)))
   if (nzchar(r$bibtex))   # the deposit and the paper, from metadata/biblio.csv (#11)
     cat("\n<details><summary>Cite (BibTeX)</summary>\n\n```bibtex\n", r$bibtex, "\n```\n\n",
-        sprintf("Or in R: `eco_save_bibtex(\"%s\", \"refs.bib\")`\n\n", r$table), "</details>\n", sep = "")
+        sprintf("Or in R: `eco_cite(\"%s\", \"bibtex\")`; see [How to cite](r.html#how-to-cite)\n\n", r$table), "</details>\n", sep = "")
 }
 ```
 
