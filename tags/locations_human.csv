@@ -335,3 +335,5 @@ neon_2026_plants_exact_occ,41.9,-104.2,multi,8113,"as neon_2026_plants_occ (E7 s
 rees_2023_victoria_cat_smr,-38.3,142.5,region,200,"between the Glenelg grids (about -38.0, 141.6) and the Otway Ranges grids (about -38.65, 143.45), station coordinates"
 roberts_2025_arkansas_birds_count,35.0,-92.3,region,250,"centre of the FGDC bounding box, north-central Arkansas"
 roberts_2025_arkansas_birds_exact_count,35.0,-92.3,region,250,"centre of the FGDC bounding box, north-central Arkansas"
+barry_2025_sierra_gho_occ,40.2,-121.0,region,150,"centre of Lassen and Plumas National Forests, northern Sierra Nevada (no coordinates deposited)"
+barry_2025_sierra_owls_comm,40.2,-121.0,region,150,"centre of Lassen and Plumas National Forests, northern Sierra Nevada (no coordinates deposited)"

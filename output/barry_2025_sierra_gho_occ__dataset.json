@@ -1,0 +1,71 @@
+{
+  "table": "barry_2025_sierra_gho_occ",
+  "title": "Weekly ARU detections of great horned owl in 265 hexagonal cells, northern Sierra Nevada, 2018 and 2021-2023",
+  "abstract": "Passive acoustic monitoring of 265 hexagonal 400-ha cells (two ARUs per cell) in the northern Sierra Nevada, California, before and after the 2020 North Complex and 2021 Dixie fires and a 2018-2022 barred owl lethal-removal experiment. Weekly detection histories (11 weeks, May to July) for great horned owl per cell, the two ARUs pooled, with fire-severity, removal-treatment and barred owl covariates.",
+  "creator": "Barry, Joshua; Wood, Connor; Jones, Gavin; McGinn, Kate; Kelly, Kevin; Kramer, Anu; Hofstadter, Daniel; Kahl, Stefan; Klinck, Holger; Kryshak, Nicholas; Dotters, Brian; Roberts, Kevin; Keane, John; Ng, Elizabeth; Peery, Zach",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.c866t1gkt",
+  "sourceURL": "https://doi.org/10.5061/dryad.c866t1gkt",
+  "citation": "Barry, J., Wood, C., Jones, G., McGinn, K., Kelly, K., Kramer, A., Hofstadter, D., Kahl, S., Klinck, H., Kryshak, N., Dotters, B., Roberts, K., Keane, J., Ng, E., Peery, Z. (2025). Data from: Divergent responses of native predators to severe wildfire and biological invasion are mediated by life history. Dryad. https://doi.org/10.5061/dryad.c866t1gkt",
+  "paperDOI": "10.1002/eap.70135",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "acoustic",
+  "responseType": "detection",
+  "unitKind": "site",
+  "surveyEvidence": "deposited_matrix",
+  "closure": "closed",
+  "occasionKind": "time",
+  "temporalCoverage": "2018/2023",
+  "geographicCoverage": "Lassen and Plumas National Forests (and adjacent private land), northern Sierra Nevada, California, USA; > 6,000 km2; no coordinates deposited",
+  "closureNote": "occasion = one-week secondary period k (7 May + 7(k-1) days, k = 1..11, to 23 July); period = survey year (2018, 2021, 2022, 2023: 2019-2020 not used because barred owl removals overlapped the surveys). The authors assume closure within a year and fit stacked single-season models.",
+  "samplingProtocol": "Autonomous recording units (two per 400-ha hexagonal cell, >= 500 m apart) recorded nightly 20:00-08:00 from early May to late July; audio scored with BirdNET at species x year thresholds for < 1% false positives per week; a survey is a cell-week with recording at either ARU, the two ARUs pooled.",
+  "taxonInclusion": "single",
+  "surveyEvidenceNote": "v1-v11: NA = not surveyed, 0/1 = surveyed; ARUhours is > 0 exactly where a week is scored, and a cell-week is scored exactly when at least one of its ARUs is scored in the flammulated/pygmy owl files (asserted on the corrected files).",
+  "notShipped": {
+    "author_corrections": "The deposited FLM/NPO/GHO_data_stacked.csv values superseded by the authors' corrected files (see notes; differences counted in the script).",
+    "date_covariates": "date.1.1-date.1.11: a scaled week index (k/10), identical on every row; occasion carries it.",
+    "year_code": "Year (0-3): in __periods as source_year_code.",
+    "FR_columns": "FR11, FR22, FR33, FR12, FR23: present only in the corrected files and not described in the README.",
+    "other_owls": "Western screech owl and northern saw-whet owl were processed but excluded by the authors for few detections; not deposited.",
+    "model_code": "barry_etal_owl_occupancy.R (ubms model code).",
+    "small_owls": "Flammulated and northern pygmy owl histories are at the ARU level, a different unit: they ship as barry_2025_sierra_owls_comm."
+  },
+  "notes": "y is the authors' weekly detection call from BirdNET (custom model) at species x year score thresholds chosen for < 1% false positives per week. Detection histories, ARUhours and BOpresence are from the authors' corrected files (FLM/NPO/GHO_datas_stacked.csv), sent by J. Barry by email on 2026-11-06, which supersede the deposited csvs of Dryad version 394914: typos in recorder recovery dates at about a dozen sites had put not-surveyed weeks in the wrong place, and one 2018 barred owl detection was assigned to the wrong ARU. Changes against the deposit (same Site x Year x week): FLM 11 detection cells (NA->0 7, NA->1 1, 1->NA 2, 0->1 1), 12 ARUhours cells, BOpresence 1->0 at one site-year; NPO 10 detection cells (NA->0 8, NA->1 1, 1->NA 1), 11 ARUhours cells, the same BOpresence change, and one site-year the deposit lacked (Site 480, 2018); GHO 17 detection cells (NA->0 16, 0->1 1), 9 ARUhours cells, BOpresence 1->0 at one cell-year. The authors will update the public copy; the table will be rebuilt from it then. obs_aruhours is ARUhours as deposited: the README calls it total recording hours in the week, but the values are the natural log of the hours, rounded to 2 dp (4.43 = ln 84, a full week of 12-hour nights), and 0 where the week was not recorded; exp(obs_aruhours) recovers the hours. For this table it is ln of the two ARUs' summed hours. Fire and removal covariates are computed over species-specific home-range buffers (flammulated owl 50 ha and northern pygmy owl 300 ha around the ARU; great horned owl 700 ha around the cell centre). unit_removal_treat: buffer overlaps a barred owl removal home range (2,004 ha around each removal); unit_fire_treat: any high-severity fire (MTBS) in the buffer; period_psev_yrs: proportion of the buffer burned at high severity, any year post-fire; period_psev1-3: that proportion in year 1, 2, 3 after the fire (0 otherwise); period_season_ba: removal site in its post-removal years (the deposit's SeasonBA, identical to PostRemovalImpact); period_b1-b3: removal site 1, 2, 3+ years after removal; period_post_removal_psev1-3, period_post_removal_psev_yrs: removal followed by high-severity fire, by years since fire and for all post-fire years. period_bo_presence: a barred owl detected at either ARU of the cell that year (the authors' acoustic survey; a detection covariate in their models). unit_topo_tr: terrain ruggedness within 390 m of the ARU (cell centre for GHO), standardised as deposited. Covariates here use the 700-ha buffer. period_n_arus: ARUs of the cell with any recording that year (from the corrected FLM file). The deposited GHO Site id is the cell id (Cell_Unit), not the Site id of the FLM/NPO files. Sibling table: barry_2025_sierra_owls_comm (flammulated and northern pygmy owls, ARU units).",
+  "summary": {
+    "n_rows": 5480,
+    "n_units": 265,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 11,
+    "n_surveys": 5480,
+    "y_values": "0,1",
+    "prop_zero": 0.934,
+    "n_traps": 1,
+    "n_zero": 5116,
+    "n_positive": 364,
+    "n_units_detected": 137,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_topo_tr", "unit_removal_treat", "unit_fire_treat", "period_season_ba", "period_b1", "period_b2", "period_b3", "period_psev_yrs", "period_psev1", "period_psev2", "period_psev3", "period_post_removal_psev1", "period_post_removal_psev2", "period_post_removal_psev3", "period_post_removal_psev_yrs", "period_bo_presence", "period_n_arus", "obs_aruhours"],
+  "coreMd5": "0f09d07e0cd4c0512bb866c03cedb4f6",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year", "source_year_code", "deployment"],
+      "md5": "6303a3d343c4fbb944ccdf6636bd2e73"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b88d29d1fb105c4563d67b1eec15df4f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/barry_2025_sierra_owls_comm.R",
+  "buildDate": "2026-11-06"
+}
