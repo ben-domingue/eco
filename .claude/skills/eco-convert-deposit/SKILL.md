@@ -133,7 +133,12 @@ python3 upload/red_up_eco.py              # to the draft; confirms first
 
 The upload is the gate: it runs eco-validate `--irw`, refuses a table whose md5 is
 not the build its `__dataset.json` records, and writes each shipped table's row
-in `validate/report.csv`. Then run `metadata/run_pipeline.sh`.
+in `validate/report.csv`, and each new table's homepage map point in
+`metadata/table_locations.csv`. Then run `metadata/run_pipeline.sh` (stage 12 places
+any table the uploader did not). If `tools/check_coverage.py` says a table has no map
+point, add a `tags/locations_human.csv` row from its `geographicCoverage` text (a
+point with a precision label, or empty lat/lon and a basis saying why none) and run
+`metadata/run_pipeline.sh 12`.
 
 Commit the script, `output/<table>__dataset.json` (never the CSVs; they are
 gitignored), the dictionary and tags rows, `metadata/`, `validate/report.csv`, the
