@@ -1,0 +1,72 @@
+{
+  "table": "wiens_2021_socal_goldeneagle_dynocc",
+  "title": "Golden Eagle territorial-pair detection / non-detection at 175 random survey sites, coastal southern California, 2016-2017",
+  "creator": "Wiens, J. David; Bloom, Peter H.; Madden, Melanie C.; Kolar, Patrick S.; Tracey, Jeff A.; Fisher, Robert N.",
+  "pubDate": "2021",
+  "doi": "10.5066/P9OIPLHH",
+  "sourceURL": "https://doi.org/10.5066/P9OIPLHH",
+  "citation": "Wiens, J.D., Bloom, P.H., Madden, M.C., Kolar, P.S., Tracey, J.A., and Fisher, R.N., 2021, Detection/non-detection data on territorial pairs of golden eagles in coastal southern California, 2016-2017: U.S. Geological Survey data release, https://doi.org/10.5066/P9OIPLHH.",
+  "paperDOI": "10.3389/fevo.2021.665792",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, no use constraints"
+  },
+  "abstract": "Detection-nondetection data for territorial pairs of Golden Eagles at survey sites randomly selected from a grid of 13.9 km2 hexagonal cells in coastal southern California during 2016 and 2017, with surveys partitioned into four breeding-cycle windows per season, and the land-cover composition and terrain ruggedness of each site.",
+  "samplingProtocol": "Repeated surveys of each hexagon from 1-4 ridge-top observation points giving complete coverage, searching for territorial pairs, nests and reproduction for up to 4 hours per survey, in four breeding-cycle windows per season.",
+  "samplingProtocolCode": "territory_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = breeding-cycle window within a season; occupancy by a territorial pair assumed constant within a season (the source fits colext)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Coastal southern California (Orange, Riverside and San Diego counties), USA",
+    "boundingBox": {
+      "west": -117.85,
+      "east": -116.14,
+      "south": 32.53,
+      "north": 33.97
+    }
+  },
+  "temporalCoverage": "2016/2017",
+  "notShipped": {
+    "xlsx_copy": "SoCal_GOEA_OccupancyData.xlsx duplicates the CSV"
+  },
+  "summary": {
+    "n_rows": 1252,
+    "n_units": 175,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 4,
+    "n_surveys": 1252,
+    "y_values": "0,1",
+    "prop_zero": 0.958,
+    "n_traps": 1,
+    "n_zero": 1199,
+    "n_positive": 53,
+    "n_units_detected": 22,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_prop_urban", "unit_prop_grass", "unit_prop_forest", "unit_prop_scrub", "unit_tri"],
+  "coreMd5": "8f4f713ba6068203f2fd22f2757449de",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "4ceacf872dbf0422299e643b6adaf6f5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "43b23598b2b3724f5032871c44ab26d3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/wiens_2021_socal_goldeneagle_dynocc.R",
+  "buildDate": "2026-11-06"
+}

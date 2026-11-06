@@ -1,0 +1,70 @@
+{
+  "table": "halstead_2025_yosemite_rasi_cjs",
+  "title": "Capture histories of 1,251 PIT-tagged Sierra Nevada yellow-legged frogs at Summit Meadow, Yosemite National Park, 2003-2022",
+  "creator": "Halstead, Brian J.; Kleeman, Patrick M.; Rose, Jonathan P.; Fellers, Gary M.",
+  "pubDate": "2025",
+  "doi": "10.5066/P1F3Y3Z6",
+  "sourceURL": "https://doi.org/10.5066/P1F3Y3Z6",
+  "citation": "Halstead, B.J., Kleeman, P.M., Rose, J.P., and Fellers, G.M., 2025, Capture-mark-recapture and covariate data for demography of Sierra Nevada yellow-legged frogs (Rana sierrae) at Summit Meadow, Yosemite National Park, California, 2003-2022: U.S. Geological Survey data release, https://doi.org/10.5066/P1F3Y3Z6.",
+  "paperDOI": "10.1016/j.ecochg.2025.100099",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Capture and survey information for a meadow population of endangered Sierra Nevada yellow-legged frogs at Yosemite National Park, California, 2003-2022, collected to estimate survival, recruitment, abundance and population growth and their relation to winter and drought severity.",
+  "samplingProtocol": "Visual encounter surveys along the stream and through the meadow on 3-14 days each summer (June-September) in primary periods of 3-4 consecutive days; frogs > 40 mm SUL captured by hand or dip net, PIT-tagged, measured, sexed and released.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "open",
+  "closureNote": "occasion = survey day within a summer; days fall in several primary periods of 3-4 consecutive days, so the season is not closed (the source fits an open model)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Summit Meadow, Yosemite National Park, California, USA"
+  },
+  "temporalCoverage": "2003/2022",
+  "notes": "Rows run from the study's first survey to its last for every frog (wild-caught; E4.4). Nine PIT codes in the individual file, mangled to E-notation, are matched back to the capture file's codes.",
+  "notShipped": {
+    "no_pit_capture": "eight capture records with no PIT (not attributable to an individual)",
+    "same_day_repeats": "eight second captures of a frog on the same survey day (one detection per day)",
+    "weather": "weather_data.csv: remotely sensed SWE and PDSI by interval year (derived covariates; in the release)",
+    "summaries": "per-frog capture counts and per-year totals (derived; asserted against the captures)"
+  },
+  "summary": {
+    "n_rows": 240192,
+    "n_units": 1251,
+    "n_taxa": 1,
+    "n_periods": 20,
+    "n_occasions": 14,
+    "n_surveys": 240192,
+    "y_values": "0,1",
+    "prop_zero": 0.979,
+    "n_traps": 1,
+    "n_zero": 235213,
+    "n_positive": 4979,
+    "n_units_detected": 1251,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex", "unit_sul_mean_cm", "unit_mass_mean_g", "obs_doy", "obs_days_since_snowmelt"],
+  "coreMd5": "1dab6f2da5dd67e29477ada8cdc07c53",
+  "sideTables": {
+    "periods": {
+      "rows": 20,
+      "columns": ["period", "year"],
+      "md5": "c032c5f944bd0a3c4addb51e014c26ea"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b0a1574149b86be499cd9f06bddb2c0e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/halstead_2025_yosemite_rasi_cjs.R",
+  "buildDate": "2026-11-06"
+}

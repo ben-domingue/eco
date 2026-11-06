@@ -1947,3 +1947,50 @@ What this batch says about the standard and the tools:
   (used for ticks) was not applied. A question for Ben.
 - **Plant pools are large.** The plant table is 24.5M rows with a 3.6M-row `__survey_taxa`, because a per-site pool of
   a few hundred taxa is carried at every 1 m2 visit; it is still about a third of a national-pool table.
+
+## Batch 40 — 2026-11-06 (non-Dryad discovery: USGS ScienceBase and GBIF sampling-event datasets)
+
+Dryad's anonymous quota was spent, so this batch searched elsewhere. EDI is fully walled to scripted
+requests now: PASTA search, metadata and data endpoints return 403 ("not authorized"), and the DataONE
+member nodes that used to serve LTER objects (gmn.lternet.edu, gmn.edirepository.org) return 403 too, so
+no EDI/LTER rows were added. Discovery: the ScienceBase catalog search (occupancy, capture-recapture,
+eDNA, call survey, camera trap, encounter history; 54 new rows after deduplication against the queue,
+human_review and every `__dataset.json` DOI) and the GBIF occurrence facet `occurrenceStatus = ABSENT`
+by dataset (1,000 datasets, of which 420 sampling-event CC0 / CC BY not yet in eco; 23 credible rows
+queued as needs-look). Eleven tables built from nine ScienceBase releases, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| carter_2021_louisiana_lamp_calls | NAAMP calling routes | ordinal | 344,844 | 540 | 27 | 21 |
+| zipkin_2017_oregon_barredowl_dynocc | dynamic occupancy | detection | 8,806 | 106 | 1 | 20 |
+| zipkin_2017_oregon_barredowl_count | repeated counts of pairs | count | 406 | 106 | 1 | 2 |
+| wiens_2021_socal_goldeneagle_dynocc | dynamic occupancy | detection | 1,252 | 175 | 1 | 2 |
+| waddle_2020_louisiana_marshbird_comm | ARU community occupancy | detection | 3,311 | 33 | 11 | 1 |
+| rose_2024_sjvalley_leglesslizard_occ | cover-board occupancy (multi-scale) | detection | 563 | 89 | 1 | 2 |
+| laramie_2019_bruneau_trout_edna | eDNA occupancy | detection | 608 | 26 | 2 | 12 |
+| hunter_2025_georgia_pinesavanna_occ | single-season occupancy | detection | 966 | 161 | 2 | 1 |
+| halstead_2025_yosemite_rasi_cjs | capture histories (daily, 20 years) | detection | 240,192 | 1,251 | 1 | 20 |
+| direnzo_2025_elcope_espadarana_cjs | CJS (annual) | detection | 2,075 | 415 | 1 | 5 |
+| direnzo_2025_elcope_espadarana_ms | multi-state (Bd infection) | state | 2,331 | 259 | 1 | 9 |
+
+Held: eight ScienceBase releases whose use constraints say the authors "require" or "request that data
+users contact them regarding intended use" (Point Reyes TTD, Masticophis, SF gartersnake, two humpback chub
+releases, Sonora mud turtles, Massachusetts Wildlife Monitoring Project, Olympic fisher), as unclear terms
+under the 2026-11-06 intake ruling. Needs a look: Puerto Rico Eleutherodactylus (code 2 in "binary"
+histories), Bristle-thighed Curlew (2015-2016 status from transmitters only), New England MYSE (possibly a
+model table). Rejected: yellow-billed cuckoo (site summaries only), dove co-occurrence (built from BBS,
+already in eco), NABat summer occupancy (model outputs).
+
+Facts carried into the tables: LAMP's December 1997 rows are in sampling year 1997 although the
+metadata put December 1997 in the 1998 sampling year and the release starts 1997-12-20, so no ISO dates
+are built (obs_month, obs_day). The Georgia savanna release labels its coordinate columns the wrong way
+round (swapped back, asserted). The Rana sierrae individual file has nine PIT codes mangled into E-notation
+by a spreadsheet (matched back by mantissa). Bull trout (IUCN VU) on USGS-published stream sites: coarsened
+to 0.1 degree, though the guide also says agency-published coordinates are kept (a question for Ben).
+The marsh-bird release numbers its sample periods out of date order (renumbered by date; source number in
+obs_sample_period).
+
+What strained the standard: none of the tables needed a new rule. Two community point-count releases
+(Arkansas and southern Iowa grassland birds) were inspected and queued rather than built: both have
+repeated species rows within a survey and survey-level fields that vary within a survey, which need a
+stated aggregation rule.
