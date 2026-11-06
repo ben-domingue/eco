@@ -1,0 +1,75 @@
+{
+  "table": "inbo_2026_flanders_odonatasite_count",
+  "title": "Meetnetten.be site counts of six priority dragonflies, Flanders, Belgium, 2016-2025",
+  "creator": "Piesschaert, Frederik; De Knijf, Geert; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/crbudg",
+  "sourceURL": "https://doi.org/10.15468/crbudg",
+  "citation": "Piesschaert F, De Knijf G, Brosens D, Westra T, Desmet P, Ledegen H, Pollet M (2026). Meetnetten.be - Population counts for dragonflies in Flanders, Belgium. Version 1.19. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/crbudg",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated site counts of adult Leucorrhinia pectoralis, Sympetrum depressiusculum, Coenagrion lunulatum, Coenagrion hastulatum, Somatochlora arctica, Leucorrhinia caudalis at 65 monitored sites in Flanders, from the Meetnetten.be priority-species monitoring network run by INBO and Natuurpunt Studie with specialised volunteers. Each site belongs to one species' project and is counted for that species only, several times in a counting year while adults fly.",
+  "samplingProtocol": "Population count of adults at a fen, bog or pool in good dragonfly weather during the flight period, counting all adults of the target species at the site (De Knijf et al. 2019); several counts in a counting year.",
+  "samplingProtocolCode": "area_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = count within one flight season; populations may change between years (period)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "surveyTaxaNote": "Each site is monitored for its own project's target species only; __survey_taxa gives the taxon per unit, unit_project the project.",
+  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 5 km or 10 km UTM square centroids)",
+  "temporalCoverage": "2016/2025",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 km (3536 m) or 10 km (7071 m) UTM square before publication; kept as published."
+  },
+  "notes": "y sums the adult categories the app records (male, female, unknown, copula, egg-laying), as in inbo_2026_flanders_dragonfly_count. 1 count(s) are dated outside April-September, kept as published.",
+  "notShipped": {
+    "exuviae": "the exuviae category (another life stage)",
+    "category breakdown": "sex / copula / egg-laying counts summed into y",
+    "other species": "dragonflies other than the project's target, recorded at some counts only (incidental)"
+  },
+  "summary": {
+    "n_rows": 900,
+    "n_units": 65,
+    "n_taxa": 6,
+    "n_periods": 10,
+    "n_occasions": 6,
+    "n_surveys": 900,
+    "y_values": "0-999 (73 distinct)",
+    "prop_zero": 0.548,
+    "n_traps": 1,
+    "n_zero": 493,
+    "n_positive": 407,
+    "n_units_detected": 57,
+    "max_y": 999
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_project", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "c27bf59d195d2c9f546e2ea44071bce8",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year"],
+      "md5": "99fe8dd37eddce8f48511776efa7f028"
+    },
+    "survey_taxa": {
+      "rows": 65,
+      "columns": ["taxon", "unit"],
+      "md5": "9270a9b53db668ce18ae81721bc6b5ea"
+    },
+    "taxa": {
+      "rows": 6,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "03586e9c233be4400d909daf956da7f3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_odonatasite_count.R",
+  "buildDate": "2026-11-06"
+}

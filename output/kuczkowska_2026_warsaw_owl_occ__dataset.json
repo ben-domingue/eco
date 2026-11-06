@@ -1,0 +1,71 @@
+{
+  "table": "kuczkowska_2026_warsaw_owl_occ",
+  "title": "Playback survey of owls in Warsaw, 2024: detections of five owl species at 431 points on three surveys",
+  "creator": "Kuczkowska, Karolina; Sadkowski, Dawid; Baranowska, Weronika; Rapczyński, Jan; Chalecki, Kajetan (University of Warsaw)",
+  "pubDate": "2026",
+  "doi": "10.15468/32eg3p",
+  "sourceURL": "https://doi.org/10.15468/32eg3p",
+  "citation": "Kuczkowska K, Sadkowski D, Baranowska W, Rapczyński J, Chalecki K (2026). Playback survey of owls in Warsaw in 2024. Version 1.1. University of Warsaw. Sampling event dataset. https://doi.org/10.15468/32eg3p",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "A city-wide owl survey of Warsaw in 2024 by the Ornithology Science Club 'Jajo' (University of Warsaw) with partners: 431 points on a 1 km grid, each surveyed three times (February, March, April) with a fixed listening and playback sequence for each species on the point's habitat-based list. One row per point, survey and species surveyed: detected (1) or not (0), with the individuals recorded in y_raw.",
+  "samplingProtocol": "Night playback survey at a fixed point: for each species on the point's list, from the smallest to the largest, at least 120 s listening, 10 s playback, 60 s listening, 30 s playback, 120 s listening, 60 s playback, at least 120 s listening, stopped at the first response of the species; small owls not played where tawny owls were calling; three surveys a season (February, March, April), by pairs of observers.",
+  "samplingProtocolCode": "playback",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "three surveys within one breeding season (February to April 2024)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "surveyTaxaNote": "The species surveyed at a point were chosen from its habitat; the source gives an absence or presence record for each species surveyed at each survey, and __survey_taxa lists them per point and survey.",
+  "geographicCoverage": "Warsaw, Poland (431 survey points on a 1 km grid)",
+  "temporalCoverage": "2024-02/2024-04",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Survey-point coordinates as published (uncertainty 100 m); records away from a point are matched by the publisher to the nearest point; no taxon is IUCN CR/EN/VU."
+  },
+  "covariateNote": "y_raw = individuals recorded on the survey (0 for an absence); obs_event_date = the source's eventDate (a day, or a range of days for 166 surveys whose date is NA); obs_start_time = start time (local, NA where not recorded); obs_duration_min = survey duration in minutes.",
+  "notes": "Glaucidium passerinum was a species of interest but is not on any point's list in the deposit, so it has no rows. Tyto alba is on the list at 124 points and was never detected (all its rows are 0).",
+  "notShipped": {
+    "sex and life stage": "recorded on a few presence records only",
+    "occurrenceRemarks": "free-text field notes in Polish",
+    "season events": "the 431 parent events (one per point)"
+  },
+  "summary": {
+    "n_rows": 3295,
+    "n_units": 431,
+    "n_taxa": 5,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 1293,
+    "y_values": "0,1",
+    "prop_zero": 0.941,
+    "n_traps": 1,
+    "n_zero": 3102,
+    "n_positive": 193,
+    "n_units_detected": 123,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_event_date", "obs_start_time", "obs_duration_min"],
+  "coreMd5": "06bd8109b17fa80e973f036354702447",
+  "sideTables": {
+    "survey_taxa": {
+      "rows": 3295,
+      "columns": ["taxon", "unit", "occasion"],
+      "md5": "b735a7ee151133bba663c3aea34b88e8"
+    },
+    "taxa": {
+      "rows": 5,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "8f90bbf5d13ccb1d825dc42fde140290"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kuczkowska_2026_warsaw_owl_occ.R",
+  "buildDate": "2026-11-06"
+}

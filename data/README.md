@@ -367,6 +367,13 @@ CSVs with `upload/red_up_eco.py`.
 | `hunter_2025_georgia_pinesavanna_occ.R` | single-season occupancy, Bachman's Sparrow and Northern Bobwhite, 161 points x 3 visits | USGS ScienceBase | CC0 |
 | `halstead_2025_yosemite_rasi_cjs.R` | daily capture histories of 1,251 Sierra Nevada yellow-legged frogs, 192 survey days over 20 years | USGS ScienceBase | CC0 |
 | `direnzo_2025_elcope_espadarana.R` | glass frog CJS before (2000-2004) and multi-state Bd infection after (2010-2014) the chytrid outbreak, two tables | USGS ScienceBase | CC0 |
+| `inbo_2026_flanders_abv_count.R` | common breeding bird point counts summed per square visit, 180 taxa, 757 squares, 2017-2025 | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_priobutterfly_count.R` | Meetnetten.be transect counts of nine priority butterflies (one target per transect, `__survey_taxa`) | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_odonatasite_count.R` | Meetnetten.be site counts of six priority dragonflies (one target per site, `__survey_taxa`) | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_crestednewt_count.R` | Meetnetten.be fyke counts of great crested newts per pond visit, fykes as effort | GBIF (INBO IPT) | CC0 |
+| `haas_2025_sweden_waterbird_count.R` | Swedish midwinter waterbird census, 70 taxa on 3,724 sectors, 1966-2024, method as occasion | GBIF (Swedish IPT) | CC0 |
+| `nrm_2024_sweden_porpoise_occ.R` | daily C-POD harbour porpoise detections at 34 Swedish monitoring stations, 2015-2023 | GBIF (Swedish IPT, SHARK) | CC0 |
+| `kuczkowska_2026_warsaw_owl_occ.R` | owl playback survey, five species at 431 points x 3 surveys, habitat-based lists (`__survey_taxa`) | GBIF (Polish IPT) | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
