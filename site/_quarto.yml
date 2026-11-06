@@ -5,6 +5,7 @@ project:
     - "*.qmd"
   resources:
     - specimen.js
+    - map.js
     - llms.txt
     - wheels/**/*.whl     # the browser validator's wheel, built by prerender.R (#8)
   # Writes data/site_stats.json from the pipeline's staging files so the

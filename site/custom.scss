@@ -90,3 +90,25 @@ code { font-size: .9em; }
 .spec-pills { display: flex; flex-wrap: wrap; gap: .35rem; }
 .spec-pill[aria-pressed="true"] { background: $primary; border-color: $primary; color: #fff; }
 .spec-next:disabled { opacity: .4; cursor: default; }
+
+// Homepage map (map.js): one point per table, coloured by taxon group.
+.eco-map { height: 460px; border-radius: 6px; border: 1px solid #e6e6e2; margin: .25rem 0 .75rem; z-index: 0; }
+@media (max-width: 600px) { .eco-map { height: 340px; } }
+.eco-map-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .82rem; color: #55575f; margin: 0 0 4px; }
+.eco-map-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--sw); margin-right: 6px; vertical-align: -1px; }
+.eco-map-legend span.ring::before { background: none; border: 2.5px solid #55575f; width: 12px; height: 12px; box-sizing: border-box; }
+.eco-map-card { position: absolute; z-index: 1000; pointer-events: none; background: #fff; border: 1px solid #c9ccc8;
+  border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,.14); padding: 8px 10px; width: max-content; max-width: 320px;
+  font-size: .8rem; line-height: 1.35; color: #212529; font-family: $font-family-sans-serif;
+  &.pinned { pointer-events: auto; max-height: 300px; overflow-y: auto; }
+  .t { font-weight: 600; font-size: .85rem; margin-bottom: 2px; }
+  .c code { font-size: .74rem; }
+  .m { color: #55575f; margin-top: 2px; }
+  .w { color: #6c757d; margin-top: 4px; font-size: .75rem; }
+  .sw { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--sw); margin-right: 5px; }
+  ul { list-style: none; margin: 4px 0 0; padding: 0; }
+  li { margin: 0 0 5px; }
+  li a { color: #212529; text-decoration: none; }
+  &.pinned li a { text-decoration: underline; }
+}
+.eco-map-unplaced { font-size: .9rem; color: #55575f; margin-bottom: 1.5rem; summary { cursor: pointer; } }
