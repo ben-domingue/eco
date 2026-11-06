@@ -28,6 +28,16 @@ in `main`; the table CSVs are not tracked (#92) and go to Redivis. Add new
 candidates at the bottom with `status = available` (or `needs-look` if you have not
 opened the files).
 
+## Excluded authors
+
+We do not build deposits that list these people as authors, whatever the licence.
+Discovery may still log such a deposit, but triage marks it
+`rejected <date>; excluded author (<name>)` and adds a `rejected` row to `human_review.csv`.
+
+| Author | Since | Why |
+|---|---|---|
+| Morgan W. Tingley | 2026-11-06 | asked us not to use their group's data (`dryad.fxpnvx0qj`) |
+
 ## Decision: the CSV stays the index, one issue per claim
 
 Issue #17 asked whether to turn the queue into GitHub issues, as IRW does, or keep
