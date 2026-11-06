@@ -9,7 +9,9 @@ eco_list_tables()
 \value{
 A data.frame: \code{table}, \code{n_rows}, \code{bytes}, \code{needs_login} (over the
 100 MB Redivis serves without a login; see \code{\link[=eco_fetch]{eco_fetch()}}), \code{taxa},
-\code{periods}, \code{units}, \code{traps} (logical: the side table exists).
+\code{periods}, \code{units}, \code{traps}, \code{survey_taxa} (logical: the side table
+exists), and \code{dataset}, the Redivis core shard holding it (\code{eco},
+\code{eco_2}, ...).
 }
 \description{
 One row per core table in the eco version being read (see \code{\link[=eco_version]{eco_version()}}),

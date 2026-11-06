@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """The eco version manifest: which Redivis version of each dataset was live, when.
 
-Redivis versions `eco` and `eco_meta` independently, so there is no corpus-wide
-number to cite. This file writes one down, as `releases/manifest.csv`: one row
-per eco version, each a released version of `eco` paired with the `eco_meta`
-version live at that moment. A paper cites the integer; the row says what it
+Redivis versions each dataset independently -- the core shards `eco`, `eco_2`,
+... (redivis_config.py) and `eco_meta` -- so there is no corpus-wide number to
+cite. This file writes one down, as `releases/manifest.csv`: one row per eco
+version, each a release of one or more core shards, recording the version of
+every core shard live at that moment (one `<shard>_redivis_version` column each,
+blank before a shard's first release) and the `eco_meta` version that goes with
+it. Core releases within SAME_RELEASE of each other are one eco version: Ben
+publishes the drafts together and Redivis stamps them a moment apart. A paper cites the integer; the row says what it
 was. Modelled on irw's `red_up/manifest.py` (irw#1705), without the shards and
 without the overwritten-date detection, which does not apply to a dataset
 created after Redivis' 2026-07 migration.
@@ -29,21 +33,28 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+import redivis_config as rc   # noqa: E402
+
 MANIFEST = ROOT / "releases" / "manifest.csv"
-OWNER = "datapages"
-CORE = "eco:4j5q"          # qualified reference, so a rename cannot break this
-META = "eco_meta"
+OWNER = rc.OWNER
 SAME_RELEASE = dt.timedelta(minutes=5)
-COLUMNS = ["eco_version", "date", "eco_redivis_version", "eco_meta_redivis_version", "n_tables", "note"]
+#: One version column per core shard, in registry order; eco's is the original
+#: `eco_redivis_version`, so the rows written before eco_2 keep their meaning.
+CORE_COLUMNS = [d.manifest_column for d in rc.CORE_SHARDS]
+COLUMNS = ["eco_version", "date", *CORE_COLUMNS, rc.META.manifest_column, "n_tables", "note"]
 
 
 def _iso(epoch_ms) -> str:
     return dt.datetime.fromtimestamp(epoch_ms / 1000, dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def released_versions(name: str) -> list[dict]:
+def released_versions(d: "rc.Dataset") -> list[dict]:
     """[{tag, released_at, n_tables}] for every released version, oldest first."""
     import redivis
+    import warnings
+    warnings.filterwarnings("ignore", message="No reference id")
+    name = d.qualified
     ds = redivis.organization(OWNER).dataset(name)
     if not ds.exists():
         return []
@@ -61,6 +72,32 @@ def released_versions(name: str) -> list[dict]:
     return sorted(out, key=lambda r: r["released_at"])
 
 
+def _dt(ts: str) -> dt.datetime:
+    return dt.datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")
+
+
+def core_events(shards: dict[str, list[dict]]) -> list[dict]:
+    """Merge the core shards' releases into eco versions: [{released_at, tags, n_tables}].
+
+    Releases are taken in time order; one within SAME_RELEASE of the first
+    release of the current group joins it. `tags` holds every shard's live tag
+    after the group ({column: tag or ""}); `n_tables` sums the live versions."""
+    flat = sorted(((r["released_at"], col, r) for col, rs in shards.items() for r in rs),
+                  key=lambda x: x[0])
+    live = {col: None for col in shards}
+    events: list[dict] = []
+    start = None
+    for ts, col, r in flat:
+        if start is None or _dt(ts) - _dt(start) > SAME_RELEASE:
+            start = ts
+            events.append({"released_at": ts})
+        live[col] = r
+        events[-1]["tags"] = {c: (v["tag"] if v else "") for c, v in live.items()}
+        ns = [v["n_tables"] for v in live.values() if v]
+        events[-1]["n_tables"] = sum(ns) if all(isinstance(n, int) for n in ns) else ""
+    return events
+
+
 def build(core: list[dict], meta: list[dict]) -> list[dict]:
     # An eco version's metadata is the last eco_meta release before the *next* eco
     # release (the metadata pipeline runs after the tables ship, so eco_meta for
@@ -76,8 +113,8 @@ def build(core: list[dict], meta: list[dict]) -> list[dict]:
     for i, c in enumerate(core, 1):
         until = _before(core[i]["released_at"]) if i < len(core) else "9999"
         live_meta = [m for m in meta if m["released_at"] < until]
-        rows.append({"eco_version": str(i), "date": c["released_at"], "eco_redivis_version": c["tag"],
-                     "eco_meta_redivis_version": live_meta[-1]["tag"] if live_meta else "",
+        rows.append({"eco_version": str(i), "date": c["released_at"], **c["tags"],
+                     rc.META.manifest_column: live_meta[-1]["tag"] if live_meta else "",
                      "n_tables": str(c["n_tables"]), "note": ""})
     return rows
 
@@ -86,7 +123,9 @@ def read() -> list[dict]:
     if not MANIFEST.exists():
         return []
     with MANIFEST.open(newline="", encoding="utf-8") as fh:
-        return list(csv.DictReader(fh))
+        # A shard added since the file was written has no column yet: blank,
+        # which is what it was then.
+        return [{k: (r.get(k) or "") for k in COLUMNS} for r in csv.DictReader(fh)]
 
 
 def write(rows: list[dict]) -> None:
@@ -97,7 +136,7 @@ def write(rows: list[dict]) -> None:
 
 
 def diverges(existing: list[dict], fresh: list[dict]) -> str | None:
-    keys = [c for c in COLUMNS if c not in ("note", "eco_meta_redivis_version")]
+    keys = [c for c in COLUMNS if c not in ("note", rc.META.manifest_column)]
     for e, f in zip(existing, fresh):
         for k in keys:
             if e[k] != f[k]:
@@ -120,7 +159,8 @@ def main(argv=None) -> int:
                 print("\n".join(f"{k}: {r[k]}" for k in COLUMNS)); return 0
         print(f"no eco version {args.show} in {MANIFEST}", file=sys.stderr); return 2
 
-    fresh = build(released_versions(CORE), released_versions(META))
+    fresh = build(core_events({d.manifest_column: released_versions(d) for d in rc.CORE_SHARDS}),
+                  released_versions(rc.META))
     why = diverges(existing, fresh)
     if why:
         print(f"manifest: refusing to renumber -- {why}", file=sys.stderr); return 1
@@ -133,12 +173,15 @@ def main(argv=None) -> int:
         if changed:
             print(f"manifest: stale, eco_meta version changed for eco version(s) {', '.join(changed)}"); return 1
         if new:
-            print(f"manifest: stale, {len(new)} new release(s): " + ", ".join(r["eco_redivis_version"] for r in new)); return 1
+            print(f"manifest: stale, {len(new)} new release(s): "
+                  + ", ".join(" + ".join(f"{c.removesuffix('_redivis_version')} {r[c]}" for c in CORE_COLUMNS if r[c])
+                              for r in new)); return 1
         print(f"manifest: up to date ({len(existing)} eco version(s))"); return 0
     write(fresh)
     print(f"manifest: {len(fresh)} eco version(s), {len(new)} appended -> {MANIFEST.relative_to(ROOT)}")
     for r in new:
-        print(f"  eco v{r['eco_version']}  {r['date']}  eco {r['eco_redivis_version']}  eco_meta {r['eco_meta_redivis_version'] or '-'}  {r['n_tables']} tables")
+        cores = "  ".join(f"{c.removesuffix('_redivis_version')} {r[c] or '-'}" for c in CORE_COLUMNS)
+        print(f"  eco v{r['eco_version']}  {r['date']}  {cores}  eco_meta {r[rc.META.manifest_column] or '-'}  {r['n_tables']} tables")
     return 0
 
 

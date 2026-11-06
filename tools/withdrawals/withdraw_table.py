@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Remove a core table and its side tables from the Redivis `eco` draft, so they
+"""Remove a core table and its side tables from the draft of the core shard that holds it, so they
 disappear at the next release, and record it in `releases/withdrawals.csv`.
 
     python3 tools/withdrawals/withdraw_table.py <table> --reason wrong_data --refs "#NN" --note "why"
@@ -26,8 +26,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ledger import REASONS, record  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-OWNER = "datapages"
-DATASET = "eco"
+sys.path.insert(0, str(ROOT))
+import redivis_config as rc  # noqa: E402
+
+OWNER = rc.OWNER
 
 
 def main(argv=None) -> int:
@@ -36,7 +38,8 @@ def main(argv=None) -> int:
     ap.add_argument("--reason", required=True, choices=REASONS)
     ap.add_argument("--refs", default="", help="issue numbers, e.g. '#12'")
     ap.add_argument("--note", default="")
-    ap.add_argument("--dataset", default=DATASET)
+    ap.add_argument("--dataset", default=None, choices=[d.name for d in rc.CORE_SHARDS],
+                    help="the shard to delete from (default: whichever shard holds the table)")
     args = ap.parse_args(argv)
     apply = os.environ.get("APPLY") == "1"
 
@@ -44,12 +47,28 @@ def main(argv=None) -> int:
     from red_up.auth import authenticate
     from red_up.push import open_draft
     authenticate()
-    draft = open_draft(OWNER, args.dataset)
-    names = sorted(t.name for t in draft.list_tables())
-    targets = [n for n in names if n == args.table or n.startswith(args.table + "__")]
-    if not targets:
-        print(f"no table named {args.table} (or its side tables) in {OWNER}.{args.dataset}:next", file=sys.stderr)
+    import redivis
+    found = {}
+    for shard in ([rc.shard(args.dataset)] if args.dataset else rc.CORE_SHARDS):
+        # Look without opening a draft: a shard that does not hold the table
+        # should not gain an empty draft for Ben to publish or discard.
+        try:
+            tables = redivis.organization(OWNER).dataset(shard.qualified, version="next").list_tables()
+        except Exception:
+            tables = redivis.organization(OWNER).dataset(shard.qualified).list_tables()
+        hit = sorted(t.name for t in tables if t.name == args.table or t.name.startswith(args.table + "__"))
+        if hit:
+            found[shard.name] = hit
+    if not found:
+        print(f"no table named {args.table} (or its side tables) in the draft of "
+              + (args.dataset or "any core shard"), file=sys.stderr)
         return 2
+    if len(found) > 1:
+        print(f"{args.table} is in more than one shard ({', '.join(found)}); pass --dataset", file=sys.stderr)
+        return 2
+    args.dataset, targets = next(iter(found.items()))
+    draft = open_draft(OWNER, rc.shard(args.dataset).qualified)
+    targets = [n for n in targets if draft.table(n).exists()]
     rows = {}
     for n in targets:
         try:

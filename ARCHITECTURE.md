@@ -29,7 +29,7 @@ pipeline; eco does not, and one repo means one place to look.
 | `queue/` | `candidates.csv`: inspected deposits, their `status` (`available`, `built: <table>`, `held: ...`, `blocked: ...`, `deferred: ...`) and `claimed_by`. `human_review.csv`: what was held and why. |
 | `BATCH_LOG.md` | One entry per conversion batch: built, held, what strained the standard. |
 | `site/` | Quarto website, published to GitHub Pages by `.github/workflows/site.yml`; pages read the repo's tracked files (`metadata/`, `validate/report.csv`, `__dataset.json`) at render time, and the homepage specimens and vignettes fetch tables from Redivis with the eco package. |
-| `.github/workflows/` | `tests.yml`: on every PR and push, the validator's tests (fixtures, one real table), `tools/check_coverage.py` (every `__dataset.json` records a `__taxa` side table and has dictionary, tags and metadata rows), `tools/check_prose_numbers.py` and an R parse check; offline by design, and no table is validated (#88). `validate-redivis.yml`: by hand, after a change to `eco_validate/`, re-validates every table in the Redivis draft (or latest release) and opens a PR with `validate/report.csv`. `release-eco-validate.yml`: an `eco-validate-vX.Y.Z` tag builds the wheel and attaches it to a GitHub release. `site.yml`: the website, rendered nightly when main changed and on demand, never on push. |
+| `.github/workflows/` | `tests.yml`: on every PR and push, the validator's tests (fixtures, one real table), `tools/check_coverage.py` (every `__dataset.json` records a `__taxa` side table and has dictionary, tags and metadata rows), `tools/check_prose_numbers.py`, the uploader's shard-placement and the manifest tests, `tools/check_config_parity.py` and an R parse check; offline by design, and no table is validated (#88). `validate-redivis.yml`: by hand, after a change to `eco_validate/`, re-validates every table in the Redivis draft (or latest release) and opens a PR with `validate/report.csv`. `release-eco-validate.yml`: an `eco-validate-vX.Y.Z` tag builds the wheel and attaches it to a GitHub release. `site.yml`: the website, rendered nightly when main changed and on demand, never on push. |
 | `discovery/`, `discovery_log.csv`, `discovery_summary.md` | The repository search that fed the queue. |
 | `analysis/`, `report.html`, `roundtrip_report.md` | The exploratory study's figures and reports. |
 
@@ -37,8 +37,19 @@ pipeline; eco does not, and one repo means one place to look.
 
 | Dataset | Holds | Written by |
 |---|---|---|
-| `datapages.eco` (reference `eco:4j5q`) | every core table and its side tables, next to each other; a table's kind is its key column, not its location (E10 ruling) | `upload/red_up_eco.py`, draft only |
+| `datapages.eco` (`eco:4j5q`), `datapages.eco_2` (`eco_2:3fnj`), ...: the **core shards** | every core table with its side tables beside it, in exactly one shard; a table's kind is its key column, not its location (E10 ruling) | `upload/red_up_eco.py`, draft only |
 | `datapages.eco_meta` | the pipeline's own tables: `metadata`, `biblio`, `tags`, later collections (#15) | `metadata/upload_meta.py`, draft only; the dataset is created by Ben, never by a script |
+
+**Core shards**, as in IRW (`item_response_warehouse`, `_2`, ...): Redivis caps a
+dataset at 1000 tables, so when the newest shard nears it Ben creates the next
+one and it is registered in `redivis_config.py` and `Rpkg/R/config.R`
+(`tools/check_config_parity.py` compares them in CI). A core table and its side
+tables are always in the same shard. New tables go to the newest shard (or
+`CORE_DEFAULT`); an existing table is updated where it lives and never moved; the
+uploader lists every shard first, refuses a name already in another shard, and
+refuses an upload that would take a shard past the cap. Readers (the R package,
+`validate/validate_redivis.py`) search the shards newest-first. Which shard holds
+a table is not recorded in git: the R package's `eco_list_tables()` reports it.
 
 Publishing is a human click. `releases/manifest.csv` records which Redivis version
 of each dataset each eco version names; the release checklist is `upload/README.md`.
@@ -72,7 +83,7 @@ Facts about a table live in exactly one place:
 |---|---|
 | how the table was made, what was excluded | the header of `data/<table>.R` and `notShipped` in `__dataset.json` |
 | licence, citation, DOIs | `dictionary_auto.csv` (one line) and `__dataset.json` (`intellectualRights`, `citation`) |
-| the table's data | Redivis (`datapages.eco`), never git; `data/<table>.R` rebuilds it |
+| the table's data | Redivis (a core shard: `datapages.eco`, `eco_2`, ...), never git; `data/<table>.R` rebuilds it |
 | counts, density, sample floor, columns, standard version | recorded in `__dataset.json` (`summary`, `columns`, `sideTables`) by `write_table()` at build time; `metadata/01_metadata.R` turns that into `metadata/metadata.csv` |
 | filterable attributes (taxon group, family, protocol, design, coordinates handling, status) | `tags/tags_auto.csv` (automated) and `tags/tags_human.csv` (human, wins per cell), merged into `metadata/tags.csv` |
 | corpus counts over time | `metadata/status.json`, `metadata/status_history.tsv` |
@@ -91,7 +102,7 @@ Facts about a table live in exactly one place:
 | Intake: licence, floor, naming, duplicates | `standard.md` "Intake policy"; the working checklist is `processing_guide.md` |
 | How to build a table, step by step | `.claude/skills/eco-convert-deposit/SKILL.md` (order and hard rules) and `processing_guide.md` (judgement) |
 | Which designs are in scope, and what a new family would need | `standard.md` E9, then `design_landscape.md` |
-| Redivis dataset names | `DATASET` in `upload/red_up_eco.py`; the owner comes from IRW's `redivis_config.R` through `red_up` |
+| Redivis dataset names, the core shards and where new tables go | `redivis_config.py` (Python) and `Rpkg/R/config.R` (the package), kept equal by `tools/check_config_parity.py` |
 | How anything is uploaded, and the release checklist | `upload/README.md`, then `upload/red_up_eco.py`'s docstring |
 | Which Redivis version was live as eco vN | `releases/manifest.csv`; an eco version number is a citation and is never renumbered |
 | Whether a published table was corrected, renamed or withdrawn | `releases/table_changes.csv`; `releases/withdrawals.csv` is the internal index by table name |
