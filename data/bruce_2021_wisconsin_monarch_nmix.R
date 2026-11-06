@@ -28,9 +28,12 @@
 #   Not shipped: EggsLarvaePerStem* (eggs and larvae per milkweed stem and per m2: ratios of a
 #   second response, the immature stages, whose underlying counts and stem numbers are not
 #   deposited, so they are neither a count y nor a clean covariate).
-#   Coordinates: USGS-published site coordinates kept as published (E7, agency rule). The
-#   migratory monarch is IUCN Vulnerable (2023) and proposed for US ESA listing (2024); these
-#   are public grassland properties named in the file.
+#   Coordinates (E7; re-checked in batch 46, #10, after the ruling on the publisher withdrew the agency exception):
+#   kept as published, because the taxon is not flagged under E7 as written. (b) Danaus plexippus, the taxon on every
+#   row, is IUCN LC (GBIF's IUCN record for its key, asserted); the migratory monarch D. p. plexippus is IUCN VU (2023)
+#   but GBIF holds no IUCN record for the subspecies key (7207515) and the source records the species. (a) the FGDC
+#   record does not call the monarch threatened or its sites sensitive; (c) it cites no red list. Flagged for Ben as a
+#   question (subspecies and subpopulation assessments that GBIF does not carry).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "bruce_2021_wisconsin_monarch_nmix"
 SB <- "https://www.sciencebase.gov/catalog/file/get/613f80cfd34e1449c5d35ca7?f=%s"
@@ -63,6 +66,8 @@ stopifnot(nrow(long) == 352L, sum(long$y) == 680L)
 periods <- data.table(period = 1:2, year = 2018:2019, n_sites = x[, uniqueN(Name), keyby = Year]$V1,
                       note = "summer survey season (June-August); three surveys per site")
 taxa <- make_taxa("DANPLE", "Danaus plexippus", vernacularName = "Monarch")
+stopifnot(identical(iucn_category(taxa$taxonID, taxa$scientificName), "LC"))
+taxa[, taxon_iucnCategory := "LC"]
 
 dataset <- list(
   title = "Repeated transect counts of adult monarch butterflies at 60 Wisconsin grassland sites, 2018-2019",
@@ -80,7 +85,7 @@ dataset <- list(
   geographicCoverage = list(description = "Grassland sites in northern and southern Wisconsin, USA",
                             boundingBox = list(west = min(x$XCoord), east = max(x$XCoord), south = min(x$YCoord), north = max(x$YCoord))),
   temporalCoverage = "2018-06-01/2019-08-09", crs = "EPSG:4326",
-  coordinatesCoarsened = list(value = FALSE, method = "USGS-published site coordinates kept as published (E7 agency rule); the migratory monarch is IUCN Vulnerable, and the sites are public or agency grassland properties named in the source"),
+  coordinatesCoarsened = list(value = FALSE, method = "Site coordinates as published (USGS). Not flagged under E7: Danaus plexippus is IUCN LC (GBIF IUCN record); the IUCN VU assessment of the migratory subspecies D. p. plexippus has no GBIF record, and the source states no sensitivity and cites no red list."),
   notShipped = list(EggsLarvaePerStemExcludingWhorled = "monarch eggs and larvae per milkweed stem: a ratio of a second response (immature stages) whose counts and stem numbers are not deposited",
                     EggsLarvaePerStemExcludingWhorledDBPerMSq = "monarch eggs and larvae per m2: as above"),
   notes = "Survey dates are not deposited (occasion = survey number within the summer). One site was surveyed in 2018 only; 8 site-surveys are absent (no rows). obs_milkweed_per_m2 excludes whorled milkweed (Asclepias verticillata), as in the source.")
@@ -96,4 +101,4 @@ stage_dict_row(TABLE,
   source_via = "USGS ScienceBase")
 stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (open / multi-season)",
   sampling_protocol = "transect_count", design = "Multi-season (2 summers x 3 surveys)", realm = "Terrestrial",
-  country = "USA", coordinates = "As published (agency-published, USGS)", notes = "Single species, monarch adults; IMMP protocol.")
+  country = "USA", coordinates = "As published", notes = "Single species, monarch adults; IMMP protocol.")

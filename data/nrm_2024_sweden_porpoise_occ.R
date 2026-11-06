@@ -29,9 +29,11 @@
 #   every station-day with a detection-positive-minutes value is a recording day. unit_ coordinates = the position the
 #   station's daily samples most often give; obs_decimalLatitude/Longitude = the day's logger position (redeployments move up to ~1 km);
 #   obs_depth_m.
-#   Coordinates: the stations of an agency monitoring programme, as published (E7, agency-published). The global IUCN
-#   category of the harbour porpoise is LC (the Baltic Proper subpopulation, in this range, is assessed CR as a
-#   subpopulation; the stations are kept as the agency publishes them, coordinatesCoarsened says so).
+#   Coordinates: the station positions as published. Not flagged under E7 (re-checked in batch 46, #10, after the
+#   ruling on the publisher withdrew the agency exception): (b) the taxon's IUCN category, read from its GBIF key, is LC
+#   (asserted); the Baltic Proper harbour porpoise is assessed CR by IUCN as a subpopulation, which is not a taxon with a
+#   key of its own, so (b) as written does not reach it; (a) the deposit (EML, event, occurrence and eMoF files) says
+#   nothing about sensitive locations or a threatened status; (c) it cites no national red list.
 # Not shipped: the 178 monthly-summary samples and the 'detection positive days per month' values (aggregates of the
 #   daily rows); laboratory and programme fields (constant).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -106,7 +108,7 @@ dataset <- list(
   occasionKind = "time", taxonInclusion = "single", crs = "EPSG:4619 (SWEREF99 geographic, as published; within a metre of WGS 84)",
   geographicCoverage = "Swedish waters of the Baltic Sea, Kattegat and Skagerrak",
   temporalCoverage = "2015-10/2023-10",
-  coordinatesCoarsened = list(value = FALSE, method = "Station positions of the national monitoring programme as published by the Swedish agencies (E7, agency-published). The species is IUCN LC globally; the Baltic Proper subpopulation is assessed CR as a subpopulation, and the agencies publish these stations."),
+  coordinatesCoarsened = list(value = FALSE, method = "Station positions as published. Not flagged (E7): the species is IUCN LC (GBIF IUCN record); the Baltic Proper subpopulation's CR assessment is for a subpopulation, not a taxon, so criterion (b) does not apply; the source states no sensitivity and cites no red list."),
   covariateNote = "y_raw = detection-positive minutes in the day (0-1440); obs_irregular_setting = 1 where the source marks the day as recorded wholly or partly with the irregular C-POD setting (8 cycles), else 0; obs_decimalLatitude / obs_decimalLongitude = the logger's position on the day (deployments move by up to about 1 km within a station; 350 days at NMN1 and 1031 give positions 4.5-19 km off, probably mistyped longitudes, kept as published; unit_ coordinates are the station's most frequent position); obs_depth_m = water depth at the station as given on the sample, NA where not given.",
   notShipped = list(`overlapping logger-days` = sprintf("%d station-days recorded by a second, overlapping logger (%s); the earlier-deployed logger's day is kept", nrow(ovl), paste(unique(ovl$locality), collapse = ", ")),
                     `monthly summaries` = "178 first-of-month samples that merge two logger files around an exchange and carry only 'detection positive days per month' (aggregates of the daily rows)",

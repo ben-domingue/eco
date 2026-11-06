@@ -37,9 +37,11 @@
 #   _fall, unit_tri (habitat values; the RSF is the authors' habitat model from other data, not from these
 #   detections); obs_days_active (NDays; effortColumn), obs_end_date, obs_n_detections (NTotal), obs_n_events
 #   (NEvents), obs_n_family_events, obs_n_yoy_events, obs_yoy_detected (YOY).
-#   Coordinates (E7): grizzly bear is IUCN LC; it is a species at risk in Canada (Special Concern under SARA), but
-#   the camera positions are published by the agency that collected them (Parks Canada; the UTM coordinates are in
-#   every site name) on public land (national parks, Ya Ha Tinda), so they are kept as published (E7 agency rule).
+#   Coordinates (E7; re-checked in batch 46, #10, after the ruling on the publisher withdrew the agency exception):
+#   not flagged, so kept as published. (b) grizzly bear is IUCN LC (asserted); (a) the deposit does not call the bear
+#   threatened or its locations sensitive (its abstract speaks of "species at risk" in general only); (c) it cites no
+#   red list (the bear is Special Concern under Canada's SARA, which the deposit does not cite and which is not a
+#   threatened category).
 # Not shipped: the spatial mark-resight part (detect_marked, gps_day telemetry, tbl_juvenile, state-space pixels,
 #   distances, shapefiles): marked-animal resighting with telemetry is not an E9 design; site summaries
 #   (site_cam nSpecies, NDays, NEvents, NDetectDays, DetectRate14) and detect_year_cam (aggregates); the
@@ -120,7 +122,7 @@ dataset <- list(
   closure = "open", closureNote = "occasions span May to October each year; bears move widely across that season, so occupancy within a year is site use. Years are periods.",
   occasionKind = "time", taxonInclusion = "single",
   crs = "EPSG:26911",
-  coordinatesCoarsened = list(value = FALSE, method = "camera positions as published by Parks Canada (UTM zone 11N NAD83, also embedded in every site name) on public land; grizzly bear is IUCN LC and Special Concern under Canada's SARA, kept under the E7 agency rule"),
+  coordinatesCoarsened = list(value = FALSE, method = "camera positions as published (UTM zone 11N NAD83, also embedded in every site name). Not flagged (E7): grizzly bear is IUCN LC (GBIF IUCN record), the deposit states no sensitivity or threatened status and cites no red list."),
   geographicCoverage = "Banff, Kootenay and Yoho National Parks and the Ya Ha Tinda ecosystem, Rocky Mountains, Alberta and British Columbia, Canada (UTM 11N 482334-629027 E, 5607028-5787216 N)",
   temporalCoverage = "2012-05/2021-10",
   covariateNote = "unit_type: trail, rubtree (rub tree or mineral lick), underpass, overpass (overpass or open-span underpass); unit_rubtree / unit_underpass / unit_overpass: 0/1 as deposited. unit_rsf: mean grizzly resource selection function value (30 m); unit_rsf_spring / _summer / _fall: seasonal RSF bins 0-10; unit_tri: vector ruggedness. obs_days_active: days the camera ran in the occasion (as deposited, up to 16 in a 14-day window). obs_n_detections, obs_n_events: detections and detection events (NTotal, NEvents); obs_n_family_events, obs_n_yoy_events: family-group events and events with cubs of the year; obs_yoy_detected: a cub of the year was seen (0/1). date is the occasion start, obs_end_date its end.",
@@ -141,5 +143,5 @@ stage_dict_row(TABLE,
   source_via = "Dryad (version zip)")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Dynamic occupancy (single species, camera)",
   sampling_protocol = "camera_trap", design = "Multi-season (10 years x 14 occasions of 14 days; 625 camera sites)",
-  realm = "Terrestrial", country = "CAN", coordinates = "As published (agency-published, Parks Canada; UTM 11N)",
+  realm = "Terrestrial", country = "CAN", coordinates = "As published (UTM 11N)",
   notes = "Unmarked grizzly detections from a spatial mark-resight study; collared-bear resightings and telemetry not shipped.")

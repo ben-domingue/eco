@@ -24,8 +24,8 @@
   "temporalCoverage": "1966-01/2024-02",
   "crs": "EPSG:4326",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "Sector centre points as published by the scheme for the Swedish Environmental Protection Agency (data owner), uncertainty 8 km; kept as published (E7, agency-published census areas). Taxa IUCN VU in this range are in the table: Aythya ferina (VU), Melanitta fusca (VU), Clangula hyemalis (VU), Polysticta stelleri (VU), Podiceps auritus (VU), Fratercula arctica (VU)."
+    "value": true,
+    "method": "coarsen_coords(): the published sector centres snapped to their 0.1-degree cell centre, because taxa IUCN VU in their native range are in the table (E7, ruling on the publisher 2026-11-06, which withdrew the agency exception): Aythya ferina (VU), Melanitta fusca (VU), Clangula hyemalis (VU), Polysticta stelleri (VU), Podiceps auritus (VU), Fratercula arctica (VU). Uncertainty = the source's 8,000 m plus the cell half-diagonal. haas_2025_sweden_waterbird_exact_count keeps the other taxa at the published centres."
   },
   "covariateNote": "obs_method = how the sector was counted (land, boat, aeroplane, not recorded); obs_snow_ice_cover = snow and ice cover as the source records it (text), NA where not recorded; unit_location_type = coastal or inland sector; unit_area_km2 = sector area; observer = the source's pseudonymous recorder id, NA where not given.",
   "notes": "The census year (period) is the source's season: 45 counts made in December belong to the following January's census, and 91 counts in March 2021-2022 to that year's. Midwinter counts: one count per sector-year by default, so most of the replication is across years (an annual index); counts by two methods in one year are occasions. Melanitta is a genus-level taxon (scoters not identified to species). Names are the source's (Dyntaxa) spelling; vernacularName is Swedish.",
@@ -52,7 +52,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_county", "unit_location_type", "unit_area_km2", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_method", "obs_snow_ice_cover"],
-  "coreMd5": "f84625dfead5040d780111d6e615e8aa",
+  "coreMd5": "e02935df6ad5905066f8993e200d887a",
   "sideTables": {
     "periods": {
       "rows": 59,

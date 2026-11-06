@@ -35,7 +35,7 @@
   "crs": "EPSG:4326",
   "coordinatesCoarsened": {
     "value": false,
-    "method": "USGS-published site coordinates kept as published (E7 agency rule); the migratory monarch is IUCN Vulnerable, and the sites are public or agency grassland properties named in the source"
+    "method": "Site coordinates as published (USGS). Not flagged under E7: Danaus plexippus is IUCN LC (GBIF IUCN record); the IUCN VU assessment of the migratory subspecies D. p. plexippus has no GBIF record, and the source states no sensitivity and cites no red list."
   },
   "notShipped": {
     "EggsLarvaePerStemExcludingWhorled": "monarch eggs and larvae per milkweed stem: a ratio of a second response (immature stages) whose counts and stem numbers are not deposited",
@@ -59,6 +59,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "unit_region", "unit_decimalLatitude", "unit_decimalLongitude", "unit_patch_area_ha", "unit_avgpatch_area_10km_ha", "unit_isolation_patch_enn_m", "unit_isolation_avg_enn_10km_m", "unit_cohesion_10km", "unit_grass_prop_10km", "unit_road_density_10km", "unit_forest_edge_density_10km", "obs_nectar_species", "obs_milkweed_per_m2"],
+  "coreMd5": "40763a213c718004c68752ea6764db4f",
   "sideTables": {
     "periods": {
       "rows": 2,
@@ -67,12 +68,12 @@
     },
     "taxa": {
       "rows": 1,
-      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
-      "md5": "77c514c52e3b21eb693cd3eb01beea8d"
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "3d6665331b87eed085afb00564403852"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/bruce_2021_wisconsin_monarch_nmix.R",
-  "buildDate": "2026-11-03"
+  "buildDate": "2026-11-06"
 }

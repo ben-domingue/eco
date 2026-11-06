@@ -32,7 +32,14 @@
 #   on 7,704 of their 8,520 detection rows, while 544 others say 1, so a blank is not a known count), date, y = sum of Number_Detected over the visit's rows for the taxon (all distances and time blocks);
 #   obs_n_previous_station = the part of y flagged "Detected at a previous station". surveyEvidence = row_presence
 #   (NONE rows mark visits and blocks with no bird). taxonInclusion = recorded. unit_park, unit_elevation_m and
-#   coordinates (the station's median over its records; NPS-published coordinates kept as published, E7).
+#   coordinates (the station's median over its records).
+#   Coordinates (E7; batch 46, #10): Tricolored Blackbird (EN), Evening Grosbeak and Pinyon Jay (VU) are in the table
+#   (asserted from GBIF's IUCN records; all within their native range), so under the ruling on the publisher
+#   (2026-11-06, which withdrew the agency exception) two tables ship (E7 scope, 3): this one, every taxon, with station
+#   coordinates snapped to their 0.1-degree cell centre and elevation rounded to the nearest 100 m; and
+#   klmn_2026_klamath_landbird_exact_count, at the published coordinates and elevations, without the three flagged
+#   species (unidentified codes such as UNBL blackbird sp. stay in both tables). Station and route codes are the source's codes (park prefix + number), and
+#   unit_park is a park code, kept in both: a park is coarser than the cell for all but Oregon Caves.
 #   Not shipped: distance and time block of each detection, detection type, breeding status (a distance-sampling
 #   or time-removal table could be built from them); weather (see above); vegetation surveys.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -147,34 +154,53 @@ stopifnot(nrow(bad) == 0L)
 taxa[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
 print(taxa[taxon_iucnCategory %in% c("CR", "EN", "VU", "NT"), .(taxon, scientificName, taxon_iucnCategory)])
 periods <- data.table(period = seq_along(yrs), year = yrs, n_visits = vis[, .N, by = period][order(period), N])
-dataset <- list(
-  title = "Point counts of landbirds at stations on park routes of the NPS Klamath Network (Crater Lake, Lava Beds, Lassen Volcanic, Oregon Caves, Redwood, Whiskeytown), 2010-2025",
-  creator = "Klamath Inventory and Monitoring Network; Klamath Bird Observatory", pubDate = "2026",
-  doi = "10.57830/2319461", sourceURL = "https://doi.org/10.57830/2319461",
-  citation = "Klamath Inventory and Monitoring Network and Klamath Bird Observatory (2026). Klamath Network Landbird Point Count Monitoring Data Package 2008-2025. National Park Service, Fort Collins, CO. https://doi.org/10.57830/2319461",
-  intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Long-term landbird monitoring by the National Park Service Klamath Inventory and Monitoring Network with the Klamath Bird Observatory: variable circular plot point counts at stations along routes in six park units of northern California and southern Oregon, 2008-2025, with species, time block, distance, detection type and breeding status per detection.",
-  samplingProtocol = "Variable circular plot point counts at stations on routes of up to 12 stations in a rotating panel of routes per park; each detection recorded with time block, distance, detection type and whether the bird was already detected at a previous station; time blocks with no birds recorded as 'Surveyed - No Birds'.",
-  samplingProtocolCode = "point_count", surveyEvidence = "row_presence",
-  responseType = "count", unitKind = "site", closure = "none",
-  closureNote = "Each station is counted once in a year it is surveyed (2010-2025); years are periods. Routes are surveyed in rotating panels, so a station's periods are not consecutive; replication is across years (and across a route's stations, cluster_id).",
-  occasionKind = "none", taxonInclusion = "recorded",
-  geographicCoverage = "Six NPS units of the Klamath Network: Crater Lake NP and Oregon Caves NM (Oregon), Lava Beds NM, Lassen Volcanic NP, Redwood National and State Parks, Whiskeytown NRA (California), USA",
-  temporalCoverage = "2010-05/2025-08",
-  coordinatesCoarsened = list(value = FALSE, method = "Station coordinates as published by the National Park Service on its own land (agency rule, E7), although the table includes IUCN-listed species (Tricolored Blackbird EN; Evening Grosbeak and Pinyon Jay VU); median of the station's records; 5 surveyed stations have no coordinates in the source"),
-  covariateNote = "cluster_id: route. unit_park: NPS unit code. unit_elevation_m: station elevation. obs_n_previous_station: individuals of the taxon in y that were flagged as detected at a previous station on the route.",
-  notShipped = list(years_2008_2009 = sprintf("%d station-visits of 2008-2009: Number_Detected is blank on most detection rows, so counts are unknown", n_0809),
-                    detection_detail = "distance, time block, detection type, habitat and breeding status of each detection",
-                    non_birds = sprintf("%d records of mammals, a snake or a frog (cow, red fox, squirrel, chipmunk, deer)", n_nonbird),
-                    weather = "station weather (duplicated and unmatched station-dates in the weather file)",
-                    vegetation = "vegetation and composition surveys; route species checklists; photographs"),
-  notes = "y sums all individuals of the taxon over the visit's time blocks and distances, including birds flagged as detected at a previous station (their number is in obs_n_previous_station). Unidentified bird groups (e.g. warbler sp.) are taxa without a GBIF key.")
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/klmn_2026_klamath_landbird_count.R")
-stage_dict_row(TABLE,
-  description = "Landbird point counts at stations on routes in six NPS Klamath Network parks, northern California and southern Oregon, 2010-2025 (2008-2009 counts incomplete in the source).",
-  url = "https://doi.org/10.57830/2319461", reference = "", doi_paper = "", doi_data = "10.57830/2319461",
-  original_license = "CC0 1.0 (public domain, NPS EML intellectualRights)", derived_license = "CC0 1.0",
-  notes = "NPS IRMA DataStore data package, version 3.", source_via = "NPS IRMA DataStore (DownloadFile)")
-stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Community abundance (repeated counts)",
-  sampling_protocol = "point_count", design = "Multi-season (15 years, rotating route panels)",
-  realm = "Terrestrial", country = "USA", coordinates = "As published", notes = "NPS agency coordinates; distance data not shipped.")
+fl_sp <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU"), taxon]
+stopifnot(setequal(fl_sp, c("TRBL", "EVGR", "PIJA")))
+fl <- fl_sp   # E7 scope 3: the sibling drops the flagged species; unidentified codes (blackbird sp., ...) stay in both
+stopifnot(all(fl %in% taxa$taxon))
+flag <- taxa[taxon %in% fl_sp, sprintf("%s (%s)", scientificName, taxon_iucnCategory)]
+cc <- coarsen_coords(long$unit_decimalLatitude, long$unit_decimalLongitude, 0.1)
+long_c <- copy(long)[, `:=`(unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon,
+                             unit_coordinateUncertaintyInMeters = cc$uncertainty_m,
+                             unit_elevation_m = round(unit_elevation_m, -2))]
+long_c <- order_eco(long_c)
+EXACT <- "klmn_2026_klamath_landbird_exact_count"
+emit <- function(TABLE, exact) {
+  lt <- if (exact) long[!taxon %in% fl] else long_c
+  tt <- if (exact) taxa[!taxon %in% fl] else taxa
+  stopifnot(nrow(lt) == nrow(vis) * nrow(tt))
+  dataset <- list(
+    title = paste0("Point counts of landbirds at stations on park routes of the NPS Klamath Network (Crater Lake, Lava Beds, Lassen Volcanic, Oregon Caves, Redwood, Whiskeytown), 2010-2025", if (exact) " (without IUCN-threatened species; coordinates as published)" else ""),
+    creator = "Klamath Inventory and Monitoring Network; Klamath Bird Observatory", pubDate = "2026",
+    doi = "10.57830/2319461", sourceURL = "https://doi.org/10.57830/2319461",
+    citation = "Klamath Inventory and Monitoring Network and Klamath Bird Observatory (2026). Klamath Network Landbird Point Count Monitoring Data Package 2008-2025. National Park Service, Fort Collins, CO. https://doi.org/10.57830/2319461",
+    intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
+    abstract = "Long-term landbird monitoring by the National Park Service Klamath Inventory and Monitoring Network with the Klamath Bird Observatory: variable circular plot point counts at stations along routes in six park units of northern California and southern Oregon, 2008-2025, with species, time block, distance, detection type and breeding status per detection.",
+    samplingProtocol = "Variable circular plot point counts at stations on routes of up to 12 stations in a rotating panel of routes per park; each detection recorded with time block, distance, detection type and whether the bird was already detected at a previous station; time blocks with no birds recorded as 'Surveyed - No Birds'.",
+    samplingProtocolCode = "point_count", surveyEvidence = "row_presence",
+    responseType = "count", unitKind = "site", closure = "none",
+    closureNote = "Each station is counted once in a year it is surveyed (2010-2025); years are periods. Routes are surveyed in rotating panels, so a station's periods are not consecutive; replication is across years (and across a route's stations, cluster_id).",
+    occasionKind = "none", taxonInclusion = "recorded",
+    geographicCoverage = "Six NPS units of the Klamath Network: Crater Lake NP and Oregon Caves NM (Oregon), Lava Beds NM, Lassen Volcanic NP, Redwood National and State Parks, Whiskeytown NRA (California), USA",
+    temporalCoverage = "2010-05/2025-08",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("Station coordinates as published by the National Park Service (median of the station's records; 5 surveyed stations have no coordinates in the source). The IUCN-threatened species (%s) are not in this table (E7 scope, 3); klmn_2026_klamath_landbird_count has them, coarsened.", paste(flag, collapse = ", "))) else
+      list(value = TRUE, method = sprintf("coarsen_coords(): station coordinates (median of the station's records) snapped to the 0.1-degree cell centre, uncertainty the cell half-diagonal, and elevation rounded to the nearest 100 m, because IUCN-threatened species are in the table within their native range (%s; E7, ruling on the publisher 2026-11-06, which withdrew the agency exception); 5 surveyed stations have no coordinates in the source. klmn_2026_klamath_landbird_exact_count keeps the other taxa at published precision.", paste(flag, collapse = ", "))),
+    covariateNote = "cluster_id: route. unit_park: NPS unit code. unit_elevation_m: station elevation. obs_n_previous_station: individuals of the taxon in y that were flagged as detected at a previous station on the route.",
+    notShipped = c(if (exact) list(threatened = sprintf("%s: in klmn_2026_klamath_landbird_count only, with coarsened coordinates (E7 scope, 3)", paste(flag, collapse = ", "))), list(years_2008_2009 = sprintf("%d station-visits of 2008-2009: Number_Detected is blank on most detection rows, so counts are unknown", n_0809),
+                      detection_detail = "distance, time block, detection type, habitat and breeding status of each detection",
+                      non_birds = sprintf("%d records of mammals, a snake or a frog (cow, red fox, squirrel, chipmunk, deer)", n_nonbird),
+                      weather = "station weather (duplicated and unmatched station-dates in the weather file)",
+                      vegetation = "vegetation and composition surveys; route species checklists; photographs")),
+    notes = "y sums all individuals of the taxon over the visit's time blocks and distances, including birds flagged as detected at a previous station (their number is in obs_n_previous_station). Unidentified bird groups (e.g. warbler sp.) are taxa without a GBIF key.")
+  ds <- write_table(lt, TABLE, dataset, taxa = tt, periods = periods, script = "data/klmn_2026_klamath_landbird_count.R")
+  stage_dict_row(TABLE,
+    description = paste0("Landbird point counts at stations on routes in six NPS Klamath Network parks, northern California and southern Oregon, 2010-2025 (2008-2009 counts incomplete in the source)", if (exact) "; without IUCN-threatened species, coordinates as published." else "; coordinates coarsened to 0.1 degree."),
+    url = "https://doi.org/10.57830/2319461", reference = "", doi_paper = "", doi_data = "10.57830/2319461",
+    original_license = "CC0 1.0 (public domain, NPS EML intellectualRights)", derived_license = "CC0 1.0",
+    notes = paste0("NPS IRMA DataStore data package, version 3.", if (exact) " E7 sibling without IUCN-threatened species." else " Coordinates coarsened to 0.1 degree (IUCN EN/VU species)."), source_via = "NPS IRMA DataStore (DownloadFile)")
+  stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Community abundance (repeated counts)",
+    sampling_protocol = "point_count", design = "Multi-season (15 years, rotating route panels)",
+    realm = "Terrestrial", country = "USA", coordinates = if (exact) "As published" else "Coarsened (0.1 deg)", notes = "Distance data not shipped.")
+}
+emit("klmn_2026_klamath_landbird_count", exact = FALSE)
+emit(EXACT, exact = TRUE)

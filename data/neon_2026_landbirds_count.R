@@ -41,6 +41,11 @@
 #   below the cut, and the per-detection distance/minute/method (sibling table
 #   neon_2026_landbirds_ds carries distance bins). Species cut: MIN_DET = 100 clusters keeps
 #   the core under 8 million rows (50, the Snapshot USA cut, gave 333 species and 8.8 M).
+# Coordinates (E7; batch 46, #10): chimney swift, pinyon jay, long-tailed duck, Puerto Rican bullfinch and Puerto
+#   Rican nightjar are IUCN VU (GBIF IUCN records, asserted) and are shipped, within their native ranges. Under the
+#   ruling on the publisher (2026-11-06, which withdrew the agency exception) two tables ship (E7 scope, 3): this one,
+#   every species, with the point coordinates in __units snapped to their 0.1-degree cell centre and elevation rounded
+#   to 100 m; and neon_2026_landbirds_exact_count, at NEON's coordinates, without the five species.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE   <- "neon_2026_landbirds_count"
 PRODUCT <- "DP1.10003.001"; RELEASE <- "RELEASE-2026"; MIN_DET <- 100L
@@ -127,43 +132,68 @@ cat(sprintf("  %d counts at %d points, %d sites, %d years; %d rows\n", nrow(evt)
 
 taxa <- make_taxa(species$taxonID, species$scientificName, vernacularName = species$vernacularName)
 periods <- periods[, .(period, year)]
-dataset <- list(
-  title = sprintf("NEON breeding landbird point counts, RELEASE-2026: individuals of %d species per 6-minute count at %d points across %d NEON sites, %d-%d", nrow(species), uniqueN(evt$unit), uniqueN(evt$siteID), min(evt$year), max(evt$year)),
-  creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = "10.48443/v6hs-mx57",
-  sourceURL = "https://data.neonscience.org/data-products/DP1.10003.001/RELEASE-2026",
-  citation = "NEON (National Ecological Observatory Network). Breeding landbird point counts (DP1.10003.001), RELEASE-2026. https://doi.org/10.48443/v6hs-mx57. Dataset accessed from https://data.neonscience.org/data-products/DP1.10003.001/RELEASE-2026 on 2026-11-02",
-  intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
-  abstract = sprintf("NEON's breeding landbird survey: 6-minute point counts, once or twice per breeding season, at grids of nine points (large sites) or single points (small sites) on every NEON terrestrial site, with every individual recorded by minute, distance, detection method and cluster. This table aggregates the per-detection records to the number of individuals of each species per count for the %d species with at least %d detected clusters over the release; every shipped species carries a row at every count. Unit coordinates are the point coordinates NEON publishes. Sibling table neon_2026_landbirds_ds holds the same counts as distance-bin cells.", nrow(species), MIN_DET),
-  samplingProtocol = "6-minute unlimited-radius point counts between dawn and 3.5 h after sunrise, May-July, by trained observers; each individual or cluster recorded with minute of first detection, radial distance (laser rangefinder), detection method and cluster size; one or two bouts per year (NEON TOS protocol for breeding landbird sampling)",
-  samplingProtocolCode = "point_count", surveyEvidence = "sample_table",
-  surveyEvidenceNote = "brd_perpoint lists every point-count event; a count exists iff samplingImpractical == OK and at least one brd_countdata row (a targetTaxaPresent = N row records a count with no detections). Species pool is national: every shipped species at every count.",
-  responseType = "count", unitKind = "site",
-  closure = "closed", closureNote = "occasion = bout within the breeding season (1-2 counts per point per year); period = calendar year", occasionKind = "time", taxonInclusion = "recorded",
-  geographicCoverage = sprintf("47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; point coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
-  temporalCoverage = sprintf("%s/%s", substr(min(evt$startDate), 1, 10), substr(max(evt$startDate), 1, 10)),
-  crs = "EPSG:4326 (WGS 84), as published",
-  coordinatesCoarsened = list(value = FALSE, method = "As published by NEON (agency-published point coordinates); no coarsening. Species of concern are already reported by NEON at a higher taxonomic rank ('fuzzed') or withheld at some sites, and those records are not shipped"),
-  occasionLength = "6 minutes",
-  components = list(neon_2026_landbirds_ds = "the same counts as distance-bin cells (multinomial_cell, four bins) for the species with >= 2000 clusters"),
-  covariateNote = "obs_air_temp_c, obs_wind_kmh, obs_cloud_pct (start of count), obs_rh_pct (start) and obs_habitat are the observer's field records per count; end-of-count cloud and RH are not carried. Point-level facts (site, domain, NEON namedLocation, plot type, NLCD class, coordinates, coordinate uncertainty, elevation) are in __units; the core carries unit_site only, to keep an 8-figure table narrow. NEON publishes the grid centre for the nine points of a bird grid (coordinateUncertaintyInMeters ~250 m), so points of one grid share coordinates; single-point arrays carry the point itself.",
-  notes = sprintf("Taxa: the %d species-rank taxa with >= %d clusters; %d species below the cut are listed in notShipped. Clusters: records sharing a clusterCode within a count and species are one cluster counted once (first minute). %d duplicated perpoint rows and %d point-year-bouts counted twice keep the first record; 5 counts whose countdata start time differs from the perpoint start time are re-keyed by point and day; %d detection records at PUUM with no clusterSize count one individual each. Period = calendar year, so a point surveyed in one bout only has one occasion that year.", nrow(species), MIN_DET, nrow(below), nrow(dup), nrow(rep_ev), na_size),
-  notShipped = list(
-    `minute 88` = sprintf("%d detections outside the 6-minute count period", n88),
-    `higher-rank and subspecies IDs` = paste(sprintf("%s: %d", names(rank_tab)[names(rank_tab) != "species"], rank_tab[names(rank_tab) != "species"]), collapse = "; "),
-    `species below the cut` = paste(sprintf("%s (%s, %d)", below$taxonID, below$scientificName, below$n_det), collapse = "; "),
-    `per-detection fields` = "pointCountMinute, observerDistance, detectionMethod, visualConfirmation, sexOrAge (aggregated to counts here; distance bins in the sibling table)",
-    `events not counted` = "samplingImpractical other/logistical rows and OK rows without countdata"))
-ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, units = units, script = "data/neon_2026_landbirds_count.R")
+# E7 (batch 46, #10; ruling on the publisher, 2026-11-06, which withdrew the agency exception): taxa IUCN CR/EN/VU in
+# their native range are in the table, so it ships with coarsened reach / plot coordinates, and neon_2026_landbirds_exact_count without them
+# at NEON's published coordinates (E7 scope, 3)
+NONNATIVE <- character()
+taxa[, taxon_iucnCategory := unname(mapply(iucn_category, taxonID, scientificName))]
+fl_sp <- taxa[taxon_iucnCategory %in% c("CR", "EN", "VU") & !taxon %in% NONNATIVE, taxon]
+stopifnot(setequal(fl_sp, c("PRBU", "LTDU", "CHSW", "PIJA", "PRNI")))
+fl <- fl_sp   # E7 scope 3: the sibling drops the flagged taxa; records identified only to a higher rank stay
+flag <- taxa[taxon %in% fl_sp, sprintf("%s (%s)", scientificName, taxon_iucnCategory)]
+cat("  flagged:", paste(flag, collapse = "; "), "\n")
+cg <- coarsen_coords(units$decimalLatitude, units$decimalLongitude, 0.1)
+units_c <- copy(units)[, `:=`(decimalLatitude = cg$lat, decimalLongitude = cg$lon, coordinateUncertaintyInMeters = cg$uncertainty_m)]
+if ("elevation_m" %in% names(units_c)) units_c[, elevation_m := round(elevation_m, -2)]
+EXACT <- "neon_2026_landbirds_exact_count"
+emit <- function(TABLE, exact) {
+  lt <- if (exact) long[!taxon %in% fl] else long
+  tt <- if (exact) taxa[!taxon %in% fl] else taxa
+  ut <- if (exact) units else units_c
+  nt <- nrow(tt)
+  dataset <- list(
+    title = paste0(sprintf("NEON breeding landbird point counts, RELEASE-2026: individuals of %d species per 6-minute count at %d points across %d NEON sites, %d-%d", nt, uniqueN(evt$unit), uniqueN(evt$siteID), min(evt$year), max(evt$year)), if (exact) " (without IUCN-threatened taxa; coordinates as published)" else ""),
+    creator = "NEON (National Ecological Observatory Network)", pubDate = "2026", doi = "10.48443/v6hs-mx57",
+    sourceURL = "https://data.neonscience.org/data-products/DP1.10003.001/RELEASE-2026",
+    citation = "NEON (National Ecological Observatory Network). Breeding landbird point counts (DP1.10003.001), RELEASE-2026. https://doi.org/10.48443/v6hs-mx57. Dataset accessed from https://data.neonscience.org/data-products/DP1.10003.001/RELEASE-2026 on 2026-11-02",
+    intellectualRights = list(spdx = "CC-BY-4.0", url = "https://creativecommons.org/licenses/by/4.0/"),
+    abstract = sprintf("NEON's breeding landbird survey: 6-minute point counts, once or twice per breeding season, at grids of nine points (large sites) or single points (small sites) on every NEON terrestrial site, with every individual recorded by minute, distance, detection method and cluster. This table aggregates the per-detection records to the number of individuals of each species per count for the %d species with at least %d detected clusters over the release; every shipped species carries a row at every count. Unit coordinates are the point coordinates NEON publishes. Sibling table neon_2026_landbirds_ds holds the same counts as distance-bin cells.", nt, MIN_DET),
+    samplingProtocol = "6-minute unlimited-radius point counts between dawn and 3.5 h after sunrise, May-July, by trained observers; each individual or cluster recorded with minute of first detection, radial distance (laser rangefinder), detection method and cluster size; one or two bouts per year (NEON TOS protocol for breeding landbird sampling)",
+    samplingProtocolCode = "point_count", surveyEvidence = "sample_table",
+    surveyEvidenceNote = "brd_perpoint lists every point-count event; a count exists iff samplingImpractical == OK and at least one brd_countdata row (a targetTaxaPresent = N row records a count with no detections). Species pool is national: every shipped species at every count.",
+    responseType = "count", unitKind = "site",
+    closure = "closed", closureNote = "occasion = bout within the breeding season (1-2 counts per point per year); period = calendar year", occasionKind = "time", taxonInclusion = "recorded",
+    geographicCoverage = sprintf("47 NEON terrestrial sites in 20 domains, continental USA, Alaska, Hawaii and Puerto Rico; point coordinates as published by NEON (WGS 84) in __units; latitude %.1f to %.1f, longitude %.1f to %.1f", min(units$decimalLatitude), max(units$decimalLatitude), min(units$decimalLongitude), max(units$decimalLongitude)),
+    temporalCoverage = sprintf("%s/%s", substr(min(evt$startDate), 1, 10), substr(max(evt$startDate), 1, 10)),
+    crs = "EPSG:4326 (WGS 84), as published",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = sprintf("As published by NEON (coordinates with coordinateUncertaintyInMeters in __units). The IUCN-threatened taxa (%s) are not in this table (E7 scope, 3); neon_2026_landbirds_count has them, with coordinates coarsened.", paste(flag, collapse = ", "))) else
+      list(value = TRUE, method = sprintf("coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (%s; E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_landbirds_exact_count keeps the other taxa at published precision.", paste(flag, collapse = ", "))),
+    occasionLength = "6 minutes",
+    components = list(neon_2026_landbirds_ds = "the same counts as distance-bin cells (multinomial_cell, four bins) for the species with >= 2000 clusters"),
+    covariateNote = "obs_air_temp_c, obs_wind_kmh, obs_cloud_pct (start of count), obs_rh_pct (start) and obs_habitat are the observer's field records per count; end-of-count cloud and RH are not carried. Point-level facts (site, domain, NEON namedLocation, plot type, NLCD class, coordinates, coordinate uncertainty, elevation) are in __units; the core carries unit_site only, to keep an 8-figure table narrow. NEON publishes the grid centre for the nine points of a bird grid (coordinateUncertaintyInMeters ~250 m), so points of one grid share coordinates; single-point arrays carry the point itself.",
+    notes = sprintf("Taxa: the %d species-rank taxa with >= %d clusters; %d species below the cut are listed in notShipped. Clusters: records sharing a clusterCode within a count and species are one cluster counted once (first minute). %d duplicated perpoint rows and %d point-year-bouts counted twice keep the first record; 5 counts whose countdata start time differs from the perpoint start time are re-keyed by point and day; %d detection records at PUUM with no clusterSize count one individual each. Period = calendar year, so a point surveyed in one bout only has one occasion that year.", nt, MIN_DET, nrow(below), nrow(dup), nrow(rep_ev), na_size),
+    notShipped = c(if (exact) list(threatened = sprintf("%s; records identified only to a higher rank stay in both tables: in neon_2026_landbirds_count only, with coarsened coordinates (E7 scope, 3)", paste(flag, collapse = ", "))), list(
+      `minute 88` = sprintf("%d detections outside the 6-minute count period", n88),
+      `higher-rank and subspecies IDs` = paste(sprintf("%s: %d", names(rank_tab)[names(rank_tab) != "species"], rank_tab[names(rank_tab) != "species"]), collapse = "; "),
+      `species below the cut` = paste(sprintf("%s (%s, %d)", below$taxonID, below$scientificName, below$n_det), collapse = "; "),
+      `per-detection fields` = "pointCountMinute, observerDistance, detectionMethod, visualConfirmation, sexOrAge (aggregated to counts here; distance bins in the sibling table)",
+      `events not counted` = "samplingImpractical other/logistical rows and OK rows without countdata")))
+  # over 5 M rows: period parts, one per year (batch 46; the table was a single CSV before)
+  ds <- write_table_parts(as.list(periods$period), function(pp) lt[period %in% pp], TABLE, dataset, taxa = tt, periods = periods,
+                          units = ut, script = "data/neon_2026_landbirds_count.R")
 
-stage_dict_row(TABLE,
-  description = sprintf("Number of individuals of %d bird species per 6-minute point count at %d points on 47 NEON terrestrial sites, %d-%d (one or two bouts per breeding season), built from NEON's per-detection records (RELEASE-2026) with observer, date-time, weather and habitat per count and point coordinates as published.", nrow(species), uniqueN(evt$unit), min(evt$year), max(evt$year)),
-  url = "https://data.neonscience.org/data-products/DP1.10003.001/RELEASE-2026",
-  reference = "NEON (National Ecological Observatory Network). Breeding landbird point counts (DP1.10003.001), RELEASE-2026. https://doi.org/10.48443/v6hs-mx57",
-  doi_paper = "", doi_data = "10.48443/v6hs-mx57",
-  original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
-  notes = sprintf("Token-gated NEON API (NEON_TOKEN); release pinned. National species pool (>= %d clusters); fuzzed higher-rank IDs and minute-88 detections not shipped. Sibling: neon_2026_landbirds_ds.", MIN_DET),
-  source_via = "NEON Data API, basic package")
-stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "N-mixture (multi-species, multi-season)",
-  sampling_protocol = "point_count", design = sprintf("Multi-season (%d years x 1-2 bouts)", nrow(periods)), realm = "Terrestrial", country = "USA",
-  coordinates = "As published", notes = "NEON national scheme; counts from per-detection records; every species at every count.",
-  status = "tagged")
+  stage_dict_row(TABLE,
+    description = sprintf("Number of individuals of %d bird species per 6-minute point count at %d points on 47 NEON terrestrial sites, %d-%d (one or two bouts per breeding season), built from NEON's per-detection records (RELEASE-2026) with observer, date-time, weather and habitat per count and point coordinates as published.", nt, uniqueN(evt$unit), min(evt$year), max(evt$year)),
+    url = "https://data.neonscience.org/data-products/DP1.10003.001/RELEASE-2026",
+    reference = "NEON (National Ecological Observatory Network). Breeding landbird point counts (DP1.10003.001), RELEASE-2026. https://doi.org/10.48443/v6hs-mx57",
+    doi_paper = "", doi_data = "10.48443/v6hs-mx57",
+    original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
+    notes = sprintf("Token-gated NEON API (NEON_TOKEN); release pinned. National species pool (>= %d clusters); fuzzed higher-rank IDs and minute-88 detections not shipped. Sibling: neon_2026_landbirds_ds.", MIN_DET),
+    source_via = "NEON Data API, basic package")
+  stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "N-mixture (multi-species, multi-season)",
+    sampling_protocol = "point_count", design = sprintf("Multi-season (%d years x 1-2 bouts)", nrow(periods)), realm = "Terrestrial", country = "USA",
+    coordinates = if (exact) "As published" else "Coarsened (0.1 deg)", notes = "NEON national scheme; counts from per-detection records; every species at every count.",
+    status = "tagged")
+}
+emit("neon_2026_landbirds_count", exact = FALSE)
+emit(EXACT, exact = TRUE)

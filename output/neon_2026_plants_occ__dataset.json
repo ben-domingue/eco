@@ -25,8 +25,8 @@
   "temporalCoverage": "2013-06/2024-11",
   "crs": "EPSG:4326 (WGS 84), as published",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "As published by NEON (agency-published plot-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); subplots carry their plot's centre; 5 plots were re-surveyed by a few metres and __units carries the latest"
+    "value": true,
+    "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Fraxinus pennsylvanica (CR), Fraxinus americana (CR), Fraxinus nigra (CR), Pinus palustris (EN), Metrosideros polymorpha (VU), Cheirodendron trigynum (VU), Ulmus americana (EN), Abies fraseri (EN), Guaiacum officinale (EN), Persea palustris (VU), Trillium simile (VU), Castanea dentata (CR), Ferocactus wislizeni (VU), Gymnocladus dioicus (VU), Coprosma montana (VU), Leptocereus quadricostatus (EN), Persea borbonia (EN), Clermontia montis-loa (EN), Coprosma ochracea (VU), Cyrtandra lysiosepala (VU), Machaonia portoricensis (VU), Fraxinus caroliniana (EN), Sideroxylon alachuense (CR), Clermontia calophylla (EN), Mitracarpus polycladus (EN), Pinus albicaulis (EN), Quercus georgiana (EN); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_plants_exact_occ keeps the other taxa at published precision."
   },
   "covariateNote": "cluster_id = NEON plotID (the 400 m2 plot holding the subplot); unit_site = NEON site; obs_bout = NEON boutNumber (1, or 2 at bimodal sites); obs_percent_cover = the taxon's percent cover in the subplot at the visit, summed over NEON's rows for it (morphospecies, infraspecific taxa), 0 where y = 0, empty where NEON left a cover blank; it varies across taxa within a visit (E5).",
   "notes": "Scale: the 1 m2 subplot (ruling 19), the only NEON plant scale with a complete list per visit; the 10 m2 and 100 m2 records (div_10m2Data100m2Data, 704524 rows) are not used. Taxa: 4231 species (varieties and subspecies rolled up) and 749 records identified, or fuzzed by NEON, only to a higher rank, or to a species group, each its own taxon (E6); 578 names carried several NEON codes and were merged (236 sp./spp. pairs, ruling 20; 341 species with infraspecific codes; the four kingdom-level codes as Plantae), taxonRemarks lists the codes. Surveys: 85349 subplot visits; 11857 not sampled have no rows; 68 visits with only ground-cover rows and no targetTaxaPresent (2013-2016) and 2 with both Y and N dropped; 398 repeat visits within one bout kept as occasions. Per-site pools: median 264 taxa (range 66-756).",
@@ -139,13 +139,13 @@
     },
     "taxa": {
       "rows": 4980,
-      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_records"],
-      "md5": "8a1510e213bca3a868c0db30bbeda85a"
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_records", "taxon_iucnCategory"],
+      "md5": "c0c6c772e0d0ed7bbde1d67883484cb4"
     },
     "units": {
       "rows": 12622,
       "columns": ["unit", "site", "domain", "plot", "subplot", "plot_type", "nlcd_class", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
-      "md5": "aebbf42a697aee14955b5992c3488b4c"
+      "md5": "4ba3934706629aa60019d0d76c595fa8"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",

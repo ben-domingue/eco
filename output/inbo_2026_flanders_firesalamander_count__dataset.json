@@ -20,11 +20,11 @@
   "closureNote": "occasion = visit within an autumn season; period = calendar year; the population is treated as closed within the season by the protocol's design (repeat counts for N-mixture models)",
   "occasionKind": "time",
   "taxonInclusion": "single",
-  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 5 km UTM square centroids)",
+  "geographicCoverage": "Flanders, Belgium (INBO 5 km UTM centroids, coarsened to 0.1-degree cell centres)",
   "temporalCoverage": "2016/2025",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 km UTM square (coordinateUncertaintyInMeters 3536) before publication; kept as published (E7 agency rule). Salamandra salamandra is IUCN VU (2022); the 5 km generalisation is the publisher's own sensitivity treatment ('original locations available upon request')."
+    "value": true,
+    "method": "coarsen_coords(): the 5 km UTM-square centroids INBO publishes (coordinateUncertaintyInMeters 3536) snapped to their 0.1-degree cell centre, because Salamandra salamandra is IUCN VU (GBIF IUCN record, asserted) in its native range (E7, ruling on the publisher 2026-11-06); uncertainty = 3536 m plus the cell half-diagonal."
   },
   "notes": "5 visits are dated outside August-November, kept as published. The source's occurrenceRemarks 'casual observation' is on every row, absences included, and is not a record type.",
   "notShipped": {
@@ -47,7 +47,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
-  "coreMd5": "ab1308cbd5b8d8e700e7210bced5bb79",
+  "coreMd5": "805bdee694f63e2943efb938c20525a1",
   "sideTables": {
     "periods": {
       "rows": 10,

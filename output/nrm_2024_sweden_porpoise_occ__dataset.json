@@ -25,7 +25,7 @@
   "temporalCoverage": "2015-10/2023-10",
   "coordinatesCoarsened": {
     "value": false,
-    "method": "Station positions of the national monitoring programme as published by the Swedish agencies (E7, agency-published). The species is IUCN LC globally; the Baltic Proper subpopulation is assessed CR as a subpopulation, and the agencies publish these stations."
+    "method": "Station positions as published. Not flagged (E7): the species is IUCN LC (GBIF IUCN record); the Baltic Proper subpopulation's CR assessment is for a subpopulation, not a taxon, so criterion (b) does not apply; the source states no sensitivity and cites no red list."
   },
   "covariateNote": "y_raw = detection-positive minutes in the day (0-1440); obs_irregular_setting = 1 where the source marks the day as recorded wholly or partly with the irregular C-POD setting (8 cycles), else 0; obs_decimalLatitude / obs_decimalLongitude = the logger's position on the day (deployments move by up to about 1 km within a station; 350 days at NMN1 and 1031 give positions 4.5-19 km off, probably mistyped longitudes, kept as published; unit_ coordinates are the station's most frequent position); obs_depth_m = water depth at the station as given on the sample, NA where not given.",
   "notShipped": {

@@ -1,0 +1,156 @@
+{
+  "table": "neon_2026_plants_exact_occ",
+  "title": "NEON plant presence in 1 m2 subplots, RELEASE-2026: detection of 4953 plant taxa per subplot visit at 12622 permanent subplots across 47 NEON sites, 2013-2024, per-site species pools (without IUCN-threatened taxa; coordinates as published)",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/9g4s-hq52",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Plant presence and percent cover (DP1.10058.001), RELEASE-2026. https://doi.org/10.48443/9g4s-hq52. Dataset accessed from https://data.neonscience.org/data-products/DP1.10058.001/RELEASE-2026 on 2026-11-06",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's plant diversity survey: in up to 30 distributed and 3 tower plots of 400 m2 per terrestrial site, botanists list every plant species rooted in eight permanent 1 m2 subplots and estimate its percent cover, once a year at peak greenness or twice a year at sites with two peaks; larger nested subplots (10 m2, 100 m2) record only the species new at that scale. This table is the 1 m2 scale, the only one with a complete species list at every visit: y = 1 when NEON lists the taxon in the subplot, 0 otherwise, with its cover. The taxa surveyed for at a subplot are the per-site pool of taxa this table records at its site (median 264; __survey_taxa), so a taxon never found at a site has no zeros there. Plot-centre coordinates are as NEON publishes them.",
+  "samplingProtocol": "Every vascular plant species rooted in a permanent 1 m2 subplot listed and its percent cover estimated, eight subplots per 400 m2 plot, at peak greenness once a year (twice at sites with two peaks) (NEON TOS plant diversity sampling protocol, NEON.DOC.014042); species of concern fuzzed by NEON to a higher rank",
+  "samplingProtocolCode": "botanical_survey",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "div_1m2Data has rows for every 1 m2 subplot visit (samplingImpractical where it was not sampled, targetTaxaPresent N where no plant was rooted in it); a survey is a subplot x eventID x endDate with samplingImpractical blank or OK and data rows. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a subplot are every taxon this table records at the subplot's site at any visit (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other visit to that site.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasion = visit to the subplot within the calendar year, ordered by bout and date; at the bimodal sites the two bouts are timed to two peaks in greenness and species composition (product design description), so presence may change between them; a few subplots were listed twice within one bout (both kept). Most site-years have one visit; period = calendar year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "47 NEON terrestrial sites, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude 18.0 to 71.3, longitude -156.7 to -66.8",
+  "temporalCoverage": "2013-06/2024-11",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published by NEON (coordinates with coordinateUncertaintyInMeters in __units). The IUCN-threatened taxa (Fraxinus pennsylvanica (CR), Fraxinus americana (CR), Fraxinus nigra (CR), Pinus palustris (EN), Metrosideros polymorpha (VU), Cheirodendron trigynum (VU), Ulmus americana (EN), Abies fraseri (EN), Guaiacum officinale (EN), Persea palustris (VU), Trillium simile (VU), Castanea dentata (CR), Ferocactus wislizeni (VU), Gymnocladus dioicus (VU), Coprosma montana (VU), Leptocereus quadricostatus (EN), Persea borbonia (EN), Clermontia montis-loa (EN), Coprosma ochracea (VU), Cyrtandra lysiosepala (VU), Machaonia portoricensis (VU), Fraxinus caroliniana (EN), Sideroxylon alachuense (CR), Clermontia calophylla (EN), Mitracarpus polycladus (EN), Pinus albicaulis (EN), Quercus georgiana (EN)) are not in this table (E7 scope, 3); neon_2026_plants_occ has them, with coordinates coarsened."
+  },
+  "covariateNote": "cluster_id = NEON plotID (the 400 m2 plot holding the subplot); unit_site = NEON site; obs_bout = NEON boutNumber (1, or 2 at bimodal sites); obs_percent_cover = the taxon's percent cover in the subplot at the visit, summed over NEON's rows for it (morphospecies, infraspecific taxa), 0 where y = 0, empty where NEON left a cover blank; it varies across taxa within a visit (E5).",
+  "notes": "Scale: the 1 m2 subplot (ruling 19), the only NEON plant scale with a complete list per visit; the 10 m2 and 100 m2 records (div_10m2Data100m2Data, 704524 rows) are not used. Taxa: 4231 species (varieties and subspecies rolled up) and 749 records identified, or fuzzed by NEON, only to a higher rank, or to a species group, each its own taxon (E6); 578 names carried several NEON codes and were merged (236 sp./spp. pairs, ruling 20; 341 species with infraspecific codes; the four kingdom-level codes as Plantae), taxonRemarks lists the codes. Surveys: 85349 subplot visits; 11857 not sampled have no rows; 68 visits with only ground-cover rows and no targetTaxaPresent (2013-2016) and 2 with both Y and N dropped; 398 repeat visits within one bout kept as occasions. Per-site pools: median 264 taxa (range 66-756).",
+  "notShipped": {
+    "threatened": "Fraxinus pennsylvanica (CR), Fraxinus americana (CR), Fraxinus nigra (CR), Pinus palustris (EN), Metrosideros polymorpha (VU), Cheirodendron trigynum (VU), Ulmus americana (EN), Abies fraseri (EN), Guaiacum officinale (EN), Persea palustris (VU), Trillium simile (VU), Castanea dentata (CR), Ferocactus wislizeni (VU), Gymnocladus dioicus (VU), Coprosma montana (VU), Leptocereus quadricostatus (EN), Persea borbonia (EN), Clermontia montis-loa (EN), Coprosma ochracea (VU), Cyrtandra lysiosepala (VU), Machaonia portoricensis (VU), Fraxinus caroliniana (EN), Sideroxylon alachuense (CR), Clermontia calophylla (EN), Mitracarpus polycladus (EN), Pinus albicaulis (EN), Quercus georgiana (EN); records identified only to a higher rank stay in both tables: in neon_2026_plants_occ only, with coarsened coordinates (E7 scope, 3)",
+    "larger nested subplots": "div_10m2Data100m2Data (704524 rows): species new at the 10 m2, 100 m2 and 400 m2 scales; another scale, whose presence lists are unions over nested subplots that NEON says are not always populated",
+    "unusable visits": "68 visits with only ground-cover rows and no targetTaxaPresent (2013-2016); 2 with both targetTaxaPresent Y and N",
+    "other fields": "otherVariables rows (ground cover of litter, rock, soil, wood, water), plant heights, vouchers, genetic archive, identification history"
+  },
+  "summary": {
+    "n_rows": 24332403,
+    "n_units": 12622,
+    "n_taxa": 4953,
+    "n_periods": 12,
+    "n_occasions": 3,
+    "n_surveys": 85349,
+    "y_values": "0,1",
+    "prop_zero": 0.972,
+    "n_traps": 1,
+    "n_zero": 23646122,
+    "n_positive": 686281,
+    "n_units_detected": 12576,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "obs_bout", "obs_percent_cover"],
+  "parts": [
+    {
+      "file": "part-01.csv",
+      "periods": [1],
+      "n_rows": 275087,
+      "md5": "c05a3cbfbed37e0a04bf8afa45eb1901"
+    },
+    {
+      "file": "part-02.csv",
+      "periods": [2],
+      "n_rows": 974983,
+      "md5": "5569a3f3439ef88c0790d823a5dba31f"
+    },
+    {
+      "file": "part-03.csv",
+      "periods": [3],
+      "n_rows": 1853756,
+      "md5": "76b2fef680808f8a1195c369b821930d"
+    },
+    {
+      "file": "part-04.csv",
+      "periods": [4],
+      "n_rows": 2839663,
+      "md5": "0592dcc6d9b16a06af8d52be6c5bb47f"
+    },
+    {
+      "file": "part-05.csv",
+      "periods": [5],
+      "n_rows": 3232406,
+      "md5": "f7880c849e01018e8d8474fd4bf610db"
+    },
+    {
+      "file": "part-06.csv",
+      "periods": [6],
+      "n_rows": 3451135,
+      "md5": "52398da11b1962f33b717cd65ed266bd"
+    },
+    {
+      "file": "part-07.csv",
+      "periods": [7],
+      "n_rows": 2618384,
+      "md5": "2c0838bc1fc4c964e51064f38fb8be0f"
+    },
+    {
+      "file": "part-08.csv",
+      "periods": [8],
+      "n_rows": 1403893,
+      "md5": "8e1feb534b2995be3e2dc90b1d4fe303"
+    },
+    {
+      "file": "part-09.csv",
+      "periods": [9],
+      "n_rows": 2195213,
+      "md5": "3f067bb2c119d84578f1e7cbae24f10d"
+    },
+    {
+      "file": "part-10.csv",
+      "periods": [10],
+      "n_rows": 1678632,
+      "md5": "872f8833a2d936c0199c1c6a067f8d90"
+    },
+    {
+      "file": "part-11.csv",
+      "periods": [11],
+      "n_rows": 1842968,
+      "md5": "f6c5bb348e7a6b3f3082ec326b780800"
+    },
+    {
+      "file": "part-12.csv",
+      "periods": [12],
+      "n_rows": 1966283,
+      "md5": "676455cb934f2bd5315d354d90ed8d6a"
+    }
+  ],
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "year"],
+      "md5": "67425ff5be71bcbfd16f5cf5de99c5e1"
+    },
+    "survey_taxa": {
+      "rows": 3548956,
+      "columns": ["unit", "taxon"],
+      "md5": "6396e2cac5f97ea835caa3888c7d1cf5"
+    },
+    "taxa": {
+      "rows": 4953,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_records", "taxon_iucnCategory"],
+      "md5": "e1ed258ee8eeac626cba4be026cda4a9"
+    },
+    "units": {
+      "rows": 12622,
+      "columns": ["unit", "site", "domain", "plot", "subplot", "plot_type", "nlcd_class", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "aebbf42a697aee14955b5992c3488b4c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_plants_occ.R",
+  "buildDate": "2026-11-06"
+}

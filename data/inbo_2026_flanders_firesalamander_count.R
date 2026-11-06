@@ -21,8 +21,12 @@
 #   calendar year 2016..2025, occasion = visit within the year in date order, date = eventDate, y = salamanders counted
 #   on the visit (individualCount summed over the visit's rows). surveyEvidence = sample_table: every visit is an event
 #   and reports the species (present with a count or absent = 0). taxonInclusion = single.
-#   Coordinates: generalised by INBO (an agency) to 5 km UTM centroids before publication; kept as published (E7). The
-#   species is IUCN VU (2022, Bsal declines): the agency-coordinates question of batches 40-44 (a call for Ben).
+#   Coordinates: generalised by INBO to 5 km UTM centroids (uncertainty 3,536 m) before publication, which is finer
+#   than 0.1 degree. The species is IUCN VU (2022, Bsal declines; asserted from GBIF's IUCN record) in its native range,
+#   so under E7 (ruling on the publisher, 2026-11-06: agency coordinates included) the centroid is coarsened with
+#   coarsen_coords() to its 0.1-degree cell centre. Uncertainty = the source's 3,536 m plus the cell half-diagonal
+#   (the animal is within 3,536 m of the published centroid, which is within a half-diagonal of the cell centre).
+#   Rebuilt in batch 46 (#10); before, the 5 km centroids were kept under the withdrawn agency exception.
 # Not shipped: nothing beyond the per-row split of a visit's count (summed).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "inbo_2026_flanders_firesalamander_count"
@@ -54,13 +58,17 @@ stopifnot(all(vis$year %in% years))
 setorder(vis, locationID, date, eventID)
 vis[, occasion := seq_len(.N), by = .(locationID, year)]
 long <- vis[, .(unit = sub("^INBO:MEETNET:LOCATION:0*", "T", locationID), taxon = "SALSAL", y, period = match(year, years), occasion, date,
-                unit_decimalLatitude = as.numeric(lat), unit_decimalLongitude = as.numeric(lon),
-                unit_coordinateUncertaintyInMeters = as.integer(unc))]
+                lat = as.numeric(lat), lon = as.numeric(lon), unc = as.integer(unc))]
+cc <- coarsen_coords(long$lat, long$lon, 0.1)
+long[, `:=`(unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon,
+            unit_coordinateUncertaintyInMeters = as.integer(unc + cc$uncertainty_m))]
+long[, c("lat", "lon", "unc") := NULL]
 stopifnot(nrow(long) == 998L, sum(long$y) == sum(as.integer(oc$individualCount)), sum(long$y == 0L) == 53L)
 
 taxa <- make_taxa("SALSAL", "Salamandra salamandra", vernacularName = "Fire salamander")
 taxa[, taxon_iucnCategory := unname(mapply(iucn_category, taxonID, scientificName))]
 print(taxa)
+stopifnot(identical(taxa$taxon_iucnCategory, "VU"))
 periods <- data.table(period = seq_along(years), year = years)[period %in% long$period]
 dataset <- list(
   title = sprintf("Meetnetten.be night transect counts of fire salamanders on %d transects, Flanders, Belgium, %d-%d", uniqueN(long$unit), min(vis$year), max(vis$year)),
@@ -73,9 +81,9 @@ dataset <- list(
   samplingProtocolCode = "transect_count", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
   closure = "closed", closureNote = "occasion = visit within an autumn season; period = calendar year; the population is treated as closed within the season by the protocol's design (repeat counts for N-mixture models)",
   occasionKind = "time", taxonInclusion = "single",
-  geographicCoverage = "Flanders, Belgium (coordinates generalised by INBO to 5 km UTM square centroids)",
+  geographicCoverage = "Flanders, Belgium (INBO 5 km UTM centroids, coarsened to 0.1-degree cell centres)",
   temporalCoverage = sprintf("%d/%d", min(vis$year), max(vis$year)),
-  coordinatesCoarsened = list(value = FALSE, method = "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 km UTM square (coordinateUncertaintyInMeters 3536) before publication; kept as published (E7 agency rule). Salamandra salamandra is IUCN VU (2022); the 5 km generalisation is the publisher's own sensitivity treatment ('original locations available upon request')."),
+  coordinatesCoarsened = list(value = TRUE, method = "coarsen_coords(): the 5 km UTM-square centroids INBO publishes (coordinateUncertaintyInMeters 3536) snapped to their 0.1-degree cell centre, because Salamandra salamandra is IUCN VU (GBIF IUCN record, asserted) in its native range (E7, ruling on the publisher 2026-11-06); uncertainty = 3536 m plus the cell half-diagonal."),
   notes = sprintf("%d visits are dated outside August-November, kept as published. The source's occurrenceRemarks 'casual observation' is on every row, absences included, and is not a record type.", sum(!as.integer(substr(long$date, 6, 7)) %in% 8:11)),
   notShipped = list(`row-level counts` = "a visit's count is split over several occurrence rows (mostly one per animal); summed into y"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = sprintf("data/%s.R", TABLE))
@@ -85,9 +93,9 @@ stage_dict_row(TABLE,
   url = "https://doi.org/10.15468/nbsk9h",
   reference = "Piesschaert F, Speybroeck J, Brosens D, Westra T, Desmet P, Ledegen H, Van de Poel S, Pollet M (2026). Meetnetten.be - Transects for fire salamanders in Flanders, Belgium. Version 1.22. INBO.",
   doi_paper = "", doi_data = "10.15468/nbsk9h", original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "INBO IPT DwC-A (meetnetten-vuursalamander-transect-occurrences v1.22). Coordinates generalised by INBO.",
+  notes = "INBO IPT DwC-A (meetnetten-vuursalamander-transect-occurrences v1.22). INBO 5 km centroids coarsened to 0.1 degree (IUCN VU).",
   source_via = "GBIF")
 stage_tag_row(TABLE, ds, taxon_group = "Amphibians", model_family = "N-mixture (open / multi-season)",
   sampling_protocol = "transect_count", design = sprintf("Multi-season (%d years x 1-%d visits)", uniqueN(long$period), max(long$occasion)),
-  realm = "Terrestrial", country = "BEL", coordinates = "As published",
+  realm = "Terrestrial", country = "BEL", coordinates = "Coarsened (0.1 deg)",
   notes = "Priority-species monitoring with volunteers; night transects in autumn.")

@@ -1,0 +1,77 @@
+{
+  "table": "roberts_2025_arkansas_birds_count",
+  "title": "Point counts of birds at 416 points on five refuge and military grassland sites in Arkansas, 2022-2023, with distance bands",
+  "creator": "Roberts, Caleb P.; Berry, Lauren L.; DeGregorio, Brett A.",
+  "pubDate": "2025",
+  "doi": "10.5066/P1IL2ZRC",
+  "sourceURL": "https://doi.org/10.5066/P1IL2ZRC",
+  "citation": "Roberts, C.P., Berry, L.L., and DeGregorio, B.A., 2025, Spatial covariance tracks grassland bird community occupancy in fragmented grasslands: U.S. Geological Survey data release, https://doi.org/10.5066/P1IL2ZRC.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Point counts of all birds at 416 points (400 m grids plus roadside points) in remnant grasslands of Holla Bend, Cache River (Howell and Dark Corner tracts) and Bald Knob National Wildlife Refuges and Camp Robinson Special Use Area, Arkansas; each point counted three times in one year (2022 or 2023), birds recorded by distance band (0-50 m, 51-100 m, 101-400 m) or as flyovers. The authors modelled the occupancy of six declining grassland species against spatial covariance of tree and grass cover.",
+  "samplingProtocol": "Point count at a station (points 400 m apart on a grid, plus roadside points around each site), all birds counted by distance band (0-50, 51-100, 101-400 m) or as flyovers; three visits per point in one season, from 30 minutes before to 5 hours after sunrise on days with wind under 19.3 km/h and no rain; wind (Beaufort) and sky (BBS code) recorded.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = visit (three in one season per point); period = year (each point is surveyed in one year only)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Holla Bend, Cache River (Howell and Dark Corner tracts) and Bald Knob National Wildlife Refuges and Camp Robinson Special Use Area, north-central Arkansas, USA",
+  "temporalCoverage": "2022-06-06/2023-06-09",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): point coordinates snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, because chimney swift (Chaetura pelagica, IUCN VU, GBIF IUCN record) is recorded within its native range (E7). roberts_2025_arkansas_birds_exact_count keeps every other taxon at the published coordinates."
+  },
+  "covariateNote": "obs_n_d0_50, obs_n_d50_100, obs_n_d100_400, obs_n_flyover: birds of the taxon at the visit in each distance band or flying over; y is their sum. obs_n_blank_cells: count cells left blank in the source for the taxon at the visit (counted as 0). obs_wind_beaufort, obs_sky_code (BBS sky codes as recorded). unit_roadside: 1 for a roadside point. cluster_id: site code (BK, CR, DC, HB, HO).",
+  "distanceBreaks": {
+    "units": "m",
+    "breaks": [0, 50, 100, 400],
+    "note": "flyovers are recorded separately"
+  },
+  "notes": "Repeated rows within a visit (ruling 2026-11-06): a species recorded on several rows of a point-visit has one row, y the total over its rows and the four cells; each cell's total is an obs_n_ column. The file name says empty visits were omitted (NAOMIT), but every point has its three visits in the file. BAOW and NHWR are the source's codes for barred owl and northern house wren. Two point-visits have one row with another date (DC67 2022 visit 1; HO55 2022 visit 3, another observer too); the rows stay in the visit the source gives, and the visit's date and observer are those of most of its rows.",
+  "notShipped": {
+    "StartTime": "start time varies within 365 of 1248 point-visits, so it is not a property of the visit",
+    "duplicates": "50 rows repeating another row exactly, and 6 rows of HO95 (2022 visits 1 and 2) entered twice with a different StartTime: source errors",
+    "vegetation": "FieldVeg50m_RemoteVeg_JUNMASK_forDataRelease.csv covariates (spatial covariance from imagery, Robel height, stem densities, ground cover); only Site, Roadside and coordinates are used"
+  },
+  "summary": {
+    "n_rows": 111072,
+    "n_units": 416,
+    "n_taxa": 89,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 1248,
+    "y_values": "0-95 (26 distinct)",
+    "prop_zero": 0.931,
+    "n_traps": 1,
+    "n_zero": 103392,
+    "n_positive": 7680,
+    "n_units_detected": 416,
+    "max_y": 95
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_roadside", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_wind_beaufort", "obs_sky_code", "obs_n_d0_50", "obs_n_d50_100", "obs_n_d100_400", "obs_n_flyover", "obs_n_blank_cells"],
+  "coreMd5": "85ae8a86ccaf87224866202be9f1bc53",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_points", "season"],
+      "md5": "762a25f4aec7ffd94992ca374f5b9712"
+    },
+    "taxa": {
+      "rows": 89,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "cb217b16a84f9c84490073008c3efb70"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/roberts_2025_arkansas_birds_count.R",
+  "buildDate": "2026-11-06"
+}

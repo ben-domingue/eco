@@ -26,8 +26,8 @@
   "temporalCoverage": "2016-03/2024-12",
   "crs": "EPSG:4326 (WGS 84), as published",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); 4 reaches were re-surveyed by a few metres between bouts and __units carries the latest"
+    "value": true,
+    "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Anguilla rostrata (EN), Etheostoma pseudovulatum (VU); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_fish_exact_removal keeps the other taxa at published precision."
   },
   "covariateNote": "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured); obs_count_estimated = 1 where y includes a bulk count NEON marks 'estimated' (ruling 17), else 0.",
   "notes": "y = per-fish records plus bulk counts of the taxon on the pass. Taxa: 123 species (subspecies rolled up) and 32 records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: 2492 passes in 1275 reach-bouts; 556 reach-bouts sampling impractical have no rows; 26 filed by NEON as net-compromised, 5 other whose passes are not numbered 1..k and 1 with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Estimated counts (ruling 17, 2026-11-06): 23 reach-bouts carry a bulk count NEON marks estimated (13768 fish); they are kept, and obs_count_estimated = 1 on the 81 pass x taxon rows whose y includes one. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts, flag 0. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.",
@@ -64,17 +64,17 @@
     },
     "taxa": {
       "rows": 155,
-      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_fish"],
-      "md5": "f3cfb5de8229cf94bae77d9e1e8ed498"
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_fish", "taxon_iucnCategory"],
+      "md5": "28557aa9a2ba929c9d9bca8494a00fd4"
     },
     "units": {
       "rows": 223,
       "columns": ["unit", "site", "domain", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
-      "md5": "30f586961ea9123da7edb87ee365d918"
+      "md5": "b8051a59f94f4c91ee8a5a6924e8aa10"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_fish_removal.R",
-  "buildDate": "2026-11-05"
+  "buildDate": "2026-11-06"
 }

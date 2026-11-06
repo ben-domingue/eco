@@ -1,0 +1,86 @@
+{
+  "table": "rees_2023_victoria_cat_smr",
+  "title": "Spatial mark-resight of feral cats at camera stations in ten surveys of the Glenelg region and Otway Ranges, Victoria, Australia, 2017-2019 (135 identifiable cats)",
+  "creator": "Rees, Matthew W.; Pascoe, Jack H.; Le Pla, Mark; Robley, Alan; Birnbaum, Emily K.; Wintle, Brendan A.; Hradsky, Bronwyn A.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.69p8cz95w",
+  "sourceURL": "https://doi.org/10.5061/dryad.69p8cz95w",
+  "citation": "Rees, M. W., Pascoe, J. H., Le Pla, M., Robley, A., Birnbaum, E. K., Wintle, B. A., & Hradsky, B. A. (2023). Data from: Mesopredator release among invasive predators: controlling red foxes can increase feral cat density and alter their behaviour [Dataset]. Dryad. https://doi.org/10.5061/dryad.69p8cz95w",
+  "paperDOI": "10.1111/1365-2664.14402",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap surveys of feral cats in three paired fox-baited and unbaited landscapes of the Glenelg region (2018) and a before-after control-impact series in the Otway Ranges (2017-2019), Victoria, Australia, analysed by the authors with spatial mark-resight models: cats with a distinctive coat (tabby, swirl) are identified individually from photographs; sightings of unpatterned cats and of patterned cats that could not be identified are counted per station and day.",
+  "samplingProtocol": "Camera traps at stations on grids within each landscape, deployed for about two to three months per survey; cat photographs sorted into identified individuals (natural coat marks), identifiable-coat cats that could not be identified, and unmarked (unpatterned) cats; one detection per cat per station per day.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "count",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "occasion = a 24-hour period counted from each station's deployment within a survey session (period), as the source aligned them (obs_deployment_date gives the station's deployment date); the authors' spatial mark-resight models treat each session as closed. Sessions in one grid (Otway north and south, 2017-2019) share cats, and an identifiable cat keeps its name across them.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_trap_days",
+  "geographicCoverage": "Glenelg region (Annya, Cobboboonee, Hotspur, Mt Clay) and Otway Ranges (north and south grids), south-west Victoria, Australia",
+  "temporalCoverage": "2017-06-23/2019-09-17",
+  "crs": "__traps x, y: UTM metres, zone 54 south (as in the source's capthists; datum not stated); decimalLatitude/decimalLongitude: WGS84 station positions from records_matt_lgnp",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Station coordinates as published. The feral cat is introduced in Australia, so its IUCN category does not flag it (E7, non-native ruling); the source states no sensitivity."
+  },
+  "covariateNote": "obs_trap_days = 1 on every row (the station operated in that occasion; rows exist only where it did). obs_deployment_date = the station's deployment date in the session (occasion 1 begins then). __units: unit_reserved (1 for 'unmarked' and 'marked_unidentified'), unit_mark, unit_coat (the source's coat type), unit_grid, unit_sessions (the periods whose capthist lists the cat), unit_pair (1 for the two source 'individuals' that are a pair of cats photographed together). __periods: the survey session's grid, region, year and dates.",
+  "designNote": "Spatial mark-resight (E9 ruling 2026-11-06) with natural marks: each identifiable cat has a row at every operating station x day of the sessions it is in (marks are natural, so it is marked throughout); 'unmarked' and 'marked_unidentified' have a row at every operating station x day. The authors' model pooled the two reserved counts as unmarked sightings (Tu = unmarked + marked unidentified, asserted).",
+  "notes": "Identified cats are recorded as detected or not per station and day (0/1, the source's proximity detector); the reserved units count sightings per station and day. Two source 'individuals' are pairs of cats photographed together and are kept as the source modelled them (unit_pair = 1).",
+  "notShipped": {
+    "masks": "SCR habitat masks (model inputs)",
+    "combined_capthists": "mrch.RData, mrch_otways, mrch_glenelg: lists of the same session capthists",
+    "photographs": "cat_id_detections.csv photograph records beyond the daily detections they were reduced to",
+    "other_species": "fox, potoroo and bandicoot station-year flags in records_matt_lgnp.csv (another survey summary)",
+    "raw_and_models": "raw_data.zip (camera records, 7.7 GB) and models.zip (fitted models) were not fetched"
+  },
+  "summary": {
+    "n_rows": 1355315,
+    "n_units": 137,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 94,
+    "n_surveys": 1355315,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 938,
+    "n_zero": 1354142,
+    "n_positive": 1173,
+    "n_units_detected": 137,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "obs_trap_days", "obs_deployment_date"],
+  "coreMd5": "c78f477fa7d172cf1df38c7017b4c0ec",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "session", "grid", "region", "year", "start", "end", "n_days", "n_stations", "n_station_days", "n_identified_cats"],
+      "md5": "a4a377b2da2107b3667425418bc7e65a"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "9890937ff557f9511c41578a67d8060b"
+    },
+    "traps": {
+      "rows": 938,
+      "columns": ["trap", "station", "x", "y", "decimalLatitude", "decimalLongitude", "grid", "session"],
+      "md5": "aff1725549df667c3c8902ba4406e036"
+    },
+    "units": {
+      "rows": 137,
+      "columns": ["unit", "unit_reserved", "unit_mark", "unit_coat", "unit_grid", "unit_sessions", "unit_pair"],
+      "md5": "db19d13c50a7f00b5d8040b4f1cb1c9d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rees_2023_victoria_cat_smr.R",
+  "buildDate": "2026-11-06"
+}

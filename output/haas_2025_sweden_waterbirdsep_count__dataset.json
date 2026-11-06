@@ -24,8 +24,8 @@
   "temporalCoverage": "1973-09/2024-09",
   "crs": "EPSG:4326",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "Sector centre points as published by the scheme (Swedish Environmental Protection Agency data), uncertainty 8 km; kept as published (E7, agency-published census areas), as in haas_2025_sweden_waterbird_count. Taxa IUCN VU in this range: Podiceps auritus (VU), Melanitta fusca (VU), Aythya ferina (VU), Clangula hyemalis (VU), Polysticta stelleri (VU), Fratercula arctica (VU)."
+    "value": true,
+    "method": "coarsen_coords(): the published sector centres snapped to their 0.1-degree cell centre, because taxa IUCN VU in their native range are in the table (E7, ruling on the publisher 2026-11-06, which withdrew the agency exception): Podiceps auritus (VU), Melanitta fusca (VU), Aythya ferina (VU), Clangula hyemalis (VU), Polysticta stelleri (VU), Fratercula arctica (VU). Uncertainty = the source's 8,000 m plus the cell half-diagonal. haas_2025_sweden_waterbirdse_exact_count keeps the other taxa at the published centres."
   },
   "covariateNote": "obs_method = how the sector was counted (land, boat, aeroplane); unit_location_type = coastal or inland sector; unit_area_km2 = sector area; observer = the source's pseudonymous recorder id, NA where not given.",
   "notes": "One count per sector-year by default, so the replication is across years (an annual index); counts by two methods in one year are occasions. Names are the source's (Dyntaxa) spelling; vernacularName is Swedish. Companion of haas_2025_sweden_waterbird_count (January census).",
@@ -52,7 +52,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_county", "unit_location_type", "unit_area_km2", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_method"],
-  "coreMd5": "1e739dd60fb5b8abf29ca3426b4ea45e",
+  "coreMd5": "355d5533831a03517094c937d411150c",
   "sideTables": {
     "periods": {
       "rows": 52,
