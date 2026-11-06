@@ -1,0 +1,80 @@
+{
+  "table": "glorioso_2020_bigthicket_ves",
+  "title": "Time-constrained visual encounter survey counts of amphibians and reptiles at 52 sites in Big Thicket National Preserve, Texas, 2010-2018",
+  "abstract": "Amphibian Research and Monitoring Initiative surveys at 52 sites in Big Thicket National Preserve, southeast Texas, August 2010 to September 2018, to monitor amphibian and reptile populations and their response to saltwater intrusion. Each survey is a night-time time-constrained visual encounter survey; every animal seen is recorded by species.",
+  "samplingProtocol": "Night-time time-constrained visual encounter surveys (about ten minutes, two to four observers) at fixed sites, one to six rounds per year; every amphibian and reptile seen is recorded to species.",
+  "samplingProtocolCode": "ves",
+  "responseType": "count",
+  "taxonInclusion": "recorded",
+  "effortColumn": "obs_duration_min",
+  "notShipped": {
+    "per_animal": "sex, SVL, substrate, height and comments of each animal (lost by counting)",
+    "loggers": "BITH*.csv: hourly conductivity and water temperature at nine loggers, not linked to surveys",
+    "backwater": "Backwater_Salinity and Backwater_Water_Temp: occasional comparison readings",
+    "comments": "survey comments (free text)",
+    "calls": "Vocalizations.csv: the calling index is table glorioso_2020_bigthicket_calls"
+  },
+  "creator": "Glorioso, Brad M.; Waddle, J. Hardin",
+  "pubDate": "2020",
+  "doi": "10.5066/P99Z3UZU",
+  "sourceURL": "https://doi.org/10.5066/P99Z3UZU",
+  "citation": "Glorioso, B.M., and Waddle, J.H., 2020, Data from visual encounter and acoustic monitoring surveys targeting amphibians and reptiles in Big Thicket National Preserve in southeast Texas from August 2010 to September 2018: U.S. Geological Survey data release, https://doi.org/10.5066/P99Z3UZU.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (no access or use constraints beyond the product-names disclaimer)"
+  },
+  "surveyEvidence": "sample_table",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = sampling round within a calendar year (one to six rounds); period = year",
+  "occasionKind": "time",
+  "geographicCoverage": {
+    "description": "Big Thicket National Preserve (Lower Neches River corridor and nearby units), Jefferson, Hardin and Orange counties, Texas, USA",
+    "boundingBox": {
+      "west": -94.1843,
+      "east": -94.0565,
+      "south": 30.1101,
+      "north": 30.1866
+    }
+  },
+  "temporalCoverage": "2010-08/2018-09",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS (sites in Big Thicket National Preserve; no species is IUCN CR, EN or VU)"
+  },
+  "summary": {
+    "n_rows": 65823,
+    "n_units": 52,
+    "n_taxa": 37,
+    "n_periods": 9,
+    "n_occasions": 6,
+    "n_surveys": 1779,
+    "y_values": "0-18 (14 distinct)",
+    "prop_zero": 0.947,
+    "n_traps": 1,
+    "n_zero": 62363,
+    "n_positive": 3460,
+    "n_units_detected": 52,
+    "max_y": 18
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_management_unit", "obs_duration_min", "obs_air_temp_c", "obs_humidity_pct", "obs_wind_mph", "obs_water_temp_c", "obs_salinity_ppt", "obs_weather"],
+  "coreMd5": "92f4aa787a990584e87cd08a80d14b88",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year"],
+      "md5": "db3b46248390dd9665bdf618675b670f"
+    },
+    "taxa": {
+      "rows": 37,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "5633910f9c8a3d3aeaa424267246816f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/glorioso_2020_bigthicket.R",
+  "buildDate": "2026-11-06"
+}

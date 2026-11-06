@@ -1,0 +1,77 @@
+{
+  "table": "swanson_2018_iowa_amph_occ",
+  "title": "Presence of four anuran species by life stage at 27 agricultural wetlands in north-central Iowa, 2015-2016",
+  "creator": "Swanson, Jennifer",
+  "pubDate": "2018",
+  "doi": "10.5066/F7D799PV",
+  "sourceURL": "https://doi.org/10.5066/F7D799PV",
+  "citation": "Swanson, J., 2018, Amphibian occupancy and effects of habitat use on pesticide exposure in Iowa wetlands: U.S. Geological Survey data release, https://doi.org/10.5066/F7D799PV.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Repeat surveys of 27 wetlands in Cerro Gordo, Hancock, Winnebago and Worth counties, Iowa, four times in 2015 and three times in 2016, recording the presence of adults, egg masses, tadpoles and metamorphs of American toad, gray treefrog, northern leopard frog and boreal chorus frog, for single-season occupancy models of anuran wetland use in an agricultural landscape.",
+  "samplingProtocol": "One or two observers walked the wetland perimeter, searching for adults and egg masses and listening for calling males, with a dipnet sample every 3 m for tadpoles and metamorphs; surveys lasted 1-2 hours.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors fit single-season occupancy models within each year; surveys span May to August",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": {
+    "description": "Cerro Gordo, Hancock, Winnebago and Worth counties, north-central Iowa, USA",
+    "boundingBox": {
+      "west": -93.7672,
+      "east": -93.1228,
+      "south": 42.9228,
+      "north": 43.4942
+    }
+  },
+  "temporalCoverage": "2015-05/2016-08",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published; the source states that coordinates of the four privately owned wetlands (unit_private = 1) are approximate (2014 Farm Bill)"
+  },
+  "notShipped": {
+    "telemetry": "Tracked Frog Information: radio telemetry of 72 leopard frogs (movement, habitat use, fate)",
+    "pesticides": "PSDs, Frog PSDs and Frog Tissue: pesticide samplers and tissue concentrations"
+  },
+  "notes": "HYVE_EGG and PSMA_EGG are all zeros: the source's completeness report says these egg masses were searched for and never detected.",
+  "summary": {
+    "n_rows": 3024,
+    "n_units": 27,
+    "n_taxa": 16,
+    "n_periods": 2,
+    "n_occasions": 4,
+    "n_surveys": 189,
+    "y_values": "0,1",
+    "prop_zero": 0.849,
+    "n_traps": 1,
+    "n_zero": 2568,
+    "n_positive": 456,
+    "n_units_detected": 27,
+    "max_y": 1
+  },
+  "sampleFloor": "below (27 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_county", "unit_ownership", "unit_decimalLatitude", "unit_decimalLongitude", "unit_private", "obs_air_temp_c"],
+  "coreMd5": "b2a2a1f4ec64acd5a8bff950449a732c",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "1770a3824c9a958da96a3d6a0ae9b571"
+    },
+    "taxa": {
+      "rows": 16,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxonRemarks"],
+      "md5": "0ebdde8fd6ea0bf3a5b1102ebdb18c59"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/swanson_2018_iowa_amph_occ.R",
+  "buildDate": "2026-11-06"
+}

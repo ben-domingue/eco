@@ -367,6 +367,21 @@ CSVs with `upload/red_up_eco.py`.
 | `hunter_2025_georgia_pinesavanna_occ.R` | single-season occupancy, Bachman's Sparrow and Northern Bobwhite, 161 points x 3 visits | USGS ScienceBase | CC0 |
 | `halstead_2025_yosemite_rasi_cjs.R` | daily capture histories of 1,251 Sierra Nevada yellow-legged frogs, 192 survey days over 20 years | USGS ScienceBase | CC0 |
 | `direnzo_2025_elcope_espadarana.R` | glass frog CJS before (2000-2004) and multi-state Bd infection after (2010-2014) the chytrid outbreak, two tables | USGS ScienceBase | CC0 |
+| `kleeman_2024_dixiefire_ranaboylii_occ.R` | time-to-detection occupancy, foothill yellow-legged frog x 43 stream sites x up to 2 surveys, Dixie Fire 2022 | USGS ScienceBase | US public domain |
+| `grant_2023_canaanvalley_amph_count.R` | egg-mass and larval counts by two observers, wood frog and spotted salamander x 108 vernal pools, 2004-2016 | USGS ScienceBase | US public domain |
+| `glorioso_2021_louisiana_turtle_count.R` | hoop-net community counts, 7 turtle species x 119 trap sites x 2 nightly checks, Louisiana 2019 | USGS ScienceBase | US public domain |
+| `holcomb_2017_suwannee_moccasinshell_occ.R` | occupancy with surveyors as occasions, Suwannee moccasinshell x 220 sites, coarsened coordinates (IUCN CR) | USGS ScienceBase | US public domain |
+| `valente_2024_oregon_murrelet_state.R` | multi-state (none / presence / occupied behaviour), marbled murrelet x 132 stations, 2018-2022 | USGS ScienceBase | US public domain |
+| `mccaffery_2024_elwha_mammals_count.R` | daily camera detection counts, 15 mammal taxa x 34 stations x 2 study years, Elwha River after dam removal | USGS ScienceBase | US public domain |
+| `merkes_2016_wabash_carp_edna.R` | eDNA (multi-scale), bighead and silver carp x 611 water samples x 2 qPCR reactions, Wabash River 2013 | USGS ScienceBase | US public domain |
+| `glorioso_2020_bigthicket.R` | ARMI visual encounter counts (37 species) and calling index (14 anurans), 52 sites, Big Thicket 2010-2018, two tables | USGS ScienceBase | US public domain |
+| `swanson_2018_iowa_amph_occ.R` | occupancy by life stage, 4 anurans x 27 agricultural wetlands x 7 surveys, Iowa 2015-2016 | USGS ScienceBase | US public domain |
+| `uherkoch_2019_npra_loon_ms.R` | multi-state breeding-state resight histories, Pacific and yellow-billed loons, NPR-A 2011-2014, two tables | USGS ScienceBase | CC0 |
+| `rogers_2024_bighunting_sculpin_cjs.R` | CJS from mobile PIT-antenna surveys, 385 translocated Blue Ridge sculpin x 11 surveys | USGS ScienceBase | US public domain |
+| `glorioso_2026_bayouteche_pipe_count.R` | PVC-pipe refugia counts, 9 herpetofauna taxa x 200 pipes x 62 monthly checks, 2017-2023 | USGS ScienceBase | US public domain |
+| `hanslowe_2022_marianas_rat_occ.R` | chew-card occupancy with density manipulations, rats x 1,026 card stations, Guam and Rota | USGS ScienceBase | US public domain |
+| `gapinski_2025_iowawrp_birds.R` | wetland-easement point counts: property presence (123 spp.), focal counts (16 spp.), point presence (54 spp.), three tables | USGS ScienceBase | CC0 |
+| `hossack_2020_losttrail_toad.R` | robust-design capture histories of boreal toads, males (1,232) and females (167), 2003-2018, two tables | USGS ScienceBase | US public domain |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

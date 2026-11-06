@@ -1,0 +1,73 @@
+{
+  "table": "valente_2024_oregon_murrelet_state",
+  "title": "Marbled murrelet audio-visual station surveys at 20 nest sites and 26 random sites, central Oregon coast, 2018-2022",
+  "creator": "Valente, Jonathon J.; Adrean, Lindsay J.; Nelson, S. Kim; Betts, Matthew G.; Roby, Daniel D.; Rivers, James W.",
+  "pubDate": "2024",
+  "doi": "10.5066/P13DHFQP",
+  "sourceURL": "https://doi.org/10.5066/P13DHFQP",
+  "citation": "Valente, J.J., Adrean, L.J., Nelson, S.K., Betts, M.G., Roby, D.D., and Rivers, J.W., 2024, Occupancy surveys near Marbled Murrelet (Brachyramphus marmoratus) nest sites and random locations between 2018 and 2022 along the central Oregon coast, USA: U.S. Geological Survey data release, https://doi.org/10.5066/P13DHFQP.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "A test of whether Pacific Seabird Group presence / occupancy surveys identify murrelet nesting stands: up to three stations at increasing distance from 20 known nest trees (found by radio-tracking) and from 26 random trees were surveyed repeatedly at dawn in the breeding seasons of 2018, 2019, 2021 and 2022, recording murrelet detections and the strongest evidence of breeding (occupied behaviour: landing, stationary calling, below-canopy flight, circling).",
+  "samplingProtocol": "Pacific Seabird Group inland dawn audio-visual surveys, about two hours from before sunrise, at stations 36-300 m from a focal tree, repeated through the breeding season; each survey records detections and the strongest breeding behaviour seen.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "no murrelet recorded (N)",
+    "1": "presence only (P)",
+    "2": "occupied behaviour: landing (3), calling from a stationary position (4), below-canopy flight in habitat (5A) or circling above the stand (6A)"
+  },
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "repeat dawn surveys of a station within one breeding season (May to August); a site was sampled in one year only",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Oregon Coast Range near Newport, central Oregon coast, USA",
+    "boundingBox": {
+      "west": -125.332,
+      "east": -123.0469,
+      "south": 42.3261,
+      "north": 45.6448
+    }
+  },
+  "temporalCoverage": "2018-05/2022-08",
+  "notShipped": {
+    "nest_videos": "dataReleaseVideos.csv: nest-camera events at active nests, not a survey of the stations",
+    "notes": "observer notes (free text)"
+  },
+  "notes": "Two surveys record murrelet detections (obs_n_detections 2 and 14) but the authors coded them N (presence 0); y follows the authors' codes.",
+  "summary": {
+    "n_rows": 447,
+    "n_units": 132,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 447,
+    "y_values": "0,1,2",
+    "prop_zero": 0.277,
+    "n_traps": 1,
+    "n_zero": 124,
+    "n_positive": 323,
+    "n_units_detected": 122,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_nest_site", "unit_year", "unit_nest_initiation", "unit_nest_end", "unit_station", "unit_distance_m", "obs_start_min", "obs_length_min", "obs_n_detections"],
+  "coreMd5": "6536c9de2b4eca7c6444680b3790de3a",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "05aa089bd9ac22239a540400e3438eb1"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/valente_2024_oregon_murrelet_state.R",
+  "buildDate": "2026-11-06"
+}
