@@ -1,0 +1,66 @@
+{
+  "table": "taraporevala_2025_kansas_canids_dynocc",
+  "title": "Weekly camera-trap detections of coyotes and red foxes at 74 urban camera locations in Kansas across four seasons",
+  "creator": "Taraporevala, Neville; Beckmann, Jon; Young, Julie",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.d51c5b0ck",
+  "sourceURL": "https://doi.org/10.5061/dryad.d51c5b0ck",
+  "citation": "Taraporevala, N., Beckmann, J., & Young, J. (2025). Citizen science project on urban canids provides different results from camera traps but generates interest and revenue [Dataset]. Dryad. https://doi.org/10.5061/dryad.d51c5b0ck",
+  "paperDOI": "10.1002/wlb3.01382",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Weekly detection/non-detection of coyote and red fox at 74 urban camera locations over five weeks in each of spring, summer, fall and winter, with days active per camera-week and distance to road and water, building density and median household income around each camera.",
+  "samplingProtocol": "Camera traps at urban locations (a camera moved during the study counts as a new location), five weekly occasions per season in four seasons; days active recorded per week.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a season's five weeks, open between the four seasons",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "effortColumn": "obs_effort_days",
+  "geographicCoverage": "An urban area in Kansas, USA (the project worked with the Kansas Department of Wildlife and Parks; see the paper); no coordinates deposited",
+  "temporalCoverage": "2023/2024",
+  "notShipped": {
+    "sightings": "citizen-science sightings and the separated detection / people files (not camera survey histories)",
+    "ads": "advertising performance data"
+  },
+  "notes": "Seasons in deposit order (spring, summer, fall, winter); the camera survey dates are not in the deposit (the citizen-science sightings run March 2023 - February 2024).",
+  "summary": {
+    "n_rows": 2390,
+    "n_units": 74,
+    "n_taxa": 2,
+    "n_periods": 4,
+    "n_occasions": 5,
+    "n_surveys": 1195,
+    "y_values": "0,1",
+    "prop_zero": 0.882,
+    "n_traps": 1,
+    "n_zero": 2109,
+    "n_positive": 281,
+    "n_units_detected": 57,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_road_dist_m", "unit_water_dist_m", "unit_building_density_pct", "unit_median_income_usd", "obs_effort_days"],
+  "coreMd5": "c8f6b48447617d4c6234604bfc4566f9",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_season"],
+      "md5": "3baeafd6a82e8bae7fcffab33d6f1ff5"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "7ff43719012c658c40e7e631a01a40d0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/taraporevala_2025_kansas_canids_dynocc.R",
+  "buildDate": "2026-11-05"
+}

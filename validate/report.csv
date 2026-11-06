@@ -172,6 +172,7 @@ monterroso_2020_iberia_carniv_comm,110528,446,8,TRUE,"","",TRUE,"",TRUE,meets,de
 morganti_2017_carmagnola_pallidswift_cjs,558,93,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
 morganti_2017_modena_commonswift_cjs,1278,213,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 mungi_2025_india_invplant_binom,1193665,21703,11,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support
+murn_2016_kruger_vulture_occ,359,17,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (17 units < 30),deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 murphy_2021_riogrande_otter_scr,4551,37,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; multi_scale*; item_scale_outlier; sample_floor
 murray_2021_chicago_coyote_mange,32898,115,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 neateclegg_2018_cusuco_birds_count,149017,25,209,TRUE,"",sample_floor,TRUE,"",TRUE,below (25 units < 30),row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
