@@ -287,7 +287,23 @@ CSVs with `upload/red_up_eco.py`.
 | `jones_2021_madagascar_plovers_cjs.R` | three CJS tables, Kittlitz's, Madagascar (VU) and white-fronted plovers, 2008-2020 (batch 37) | Dryad | CC0 |
 | `wang_2019_amazon_ocelot_occ.R` | single-season occupancy with effort, ocelot x 899 cameras, Brazilian Amazon (batch 37) | Dryad | CC0 |
 | `monterroso_2020_iberia_carniv_comm.R` | community occupancy, 8 carnivores x 446 Iberian station-seasons x 64 days; coordinates coarsened (Iberian lynx) (batch 37) | Dryad | CC0 |
+| `murn_2016_kruger_vulture_occ.R` | single-season occupancy (occupancy known), white-headed vulture (CR) x 17 territories x 359 visits, Kruger (batch 37) | Dryad | CC0 |
 | `green_2018_ncal_mesocarnivores.R` | dynamic occupancy of fisher, grey fox and ringtail on track plates, and fisher hair-snare SCR, northwestern California (batch 37) | Dryad | CC0 |
+| `regmi_2024_madhesh_tiger_binom.R` | binomial_count community, tiger and six prey x 94 cameras x 3 weeks, Madhesh, Nepal (batch 37) | Dryad | CC0 |
+| `braga_2024_saopaulo_guan_occ.R` | single-season occupancy, rusty-margined guan x 205 cameras x 6 occasions, Brazil (batch 37) | Dryad | CC0 |
+| `roth_2016_aargau_amph_count.R` | community N-mixture counts, three endangered toads and water frogs x 481 sites x 2 visits, Aargau (batch 37) | Dryad | CC0 |
+| `bianchi_2021_furnas_carniv_occ.R` | multi-species occupancy, tayra, puma, dogs x 57 cameras x 9 occasions, Brazil (batch 37) | Dryad | CC0 |
+| `paquet_2015_weaver_helpers_ms.R` | multi-event CMR, sociable weaver breeders coded by helper number, 13 years (batch 37) | Dryad | CC0 |
+| `mizel_2018_alaska_sparrows_count.R` | N-mixture counts, two sparrows x 150 Alaska sites x 5 visits (batch 37) | Dryad | CC0 |
+| `chambert_2018_frogs_acoustic_count.R` | two count tables of automated acoustic detections with validated false positives, pig frog and green treefrog (batch 37) | Dryad | CC0 |
+| `fogarty_2022_greatbasin_birds_count.R` | multi-season community N-mixture, 32 riparian birds x 275 points x 15 years, Nevada (batch 37) | Dryad | CC0 |
+| `thuma_2025_massachusetts_bombus_nests.R` | two within-season nest capture-recapture tables, Bombus impatiens and B. griseocollis, 2018-2024 (batch 37) | Dryad | CC0 |
+| `roder_2020_valais_ungulates_count.R` | multi-season community N-mixture, five ungulates from snow tracks x 218 transects x 4 winters (batch 37) | Dryad | CC0 |
+| `taraporevala_2025_kansas_canids_dynocc.R` | dynamic two-species occupancy with effort, coyote and red fox x 74 urban cameras x 4 seasons (batch 37) | Dryad | CC0 |
+| `croose_2019_michigan_mustelid_dynocc.R` | dynamic two-species occupancy with effort, marten and fisher x 64 cells x 3 winters (batch 37) | Dryad | CC0 |
+| `jacobson_2020_cookinlet_beluga_cjs.R` | CJS photo-ID, 386 Cook Inlet belugas, 2005-2016 (batch 37) | Dryad | CC0 |
+| `hamer_2017_wtp_growlingfrog_dynocc.R` | dynamic occupancy, growling grass frog (VU) x 33 wetlands x 4 seasons (batch 37) | Dryad | CC0 |
+| `peron_2017_sabap2_broodparasites_occ.R` | dynamic community occupancy, 8 brood-parasite and host birds on 82,189 SABAP2 atlas cards, 2007-2013 (batch 37) | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

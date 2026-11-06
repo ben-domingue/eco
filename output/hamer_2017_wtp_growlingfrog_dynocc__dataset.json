@@ -1,0 +1,65 @@
+{
+  "table": "hamer_2017_wtp_growlingfrog_dynocc",
+  "title": "Growling grass frog detections at 33 wetlands of a wastewater treatment plant in Victoria, Australia, four seasons 2010/11-2013/14",
+  "creator": "Hamer, Andrew J.; Heard, Geoffrey W.; Urlus, Jake; Ricciardello, Jonathon; Schmidt, Bernadette; Quin, Darren; Steele, William K.",
+  "pubDate": "2017",
+  "doi": "10.5061/dryad.f83c6",
+  "sourceURL": "https://doi.org/10.5061/dryad.f83c6",
+  "citation": "Hamer, A. J. et al. (2017). Data from: Manipulating wetland hydroperiod to improve occupancy rates by an endangered amphibian: modelling management scenarios [Dataset]. Dryad. https://doi.org/10.5061/dryad.f83c6",
+  "paperDOI": "10.1111/1365-2664.12729",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the growling grass frog (Litoria raniformis, IUCN VU) on two or three surveys per breeding season at 33 wetlands of a wastewater treatment plant in southern Victoria, Australia, 2010/11-2013/14, with effective wetland area and aquatic vegetation cover per season and water conductivity and turbidity.",
+  "samplingProtocol": "Repeated surveys of wetlands for growling grass frogs (two or three per breeding season); detection recorded per survey.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a breeding season, open between the four seasons (dynamic occupancy)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Western Treatment Plant, southern Victoria, Australia; no coordinates deposited",
+  "temporalCoverage": "2010/2014",
+  "notShipped": {
+    "distance_matrix": "33 x 33 inter-site distances (m)",
+    "models": "WinBUGS model files"
+  },
+  "notes": "Growling grass frog is IUCN VU; no coordinates are deposited. Survey methods (call / visual) per the paper.",
+  "summary": {
+    "n_rows": 233,
+    "n_units": 33,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 3,
+    "n_surveys": 233,
+    "y_values": "0,1",
+    "prop_zero": 0.416,
+    "n_traps": 1,
+    "n_zero": 97,
+    "n_positive": 136,
+    "n_units_detected": 32,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_log_ec", "unit_turbidity", "period_effective_area", "period_aquatic_veg_cover"],
+  "coreMd5": "4f0a3362ded17bec4e0d7ac6e5ee0d91",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_season"],
+      "md5": "d257bdb0f80e6cd141d395bbc5e1cfb8"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3eb76ad3fb275c121d75443405786553"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hamer_2017_wtp_growlingfrog_dynocc.R",
+  "buildDate": "2026-11-05"
+}
