@@ -313,6 +313,7 @@ CSVs with `upload/red_up_eco.py`.
 | `twining_2024_newyork_carniv_occ.R` | two stacked occupancy tables: bobcat and coyote (winters 2013-2021, 3,849 site-years) and black bear (summers 2016-2018), New York (batch 37) | Dryad | CC0 |
 | `fidino_2021_lincolnpark_birds_binom.R` | binomial counts, days seen of days walked, 193 birds x 16 years over a century, Lincoln Park, Chicago (batch 37) | Dryad | CC0 |
 | `husemann_2015_taita_greenbul_cjs.R` | five CJS tables (one per forest fragment), Cabanis's greenbul, Taita Hills, 1996-2009 (batch 37) | Dryad | CC0 |
+| `amir_2022_seasia_coabundance_count.R` | community counts, tiger, clouded leopard, sambar, red muntjac x 416 3-km cells x 40 five-day occasions, Southeast Asia (batch 37) | Dryad | CC0 |
 | `goldingay_2026_bendigo_camera_occ.R` | dynamic occupancy, cameras: phascogale and sugar glider x 30 sites near / away from nest boxes x 60 weeks in 5 season blocks, Bendigo, Victoria, 2023-2024; shared-detector ruling | Dryad | CC0 |
 | `sharma_2021_spiti_snowleopard_scr.R` | count-detector SCR: 16 snow leopards x 30 cameras, encounters under a 4-hour rule, Spiti Valley, India, 2011-2012; coordinates displaced by the source | Dryad | CC0 |
 | `schorr_2021_yampa_mylu_rd.R` | robust design, PIT antennas: 1,741 little brown bats at two roosts, 10 closed sessions with weekly occasions, Colorado, 2014-2018; survey set inferred | Dryad | CC0 |

@@ -1,0 +1,64 @@
+{
+  "table": "amir_2022_seasia_coabundance_count",
+  "title": "Camera-trap counts of tiger, clouded leopard, sambar and red muntjac in 416 3-km cells across Southeast Asian forests, 5-day occasions",
+  "creator": "Amir, Zachary; Sovie, Adia; Luskin, Matthew S.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.b8gtht7h3",
+  "sourceURL": "https://doi.org/10.5061/dryad.b8gtht7h3",
+  "citation": "Amir, Z., Sovie, A., & Luskin, M. S. (2022). Inferring predator-prey interactions from camera traps: A Bayesian co-abundance modeling approach [Dataset]. Dryad. https://doi.org/10.5061/dryad.b8gtht7h3",
+  "paperDOI": "10.1002/ece3.9627",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Count histories of two predators (tiger, clouded leopard) and two prey (sambar, red muntjac) on up to forty 5-day occasions in 3-km cells of 23 camera-trap surveys across ten primary-forest landscapes in Sumatra, Peninsular Malaysia, Thailand, Singapore and Borneo, with camera-nights, forest integrity and human footprint per cell.",
+  "samplingProtocol": "Systematic camera-trap sessions; detections aggregated by the authors to 3-km cells and 5-day occasions as count histories for co-abundance N-mixture models.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one session per cell (up to 200 days), as the authors' N-mixture model assumes",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Southeast Asia (Sumatra, Peninsular Malaysia, southern Thailand, Singapore, Borneo); no coordinates deposited",
+  "temporalCoverage": "dates not deposited (survey names carry years 2013-2019)",
+  "notShipped": {
+    "zip": "the 8 GB tutorial zip (code, the same CSVs, fitted models) and the fitted-model RData files: not downloaded"
+  },
+  "notes": "Counts are the deposited count histories per 5-day occasion; their exact definition (independent detections) is in the README inside the tutorial zip. Tiger has no rows in the 18 Bornean cells (outside its range; __survey_taxa).",
+  "summary": {
+    "n_rows": 22188,
+    "n_units": 416,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 40,
+    "n_surveys": 5606,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.895,
+    "n_traps": 1,
+    "n_zero": 19862,
+    "n_positive": 2326,
+    "n_units_detected": 307,
+    "max_y": 6
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_survey", "unit_landscape", "unit_cell_effort", "unit_forest_integrity", "unit_human_footprint"],
+  "coreMd5": "85b3985f6892e407975067d809771a06",
+  "sideTables": {
+    "survey_taxa": {
+      "rows": 1646,
+      "columns": ["taxon", "unit"],
+      "md5": "50d41b703cb50a76409eb78fe2ebc205"
+    },
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "de8ad1ee1088ebbe9e708ac6ee112a1d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/amir_2022_seasia_coabundance_count.R",
+  "buildDate": "2026-11-06"
+}
