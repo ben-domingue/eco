@@ -6,53 +6,272 @@ title: "Converting a deposit"
 #| label: queue
 library(data.table)
 q <- as.data.table(read.csv("../queue/candidates.csv", stringsAsFactors = FALSE))
+# Statuses carry a reason after a colon ("held: no licence", "available: survey
+# evidence unverified"), so classify on the word before it.
 q[, state := fifelse(grepl("^built", status), "built",
-             fifelse(status == "claimed", "claimed",
-             fifelse(status == "available", "available", "held")))]
+             fifelse(grepl("^claimed", status), "claimed",
+             fifelse(grepl("^available", status), "available",
+             fifelse(grepl("^needs-look", status), "needs-look", "held"))))]
 counts <- q[, .N, by = state]
 n <- function(s) { v <- counts[state == s, N]; if (length(v)) v else 0L }
 ```
 
 The project is at the stage where the most useful thing anyone can do is
 convert another public deposit and see what breaks. There are
-`r n("available")` inspected candidates waiting, `r n("claimed")` claimed,
-`r n("built")` built and `r n("held")` held back (an access wall, no licence,
-or a design the standard does not yet cover). Each conversion is one R script, one dictionary row and
-one tags row.
+`r n("available")` inspected candidates waiting, `r n("needs-look")` more that
+nobody has opened yet, `r n("claimed")` claimed, `r n("built")` built and
+`r n("held")` held back (an access wall, no licence, or a design the standard
+does not yet cover). Each conversion is one R script plus the files it writes.
 
-## Before you start: check a file
+## The checklist
 
-If you already have a table in the format, or want to see what the format
-asks of one, [check it in your browser](validate.qmd): drop the core CSV with
-its `__taxa.csv` and `__dataset.json` and the validator reports every finding
-against a clause of the standard. Nothing is uploaded, and it runs the same
-checks as `eco-validate` on the command line.
+Do these in order. Each step can stop a deposit, and the early steps are the
+cheap ones.
+
+1. **[Licence](#licence).** Check it on the source page. Some licences mean stop.
+2. **[Sample floor](#sample-floor).** Count the units and the repeat surveys.
+   A small table still ships, but a single visit to each site usually stops a
+   deposit.
+3. **[Build and check](#build-and-check).** Write the script, run it, and check
+   the table in the [browser validator](validate.qmd). The command-line validator
+   runs the same checks locally.
+4. **[Issue](#open-an-issue).** Open a data-queue issue, so nobody else builds the
+   same deposit.
+5. **[Pull request](#open-a-pull-request).** Commit the script and its records,
+   not the data, and open a pull request against `main`.
+
+Set up your computer first ([Before you start](#before-you-start)). Do it once,
+and update your copy each time you begin a new deposit.
+
+## Before you start
+
+**Install the tools.** You need git, R (4.1 or later) and Python (3.9 or later).
+
+```bash
+# R packages, from a terminal (or run the install.packages() line inside R)
+Rscript -e 'install.packages(c("data.table", "jsonlite", "readxl"), repos = "https://cloud.r-project.org")'
+
+# Python: pandas for the validator, pytest if you want to run its tests
+python3 -m pip install pandas pytest
+```
+
+`readxl` is needed only for deposits that ship Excel files, but it is easiest to
+install it now.
+
+**Fork and clone.** Fork [`ben-domingue/eco`](https://github.com/ben-domingue/eco)
+on GitHub, then clone your fork and tell git where the original lives:
+
+```bash
+git clone https://github.com/<your-username>/eco.git
+cd eco
+git remote add upstream https://github.com/ben-domingue/eco.git
+```
+
+**Update before every new deposit.** The standard and the tools change often (the
+standard moved to v1.1 within days of the first outside contribution). Start each
+deposit from the current `main`, on a branch named `<your-username>/<table>`:
+
+```bash
+git checkout main
+git pull upstream main
+git push origin main            # keeps your fork's main in step
+git checkout -b <your-username>/<table>
+```
+
+Everything below runs from the top folder of the repository.
+
+## 1. Licence {#licence}
+
+Open the deposit's page (Dryad, Zenodo, ...) and read the licence it shows there.
+Then check the deposited readme and data files for a different licence, because
+the stricter of the two applies.
+
+::: {.callout-warning}
+## Licence policy (draft for Ben to confirm)
+
+Adapted from IRW's "Before you start" and eco's intake rules
+([standard, Intake policy](standard.qmd)):
+
+- **CC0, CC BY, CC BY-SA or public domain:** go ahead.
+- **Non-commercial (CC BY-NC and the like), ODbL, GPL or another licence that
+  carries a condition forward:** go ahead. The condition goes into the table's
+  `derived_license`, so anyone who needs to can find and exclude the table.
+- **No licence, a licence code that does not resolve to a named licence, or
+  "contact the author":** stop. Email the owner for written permission (IRW's
+  template is `processing_notes/Licensing.txt` in `ben-domingue/irw`), and build
+  nothing until it arrives.
+- **ND (no derivatives):** stop. Reshaping the data into eco's format is a
+  derivative, which ND forbids.
+- **The repository page and the files disagree** (say, Dryad shows CC0 but the
+  readme says ODbL): the stricter licence applies and is carried forward. Record
+  both in the dictionary row.
+- **Scraped or re-uploaded third-party data:** do not host it under any licence.
+  The re-uploader cannot license data they did not own.
+
+Anything that fits none of these: ask in an issue before writing code.
+:::
+
+While you are on the page, check that nobody has the deposit already. Search
+[the queue](#the-queue) and the dictionary
+(`dictionary/dictionary_auto.csv`) for its DOI, and look for an open
+[data-queue issue](https://github.com/ben-domingue/eco/issues?q=label%3A%22data+queue%22).
+
+## 2. Sample floor {#sample-floor}
+
+eco reports a sample floor on every table rather than rejecting small ones. A
+table **meets** the floor with at least 30 units (sites, cameras, animals...) and
+at least 2 repeat surveys per unit (2 periods for capture-recapture). Below that
+it still ships, marked `below`, so users can filter it out, and it is a lower
+priority. Count both numbers from the deposit's description before you start.
+The script also reports them (`floor=meets` in its last line).
+
+**A single visit is different: it usually stops the deposit (ruled
+2026-11-06).** If the units are sites (not individual animals) and the deposit
+holds just one visit to each one -- one occasion and one period, such as a
+site-by-species matrix from a single survey -- the table fits the format but
+supports none of the core designs in E9, because one visit cannot separate "not
+there" from "there but missed". Such a table is generally not eligible. A
+maintainer can still admit one, case by case, with the reason recorded in the
+table's `notes`. Two kinds of table only look single-visit and are fine: a
+`binomial_count` table, whose repeat visits are summarised in `obs_trials`
+instead of an occasion column, and an individual-unit table replicated over
+traps (count-detector spatial capture-recapture).
+
+Check the design too: the [standard's scope (E9)](standard.qmd) lists which
+designs are in. Presence-only records, telemetry and model outputs are out.
+
+## 3. Build and check {#build-and-check}
+
+**Start from the closest existing script.** `data/README.md` lists every table
+built so far, with its design. Pick one with the same design and the same kind of
+deposit, copy it to `data/<table>.R`, and change it. For example,
+`data/samek_2024_racerunner_occ.R` is a short single-season occupancy script built
+from a Dryad matrix. The repository's own instructions for agents
+(`.claude/skills/eco-convert-deposit/SKILL.md`) give the order of steps and name
+model scripts for several kinds of deposit.
+
+**Write the header first.** The script is the record of how the table was made.
+Its opening comment says where the data came from, the licence as shown, the
+paper, what each deposited file holds, and how each column maps onto the standard.
+
+**Decide how the survey set is evidenced.** In plain terms: how do you know that a
+0 means "surveyed, not found" rather than "never surveyed"? eco keeps a row for
+every survey that happened and none for surveys that did not, so the table has to
+say what that list of surveys rests on. The script records one of these as
+`surveyEvidence`:
+
+| Value | Use it when the deposit has |
+|---|---|
+| `deposited_matrix` | a site-by-visit grid where "not surveyed" (blank or `NA`) and "not detected" (0) look different |
+| `sample_table` | a list of the surveys that were carried out |
+| `effort_table` | effort per site and visit; a survey happened where effort is above 0 |
+| `row_presence` | one row per survey, including rows that recorded nothing |
+| `inferred` | none of these; you reconstruct the surveys with a rule, and the script states the rule |
+
+If you cannot tell surveyed from not surveyed at all, the deposit cannot be built.
+Say so in an issue.
+
+**Run it.**
+
+```bash
+Rscript data/<table>.R
+```
+
+The script downloads the deposit into `.cache/raw/<table>/` and writes the table
+into `output/`. It also adds a row to `dictionary/dictionary_auto.csv` and
+`tags/tags_auto.csv`. If an assertion fails, the script stops with the line that
+failed. That usually means the deposit differs from what the script expects, so
+fix the script, not the check.
+
+**Check it in your browser.** Drop the files from `output/` (the core CSV, its
+`__taxa.csv` and any other side tables, and `__dataset.json`) on the
+[browser validator](validate.qmd). Nothing is uploaded. It answers two questions:
+does the table conform to the standard, and does it pass the upload checks.
+
+**Check it on the command line.** This runs the same checks locally:
+
+```bash
+python3 -m eco_validate.cli output/<table>.csv -v
+```
+
+It ends with an **exit code**, a number the command hands back to the terminal:
+0 means it passed, and anything else means something blocks the table. Run
+`echo $?` straight afterwards to see it. Errors must be fixed; warnings are worth
+reading, and some are expected (an `inferred` survey set always gives one).
+
+**Optional: the IRW check.** Every eco table must also be a valid
+[IRW](https://itemresponsewarehouse.org) table, and the maintainers check that
+before upload. To run it yourself, clone IRW once, anywhere, and point
+`IRW_SRC` at the clone, which is the folder that contains `irw_validate/`:
+
+```bash
+git clone --depth 1 https://github.com/ben-domingue/irw.git ~/irw
+IRW_SRC=~/irw python3 -m eco_validate.cli output/<table>.csv -v --irw
+```
+
+Without `IRW_SRC`, `--irw` reports `irw_validate not importable` and fails. The
+IRW validator adds warnings that are normal for ecological tables, such as
+`sample_floor` (IRW's floor of 100 does not apply to animal data) and
+`cov_prefix` (IRW does not know eco's `obs_` columns).
+
+## 4. Open an issue {#open-an-issue}
+
+[Open a data-queue issue](https://github.com/ben-domingue/eco/issues/new?template=data_queue.yml)
+titled with your table name (`author_year_place_type`). The form asks for the
+deposit, its licence, the design, the survey evidence, coordinates and taxon
+sensitivity, so a maintainer can spot a problem before you finish. You can open
+it before step 3 to reserve the deposit; the queue's rules are in
+`queue/README.md`.
+
+## 5. Open a pull request {#open-a-pull-request}
+
+The tables themselves live on Redivis, not in the repository, and `output/*.csv`
+is gitignored. Commit only the records of how the table was made:
+
+| Commit | What it is |
+|---|---|
+| `data/<table>.R` | your script |
+| `output/<table>__dataset.json` | the table's metadata and counts (the only file in `output/` that is tracked) |
+| your rows in `dictionary/dictionary_auto.csv` and `tags/tags_auto.csv` | written by the script |
+| your row in `metadata/metadata.csv` | made by `metadata/run_pipeline.sh 01` |
+| your row in `queue/candidates.csv` | `status` set to `built: <table>`, your name in `claimed_by` |
+| a row in `data/README.md` | under "Tables built so far" |
+
+Before you push, run the checks that CI runs on every pull request:
+
+```bash
+metadata/run_pipeline.sh 01                 # adds your table's metadata.csv row
+python3 tools/check_coverage.py             # every table has its dictionary, tags and metadata rows
+python3 tools/check_prose_numbers.py --strict   # numbers in your titles match the table
+python3 -m pytest eco_validate/tests -q     # the validator's own tests
+```
+
+Stage 01 stops if `output/` holds a core CSV without its `__dataset.json`, for
+example one left over from another branch. Move that CSV aside and run it again.
+
+Then commit, push to your fork and open a pull request against
+`ben-domingue/eco:main` that names the issue (`#<number>`). Say in the
+description what the checks reported and anything you were unsure of. A
+maintainer reruns the script and uploads the table to Redivis, where it is
+validated again before it ships. Pull requests from forks wait for a maintainer to
+approve their CI run.
 
 ## How a table is built
 
 One script per source lives in `data/`. It downloads the deposit into a local
 cache, reshapes it into the standard, validates it, and writes
 
-| Output | Where |
-|---|---|
-| the clean long-format CSV | `output/<table>.csv` |
-| side tables for taxa, primary periods, units and traps | `output/<table>__taxa.csv`, `__periods.csv`, `__units.csv`, `__traps.csv` |
-| dataset metadata with the EML and Darwin Core fields, counts and sample-floor status | `output/<table>__dataset.json` |
-| a Data-Dictionary row and a tags row | `dictionary/dictionary_auto.csv`, `tags/tags_auto.csv` |
+| Output | Where | Committed? |
+|---|---|---|
+| the clean long-format CSV | `output/<table>.csv` | no |
+| side tables for taxa, primary periods, units and traps | `output/<table>__taxa.csv`, `__periods.csv`, `__units.csv`, `__traps.csv` | no |
+| dataset metadata with the EML and Darwin Core fields, counts and sample-floor status | `output/<table>__dataset.json` | yes |
+| a Data-Dictionary row and a tags row | `dictionary/dictionary_auto.csv`, `tags/tags_auto.csv` | yes |
 
 Shared helpers (cached downloads, GBIF taxon matching, coordinate coarsening,
 the writer and the staging functions) are in `lib/eco_common.R`; the
-converters are the R package's `Rpkg/R/convert.R`. Run one script from the
-repository root with `Rscript data/<table>.R`, or all of them with
-`Rscript data/run_all.R`. Check your table with the Python validator,
-`python3 -m eco_validate.cli output/<table>.csv`, which reports every finding
-against a clause of the standard; the writer runs its R twin and refuses a bad
-table.
-
-The tables themselves live on Redivis, not in the repository: commit your
-script, its `__dataset.json`, and the dictionary and tags rows, but not the
-CSVs (they are gitignored). A maintainer runs the script, and the upload to
-Redivis validates the table again before it ships.
+converters are the R package's `Rpkg/R/convert.R`. The writer runs an R twin of
+the validator and refuses a bad table; the Python validator is the authority.
 
 ## Conventions the scripts follow
 
@@ -78,16 +297,17 @@ Redivis validates the table again before it ships.
 - **Table names** follow the standard's intake policy:
   `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer.
 
-## Claiming a candidate
+## The queue
 
 The queue is `queue/candidates.csv`, seeded from the discovery pass with
 deposits that have recoverable non-detections and a conversion difficulty of
-1 to 4 on a 5-point scale. To claim one, open an issue on
-[`ben-domingue/eco`](https://github.com/ben-domingue/eco/issues) titled with
-the table name you intend to use, set the row's status to `claimed` with your
-name in the same pull request as your `data/` script, and change it to
-`built: <table>` when the script lands. New candidates go at
-the bottom with status `available`.
+1 to 4 on a 5-point scale. It stays the index of every candidate; an issue
+records each claim. To claim one, open a
+[data-queue issue](https://github.com/ben-domingue/eco/issues/new?template=data_queue.yml)
+titled with the table name you intend to use, and in your pull request set the
+row's status to `built: <table>` with your name in `claimed_by`. New candidates go
+at the bottom with status `available`. The statuses are explained in
+`queue/README.md`.
 
 ```{r}
 #| label: queue-table
