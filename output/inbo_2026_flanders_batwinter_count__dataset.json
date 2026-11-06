@@ -1,0 +1,68 @@
+{
+  "table": "inbo_2026_flanders_batwinter_count",
+  "title": "Meetnetten.be winter counts of hibernating bats at 1380 sites, Flanders, Belgium, 1943-2024",
+  "creator": "Piesschaert, Frederik; De Bruyn, Luc; Gyselings, Ralf; Dekeukeleire, Daan; Cooleman, Sam; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ruyts, Sabine; Lefevre, Anne; Vandendriessche, Bart; Boers, Kristiaan; Vermeiren, Hans; Palmans, Gerrit; Roels, Eline; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2025",
+  "doi": "10.15468/5s3ctr",
+  "sourceURL": "https://doi.org/10.15468/5s3ctr",
+  "citation": "Piesschaert F, De Bruyn L, Gyselings R, Dekeukeleire D, Cooleman S, Brosens D, Westra T, Desmet P, Ruyts S, Lefevre A, Vandendriessche B, Boers K, Vermeiren H, Palmans G, Roels E, Pollet M (2025). Meetnetten.be - Bat winter roosts counts (totals per site) Flanders, Belgium. Version 1.7. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/5s3ctr",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Winter counts of hibernating bats at 1380 hibernation sites (cellars, bunkers, ice-houses, small forts) in Flanders, from the Meetnetten.be monitoring network run by INBO and Natuurpunt Studie with volunteers, and earlier counts brought into it (from 1943; most sites from the 1980s). All bats in a site are counted and identified as far as possible, and the totals per species are registered for the site. One row per identification class per count.",
+  "samplingProtocol": "Winter count of all hibernating bats in a hibernation site without sublocations (or without registration per sublocation); bats identified as far as possible without disturbance, totals per taxon registered for the whole site; usually one count per winter.",
+  "samplingProtocolCode": "roost_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "period = winter (January year); occasion = count within a winter (most sites are counted once; up to 23 counts in a winter)",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 5 or 10 km UTM square centroids)",
+  "temporalCoverage": "1943/2024",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 or 10 km UTM square (coordinateUncertaintyInMeters 3536 or 7071) before publication; kept as published."
+  },
+  "notes": "Identification classes as recorded: Myotis mystacinus/brandtii and Plecotus auritus/austriacus are species aggregates beside the species-level classes, so species-level zeros are not absences where the aggregate was used (taxonRemarks). Counts before about 1975 are few (one to four sites a winter).",
+  "notShipped": {
+    "occurrences without an event": "12 occurrence rows whose eventID is not in the event core (no date or site): INBO:MEETNET:EVENT:270620, INBO:MEETNET:EVENT:270621, INBO:MEETNET:EVENT:270622, INBO:MEETNET:EVENT:270623, INBO:MEETNET:EVENT:270715, INBO:MEETNET:EVENT:270716, INBO:MEETNET:EVENT:270717, INBO:MEETNET:EVENT:270718, INBO:MEETNET:EVENT:270719, INBO:MEETNET:EVENT:270720",
+    "non-bat taxa": "1546 rows of hibernating moths, butterflies, flies, spiders and amphibians recorded incidentally (not counted by protocol)"
+  },
+  "summary": {
+    "n_rows": 260337,
+    "n_units": 1380,
+    "n_taxa": 23,
+    "n_periods": 81,
+    "n_occasions": 23,
+    "n_surveys": 11319,
+    "y_values": "0-568 (133 distinct)",
+    "prop_zero": 0.909,
+    "n_traps": 1,
+    "n_zero": 236593,
+    "n_positive": 23744,
+    "n_units_detected": 1181,
+    "max_y": 568
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "d7e3165687ce025b089d4002275e3bd2",
+  "sideTables": {
+    "periods": {
+      "rows": 81,
+      "columns": ["period", "winter", "january_year"],
+      "md5": "8bea557fdde7132a5ebec9a1920b6ef0"
+    },
+    "taxa": {
+      "rows": 23,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "a1c16a51e398bb45dafb720f317a6f92"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_batwinter_count.R",
+  "buildDate": "2026-11-06"
+}
