@@ -64,5 +64,5 @@ stage_dict_row(TABLE,
   doi_data = "10.5281/zenodo.15497666", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
   notes = "Camera-week counts with days as effort.", source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "N-mixture", sampling_protocol = "camera_trap",
-  design = "Single season (1-8 weeks per garden)", realm = "Terrestrial", country = "GBR", coordinates = "None in source",
+  design = "Single-season (1-8 weeks per garden)", realm = "Terrestrial", country = "GBR", coordinates = "None in source",
   notes = "Private gardens; supplementary feeding study (country from the institution).")

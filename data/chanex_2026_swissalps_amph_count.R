@@ -101,5 +101,5 @@ stage_dict_row(TABLE,
   doi_data = "10.5281/zenodo.19856651", original_license = "CC BY 4.0", derived_license = "CC BY 4.0",
   notes = "Raw files read from the 1.1 GB zip by range requests.", source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Amphibians", model_family = "N-mixture (community)", sampling_protocol = "visual_encounter",
-  design = "Single season (4 visits)", realm = "Freshwater", country = "CHE", coordinates = "As published",
+  design = "Single-season (4 visits)", realm = "Freshwater", country = "CHE", coordinates = "As published",
   notes = "Artificial (snow-making) vs natural water bodies.")

@@ -89,5 +89,5 @@ stage_dict_row(TABLE,
   doi_data = "10.5066/P145OSD8", original_license = "US public domain (USGS data release)", derived_license = "CC0 1.0",
   notes = "Robust design with trapping days inferred from captures.", source_via = "USGS ScienceBase")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Robust design", sampling_protocol = "live_trap",
-  design = "Multi-season (34 years, trapping days within years)", realm = "Terrestrial", country = "USA", coordinates = "None in source",
+  design = "Multi-season (31 trapped years 1988-2021, trapping days within years)", realm = "Terrestrial", country = "USA", coordinates = "None in source",
   notes = "California state-threatened; survey days inferred from captures.")

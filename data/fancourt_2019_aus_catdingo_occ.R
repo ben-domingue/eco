@@ -57,5 +57,5 @@ stage_dict_row(TABLE,
   doi_data = "10.5061/dryad.6hb0063", original_license = "CC0 1.0", derived_license = "CC0 1.0",
   notes = "Fetched from the Zenodo copy of the Dryad deposit (record 5001772).", source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Community occupancy (two-species co-occurrence)", sampling_protocol = "camera_trap",
-  design = "Single season (21-22 days)", realm = "Terrestrial", country = "AUS", coordinates = "None in source",
+  design = "Single-season (21-22 days)", realm = "Terrestrial", country = "AUS", coordinates = "None in source",
   notes = "Apex predator vs mesopredator co-occurrence; two sites.")

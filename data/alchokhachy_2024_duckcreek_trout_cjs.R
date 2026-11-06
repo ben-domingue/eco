@@ -97,6 +97,6 @@ for (sp in c("YCT", "BNT")) {
     doi_data = "10.5066/P1WUVM5S", original_license = "US public domain (USGS data release)", derived_license = "CC0 1.0",
     notes = "CJS per species; seasons inferred from catches.", source_via = "USGS ScienceBase")
   stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "CJS", sampling_protocol = "electrofishing",
-    design = "Multi-season (20 seasons)", realm = "Freshwater", country = "USA", coordinates = "None in source",
+    design = sprintf("Multi-season (%d seasons)", uniqueN(long$period)), realm = "Freshwater", country = "USA", coordinates = "None in source",
     notes = if (sp == "YCT") "Native cutthroat trout; brown trout invasion study." else "Non-native brown trout.")
 }

@@ -77,5 +77,5 @@ stage_dict_row(TABLE,
   doi_paper = "10.1371/journal.pone.0205075", doi_data = "10.5061/dryad.m8q8bn3", original_license = "CC0 1.0", derived_license = "CC0 1.0",
   notes = "Fetched from the Zenodo copy of the Dryad deposit (record 4950882).", source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Single-season occupancy", sampling_protocol = "acoustic",
-  design = "Single season (up to 14 nights)", realm = "Terrestrial", country = "AUS", coordinates = "None in source",
+  design = "Single-season (up to 14 nights)", realm = "Terrestrial", country = "AUS", coordinates = "None in source",
   notes = "Timber-harvest treatments; automated call recognition.")

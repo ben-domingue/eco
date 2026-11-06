@@ -78,7 +78,7 @@ stage_dict_row(TABLE,
   doi_data = "10.15468/hsfq2u", original_license = "CC0 1.0", derived_license = "CC0 1.0",
   notes = "INBO IPT DwC-A (meetnetten-butterflies-egg-occurrences v1.26). Eggs summed per plot count; coordinates generalised by INBO.",
   source_via = "GBIF")
-stage_tag_row(TABLE, ds, taxon_group = "Insects", model_family = "N-mixture (open / multi-season)",
+stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "N-mixture (open / multi-season)",
   sampling_protocol = "egg_count", design = sprintf("Multi-season (%d years, 1-%d counts a year)", uniqueN(long$period), max(long$occasion)),
   realm = "Terrestrial", country = "BEL", coordinates = "As published",
   notes = "Priority-species monitoring with volunteers; eggs on the host plant.")
