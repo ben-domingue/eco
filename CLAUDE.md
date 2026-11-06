@@ -92,8 +92,8 @@ the name plus `__taxa` (required), `__periods`, `__units`, `__traps`, `__survey_
   `notShipped`.
 - **Coordinates never finer than the source.** Flagged taxa (source says so, IUCN
   CR/EN/VU in its native range, cited red list) with coordinates finer than 0.1 degree are coarsened
-  with `coarsen_coords()`, and `coordinatesCoarsened` says how. Agency-published
-  coordinates are kept as published.
+  with `coarsen_coords()`, and `coordinatesCoarsened` says how, whoever published them
+  (agency coordinates included, ruled 2026-11-06).
 - **Species codes on `taxon`**, scientific name and GBIF key in `__taxa` via
   `make_taxa()`; period-level facts in `__periods`.
 - **One table per survey design x response type.** Name

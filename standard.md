@@ -306,9 +306,17 @@ source cites lists it. For a flagged taxon with coordinates finer than 0.1°, ge
 to the 0.1° grid-cell centre, set `unit_coordinateUncertaintyInMeters` to the cell
 half-diagonal, set `coordinatesCoarsened` with the method, and say so in the tags.
 Coordinates are coarsened, not dropped: spatial occupancy and SCR need them, and a
-10 km cell is what GBIF publishes for sensitive taxa. Coordinates a government
-agency released for a flagged taxon on public land are kept as published; the agency
-is the authority on what it publishes. Trap coordinates follow the same rule.
+10 km cell is what GBIF publishes for sensitive taxa. Trap coordinates follow the same
+rule.
+
+**Ruling (publisher, 2026-11-06; replaces the agency exception of 2026-11-01).** A flagged
+taxon is coarsened whoever published the source, a government agency included. The
+exact coordinates stay one link away at the source; eco's job is to not make them
+easier to find, filter and combine across hundreds of tables, and 0.1° costs little for
+most models. Multi-taxon tables keep the unflagged taxa at full precision in the
+`_exact` sibling (E7 scope, 3). For (a), the source says so when it states that
+locations are sensitive or withheld, or that the taxon is protected or threatened in
+its own text about the data; a word in a paper's title is not enough.
 
 **Ruling (non-native taxa, 2026-11-02).** (b) applies only where the survey is within
 the taxon's native range. The IUCN category protects wild populations; an introduced
@@ -380,6 +388,17 @@ intervals (three intervals within a point count), the occasion is the visit, and
 detection or count in each interval ships as an `obs_` column (`obs_int1`, `obs_int2`,
 ...). Nothing is lost: a removal or interval model rebuilds the intervals from them.
 
+**Ruling (repeated rows within a visit, 2026-11-06).** When a source records one species in
+several rows of one visit (by interval, distance band, or both, as in a point count that
+notes when and how far each group was first detected), the visit has one row per taxon:
+`y` is the total over those rows, and the count in each cell ships as an `obs_` column
+named for it (`obs_n_int1_band1`, ...), with every cell present and 0 where nothing was
+recorded. The cells and their bounds go in `notes` (and `distanceBreaks` when there are
+bands). Nothing is lost: interval, removal and distance models rebuild the cells. A
+record whose cell is missing is counted in `y` and in an `obs_n_cell_unknown` column. Rows
+that repeat a record exactly (the same visit entered twice) are a source error: drop the
+duplicate and say so in `notShipped`.
+
 ## E9. Scope
 
 **Ruling (Q6, 2026-11-01).** Three lists. The test for the second is that the
@@ -447,6 +466,19 @@ individual`, `responseType = count` (`y` = the individual's encounters at the tr
 `trap` with `__traps`, the trap's effort in an `obs_` column named by `effortColumn`
 (`obs_effort_days`), and no `occasion` column when the source has a single occasion
 (`occasionKind = none`). Every individual has a row at every trap operated.
+
+**Ruling (spatial mark-resight, 2026-11-06).** A survey in which some animals carry marks
+and detectors (cameras, observers) then record sightings of marked animals, identified
+or not, and of unmarked animals is admitted as SCR with `responseType = count` and
+`unitKind = individual`. Each marked individual is a unit with a row at every trap ×
+occasion it could have been seen (marked, and the trap operated), `y` = its sightings
+there. Sightings that cannot be attributed to an individual ship under two reserved
+units, `unmarked` and `marked_unidentified` (only when the source records it), with a
+row at every trap × occasion operated and `y` = the number of such sightings, 0
+included. `__units` says which units are reserved and, for each marked individual,
+when it was marked (and lost or removed, when the source says). Trap effort goes in an
+`obs_` column named by `effortColumn`, and `notes` say how marks were applied. The
+count-detector SCR form above is the special case with no unmarked sightings.
 
 **Ruling (eDNA detection call, 2026-11-06).** A detection call the source states for a
 qPCR replicate is `y`. When the source gives Ct (Cq) values or quantities but no call,
@@ -633,6 +665,9 @@ shipped and why. Facts about the source are assertions, not comments.
   - Intake (scale, #24): the Breeding Bird Survey block and stop tables stay regional (BCR 15); national block (about 210M rows) and stop (about 1.26B rows) tables are not built.
   - Intake (`processing_guide.md`): the Dryad intake is anonymous by default and a deposit whose anonymous download fails (404/405) is `blocked`; a short-lived token Ben supplies in `DRYAD_TOKEN` is used when set (amended 2026-11-06, batch 35).
   - Intake: a use constraint that only routes questions on appropriate use to a point of contact (the USGS default wording) is not a restriction; one that asks to be contacted before use is still unclear terms.
+  - E7: a flagged taxon is coarsened whoever published it (the agency exception is withdrawn); (a) needs the source's own statement about the data, not a word in a paper's title.
+  - E9: spatial mark-resight admitted as count SCR: marked individuals as units, unattributable sightings under the reserved units `unmarked` and `marked_unidentified`.
+  - E8: repeated rows of one taxon within a visit (interval × distance band): `y` is the visit total, each cell an `obs_` column; exact duplicate entries are dropped.
 - **v1.1-draft, rulings 17 to 21 of 2026-11-06** (NEON batch 38, #10):
   - E2: a count the source labels as estimated is kept with `obs_count_estimated` (17); an unlabelled count is flagged only by a rule stated in the standard, the first being tick larval counts in exact multiples of 1,000, `obs_count_likely_estimated` (18).
   - E4.2: a complete-list protocol with no target list may take the per-site pool of taxa recorded in the table as the taxa surveyed for, through `__survey_taxa`, with `surveyEvidenceNote` saying the pool is derived from detections (19).
