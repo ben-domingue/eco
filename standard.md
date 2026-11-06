@@ -505,10 +505,12 @@ understates the information, which is one reason the floor is a filter.
 
 **Replication (ruled 2026-11-06).** A site-unit table with `n_occasions = 1` and
 `n_periods = 1` (a single-visit community matrix) fits the format but supports none of
-the models in E9's core list, so it is not built. A `binomial_count` table is not
-single-visit (its occasions are `obs_trials`), and neither is an individual-unit table
-replicated over traps (count-detector SCR, E9). Tables already in the corpus are
-untouched by this rule.
+the models in E9's core list, so it is generally not eligible. Exceptions are Ben's
+call, made case by case and recorded in the table's `notes`; the first is
+`bradferlawrence_2025_ukwood_plant_comm` (129 woodlands x 200 plant species, kept
+2026-11-06). A `binomial_count` table is not single-visit (its occasions are
+`obs_trials`), and neither is an individual-unit table replicated over traps
+(count-detector SCR, E9).
 
 **All-zero tables (ruled 2026-11-06).** A table in which nothing was detected (every
 `y = 0`) is admitted. Its `notes` say that nothing was detected and that detection
@@ -583,7 +585,7 @@ shipped and why. Facts about the source are assertions, not comments.
   - Intake: an all-zero table is admitted, with notes saying nothing was detected and p is not estimable from it alone.
   - E1: a source with a per-visit series and a season total that covers surveys the series lacks ships both, as two tables (Swiss MHB).
   - E3 (existing rule applied): an editor's territory delineation from shared field visits is an observation; occasion = visit × editor, `observer` = editor, `closure = dependent`.
-  - Intake: a single-visit site-unit table (`n_occasions = 1`, `n_periods = 1`) is no longer admitted; tables already in the corpus are untouched.
+  - Intake: a single-visit site-unit table (`n_occasions = 1`, `n_periods = 1`) is generally not eligible; exceptions are Ben's case-by-case call (first: `bradferlawrence_2025_ukwood_plant_comm`, kept).
   - Intake (scale, #24): the Breeding Bird Survey block and stop tables stay regional (BCR 15); national block (about 210M rows) and stop (about 1.26B rows) tables are not built.
   - Intake (`processing_guide.md`): no Dryad token; a deposit whose anonymous download fails (404/405) is `blocked`.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
