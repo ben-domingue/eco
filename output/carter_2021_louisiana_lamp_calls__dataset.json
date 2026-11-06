@@ -1,0 +1,79 @@
+{
+  "table": "carter_2021_louisiana_lamp_calls",
+  "title": "Louisiana Amphibian Monitoring Program: anuran calling-index surveys on 54 roadside routes, 1997-2017",
+  "creator": "Carter, Jacoby",
+  "pubDate": "2021",
+  "doi": "10.5066/P9VNBWM2",
+  "sourceURL": "https://doi.org/10.5066/P9VNBWM2",
+  "citation": "Carter, J., 2021, The Louisiana Amphibian Monitoring Program from 1997 to 2017: Data: U.S. Geological Survey data release, https://doi.org/10.5066/P9VNBWM2.",
+  "paperDOI": "10.1371/journal.pone.0257869",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, use constraints none"
+  },
+  "abstract": "Call observation data from the Louisiana Amphibian Monitoring Program (LAMP), part of the North American Amphibian Monitoring Program. Volunteers drove roadside routes of 10 stops in three Louisiana regions in winter, spring and summer runs, scoring the calling index (0 not heard to 3 full chorus) of each frog and toad species at each stop.",
+  "samplingProtocol": "NAAMP roadside calling survey: at each of 10 stops per route, observers listen for a fixed period after dark and score each species' calling index 0-3; three runs per year (winter, spring, summer windows that differ by region).",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "row_presence",
+  "responseType": "ordinal",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasion = survey night within a sampling year; the three runs (winter, spring, summer) target seasonal calling windows, so a species' calling availability changes between runs (obs_run)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "stateCodes": {
+    "0": "not heard",
+    "1": "individuals can be counted; calls do not overlap",
+    "2": "calls of individuals distinguishable with some overlap",
+    "3": "full chorus; calls continuous and overlapping"
+  },
+  "geographicCoverage": {
+    "description": "Louisiana, USA (North, South and Florida-parishes regions)",
+    "boundingBox": {
+      "west": -94.17,
+      "east": -88.75,
+      "south": 29,
+      "north": 33.1
+    }
+  },
+  "temporalCoverage": "1997/2017",
+  "notes": "Sampling year as deposited (period); the calendar year of the ten December 1997 rows is ambiguous in the release (see script header), so no ISO date is given: obs_month and obs_day carry the recorded month and day. Nine route-year-runs were surveyed on two nights; both are kept as separate occasions.",
+  "notShipped": {
+    "nothing": "every deposited row and column is shipped"
+  },
+  "summary": {
+    "n_rows": 344844,
+    "n_units": 540,
+    "n_taxa": 27,
+    "n_periods": 21,
+    "n_occasions": 4,
+    "n_surveys": 12772,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.938,
+    "n_traps": 1,
+    "n_zero": 323331,
+    "n_positive": 21513,
+    "n_units_detected": 537,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_route_name", "unit_region", "unit_stop", "obs_run", "obs_month", "obs_day"],
+  "coreMd5": "5a21dcfeb5231903c9e1da8505c8bf91",
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "year"],
+      "md5": "eb2447a1c401efe3ff8a8aa889ffa060"
+    },
+    "taxa": {
+      "rows": 27,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "30c7e4444d914941d3a395f794ab4678"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/carter_2021_louisiana_lamp_calls.R",
+  "buildDate": "2026-11-06"
+}

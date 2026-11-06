@@ -1,0 +1,69 @@
+{
+  "table": "kleeman_2024_dixiefire_ranaboylii_occ",
+  "title": "Foothill yellow-legged frog time-to-detection occupancy surveys at 43 stream sites in and near the 2021 Dixie Fire, California, 2022",
+  "creator": "Kleeman, Patrick M.; Rose, Jonathan P.; Halstead, Brian J.",
+  "pubDate": "2024",
+  "doi": "10.5066/P14TDU8A",
+  "sourceURL": "https://doi.org/10.5066/P14TDU8A",
+  "citation": "Kleeman, P.M., Rose, J.P., and Halstead, B.J., 2024, Foothill yellow-legged frog (Rana boylii) 2022 site and survey data in and near the footprint of the 2021 Dixie Fire, northeastern California, USA: U.S. Geological Survey data release, https://doi.org/10.5066/P14TDU8A.",
+  "paperDOI": "10.3996/JFWM-24-037",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Visual encounter surveys for foothill yellow-legged frogs at 43 stream segments in and near the footprint of the 2021 Dixie Fire, northeastern California, in July and August 2022, one year after the fire. Each site was surveyed once or twice; each survey records its duration and the time to first detection of the frog. Site covariates are burn status and pre-fire canopy cover.",
+  "samplingProtocol": "Visual encounter surveys of stream segments, up to two per site in summer 2022, recording the survey duration and the time to first detection of Rana boylii.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "two surveys per site within one summer",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Feather River and North Fork Feather River watersheds, Plumas and Butte counties, northeastern California, USA",
+    "boundingBox": {
+      "west": -121.7175,
+      "east": -120.0916,
+      "south": 39.8254,
+      "north": 40.8471
+    }
+  },
+  "temporalCoverage": "2022-07/2022-08",
+  "notShipped": {
+    "burn_code": "a 1/2 recode of burn",
+    "z_cc_pre": "z-score of cc_pre (recoverable from unit_canopy_cover_pre_pct)",
+    "site_summaries": "n_survey, dc, det: derived from the surveys (asserted equal)"
+  },
+  "summary": {
+    "n_rows": 83,
+    "n_units": 43,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 83,
+    "y_values": "0,1",
+    "prop_zero": 0.904,
+    "n_traps": 1,
+    "n_zero": 75,
+    "n_positive": 8,
+    "n_units_detected": 5,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_burn", "unit_canopy_cover_pre_pct", "obs_survey_min", "obs_ttd_min", "obs_ttd_censored"],
+  "coreMd5": "0f9db6c20c7b765d332622b70cb22cde",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "66c58c10084ca2fd625886cd3bd2e6ef"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/kleeman_2024_dixiefire_ranaboylii_occ.R",
+  "buildDate": "2026-11-06"
+}

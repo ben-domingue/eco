@@ -1,0 +1,78 @@
+{
+  "table": "hanslowe_2022_marianas_rat_occ",
+  "title": "Rat detections on chew cards over five-night samplings at nine forest grids on Guam and Rota, 2018-2019",
+  "creator": "Hanslowe, Emma B.; Page, Douglas A.; Bailey, Larissa L.; Yackel Adams, Amy A.",
+  "pubDate": "2022",
+  "doi": "10.5066/P9FOS7Z8",
+  "sourceURL": "https://doi.org/10.5066/P9FOS7Z8",
+  "citation": "Hanslowe, E.B., Page, D.A., Bailey, L.L., and Yackel Adams, A.A., 2022, Spatial mark-recapture and chew card rat data on Guam and Rota, 2018-2019: U.S. Geological Survey data release, https://doi.org/10.5066/P9FOS7Z8.",
+  "paperDOI": "10.3897/neobiota.74.80242",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Chew-track cards on 100- or 121-station grids in nine forest plots on Guam and Rota, Mariana Islands, checked each night for five nights, to test whether chew cards index invasive rat density measured by spatial capture-recapture on the same grids. Three grids were sampled a second time after a density manipulation (snake removal on Guam, rat removal on Rota).",
+  "samplingProtocol": "Chew-track cards at every station of an 11 x 11 (or 10 x 10) grid, checked each morning for five consecutive nights and scored as chewed by a rat or not.",
+  "samplingProtocolCode": "chew_card",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "five consecutive nights within a sampling; period = the grid's first or second sampling",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "EPSG:32655",
+  "geographicCoverage": {
+    "description": "Forest plots on Guam (4 grids) and Rota (5 grids), Mariana Islands",
+    "boundingBox": {
+      "west": 144.5361,
+      "east": 145.5084,
+      "south": 13.1651,
+      "north": 14.2697
+    }
+  },
+  "temporalCoverage": "2018-06/2019-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "station UTM coordinates as published; none deposited for grid G4"
+  },
+  "notShipped": {
+    "live_trapping": "Mark recapture trapping effort.csv: live-trap SCR data; some stations hold two traps per night with no trap key and G4 has no layout (held for a ruling)",
+    "camera_verification": "28 card-nights with a camera (validation subset)"
+  },
+  "summary": {
+    "n_rows": 6945,
+    "n_units": 1026,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 5,
+    "n_surveys": 6945,
+    "y_values": "0,1",
+    "prop_zero": 0.711,
+    "n_traps": 1,
+    "n_zero": 4935,
+    "n_positive": 2010,
+    "n_units_detected": 486,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "treat", "cluster_id", "unit_island", "unit_x", "unit_y", "period_manipulation"],
+  "coreMd5": "59b8b9f4169d90a0abc44dbf4ed8bf1d",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "label"],
+      "md5": "c415cf0229186c302747f63d668dc32d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "a40e183199b31e550e7d4078479971f4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hanslowe_2022_marianas_rat_occ.R",
+  "buildDate": "2026-11-06"
+}

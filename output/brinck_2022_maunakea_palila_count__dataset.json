@@ -1,0 +1,75 @@
+{
+  "table": "brinck_2022_maunakea_palila_count",
+  "title": "Point counts of palila at 455 stations on 32 transects around Mauna Kea, Hawaii, in annual surveys 1998-2018",
+  "creator": "Brinck, Kevin W.; Genz, Ayesha S.; Camp, Richard J.",
+  "pubDate": "2022",
+  "doi": "10.5066/P9DO0PL4",
+  "sourceURL": "https://doi.org/10.5066/P9DO0PL4",
+  "citation": "Brinck, K.W., Genz, A.S., and Camp, R.J., 2022, Mauna Kea Palila point count data from annual surveys 1998-2018 (ver. 2.0, January 2022): U.S. Geological Survey data release, https://doi.org/10.5066/P9DO0PL4.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Annual point-count surveys for the critically endangered palila on 32 transects around Mauna Kea, Hawaii Island, from treeline through the mamane-naio forest, 1998-2018; six-minute counts at stations about 150 m apart, with distance and detection type for every palila.",
+  "samplingProtocol": "Six-minute variable-distance point counts at stations about 150 m apart on transects perpendicular to the elevation gradient, each station counted one to four times a year in January-February; species, horizontal distance and detection type recorded for every bird, with time and weather.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "occasion = the primary observer's visits to the station within the January-February survey of a year.",
+  "geographicCoverage": {
+    "description": "Mauna Kea, Hawaii Island, Hawaii, USA (palila critical habitat)",
+    "boundingBox": {
+      "west": -155.6653,
+      "east": -155.3851,
+      "south": 19.7512,
+      "north": 19.9992
+    }
+  },
+  "temporalCoverage": "1998/2018",
+  "notShipped": {
+    "distances": "per-detection horizontal distances (no distance-sampling form built for this deposit)",
+    "model_groupings": "ObDumCode, YearBlock, DECT14, DECT24 and weather blocks: the authors' groupings for model fitting",
+    "effort": "EFFORT (the station's count of visits that year; 14 station-years record one more visit than they have rows)",
+    "area": "stratum area for density-to-abundance"
+  },
+  "notes": "Palila (Loxioides bailleui) is IUCN CR; the version 2.0 release has no station locations. y excludes detections filed under survey 9999 (outside the area of inference), counted in obs_n_outside.",
+  "summary": {
+    "n_rows": 11251,
+    "n_units": 455,
+    "n_taxa": 1,
+    "n_periods": 21,
+    "n_occasions": 4,
+    "n_surveys": 11251,
+    "y_values": "0,1,2,3,4,5,6,7,8,9,10",
+    "prop_zero": 0.751,
+    "n_traps": 1,
+    "n_zero": 8453,
+    "n_positive": 2798,
+    "n_units_detected": 330,
+    "max_y": 10
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "obs_n_heard_only", "obs_n_seen_first", "obs_n_heard_then_seen", "obs_n_outside", "obs_month", "obs_time_start", "obs_cloud_pct", "obs_rain", "obs_wind", "obs_gust"],
+  "coreMd5": "9d8b70ba562a5f3ac1b154a8ae97bdf0",
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "year"],
+      "md5": "72c4779f1aa76a7ce2ec6fc57e135364"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "68df4c2b747f7d870032c94e366a3300"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/brinck_2022_maunakea_palila_count.R",
+  "buildDate": "2026-11-06"
+}

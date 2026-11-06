@@ -1947,3 +1947,235 @@ What this batch says about the standard and the tools:
   (used for ticks) was not applied. A question for Ben.
 - **Plant pools are large.** The plant table is 24.5M rows with a 3.6M-row `__survey_taxa`, because a per-site pool of
   a few hundred taxa is carried at every 1 m2 visit; it is still about a third of a national-pool table.
+
+## Batch 40 — 2026-11-06 (non-Dryad discovery: USGS ScienceBase and GBIF sampling-event datasets)
+
+Dryad's anonymous quota was spent, so this batch searched elsewhere. EDI is fully walled to scripted
+requests now: PASTA search, metadata and data endpoints return 403 ("not authorized"), and the DataONE
+member nodes that used to serve LTER objects (gmn.lternet.edu, gmn.edirepository.org) return 403 too, so
+no EDI/LTER rows were added. Discovery: the ScienceBase catalog search (occupancy, capture-recapture,
+eDNA, call survey, camera trap, encounter history; 54 new rows after deduplication against the queue,
+human_review and every `__dataset.json` DOI) and the GBIF occurrence facet `occurrenceStatus = ABSENT`
+by dataset (1,000 datasets, of which 420 sampling-event CC0 / CC BY not yet in eco; 23 credible rows
+queued as needs-look). Eleven tables built from nine ScienceBase releases, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| carter_2021_louisiana_lamp_calls | NAAMP calling routes | ordinal | 344,844 | 540 | 27 | 21 |
+| zipkin_2017_oregon_barredowl_dynocc | dynamic occupancy | detection | 8,806 | 106 | 1 | 20 |
+| zipkin_2017_oregon_barredowl_count | repeated counts of pairs | count | 406 | 106 | 1 | 2 |
+| wiens_2021_socal_goldeneagle_dynocc | dynamic occupancy | detection | 1,252 | 175 | 1 | 2 |
+| waddle_2020_louisiana_marshbird_comm | ARU community occupancy | detection | 3,311 | 33 | 11 | 1 |
+| rose_2024_sjvalley_leglesslizard_occ | cover-board occupancy (multi-scale) | detection | 563 | 89 | 1 | 2 |
+| laramie_2019_bruneau_trout_edna | eDNA occupancy | detection | 608 | 26 | 2 | 12 |
+| hunter_2025_georgia_pinesavanna_occ | single-season occupancy | detection | 966 | 161 | 2 | 1 |
+| halstead_2025_yosemite_rasi_cjs | capture histories (daily, 20 years) | detection | 240,192 | 1,251 | 1 | 20 |
+| direnzo_2025_elcope_espadarana_cjs | CJS (annual) | detection | 2,075 | 415 | 1 | 5 |
+| direnzo_2025_elcope_espadarana_ms | multi-state (Bd infection) | state | 2,331 | 259 | 1 | 9 |
+
+Held: eight ScienceBase releases whose use constraints say the authors "require" or "request that data
+users contact them regarding intended use" (Point Reyes TTD, Masticophis, SF gartersnake, two humpback chub
+releases, Sonora mud turtles, Massachusetts Wildlife Monitoring Project, Olympic fisher), as unclear terms
+under the 2026-11-06 intake ruling. Needs a look: Puerto Rico Eleutherodactylus (code 2 in "binary"
+histories), Bristle-thighed Curlew (2015-2016 status from transmitters only), New England MYSE (possibly a
+model table). Rejected: yellow-billed cuckoo (site summaries only), dove co-occurrence (built from BBS,
+already in eco), NABat summer occupancy (model outputs).
+
+Facts carried into the tables: LAMP's December 1997 rows are in sampling year 1997 although the
+metadata put December 1997 in the 1998 sampling year and the release starts 1997-12-20, so no ISO dates
+are built (obs_month, obs_day). The Georgia savanna release labels its coordinate columns the wrong way
+round (swapped back, asserted). The Rana sierrae individual file has nine PIT codes mangled into E-notation
+by a spreadsheet (matched back by mantissa). Bull trout (IUCN VU) on USGS-published stream sites: coarsened
+to 0.1 degree, though the guide also says agency-published coordinates are kept (a question for Ben).
+The marsh-bird release numbers its sample periods out of date order (renumbered by date; source number in
+obs_sample_period).
+
+What strained the standard: none of the tables needed a new rule. Two community point-count releases
+(Arkansas and southern Iowa grassland birds) were inspected and queued rather than built: both have
+repeated species rows within a survey and survey-level fields that vary within a survey, which need a
+stated aggregation rule.
+
+## Batch 41 — 2026-11-06 (USGS ScienceBase rows found by batch 40)
+
+The 31 ScienceBase rows batch 40 queued as `available` were claimed (batch 42 worked the GBIF rows in
+parallel). Every release's FGDC `useconst` was read before any download: 29 carry no restriction, two
+carry the "authors require that users direct any questions pertaining to appropriate use" clause batch
+40 held (Yosemite amphibians, Dixie Valley toads; the queue rows had recorded "use constraints none").
+Twenty tables were built from fifteen releases, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| kleeman_2024_dixiefire_ranaboylii_occ | time-to-detection occupancy | detection | 83 | 43 | 1 | 1 |
+| grant_2023_canaanvalley_amph_count | egg-mass / larval counts, two observers per visit | count | 13,712 | 108 | 4 | 13 |
+| glorioso_2021_louisiana_turtle_count | hoop-net community counts | count | 1,666 | 119 | 7 | 1 |
+| holcomb_2017_suwannee_moccasinshell_occ | occupancy, surveyors as occasions | detection | 662 | 220 | 1 | 1 |
+| valente_2024_oregon_murrelet_state | multi-state station surveys | state | 447 | 132 | 1 | 1 |
+| mccaffery_2024_elwha_mammals_count | camera daily detection counts | count | 255,540 | 34 | 15 | 2 |
+| merkes_2016_wabash_carp_edna | eDNA, qPCR replicates | detection | 2,444 | 611 | 2 | 1 |
+| glorioso_2020_bigthicket_ves | ARMI visual encounter counts | count | 65,823 | 52 | 37 | 9 |
+| glorioso_2020_bigthicket_calls | anuran calling index | ordinal | 24,866 | 52 | 14 | 9 |
+| swanson_2018_iowa_amph_occ | occupancy by life stage | detection | 3,024 | 27 | 16 | 2 |
+| uherkoch_2019_npra_paloon_ms | multi-state resight histories | state | 200 | 50 | 1 | 4 |
+| uherkoch_2019_npra_ybloon_ms | multi-state resight histories | state | 152 | 38 | 1 | 4 |
+| rogers_2024_bighunting_sculpin_cjs | CJS, mobile PIT antenna | detection | 4,235 | 385 | 1 | 11 |
+| glorioso_2026_bayouteche_pipe_count | PVC-pipe refugia counts | count | 110,700 | 200 | 9 | 62 |
+| hanslowe_2022_marianas_rat_occ | chew-card occupancy with manipulations | detection | 6,945 | 1,026 | 1 | 2 |
+| gapinski_2025_iowawrp_birds_occ | property-level community occupancy | detection | 70,233 | 55 | 123 | 5 |
+| gapinski_2025_iowawrp_focal_count | property-level counts, focal species | count | 9,136 | 55 | 16 | 5 |
+| gapinski_2025_iowawrp_point_occ | point-level community occupancy | detection | 157,950 | 494 | 54 | 2 |
+| hossack_2020_losttrail_toadmale_rd | robust-design capture histories | detection | 40,864 | 1,232 | 1 | 16 |
+| hossack_2020_losttrail_toadfem_rd | robust-design capture histories | detection | 5,233 | 167 | 1 | 16 |
+
+Held (queue/human_review.csv): the two releases with the "authors require" clause; Guam brown treesnake
+cameras (detections only, no camera nights); Burmese python ddPCR eDNA (the authors' limit-of-blank call
+needs a 6.25 factor applied to "most samples", unspecified); Arkansas and southern Iowa grassland point
+counts (standing call on aggregation: duplicate species rows and a whole point-visit entered twice, and
+repeated groups across interval x band cells whose sum loses the first-detection interval); the Guam /
+Rota live-trap SCR (two unkeyed traps at some stations, no G4 layout; the chew cards from the same
+release were built). Not reached and released back to the queue with inspection notes: Mohave ground
+squirrel, polar bear, lake sturgeon, giant gartersnake, Duck Creek trout, Palila, Blackrock boreal toads,
+Oregon spotted frog, North Dakota / Montana grassland birds, the multi-project amphibian CMR (Russell);
+also the Bayou Teche tagged-frog CJS (the pipe counts from that release were built).
+
+Facts carried into the tables: the loon release stored its encounter histories as numbers, so histories
+of loons first caught in 2012 and 2013 lost their leading zeros (asserted against the nest-id year and
+padded). The Lost Trail male file names its fourth 2015 occasion "2015-3" twice (the metadata calls it
+2015-4); data.table read both columns by the first name until renamed, which showed up as four toads
+with one capture too many. The Canaan Valley pool file deposits one visit twice, identically. The
+murrelet release has two surveys with detections coded N / presence 0 (y follows the authors' codes).
+Big Thicket left the greenhouse frog unscored on rounds 3-4 of 2012 at the 20 sites added that year
+(__survey_taxa). The Iowa amphibian release says in its completeness report that treefrog and chorus
+frog egg masses were searched for and never found; they ship as all-zero target taxa. The Suwannee
+moccasinshell is IUCN CR and was coarsened under the bull trout precedent (note added to the open
+agency-coordinates question). Bird common names in the Iowa easement release were matched to the
+IBP-AOS list (bbsAssistant copy) fetched into the script's cache, not added to data/aux.
+
+What strained the standard: nothing new was needed. Two choices worth a look: the Iowa easement release
+deposits three analysis sets of overlapping surveys (property presence, property counts, point
+presence), shipped as three tables because none can be rebuilt from another; and the Lost Trail males
+and females ship as two tables because the source deposited them as separate analysis sets (ruling
+#31's wording), though one table with unit_sex would also fit.
+
+## Batch 42 — 2026-11-06 (GBIF sampling-event rows from batch 40, and non-Dryad discovery)
+
+One agent in `~/eco-b42` (branch `batch-42-gbif`, from main at e3df983). No Dryad requests. The 23 GBIF
+sampling-event rows queued by batch 40 were claimed and every Darwin Core Archive was opened from its IPT
+endpoint (event core plus extensions); seven tables built, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| inbo_2026_flanders_abv_count | Flemish common breeding birds (ABV), point counts summed per square visit | count | 885,960 | 757 | 180 | 9 |
+| haas_2025_sweden_waterbird_count | Swedish midwinter waterbird census, method as occasion | count | 3,466,890 | 3,724 | 70 | 59 |
+| inbo_2026_flanders_priobutterfly_count | Meetnetten.be priority butterfly transects (one target per transect) | count | 2,595 | 144 | 9 | 10 |
+| inbo_2026_flanders_odonatasite_count | Meetnetten.be priority dragonfly site counts (one target per site) | count | 900 | 65 | 6 | 10 |
+| inbo_2026_flanders_crestednewt_count | Meetnetten.be great crested newt fyke counts, fykes as effort | count | 619 | 145 | 1 | 9 |
+| nrm_2024_sweden_porpoise_occ | Swedish national C-POD porpoise monitoring, daily detections | detection | 40,677 | 34 | 1 | 9 |
+| kuczkowska_2026_warsaw_owl_occ | Warsaw owl playback survey, habitat-based species lists | detection | 3,295 | 431 | 5 | 1 |
+
+Held or rejected (`queue/human_review.csv`): Solhomfjell vegetation (held: the archive has no dates or plot keys),
+LifeWatch C-POD network (held: every event row says 'not-for-profit use only' against CC BY 4.0), Astragalus
+microcymbus (held: the Dryad study already built, extended on GBIF to 2025), Norwegian alpine cameras (rejected:
+duplicate of roderiksen_2023), FSFN carabids (rejected: single visit), both Fukushima ARU datasets (blocked: the
+gbif.jp IPT serves a Cloudflare challenge). Inspected and left `needs-look` with notes for a later batch: Meetnetten
+butterfly eggs, MEMO and AIMSurv mosquitoes, the Swedish forest inventory (no plot id; plots linkable only through
+obfuscated coordinates; 5.9 GB occurrence file), EDP Foz Tua cameras and point counts (2017 point renumbering),
+Florida Keys RVC (the IPT resource is the 2009 year only, with derived per-5-minute abundances), Reef Check
+California (transect types set the taxa), Sclerocactus demography (a multi-state CJS like the Astragalus tables).
+
+Facts carried into the tables: ABV's point is not a usable unit (598 visits record every point under one
+locationID; some squares' points were entered as separate visits), so the unit is the 1 km square and the survey a
+square-date, point counts summed with their number as effort; 14 square-dates with 7 to 12 point counts are double
+entries and dropped (and with them Netta rufina, recorded only there). The waterbird census year is the source's
+season: 45 December counts belong to the next January. The SHARK porpoise archive mixes 178 monthly summary samples
+into the daily ones (dropped) and has 10 days on which two loggers overlapped at NMN2 (the earlier logger kept);
+350 days at two stations give logger positions 4.5-19 km off the station (probably mistyped longitudes, kept in
+obs_ coordinates as published). INBO, SMHI/HaV and the Swedish EPA publish generalised or station coordinates, kept
+as published (agency rule); the waterbird table holds six IUCN VU species at 8 km sector centres, a call for Ben.
+
+What strained the standard: summing ABV point counts per square visit is the Pollard-walk rule applied to points,
+chosen because point identity is broken in the source; it is a processing choice Ben may want stated as a rule (or
+a point-level table built for the 4,375 visits whose points are identifiable).
+
+Discovery (part 2): API searches of Zenodo, Harvard and Borealis Dataverse, figshare, PANGAEA, UK EIDC, TERN, OSF
+and NPS IRMA (twelve design queries each, 13 on TERN and OSF; 4,878 distinct hits, 1,307 after keyword screening and
+deduplication against the queue, human_review, the discovery log, the dictionary and every `__dataset.json` DOI),
+read by title and description; licences checked through each repository's API. 50 rows appended to
+`queue/candidates.csv` and `discovery_log.csv` (26 `available`, 24 `needs-look`): Zenodo 28 (16 of them Dryad deposits
+mirrored on Zenodo, fetchable without the Dryad quota), figshare 6, EIDC 6 (Open Government Licence), Borealis 5,
+Harvard Dataverse 2, TERN 2, NPS IRMA 1; PANGAEA and OSF gave nothing in scope (PANGAEA's hits are
+oceanographic and plankton series, OSF's are code and preregistrations). One Borealis hit (Calopteryx exul CMR) was
+the Dryad deposit already built as khelifa_2021_seybouse_calexul_cjs and was dropped. EDI and DataONE were skipped
+(403).
+
+## Batch 44 — 2026-11-06 (leftover non-Dryad rows: ScienceBase, GBIF needs-look, batch 42 discovery)
+
+One agent in `~/eco-b44` (branch `batch-44-leftovers`, from main at 3316146), in parallel with batch 43 in `~/eco-b43`. No Dryad
+requests: four Dryad deposits were read from their Zenodo copies (records whose DOI is the Dryad DOI). 42 rows claimed: the
+eleven ScienceBase rows batch 41 inspected, the seven GBIF `needs-look: inspected batch 42` rows that were not blocked, and the
+24 `needs-look: not opened` rows from batch 42's discovery. Every ScienceBase release's FGDC `useconst` was read first.
+29 tables built from 20 deposits, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| alchokhachy_2024_duckcreek_bnt_cjs | CJS, seasonal electrofishing (brown trout) | detection | 18,640 | 1,200 | 1 | 18 |
+| alchokhachy_2024_duckcreek_yct_cjs | CJS, seasonal electrofishing (Yellowstone cutthroat) | detection | 30,244 | 1,761 | 1 | 20 |
+| bauwens_2019_belgium_adder_ms | multi-state CJS (breeding state), MARK .inp | state | 16,344 | 908 | 1 | 18 |
+| brinck_2022_maunakea_palila_count | point counts, 1-4 visits a year | count | 11,251 | 455 | 1 | 21 |
+| buhl_2023_ndmt_grassbirds_count | community counts, PLSS locators coded | count | 235,815 | 1,160 | 28 | 3 |
+| buhl_2023_ndmt_grassbirds_exact_count | E7.3 sibling without SPPI, CCLO | count | 215,725 | 1,160 | 26 | 3 |
+| chanex_2026_swissalps_amph_count | community counts, four visits | count | 948 | 79 | 3 | 1 |
+| dittman_2025_genesee_sturgeon_count | gill-net counts per site visit, coarsened | count | 904 | 23 | 1 | 21 |
+| fancourt_2019_aus_catdingo_occ | two-species camera occupancy | detection | 2,580 | 60 | 2 | 1 |
+| glorioso_2026_bayouteche_hchr_cjs | CJS, PVC-pipe treefrogs | detection | 51,870 | 853 | 1 | 62 |
+| glorioso_2026_bayouteche_hcin_cjs | CJS, PVC-pipe treefrogs | detection | 25,368 | 418 | 1 | 62 |
+| glorioso_2026_bayouteche_hsqu_cjs | CJS, PVC-pipe treefrogs | detection | 141,021 | 2,400 | 1 | 62 |
+| glorioso_2026_bayouteche_pcru_cjs | CJS, PVC-pipe treefrogs | detection | 2,201 | 36 | 1 | 62 |
+| hitchcock_2025_garden_hedgehog_count | weekly camera detection counts | count | 1,446 | 415 | 1 | 1 |
+| inbo_2026_flanders_alconegg_count | annual egg counts | count | 178 | 19 | 1 | 10 |
+| law_2018_nsw_koala_occ | acoustic single-season occupancy | detection | 1,463 | 171 | 1 | 1 |
+| lebeuftaylor_2026_alpac_songbird_dynocc | classifier detections, dynamic community occupancy | detection | 22,788 | 162 | 6 | 8 |
+| lenzi_2024_alpine_toad_cjs | annual CJS, 30 seasons | detection | 93,510 | 3,117 | 1 | 30 |
+| levy_2025_sclerodawsoniae_ms | multi-state plant census | state | 38,326 | 2,595 | 1 | 17 |
+| levy_2025_scleroglaucus_ms | multi-state plant census | state | 13,366 | 896 | 1 | 17 |
+| mellado_2021_carollia_injury_ms | multi-state CJS (arm-band injury) | state | 30,197 | 1,183 | 1 | 31 |
+| mellado_2021_carollia_tagloss_ms | multi-state CJS (tag carried) | state | 43,148 | 1,598 | 1 | 31 |
+| messerman_2020_amb_annulatum_cjs | CJS, enclosure juveniles | detection | 1,320 | 60 | 1 | 22 |
+| messerman_2020_amb_maculatum_cjs | CJS, enclosure juveniles | detection | 1,140 | 60 | 1 | 19 |
+| messerman_2020_amb_texanum_cjs | CJS, enclosure juveniles | detection | 1,026 | 54 | 1 | 19 |
+| muths_2020_blackrock_toad_rd | robust design with Bd status | detection | 220,748 | 3,509 | 1 | 16 |
+| poessel_2026_coso_mgs_rd | robust design, days inferred | detection | 167,708 | 1,403 | 1 | 31 |
+| rowe_2021_deschutes_ospfrog_rd | robust design, 3 visits per season | detection | 14,460 | 482 | 1 | 10 |
+| steinmetz_2025_maewong_tiger_rd | robust design, biennial sessions | detection | 2,376 | 33 | 1 | 6 |
+
+Held (`queue/human_review.csv`, each with a question): polar bear (a third of encounters have type Unknown; telemetry
+relocations mixed with captures), giant gartersnake (the "questions on appropriate use ... to the Point of Contact" clause, the
+standing call), Russell amphibian CMR (PIT codes rounded by a spreadsheet: four ids absorb 3,827 captures; no site or survey list),
+MEMO and AIMSurv mosquitoes (per-protocol taxon lists, trap units; team protocols), EDP Foz Tua cameras (is an event a 12-day
+deployment or a 3-day check?) and point counts (2017 key, as batch 42 found), NEON / forest camera traps (possible overlap with
+Snapshot USA), coastal giant salamander (batch marks mixed with PIT tags), Central European wolves (variable-length histories,
+calendar alignment). Rejected: Sonoran yellow-billed cuckoo (no point id; 2,754 coordinates in 3,126 points), SBL point counts
+(annual totals), western India carnivores (key-informant interviews), eDNA metabarcoding vs electrofishing (raw reads only),
+Newfoundland boreal birds (single visit), Hillesden transects (annual maxima). Inspected and released with notes, not reached:
+Reef Check California, Rhode Island cameras (deployments + 1.4M image records), Savannah River raccoon cameras (records only),
+Bedford / Luton / Milton Keynes point counts (86 species by BTO code only), the two TERN plot networks (no download link in the
+GeoNetwork record).
+
+Facts carried into the tables: the Bayou Teche frog comments record 225 frogs found dead in a later survey (mostly the February
+2021 freeze; history ends at the survey before) and 23 dead at release, and 222 frogs retagged after losing a tag; the lost tag is
+rarely named, so its history is not truncated (a strain, below). The Mohave ground squirrel release has no trapping schedule
+(trapping days inferred from captures; several sessions a year until 1996). Lake sturgeon is IUCN EN per GBIF: USGS net positions
+coarsened under the bull trout / moccasinshell precedent. The Palila release counts one row per bird and an NA row per empty
+count; 76 detections filed under survey 9999 (outside the area of inference) are obs_n_outside, not y. The Blackrock toad file
+has two columns per date on two days (different sites), a 16-May / 18-May header mismatch between its two matrices (aligned by
+position, asserted), 13 toads never seen, 2 not released (removed), and an undefined Bd code T on 130 captures. The Northern
+Great Plains release's StopID is a PLSS section; Sprague's pipit (VU) and chestnut-collared longspur (VU) are on the lists, so the
+whole table carries sequential codes and the `_exact` sibling keeps the PLSS ids without those two species (and without the
+SPPI1 count). Sclerocactus dawsoniae (split 2024) is not in the GBIF backbone (no_key with a remark). The snow-making reservoir
+deposit is one 1.1 GB zip; the two raw CSVs were read through HTTP range requests on the zip directory (stdlib Python called
+from the script). The alpine toad table follows the authors' own filter (no cohort marks, PIT era from 1993).
+
+What strained the standard: (1) tag loss without the lost tag's identity (Bayou Teche): E4.4 ends a history when the mark is
+lost, but the source names the lost tag only as "probably X"; the tables flag the new tag (unit_retagged) and leave the old
+histories open; a rule for unidentified lost marks would help. (2) The agency-coordinates question now also covers a locator
+that is an id (PLSS section in StopID), handled under E7.4 with an `_exact` sibling. (3) Classifier detections at the authors'
+thresholds (Alberta ARUs) are treated like an author's eDNA call; worth stating as a rule.

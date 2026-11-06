@@ -1,0 +1,80 @@
+{
+  "table": "dittman_2025_genesee_sturgeon_count",
+  "title": "Gill-net counts of reintroduced lake sturgeon on 904 site visits at 23 index sites, Genesee River, New York, 2003-2023",
+  "creator": "Dittman, Dawn E.; Chalupnicki, Marc A.; Rubenstein, Sarah R.; Hoffman, Georgia; Turk, Marisa",
+  "pubDate": "2025",
+  "doi": "10.5066/P9OFB4P1",
+  "sourceURL": "https://doi.org/10.5066/P9OFB4P1",
+  "citation": "Dittman, D.E., Chalupnicki, M.A., Rubenstein, S.R., Hoffman, G., and Turk, M., 2025, Assessment of Released Lake Sturgeon in the Genesee River, NY: 2003-2023: U.S. Geological Survey data release, https://doi.org/10.5066/P9OFB4P1.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Hatchery-reared young-of-year lake sturgeon were released into the Genesee River, New York, from 2003; their presence was assessed by systematic overnight gill netting at standard index sites from 2003 to 2023, with every sturgeon caught checked for scute marks and tags, measured and tagged.",
+  "samplingProtocol": "Monofilament gill nets of several meshes fished overnight at standard index sites selected as juvenile lake sturgeon habitat; set and pull times recorded; every lake sturgeon caught counted, measured and tagged.",
+  "samplingProtocolCode": "gill_net",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "occasionKind": "time",
+  "closureNote": "occasion = the site's netting dates within the year, which span spring to autumn in most years.",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Lower Genesee River, Rochester, New York, USA",
+    "boundingBox": {
+      "west": -77.6,
+      "east": -77.6,
+      "south": 43.2,
+      "north": 43.2
+    }
+  },
+  "temporalCoverage": "2003/2023",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): 0.1-degree cell centre of the site's net positions, because lake sturgeon (Acipenser fulvescens) is IUCN EN (GBIF IUCN record, asserted) in its native range; USGS published the positions exactly (bull trout / moccasinshell precedent, an open question for Ben)"
+  },
+  "effortColumn": "obs_n_nets",
+  "notShipped": {
+    "exact_coordinates": "net positions coarsened to 0.1 degree (lake sturgeon IUCN EN)",
+    "blank_rows": "158 blank padding rows",
+    "fish_records": "per-fish tag, size, scute mark, year class and life stage (no CJS built: Floy and PIT tags are not reconciled in the release)",
+    "nets": "nets within a site visit are summed: an empty net row cannot always be told from a second set"
+  },
+  "notes": "obs_n_nets counts distinct mesh x set-time combinations at the visit; it approximates the number of nets. The reintroduced fish are hatchery-released; counts include recaptures (obs_n_recap).",
+  "summary": {
+    "n_rows": 904,
+    "n_units": 23,
+    "n_taxa": 1,
+    "n_periods": 21,
+    "n_occasions": 22,
+    "n_surveys": 904,
+    "y_values": "0-45 (35 distinct)",
+    "prop_zero": 0.437,
+    "n_traps": 1,
+    "n_zero": 395,
+    "n_positive": 509,
+    "n_units_detected": 20,
+    "max_y": 45
+  },
+  "sampleFloor": "below (23 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "obs_gear", "obs_n_nets", "obs_time_set", "obs_date_pulled", "obs_latitude", "obs_longitude", "obs_n_recap"],
+  "coreMd5": "0abe7aa247405d85a32b86dfcee25ccd",
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "year"],
+      "md5": "bf3d7d12e556faa2be175afb21fe6068"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b840d2134581af96fa45d096ae26f216"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dittman_2025_genesee_sturgeon_count.R",
+  "buildDate": "2026-11-06"
+}

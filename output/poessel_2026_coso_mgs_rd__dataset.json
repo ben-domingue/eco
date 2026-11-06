@@ -1,0 +1,75 @@
+{
+  "table": "poessel_2026_coso_mgs_rd",
+  "title": "Capture histories of 1,403 Mohave ground squirrels on trapping days at four sites in the Coso Range, California, 1988-2021",
+  "creator": "Poessel, Sharon A.; Duerr, Adam E.; Leitner, Philip; Leitner, Barbara M.; Katzner, Todd E.",
+  "pubDate": "2026",
+  "doi": "10.5066/P145OSD8",
+  "sourceURL": "https://doi.org/10.5066/P145OSD8",
+  "citation": "Poessel, S.A., Duerr, A.E., Leitner, P., Leitner, B.M. and Katzner, T.E., 2026, Capture-recapture data of Mohave ground squirrels, 1988-2021: U.S. Geological Survey data release, https://doi.org/10.5066/P145OSD8.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Mohave ground squirrels, a California state-threatened species, were live-trapped and marked (ear tags in 1988-1989, PIT tags from 1990) at four sites in the Coso Range from 1988 to 2021; captures carry age, sex, trap check, winter rainfall and NDVI.",
+  "samplingProtocol": "Live-trapping grids at four study sites, traps checked up to five times a day during trapping sessions (several a spring until 1996, one 3-5 day session a year from 1997); each squirrel sexed, aged and permanently marked.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "The trapping schedule is not deposited. A trapping day is a day on which any squirrel was captured at the site, and a site-year is trapped when it has any capture; trapping days, and whole site-years, with no capture are absent.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "open",
+  "occasionKind": "time",
+  "closureNote": "period = year, occasion = trapping day at the squirrel's site. Until 1996 the days of a site-year span several sessions from February to June (open within the year); from 1997 one 3-5 day session a year. Ids are valid across the whole study.",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Coso Range, Inyo County, California, USA (four study sites)",
+    "boundingBox": {
+      "west": -117.9877,
+      "east": -117.7185,
+      "south": 35.9825,
+      "north": 36.129
+    }
+  },
+  "temporalCoverage": "1988/2021",
+  "notShipped": {
+    "duplicates": "22 exact duplicate capture rows",
+    "two_sites": "one squirrel recorded at two sites (4 rows)",
+    "coordinates": "site coordinates (metadata only); cluster_id names the site"
+  },
+  "notes": "obs_n_checks: checks (1-5) on which the squirrel was caught that day. obs_rainfall_mm: winter (October-March) rainfall before the session at the Haiwee Power Plant; obs_ndvi: site NDVI on the date (both as deposited).",
+  "summary": {
+    "n_rows": 167708,
+    "n_units": 1403,
+    "n_taxa": 1,
+    "n_periods": 31,
+    "n_occasions": 15,
+    "n_surveys": 167708,
+    "y_values": "0,1",
+    "prop_zero": 0.972,
+    "n_traps": 1,
+    "n_zero": 162961,
+    "n_positive": 4747,
+    "n_units_detected": 1403,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_sex", "unit_age_first", "obs_age", "obs_n_checks", "obs_rainfall_mm", "obs_ndvi"],
+  "coreMd5": "4cc51474a7a8fe9723bfd430fcc8c1fa",
+  "sideTables": {
+    "periods": {
+      "rows": 31,
+      "columns": ["period", "year"],
+      "md5": "8fec2f0c17d2c5ad754f94490e87d4f2"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "cd12dced4b1d04ecfa0ac2e1ed9811cc"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/poessel_2026_coso_mgs_rd.R",
+  "buildDate": "2026-11-06"
+}

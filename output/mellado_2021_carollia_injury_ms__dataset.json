@@ -1,0 +1,71 @@
+{
+  "table": "mellado_2021_carollia_injury_ms",
+  "title": "Bimonthly multi-state capture histories (arm-band injury) of 1,183 Seba's short-tailed bats at two colonies, Uniao Biological Reserve, Brazil, 2013-2019",
+  "creator": "Mellado, B.; Carneiro, L. O.; Nogueira, M. R.; Monteiro, L. R.",
+  "pubDate": "2021",
+  "doi": "10.5281/zenodo.5643915",
+  "sourceURL": "https://doi.org/10.5281/zenodo.5643915",
+  "paperDOI": "10.1093/jmammal/gyab153",
+  "citation": "Mellado, B., Carneiro, L. O., Nogueira, M. R. & Monteiro, L. R. (2021). Data for Mellado et al. The impacts of marking on bats: mark-recapture models for assessing injury rates and tag loss. Zenodo, https://doi.org/10.5281/zenodo.5643915.",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Two colonies of Carollia perspicillata at Uniao Biological Reserve, south-eastern Brazil, were captured every other month from 2013 to 2019; bats were marked with metal arm bands, ball-chain collars or both, and arm-band injuries were scored, to estimate tag loss, injury rates and their effect on survival.",
+  "samplingProtocol": "Bimonthly captures at two roost colonies; bats marked with arm bands, collars or both, sexed, measured (forearm) and weighed, and arm-band lesions scored at each recapture.",
+  "samplingProtocolCode": "roost_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured, no lesion",
+    "2": "captured, minor injury",
+    "3": "captured, major injury"
+  },
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "closureNote": "period = capture occasion (every other month); one colony was monitored for occasions 1-13 only ('.' in the deposit, no rows).",
+  "geographicCoverage": "Uniao Biological Reserve, south-eastern Brazil (two colonies; per the paper abstract)",
+  "temporalCoverage": "2013/2019",
+  "notShipped": {
+    "derived": "LesionOccurrence.txt, RingCondition.txt (time-to-event) and SMI.txt (longitudinal body condition)",
+    "link": "the two capture-history files carry no ids and cannot be linked"
+  },
+  "notes": "States: 1 = A, 2 = I, 3 = M. Units are anonymous, numbered in file order. unit_smi_g: scaled mass index as deposited.",
+  "summary": {
+    "n_rows": 30197,
+    "n_units": 1183,
+    "n_taxa": 1,
+    "n_periods": 31,
+    "n_occasions": 1,
+    "n_surveys": 30197,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.91,
+    "n_traps": 1,
+    "n_zero": 27492,
+    "n_positive": 2705,
+    "n_units_detected": 1183,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_sex", "unit_forearm_mm", "unit_smi_g"],
+  "coreMd5": "4465e4080afbbc50c544fa35f9327491",
+  "sideTables": {
+    "periods": {
+      "rows": 31,
+      "columns": ["period"],
+      "md5": "d5fed34d667fb7c1f2a21beab35015bc"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0871f13d1d621b8a3d0a11182ee6e495"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mellado_2021_carollia_ms.R",
+  "buildDate": "2026-11-06"
+}

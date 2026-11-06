@@ -1,0 +1,76 @@
+{
+  "table": "levy_2025_sclerodawsoniae_ms",
+  "title": "Annual census histories of 2,595 tagged Dawson's hookless cactus (Sclerocactus dawsoniae) on belt transects and macroplots, western Colorado, 2008-2025",
+  "creator": "Levy, Rebecca; DePrenger-Levin, Michelle (Denver Botanic Gardens)",
+  "pubDate": "2025",
+  "doi": "10.15468/hg6kj4",
+  "sourceURL": "https://doi.org/10.15468/hg6kj4",
+  "citation": "Levy R, DePrenger-Levin M (2025). Life History and Demography of Sclerocactus glaucus and Sclerocactus dawsoniae. Version 1.3. Kathryn Kalmbach Herbarium (Denver Botanic Gardens). Samplingevent dataset. https://doi.org/10.15468/hg6kj4",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Denver Botanic Gardens' long-term demographic study of the Colorado hookless cactus and Dawson's hookless cactus (split in 2024), western Colorado: every Sclerocactus within 1 m of permanent belt transects and in macroplots is tagged, measured and checked for flowers or fruit at an annual spring census, and previously tagged plants not found are recorded as absent.",
+  "samplingProtocol": "Annual census (late April or early May) of permanent 1 m belt transects and macroplots: plants located from data sheets listing every previously tagged plant, measured (height, width), scored for reproductive structures and browsing; new plants tagged; tagged plants not found recorded absent.",
+  "samplingProtocolCode": "marked_plant_census",
+  "surveyEvidence": "sample_table",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not found (y_raw absent: the source's absent record; empty: no record)",
+    "1": "found, no reproductive structures",
+    "2": "found, reproductive structures present",
+    "3": "found, reproductive condition not recorded"
+  },
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "closureNote": "period = year (one census a year, occasionally spread over two or three dates: obs_n_events); a plant is a row in every census year of its location from the location's first census.",
+  "geographicCoverage": "Mesa, Delta and Montrose counties, western Colorado, USA (coordinates published at 0.1 degree)",
+  "temporalCoverage": "2008/2025",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Published by the source at 0.1 degree (Coarsened by the source); kept. Location names and localities are not shipped."
+  },
+  "notShipped": {
+    "locality": "distances from towns and transect / site names (location codes instead)",
+    "elevation": "minimumElevationInMeters (values in feet)",
+    "duplicates": "381 plant-census records entered twice (the higher state kept)",
+    "never_found": "30 tagged plants never recorded as found"
+  },
+  "notes": "Plants of unknown age: histories start at the location's first census. 2020: no census (COVID-19). S. dawsoniae was split from S. glaucus in 2024; the archive assigns each plant to one of them.",
+  "summary": {
+    "n_rows": 38326,
+    "n_units": 2595,
+    "n_taxa": 1,
+    "n_periods": 17,
+    "n_occasions": 1,
+    "n_surveys": 38326,
+    "y_values": "0,1,2",
+    "prop_zero": 0.654,
+    "n_traps": 1,
+    "n_zero": 25052,
+    "n_positive": 13274,
+    "n_units_detected": 2595,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "obs_height_cm", "obs_width_cm", "obs_browsed", "obs_n_events"],
+  "coreMd5": "398f2e9b93c14e1511769ca492e49b6d",
+  "sideTables": {
+    "periods": {
+      "rows": 17,
+      "columns": ["period", "year"],
+      "md5": "d6703fa52491aeef688b23f0647ddb91"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "877651b3d3f903e08e82871cbe634fa2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/levy_2025_sclerocactus_ms.R",
+  "buildDate": "2026-11-06"
+}

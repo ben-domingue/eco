@@ -1,0 +1,77 @@
+{
+  "table": "inbo_2026_flanders_priobutterfly_count",
+  "title": "Meetnetten.be transect counts of nine priority butterflies, Flanders, Belgium, 2016-2025",
+  "creator": "Piesschaert, Frederik; Maes, Dirk; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Veraghtert, Wouter; Van de Poel, Sander; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/kfhvy4",
+  "sourceURL": "https://doi.org/10.15468/kfhvy4",
+  "citation": "Piesschaert F, Maes D, Brosens D, Westra T, Desmet P, Ledegen H, Veraghtert W, Van de Poel S, Pollet M (2026). Meetnetten.be - Transects for butterflies in Flanders, Belgium. Version 1.40. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/kfhvy4",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated transect counts of nine priority butterflies (Lasiommata megera, Melitaea cinxia, Hipparchia semele, Hesperia comma, Erynnis tages, Pyrgus malvae, Pyronia tithonus, Cyaniris semiargus, Euphydryas aurinia) on 144 transects in Flanders, from the Meetnetten.be priority-species monitoring network run by INBO and Natuurpunt Studie with specialised volunteers. Each transect belongs to one species' project and is counted for that species only, several times in its flight period in counting years. One row per visit: imagos of the target counted, summed over the transect's sections.",
+  "samplingProtocol": "Fixed butterfly transect divided into sections, walked in good weather during the target species' flight period; all imagos of the target within the transect band counted per section (Maes et al. 2019); several visits per counting year.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasion = visit within a flight season, across which the adult population emerges and declines; period = calendar year",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "surveyTaxaNote": "Each transect is monitored for its own project's target species only; __survey_taxa gives the taxon per unit, unit_project the project.",
+  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 1, 5 or 10 km UTM square centroids)",
+  "temporalCoverage": "2016/2025",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 1, 5 or 10 km UTM square (coordinateUncertaintyInMeters 707, 3536 or 7071) before publication; kept as published."
+  },
+  "covariateNote": "obs_n_sections = number of the transect's sections with a target record on the visit (sections are listed only when walked; nine sections without a target row are left out of y).",
+  "notes": "1 visits are dated outside April-September, kept as published.",
+  "notShipped": {
+    "section counts": "summed into the visit's y",
+    "other species": "butterflies other than the project's target, recorded at some sections only (incidental)",
+    "weather": "cloudiness, temperature and wind per section, incomplete",
+    "visits without a target record": "3 visits with no target row at any section: INBO:MEETNET:VISITID:025857, INBO:MEETNET:VISITID:025858, INBO:MEETNET:VISITID:025899"
+  },
+  "summary": {
+    "n_rows": 2595,
+    "n_units": 144,
+    "n_taxa": 9,
+    "n_periods": 10,
+    "n_occasions": 16,
+    "n_surveys": 2595,
+    "y_values": "0-287 (109 distinct)",
+    "prop_zero": 0.389,
+    "n_traps": 1,
+    "n_zero": 1009,
+    "n_positive": 1586,
+    "n_units_detected": 134,
+    "max_y": 287
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_project", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_sections"],
+  "coreMd5": "48e2398c360b1b7071968bf9fbfeabf6",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year"],
+      "md5": "99fe8dd37eddce8f48511776efa7f028"
+    },
+    "survey_taxa": {
+      "rows": 144,
+      "columns": ["taxon", "unit"],
+      "md5": "f2d89074615fc87e6897d3152b9eb715"
+    },
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "8610e7e16dd4323faa9bea08b7c3448f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_priobutterfly_count.R",
+  "buildDate": "2026-11-06"
+}

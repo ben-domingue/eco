@@ -1,0 +1,74 @@
+{
+  "table": "glorioso_2026_bayouteche_hsqu_cjs",
+  "title": "Capture histories of 2,400 tagged squirrel treefrog in PVC pipe refugia at four sites, Bayou Teche National Wildlife Refuge, Louisiana, 2017-2023",
+  "creator": "Glorioso, Brad M.; Waddle, J. Hardin",
+  "pubDate": "2026",
+  "doi": "10.5066/P97QPY0E",
+  "sourceURL": "https://doi.org/10.5066/P97QPY0E",
+  "citation": "Glorioso, B.M., and Waddle, J.H., 2026, Data from a capture-mark-recapture survey of native treefrogs in Bayou Teche National Wildlife Refuge, Louisiana from 2017 to 2023: U.S. Geological Survey data release, https://doi.org/10.5066/P97QPY0E.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Treefrogs sheltering in 200 PVC pipes hung on trees at four sites in Bayou Teche National Wildlife Refuge, Louisiana, were tagged with alphanumeric elastomer tags and recaptured on monthly pipe checks from October 2017 to May 2023.",
+  "samplingProtocol": "Each month all four sites were visited and each of 50 PVC pipes per site was checked; frogs inside were identified, sexed where possible, measured (SVL), given an alphanumeric tag on first capture and released.",
+  "samplingProtocolCode": "pvc_pipe",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "closureNote": "Open population; one survey per site per study month. A frog's rows are its site's surveys.",
+  "geographicCoverage": {
+    "description": "Bayou Teche National Wildlife Refuge, St. Mary Parish, Louisiana, USA",
+    "boundingBox": {
+      "west": -91.5302,
+      "east": -91.4118,
+      "south": 29.6945,
+      "north": 29.7801
+    }
+  },
+  "temporalCoverage": "2017-10/2023-05",
+  "notShipped": {
+    "two_species_tags": "8 captures of three tags (orange L94, W92, V58) recorded under two species",
+    "untagged": "two frogs that died before being tagged",
+    "tag_condition": "comments on tag condition (flipped, obscure, bloody) other than loss and death"
+  },
+  "notes": "Removals: a frog later found dead in a pipe ends at its site's last survey before that date (obs_removed = 1, unit_found_dead_date); one dead or presumed dead at release ends at that capture. Most deaths are from the February 2021 freeze. unit_retagged = 1: the frog's first capture records the loss of an earlier tag; that earlier tag's history is not truncated because the source rarely names it.",
+  "summary": {
+    "n_rows": 141021,
+    "n_units": 2400,
+    "n_taxa": 1,
+    "n_periods": 62,
+    "n_occasions": 1,
+    "n_surveys": 141021,
+    "y_values": "0,1",
+    "prop_zero": 0.963,
+    "n_traps": 1,
+    "n_zero": 135819,
+    "n_positive": 5202,
+    "n_units_detected": 2400,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "cluster_id", "unit_retagged", "unit_found_dead_date", "obs_pipe", "obs_sex", "obs_svl_mm", "obs_removed"],
+  "coreMd5": "625939aab815916015893405221bbab8",
+  "sideTables": {
+    "periods": {
+      "rows": 62,
+      "columns": ["period", "year", "month"],
+      "md5": "0bf6c9b1138b07920c127ed2685dcaca"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "450fb78d801893e30b22539a971ef307"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/glorioso_2026_bayouteche_frog_cjs.R",
+  "buildDate": "2026-11-06"
+}

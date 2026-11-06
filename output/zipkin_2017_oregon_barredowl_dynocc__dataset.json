@@ -1,0 +1,73 @@
+{
+  "table": "zipkin_2017_oregon_barredowl_dynocc",
+  "title": "Barred Owl incidental detection / non-detection in 106 Northern Spotted Owl territories, Oregon Coast Ranges, 1995-2014",
+  "creator": "Zipkin, Elise F.; Rossman, Sam; Yackulic, Charles B.; Wiens, J. David; Thorson, James T.; Davis, Raymond J.; Grant, Evan H. Campbell",
+  "pubDate": "2017",
+  "doi": "10.5066/F7348J9M",
+  "sourceURL": "https://doi.org/10.5066/F7348J9M",
+  "citation": "Zipkin, E.F., Rossman, S., Yackulic, C.B., Wiens, J.D., Thorson, J.T., Davis, R.J., and Grant, E.H.C., 2017, Count and detection-nondetection survey data of Barred Owls (Strix varia) in historical breeding territories of Northern Spotted Owls (Strix occidentalis caurina) in the Oregon Coast Ranges, 1995-2016: U.S. Geological Survey data release, https://doi.org/10.5066/F7348J9M.",
+  "paperDOI": "10.1002/ecy.1831",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, use constraints none"
+  },
+  "abstract": "Count and detection-nondetection data of Barred Owls from 106 historical Northern Spotted Owl breeding territories in the Oregon Coast Ranges, 1995-2016: incidental detections during Spotted Owl surveys in 2-week periods (1995-2014) and counts of territorial pairs from Barred Owl surveys in 2-month periods (2015-2016), with the proportion of each site in older coniferous forest each year.",
+  "unitKind": "site",
+  "taxonInclusion": "single",
+  "surveyEvidence": "deposited_matrix",
+  "geographicCoverage": {
+    "description": "Oregon Coast Ranges, Oregon, USA",
+    "boundingBox": {
+      "west": -124.05,
+      "east": -123.34,
+      "south": 43.84,
+      "north": 44.55
+    }
+  },
+  "samplingProtocol": "Incidental detections of Barred Owls recorded during annual Northern Spotted Owl territory surveys (calling and searching), partitioned into twelve 2-week periods from 1 March to 31 August each year.",
+  "samplingProtocolCode": "call_playback",
+  "responseType": "detection",
+  "closure": "closed",
+  "closureNote": "occasion = 2-week period within a breeding season (year); the paper's model treats the season as closed",
+  "occasionKind": "time",
+  "temporalCoverage": "1995/2014",
+  "notes": "Companion of zipkin_2017_oregon_barredowl_count (same sites, 2015-2016 counts from dedicated surveys).",
+  "notShipped": {
+    "counts_2015_2016": "shipped as zipkin_2017_oregon_barredowl_count"
+  },
+  "summary": {
+    "n_rows": 8806,
+    "n_units": 106,
+    "n_taxa": 1,
+    "n_periods": 20,
+    "n_occasions": 12,
+    "n_surveys": 8806,
+    "y_values": "0,1",
+    "prop_zero": 0.801,
+    "n_traps": 1,
+    "n_zero": 7056,
+    "n_positive": 1750,
+    "n_units_detected": 105,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "period_old_forest"],
+  "coreMd5": "c878465df0384cb50f862dd816046cfd",
+  "sideTables": {
+    "periods": {
+      "rows": 20,
+      "columns": ["period", "year"],
+      "md5": "7459ee7ea63a529e0b1d259e7bc814de"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "0e82e64b9b09535f2aa22cb275ad3d77"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/zipkin_2017_oregon_barredowl.R",
+  "buildDate": "2026-11-06"
+}

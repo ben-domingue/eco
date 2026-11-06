@@ -1,0 +1,72 @@
+{
+  "table": "waddle_2020_louisiana_marshbird_comm",
+  "title": "Secretive marsh bird detections from automated recording units at 33 marsh sites, southwestern Louisiana, February-May 2012",
+  "creator": "Waddle, Hardin; Jones, Landon R.; Vasseur, Phillip L.; Jeske, Clinton W.",
+  "pubDate": "2020",
+  "doi": "10.5066/P9RRIIR2",
+  "sourceURL": "https://doi.org/10.5066/P9RRIIR2",
+  "citation": "Waddle, H., Jones, L.R., Vasseur, P.L., and Jeske, C.W., 2020, Estimating detection and occupancy of secretive marsh bird species in low and high saline marshes in southwestern Louisiana using automated recording units: U.S. Geological Survey data release, https://doi.org/10.5066/P9RRIIR2.",
+  "paperDOI": "10.1007/s13157-022-01548-4",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, use constraints none"
+  },
+  "abstract": "Detection histories of 11 secretive marsh bird species across 20 sampling occasions at 33 randomly selected automated-recording-unit sites in two wildlife refuges in southwestern Louisiana, with site marsh type and coordinates and sample-period weather.",
+  "samplingProtocol": "Automated recording units at randomly selected marsh sites; each sample period is a 48-hour recording window centred on midnight at the start of its date, listened to and spectrogram-scanned for vocalisations of 11 target species.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one breeding season (February-May 2012); the source fits single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": {
+    "description": "Rockefeller Wildlife Refuge and White Lake Wetlands Conservation Area, southwestern Louisiana, USA",
+    "boundingBox": {
+      "west": -92.8216,
+      "east": -92.4508,
+      "south": 29.5858,
+      "north": 29.9196
+    }
+  },
+  "temporalCoverage": "2012-02/2012-05",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS; no target species is IUCN CR/EN/VU"
+  },
+  "notes": "Occasions are renumbered in date order; the source's sample-period number is obs_sample_period (its periods 13-20 interleave in time). date is the centre of the 48-hour window.",
+  "notShipped": {
+    "failed_recorders": "7 of 40 recorders failed and are not in the release"
+  },
+  "summary": {
+    "n_rows": 3311,
+    "n_units": 33,
+    "n_taxa": 11,
+    "n_periods": 1,
+    "n_occasions": 20,
+    "n_surveys": 301,
+    "y_values": "0,1",
+    "prop_zero": 0.811,
+    "n_traps": 1,
+    "n_zero": 2686,
+    "n_positive": 625,
+    "n_units_detected": 33,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_marsh_type", "unit_habitat", "obs_sample_period", "obs_precip_cm", "obs_min_air_temp_c"],
+  "coreMd5": "5c885d3d2f63b0b009554f34881b37fd",
+  "sideTables": {
+    "taxa": {
+      "rows": 11,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "9516d7802ff51b01cfc954e3d40d2ced"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/waddle_2020_louisiana_marshbird_comm.R",
+  "buildDate": "2026-11-06"
+}

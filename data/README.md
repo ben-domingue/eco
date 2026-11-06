@@ -358,6 +358,57 @@ CSVs with `upload/red_up_eco.py`.
 | `barros_2024_mostela_weasel_occ.R` | multi-scale occupancy, paired methods: least weasel x 56 stations x 7 occasions x 2 devices (Mostela box, camera), Portugal, 2021 | Zenodo | CC BY 4.0 |
 | `letourneux_2022_snowgoose_ms.R` | multi-state CMR with dead recoveries: 22,599 adult female greater snow geese, collar vs leg ring, 1990-2019 | Dryad | CC0 |
 | `whittington_2025_banff_grizzly_occ.R` | dynamic occupancy, cameras: grizzly bear x 625 Parks Canada camera sites x 10 years, Canadian Rockies, 2012-2021 | Dryad | CC0 |
+| `carter_2021_louisiana_lamp_calls.R` | NAAMP roadside calling index (ordinal 0-3), 27 anuran taxa x 540 route stops x 21 years, up to 3 seasonal runs | USGS ScienceBase | US public domain |
+| `zipkin_2017_oregon_barredowl.R` | Barred Owl: incidental detections 1995-2014 (dynocc) and pair counts 2015-2016 (count), two tables | USGS ScienceBase | US public domain |
+| `wiens_2021_socal_goldeneagle_dynocc.R` | Golden Eagle territorial-pair dynamic occupancy, 175 hexagons x 2 seasons x 4 windows | USGS ScienceBase | US public domain |
+| `waddle_2020_louisiana_marshbird_comm.R` | ARU community occupancy, 11 marsh birds x 33 sites x 20 windows | USGS ScienceBase | US public domain |
+| `rose_2024_sjvalley_leglesslizard_occ.R` | cover-board occupancy (checks within weeks within years), Temblor legless lizard | USGS ScienceBase | US public domain |
+| `laramie_2019_bruneau_trout_edna.R` | eDNA occupancy, bull and rainbow trout, 26 sites x 12 months x 3 replicates, coarsened coordinates | USGS ScienceBase | US public domain |
+| `hunter_2025_georgia_pinesavanna_occ.R` | single-season occupancy, Bachman's Sparrow and Northern Bobwhite, 161 points x 3 visits | USGS ScienceBase | CC0 |
+| `halstead_2025_yosemite_rasi_cjs.R` | daily capture histories of 1,251 Sierra Nevada yellow-legged frogs, 192 survey days over 20 years | USGS ScienceBase | CC0 |
+| `direnzo_2025_elcope_espadarana.R` | glass frog CJS before (2000-2004) and multi-state Bd infection after (2010-2014) the chytrid outbreak, two tables | USGS ScienceBase | CC0 |
+| `kleeman_2024_dixiefire_ranaboylii_occ.R` | time-to-detection occupancy, foothill yellow-legged frog x 43 stream sites x up to 2 surveys, Dixie Fire 2022 | USGS ScienceBase | US public domain |
+| `grant_2023_canaanvalley_amph_count.R` | egg-mass and larval counts by two observers, wood frog and spotted salamander x 108 vernal pools, 2004-2016 | USGS ScienceBase | US public domain |
+| `glorioso_2021_louisiana_turtle_count.R` | hoop-net community counts, 7 turtle species x 119 trap sites x 2 nightly checks, Louisiana 2019 | USGS ScienceBase | US public domain |
+| `holcomb_2017_suwannee_moccasinshell_occ.R` | occupancy with surveyors as occasions, Suwannee moccasinshell x 220 sites, coarsened coordinates (IUCN CR) | USGS ScienceBase | US public domain |
+| `valente_2024_oregon_murrelet_state.R` | multi-state (none / presence / occupied behaviour), marbled murrelet x 132 stations, 2018-2022 | USGS ScienceBase | US public domain |
+| `mccaffery_2024_elwha_mammals_count.R` | daily camera detection counts, 15 mammal taxa x 34 stations x 2 study years, Elwha River after dam removal | USGS ScienceBase | US public domain |
+| `merkes_2016_wabash_carp_edna.R` | eDNA (multi-scale), bighead and silver carp x 611 water samples x 2 qPCR reactions, Wabash River 2013 | USGS ScienceBase | US public domain |
+| `glorioso_2020_bigthicket.R` | ARMI visual encounter counts (37 species) and calling index (14 anurans), 52 sites, Big Thicket 2010-2018, two tables | USGS ScienceBase | US public domain |
+| `swanson_2018_iowa_amph_occ.R` | occupancy by life stage, 4 anurans x 27 agricultural wetlands x 7 surveys, Iowa 2015-2016 | USGS ScienceBase | US public domain |
+| `uherkoch_2019_npra_loon_ms.R` | multi-state breeding-state resight histories, Pacific and yellow-billed loons, NPR-A 2011-2014, two tables | USGS ScienceBase | CC0 |
+| `rogers_2024_bighunting_sculpin_cjs.R` | CJS from mobile PIT-antenna surveys, 385 translocated Blue Ridge sculpin x 11 surveys | USGS ScienceBase | US public domain |
+| `glorioso_2026_bayouteche_pipe_count.R` | PVC-pipe refugia counts, 9 herpetofauna taxa x 200 pipes x 62 monthly checks, 2017-2023 | USGS ScienceBase | US public domain |
+| `hanslowe_2022_marianas_rat_occ.R` | chew-card occupancy with density manipulations, rats x 1,026 card stations, Guam and Rota | USGS ScienceBase | US public domain |
+| `gapinski_2025_iowawrp_birds.R` | wetland-easement point counts: property presence (123 spp.), focal counts (16 spp.), point presence (54 spp.), three tables | USGS ScienceBase | CC0 |
+| `hossack_2020_losttrail_toad.R` | robust-design capture histories of boreal toads, males (1,232) and females (167), 2003-2018, two tables | USGS ScienceBase | US public domain |
+| `inbo_2026_flanders_abv_count.R` | common breeding bird point counts summed per square visit, 180 taxa, 757 squares, 2017-2025 | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_priobutterfly_count.R` | Meetnetten.be transect counts of nine priority butterflies (one target per transect, `__survey_taxa`) | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_odonatasite_count.R` | Meetnetten.be site counts of six priority dragonflies (one target per site, `__survey_taxa`) | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_crestednewt_count.R` | Meetnetten.be fyke counts of great crested newts per pond visit, fykes as effort | GBIF (INBO IPT) | CC0 |
+| `haas_2025_sweden_waterbird_count.R` | Swedish midwinter waterbird census, 70 taxa on 3,724 sectors, 1966-2024, method as occasion | GBIF (Swedish IPT) | CC0 |
+| `nrm_2024_sweden_porpoise_occ.R` | daily C-POD harbour porpoise detections at 34 Swedish monitoring stations, 2015-2023 | GBIF (Swedish IPT, SHARK) | CC0 |
+| `kuczkowska_2026_warsaw_owl_occ.R` | owl playback survey, five species at 431 points x 3 surveys, habitat-based lists (`__survey_taxa`) | GBIF (Polish IPT) | CC BY 4.0 |
+| `glorioso_2026_bayouteche_frog_cjs.R` | CJS per species (four tables), tagged treefrogs in PVC pipes, deaths as removals | USGS ScienceBase | public domain |
+| `poessel_2026_coso_mgs_rd.R` | robust design, Mohave ground squirrel trapping days inferred from captures | USGS ScienceBase | public domain |
+| `dittman_2025_genesee_sturgeon_count.R` | gill-net counts of reintroduced lake sturgeon per site visit, coarsened (IUCN EN) | USGS ScienceBase | public domain |
+| `alchokhachy_2024_duckcreek_trout_cjs.R` | CJS per species (two tables), seasonal electrofishing of PIT-tagged trout | USGS ScienceBase | public domain |
+| `brinck_2022_maunakea_palila_count.R` | point counts of palila (IUCN CR, no locations), 1-4 visits a year for 21 years | USGS ScienceBase | public domain |
+| `muths_2020_blackrock_toad_rd.R` | robust design, boreal toads with per-capture Bd status | USGS ScienceBase | public domain |
+| `rowe_2021_deschutes_ospfrog_rd.R` | robust design, Oregon spotted frogs, three visits per season | USGS ScienceBase | public domain |
+| `buhl_2023_ndmt_grassbirds_count.R` | community counts, 9 visits per stop (on-, near-, off-road), PLSS locators coded plus `_exact` sibling (E7.3) | USGS ScienceBase | public domain |
+| `inbo_2026_flanders_alconegg_count.R` | Alcon blue egg counts, Meetnetten.be | GBIF (INBO IPT) | CC0 |
+| `levy_2025_sclerocactus_ms.R` | multi-state census histories of two hookless cacti (two tables) | GBIF (VertNet IPT) | CC0 |
+| `law_2018_nsw_koala_occ.R` | single-season occupancy, acoustic koala detections | Dryad (via Zenodo) | CC0 |
+| `bauwens_2019_belgium_adder_ms.R` | multi-state (breeding state) CJS from a MARK .inp file | Zenodo | CC BY 4.0 |
+| `hitchcock_2025_garden_hedgehog_count.R` | weekly camera detection counts in gardens, camera days as effort | Zenodo | CC BY 4.0 |
+| `fancourt_2019_aus_catdingo_occ.R` | two-species camera occupancy, dingo and feral cat | Dryad (via Zenodo) | CC0 |
+| `mellado_2021_carollia_ms.R` | multi-state CJS of bats: tag carried and arm-band injury (two tables) | Zenodo | CC BY 4.0 |
+| `messerman_2020_ambystoma_cjs.R` | CJS per species (three tables), juvenile salamanders in enclosures | Dryad (via Zenodo) | CC0 |
+| `lenzi_2024_alpine_toad_cjs.R` | 30-year annual CJS of an alpine common toad population | Zenodo | CC BY 4.0 |
+| `chanex_2026_swissalps_amph_count.R` | community counts at snow-making reservoirs and ponds, read from a 1.1 GB zip by range requests | Zenodo | CC BY 4.0 |
+| `lebeuftaylor_2026_alpac_songbird_dynocc.R` | dynamic community occupancy from classifier detections on ARU recordings | Borealis | CC0 |
+| `steinmetz_2025_maewong_tiger_rd.R` | robust design, tigers (IUCN EN) in six biennial camera sessions | figshare | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
