@@ -56,11 +56,11 @@
     "taxa": {
       "rows": 490,
       "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
-      "md5": "0fe6b2d7d0eff3ccd302a853a9ab9ea2"
+      "md5": "99de5bbf10ef65ad343f124ae7d2be4e"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/frishkoff_2014_costarica_birds_binom.R",
-  "buildDate": "2026-11-04"
+  "buildDate": "2026-11-06"
 }
