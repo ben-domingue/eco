@@ -61,6 +61,16 @@ species-as-items, which is the psychometric payoff of the warehouse. The
 visit-as-item view is a derived pivot (`taxon := paste(taxon, period, occasion)`) and
 needs no support from the standard.
 
+**Ruling (per-visit series and season total, 2026-11-06).** When a source keeps both a
+per-visit series and a season total (territories per visit and territories per
+square-year), and the total covers surveys the per-visit series lacks (years or taxa
+with no per-visit values), both ship, as two tables: the per-visit table, with
+`__survey_taxa` marking the visits at which a taxon was not counted as not surveyed for
+it, and the season-total table, a `count` table whose survey is the unit × season
+(`period`, no `occasion`). The total is
+that table's observation, not an aggregate in the per-visit table. When the per-visit
+series covers every survey the total does, only the per-visit table ships.
+
 ## E2. Encoding of `y`
 
 `y` MUST be numeric. Its meaning is declared by `responseType` in `__dataset.json`
@@ -568,5 +578,7 @@ shipped and why. Facts about the source are assertions, not comments.
   - E9: time to detection ships as `detection` 0/1 with the time and a censoring flag as `obs_` columns.
   - Intake: ODC-By 1.0 proceeds; "Other (Open)" and a CC0 badge with a consult-the-PIs clause are unclear terms; refusal or no reply means link, not reshare.
   - Intake: an all-zero table is admitted, with notes saying nothing was detected and p is not estimable from it alone.
+  - E1: a source with a per-visit series and a season total that covers surveys the series lacks ships both, as two tables (Swiss MHB).
+  - E3 (existing rule applied): an editor's territory delineation from shared field visits is an observation; occasion = visit × editor, `observer` = editor, `closure = dependent`.
   - Intake (`processing_guide.md`): no Dryad token; a deposit whose anonymous download fails (404/405) is `blocked`.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

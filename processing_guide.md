@@ -224,6 +224,15 @@ table to avoid them. Two methods are two tables.
 - Several sign types: read which sign types the authors' model counts as a detection
   and build `y` from those; ship each sign count as `obs_<sign>`; cite the paper's
   definition in the header.
+- Per-visit series plus season total (Swiss MHB): build the per-visit table with
+  `__survey_taxa` (visits outside a species' counting window, and square-years with no
+  per-visit values, are not surveyed for that species), then the total table from the
+  total column; assert how many positive totals have no per-visit values, which is why
+  the second table ships.
+- Several people's interpretations of the same field visits (territory editors): one
+  table, `occasion` = visit x interpreter, `observer` = the interpreter's code,
+  `occasionKind = ["time", "observer"]`, `closure = "dependent"` (they share the field
+  data); never one table per interpreter.
 - Synonyms: merge only names the source uses for one species, assert the merge, and
   list both names in `taxonRemarks`.
 - Licence: ODC-By 1.0 proceeds like CC BY. Zenodo "Other (Open)" with no text, or a
