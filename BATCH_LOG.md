@@ -1481,3 +1481,17 @@ What this batch says about the standard:
   ruling on records inside a dated failure window, where the window is known.
 - **A checklist that grows between years** (Zwin): 21 taxa in 2023-2024, 27 in 2025. Not tested here because only
   2025 has route identity, but a multi-year build would need `__survey_taxa` by period (E4.2).
+
+## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
+
+One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| cecconi_2025_cricket_occ | single-season occupancy, aural point counts | Dryad CC0 | 147 | invasive cricket, 49 sites x 3 counts, central Kentucky, 19 September to 5 November 2024; detected at 16 sites; no coordinates deposited |
+
+What this table says about the standard and the tools:
+
+- **E8 and the year.** The data file and README give only an ordinal day; the year is in the abstract on the Dryad page. `date` is built from 2024 + the ordinal, and the script asserts that the ordinals span exactly the abstract's two dates. The queue note's "2024 per README" is wrong.
+- **Closure over seven weeks.** `closure = open` (changed from `closed` in review, PR #64): the counts span about seven weeks across the end of the calling season. `closureNote` records that the authors fit single-season occupancy.
+- **`metadata/run_pipeline.sh`** uses `declare -A`, which macOS's bash 3.2 cannot run, and on a clone without the gitignored cores stages 01 to 03 would drop those tables' rows. Only this table's `metadata.csv` row was added, computed by the unmodified `01_metadata.R`; `biblio.csv`, `tags.csv` and `status.json` were not regenerated. Since fixed on `main`: bash 3.2 by #67 (filed as #65), the dropped rows by #74 (filed as #66).
