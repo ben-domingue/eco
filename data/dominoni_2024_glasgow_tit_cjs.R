@@ -25,9 +25,13 @@
 #   fledged bird from 2019. A nestling that died in the nest (age X) and a bird found dead (retrap X) end their
 #   history in that year with obs_removed = 1 (y = 1 only if also caught alive that year; obs_found_dead = 1 marks
 #   a dead recovery). cluster_id = the site of first capture (birds can move between sites). unit_first_age (BTO
-#   age code at first capture), unit_sex (the most frequent recorded M/F, else U). surveyEvidence = row_presence
-#   (a year is a survey for every marked bird: the scheme ran every year; sites monitored vary between years, so
-#   detection is not constant across years and sites).
+#   age code at first capture), unit_sex (the most frequent recorded M/F, else U). surveyEvidence = row_presence:
+#   a site was monitored in a year when the deposit has any record there that year (either species, ringed or not;
+#   site names compared in lower case, "GCU" = "gcu"). A bird-year is a survey when the bird's site of first capture
+#   was monitored that year, or the bird itself has a record that year (a capture elsewhere is evidence it was
+#   surveyed). The sites with any record vary between years (21 to 27 a year), so under the 2026-11-06 ruling on
+#   protocol-only zeros a bird has no row in a year its site has no record and it was not caught; batch 43 had taken
+#   every year as surveyed for every marked bird. The rows dropped are counted in notShipped.
 #   No coordinates (site names only). Both species IUCN LC.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 SCRIPT <- "data/dominoni_2024_glasgow_tit_cjs.R"; CACHE <- "dominoni_2024_glasgow_tit_cjs"
@@ -40,6 +44,8 @@ z <- download_cached(sprintf("https://data-package.ceh.ac.uk/data/%s.zip", ID), 
 ex <- file.path(dirname(z), "x"); if (!dir.exists(ex)) unzip(z, exdir = ex)
 d <- fread(file.path(ex, "data", "dominoni_highlight_topics_mark-recapture.csv"), colClasses = list(character = c("ring_number", "age", "retrap", "sex")))
 stopifnot(nrow(d) == 13452L, setequal(d$species, c("bluti", "greti")), setequal(d$yr, 2019:2023))
+# Evidence of monitoring (ruling 2026-11-06): any record at a site in a year, before the ring filter.
+mon <- unique(d[, .(site = tolower(site), per = yr - 2018L)])
 cr <- d[, sum(!grepl("^[A-Z]{1,3}[0-9]{4,}$", ring_number))]
 d <- d[grepl("^[A-Z]{1,3}[0-9]{4,}$", ring_number)]
 cat(sprintf("  dropped %d records without a ring number\n", cr))
@@ -70,6 +76,15 @@ for (s in names(sp)) {
   deadonly <- long[, .(any = any(y == 1L)), by = ring_number][any == FALSE, ring_number]
   ind <- ind[!ring_number %in% deadonly]; long <- long[!ring_number %in% deadonly]
   cat(sprintf("  %d bird(s) known only from a dead recovery dropped (never caught alive)\n", length(deadonly)))
+  # Keep a bird-year only where its first site was monitored that year or the bird has a record that year.
+  rec <- unique(x[, .(ring_number, period = per)])
+  long[, site_l := tolower(site1)]
+  keep <- long[mon, on = .(site_l = site, period = per), which = TRUE, nomatch = NULL]
+  keep <- union(keep, long[rec, on = .(ring_number, period), which = TRUE, nomatch = NULL])
+  n_unmon <- nrow(long) - length(keep)
+  stopifnot(long[-keep, all(y == 0L & obs_found_dead == 0L & obs_removed == 0L)])
+  long <- long[sort(keep)][, site_l := NULL]
+  cat(sprintf("  %d bird-years dropped: the bird's site had no record that year and the bird was not caught\n", n_unmon))
   long <- long[, .(unit = ring_number, taxon = S$taxon, y, period, cluster_id = site1, unit_first_age = age1, unit_sex = sex, obs_found_dead, obs_removed)]
   long <- order_eco(long)
   stopifnot(uniqueN(long$unit) == nrow(ind), !anyDuplicated(long[, .(unit, period)]),
@@ -94,10 +109,12 @@ for (s in names(sp)) {
     geographicCoverage = "Glasgow city centre to Loch Lomond and the Trossachs National Park, Scotland, UK (site names only, no coordinates)",
     temporalCoverage = "2019/2023",
     covariateNote = "cluster_id: site of first capture. unit_first_age: BTO age code at first capture (1 nestling, X nestling that died in the nest, 3/3J juvenile, 4-6 adult). unit_sex: most frequent M/F recorded, else U. obs_found_dead: 1 if the bird was found dead that year. obs_removed: 1 on the last row of a bird that died in the nest or was found dead.",
-    notShipped = list(no_ring = sprintf("%d records (both species) whose ring_number is a note ('too small', 'unringed', ...) or blank", cr),
+    surveyEvidenceNote = "A site was monitored in a year when the deposit has any record there that year (either species). A bird-year is a survey when the bird's site of first capture (cluster_id) was monitored that year or the bird has a record that year; other bird-years have no row (ruling 2026-11-06, protocol-only zeros).",
+    notShipped = list(unmonitored = sprintf("%d bird-years at sites with no record that year, where the bird was not caught (protocol-only zeros, ruling 2026-11-06)", n_unmon),
+                      no_ring = sprintf("%d records (both species) whose ring_number is a note ('too small', 'unringed', ...) or blank", cr),
                       dead_only = "birds known only from a dead recovery (never caught alive): not units (E4.4)",
                       within_year = "capture dates, times, biometrics, nest box, parents, RFID and colour rings (one annual occasion is shipped)"),
-    notes = sprintf("The deposit holds 2019-2023 although its title says 2014-2022. Sites with records per year (in __periods) vary from %d to %d, so detection varies by year. Nestlings have rows from their ringing year, other birds from 2019 (E4.4).",
+    notes = sprintf("The deposit holds 2019-2023 although its title says 2014-2022. Sites with records per year (in __periods) vary from %d to %d, so detection varies by year; a bird has a row in a year only when its site of first capture has a record that year or it was caught (surveyEvidenceNote; rebuilt 2026-11-06, batch 47). Nestlings have rows from their ringing year, other birds from 2019 (E4.4).",
                     min(periods$n_sites_with_records), max(periods$n_sites_with_records)))
   ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = SCRIPT)
   stage_dict_row(TABLE,

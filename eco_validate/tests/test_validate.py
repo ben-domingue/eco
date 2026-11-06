@@ -630,6 +630,8 @@ def test_replication_exempts_within_visit_designs():
     # time to detection (E9)
     ttd = one.assign(obs_ttd=10.0, obs_ttd_censored=1 - one["y"])
     assert "replication" not in checks_of(run(df=ttd, meta=meta))
+    ttd_min = one.assign(obs_ttd_min=10.0, obs_ttd_censored=1 - one["y"])
+    assert "replication" not in checks_of(run(df=ttd_min, meta=meta))
     # an obs_ column that merely starts with "int" is not an interval
     other = one.assign(obs_intensity=1.0)
     assert "replication" in checks_of(run(df=other, meta=meta), "warn")

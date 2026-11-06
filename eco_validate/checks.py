@@ -845,8 +845,8 @@ def check_sample_floor(t: Table, s: dict | None = None):
 
 #: Within-visit replication (intake "Replication", ruled 2026-11-06): timed intervals
 #: the source recorded ship as obs_int1, obs_int2, ... (E8) or as interval x band
-#: cells obs_n_int1_band1, ...; time to detection as obs_ttd (E9).
-WITHIN_VISIT_RE = re.compile(r"^obs_(n_)?int\d+|^obs_ttd$")
+#: cells obs_n_int1_band1, ...; time to detection as obs_ttd or obs_ttd_<unit> (E9).
+WITHIN_VISIT_RE = re.compile(r"^obs_(n_)?int\d+|^obs_ttd(_|$)")
 
 
 def replicated_within(t: Table, columns=None) -> str | None:

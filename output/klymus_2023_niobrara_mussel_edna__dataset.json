@@ -1,0 +1,69 @@
+{
+  "table": "klymus_2023_niobrara_mussel_edna",
+  "title": "Four native freshwater mussel eDNA assays, four qPCR replicates each, in 171 water samples along the Niobrara River and at Agate Fossil Beds, Nebraska: no detection",
+  "creator": "Klymus, Katy E.; Thompson, Nathan L.; Tronstad, Lusha; Tronstad, Bryan",
+  "pubDate": "2023",
+  "doi": "10.5066/P96QMW8W",
+  "sourceURL": "https://doi.org/10.5066/P96QMW8W",
+  "citation": "Klymus, K.E., Thompson, N.L., Tronstad, L. and Tronstad, B., 2023, Development, testing and use of four species-specific qPCR assays for freshwater mussel eDNA detection in the Niobrara River: U.S. Geological Survey data release, https://doi.org/10.5066/P96QMW8W.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, no access constraints; citation requested"
+  },
+  "abstract": "USGS and University of Wyoming developed species-specific qPCR assays for four native freshwater mussels (cylindrical papershell, plain pocketbook, fatmucket, giant floater) and ran them on water samples taken every 0.8 km along 121 km of the Niobrara National Scenic River and 17 km of the Niobrara at Agate Fossil Beds National Monument, Nebraska. Each of 171 samples at 169 transect points (plus one unlocated) was assayed in four qPCR replicates per species. No field reaction amplified with any assay, and no field or extraction blank did either; the standards and positive controls did. cluster_id = transect point, unit = water sample, occasion = qPCR replicate.",
+  "samplingProtocol": "Environmental DNA: one water sample (Whirlpak, 30 cm deep, upstream of the vessel) every 0.8 km, filtered on a 0.45 um nitrocellulose filter until clogged (about 0.25 L), deionised-water field blanks each day and about every five samples; DNA extracted (PowerWater bead tubes, MDT lysis, QuickGen Auto12S) and run in four 20 ul qPCR replicates with each species assay multiplexed with a Hem-T internal positive control, 40 cycles; the authors' detection rule is Start_Quant at or above the assay's LOD (Afer Nio5 0.412, Lcar Nio1 0.400, Lsil Nio5 0.386, Pgra Nio4 0.615 copies/reaction).",
+  "samplingProtocolCode": "eDNA",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = four qPCR replicates of one sample's extract; one sample per transect point (two at M-34.5), one visit",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
+  "surveyEvidence": "deposited_matrix",
+  "temporalCoverage": "2019/2023",
+  "geographicCoverage": "Niobrara River, Nebraska, USA: Niobrara National Scenic River from Borman Bridge near Valentine to highway 137 (121 km), and Agate Fossil Beds National Monument from highway 29 to the eastern park boundary (17 km)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no coordinates in the deposit: transect points are identified by distance along the river (unit_river_km); the FGDC bounding box (38.91 N, 92.28 W) is the laboratory's location, not the survey's"
+  },
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = transect point, unit = water sample, occasion = qPCR replicate, four target taxa (one assay each).",
+  "notShipped": {
+    "controls": "22 field blanks (Niob_e001A-e022A) and 18 extraction blanks, all four replicates of every assay at Start_Quant 0; plate standards, NTC and PTC (standards and PTC amplified, NTC did not)",
+    "ipc": "Hem-T internal positive control Cq per well: the sample file has no well id, so a well's IPC cannot be joined to its replicate",
+    "LOD_LOQ": "standard-curve dilutions behind the authors' LOD and LOQ (the LOD values are cited in samplingProtocol)",
+    "AssaySpecificity": "which non-target mussel species each assay amplified (assay validation)",
+    "CompareAssay": "South Dakota samples known to contain L. siliquoidea, run with the L.sil.2 and Lsil Nio5 assays to validate the new assay (another survey, not this one)",
+    "plate_statistics": "plate file names, efficiency, slope, intercept and R2 of each plate's standard curve"
+  },
+  "notes": "No detection in any survey; detection probability is not estimable from this table alone. Start_Quant is 0 in all 2,736 field reactions (no y_raw: it would equal y), so the authors' LOD rule and an any-amplification rule both give y = 0; the release says so ('Due to the lack of amplification in the field collected water samples with any of the four designed assays'). Sampling dates are not deposited; temporalCoverage is the release's time period (2019-06-26 to 2023-04-30, field collection to laboratory). Niob_e043A has no transect point or filtered volume in the deposit (cluster_id unlocated_e043A, unit_river_km and unit_volume_filtered_l NA); transect point M-34.5 has two samples. unit_river_km is the distance along the sampled reach as the transect file gives it (M- points on the Niobrara National Scenic River, Agate- points at Agate Fossil Beds).",
+  "summary": {
+    "n_rows": 2736,
+    "n_units": 171,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 684,
+    "y_values": "0",
+    "prop_zero": 1,
+    "n_traps": 1,
+    "n_zero": 2736,
+    "n_positive": 0,
+    "n_units_detected": 0,
+    "max_y": 0
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_area", "unit_river_km", "unit_volume_filtered_l", "obs_blank_positive"],
+  "coreMd5": "6f753d10978bd2cdc30ffa18a3b88284",
+  "sideTables": {
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "65c37a9bdbaecf79cf36454f920f4187"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/klymus_2023_niobrara_mussel_edna.R",
+  "buildDate": "2026-11-06"
+}
