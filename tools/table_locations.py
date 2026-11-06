@@ -23,9 +23,17 @@ again unless --refresh; so a run after a batch queries only the new tables.
 Reading a released table is anonymous; a table only in a draft needs
 REDIVIS_API_TOKEN, and without it falls to sources 2 and 3 until the next run.
 
+Nobody has to remember to run it. upload/red_up_eco.py runs it with --tables
+for every core table it has just uploaded (token in hand, table on the draft),
+and metadata/run_pipeline.sh runs it --offline as stage 12, which keeps the
+queried rows and places any other table from tracked files alone.
+tools/check_coverage.py (CI) fails a table with no row here, or with no point
+and no tags/locations_human.csv row saying why.
+
     python3 tools/table_locations.py             # update metadata/table_locations.csv
     python3 tools/table_locations.py --refresh   # re-query every table
     python3 tools/table_locations.py --offline   # no Redivis; keep cached rows
+    python3 tools/table_locations.py --tables a b   # (re-)query only a and b
 """
 from __future__ import annotations
 
@@ -125,7 +133,10 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--refresh", action="store_true")
     ap.add_argument("--offline", action="store_true")
+    ap.add_argument("--tables", nargs="+", default=None,
+                    help="query only these tables, ignoring their cached rows; every other table is treated as --offline")
     args = ap.parse_args(argv)
+    want = set(args.tables) if args.tables else None
 
     cached = {}
     if OUT.exists() and not args.refresh:
@@ -138,9 +149,10 @@ def main(argv=None) -> int:
         t = d["table"]
         cols = [c if isinstance(c, str) else c.get("name") for c in d.get("columns", [])]
         units = (d.get("sideTables") or {}).get("units", {}).get("columns", [])
-        row = cached.get(t)
+        query = not args.offline and (want is None or t in want)
+        row = None if want and t in want else cached.get(t)
         main_pairs, unit_pairs = lat_lon_pairs(cols), lat_lon_pairs(units)
-        if row is None and (main_pairs or unit_pairs) and not args.offline:
+        if row is None and (main_pairs or unit_pairs) and query:
             if idx is None:
                 idx = shard_index()
             # __units is small, so prefer it; the core table otherwise.
