@@ -40,6 +40,44 @@ rerun on exactly the data it used.
 
 <p class="eco-release">Current release: <strong>eco v`r s$eco_version`</strong> (Redivis `r s$release_redivis`, `r s$release_date`). Tables built since then are in the repository and the Redivis draft until the next release. <a href="corrections.html">Releases and corrections</a>.</p>
 
+## Where the tables come from
+
+```{r}
+#| label: map
+#| output: asis
+mj <- jsonlite::read_json("data/map.json")
+n_pts <- length(mj$points); n_un <- length(mj$unplaced)
+cat('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">\n')
+cat('<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>\n')
+cat('<p id="eco-map-legend" class="eco-map-legend"></p>\n<div id="eco-map" class="eco-map" role="region" aria-label="Map with one point per table"></div>\n')
+cat('<script>const MAP_DATA = ', paste(readLines("data/map.json", warn = FALSE), collapse = "\n"), ';</script>\n')
+cat('<script src="map.js"></script>\n')
+```
+
+One point per table, not per site: the mean of its site coordinates where the
+table has them, otherwise the centre of the study area its description names.
+Most points are therefore approximate, to the level the hover card states
+(site, locality, region, state, country), and none is finer than 0.1 degree.
+A ring marks a study area more than 1,000 km across, where a single point
+says little. Hover over a point for the table; click it for the table's entry.
+
+**Some locations are best guesses.** About two thirds of the tables deposit no
+coordinates, and for those the point was placed by an AI assistant from the
+place names in the deposit's description, then spot-checked, not verified
+one by one. A point labelled region, state or country may be tens to hundreds
+of kilometres from where the surveys were done. If a point is wrong, please
+[open an issue](https://github.com/ben-domingue/eco/issues).
+
+```{r}
+#| label: unplaced
+#| output: asis
+if (n_un > 0) {
+  cat(sprintf('<details class="eco-map-unplaced"><summary>%d of the %d tables could not be placed</summary>\n<p>Their deposits name no study area that can be located.</p><ul>\n', n_un, n_pts + n_un))
+  for (u in mj$unplaced) cat(sprintf('<li><a href="data.html#%s"><code>%s</code></a>: %s (%s)</li>\n', u$table, u$table, u$title, u$basis))
+  cat('</ul></details>\n')
+}
+```
+
 ## What a table looks like
 
 Each row is one survey of one `unit` (a site, a camera, a sample, an

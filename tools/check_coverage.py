@@ -7,7 +7,8 @@ and `__dataset.json` (standard.md E10). The CSVs live on Redivis, not in git
 the `sideTables` record write_table() puts there. It also needs a row in dictionary/dictionary_auto.csv,
 a row in tags/tags_auto.csv (or tags_human.csv), and, because the site and the R
 package read the derived pipeline outputs rather than those staging files, a row
-in metadata/metadata.csv. CLAUDE.md asks every data/ script to end with
+in metadata/metadata.csv, and a homepage map point in metadata/table_locations.csv
+(or, if no point can be placed, a tags/locations_human.csv row saying why). CLAUDE.md asks every data/ script to end with
 write_table(), stage_dict_row() and stage_tag_row(), and every batch to be
 followed by metadata/run_pipeline.sh; this is the mechanical check that it
 happened, run on every PR (issue #4) rather than by a monthly audit (IRW's
@@ -37,6 +38,8 @@ OUT = ROOT / "output"
 DICT = ROOT / "dictionary" / "dictionary_auto.csv"
 TAGS = [ROOT / "tags" / "tags_auto.csv", ROOT / "tags" / "tags_human.csv"]
 META = ROOT / "metadata" / "metadata.csv"
+LOC = ROOT / "metadata" / "table_locations.csv"
+LOC_HUMAN = ROOT / "tags" / "locations_human.csv"
 
 
 def tables_in(path: pathlib.Path) -> set[str]:
@@ -67,6 +70,12 @@ def main(argv: list[str] | None = None) -> int:
     in_dict = tables_in(DICT)
     in_tags = set().union(*(tables_in(p) for p in TAGS))
     in_meta = tables_in(META)
+    in_loc = tables_in(LOC)
+    no_point = set()
+    if LOC.exists():
+        with LOC.open(newline="", encoding="utf-8") as fh:
+            no_point = {r["table"] for r in csv.DictReader(fh) if r.get("source") == "none"}
+    no_point -= tables_in(LOC_HUMAN)
 
     problems: list[str] = []
     for t in core:
@@ -80,6 +89,11 @@ def main(argv: list[str] | None = None) -> int:
             missing.append("tags/tags_auto.csv (or tags_human.csv) row")
         if t not in in_meta:
             missing.append("metadata/metadata.csv row (run metadata/run_pipeline.sh)")
+        if t not in in_loc:
+            missing.append("metadata/table_locations.csv row (run metadata/run_pipeline.sh)")
+        elif t in no_point:
+            missing.append("map point: add a tags/locations_human.csv row (a point, or empty lat/lon "
+                           "and a basis saying why none), then run metadata/run_pipeline.sh 12")
         if missing:
             problems.append(f"{t}: missing " + "; ".join(missing))
         elif not args.quiet:

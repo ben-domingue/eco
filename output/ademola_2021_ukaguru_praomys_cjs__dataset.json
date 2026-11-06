@@ -15,7 +15,7 @@
   "samplingProtocol": "Four 70 x 70 m grids of 49 Sherman LFA live traps (7 lines x 7 stations, 10 m apart), baited with peanut butter and maize bran, run for three consecutive nights every month and checked each morning; animals toe-clipped, sexed, weighed and aged.",
   "samplingProtocolCode": "live_trap",
   "surveyEvidence": "inferred",
-  "surveyEvidenceNote": "Sessions are grid-months. Every grid is taken as trapped every month from its first month with a capture of any species (H2, L2 June 2018; D1, D2 July 2018) to February 2020, following the paper's protocol ('three consecutive nights every month'). L2 has no capture of any species in March and April 2019; those two sessions are assumed surveyed with no capture. The deposit has no list of trapping sessions.",
+  "surveyEvidenceNote": "Sessions are grid-months, inferred from detections: a grid-month is a session where the deposit's all-species file has a capture of any small mammal on that grid (80 grid-months). Sessions with no capture of anything are absent: the paper's protocol ('three consecutive nights every month', June 2018 to February 2020) also schedules D1 and D2 in June 2018 and L2 in March and April 2019, which have no capture of any species and are not shipped (ruling 2026-11-06). The deposit has no list of trapping sessions.",
   "responseType": "detection",
   "unitKind": "individual",
   "closure": "none",
@@ -29,27 +29,28 @@
     "trap_station": "trap line and station of each capture",
     "per_capture": "weight and reproductive condition at each capture",
     "star_column": "an unnamed column with '*' on 2 rows (undefined)",
-    "other_species": "captures of 9 other small-mammal taxa in the all-species file (used only to check session coverage)"
+    "other_species": "captures of 9 other small-mammal taxa in the all-species file (used only to check session coverage)",
+    "protocol_only_sessions": "4 grid-months the protocol schedules but with no capture of any species (D1 and D2 June 2018, L2 March and April 2019; ruling 2026-11-06, protocol-only zeros), 50 animal rows at L2"
   },
-  "notes": "Animals have rows from their grid's first session (E4.4). Session coverage is inferred from the protocol (surveyEvidenceNote).",
+  "notes": "Animals have rows from their grid's first session (E4.4), at every session of their grid. Sessions are grid-months with a capture of any species; L2 has no session in March and April 2019 (surveyEvidenceNote). Rebuilt 2026-11-06 (batch 47) to drop those two protocol-only sessions.",
   "summary": {
-    "n_rows": 12653,
+    "n_rows": 12603,
     "n_units": 622,
     "n_taxa": 1,
     "n_periods": 21,
     "n_occasions": 1,
-    "n_surveys": 12653,
+    "n_surveys": 12603,
     "y_values": "0,1",
     "prop_zero": 0.912,
     "n_traps": 1,
-    "n_zero": 11543,
+    "n_zero": 11493,
     "n_positive": 1110,
     "n_units_detected": 622,
     "max_y": 1
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_habitat", "unit_sex"],
-  "coreMd5": "8b610c2b14fe2795502c28464c241fb8",
+  "coreMd5": "ac562d22c79f2befa399d8af7189f5b5",
   "sideTables": {
     "periods": {
       "rows": 21,

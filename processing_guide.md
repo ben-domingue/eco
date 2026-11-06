@@ -152,7 +152,8 @@ year, season label) go in `__periods`, not the core.
 
 **What is not a covariate.** Anything the authors estimated from the same
 detections: an occupancy or detection estimate, a predicted density, a model-based
-"dog activity" index. Drop it, and record the drop in `notShipped`. Standardised
+"dog activity" index, or a relative abundance index or trap success computed from the
+same cameras (ruled 2026-11-06). Drop it, and record the drop in `notShipped`. Standardised
 versions of a covariate are shipped as the source gives them, with the fact noted.
 
 **What is not `y`.** Imputed or interpolated counts (remove), aggregates across

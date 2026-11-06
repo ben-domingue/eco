@@ -480,6 +480,18 @@ def main(argv=None) -> int:
     if shipped:
         update_report([report_row(verdicts[t], dataset_meta(t)) for t in shipped])
         print(f"validate/report.csv: {len(shipped)} row(s) written from the upload gate")
+    # The homepage map point for each core table just uploaded, read from the
+    # draft while the token is in hand (tools/table_locations.py). Commit
+    # metadata/table_locations.csv with the batch; a failure here never fails
+    # the upload (the pipeline's offline stage 12 and CI's coverage check back it up).
+    mapped = [x.table for x in results if x.ok and side_suffix(x.table) is None]
+    if mapped:
+        try:
+            sys.path.insert(0, str(ROOT / "tools"))
+            import table_locations
+            table_locations.main(["--tables", *mapped])
+        except Exception as exc:
+            print(f"map points not updated ({type(exc).__name__}: {exc}); run tools/table_locations.py")
     for x in failed:
         print(f"  FAILED {x.table}: {x.error}", file=sys.stderr)
     if skipped:

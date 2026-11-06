@@ -69,7 +69,7 @@ CLAUSES = {
 
 #: Intake policy (standard.md, "Intake policy"): reported, not part of the format.
 INTAKE_CHECKS = frozenset({
-    "table_name", "standard_version", "sample_floor", "replication",
+    "table_name", "standard_version", "sample_floor", "replication", "all_zero",
 })
 
 

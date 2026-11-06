@@ -38,6 +38,29 @@ stats <- list(
 jsonlite::write_json(stats, "data/site_stats.json", auto_unbox = TRUE, pretty = TRUE)
 cat("prerender.R: data/site_stats.json written\n")
 
+# The homepage map: one point per table from metadata/table_locations.csv
+# (tools/table_locations.py), with what the hover card shows. Tables that are
+# never published are left off; tables with no point are listed under the map.
+loc <- read.csv("../metadata/table_locations.csv", stringsAsFactors = FALSE)
+loc <- loc[!loc$table %in% tags$table[grepl("do_not_publish", tags$status)], ]
+years <- vapply(loc$table, function(t) {
+  tc <- jsonlite::read_json(file.path("../output", paste0(t, "__dataset.json")))$temporalCoverage
+  if (is.list(tc)) tc <- paste(unlist(tc[c("beginDate", "endDate")]), collapse = " to ")
+  if (is.null(tc)) "" else as.character(tc)[1]
+}, "")
+mp <- merge(loc, meta[, c("table", "n_units", "n_taxa", "n_periods")], by = "table")
+mp <- merge(mp, tags[, c("table", "taxon_group", "model_family", "realm")], by = "table")
+mp <- merge(mp, bib[, c("table", "title")], by = "table")
+mp$years <- unname(years[mp$table])
+placed <- !is.na(mp$lat)
+jsonlite::write_json(list(
+  points = mp[placed, c("table", "lat", "lon", "precision", "extent_km", "source", "basis",
+                        "title", "taxon_group", "model_family", "realm", "n_units", "n_taxa",
+                        "n_periods", "years")],
+  unplaced = mp[!placed, c("table", "title", "basis")]
+), "data/map.json", auto_unbox = TRUE, na = "null", digits = NA)
+cat("prerender.R: data/map.json written,", sum(placed), "points,", sum(!placed), "unplaced\n")
+
 # Specimens for the homepage card: a few real rows from tables of each kind,
 # fetched from Redivis with the eco package so they cannot drift from what
 # ships. One unit with at least one non-zero y, its first rows in key order. A

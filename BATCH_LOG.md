@@ -2313,7 +2313,7 @@ coordinates. Rebuilt, each with an `_exact` sibling without the flagged taxa (E7
 | inbo_2026_flanders_firesalamander_count | fire salamander VU | INBO 5 km centroids to 0.1° cell, uncertainty 3,536 m + half-diagonal | single species: none |
 | inbo_2026_flanders_abv_count | turtle dove, pochard VU | 1 km square centroids to 0.1° cell; square codes (ABV_<UTM>) replaced by Q0001.. (E7 scope 4) | inbo_2026_flanders_abv_exact_count (178) |
 | neon_2026_fish_removal | American eel EN, egg-mimic darter VU | reach coordinates in `__units` to 0.1° cell, elevation to 100 m | neon_2026_fish_exact_removal (153) |
-| neon_2026_macroinverts_count | Valvata mergella EN (Alaska) | site coordinates in `__units` | neon_2026_macroinverts_exact_count (1,228) |
+| neon_2026_macroinverts_count | Valvata mergella EN (Alaska) | site coordinates in `__units` (on batch 47's rebuild, see below) | neon_2026_macroinverts_exact_count (1,228) |
 | neon_2026_landbirds_count | chimney swift, pinyon jay, long-tailed duck, Puerto Rican bullfinch, Puerto Rican nightjar VU | point coordinates in `__units`; now period parts (over 5 M rows) | neon_2026_landbirds_exact_count (278) |
 | neon_2026_plants_occ | 27 CR/EN/VU (four ashes, American chestnut, American elm, Fraser fir, longleaf and whitebark pines, Hawaiian and Puerto Rican endemics); Forsythia ovata EN is introduced, not flagged | plot coordinates in `__units` | neon_2026_plants_exact_occ (4,953) |
 
@@ -2338,6 +2338,14 @@ floridanus, which GBIF now gives as NT: nothing is flagged, only the note is sta
 The INBO tables generalised by the publisher (bats, butterflies, priority butterflies, crested newt, dragonflies,
 Odonata sites, Alcon blue eggs), ukpoms_2026_uk_pantrap_count, sepulveda_2019_streamgage_fish_edna and the other NEON
 tables hold no flagged taxon (checked), so they stand.
+
+**NEON macroinvertebrates and batch 47.** This batch first rebuilt neon_2026_macroinverts_count from the script as
+it stood on main at 7acd58b (4,833,657 rows in year parts, a national pool) and uploaded it, with its `_exact`
+sibling, to the eco_2 draft, overwriting batch 47's rebuild (#143: per-site pools, life-stage obs_n_stage_ columns,
+1,099,575 rows); the upload of the stale `_exact` sibling failed. After merging main, batch 47's script was taken as
+it is and only the E7 change re-applied (coarsened `__units`, `_exact` sibling without Valvata mergella); both tables
+were rebuilt from it (the core is byte-identical to batch 47's, coreMd5 1544045d...) and re-uploaded, core and every
+side table, so the draft holds batch 47's design plus the coarsening.
 
 **Part B, un-coarsen check.** osborne_2026_largeheath_dynocc stays coarsened: the deposit's own README summary (not
 only the title) describes "a reintroduction programme for the threatened Large Heath butterfly", which is (a) as the
@@ -2389,3 +2397,61 @@ Suggested `releases/table_changes.csv` rows, to add once the release carrying th
 nrm_2024_sweden_porpoise_occ, whittington_2025_banff_grizzly_occ, bruce_2021_wisconsin_monarch_nmix and
 osborne_2026_largeheath_dynocc changed only their metadata text (and the monarch's `__taxa` gained
 `taxon_iucnCategory`): no row suggested.
+
+## Batch 47 — 2026-11-06 (second set of 2026-11-06 rulings, PR #140: validator #120, table fixes, admitted single-visit designs, papers Ben fetched)
+
+One agent in `~/eco-b47` (branch `batch-47-followups`, from main at 8e90f61), alongside batch 46 in `~/eco-b46`. No Dryad
+requests: every Dryad deposit was read from batch 35's or 37's cache; Europe PMC supplied two open-access papers
+(Nakashima 2024, Gustafson 2025). Papers Ben fetched were read with `pdftotext` into `.cache/` and not committed.
+
+**Validator (#120).** `irw:resp_variation*` is a warning, not a block, on an all-zero table the standard admits (every
+y = 0, site units, `taxonInclusion` target or single); a new intake check `all_zero` warns when such a table's notes lack
+the not-estimable sentence. The `replication` warning no longer fires on `binomial_count`, individual units over traps
+(count-detector SCR), `obs_int<k>` / `obs_n_int<k>_*` interval columns, or `obs_ttd` / `obs_ttd_<unit>` (time to
+detection). The R twin has no replication or IRW check (its `floor_status` is the sample floor), so nothing to mirror.
+The sample floor still reports "no replication" for one occasion and one period, as its definition says.
+
+Rebuilt under the new rulings (all published in eco v14; re-uploaded to the eco_2 draft):
+
+| Table | Change | Rows (was) |
+|---|---|---|
+| ademola_2021_ukaguru_praomys_cjs | protocol-only zeros: 4 grid-months with no capture of any species dropped (D1, D2 June 2018 were already absent; L2 March, April 2019 now too) | 12,603 (12,653) |
+| dominoni_2024_glasgow_bluetit_cjs | a bird-year only where the bird's first site had any record that year or the bird was caught (211 bird-years dropped) | 24,867 (25,078) |
+| dominoni_2024_glasgow_greattit_cjs | the same (94 bird-years dropped) | 9,784 (9,878) |
+| neon_2026_macroinverts_count | per-site species pool in `__survey_taxa` (ruling 19; median 276 of 1,229 taxa a site), life-stage counts as `obs_n_stage_*`; one CSV, no parts | 1,099,575 (4,833,657) |
+
+New tables:
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| klymus_2023_niobrara_mussel_edna | eDNA, all-zero (built batch 35, uploaded now) | detection | 2,736 | 171 | 4 | 1 |
+| nakashima_2024_kanagawa_nestpred_occ | time to detection, competing predators at artificial nests | detection | 64 | 32 | 2 | 1 |
+| nakashima_2024_yakumo_scavenger_occ | time to detection, competing scavengers at carcasses | detection | 138 | 69 | 2 | 1 |
+| gustafson_2024_seward_prey_count | single-visit time-removal point counts, `obs_int1`-`obs_int5` | count | 2,964 | 988 | 3 | 1 |
+| bornand_2014_gantrisch_plant_occ | double observer with time to detection, plants | detection | 1,496 | 44 | 17 | 1 |
+| dwyer_2024_phoenix_bat_occ | acoustic bats, seasons as periods | detection | 14,000 | 50 | 14 | 4 |
+| hastings_2018_seak_philopatry_ms | multistate CJS, rookery scale, artificial natal release flagged | state | 5,007 | 369 | 1 | 15 |
+| hastings_2018_forrester_philopatry_ms | multistate CJS, island scale | state | 2,009 | 183 | 1 | 11 |
+| silva_2018_scotland_badger_occ | camera-trap occupancy, weekly | detection | 1,230 | 168 | 1 | 1 |
+
+Held or still blocked (`queue/human_review.csv`): Western Ghats frogs (admitted, but not cached and no Dryad request
+before 00:00 UTC); Tilker Annamites (the PDF is the bioRxiv preprint, with no species table; the key is Table S3 of the
+published supplement); Jiménez-Franco 2019 and 2023 (the 73 species are in Table S1, not in the PDFs); Cayuela toads
+(events defined, but the 29 sessions' years are in Appendix S1); Manu arboreal cameras (common names only, and not for
+every code); Mediterranean fish census (the supplement settles three team protocols but not the label -> site/visit map).
+
+Facts carried into the tables: Nakashima's README labels Case 1's censoring columns as foxes and raccoon dogs (copied
+from Case 2); the code and its table say squirrels and crows. Case 2 has 38 carcasses first visited by foxes, the paper
+37. The Gustafson deposit has 988 points, the paper 983; ptarmigan counts are males only (the authors' filter). The
+Dwyer bat codes are NABat codes, matched to the paper's Table 1 (Nyctinomops in fall: 20 nights in the deposit, 21 in the
+table); the 10 species-seasons without a file are Table 1's zero cells, so no `__survey_taxa` is needed. The Hastings
+state letters are resolved from the natal sample sizes (V = Graves, as in hastings_2018_seak_sealion_cjs; Z = Biali);
+FI's E and S (never natal) are read as East Rocks and Lowrie south by their initials. The badger matrix's 22 week columns
+are a calendar shared within each study area.
+
+What strained the standard: (1) the time-to-detection ruling censors at the survey length; at an ephemeral resource the
+survey ends when a rival takes the resource, so the censoring time varies by station (Nakashima): shipped as deposited
+and said in notes. (2) A table replicated only within the visit still reads `sample_floor: below (no replication)`,
+since the floor counts occasions and periods; the floor's wording may want the replication ruling's exceptions.
+(3) Hastings: rows before a female's artificial natal release are zeros by construction (no female can be seen with a
+pup before her first pup); kept from the study's first year or birth (E4.4), as the kittiwake tables do.

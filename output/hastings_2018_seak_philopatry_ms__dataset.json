@@ -1,0 +1,73 @@
+{
+  "table": "hastings_2018_seak_philopatry_ms",
+  "title": "Annual multistate histories of 369 branded female Steller sea lions seen with a pup at five southeastern Alaska rookeries, 2001-2015 (natal and breeding philopatry)",
+  "creator": "Hastings, Kelly K.; Jemison, Lauri A.; Pendleton, Grey W.; Raum-Suryan, Kimberly L.; Pitcher, Kenneth W.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.48j0m",
+  "sourceURL": "https://doi.org/10.5061/dryad.48j0m",
+  "citation": "Hastings, K. K., Jemison, L. A., Pendleton, G. W., Raum-Suryan, K. L. & Pitcher, K. W. (2018). Data from: Natal and breeding philopatry of female Steller sea lions in southeastern Alaska [Dataset]. Dryad. https://doi.org/10.5061/dryad.48j0m",
+  "paperDOI": "10.1371/journal.pone.0176840",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Female Steller sea lions branded as pups at southeastern Alaska rookeries were resighted each breeding season (May-July); a female definitively seen with a pup in a year is coded by where she was seen. The authors fitted multistate mark-recapture models in which the first release is an artificial sighting at the natal location in the year before a female's first pup, so that the first transition estimates natal philopatry and later transitions breeding philopatry.",
+  "samplingProtocol": "Resighting of branded females from land and boat surveys of rookeries, May-July each year; a female's sightings definitively with a pup (birth, nursing and similar behaviour) in a year are pooled to one annual record of where she pupped.",
+  "samplingProtocolCode": "resighting",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not seen with a pup that year",
+    "1": "with a pup at F, Forrester Island Complex (letter F)",
+    "2": "with a pup at H, Hazy Islands (letter H)",
+    "3": "with a pup at B, Biali Rocks (letter Z)",
+    "4": "with a pup at W, White Sisters (letter W)",
+    "5": "with a pup at G, Graves Rocks (letter V)"
+  },
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one pooled annual record per year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Southeastern Alaska rookeries: Forrester Island Complex, Hazy Islands, Biali Rocks, White Sisters, Graves Rocks (no coordinates deposited)",
+  "temporalCoverage": "2001/2015",
+  "covariateNote": "unit_birth_year: year of birth and branding. obs_release: 1 on the authors' artificial natal sighting in the year before a female's first pup (not an observation), else 0. y_raw: the deposited letter.",
+  "notShipped": {
+    "within_year": "individual sightings within a year (pooled by the authors; not deposited)"
+  },
+  "notes": "Unit ids are line numbers (no brand ids in the deposit). Rows begin at the study's first year or the birth year if later (E4.4); the row with obs_release = 1 is the authors' artificial natal release, and to reproduce their data drop the rows before it and condition on it. Only females ever seen with a pup are included, so survival to first pupping is 1 by construction. State letters resolved from the paper's natal sample sizes (header). Overlaps hastings_2018_forrester_philopatry_ms (the same deposit's Forrester Island analysis, at island scale, of females that pupped at F) and hastings_2018_seak_sealion_cjs (the same authors' survival deposit, dryad.541r5, whose branded pups include these females).",
+  "summary": {
+    "n_rows": 5007,
+    "n_units": 369,
+    "n_taxa": 1,
+    "n_periods": 15,
+    "n_occasions": 1,
+    "n_surveys": 5007,
+    "y_values": "0,1,2,3,4,5",
+    "prop_zero": 0.672,
+    "n_traps": 1,
+    "n_zero": 3365,
+    "n_positive": 1642,
+    "n_units_detected": 369,
+    "max_y": 5
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_birth_year", "obs_release"],
+  "coreMd5": "5bfd4c74d4a3d93a8525f90b242030c1",
+  "sideTables": {
+    "periods": {
+      "rows": 15,
+      "columns": ["period", "year"],
+      "md5": "b76381aad03e9072f37234b901ab3b18"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e3d0cfe442180ceedb1b6631d9e1bde2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hastings_2018_sealion_philopatry_ms.R",
+  "buildDate": "2026-11-06"
+}

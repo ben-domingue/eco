@@ -10,11 +10,11 @@
     "spdx": "CC-BY-4.0",
     "url": "https://creativecommons.org/licenses/by/4.0/"
   },
-  "abstract": "NEON's benthic macroinvertebrate survey of wadeable streams: in spring, summer and fall bouts, about eight samples are taken in the two dominant habitat types of the reach (riffles, runs, pools, step pools) with the sampler suited to each (Surber, Hess, core, modified kicknet, snag), preserved, and sent to a taxonomy laboratory, which sorts a fraction of each sample and counts and identifies every animal in it (large or rare taxa are picked from the whole sample). This table is the number of animals of each taxon counted in each sample, with every taxon (1229, national pool) at every sample; obs_subsample_fraction gives the fraction they were counted in. Reach-centre coordinates are as NEON publishes them.",
+  "abstract": "NEON's benthic macroinvertebrate survey of wadeable streams: in spring, summer and fall bouts, about eight samples are taken in the two dominant habitat types of the reach (riffles, runs, pools, step pools) with the sampler suited to each (Surber, Hess, core, modified kicknet, snag), preserved, and sent to a taxonomy laboratory, which sorts a fraction of each sample and counts and identifies every animal in it (large or rare taxa are picked from the whole sample). This table is the number of animals of each taxon counted in each sample, with each life stage's count beside it; the taxa surveyed for at a site are the per-site pool of taxa this table records there (median 276 of 1229; __survey_taxa), so a taxon never found at a site has no zeros there. obs_subsample_fraction gives the fraction they were counted in. Reach-centre coordinates are as NEON publishes them.",
   "samplingProtocol": "Benthic samples in the two dominant habitat types of a wadeable-stream reach, with a Surber, Hess, core, modified kicknet or snag sampler of known area, three bouts a year; samples preserved in ethanol and sorted, counted and identified by a taxonomy laboratory from a subsample (NEON AOS aquatic macroinvertebrate sampling protocol, NEON.DOC.003046)",
   "samplingProtocolCode": "benthic_sampler",
   "surveyEvidence": "sample_table",
-  "surveyEvidenceNote": "inv_fieldData lists every sample (with samplingImpractical where one was not taken); a survey is a stream sample with samplingImpractical blank or OK, a sampleID, an inv_persample row and laboratory rows in inv_taxonomyProcessed. Taxon pool national: a taxon not counted in a sample is y = 0 there.",
+  "surveyEvidenceNote": "inv_fieldData lists every sample (with samplingImpractical where one was not taken); a survey is a stream sample with samplingImpractical blank or OK, a sampleID, an inv_persample row and laboratory rows in inv_taxonomyProcessed. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a site are every taxon this table records at that site in any sample (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other sample there.",
   "responseType": "count",
   "unitKind": "site",
   "effortColumn": "obs_benthic_area_m2",
@@ -30,104 +30,43 @@
     "value": true,
     "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Valvata mergella (EN); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_macroinverts_exact_count keeps the other taxa at published precision."
   },
-  "covariateNote": "obs_habitat_type (riffle, run, pool, step pool) and obs_sampler_type (surber, hess, core, modifiedKicknet, snag) per sample; obs_benthic_area_m2 = area sampled (effort); obs_substratum = dominant substratum size class; obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's whole-sample estimate of it (the fraction it was counted in), for a taxon not found, the share of the sample sorted (inv_persample subsamplePercent / 100). It may vary across taxa within a sample (E5).",
-  "notes": "y = animals counted by the laboratory, summed over size classes and life stages; the whole-sample estimate (estimatedTotalCount) is not shipped. Taxa: 357 species (subspecies rolled up) and 872 records identified only to a higher rank, a subgenus or a species group, each its own taxon (E6); 2 pairs of NEON 'sp.' and 'spp.' codes for one name merged (ruling 20, taxonRemarks lists the codes); life stages pooled. Subsample fractions: NEON's per-row subsamplePercent differs between taxa of one sample (large or rare taxa picked from the whole sample) and from inv_persample's in a fifth of samples, so the fraction is given per row, as above. Surveys: 3933 samples in 539 bouts; 623 samples not taken; 27 samples of a second reach filed under another site's bout and 3 DNA samples not in the table; 28 with no persample row and 0 with no laboratory rows; 347 dropped (39 with a targetTaxaPresent N row naming a taxon, 136 with a counted taxon missing its count, 222 marked damaged, affecting analysis).",
+  "covariateNote": "obs_habitat_type (riffle, run, pool, step pool) and obs_sampler_type (surber, hess, core, modifiedKicknet, snag) per sample; obs_benthic_area_m2 = area sampled (effort); obs_substratum = dominant substratum size class; obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's whole-sample estimate of it (the fraction it was counted in), for a taxon not found, the share of the sample sorted (inv_persample subsamplePercent / 100). It may vary across taxa within a sample (E5). obs_n_stage_<stage> = animals of the taxon counted in that life stage (larva, pupa, adult, immature, none = NEON's stage for taxa without one, unknown; missing = no stage on the laboratory row, where present); they sum to y.",
+  "notes": "y = animals counted by the laboratory, summed over size classes and life stages, with each stage's count as obs_n_stage_<stage> (E8 ruling of 2026-11-06); the whole-sample estimate (estimatedTotalCount) is not shipped. Per-site pools (ruling 19; rebuilt 2026-11-06, batch 47, from the national pool of batch 38): median 276 taxa a site (range 184-392). Taxa: 357 species (subspecies rolled up) and 872 records identified only to a higher rank, a subgenus or a species group, each its own taxon (E6); 2 pairs of NEON 'sp.' and 'spp.' codes for one name merged (ruling 20, taxonRemarks lists the codes); life stages pooled. Subsample fractions: NEON's per-row subsamplePercent differs between taxa of one sample (large or rare taxa picked from the whole sample) and from inv_persample's in a fifth of samples, so the fraction is given per row, as above. Surveys: 3933 samples in 539 bouts; 623 samples not taken; 27 samples of a second reach filed under another site's bout and 3 DNA samples not in the table; 28 with no persample row and 0 with no laboratory rows; 347 dropped (39 with a targetTaxaPresent N row naming a taxon, 136 with a counted taxon missing its count, 222 marked damaged, affecting analysis).",
   "notShipped": {
     "lake and river samples": "10 lake and river sites (petite ponar near the buoy and other deep-water points, sweeps in the littoral): other protocols; 6 samples with no aquaticSiteType (a grab sample and macroalgae samples)",
     "excluded samples": "27 samples of a second reach (site prefixes STCU, STKG, STMA, STWA) filed under another site's eventID; 3 '.DNA' samples; 7 samples of the bout MAYF.20161024, whose snag samples were taken 36 days after its cores; 39 with a targetTaxaPresent N row naming a taxon; 136 with a counted taxon missing its count (fragments, headless animals); 222 marked damaged, affecting analysis",
     "whole-sample estimate": "estimatedTotalCount (the laboratory's estimate of the whole sample; y and obs_subsample_fraction are shipped)",
-    "other fields": "size classes (sizeClass, mm), life stage (pooled in y), sorting QC, identification history, inv_taxonomyRaw (expanded package)"
+    "other fields": "size classes (sizeClass, mm), sorting QC, identification history, inv_taxonomyRaw (expanded package)",
+    "zeros outside the site pool": "a taxon never recorded at a site has no rows there (per-site pool, ruling 19)"
   },
   "summary": {
-    "n_rows": 4833657,
+    "n_rows": 1099575,
     "n_units": 24,
     "n_taxa": 1229,
     "n_periods": 539,
     "n_occasions": 8,
     "n_surveys": 3933,
-    "y_values": "0-480 (more than 12 distinct)",
-    "prop_zero": 0.974,
+    "y_values": "0-480 (250 distinct)",
+    "prop_zero": 0.884,
     "n_traps": 1,
-    "n_zero": 4706412,
+    "n_zero": 972330,
     "n_positive": 127245,
     "n_units_detected": 24,
     "max_y": 480
   },
   "sampleFloor": "below (24 units < 30)",
-  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "obs_habitat_type", "obs_sampler_type", "obs_benthic_area_m2", "obs_substratum", "obs_subsample_fraction"],
-  "parts": [
-    {
-      "file": "part-01.csv",
-      "periods": [1, 2, 3],
-      "n_rows": 6145,
-      "md5": "fbdb970e82200dc3c7c7042ee3498348"
-    },
-    {
-      "file": "part-02.csv",
-      "periods": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-      "n_rows": 104465,
-      "md5": "898e577ee120ed6135b38bff7e212017"
-    },
-    {
-      "file": "part-03.csv",
-      "periods": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41],
-      "n_rows": 105694,
-      "md5": "59e9be22c0dcbc3561cc9b7ba97808db"
-    },
-    {
-      "file": "part-04.csv",
-      "periods": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97],
-      "n_rows": 484226,
-      "md5": "bf746cbad1b6daa2c8533ca6599d377e"
-    },
-    {
-      "file": "part-05.csv",
-      "periods": [98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161],
-      "n_rows": 589920,
-      "md5": "0c1ecc5ab10ebc93d2e8eb7173c716db"
-    },
-    {
-      "file": "part-06.csv",
-      "periods": [162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230],
-      "n_rows": 647683,
-      "md5": "f759ca4bb5008473787cb615febc39b4"
-    },
-    {
-      "file": "part-07.csv",
-      "periods": [231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276],
-      "n_rows": 406799,
-      "md5": "42f761550b838cfe0e66f4e2af7a5f9e"
-    },
-    {
-      "file": "part-08.csv",
-      "periods": [277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344],
-      "n_rows": 634164,
-      "md5": "6102dc9a389135a8d314079ce8e50faa"
-    },
-    {
-      "file": "part-09.csv",
-      "periods": [345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412],
-      "n_rows": 642767,
-      "md5": "bce859e5b8eb8728e9a804eb9c60dbc5"
-    },
-    {
-      "file": "part-10.csv",
-      "periods": [413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473],
-      "n_rows": 585004,
-      "md5": "be8044b0b8e3940279254d212773667e"
-    },
-    {
-      "file": "part-11.csv",
-      "periods": [474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539],
-      "n_rows": 626790,
-      "md5": "3a5eeb0fc13aba303aed5692cb39e061"
-    }
-  ],
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "obs_habitat_type", "obs_sampler_type", "obs_benthic_area_m2", "obs_substratum", "obs_subsample_fraction", "obs_n_stage_larva", "obs_n_stage_pupa", "obs_n_stage_adult", "obs_n_stage_immature", "obs_n_stage_none", "obs_n_stage_unknown"],
+  "coreMd5": "1544045dea8f0e1dbb8c1b4d5fedd0e7",
   "sideTables": {
     "periods": {
       "rows": 539,
       "columns": ["period", "eventID", "site", "year", "bout", "date"],
       "md5": "4f2ffe00d55402d205dd373bc2d290e4"
+    },
+    "survey_taxa": {
+      "rows": 6671,
+      "columns": ["unit", "taxon"],
+      "md5": "23934261ab04759f13590f648468a0a4"
     },
     "taxa": {
       "rows": 1229,
