@@ -527,7 +527,11 @@ table. No licence, an unresolvable licence UUID, or "contact the author": stop a
 by email (IRW's template, `processing_notes/Licensing.txt` in `ben-domingue/irw`);
 process only once permission is written. A repository licence that names no licence
 text (Zenodo's "Other (Open)"), or a CC0 badge alongside a data-use clause asking users
-to consult the PIs, is unclear terms: stop and ask by email. If permission is refused or
+to consult the PIs, is unclear terms: stop and ask by email. A use-constraint sentence that only
+routes questions, such as the USGS default "users direct any questions pertaining to appropriate use
+... to the Point of Contact" (or "contact the authors regarding intended use"), is not a restriction:
+proceed under the release's licence and name the point of contact in the script header (ruled
+2026-11-06). A clause that asks to be contacted *before* use is still unclear terms. If permission is refused or
 no reply comes, the deposit may be linked but not reshared: permission to use is not
 permission to reshare (IRW's licensing review, adopted 2026-11-06). ND: stop; reshaping
 is a derivative.
@@ -628,6 +632,7 @@ shipped and why. Facts about the source are assertions, not comments.
   - Intake: a single-visit site-unit table (`n_occasions = 1`, `n_periods = 1`) is generally not eligible; exceptions are Ben's case-by-case call (first: `bradferlawrence_2025_ukwood_plant_comm`, kept).
   - Intake (scale, #24): the Breeding Bird Survey block and stop tables stay regional (BCR 15); national block (about 210M rows) and stop (about 1.26B rows) tables are not built.
   - Intake (`processing_guide.md`): the Dryad intake is anonymous by default and a deposit whose anonymous download fails (404/405) is `blocked`; a short-lived token Ben supplies in `DRYAD_TOKEN` is used when set (amended 2026-11-06, batch 35).
+  - Intake: a use constraint that only routes questions on appropriate use to a point of contact (the USGS default wording) is not a restriction; one that asks to be contacted before use is still unclear terms.
 - **v1.1-draft, rulings 17 to 21 of 2026-11-06** (NEON batch 38, #10):
   - E2: a count the source labels as estimated is kept with `obs_count_estimated` (17); an unlabelled count is flagged only by a rule stated in the standard, the first being tick larval counts in exact multiples of 1,000, `obs_count_likely_estimated` (18).
   - E4.2: a complete-list protocol with no target list may take the per-site pool of taxa recorded in the table as the taxa surveyed for, through `__survey_taxa`, with `surveyEvidenceNote` saying the pool is derived from detections (19).
