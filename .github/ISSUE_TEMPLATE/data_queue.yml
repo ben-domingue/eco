@@ -1,0 +1,136 @@
+name: Data queue
+description: Propose or claim a public deposit to convert into an eco table.
+title: "author_year_place_type"
+labels: ["data queue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One issue per deposit. Title it with the table name you propose (`author_year_place_type`, lower case, 40 characters or fewer).
+
+        Before filling this in, work through steps 1 and 2 of the [contributor checklist](https://ben-domingue.github.io/eco/contribute.html): the licence and the sample floor. Search `queue/candidates.csv`, `dictionary/dictionary_auto.csv` and the open [data-queue issues](https://github.com/ben-domingue/eco/issues?q=label%3A%22data+queue%22) for the DOI first, so two people do not build the same table.
+
+  - type: input
+    id: deposit
+    attributes:
+      label: Deposit URL or DOI
+      description: The data deposit itself (Dryad, Zenodo, ScienceBase, ...), not the paper.
+      placeholder: "doi:10.5061/dryad.xxxxxxx"
+    validations:
+      required: true
+
+  - type: input
+    id: paper
+    attributes:
+      label: Paper DOI
+      description: The paper the data were collected for, if there is one.
+      placeholder: "10.xxxx/xxxxx"
+    validations:
+      required: false
+
+  - type: input
+    id: licence
+    attributes:
+      label: Licence, as shown on the source page
+      description: Copy it exactly as the deposit's page shows it. If the readme or the data files state a different licence, give both; the stricter one applies.
+      placeholder: "CC0 1.0 Universal (Dryad page); readme states no licence"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: licence-checks
+    attributes:
+      label: Licence checks
+      options:
+        - label: I read the licence on the source page, not only in a search result or a repository's default.
+          required: true
+        - label: The licence is not ND (no derivatives) and the data are not scraped or re-uploaded from someone else's source. (If either is true, or there is no licence, do not open this issue; ask first.)
+          required: true
+
+  - type: dropdown
+    id: family
+    attributes:
+      label: Model family
+      description: The design the data support. The standard's scope (E9) lists which designs are in.
+      options:
+        - Single-season occupancy
+        - Dynamic (multi-season) occupancy
+        - N-mixture / repeated counts
+        - Community (multi-species) occupancy or abundance
+        - Multi-state occupancy (incl. false positives)
+        - "Capture-recapture: CJS / Jolly-Seber / Pradel"
+        - "Capture-recapture: closed population"
+        - "Capture-recapture: robust design, multi-state or dead recovery"
+        - "Removal, double-observer or distance sampling (stretch)"
+        - "Spatial capture-recapture (experimental)"
+        - "Multi-scale occupancy or eDNA (experimental)"
+        - Other or not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: survey-evidence
+    attributes:
+      label: Survey evidence
+      description: How can you tell "surveyed, not found" (a 0) from "never surveyed" (no row)?
+      options:
+        - "deposited_matrix: a site x visit grid where blank/NA (not surveyed) differs from 0 (not detected)"
+        - "sample_table: a list of the surveys that were carried out"
+        - "effort_table: effort per site and visit; a survey happened where effort > 0"
+        - "row_presence: one row per survey, including rows that recorded nothing"
+        - "inferred: none of these; the surveys must be reconstructed with a rule"
+        - "Not sure yet"
+    validations:
+      required: true
+
+  - type: textarea
+    id: non-detections
+    attributes:
+      label: How non-detections differ from non-surveys
+      description: Name the file and columns that show it, and anything odd (an NA pattern, a missing visit, a camera that failed). If the surveys have to be inferred, give the rule.
+      placeholder: "cecconi_crickets_cleaned.csv: JBCR_1..3 are 0/1 for every site and visit, no NA; all 49 sites were surveyed three times."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: coordinates
+    attributes:
+      label: Coordinates
+      description: Does the deposit give locations for the units?
+      options:
+        - No coordinates
+        - Yes, as precise as recorded
+        - Yes, already coarsened or generalised by the source
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sensitivity
+    attributes:
+      label: Are any taxa sensitive?
+      description: Sensitive means the source says so, or the taxon is IUCN CR, EN or VU in its native range. Sensitive taxa with coordinates finer than 0.1 degree are coarsened.
+      options:
+        - "No"
+        - Yes, the source flags them
+        - Yes, IUCN CR, EN or VU in its native range
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: table-name
+    attributes:
+      label: Proposed table name
+      description: "`author_year_taxonOrPlace_type`, lower case, 40 characters or fewer; the type is a suffix such as occ, count, nmix, cjs, dynocc, comm, removal, dobs, ds, scr, state."
+      placeholder: "cecconi_2025_cricket_occ"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: "Sample size (units and repeat surveys), the files in the deposit, questions for a maintainer, or whether you are claiming the deposit to build it yourself. If each site was visited only once (one occasion and one period), say so: such a table is generally not eligible, and admitting one is a maintainer's call case by case."
+    validations:
+      required: false
