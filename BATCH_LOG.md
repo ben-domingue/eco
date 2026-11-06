@@ -2106,3 +2106,76 @@ Harvard Dataverse 2, TERN 2, NPS IRMA 1; PANGAEA and OSF gave nothing in scope (
 oceanographic and plankton series, OSF's are code and preregistrations). One Borealis hit (Calopteryx exul CMR) was
 the Dryad deposit already built as khelifa_2021_seybouse_calexul_cjs and was dropped. EDI and DataONE were skipped
 (403).
+
+## Batch 43 — 2026-11-06 (non-Dryad, non-ScienceBase queue rows: Zenodo (incl. Dryad mirrors), figshare, EIDC, Dataverse, Borealis, NPS IRMA)
+
+One agent in `~/eco-b43` (branch `batch-43-zenodo`, from main at 54543c3, main merged after batch 41). The 31
+`available` rows from sources other than Dryad and ScienceBase were claimed. No Dryad requests: the ten Dryad deposits
+mirrored on Zenodo were fetched from the Zenodo record (each carries the Dryad DOI, which is cited as the source of
+record; the Zenodo record id is in the script and the dictionary notes). Licences were read on each record (Zenodo
+`license.id`, figshare `license.name`, Dataverse `license`, EIDC `useConstraints`, NPS EML `intellectualRights`). 34
+tables built from 22 deposits, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| duboisgagnon_2021_quebec_chorusfrog_occ | eDNA occupancy + paired call survey (obs_method) | detection | 410 | 180 | 1 | 2 |
+| lombardi_2022_virginia_woodrat_occ | live-trap occupancy (site-years, no site id) | detection | 473 | 226 | 1 | 3 |
+| culina_2019_uk_daubenton_ms | multi-event (reproductive states) | state | 3,830 | 583 | 1 | 9 |
+| culina_2019_uk_natterer_ms | multi-event (reproductive states) | state | 3,413 | 474 | 1 | 9 |
+| killion_2023_idaho_mamm_comm | camera-trap community, weekly | detection | 8,547 | 50 | 7 | 2 |
+| macario_2026_serido_sparrow_rd | robust design | detection | 4,326 | 103 | 1 | 7 |
+| thomas_2025_oregon_murrelet_pam_occ | passive acoustic, daily | detection | 3,517 | 69 | 1 | 2 |
+| thomas_2025_oregon_murrelet_av_occ | audio-visual visits | detection | 294 | 69 | 1 | 2 |
+| arango_2026_rhionaeschna_dry_cjs | daily CJS | detection | 4,224 | 192 | 1 | 22 |
+| arango_2026_rhionaeschna_rainy_cjs | daily CJS | detection | 1,260 | 70 | 1 | 18 |
+| arango_2025_mesamphiagrion_apr_cjs | daily CJS | detection | 13,601 | 660 | 1 | 21 |
+| arango_2025_mesamphiagrion_junjul_cjs | daily CJS | detection | 36,236 | 1,591 | 1 | 23 |
+| freake_2016_hiwassee_hellbender_cjs | annual CJS | detection | 985 | 197 | 1 | 5 |
+| saracco_2019_saipan_fantail_cjs | annual CJS (TMAPS) | detection | 11,847 | 1,077 | 1 | 11 |
+| saracco_2019_saipan_goldwhiteeye_cjs | annual CJS (TMAPS) | detection | 5,346 | 486 | 1 | 11 |
+| saracco_2019_saipan_bridwhiteeye_cjs | annual CJS (TMAPS) | detection | 4,554 | 414 | 1 | 11 |
+| saracco_2019_saipan_kingfisher_cjs | annual CJS (TMAPS) | detection | 935 | 85 | 1 | 11 |
+| saracco_2019_saipan_myzomela_cjs | annual CJS (TMAPS) | detection | 1,474 | 134 | 1 | 11 |
+| cox_2018_qubs_treeswallow_cjs | annual CJS, nestlings from hatching year | detection | 486,028 | 17,749 | 1 | 43 |
+| ruiz_2021_oaxaca_wetbirds_count | monthly point counts, community | count | 107,280 | 20 | 149 | 36 |
+| mattioli_2018_arezzo_wolf_scr | camera-trap SCR, two sessions | detection | 46,170 | 22 | 1 | 2 |
+| marescot_2018_serengeti_hyena_f_ms | multi-event (age, rank, CDV) | state | 7,475 | 625 | 1 | 21 |
+| marescot_2018_serengeti_hyena_m_ms | multi-event (age, rank, CDV) | state | 10,758 | 815 | 1 | 21 |
+| wikston_2021_ontario_anuran_call_occ | anuran call surveys | detection | 810 | 30 | 9 | 1 |
+| wikston_2021_ontario_anuran_dipnet_occ | larval dipnet surveys | detection | 882 | 29 | 9 | 1 |
+| wikston_2021_ontario_anuran_ves_occ | visual encounter surveys | detection | 1,458 | 30 | 9 | 1 |
+| deere_2017_safe_mamm_comm | camera-trap community, coarsened | detection | 18,116 | 115 | 28 | 1 |
+| deere_2017_safe_mamm_exact_comm | E7.3 sibling, unflagged species | detection | 10,999 | 115 | 17 | 1 |
+| dominoni_2024_glasgow_bluetit_cjs | annual CJS, nest boxes and mist nets | detection | 25,078 | 7,549 | 1 | 5 |
+| dominoni_2024_glasgow_greattit_cjs | annual CJS, nest boxes and mist nets | detection | 9,878 | 2,922 | 1 | 5 |
+| ukpoms_2026_uk_pantrap_count | pan-trap bee and hoverfly counts | count | 1,853,624 | 480 | 263 | 7 |
+| benoit_2018_costello_fish_count | minnow-trap counts (`__survey_taxa`) | count | 2,916 | 36 | 14 | 2 |
+| ademola_2021_ukaguru_praomys_cjs | monthly CJS (sessions inferred) | detection | 12,653 | 622 | 1 | 21 |
+| klmn_2026_klamath_landbird_count | NPS point counts, community (2010-2025) | count | 2,014,272 | 1,621 | 234 | 15 |
+
+Held or rejected (`queue/human_review.csv`): Massara ocelot (held: register and covariate site ids do not match, no
+deployment dates), Roberts fire/mechanical birds (held: detection and covariate files disagree on the visits), EIDC
+European small mammals (held: trap and capture files not reliably linkable), the Ontario eDNA arm (held: positive blanks
+cannot be matched to sampling events), Jungle Nightjar and Portuguese pond eDNA (rejected: no detection data deposited,
+only appendices / an ENA run list), Bornean elevational birds (rejected: visits collapsed to a presence matrix), Harvard
+Forest odonates (rejected: opportunistic), Konza grasshoppers (blocked: DataONE/LTER member node still 403, tried once),
+eBird (blocked: access request and custom terms), the GBIF sampling-event umbrella row (deferred: not a deposit).
+
+Facts carried into the tables: the chorus-frog call survey is the same visit as eDNA visit 1 of 2018 (asserted), so the
+deposit is one paired-method table. The woodrat deposit has no site id (units are site-years). The Saipan BRWE code is
+"Bridled white-eye", taken as Zosterops saypani (Z. conspicillatus sensu stricto is the extinct Guam bird), and the
+deposit's standardized-effort matrices have 7 rows for 6 stations (not shipped). The tree swallow file holds only half
+of the never-returning fledglings (the authors assumed the rest male). The Rhionaeschna files are labelled by season
+while the item description gives the day counts by month the other way round. The Costello 2009 file's dates are July
+2008, its White Sucker sheet has a keyboard slip ('jymnujymnu') for trap B12, and one Presence/Absence cell disagrees
+with its catch. The UK PoMS file has one station-date entered twice (both dropped) and 1,066 specimens whose name carries
+a subgenus (mapped through the file's own standardisation). The Glasgow ringing file covers 2019-2023 though its title
+says 2014-2022, and 355 records carry a note instead of a ring number. The SAFE cameras include 11 IUCN CR/EN/VU species,
+so the table is coarsened and an `_exact` sibling carries the other 17. NPS Klamath counts of 2008-2009 are blank on
+most detection rows and are not shipped. OGL v3 (EIDC) appears in eco for the first time: an attribution licence,
+carried as SPDX `OGL-UK-3.0` with the required attribution in the citation.
+
+What strained the standard: the Glasgow and Praomys capture tables pool within-year (or within-session) captures into
+one annual (monthly) occasion with the survey set taken as study-wide, though the sites monitored vary by year (Glasgow)
+or one grid had no captures for two months (Praomys, `inferred`). The Costello deposit has a species sheet only for
+species caught in a year, so `__survey_taxa` carries the per-year species list rather than inventing zeros.

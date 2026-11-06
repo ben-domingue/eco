@@ -1,0 +1,77 @@
+{
+  "table": "culina_2019_uk_natterer_ms",
+  "title": "Multi-event reproductive encounter histories of 474 female Natterer's bat, 7 social groups, 2007-2015",
+  "creator": "Culina, Antica; Linton, Danielle M.; Pradel, Roger; Bouwhuis, Sandra; Macdonald, David W.",
+  "pubDate": "2018",
+  "doi": "10.5281/zenodo.2222410",
+  "sourceURL": "https://doi.org/10.5281/zenodo.2222410",
+  "citation": "Culina, A., Linton, D. M., Pradel, R., Bouwhuis, S., & Macdonald, D. W. (2018). Dataset (encounter histories of female bats) used in the analysis for the paper Culina et al.: Live fast, don't die young: survival-reproduction trade-offs in long-lived income breeders [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.2222410",
+  "paperDOI": "10.1111/1365-2656.12957",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Annual encounter histories of female Natterer's bat (Myotis nattereri) in 7 social groups, 2007-2015, each year's capture coded as an event that relates early (pregnancy) and late (lactation) maternity-period observations to the female's reproductive state. The authors fitted a multi-event capture-recapture model with eight states (juvenile, pre-breeder, failed and successful first-time and experienced breeders, skipped breeder, dead) to estimate survival-reproduction trade-offs.",
+  "samplingProtocol": "Females captured during the maternity period each year and assessed for reproductive condition (weight and/or examination for pregnancy, nipple condition: nulliparous, lactating, post-lactating, parous non-breeding); the year's observations are summarised as one event code.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not captured (all states possible, including dead)",
+    "1": "captured lactating, early capture pregnant or none (successful breeder: SB1, SB2+)",
+    "2": "captured pregnant early, not captured or unreliable late (FB1, FB2+, SB1, SB2+)",
+    "3": "captured pregnant early, captured not lactating late (failed breeder: FB1, FB2+)",
+    "4": "not captured or unreliable early, captured not lactating late (PB, FB1, FB2+, Skip)",
+    "5": "captured not pregnant or not captured early, captured not lactating late (pre-breeder or skipper: PB, Skip)",
+    "6": "contradictory or uncertain information (any live state)",
+    "7": "captured as a juvenile (born in the current season)"
+  },
+  "closure": "none",
+  "closureNote": "One annual occasion per year (the year's captures summarised as one event by the authors).",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "designNote": "Multi-event capture-recapture: y is the event code, not the latent state; the readme's table maps each event to its possible states (in stateCodes).",
+  "geographicCoverage": "United Kingdom: social groups of two sympatric Myotis species (no locations deposited)",
+  "temporalCoverage": "2007/2015",
+  "covariateNote": "unit_social_group: the social group (colony) of the female, as coded in the deposit. unit_first_capture_age: juvenile (born in the year of first capture) or adult.",
+  "notShipped": {
+    "model_output": "the paper's multi-event survival and transition estimates",
+    "males": "males are not in the deposit"
+  },
+  "notes": "Females only. A female first caught as a juvenile has rows from that year; one first caught as an adult from 2007 (E4.4).",
+  "summary": {
+    "n_rows": 3413,
+    "n_units": 474,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 1,
+    "n_surveys": 3413,
+    "y_values": "0,1,2,3,4,5,6,7",
+    "prop_zero": 0.617,
+    "n_traps": 1,
+    "n_zero": 2105,
+    "n_positive": 1308,
+    "n_units_detected": 474,
+    "max_y": 7
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_social_group", "unit_first_capture_age"],
+  "coreMd5": "d126ccecd53de0d80a6acb52b4ed4965",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year"],
+      "md5": "a0d033f615176067e1483e3c3c247101"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a6ae32254d32d9cca4ecb218b2a9cde4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/culina_2019_uk_bat_ms.R",
+  "buildDate": "2026-11-06"
+}

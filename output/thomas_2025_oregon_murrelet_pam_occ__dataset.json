@@ -1,0 +1,67 @@
+{
+  "table": "thomas_2025_oregon_murrelet_pam_occ",
+  "creator": "Thomas, Alaina; Duarte, Adam; Gostin, Matt; Peterson, James; Lesmeister, Damon",
+  "pubDate": "2025",
+  "doi": "10.5281/zenodo.17497184",
+  "sourceURL": "https://doi.org/10.5281/zenodo.17497184",
+  "citation": "Thomas, A., Duarte, A., Gostin, M., Peterson, J., & Lesmeister, D. (2025). Detection histories and covariates for marbled murrelet survey comparison [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.17497184",
+  "paperDOI": "10.1002/wsb.1640",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Oregon, USA: study areas JCN, ODFN and ODFS (Oregon Department of Forestry state forests; no station coordinates deposited)",
+  "temporalCoverage": "2022/2023",
+  "title": "Marbled murrelet daily passive acoustic detections at 69 inland stations in two years, Oregon, 2022-2023",
+  "abstract": "Passive acoustic monitoring (PAM) and audio-visual (AV) surveys for marbled murrelets at inland stations in three study areas on the Oregon coast in 2022 and 2023, deposited as one encounter-history matrix to compare the two methods' cost and detection. eco ships the two methods as two tables because their surveys were on different days.",
+  "samplingProtocol": "Autonomous recording units at inland forest stations; each recorded day is a survey with a detection (1) or not (0) of marbled murrelet calls, as deposited.",
+  "samplingProtocolCode": "acoustic",
+  "closure": "open",
+  "closureNote": "Daily acoustic surveys over up to 53 days per station-year in the breeding season; station use may change over that span. Same stations as the audio-visual table (thomas_2025_oregon_murrelet_av_occ).",
+  "covariateNote": "unit_study_area: JCN, ODFN or ODFS. obs_temp_c: temperature (degrees C) of the survey. obs_noise_dbfs: background noise (dBFS) of the survey, as deposited (blank on 19 AV visits).",
+  "notShipped": {
+    "stray_temperature": "4 temperature values in cells with no survey (no detection, date or survey type)",
+    "other_method": "the other method's surveys are in thomas_2025_oregon_murrelet_av_occ",
+    "model_output": "the paper's occupancy and detection estimates"
+  },
+  "notes": "Companion table: thomas_2025_oregon_murrelet_av_occ (same stations, other method). Station identity across years from the station id without its year suffix.",
+  "summary": {
+    "n_rows": 3517,
+    "n_units": 69,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 53,
+    "n_surveys": 3517,
+    "y_values": "0,1",
+    "prop_zero": 0.816,
+    "n_traps": 1,
+    "n_zero": 2871,
+    "n_positive": 646,
+    "n_units_detected": 53,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_study_area", "obs_temp_c", "obs_noise_dbfs"],
+  "coreMd5": "a49192bab91e89d71f8700fffd761d25",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "ab1f7a9f60353621a509f450a24886c7"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "05aa089bd9ac22239a540400e3438eb1"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/thomas_2025_oregon_murrelet_occ.R",
+  "buildDate": "2026-11-06"
+}

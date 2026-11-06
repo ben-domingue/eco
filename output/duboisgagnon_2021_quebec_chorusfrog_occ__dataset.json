@@ -1,0 +1,67 @@
+{
+  "table": "duboisgagnon_2021_quebec_chorusfrog_occ",
+  "title": "Boreal chorus frog eDNA detections at two visits and a call survey at 180 ponds, Monteregie, Quebec, 2017-2018",
+  "creator": "Mazerolle, Marc J.; Dubois-Gagnon, Marie-Pier; Bernatchez, Louis; Belisle, Marc; Dubois, Yohann",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.8cz8w9gr1",
+  "sourceURL": "https://doi.org/10.5061/dryad.8cz8w9gr1",
+  "citation": "Mazerolle, M. J., Dubois-Gagnon, M.-P., Bernatchez, L., Belisle, M., & Dubois, Y. (2021). Data for the detection of the boreal chorus frog (Pseudacris maculata) using environmental DNA and call surveys at 180 ponds sampled in 2017-2018 in southeastern Quebec, Canada [Dataset]. Dryad. https://doi.org/10.5061/dryad.8cz8w9gr1",
+  "paperDOI": "10.1002/edn3.254",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Water samples for environmental DNA of the boreal chorus frog were taken at two visits to ponds in an urbanising landscape of southeastern Quebec in the breeding seasons of 2017 (90 ponds) and 2018 (110 ponds; 20 ponds sampled in both years). In 2018, 63 ponds also had a call survey at the first visit, used to compare the two methods. Pond-level vegetation, drying and landscape cover covariates at four buffer sizes are included.",
+  "samplingProtocol": "Each pond visited up to twice per breeding season; at each visit water was filtered for eDNA (volume recorded) and analysed by qPCR for Pseudacris maculata (detection call as deposited); at 63 ponds in 2018 a call survey was done at the first visit as well.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "Occupancy is assumed closed within a breeding season across the two visits; the call survey and the eDNA sample of one visit are simultaneous (group by unit, period and obs_visit for a paired-method model). The 20 ponds sampled in both years carry both periods.",
+  "occasionKind": ["time", "method"],
+  "taxonInclusion": "single",
+  "designNote": "Experimental list of E9 (paired methods at one visit): occasion = 2 * (visit - 1) + method, method 1 = eDNA, 2 = call survey; obs_visit and obs_method give both components.",
+  "geographicCoverage": "Monteregie, southeastern Quebec, Canada (no pond coordinates deposited)",
+  "temporalCoverage": "2017-05/2018-06",
+  "covariateNote": "obs_days_since_snowmelt: visit date as days since snowmelt. obs_volume_l: litres of water filtered for eDNA (NA on call-survey rows). unit_hist_presence: 1 if the pond was known to be occupied at least once in 2004-2016. unit_veg1: PCA axis-1 score of vegetation cover. unit_dry: 1 if the pond dried up completely in summer. unit_dist_road and period_dist_anthropic: distance (m) to the nearest road and anthropic area. *_coverNNN: proportion of wetland, forest, open or anthropic area within NNN m; *_road_densityNNN: road density (m/ha) within NNN m. Covariates that the deposit gives different values for in a pond's two years are period_.",
+  "notShipped": {
+    "missing_visits": "52 pond-years with no second visit and one first-visit eDNA sample not taken (pond 173, 2018): blank in the deposit, no rows",
+    "model_output": "the authors' occupancy and detection estimates"
+  },
+  "notes": "The call survey was done only at the first 2018 visit of 63 ponds; the eDNA result of that visit is the same sample as in the main detection file (asserted), so it ships once.",
+  "summary": {
+    "n_rows": 410,
+    "n_units": 180,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 410,
+    "y_values": "0,1",
+    "prop_zero": 0.851,
+    "n_traps": 1,
+    "n_zero": 349,
+    "n_positive": 61,
+    "n_units_detected": 37,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_hist_presence", "unit_veg1", "unit_dry", "unit_dist_road", "unit_wetland_cover200", "unit_forest_cover200", "unit_open_habitat_cover200", "unit_road_density200", "unit_wetland_cover500", "unit_forest_cover500", "unit_road_density500", "unit_wetland_cover1000", "unit_forest_cover1000", "unit_road_density1000", "unit_wetland_cover1500", "unit_forest_cover1500", "unit_road_density1500", "period_dist_anthropic", "period_anthropic_cover200", "period_open_habitat_cover500", "period_anthropic_cover500", "period_open_habitat_cover1000", "period_anthropic_cover1000", "period_open_habitat_cover1500", "period_anthropic_cover1500", "obs_visit", "obs_days_since_snowmelt", "obs_volume_l", "obs_method"],
+  "coreMd5": "191dddbd93b7b6bd89ad559c143c4f4a",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "start", "end"],
+      "md5": "9f7a67becd6030a58629fb3d4c2646c4"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "35d16d989cf610d0970a46cb9bdca243"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/duboisgagnon_2021_quebec_chorusfrog_occ.R",
+  "buildDate": "2026-11-06"
+}
