@@ -6,8 +6,9 @@
 \alias{eco-package}
 \title{eco: ecological detection data in one long format}
 \description{
-Tables live on Redivis as \code{datapages.eco} and are served as CSV to anyone,
-no account needed. Describe the corpus with \code{\link[=eco_list_tables]{eco_list_tables()}},
+Tables live on Redivis in the core shards \code{datapages.eco}, \code{eco_2}, ... and
+are served as CSV to anyone, no account needed. Describe the corpus with
+\code{\link[=eco_list_tables]{eco_list_tables()}}, \code{\link[=eco_list_deposits]{eco_list_deposits()}},
 \code{\link[=eco_metadata]{eco_metadata()}}, \code{\link[=eco_tags]{eco_tags()}} and \code{\link[=eco_biblio]{eco_biblio()}}; narrow it with
 \code{\link[=eco_filter]{eco_filter()}}; download with \code{\link[=eco_fetch]{eco_fetch()}} (side tables: \code{\link[=eco_taxa]{eco_taxa()}},
 \code{\link[=eco_periods]{eco_periods()}}, \code{\link[=eco_units]{eco_units()}}, \code{\link[=eco_traps]{eco_traps()}}); reshape with
@@ -24,6 +25,19 @@ species code resolved in the \verb{__taxa} side table, \code{y} the observation.
 covariates are prefixed by the level at which they are constant (\code{unit_},
 \code{period_}, \code{obs_}, \code{taxon_}). A row exists iff a survey happened: \code{y = 0} is
 surveyed and not detected, a missing row is not surveyed, \code{y} is never \code{NA}.
+}
+
+\section{Words}{
+
+A \strong{table} is one eco table: a \strong{core} (the long \verb{unit, taxon, y} file)
+plus its \strong{side tables} (\verb{__taxa}, \verb{__periods}, \verb{__units}, \verb{__traps},
+\verb{__survey_taxa}), for one survey design and response type. A \strong{deposit} is
+the source it was built from, one DOI or archive record; one deposit can
+yield several tables. On Redivis, a \strong{shard} is one of the core datasets
+(\code{eco}, \code{eco_2}, ...) and an \strong{entry} is one physical Redivis table, side
+tables and parts included. Code keeps its own names (\code{sideTables} in
+\verb{__dataset.json}, the \code{dataset} column of \code{\link[=eco_list_tables]{eco_list_tables()}}, which names
+the shard). More at \url{https://ben-domingue.github.io/eco/glossary.html}.
 }
 
 \seealso{

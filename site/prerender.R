@@ -28,8 +28,10 @@ stats <- list(
   n_valid    = sum(val$eco_valid & grepl("passes", val$irw_v1)),
   n_below_floor = sum(meta$sample_floor != "meets"),
   n_experimental = sum(grepl("^Experimental", tags$notes)),
-  n_deposits = length(unique(sub("/$", "", bib$source_url[!grepl("cran.r-project.org", bib$source_url)]))),
-  n_packages = sum(grepl("cran.r-project.org", bib$source_url)),
+  # A deposit is one source record (a DOI, or for a dataset shipped in an R
+  # package, the package): biblio.csv's `deposit` column, from 02_biblio.R.
+  n_deposits = length(unique(bib$deposit)),
+  n_package_deposits = length(unique(bib$deposit[grepl("cran.r-project.org", bib$deposit)])),
   built      = max(vapply(list.files("../output", "__dataset.json$", full.names = TRUE),
                  function(f) jsonlite::read_json(f)$buildDate, ""))
 )
@@ -111,7 +113,7 @@ fill <- list(
   shard_names = paste0("datapages.", shard_names, collapse = ", "),
   shard_refs = paste(shard_refs, collapse = ", "), newest_ref = shard_refs[length(shard_refs)],
   eco_redivis = core_tags(last), eco_meta_redivis = last$eco_meta_redivis_version,
-  n_tables = fmt(nrow(pub)), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
+  n_tables = fmt(nrow(pub)), n_deposits = fmt(length(unique(bib$deposit[bib$table %in% pub$table]))), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
   by_response_type = tab_str(pub$response_type), by_closure = tab_str(pub$closure),
   n_inferred = fmt(sum(pub$survey_evidence == "inferred")),
   n_below_floor = fmt(sum(pub$sample_floor != "meets")))

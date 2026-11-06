@@ -1,0 +1,64 @@
+{
+  "table": "arango_2026_rhionaeschna_dry_cjs",
+  "title": "Daily capture histories of 192 marked Rhionaeschna caligo, dry season, high Andes of Colombia, 2024",
+  "creator": "Arango Quintero, Sebastian; Bota-Sierra, Cornelio Andres",
+  "pubDate": "2026",
+  "doi": "10.6084/m9.figshare.31120483.v1",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.31120483.v1",
+  "citation": "Arango Quintero, S., & Bota-Sierra, C. A. (2026). Capture histories of the dragonfly Rhionaeschna caligo Bota-Sierra, 2014 (Odonata: Aeshnidae) [Dataset]. figshare. https://doi.org/10.6084/m9.figshare.31120483.v1",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Capture-mark-recapture of Rhionaeschna caligo, an odonate endemic to the high mountains of the Colombian Central and Occidental Cordillera, Andes, sampled daily in two seasons of 2024 (April and June-July) for Cormack-Jolly-Seber survival estimation. This table is the dry season file (22 sampling days).",
+  "samplingProtocol": "Daily capture, marking and recapture of adult odonates over a sampling season (days of effective sampling); sex, wing length and (for the damselfly) age class and mite load recorded at marking.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "Each sampling day is a period (CJS over days). The other season is a separate table with unlinked individuals.",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "High mountains of the Colombian Central and Occidental Cordillera, Andes (no site or coordinates deposited)",
+  "temporalCoverage": "2024-04/2024-07",
+  "covariateNote": "unit_sex: male or female. unit_wing_mm: wing length (mm). unit_wing_class: the source's wing-length class (big, medium, small).",
+  "notShipped": {
+    "dates": "the calendar dates of the sampling days are not deposited"
+  },
+  "notes": "Teneral individuals have rows from the day they were marked; adults and juveniles from day 1 (E4.4). The item description gives 18 days for April and 22 for June-July; the deposited files are labelled dry season (22 days) and rainy season (18 days).",
+  "summary": {
+    "n_rows": 4224,
+    "n_units": 192,
+    "n_taxa": 1,
+    "n_periods": 22,
+    "n_occasions": 1,
+    "n_surveys": 4224,
+    "y_values": "0,1",
+    "prop_zero": 0.933,
+    "n_traps": 1,
+    "n_zero": 3939,
+    "n_positive": 285,
+    "n_units_detected": 192,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_wing_mm", "unit_wing_class"],
+  "coreMd5": "f1bb65c7d545af6b5eed8c486ba8b1ff",
+  "sideTables": {
+    "periods": {
+      "rows": 22,
+      "columns": ["period", "note"],
+      "md5": "ba0e54408679e324242f4365dbab5f4b"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "cf9542fb039875fd759c4224f74b082b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/arango_odonata_andes_cjs.R",
+  "buildDate": "2026-11-06"
+}

@@ -14,7 +14,8 @@ Invisibly, the merged metadata row (or the totals as a list).
 }
 \description{
 With a table name, prints its title, dimensions, model family, response
-type, licence and citation. Without one, prints the corpus totals.
+type, licence and citation. Without one, prints the corpus totals: tables,
+the deposits they come from (see \code{\link[=eco_list_deposits]{eco_list_deposits()}}), rows and units.
 }
 \examples{
 \donttest{

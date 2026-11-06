@@ -1,0 +1,63 @@
+{
+  "table": "macario_2026_serido_sparrow_rd",
+  "title": "Robust-design capture histories of 103 adult Grassland Sparrows over seven sessions of six occasions, ESEC Serido, Brazilian Caatinga, 2012-2015",
+  "creator": "Macario, Phoeve; Toledo-Lima, Guilherme; Pichorim, Mauro",
+  "pubDate": "2026",
+  "doi": "10.5281/zenodo.20130217",
+  "sourceURL": "https://doi.org/10.5281/zenodo.20130217",
+  "citation": "Macario, P., Toledo-Lima, G., & Pichorim, M. (2026). Robust design capture-recapture history of 103 individuals of Grassland Sparrow (Ammodramus humeralis) throughout seven sessions between 2012 and 2015 in the Brazilian Caatinga [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.20130217",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Robust design capture-recapture histories of 103 adult Grassland Sparrows (Ammodramus humeralis) captured and banded on a 12-ha plot with 48 capture sites at the Serido Ecological Station (ESEC Serido), Rio Grande do Norte, Brazil, in seven sessions of six capture occasions each between June 2012 and July 2015, for survival and abundance estimation.",
+  "samplingProtocol": "Capture and banding at 48 capture sites on a 12-ha plot; seven sessions of six capture occasions each, June 2012 to July 2015 (Program MARK robust design input).",
+  "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "Robust design: the population is assumed closed across the six occasions of a session and open between sessions.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Estacao Ecologica do Serido (ESEC Serido), Rio Grande do Norte, Brazil (12-ha plot; no coordinates deposited)",
+  "temporalCoverage": "2012-06/2015-07",
+  "notShipped": {
+    "session_dates": "session dates are not in the deposit"
+  },
+  "notes": "All birds are adults caught in the wild, so every bird has rows from the first session (E4.4). The capture method is described only as 48 capture sites on a 12-ha plot; mist_net is assumed from the group's companion elaenia deposit.",
+  "summary": {
+    "n_rows": 4326,
+    "n_units": 103,
+    "n_taxa": 1,
+    "n_periods": 7,
+    "n_occasions": 6,
+    "n_surveys": 4326,
+    "y_values": "0,1",
+    "prop_zero": 0.952,
+    "n_traps": 1,
+    "n_zero": 4118,
+    "n_positive": 208,
+    "n_units_detected": 103,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "05b3f7dc8cfb4ffbd2823588291d23b7",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "note"],
+      "md5": "dd25d90293f9f8a5e5dabda8fae517e5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "f964bbdef0a8468a940ebf3cfe4138c8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/macario_2026_serido_sparrow_rd.R",
+  "buildDate": "2026-11-06"
+}

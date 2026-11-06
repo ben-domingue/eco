@@ -13,7 +13,8 @@
 # `<table>_paper`, from metadata/bibtex/ (filled by metadata/fetch_bibtex.R, which
 # needs the network; this stage does not). A table whose deposit has no DOI, or
 # whose DOI is not cached, gets a @misc from creator, year, title and source URL.
-# `derived_license` is the SPDX id the table is redistributed under: eco
+# `deposit` is the deposit's DOI URL (else its source URL), the key that groups a
+# deposit's tables. `derived_license` is the SPDX id the table is redistributed under: eco
 # redistributes each table under its source's licence, so it equals `spdx`
 # (processing_guide.md); the source's wording stays in `original_license`. IRW names for
 # the same fields, for anyone unioning: DOI__for_paper_ = doi_paper,
@@ -67,11 +68,17 @@ b[, bibtex := vapply(seq_len(.N), function(i) {
   paste(c(data, if (!is.na(paper) && clean_doi(r$doi_paper) != clean_doi(r$doi_data)) paper), collapse = "\n\n")
 }, "")]
 b[, derived_license := spdx]
+# `deposit`: the source deposit's id, so tables from one deposit can be grouped
+# and counted ("N tables from M deposits"). The deposit's DOI as a lower-case
+# https://doi.org/ URL; with no data DOI (a dataset shipped in an R package),
+# the source URL.
+b[, deposit := ifelse(!is.na(doi_data) & nzchar(trimws(doi_data)), paste0("https://doi.org/", clean_doi(doi_data)),
+                      sub("/+$", "", trimws(source_url)))]
 n_misc <- sum(startsWith(b$bibtex, "@misc{") & !vapply(b$doi_data, function(d) !is.na(d) && nzchar(d), TRUE))
 message(sprintf("02_biblio.R: bibtex from metadata/bibtex/ for %d tables; %d deposit entries are @misc built here", nrow(b), n_misc))
 cols <- c("table", "title", "description", "creator", "pub_date", "reference", "citation", "doi_paper", "doi_data",
-          "source_url", "source_via", "original_license", "derived_license", "spdx", "license_url", "bibtex",
+          "source_url", "source_via", "deposit", "original_license", "derived_license", "spdx", "license_url", "bibtex",
           "contributor", "date", "notes")
 setorder(b, table)
 fwrite(b[, cols, with = FALSE], file.path(root, "metadata", "biblio.csv"), quote = TRUE)
-cat(sprintf("02_biblio.R: %d tables -> metadata/biblio.csv\n", nrow(b)))
+cat(sprintf("02_biblio.R: %d tables from %d deposits -> metadata/biblio.csv\n", nrow(b), uniqueN(b$deposit)))

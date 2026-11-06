@@ -1,0 +1,65 @@
+{
+  "table": "cox_2018_qubs_treeswallow_cjs",
+  "title": "Annual capture histories of 17,749 female and nestling tree swallows, Queen's University Biological Station nest boxes, 1975-2017",
+  "creator": "Cox, Amelia",
+  "pubDate": "2018",
+  "doi": "10.5683/SP2/9RRIYY",
+  "sourceURL": "https://doi.org/10.5683/SP2/9RRIYY",
+  "citation": "Cox, A. (2018). Female Fledgling MARK Data.rda [Dataset]. Borealis. https://doi.org/10.5683/SP2/9RRIYY",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual capture histories (1975-2017) of female tree swallows and of fledglings banded as nestlings in a long-term nest-box population, prepared for Program MARK survival analysis with age at first capture. Only half of the fledglings never recaptured are included; the authors assumed the other half were males.",
+  "samplingProtocol": "Nest-box monitoring: breeding females captured at their boxes each year and nestlings banded; one annual capture occasion.",
+  "samplingProtocolCode": "nest_box",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one annual occasion per year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Queen's University Biological Station, Ontario, Canada (no coordinates deposited)",
+  "temporalCoverage": "1975/2017",
+  "covariateNote": "unit_age_first: age at first capture (HY nestling, SY one-year-old, ASY older female, AHY after hatch year). unit_sex: F known female, U not known (as deposited).",
+  "notShipped": {
+    "age_numeric": "age (0/1/2): a recode of AgeAtFirstSight (asserted for nestlings)",
+    "males": "adult males and the half of never-returning fledglings the authors assumed male are not in the deposit"
+  },
+  "notes": "The source includes only half of all fledglings that never returned (the other half assumed male), so the nestling cohort is a subsample chosen by the authors. Nestlings have rows from their hatching year; adults from 1975 (E4.4).",
+  "summary": {
+    "n_rows": 486028,
+    "n_units": 17749,
+    "n_taxa": 1,
+    "n_periods": 43,
+    "n_occasions": 1,
+    "n_surveys": 486028,
+    "y_values": "0,1",
+    "prop_zero": 0.961,
+    "n_traps": 1,
+    "n_zero": 466910,
+    "n_positive": 19118,
+    "n_units_detected": 17749,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_age_first", "unit_sex"],
+  "coreMd5": "1b96193eca7351f9d49b492173a31d84",
+  "sideTables": {
+    "periods": {
+      "rows": 43,
+      "columns": ["period", "year"],
+      "md5": "fe5e46f456e5e58365b83ce4c8e7ecee"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7859f5cc26cd482ffe43d4fc4fc0d4e9"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cox_2018_qubs_treeswallow_cjs.R",
+  "buildDate": "2026-11-06"
+}

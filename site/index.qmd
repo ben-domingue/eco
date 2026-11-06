@@ -32,7 +32,7 @@ rerun on exactly the data it used.
 
 ::: {.eco-stats}
 <div class="stat"><div class="n">`r s$n_tables`</div><div class="l">tables</div></div>
-<div class="stat"><div class="n">`r s$n_deposits + s$n_packages`</div><div class="l">public sources</div></div>
+<div class="stat"><div class="n">`r s$n_deposits`</div><div class="l">source deposits</div></div>
 <div class="stat"><div class="n">`r km(s$n_species)`</div><div class="l">species</div></div>
 <div class="stat"><div class="n">`r km(s$n_units)`</div><div class="l">sites and individual animals</div></div>
 <div class="stat"><div class="n">`r km(s$n_rows)`</div><div class="l">survey observations</div></div>
@@ -63,7 +63,7 @@ cat('<script src="specimen.js"></script>\n')
 ::: {.eco-cards}
 <div class="card"><h3><a href="standard.html">Read the standard</a></h3><p>v1.1-draft: ten numbered clauses covering the core table, the explicit-zero rule and its evidence, covariate levels, side tables, coordinates, scope and storage, plus the intake policy.</p></div>
 <div class="card"><h3><a href="r.html">Read it from R</a></h3><p>No account needed: <code>eco_filter()</code>, <code>eco_fetch()</code>, <code>eco_to_unmarked()</code> over Redivis' public CSV endpoint, with version pinning.</p></div>
-<div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>`r s$n_tables` tables from `r s$n_deposits` public deposits and `r s$n_packages` textbook datasets: camera traps, point counts, eDNA, distance sampling, mist nets and live traps, every one validated and released on Redivis.</p></div>
+<div class="card"><h3><a href="data.html">Browse the tables</a></h3><p>`r s$n_tables` tables from `r s$n_deposits` deposits (`r s$n_package_deposits` of them R packages' example data): camera traps, point counts, eDNA, distance sampling, mist nets and live traps, every one validated and released on Redivis.</p></div>
 <div class="card"><h3><a href="vignettes/index.html">Fit a model</a></h3><p>Worked analyses on eco tables: single-species site occupancy with <code>unmarked</code>, a simulator for building intuition about ψ and p, and the same model fit to every occupancy table in the corpus.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
 <div class="card"><h3><a href="design.html">Design decisions</a></h3><p>What converting real deposits showed, the choices the standard had to make and how each was ruled, and the open questions an ecologist could help with.</p></div>
@@ -75,7 +75,7 @@ cat('<script src="specimen.js"></script>\n')
 The [standard](standard.html) is at v1.1-draft, written against the data
 structures of `unmarked`, `marked`, `spOccupancy` and the AHM code. Six
 datasets bundled with R packages convert to it and back with identical arrays
-and identical model estimates. The corpus is now `r s$n_tables` tables covering
+and identical model estimates. The corpus is now `r s$n_tables` tables from `r s$n_deposits` deposits, covering
 single- and multi-season occupancy, N-mixture and other repeated counts,
 community surveys, capture-recapture (including spatial), removal and
 double-observer counts, distance sampling and multi-scale eDNA; each stretch of the format is declared in the table's metadata rather

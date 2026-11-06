@@ -1,0 +1,67 @@
+{
+  "table": "lombardi_2022_virginia_woodrat_occ",
+  "title": "Allegheny woodrat live-trapping detections over up to four nights at 226 rock-outcrop site-years, western Virginia, 2009-2011",
+  "creator": "Lombardi, Jason V.; Mengak, Michael T.; Castleberry, Steven B.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.4f4qrfjd4",
+  "sourceURL": "https://doi.org/10.5061/dryad.4f4qrfjd4",
+  "citation": "Lombardi, J. V., Mengak, M. T., & Castleberry, S. B. (2022). Allegheny Woodrat occupancy across Western Virginia, United States [Dataset]. Dryad. https://doi.org/10.5061/dryad.4f4qrfjd4",
+  "paperDOI": "10.1002/wlb3.01023",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Presence/absence from live trapping of the Allegheny woodrat, a rock-outcrop specialist, at sites across western Virginia in 2009-2011, used for single-season occupancy models per year with elevation, isolation from the nearest occupied outcrop and forest type as covariates.",
+  "samplingProtocol": "Live traps set at rock outcrops for up to four nights per site and year; a capture on a trap night is a detection; trap nights with no active traps are marked '-'.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "Occupancy is assumed closed over the trap nights of a site-year. The deposit has no site identifier, so each row (site-year) is its own unit: units are valid only within their year and a site trapped in two years appears as two unlinked units.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Western Virginia, USA (no site coordinates deposited)",
+  "temporalCoverage": "2009/2011",
+  "covariateNote": "unit_elevation_m: site elevation (m). unit_isolation_km: distance to the nearest occupied rock outcrop (km), computed by the authors from observed occupancy of other outcrops. unit_oak_hickory, unit_mixed_forest: forest type present at the site (0/1).",
+  "notShipped": {
+    "inactive_nights": "431 trap nights marked '-' (traps not active): no rows",
+    "site_identity": "the deposit has no site identifier; sites trapped in several years cannot be linked",
+    "model_output": "the authors' occupancy and detection estimates"
+  },
+  "notes": "Trapping at a site often stopped after the first capture (49 site-years trapped one night with a capture), so later nights are often not surveyed; a removal-style detection model fits. Units are site-years, not sites.",
+  "summary": {
+    "n_rows": 473,
+    "n_units": 226,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 4,
+    "n_surveys": 473,
+    "y_values": "0,1",
+    "prop_zero": 0.693,
+    "n_traps": 1,
+    "n_zero": 328,
+    "n_positive": 145,
+    "n_units_detected": 93,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_elevation_m", "unit_isolation_km", "unit_oak_hickory", "unit_mixed_forest"],
+  "coreMd5": "5a4a3b1837010619f81aef185605840f",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year"],
+      "md5": "481ec22554cd611ec82a87cdf6d9b923"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7ba7094334f76cf78c5475e940289e88"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lombardi_2022_virginia_woodrat_occ.R",
+  "buildDate": "2026-11-06"
+}

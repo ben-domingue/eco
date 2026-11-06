@@ -389,6 +389,26 @@ CSVs with `upload/red_up_eco.py`.
 | `haas_2025_sweden_waterbird_count.R` | Swedish midwinter waterbird census, 70 taxa on 3,724 sectors, 1966-2024, method as occasion | GBIF (Swedish IPT) | CC0 |
 | `nrm_2024_sweden_porpoise_occ.R` | daily C-POD harbour porpoise detections at 34 Swedish monitoring stations, 2015-2023 | GBIF (Swedish IPT, SHARK) | CC0 |
 | `kuczkowska_2026_warsaw_owl_occ.R` | owl playback survey, five species at 431 points x 3 surveys, habitat-based lists (`__survey_taxa`) | GBIF (Polish IPT) | CC BY 4.0 |
+| `duboisgagnon_2021_quebec_chorusfrog_occ.R` | eDNA at two visits plus a paired call survey, boreal chorus frog, 180 ponds x 2 years (`obs_method`) | Dryad via Zenodo mirror | CC0 |
+| `lombardi_2022_virginia_woodrat_occ.R` | live-trap occupancy, Allegheny woodrat, 226 site-years x up to 4 nights (no site id) | Dryad via Zenodo mirror | CC0 |
+| `culina_2019_uk_bat_ms.R` | multi-event reproductive histories, two Myotis bats (two tables) | Zenodo | CC BY 4.0 |
+| `killion_2023_idaho_mamm_comm.R` | camera-trap weekly detections, 7 mammals, 50 stations x 2 years | Zenodo | CC BY 4.0 |
+| `macario_2026_serido_sparrow_rd.R` | robust design, Grassland Sparrow, 7 sessions x 6 occasions | Zenodo | CC BY 4.0 |
+| `thomas_2025_oregon_murrelet_occ.R` | marbled murrelet passive acoustic and audio-visual surveys (two tables) | Zenodo | CC BY 4.0 |
+| `arango_odonata_andes_cjs.R` | daily CJS, two Andean odonates x two seasons (four tables) | figshare | CC BY 4.0 |
+| `freake_2016_hiwassee_hellbender_cjs.R` | annual CJS, hellbender, 2004-2008 | Harvard Dataverse | CC0 |
+| `saracco_2019_saipan_cjs.R` | annual CJS, five Saipan landbirds at six TMAPS stations (five tables) | Harvard Dataverse | CC0 |
+| `cox_2018_qubs_treeswallow_cjs.R` | annual CJS, tree swallow females and nestlings, 1975-2017 | Borealis | CC0 |
+| `ruiz_2021_oaxaca_wetbirds_count.R` | monthly point counts, 149 bird species x 20 sites x 36 months | Dryad via Zenodo mirror | CC0 |
+| `mattioli_2018_arezzo_wolf_scr.R` | camera-trap SCR, grey wolf, two sessions (RAR read with `archive`) | figshare | CC BY 4.0 (+ CC0) |
+| `marescot_2018_serengeti_hyena_ms.R` | multi-event histories with CDV status, spotted hyena females and males (two tables) | figshare | CC BY 4.0 |
+| `wikston_2021_ontario_anuran_occ.R` | call, dipnet and visual-encounter anuran surveys (three tables) | Borealis | CC BY-NC 4.0 |
+| `deere_2017_safe_mamm_comm.R` | camera-trap weekly detections, 28 mammals x 115 sites, coarsened plus `_exact` sibling | EIDC | OGL v3 |
+| `dominoni_2024_glasgow_tit_cjs.R` | annual CJS, blue and great tits along an urban gradient (two tables) | EIDC | OGL v3 |
+| `ukpoms_2026_uk_pantrap_count.R` | pan-trap bee and hoverfly counts, 480 stations in 96 squares, 2017-2023 | EIDC | OGL v3 |
+| `benoit_2018_costello_fish_count.R` | minnow-trap counts, 14 fish x 36 traps x 3 days x 2 years (`__survey_taxa`) | Dryad via Zenodo mirror | CC0 |
+| `ademola_2021_ukaguru_praomys_cjs.R` | monthly CJS, Praomys delectorum on four grids (sessions inferred from the protocol) | Dryad via Zenodo mirror | CC0 |
+| `klmn_2026_klamath_landbird_count.R` | NPS Klamath Network landbird point counts, 2010-2025 | NPS IRMA | CC0 |
 | `glorioso_2026_bayouteche_frog_cjs.R` | CJS per species (four tables), tagged treefrogs in PVC pipes, deaths as removals | USGS ScienceBase | public domain |
 | `poessel_2026_coso_mgs_rd.R` | robust design, Mohave ground squirrel trapping days inferred from captures | USGS ScienceBase | public domain |
 | `dittman_2025_genesee_sturgeon_count.R` | gill-net counts of reintroduced lake sturgeon per site visit, coarsened (IUCN EN) | USGS ScienceBase | public domain |

@@ -1,0 +1,72 @@
+{
+  "table": "ukpoms_2026_uk_pantrap_count",
+  "title": "Bee and hoverfly counts in pan traps at five stations per 1 km square, 96 squares of the UK Pollinator Monitoring Scheme, up to four visits a year, 2017-2023",
+  "creator": "UK Pollinator Monitoring Scheme",
+  "pubDate": "2026",
+  "doi": "10.5285/5841bfae-471b-498c-af89-c30e5140d6c5",
+  "sourceURL": "https://doi.org/10.5285/5841bfae-471b-498c-af89-c30e5140d6c5",
+  "citation": "UK Pollinator Monitoring Scheme (2026). 1km square pan trap survey data from the UK Pollinator Monitoring Scheme, 2017-2023. NERC EDS Environmental Information Data Centre. https://doi.org/10.5285/5841bfae-471b-498c-af89-c30e5140d6c5. Contains data supplied by UK Centre for Ecology & Hydrology.",
+  "intellectualRights": {
+    "spdx": "OGL-UK-3.0",
+    "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  "abstract": "The UK Pollinator Monitoring Scheme's 1 km square survey: in randomly selected agricultural and semi-natural 1 km squares across England, Scotland, Wales and Northern Ireland, five pan-trap stations (three UV-coloured bowls each) along a diagonal are run for six hours on up to four fine-weather visits a year, May-September; all bees and hoverflies in each station's sample are identified to species where possible.",
+  "samplingProtocol": "Five pan-trap stations per 1 km square, each a set of three water-filled bowls (UV yellow, blue, white) set for about six hours between 09:00 and 17:00 in suitable weather (minimum 13-15 C, wind Beaufort 5 or less); the three bowls of a station are one sample; bees and hoverflies identified by experts.",
+  "samplingProtocolCode": "pan_trap",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "Visits of a year span May-September (at least two weeks apart), across which the insect community changes; the station's count per visit is the observation.",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "United Kingdom: England, Scotland, Wales and Northern Ireland (1 km squares as OS grid references)",
+  "temporalCoverage": "2017-05/2023-09",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "1 km OS grid squares as published by the scheme (UKCEH / JNCC); no point coordinates are deposited"
+  },
+  "covariateNote": "cluster_id: 1 km square (location code). unit_x1km_square: OS grid reference of the square. unit_land_cover: agricultural or semi-natural (square stratum). obs_trap_disturbed: 1 yes, 0 no, NA not sure. obs_hours_active: hours between trap_active_from and trap_active_to. obs_temperature_start (C), obs_cloud_cover_start (%), obs_wind_speed_start (Beaufort).",
+  "notShipped": {
+    "double_entry": "square 59, 20/07/2023, station 2 was entered twice (two samples, 1 specimen between them): both dropped",
+    "flowers": "floral units in bloom within 2 m of each station (a plant survey)",
+    "other_groups": "sorted counts of wasps, sawflies, other flies, moths, butterflies, beetles, spiders and other invertebrates (group totals, not species)",
+    "one_sample_total": "one sample's bees + hoverflies total (15) differs from its specimen rows (16); the specimens are shipped",
+    "end_weather": "weather at the end of the trapping period, exposure, shade, vegetation height and habitat codes"
+  },
+  "notes": "Required acknowledgement: The following acknowledgement is required for use of this dataset: The UK Pollinator Monitoring Scheme (UK PoMS) is a partnership funded jointly by the UK Centre for Ecology & Hydrology (UKCEH) and Joint Nature Conservation Committee (JNCC) (through funding from the Department for Environment, Food & Rural Affairs, Scottish Government, Welsh Government and Department of Agriculture, Environment and Rural Affairs for Northern Ireland). UKCEH's contribution is part-funded by the Natural Environment Research Council formerly as part of the UK-SCAPE programme (award NE/R016429/1) and now as part of the NC-UK programme (award NE/Y006208/1) delivering National Capability. Between 2017 and 2021, PoMS was funded by UKCEH and Defra (England), Welsh Government, Scottish Government, DAERA (Northern Ireland), and JNCC. PoMS is indebted to the many volunteers who carry out surveys and contribute data to the scheme.",
+  "summary": {
+    "n_rows": 1853624,
+    "n_units": 480,
+    "n_taxa": 263,
+    "n_periods": 7,
+    "n_occasions": 5,
+    "n_surveys": 7048,
+    "y_values": "0-57 (30 distinct)",
+    "prop_zero": 0.992,
+    "n_traps": 1,
+    "n_zero": 1838776,
+    "n_positive": 14848,
+    "n_units_detected": 475,
+    "max_y": 57
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_country", "unit_land_cover", "unit_x1km_square", "obs_trap_disturbed", "obs_hours_active", "obs_temperature_start", "obs_cloud_cover_start", "obs_wind_speed_start"],
+  "coreMd5": "5b00d073d321a37c4904811379f87ecb",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "year", "n_samples"],
+      "md5": "77d8b8aa68f52d1385c6e9e6dbc72f19"
+    },
+    "taxa": {
+      "rows": 263,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "9d8e8798088106a06d90759e46e4bfc6"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ukpoms_2026_uk_pantrap_count.R",
+  "buildDate": "2026-11-06"
+}
