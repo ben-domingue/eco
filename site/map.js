@@ -19,7 +19,7 @@
   const SRC = {
     "unit coordinates": "mean of the table's site coordinates",
     "bounding box": "centre of the study area's bounding box",
-    "place name": "placed from the study-area description"
+    "place name": "a best guess from the study-area description"
   };
   const WIDE = 1000;    // km: a study area this wide is drawn as a ring, not a dot
   const HIT = 9;        // px: how close the cursor must be to count a point

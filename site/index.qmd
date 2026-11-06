@@ -61,6 +61,13 @@ Most points are therefore approximate, to the level the hover card states
 A ring marks a study area more than 1,000 km across, where a single point
 says little. Hover over a point for the table; click it for the table's entry.
 
+**Some locations are best guesses.** About two thirds of the tables deposit no
+coordinates, and for those the point was placed by an AI assistant from the
+place names in the deposit's description, then spot-checked, not verified
+one by one. A point labelled region, state or country may be tens to hundreds
+of kilometres from where the surveys were done. If a point is wrong, please
+[open an issue](https://github.com/ben-domingue/eco/issues).
+
 ```{r}
 #| label: unplaced
 #| output: asis
