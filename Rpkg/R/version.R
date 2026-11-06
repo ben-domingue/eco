@@ -57,7 +57,7 @@ eco_reset_version <- function() {
 }
 
 .eco_clear_session_cache <- function() {
-  keep <- c("pin", "manifest")
+  keep <- c("pin", "manifest", "cite_reminded")
   rm(list = setdiff(ls(.eco_env, all.names = TRUE), keep), envir = .eco_env)
 }
 

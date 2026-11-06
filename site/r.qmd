@@ -51,7 +51,7 @@ vector) a named list. The side tables come from `eco_taxa()`, `eco_periods()`,
 | `eco_to_array()`, `eco_to_unmarked()`, `eco_to_ch()` and the inverses `array_to_eco()`, `umf_to_eco()`, `mpois_to_eco()`, `ch_to_eco()` | reshape to and from `unmarked` frames, arrays and capture histories |
 | `eco_check(df)` | the R twin of the validator, for a table you built |
 | `eco_to_irw(df)` | the IRW v1.0 view (`id`, `item`, `resp`, `cov_*`) |
-| `eco_save_bibtex(tables, file)` | cite the sources |
+| `eco_cite(tables, format = "text"/"bibtex", file=)` | cite the original deposits and papers, and eco (see [How to cite](#how-to-cite)); `eco_save_bibtex(tables, file)` is the BibTeX shortcut |
 | `eco_version()`, `eco_set_version(n)`, `eco_reset_version()`, `eco_manifest()` | pin a release |
 | `eco_cache_dir()`, `eco_cache_info()`, `eco_clear_cache()` | the disk cache under `tools::R_user_dir("eco", "cache")` |
 
@@ -66,6 +66,43 @@ v`r cur$eco_version`: Redivis `r core_tags(cur)`, `eco_meta`
 version 1 consisted of, so a script reproduces what it read then. Tables the
 pipeline has built but Redivis has not yet released are not offered by
 `eco_filter()`; they are listed in `attr(eco_metadata(), "unreleased")`.
+
+## How to cite {#how-to-cite}
+
+Every eco table rests on fieldwork by the people who deposited it. **Cite the
+original deposit, and its paper, for every table you use**, and eco as well. A
+paper that cites only eco gives the credit for the data to the warehouse.
+
+```r
+tabs <- eco_filter(taxon_group = "Amphibians", min_units = 30)
+eco_cite(tabs)                                   # a reference list
+eco_cite(tabs, "bibtex", file = "eco_sources.bib")
+```
+
+`eco_cite()` gives one entry per source deposit and one per paper, not one per
+table: tables built from the same deposit share an entry. BibTeX keys are
+stable (the deposit's first table name, and `<that>_paper` for the paper), so
+re-running it does not break a manuscript. The last entry is eco at the
+version you read (`eco_version()`, which you should also state). For a paper
+that uses many tables, put the file in a supplement and cite it from the
+methods. The first `eco_fetch()` in a session prints a one-line reminder;
+`options(eco.cite_reminder = FALSE)` silences it.
+
+From Python, without the package, the same columns are in the `biblio` table
+of `eco_meta`:
+
+```python
+import pandas as pd
+ua = {"User-Agent": "eco-python (https://github.com/ben-domingue/eco)"}
+b = pd.read_csv("https://redivis.com/api/v1/tables/datapages.eco_meta.biblio/rows?format=csv",
+                storage_options=ua)
+used = b[b.table.isin(["kery_2008_willowtit_occ", "schank_2015_tapir_occ"])]
+refs = sorted(set(used.citation) | set(used.reference.dropna()))   # deposits and papers
+```
+
+This is per table, so it can list a deposit twice (with and without its DOI,
+say) and `bibtex` is keyed by table; `eco_cite()` in R is the one that
+removes duplicates.
 
 ## Large tables
 

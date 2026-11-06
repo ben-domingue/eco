@@ -11,8 +11,10 @@ were open, or putting several species in one `unmarked` frame.
 
 The fix is a briefing the assistant reads before it writes code:
 [`llms.txt`](llms.txt). It covers the format, the converters, how to find
-tables, the defaults that change results, and how to cite. Its counts are
-regenerated each time the site is built.
+tables, the defaults that change results, and how to cite: the briefing asks
+the assistant to cite the original deposit and paper for every table it uses
+(`eco_cite()`), not only eco. Its counts are regenerated each time the site is
+built.
 
 ## Paste this
 
@@ -22,8 +24,8 @@ Start the conversation with this, followed by your question:
 You are helping me analyse ecological detection data from the eco warehouse.
 Before writing any code, fetch and follow
 https://ben-domingue.github.io/eco/llms.txt. It documents the data format,
-the eco R package, and several mistakes that give wrong answers without an
-error.
+the eco R package, several mistakes that give wrong answers without an
+error, and how to cite the original deposits behind each table.
 
 Then help me with: <your question>
 ```

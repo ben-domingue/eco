@@ -105,7 +105,7 @@ cat('<script src="specimen.js"></script>\n')
 <div class="card"><h3><a href="vignettes/index.html">Fit a model</a></h3><p>Worked analyses on eco tables: single-species site occupancy with <code>unmarked</code>, a simulator for building intuition about ψ and p, and the same model fit to every occupancy table in the corpus.</p></div>
 <div class="card"><h3><a href="contribute.html">Convert a deposit</a></h3><p>A queue of inspected candidates, one processing script per source, and the conventions those scripts follow.</p></div>
 <div class="card"><h3><a href="design.html">Design decisions</a></h3><p>What converting real deposits showed, the choices the standard had to make and how each was ruled, and the open questions an ecologist could help with.</p></div>
-<div class="card"><h3><a href="about.html">About eco</a></h3><p>Who it is for, where it came from, how the tables are made, and how to cite them.</p></div>
+<div class="card"><h3><a href="about.html">About eco</a></h3><p>Who it is for, where it came from, how the tables are made, and how to cite them: the original deposits first (<a href="r.html#how-to-cite"><code>eco_cite()</code></a>).</p></div>
 :::
 
 ## Where things stand

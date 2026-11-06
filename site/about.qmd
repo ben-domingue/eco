@@ -64,9 +64,11 @@ read the one that built it, and if a table is wrong, say so in an
 ## Citing and licences
 
 Each table keeps the licence of its source, shown on its entry on the
-[Data](data.html) page; most are CC0 or CC BY. Cite the original deposits
-and papers (`eco_save_bibtex()` writes them for the tables you used) and the
-eco version you read, which pins the data (`eco_version()`).
+[Data](data.html) page; most are CC0 or CC BY. Every table is someone's
+fieldwork: cite the original deposit and paper for each table you use, not
+only eco, and the eco version you read, which pins the data (`eco_version()`).
+`eco_cite()` in the [R package](r.html#how-to-cite) writes the reference list
+or BibTeX for the tables you used, one entry per deposit.
 
 ## People
 
