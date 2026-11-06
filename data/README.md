@@ -304,6 +304,15 @@ CSVs with `upload/red_up_eco.py`.
 | `jacobson_2020_cookinlet_beluga_cjs.R` | CJS photo-ID, 386 Cook Inlet belugas, 2005-2016 (batch 37) | Dryad | CC0 |
 | `hamer_2017_wtp_growlingfrog_dynocc.R` | dynamic occupancy, growling grass frog (VU) x 33 wetlands x 4 seasons (batch 37) | Dryad | CC0 |
 | `peron_2017_sabap2_broodparasites_occ.R` | dynamic community occupancy, 8 brood-parasite and host birds on 82,189 SABAP2 atlas cards, 2007-2013 (batch 37) | Dryad | CC0 |
+| `lloyd_2020_marion_elephantseal_ms.R` | multi-event resighting (breeding status x tag loss), 6,245 male southern elephant seals, Marion Island, 1983-2016 (batch 37) | Dryad | CC0 |
+| `laytonmatthews_2024_hornoya_gull_cjs.R` | CJS, 158 great black-backed gulls with contaminant levels, Hornoya, 2001-2017 (batch 37) | Dryad | CC0 |
+| `guzy_2018_southcarolina_anuran_comm.R` | community occupancy, 13 calling anurans x 42 riparian sites x 9 surveys, South Carolina (batch 37) | Dryad | CC0 |
+| `goldingay_2022_nsw_underpass_mamm_occ.R` | two weekly camera detection tables (Grafton, Port Macquarie), mammals and lace monitor in road underpasses and forest (batch 37) | Dryad | CC0 |
+| `saeed_2022_murree_spinyfrogs_dynocc.R` | two-species occupancy, Himalayan spiny frogs x 34 streams x 21 VES visits, 2017-2018 (batch 37) | Dryad | CC0 |
+| `lyngdoh_2023_spiti_carniv_occ.R` | multi-species occupancy, dog, red fox, snow leopard, wolf x 97 cameras x 6 weeks, Spiti Valley (batch 37) | Dryad | CC0 |
+| `twining_2024_newyork_carniv_occ.R` | two stacked occupancy tables: bobcat and coyote (winters 2013-2021, 3,849 site-years) and black bear (summers 2016-2018), New York (batch 37) | Dryad | CC0 |
+| `fidino_2021_lincolnpark_birds_binom.R` | binomial counts, days seen of days walked, 193 birds x 16 years over a century, Lincoln Park, Chicago (batch 37) | Dryad | CC0 |
+| `husemann_2015_taita_greenbul_cjs.R` | five CJS tables (one per forest fragment), Cabanis's greenbul, Taita Hills, 1996-2009 (batch 37) | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

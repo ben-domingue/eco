@@ -1,0 +1,75 @@
+{
+  "table": "lloyd_2020_marion_elephantseal_ms",
+  "title": "Multi-event resighting histories of 6,245 male southern elephant seals tagged as pups at Marion Island, 1983-2016",
+  "creator": "Lloyd, Kyle J.; Oosthuizen, W. Chris; Bester, Marthán N.; de Bruyn, P. J. Nico",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.bcc2fqz7h",
+  "sourceURL": "https://doi.org/10.5061/dryad.bcc2fqz7h",
+  "citation": "Lloyd, K. J., Oosthuizen, W. C., Bester, M. N., & de Bruyn, P. J. N. (2020). Data from: Trade-offs between age-related breeding improvement and survival senescence in highly polygynous elephant seals [Dataset]. Dryad. https://doi.org/10.5061/dryad.bcc2fqz7h",
+  "paperDOI": "10.1111/1365-2656.13145",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual resighting events of 6,245 male southern elephant seals (Mirounga leonina) double-tagged as weaned pups at Marion Island (27 cohorts, 1983-2009) and resighted on beach surveys through 2016, each event coding breeding status (pre-breeder, subordinate, dominant or unknown) and whether one or both tags remained.",
+  "samplingProtocol": "Every elephant seal breeding beach at Marion Island surveyed every 7 days in the breeding season and every 10 days outside it, 1983-2016; tagged males recorded with breeding status (harem association) and number of tags; one event per seal year.",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not seen",
+    "1": "seen as a pre-breeder with two tags",
+    "2": "seen as a pre-breeder with one tag",
+    "3": "seen as a subordinate breeder with two tags",
+    "4": "seen as a subordinate breeder with one tag",
+    "5": "seen as a dominant breeder with two tags",
+    "6": "seen as a dominant breeder with one tag",
+    "7": "seen with an unknown breeding state and two tags",
+    "8": "seen with an unknown breeding state and one tag"
+  },
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one event per seal year; open between years (multi-event model)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Marion Island (Prince Edward Islands), Southern Ocean; no coordinates deposited",
+  "temporalCoverage": "1983/2016",
+  "notShipped": {
+    "sample": "the E-SURGE sample column S:Sample (always 1)"
+  },
+  "notes": "Rows run from each seal's tagging year (its first event, a pre-breeder code) to 2016. Female elephant seals from the same programme are oosthuizen_2019_marion_seal_rd (a different deposit).",
+  "summary": {
+    "n_rows": 134247,
+    "n_units": 6245,
+    "n_taxa": 1,
+    "n_periods": 34,
+    "n_occasions": 1,
+    "n_surveys": 134247,
+    "y_values": "0,1,2,3,4,5,6,7,8",
+    "prop_zero": 0.888,
+    "n_traps": 1,
+    "n_zero": 119203,
+    "n_positive": 15044,
+    "n_units_detected": 6245,
+    "max_y": 8
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_tag_position"],
+  "coreMd5": "d8796d890e61dc1b429d4c61eb2710a7",
+  "sideTables": {
+    "periods": {
+      "rows": 34,
+      "columns": ["period", "period_seal_year"],
+      "md5": "a118f6c038784c8b43b314131f7d0ebf"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "03cd9c2a3f1aff0837e015f0c1812bcd"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lloyd_2020_marion_elephantseal_ms.R",
+  "buildDate": "2026-11-05"
+}

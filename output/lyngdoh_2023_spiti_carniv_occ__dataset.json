@@ -1,0 +1,61 @@
+{
+  "table": "lyngdoh_2023_spiti_carniv_occ",
+  "title": "Weekly camera-trap detections of dog, red fox, snow leopard and wolf at 97 stations in the Spiti Valley, India",
+  "creator": "Lyngdoh, Salvador; Justa, Priyanka",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.547d7wmd9",
+  "sourceURL": "https://doi.org/10.5061/dryad.547d7wmd9",
+  "citation": "Lyngdoh, S., & Justa, P. (2025). Data from: Understanding carnivore interactions in a cold arid trans-Himalayan landscape: What drives co-existence patterns within predator guild along varying resource gradients? [Dataset]. Dryad. https://doi.org/10.5061/dryad.547d7wmd9",
+  "paperDOI": "10.1002/ece3.10040",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of free-ranging dogs, red fox, snow leopard and Himalayan wolf on six weekly occasions at 97 camera-trap stations (one per 1-km cell) in Chandratal, Kibber and Pin, Spiti Valley, trans-Himalayan India, with scaled habitat and human-footprint covariates.",
+  "samplingProtocol": "One camera trap per 1 x 1 km grid cell at three study sites; detections collapsed to one-week occasions; weeks with fewer than seven camera-days left missing by the authors.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one deployment of up to six weeks per station (the authors' single-season occupancy)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Spiti Valley, Himachal Pradesh, India (Chandratal, Kibber, Pin); no coordinates deposited",
+  "temporalCoverage": "survey years not stated in the deposit (paper 2023)",
+  "notShipped": {
+    "prey": "Small_prey and Large_prey cell covariates (prey availability; source undocumented, likely from the same cameras)",
+    "summaries": "co-occurrence and RAI tables per station (summaries of the same detections)",
+    "other": "diet overlap tables and detection times"
+  },
+  "notes": "Partial weeks (1-6 camera-days) are missing in the deposit and are not rows; unit_trap_nights counts all camera-days, including those partial weeks.",
+  "summary": {
+    "n_rows": 1720,
+    "n_units": 97,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 6,
+    "n_surveys": 430,
+    "y_values": "0,1",
+    "prop_zero": 0.868,
+    "n_traps": 1,
+    "n_zero": 1493,
+    "n_positive": 227,
+    "n_units_detected": 80,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_site", "unit_trap_nights", "unit_dist_drainage_std", "unit_dist_mainroad_std", "unit_dist_settlement_std", "unit_slope_std", "unit_elevation_std", "unit_ndvi_std", "unit_ruggedness_std"],
+  "coreMd5": "49a0a55f900b42abcc2bb4875ad73858",
+  "sideTables": {
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "cb50a9df3db20cd24e0e4648a7228935"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lyngdoh_2023_spiti_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

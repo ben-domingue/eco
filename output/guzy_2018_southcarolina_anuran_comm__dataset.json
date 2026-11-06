@@ -1,0 +1,59 @@
+{
+  "table": "guzy_2018_southcarolina_anuran_comm",
+  "title": "Anuran calling-survey detections of 13 species at 42 riparian sites along the Broad and Pacolet Rivers, South Carolina, nine surveys",
+  "creator": "Guzy, Jacquelyn C.; Eskew, Evan A.; Halstead, Brian J.; Price, Steven J.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.9qg57",
+  "sourceURL": "https://doi.org/10.5061/dryad.9qg57",
+  "citation": "Guzy, J. C., Eskew, E. A., Halstead, B. J., & Price, S. J. (2018). Data from: Influence of damming on anuran species richness in riparian areas: a test of the serial discontinuity concept [Dataset]. Dryad. https://doi.org/10.5061/dryad.9qg57",
+  "paperDOI": "10.1002/ece3.3750",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of 13 frog and toad species on nine time-constrained calling surveys at 42 locations along a 245-km river corridor (Broad and Pacolet Rivers, South Carolina, USA), with standardized survey date and distances downstream and upstream of dams and urban land use.",
+  "samplingProtocol": "Repeated time-constrained nocturnal anuran calling surveys at riparian locations; each species recorded as calling or not per survey.",
+  "samplingProtocolCode": "call_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one breeding season of surveys, analysed as single-season community occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Broad and Pacolet Rivers, South Carolina, USA; no coordinates deposited",
+  "temporalCoverage": "survey year not stated in the deposit (paper 2018)",
+  "notShipped": {
+    "none": "every deposited data file is shipped"
+  },
+  "notes": "Species codes are expanded by the processor (three letters of genus and species; Bufo / Rana codes map to Anaxyrus / Lithobates). Date and covariates are standardized as deposited.",
+  "summary": {
+    "n_rows": 4914,
+    "n_units": 42,
+    "n_taxa": 13,
+    "n_periods": 1,
+    "n_occasions": 9,
+    "n_surveys": 378,
+    "y_values": "0,1",
+    "prop_zero": 0.87,
+    "n_traps": 1,
+    "n_zero": 4274,
+    "n_positive": 640,
+    "n_units_detected": 42,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_downstream_dist_std", "unit_upstream_dist_std", "unit_urban_std", "obs_date_std"],
+  "coreMd5": "0534557ed3f1cc856fb688bf9990b2ea",
+  "sideTables": {
+    "taxa": {
+      "rows": 13,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "37c2404608d784fcfe7594642e94b541"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/guzy_2018_southcarolina_anuran_comm.R",
+  "buildDate": "2026-11-05"
+}
