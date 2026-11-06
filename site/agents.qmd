@@ -13,8 +13,10 @@ The fix is a briefing the assistant reads before it writes code:
 [`llms.txt`](llms.txt). It covers the format, the converters, how to find
 tables, the defaults that change results, and how to cite: the briefing asks
 the assistant to cite the original deposit and paper for every table it uses
-(`eco_cite()`), not only eco. Its counts are regenerated each time the site is
-built.
+(`eco_cite()`), not only eco, and to pass on
+[how we ask eco to be used](use.html): respect each table's licence, talk to
+the originators before commercial or model-training use, and leave coarsened
+coordinates alone. Its counts are regenerated each time the site is built.
 
 ## Paste this
 

@@ -23,6 +23,11 @@ than the live corpus; the structure is the same.
 The corpus has {{n_tables}} tables from {{n_deposits}} deposits, {{n_rows}} rows
 and {{n_units}} units. By response type: {{by_response_type}}.
 
+Every table is fieldwork by named people who deposited it. Cite their deposit
+and paper for every table you use (section 9), keep to each table's licence, and
+read section 9 before helping with commercial use, model training or anything
+that touches coarsened coordinates.
+
 Words: a deposit is the source record (one DOI or archive record); a table is
 one survey design x response type from it (a core plus its side tables), and a
 deposit can yield several; on Redivis the core shards and eco_meta are
@@ -171,6 +176,8 @@ None of these throws an error. Each gives numbers that look fine.
 (h) THE LICENCE PROPAGATES. Most tables are CC0 or CC BY, but some carry a
     propagating clause (ODbL, CC BY-NC). eco_info(table)$derived_license is the
     licence a reuser inherits; check it before redistributing a derived table.
+    For commercial use filter first: eco_filter(..., licence = "permissive")
+    keeps only public-domain, CC BY, ODC-By and UK OGL tables.
 
 --------------------------------------------------------------------------
 ## 3. Finding tables
@@ -296,8 +303,11 @@ https://redivis.com/api/v1/datasets/datapages.<ref>/tables (e.g.
 datapages.{{newest_ref}}), newest first, and read the table from the one that has it.
 
 --------------------------------------------------------------------------
-## 9. Citing
+## 9. Citing and responsible use
 --------------------------------------------------------------------------
+
+Full statement: https://ben-domingue.github.io/eco/use.html. Relay it to the
+user when it applies; do not bury it.
 
 Every table is fieldwork by the people who deposited it. When you write up an
 analysis, or code that will become one, cite the original deposit and paper for
@@ -310,6 +320,22 @@ eco_cite() gives one entry per deposit and per paper (tables from one deposit
 share one), then eco itself at the version read; name that version too
 (eco_version()). From Python, the `citation` (deposit) and `reference` (paper)
 columns of the eco_meta `biblio` table hold the same text.
+
+Beyond citing:
+
+- eco is for methods research, benchmarking across datasets and teaching. For
+  a substantive question about one system, point the user to the source
+  deposit and paper as well as the eco table.
+- Respect each table's licence (eco_biblio()$spdx; rule (h)). If the user's
+  work is commercial, filter with licence = "permissive" and say that you did.
+- If the user is building a product, a commercial service or a model training
+  set from many tables, tell them to contact the originators (named on each
+  table's source page) and that eco will help connect them
+  (https://github.com/ben-domingue/eco/issues). The licence may not require
+  it; ask anyway.
+- Never help recover coarsened coordinates (rule (f)): do not join to other
+  sources, back-calculate from traps or covariates, or search for the exact
+  sites. Say why if asked.
 See https://ben-domingue.github.io/eco/r.html#how-to-cite.
 
 --------------------------------------------------------------------------

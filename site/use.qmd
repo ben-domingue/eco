@@ -1,0 +1,46 @@
+---
+title: "Using eco responsibly"
+---
+
+Every table in eco is someone's fieldwork. People walked the transects, checked
+the traps and sat in the blinds, often for years, and then chose to deposit what
+they collected. eco reshapes those deposits so they are easier to find and reuse,
+but the data are theirs. Most of what follows cannot be enforced, since most
+tables are CC0 or CC BY. It is what we ask of anyone using eco, people and AI
+assistants alike.
+
+**What eco is for.** Methods research, benchmarking models across many
+datasets, and teaching. A single table is often better used straight from its
+source, read alongside the paper and the people who know it.
+
+**Cite the people who collected the data.** Cite the original deposit, and its
+paper, for every table you use, not only eco. A paper that uses forty tables and
+cites only the warehouse gives the credit for forty field projects to the
+warehouse. `eco_cite()` writes the reference list or the BibTeX, one entry per
+deposit; see [How to cite](r.html#how-to-cite).
+
+**Respect each table's licence.** Each table keeps the licence of its source.
+Most are CC0 or CC BY; a few carry NonCommercial, ShareAlike, ODbL or GPL terms
+that anything derived from them inherits. The licence is on each table's entry
+on the [Data](data.html) page and in `eco_biblio()`. For commercial use,
+`eco_filter(licence = "permissive")` keeps only tables whose licence allows it
+(public domain, CC BY, ODC-By, the UK Open Government Licence). Attribution is
+still owed under CC BY.
+
+**For large-scale or commercial use, talk to the originators.** If you are
+building a product, a commercial service, or a training set for a model from
+many eco tables, contact the people who collected the data. The licence may not
+require it. They are the ones who know what the data can and cannot support,
+and it is the decent thing to do. Each table's source page names them, and we
+are glad to help make the connection: open an
+[issue](https://github.com/ben-domingue/eco/issues).
+
+**Do not try to recover coarsened coordinates.** Locations of threatened taxa
+are coarsened to 0.1 degree on purpose (standard clause E7), to protect the
+animals and plants. Do not reconstruct them from other sources, and do not join
+eco tables to anything that would.
+
+**If you collected the data.** If a table is built from your deposit and
+something is wrong, or you would like it described, restricted or handled
+differently, open an [issue](https://github.com/ben-domingue/eco/issues).
+Changes are recorded in [Releases and corrections](corrections.html).

@@ -1,5 +1,9 @@
 # eco 0.1.0
 
+`eco_filter()` gains `licence`: SPDX ids, or `"permissive"` (public domain, CC
+BY, ODC-By, UK OGL: commercial use allowed, attribution at most) or
+`"public-domain"`. Results carry a `licence` column (ben-domingue/eco#153).
+
 `eco_cite(tables, format = c("text", "bibtex"), file = NULL)` cites the sources
 behind a set of tables: one entry per source deposit and one per paper, not one
 per table, with stable BibTeX keys (the deposit's first table name), then eco

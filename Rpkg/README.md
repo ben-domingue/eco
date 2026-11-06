@@ -32,7 +32,7 @@ a character vector) a named list. `eco_to_unmarked()` maps over a list.
 | | |
 |---|---|
 | `eco_list_tables()`, `eco_metadata()`, `eco_biblio()`, `eco_tags()`, `eco_tag_options()` | the corpus and its descriptions, from the `eco_meta` dataset |
-| `eco_filter(model_family=, response_type=, taxon_group=, protocol=, min_units=, min_occasions=, multi_species=, sample_floor=)` | choose tables |
+| `eco_filter(model_family=, response_type=, taxon_group=, protocol=, min_units=, min_occasions=, multi_species=, sample_floor=, licence=)` | choose tables; `licence = "permissive"` keeps tables open to commercial use ([Using eco responsibly](https://ben-domingue.github.io/eco/use.html)) |
 | `eco_fetch(x)`; `eco_taxa()`, `eco_periods()`, `eco_units()`, `eco_traps()` | a table and its side tables |
 | `eco_info(table)` | one table, or the corpus totals |
 | `eco_to_array()`, `eco_to_unmarked()`, `eco_to_ch()` and their inverses `array_to_eco()`, `umf_to_eco()`, `mpois_to_eco()`, `ch_to_eco()` | reshape to and from the model packages' structures |
