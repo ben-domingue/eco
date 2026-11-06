@@ -1,0 +1,69 @@
+{
+  "table": "bauwens_2019_belgium_adder_ms",
+  "title": "Annual capture and breeding-state histories of 908 adult female adders in a Belgian population, 2000-2017",
+  "creator": "Bauwens, Dirk; Claus, Katja",
+  "pubDate": "2018",
+  "doi": "10.5281/zenodo.2527132",
+  "sourceURL": "https://doi.org/10.5281/zenodo.2527132",
+  "paperDOI": "10.7717/peerj.6912",
+  "citation": "Bauwens, D. & Claus, K. (2018). Raw data for: Intermittent reproduction, mortality patterns and lifetime breeding frequency of females in a population of the adder (Vipera berus). Zenodo, https://doi.org/10.5281/zenodo.2527132.",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Adult female adders of one Belgian population were captured each year from 2000 to 2017 and scored as breeding or non-breeding, to estimate survival and transition rates between reproductive states (intermittent reproduction).",
+  "samplingProtocol": "Yearly capture-recapture of adders by visual search in spring and late summer; adult females individually identified and scored as breeding (gravid) or non-breeding.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured, non-breeding (N)",
+    "2": "captured, breeding (B)"
+  },
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "closureNote": "period = year; the MARK histories start in 2000 for every female.",
+  "geographicCoverage": "One adder population in Belgium",
+  "temporalCoverage": "2000/2017",
+  "notShipped": {
+    "svl_bci": "SVL_BCI_RawData.xlsx: size, mass and body condition per measured female (no key to the anonymous MARK histories)"
+  },
+  "notes": "Units are anonymous (the MARK file has no labels); F001... follow the file's line order.",
+  "summary": {
+    "n_rows": 16344,
+    "n_units": 908,
+    "n_taxa": 1,
+    "n_periods": 18,
+    "n_occasions": 1,
+    "n_surveys": 16344,
+    "y_values": "0,1,2",
+    "prop_zero": 0.921,
+    "n_traps": 1,
+    "n_zero": 15048,
+    "n_positive": 1296,
+    "n_units_detected": 908,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period"],
+  "coreMd5": "0983a73573f27b79b30f5e9ea51be2cb",
+  "sideTables": {
+    "periods": {
+      "rows": 18,
+      "columns": ["period", "year"],
+      "md5": "bc86377bb50aa55a9bedb1de65e32bf9"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "87ef4df7faa0df2cb177a95cdba02a8e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bauwens_2019_belgium_adder_ms.R",
+  "buildDate": "2026-11-06"
+}

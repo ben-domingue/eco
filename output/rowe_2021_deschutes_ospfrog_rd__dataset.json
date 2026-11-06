@@ -1,0 +1,74 @@
+{
+  "table": "rowe_2021_deschutes_ospfrog_rd",
+  "title": "Capture histories of 482 PIT-tagged Oregon spotted frogs on three-visit seasonal surveys at three wetland sites on the upper Deschutes River, Oregon, 2016-2019",
+  "creator": "Rowe, Jennifer C.; Duarte, Adam; Pearl, Christopher A.; McCreary, Brome; Haggerty, Patricia K.; Adams, Michael J.",
+  "pubDate": "2021",
+  "doi": "10.5066/P9R1S1BD",
+  "sourceURL": "https://doi.org/10.5066/P9R1S1BD",
+  "citation": "Rowe, J.C., Duarte, A., Pearl, C.A., McCreary, B., Haggerty, P.K., and Adams, M.J., 2021, Capture-mark-recapture data for Oregon spotted frogs (Rana pretiosa) along the Deschutes River, Oregon, 2016-2019: U.S. Geological Survey data release, https://doi.org/10.5066/P9R1S1BD.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Oregon spotted frogs were captured and PIT-tagged at three wetland sites on the upper Deschutes River, Oregon, on three consecutive-day visits each spring, summer and fall from 2016 to 2019, to relate survival and abundance to wetland inundation driven by river flow.",
+  "samplingProtocol": "Capture-mark-recapture surveys: three consecutive-day visits per site each season; frogs captured, PIT-tagged, sexed, sized and released, with air temperature and wind recorded per visit.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "Robust design: period = season, occasion = one of three consecutive-day visits to the frog's site.",
+  "geographicCoverage": {
+    "description": "Upper Deschutes River wetlands, Deschutes County, Oregon, USA",
+    "boundingBox": {
+      "west": -121.6322,
+      "east": -121.4194,
+      "south": 43.7131,
+      "north": 43.9575
+    }
+  },
+  "temporalCoverage": "2016-07/2019-10",
+  "notShipped": {
+    "two_site_frog": "one PIT tag recorded at two sites (two rows; dropped)",
+    "hydrology": "FlowData: daily flow, reservoir storage and drought indices",
+    "wetted_area": "AreaWet_DSWE (remotely sensed) and AreaWet_ModelPred (model-predicted, a model output) per site and date"
+  },
+  "notes": "Rana pretiosa is IUCN VU; the release has site codes only, no coordinates. obs_date_doy as deposited ('days from the start of the year').",
+  "summary": {
+    "n_rows": 14460,
+    "n_units": 482,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 3,
+    "n_surveys": 14460,
+    "y_values": "0,1",
+    "prop_zero": 0.954,
+    "n_traps": 1,
+    "n_zero": 13788,
+    "n_positive": 672,
+    "n_units_detected": 482,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_sex", "unit_size_large", "obs_date_doy", "obs_temp_c", "obs_wind"],
+  "coreMd5": "347807aa5df6d7cfe2627360b419ebf6",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year", "season"],
+      "md5": "12543725f537843e1ed1a8b767f574d5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "bba17e81088e6c99d3e01e855bab4fc2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rowe_2021_deschutes_ospfrog_rd.R",
+  "buildDate": "2026-11-06"
+}

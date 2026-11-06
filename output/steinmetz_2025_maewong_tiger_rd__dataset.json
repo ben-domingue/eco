@@ -1,0 +1,64 @@
+{
+  "table": "steinmetz_2025_maewong_tiger_rd",
+  "title": "Weekly camera-trap capture histories of 33 tigers in six biennial sessions, Mae Wong and Khlong Lan National Parks, Thailand, 2012-2022",
+  "creator": "Steinmetz, Robert; Phumanee, Worrapan",
+  "pubDate": "2025",
+  "doi": "10.6084/m9.figshare.29631782.v1",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.29631782.v1",
+  "citation": "Steinmetz, R. & Phumanee, W. (2025). Tiger capture-recapture data from Mae Wong Khlong Lan National Parks, Thailand, 2012-2022. figshare. Dataset. https://doi.org/10.6084/m9.figshare.29631782.v1",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Tigers in the Mae Wong and Khlong Lan National Parks, western Thailand, were photographed by camera traps and identified from stripe patterns in six biennial sessions from 2012 to 2022; weekly capture histories support estimates of survival, recruitment and population dynamics of a low-density, recovering population.",
+  "samplingProtocol": "Camera-trap surveys in 2012, 2014, 2016, 2018, 2020 and 2022, each analysed as 12 weekly occasions; tigers identified individually from photographs; a week is a capture when the tiger was photographed.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The workbook gives a 0/1 cell for every tiger and week of every session, with no not-surveyed code.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "Robust design: period = biennial session, occasion = week of the session; ids are valid across sessions.",
+  "geographicCoverage": "Mae Wong and Khlong Lan National Parks, western Thailand (no camera locations deposited)",
+  "temporalCoverage": "2012/2022",
+  "notShipped": {
+    "tenure": "tenure of individuals marked by row colours in the workbook"
+  },
+  "notes": "Tiger (Panthera tigris) is IUCN EN; the deposit has no trap identities or locations, so the table is a robust design, not SCR.",
+  "summary": {
+    "n_rows": 2376,
+    "n_units": 33,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 12,
+    "n_surveys": 2376,
+    "y_values": "0,1",
+    "prop_zero": 0.906,
+    "n_traps": 1,
+    "n_zero": 2153,
+    "n_positive": 223,
+    "n_units_detected": 33,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex"],
+  "coreMd5": "b3fa3ad63a1ecfc5d1ca21926fc82502",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "year"],
+      "md5": "e5654fe33da7d6e6d3d4336d292cac9f"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b5bae96b706a789e93a6496d4e9e774b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/steinmetz_2025_maewong_tiger_rd.R",
+  "buildDate": "2026-11-06"
+}

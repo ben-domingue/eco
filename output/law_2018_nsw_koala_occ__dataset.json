@@ -1,0 +1,59 @@
+{
+  "table": "law_2018_nsw_koala_occ",
+  "title": "Nightly acoustic detections of koalas at 171 sites in harvested and unharvested state forests of north-east New South Wales, 2015-2017",
+  "creator": "Law, Bradley S.; Brassil, Traecey; Gonsalves, Leroy; Roe, Paul; Truskinger, Anthony; McConville, Anna",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.m8q8bn3",
+  "sourceURL": "https://doi.org/10.5061/dryad.m8q8bn3",
+  "paperDOI": "10.1371/journal.pone.0205075",
+  "citation": "Law, B.S., Brassil, T., Gonsalves, L., Roe, P., Truskinger, A. & McConville, A. (2018). Data from: Passive acoustics and sound recognition provide new insights on status and resilience of an iconic endangered marsupial (koala Phascolarctos cinereus) to timber harvesting. Dryad (served by Zenodo), https://doi.org/10.5061/dryad.m8q8bn3.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Acoustic recorders with automated recognition of male koala bellows were deployed for up to 14 nights at 171 sites across timber-harvest treatments (old growth, light-medium and heavy harvesting of different ages, koala high-use areas) in north-east New South Wales state forests in spring 2015-2017.",
+  "samplingProtocol": "Passive acoustic recorders run for up to 14 consecutive nights per site in September-December; koala bellows identified by call-recognition software and verified; a night is a detection when any bellow was recognised.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "occasion = consecutive nights of one deployment per site; each site was sampled in one year.",
+  "geographicCoverage": "State forests of north-east New South Wales, Australia",
+  "temporalCoverage": "2015-09/2017-12",
+  "notShipped": {
+    "dummies_interactions": "Yr1-Yr3 and trt1-trt8 dummies and every covariate interaction column (recomputable)"
+  },
+  "notes": "unit_*_std covariates are standardised as deposited. Codes: unit_trt 1 koala high-use area, 3 old growth, 4/5/6 light-medium harvest <11 / 11-25 / >25 years ago, 7/8/9 heavy harvest likewise; unit_topo 1 upper, 2 mid, 3 lower slope; obs_moon 1 new, 2 last quarter, 3 first quarter, 4 full. No coordinates are deposited (koala IUCN VU).",
+  "summary": {
+    "n_rows": 1463,
+    "n_units": 171,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 14,
+    "n_surveys": 1463,
+    "y_values": "0,1",
+    "prop_zero": 0.707,
+    "n_traps": 1,
+    "n_zero": 1034,
+    "n_positive": 429,
+    "n_units_detected": 106,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_year", "unit_month", "unit_trt", "unit_topo", "unit_elev2_std", "unit_fire_area_std", "unit_oldgrowth_std", "unit_cleared_std", "unit_ndvi2_std", "unit_recent_harvest_std", "unit_heavy_harvest_std", "unit_feed_trees_std", "obs_min_temp_c", "obs_rain_mm", "obs_moon"],
+  "coreMd5": "e3fda9ae86a4d307b3ff23bc623dbd86",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "1b07ffe508b48ccb906e328c0f8aacc0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/law_2018_nsw_koala_occ.R",
+  "buildDate": "2026-11-06"
+}
