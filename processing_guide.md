@@ -240,6 +240,22 @@ table to avoid them. Two methods are two tables.
   data); never one table per interpreter.
 - Synonyms: merge only names the source uses for one species, assert the merge, and
   list both names in `taxonRemarks`.
+- Estimated counts (rulings 17, 18): never drop a count the source labels as estimated;
+  keep it in `y` and set `obs_count_estimated` (1 where `y` includes one, else 0). Flag an
+  unlabelled count only by a rule in E2 (tick larvae in exact multiples of 1,000:
+  `obs_count_likely_estimated`); assert how many rows each flag marks.
+- Per-site species pool (ruling 19): for a complete-list protocol with no target list,
+  build `__survey_taxa` from the taxa recorded at each site in the table's own surveys,
+  keyed on the site's units; say in `surveyEvidenceNote` that the pool is derived from
+  detections. Nested plot designs (NEON plants: 1 m2 inside 10 m2 inside 100 m2 inside
+  400 m2): build the one scale that holds a complete list of the taxa at every visit and
+  is revisited by the same method (NEON: the 1 m2 subplot; the larger scales record only
+  taxa new at that scale), and never union scales into a cumulative list.
+- 'sp.' and 'spp.' (ruling 20): merge a source's "X sp." and "X spp." codes into one taxon
+  at X's rank, keep the most frequent code as `taxon`, and list every code in `taxonRemarks`.
+- Subsamples (ruling 21): when `y` counts the identified part of a sample, ship the
+  fraction as an `obs_` column and name it in `subsampleColumn`; the whole-sample
+  estimate `y / fraction` is not shipped.
 - Licence: ODC-By 1.0 proceeds like CC BY. Zenodo "Other (Open)" with no text, or a
   CC0 badge with a consult-the-PIs clause: hold as `held: unclear licence terms` and
   ask by email; a refusal or no reply leaves the deposit linked, not reshared.
@@ -256,7 +272,7 @@ goes in `closureNote`), `taxonInclusion` (`recorded` | `target` | `single`, E10)
 `surveyEvidence`, `temporalCoverage` (`YYYY/YYYY` or `YYYY-MM/YYYY-MM`),
 `geographicCoverage`. Conditional: `stateCodes`, `multinomialType` or
 `distanceBreaks`, `coordinatesCoarsened`, `surveyEvidenceNote`, `crs`, `effortColumn`,
-`taxaWithheld`, `detectionCertainty`. Recommended:
+`taxaWithheld`, `detectionCertainty`, `subsampleColumn`. Recommended:
 `abstract`, `paperDOI`, `notShipped` (a named list: what and why), `notes`.
 `write_table()` adds `summary`, `sampleFloor`, `columns`, `standardVersion`,
 `script`, `buildDate`.

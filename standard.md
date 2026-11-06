@@ -99,6 +99,23 @@ authors *estimated* from the same observations (a model-based occupancy estimate
 predicted density) is a model output, not a covariate or a `y`, and MUST NOT be
 shipped; the omission is recorded in `notShipped`.
 
+**Ruling (estimated counts, 2026-11-06, rulings 17 and 18).** A count is *estimated* when
+the observer or laboratory estimated the number of individuals actually in the sample
+(an eyeballed bulk count of fish, a clump of larvae counted by fraction) rather than
+counting them; it is still the observation of that survey, unlike an imputed or
+interpolated value, which stands for a survey or a count that was not made. An estimated
+count is kept as `y`, never dropped:
+
+1. Where the source labels a count as estimated (NEON's fish bulk counts with
+   `actualOrEstimated = estimated`), the table carries `obs_count_estimated`, 1 on every
+   row whose `y` includes such a count and 0 on every other row.
+2. Where the source does not label it, a count is flagged only by an objective rule
+   stated here, never by the processor's judgement. The one rule so far: a tick larval
+   count that is an exact multiple of 1,000 (NEON's laboratory counts of 10,000, 20,000,
+   35,000 larvae) is likely estimated, and the table carries
+   `obs_count_likely_estimated`, 1 on every row whose `y` includes such a count and 0
+   elsewhere.
+
 **Ruling (detection definition, 2026-11-06).** Where the source records several sign
 types (fresh and old scat, fresh and old haypiles), `y` follows the detection definition
 of the authors' own model. When the deposit's summary flag also counts sign the authors
@@ -166,6 +183,16 @@ with `obs_method`, under the multi-method form of E9 (*Experimental*). The rulin
 taxon lists only, so it does not touch
 `unitKind = individual` tables, which split by taxon (ruling #20) and stay separate
 where the source deposited separate analysis sets or populations.
+
+**Ruling (species pool from detections, 2026-11-06, ruling 19).** Where a protocol records
+every species present at each survey (a plant presence list) and names no target list,
+and the units span regions with different floras, the taxa surveyed for at a unit are
+the taxa ever recorded at its site in the table's own surveys (the per-site pool),
+carried by `__survey_taxa` with one row per site's survey keys and taxon (E6). A taxon
+never recorded at a site has no rows there. The pool is derived from the detections,
+so `taxonInclusion = recorded`, and `surveyEvidenceNote` MUST say that the per-site
+species pool behind the zeros is derived from detections, not from a list the source
+deposited.
 
 **Ruling (shared detector, 2026-11-06).** When one detector surveys all of a table's
 taxa at once (a camera, an ARU, a nest box checked for every species) and the source
@@ -252,6 +279,11 @@ Core). Records the source identified only to a higher rank are their own taxon, 
 shipped as recorded and `__taxa` says so in `taxonRemarks`. `taxonID` MAY be empty only
 for a group the GBIF backbone does not hold (a pooled group, a subfamily absent from the
 backbone), and `taxonRemarks` then says so.
+
+**Ruling ('sp.' and 'spp.', 2026-11-06, ruling 20).** Where a source gives separate codes
+to "*X* sp." and "*X* spp." of the same higher taxon *X* (NEON does), both name records
+identified only to *X*, so they are one taxon at that rank; `taxonRemarks` in `__taxa`
+lists both source codes.
 
 **Ruling (synonyms, 2026-11-06).** Names the source itself treats as synonyms (both
 forms used for one species) are one taxon, and `taxonRemarks` in `__taxa` records the
@@ -447,7 +479,9 @@ Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
 `surveyEvidence = inferred`), `taxaWithheld` (taxa the source surveyed for but did not
 publish, such as security-class species in a national scheme: a list of names, with no
 core rows and no zeros), `crs`, `effortColumn`, `detectionCertainty` (when a
-second, certain detection method is carried; E9). Recommended: `abstract`,
+second, certain detection method is carried; E9), `subsampleColumn` (when `y` counts an
+identified fraction of a sample, the name of the `obs_` column holding that fraction,
+in (0, 1], empty where nothing was subsampled; ruling 21, 2026-11-06). Recommended: `abstract`,
 `notShipped` (what was in the source and not shipped, with the reason). The
 pipeline adds `summary`, `sampleFloor`, `columns`, `standardVersion`, `script`,
 `buildDate`, and in the metadata table `components`: the other core tables built from
@@ -592,4 +626,9 @@ shipped and why. Facts about the source are assertions, not comments.
   - Intake: a single-visit site-unit table (`n_occasions = 1`, `n_periods = 1`) is generally not eligible; exceptions are Ben's case-by-case call (first: `bradferlawrence_2025_ukwood_plant_comm`, kept).
   - Intake (scale, #24): the Breeding Bird Survey block and stop tables stay regional (BCR 15); national block (about 210M rows) and stop (about 1.26B rows) tables are not built.
   - Intake (`processing_guide.md`): the Dryad intake is anonymous by default and a deposit whose anonymous download fails (404/405) is `blocked`; a short-lived token Ben supplies in `DRYAD_TOKEN` is used when set (amended 2026-11-06, batch 35).
+- **v1.1-draft, rulings 17 to 21 of 2026-11-06** (NEON batch 38, #10):
+  - E2: a count the source labels as estimated is kept with `obs_count_estimated` (17); an unlabelled count is flagged only by a rule stated in the standard, the first being tick larval counts in exact multiples of 1,000, `obs_count_likely_estimated` (18).
+  - E4.2: a complete-list protocol with no target list may take the per-site pool of taxa recorded in the table as the taxa surveyed for, through `__survey_taxa`, with `surveyEvidenceNote` saying the pool is derived from detections (19).
+  - E6: "*X* sp." and "*X* spp." codes of one higher taxon are one taxon; `taxonRemarks` lists both codes (20).
+  - E10: optional `subsampleColumn` names the `obs_` column holding the identified fraction; the validator checks it names such a column with values in (0, 1] (21).
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
