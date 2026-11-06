@@ -29,11 +29,11 @@
     "value": false,
     "method": "As published by NEON (agency-published plot-centre coordinates with coordinateUncertaintyInMeters); no coarsening; 5 plots were re-surveyed by a few metres and __units carries the latest"
   },
-  "covariateNote": "obs_area_m2 = area dragged or flagged (m2; effort); obs_method = drag, flag or drag and flag. Plot-level facts (site, domain, plot type, NLCD class, NEON namedLocation, plot-centre coordinates, uncertainty, elevation) are in __units.",
-  "notes": "Taxa: species x life stage (adult = Male + Female + Adult; nymph; larva), lifeStage in __taxa; records identified only to genus or family (most larvae: Ixodidae) are their own taxa (E6), NEON's 'sp.' and 'spp.' codes of one name merged. From 2019-01-01 only: before 2019 the laboratory's counts may be subsamples (NEON issue log), 6253 earlier surveys not shipped. Surveys dropped: 13 samples NEON marks lost, incomplete or with an estimated count; 11 targetTaxaPresent = Y samples with no laboratory rows; 7 repeat collections of a plot within one bout (first kept). Very large larval counts: 103 rows have y >= 1000 and 20 of them are whole thousands (10000, 20000, 35000), which look like the laboratory's estimates for larval clumps; NEON publishes them as individualCount without a flag, and they are shipped as published. Laboratory rows with no taxon (remarks 'Not a tick', 'insects!', 'empty vial') contribute nothing.",
+  "covariateNote": "obs_area_m2 = area dragged or flagged (m2; effort); obs_method = drag, flag or drag and flag; obs_count_likely_estimated = 1 where y includes a larval laboratory count that is an exact multiple of 1,000 (ruling 18: count likely estimated), else 0. Plot-level facts (site, domain, plot type, NLCD class, NEON namedLocation, plot-centre coordinates, uncertainty, elevation) are in __units.",
+  "notes": "Taxa: species x life stage (adult = Male + Female + Adult; nymph; larva), lifeStage in __taxa; records identified only to genus or family (most larvae: Ixodidae) are their own taxa (E6), NEON's 'sp.' and 'spp.' codes of one name merged. From 2019-01-01 only: before 2019 the laboratory's counts may be subsamples (NEON issue log), 6253 earlier surveys not shipped. Surveys dropped: 13 samples NEON marks lost, incomplete or with an estimated count; 11 targetTaxaPresent = Y samples with no laboratory rows; 7 repeat collections of a plot within one bout (first kept). Very large larval counts: 103 rows have y >= 1000 and 20 of them are whole thousands (10000, 20000, 35000). Ruling 18 (2026-11-06): a larval laboratory count in an exact multiple of 1,000 is likely the laboratory's estimate for a clump of larvae; NEON publishes it as individualCount without a flag, it ships as published, and obs_count_likely_estimated = 1 on the 20 rows built from one (0 elsewhere). Laboratory rows with no taxon (remarks 'Not a tick', 'insects!', 'empty vial') contribute nothing.",
   "notShipped": {
     "collections before 2019": "6253 surveys, 2014-2018: the laboratory counts of that period may be unreported subsamples (invoice limits; >500 larvae subsampled to 500 in 2016-2018), so y would not be the count in the drag",
-    "unusable samples": "13 samples marked Entire sample lost, Sample incomplete or Tick count estimated; 11 Y samples with no laboratory rows; 7 repeat collections of a plot within one bout",
+    "unusable samples": "13 samples marked Entire sample lost or Sample incomplete; 11 Y samples with no laboratory rows; 7 repeat collections of a plot within one bout",
     "field counts": "tck_fielddata adultCount / nymphCount / larvaCount (field counts, discontinued in 2019; the laboratory counts are y)",
     "other tables": "tck_taxonomyRaw (pre-synonymy names), tck_identificationHistory, pathogen and archive tables"
   },
@@ -53,8 +53,8 @@
     "max_y": 35000
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "obs_area_m2", "obs_method"],
-  "coreMd5": "27fd1db7f6153fedb6d077cb2d467dc8",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "obs_area_m2", "obs_method", "obs_count_likely_estimated"],
+  "coreMd5": "9516ff9e394d42bb30e921204303bc3b",
   "sideTables": {
     "periods": {
       "rows": 6,
