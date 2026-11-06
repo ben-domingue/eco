@@ -220,6 +220,28 @@ gbif_taxon_hinted <- function(name, hints = list()) {
        canonicalName = res$canonicalName %||% NA_character_)
 }
 
+# Linnaean ranks, top down, for make_taxa()'s rank check; ranks not listed are not compared.
+TAXON_RANK_ORDER <- c(kingdom = 1, phylum = 2, subphylum = 2.5, class = 3, subclass = 3.5, order = 4, suborder = 4.5,
+                      superfamily = 4.8, family = 5, subfamily = 5.5, tribe = 5.7, genus = 6, subgenus = 6.5,
+                      species = 7, subspecies = 8, variety = 8, form = 8)
+# GBIF backbone kingdom usage keys (0 is incertae sedis): a __taxa taxonID with one
+# of these keys names a whole kingdom, right only for a row whose taxonRank is kingdom.
+GBIF_KINGDOM_KEYS <- 0:8
+kingdom_taxonID <- function(taxonID) {
+  id <- as.character(taxonID)
+  hit <- !is.na(id) & grepl("gbif\\.org/species/[0-9]+/?$", id)
+  k <- suppressWarnings(as.integer(sub("^.*/species/([0-9]+)/?$", "\\1", id)))
+  hit & !is.na(k) & k %in% GBIF_KINGDOM_KEYS
+}
+# write_table()'s twin of eco-validate's taxon_kingdom check (E6)
+check_kingdom_taxa <- function(taxa, name) {
+  if (is.null(taxa) || !"taxonID" %in% names(taxa)) return(invisible())
+  rk <- if ("taxonRank" %in% names(taxa)) tolower(taxa$taxonRank) else rep(NA_character_, nrow(taxa))
+  bad <- kingdom_taxonID(taxa$taxonID) & (is.na(rk) | rk != "kingdom")
+  if (any(bad)) stop(sprintf("%s: __taxa row(s) whose taxonID is a GBIF kingdom but whose taxonRank is not kingdom (E6): %s",
+                             name, paste(sprintf("%s=%s", taxa$taxon[bad], taxa$taxonID[bad]), collapse = ", ")))
+}
+
 # Build the `taxa` side table (standard E6) from code -> scientific name.
 # lookupName: the spelling sent to GBIF when the source's spelling does not match
 # (the source spelling is kept in scientificName).
@@ -250,6 +272,23 @@ make_taxa <- function(taxon, scientificName, vernacularName = NA_character_, tax
   # an intended higher-rank match (allow_higher) carries that rank, not the "species" default (E6);
   # taxonRemarks is required only where taxonID is empty
   gr <- sapply(tx, `[[`, "rank")
+  # a match GBIF resolved above the rank the row names is the wrong taxon (batch 38:
+  # Cyprinella, Fundulus, Micropterus fell to gbif.org/species/1, Animalia). Refused
+  # whatever allow_higher says: a match at kingdom, phylum or class unless the row
+  # says it is at that rank; and, for a row with a declared rank other than the
+  # "species" default, any match above that rank. With exact = FALSE the caller
+  # repairs rows itself (gbif_taxon_hinted()), so this is a message there, and
+  # write_table() still refuses a kingdom taxonID on a row below kingdom.
+  decl <- tolower(rep_len(it$taxonRank, nrow(it))); g <- tolower(gr)
+  dr <- unname(TAXON_RANK_ORDER[decl]); mr <- unname(TAXON_RANK_ORDER[g])
+  high <- !skip & !is.na(g) & g %in% c("kingdom", "phylum", "class") & decl != g
+  above <- !skip & !is.na(mr) & !is.na(dr) & decl != "species" & mr < dr
+  if (any(high | above)) { w <- which(high | above)
+    (if (exact) stop else message)("make_taxa(): GBIF matched above the taxon's rank for ",
+         paste(sprintf("%s %s (taxonRank %s, GBIF %s %s)", it$taxon[w], it$scientificName[w], decl[w], g[w], it$taxonID[w]),
+               collapse = "; "),
+         ". Give a lookupName GBIF holds, repair with gbif_taxon_hinted(), or list the code in ",
+         "no_key with a taxonRemarks saying GBIF has no match (E6).") }
   up <- it$taxon %in% allow_higher & it$gbifMatchType == "HIGHERRANK" & it$taxonRank == "species" & !is.na(gr)
   if (any(up)) { it[up, taxonRank := gr[up]]
     message("  make_taxa(): taxonRank from GBIF for allow_higher taxa: ", paste(sprintf("%s=%s", it$taxon[up], gr[up]), collapse = ", ")) }
@@ -470,6 +509,7 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
     if (length(nokey)) stop(sprintf("%s: __taxa row(s) with no taxonID need taxonRemarks saying why (E6): %s",
                                     name, paste(nokey, collapse = ", ")))
   }
+  check_kingdom_taxa(taxa, name)
   if (!is.null(survey_taxa) && !all(survey_taxa$taxon %in% long$taxon))
     stop(sprintf("%s: __survey_taxa lists taxa with no core rows", name))
   if (!is.null(taxa)) {
@@ -567,6 +607,7 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
     nokey <- taxa$taxon[(is.na(taxa$taxonID) | !nzchar(taxa$taxonID)) & (is.na(rem) | !nzchar(trimws(rem)))]
     if (length(nokey)) stop(sprintf("%s: __taxa row(s) with no taxonID need taxonRemarks saying why (E6): %s", name, paste(nokey, collapse = ", ")))
   }
+  check_kingdom_taxa(taxa, name)
   if (!is.null(taxa)) { stopifnot(setequal(taxa$taxon, taxa_set)); fwrite(taxa, file.path(OUT_DIR, paste0(name, "__taxa.csv"))) }
   if (!is.null(periods)) fwrite(periods, file.path(OUT_DIR, paste0(name, "__periods.csv")))
   if (!is.null(units))   fwrite(units,   file.path(OUT_DIR, paste0(name, "__units.csv")))

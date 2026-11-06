@@ -95,9 +95,18 @@ stopifnot(all(names(fix) %in% species))
 look <- ifelse(species %in% names(fix), fix[species], species)
 isgen <- species %in% gen
 look[isgen] <- sub(" sp\\.$", "", species[isgen])
+# Contopus is a homonym on the GBIF backbone: the strict match falls to the kingdom
+# (gbif.org/species/1, Animalia; batch 39, #10). It is matched with the bird family
+# as a hint and accepted only when GBIF returns the genus itself among animals.
+hom <- code[species == "Contopus sp."]
 taxa <- make_taxa(code, species, lookupName = look, taxonRank = ifelse(isgen, "genus", "species"),
                   taxonRemarks = ifelse(isgen, "Recorded only to genus by the source", NA_character_),
-                  allow_higher = code[isgen])
+                  allow_higher = setdiff(code[isgen], hom), no_key = hom)
+h <- gbif_taxon_hinted("Contopus", list(kingdom = "Animalia", class = "Aves", family = "Tyrannidae"))
+stopifnot(identical(h$canonicalName, "Contopus"), identical(h$kingdom, "Animalia"), identical(h$rank, "genus"))
+taxa[taxon == hom, `:=`(taxonID = h$taxonID, gbifMatchType = paste0(h$matchType, " (hinted)"),
+                        taxonRemarks = paste0(taxonRemarks, "; a homonym on the GBIF backbone, matched with family Tyrannidae as a hint"))]
+stopifnot(!any(kingdom_taxonID(taxa$taxonID)))
 stopifnot(nrow(taxa) == 490, taxa[taxonRank == "genus", .N] == 4)
 
 dataset <- list(

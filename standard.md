@@ -278,7 +278,9 @@ Core). Records the source identified only to a higher rank are their own taxon, 
 `taxonRank`. Where the source says two taxa were not reliably separated, both are
 shipped as recorded and `__taxa` says so in `taxonRemarks`. `taxonID` MAY be empty only
 for a group the GBIF backbone does not hold (a pooled group, a subfamily absent from the
-backbone), and `taxonRemarks` then says so.
+backbone), and `taxonRemarks` then says so. A `taxonID` names the taxon at its own `taxonRank`: a match the
+backbone resolved to a higher taxon (a genus matched to its kingdom) is not its
+`taxonID`.
 
 **Ruling ('sp.' and 'spp.', 2026-11-06, ruling 20).** Where a source gives separate codes
 to "*X* sp." and "*X* spp." of the same higher taxon *X* (NEON does), both name records
