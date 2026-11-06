@@ -1,0 +1,86 @@
+{
+  "table": "neon_2026_macroinverts_count",
+  "title": "NEON wadeable-stream benthic macroinvertebrates, RELEASE-2026: animals of 1229 taxa counted per sample, about eight samples per bout and three bouts a year at 24 NEON stream sites, 2014-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/hp56-s582",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. https://doi.org/10.48443/hp56-s582. Dataset accessed from https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026 on 2026-11-06",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's benthic macroinvertebrate survey of wadeable streams: in spring, summer and fall bouts, about eight samples are taken in the two dominant habitat types of the reach (riffles, runs, pools, step pools) with the sampler suited to each (Surber, Hess, core, modified kicknet, snag), preserved, and sent to a taxonomy laboratory, which sorts a fraction of each sample and counts and identifies every animal in it (large or rare taxa are picked from the whole sample). This table is the number of animals of each taxon counted in each sample, with each life stage's count beside it; the taxa surveyed for at a site are the per-site pool of taxa this table records there (median 276 of 1229; __survey_taxa), so a taxon never found at a site has no zeros there. obs_subsample_fraction gives the fraction they were counted in. Reach-centre coordinates are as NEON publishes them.",
+  "samplingProtocol": "Benthic samples in the two dominant habitat types of a wadeable-stream reach, with a Surber, Hess, core, modified kicknet or snag sampler of known area, three bouts a year; samples preserved in ethanol and sorted, counted and identified by a taxonomy laboratory from a subsample (NEON AOS aquatic macroinvertebrate sampling protocol, NEON.DOC.003046)",
+  "samplingProtocolCode": "benthic_sampler",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "inv_fieldData lists every sample (with samplingImpractical where one was not taken); a survey is a stream sample with samplingImpractical blank or OK, a sampleID, an inv_persample row and laboratory rows in inv_taxonomyProcessed. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a site are every taxon this table records at that site in any sample (__survey_taxa), not a list NEON deposited, so a taxon never recorded at a site has no rows there and a taxon recorded once at a site is a zero at every other sample there.",
+  "responseType": "count",
+  "unitKind": "site",
+  "effortColumn": "obs_benthic_area_m2",
+  "subsampleColumn": "obs_subsample_fraction",
+  "closure": "closed",
+  "closureNote": "occasion = sample within one bout, taken on one day in different patches of the two dominant habitat types (asserted: one bout spread over three days; a bout whose samples are 36 days apart is dropped); period = bout (spring, summer, fall), indexed globally by date",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "24 NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; reach-centre coordinates as published by NEON (WGS 84) in __units; latitude 18.1 to 68.7, longitude -149.1 to -66.8",
+  "temporalCoverage": "2014-09/2024-11",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Valvata mergella (EN); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_macroinverts_exact_count keeps the other taxa at published precision."
+  },
+  "covariateNote": "obs_habitat_type (riffle, run, pool, step pool) and obs_sampler_type (surber, hess, core, modifiedKicknet, snag) per sample; obs_benthic_area_m2 = area sampled (effort); obs_substratum = dominant substratum size class; obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's whole-sample estimate of it (the fraction it was counted in), for a taxon not found, the share of the sample sorted (inv_persample subsamplePercent / 100). It may vary across taxa within a sample (E5). obs_n_stage_<stage> = animals of the taxon counted in that life stage (larva, pupa, adult, immature, none = NEON's stage for taxa without one, unknown; missing = no stage on the laboratory row, where present); they sum to y.",
+  "notes": "y = animals counted by the laboratory, summed over size classes and life stages, with each stage's count as obs_n_stage_<stage> (E8 ruling of 2026-11-06); the whole-sample estimate (estimatedTotalCount) is not shipped. Per-site pools (ruling 19; rebuilt 2026-11-06, batch 47, from the national pool of batch 38): median 276 taxa a site (range 184-392). Taxa: 357 species (subspecies rolled up) and 872 records identified only to a higher rank, a subgenus or a species group, each its own taxon (E6); 2 pairs of NEON 'sp.' and 'spp.' codes for one name merged (ruling 20, taxonRemarks lists the codes); life stages pooled. Subsample fractions: NEON's per-row subsamplePercent differs between taxa of one sample (large or rare taxa picked from the whole sample) and from inv_persample's in a fifth of samples, so the fraction is given per row, as above. Surveys: 3933 samples in 539 bouts; 623 samples not taken; 27 samples of a second reach filed under another site's bout and 3 DNA samples not in the table; 28 with no persample row and 0 with no laboratory rows; 347 dropped (39 with a targetTaxaPresent N row naming a taxon, 136 with a counted taxon missing its count, 222 marked damaged, affecting analysis).",
+  "notShipped": {
+    "lake and river samples": "10 lake and river sites (petite ponar near the buoy and other deep-water points, sweeps in the littoral): other protocols; 6 samples with no aquaticSiteType (a grab sample and macroalgae samples)",
+    "excluded samples": "27 samples of a second reach (site prefixes STCU, STKG, STMA, STWA) filed under another site's eventID; 3 '.DNA' samples; 7 samples of the bout MAYF.20161024, whose snag samples were taken 36 days after its cores; 39 with a targetTaxaPresent N row naming a taxon; 136 with a counted taxon missing its count (fragments, headless animals); 222 marked damaged, affecting analysis",
+    "whole-sample estimate": "estimatedTotalCount (the laboratory's estimate of the whole sample; y and obs_subsample_fraction are shipped)",
+    "other fields": "size classes (sizeClass, mm), sorting QC, identification history, inv_taxonomyRaw (expanded package)",
+    "zeros outside the site pool": "a taxon never recorded at a site has no rows there (per-site pool, ruling 19)"
+  },
+  "summary": {
+    "n_rows": 1099575,
+    "n_units": 24,
+    "n_taxa": 1229,
+    "n_periods": 539,
+    "n_occasions": 8,
+    "n_surveys": 3933,
+    "y_values": "0-480 (250 distinct)",
+    "prop_zero": 0.884,
+    "n_traps": 1,
+    "n_zero": 972330,
+    "n_positive": 127245,
+    "n_units_detected": 24,
+    "max_y": 480
+  },
+  "sampleFloor": "below (24 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "obs_habitat_type", "obs_sampler_type", "obs_benthic_area_m2", "obs_substratum", "obs_subsample_fraction", "obs_n_stage_larva", "obs_n_stage_pupa", "obs_n_stage_adult", "obs_n_stage_immature", "obs_n_stage_none", "obs_n_stage_unknown"],
+  "coreMd5": "1544045dea8f0e1dbb8c1b4d5fedd0e7",
+  "sideTables": {
+    "periods": {
+      "rows": 539,
+      "columns": ["period", "eventID", "site", "year", "bout", "date"],
+      "md5": "4f2ffe00d55402d205dd373bc2d290e4"
+    },
+    "survey_taxa": {
+      "rows": 6671,
+      "columns": ["unit", "taxon"],
+      "md5": "23934261ab04759f13590f648468a0a4"
+    },
+    "taxa": {
+      "rows": 1229,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_counted", "taxon_iucnCategory"],
+      "md5": "d1417eafdc00e39bc7774c15a0adac6c"
+    },
+    "units": {
+      "rows": 24,
+      "columns": ["unit", "domain", "named_location", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "d224c80a05ad485c123a47a435a64abc"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_macroinverts_count.R",
+  "buildDate": "2026-11-06"
+}

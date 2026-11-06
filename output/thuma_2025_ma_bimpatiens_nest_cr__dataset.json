@@ -1,0 +1,65 @@
+{
+  "table": "thuma_2025_ma_bimpatiens_nest_cr",
+  "title": "Detection histories of 58 Bombus impatiens nests on five surveys a year in coastal Massachusetts, 2018-2024",
+  "creator": "Thuma, Jessie; Pugesek, Genevieve; Treanore, Erin; Finn, Sylvana; Crone, Elizabeth",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.6t1g1jxbn",
+  "sourceURL": "https://doi.org/10.5061/dryad.6t1g1jxbn",
+  "citation": "Thuma, J., Pugesek, G., Treanore, E., Finn, S., & Crone, E. (2025). Bumble bee nest density is lower in drought years [Dataset]. Dryad. https://doi.org/10.5061/dryad.6t1g1jxbn",
+  "paperDOI": "10.1098/rspb.2025.1010",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection (0/1) of each Bombus impatiens nest found on five nest surveys per season in meadow, forest and hayfield habitat in coastal Massachusetts, 2018-2024, with habitat: the mark-recapture input for nest abundance and apparent survival under drought.",
+  "samplingProtocol": "Five systematic nest searches per season in a fixed survey area (meadow, forest, hayfield); each nest found is marked and re-detected or not on later surveys.",
+  "samplingProtocolCode": "nest_search",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "open",
+  "closureNote": "nests within a season can die between surveys (the authors estimate apparent survival); each nest exists in one year",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Coastal Massachusetts, USA (see the paper); no coordinates deposited",
+  "temporalCoverage": "2018/2024",
+  "notShipped": {
+    "rare_species": "9 nests of B. bimaculatus (2), B. perplexus (2), B. vagans (1), B. fervidus (1) and unidentified (1): too few per species for a table",
+    "drought": "Palmer drought index series (regional climate)"
+  },
+  "notes": "Unit = nest; rows only in the nest's year. One of two species tables from this deposit (the other is thuma_2025_ma_bgriseocollis_nest_cr).",
+  "summary": {
+    "n_rows": 290,
+    "n_units": 58,
+    "n_taxa": 1,
+    "n_periods": 7,
+    "n_occasions": 5,
+    "n_surveys": 290,
+    "y_values": "0,1",
+    "prop_zero": 0.6,
+    "n_traps": 1,
+    "n_zero": 174,
+    "n_positive": 116,
+    "n_units_detected": 58,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_habitat"],
+  "coreMd5": "bd5ff465465eefa1408600e3d50f45d1",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "period_year"],
+      "md5": "38d396b7193863af66112c120a17d1e1"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "694a9c20680b702dbf2b0ba6bb9536b1"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/thuma_2025_massachusetts_bombus_nests.R",
+  "buildDate": "2026-11-05"
+}

@@ -118,20 +118,44 @@ download_neon <- function(product, table, release, tables, sites = NULL, months 
 # Zenodo mirror. The version "download" endpoint (a zip of the whole deposit) is
 # served anonymously. Fetch it once into .cache/raw/<table>/dryad_<version>/ and
 # return that directory; the caller asserts on the file names it expects.
+# Optional token: when DRYAD_TOKEN is set in the environment (an API-account
+# bearer token, valid 10 h; never in the repo), every request carries it, which
+# raises Dryad's rate limit, and a deposit whose zip is refused (404/405, e.g.
+# too large to zip) is fetched file by file instead. Without the token nothing
+# changes: the build stays anonymous and such a deposit fails as before.
 download_dryad <- function(doi, table) {
   doi <- sub("^doi:", "", doi)
   api <- "https://datadryad.org/api/v2"
+  tok <- Sys.getenv("DRYAD_TOKEN")
+  hdr <- c("User-Agent" = UA, if (nzchar(tok)) c(Authorization = paste("Bearer", tok)))
   meta_f <- file.path(RAW_DIR, table, "dryad_dataset.json"); dir.create(dirname(meta_f), showWarnings = FALSE, recursive = TRUE)
   if (!file.exists(meta_f))
     download.file(paste0(api, "/datasets/doi%3A", URLencode(doi, reserved = TRUE)), meta_f, quiet = TRUE,
-                  headers = c("User-Agent" = UA))
+                  headers = hdr)
   meta <- fromJSON(meta_f)
   ver <- basename(meta[["_links"]][["stash:version"]][["href"]])
   lic <- meta$license %||% NA_character_
   dir <- file.path(RAW_DIR, table, paste0("dryad_", ver))
   if (!dir.exists(dir) || !length(list.files(dir))) {
-    zip <- download_cached(paste0(api, "/versions/", ver, "/download"), table, filename = paste0("dryad_", ver, ".zip"))
-    dir.create(dir, showWarnings = FALSE); unzip(zip, exdir = dir)
+    zip <- try(download_cached(paste0(api, "/versions/", ver, "/download"), table,
+                               filename = paste0("dryad_", ver, ".zip"), headers = hdr[-1]), silent = TRUE)
+    dir.create(dir, showWarnings = FALSE)
+    if (!inherits(zip, "try-error")) {
+      unzip(zip, exdir = dir)
+    } else if (nzchar(tok)) {              # zip refused: list the version's files and fetch each one
+      message("  Dryad zip refused; fetching files one by one with the token")
+      nxt <- paste0(api, "/versions/", ver, "/files")
+      while (!is.null(nxt)) {
+        pg <- tempfile(fileext = ".json")
+        download.file(nxt, pg, quiet = TRUE, headers = hdr)
+        pj <- fromJSON(pg, simplifyVector = FALSE)
+        for (f in pj[["_embedded"]][["stash:files"]])
+          download_cached(paste0("https://datadryad.org", f[["_links"]][["self"]][["href"]], "/download"), table,
+                          filename = f$path, subdir = paste0("dryad_", ver), headers = hdr[-1])
+        nx <- pj[["_links"]][["next"]][["href"]]
+        nxt <- if (is.null(nx)) NULL else paste0("https://datadryad.org", nx)
+      }
+    } else stop("Dryad refused the anonymous zip for ", doi, " (", conditionMessage(attr(zip, "condition")), "); blocked without a token")
   }
   message(sprintf("  Dryad %s: version %s, licence %s, %d file(s)", doi, ver, lic, length(list.files(dir, recursive = TRUE))))
   attr(dir, "license") <- lic; attr(dir, "version") <- ver
@@ -156,6 +180,66 @@ gbif_taxon <- function(name) {
   list(taxonID = paste0("https://www.gbif.org/species/", res$usageKey),
        acceptedName = if (identical(res$status, "SYNONYM")) sub(" \\(.*$|, [0-9]{4}$", "", res$species %||% res$scientificName) else NA_character_,
        rank = tolower(res$rank %||% NA_character_), matchType = res$matchType)
+}
+
+# The kingdom of a name's cached strict GBIF match (gbif_taxon() caches the whole
+# answer), NA when there is no match: a strict match can resolve a homonym in
+# another kingdom (an insect genus to a plant genus) and still say EXACT.
+gbif_kingdom <- function(name) {
+  f <- file.path(GBIF_DIR, paste0(gsub("[^A-Za-z0-9]+", "_", name), ".json"))
+  if (!file.exists(f)) gbif_taxon(name)
+  res <- fromJSON(f)
+  res$kingdom %||% NA_character_
+}
+
+# A GBIF match with the source's higher classification as hints (kingdom, phylum,
+# class, order, family), which is how the backbone separates homonyms; cached per
+# name and hints. Not strict: the strict match of an animal genus with homonyms
+# (Orthocladius, Physa, Nais) falls to the kingdom even with hints, while the
+# hinted fuzzy match returns the genus itself, labelled HIGHERRANK. Returns
+# gbif_taxon()'s list plus `kingdom` and `canonicalName`; the caller accepts a row
+# only when canonicalName is the name asked for and the kingdom is the one
+# expected (used to repair rows of make_taxa(exact = FALSE)); anything else keeps
+# no taxonID.
+gbif_taxon_hinted <- function(name, hints = list()) {
+  hints <- hints[!vapply(hints, function(h) is.null(h) || is.na(h) || !nzchar(h), logical(1))]
+  q <- paste(sprintf("&%s=%s", names(hints), vapply(hints, URLencode, "", reserved = TRUE)), collapse = "")
+  key <- gsub("[^A-Za-z0-9]+", "_", paste("hintfz", name, paste(unlist(hints), collapse = "_")))
+  f <- file.path(GBIF_DIR, paste0(substr(key, 1, 180), ".json"))
+  if (!file.exists(f)) {
+    res <- try(fromJSON(paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name, reserved = TRUE), q)), silent = TRUE)
+    if (inherits(res, "try-error")) res <- list(matchType = "ERROR")
+    write_json(res, f, auto_unbox = TRUE)
+  }
+  res <- fromJSON(f)
+  if (is.null(res$usageKey) || identical(res$matchType, "NONE"))
+    return(list(taxonID = NA_character_, acceptedName = NA_character_, rank = NA_character_, matchType = res$matchType %||% "NONE", kingdom = NA_character_, canonicalName = NA_character_))
+  list(taxonID = paste0("https://www.gbif.org/species/", res$usageKey),
+       acceptedName = if (identical(res$status, "SYNONYM")) sub(" \\(.*$|, [0-9]{4}$", "", res$species %||% res$scientificName) else NA_character_,
+       rank = tolower(res$rank %||% NA_character_), matchType = res$matchType, kingdom = res$kingdom %||% NA_character_,
+       canonicalName = res$canonicalName %||% NA_character_)
+}
+
+# Linnaean ranks, top down, for make_taxa()'s rank check; ranks not listed are not compared.
+TAXON_RANK_ORDER <- c(kingdom = 1, phylum = 2, subphylum = 2.5, class = 3, subclass = 3.5, order = 4, suborder = 4.5,
+                      superfamily = 4.8, family = 5, subfamily = 5.5, tribe = 5.7, genus = 6, subgenus = 6.5,
+                      species = 7, subspecies = 8, variety = 8, form = 8)
+# GBIF backbone kingdom usage keys (0 is incertae sedis): a __taxa taxonID with one
+# of these keys names a whole kingdom, right only for a row whose taxonRank is kingdom.
+GBIF_KINGDOM_KEYS <- 0:8
+kingdom_taxonID <- function(taxonID) {
+  id <- as.character(taxonID)
+  hit <- !is.na(id) & grepl("gbif\\.org/species/[0-9]+/?$", id)
+  k <- suppressWarnings(as.integer(sub("^.*/species/([0-9]+)/?$", "\\1", id)))
+  hit & !is.na(k) & k %in% GBIF_KINGDOM_KEYS
+}
+# write_table()'s twin of eco-validate's taxon_kingdom check (E6)
+check_kingdom_taxa <- function(taxa, name) {
+  if (is.null(taxa) || !"taxonID" %in% names(taxa)) return(invisible())
+  rk <- if ("taxonRank" %in% names(taxa)) tolower(taxa$taxonRank) else rep(NA_character_, nrow(taxa))
+  bad <- kingdom_taxonID(taxa$taxonID) & (is.na(rk) | rk != "kingdom")
+  if (any(bad)) stop(sprintf("%s: __taxa row(s) whose taxonID is a GBIF kingdom but whose taxonRank is not kingdom (E6): %s",
+                             name, paste(sprintf("%s=%s", taxa$taxon[bad], taxa$taxonID[bad]), collapse = ", ")))
 }
 
 # Build the `taxa` side table (standard E6) from code -> scientific name.
@@ -188,6 +272,23 @@ make_taxa <- function(taxon, scientificName, vernacularName = NA_character_, tax
   # an intended higher-rank match (allow_higher) carries that rank, not the "species" default (E6);
   # taxonRemarks is required only where taxonID is empty
   gr <- sapply(tx, `[[`, "rank")
+  # a match GBIF resolved above the rank the row names is the wrong taxon (batch 38:
+  # Cyprinella, Fundulus, Micropterus fell to gbif.org/species/1, Animalia). Refused
+  # whatever allow_higher says: a match at kingdom, phylum or class unless the row
+  # says it is at that rank; and, for a row with a declared rank other than the
+  # "species" default, any match above that rank. With exact = FALSE the caller
+  # repairs rows itself (gbif_taxon_hinted()), so this is a message there, and
+  # write_table() still refuses a kingdom taxonID on a row below kingdom.
+  decl <- tolower(rep_len(it$taxonRank, nrow(it))); g <- tolower(gr)
+  dr <- unname(TAXON_RANK_ORDER[decl]); mr <- unname(TAXON_RANK_ORDER[g])
+  high <- !skip & !is.na(g) & g %in% c("kingdom", "phylum", "class") & decl != g
+  above <- !skip & !is.na(mr) & !is.na(dr) & decl != "species" & mr < dr
+  if (any(high | above)) { w <- which(high | above)
+    (if (exact) stop else message)("make_taxa(): GBIF matched above the taxon's rank for ",
+         paste(sprintf("%s %s (taxonRank %s, GBIF %s %s)", it$taxon[w], it$scientificName[w], decl[w], g[w], it$taxonID[w]),
+               collapse = "; "),
+         ". Give a lookupName GBIF holds, repair with gbif_taxon_hinted(), or list the code in ",
+         "no_key with a taxonRemarks saying GBIF has no match (E6).") }
   up <- it$taxon %in% allow_higher & it$gbifMatchType == "HIGHERRANK" & it$taxonRank == "species" & !is.na(gr)
   if (any(up)) { it[up, taxonRank := gr[up]]
     message("  make_taxa(): taxonRank from GBIF for allow_higher taxa: ", paste(sprintf("%s=%s", it$taxon[up], gr[up]), collapse = ", ")) }
@@ -340,6 +441,13 @@ check_dataset_meta <- function(dataset, long, units = NULL, part = FALSE) {
     if (length(never)) p <- c(p, sprintf("E10: taxonInclusion = recorded but %d taxon/taxa never recorded: %s",
                                          length(never), paste(head(never, 10), collapse = ", ")))
   }
+  sc <- dataset$subsampleColumn                            # E10: the column holding the identified fraction
+  if (!is.null(sc)) {
+    if (!(is.character(sc) && length(sc) == 1 && startsWith(sc, "obs_") && sc %in% names(long)))
+      p <- c(p, "E10: subsampleColumn must name an obs_ column of the core table")
+    else { v <- long[[sc]]
+      if (!is.numeric(v) || any(!is.na(v) & !(v > 0 & v <= 1))) p <- c(p, sprintf("E10: subsampleColumn %s must hold a fraction in (0, 1] or NA", sc)) }
+  }
   tw <- dataset$taxaWithheld
   if (!is.null(tw)) {
     if (!is.character(tw) || !length(tw) || any(!nzchar(trimws(tw)))) p <- c(p, "E10: taxaWithheld must be a character vector of taxon names")
@@ -401,6 +509,7 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
     if (length(nokey)) stop(sprintf("%s: __taxa row(s) with no taxonID need taxonRemarks saying why (E6): %s",
                                     name, paste(nokey, collapse = ", ")))
   }
+  check_kingdom_taxa(taxa, name)
   if (!is.null(survey_taxa) && !all(survey_taxa$taxon %in% long$taxon))
     stop(sprintf("%s: __survey_taxa lists taxa with no core rows", name))
   if (!is.null(taxa)) {
@@ -441,10 +550,12 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
 # part) and `build(periods)` returns the core rows of those periods, so only one
 # part is in memory at a time. Each part is validated as written; what needs the
 # whole table (taxonInclusion, __taxa against the core, the E4.2 taxon set across
-# parts, the summary) is checked on the union. __dataset.json gains `parts`
+# parts, the summary) is checked on the union. With `survey_taxa` (E4.2: the taxa
+# surveyed for differ between surveys), each part is checked against the
+# __survey_taxa rows for its units instead of against part 1's taxon set. __dataset.json gains `parts`
 # (file, periods, n_rows), which eco-validate checks against the files.
 write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods = NULL, units = NULL,
-                              traps = NULL, script = NULL) {
+                              traps = NULL, survey_taxa = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name), is.list(parts), length(parts) >= 2,
             is.function(build), !anyDuplicated(unlist(parts)))
   dir <- file.path(OUT_DIR, paste0(name, ".parts"))
@@ -460,11 +571,14 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
     if (!all(unique(long$period) %in% parts[[k]])) stop(tag, ": rows outside the part's periods")
     mp <- check_dataset_meta(dataset, long, units, part = TRUE)
     if (length(mp)) stop(sprintf("%s fails the metadata contract: %s", tag, paste(mp, collapse = "; ")))
-    v <- validate_eco(long, unit_kind = dataset$unitKind)
+    # with __survey_taxa (E4.2), each part is checked against the rows that can match its surveys
+    st_k <- if (is.null(survey_taxa)) NULL else if ("unit" %in% names(survey_taxa)) survey_taxa[unit %in% long$unit] else survey_taxa
+    v <- validate_eco(long, survey_taxa = st_k, unit_kind = dataset$unitKind)
     if (!v$ok) stop(sprintf("%s fails validate_eco: %s", tag, paste(v$problems, collapse = "; ")))
     if (is.null(cols)) cols <- names(long) else if (!identical(names(long), cols)) stop(tag, ": columns differ from part 1")
     tx <- sort(unique(long$taxon))
-    if (is.null(taxa_set)) taxa_set <- tx else if (!identical(tx, taxa_set))
+    if (!is.null(survey_taxa)) taxa_set <- sort(union(taxa_set, tx))   # taxa surveyed for differ between surveys
+    else if (is.null(taxa_set)) taxa_set <- tx else if (!identical(tx, taxa_set))
       stop(tag, ": taxon set differs from part 1 (E4.2: every survey carries every taxon)")
     b <- long[, .(m = max(y)), by = taxon]
     best <- if (is.null(best)) b else rbind(best, b)[, .(m = max(m)), by = taxon]
@@ -493,10 +607,15 @@ write_table_parts <- function(parts, build, name, dataset, taxa = NULL, periods 
     nokey <- taxa$taxon[(is.na(taxa$taxonID) | !nzchar(taxa$taxonID)) & (is.na(rem) | !nzchar(trimws(rem)))]
     if (length(nokey)) stop(sprintf("%s: __taxa row(s) with no taxonID need taxonRemarks saying why (E6): %s", name, paste(nokey, collapse = ", ")))
   }
+  check_kingdom_taxa(taxa, name)
   if (!is.null(taxa)) { stopifnot(setequal(taxa$taxon, taxa_set)); fwrite(taxa, file.path(OUT_DIR, paste0(name, "__taxa.csv"))) }
   if (!is.null(periods)) fwrite(periods, file.path(OUT_DIR, paste0(name, "__periods.csv")))
   if (!is.null(units))   fwrite(units,   file.path(OUT_DIR, paste0(name, "__units.csv")))
   if (!is.null(traps))   fwrite(traps,   file.path(OUT_DIR, paste0(name, "__traps.csv")))
+  if (!is.null(survey_taxa)) {
+    if (!all(survey_taxa$taxon %in% taxa_set)) stop(sprintf("%s: __survey_taxa lists taxa with no core rows", name))
+    fwrite(survey_taxa, file.path(OUT_DIR, paste0(name, "__survey_taxa.csv")))
+  }
   s <- list(n_rows = n_rows, n_units = length(units_seen), n_taxa = length(taxa_set),
             n_periods = length(unique(unlist(lapply(manifest, `[[`, "periods")))),
             n_occasions = if (length(occ_seen)) length(occ_seen) else 1L, n_surveys = n_surveys,

@@ -1,0 +1,60 @@
+{
+  "table": "nakashima_2024_kanagawa_nestpred_occ",
+  "title": "Time to first predation of 32 camera-monitored artificial nests by the invasive Pallas's squirrel and the large-billed crow, Kanagawa, Japan, 2020",
+  "creator": "Nakashima, Yoshihiro",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.kkwh70sbn",
+  "sourceURL": "https://doi.org/10.5061/dryad.kkwh70sbn",
+  "citation": "Nakashima, Y. (2024). Data and code for implementing time-to-detection occupancy model [Dataset]. Dryad. https://doi.org/10.5061/dryad.kkwh70sbn",
+  "paperDOI": "10.1002/ece3.70031",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Artificial cup nests baited with two quail eggs were placed about 2 m up trees in evergreen forest in the Futagoyama region, south-eastern Kanagawa, Japan, in five rounds of 7-10 nests between April and July 2020, and watched by camera traps. The time until the eggs were first taken records which predator came first, the invasive Pallas's (Formosan) squirrel or the native large-billed crow; the first predator censors the other. The authors fitted a two-species time-to-detection occupancy model to estimate the squirrels' net impact on nest success.",
+  "samplingProtocol": "Artificial cup nests (about 10 cm across, 6 cm deep) with two quail eggs, about 2 m up a tree, at least 300 m apart, each watched by a camera trap (Browning Strike Force) for up to 14 days; five rounds of 7-10 nests, April-July 2020; the time until the eggs were first preyed upon and by which species.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "One survey per station (no occasion); the survey ends when the resource is taken or monitoring stops. Replicated within the survey by the time to detection (ruling 2026-11-06).",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Futagoyama region, south-eastern Kanagawa Prefecture, Japan (no coordinates deposited)",
+  "temporalCoverage": "2020-04/2020-07",
+  "covariateNote": "obs_ttd_days: days from placement to the species' first take (y = 1), or to the end of the survey of that resource (y = 0: the other species took it first, or monitoring ended). obs_ttd_censored: 1 where the time is censored (y = 0), 0 where it is the species' detection time.",
+  "notShipped": {
+    "code": "the authors' Stan and R code"
+  },
+  "notes": "Time to detection (ruling 2026-11-06): y = 1 for the species that took the resource first; the other species is censored at that time (competing risks), so its obs_ttd_days is the time the survey of that resource ended rather than a fixed survey length. Stations are the 32 nest locations of five rounds (rounds not deposited per nest). Censoring is at the nest's 14-day window or at the time the other predator took the eggs (cens_a squirrels, cens_b crows; the README's comment block, which names red foxes and raccoon dogs, is copied from Case 2).",
+  "summary": {
+    "n_rows": 64,
+    "n_units": 32,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 32,
+    "y_values": "0,1",
+    "prop_zero": 0.688,
+    "n_traps": 1,
+    "n_zero": 44,
+    "n_positive": 20,
+    "n_units_detected": 20,
+    "max_y": 1
+  },
+  "sampleFloor": "below (no replication)",
+  "columns": ["unit", "taxon", "y", "obs_ttd_days", "obs_ttd_censored"],
+  "coreMd5": "ec302512e1afbc67011fc9f43fdd1f97",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "5fc22fe3fbb637310459ed64f473bf77"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/nakashima_2024_japan_ttd_occ.R",
+  "buildDate": "2026-11-06"
+}

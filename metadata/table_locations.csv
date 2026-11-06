@@ -1,0 +1,511 @@
+table,lat,lon,precision,extent_km,n_points,source,basis
+addis_2026_rmap_amph_dynocc,41.9,-108.2,state,633,333,unit coordinates,unit_decimalLatitude
+ademola_2021_ukaguru_praomys_cjs,-6.7,37.5,region,100,,place name,"centre of stated coord range, Ukaguru Mts"
+ahizi_2021_civ_crocodylians_occ,7.5,-5.5,country,700,,place name,Cote d'Ivoire centroid
+alchokhachy_2024_duckcreek_bnt_cjs,45.6,-110.6,region,,,place name,"Duck Creek, Yellowstone tributaries, south-central Montana"
+alchokhachy_2024_duckcreek_yct_cjs,45.6,-110.6,region,,,place name,"Duck Creek, Yellowstone tributaries, south-central Montana"
+allen_2021_nj_lanternfly_edna,40.1,-75.0,region,130,,place name,centre of stated coord range
+amir_2022_seasia_coabundance_count,2.5,105.0,multi,2500,,place name,"centre of Sumatra, Malaysia, Thailand, Singapore, Borneo"
+ancona_2016_isabel_booby_cjs,21.9,-105.9,site,,,place name,"stated coords, Isla Isabel"
+arango_2025_mesamphiagrion_apr_cjs,4.8,-75.4,region,300,,place name,Colombian Central Cordillera high Andes
+arango_2025_mesamphiagrion_junjul_cjs,4.8,-75.4,region,300,,place name,Colombian Central Cordillera high Andes
+arango_2026_rhionaeschna_dry_cjs,4.8,-75.6,region,300,,place name,Colombian Central and Occidental Cordilleras
+arango_2026_rhionaeschna_rainy_cjs,4.8,-75.6,region,300,,place name,Colombian Central and Occidental Cordilleras
+armstrong_2024_hydrilla_dynocc,37.5,-77.5,site,0,735,unit coordinates,unit_decimalLatitude in __units
+arsocivil_2019_scotland_dolphin_rd,57.0,-3.4,region,200,,place name,centre of Moray Firth and Tay estuary
+arsocivil_2019_scotland_dolphincalf_cjs,57.0,-3.4,region,200,,place name,centre of Moray Firth and Tay estuary
+asfaw_2025_omo_carniv_occ,6.0,35.8,region,100,,place name,Omo National Park
+banik_2025_dollyvarden_ms,68.6,-137.7,region,300,,place name,centre of 5 named rivers
+barea_2021_sierran_butterfly_exact_count,37.1,-3.4,region,62,21,unit coordinates,unit_decimalLatitude in __units
+barea_2021_sierranevada_butterfly_count,37.1,-3.4,region,66,7,unit coordinates,unit_decimalLatitude in __units
+barrile_2022_bridgerteton_toad_msrd,43.0,-110.3,region,100,,place name,centre of Wyoming Range and Wind River Range creeks
+barros_2024_mostela_weasel_occ,38.5,-8.7,region,80,,place name,centre of 2 stated site coords
+barrueto_2023_nwt_grizzly_scr,64.0,-110.0,region,200,,place name,stated array centroid
+battaile_2023_sacramento_sturgeon_count,40.2,-122.2,region,150,,place name,"upper Sacramento River, Red Bluff to Redding reach"
+bauer_2022_neshrubland_birds_count,42.9,-70.6,multi,300,,place name,"centre of S Maine, seacoast NH, Cape Cod"
+bauwens_2019_belgium_adder_ms,50.6,4.6,country,250,,place name,Belgium centroid
+bedson_2021_holmemoss_hare_cam_ds,53.5,-1.9,site,,,place name,Holme Moss (OS SE 40 39 area)
+bedson_2021_holmemoss_hare_therm_ds,53.5,-1.9,site,,,place name,Holme Moss (OS SE 40 39 area)
+bedson_2021_holmemoss_hare_vis_ds,53.5,-1.9,site,,,place name,Holme Moss (OS SE 40 39 area)
+bedwell_2020_sierranevada_edna_binom,37.5,-119.3,region,300,,place name,Sierra Nevada California
+belder_2020_nsw_brthornbill_cjs,-35.4,147.5,region,70,8,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_diamondfiretail_cjs,-35.6,147.3,region,86,3,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_flamerobin_cjs,-35.5,147.4,region,71,10,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_greyshrikethrush_cjs,-35.5,147.4,region,96,19,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_redbrowedfinch_cjs,-35.5,147.4,region,92,8,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_redcappedrobin_cjs,-35.3,147.5,region,69,7,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_rufouswhistler_cjs,-35.4,147.5,region,93,9,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_speckledwarbler_cjs,-35.4,147.6,region,58,6,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_superbfairywren_cjs,-35.5,147.4,region,96,21,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_wbbabbler_cjs,-35.6,147.3,region,73,5,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_williewagtail_cjs,-35.5,147.4,region,95,16,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_yellowthornbill_cjs,-35.4,147.5,region,73,14,unit coordinates,unit_decimalLatitude
+belder_2020_nsw_yrthornbill_cjs,-35.4,147.4,region,71,16,unit coordinates,unit_decimalLatitude
+benoit_2018_costello_fish_count,45.6,-78.3,site,,,place name,"Costello Creek, Algonquin PP"
+betancur_2021_antioquia_birds_count,6.3,-75.0,locality,40,5,unit coordinates,unit_lat
+bhattacharya_2022_himachal_bear_occ,31.5,78.0,locality,50,,place name,Rupi Bhaba and Daranghati WLS
+bianchi_2021_furnas_carniv_occ,-20.2,-47.4,locality,30,,place name,"Furnas do Bom Jesus SP, Pedregulho"
+bisht_2019_corbett_tiger_rd,29.6,78.8,locality,40,,place name,Corbett National Park
+bison_2024_montblanc_hare_dynocc,46.0,6.9,locality,19,46,unit coordinates,unit_decimalLatitude
+blount_2025_neturkiye_carniv_count,40.3,42.6,locality,44,149,unit coordinates,unit_decimalLatitude
+blount_2025_neturkiye_lynx_occ,40.3,42.6,locality,44,149,unit coordinates,unit_decimalLatitude
+boone_2023_minnesota_bombus_count,45.3,-93.7,state,538,25,unit coordinates,unit_decimalLatitude
+boone_2023_minnesota_bombus_exact_count,45.3,-93.7,state,539,25,unit coordinates,unit_decimalLatitude
+bornand_2014_gantrisch_plant_occ,46.7,7.5,locality,5,,place name,"Gurnigel-Gantrisch, study area coordinates in the paper (46°44'20""N, 7°26'45""E)"
+botsch_2020_tits_territory_count,46.8,8.2,country,300,,place name,Switzerland centroid
+bradferlawrence_2025_ukwood_beetle_comm,54.7,-1.9,state,644,,bounding box,geographicCoverage.boundingBox
+bradferlawrence_2025_ukwood_bird_comm,54.7,-1.9,state,644,,bounding box,geographicCoverage.boundingBox
+bradferlawrence_2025_ukwood_mammal_comm,54.7,-1.9,state,644,,bounding box,geographicCoverage.boundingBox
+bradferlawrence_2025_ukwood_plant_comm,54.7,-1.9,state,644,,bounding box,geographicCoverage.boundingBox
+braga_2024_saopaulo_guan_occ,-22.3,-48.6,state,500,,place name,Sao Paulo state
+brinck_2022_maunakea_palila_count,19.9,-155.5,locality,40,,bounding box,geographicCoverage.boundingBox
+broekhuis_2020_mara_cheetah_scr,-1.4,35.1,region,60,,place name,stated search-pixel centroid
+bruce_2021_wisconsin_monarch_nmix,44.2,-91.1,state,469,60,unit coordinates,unit_decimalLatitude
+bruce_2022_wettropics_cat_occ,-17.9,145.7,region,250,,place name,centre of named Wet Tropics parks
+buhl_2023_ndmt_grassbirds_count,47.8,-103.3,state,786,,bounding box,geographicCoverage.boundingBox
+buhl_2023_ndmt_grassbirds_exact_count,47.8,-103.3,state,786,,bounding box,geographicCoverage.boundingBox
+burgar_2018_alberta_fisher_count,53.4,-112.9,locality,45,,place name,Beaver Hills hair-snag array of same study (stated range)
+burgar_2018_alberta_fisher_scr,53.4,-112.9,locality,45,,place name,"stated range if UTM 12N, Beaver Hills"
+burgstahler_2026_wa_shrubsteppe_mamm_occ,47.0,-119.5,region,300,,place name,eastern Washington shrub-steppe
+carro_2023_donana_tracks_count,37.0,-6.5,locality,38,5,unit coordinates,unit_decimalLatitude
+carter_2021_louisiana_lamp_calls,31.1,-91.5,state,689,,bounding box,geographicCoverage.boundingBox
+cayuela_2020_bombina_cjs,46.6,2.4,country,900,,place name,France centroid
+cecala_2026_kiawah_terrapin_cjs,32.6,-80.1,locality,10,,place name,Kiawah River
+cecconi_2025_cricket_occ,38.0,-84.5,region,100,,place name,"Inner Bluegrass, Kentucky"
+chabanne_2017_perth_dolphin_msrd,-32.0,115.8,locality,45,,place name,Perth metropolitan waters
+chambert_2018_pigfrog_acoustic_count,31.0,-84.0,multi,1500,,place name,"south-eastern USA, no location given"
+chambert_2018_plethodon_fpocc,38.5,-78.5,region,100,,place name,Shenandoah National Park
+chambert_2018_treefrog_acoustic_count,31.0,-84.0,multi,1500,,place name,"south-eastern USA, no location given"
+chandler_2009_alfl_removal,42.4,-72.7,region,100,,place name,western Massachusetts
+chanex_2026_swissalps_amph_count,46.5,7.8,region,150,78,unit coordinates,unit_decimalLatitude
+chauvenet_2014_crundale_serotine_ms,51.2,1.0,site,,,place name,"Crundale, Kent"
+chauvenet_2014_hollingbury_serotine_ms,50.9,-0.1,site,,,place name,"Hollingbury, Brighton"
+cleavitt_2017_hbef_plamac_ms,43.9,-71.8,locality,8,,place name,"stated range, Hubbard Brook EF"
+cleavitt_2017_hbef_plaorb_ms,43.9,-71.8,locality,8,,place name,"stated range, Hubbard Brook EF"
+clipp_2024_monongahela_comm,38.7,-79.8,region,150,,place name,Monongahela National Forest
+clipp_2024_wvprivate_comm,39.1,-80.3,state,300,146,unit coordinates,decimalLatitude in __units
+cove_2018_lowerkeys_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
+cove_2018_lowerkeys_exact_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
+cox_2018_qubs_treeswallow_cjs,44.6,-76.3,site,,,place name,Queen's University Biological Station
+croose_2019_michigan_mustelid_dynocc,46.4,-87.0,state,450,,place name,Upper Peninsula of Michigan
+crunchant_2020_issa_chimp_occ,-5.5,30.6,locality,16,3,unit coordinates,unit_lat
+cubaynes_2021_svalbard_polarbear_ms,78.5,17.0,region,500,,place name,Svalbard
+culina_2019_uk_daubenton_ms,54.0,-2.5,country,900,,place name,"UK centroid, no location given"
+culina_2019_uk_natterer_ms,54.0,-2.5,country,900,,place name,"UK centroid, no location given"
+cumming_2021_ngami_waterbird_count,-20.4,22.8,locality,10,2,unit coordinates,unit_lat
+curtis_2021_sannicolas_ziphius_cjs,32.8,-118.9,locality,50,,place name,"stated coords, San Nicolas Basin"
+curveirasantos_2019_guadiana_carn_occ,37.7,-7.7,locality,30,,place name,"stated coords, Guadiana Valley NP"
+curveirasantos_2026_phinda_cheetah_scr,-27.9,32.2,locality,20,,place name,stated array centroid
+curveirasantos_2026_phinda_genet_scr,-27.9,32.2,locality,20,,place name,stated array centroid
+curveirasantos_2026_phinda_hyena_scr,-27.9,32.2,locality,20,,place name,stated array centroid
+curveirasantos_2026_phinda_leopard_scr,-27.9,32.2,locality,20,,place name,stated array centroid
+curveirasantos_2026_phinda_lion_scr,-27.9,32.2,locality,20,,place name,stated array centroid
+curveirasantos_2026_phinda_serval_scr,-27.9,32.2,locality,20,,place name,stated array centroid
+davis_2016_feralswine_removal,33.5,-98.0,multi,900,,place name,centre of Oklahoma and Texas
+davis_2019_kasungu_hyaena_scr,-13.1,33.1,locality,40,,place name,stated array centre
+davis_2019_kasungu_leopard_scr,-13.1,33.1,locality,40,,place name,stated array centre
+deere_2017_safe_mamm_comm,4.7,117.6,locality,40,10,unit coordinates,unit_decimalLatitude
+deere_2017_safe_mamm_exact_comm,4.7,117.6,locality,39,115,unit coordinates,unit_decimalLatitude
+deprengerlevin_2024_astragalus_ms,38.5,-106.9,locality,30,,place name,Gunnison Basin
+deprengerlevin_2024_astragalus_msrd,38.5,-106.9,locality,30,,place name,Gunnison Basin
+dettling_2021_marin_riparian_count,38.0,-122.7,region,50,,place name,Marin County protected areas
+dezeeuw_2024_nl_waterbeetle_nmix,52.6,5.0,country,250,,place name,Netherlands western and northern peat areas
+direnzo_2025_elcope_espadarana_cjs,8.6,-80.6,site,,,place name,"stated coords, El Cope"
+direnzo_2025_elcope_espadarana_ms,8.6,-80.6,site,,,place name,"stated coords, El Cope"
+distiller_2020_cockscomb_jaguar_scr,16.8,-88.5,locality,20,,place name,Cockscomb Basin WS
+dittman_2025_genesee_sturgeon_count,43.2,-77.7,locality,11,2,unit coordinates,obs_latitude
+dominoni_2024_glasgow_bluetit_cjs,56.0,-4.5,region,60,,place name,Glasgow to Loch Lomond gradient
+dominoni_2024_glasgow_greattit_cjs,56.0,-4.5,region,60,,place name,Glasgow to Loch Lomond gradient
+dooley_2025_agapostemon_cjs,42.4,-71.1,locality,8,,place name,"Cambridge, Somerville, Medford"
+doser_2022_hbef_trends_dynocc,43.9,-71.8,locality,9,373,unit coordinates,unit_decimalLatitude
+doser_2022_neon2015_removal,44.1,-71.3,locality,5,80,unit coordinates,unit_decimalLatitude
+dougherty_2016_rustycrayfish_edna,46.1,-89.7,locality,39,261,unit coordinates,unit_decimalLatitude
+doyle_2025_chinalake_tortoise_scr,35.5,-117.0,site,,,place name,stated plot centroid
+duboisgagnon_2021_quebec_chorusfrog_occ,45.4,-73.2,region,150,,place name,"Monteregie, Quebec"
+dutta_2024_panna_carnivore_occ,24.6,80.0,locality,50,,place name,Panna Tiger Reserve
+dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolitan area (no site coordinates deposited)
+dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
+evans_2021_maine_marten_dynocc,45.3,-69.2,state,450,,place name,Maine centroid
+fabritius_2015_merikarvia_fritillary_cjs,61.9,21.6,locality,10,,place name,stated cell centre
+fabritius_2015_siitama_fritillary_cjs,61.6,24.1,locality,10,,place name,stated cell centre
+fabritius_2015_sorila_fritillary_cjs,61.5,23.9,locality,10,,place name,stated cell centre
+fancourt_2019_aus_catdingo_occ,-25.3,134.0,country,4000,,place name,"Australia centroid, sites not located"
+faveyts_2026_zwin_butterfly_count,51.4,3.3,site,0,12,unit coordinates,unit_decimalLatitude
+feldman_2023_quebec_wetland_comm,51.0,-74.0,state,450,,place name,"latitude range stated (49.1-52.8 N); no longitude deposited, placed mid-Quebec"
+feldman_2023_quebec_wetland_exact_comm,51.0,-74.0,state,450,,place name,"latitude range stated (49.1-52.8 N); no longitude deposited, placed mid-Quebec"
+feng_2021_nechina_mamm_binom,44.0,131.0,region,300,,place name,NE China forest on China-Russia border
+ferguson_2015_macon_bawa_fpocc,35.1,-83.3,region,51,272,unit coordinates,unit_decimalLatitude
+fidino_2018_chicago_mesocarn_dynocc,41.9,-87.8,region,80,,place name,Chicago metropolitan region
+fidino_2021_lincolnpark_birds_binom,41.9,-87.6,site,,,place name,"Lincoln Park, Chicago"
+finnegan_2024_afognak_deer_scr,58.3,-152.3,locality,30,,place name,"stated coords, Afognak Island"
+fiss_2024_pennsylvania_birds_aru_occ,40.0,-79.3,region,120,,place name,"SW Pennsylvania (Laurel Ridge, Ohiopyle, SGLs)"
+fiss_2024_pennsylvania_birds_count,40.0,-79.3,region,120,,place name,"SW Pennsylvania (Laurel Ridge, Ohiopyle, SGLs)"
+fogarty_2022_greatbasin_birds_count,39.0,-117.1,region,200,,place name,central Great Basin ranges
+ford_2025_iowa_grassbirds_count,40.9,-93.5,region,185,,bounding box,geographicCoverage.boundingBox
+fouchet_2016_kerguelen_cat_cjs,-49.4,69.5,region,150,,place name,"Grande Terre, Kerguelen"
+frank_2017_costarica_bats_comm,8.8,-83.0,region,150,,place name,southern Costa Rica countryside
+fraticelli_2026_zakouma_carniv_occ,10.8,19.6,region,80,,place name,Zakouma National Park
+freake_2016_hiwassee_hellbender_cjs,35.1,-84.3,region,150,,place name,Hiwassee River
+frimpong_2017_newriver_dynocc,36.6,-81.0,region,200,,place name,Upper and Middle New River basin
+frishkoff_2014_costarica_birds_binom,9.9,-84.1,country,400,,place name,"Costa Rica, four regions"
+fukaya_2022_kasumigaura_fish_mb,36.1,140.3,region,60,,place name,Lake Kasumigaura watershed
+furnas_2021_ncalifornia_carniv_comm,40.3,-121.7,state,559,496,unit coordinates,period_decimalLatitude
+galvez_2021_araucania_comm,-38.7,-72.6,state,300,,place name,La Araucania Region
+gapinski_2025_iowawrp_birds_occ,42.4,-94.0,state,377,,bounding box,geographicCoverage.boundingBox
+gapinski_2025_iowawrp_focal_count,42.4,-94.0,state,377,,bounding box,geographicCoverage.boundingBox
+gapinski_2025_iowawrp_point_occ,42.4,-94.0,state,377,,bounding box,geographicCoverage.boundingBox
+gardner_2018_nagarahole_tiger_oscr,12.1,76.2,locality,40,,place name,Nagarahole National Park
+gaynor_2020_gorongosa_mamm_binom,-18.9,34.4,region,60,,place name,Gorongosa National Park
+gelle_2026_mauritius_parakeet_ms,-20.4,57.5,locality,10,,place name,"Black River Gorges, Mauritius"
+glorioso_2020_bigthicket_calls,30.1,-94.1,locality,15,52,unit coordinates,unit_decimalLatitude
+glorioso_2020_bigthicket_ves,30.1,-94.1,locality,15,52,unit coordinates,unit_decimalLatitude
+glorioso_2021_louisiana_turtle_count,30.3,-92.1,region,236,,bounding box,geographicCoverage.boundingBox
+glorioso_2025_atchafalaya_calls,30.3,-91.6,region,86,70,unit coordinates,unit_decimalLatitude
+glorioso_2025_atchafalaya_ves,30.3,-91.6,region,86,70,unit coordinates,unit_decimalLatitude
+glorioso_2026_bayouteche_hchr_cjs,29.7,-91.5,locality,15,,bounding box,geographicCoverage.boundingBox
+glorioso_2026_bayouteche_hcin_cjs,29.7,-91.5,locality,15,,bounding box,geographicCoverage.boundingBox
+glorioso_2026_bayouteche_hsqu_cjs,29.7,-91.5,locality,15,,bounding box,geographicCoverage.boundingBox
+glorioso_2026_bayouteche_pcru_cjs,29.7,-91.5,locality,15,,bounding box,geographicCoverage.boundingBox
+glorioso_2026_bayouteche_pipe_count,29.8,-91.5,locality,15,4,unit coordinates,unit_decimalLatitude
+goldberg_2015_manas_leopard_scr,26.9,91.0,locality,30,,place name,stated array centroid
+goldingay_2022_grafton_underpass_occ,-29.8,153.0,site,,,place name,"stated coords, Glenugie"
+goldingay_2022_port_underpass_occ,-31.5,152.8,site,,,place name,"stated coords, Port Macquarie"
+goldingay_2022_richmond_mammals_dynocc,-28.7,152.7,locality,25,,place name,Richmond Range NP
+goldingay_2026_bendigo_camera_occ,-36.7,144.3,locality,20,,place name,Diamond Hill and Sedgwick SF near Bendigo
+goldingay_2026_diamondhill_nestbox_occ,-36.8,144.3,site,,,place name,"Diamond Hill, Bendigo Regional Park"
+goldman_2023_pnw_pika_dynocc,42.5,-120.0,multi,800,,place name,centre of 5 named park units
+goldman_2025_pennsylvania_grouse_occ,41.0,-77.6,state,450,,place name,Pennsylvania centroid
+grant_2023_canaanvalley_amph_count,39.1,-79.4,locality,17,,bounding box,geographicCoverage.boundingBox
+green_2018_ncal_fisher_scr,41.0,-123.5,region,250,,place name,northwestern California
+green_2018_ncal_mesocarn_dynocc,41.0,-123.5,region,250,,place name,northwestern California
+gustafson_2024_seward_gyrfalcon_dynocc,65.3,-164.5,region,300,,place name,Seward Peninsula
+gustafson_2024_seward_prey_count,64.8,-165.0,region,150,,place name,southern Seward Peninsula road corridors from Nome
+guzy_2018_southcarolina_anuran_comm,34.9,-81.6,region,80,,place name,Broad and Pacolet Rivers
+haas_2025_sweden_waterbird_count,58.3,15.7,country,1084,3724,unit coordinates,unit_decimalLatitude
+haas_2025_sweden_waterbird_exact_count,58.3,15.7,country,1084,,place name,"as haas_2025_sweden_waterbird_count (E7 sibling, same sectors)"
+haas_2025_sweden_waterbirdse_exact_count,58.3,15.7,country,1300,,place name,"as haas_2025_sweden_waterbirdsep_count (E7 sibling, same sectors)"
+haas_2025_sweden_waterbirdsep_count,58.3,15.7,country,1300,1645,unit coordinates,unit_decimalLatitude
+halstead_2025_yosemite_rasi_cjs,37.9,-119.4,site,,,place name,"Summit Meadow area, Yosemite NP"
+hamer_2017_wtp_growlingfrog_dynocc,-38.0,144.6,locality,15,,place name,"Western Treatment Plant, Werribee"
+hamer_2021_kooragang_amph_comm,-32.9,151.7,locality,10,,place name,Kooragang Island
+hamer_2024_hungary_amph_comm,47.2,19.5,country,500,,place name,Hungary centroid
+hamm_2013_satyr_ds,42.3,-85.0,state,250,,place name,lower Michigan (site not located)
+hanslowe_2022_marianas_rat_occ,13.7,145.0,region,162,,bounding box,geographicCoverage.boundingBox
+hartley_2024_cpraealtus_occ,-36.5,148.3,region,250,,place name,Australian Alps
+hastings_2018_forrester_philopatry_ms,54.8,-133.5,locality,15,,place name,Forrester Island Complex rookery
+hastings_2018_seak_philopatry_ms,56.0,-134.5,region,400,,place name,southeastern Alaska rookeries (Forrester Island to Graves Rocks)
+hastings_2018_seak_sealion_cjs,56.6,-135.3,region,450,,place name,centre of 4 named rookeries
+henden_2013_finnmark_birds_dynocc,70.0,25.0,state,400,,place name,Finnmark
+henry_2020_karoo_birds_comm,-32.1,23.4,state,696,1116,unit coordinates,"unit_decimalLatitude, obs_decimalLatitude"
+hepler_2018_serengeti_gazelle_occ,-2.5,34.9,region,53,194,unit coordinates,unit_decimalLatitude
+higgins_2022_utila_anole_ccr,16.1,-86.9,locality,15,,place name,Utila
+hinneberg_2022_limenitis_ccr,48.5,9.8,site,,,place name,stated cell centre near Merklingen
+hitchcock_2025_garden_hedgehog_count,,,none,,,none,no location in text (only the institution is named)
+holcomb_2017_suwannee_moccasinshell_occ,30.1,-83.0,region,183,34,unit coordinates,unit_decimalLatitude
+hollanders_2022_brindle_mfleayi_msdis,-28.4,153.1,locality,10,,place name,"Brindle Creek, Border Ranges"
+hollanders_2022_mfleayi_rdms,-28.5,153.2,region,60,,place name,centre of 3 named creeks
+hossack_2020_losttrail_toadfem_rd,48.2,-114.9,locality,16,,bounding box,geographicCoverage.boundingBox
+hossack_2020_losttrail_toadmale_rd,48.2,-114.9,locality,16,,bounding box,geographicCoverage.boundingBox
+hostetter_2020_minnesota_lynx_dynocc,47.6,-91.5,region,250,,place name,"NE Minnesota, Superior NF"
+hunter_2025_georgia_pinesavanna_occ,32.4,-83.4,state,394,161,unit coordinates,unit_decimalLatitude
+husemann_2015_ch_greenbul_cjs,-3.5,38.3,locality,5,,place name,"Chawia fragment, Taita Hills"
+husemann_2015_fu_greenbul_cjs,-3.4,38.4,locality,5,,place name,"Fururu fragment, Taita Hills"
+husemann_2015_mb_greenbul_cjs,-3.3,38.5,locality,5,,place name,"Mbololo fragment, Taita Hills"
+husemann_2015_nd_greenbul_cjs,-3.4,38.4,locality,5,,place name,"Ndiwenyi fragment, Taita Hills"
+husemann_2015_ng_greenbul_cjs,-3.4,38.3,locality,5,,place name,"Ngangao fragment, Taita Hills"
+iannarilli_2026_snapshoteurope_comm,48.5,12.4,multi,4954,263,unit coordinates,decimalLatitude in __units
+iknayan_2023_svalley_pollinator_occ,37.4,-122.1,locality,15,,place name,"Palo Alto, Mountain View, Sunnyvale"
+inbo_2026_flanders_abv_count,51.1,4.2,region,249,757,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_abv_exact_count,51.1,4.2,region,249,,place name,"as inbo_2026_flanders_abv_count (E7 sibling, same squares)"
+inbo_2026_flanders_alconegg_count,51.3,5.0,region,70,5,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_batwinter_count,51.0,4.1,region,229,291,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_butterfly_count,51.1,4.3,region,216,70,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_crestednewt_count,51.1,4.4,region,238,50,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_dragonfly_count,51.1,4.8,region,223,71,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_firesalamander_count,50.8,4.0,region,106,31,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_odonatasite_count,51.1,5.2,region,107,31,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_priobutterfly_count,51.1,4.3,region,241,126,unit coordinates,unit_decimalLatitude
+jacobson_2020_cookinlet_beluga_cjs,61.0,-150.5,region,250,,place name,Cook Inlet
+jhala_2024_india_tiger_binom,22.0,79.0,country,2500,,place name,India tiger landscapes
+johnson_2023_tweedsmuir_bombus_count,52.5,-125.7,locality,26,26,unit coordinates,unit_decimalLatitude in __units
+jones_2021_mdg_kittlitzplover_cjs,-23.4,43.7,region,300,,place name,south-west Madagascar saltmarsh (site not named)
+jones_2021_mdg_madagascarplover_cjs,-23.4,43.7,region,300,,place name,south-west Madagascar saltmarsh (site not named)
+jones_2021_mdg_whitefrontplover_cjs,-23.4,43.7,region,300,,place name,south-west Madagascar saltmarsh (site not named)
+jordan_2025_kapitia_skink_rd,-42.0,171.5,region,300,,place name,"West Coast, South Island NZ (CR taxon, kept coarse)"
+joshi_2025_shuklaphanta_leopard_occ,28.9,80.2,locality,35,,place name,Shuklaphanta National Park
+kanno_2022_bluehead_chub_cjs,34.5,-81.5,locality,10,,place name,"Indian Creek, Sumter NF"
+kanno_2022_creek_chub_cjs,34.5,-81.5,locality,10,,place name,"Indian Creek, Sumter NF"
+kanno_2022_mottled_sculpin_cjs,34.5,-81.5,locality,10,,place name,"Indian Creek, Sumter NF"
+karvemo_2024_nacka_grasssnake_cjs,59.3,18.1,site,,,place name,stated reserve centre
+katuwal_2025_parsakoshi_leopard_binom,27.0,85.8,region,300,,place name,Parsa to Koshi Tappu complex
+ke_2022_costarica_birds_exact_nmix,10.2,-85.4,region,93,150,unit coordinates,unit_decimalLatitude in __units
+ke_2022_costarica_birds_nmix,10.2,-85.4,region,95,19,unit coordinates,unit_decimalLatitude in __units
+kery_2005_mallard_count,46.8,8.2,country,300,,place name,Switzerland centroid (MHB)
+kery_2008_willowtit_occ,46.8,8.2,country,300,,place name,Switzerland centroid (MHB)
+kery_2010_crossbill_dynocc,46.8,8.2,country,300,,place name,Switzerland centroid (MHB)
+kery_2014_mhb_comm,46.8,8.2,country,350,,place name,Switzerland (national MHB grid)
+kery_2014_mhb_exact_comm,46.8,8.2,country,350,,place name,Switzerland (national MHB grid)
+khelifa_2021_seybouse_calexul_cjs,36.5,7.4,site,,,place name,stated coords (0.1 deg)
+killion_2023_idaho_mamm_comm,43.7,-114.4,region,55,,place name,centre of stated coord range
+king_2018_lakeerie_watersnake_cjs,41.6,-82.8,locality,25,,place name,western Lake Erie islands
+kleeman_2024_dixiefire_ranaboylii_occ,40.3,-120.9,region,179,,bounding box,geographicCoverage.boundingBox
+kleiven_2020_varanger_dynocc,70.4,30.0,region,120,,place name,Varanger Peninsula
+klmn_2026_klamath_landbird_count,41.5,-122.3,state,378,1616,unit coordinates,unit_decimalLatitude
+klmn_2026_klamath_landbird_exact_count,41.5,-122.3,state,378,,place name,"as klmn_2026_klamath_landbird_count (E7 sibling, same stations)"
+klymus_2023_niobrara_mussel_edna,42.7,-101.0,region,150,,place name,Niobrara National Scenic River (Valentine reach) and Agate Fossil Beds
+knape_2018_shoveler_count,58.5,15.5,state,550,,place name,"RT90 northings give 55.7-60.5 N; no eastings, placed mid southern Sweden"
+koester_2023_aldabra_reeffish_count,-9.4,46.3,locality,49,,bounding box,geographicCoverage.boundingBox
+koester_2023_aldabra_reeffishext_count,-9.4,46.3,locality,49,,bounding box,geographicCoverage.boundingBox
+koetke_2024_jprf_moose_count,54.6,-124.4,locality,30,,place name,John Prince Research Forest
+kuczkowska_2026_warsaw_owl_occ,52.2,21.1,locality,40,431,unit coordinates,unit_decimalLatitude
+kyaw_2024_myanmar_mamm_comm,21.0,96.0,country,1500,,place name,"Myanmar centroid, six PAs"
+lafferty_2024_estuaryfish_exact_mb,34.2,-119.3,region,88,14,unit coordinates,unit_decimalLatitude
+lafferty_2024_estuaryfish_mb,34.2,-119.3,region,86,4,unit coordinates,unit_decimalLatitude
+lafferty_2024_tidewatergoby_edna,34.2,-119.3,region,86,4,unit coordinates,unit_decimalLatitude
+laramie_2019_bruneau_trout_edna,42.3,-115.6,region,98,17,unit coordinates,unit_decimalLatitude
+law_2018_nsw_koala_occ,-30.5,152.5,region,300,,place name,north-east NSW state forests
+law_2021_nsw_koala_occ,-30.5,152.5,region,300,,place name,north-east NSW private forests
+laytonmatthews_2024_hornoya_gull_cjs,70.4,31.2,site,,,place name,Hornoya island
+lazenby_2021_tasmania_ltmouse_scr,-42.9,146.9,region,150,,place name,centre of 4 named southern Tasmanian sites
+lazenby_2021_tasmania_swamprat_scr,-42.9,146.9,region,150,,place name,centre of 4 named southern Tasmanian sites
+lebeuftaylor_2026_alpac_songbird_dynocc,55.5,-112.5,region,300,,place name,"Al-Pac FMA, NE Alberta"
+lebeuftaylor_2026_boreal_edges_aru_comm,55.1,-118.2,country,1241,564,unit coordinates,unit_decimalLatitude
+lebreton_1992_dipper_cjs,48.3,6.5,region,200,,place name,eastern France
+leipold_2025_duskygrouse_offtrail_count,45.6,-111.6,region,250,,place name,Montana FWP region 3
+leipold_2025_duskygrouse_roads_count,46.9,-112.0,state,600,,place name,western Montana FWP regions 1-5
+leith_2022_africanpenguin_ms,-34.0,18.6,locality,70,,place name,centre of 2 stated cell centres
+lenzi_2024_alpine_toad_cjs,46.5,8.5,region,300,,place name,Swiss Alps (site not named)
+leone_2019_minnesota_monarch_nmix,46.0,-96.0,region,300,,place name,western Minnesota prairies
+letourneux_2022_snowgoose_ms,50.0,-72.0,multi,3000,,place name,eastern North America population range
+levy_2025_sclerodawsoniae_ms,39.3,-108.2,locality,28,3,unit coordinates,unit_decimalLatitude
+levy_2025_scleroglaucus_ms,38.8,-108.3,locality,48,4,unit coordinates,unit_decimalLatitude
+lindenmayer_2022_nsw_woodland_birds_comm,-35.0,148.0,state,500,,place name,SE Australia temperate woodland farms
+lindstrom_2025_sweden_summerpoints_count,59.9,15.9,country,1586,340,unit coordinates,decimalLatitude in __units
+lindstrom_2025_sweden_winterpoints_count,59.8,15.8,country,1571,413,unit coordinates,unit_decimalLatitude
+lloyd_2020_marion_elephantseal_ms,-46.9,37.7,site,,,place name,Marion Island
+lombardi_2022_virginia_woodrat_occ,37.5,-80.0,region,300,,place name,western Virginia
+ludwig_2026_lusatia_capercaillie_cjs,51.6,14.0,region,80,,place name,Lower Lusatia
+lyngdoh_2023_spiti_carniv_occ,32.2,78.0,region,100,,place name,"Spiti Valley (Chandratal, Kibber, Pin)"
+macario_2026_serido_sparrow_rd,-6.6,-37.2,site,,,place name,ESEC Serido
+mackenzie_2021_stexas_mesocarniv_dynocc,26.8,-97.8,region,300,,place name,South Texas
+maihoff_2023_berchtesgaden_bees_count,47.6,12.9,locality,16,33,unit coordinates,unit_decimalLatitude in __units
+malachowski_2026_koloa_rd,22.2,-159.5,locality,5,,place name,Hanalei NWR
+malhotra_2021_loslagos_comm,-41.5,-72.5,state,400,,place name,Los Lagos Region
+manzo_2024_pedregulho_tayra_dog_occ,-20.2,-47.5,locality,30,,place name,"Pedregulho, Sao Paulo"
+maphisa_2019_ingula_birds_comm,-28.2,29.6,locality,15,,place name,"stated coords, Ingula"
+marescot_2018_serengeti_hyena_f_ms,-2.5,34.8,region,150,,place name,Serengeti National Park
+marescot_2018_serengeti_hyena_m_ms,-2.5,34.8,region,150,,place name,Serengeti National Park
+margenau_2021_rowsongbirds_nmix,39.0,-79.5,state,500,,place name,central Appalachians
+marshall_2020_saltmarshsparrow_nmix,41.5,-71.5,multi,900,,place name,tidal marshes Maine to Maryland (38.0-44.9 N)
+martel_2020_tidewatergoby_edna,37.1,-121.6,country,1180,107,unit coordinates,unit_decimalLatitude
+martinezvillegas_2024_castilleja_cjs,23.6,-102.5,country,2000,,place name,"Mexico centroid, populations not located"
+martinezvillegas_2024_flaveria_cjs,23.6,-102.5,country,2000,,place name,"Mexico centroid, populations not located"
+martinezvillegas_2024_govenia_cjs,23.6,-102.5,country,2000,,place name,"Mexico centroid, populations not located"
+martinezvillegas_2024_mammillaria_cjs,23.6,-102.5,country,2000,,place name,"Mexico centroid, populations not located"
+martinezvillegas_2024_neobuxbaumia_cjs,23.6,-102.5,country,2000,,place name,"Mexico centroid, populations not located"
+mattioli_2018_arezzo_wolf_scr,43.5,11.9,region,80,,place name,Arezzo province
+mccaffery_2024_elwha_mammals_count,48.0,-123.6,locality,36,,bounding box,geographicCoverage.boundingBox
+mcknight_2019_kittiwake_fledgling_ms,61.2,-146.6,site,,,place name,"stated coords, Shoup Bay"
+mcknight_2019_kittiwake_recruit_ms,61.2,-146.6,site,,,place name,"stated coords, Shoup Bay"
+mcnew_2025_sagegrouse_lek_count,,,none,,,none,no place stated (leks not located)
+mctigue_2023_nwarkansas_comm,36.0,-94.0,region,80,,place name,"Fayetteville to Ozarks, NW Arkansas"
+mellado_2021_carollia_injury_ms,-22.4,-42.0,locality,10,,place name,Uniao Biological Reserve
+mellado_2021_carollia_tagloss_ms,-22.4,-42.0,locality,10,,place name,Uniao Biological Reserve
+merkes_2016_wabash_carp_edna,40.5,-87.0,locality,20,,place name,"3 named Wabash sites, Tippecanoe County"
+messerman_2020_amb_annulatum_cjs,39.8,-98.6,country,4000,,place name,"USA centroid, no location given"
+messerman_2020_amb_maculatum_cjs,39.8,-98.6,country,4000,,place name,"USA centroid, no location given"
+messerman_2020_amb_texanum_cjs,39.8,-98.6,country,4000,,place name,"USA centroid, no location given"
+mills_2019_kibale_carnivore_comm,0.3,30.3,region,124,9,unit coordinates,unit_lat
+mizel_2018_alaska_sparrows_count,64.0,-150.0,state,1500,,place name,Alaska centroid
+moe_2020_hunder_trout_ld,61.2,10.4,locality,50,,place name,"stated coords, Hunderfossen"
+moinet_2024_nz_mouse_scr,-40.4,175.6,locality,10,,place name,"near Massey University, Palmerston North"
+monterroso_2020_iberia_carniv_comm,40.5,-6.7,state,689,21,unit coordinates,unit_decimalLatitude
+morganti_2017_carmagnola_pallidswift_cjs,44.9,7.7,site,,,place name,Carmagnola colony
+morganti_2017_modena_commonswift_cjs,44.6,10.9,site,,,place name,Modena colony
+morrison_2023_fundy_salmon_edna,45.6,-65.0,locality,8,2,unit coordinates,unit_decimalLatitude
+mungi_2025_india_invplant_binom,22.0,79.0,country,2500,,place name,India forested tiger landscapes
+murn_2016_kruger_vulture_occ,-24.0,31.5,region,300,,place name,Kruger National Park
+murphy_2021_riogrande_otter_scr,36.5,-105.7,region,100,,place name,"Upper Rio Grande, Taos County"
+murray_2021_chicago_coyote_mange,41.9,-87.9,region,94,115,unit coordinates,unit_decimalLatitude
+muths_2020_blackrock_toad_rd,43.8,-110.2,locality,27,,bounding box,geographicCoverage.boundingBox
+nakashima_2024_kanagawa_nestpred_occ,35.3,139.6,locality,10,,place name,"Futagoyama region, south-eastern Kanagawa"
+nakashima_2024_yakumo_scavenger_occ,42.2,140.3,locality,15,,place name,"Yakumo Study Forest, Hokkaido"
+neateclegg_2018_cusuco_birds_count,15.5,-88.2,locality,20,,place name,Cusuco National Park
+neon_2026_carabids_count,40.2,-101.2,multi,8111,535,unit coordinates,decimalLatitude in __units
+neon_2026_fish_exact_removal,39.4,-101.3,multi,7828,,place name,"as neon_2026_fish_removal (E7 sibling, same reaches)"
+neon_2026_fish_removal,39.4,-101.3,multi,7828,220,unit coordinates,decimalLatitude in __units
+neon_2026_landbirds_count,40.6,-101.6,multi,8113,652,unit coordinates,decimalLatitude in __units
+neon_2026_landbirds_ds,40.6,-101.6,multi,8113,652,unit coordinates,decimalLatitude in __units
+neon_2026_landbirds_exact_count,40.6,-101.6,multi,8113,,place name,"as neon_2026_landbirds_count (E7 sibling, same points)"
+neon_2026_macroinverts_count,39.3,-101.3,multi,7825,24,unit coordinates,decimalLatitude in __units
+neon_2026_macroinverts_exact_count,39.3,-101.3,multi,7827,24,unit coordinates,decimalLatitude in __units
+neon_2026_micpen_rd,39.8,-98.6,multi,4500,,place name,16 NEON sites across USA
+neon_2026_mosquitoes_count,40.1,-101.9,multi,8113,518,unit coordinates,decimalLatitude in __units
+neon_2026_perleu_rd,39.8,-98.6,multi,4500,,place name,25 NEON sites across USA
+neon_2026_perman_rd,39.8,-98.6,multi,4500,,place name,32 NEON sites across USA
+neon_2026_plants_exact_occ,41.9,-104.2,multi,8113,,place name,"as neon_2026_plants_occ (E7 sibling, same plots)"
+neon_2026_plants_occ,41.9,-104.2,multi,8113,135,unit coordinates,decimalLatitude in __units
+neon_2026_sighis_rd,39.8,-98.6,multi,4500,,place name,13 NEON sites across USA
+neon_2026_smallmammals_count,41.0,-101.2,multi,8107,332,unit coordinates,decimalLatitude in __units
+neon_2026_ticks_count,40.8,-100.7,multi,8110,287,unit coordinates,decimalLatitude in __units
+neubauer_2021_bialowieza_marshtit_nmix,52.8,23.9,locality,20,,place name,Bialowieza National Park
+nicolau_2021_porsanger_vole_ccr,70.0,25.0,region,100,,place name,stated coords (Porsanger)
+nina_2026_norway_pollinator_count,62.3,10.8,country,1805,128,unit coordinates,unit_decimalLatitude in __units
+nina_2026_norway_pollinator_exact_count,61.9,10.7,country,1804,2638,unit coordinates,unit_decimalLatitude in __units
+nowicki_2019_sharkbay_count,-25.8,113.8,locality,30,,place name,"Monkey Mia region, eastern Gulf of Shark Bay"
+nrm_2024_sweden_porpoise_occ,56.6,14.6,state,807,166,unit coordinates,"unit_decimalLatitude, obs_decimalLatitude"
+obrist_2024_gooseisland_birds_count,51.9,-128.5,locality,6,50,unit coordinates,decimalLatitude in __units
+ohrens_2026_latam_puma_occ,-8.2,-72.1,multi,11452,13148,unit coordinates,unit_decimalLatitude
+olimpi_2024_calfarms_nmix,37.2,-120.0,state,1000,,place name,"California, farms not located"
+oosthuizen_2019_marion_seal_rd,-46.9,37.7,site,,,place name,"stated coords, Marion Island"
+osborne_2026_largeheath_dynocc,53.4,-2.5,locality,10,,place name,stated 10 km cell
+pakanen_2020_dunlin_ms,64.5,26.0,country,1000,,place name,"Finland centroid, site not named"
+palacio_2020_pampasbirds_comm,-36.0,-60.0,state,500,,place name,east-central Argentina Pampas
+palmero_2023_bpp_lynx_scr,52.0,28.0,region,80,,place name,"Pripyat-Polesia, southern Belarus"
+palmero_2023_sbnp_lynx_scr,49.0,23.4,locality,30,,place name,Skolivski Beskydy NP
+palmero_2023_ucez_lynx_scr,51.3,30.0,region,80,,place name,Chornobyl Exclusion Zone
+paquet_2015_weaver_helpers_ms,-29.0,21.5,state,700,,place name,"Northern Cape, South Africa"
+parren_2021_centralvalley_mesocarn_occ,37.8,-120.6,state,600,,place name,"Central Valley, latitude range 35.3-40.2 N"
+parren_2021_mojave_mesocarn_occ,35.0,-116.0,region,300,,place name,Mojave Desert California
+peer_2014_bmsil_butterfly_count,32.2,35.1,state,408,38,unit coordinates,unit_decimalLatitude in __units
+perea_2025_coastalplain_bats_comm,32.0,-84.0,multi,1500,,place name,"SE US Coastal Plain, six states"
+peron_2017_sabap2_broodparasites_occ,-28.8,25.3,country,2143,1846,unit coordinates,unit_cell_lat
+peters_2026_carabid_emergence_count,50.6,4.6,country,250,,place name,Belgium centroid
+peters_2026_carabid_pitfall_count,50.6,4.6,country,250,,place name,Belgium centroid
+pilger_2022_gila_fish_count,33.2,-108.3,region,120,,place name,upper Gila River basin
+poessel_2026_coso_mgs_rd,36.1,-117.9,locality,29,,bounding box,geographicCoverage.boundingBox
+poutanen_2018_finland_whitetail_scr,60.8,22.5,region,200,,place name,southwestern Finland
+prabowo_2016_jambi_birds_count,-1.9,103.0,region,150,,place name,"Bukit Duabelas and Harapan, Jambi"
+price_2018_mtr_salamanders_count,37.2,-83.2,region,150,,place name,SE Kentucky coalfield
+priol_2014_quebec_flyingsquirrel_rd,48.4,-79.0,region,150,,place name,"Abitibi, NW Quebec"
+proudman_2026_illinois_coyote_count,39.9,-89.3,state,674,164,unit coordinates,unit_decimalLatitude
+raman_2003_kalakad_birds_count,8.6,77.4,locality,25,3,unit coordinates,unit_lat
+raman_2006_anamalai_birds_count,10.3,77.0,locality,25,4,unit coordinates,unit_decimalLatitude
+raman_2006_anamalai_birds_exact_count,10.3,76.9,locality,20,13,unit coordinates,unit_decimalLatitude
+raman_2024_nilgiris_birds_ds,11.4,76.6,locality,35,4,unit coordinates,decimalLatitude in __units
+raman_2024_nilgiris_birds_exact_ds,11.4,76.6,locality,45,8,unit coordinates,decimalLatitude in __units
+rees_2023_victoria_cat_smr,-38.3,142.5,region,200,,place name,"between the Glenelg grids (about -38.0, 141.6) and the Otway Ranges grids (about -38.65, 143.45), station coordinates"
+regmi_2024_madhesh_tiger_binom,27.1,85.1,region,80,,place name,"Parsa, Bara, Rautahat districts"
+rich_2016_botswana_mamm_binom,-19.5,23.7,region,54,15,unit coordinates,unit_decimalLatitude
+rich_2016_botswana_mamm_exact_binom,-19.5,23.7,region,57,221,unit coordinates,unit_decimalLatitude
+rich_2019_mojave_birds_binom,35.0,-116.0,region,300,,place name,Mojave Desert California
+rich_2019_mojave_mamm_binom,35.0,-116.0,region,300,,place name,Mojave Desert California
+riecke_2018_tutakoke_brant_rd,61.2,-165.6,site,,,place name,"stated coords, Tutakoke River colony"
+rivera_2022_chicago_coyote_dielocc,41.9,-87.8,region,80,,place name,Chicago metropolitan region
+rivera_2022_makira_fosa_dielocc,-15.2,49.6,region,100,,place name,Makira Natural Park
+rivera_2022_rnp_fosa_dielocc,-21.2,47.4,locality,30,,place name,Ranomafana National Park
+roberts_2019_sierrane_birds_exact_count,37.3,-119.4,state,439,184,unit coordinates,unit_decimalLatitude
+roberts_2019_sierranevada_birds_count,37.2,-119.3,state,441,32,unit coordinates,unit_decimalLatitude
+roberts_2025_arkansas_birds_count,35.0,-92.3,region,250,,place name,"centre of the FGDC bounding box, north-central Arkansas"
+roberts_2025_arkansas_birds_exact_count,35.0,-92.3,region,250,,place name,"centre of the FGDC bounding box, north-central Arkansas"
+roder_2020_valais_ungulates_count,46.2,7.5,region,120,,place name,"Valais, Western Swiss Alps"
+roderiksen_2023_norway_tundra_carniv_occ,66.0,17.0,multi,1500,,place name,"Norway, alpine regions plus Varanger"
+rogers_2024_bighunting_sculpin_cjs,39.6,-77.5,site,1,1044,unit coordinates,obs_latitude
+rooney_2025_snapshotusa_comm,39.2,-93.7,multi,7926,703,unit coordinates,decimalLatitude in __units
+rooney_2025_snapshotusa_exact_comm,38.6,-90.8,multi,7927,7474,unit coordinates,decimalLatitude in __units
+rose_2024_sjvalley_leglesslizard_occ,35.5,-119.8,region,146,89,unit coordinates,unit_decimalLatitude
+rota_2016_midatlantic_carniv_occ,37.2,-79.7,state,944,1906,unit coordinates,unit_decimalLatitude
+roth_2016_aargau_amph_count,47.4,8.2,region,60,,place name,Canton of Aargau
+rowe_2021_deschutes_ospfrog_rd,43.8,-121.5,locality,32,,bounding box,geographicCoverage.boundingBox
+roy_2022_labrador_waterfowl_dobs,53.5,-65.0,region,200,,place name,Labrador/Quebec boundary
+ruff_2025_piwo_state,44.5,-122.7,country,1282,3948,unit coordinates,unit_decimalLatitude
+ruiz_2021_oaxaca_wetbirds_count,15.8,-96.6,locality,10,,place name,stated coords
+ruppel_2025_richmond_pollinator_comm,37.6,-77.5,region,99,42,unit coordinates,unit_lat
+saeed_2022_murree_spinyfrogs_dynocc,33.9,73.4,locality,42,34,unit coordinates,unit_latitude
+samek_2024_racerunner_occ,34.0,-78.2,region,60,,place name,Brunswick County NC
+sandercock_2022_norway_insects_edna,59.6,10.6,region,165,58,unit coordinates,unit_decimalLatitude
+sandercock_2022_norway_plants_comm,59.6,10.6,region,165,58,unit coordinates,unit_decimalLatitude
+saracco_2019_saipan_bridwhiteeye_cjs,15.2,145.8,locality,20,,place name,Saipan
+saracco_2019_saipan_fantail_cjs,15.2,145.8,locality,20,,place name,Saipan
+saracco_2019_saipan_goldwhiteeye_cjs,15.2,145.8,locality,20,,place name,Saipan
+saracco_2019_saipan_kingfisher_cjs,15.2,145.8,locality,20,,place name,Saipan
+saracco_2019_saipan_myzomela_cjs,15.2,145.8,locality,20,,place name,Saipan
+schank_2015_tapir_occ,11.1,-84.0,locality,24,6,unit coordinates,unit_decimalLatitude
+schleimer_2019_gsl_finwhale_cjs,50.0,-63.5,region,200,,place name,Mingan Islands / Jacques Cartier Passage
+schmelzle_2016_tidewatergoby_edna,40.8,-124.1,state,383,24,unit coordinates,unit_decimalLatitude
+schorr_2021_yampa_mylu_rd,40.4,-107.0,locality,50,,place name,centre of 2 named ranches near Steamboat/Hayden
+sepulveda_2019_streamgage_dreis_edna,43.5,-114.5,multi,1500,,place name,centre of streamgages in 6 western states
+sepulveda_2019_streamgage_fish_edna,43.9,-113.3,country,1449,9,unit coordinates,unit_latitude
+shah_2025_bardia_tiger_occ,28.4,81.7,region,120,,place name,Bardia and Banke NPs
+sharma_2021_spiti_snowleopard_scr,32.2,78.0,locality,40,,place name,"stated coords, Spiti Valley"
+shyvers_2020_ppr_sagegrouse_rd,39.8,-108.3,region,80,,place name,"Parachute-Piceance-Roan, NW Colorado"
+silva_2018_scotland_badger_occ,57.3,-4.5,region,300,,place name,11 study areas across northern Scotland (no station coordinates)
+siren_2024_vtnh_moose_count,44.0,-72.0,state,350,,place name,Vermont and New Hampshire
+smith_2019_greatbasin_csf_edna,42.0,-117.0,multi,700,,place name,"SE Oregon, SW Idaho, Nevada"
+smith_2019_greatbasin_csf_qpcr,42.0,-117.0,multi,700,,place name,"SE Oregon, SW Idaho, Nevada"
+smith_2024_florida_tegu_dynocc,25.5,-80.5,region,60,,place name,Miami-Dade County
+sossover_2026_outerbanks_coyote_ms,35.3,-75.8,region,250,,place name,Outer Banks barrier islands
+sovie_2023_ichauway_wildlife_comm,31.2,-84.5,locality,20,,place name,Jones Center at Ichauway
+stallings_2025_gulfreefs_count,27.7,-83.0,region,83,12,unit coordinates,unit_decimalLatitude in __units
+stallings_2025_gulfreefs_exact_count,27.7,-83.0,region,84,14,unit coordinates,unit_decimalLatitude in __units
+steinmetz_2025_maewong_tiger_rd,16.0,99.2,region,70,,place name,Mae Wong and Khlong Lan NPs
+strebel_2026_swiss_mhb_count,46.8,8.2,state,389,241,unit coordinates,unit_decimalLatitude
+strebel_2026_swiss_mhb_exact_count,46.8,8.2,state,388,267,unit coordinates,unit_decimalLatitude
+strebel_2026_swiss_mhb_total_count,46.8,8.2,state,389,241,unit coordinates,unit_decimalLatitude
+strebel_2026_swiss_mhb_total_exact_count,46.8,8.2,state,388,267,unit coordinates,unit_decimalLatitude
+sullivan_2026_powdermill_count,40.1,-79.3,locality,5,96,unit coordinates,unit_lat
+swanson_2018_iowa_amph_occ,43.3,-93.5,region,82,27,unit coordinates,unit_decimalLatitude
+swedberg_2023_springfish_occ,35.5,-95.7,multi,400,,place name,Arbuckle Uplift and Ozark Highlands Oklahoma
+sweeney_2026_ocracoke_plover_cjs,35.1,-76.0,site,,,place name,"stated coords, South Point Ocracoke"
+sweeney_2026_ocracoke_plover_count,35.1,-76.0,site,,,place name,"stated coords, South Point Ocracoke"
+symons_2018_bunbury_dolphin_rd,-33.3,115.6,locality,50,,place name,"stated coords, Bunbury"
+symons_2018_bunbury_femalecalf_msrd,-33.3,115.6,locality,50,,place name,"stated coords, Bunbury"
+taraporevala_2025_kansas_canids_dynocc,38.5,-98.4,state,600,,place name,"Kansas centroid, urban area not named"
+teitsworth_2026_necturus_dynocc,35.7,-77.8,region,250,,place name,Neuse and Tar-Pamlico basins
+tetzlaff_2026_crotalus_cjs,43.5,-73.8,region,80,,place name,southeastern Adirondacks
+thomas_2025_boreal_moose_ms,,,none,,,none,no place stated (burned boreal forest only)
+thomas_2025_boreal_moose_occ,,,none,,,none,no place stated (burned boreal forest only)
+thomas_2025_oregon_murrelet_av_occ,45.0,-123.6,region,250,,place name,Oregon state forests (Coast Range)
+thomas_2025_oregon_murrelet_pam_occ,45.0,-123.6,region,250,,place name,Oregon state forests (Coast Range)
+thuma_2025_ma_bgriseocollis_nest_cr,42.0,-70.6,region,150,,place name,coastal Massachusetts
+thuma_2025_ma_bimpatiens_nest_cr,42.0,-70.6,region,150,,place name,coastal Massachusetts
+tjornlov_2020_christianso_eider_ld,55.3,15.2,site,,,place name,Christianso
+tjornlov_2020_vlieland_eider_ld,53.3,5.0,locality,20,,place name,Vlieland
+tleimat_2023_ecuador_capuchin_occ,-1.5,-78.5,country,600,,place name,Ecuador centroid (site code only)
+todaro_2025_wyoming_shrike_dynocc,44.0,-105.5,region,300,,place name,NE Wyoming grassland-sagebrush ecotone
+toledolima_2024_elaenia_cjs,-7.5,-38.5,state,1500,,place name,northeastern Brazil
+tomke_2025_hellbender_edna,37.5,-85.0,state,600,,place name,Kentucky streams statewide
+tsuboi_2020_japan_charr_ms,36.2,138.3,country,1500,,place name,"Japan centroid, no location given"
+tsuboi_2020_japan_masu_ms,36.2,138.3,country,1500,,place name,"Japan centroid, no location given"
+tumursukh_2016_tost_argali_dobs,43.1,100.6,locality,50,,place name,"stated coords, Tost LPA"
+tumursukh_2016_tost_ibex_dobs,43.1,100.6,locality,50,,place name,"stated coords, Tost LPA"
+twining_2024_adirondack_carniv_occ,43.9,-74.8,region,250,,place name,Adirondack and Tug Hill regions
+twining_2024_ny_blackbear_occ,42.2,-75.5,region,300,,place name,Southern New York State
+twining_2024_ny_bobcat_coyote_occ,43.0,-75.5,state,500,,place name,New York State (southern tier and Northern Zone)
+uherkoch_2019_npra_paloon_ms,70.5,-155.3,locality,41,,bounding box,geographicCoverage.boundingBox
+uherkoch_2019_npra_ybloon_ms,70.5,-155.3,locality,41,,bounding box,geographicCoverage.boundingBox
+uherkoch_2021_npraloon_dynocc,70.6,-155.4,locality,42,117,unit coordinates,unit_decimalLatitude
+ukpoms_2026_uk_pantrap_count,54.0,-2.5,country,1000,,place name,UK centroid (squares across UK)
+valente_2018_indiana_birds_comm,38.9,-86.7,region,120,,place name,centre of named southern Indiana forests and refuges
+valente_2024_oregon_murrelet_state,44.0,-124.2,state,412,,bounding box,geographicCoverage.boundingBox
+valenzuela_2018_neltume_rhidar_rd,-39.8,-71.9,locality,10,,place name,"stated coords, Huilo Huilo"
+vandeweyer_2024_australia_mouse_scr,-33.8,143.3,multi,1000,,place name,centre of 2 stated sites (Mallala and Parkes)
+vanklink_2025_wijster_carabid_count,52.8,6.5,locality,16,50,unit coordinates,unit_decimalLatitude in __units
+visagie_2026_tswalu_brownhyaena_scr,-27.3,22.4,locality,30,,place name,stated array centroid
+visagie_2026_tswalu_leopard_scr,-27.3,22.4,locality,30,,place name,stated array centroid
+visagie_2026_tswalu_spothyaena_scr,-27.3,22.4,locality,30,,place name,stated array centroid
+volzke_2021_macquarie_seal1950s_cjs,-54.5,158.9,site,,,place name,"stated coords, Macquarie Island isthmus"
+volzke_2021_macquarie_seal1990s_cjs,-54.5,158.9,site,,,place name,"stated coords, Macquarie Island isthmus"
+waddle_2020_louisiana_marshbird_comm,29.7,-92.7,region,52,33,unit coordinates,unit_decimalLatitude
+wang_2019_amazon_ocelot_occ,-4.0,-60.0,multi,2500,,place name,twelve Brazilian Amazon sites
+warretrodrigues_2022_iguana_msrd,15.5,-61.5,region,800,,place name,Lesser Antilles islet (not named)
+whittington_2015_banff_tracks_comm,51.4,-115.7,region,144,443,unit coordinates,decimalLatitude in __units
+whittington_2025_banff_grizzly_occ,51.5,-116.0,region,200,,place name,"Banff, Kootenay and Yoho NPs"
+whitworth_2019_manu_terr_mamm_binom,-12.8,-71.4,region,80,,place name,Manu Biosphere Reserve buffer area
+wiens_2021_socal_goldeneagle_dynocc,33.2,-117.0,region,226,,bounding box,geographicCoverage.boundingBox
+wikston_2021_ontario_anuran_call_occ,43.5,-80.5,region,300,,place name,southern Ontario
+wikston_2021_ontario_anuran_dipnet_occ,43.5,-80.5,region,300,,place name,southern Ontario
+wikston_2021_ontario_anuran_ves_occ,43.5,-80.5,region,300,,place name,southern Ontario
+wong_2022_sabah_acacia_mamm_comm,5.0,117.5,region,150,,place name,"Pasin and Raplex FMUs, Sabah"
+work_2026_ocala_odonatenymph_exact_count,29.2,-81.7,locality,25,16,unit coordinates,unit_decimalLatitude
+work_2026_ocala_odonatenymphs_count,29.2,-81.7,locality,24,4,unit coordinates,unit_decimalLatitude
+work_2026_ocala_odonates_comm,29.2,-81.7,locality,24,4,unit coordinates,unit_decimalLatitude
+work_2026_ocala_odonates_exact_comm,29.2,-81.7,locality,25,16,unit coordinates,unit_decimalLatitude
+yadav_2022_rapti_gharial_count,27.6,84.4,locality,40,,place name,"Rapti River, Chitwan NP"
+zamuda_2022_yalemyers_mesopred_dynocc,41.9,-72.1,locality,20,,place name,"Yale Myers Forest, Eastford"
+ziolkowski_2026_bbs_bcr15_block,38.8,-120.3,state,636,40,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr15_stop,38.9,-120.3,state,613,34,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_count,42.0,-96.6,multi,7799,5548,unit coordinates,unit_decimalLatitude in __units
+zipkin_2017_oregon_barredowl_count,44.2,-123.7,region,97,,bounding box,geographicCoverage.boundingBox
+zipkin_2017_oregon_barredowl_dynocc,44.2,-123.7,region,97,,bounding box,geographicCoverage.boundingBox
+zuberogoitia_2021_basque_owls_count,43.1,-2.6,region,171,525,unit coordinates,unit_decimalLatitude

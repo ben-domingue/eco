@@ -1,0 +1,62 @@
+{
+  "table": "wikston_2021_ontario_anuran_dipnet_occ",
+  "title": "Anuran detections by larval dipnet surveys at 29 wetlands in southern Ontario, 98 site-visits, 2016",
+  "creator": "Wikston, Madison; Wilson, Chris; Murray, Dennis",
+  "pubDate": "2023",
+  "doi": "10.5683/SP3/DCUGTW",
+  "sourceURL": "https://doi.org/10.5683/SP3/DCUGTW",
+  "citation": "Wikston, M., Wilson, C., & Murray, D. (2023). Amphibian detections via eDNA and conventional methods in southern Ontario wetlands [Dataset]. Borealis. https://doi.org/10.5683/SP3/DCUGTW",
+  "intellectualRights": {
+    "spdx": "CC-BY-NC-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc/4.0/"
+  },
+  "abstract": "An MSc study comparing eDNA with conventional surveys (breeding call surveys, larval dipnet surveys and visual encounter surveys) for wetland anuran communities in southern Ontario wetlands in 2016. This table is one conventional method (29 wetlands); the managed per-visit detection matrices cover nine anuran species.",
+  "samplingProtocol": "Timed larval dipnet surveys along the wetland edge, two or four visits per site in 2016; larvae identified to species; the managed matrix gives detection per visit.",
+  "samplingProtocolCode": "dipnet",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "Occupancy assumed closed across the visits of the 2016 season. The other methods' visits are separate tables.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Southern Ontario, Canada (site locations are in a restricted file of the deposit and are not shipped)",
+  "temporalCoverage": "2016-04/2016-08",
+  "notShipped": {
+    "edna": "the eDNA arm: blanks cannot be matched to sampling events (held for review)",
+    "salamanders": "salamander records in the raw files (not in the authors' managed matrices)",
+    "raw_values": "abundance codes or counts and visit weather in the raw files",
+    "site_locations": "FieldSites2016 is restricted by the author",
+    "other_methods": "the other conventional methods are wikston_2021_ontario_anuran_call_occ and wikston_2021_ontario_anuran_ves_occ"
+  },
+  "notes": "Companion tables: wikston_2021_ontario_anuran_call_occ, wikston_2021_ontario_anuran_ves_occ.",
+  "summary": {
+    "n_rows": 882,
+    "n_units": 29,
+    "n_taxa": 9,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 98,
+    "y_values": "0,1",
+    "prop_zero": 0.838,
+    "n_traps": 1,
+    "n_zero": 739,
+    "n_positive": 143,
+    "n_units_detected": 29,
+    "max_y": 1
+  },
+  "sampleFloor": "below (29 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date"],
+  "coreMd5": "18dda88947cc9e683c4b38f04fdda3de",
+  "sideTables": {
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2f7e81b918fa10fabe4506109c788973"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/wikston_2021_ontario_anuran_occ.R",
+  "buildDate": "2026-11-06"
+}

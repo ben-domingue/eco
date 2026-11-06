@@ -41,7 +41,8 @@ Open the source page. Record, for the script header: licence as displayed, versi
 and date of the deposit, paper citation and DOI, the list of deposited files and
 what each holds, the survey design (units, occasions, periods, species), and how
 the survey set is evidenced. Check the dictionary for a duplicate by DOI. Check
-E9 scope. Decide the table name.
+E9 scope. Check the deposit's authors against "Excluded authors" in
+`queue/README.md`: a match is `rejected`, not held. Decide the table name.
 
 If any of these fails: add a row to `queue/human_review.csv`
 (`candidate, source, doi_or_url, decision, reason, date, reviewer`), set the queue
@@ -133,7 +134,12 @@ python3 upload/red_up_eco.py              # to the draft; confirms first
 
 The upload is the gate: it runs eco-validate `--irw`, refuses a table whose md5 is
 not the build its `__dataset.json` records, and writes each shipped table's row
-in `validate/report.csv`. Then run `metadata/run_pipeline.sh`.
+in `validate/report.csv`, and each new table's homepage map point in
+`metadata/table_locations.csv`. Then run `metadata/run_pipeline.sh` (stage 12 places
+any table the uploader did not). If `tools/check_coverage.py` says a table has no map
+point, add a `tags/locations_human.csv` row from its `geographicCoverage` text (a
+point with a precision label, or empty lat/lon and a basis saying why none) and run
+`metadata/run_pipeline.sh 12`.
 
 Commit the script, `output/<table>__dataset.json` (never the CSVs; they are
 gitignored), the dictionary and tags rows, `metadata/`, `validate/report.csv`, the

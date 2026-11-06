@@ -1,0 +1,60 @@
+{
+  "table": "twining_2024_ny_bobcat_coyote_occ",
+  "creator": "Twining, Joshua P.; Fuller, Angela K.; Sun, Catherine C.; Calderón-Acevedo, Camilo A.; Schlesinger, Matthew D.; Berger, Melanie; Kramer, David; Frair, Jacqueline L.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.ghx3ffbwf",
+  "sourceURL": "https://doi.org/10.5061/dryad.ghx3ffbwf",
+  "citation": "Twining, J. P., Fuller, A. K., Sun, C. C., Calderón-Acevedo, C. A., Schlesinger, M. D., Berger, M., Kramer, D., & Frair, J. L. (2024). Integrating presence-only and detection/non-detection data to estimate distributions and expected abundance of difficult-to-monitor species on a landscape-scale [Dataset]. Dryad. https://doi.org/10.5061/dryad.ghx3ffbwf",
+  "paperDOI": "10.1111/1365-2664.14633",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "title": "Weekly baited camera detections of bobcat and coyote at 3,849 site-years across New York State, winters 2013-2021",
+  "abstract": "Detection/non-detection of bobcat and coyote on three weekly occasions at baited winter camera traps in southern New York (2013-2015, 2019-2021) and the Northern Zone (2016-2018), one camera per 15-km2 cell, with UTM coordinates and 10-km2 landscape covariates.",
+  "samplingProtocol": "Winter camera traps deployed opposite baited stations on trees near the centre of each 15-km2 grid cell; weekly detection records over three weeks per site-year.",
+  "closure": "closed",
+  "closureNote": "three weeks of one winter deployment per site-year",
+  "geographicCoverage": "New York State, USA (southern tier and Northern Zone); camera UTM coordinates as published",
+  "temporalCoverage": "2013/2021",
+  "notShipped": {
+    "po_density": "PO_join_count_truncated (presence-only density)",
+    "presence_only": "presence-only records"
+  },
+  "notes": "unit = site-year: site names are reused across years at different coordinates. The Northern Zone 2016-2018 coyote detections overlap twining_2024_adirondack_carniv_occ. obs_ordinal_day is the deposited ordinal day of each occasion (relative to 1 January; negative in December); it is not monotone for some site-years, so no ISO date is derived.",
+  "summary": {
+    "n_rows": 22376,
+    "n_units": 3849,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 11188,
+    "y_values": "0,1",
+    "prop_zero": 0.932,
+    "n_traps": 1,
+    "n_zero": 20856,
+    "n_positive": 1520,
+    "n_units_detected": 1151,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_year", "unit_sitename", "unit_utm_x", "unit_utm_y", "unit_grid10km", "unit_deciduous", "unit_coniferous", "unit_mixed_forest", "unit_scrub", "unit_grassland", "unit_pasture", "unit_crops", "unit_road_density", "unit_elevation_m", "unit_forest_edge", "obs_ordinal_day"],
+  "coreMd5": "aa462d6bb72acb729e5e462346b6bef4",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "49e2d0191d1dde626bf138867063632f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/twining_2024_newyork_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

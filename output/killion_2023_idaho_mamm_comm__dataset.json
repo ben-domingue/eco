@@ -1,0 +1,66 @@
+{
+  "table": "killion_2023_idaho_mamm_comm",
+  "title": "Weekly camera-trap detections of seven mammals at 88 camera-years (50 stations), Big Wood River watershed, central Idaho, 2018-2019",
+  "creator": "Killion, Alexander; Honda, Arata; Trout, Edward; Carter, Neil H.",
+  "pubDate": "2023",
+  "doi": "10.5281/zenodo.7826340",
+  "sourceURL": "https://doi.org/10.5281/zenodo.7826340",
+  "citation": "Killion, A., Honda, A., Trout, E., & Carter, N. H. (2023). Species detection histories used in Killion et al. (2023): Integrating Spaceborne Estimates of Structural Diversity of Habitat into Wildlife Occupancy Models [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.7826340",
+  "paperDOI": "10.1088/1748-9326/acce4d",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Camera traps in the Big Wood River watershed of central Idaho in summer and autumn 2018 and 2019, at stations at least 1 km apart, with weekly detection histories for American black bear, coyote, mule deer, elk, mountain lion, moose and grey wolf. The authors used them in single-species occupancy models with habitat structure from GEDI spaceborne lidar.",
+  "samplingProtocol": "Infrared-triggered cameras on trees or stumps about 1 m above ground, 1-5 m from a trail or feature; 7 July-4 November 2018 and 25 May-27 October 2019; independent events 2 min apart; a species detected in a week is a detection for that week.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "Weekly occasions over a season of up to 23 weeks; the authors model use (occupancy as habitat use). The two years are periods; 38 station names appear in both years and are taken as the same station.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Big Wood River watershed, central Idaho, USA (43.485-43.905 N, 114.067-114.719 W; no station coordinates deposited)",
+  "temporalCoverage": "2018-07/2019-10",
+  "notShipped": {
+    "other_species": "species photographed other than the seven the authors modelled are not in the deposit",
+    "camera_counts": "the deposit has 40 cameras in 2018 and 48 in 2019, the paper reports 44 and 49 deployed; the missing cameras are not in the deposit",
+    "model_output": "the GEDI covariates and the occupancy estimates (not deposited; model output)"
+  },
+  "notes": "Week numbers are as deposited (2018 cameras run in weeks 7-23, 2019 in weeks 1-22); the deposit gives no calendar date for a week.",
+  "summary": {
+    "n_rows": 8547,
+    "n_units": 50,
+    "n_taxa": 7,
+    "n_periods": 2,
+    "n_occasions": 23,
+    "n_surveys": 1221,
+    "y_values": "0,1",
+    "prop_zero": 0.848,
+    "n_traps": 1,
+    "n_zero": 7245,
+    "n_positive": 1302,
+    "n_units_detected": 50,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "4505fca9db03bcd130065a4b95573e8b",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "start", "end", "cameras_paper", "camera_days_paper"],
+      "md5": "87464c0f9a9f444f141c5cf58df6ed96"
+    },
+    "taxa": {
+      "rows": 7,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "d0e5d409afeb37be59a92cc3d9f68178"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/killion_2023_idaho_mamm_comm.R",
+  "buildDate": "2026-11-06"
+}

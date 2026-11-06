@@ -1,0 +1,59 @@
+{
+  "table": "fancourt_2019_aus_catdingo_occ",
+  "title": "Daily camera-trap detections of dingoes and feral cats at 60 cameras on a national park and an agricultural property, Australia, 2016",
+  "creator": "Fancourt, Bronwyn; Cremasco, Peter; Wilson, Cameron; Gentle, Matthew",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.6hb0063",
+  "sourceURL": "https://doi.org/10.5061/dryad.6hb0063",
+  "citation": "Fancourt, B., Cremasco, P., Wilson, C. & Gentle, M. (2019). Data from: Do introduced apex predators suppress introduced mesopredators? A multiscale spatiotemporal study of dingoes and feral cats in Australia suggests not. Dryad (served by Zenodo), https://doi.org/10.5061/dryad.6hb0063.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Thirty camera traps at each of a national park conserving endangered species and an agricultural (cattle grazing) site recorded dingoes and feral cats daily for three weeks in 2016, to test whether the introduced apex predator suppresses the introduced mesopredator (co-occurrence and activity overlap).",
+  "samplingProtocol": "Thirty camera traps per site run for 21 (national park) or 22 (agricultural) consecutive days in 2016; a camera-day is a detection of a species when it was photographed that day.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The detection matrices have no not-surveyed code: every camera is taken as operating on every day of its site's deployment.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "closureNote": "occasion = consecutive days of one deployment.",
+  "geographicCoverage": "A national park and an agricultural property in Australia (sites not located in the deposit)",
+  "temporalCoverage": "2016/2016",
+  "notShipped": {
+    "activity_times": "NP_ and AG_Temporal Cat and Dingo detections 2016.csv: time of day of each detection (activity analysis)"
+  },
+  "notes": "Two species surveyed at every camera-day. Both are introduced in Australia.",
+  "summary": {
+    "n_rows": 2580,
+    "n_units": 60,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 22,
+    "n_surveys": 1290,
+    "y_values": "0,1",
+    "prop_zero": 0.945,
+    "n_traps": 1,
+    "n_zero": 2438,
+    "n_positive": 142,
+    "n_units_detected": 45,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id"],
+  "coreMd5": "02cc345793f3a9116c35fd3985981b8b",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "6cacac292c63c5bead346a2dc1a4b4a0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fancourt_2019_aus_catdingo_occ.R",
+  "buildDate": "2026-11-06"
+}

@@ -1,0 +1,73 @@
+{
+  "table": "belder_2020_nsw_redcappedrobin_cjs",
+  "title": "Mist-net capture histories of 12 Red-capped Robins in restoration plantings and woodland remnants, South-west Slopes, New South Wales, 2015-2017",
+  "creator": "Belder, Donna J.; Pierson, Jennifer C.; Rudder, Alexander C.; Lindenmayer, David B.",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.m0cfxpp2b",
+  "sourceURL": "https://doi.org/10.5061/dryad.m0cfxpp2b",
+  "citation": "Belder, D. J., Pierson, J. C., Rudder, A. C., & Lindenmayer, D. B. (2020). Survival and home ranges of woodland birds in restoration plantings [Dataset]. Dryad. https://doi.org/10.5061/dryad.m0cfxpp2b",
+  "paperDOI": "10.1002/eap.2268",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual mist-net capture histories of 12 Red-capped Robins (Petroica goodenovii) banded at 21 restoration plantings, woodland remnants and large reference remnants in the South-west Slopes bioregion of New South Wales, Australia, 2015-2017, one of 13 per-species tables from a woodland-bird survival study (CJS and Barker models). Site attributes (planting or remnant, size, shape, fencing, planting age) are unit covariates.",
+  "samplingProtocol": "Mist netting (two 6 m and four 9 m nets at fixed net sites) over two consecutive days per site each year, about four hours before sunset and four hours after dawn; initial banding July-October 2015, recapture and banding June-August 2016 and 2017; birds banded with metal bands, ten species also colour-banded.",
+  "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every site was netted in each of the three years with the same net sites (paper, Methods); every listed site has captures in every year (asserted). y = 0 is a banding year in which the bird was not caught.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one annual banding session per period (two netting days per site, not deposited separately)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "21 woodland sites (12 restoration plantings, 6 remnants, 3 reference remnants) in the South-west Slopes bioregion, New South Wales, Australia (about 35.2-35.9 S, 147.1-147.7 E)",
+  "temporalCoverage": "2015/2017",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "site coordinates as deposited; IUCN LC, not flagged"
+  },
+  "notShipped": {
+    "resightings": "Barker-model resightings of colour-banded birds between banding sessions (1 birds of this species resighted alive): ad hoc and area-search sightings with no cell in a CJS table; in resight_recap_R5.csv",
+    "cjs_file": "resight_recap_R5_CJS.csv: the banding columns of resight_recap_R5.csv (rebuilt and asserted identical)",
+    "colour_combination": "the colour-band combination (an identifier; colour_banded carries whether a bird had one)",
+    "tracking": "movementdist_SFW.csv, movementdist_WW.csv, territories.csv: home-range tracking, not encounter histories",
+    "model_estimates": "survival, fidelity and home-range model outputs"
+  },
+  "notes": "Species code RCR is fixed by the paper and deposit, not expanded in the deposit: the ten codes with colour-banded birds match one to one the ten colour-banded species the paper names. Wild-caught birds of unknown age carry all three years (E4.4); condition on first capture for CJS. cluster_id is the site; a bird's site and sex are those of its banding row (10 birds that moved site have a dropped second row; 2 of them have a different sex on it). The deposit has 1,259 birds of 38 codes (paper: 1,261 birds of 38 species); 13 codes ship as tables.",
+  "summary": {
+    "n_rows": 36,
+    "n_units": 12,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 1,
+    "n_surveys": 36,
+    "y_values": "0,1",
+    "prop_zero": 0.639,
+    "n_traps": 1,
+    "n_zero": 23,
+    "n_positive": 13,
+    "n_units_detected": 12,
+    "max_y": 1
+  },
+  "sampleFloor": "below (12 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_sex", "unit_colour_banded", "unit_site_type", "unit_site_size_class", "unit_site_shape", "unit_site_area_ha", "unit_site_fenced", "unit_site_perimeter_m", "unit_site_width_m", "unit_site_growth_type", "unit_site_planting_age_yr", "unit_decimalLatitude", "unit_decimalLongitude"],
+  "coreMd5": "4a1cf6ceb234b9400d9250938f942f75",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "banding_months", "note"],
+      "md5": "9f756f6163792c84d361e59169414e98"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0a9f3c906855ddf97ef291470c4a4077"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/belder_2020_nsw_woodbird_cjs.R",
+  "buildDate": "2026-11-05"
+}

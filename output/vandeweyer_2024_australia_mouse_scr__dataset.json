@@ -1,0 +1,76 @@
+{
+  "table": "vandeweyer_2024_australia_mouse_scr",
+  "title": "Live-trap spatial capture-recapture of house mice on eight 64-trap grids in Australian grain paddocks, four sessions per grid, 2019-2021",
+  "creator": "Van de Weyer, Nikki; Ruscoe, Wendy; Henry, Steve; Brown, Peter; Robinson, Freya; Hinds, Lyn; Oh, Kevin",
+  "pubDate": "2024",
+  "paperDOI": "10.1002/ece3.10843",
+  "doi": "10.5061/dryad.3tx95x6n8",
+  "sourceURL": "https://doi.org/10.5061/dryad.3tx95x6n8",
+  "citation": "Van de Weyer, N. et al. (2024). Data from: Contrasting patterns of female house mouse spatial organisation among outbreaking and stable populations [Dataset]. Dryad. https://doi.org/10.5061/dryad.3tx95x6n8",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Captures of PIT-tagged house mice (Mus musculus) on eight 8 x 8 Longworth live-trap grids (10 m spacing) in grain paddocks near Mallala, South Australia (2019-20) and Parkes, New South Wales (2020-21), four trapping sessions of 3-5 nights per grid: one row per mouse x trap x night of its grid, with sex.",
+  "samplingProtocol": "Eight 8 x 8 grids of single-capture Longworth traps at 10 m spacing, baited with wheat and bedding, opened each evening and checked and closed each morning, for 3-5 nights per session, four sessions per grid; mice PIT-tagged (small mice untagged, 'UN' ids).",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No trap-night schedule or trap coordinates are deposited. A session's nights are taken as 1..the largest night with a capture (3-5), so a final night with no capture would be missing; every one of the grid's 64 traps is taken as set every night (the methods); trap positions are rebuilt from the two-digit detector numbers (1-8 x 1-8) as an 8 x 8 grid at 10 m spacing.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "closed within a 3-5 night session, open between the four sessions of a grid (multi-session SCR)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "local: trap grid in metres rebuilt from detector numbers (origin at trap 11)",
+  "geographicCoverage": "Grain paddocks near Mallala, South Australia (about 34.4 S, 138.5 E) and Parkes, New South Wales (about 33.1 S, 148.2 E), Australia",
+  "temporalCoverage": "2019-10/2021-02",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no geographic coordinates deposited; trap positions are local metres rebuilt from the grid layout"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture, multi-session: cluster_id = grid, period = session, occasion = night, trap = grid_detector with __traps.",
+  "notShipped": {
+    "duplicates": "3 exact duplicate capture rows (collapsed)"
+  },
+  "notes": "A mouse caught on two grids is two units (one per grid; 2 tags). Untagged small mice ('UN' ids) occur in one session each. 1 mouse-night has captures in two traps (single-capture traps; kept as recorded). Session calendar dates are not deposited, only the regional ranges.",
+  "summary": {
+    "n_rows": 1993088,
+    "n_units": 1656,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 5,
+    "n_surveys": 1993088,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 512,
+    "n_zero": 1990747,
+    "n_positive": 2341,
+    "n_units_detected": 1656,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id", "unit_sex"],
+  "coreMd5": "d547d8c92bd2dd21d7e4b9630145fa19",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_note"],
+      "md5": "09382fb412c61cf1633424bf011cb49b"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "e3dd256de950b6531e174319195d0592"
+    },
+    "traps": {
+      "rows": 512,
+      "columns": ["trap", "x", "y", "grid", "region"],
+      "md5": "05f5cf44ed69db4a96f644f866203595"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/vandeweyer_2024_australia_mouse_scr.R",
+  "buildDate": "2026-11-05"
+}

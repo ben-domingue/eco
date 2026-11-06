@@ -1,0 +1,65 @@
+{
+  "table": "lindenmayer_2022_nsw_woodland_birds_comm",
+  "title": "Detections of 31 woodland bird species on repeated surveys of 259 temperate woodland sites in south-eastern Australia, 17 years 2002-2020",
+  "creator": "Lindenmayer, David",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.8cz8w9gv7",
+  "sourceURL": "https://doi.org/10.5061/dryad.8cz8w9gv7",
+  "citation": "Lindenmayer, D. (2022). Data for: Context dependency in interference competition among birds in an endangered woodland ecosystem [Dataset]. Dryad. https://doi.org/10.5061/dryad.8cz8w9gv7",
+  "paperDOI": "10.1111/ddi.13680",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of 31 bird species on 1-6 repeat surveys per site and year at 259 sites on farms in endangered temperate eucalypt woodland of south-eastern Australia, in 17 survey years between 2002 and 2020, with spring net primary productivity and tree cover around each site: the input of a multi-species occupancy model of interference competition by the noisy miner.",
+  "samplingProtocol": "Repeated on-the-ground bird surveys at fixed woodland sites, usually two repeats per site per survey year; each species recorded as detected or not on each repeat.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a survey year (repeats), open between years",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Temperate eucalypt woodland on farms (91 farm prefixes in the site codes), south-eastern Australia; no coordinates deposited",
+  "temporalCoverage": "2002/2020",
+  "notShipped": {
+    "NoisyMinorDet": "noisy miner detected at the site that year: a summary of the same surveys' detections (the paper's predictor)",
+    "other_species": "species recorded on the surveys but not in the authors' analysis set of 31"
+  },
+  "notes": "Scientific names are the processor's, from the deposited common names. Survey years are not contiguous (no 2016 or 2018). The noisy miner itself is not a species column; only its site-year detection flag is deposited, which is not shipped.",
+  "summary": {
+    "n_rows": 143437,
+    "n_units": 259,
+    "n_taxa": 31,
+    "n_periods": 17,
+    "n_occasions": 6,
+    "n_surveys": 4627,
+    "y_values": "0,1",
+    "prop_zero": 0.783,
+    "n_traps": 1,
+    "n_zero": 112307,
+    "n_positive": 31130,
+    "n_units_detected": 259,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_npp_spring_500m", "unit_tree_cover_pct_500m"],
+  "coreMd5": "2a333274543eb2fccb819d5df81db4df",
+  "sideTables": {
+    "periods": {
+      "rows": 17,
+      "columns": ["period", "period_year"],
+      "md5": "d37d2cb208671dbbf7f903de1cb35db4"
+    },
+    "taxa": {
+      "rows": 31,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "8ac34d2c3cb9ae838230ec71043178f7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lindenmayer_2022_nsw_woodland_birds_comm.R",
+  "buildDate": "2026-11-05"
+}

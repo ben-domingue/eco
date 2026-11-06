@@ -1,0 +1,79 @@
+{
+  "table": "neon_2026_ticks_count",
+  "title": "NEON ticks from drag and flag sampling, RELEASE-2026: ticks of 28 species x life-stage taxa per plot-bout at 287 plots across 46 NEON sites, 2019-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/5e20-3763",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.10093.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Ticks sampled using drag cloths (DP1.10093.001), RELEASE-2026. https://doi.org/10.48443/5e20-3763. Dataset accessed from https://data.neonscience.org/data-products/DP1.10093.001/RELEASE-2026 on 2026-11-05",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's tick survey: a 1 m2 drag cloth (or a flag where vegetation prevents dragging) is pulled along the ~160 m perimeter of six distributed plots per terrestrial site, every three weeks through the growing season at sites with ticks and every six weeks elsewhere; every tick collected is counted by life stage and identified by a taxonomy laboratory (larvae mostly only to family). This table is the number of ticks of each species x life stage per plot-bout from 2019, when the laboratory began counting every tick received; every taxon has a row at every survey (28 taxa). Plot-centre coordinates are as NEON publishes them.",
+  "samplingProtocol": "Drag sampling (1 m2 cloth pulled along the 160 m perimeter of a 40 x 40 m plot, checked every 5 m) or flagging where dragging is impossible; ticks removed into ethanol and sent to a taxonomy laboratory for life-stage counts and identification (NEON TOS tick and tick-borne pathogen sampling protocol)",
+  "samplingProtocolCode": "drag_sampling",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "tck_fielddata lists every plot-bout (with samplingImpractical where a plot was not sampled); a survey is a row with samplingImpractical OK or blank and a sampled area. targetTaxaPresent = N is y = 0 for every taxon; a Y sample's counts are its tck_taxonomyProcessed rows. Taxon pool national.",
+  "responseType": "count",
+  "unitKind": "site",
+  "effortColumn": "obs_area_m2",
+  "closure": "open",
+  "closureNote": "occasion = bout (every three or six weeks through the growing season), indexed within the site-year by first collection date; tick life stages quest in different seasons, so the counts are not closed across occasions; period = calendar year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "46 NEON terrestrial sites, continental USA, Alaska, Hawaii and Puerto Rico; plot-centre coordinates as published by NEON (WGS 84) in __units; latitude 18.0 to 71.3, longitude -156.6 to -66.8",
+  "temporalCoverage": "2019-01/2024-11",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published by NEON (agency-published plot-centre coordinates with coordinateUncertaintyInMeters); no coarsening; 5 plots were re-surveyed by a few metres and __units carries the latest"
+  },
+  "covariateNote": "obs_area_m2 = area dragged or flagged (m2; effort); obs_method = drag, flag or drag and flag; obs_count_likely_estimated = 1 where y includes a larval laboratory count that is an exact multiple of 1,000 (ruling 18: count likely estimated), else 0. Plot-level facts (site, domain, plot type, NLCD class, NEON namedLocation, plot-centre coordinates, uncertainty, elevation) are in __units.",
+  "notes": "Taxa: species x life stage (adult = Male + Female + Adult; nymph; larva), lifeStage in __taxa; records identified only to genus or family (most larvae: Ixodidae) are their own taxa (E6), NEON's 'sp.' and 'spp.' codes of one name merged. From 2019-01-01 only: before 2019 the laboratory's counts may be subsamples (NEON issue log), 6253 earlier surveys not shipped. Surveys dropped: 13 samples NEON marks lost, incomplete or with an estimated count; 11 targetTaxaPresent = Y samples with no laboratory rows; 7 repeat collections of a plot within one bout (first kept). Very large larval counts: 103 rows have y >= 1000 and 20 of them are whole thousands (10000, 20000, 35000). Ruling 18 (2026-11-06): a larval laboratory count in an exact multiple of 1,000 is likely the laboratory's estimate for a clump of larvae; NEON publishes it as individualCount without a flag, it ships as published, and obs_count_likely_estimated = 1 on the 20 rows built from one (0 elsewhere). Laboratory rows with no taxon (remarks 'Not a tick', 'insects!', 'empty vial') contribute nothing.",
+  "notShipped": {
+    "collections before 2019": "6253 surveys, 2014-2018: the laboratory counts of that period may be unreported subsamples (invoice limits; >500 larvae subsampled to 500 in 2016-2018), so y would not be the count in the drag",
+    "unusable samples": "13 samples marked Entire sample lost or Sample incomplete; 11 Y samples with no laboratory rows; 7 repeat collections of a plot within one bout",
+    "field counts": "tck_fielddata adultCount / nymphCount / larvaCount (field counts, discontinued in 2019; the laboratory counts are y)",
+    "other tables": "tck_taxonomyRaw (pre-synonymy names), tck_identificationHistory, pathogen and archive tables"
+  },
+  "summary": {
+    "n_rows": 216104,
+    "n_units": 287,
+    "n_taxa": 28,
+    "n_periods": 6,
+    "n_occasions": 15,
+    "n_surveys": 7718,
+    "y_values": "0-35000 (382 distinct)",
+    "prop_zero": 0.979,
+    "n_traps": 1,
+    "n_zero": 211498,
+    "n_positive": 4606,
+    "n_units_detected": 176,
+    "max_y": 35000
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "obs_area_m2", "obs_method", "obs_count_likely_estimated"],
+  "coreMd5": "9516ff9e394d42bb30e921204303bc3b",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "year"],
+      "md5": "4f818c6b0b10b42e27e89b1c754975b2"
+    },
+    "taxa": {
+      "rows": 28,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxonRemarks", "taxon_n_ticks"],
+      "md5": "273262a6dc17249dab0a6b50d3108795"
+    },
+    "units": {
+      "rows": 287,
+      "columns": ["unit", "site", "domain", "plot_type", "nlcd_class", "named_location", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "4267ef08e21f98cc4edc4872c5f6aa77"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_ticks_count.R",
+  "buildDate": "2026-11-05"
+}

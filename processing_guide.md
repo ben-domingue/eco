@@ -16,6 +16,12 @@ default. Intake policy in `standard.md`:
 - CC0, CC BY, CC BY-SA, public domain (USGS, government agencies): proceed.
 - CC BY-NC, ODbL, GPL (data shipped in R packages) and other propagating clauses:
   proceed; `derived_license` carries the clause so a reuser can exclude the table.
+- **What eco redistributes under.** eco does not relicense: each table is
+  redistributed under its source's licence, so `derived_license` in `biblio.csv` is
+  that licence's SPDX id (stage 02 sets it from `__dataset.json`'s
+  `intellectualRights.spdx`). CC0 stays CC0; CC BY stays CC BY, with the attribution
+  the citation carries; NC, SA and ODbL clauses pass through to anyone who reuses the
+  table. The source's own wording, conflicts included, stays in `original_license`.
 - No licence, an unresolvable licence UUID, "contact the author": **stop**. Record
   the candidate in `queue/human_review.csv` as `held`, set the queue row to
   `held: no licence`, and move on. Ben emails; process only once permission is
@@ -65,16 +71,18 @@ GBIF backbone (cached in `.cache/gbif/`). A code the deposit never expands, a
 **Coordinates and sensitivity.** Decide before writing: does the deposit carry
 coordinates, and is any taxon flagged (the source says so, IUCN CR/EN/VU within its
 native range, a cited national red list)? If both, coarsen with `coarsen_coords()` to the 0.1 degree cell
-and set `coordinatesCoarsened`. Agency-published coordinates on public land are
-kept as published. Never publish finer than the source did. If there are no
+and set `coordinatesCoarsened`, whoever published the source (agency coordinates
+included, ruled 2026-11-06). Never publish finer than the source did. If there are no
 coordinates, `coordinatesCoarsened = NA` still has to be present in the metadata
 when any coordinate column exists; otherwise leave it out. When set, it is
 `list(value = TRUE/FALSE, method = "...")`, never a bare string or logical: the
 validator and `metadata/01_metadata.R` read `$value`.
 
-**Sample floor and replication** are reported, not gates: `write_table()` computes
-`sampleFloor` (30 units and 2 occasions or periods). A single-visit community matrix
-is admitted and filterable; do not seek such tables out.
+**Sample floor** is reported, not a gate: `write_table()` computes `sampleFloor` (30
+units and 2 occasions or periods). **Replication is a gate** (ruling 2026-11-06): a
+site-unit deposit with one visit per unit and one period (a single-visit community
+matrix) is not built; record it in `queue/human_review.csv` as `rejected`. Within-visit
+intervals do not make it replicated (they are `obs_` columns, E8).
 
 **Name**: `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer; type
 suffixes `occ`, `count` / `nmix`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`,
@@ -92,7 +100,12 @@ hold the deposit.
 Download into `.cache/raw/<table>/` with `download_cached()` or `download_dryad()`
 (the Dryad version zip is the only anonymous route; per-file downloads need a
 token; a few Dryad deposits also have a Zenodo copy, most do not). EDI's portal and PASTA refuse
-scripted requests; use DataONE or hold. Read every file the deposit ships, not only
+scripted requests; use DataONE or hold. The intake is anonymous by default: a deposit whose
+anonymous download fails (404, 405) is `blocked`, not fetched by hand (ruling 2026-11-06). When
+Ben supplies a short-lived Dryad API token in `DRYAD_TOKEN`, `download_dryad()` sends it (a
+higher rate limit) and fetches a deposit whose zip is refused file by file; a deposit whose
+files Dryad refuses even then (404 on every file) stays `blocked`. The token is loaded into the
+shell for the run only, never printed, logged or committed. Read every file the deposit ships, not only
 the obvious one: the covariate files often reveal which cells were surveyed, and
 the readme often carries the licence and the species code list.
 
@@ -139,7 +152,8 @@ year, season label) go in `__periods`, not the core.
 
 **What is not a covariate.** Anything the authors estimated from the same
 detections: an occupancy or detection estimate, a predicted density, a model-based
-"dog activity" index. Drop it, and record the drop in `notShipped`. Standardised
+"dog activity" index, or a relative abundance index or trap success computed from the
+same cameras (ruled 2026-11-06). Drop it, and record the drop in `notShipped`. Standardised
 versions of a covariate are shipped as the source gives them, with the fact noted.
 
 **What is not `y`.** Imputed or interpolated counts (remove), aggregates across
@@ -188,7 +202,68 @@ table to avoid them. Two methods are two tables.
 - GBIF strict name matching can resolve a homonym to a kingdom or family, and the
   IUCN endpoint can answer for a synonym's different species. `make_taxa()` asserts
   EXACT matches and `iucn_category()` checks the assessed name; HTTP 204 is "not
-  assessed".
+  assessed". Even with `allow_higher`, `make_taxa()` refuses a match above the row's
+  rank (a genus that fell to its kingdom, `gbif.org/species/1`, batch 38/39), and
+  eco-validate's `taxon_kingdom` refuses a kingdom `taxonID` on a row below kingdom:
+  repair with `gbif_taxon_hinted()` and the source's classification, or leave
+  `taxonID` empty with a `taxonRemarks`.
+
+**Rules from the 2026-11-06 rulings** (clauses in `standard.md`; the how-to here):
+
+- eDNA with Ct values and no call: `y = as.integer(!is.na(ct) & ct != "Undetermined")`,
+  `y_raw` the Ct string as deposited. Find the field blanks per sampling event in the
+  deposit, assert their count, and set `obs_blank_positive` on every row of an event
+  whose blank amplified. An author's call (a Ct cutoff, an LOD rule in the readme)
+  wins; cite it in the header.
+- An all-zero table: assert that `y` is all 0, and put "No detection in any survey;
+  detection probability is not estimable from this table alone" in `notes`.
+- A detector shared by all taxa with a not-surveyed mark for one taxon: drop that
+  survey for every taxon, assert the number dropped, list it in `notShipped`.
+- Count-detector SCR: one row per individual x trap operated, `y` the encounter count
+  under the source's independence rule (name it in `samplingProtocol`),
+  `effortColumn = "obs_effort_days"`, `closure = "none"`, `occasionKind = "none"`.
+- Time to detection: `obs_ttd` (units in the column description) holds the time, or
+  the survey length where not detected; `obs_ttd_censored` is 1 there and 0 otherwise.
+- A survey set inferred from detections: state the rule in `surveyEvidenceNote` and
+  the header, and say that surveys with no detection of anything are absent.
+- Ids valid only within a session: make the unit `<session>_<id>` (or assert the
+  source's ids are already unique across sessions) and say so in `closureNote`.
+- Within-visit intervals: `occasion` is the visit; `y` is the visit's detection or
+  total, built from the intervals and asserted equal to any visit-level value the
+  source gives; `obs_int1`, `obs_int2`, ... carry the intervals.
+- Several sign types: read which sign types the authors' model counts as a detection
+  and build `y` from those; ship each sign count as `obs_<sign>`; cite the paper's
+  definition in the header.
+- Per-visit series plus season total (Swiss MHB): build the per-visit table with
+  `__survey_taxa` (visits outside a species' counting window, and square-years with no
+  per-visit values, are not surveyed for that species), then the total table from the
+  total column; assert how many positive totals have no per-visit values, which is why
+  the second table ships.
+- Several people's interpretations of the same field visits (territory editors): one
+  table, `occasion` = visit x interpreter, `observer` = the interpreter's code,
+  `occasionKind = ["time", "observer"]`, `closure = "dependent"` (they share the field
+  data); never one table per interpreter.
+- Synonyms: merge only names the source uses for one species, assert the merge, and
+  list both names in `taxonRemarks`.
+- Estimated counts (rulings 17, 18): never drop a count the source labels as estimated;
+  keep it in `y` and set `obs_count_estimated` (1 where `y` includes one, else 0). Flag an
+  unlabelled count only by a rule in E2 (tick larvae in exact multiples of 1,000:
+  `obs_count_likely_estimated`); assert how many rows each flag marks.
+- Per-site species pool (ruling 19): for a complete-list protocol with no target list,
+  build `__survey_taxa` from the taxa recorded at each site in the table's own surveys,
+  keyed on the site's units; say in `surveyEvidenceNote` that the pool is derived from
+  detections. Nested plot designs (NEON plants: 1 m2 inside 10 m2 inside 100 m2 inside
+  400 m2): build the one scale that holds a complete list of the taxa at every visit and
+  is revisited by the same method (NEON: the 1 m2 subplot; the larger scales record only
+  taxa new at that scale), and never union scales into a cumulative list.
+- 'sp.' and 'spp.' (ruling 20): merge a source's "X sp." and "X spp." codes into one taxon
+  at X's rank, keep the most frequent code as `taxon`, and list every code in `taxonRemarks`.
+- Subsamples (ruling 21): when `y` counts the identified part of a sample, ship the
+  fraction as an `obs_` column and name it in `subsampleColumn`; the whole-sample
+  estimate `y / fraction` is not shipped.
+- Licence: ODC-By 1.0 proceeds like CC BY. Zenodo "Other (Open)" with no text, or a
+  CC0 badge with a consult-the-PIs clause: hold as `held: unclear licence terms` and
+  ask by email; a refusal or no reply leaves the deposit linked, not reshared.
 
 ## Metadata (`__dataset.json`)
 
@@ -202,7 +277,7 @@ goes in `closureNote`), `taxonInclusion` (`recorded` | `target` | `single`, E10)
 `surveyEvidence`, `temporalCoverage` (`YYYY/YYYY` or `YYYY-MM/YYYY-MM`),
 `geographicCoverage`. Conditional: `stateCodes`, `multinomialType` or
 `distanceBreaks`, `coordinatesCoarsened`, `surveyEvidenceNote`, `crs`, `effortColumn`,
-`taxaWithheld`, `detectionCertainty`. Recommended:
+`taxaWithheld`, `detectionCertainty`, `subsampleColumn`. Recommended:
 `abstract`, `paperDOI`, `notShipped` (a named list: what and why), `notes`.
 `write_table()` adds `summary`, `sampleFloor`, `columns`, `standardVersion`,
 `script`, `buildDate`.

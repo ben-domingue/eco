@@ -1,9 +1,14 @@
 # eco — an IRW-style warehouse for ecological detection data?
 
-*Exploratory project, started 2026-10-30. As of 2026-11-01: 30 tables from 20
-public deposits and 6 package datasets, built by one script each, validated
-against standard v1.0-draft, and released on Redivis as `datapages.eco` (eco v2).
-The standard is a draft and may change between releases; released versions do not.*
+*Exploratory project, started 2026-10-30. As of 2026-11-01: 30 tables from 23
+deposits (20 public deposits and the example data of three R packages), built by
+one script each, validated against standard v1.0-draft, and released on Redivis
+as `datapages.eco` (eco v2). The corpus has grown since: the current count, N
+tables from M deposits, is on the website's homepage and in
+`metadata/status.json` (`n_tables`, `n_deposits`). The standard is a draft and
+may change between releases; released versions do not. The words table,
+deposit, core, side table, shard and entry are defined in the site's
+[glossary](https://ben-domingue.github.io/eco/glossary.html).*
 
 *Website: <https://ben-domingue.github.io/eco/> (source in `site/`, rendered by
 `.github/workflows/site.yml`; preview locally with `cd site && quarto preview`).*
@@ -187,7 +192,7 @@ What building 30 tables established, beyond the round trips:
 | `dictionary/dictionary_auto.csv` | Data-Dictionary rows (eco header; see `dictionary/README.md`) |
 | `tags/tags_auto.csv`, `tags/vocab.md` | Filter tags per table and their vocabulary |
 | `validate/report.csv`, `validate/validate_redivis.py` | One eco-validate verdict per table, the report the site reads; written by the uploader, and by a re-validation of the tables on Redivis after a validator change |
-| `upload/red_up_eco.py` | Ships `output/` to Redivis `datapages.eco` (reference `eco:4j5q`) with IRW's `red_up`: true replace, row counts verified, descriptions from `__dataset.json`; draft only |
+| `upload/red_up_eco.py` | Ships `output/` to the Redivis core shards (`datapages.eco`, `eco_2`, ...; `redivis_config.py`) with IRW's `red_up`: new tables to the oldest shard under 950 tables, existing ones where they live; true replace, row counts verified, descriptions from `__dataset.json`; draft only |
 | `queue/candidates.csv` | Inspected deposits collaborators can claim (`available` / `claimed` / `built` / held with a reason) |
 | `analysis/*.R`, `analysis/build_report.py` | The illustrative figures and the assembly of `report.html` from the repo's own files |
 | `discovery_log.csv`, `discovery_summary.md` | Per-source hit counts, curated candidates with difficulty scores, and the narrative |

@@ -1,0 +1,64 @@
+{
+  "table": "lebeuftaylor_2026_alpac_songbird_dynocc",
+  "title": "Classifier detections of six old-forest songbirds on ARU recordings at 162 sites in three harvest treatments, north-eastern Alberta, 2015-2025",
+  "creator": "Lebeuf-Taylor, Isabelle",
+  "pubDate": "2026",
+  "doi": "10.5683/SP3/OZUBY9",
+  "sourceURL": "https://doi.org/10.5683/SP3/OZUBY9",
+  "citation": "Lebeuf-Taylor, I. (2026). Replication Data for: Understory protection supports forest songbirds but does not offset regional fire-driven losses to old forest occupancy. Borealis, V2. https://doi.org/10.5683/SP3/OZUBY9",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Autonomous recording units at 162 sites in 54 clusters, each with understory-protection harvest, conventional harvest and unharvested old forest, in the Alberta-Pacific Forest Management Agreement area, recorded in three of the years 2015-2025; up to eight dawn recordings per site-year were processed with the HawkEars classifier for six old-forest songbirds.",
+  "samplingProtocol": "Autonomous recording units; up to eight recordings per site-year from 04:45-07:45 between 25 May and 15 July processed with HawkEars v1.0, a species detected on a recording when its score exceeded a threshold set for a 0.90 probability of a true positive (validated by manual review).",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "closureNote": "occasion = recording within a breeding season (25 May - 15 July); period = year.",
+  "geographicCoverage": "Alberta-Pacific Forest Industries Forest Management Agreement area, north-eastern Alberta, Canada",
+  "temporalCoverage": "2015/2025",
+  "notShipped": {
+    "thresholds": "hawkears_thresholds_8recs.tab: per-species classifier thresholds and validation summaries",
+    "landscape": "landbase_accounting_2003_2025.tab and annual_old_forest_rates_2003_2025.tab (landscape projections)"
+  },
+  "notes": "y is the classifier detection at the authors' species thresholds (0.90 precision target), not a manual identification. unit_treatment: UP understory protection harvest, CLH conventional low-retention harvest, OF old forest.",
+  "summary": {
+    "n_rows": 22788,
+    "n_units": 162,
+    "n_taxa": 6,
+    "n_periods": 8,
+    "n_occasions": 8,
+    "n_surveys": 3798,
+    "y_values": "0,1",
+    "prop_zero": 0.829,
+    "n_traps": 1,
+    "n_zero": 18897,
+    "n_positive": 3891,
+    "n_units_detected": 162,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_treatment", "unit_distance_to_edge_m", "unit_harvest_year", "unit_understory_height_m", "obs_date_doy", "obs_tod_min"],
+  "coreMd5": "f10400553a5bf0bf27d484a43ecd940d",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year"],
+      "md5": "cd39298074eb66bb1b865764b24fa8f9"
+    },
+    "taxa": {
+      "rows": 6,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "3cd525a5271ac120304abe131630b20e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lebeuftaylor_2026_alpac_songbird_dynocc.R",
+  "buildDate": "2026-11-06"
+}

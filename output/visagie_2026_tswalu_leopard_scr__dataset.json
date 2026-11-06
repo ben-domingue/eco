@@ -1,0 +1,73 @@
+{
+  "table": "visagie_2026_tswalu_leopard_scr",
+  "title": "Spatial capture-recapture of leopard from 85 paired camera stations in Tswalu Kalahari Reserve, South Africa: 5 individuals, 127 daily occasions, January-May 2024",
+  "creator": "Visagie, Marna; Davis, Robert Simon; Overton, Elizabeth Kennedy; Venter, Jan",
+  "paperDOI": "10.1002/wlb3.01630",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.rxwdbrvrt",
+  "sourceURL": "https://doi.org/10.5061/dryad.rxwdbrvrt",
+  "citation": "Visagie, M., Davis, R. S., Overton, E. K., & Venter, J. (2026). Data and code from: Estimating large carnivore populations in an arid fenced reserve using spatial capture-recapture modelling [Dataset]. Dryad. https://doi.org/10.5061/dryad.rxwdbrvrt",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily detections of individually identified leopard (Panthera pardus) at 85 paired camera-trap stations in the Korannaberg section of Tswalu Kalahari Reserve, Northern Cape, South Africa, 18 January to 23 May 2024, as the authors' oSCR input: one row per individual x station x day the station operated, with station placement (on trail or not) and distance to the spotted hyaena den.",
+  "samplingProtocol": "85 paired camera-trap stations operated over 127 daily occasions; individuals identified from natural markings; detections per individual, station and day (proximity detectors), with a per-day operation matrix.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The deposited operation matrix (station x day) defines the survey set: a station-day is surveyed iff marked 1 (9,978). Four station-days marked 0 carry a photograph (spotted hyaena at station 16 on days 115 and 122; brown hyaena at station 78 on days 86 and 98); the photographs are believed and the four are added as surveyed in all three species' tables (9,982).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "one 127-day session analysed as a closed population (oSCR)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "local: station positions centred on the array centroid by the processor, metres (source: 1 km grid centroids, WGS 84 / UTM 34S)",
+  "geographicCoverage": "Korannaberg section of Tswalu Kalahari Reserve, Northern Cape, South Africa; array centroid about 27.3 S, 22.4 E",
+  "temporalCoverage": "2024-01/2024-05",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "station coordinates (generalised by the source to 1 km grid centroids) centred on the array centroid by the processor, local metres, UTM positions withheld, because leopard (IUCN VU) shares the camera array with the two hyaena tables; the centroid is given at 0.1 degree in geographicCoverage"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps; daily Bernoulli detections at proximity detectors.",
+  "notShipped": {
+    "model_outputs": "fitted oSCR models, state-space grid, predicted density rasters and shapefiles (not observations)",
+    "duplicate_rows": "duplicate detection rows in the encounter files, removed as in the authors' script",
+    "utm_coordinates": "station UTM coordinates (1 km centroids), withheld under E7 (centred instead)"
+  },
+  "notes": "One of three species tables from one camera array (leopard, brown hyaena, spotted hyaena). 5 individuals; ids as deposited. date = 2024-01-17 + occasion (127 days, 18 January to 23 May 2024, as the README states).",
+  "summary": {
+    "n_rows": 49910,
+    "n_units": 5,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 127,
+    "n_surveys": 49910,
+    "y_values": "0,1",
+    "prop_zero": 1,
+    "n_traps": 85,
+    "n_zero": 49887,
+    "n_positive": 23,
+    "n_units_detected": 5,
+    "max_y": 1
+  },
+  "sampleFloor": "below (5 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "date"],
+  "coreMd5": "6ebb693f85abdde11bcc25ded634c02c",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b234c475bd2eb783accfdd2d4aba1c5a"
+    },
+    "traps": {
+      "rows": 85,
+      "columns": ["trap", "x", "y", "trail", "den_m"],
+      "md5": "db066bce3d005913e63a0068721bb1d2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/visagie_2026_tswalu_carniv_scr.R",
+  "buildDate": "2026-11-05"
+}

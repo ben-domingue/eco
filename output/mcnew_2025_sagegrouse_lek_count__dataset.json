@@ -1,0 +1,65 @@
+{
+  "table": "mcnew_2025_sagegrouse_lek_count",
+  "title": "Ground-based lek counts of greater sage-grouse at 23 leks, 1-7 visits per lek, spring 2021-2022",
+  "creator": "McNew, Lance",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.v41ns1s6v",
+  "sourceURL": "https://doi.org/10.5061/dryad.v41ns1s6v",
+  "citation": "McNew, L. (2025). Data from: The performance of drones and artificial intelligence for monitoring sage-grouse at leks [Dataset]. Dryad. https://doi.org/10.5061/dryad.v41ns1s6v",
+  "paperDOI": "10.1002/wlb3.01482",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated ground-based counts of greater sage-grouse (Centrocercus urophasianus) at 23 known leks, 1-7 visits per lek between 19 March and 4 May in 2021 or 2022, with survey time, wind, humidity and sky condition: the N-mixture input of a comparison of ground, drone and AI-based lek counts.",
+  "samplingProtocol": "Standard ground-based visual lek counts with binoculars from a distance, 30 minutes before to 30 minutes after sunrise; the maximum count of birds on the lek per survey.",
+  "samplingProtocolCode": "lek_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one lekking season per lek (19 March - 4 May), analysed as closed N-mixture",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Sage-grouse leks (see the paper); no coordinates deposited",
+  "temporalCoverage": "2021-03/2022-05",
+  "notShipped": {
+    "drone_counts": "manual and AI-based (INDECS) counts from drone thermal video in SG_drone_data_longB.csv: 358 of 864 rows have no count and every date is typed 2023, so the drone surveys cannot be matched to dates; the ground counts there repeat NmixDF",
+    "flush_trials": "SG.drone.response.csv, drone-flushing trials (behaviour, not counts)"
+  },
+  "notes": "No ISO date column: 47 of the 94 deposited dates carry a year that disagrees with the lek's Year (5 of them 2023, outside the study), so the date string is shipped as obs_date_deposited and period follows the Year column. y is the per-survey maximum count, the standard lek count.",
+  "summary": {
+    "n_rows": 94,
+    "n_units": 23,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 7,
+    "n_surveys": 94,
+    "y_values": "0-78 (41 distinct)",
+    "prop_zero": 0.053,
+    "n_traps": 1,
+    "n_zero": 5,
+    "n_positive": 89,
+    "n_units_detected": 21,
+    "max_y": 78
+  },
+  "sampleFloor": "below (23 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_date_deposited", "obs_time", "obs_wind_kph", "obs_humidity_pct", "obs_sky"],
+  "coreMd5": "5eee1089e8b8934106b2b661f213f0c2",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "period_year"],
+      "md5": "82be33a3a67576c56421e04bbc8772bf"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a9a9da748835cd94f752ec5698b98838"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mcnew_2025_sagegrouse_lek_count.R",
+  "buildDate": "2026-11-05"
+}

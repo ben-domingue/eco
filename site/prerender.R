@@ -9,9 +9,17 @@ val  <- read.csv("../validate/report.csv", stringsAsFactors = FALSE)
 bib  <- read.csv("../metadata/biblio.csv", check.names = FALSE, stringsAsFactors = FALSE)
 rel  <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
 last <- rel[nrow(rel), ]
+source("_shards.R")   # shard_names, shard_refs, shard_urls: the core shards
+# The core shards (eco, eco_2, ...) each have a <name>_redivis_version column;
+# blank before a shard's first release. "eco v2.4, eco_2 v1.0".
+core_cols <- setdiff(grep("_redivis_version$", names(rel), value = TRUE), "eco_meta_redivis_version")
+core_tags <- function(r) {
+  v <- unlist(r[core_cols]); v <- v[!is.na(v) & nzchar(v)]
+  paste(sub("_redivis_version$", "", names(v)), v, collapse = ", ")
+}
 stats <- list(
   eco_version = last$eco_version, release_date = substr(last$date, 1, 10),
-  release_redivis = last$eco_redivis_version, release_tables = last$n_tables,
+  release_redivis = core_tags(last), release_tables = last$n_tables,
   n_tables   = nrow(meta),
   n_rows     = sum(meta$n_rows),
   n_units    = sum(meta$n_units),
@@ -20,13 +28,38 @@ stats <- list(
   n_valid    = sum(val$eco_valid & grepl("passes", val$irw_v1)),
   n_below_floor = sum(meta$sample_floor != "meets"),
   n_experimental = sum(grepl("^Experimental", tags$notes)),
-  n_deposits = length(unique(sub("/$", "", bib$source_url[!grepl("cran.r-project.org", bib$source_url)]))),
-  n_packages = sum(grepl("cran.r-project.org", bib$source_url)),
+  # A deposit is one source record (a DOI, or for a dataset shipped in an R
+  # package, the package): biblio.csv's `deposit` column, from 02_biblio.R.
+  n_deposits = length(unique(bib$deposit)),
+  n_package_deposits = length(unique(bib$deposit[grepl("cran.r-project.org", bib$deposit)])),
   built      = max(vapply(list.files("../output", "__dataset.json$", full.names = TRUE),
                  function(f) jsonlite::read_json(f)$buildDate, ""))
 )
 jsonlite::write_json(stats, "data/site_stats.json", auto_unbox = TRUE, pretty = TRUE)
 cat("prerender.R: data/site_stats.json written\n")
+
+# The homepage map: one point per table from metadata/table_locations.csv
+# (tools/table_locations.py), with what the hover card shows. Tables that are
+# never published are left off; tables with no point are listed under the map.
+loc <- read.csv("../metadata/table_locations.csv", stringsAsFactors = FALSE)
+loc <- loc[!loc$table %in% tags$table[grepl("do_not_publish", tags$status)], ]
+years <- vapply(loc$table, function(t) {
+  tc <- jsonlite::read_json(file.path("../output", paste0(t, "__dataset.json")))$temporalCoverage
+  if (is.list(tc)) tc <- paste(unlist(tc[c("beginDate", "endDate")]), collapse = " to ")
+  if (is.null(tc)) "" else as.character(tc)[1]
+}, "")
+mp <- merge(loc, meta[, c("table", "n_units", "n_taxa", "n_periods")], by = "table")
+mp <- merge(mp, tags[, c("table", "taxon_group", "model_family", "realm")], by = "table")
+mp <- merge(mp, bib[, c("table", "title")], by = "table")
+mp$years <- unname(years[mp$table])
+placed <- !is.na(mp$lat)
+jsonlite::write_json(list(
+  points = mp[placed, c("table", "lat", "lon", "precision", "extent_km", "source", "basis",
+                        "title", "taxon_group", "model_family", "realm", "n_units", "n_taxa",
+                        "n_periods", "years")],
+  unplaced = mp[!placed, c("table", "title", "basis")]
+), "data/map.json", auto_unbox = TRUE, na = "null", digits = NA)
+cat("prerender.R: data/map.json written,", sum(placed), "points,", sum(!placed), "unplaced\n")
 
 # Specimens for the homepage card: a few real rows from tables of each kind,
 # fetched from Redivis with the eco package so they cannot drift from what
@@ -99,8 +132,11 @@ tab_str <- function(x) { t <- sort(table(x), decreasing = TRUE); paste(names(t),
 pub <- meta[!meta$table %in% tags$table[grepl("do_not_publish", tags$status)], ]
 fill <- list(
   as_of = substr(last$date, 1, 10), eco_version = last$eco_version,
-  eco_redivis = last$eco_redivis_version, eco_meta_redivis = last$eco_meta_redivis_version,
-  n_tables = fmt(nrow(pub)), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
+  shard_urls = paste(shard_urls, collapse = " "),
+  shard_names = paste0("datapages.", shard_names, collapse = ", "),
+  shard_refs = paste(shard_refs, collapse = ", "), newest_ref = shard_refs[length(shard_refs)],
+  eco_redivis = core_tags(last), eco_meta_redivis = last$eco_meta_redivis_version,
+  n_tables = fmt(nrow(pub)), n_deposits = fmt(length(unique(bib$deposit[bib$table %in% pub$table]))), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
   by_response_type = tab_str(pub$response_type), by_closure = tab_str(pub$closure),
   n_inferred = fmt(sum(pub$survey_evidence == "inferred")),
   n_below_floor = fmt(sum(pub$sample_floor != "meets")))
@@ -110,3 +146,29 @@ left <- regmatches(guide, regexpr("\\{\\{[a-z_]+\\}\\}", guide))
 if (length(left)) stop("prerender.R: llms_template.txt has unfilled placeholders: ", paste(unique(left), collapse = ", "))
 writeLines(guide, "llms.txt")
 cat("prerender.R: llms.txt written\n")
+
+# The browser validator (#8, validate.qmd) runs eco_validate in Pyodide from a
+# wheel built here, from this checkout's eco_validate/, on every render: the
+# page cannot run a validator that differs from the source. Not committed and
+# not from a release (untracked, see ../.gitignore). The wheel sits under a
+# directory named for its md5, so a changed wheel of the same version gets a
+# new URL and no browser runs a cached old one. validate.qmd pins the version
+# and stops the render if this wheel is a different one.
+unlink("wheels", recursive = TRUE)
+src <- file.path(tempdir(), "eco_validate")             # build a copy: setuptools writes build/ in-tree
+dir.create(src)
+invisible(file.copy(list.files("../eco_validate", full.names = TRUE, no.. = TRUE),
+                    src, recursive = TRUE))
+unlink(file.path(src, c("tests", "build", "__pycache__")), recursive = TRUE)
+out <- file.path(tempdir(), "wheel")
+py <- Sys.getenv("PYTHON", "python3")
+# A fixed zip timestamp makes the wheel's bytes, and so its directory, a
+# function of the source alone: an unchanged validator keeps its URL.
+st <- system2(py, env = "SOURCE_DATE_EPOCH=315532800", c("-m", "pip", "wheel", "--quiet", "--no-deps", "-w", shQuote(out), shQuote(src)))
+if (st != 0) stop("prerender.R: could not build the eco_validate wheel (", py, " -m pip wheel ", src, ")")
+whl <- list.files(out, "^eco_validate-.*-py3-none-any\\.whl$", full.names = TRUE)
+if (length(whl) != 1) stop("prerender.R: expected one eco_validate wheel, found ", length(whl))
+tag <- substr(unname(tools::md5sum(whl)), 1, 12)
+dir.create(file.path("wheels", tag), recursive = TRUE)
+invisible(file.copy(whl, file.path("wheels", tag, basename(whl))))
+cat("prerender.R: wheels/", tag, "/", basename(whl), " written\n", sep = "")

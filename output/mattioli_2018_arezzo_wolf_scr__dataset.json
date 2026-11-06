@@ -1,0 +1,72 @@
+{
+  "table": "mattioli_2018_arezzo_wolf_scr",
+  "title": "Spatial capture-recapture of 22 wolf identifications on camera-trap arrays over 71 and 153 days, Arezzo province, Italy, 2014 and 2015",
+  "creator": "Mattioli, Luca; Canu, Antonio; Passilongo, Daniela; Scandura, Massimo; Apollonio, Marco",
+  "pubDate": "2018",
+  "doi": "10.6084/m9.figshare.7164929.v1",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.7164929.v1",
+  "citation": "Mattioli, L., Canu, A., Passilongo, D., Scandura, M., & Apollonio, M. (2018). Additional file 5: of Estimation of pack density in grey wolf (Canis lupus) by applying spatially explicit capture-recapture models to camera trap data supported by genetic monitoring [Dataset]. figshare. https://doi.org/10.6084/m9.figshare.7164929.v1",
+  "paperDOI": "10.1186/s12983-018-0281-x",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Camera-trap spatial capture-recapture data for grey wolves in Arezzo province, Italy, in 2014 (71 days) and 2015 (153 days), 74 trap locations in all (per-session counts in __periods), with individually identified wolves (camera identifications supported by genetic monitoring), deposited as secr and SPACECAP inputs for estimating pack density.",
+  "samplingProtocol": "Camera traps (proximity detectors) along wolf travel routes; a wolf photographed at a trap on a day is a detection for that trap-day; trap operation per day from the deployment matrix.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "Each session is assumed closed across its days. Individual ids are numbered from 1 within each session and are not linked between sessions, so a unit is '<year>_<id>' with rows only in its session; trap ids are also per session.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "EPSG:32632 (UTM zone 32N; the deposit gives metres without naming the datum, WGS 84 assumed)",
+  "geographicCoverage": "Arezzo province, Tuscany, Italy (trap coordinates in __traps)",
+  "temporalCoverage": "2014/2015",
+  "notShipped": {
+    "state_space": "state_space.csv: the 666 m habitat mask used as the model's state space (a model input)",
+    "duplicates": "the SPACECAP folder repeats the SECR files (identical, asserted)",
+    "model_output": "the paper's density estimates"
+  },
+  "notes": "Calendar dates of the days are not in the deposit (day index only).",
+  "summary": {
+    "n_rows": 46170,
+    "n_units": 22,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 153,
+    "n_surveys": 46170,
+    "y_values": "0,1",
+    "prop_zero": 0.995,
+    "n_traps": 74,
+    "n_zero": 45944,
+    "n_positive": 226,
+    "n_units_detected": 22,
+    "max_y": 1
+  },
+  "sampleFloor": "below (22 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion"],
+  "coreMd5": "d4b13daa2e5a19dbb3ff92ea8bbaf148",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_traps", "n_days", "trap_days", "n_wolves"],
+      "md5": "3a2da2d68e4d34c80ed8623acd0d7937"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c6a6b385f735a6b130e96477d142597f"
+    },
+    "traps": {
+      "rows": 74,
+      "columns": ["trap", "x", "y", "period", "loc_id", "days_operating"],
+      "md5": "b74db6e9ebae6392b606a78cfefd0b23"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mattioli_2018_arezzo_wolf_scr.R",
+  "buildDate": "2026-11-06"
+}

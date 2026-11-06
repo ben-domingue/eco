@@ -1,0 +1,65 @@
+{
+  "table": "saracco_2019_saipan_kingfisher_cjs",
+  "title": "Annual mist-net capture histories of 85 Mariana kingfishers at six TMAPS stations, Saipan, 2008-2018",
+  "creator": "Saracco, James",
+  "pubDate": "2019",
+  "doi": "10.7910/DVN/5SW2HJ",
+  "sourceURL": "https://doi.org/10.7910/DVN/5SW2HJ",
+  "citation": "Saracco, J. (2019). Replication data for Recent dynamics and trends of landbird populations on Saipan, Northern Marianas Islands [Dataset]. Harvard Dataverse. https://doi.org/10.7910/DVN/5SW2HJ",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual capture histories of five landbird species banded at six Tropical Monitoring Avian Productivity and Survivorship (TMAPS) mist-netting stations on Saipan, Northern Mariana Islands, 2008-2018, deposited with the authors' JAGS reverse-symmetry model of survival and population growth.",
+  "samplingProtocol": "Constant-effort mist netting at TMAPS stations; birds banded and recaptured; captures pooled to one annual occasion per year and station.",
+  "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one annual occasion per year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Saipan, Northern Mariana Islands (six stations: BICA, KIFI, LATA, MTAP, OBYA, SATA; no coordinates deposited)",
+  "temporalCoverage": "2008/2018",
+  "notShipped": {
+    "effort_interval": "ecov.csv (standardized effort) and int.csv (interval length): 7-row matrices with no station key for 6 stations",
+    "age_sex": "no age or sex deposited",
+    "model_output": "the authors' survival and population growth estimates"
+  },
+  "notes": "Unit = station x band; cluster_id = the station. No age is deposited, so every bird has rows from 2008 (E4.4). Band 162361744 has a history at BICA and at LATA (both 2016 only): kept as the source's two histories. Rows with no band number in the source have unit '<station>_noband<n>'.",
+  "summary": {
+    "n_rows": 935,
+    "n_units": 85,
+    "n_taxa": 1,
+    "n_periods": 11,
+    "n_occasions": 1,
+    "n_surveys": 935,
+    "y_values": "0,1",
+    "prop_zero": 0.897,
+    "n_traps": 1,
+    "n_zero": 839,
+    "n_positive": 96,
+    "n_units_detected": 85,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id"],
+  "coreMd5": "3fff4cfac7ee96eb50834056a1181b4b",
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "year"],
+      "md5": "071d924d08a9e77bd3bd8214b2212f25"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "5d998319dfa15b3764ce507f1618e3c6"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/saracco_2019_saipan_cjs.R",
+  "buildDate": "2026-11-06"
+}

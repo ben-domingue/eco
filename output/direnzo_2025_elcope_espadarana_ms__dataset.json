@@ -1,0 +1,72 @@
+{
+  "table": "direnzo_2025_elcope_espadarana_ms",
+  "title": "Capture histories with chytrid infection state of 259 male Espadarana prosoblepon glass frogs after the outbreak, El Cope, Panama, 2010-2014",
+  "creator": "DiRenzo, Graziella V.; McCaffery, Rebecca; Longo, Ana V.; Zamudio, Kelly R.; Lips, Karen R.",
+  "pubDate": "2025",
+  "doi": "10.5066/P1A8KDTE",
+  "sourceURL": "https://doi.org/10.5066/P1A8KDTE",
+  "citation": "DiRenzo, G.V., McCaffery, R., Longo, A.V., Zamudio, K.R., and Lips, K.R., 2025, Ten years of capture-mark-recapture data for Espadarana prosoblepon in El Cope, Cocle Province, Panama before and after a chytridiomycosis outbreak (2000-2014): U.S. Geological Survey data release, https://doi.org/10.5066/P1A8KDTE.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Five years (2000-2004) of capture-mark-recapture data for male Espadarana prosoblepon before Batrachochytrium dendrobatidis arrived in El Cope, Panama in September 2004, and five years (2010-2014) after the outbreak in the same population, with infection status and load.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "unitKind": "individual",
+  "taxonInclusion": "single",
+  "closure": "none",
+  "closureNote": "one occasion per season as deposited",
+  "occasionKind": "none",
+  "geographicCoverage": {
+    "description": "Stream transects at El Cope, Cocle Province, Panama (8.571 N, 80.587 W)"
+  },
+  "samplingProtocol": "Night visual encounter surveys of stream transects in nine survey bouts (July 2010 to March 2014, wet and dry seasons); males captured, marked and swabbed for Batrachochytrium dendrobatidis (qPCR); each bout collapsed to one occasion by the authors.",
+  "responseType": "state",
+  "temporalCoverage": "2010-07/2014-03",
+  "stateCodes": {
+    "0": "not detected",
+    "1": "detected, Bd negative",
+    "2": "detected, Bd positive",
+    "3": "detected, not tested for Bd"
+  },
+  "notes": "Multi-state capture-recapture (infection state). obs_bd_load is the deposited Bd infection intensity (0 where not detected or uninfected). Companion: direnzo_2025_elcope_espadarana_cjs (pre-outbreak).",
+  "notShipped": {
+    "never_detected": "8 frogs in CH_month2 never detected in any survey (not units, E4.4)"
+  },
+  "summary": {
+    "n_rows": 2331,
+    "n_units": 259,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 1,
+    "n_surveys": 2331,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.794,
+    "n_traps": 1,
+    "n_zero": 1850,
+    "n_positive": 481,
+    "n_units_detected": 259,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "obs_bd_load"],
+  "coreMd5": "3e37a530feadd3192149955be55d4bfe",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "month"],
+      "md5": "2e0d2caf96bcffd2170d280aaf13661a"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "03af26e381be46b41a60f49c16d4431c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/direnzo_2025_elcope_espadarana.R",
+  "buildDate": "2026-11-06"
+}

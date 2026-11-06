@@ -53,6 +53,7 @@ CLAUSES = {
     "side_traps":           "E6",
     "side_survey_taxa":     "E6",
     "taxon_rows":           "E6",
+    "taxon_kingdom":        "E6",
     "side_key_na":          "E6",
     "coordinates_declared": "E7",
     "coordinates_sensitive": "E7",
@@ -68,7 +69,7 @@ CLAUSES = {
 
 #: Intake policy (standard.md, "Intake policy"): reported, not part of the format.
 INTAKE_CHECKS = frozenset({
-    "table_name", "standard_version", "sample_floor", "replication",
+    "table_name", "standard_version", "sample_floor", "replication", "all_zero",
 })
 
 

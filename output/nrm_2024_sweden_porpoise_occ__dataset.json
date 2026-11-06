@@ -1,0 +1,70 @@
+{
+  "table": "nrm_2024_sweden_porpoise_occ",
+  "title": "Swedish national monitoring of harbour porpoise: daily C-POD detections at 34 stations, 2015-2023",
+  "creator": "Swedish Museum of Natural History; Swedish Agency for Marine and Water Management; Swedish Meteorological and Hydrological Institute (SHARK)",
+  "pubDate": "2024",
+  "doi": "10.15468/b58jkn",
+  "sourceURL": "https://doi.org/10.15468/b58jkn",
+  "citation": "Swedish Museum of Natural History, Swedish Agency for Marine and Water Management and Swedish Meteorological and Hydrological Institute (2024). SHARK - National marine environmental monitoring of Harbour porpoise in Sweden. Version 1.1. Sampling event dataset. https://doi.org/10.15468/b58jkn",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
+  },
+  "abstract": "Swedish national marine monitoring of harbour porpoise, financed by the Swedish Agency for Marine and Water Management and run by the Swedish Museum of Natural History: C-POD click detectors moored at fixed stations in the Baltic Sea, Kattegat and Skagerrak log porpoise echolocation continuously and are exchanged periodically. One row per station-day: whether the day had any detection-positive minute (y), with the minutes in y_raw.",
+  "samplingProtocol": "Static passive acoustic monitoring with C-POD click detectors moored at fixed stations, logging continuously; click trains classified by the KERNO classifier (narrow-band high-frequency) and summarised as detection-positive minutes per day (national monitoring manual 'Stationär akustisk övervakning av tumlare').",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasion = day of year within a calendar year (period); porpoises move and use of a station changes seasonally, so the days of a year are not closed; dynamic or time-series models fit the design",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "EPSG:4619 (SWEREF99 geographic, as published; within a metre of WGS 84)",
+  "geographicCoverage": "Swedish waters of the Baltic Sea, Kattegat and Skagerrak",
+  "temporalCoverage": "2015-10/2023-10",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Station positions as published. Not flagged (E7): the species is IUCN LC (GBIF IUCN record); the Baltic Proper subpopulation's CR assessment is for a subpopulation, not a taxon, so criterion (b) does not apply; the source states no sensitivity and cites no red list."
+  },
+  "covariateNote": "y_raw = detection-positive minutes in the day (0-1440); obs_irregular_setting = 1 where the source marks the day as recorded wholly or partly with the irregular C-POD setting (8 cycles), else 0; obs_decimalLatitude / obs_decimalLongitude = the logger's position on the day (deployments move by up to about 1 km within a station; 350 days at NMN1 and 1031 give positions 4.5-19 km off, probably mistyped longitudes, kept as published; unit_ coordinates are the station's most frequent position); obs_depth_m = water depth at the station as given on the sample, NA where not given.",
+  "notShipped": {
+    "overlapping logger-days": "10 station-days recorded by a second, overlapping logger (NMN2); the earlier-deployed logger's day is kept",
+    "monthly summaries": "178 first-of-month samples that merge two logger files around an exchange and carry only 'detection positive days per month' (aggregates of the daily rows)",
+    "programme fields": "laboratory, accreditation, monitoring programme and purpose (constant)"
+  },
+  "summary": {
+    "n_rows": 40677,
+    "n_units": 34,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 366,
+    "n_surveys": 40677,
+    "y_values": "0,1",
+    "prop_zero": 0.482,
+    "n_traps": 1,
+    "n_zero": 19589,
+    "n_positive": 21088,
+    "n_units_detected": 32,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "obs_decimalLatitude", "obs_decimalLongitude", "obs_irregular_setting", "obs_depth_m"],
+  "coreMd5": "5aa95aa82fe2a7034cde747c1e1c9f18",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "n_stations"],
+      "md5": "c648b089427d4c7c7aae4eb8774b607a"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "764414ae051e3d4364a055b589268b12"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/nrm_2024_sweden_porpoise_occ.R",
+  "buildDate": "2026-11-06"
+}

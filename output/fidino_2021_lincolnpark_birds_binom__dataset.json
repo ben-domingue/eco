@@ -1,0 +1,68 @@
+{
+  "table": "fidino_2021_lincolnpark_birds_binom",
+  "title": "Days seen out of days walked for 193 bird species in Lincoln Park, Chicago, in 16 years across 1898-2015",
+  "creator": "Fidino, Mason; Bender, Jared; Limbrick, Kelvin; Gallo, Travis; Magle, Seth B.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.w3r2280rb",
+  "sourceURL": "https://doi.org/10.5061/dryad.w3r2280rb",
+  "citation": "Fidino, M., Bender, J., Limbrick, K., Gallo, T., & Magle, S. B. (2021). Strolling through a century: replicating historical bird surveys to explore 100 years of change in an urban bird community [Dataset]. Dryad. https://doi.org/10.5061/dryad.w3r2280rb",
+  "paperDOI": "10.1086/717052",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "For each of 193 bird species and each survey year, the number of days the species was seen on bird walks in Lincoln Park, Chicago, out of the days walked: Walter (1898-1903), Dreuth (1927-1932) and Fidino and Limbrick (2012-2015, replicating the historical walks).",
+  "samplingProtocol": "Repeated bird walks through Lincoln Park recording every species seen each day; historical records from a published book (Walter) and field notes (Dreuth), modern walks replicating them; days seen per species per year.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "effort.csv gives the days walked each year; Walter and Fidino rows carry explicit zeros for the era's species; Dreuth rows only years with sightings; a species-year without a row was seen on none of the days walked.",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one count per species-year (days seen of days walked, March-November walks)",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Lincoln Park, Chicago, Illinois, USA; no coordinates",
+  "temporalCoverage": "1898/2015",
+  "notShipped": {
+    "raw_lists": "the raw Dreuth and Fidino daily lists (uncleaned names; cleaning in the authors' Zenodo code)",
+    "derived": "arrival dates and species seen per day (derived)",
+    "external": "EltonTraits, life-history and Ward et al. change tables (external)"
+  },
+  "notes": "One unit: the walks covered one park, so the table is a 193-species x 16-year series of detection frequencies, not a spatial design. Observer changes with the era (period_observer). Species names and codes follow the deposit's species_codes.csv (AOU 4-letter codes).",
+  "summary": {
+    "n_rows": 3088,
+    "n_units": 1,
+    "n_taxa": 193,
+    "n_periods": 16,
+    "n_occasions": 1,
+    "n_surveys": 16,
+    "y_values": "0-82 (73 distinct)",
+    "prop_zero": 0.422,
+    "n_traps": 1,
+    "n_zero": 1302,
+    "n_positive": 1786,
+    "n_units_detected": 1,
+    "max_y": 82
+  },
+  "sampleFloor": "below (1 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "obs_trials"],
+  "coreMd5": "82720db64f03d52800ce019f65b53d54",
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "period_year", "period_observer"],
+      "md5": "6ba066ca78ed97f60d4d6c039499727a"
+    },
+    "taxa": {
+      "rows": 193,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3b6a6c59a5f5253f613622bd0b463963"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fidino_2021_lincolnpark_birds_binom.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,76 @@
+{
+  "table": "rose_2024_sjvalley_leglesslizard_occ",
+  "title": "Temblor legless lizard cover-board occupancy surveys at 89 sites, San Joaquin Valley, California, 2022-2023",
+  "creator": "Rose, Jonathan P.; Camp, Sabrena M.; Sheikh, Zarina N.; Johnson, Chelsea B.; Lei, Samuel H.; Napolitano, Giancarlo R.; Schoenig, Elliot J.; Macias, Daniel A.; Jordan, Anna C.; Halstead, Brian J.",
+  "pubDate": "2024",
+  "doi": "10.5066/P9R7UIV7",
+  "sourceURL": "https://doi.org/10.5066/P9R7UIV7",
+  "citation": "Rose, J.P., Camp, S.M., Sheikh, Z.N., Johnson, C.B., Lei, S.H., Napolitano, G.R., Schoenig, E.J., Macias, D.A., Jordan, A.C., and Halstead, B.J., 2024, Occupancy surveys for the Temblor legless lizard (Anniella alexanderae) in the San Joaquin Valley, California 2022 to 2023: U.S. Geological Survey data release, https://doi.org/10.5066/P9R7UIV7.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints only direct questions to the point of contact)"
+  },
+  "abstract": "Survey effort and results of USGS cover-board surveys for the Temblor legless lizard in 2022 and 2023, with detection covariates (substrate temperature and humidity, time of day, day of season) and occupancy covariates (distance to the nearest ephemeral stream, soil clay content), gathered to inform a US Fish and Wildlife Service Species Status Assessment.",
+  "samplingProtocol": "Cover-board arrays at GRTS-random and manually chosen sites; boards checked repeatedly, several times within each week (secondary occasion) of the February-May field season, recording whether a Temblor legless lizard was under any board.",
+  "samplingProtocolCode": "cover_board",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = cover-board check within a field season; obs_week gives the week (secondary occasion) for the authors' multi-scale model",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Western San Joaquin Valley and Temblor Range foothills, California, USA",
+    "boundingBox": {
+      "west": -120.3964,
+      "east": -119.4973,
+      "south": 35.1718,
+      "north": 36.2676
+    }
+  },
+  "temporalCoverage": "2022-02/2023-05",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS; the species has no IUCN assessment under its own name and the release does not flag it"
+  },
+  "notShipped": {
+    "imputation_priors": "mu/sd/tau of temperature and humidity priors: model inputs, not observations",
+    "site_year_summaries": "ll_det_22, ll_det_23, ll_det_22_23, K_site_*, nsec_*, sec*_: derived from the checks (asserted equal)"
+  },
+  "summary": {
+    "n_rows": 563,
+    "n_units": 89,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 11,
+    "n_surveys": 563,
+    "y_values": "0,1",
+    "prop_zero": 0.904,
+    "n_traps": 1,
+    "n_zero": 509,
+    "n_positive": 54,
+    "n_units_detected": 12,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_grts_random", "unit_stream_dist_m", "unit_high_clay", "obs_start_time", "obs_week", "obs_week_of_season", "obs_time_of_day_rad", "obs_day_of_season", "obs_substrate_temp_c", "obs_ibutton_temp_c", "obs_ibutton_rh_pct"],
+  "coreMd5": "21703ed7687f7d5a049432e3bbb52771",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "ab1f7a9f60353621a509f450a24886c7"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b2aecd3522ec91a1771db7977eb822c7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rose_2024_sjvalley_leglesslizard_occ.R",
+  "buildDate": "2026-11-06"
+}

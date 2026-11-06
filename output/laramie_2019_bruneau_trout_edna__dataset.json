@@ -1,0 +1,78 @@
+{
+  "table": "laramie_2019_bruneau_trout_edna",
+  "title": "Bull trout and rainbow trout eDNA detections in monthly replicate water samples at 26 stream sites, Bruneau and Jarbidge rivers, Idaho and Nevada, water year 2016",
+  "creator": "Laramie, Matthew B.; Pilliod, David S.",
+  "pubDate": "2019",
+  "doi": "10.5066/P9LRD94Y",
+  "sourceURL": "https://doi.org/10.5066/P9LRD94Y",
+  "citation": "Laramie, M.B. and Pilliod, D.S., 2019, Occupancy data for spatiotemporal distribution assessments of bull trout (Salvelinus confluentus) and rainbow trout (Oncorhynchus mykiss) in the Bruneau and Jarbidge River Basins, Idaho and Nevada, USA, in water year 2016: U.S. Geological Survey data release, https://doi.org/10.5066/P9LRD94Y.",
+  "paperDOI": "10.1111/1752-1688.12800",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, freely redistributable with attribution"
+  },
+  "abstract": "eDNA-based spatiotemporal distribution data in occupancy-model format for rainbow trout and bull trout in the Bruneau-Jarbidge Rivers Wilderness, southern Idaho and northern Nevada, collected monthly October 2015 - September 2016, with stream discharge and temperature at sampling.",
+  "samplingProtocol": "Monthly visits to streamgage, intermediate and supplemental sites; three replicate water samples filtered per visit (Laramie et al. 2015 protocol) and analysed by species-specific qPCR; a sample amplifying above the Cq threshold is a detection.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = replicate water sample within one monthly visit; period = month",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
+  "geographicCoverage": {
+    "description": "Bruneau and Jarbidge river basins, Idaho and Nevada, USA",
+    "boundingBox": {
+      "west": -116,
+      "east": -115.3,
+      "south": 41.9,
+      "north": 42.9
+    }
+  },
+  "temporalCoverage": "2015-10/2016-09",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): 0.1-degree cell centre, because bull trout (Salvelinus confluentus) is IUCN VU"
+  },
+  "notes": "y is the authors' detection call per sample (Cq above threshold); no Ct values or field-blank results are deposited.",
+  "notShipped": {
+    "replicates_combined": "the per-month 'All 3 replicates combined' columns: derived from the replicates (asserted equal to their maximum)",
+    "exact_coordinates": "coarsened to 0.1 degree (bull trout IUCN VU)"
+  },
+  "summary": {
+    "n_rows": 608,
+    "n_units": 26,
+    "n_taxa": 2,
+    "n_periods": 12,
+    "n_occasions": 3,
+    "n_surveys": 304,
+    "y_values": "0,1",
+    "prop_zero": 0.594,
+    "n_traps": 1,
+    "n_zero": 361,
+    "n_positive": 247,
+    "n_units_detected": 22,
+    "max_y": 1
+  },
+  "sampleFloor": "below (26 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_decimalLatitude", "unit_decimalLongitude", "unit_site_type", "unit_stream", "unit_site_desc", "unit_elevation_m", "period_stream_temp_c", "period_discharge_cfs"],
+  "coreMd5": "e296668d12f1cd1dcf476f52d562576b",
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "year", "month"],
+      "md5": "a806f6f0bf7f64cbb624c79b0cd8d76e"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0e8dc83370c261814398eb39a267bee2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/laramie_2019_bruneau_trout_edna.R",
+  "buildDate": "2026-11-06"
+}

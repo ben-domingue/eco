@@ -1,0 +1,72 @@
+{
+  "table": "letourneux_2022_snowgoose_ms",
+  "title": "Multi-state capture, resighting and dead-recovery histories of 22,599 adult female greater snow geese marked with leg rings or leg rings and neck collars, 1990-2019",
+  "creator": "LeTourneux, Frédéric; Gauthier, Gilles; Pradel, Roger; Lefebvre, Josée; Legagneux, Pierre",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.j6q573nh4",
+  "sourceURL": "https://doi.org/10.5061/dryad.j6q573nh4",
+  "citation": "LeTourneux, F., Gauthier, G., Pradel, R., Lefebvre, J., & Legagneux, P. (2022). Evidence for synergistic cumulative impacts of marking and hunting in a wildlife species [Dataset]. Dryad. https://doi.org/10.5061/dryad.j6q573nh4",
+  "paperDOI": "10.1111/1365-2664.14268",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Adult female greater snow geese were marked with a leg ring alone or with a leg ring and a neck collar over 30 years (1990-2019) while hunting regulations were liberalised twice (spring hunt from 1999, winter hunt from 2009). Each yearly occasion records a physical recapture of a leg-ringed bird, a recapture or resighting of a collared bird, or the recovery of a bird shot in the preceding interval. The authors fit multievent models in E-SURGE to compare survival with and without collars and to partition hunting from non-hunting mortality.",
+  "samplingProtocol": "Long-term marking programme: adult females caught and marked with a metal leg ring or a leg ring plus a coded neck collar; yearly occasions pool physical recaptures, distant resightings of collars and hunter recoveries of dead birds.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not observed",
+    "1": "physical recapture of a bird with a leg ring only (also the marking of a bird ringed without a collar)",
+    "2": "physical recapture or distant resighting of a bird with a leg ring and a neck collar (also the marking of a collared bird)",
+    "3": "recovery of a dead bird hunted in the interval before the occasion (ends the history; obs_removed = 1)"
+  },
+  "closure": "none",
+  "closureNote": "one yearly occasion per period; recaptures, resightings and recoveries within a year pooled by the authors",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Greater snow goose population of eastern North America (harvested in Canada and the USA); the marking location is not stated in the deposit; no coordinates",
+  "temporalCoverage": "1990/2019",
+  "covariateNote": "unit_mark_group: marker at marking (leg_ring or collar), from the first code; a collared bird can later lose the collar (code 2 then 1). obs_marking: 1 on the marking row. obs_removed: 1 on a dead-recovery row.",
+  "notShipped": {
+    "model_output": "the authors' survival and cause-specific mortality estimates",
+    "harvest_rate": "harvest_rate_covariate.txt: 29 standardised yearly harvest rates computed by the paper's Appendix 2 (not supplied); not shipped because it may be estimated from recoveries of these same birds (a model output); add if Appendix 2 shows an independent source"
+  },
+  "notes": "Histories expanded from the deposit's unique histories x frequency; unit ids are sequential in deposit order. Every bird has rows from 1990 (wild adults of unknown age, E4.4), y = 0 before its marking row (obs_marking = 1). A dead recovery (y = 3) ends the history. 344 birds marked with collars were later seen with the leg ring only (collar lost); their rows continue. The authors removed about 200 histories with errors before deposit. The paper was not read; the design is from the deposit's metadata.",
+  "summary": {
+    "n_rows": 623530,
+    "n_units": 22599,
+    "n_taxa": 1,
+    "n_periods": 30,
+    "n_occasions": 1,
+    "n_surveys": 623530,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.946,
+    "n_traps": 1,
+    "n_zero": 589682,
+    "n_positive": 33848,
+    "n_units_detected": 22599,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_mark_group", "obs_marking", "obs_removed"],
+  "coreMd5": "98d5e83eeb517d9845641717736a47a9",
+  "sideTables": {
+    "periods": {
+      "rows": 30,
+      "columns": ["period", "year"],
+      "md5": "64aad54023feb9ece7bdaa963a9bd9fb"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "c70e1b82bd3f085dc2d2921494f659f0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/letourneux_2022_snowgoose_ms.R",
+  "buildDate": "2026-11-05"
+}

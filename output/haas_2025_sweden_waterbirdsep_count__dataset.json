@@ -1,0 +1,72 @@
+{
+  "table": "haas_2025_sweden_waterbirdsep_count",
+  "title": "Swedish waterbird census (September): counts of 48 waterbird species on 1,645 counting sectors, 1973-2024",
+  "creator": "Haas, Fredrik; Jönsson, Annelie (Department of Biology, Lund University)",
+  "pubDate": "2025",
+  "doi": "10.15468/puqjx8",
+  "sourceURL": "https://doi.org/10.15468/puqjx8",
+  "citation": "Haas F, Jönsson A (2025). Swedish Bird Survey: Swedish waterbird census (September). Version 1.1. Department of Biology, Lund University. Sampling event dataset. https://doi.org/10.15468/puqjx8",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
+  },
+  "abstract": "The Swedish September waterbird census, started in 1973 as a complement to the midwinter census and run by Lund University within the Swedish Bird Survey: volunteers count all roosting and migrating waterbirds on fixed counting sectors of coast, lakes and rivers once in mid-September, from land (standard), boat or aeroplane; a sector may be counted more than once in a year only by different methods. One row per sector count and species, y the individuals counted; a count that saw nothing is published by the source and is y = 0 for every species.",
+  "samplingProtocol": "September waterbird count of a fixed counting sector (coastal or inland), once in mid-September, from land (one or more vantage points), boat or aeroplane; all waterbirds in the sector counted (Swedish Bird Survey).",
+  "samplingProtocolCode": "area_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = the counts of a sector within one September by different methods (3 sector-years have two); period = census year; nearly all sector-years have one count",
+  "occasionKind": "method",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Sweden, coast and inland waters (counting-sector centres)",
+  "temporalCoverage": "1973-09/2024-09",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): the published sector centres snapped to their 0.1-degree cell centre, because taxa IUCN VU in their native range are in the table (E7, ruling on the publisher 2026-11-06, which withdrew the agency exception): Podiceps auritus (VU), Melanitta fusca (VU), Aythya ferina (VU), Clangula hyemalis (VU), Polysticta stelleri (VU), Fratercula arctica (VU). Uncertainty = the source's 8,000 m plus the cell half-diagonal. haas_2025_sweden_waterbirdse_exact_count keeps the other taxa at the published centres."
+  },
+  "covariateNote": "obs_method = how the sector was counted (land, boat, aeroplane); unit_location_type = coastal or inland sector; unit_area_km2 = sector area; observer = the source's pseudonymous recorder id, NA where not given.",
+  "notes": "One count per sector-year by default, so the replication is across years (an annual index); counts by two methods in one year are occasions. Names are the source's (Dyntaxa) spelling; vernacularName is Swedish. Companion of haas_2025_sweden_waterbird_count (January census).",
+  "notShipped": {
+    "Aves zero rows": "95 placeholder rows marking counts with no waterbird (noObservations = true); those counts are y = 0 for every species",
+    "euTaxonID": "EU Article 12 species codes per occurrence (eMoF)",
+    "locationProtected": "constant 'no'",
+    "seasons": "the 52 season parent events (one per year)"
+  },
+  "summary": {
+    "n_rows": 564528,
+    "n_units": 1645,
+    "n_taxa": 48,
+    "n_periods": 52,
+    "n_occasions": 2,
+    "n_surveys": 11761,
+    "y_values": "0-31000 (1390 distinct)",
+    "prop_zero": 0.882,
+    "n_traps": 1,
+    "n_zero": 497867,
+    "n_positive": 66661,
+    "n_units_detected": 1638,
+    "max_y": 31000
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_county", "unit_location_type", "unit_area_km2", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_method"],
+  "coreMd5": "355d5533831a03517094c937d411150c",
+  "sideTables": {
+    "periods": {
+      "rows": 52,
+      "columns": ["period", "year", "n_counts", "n_sectors"],
+      "md5": "9308687393c4fe3811738368996b0ef3"
+    },
+    "taxa": {
+      "rows": 48,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_dyntaxaID", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "55b711aaa08ccdf321360087439c6019"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/haas_2025_sweden_waterbirdsep_count.R",
+  "buildDate": "2026-11-06"
+}

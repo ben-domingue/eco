@@ -1,0 +1,70 @@
+{
+  "table": "croose_2019_michigan_mustelid_dynocc",
+  "title": "Camera-trap detections of American marten and fisher in 64 cells of Michigan's Upper Peninsula, three winters x four 2-week sessions",
+  "creator": "Croose, Elizabeth; Bled, Florent; Fowler, Nicholas L.; Beyer, Dean E., Jr.; Belant, Jerrold L.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.452n6d3",
+  "sourceURL": "https://doi.org/10.5061/dryad.452n6d3",
+  "citation": "Croose, E., Bled, F., Fowler, N. L., Beyer, D. E., Jr., & Belant, J. L. (2019). Data from: American marten and fisher do not segregate in space and time during winter in a mixed-forest system [Dataset]. Dryad. https://doi.org/10.5061/dryad.452n6d3",
+  "paperDOI": "10.1002/ece3.5097",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of American marten and fisher in four 2-week sessions per winter at camera traps in 64 grid cells of the Upper Peninsula of Michigan, winters 2012-13 to 2014-15, with camera-days per session and cell land-cover covariates and coordinates.",
+  "samplingProtocol": "Camera traps in grid cells operated through winter; detections pooled into four 2-week sessions per winter, with camera-days operating per session.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a winter's four sessions, open between winters (colext)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "effortColumn": "obs_effort_days",
+  "crs": "UTM as deposited, zone not named (values consistent with UTM zone 16N)",
+  "geographicCoverage": "Upper Peninsula of Michigan, USA",
+  "temporalCoverage": "2013-01/2015-03",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: American marten and fisher are IUCN LC"
+  },
+  "notShipped": {
+    "temporal_data": "photo date-times behind the histories (activity overlap analysis)"
+  },
+  "notes": "Covariates other than land-cover proportions are standardized as deposited.",
+  "summary": {
+    "n_rows": 1500,
+    "n_units": 64,
+    "n_taxa": 2,
+    "n_periods": 3,
+    "n_occasions": 4,
+    "n_surveys": 750,
+    "y_values": "0,1",
+    "prop_zero": 0.807,
+    "n_traps": 1,
+    "n_zero": 1210,
+    "n_positive": 290,
+    "n_units_detected": 46,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_easting", "unit_northing", "unit_road_std", "unit_hydro_std", "unit_dist_hydro_std", "unit_dea_std", "unit_evergreen", "unit_mixed", "unit_shrub", "unit_grass", "unit_ww", "unit_ehw", "unit_unsuitable", "unit_aspen", "obs_effort_days"],
+  "coreMd5": "d3bb5a67242e444d853e0fbeb3e0dbf8",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "period_winter"],
+      "md5": "709801946cd06048e5639a93eec2f10a"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "9ee9193139f0645dc510b6e9102ecfe8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/croose_2019_michigan_mustelid_dynocc.R",
+  "buildDate": "2026-11-05"
+}

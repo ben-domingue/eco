@@ -25,8 +25,8 @@
   "temporalCoverage": "2013-06-05/2024-07-16",
   "crs": "EPSG:4326 (WGS 84), as published",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "As published by NEON (agency-published point coordinates); no coarsening. Species of concern are already reported by NEON at a higher taxonomic rank ('fuzzed') or withheld at some sites, and those records are not shipped"
+    "value": true,
+    "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Loxigilla portoricensis (VU), Gymnorhinus cyanocephalus (VU), Chaetura pelagica (VU), Clangula hyemalis (VU), Antrostomus noctitherus (VU); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception). NEON site and location codes are kept: they locate a site, not a plot or reach, without NEON's own lookup. neon_2026_landbirds_exact_count keeps the other taxa at published precision."
   },
   "occasionLength": "6 minutes",
   "components": {
@@ -48,7 +48,7 @@
     "n_periods": 11,
     "n_occasions": 2,
     "n_surveys": 26363,
-    "y_values": "0-552 (84 distinct)",
+    "y_values": "0-552 (more than 12 distinct)",
     "prop_zero": 0.971,
     "n_traps": 1,
     "n_zero": 7245231,
@@ -58,6 +58,74 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_site", "obs_air_temp_c", "obs_wind_kmh", "obs_cloud_pct", "obs_rh_pct", "obs_habitat"],
+  "parts": [
+    {
+      "file": "part-01.csv",
+      "periods": [1],
+      "n_rows": 39620,
+      "md5": "0055b11452f8f89dd4289ab7ebc4a3d5"
+    },
+    {
+      "file": "part-02.csv",
+      "periods": [2],
+      "n_rows": 256398,
+      "md5": "c0fec76465a558935075ee97c86121aa"
+    },
+    {
+      "file": "part-03.csv",
+      "periods": [3],
+      "n_rows": 350637,
+      "md5": "d20d4ad47a8df0f4f2b7ea8b3b984fc6"
+    },
+    {
+      "file": "part-04.csv",
+      "periods": [4],
+      "n_rows": 911260,
+      "md5": "c0c3da4d9ae05dfa7838b6875a075594"
+    },
+    {
+      "file": "part-05.csv",
+      "periods": [5],
+      "n_rows": 887488,
+      "md5": "9cb76fa67c85c689dce6e76fc4a75d8c"
+    },
+    {
+      "file": "part-06.csv",
+      "periods": [6],
+      "n_rows": 873055,
+      "md5": "f9609c038966416cd5bc1cf8809eccdb"
+    },
+    {
+      "file": "part-07.csv",
+      "periods": [7],
+      "n_rows": 723348,
+      "md5": "8563f297ca713e44bb0d096075cf6882"
+    },
+    {
+      "file": "part-08.csv",
+      "periods": [8],
+      "n_rows": 873338,
+      "md5": "2d7997fe3102e4b95747812ce1196caf"
+    },
+    {
+      "file": "part-09.csv",
+      "periods": [9],
+      "n_rows": 835982,
+      "md5": "747e231e25810e448a3d27f9093ed3f6"
+    },
+    {
+      "file": "part-10.csv",
+      "periods": [10],
+      "n_rows": 838812,
+      "md5": "68671fe6a8145abf629a58e0cedcf4d3"
+    },
+    {
+      "file": "part-11.csv",
+      "periods": [11],
+      "n_rows": 870791,
+      "md5": "78408c8b5e38c9a704cdf7147cdf18e6"
+    }
+  ],
   "sideTables": {
     "periods": {
       "rows": 11,
@@ -66,17 +134,17 @@
     },
     "taxa": {
       "rows": 283,
-      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
-      "md5": "8672a6f661a1295d3d1a70d90200892f"
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "def2e752594e265c6a2b30bdf20e2ced"
     },
     "units": {
       "rows": 3434,
       "columns": ["unit", "site", "domain", "named_location", "plot_type", "nlcd_class", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
-      "md5": "fa005ddfbf434804678a424a8923b8b3"
+      "md5": "6807a6561255eddc2f416fce60552175"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_landbirds_count.R",
-  "buildDate": "2026-11-03"
+  "buildDate": "2026-11-06"
 }

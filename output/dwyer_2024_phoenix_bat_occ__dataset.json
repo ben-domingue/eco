@@ -1,0 +1,68 @@
+{
+  "table": "dwyer_2024_phoenix_bat_occ",
+  "title": "Acoustic detections of 14 bat taxa on five nights per season at 50 sites across the urbanization gradient of Phoenix, Arizona, in four seasons of 2019",
+  "creator": "Lewis, Jesse; Dwyer, Jessie; Moore, Marianne",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.w6m905qx2",
+  "sourceURL": "https://doi.org/10.5061/dryad.w6m905qx2",
+  "citation": "Lewis, J., Dwyer, J. & Moore, M. (2024). Trade-offs in habitat use and occupancy of bats across the gradient of urbanization and seasons [Dataset]. Dryad. https://doi.org/10.5061/dryad.w6m905qx2",
+  "paperDOI": "10.1002/ecs2.4884",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Passive acoustic monitors recorded bats for five consecutive nights in each of four seasons of 2019 at 50 sites stratified across the urbanization gradient of the Phoenix metropolitan area, Arizona. Calls were filtered automatically and identified manually; a species is detected on a night when a confidently identified voucher call was found. The authors fitted Royle-Nichols and single-season occupancy models per species and season against urbanization, vegetation greenness and distance to water.",
+  "samplingProtocol": "One stationary passive acoustic bat monitor per site recording from sunset to sunrise on five consecutive nights in each season (winter, spring, summer, fall 2019); calls filtered with SonoBat 4.2.2 (quality 0.80) and identified manually under NABat guidelines; one voucher call per species per night.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every species x season file holds all 50 sites x 5 nights with no missing night, and the paper states 5 nightly occasions at each of the 50 sites in every season. The 10 species x seasons with no file are the cells of the paper's Table 1 with no detection (asserted); one monitor surveys all species, so they are y = 0 at every survey.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a season (five consecutive nights), open between seasons",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Phoenix metropolitan area, Maricopa County, Arizona, USA, below 550 m (no site coordinates deposited)",
+  "temporalCoverage": "2019-01/2019-11",
+  "covariateNote": "unit_urban_cat: urbanization category (1 low, 2 moderate, 3 high). period_week: week of the season in which the site was surveyed. period_urb_<r>: proportion urbanized (impervious surface, NAIP 2010) within r m; period_ndvi_<r>: mean NDVI (Landsat 8) within r m; period_water_m: distance to the nearest water (m); these vary slightly between seasons for a site, as deposited. obs_min_temp_c: minimum temperature of the night (deg C); obs_moon_pct: lunar illumination at 23:00 (per cent).",
+  "notShipped": {
+    "standardized": "UrbS, UrbQ, NDVIS, WaterS, AvSMinTemp, AvSMoon: standardized and quadratic versions of shipped covariates",
+    "season_means": "AvgMinTemp, AvgMoon: means of the nightly values shipped",
+    "undocumented": "U<r>N<r> columns, which the README does not define"
+  },
+  "notes": "Species codes are NABat four-letter codes, which the README does not expand; each code's nightly detections and sites per season equal one row of the paper's Table 1 (asserted), except Nyctinomops in fall, 20 detection-nights in the deposit and 21 in Table 1 (both at 11 sites). Detections are manual identifications after an automated noise filter (the authors' call).",
+  "summary": {
+    "n_rows": 14000,
+    "n_units": 50,
+    "n_taxa": 14,
+    "n_periods": 4,
+    "n_occasions": 5,
+    "n_surveys": 1000,
+    "y_values": "0,1",
+    "prop_zero": 0.886,
+    "n_traps": 1,
+    "n_zero": 12400,
+    "n_positive": 1600,
+    "n_units_detected": 50,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_urban_cat", "period_week", "period_urb_125", "period_urb_250", "period_urb_500", "period_urb_1000", "period_urb_2000", "period_ndvi_125", "period_ndvi_250", "period_ndvi_500", "period_ndvi_1000", "period_ndvi_2000", "period_water_m", "obs_min_temp_c", "obs_moon_pct"],
+  "coreMd5": "317a1158a0931dd8a0bb8fa0b676df92",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "season", "year", "window"],
+      "md5": "56a960182a519df3c1bb1d8bd6412847"
+    },
+    "taxa": {
+      "rows": 14,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "69b077a6b4322867a5422058d547779e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dwyer_2024_phoenix_bat_occ.R",
+  "buildDate": "2026-11-06"
+}

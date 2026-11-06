@@ -1,0 +1,61 @@
+{
+  "table": "nakashima_2024_yakumo_scavenger_occ",
+  "title": "Time to first visit of red foxes and raccoon dogs at 69 camera-monitored raccoon carcasses, Yakumo, Hokkaido, Japan, 2016-2019",
+  "creator": "Nakashima, Yoshihiro",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.kkwh70sbn",
+  "sourceURL": "https://doi.org/10.5061/dryad.kkwh70sbn",
+  "citation": "Nakashima, Y. (2024). Data and code for implementing time-to-detection occupancy model [Dataset]. Dryad. https://doi.org/10.5061/dryad.kkwh70sbn",
+  "paperDOI": "10.1002/ece3.70031",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Raccoon carcasses were placed at least 500 m apart in the Yakumo Study Forest, Hokkaido, Japan, 12-23 a year from 2016 to 2019, and watched by camera traps. The time to the first visit records which scavenger came first, the red fox or the raccoon dog; the first visitor censors the other. The authors fitted a two-species time-to-detection occupancy model to estimate the competition between the two scavengers for carcasses.",
+  "samplingProtocol": "Raccoon carcasses placed at least 500 m apart in forest, each watched by a camera trap until the first visit of a red fox or raccoon dog or the end of monitoring; 12-23 carcasses a year, 2016-2019 (Hashizume et al. 2023).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "One survey per station (no occasion); the survey ends when the resource is taken or monitoring stops. Replicated within the survey by the time to detection (ruling 2026-11-06).",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Yakumo Study Forest, Hokkaido, Japan (no coordinates deposited)",
+  "temporalCoverage": "2016/2019",
+  "covariateNote": "obs_ttd_days: days from placement to the species' first take (y = 1), or to the end of the survey of that resource (y = 0: the other species took it first, or monitoring ended). obs_ttd_censored: 1 where the time is censored (y = 0), 0 where it is the species' detection time.",
+  "notShipped": {
+    "code": "the authors' Stan and R code",
+    "wet_mass": "the carcass wet-mass series (279 measurements of 19 carcasses; a measurement of the resource, its carcass ids not keyed to the stations) and gen_seq (a plotting grid)"
+  },
+  "notes": "Time to detection (ruling 2026-11-06): y = 1 for the species that took the resource first; the other species is censored at that time (competing risks), so its obs_ttd_days is the time the survey of that resource ended rather than a fixed survey length. Stations are the 69 carcasses of 2016-2019 pooled (years not deposited per carcass). Censoring is at the end of monitoring or at the time the other scavenger came (one carcass visited first by a crow is censored for both, paper s.2.3.2). The deposit has 38 carcasses first visited by foxes; the paper reports 37. Overlaps the data of Hashizume et al. (2023), which the paper reuses.",
+  "summary": {
+    "n_rows": 138,
+    "n_units": 69,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 69,
+    "y_values": "0,1",
+    "prop_zero": 0.616,
+    "n_traps": 1,
+    "n_zero": 85,
+    "n_positive": 53,
+    "n_units_detected": 53,
+    "max_y": 1
+  },
+  "sampleFloor": "below (no replication)",
+  "columns": ["unit", "taxon", "y", "obs_ttd_days", "obs_ttd_censored"],
+  "coreMd5": "f1955b5920a289b2af7beaa882759973",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "d494456a6a450d734e3d9870127e4f51"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/nakashima_2024_japan_ttd_occ.R",
+  "buildDate": "2026-11-06"
+}

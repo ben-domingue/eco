@@ -12,15 +12,22 @@ directly (section 8).
 Site: https://ben-domingue.github.io/eco/
 Standard: https://ben-domingue.github.io/eco/standard.html
 R package: https://ben-domingue.github.io/eco/r.html
-Data: https://redivis.com/datasets/4j5q (Redivis dataset datapages.eco)
+Data: {{shard_urls}} (Redivis datasets
+{{shard_names}}; a table and its side tables are in exactly one of them)
 
-AS OF: {{as_of}} · eco v{{eco_version}} (Redivis eco {{eco_redivis}}, eco_meta {{eco_meta_redivis}})
+AS OF: {{as_of}} · eco v{{eco_version}} (Redivis {{eco_redivis}}, eco_meta {{eco_meta_redivis}})
 Every count in this file is generated from the repository's catalog when the site
 is built, by site/prerender.R. A copy older than a few weeks has smaller numbers
 than the live corpus; the structure is the same.
 
-The corpus has {{n_tables}} tables, {{n_rows}} rows and {{n_units}} units. By
-response type: {{by_response_type}}.
+The corpus has {{n_tables}} tables from {{n_deposits}} deposits, {{n_rows}} rows
+and {{n_units}} units. By response type: {{by_response_type}}.
+
+Words: a deposit is the source record (one DOI or archive record); a table is
+one survey design x response type from it (a core plus its side tables), and a
+deposit can yield several; on Redivis the core shards and eco_meta are
+"datasets" and every physical table, side tables included, is an "entry".
+Glossary: https://ben-domingue.github.io/eco/glossary.html
 
 --------------------------------------------------------------------------
 ## 0. START HERE — a fit with no account and no download
@@ -170,6 +177,7 @@ None of these throws an error. Each gives numbers that look fine.
 --------------------------------------------------------------------------
 
     eco_list_tables()            # every table: rows, bytes, needs_login, side tables
+    eco_list_deposits()          # every source deposit: DOI, citation, its tables
     eco_metadata()               # computed facts, one row per table
     eco_tags()                   # taxon_group, model_family, sampling_protocol, ...
     eco_tag_options()            # the tag columns; eco_tag_options("taxon_group")
@@ -280,7 +288,12 @@ needed under 100 MB:
     y = d.pivot(index="unit", columns="occasion", values="y")   # NaN = not surveyed
 
 Every rule in section 2 applies; in particular never fillna(0) on that pivot.
-This reads the current release, unpinned.
+This reads the current release, unpinned. The core tables are split across
+Redivis datasets, the core shards (Redivis caps one at 1000 entries, side tables
+included): a table is in exactly one
+of {{shard_refs}}. The R package finds it; from Python, list each with
+https://redivis.com/api/v1/datasets/datapages.<ref>/tables (e.g.
+datapages.{{newest_ref}}), newest first, and read the table from the one that has it.
 
 --------------------------------------------------------------------------
 ## 9. Citing

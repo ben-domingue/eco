@@ -1,0 +1,68 @@
+{
+  "table": "rivera_2022_makira_fosa_dielocc",
+  "creator": "Rivera, Kimberly; Gerber, Brian; Fidino, Mason; Magle, Seth; Farris, Zach; Murphy, Asia",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.bvq83bk9w",
+  "sourceURL": "https://doi.org/10.5061/dryad.bvq83bk9w",
+  "citation": "Rivera, K., Gerber, B., Fidino, M., Magle, S., Farris, Z., & Murphy, A. (2022). Multi-state diel occupancy model [Dataset]. Dryad. https://doi.org/10.5061/dryad.bvq83bk9w",
+  "paperDOI": "10.1086/720714",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not detected in the occasion (deposited code 1)",
+    "1": "detected during the day only (code 2)",
+    "2": "detected at night only (code 3)",
+    "3": "detected both day and night (code 4)"
+  },
+  "unitKind": "site",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Diel detection states of fosa at 290 camera stations in 13 grid-surveys of Makira Natural Park, Madagascar",
+  "abstract": "Multi-state detections of fosa (Cryptoprocta ferox, IUCN VU; not detected, day only, night only, day and night) per sampling occasion at camera stations of 13 grid-surveys in Makira Natural Park, Madagascar (grid AJB surveyed six times, MGB twice); cluster_id names the grid-survey.",
+  "samplingProtocol": "Camera-trap grids in Makira Natural Park, each survey up to 14 sampling occasions; each occasion classified by whether fosa was photographed in the day, at night, both or neither.",
+  "closure": "closed",
+  "closureNote": "each grid-survey analysed as a static (single-season) multi-state diel occupancy model",
+  "geographicCoverage": "Makira Natural Park, northeastern Madagascar; no coordinates deposited",
+  "temporalCoverage": "survey years not stated in the deposit (paper 2022)",
+  "notShipped": {
+    "human_events": "human events and trap success per station (_Hum.csv), indices from the same cameras",
+    "trap_nights": "trap nights per station"
+  },
+  "notes": "Station ids carry the survey prefix (e.g. 2AJB01 for the second AJB survey), so a resurveyed location is a separate unit; the deposit does not link them. Survey dates and the occasion length are not in the deposit.",
+  "design_tag": "Single-season (13 grid-surveys, up to 14 occasions)",
+  "iso": "MDG",
+  "summary": {
+    "n_rows": 3004,
+    "n_units": 290,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 14,
+    "n_surveys": 3004,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.9,
+    "n_traps": 1,
+    "n_zero": 2705,
+    "n_positive": 299,
+    "n_units_detected": 142,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "cluster_id"],
+  "coreMd5": "54c792f5ad2617f38b5e122291ba8fe2",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "dc32e86d2d134d03df4a6701079cb6c0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rivera_2022_diel_msocc.R",
+  "buildDate": "2026-11-05"
+}

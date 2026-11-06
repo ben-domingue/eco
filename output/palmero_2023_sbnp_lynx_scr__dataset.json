@@ -1,0 +1,73 @@
+{
+  "table": "palmero_2023_sbnp_lynx_scr",
+  "title": "Spatial capture-recapture of Eurasian lynx from paired camera traps, Skolivski Beskydy National Park, Ukrainian Carpathians: 5 individuals x 32 stations, winter 2020-21",
+  "creator": "Palmero, Stefano; Smith, Adam F.; Kudrenko, Svitlana; Gahbauer, Martin; Dachs, Dominik; Weingarth-Dachs, Kirsten; Kashpei, Irina; Shamovich, Dmitry; Vyshnevskiy, Denys; Borsuk, Oleksandr; Korepanova, Kateryna; Bashta, Andriy-Taras; Zhuravchak, Rostyslav; Fenchuk, Viktar; Heurich, Marco",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.rbnzs7hhx",
+  "sourceURL": "https://doi.org/10.5061/dryad.rbnzs7hhx",
+  "citation": "Palmero, S., Smith, A. F., et al. (2023). Code and data for: Shining a light on elusive lynx: density estimation of three Eurasian lynx populations in Ukraine and Belarus [Dataset]. Dryad. https://doi.org/10.5061/dryad.rbnzs7hhx",
+  "paperDOI": "10.1002/ece3.10688",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Photographic captures of individually identified Eurasian lynx (Lynx lynx) at paired camera-trap stations in Skolivski Beskydy National Park, Ukrainian Carpathians, 2020-12-02 to 2021-02-27, as the authors' spatial capture-recapture input: one row per lynx x operated station, y = the number of days the lynx was photographed at the station and obs_trials = the days the station operated, with station coordinates in __traps.",
+  "samplingProtocol": "Paired camera traps photographing both flanks at stations across the study area through winter 2020-21; lynx identified from coat patterns; at most one detection per individual per station per day (the authors' rule).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "tdf.csv gives the days each station operated; a station is surveyed iff DAYS > 0. Which days it operated is not deposited, so the table is at the station level with the day count as the binomial denominator, the authors' own y ~ Binomial(p, K).",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "no occasion column; one winter session per study area, which the authors analysed as a closed population",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "crs": "projected metres as deposited; no CRS stated (values consistent with WGS 84 / UTM zone 34N)",
+  "geographicCoverage": "Skolivski Beskydy National Park, Ukrainian Carpathians; station coordinates in __traps",
+  "temporalCoverage": "2020-12/2021-02",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: Eurasian lynx is IUCN LC and the deposit flags no sensitivity"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps; binomial observation per station (no occasion column) because per-day station operation is not deposited.",
+  "notShipped": {
+    "DATE_TIME": "event date-times and day indices: no per-day effort to pair them with; they survive as the count y",
+    "repeat_events": "repeat photographs of one lynx at one station on one day (collapsed, the authors' rule)"
+  },
+  "notes": "One of three tables from this deposit (Chornobyl Exclusion Zone, Skolivski Beskydy, Pripyat-Polesia), each an independent array and population. Lynx ids as deposited; their B/R/L prefixes are not defined in the deposit and each id is treated as one individual, as the authors did. 32 of 35 deposited stations operated.",
+  "summary": {
+    "n_rows": 160,
+    "n_units": 5,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 160,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.9,
+    "n_traps": 32,
+    "n_zero": 144,
+    "n_positive": 16,
+    "n_units_detected": 5,
+    "max_y": 3
+  },
+  "sampleFloor": "below (5 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "obs_trials"],
+  "coreMd5": "cf918b9f9d1a388838616da1f7488fc4",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "136cb03767b98ab347525e2c3bd0f9b8"
+    },
+    "traps": {
+      "rows": 32,
+      "columns": ["trap", "x", "y", "days_operated"],
+      "md5": "1e0b24da89a002eec88b5f995b2c914e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/palmero_2023_lynx_scr.R",
+  "buildDate": "2026-11-05"
+}

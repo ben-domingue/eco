@@ -1,0 +1,68 @@
+{
+  "table": "zamuda_2022_yalemyers_mesopred_dynocc",
+  "title": "Camera detections of coyote, bobcat, fisher and raccoon at 56 sites in four seasons, Yale Myers Forest and surrounding land, Connecticut, April 2018 to February 2019",
+  "creator": "Zamuda, Kimberly; Duguid, Marlyse C.; Schmitz, Oswald",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.7d7wm37xs",
+  "sourceURL": "https://doi.org/10.5061/dryad.7d7wm37xs",
+  "citation": "Zamuda, K., Duguid, M. C., & Schmitz, O. (2022). Human land-use effects on mammalian mesopredator occupancy of a northeastern Connecticut landscape [Dataset]. Dryad. https://doi.org/10.5061/dryad.7d7wm37xs",
+  "paperDOI": "10.1002/ece3.9015",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Paired camera traps at sites in forest reserve, shelterwood harvests and fields in and around the 3200-ha Yale Myers Forest, northeastern Connecticut, sampled in each of four seasons from April 2018 to February 2019 to model mesopredator occupancy by land use. Each site-season is a 21-day deployment condensed into seven 3-day surveys; detection of coyote, bobcat, fisher and raccoon per survey, with seasonal canopy cover and foliage height diversity and fixed local and 1-km landscape covariates.",
+  "samplingProtocol": "Two Bushnell Trophy Cam HD cameras per site within 25 m of each other, 0.4-0.6 m above ground, run for a 21-day period in each season; daily presence condensed into seven 3-day surveys (a survey is 1 if the species was photographed on any of its days at either camera).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the seven 3-day surveys of a 21-day deployment within one season are the occasions; seasons (spring, summer, fall, winter) are periods. The authors fit single-season models per season.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Yale Myers Forest and adjacent public and private land, Eastford, northeastern Connecticut, USA (no coordinates deposited)",
+  "temporalCoverage": "2018-04/2019-02",
+  "covariateNote": "period_canopy_cover_pct and period_foliage_height_div (Shannon index of vegetation in four height classes) are measured per season. unit_cwd_volume (coarse woody debris), unit_snag_density (snags in a 50 m radius plot), unit_dist_river_m / _public_road_m / _skid_road_m, unit_elev_1km_m (National Elevation Data, 1 km buffer), unit_pct_<cover>_1km (proportion of the 1 km buffer in forest, deciduous, evergreen, mixed forest, field, developed, wetland; as deposited, 0-1).",
+  "notShipped": {
+    "other_species": "red fox, gray fox, striped skunk and otter were photographed but excluded by the authors for low capture numbers and are not in the deposit",
+    "land_use_type": "the site's land-use type (reserve, shelterwood, field) is not in the deposit",
+    "weather": "daily precipitation and temperature used by the authors are not deposited",
+    "model_output": "occupancy and detection estimates"
+  },
+  "notes": "The paper describes 60 sites (24 reserve, 24 shelterwood, 12 field; 24 per 21-day period); the deposit holds 56 sites with seven surveys in each of the four seasons, shipped as deposited. No cell of the deposited matrices is marked not surveyed. Deployment dates per site are not deposited.",
+  "summary": {
+    "n_rows": 6272,
+    "n_units": 56,
+    "n_taxa": 4,
+    "n_periods": 4,
+    "n_occasions": 7,
+    "n_surveys": 1568,
+    "y_values": "0,1",
+    "prop_zero": 0.865,
+    "n_traps": 1,
+    "n_zero": 5426,
+    "n_positive": 846,
+    "n_units_detected": 56,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_cwd_volume", "unit_snag_density", "unit_dist_river_m", "unit_dist_public_road_m", "unit_dist_skid_road_m", "unit_elev_1km_m", "unit_pct_forest_1km", "unit_pct_deciduous_1km", "unit_pct_evergreen_1km", "unit_pct_mixed_forest_1km", "unit_pct_field_1km", "unit_pct_developed_1km", "unit_pct_wetland_1km", "period_canopy_cover_pct", "period_foliage_height_div"],
+  "coreMd5": "deadf3225cf658c2cea61d95eb9ec122",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "season", "months"],
+      "md5": "c9d45423b0c62b686affd8cd8813eb09"
+    },
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "20a8ca1218050380365ba139d8eeac40"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/zamuda_2022_yalemyers_mesopred_dynocc.R",
+  "buildDate": "2026-11-05"
+}

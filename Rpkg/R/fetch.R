@@ -8,11 +8,20 @@
   unique(x)
 }
 
+# The shard holding `table`, or an error that says where to look.
+.eco_locate <- function(table) {
+  shard <- .eco_shard_of(table)
+  if (is.null(shard)) stop("no table `", table, "` in this eco version; eco_list_tables() shows what it holds", call. = FALSE)
+  shard
+}
+
 .eco_fetch_one <- function(table) {
-  tag <- .eco_resolved_tag(.eco_core)
-  d <- .eco_read_csv(.eco_table_file(.eco_core, table, tag))
+  shard <- .eco_locate(table)
+  tag <- .eco_resolved_tag(shard)
+  d <- .eco_read_csv(.eco_table_file(shard, table, tag))
   attr(d, "eco_table") <- table
   attr(d, "eco_redivis_version") <- tag
+  attr(d, "eco_redivis_dataset") <- shard$name
   d
 }
 
@@ -34,7 +43,8 @@
 #' @param x A table name, a character vector of names, or the data.frame
 #'   returned by [eco_filter()] or [eco_list_tables()].
 #' @return For one table, a data.frame in the eco format (`unit`, `taxon`,
-#'   `y`, ...; see the package help) with attributes `eco_table` and
+#'   `y`, ...; see the package help) with attributes `eco_table`,
+#'   `eco_redivis_dataset` (the core shard it came from) and
 #'   `eco_redivis_version`. For several, a named list of them.
 #' @examples
 #' \donttest{
@@ -53,15 +63,14 @@ eco_fetch <- function(x) {
 .eco_side <- function(table, suffix) {
   table <- .eco_table_names(table)
   if (length(table) != 1) stop("one table at a time", call. = FALSE)
-  table <- sub("__(taxa|periods|units|traps)$", "", table)
-  tag <- .eco_resolved_tag(.eco_core)
-  listing <- .eco_table_listing(.eco_core, .eco_tag_for(.eco_core))
+  table <- sub("__(taxa|periods|units|traps|survey_taxa)$", "", table)
   name <- paste0(table, suffix)
-  if (!name %in% listing$name) {
-    if (!table %in% listing$name) stop("no table `", table, "` in this eco version", call. = FALSE)
+  shard <- .eco_shard_of(name)
+  if (is.null(shard)) {
+    .eco_locate(table)          # errors when the core table is not there either
     return(NULL)
   }
-  .eco_read_csv(.eco_table_file(.eco_core, name, tag))
+  .eco_read_csv(.eco_table_file(shard, name, .eco_resolved_tag(shard)))
 }
 
 #' Side tables
@@ -99,7 +108,7 @@ eco_traps <- function(table) .eco_side(.eco_name_of(table), "__traps")
 
 # One line for eco_info() when a table is over the anonymous cap, else "".
 .eco_login_note <- function(table) {
-  l <- tryCatch(.eco_table_listing(.eco_core, .eco_tag_for(.eco_core)), error = function(e) NULL)
+  l <- tryCatch(.eco_core_listing(), error = function(e) NULL)
   b <- if (is.null(l)) NA else l$bytes[l$name == table][1]
   if (isTRUE(b > .eco_anon_cap)) paste0("\n  size:     ", .eco_mb(b), " on Redivis; needs a Redivis login (see ?eco_fetch)") else ""
 }
@@ -107,7 +116,8 @@ eco_traps <- function(table) .eco_side(.eco_name_of(table), "__traps")
 #' Describe a table, or the corpus
 #'
 #' With a table name, prints its title, dimensions, model family, response
-#' type, licence and citation. Without one, prints the corpus totals.
+#' type, licence and citation. Without one, prints the corpus totals: tables,
+#' the deposits they come from (see [eco_list_deposits()]), rows and units.
 #'
 #' @param table A table name, or `NULL`.
 #' @return Invisibly, the merged metadata row (or the totals as a list).
@@ -121,13 +131,17 @@ eco_info <- function(table = NULL) {
   m <- eco_metadata()
   if (is.null(table)) {
     v <- suppressMessages(eco_version())
-    out <- list(n_tables = nrow(m), n_rows = sum(m$n_rows), n_units = sum(m$n_units),
-                families = length(unique(eco_tags()$model_family)), eco = v$eco, eco_meta = v$eco_meta)
-    message(sprintf("eco: %d tables, %s rows, %s units, %d model families\n",
-                    out$n_tables, format(out$n_rows, big.mark = ","), format(out$n_units, big.mark = ","), out$families),
-            sprintf("Redivis eco %s, eco_meta %s%s\n", out$eco, out$eco_meta,
+    cores <- .eco_core_tags(); cores <- cores[!is.na(cores)]
+    n_dep <- length(unique(.eco_deposit_id(eco_biblio())))
+    out <- c(list(n_tables = nrow(m), n_deposits = n_dep, n_rows = sum(m$n_rows), n_units = sum(m$n_units),
+                  families = length(unique(eco_tags()$model_family))),
+             as.list(cores), list(eco_meta = v$eco_meta))
+    message(sprintf("eco: %d tables from %d deposits, %s rows, %s units, %d model families\n",
+                    out$n_tables, out$n_deposits, format(out$n_rows, big.mark = ","), format(out$n_units, big.mark = ","), out$families),
+            sprintf("Redivis %s, eco_meta %s%s\n", paste(names(cores), cores, collapse = ", "), out$eco_meta,
                     if (is.na(v$eco_version)) "" else sprintf(" (eco version %d)", v$eco_version)),
-            "standard: ", .eco_site, "standard.html\ndata: https://redivis.com/datasets/", .eco_core$ref)
+            "standard: ", .eco_site, "standard.html\ndata: ",
+            paste0("https://redivis.com/datasets/", vapply(.eco_cores_in_force(), `[[`, "", "ref"), collapse = ", "))
     return(invisible(out))
   }
   table <- .eco_name_of(table)

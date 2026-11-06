@@ -1,0 +1,78 @@
+{
+  "table": "sossover_2026_outerbanks_coyote_ms",
+  "title": "Multi-state robust-design capture histories of 62 coyotes identified from fecal DNA on seven barrier islands of the Outer Banks, North Carolina, Winter 2024 to Winter 2025",
+  "creator": "Sossover, Daniel; Kays, Roland; Kierepka, Elizabeth",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.kwh70rzmn",
+  "sourceURL": "https://doi.org/10.5061/dryad.kwh70rzmn",
+  "citation": "Sossover, D., Kays, R., & Kierepka, E. (2026). Data and code from: Coyote density, demography, and genetic structure across North Carolina's barrier islands [Dataset]. Dryad. https://doi.org/10.5061/dryad.kwh70rzmn",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Scat surveys for coyotes on seven barrier islands of North Carolina's Outer Banks, where recently established coyotes depredate protected shorebird and sea turtle nests and are lethally removed by federal agencies; three primary periods (Winter 2024, Summer 2024, Winter 2025) of four secondary occasions; 62 individuals identified by microsatellite genotyping of fecal DNA. The authors fit a Bayesian multistate robust-design model with island as the state. One row per coyote per secondary occasion; y is the island of detection.",
+  "samplingProtocol": "Noninvasive genetic sampling: searches for coyote scat on each island (including road-based scat surveys on some islands), four secondary occasions per island in each primary period; scats genotyped at microsatellite loci to identify individuals.",
+  "samplingProtocolCode": "scat_genotyping",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The deposit's island x period survey key: every island was surveyed in every period except Bodie (state 1) in Winter 2024, with four secondary occasions per island per period. Every coyote carries all 12 occasions; Bodie's gap in period 1 is a missing state, not a missing survey, and is listed in __periods (states_not_surveyed).",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not detected",
+    "1": "detected on Bodie Island",
+    "2": "detected on Pea Island",
+    "3": "detected on Hatteras Island",
+    "4": "detected on Ocracoke Island",
+    "5": "detected on North Core Island",
+    "6": "detected on South Core Island",
+    "7": "detected on Shackleford Island"
+  },
+  "closure": "closed",
+  "closureNote": "robust design: the population (and each coyote's island) is assumed closed within a primary period across its four secondary occasions; open between periods (survival, recruitment, inter-island movement)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "none",
+  "geographicCoverage": "Outer Banks barrier islands, North Carolina, USA: Bodie, Pea, Hatteras, Ocracoke, North Core, South Core and Shackleford (no coordinates deposited)",
+  "temporalCoverage": "2024/2025",
+  "covariateNote": "State-level covariates from obx_coyote_island_covariates.csv (not row columns): lethal removal of coyotes by island managers during survival interval 1 (Winter 2024 to Summer 2024) on Bodie, Pea, Shackleford; during interval 2 (Summer 2024 to Winter 2025) on Bodie, Hatteras; road-based scat surveys (a detection covariate) on Hatteras, North Core, South Core.",
+  "designNote": "Multi-state robust design (E9 core: robust design and multi-state capture-recapture): period and occasion both present; state = island.",
+  "notShipped": {
+    "model_output": "obx_coyote_jags_output.rds: posterior chains of abundance, survival, recruitment, movement and detection",
+    "hh_detection": "one detection of coyote HH on Ocracoke, removed by the authors before deposit (README) so that no coyote moves between islands within a period"
+  },
+  "notes": "Every coyote was detected on one island only. Rows before a coyote's first detection are 0 (wild coyotes at risk from the first period, E4.4); drop them to condition on first capture. No individual removal or death records are deposited, although lethal removal occurred on some islands (covariateNote).",
+  "summary": {
+    "n_rows": 744,
+    "n_units": 62,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 4,
+    "n_surveys": 744,
+    "y_values": "0,1,2,3,4,5,6,7",
+    "prop_zero": 0.81,
+    "n_traps": 1,
+    "n_zero": 603,
+    "n_positive": 141,
+    "n_units_detected": 62,
+    "max_y": 7
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "6cc37de296a2f156a71294e19ed6df4e",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "label", "season", "states_surveyed", "states_not_surveyed", "n_detections", "n_individuals_detected"],
+      "md5": "950fa67bd85092730f9301c8b971b5c0"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "d6f86384f9b546881af55250f56bbb32"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sossover_2026_outerbanks_coyote_ms.R",
+  "buildDate": "2026-11-05"
+}

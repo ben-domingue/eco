@@ -1,0 +1,59 @@
+{
+  "table": "hitchcock_2025_garden_hedgehog_count",
+  "title": "Weekly camera-trap detection counts of hedgehogs in 415 urban gardens, 2021-2023",
+  "creator": "Hitchcock, Kelly",
+  "pubDate": "2025",
+  "doi": "10.5281/zenodo.15497666",
+  "sourceURL": "https://doi.org/10.5281/zenodo.15497666",
+  "citation": "Hitchcock, K. (2025). Food over features: Supplementary feeding has the strongest influence on hedgehog (Erinaceus europaeus) occupancy in urban gardens [Data set]. Zenodo. https://doi.org/10.5281/zenodo.15497666",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Camera traps in private urban gardens recorded hedgehog detections week by week over deployments of one to eight weeks (2021-2023), with an inventory of garden features and supplementary feeding, to relate hedgehog occupancy to garden management.",
+  "samplingProtocol": "One camera trap per garden for one to eight consecutive weeks; hedgehog detections counted per ISO week with the number of days the camera ran.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_effort_days",
+  "closureNote": "occasion = consecutive ISO weeks of a garden's one deployment.",
+  "geographicCoverage": "Urban gardens (study by Nottingham Trent University; the record gives no locations)",
+  "temporalCoverage": "2021/2023",
+  "notShipped": {
+    "rai": "DOG_RAI, BADGER_RAI, FOX_RAI: indices computed from the same camera detections"
+  },
+  "notes": "y counts detections in the week (up to 56), not days with a detection. Garden-feature columns are the source's codes (the record does not define them beyond their names).",
+  "summary": {
+    "n_rows": 1446,
+    "n_units": 415,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 8,
+    "n_surveys": 1446,
+    "y_values": "0-56 (42 distinct)",
+    "prop_zero": 0.593,
+    "n_traps": 1,
+    "n_zero": 857,
+    "n_positive": 589,
+    "n_units_detected": 235,
+    "max_y": 56
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_month", "unit_gardensize", "unit_boundary", "unit_lawn", "unit_flowerbed", "unit_treesshrubs", "unit_bughotel", "unit_compostheap", "unit_hedgehoghighway", "unit_hedgehoghouse", "unit_logpile", "unit_rockpile", "unit_wildarea", "unit_pond", "unit_shedgreen", "unit_vegpatch", "unit_waterbowl", "unit_wildflowerpatch", "unit_birdfeeder", "unit_birdfoodground", "unit_hedgehogfood", "unit_mammalfood", "unit_front2back", "obs_effort_days", "obs_iso_week"],
+  "coreMd5": "d114ec90d2893f9107a3bb56ec5b9a59",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "70c69a3f94f57eb8cbce8ebff3179c2e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hitchcock_2025_garden_hedgehog_count.R",
+  "buildDate": "2026-11-06"
+}

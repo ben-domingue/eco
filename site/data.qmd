@@ -17,7 +17,7 @@ prose <- rbindlist(lapply(list.files("../output", "__dataset.json$", full.names 
   j <- jsonlite::read_json(f)
   data.table(table = j$table, protocol = j$samplingProtocol, coverage = j$temporalCoverage)
 }))
-d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url)], by = "table")
+d <- merge(tags, bib[, .(table, title, description, citation, licence = spdx, sourceURL = source_url, bibtex)], by = "table")
 d <- merge(d, num[, .(table, n_units, n_taxa, n_periods, n_occasions, n_rows, sample_floor,
                       columns = gsub("|", ", ", variables, fixed = TRUE), coarsened = coordinates_coarsened,
                       survey_evidence, script)], by = "table")
@@ -26,12 +26,14 @@ d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
 dn <- as.data.table(read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character"))
 setorder(d, table)
 redivis <- "https://redivis.com/datasets/4j5q"
+source("_shards.R")
 gh <- "https://github.com/ben-domingue/eco/blob/main"
 ```
 
 Every table below was built by a script in the repository's `data/`
-directory from a public deposit, validated against the draft standard, and published on Redivis as the dataset
-[`datapages.eco`](`r redivis`). Each table ships with a `__taxa`
+directory from a public deposit, validated against the draft standard, and published on Redivis in the datasets
+`r shard_links_md`
+(the core [shards](glossary.html#shard); Redivis caps a dataset at 1000 [entries](glossary.html#entry), side tables included, and a table and its side tables are always in the same shard). Each table ships with a `__taxa`
 side table (taxon resolution via GBIF, plus traits where the source has them),
 a `__periods` side table where there are primary periods, `__units` or
 `__traps` where the sampling frame or trap layout needs one, and a
@@ -105,13 +107,16 @@ for (i in seq_len(nrow(d))) {
   for (nn in dn[table == r$table]$note) cat(sprintf("\n**Data note.** %s\n", nn))
   # a dataset and its paper share one citation field; show each on its own line
   cat(sprintf("\nCitation: %s\n", gsub("\\. (Paper|Data): ", ".\n\n\\1: ", r$citation)))
+  if (nzchar(r$bibtex))   # the deposit and the paper, from metadata/biblio.csv (#11)
+    cat("\n<details><summary>Cite (BibTeX)</summary>\n\n```bibtex\n", r$bibtex, "\n```\n\n",
+        sprintf("Or in R: `eco_save_bibtex(\"%s\", \"refs.bib\")`\n\n", r$table), "</details>\n", sep = "")
 }
 ```
 
 ## Getting the data
 
-The dataset is on Redivis as [`datapages.eco`](`r redivis`). Its public
-access level is "data", so every table is served as CSV to anyone, no account
+The tables are on Redivis as `r shard_links_md`; the R package searches
+them all, so you never need to know which holds a table. Their public access level is "data", so every table is served as CSV to anyone, no account
 needed; the [R package](r.html) reads it that way:
 
 ```r

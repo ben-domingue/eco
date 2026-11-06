@@ -1,0 +1,71 @@
+{
+  "table": "hunter_2025_georgia_pinesavanna_occ",
+  "title": "Bachman's Sparrow and Northern Bobwhite detections on three visits to 161 points in Georgia pine savannas, 2022",
+  "creator": "Hunter, Elizabeth A.; Allred, Cory R.",
+  "pubDate": "2025",
+  "doi": "10.5066/P13965WX",
+  "sourceURL": "https://doi.org/10.5066/P13965WX",
+  "citation": "Hunter, E.A., and Allred, C.R., 2025, Avian occupancy and habitat data in Georgia pine savannas in 2022: U.S. Geological Survey data release, https://doi.org/10.5066/P13965WX.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Detections of Bachman's Sparrow and Northern Bobwhite at 161 locations in Georgia, USA, with detection covariates (date, time, temperature, observer) and habitat metrics from satellite imagery and on-the-ground vegetation measurements, collected to understand how habitat features and prescribed burning influence occupancy.",
+  "samplingProtocol": "Point counts at 161 survey points stratified by prescribed-burn frequency in six Wildlife Management Areas and Piedmont NWR, each visited three times at least two weeks apart, May-July 2022, recording detection of the target species.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one breeding season; the source fits single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": {
+    "description": "Pine savannas in six Wildlife Management Areas and Piedmont National Wildlife Refuge, Georgia, USA",
+    "boundingBox": {
+      "west": -84.77,
+      "east": -81.6628,
+      "south": 30.7925,
+      "north": 33.163
+    }
+  },
+  "temporalCoverage": "2022-05/2022-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS (columns swapped back); neither species is IUCN CR/EN/VU"
+  },
+  "notes": "The release labels the coordinate columns the wrong way round; they are swapped here (latitudes 30-34 N, asserted).",
+  "notShipped": {
+    "rcw_file": "GABirds_DataRelease_RCW.csv: one season-level Red-cockaded Woodpecker detection per point, no repeat visits (single-visit design)"
+  },
+  "summary": {
+    "n_rows": 966,
+    "n_units": 161,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 483,
+    "y_values": "0,1",
+    "prop_zero": 0.746,
+    "n_traps": 1,
+    "n_zero": 721,
+    "n_positive": 245,
+    "n_units_detected": 112,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "observer", "unit_site", "unit_decimalLatitude", "unit_decimalLongitude", "unit_cri2", "unit_evi", "unit_texture_corr", "unit_texture_inertia", "unit_texture_shade", "unit_texture_prom", "unit_burn_freq", "unit_grass_cover_pct", "unit_woody_cover_pct", "unit_canopy_cover_pct", "unit_woody_height", "unit_forb_height", "obs_min_after_sunrise", "obs_temp_f"],
+  "coreMd5": "b8e86529d1364404ecc31890371a5cdb",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "f193e3ff46215246a622fcb35b4a9df7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hunter_2025_georgia_pinesavanna_occ.R",
+  "buildDate": "2026-11-06"
+}

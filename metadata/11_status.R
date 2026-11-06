@@ -12,9 +12,10 @@ md <- file.path(root, "metadata")
 meta <- fread(file.path(md, "metadata.csv")); tags <- fread(file.path(md, "tags.csv"), colClasses = "character")
 val_f <- file.path(root, "validate", "report.csv")
 val <- if (file.exists(val_f)) fread(val_f) else NULL
+bib <- fread(file.path(md, "biblio.csv"), colClasses = "character")
 fam <- sub(" \\(.*", "", tags$model_family)
 status <- list(
-  date = format(Sys.Date()), n_tables = nrow(meta), n_rows = sum(meta$n_rows), n_units = sum(meta$n_units),
+  date = format(Sys.Date()), n_tables = nrow(meta), n_deposits = uniqueN(bib$deposit), n_rows = sum(meta$n_rows), n_units = sum(meta$n_units),
   n_taxa_rows = sum(meta$n_taxa), n_surveys = sum(meta$n_surveys),
   n_families = uniqueN(fam), families = as.list(table(fam)),
   response_types = as.list(table(meta$response_type)), taxon_groups = as.list(table(tags$taxon_group)),
@@ -30,4 +31,4 @@ row <- data.table(date = status$date, n_tables = status$n_tables, n_rows = statu
                   n_do_not_publish = status$n_do_not_publish, n_valid = status$n_valid, n_irw_conforms = status$n_irw_conforms)
 hist <- if (file.exists(hist_f)) rbind(fread(hist_f, colClasses = list(character = "date")), row, fill = TRUE) else row
 fwrite(hist, hist_f, sep = "\t")
-cat(sprintf("11_status.R: %d tables, %s rows -> metadata/status.json (+1 row in status_history.tsv)\n", status$n_tables, format(status$n_rows, big.mark = ",")))
+cat(sprintf("11_status.R: %d tables from %d deposits, %s rows -> metadata/status.json (+1 row in status_history.tsv)\n", status$n_tables, status$n_deposits, format(status$n_rows, big.mark = ",")))

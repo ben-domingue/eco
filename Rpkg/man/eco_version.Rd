@@ -8,9 +8,10 @@ eco_version()
 }
 \value{
 Invisibly, a list with \code{eco_version} (the pinned eco version, or
-\code{NA} when reading current releases), \code{eco} and \code{eco_meta} (the Redivis
-version tags in force) and \code{released} (that release's date, from the
-manifest, when it is a numbered eco version). Prints a summary.
+\code{NA} when reading current releases), one element per core shard (\code{eco},
+\code{eco_2}, ...: its Redivis version tag in force, \code{NA} when the shard is not
+part of this version), \code{eco_meta}, and \code{released} (that release's date,
+from the manifest, when it is a numbered eco version). Prints a summary.
 }
 \description{
 Which versions are being read

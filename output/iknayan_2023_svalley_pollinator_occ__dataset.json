@@ -1,0 +1,60 @@
+{
+  "table": "iknayan_2023_svalley_pollinator_occ",
+  "title": "Visual detections of 42 flower-visiting insect taxa on 1-4 surveys of 41 office-park plots in Silicon Valley, California, 2017",
+  "creator": "Iknayan, Kelly; Heath, Sacha; Terrill, Scott; Wenny, Daniel; Panlasigui, Stephanie; Wang, Yiwei; Beller, Erin; Spotswood, Erica",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.0k6djhb68",
+  "sourceURL": "https://doi.org/10.5061/dryad.0k6djhb68",
+  "citation": "Iknayan, K. et al. (2023). Patterns in bird and pollinator occupancy and richness in a mosaic of urban office parks across scales and seasons [Dataset]. Dryad. https://doi.org/10.5061/dryad.0k6djhb68",
+  "paperDOI": "10.1002/ece3.10958",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection, with individual counts, of 42 flower-visiting insect taxa (bees, wasps, flies, butterflies; mostly identified to genus by sight) on 15-minute visual surveys of 100 m2 plots at 41 office-park sites in Palo Alto, Mountain View and Sunnyvale, California, 1-4 surveys per plot between April and September 2017.",
+  "samplingProtocol": "One 100 m2 plot in the most floriferous vegetation of each 1-ha site; 15-minute meandering visual survey between 10:00 and 15:00 by one entomologist recording every invertebrate on flowers, identified by sight to the lowest feasible rank; spring, early summer and late summer 2017.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "visits span April to September; the authors analysed season-specific richness indices",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Office parks in Palo Alto, Mountain View and Sunnyvale, Santa Clara County, California, USA; no coordinates deposited",
+  "temporalCoverage": "2017-04/2017-09",
+  "notShipped": {
+    "plant_visited": "the flower each record was on (plant-pollinator interaction data)",
+    "bird_arrays": "model_data.RDS bird detection arrays (a 3 x 3 visit structure the deposit does not define; queued for review)"
+  },
+  "notes": "y is detection; obs_individuals is the summed count of individuals recorded (NA in 3 taxon-surveys where a record has no count: Apis twice, Ceratina once). Taxa named 'X sp.' are at genus and 'X gn.' at family, as identified by the surveyor.",
+  "summary": {
+    "n_rows": 4956,
+    "n_units": 41,
+    "n_taxa": 42,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 118,
+    "y_values": "0,1",
+    "prop_zero": 0.908,
+    "n_traps": 1,
+    "n_zero": 4498,
+    "n_positive": 458,
+    "n_units_detected": 41,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "obs_individuals"],
+  "coreMd5": "bc87dc70be751153d633b380bb1b78f7",
+  "sideTables": {
+    "taxa": {
+      "rows": 42,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "3197bc66d92db1ac5893179fbfb9d04c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/iknayan_2023_svalley_pollinator_occ.R",
+  "buildDate": "2026-11-06"
+}

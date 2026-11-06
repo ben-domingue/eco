@@ -386,6 +386,18 @@ def test_taxon_inclusion_and_withheld():
     assert "meta_conditional" not in checks_of(run(meta=good_meta(taxaWithheld=["Z z"])))
 
 
+def test_subsample_column():
+    """Ruling 21 (2026-11-06): subsampleColumn names the obs_ column holding the identified fraction."""
+    df = good_frame(); df["obs_prop_id"] = [0.5 if i % 2 else None for i in range(len(df))]
+    assert "meta_conditional" not in checks_of(run(df, good_meta(subsampleColumn="obs_prop_id")))
+    assert "meta_conditional" in checks_of(run(meta=good_meta(subsampleColumn="obs_prop_id")), "error")
+    assert "meta_conditional" in checks_of(run(meta=good_meta(subsampleColumn="unit_elev")), "error")
+    df2 = df.copy(); df2.loc[0, "obs_prop_id"] = 2.0
+    assert "meta_conditional" in checks_of(run(df2, good_meta(subsampleColumn="obs_prop_id")), "error")
+    df3 = df.copy(); df3.loc[1, "obs_prop_id"] = 0.0
+    assert "meta_conditional" in checks_of(run(df3, good_meta(subsampleColumn="obs_prop_id")), "error")
+
+
 def test_survey_taxa():
     # unit 1-20 surveyed for AAA and BBB, units 21-40 for AAA only
     df = good_frame()
@@ -448,6 +460,22 @@ def test_taxon_id_needs_remarks():
     assert "taxon_rows" in checks_of(run(taxa=taxa), "error")
     taxa["taxonRemarks"] = [None, "subfamily absent from the GBIF backbone"]
     assert "taxon_rows" not in checks_of(run(taxa=taxa))
+
+
+def test_taxon_id_at_kingdom():
+    """batch 38: genera whose GBIF match fell to gbif.org/species/1 (Animalia)."""
+    taxa = good_taxa(); taxa["taxonID"] = ["https://www.gbif.org/species/2433433", "https://www.gbif.org/species/1"]
+    assert "taxon_kingdom" in checks_of(run(taxa=taxa), "error")
+    taxa.loc[1, "taxonRank"] = "kingdom"                      # a record identified only to Animalia
+    assert "taxon_kingdom" not in checks_of(run(taxa=taxa))
+    taxa.loc[1, ["taxonRank", "taxonID"]] = ["genus", "https://www.gbif.org/species/10"]
+    assert "taxon_kingdom" not in checks_of(run(taxa=taxa))
+
+
+def test_r_twin_kingdom_keys_match():
+    r = (ROOT / "lib" / "eco_common.R").read_text()
+    m = re.search(r"GBIF_KINGDOM_KEYS <- 0:([0-9]+)", r)
+    assert m and tuple(range(int(m.group(1)) + 1)) == checks.GBIF_KINGDOM_KEYS
 
 
 def test_trap_coordinates_of_flagged_taxa():
@@ -575,3 +603,93 @@ def test_parted_table_irw_date_range_judged_on_the_whole_table(tmp_path):
     assert len(f) == 1 and "over all parts" in f[0].message
     secs = int((pd.Timestamp("1969-06-01", tz="UTC") - pd.Timestamp(0, tz="UTC")).total_seconds())
     assert f"date max={secs}" in f[0].message
+
+
+# ---------------------------------------------------------------------------
+# #120: all-zero tables and within-visit replication (intake rulings, 2026-11-06)
+# ---------------------------------------------------------------------------
+
+def _single_visit(df):
+    return df[df["occasion"] == 1].drop(columns=["occasion", "obs_wind"])
+
+
+def test_replication_warns_on_a_single_visit_matrix():
+    meta = good_meta(occasionKind="none", closure="none")
+    assert "replication" in checks_of(run(df=_single_visit(good_frame()), meta=meta), "warn")
+
+
+def test_replication_exempts_within_visit_designs():
+    meta = good_meta(occasionKind="none", closure="none")
+    one = _single_visit(good_frame())
+    # timed intervals recorded within the visit (E8)
+    ints = one.assign(obs_int1=one["y"], obs_int2=0)
+    assert "replication" not in checks_of(run(df=ints, meta=meta))
+    # interval x band cells (E8, repeated rows within a visit)
+    cells = one.assign(obs_n_int1_band1=one["y"])
+    assert "replication" not in checks_of(run(df=cells, meta=meta))
+    # time to detection (E9)
+    ttd = one.assign(obs_ttd=10.0, obs_ttd_censored=1 - one["y"])
+    assert "replication" not in checks_of(run(df=ttd, meta=meta))
+    ttd_min = one.assign(obs_ttd_min=10.0, obs_ttd_censored=1 - one["y"])
+    assert "replication" not in checks_of(run(df=ttd_min, meta=meta))
+    # an obs_ column that merely starts with "int" is not an interval
+    other = one.assign(obs_intensity=1.0)
+    assert "replication" in checks_of(run(df=other, meta=meta), "warn")
+
+
+def test_replication_exempts_count_detector_scr():
+    rows = [{"unit": f"ind{i}", "taxon": "AAA", "trap": f"t{j}", "y": int(i == j % 5) * 2,
+             "obs_effort_days": 30} for i in range(5) for j in range(10)]
+    df = pd.DataFrame(rows)
+    meta = good_meta(responseType="count", unitKind="individual", occasionKind="none",
+                     closure="none", effortColumn="obs_effort_days", taxonInclusion="single",
+                     surveyEvidence="effort_table", samplingProtocolCode="camera_trap")
+    traps = pd.DataFrame({"trap": [f"t{j}" for j in range(10)]})
+    r = run(df=df, meta=meta, traps=traps)
+    assert "replication" not in checks_of(r)
+    # the same frame as site units is a single-visit matrix again
+    site = df.drop(columns="trap").drop_duplicates(["unit", "taxon"])
+    assert "replication" in checks_of(run(df=site, meta=good_meta(
+        responseType="count", occasionKind="none", closure="none")), "warn")
+
+
+def _all_zero(**over):
+    df = good_frame().assign(y=0)
+    meta = good_meta(taxonInclusion="target", notes="No detection in any survey; detection "
+                     "probability is not estimable from this table alone.")
+    meta.update(over)
+    return df, meta
+
+
+def test_all_zero_table_admitted():
+    df, meta = _all_zero()
+    r = run(df=df, meta=meta)
+    assert r.ok, [f.message for f in r.errors]
+    assert "all_zero" not in checks_of(r)
+    # the notes sentence the standard asks for
+    df, meta = _all_zero(notes="")
+    assert "all_zero" in checks_of(run(df=df, meta=meta), "warn")
+    # a recorded list cannot hold a taxon never recorded (E10): not admitted
+    df, meta = _all_zero(taxonInclusion="recorded")
+    assert not run(df=df, meta=meta).ok
+
+
+def test_all_zero_irw_resp_variation_is_a_warning(tmp_path):
+    from eco_validate.core import _import_irw_validate
+    if _import_irw_validate() is None:
+        pytest.skip("irw_validate not importable")
+
+    def write(name, df, meta):
+        df.to_csv(tmp_path / f"{name}.csv", index=False)
+        good_taxa().to_csv(tmp_path / f"{name}__taxa.csv", index=False)
+        (tmp_path / f"{name}__dataset.json").write_text(json.dumps(meta))
+        return tmp_path / f"{name}.csv"
+
+    df, meta = _all_zero()
+    r = validate_file(write("smith_2020_zero_occ", df, meta), irw=True)
+    assert r.ok, [f"{f.check}: {f.message}" for f in r.errors]
+    assert any(f.check.startswith("irw:resp_variation") for f in r.findings if f.severity == "warn")
+    # a constant y that is not an admitted all-zero table still blocks
+    df1 = good_frame().assign(y=1)
+    r = validate_file(write("smith_2020_ones_occ", df1, good_meta()), irw=True)
+    assert any(f.check.startswith("irw:resp_variation") for f in r.errors)

@@ -1,0 +1,78 @@
+{
+  "table": "glorioso_2026_bayouteche_pipe_count",
+  "title": "Monthly counts of treefrogs and other herpetofauna in 200 PVC pipe refugia at four sites, Bayou Teche National Wildlife Refuge, Louisiana, 2017-2023",
+  "creator": "Glorioso, Brad M.; Waddle, J. Hardin",
+  "pubDate": "2026",
+  "doi": "10.5066/P97QPY0E",
+  "sourceURL": "https://doi.org/10.5066/P97QPY0E",
+  "citation": "Glorioso, B.M., and Waddle, J.H., 2026, Data from a capture-mark-recapture survey of native treefrogs in Bayou Teche National Wildlife Refuge, Louisiana from 2017 to 2023: U.S. Geological Survey data release, https://doi.org/10.5066/P97QPY0E.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Fifty PVC pipes hung on trees at each of four sites in Bayou Teche National Wildlife Refuge, Louisiana, were checked about monthly from October 2017 to May 2023 as part of a capture-mark-recapture study of native treefrogs. Every animal in each pipe was counted by species: four treefrog species and five lizard and snake taxa.",
+  "samplingProtocol": "Each month all four sites were visited in turn and each of 50 numbered PVC pipes (artificial refugia nailed to trees) was checked, recording water in the pipe and the number of each amphibian and reptile taxon inside; frogs were tagged and released.",
+  "samplingProtocolCode": "pvc_pipe",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": {
+    "description": "Bayou Teche National Wildlife Refuge, St. Mary Parish, Louisiana, USA",
+    "boundingBox": {
+      "west": -91.5302,
+      "east": -91.4118,
+      "south": 29.6945,
+      "north": 29.7801
+    }
+  },
+  "temporalCoverage": "2017-10/2023-05",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "site coordinates as published by USGS (national wildlife refuge; no taxon CR, EN or VU)"
+  },
+  "notShipped": {
+    "flooded_surveys": "two 2019-07-18 surveys abandoned for flooding: 100 pipes not checked",
+    "frog_captures": "Frog Capture Data.csv: tagged-frog captures (individual histories), not built in this table",
+    "seen_heard": "animals seen or heard outside the pipes (survey-level lists)",
+    "bycatch": "non-herpetofauna bycatch",
+    "loggers": "air temperature and humidity logger series"
+  },
+  "summary": {
+    "n_rows": 110700,
+    "n_units": 200,
+    "n_taxa": 9,
+    "n_periods": 62,
+    "n_occasions": 1,
+    "n_surveys": 12300,
+    "y_values": "0-20 (19 distinct)",
+    "prop_zero": 0.956,
+    "n_traps": 1,
+    "n_zero": 105784,
+    "n_positive": 4916,
+    "n_units_detected": 200,
+    "max_y": 20
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "obs_water_present", "obs_water_dumped", "obs_start_time", "obs_prev_night_low_c", "obs_daytime_high_c", "obs_weather"],
+  "coreMd5": "3be9d4e43419a2f6d7c576ac7f723b9e",
+  "sideTables": {
+    "periods": {
+      "rows": 62,
+      "columns": ["period", "year", "month"],
+      "md5": "0bf6c9b1138b07920c127ed2685dcaca"
+    },
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "9296fe9e1a6edb5d806af95006665b38"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/glorioso_2026_bayouteche_pipe_count.R",
+  "buildDate": "2026-11-06"
+}

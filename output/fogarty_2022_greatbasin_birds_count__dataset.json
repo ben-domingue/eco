@@ -1,0 +1,67 @@
+{
+  "table": "fogarty_2022_greatbasin_birds_count",
+  "title": "Counts of 32 riparian bird species on three visits to 275 points in 23 central Great Basin canyons, Nevada, 15 years 2001-2018",
+  "creator": "Fogarty, Frank A.",
+  "pubDate": "2022",
+  "doi": "10.25338/B8VD1R",
+  "sourceURL": "https://doi.org/10.25338/B8VD1R",
+  "citation": "Fogarty, F. (2022). Riparian land-cover data and model code for: Multiple-region, N-mixture community models to assess associations of riparian area, fragmentation, and species richness [Dataset]. Dryad. https://doi.org/10.25338/B8VD1R",
+  "paperDOI": "10.1002/eap.2698",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Point counts of riparian birds on three visits per year at points in 23 canyons of the Shoshone Mountains and Toiyabe, Toquima and Monitor ranges, central Great Basin, Nevada, in 15 years between 2001 and 2018, with canyon woody and meadow riparian area and woody-riparian fragmentation (standardized).",
+  "samplingProtocol": "Repeated point counts along canyon bottoms (up to 21 points per canyon), three visits per breeding season; all individuals of each species counted.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a breeding season (three visits), open between years",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Central Great Basin (Shoshone, Toiyabe, Toquima and Monitor ranges), Nevada, USA; no coordinates deposited",
+  "temporalCoverage": "2001/2018",
+  "notShipped": {
+    "BTAH": "species code BTAH, not a Pyle & DeSante alpha code and not defined in the deposit",
+    "squares": "Cov4-Cov6, squares of Cov1-Cov3 (asserted)",
+    "model_results": "DataS2.zip model results",
+    "other_species": "the array holds the authors' 33 analysed species, not every species counted"
+  },
+  "notes": "Canyon covariates are joined by row order (cov_data.RDS has no canyon ids; the authors' code does the same). Scientific names are the processor's, from the four-letter alpha codes. Survey years are 2001-2014 and 2018.",
+  "summary": {
+    "n_rows": 264256,
+    "n_units": 275,
+    "n_taxa": 32,
+    "n_periods": 15,
+    "n_occasions": 3,
+    "n_surveys": 8258,
+    "y_values": "0,1,2,3,4,5,6,7,8,17,20",
+    "prop_zero": 0.955,
+    "n_traps": 1,
+    "n_zero": 252449,
+    "n_positive": 11807,
+    "n_units_detected": 261,
+    "max_y": 20
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_woody_riparian_area_std", "unit_meadow_riparian_area_std", "unit_woody_riparian_nlsi_std"],
+  "coreMd5": "1edfb5e7496f9fbb52109bad89ad0ab2",
+  "sideTables": {
+    "periods": {
+      "rows": 15,
+      "columns": ["period", "period_year"],
+      "md5": "8d4053ccb1d1ed6ff2bd0de10914025e"
+    },
+    "taxa": {
+      "rows": 32,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "7618118f28190958c5c3f593e17aac99"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fogarty_2022_greatbasin_birds_count.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,59 @@
+{
+  "table": "roth_2016_aargau_amph_count",
+  "title": "Counts of three endangered toads and the water frog complex on two visits to 481 sites of the Aargau amphibian monitoring, Switzerland",
+  "creator": "Roth, Tobias; Bühler, Christoph; Amrhein, Valentin",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.7gt4m",
+  "sourceURL": "https://doi.org/10.5061/dryad.7gt4m",
+  "citation": "Roth, T., Bühler, C., & Amrhein, V. (2015). Data from: Estimating effects of species interactions on populations of endangered species [Dataset]. Dryad. https://doi.org/10.5061/dryad.7gt4m",
+  "paperDOI": "10.1086/685095",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of yellow-bellied toad, common midwife toad, natterjack toad and the invasive water frog complex on two visits to each of 481 sites of the Amphibian Monitoring Program of the canton of Aargau, northern Switzerland, with the day of year of each visit and site elevation, water surface, fish presence, water-level fluctuation and vegetation cover.",
+  "samplingProtocol": "Two visits per site in spring (Amphibian Monitoring Program of the canton of Aargau; Schmidt 2005); calling and visual counts of each species per visit.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "two visits in one breeding season, analysed as closed N-mixture",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Canton of Aargau, northern Switzerland; no coordinates deposited",
+  "temporalCoverage": "survey year not stated in the deposit (paper 2016)",
+  "notShipped": {
+    "none": "every deposited column is shipped (julian days as obs_date_doy)"
+  },
+  "notes": "The three toads are endangered in Switzerland (README; national red list); no coordinates are deposited. The survey year is not in the deposit, so day of year is shipped as obs_date_doy and no ISO date is built.",
+  "summary": {
+    "n_rows": 3848,
+    "n_units": 481,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 962,
+    "y_values": "0-515 (90 distinct)",
+    "prop_zero": 0.721,
+    "n_traps": 1,
+    "n_zero": 2775,
+    "n_positive": 1073,
+    "n_units_detected": 481,
+    "max_y": 515
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_elevation_m", "unit_water_surface_m2", "unit_fish", "unit_water_fluctuation", "unit_vegetation_cover", "obs_date_doy"],
+  "coreMd5": "2ad9df30856b0be2d2ef3366da79a25a",
+  "sideTables": {
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "418c20aefc084b3df8ba9fc1aa70cf26"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/roth_2016_aargau_amph_count.R",
+  "buildDate": "2026-11-05"
+}

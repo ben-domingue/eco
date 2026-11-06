@@ -1,0 +1,69 @@
+{
+  "table": "mccaffery_2024_elwha_mammals_count",
+  "title": "Daily independent camera detections of 15 mammal taxa at 34 camera stations along three reaches of the Elwha River, Washington, 2021-2023",
+  "creator": "McCaffery, Rebecca M.; Cendejas-Zarelli, Sara J.; Goodwin, Katy R.; Happe, Patricia J.; Jenkins, Kurt J.; Sager-Fradkin, Kimberly A.",
+  "pubDate": "2024",
+  "doi": "10.5066/P1BJD7OH",
+  "sourceURL": "https://doi.org/10.5066/P1BJD7OH",
+  "citation": "McCaffery, R.M., Cendejas-Zarelli, S.J., Goodwin, K.R., Happe, P.J., Jenkins, K.J., and Sager-Fradkin, K.A., 2024, Camera trap photo detections of mammals along three reaches of the Elwha River, Washington: U.S. Geological Survey data release, https://doi.org/10.5066/P1BJD7OH.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (no use constraints)"
+  },
+  "abstract": "Unbaited camera traps at ten stations in each of three reaches of the Elwha River (the drained Aldwell and Mills reservoirs and the undammed Geyser reach), July 2021 to July 2023, after the removal of two dams, recording mammal use as the riparian ecosystem recovers. The data are daily counts of independent photo detections (at least 30 minutes apart) for 15 mammal taxa at every station-day a camera operated.",
+  "samplingProtocol": "Unbaited cameras (Browning ProDCL, motion trigger plus two daily time-lapse frames to confirm operation) at a systematic sample of 200 m grid points, ten per reach; independent detections are photos of a species at a camera at least 30 minutes apart, counted per day.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasions are days across a study year (July to July); use is not closed across seasons",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": {
+    "description": "Elwha River valley (Aldwell, Mills and Geyser reaches), Olympic Peninsula, Washington, USA",
+    "boundingBox": {
+      "west": -123.6525,
+      "east": -123.4506,
+      "south": 47.8611,
+      "north": 48.1533
+    }
+  },
+  "temporalCoverage": "2021-07/2023-07",
+  "notes": "Rows exist only for station-days the camera operated (17,036 of the 17,037 trap-nights the lineage reports). The source compiled the counts with machine-learning classifiers verified by hand.",
+  "summary": {
+    "n_rows": 255540,
+    "n_units": 34,
+    "n_taxa": 15,
+    "n_periods": 2,
+    "n_occasions": 366,
+    "n_surveys": 17036,
+    "y_values": "0,1,2,3,4,5,6,7,8,11",
+    "prop_zero": 0.985,
+    "n_traps": 1,
+    "n_zero": 251588,
+    "n_positive": 3952,
+    "n_units_detected": 34,
+    "max_y": 11
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_viewshed", "unit_dist_edge_m", "obs_season"],
+  "coreMd5": "e8b83349f2041f0078dcfb5cd4dfee67",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "start", "end"],
+      "md5": "a5c91375ceaddc71fed65d5abc6329e7"
+    },
+    "taxa": {
+      "rows": 15,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "a794b67d57871fd34aed2afe1ba61ff7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mccaffery_2024_elwha_mammals_count.R",
+  "buildDate": "2026-11-06"
+}

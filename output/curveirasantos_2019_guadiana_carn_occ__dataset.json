@@ -1,0 +1,61 @@
+{
+  "table": "curveirasantos_2019_guadiana_carn_occ",
+  "title": "Camera-trap detections of red fox, feral cat, stone marten and Egyptian mongoose at 77 stations over four 6-day occasions, Guadiana Valley Natural Park, Portugal, summer 2015",
+  "creator": "Curveira-Santos, Gonçalo; Pedroso, Nuno M.; Barros, Ana L.; Santos-Reis, Margarida",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.36g41fd",
+  "sourceURL": "https://doi.org/10.5061/dryad.36g41fd",
+  "citation": "Curveira-Santos, G., Pedroso, N. M., Barros, A. L., & Santos-Reis, M. (2020). Data from: Mesocarnivore community structure under predator control: unintended patterns in a conservation context [Dataset]. Dryad. https://doi.org/10.5061/dryad.36g41fd",
+  "paperDOI": "10.1371/journal.pone.0210661",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "77 camera-trap stations on a 1 km grid across five hunting estates with predator control in the Guadiana Valley Natural Park, southeast Portugal, each run for 24 days between June and August 2015. Detection of the four mesocarnivores the authors modelled (red fox, feral cat, stone marten, Egyptian mongoose) per station per 6-day occasion, with landscape, prey (rabbit and partridge camera capture rates) and disturbance covariates.",
+  "samplingProtocol": "One camera (Moultrie M-990i) per station along dirt roads, ~30 cm above ground, 24 h a day for 24 consecutive days, three photographs per trigger; the deployment split into four 6-day occasions, y = 1 if the species was photographed in the occasion.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "four 6-day occasions of one 24-day deployment per station; the authors assume closure over the 24 days (single-season models). Stations were run in two rotation phases between June and August 2015.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Five hunting estates in the Guadiana Valley Natural Park, near 37.7 N 7.65 W, southeast Portugal (no station coordinates deposited)",
+  "temporalCoverage": "2015-06/2015-08",
+  "covariateNote": "unit_hab_code: habitat type at the station, 1-3 as deposited (paper Table 1: forest, shrub, grassland; the code-to-type order is not stated). unit_forest_500m, unit_scrub_500m, unit_grass_500m: proportion cover within 500 m. unit_landcover_div: Simpson's landcover diversity (deposit L_div, the paper's range 0-0.76); unit_landcover_div_alt: the deposit's second, undocumented column Ldiv (0-0.65). unit_dist_water_m, unit_dist_road_m (paved), unit_dist_settlement_m; unit_slope_*_deg and unit_elev_*_m at the station (local, 30 m DEM) and averaged within 500 m. unit_rabbit_rate_100td, unit_partridge_rate_100td: independent camera records of European rabbit and red-legged partridge per 100 trap-days at the station. unit_hunting_estate: estate 1-5.",
+  "notShipped": {
+    "other_species": "European badger (13 captures), common genet (4) and Eurasian otter (4), photographed but not modelled and not in the deposit",
+    "model_output": "occupancy and detection estimates"
+  },
+  "notes": "Three station-occasions are not surveyed (station 71 occasion 2; station 76 occasions 3-4), identically for every species.",
+  "summary": {
+    "n_rows": 1220,
+    "n_units": 77,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 305,
+    "y_values": "0,1",
+    "prop_zero": 0.744,
+    "n_traps": 1,
+    "n_zero": 908,
+    "n_positive": 312,
+    "n_units_detected": 73,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_hab_code", "unit_forest_500m", "unit_scrub_500m", "unit_grass_500m", "unit_landcover_div", "unit_landcover_div_alt", "unit_dist_water_m", "unit_slope_local_deg", "unit_slope_500m_deg", "unit_elev_local_m", "unit_elev_500m_m", "unit_rabbit_rate_100td", "unit_partridge_rate_100td", "unit_dist_road_m", "unit_dist_settlement_m", "unit_hunting_estate"],
+  "coreMd5": "ee9a3def6f17536d27c565cb50598fab",
+  "sideTables": {
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "3eec51a5a8467689fb41ce02150635a3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/curveirasantos_2019_guadiana_carn_occ.R",
+  "buildDate": "2026-11-05"
+}

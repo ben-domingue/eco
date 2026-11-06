@@ -1,0 +1,60 @@
+{
+  "table": "mizel_2018_alaska_sparrows_count",
+  "title": "Counts of American tree sparrow and savannah sparrow on up to five repeat point counts at 150 sites in Alaska",
+  "creator": "Mizel, Jeremy D.; Schmidt, Joshua H.; Lindberg, Mark S.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.90kp2",
+  "sourceURL": "https://doi.org/10.5061/dryad.90kp2",
+  "citation": "Mizel, J. D., Schmidt, J. H., & Lindberg, M. S. (2018). Data from: Accommodating temporary emigration in spatial distance sampling models [Dataset]. Dryad. https://doi.org/10.5061/dryad.90kp2",
+  "paperDOI": "10.1111/1365-2664.13053",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of American tree sparrow and savannah sparrow on up to five repeat point counts at 150 survey sites in Alaska (466 surveys), with day of year, effort, noise, observer and time covariates per survey: the counts behind a spatial distance-sampling model with temporary emigration.",
+  "samplingProtocol": "Repeated point counts with distance to each detected bird (unlimited radius, mapped to pixels), up to five visits per site in one breeding season.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "temporary emigration between visits is the paper's subject (TPP / TEDS models); one breeding season",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Alaska, USA (see the paper); no coordinates deposited",
+  "temporalCoverage": "survey year not stated in the deposit (paper 2018)",
+  "notShipped": {
+    "distances": "per-bird distances and pixel ids (ATSP.csv, SAVS.csv) and the NDVI / elevation pixel grids: a spatial distance-sampling layout",
+    "site_ids": "original Site ids (newsite, the authors' 1-150 index, is the unit)"
+  },
+  "notes": "Counts equal the per-visit tallies of the individual distance records (asserted). Survey covariates as deposited: juldate as obs_date_doy (no year deposited), effort, noise, observer code and reltime (units in the paper).",
+  "summary": {
+    "n_rows": 932,
+    "n_units": 150,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 466,
+    "y_values": "0-18 (15 distinct)",
+    "prop_zero": 0.44,
+    "n_traps": 1,
+    "n_zero": 410,
+    "n_positive": 522,
+    "n_units_detected": 135,
+    "max_y": 18
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "obs_date_doy", "obs_effort", "obs_noise", "obs_observer_code", "obs_reltime"],
+  "coreMd5": "733abe4ed7854d35905c96aad2bbba4b",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "63e541b5ca87cc7dcf7fc98e9608086c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mizel_2018_alaska_sparrows_count.R",
+  "buildDate": "2026-11-05"
+}

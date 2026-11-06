@@ -1,0 +1,61 @@
+{
+  "table": "rich_2019_mojave_mamm_binom",
+  "title": "Camera-trap detections of 15 mammal species at 210 Mojave Desert sites, California, 2016: nights with a detection out of nights surveyed",
+  "creator": "Rich, Lindsey N.; Furnas, Brett J.; Newton, D. Scott; Brashares, Justin S.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.2806394",
+  "sourceURL": "https://doi.org/10.5061/dryad.2806394",
+  "citation": "Rich, L. N., Furnas, B. J., Newton, D. S., & Brashares, J. S. (2019). Data from: Acoustic and camera surveys inform models of current and future vertebrate distributions in a changing desert ecosystem [Dataset]. Dryad. https://doi.org/10.5061/dryad.2806394",
+  "paperDOI": "10.1111/ddi.12952",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap survey of 15 mammal species at 210 sites in the Mojave Desert, California, March to July 2016 (Rich et al. 2019): the number of nights with a detection out of the nights surveyed per site and species, with seven site covariates.",
+  "samplingProtocol": "Unbaited camera traps at 210 sites, one deployment per site (26-64 nights), March to July 2016; mammals identified to species from photographs; detections collapsed by the authors to nights with a detection per site and species.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every site has an explicit count for every deposited species and its nights surveyed (num.nights); which nights were surveyed is not deposited, so there is no occasion column (ruling #34).",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "single season; one deployment per site, which the authors analysed as single-season multispecies occupancy",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Mojave Desert, California, USA; no coordinates deposited",
+  "temporalCoverage": "2016-03/2016-07",
+  "notShipped": {
+    "Julian day squared": "the square of Julian day (asserted), a model term"
+  },
+  "notes": "Scientific names are the processor's, from the deposited common names (SpeciesCodes sheet). Julian day and background noise are site-level values as deposited (non-integer Julian days suggest a mean over visits). The other table from this deposit is rich_2019_mojave_birds_binom (acoustic).",
+  "summary": {
+    "n_rows": 3150,
+    "n_units": 210,
+    "n_taxa": 15,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 210,
+    "y_values": "0-49 (33 distinct)",
+    "prop_zero": 0.851,
+    "n_traps": 1,
+    "n_zero": 2681,
+    "n_positive": 469,
+    "n_units_detected": 198,
+    "max_y": 49
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_slope", "unit_dist_water_km", "unit_dist_pinyon_juniper_km", "unit_max_temp_c", "unit_dist_developed_km", "unit_human_impact", "unit_julian_day", "unit_background_noise", "obs_trials"],
+  "coreMd5": "7990cb1b287505f2317c9e68b7e54107",
+  "sideTables": {
+    "taxa": {
+      "rows": 15,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a0b1d5c1297025c4604afdae9587726c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rich_2019_mojave_binom.R",
+  "buildDate": "2026-11-05"
+}

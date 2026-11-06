@@ -1,0 +1,72 @@
+{
+  "table": "osborne_2026_largeheath_dynocc",
+  "title": "Repeated visit detections of the reintroduced Large Heath butterfly in 380 compartments of a restored lowland bog, north-west England, 2021-2025",
+  "creator": "Osborne, Andrew W.; Marsden, Stuart; Griffiths, Sarah M.; Caporn, Simon J. M.; Coulthard, Emma",
+  "pubDate": "2026",
+  "doi": "10.83056/mmu.33070517.v1",
+  "sourceURL": "https://doi.org/10.83056/mmu.33070517.v1",
+  "citation": "Osborne, A. W., Marsden, S., Griffiths, S. M., Caporn, S. J. M., & Coulthard, E. (2026). Multi-year occupancy and habitat use in a threatened butterfly reintroduced onto a restored peatland [Dataset]. Manchester Metropolitan University. https://doi.org/10.83056/mmu.33070517.v1",
+  "intellectualRights": {
+    "spdx": "ODC-By-1.0",
+    "url": "https://opendatacommons.org/licenses/by/1-0/"
+  },
+  "abstract": "Large Heath butterflies (Coenonympha tullia) reintroduced onto a restored lowland bog were surveyed on 9 to 23 visits each flight season 2021-2025 in 380 nine-metre compartments; detection per compartment and visit, with air temperature, days from the site-wide peak, and cover of the larval and nectar plants Eriophorum vaginatum and Erica tetralix. The authors fitted multi-season occupancy models of the reintroduction.",
+  "samplingProtocol": "Repeated walked surveys of a grid of 9 x 9 m compartments during the flight season; a sighting of the butterfly in a compartment on a visit is a detection; not every compartment was surveyed on every visit.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "visits span a flight season of several weeks; the authors fitted colext with closure within a year",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "A restored lowland raised bog in north-west England (UTM zone 30N, 10 km cell centred near 53.4 N, 2.5 W); compartment coordinates coarsened",
+  "temporalCoverage": "2021/2025",
+  "crs": "EPSG:32630 (UTM zone 30N assumed: the deposit gives UTM northing and easting without the zone; the values fall in zone 30 over north-west England)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "The deposit's README summary calls the Large Heath threatened in its own text about the data (E7 a; IUCN LC globally); the UTM pair is snapped to the centre of its 10 km cell (E7 ruling 1), uncertainty 7,071 m. unit_centroid_dist_m keeps each compartment's distance from the colony centroid."
+  },
+  "covariateNote": "obs_day_of_month: day of the month of the visit (month not deposited). obs_air_temp_c, obs_5day_temp_c: air temperature at the visit and mean of the 5 days before. obs_days_from_peak_presence / _detections: days of the visit from the site-wide peak of presence / detections (computed by the authors from all compartments' detections). unit_eriovag_*: Eriophorum vaginatum cover (%), tussock counts and nearest distances; unit_erictet_*: Erica tetralix likewise; *_presence 0/1.",
+  "notShipped": {
+    "totals": "the 'Individuals' and 'Detections' rows of the detection file (site-wide totals per visit) and siteCovs C.tullia_Count / C.tullia_Pres / Presence (summaries of the detections)",
+    "extra_temperature_slots": "a 26th visit slot per year and two unnamed columns in the temperature files, which have no detection slot and which the authors' script drops",
+    "exact_coordinates": "compartment UTM coordinates (coarsened, E7)",
+    "model_output": "occupancy, colonisation and extinction estimates"
+  },
+  "notes": "Visit slots with no compartment surveyed have no rows; the deposit gives the day of month of each visit but not the month, so there is no date column.",
+  "summary": {
+    "n_rows": 27508,
+    "n_units": 380,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 25,
+    "n_surveys": 27508,
+    "y_values": "0,1",
+    "prop_zero": 0.99,
+    "n_traps": 1,
+    "n_zero": 27225,
+    "n_positive": 283,
+    "n_units_detected": 125,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_x", "unit_y", "unit_coordinateUncertaintyInMeters", "unit_eriovag_cover", "unit_eriovag_tussock_count", "unit_eriovag_nearest_tussock", "unit_eriovag_closest_tussocks", "unit_erictet_cover", "unit_erictet_shrub_count", "unit_erictet_nearest_shrub", "unit_erictet_closest_shrubs", "unit_eriovag_to_erictet_dist", "unit_eriovag_presence", "unit_erictet_presence", "unit_both_presence", "unit_centroid_dist_m", "obs_day_of_month", "obs_air_temp_c", "obs_5day_temp_c", "obs_days_from_peak_presence", "obs_days_from_peak_detections"],
+  "coreMd5": "8f20b26362c5c817b9e011c26c01dec7",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_visits"],
+      "md5": "28c720ea7678df5ba71c22388acaf582"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "07ffaa32a3176c095b826d87ba9de4f3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/osborne_2026_largeheath_dynocc.R",
+  "buildDate": "2026-11-06"
+}

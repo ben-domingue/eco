@@ -1,0 +1,75 @@
+{
+  "table": "roberts_2019_sierranevada_birds_count",
+  "title": "Bird point counts at 1,353 points over 15,182 visits, southern Sierra Nevada, California, 2009 to 2016 (coordinates coarsened)",
+  "creator": "Roberts, Lance Jay; Burnett, Ryan; Tietz, James; Veloz, Sam",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.rm2n805",
+  "sourceURL": "https://doi.org/10.5061/dryad.rm2n805",
+  "citation": "Roberts, L. J., Burnett, R., Tietz, J., & Veloz, S. (2018). Data from: Recent drought and tree mortality effects on the avian community in southern Sierra Nevada: a glimpse of the future? [Dataset]. Dryad. https://doi.org/10.5061/dryad.rm2n805",
+  "paperDOI": "10.1002/eap.1848",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Point counts at points on 5-point transects, one or two visits a year in the breeding season; each detection recorded with count, cue and distance at first detection; y = individuals of the taxon detected at the visit, summed over its records at all distances.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the one or two visits to a point within a breeding season are the occasions; years are periods.",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "2009/2016",
+  "covariateNote": "obs_tod_h: time of day (decimal hours); obs_temp_c: temperature (deg C); obs_wind_bft: wind (Beaufort). unit_site: pair of transects. Site covariates (from the site-covariate file, 184 points, NA elsewhere): forest condition, conifer die-off from GIS and from field crews (% of standing trees within 100 m dead), CWHR forest type, elevation (and, in the exact table, its residual on latitude), aspect, slope, solar radiation index, southness, shrub and tree cover (%), basal area (ft2/acre), snags > 30 cm and > 10 cm, max DBH (inches, within 50 m), pine proportion, NDWI and its change from 2009, climatic water deficit (mm) and June min / max temperature with their changes from 2009. Each is unit_ when constant across a point's years, otherwise period_.",
+  "notes": "Visits are taken from the record file, which carries an explicit row for a visit with no detection; 30 point-years of the site-covariate file have no records and are not in the table, and its MaxOfVisit differs from the record file's visit count at 119 point-years. Taxa resolved through the IBP-AOS alpha-code list; WESJ and GRAJ are superseded codes, WEFL and SAGS slash pairs. Coordinates exist for the 184 points of the site-covariate file only.",
+  "abstract": "Avian point counts in the southern Sierra Nevada, California, used to model the effects of temperature, water deficit and drought-driven tree mortality on 45 bird species. Points on 5-point transects (transects paired into sites) counted once or twice a year from 2009 to 2016; every bird detected was recorded with its distance. One row per point visit x taxon, y = individuals detected (all distances). Habitat, tree-mortality and climate covariates for 184 of the points (2010-2016). Coordinates coarsened to 0.1 degree because Coccothraustes vespertinus (IUCN VU) is in the table; roberts_2019_sierrane_birds_exact_count has the other taxa at the published coordinates.",
+  "geographicCoverage": "Southern Sierra Nevada, California, USA (coordinates, for 184 points, coarsened to 0.1 degree)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "point coordinates replaced by 0.1 degree cell centres (coarsen_coords) because Coccothraustes vespertinus (IUCN VU), native here, is in the table; elevation rounded to 100 m and its residual not shipped (E7.4)"
+  },
+  "notShipped": {
+    "undefined_codes": "3438 records in 24 codes neither the deposit nor the IBP-AOS list defines (XX.. and X... groups such as XXWO, XXSA, XXEM, XXXX); the 3 '---' rows mark visits with no detection and become rows of zeros",
+    "distances_cues": "distance at first detection and detection cue per record (a distance-sampling table could be built)",
+    "visit_keys": "Rep2 and DOY (recoverable from period, occasion and date)",
+    "max_of_visit": "MaxOfVisit of the site-covariate file, which disagrees with the record file at 119 point-years (the record file is believed)",
+    "future_covariates": "the three future-climate covariate files (inputs to the authors' projections)",
+    "model_output": "the modelled species list's detection functions, abundance estimates and projections",
+    "elev_residual": "elevres (elevation residual, a locator with latitude; E7.4); in roberts_2019_sierrane_birds_exact_count"
+  },
+  "summary": {
+    "n_rows": 2338028,
+    "n_units": 1353,
+    "n_taxa": 154,
+    "n_periods": 8,
+    "n_occasions": 2,
+    "n_surveys": 15182,
+    "y_values": "0-31 (20 distinct)",
+    "prop_zero": 0.933,
+    "n_traps": 1,
+    "n_zero": 2180759,
+    "n_positive": 157269,
+    "n_units_detected": 1353,
+    "max_y": 31
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_forested", "unit_conifer_dieoff_gis_pct", "unit_conifer_dieoff_field_pct", "unit_cwhr_type", "unit_decimalLatitude", "unit_decimalLongitude", "unit_elevation_m", "unit_aspect_deg", "unit_slope_pct", "unit_sri", "unit_southness", "unit_shrub_cover_pct", "unit_tree_cover_pct", "unit_basal_area_ft2ac", "unit_snags_gt30cm", "unit_snags_gt10cm", "unit_max_dbh_in", "unit_pine_prop", "unit_coordinateUncertaintyInMeters", "period_ndwi", "period_d_ndwi", "period_cwd_mm", "period_d_cwd_mm", "period_tmn_june_c", "period_tmx_june_c", "period_d_tmn_june_c", "period_d_tmx_june_c", "obs_tod_h", "obs_temp_c", "obs_wind_bft"],
+  "coreMd5": "b1821e8c4d553eb2854e9dc7c8543acd",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year", "n_visits"],
+      "md5": "a370dba31e65fb0b091580fe22b87d10"
+    },
+    "taxa": {
+      "rows": 154,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "96f61029fce4abb73dc9f94a33087a39"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/roberts_2019_sierranevada_birds_count.R",
+  "buildDate": "2026-11-05"
+}

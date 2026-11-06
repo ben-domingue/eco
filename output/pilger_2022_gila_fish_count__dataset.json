@@ -58,11 +58,11 @@
     "taxa": {
       "rows": 26,
       "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
-      "md5": "15b2aec6960359652ce2d66b2b7a6f88"
+      "md5": "751b9532d02415d348ccfca4d000a1d5"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/pilger_2022_gila_fish_count.R",
-  "buildDate": "2026-11-05"
+  "buildDate": "2026-11-06"
 }

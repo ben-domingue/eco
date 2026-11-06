@@ -480,6 +480,13 @@ def _side_check(t: Table, suffix: str, required: bool, superset_of: str | None):
     return out
 
 
+#: GBIF backbone kingdom usage keys (0 incertae sedis, 1 Animalia, 2 Archaea,
+#: 3 Bacteria, 4 Chromista, 5 Fungi, 6 Plantae, 7 Protozoa, 8 Viruses); a twin of
+#: GBIF_KINGDOM_KEYS in lib/eco_common.R.
+GBIF_KINGDOM_KEYS = tuple(range(9))
+GBIF_KEY_RE = r"gbif\.org/species/([0-9]+)/?$"
+
+
 def check_side_taxa(t: Table):
     out = _side_check(t, "taxa", required=True, superset_of="taxon")
     side = t.side.get("taxa")
@@ -498,6 +505,16 @@ def check_side_taxa(t: Table):
                               f"{len(bad)} __taxa row(s) have no taxonID and no taxonRemarks saying "
                               f"why (E6: only a group the GBIF backbone does not hold): {_sample(list(bad))}",
                               t, details=[str(b) for b in bad]))
+            kid = side["taxonID"].astype(str).str.extract(GBIF_KEY_RE, expand=False)
+            rank = (side["taxonRank"].astype(str).str.strip().str.lower() if "taxonRank" in side.columns
+                    else pd.Series([""] * len(side), index=side.index))
+            king = kid.notna() & kid.fillna("-1").astype(int).isin(GBIF_KINGDOM_KEYS) & (rank != "kingdom")
+            if king.any():
+                rows = [f"{a}={b}" for a, b in zip(side.loc[king, "taxon"], side.loc[king, "taxonID"])]
+                out.append(_f("taxon_kingdom", "error",
+                              f"{len(rows)} __taxa row(s) have a GBIF kingdom as taxonID but a taxonRank "
+                              f"below kingdom (a match that fell to the kingdom; E6): {_sample(rows)}",
+                              t, details=rows))
     st = t.side.get("survey_taxa")
     if st is not None and side is not None and "taxon" in st.columns and "taxon" in side.columns:
         extra = sorted(set(st["taxon"].dropna().astype(str)) - set(side["taxon"].astype(str)))
@@ -744,6 +761,19 @@ def check_meta_conditional(t: Table):
                 out.append(_f("meta_conditional", "error",
                               f"taxonInclusion = recorded but {len(never)} taxon/taxa are never "
                               f"recorded in this table (E10): {_sample(never)}", t, details=never))
+    sc = d.get("subsampleColumn")
+    if sc is not None:
+        if not (isinstance(sc, str) and sc.startswith("obs_") and sc in df.columns):
+            out.append(_f("meta_conditional", "error",
+                          f"subsampleColumn must name an obs_ column of the core table (E10); "
+                          f"found `{json.dumps(sc)[:60]}`", t))
+        else:
+            v = pd.to_numeric(df[sc], errors="coerce")
+            bad = v.notna() & ~((v > 0) & (v <= 1))
+            if (df[sc].notna() & v.isna()).any() or bad.any():
+                out.append(_f("meta_conditional", "error",
+                              f"subsampleColumn `{sc}` must hold the identified fraction, "
+                              f"in (0, 1] or empty (E10)", t))
     tw = d.get("taxaWithheld")
     if tw is not None:
         if not (isinstance(tw, list) and all(isinstance(x, str) and x.strip() for x in tw)):
@@ -813,17 +843,67 @@ def check_sample_floor(t: Table, s: dict | None = None):
                f"not prioritised", t, group="intake")]
 
 
+#: Within-visit replication (intake "Replication", ruled 2026-11-06): timed intervals
+#: the source recorded ship as obs_int1, obs_int2, ... (E8) or as interval x band
+#: cells obs_n_int1_band1, ...; time to detection as obs_ttd or obs_ttd_<unit> (E9).
+WITHIN_VISIT_RE = re.compile(r"^obs_(n_)?int\d+|^obs_ttd(_|$)")
+
+
+def replicated_within(t: Table, columns=None) -> str | None:
+    """Why a table with one occasion and one period is still replicated (intake
+    "Replication", ruled 2026-11-06), or None. `columns` lets the parted path pass
+    the union's columns."""
+    ds = t.dataset or {}
+    cols = list(t.df.columns) if columns is None else list(columns)
+    if ds.get("responseType") == "binomial_count":
+        return "binomial_count"                       # inside obs_trials (#34)
+    if ds.get("unitKind") == "individual" and "trap" in cols:
+        return "individual units replicated over traps"   # count-detector SCR (E9)
+    if any(WITHIN_VISIT_RE.match(c) for c in cols):
+        return "within-visit intervals or time to detection"
+    return None
+
+
 def check_replication(t: Table, s: dict | None = None):
     if t.part and s is None:
         return []
     s = s if s is not None else table_stats(t.df)
     if not s or s["n_occasions"] > 1 or s["n_periods"] > 1:
         return []
-    if t.dataset and t.dataset.get("responseType") == "binomial_count":
-        return []   # replication is inside obs_trials (#34)
+    if replicated_within(t, s.get("columns")):
+        return []
     return [_f("replication", "warn",
                "one occasion and one period: a single-visit matrix fits the format "
                "but supports none of E9's core models", t, group="intake")]
+
+
+ALL_ZERO_NOTE = "not estimable"
+
+
+def all_zero_admitted(t: Table) -> bool:
+    """An all-zero table the standard admits (intake "All-zero tables", ruled
+    2026-11-06): every y = 0, site units, taxonInclusion target or single."""
+    ds = t.dataset or {}
+    if "y" not in t.df.columns:
+        return False
+    y = pd.to_numeric(t.df["y"], errors="coerce")
+    if not len(y) or y.isna().any() or (y != 0).any():
+        return False
+    return ds.get("unitKind") != "individual" and ds.get("taxonInclusion") in ("target", "single")
+
+
+def check_all_zero(t: Table):
+    """An admitted all-zero table: its notes say nothing was detected and that
+    detection probability is not estimable from it alone (intake, 2026-11-06)."""
+    if t.part or not t.dataset or not all_zero_admitted(t):
+        return []
+    notes = str(t.dataset.get("notes") or "")
+    if ALL_ZERO_NOTE in notes.lower():
+        return []
+    return [_f("all_zero", "warn",
+               "every y = 0: an all-zero table is admitted, but its notes must say that "
+               "nothing was detected and that detection probability is not estimable from "
+               "the table alone", t, group="intake")]
 
 
 # ---------------------------------------------------------------------------
@@ -860,4 +940,5 @@ ALL_CHECKS = (
     check_date_iso, check_index_integer,
     check_meta_present, check_meta_required, check_meta_vocab, check_meta_conditional,
     check_table_name, check_standard_version, check_sample_floor, check_replication,
+    check_all_zero,
 )

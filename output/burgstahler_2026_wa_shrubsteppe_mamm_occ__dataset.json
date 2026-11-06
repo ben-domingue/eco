@@ -1,0 +1,66 @@
+{
+  "table": "burgstahler_2026_wa_shrubsteppe_mamm_occ",
+  "title": "Camera-trap site use of five mammals at 141 shrub-steppe sites in eastern Washington, four cameras per site, 2021-2024",
+  "creator": "Burgstahler, Katherine; Shipley, Lisa; Stift, Allison; Woodley, Steven; Thornton, Daniel",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.gf1vhhn0r",
+  "sourceURL": "https://doi.org/10.5061/dryad.gf1vhhn0r",
+  "citation": "Burgstahler, K., Shipley, L., Stift, A., Woodley, S., & Thornton, D. (2026). Data and code from: Effects of wildfire on the distribution of mammals and birds in a working shrub-steppe landscape [Dataset]. Dryad. https://doi.org/10.5061/dryad.gf1vhhn0r",
+  "paperDOI": "10.1002/ecs2.70759",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of American badger, cottontail, coyote, black-tailed jackrabbit and mule deer at four camera traps (spatial replicates) per site, deployed about 30 days at 141 burned and unburned shrub-steppe sites in eastern Washington, USA, in one of 2021-2024 each, with fire history and field vegetation covariates and per-camera operating days and visibility (z-scores).",
+  "samplingProtocol": "Four unbaited camera traps per site (A-D, spatial replicates) deployed for about 30 days; a camera's value is 1 if the species was recorded during its deployment.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one ~30-day deployment per site; cameras are simultaneous spatial replicates (the authors' single-season occupancy)",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Shrub-steppe of eastern Washington, USA; no coordinates in the analysis files",
+  "temporalCoverage": "2021/2024",
+  "notShipped": {
+    "other_mammals": "species in the raw camera record tables other than the five the authors modelled (no detection histories deposited for them)",
+    "birds": "bird point counts: one survey per site (single visit, not eligible)",
+    "camera_coordinates": "camera coordinates in the raw problem sheets (not joined to the analysis files)"
+  },
+  "notes": "The five species are the authors' analysis set, not every mammal recorded. Active days and camera visibility are deposited only as z-scores and are shipped so; Cam_vis_z.csv is in a different site order from the detection files and is joined by site id. Each site was surveyed in one year; period is that year. Cottontail at genus rank.",
+  "summary": {
+    "n_rows": 2820,
+    "n_units": 141,
+    "n_taxa": 5,
+    "n_periods": 4,
+    "n_occasions": 4,
+    "n_surveys": 564,
+    "y_values": "0,1",
+    "prop_zero": 0.762,
+    "n_traps": 1,
+    "n_zero": 2150,
+    "n_positive": 670,
+    "n_units_detected": 136,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_fire_occurrence", "unit_age_of_burn_yr", "unit_reburns", "unit_area_of_burn_acres", "unit_annual_grass_pct", "unit_perennial_grass_pct", "unit_forb_pct", "unit_vertical_cover_cm", "unit_shrub_pct", "unit_unburned_sagebrush_1km", "obs_active_days_z", "obs_camera_visibility_z"],
+  "coreMd5": "956ac718cb5f484408c384f8f725cf8c",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_year"],
+      "md5": "c469f0ee8750c879c6b112db961119b5"
+    },
+    "taxa": {
+      "rows": 5,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "6346588caf88c947da2da5203fe98b5f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/burgstahler_2026_wa_shrubsteppe_mamm_occ.R",
+  "buildDate": "2026-11-05"
+}

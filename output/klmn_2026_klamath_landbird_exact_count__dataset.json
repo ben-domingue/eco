@@ -1,0 +1,73 @@
+{
+  "table": "klmn_2026_klamath_landbird_exact_count",
+  "title": "Point counts of landbirds at stations on park routes of the NPS Klamath Network (Crater Lake, Lava Beds, Lassen Volcanic, Oregon Caves, Redwood, Whiskeytown), 2010-2025 (without IUCN-threatened species; coordinates as published)",
+  "creator": "Klamath Inventory and Monitoring Network; Klamath Bird Observatory",
+  "pubDate": "2026",
+  "doi": "10.57830/2319461",
+  "sourceURL": "https://doi.org/10.57830/2319461",
+  "citation": "Klamath Inventory and Monitoring Network and Klamath Bird Observatory (2026). Klamath Network Landbird Point Count Monitoring Data Package 2008-2025. National Park Service, Fort Collins, CO. https://doi.org/10.57830/2319461",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Long-term landbird monitoring by the National Park Service Klamath Inventory and Monitoring Network with the Klamath Bird Observatory: variable circular plot point counts at stations along routes in six park units of northern California and southern Oregon, 2008-2025, with species, time block, distance, detection type and breeding status per detection.",
+  "samplingProtocol": "Variable circular plot point counts at stations on routes of up to 12 stations in a rotating panel of routes per park; each detection recorded with time block, distance, detection type and whether the bird was already detected at a previous station; time blocks with no birds recorded as 'Surveyed - No Birds'.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "Each station is counted once in a year it is surveyed (2010-2025); years are periods. Routes are surveyed in rotating panels, so a station's periods are not consecutive; replication is across years (and across a route's stations, cluster_id).",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Six NPS units of the Klamath Network: Crater Lake NP and Oregon Caves NM (Oregon), Lava Beds NM, Lassen Volcanic NP, Redwood National and State Parks, Whiskeytown NRA (California), USA",
+  "temporalCoverage": "2010-05/2025-08",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Station coordinates as published by the National Park Service (median of the station's records; 5 surveyed stations have no coordinates in the source). The IUCN-threatened species (Coccothraustes vespertinus (VU), Gymnorhinus cyanocephalus (VU), Agelaius tricolor (EN)) are not in this table (E7 scope, 3); klmn_2026_klamath_landbird_count has them, coarsened."
+  },
+  "covariateNote": "cluster_id: route. unit_park: NPS unit code. unit_elevation_m: station elevation. obs_n_previous_station: individuals of the taxon in y that were flagged as detected at a previous station on the route.",
+  "notShipped": {
+    "threatened": "Coccothraustes vespertinus (VU), Gymnorhinus cyanocephalus (VU), Agelaius tricolor (EN): in klmn_2026_klamath_landbird_count only, with coarsened coordinates (E7 scope, 3)",
+    "years_2008_2009": "853 station-visits of 2008-2009: Number_Detected is blank on most detection rows, so counts are unknown",
+    "detection_detail": "distance, time block, detection type, habitat and breeding status of each detection",
+    "non_birds": "95 records of mammals, a snake or a frog (cow, red fox, squirrel, chipmunk, deer)",
+    "weather": "station weather (duplicated and unmatched station-dates in the weather file)",
+    "vegetation": "vegetation and composition surveys; route species checklists; photographs"
+  },
+  "notes": "y sums all individuals of the taxon over the visit's time blocks and distances, including birds flagged as detected at a previous station (their number is in obs_n_previous_station). Unidentified bird groups (e.g. warbler sp.) are taxa without a GBIF key.",
+  "summary": {
+    "n_rows": 1988448,
+    "n_units": 1621,
+    "n_taxa": 231,
+    "n_periods": 15,
+    "n_occasions": 1,
+    "n_surveys": 8608,
+    "y_values": "0-150 (42 distinct)",
+    "prop_zero": 0.97,
+    "n_traps": 1,
+    "n_zero": 1929324,
+    "n_positive": 59124,
+    "n_units_detected": 1621,
+    "max_y": 150
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "cluster_id", "unit_park", "unit_elevation_m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_n_previous_station"],
+  "coreMd5": "caef0f6106abdb96c3ab760a86a22f9f",
+  "sideTables": {
+    "periods": {
+      "rows": 15,
+      "columns": ["period", "year", "n_visits"],
+      "md5": "edb87535eba4839f673390f271421703"
+    },
+    "taxa": {
+      "rows": 231,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "71c6ecca036599a5704e59a5b9d9d38f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/klmn_2026_klamath_landbird_count.R",
+  "buildDate": "2026-11-06"
+}

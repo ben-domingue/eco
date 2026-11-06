@@ -22,8 +22,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from .checks import (ALL_CHECKS, SIDE_KEYS, Table, _f, _sample, check_replication,
-                     check_sample_floor, table_stats)
+from .checks import (ALL_CHECKS, SIDE_KEYS, Table, _f, _sample, all_zero_admitted,
+                     check_replication, check_sample_floor, table_stats)
 from .model import STANDARD_VERSION, Finding, Report, keep
 
 SIDE_SUFFIXES = tuple(SIDE_KEYS)
@@ -281,6 +281,8 @@ def whole_table_findings(t: Table, acc: _PartsAccumulator, parts: list[Path]) ->
 # (irw_validate/_checks.py); per part it misfires on a table whose early parts predate 1973.
 IRW_DATE_RANGE = "irw:date_range*"
 IRW_DATE_FLOOR = 1e8
+# irw_validate's `resp_variation*` (a GATE_ERROR) fails a table with one resp value.
+IRW_RESP_VARIATION = "resp_variation"
 
 
 def validate_parts(path: str | Path, *, profile: str = "upload", irw: bool = False) -> Report:
@@ -412,10 +414,16 @@ def irw_findings(t: Table) -> list:
     except TypeError:
         rep = mod.validate_frame(view, t.name, profile="upload")
     out = []
+    all_zero = all_zero_admitted(t)
     for f in rep.findings:
         if f.severity not in ("error", "warn"):
             continue
-        out.append(Finding(f"irw:{f.check}", f.severity, f.message, table=t.name,
+        sev, msg = f.severity, f.message
+        if all_zero and f.check.startswith(IRW_RESP_VARIATION):
+            # IRW blocks a constant resp; eco admits an all-zero table (intake, ruled
+            # 2026-11-06), so for such a table the finding is a warning (#120).
+            sev, msg = "warn", f"{msg}; an all-zero table, admitted by the eco standard (intake)"
+        out.append(Finding(f"irw:{f.check}", sev, msg, table=t.name,
                            group="irw", details=tuple(getattr(f, "details", ()))))
     conforms = getattr(rep, "conforms", None)
     if conforms is False:

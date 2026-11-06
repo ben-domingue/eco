@@ -1,0 +1,70 @@
+{
+  "table": "ademola_2021_ukaguru_praomys_cjs",
+  "title": "Monthly capture histories of 622 Praomys delectorum on four live-trapping grids in intact and disturbed forest, Ukaguru Mountains, Tanzania, June 2018-February 2020",
+  "creator": "Ademola, Olaoluwa John",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.j6q573ncr",
+  "sourceURL": "https://doi.org/10.5061/dryad.j6q573ncr",
+  "citation": "Ademola, O. J. (2021). Praomys delectorum capture-mark-recapture dataset from fieldwork on the Ukaguru Mountains, Tanzania [Dataset]. Dryad. https://doi.org/10.5061/dryad.j6q573ncr",
+  "paperDOI": "10.1002/ece3.7214",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture-mark-recapture of the endemic rodent Praomys delectorum on four 7 x 7 Sherman-trap grids (two in intact, two in disturbed montane forest) in the Ukaguru Mountains, Eastern Arc, Tanzania, trapped for three consecutive nights every month from June 2018 to February 2020; animals individually marked by toe clipping. The authors modelled survival and maturation by forest type.",
+  "samplingProtocol": "Four 70 x 70 m grids of 49 Sherman LFA live traps (7 lines x 7 stations, 10 m apart), baited with peanut butter and maize bran, run for three consecutive nights every month and checked each morning; animals toe-clipped, sexed, weighed and aged.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Sessions are grid-months, inferred from detections: a grid-month is a session where the deposit's all-species file has a capture of any small mammal on that grid (80 grid-months). Sessions with no capture of anything are absent: the paper's protocol ('three consecutive nights every month', June 2018 to February 2020) also schedules D1 and D2 in June 2018 and L2 in March and April 2019, which have no capture of any species and are not shipped (ruling 2026-11-06). The deposit has no list of trapping sessions.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "One period per monthly session; the three nights of a session are pooled (the deposit's dates allow nights, but nights with no capture on a grid are not recorded).",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Ukaguru Mountains, Gairo District, Morogoro, Tanzania (about 6.4-7.0 S, 36.95-38.0 E; grids H2, L2, D1, D2, no coordinates deposited)",
+  "temporalCoverage": "2018-06/2020-02",
+  "covariateNote": "cluster_id: trapping grid. unit_habitat: intact or disturbed forest. unit_sex: F or M.",
+  "notShipped": {
+    "trap_station": "trap line and station of each capture",
+    "per_capture": "weight and reproductive condition at each capture",
+    "star_column": "an unnamed column with '*' on 2 rows (undefined)",
+    "other_species": "captures of 9 other small-mammal taxa in the all-species file (used only to check session coverage)",
+    "protocol_only_sessions": "4 grid-months the protocol schedules but with no capture of any species (D1 and D2 June 2018, L2 March and April 2019; ruling 2026-11-06, protocol-only zeros), 50 animal rows at L2"
+  },
+  "notes": "Animals have rows from their grid's first session (E4.4), at every session of their grid. Sessions are grid-months with a capture of any species; L2 has no session in March and April 2019 (surveyEvidenceNote). Rebuilt 2026-11-06 (batch 47) to drop those two protocol-only sessions.",
+  "summary": {
+    "n_rows": 12603,
+    "n_units": 622,
+    "n_taxa": 1,
+    "n_periods": 21,
+    "n_occasions": 1,
+    "n_surveys": 12603,
+    "y_values": "0,1",
+    "prop_zero": 0.912,
+    "n_traps": 1,
+    "n_zero": 11493,
+    "n_positive": 1110,
+    "n_units_detected": 622,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_habitat", "unit_sex"],
+  "coreMd5": "ac562d22c79f2befa399d8af7189f5b5",
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "month"],
+      "md5": "3c5943a2b1482ef4e063bd68ebb9713b"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "38b59d3ed940452c9a871e7bf11746dc"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ademola_2021_ukaguru_praomys_cjs.R",
+  "buildDate": "2026-11-06"
+}

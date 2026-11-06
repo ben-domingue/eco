@@ -8,7 +8,8 @@ Guidance for Claude Code sessions working in this repository.
 counts, capture histories and community surveys, one long table per deposit, with
 `unit`, `taxon`, `y` where IRW has `id`, `item`, `resp`. Tables are built by agents,
 one R script per source deposit, validated by `eco-validate`, and shipped to the
-Redivis dataset `datapages.eco` as an unreleased draft that a human publishes.
+Redivis core shards (`datapages.eco`, `eco_2`, ...; listed in `redivis_config.py`) as
+unreleased drafts that a human publishes.
 
 **Start with [`ARCHITECTURE.md`](ARCHITECTURE.md)**: what owns what, and which
 document wins when two disagree. **Before building a table read
@@ -25,15 +26,18 @@ Rscript data/<table>.R                       # build one table (download cached 
 python3 -m eco_validate.cli output/<table>.csv -v --irw   # check a table you built: every affected case, plus the IRW view
 python3 -m pytest eco_validate/tests -q      # validator tests (fixtures; CI runs this)
 python3 tools/check_coverage.py             # every __dataset.json records __taxa and has dictionary, tags and metadata rows (CI runs this)
+python3 tools/check_config_parity.py        # redivis_config.py and Rpkg/R/config.R list the same shards (CI runs this)
 python3 tools/check_prose_numbers.py --strict   # a count in a title/description near but not equal to n_units/n_periods/n_taxa (CI runs this)
 python3 validate/validate_redivis.py         # re-validate the tables on the Redivis draft, update validate/report.csv (after a validator change; validate-redivis.yml runs it by hand)
+Rscript metadata/fetch_bibtex.R              # after a batch: BibTeX for new DOIs into metadata/bibtex/ (network; commit them)
+python3 tools/table_locations.py            # homepage map points; the uploader and pipeline stage 12 run it for you, check_coverage.py fails a table with no point
 metadata/run_pipeline.sh                     # metadata.csv, biblio.csv, tags.csv, status.json from output/*__dataset.json, dictionary/, tags/
 python3 metadata/upload_meta.py --dry-run    # ship those three to Redivis eco_meta (draft)
 python3 releases/manifest.py --check         # is releases/manifest.csv up to date with Redivis? (run after Ben publishes)
-python3 upload/red_up_eco.py --dry-run       # what would ship; never publishes
+python3 upload/red_up_eco.py --dry-run       # what would ship, and to which shard; never publishes
 python3 upload/red_up_eco.py                 # the gate: validate, upload to the Redivis draft, write report rows (confirms first)
 cd site && quarto render                     # the website (GitHub Pages builds it on push)
-R CMD INSTALL Rpkg && Rscript -e 'library(eco); testthat::test_dir("Rpkg/tests/testthat")'   # the R package (reads Redivis anonymously)
+R CMD INSTALL Rpkg && Rscript -e 'testthat::test_local("Rpkg")'   # the R package (reads Redivis anonymously; test_dir() breaks the mocks)
 ```
 
 Needs R with `data.table` and `jsonlite` (plus `readxl` for xlsx deposits), python3 with `pandas`, and for the IRW
@@ -89,8 +93,8 @@ the name plus `__taxa` (required), `__periods`, `__units`, `__traps`, `__survey_
   `notShipped`.
 - **Coordinates never finer than the source.** Flagged taxa (source says so, IUCN
   CR/EN/VU in its native range, cited red list) with coordinates finer than 0.1 degree are coarsened
-  with `coarsen_coords()`, and `coordinatesCoarsened` says how. Agency-published
-  coordinates are kept as published.
+  with `coarsen_coords()`, and `coordinatesCoarsened` says how, whoever published them
+  (agency coordinates included, ruled 2026-11-06).
 - **Species codes on `taxon`**, scientific name and GBIF key in `__taxa` via
   `make_taxa()`; period-level facts in `__periods`.
 - **One table per survey design x response type.** Name

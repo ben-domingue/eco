@@ -1,0 +1,80 @@
+{
+  "table": "ford_2025_iowa_grassbirds_count",
+  "title": "Point counts of birds at 162 points on 70 grassland sites managed for northern bobwhite in southern Iowa, 2022-2023, with time-interval and distance cells",
+  "creator": "Ford, Johanna M.; Tucker, Anna",
+  "pubDate": "2025",
+  "doi": "10.5066/P133ZS4T",
+  "sourceURL": "https://doi.org/10.5066/P133ZS4T",
+  "citation": "Ford, J.M., and Tucker, A., 2025, Bird point count and vegetation survey data from grassland sites in southern Iowa: U.S. Geological Survey data release, https://doi.org/10.5066/P133ZS4T.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Nine-minute point counts at 1-3 points per site on grassland sites in southern Iowa where a management practice for northern bobwhite had recently been implemented (native grass seeding, edge feathering, tree and shrub establishment, field borders and others), each point visited three times between 15 May and 31 July in 2022 and 2023. Each bird is recorded by the interval (minutes 0-2, 3-5, 6-8) and distance band (0-25 m, 25-50 m, beyond 50 m, flyover) of its first detection.",
+  "samplingProtocol": "Nine-minute point count at a station (points at least 200 m apart), all birds recorded by the three-minute interval and the distance band (0-25 m, 25-50 m, >50 m, flyover) in which they were first detected; three visits per point between 15 May and 31 July each year; wind, temperature and cloud cover recorded.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "A point-visit exists where the release has at least one bird row; the protocol is three visits per point-year and 29 point-years have fewer than three in the release, so a visit at which no bird was recorded (if any happened) is missing.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = visit (three between mid-May and July); period = year; closure within the breeding season as in the study's occupancy and abundance design",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": {
+    "description": "Grassland sites in southern Iowa, USA (no point coordinates deposited)",
+    "boundingBox": {
+      "west": -94.4659,
+      "east": -92.4994,
+      "south": 40.5722,
+      "north": 41.3149
+    }
+  },
+  "temporalCoverage": "2022-05-23/2023-07-14",
+  "covariateNote": "obs_n_int<i>_<band>: individuals first detected in interval i (1 = minutes 0-2, 2 = 3-5, 3 = 6-8) in band d0_25 (0-25 m), d25_50 (25-50 m), gt50 (beyond 50 m) or flyover; y is their sum. obs_site_type: public or private land, and obs_practice: the management practice, as recorded at the visit (they change between visits at 9 points). obs_wind_mph, obs_temp_f, obs_cloud_pct: weather at the visit.",
+  "distanceBreaks": {
+    "units": "m",
+    "breaks": [0, 25, 50],
+    "note": "a third band beyond 50 m (unbounded) and a flyover category are also recorded"
+  },
+  "notes": "Repeated rows within a visit (ruling 2026-11-06): a species recorded on several rows of a point-visit (groups detected separately) has one row, y the total over its rows and all 12 interval x band cells; each cell's total is an obs_n_ column, so interval, removal and distance models can rebuild the cells. Cells: interval 1-3 = minutes 0-2, 3-5, 6-8; bands 0-25 m, 25-50 m, beyond 50 m, flyover. Taxa follow the source's common names: four code variants (AMR0, CEWA, EAWO, NOCO) and six rows whose code names another species follow the name. UNK is an unidentified bird.",
+  "notShipped": {
+    "duplicates": "one exact duplicate row (PABE-2, 2022 visit 2, MODO) and the second copy of LABE-1 2023 visit 1 (all 16 species rows repeated, temperature 56.3 F against 55.1 F; that visit's temperature is NA), and the copy of TML-EF-1 2022 visit 3 filed under site TMLE-NGS-22 (16 species rows identical to the one under TML-EF-22): source errors",
+    "vegetation": "ford_veg-surveys_22-23.csv: site-year vegetation and land-cover covariates (not fetched by this script; measured once per site-year)"
+  },
+  "summary": {
+    "n_rows": 62315,
+    "n_units": 162,
+    "n_taxa": 103,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 605,
+    "y_values": "0-246 (57 distinct)",
+    "prop_zero": 0.836,
+    "n_traps": 1,
+    "n_zero": 52071,
+    "n_positive": 10244,
+    "n_units_detected": 162,
+    "max_y": 246
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "obs_site_type", "obs_practice", "obs_wind_mph", "obs_temp_f", "obs_cloud_pct", "obs_n_int1_d0_25", "obs_n_int1_d25_50", "obs_n_int1_gt50", "obs_n_int1_flyover", "obs_n_int2_d0_25", "obs_n_int2_d25_50", "obs_n_int2_gt50", "obs_n_int2_flyover", "obs_n_int3_d0_25", "obs_n_int3_d25_50", "obs_n_int3_gt50", "obs_n_int3_flyover"],
+  "coreMd5": "05308b1d09c3e2be1b5e98428c5c8099",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_point_visits"],
+      "md5": "9577b332336960830ddd8d00fab387e9"
+    },
+    "taxa": {
+      "rows": 103,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "c609db1494a40aae13a473c9c85b9a5b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ford_2025_iowa_grassbirds_count.R",
+  "buildDate": "2026-11-06"
+}

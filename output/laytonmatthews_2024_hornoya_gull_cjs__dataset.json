@@ -1,0 +1,64 @@
+{
+  "table": "laytonmatthews_2024_hornoya_gull_cjs",
+  "title": "Resighting histories of 158 great black-backed gulls ringed at Hornøya, Norway, 2001-2017, with contaminant levels",
+  "creator": "Layton-Matthews, Kate; Erikstad, Kjell Einar; Sandvik, Hanno; Ballesteros, Manuel; Hodges, Kevin; Mesquita, Michel; Reiertsen, Tone; Yoccoz, Nigel; Bustnes, Jan Ove",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.t4b8gtj9k",
+  "sourceURL": "https://doi.org/10.5061/dryad.t4b8gtj9k",
+  "citation": "Layton-Matthews, K. et al. (2024). Path analysis reveals combined winter climate and pollution effects on the survival of a marine top predator [Dataset]. Dryad. https://doi.org/10.5061/dryad.t4b8gtj9k",
+  "paperDOI": "10.1111/1365-2656.14159",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual resighting histories of 158 colour-ringed adult great black-backed gulls (Larus marinus) caught on nests at Hornøya, northern Norway, in 2001-2002 and resighted through 2017, with sex, body weight and blood organochlorine levels, and regional winter climate covariates per year.",
+  "samplingProtocol": "Breeding adults caught with nest traps during incubation (May-June 2001 and 2002), metal and colour ringed and blood-sampled; annual visual searches for ringed birds, mainly at the ringing colony (SEAPOP).",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one record per bird per year; open between years (CJS)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Hornøya, Finnmark, northern Norway; no coordinates deposited",
+  "temporalCoverage": "2001/2017",
+  "notShipped": {
+    "model_script": "the CMR-path model script"
+  },
+  "notes": "The CSV is quoted line by line with doubled inner quotes and is unwrapped before reading. Weight and the contaminant variables are scaled as deposited. __periods carries the climate covariates of the interval starting in each year (none for 2017).",
+  "summary": {
+    "n_rows": 2686,
+    "n_units": 158,
+    "n_taxa": 1,
+    "n_periods": 17,
+    "n_occasions": 1,
+    "n_surveys": 2686,
+    "y_values": "0,1",
+    "prop_zero": 0.778,
+    "n_traps": 1,
+    "n_zero": 2090,
+    "n_positive": 596,
+    "n_units_detected": 158,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_weight_sc", "unit_contaminant_pc1", "unit_oxychlordane_log_sc"],
+  "coreMd5": "566728fd440903f3af87f8d8f9c3cb4d",
+  "sideTables": {
+    "periods": {
+      "rows": 17,
+      "columns": ["period", "period_year", "period_interval", "period_mslp_aut_ns", "period_sst_aut_ns", "period_airt_aut_ns", "period_mslp_Ewin_ns", "period_sst_Ewin_ns", "period_airt_Ewin_ns", "period_mslp_Lwin_ns", "period_sst_Lwin_ns", "period_airt_Lwin_ns", "period_mslp_Lwin_hor", "period_sst_Lwin_hor", "period_airt_Lwin_hor", "period_mslp_spr_hor", "period_sst_spr_hor", "period_airt_spr_hor", "period_nao_win", "period_nao_spr", "period_aw_win", "period_aw_spr"],
+      "md5": "60d2f73f3c35bb276612415aefba59b2"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3b49973f6bb30a891241276a253ccfa8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/laytonmatthews_2024_hornoya_gull_cjs.R",
+  "buildDate": "2026-11-05"
+}

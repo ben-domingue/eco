@@ -1,0 +1,92 @@
+{
+  "table": "marescot_2018_serengeti_hyena_m_ms",
+  "title": "Annual multi-event histories (age, social rank, canine distemper status) of 815 male spotted hyenas, Serengeti National Park, 1990-2010",
+  "creator": "Benhaiem, Sarah; Marescot, Lucile; Gimenez, Olivier; Hofer, Heribert; Lebreton, Jean-Dominique; Olarte-Castillo, Ximena A.",
+  "pubDate": "2018",
+  "doi": "10.6084/m9.figshare.5840970.v1",
+  "sourceURL": "https://doi.org/10.6084/m9.figshare.5840970.v1",
+  "citation": "Benhaiem, S., Marescot, L., Gimenez, O., Hofer, H., Lebreton, J.-D., & Olarte-Castillo, X. A. (2018). Capture-Mark-Recapture (CMR) datasets of Serengeti spotted hyenas infected with CDV [Dataset]. figshare. https://doi.org/10.6084/m9.figshare.5840970.v1",
+  "paperDOI": "10.1111/1365-2435.13059",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Yearly encounter histories of individually known male spotted hyenas in three Serengeti clans, 1990-2010, each observation coded by age class, social rank and canine distemper virus (CDV) infection status (susceptible, infected, recovered, or unknown), used in a multi-event capture-recapture model of the fitness costs of CDV infection by social status.",
+  "samplingProtocol": "Long-term individual-based monitoring of clan members, identified by their spot patterns, with non-invasive sampling to determine CDV infection status; observations pooled to one annual occasion and coded by age class, rank and infection status.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not observed",
+    "1": "Cub Low-ranking Susceptible (C.L.S)",
+    "2": "Cub Low-ranking Infected (C.L.I)",
+    "3": "Cub Low-ranking Recovered (C.L.R)",
+    "4": "Cub High-ranking Susceptible (C.H.S)",
+    "5": "Cub High-ranking Infected (C.H.I)",
+    "6": "Cub High-ranking Recovered (C.H.R)",
+    "7": "Pre-Breeder Low-ranking Susceptible (PB.L.S)",
+    "8": "Pre-Breeder Low-ranking Infected (PB.L.I)",
+    "9": "Pre-Breeder Low-ranking Recovered (PB.L.R)",
+    "10": "Pre-Breeder High-ranking Susceptible (PB.H.S)",
+    "11": "Pre-Breeder High-ranking Infected (PB.H.I)",
+    "12": "Pre-Breeder High-ranking Recovered (PB.H.R)",
+    "13": "Breeder Low-ranking Susceptible (B.L.S)",
+    "14": "Breeder Low-ranking Infected (B.L.I)",
+    "15": "Breeder Low-ranking Recovered (B.L.R)",
+    "16": "Breeder High-ranking Susceptible (B.H.S)",
+    "17": "Breeder High-ranking Infected (B.H.I)",
+    "18": "Breeder High-ranking Recovered (B.H.R)",
+    "19": "Cub Low-ranking Unknown (C.L.U)",
+    "20": "Cub High-ranking Unknown (C.H.U)",
+    "21": "Pre-Breeder Low-ranking Unknown (PB.L.U)",
+    "22": "Pre-Breeder High-ranking Unknown (PB.H.U)",
+    "23": "Breeder Low-ranking Unknown (B.L.U)",
+    "24": "Breeder High-ranking Unknown (B.H.U)"
+  },
+  "closure": "none",
+  "closureNote": "one annual occasion per year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "designNote": "Multi-event: y is the observed event; codes with infection status Unknown are observations whose CDV status was not determined.",
+  "geographicCoverage": "Serengeti National Park, Tanzania (no locations deposited)",
+  "temporalCoverage": "1990/2010",
+  "notShipped": {
+    "model_output": "the paper's survival, breeding and infection-transition estimates"
+  },
+  "notes": "Males only; the other sex is marescot_2018_serengeti_hyena_f_ms. Individuals first recorded as cubs have rows from that year; others from 1990 (E4.4).",
+  "summary": {
+    "n_rows": 10758,
+    "n_units": 815,
+    "n_taxa": 1,
+    "n_periods": 21,
+    "n_occasions": 1,
+    "n_surveys": 10758,
+    "y_values": "0-24 (22 distinct)",
+    "prop_zero": 0.756,
+    "n_traps": 1,
+    "n_zero": 8132,
+    "n_positive": 2626,
+    "n_units_detected": 815,
+    "max_y": 24
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "6d65b1782114cd1bac63b3760a29372f",
+  "sideTables": {
+    "periods": {
+      "rows": 21,
+      "columns": ["period", "year"],
+      "md5": "3bfb60276f47af15fe32401c9d6d6982"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e5e97057e2f8f46392124abbf272a486"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/marescot_2018_serengeti_hyena_ms.R",
+  "buildDate": "2026-11-06"
+}

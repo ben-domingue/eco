@@ -1,0 +1,66 @@
+{
+  "table": "saeed_2022_murree_spinyfrogs_dynocc",
+  "title": "Visual-encounter detections of two endemic spiny frogs at 34 stream and spring sites, Murree and Ayubia, Pakistan, 2017-2018",
+  "creator": "Saeed, Muhammad; Rais, Muhammad; Akram, Ayesha; Williams, Maggie R.; Kellner, Kenneth F.; Hashsham, Syed A.; Davis, Drew R.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.8sf7m0cqw",
+  "sourceURL": "https://doi.org/10.5061/dryad.8sf7m0cqw",
+  "citation": "Saeed, M., Rais, M., Akram, A., Williams, M. R., Kellner, K. F., Hashsham, S. A., & Davis, D. R. (2023). Development and validation of an eDNA protocol for monitoring endemic Asian Spiny Frogs in the Himalayan region of Pakistan [Dataset]. Dryad. https://doi.org/10.5061/dryad.8sf7m0cqw",
+  "paperDOI": "10.1038/s41598-022-09084-1",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Visual encounter survey detections of the Hazara torrent frog (Allopaa hazarensis) and the Murree Hills frog (Nanorana vicina) on 21 dated visits (13 in 2017, 8 in 2018) to 34 permanent streams, seasonal streams and springs in Tehsil Murree and Ayubia National Park, Pakistan, with water temperature per visit and elevation, wetland and forest type per site.",
+  "samplingProtocol": "Visual encounter surveys of stream pools and springs stratified by elevation, forest type and wetland type; both species recorded on each visit; water temperature measured.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "visits within each year treated as replicates; the authors used February-June visits of each year and a year effect",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Tehsil Murree (Punjab) and Ayubia National Park (Khyber Pakhtunkhwa), Pakistan; site coordinates as published",
+  "temporalCoverage": "2017-02-25/2018-07-19",
+  "notShipped": {
+    "eDNA": "the eDNA detection matrices: header dates (7 dates x 3 replicates in 2018) disagree with the authors' code (columns read as 2017 and 2018 visits), so the survey of each column is unresolved",
+    "multimethod": "the multimethod files (VES and eDNA columns paired on the same unresolved alignment)",
+    "naive": "the naive VES / eDNA flags and the dummy-coded type columns (derived)"
+  },
+  "notes": "Visit dates come from the first header row and apply to every site. The authors analysed visits 1-7 (2017) and 14-19 (2018); all 21 visits are shipped.",
+  "summary": {
+    "n_rows": 1426,
+    "n_units": 34,
+    "n_taxa": 2,
+    "n_periods": 2,
+    "n_occasions": 13,
+    "n_surveys": 713,
+    "y_values": "0,1",
+    "prop_zero": 0.76,
+    "n_traps": 1,
+    "n_zero": 1084,
+    "n_positive": 342,
+    "n_units_detected": 24,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_tehsil", "unit_location", "unit_latitude", "unit_longitude", "unit_elevation_m", "unit_wetland_type", "unit_forest_type", "obs_water_temp_c"],
+  "coreMd5": "b752f01cdf8c1f1d3842228541126747",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "period_year"],
+      "md5": "a3fdf196dc4d5547e084eee43ae75cc1"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "1ec1cc545a9efcdfb742c5f0fac96937"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/saeed_2022_murree_spinyfrogs_dynocc.R",
+  "buildDate": "2026-11-05"
+}

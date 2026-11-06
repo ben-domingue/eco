@@ -1,0 +1,64 @@
+{
+  "table": "henden_2013_finnmark_birds_dynocc",
+  "title": "Detections of 17 riparian tundra bird species on three visits per year to 37 willow-thicket plots in Finnmark, Norway, 2005-2008",
+  "creator": "Henden, John-André; Yoccoz, Nigel G.; Ims, Rolf A.; Langeland, Knut",
+  "pubDate": "2013",
+  "doi": "10.5061/dryad.bs87m",
+  "sourceURL": "https://doi.org/10.5061/dryad.bs87m",
+  "citation": "Henden, J.-A., Yoccoz, N. G., Ims, R. A., & Langeland, K. (2013). Data from: How spatial variation in areal extent and configuration of labile vegetation states affect the riparian bird community in Arctic tundra [Dataset]. Dryad. https://doi.org/10.5061/dryad.bs87m",
+  "paperDOI": "10.1371/journal.pone.0063312",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of 17 bird species on three visits per breeding season to 37 riparian willow-thicket plots in low-arctic tundra of Finnmark, northern Norway, 2005-2008, with visit dates and plot willow extent, edge density, willow height and patch configuration.",
+  "samplingProtocol": "Repeated bird counts in fixed riparian plots, three visits per year in late June to July, 2005-2008; species recorded as detected or not per visit.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a season's three visits, open between years",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Riparian tundra, Finnmark, northern Norway; no coordinates deposited",
+  "temporalCoverage": "2005-07/2008-07",
+  "notShipped": {
+    "none": "every deposited column is shipped (day of year as date)"
+  },
+  "notes": "Scientific names are the processor's, from the deposited common names ('Bluethrout' = bluethroat, 'Eurasian Golden Plower' = Eurasian golden plover). The column wpf is shipped as deposited (unit_wpf); its definition is in the paper. 4 plot-visits were not surveyed (68 NA cells).",
+  "summary": {
+    "n_rows": 7480,
+    "n_units": 37,
+    "n_taxa": 17,
+    "n_periods": 4,
+    "n_occasions": 3,
+    "n_surveys": 440,
+    "y_values": "0,1",
+    "prop_zero": 0.806,
+    "n_traps": 1,
+    "n_zero": 6026,
+    "n_positive": 1454,
+    "n_units_detected": 37,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_pland_willow", "unit_edge_density", "unit_willow_height", "unit_wpf"],
+  "coreMd5": "6641ff9cbb995ae4e60d79649d23786a",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_year"],
+      "md5": "052f4d024667cdb9b8420967c94bb97b"
+    },
+    "taxa": {
+      "rows": 17,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "930c0864c866c2055f86f127152d8ff3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/henden_2013_finnmark_birds_dynocc.R",
+  "buildDate": "2026-11-05"
+}

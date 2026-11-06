@@ -3,14 +3,14 @@
 
 Tables live on Redivis, not in git, and the upload is the gate, so this is
 needed only after a change to eco_validate/ that could flip the verdict on a
-table already shipped. For each core table in the chosen version of `datapages.eco`
-that has an output/<t>__dataset.json in the repo, the core and its side tables
+table already shipped. For each core table in the chosen version of every core shard
+(`datapages.eco`, `eco_2`, ...: redivis_config.py) that has an output/<t>__dataset.json in the repo, the core and its side tables
 are downloaded to a temporary directory, validated with eco-validate --irw
 beside the tracked __dataset.json, and deleted. Nothing is read from output/
 except the __dataset.json files.
 
-The draft (`next`) is checked when one exists, otherwise the latest released
-version (--released forces that). A table over
+Per shard, the draft (`next`) is checked when one exists, otherwise the latest
+released version (--released forces that); a shard with neither is skipped. A table over
 --max-rows (default five million, the size at which the standard splits a table
 into period parts) is not downloaded: its row is kept from the last report,
 which the uploader wrote when the table passed the upload gate.
@@ -38,24 +38,28 @@ sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE))
 from eco_validate import validate_file  # noqa: E402
 import report  # noqa: E402
+import redivis_config as rc  # noqa: E402
 
-OWNER, DATASET = "datapages", "eco"
+OWNER = rc.OWNER
 warnings.filterwarnings("ignore", message="No reference id")
 
 
-def open_version(released: bool):
+def open_version(shard: rc.Dataset, released: bool):
     import redivis
     org = redivis.organization(OWNER)
     if not released:
         try:
-            ds = org.dataset(DATASET, version="next")
+            ds = org.dataset(shard.qualified, version="next")
             ds.get()
-            return ds, "next (draft)"
+            return ds, f"{shard.name} next (draft)"
         except Exception:
             pass
-    ds = org.dataset(DATASET)
+    ds = org.dataset(shard.qualified)
     ds.get()
-    return ds, ds.properties.get("version", {}).get("tag", "latest")
+    tag = (ds.properties.get("version") or {}).get("tag", "latest")
+    if tag == "next":                     # never released and no access to the draft
+        raise LookupError(f"{shard.name} has no released version")
+    return ds, f"{shard.name} {tag}"
 
 
 def main(argv=None) -> int:
@@ -65,12 +69,28 @@ def main(argv=None) -> int:
     ap.add_argument("--max-rows", type=int, default=5_000_000)
     args = ap.parse_args(argv)
 
-    try:
-        ds, label = open_version(args.released)
-        on_redivis = {t.name: t for t in ds.list_tables()}
-    except Exception as e:
-        print(f"cannot read {OWNER}.{DATASET} on Redivis: {e}", file=sys.stderr)
+    # Every shard, oldest first; a table and its side tables are in one shard,
+    # and the uploader never lets a name into two, so a later shard wins only
+    # if that rule was broken by hand (reported).
+    on_redivis, labels = {}, []
+    for shard in rc.CORE_SHARDS:
+        try:
+            ds, lab = open_version(shard, args.released)
+            tables = {t.name: t for t in ds.list_tables()}
+        except LookupError as e:
+            print(f"skip {shard.name}: {e}")
+            continue
+        except Exception as e:
+            print(f"cannot read {OWNER}.{shard.name} on Redivis: {e}", file=sys.stderr)
+            return 2
+        for name in sorted(set(tables) & set(on_redivis)):
+            print(f"WARN {name}: in more than one shard; checking the copy in {shard.name}")
+        on_redivis.update(tables)
+        labels.append(lab)
+    if not labels:
+        print("no core shard could be read", file=sys.stderr)
         return 2
+    label = ", ".join(labels)
     in_repo = {p.name.removesuffix("__dataset.json") for p in report.OUT.glob("*__dataset.json")}
     cores = sorted(n for n in on_redivis if "__" not in n)
     for t in sorted(set(cores) - in_repo):
@@ -78,7 +98,7 @@ def main(argv=None) -> int:
     for t in sorted(in_repo - set(cores)):
         print(f"WARN {t}: __dataset.json in the repo but not on Redivis {label} (not uploaded yet?)")
     todo = [t for t in cores if t in in_repo and (not args.tables or t in args.tables)]
-    print(f"validate_redivis: {len(todo)} table(s) from {OWNER}.{DATASET} {label}")
+    print(f"validate_redivis: {len(todo)} table(s) from {OWNER}: {label}")
 
     rows, skipped, bad = [], [], []
     for t in todo:

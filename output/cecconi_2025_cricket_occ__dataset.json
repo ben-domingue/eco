@@ -1,0 +1,60 @@
+{
+  "table": "cecconi_2025_cricket_occ",
+  "title": "Japanese burrowing cricket aural detections at 49 point-count sites in central Kentucky, three counts each, autumn 2024",
+  "creator": "Cecconi, Sam V.; Notarianni, Nicole; McNeil, Darin J.",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.ns1rn8q4k",
+  "sourceURL": "https://doi.org/10.5061/dryad.ns1rn8q4k",
+  "citation": "Cecconi, S., Notarianni, N., & McNeil, D. (2025). Assessing factors associated with detection probability of the Japanese burrowing cricket (Velarifictorus micado) on point count surveys [Dataset]. Dryad. https://doi.org/10.5061/dryad.ns1rn8q4k",
+  "paperDOI": "10.1111/jen.70022",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Aural detection/non-detection of the invasive Japanese burrowing cricket (Velarifictorus micado) at 49 point-count sites in the Inner Bluegrass Region of central Kentucky, USA, each surveyed three times at varying hours of the day between 19 September and 5 November 2024, with the temperature, barometric pressure, wind speed, minutes since sunset and date of every count. No site covariates and no coordinates are deposited.",
+  "samplingProtocol": "Aural point counts at all hours of the day, three per site between 19 September and 5 November 2024; temperature, barometric pressure, wind speed and time relative to sunset recorded per count. Count duration and site spacing are not in the deposit; see the paper.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasions span 19 September to 5 November, across the end of the calling season; the authors analysed them as single-season (closed) occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Inner Bluegrass Region, central Kentucky, USA; no coordinates deposited",
+  "temporalCoverage": "2024-09-19/2024-11-05",
+  "coordinatesCoarsened": null,
+  "notShipped": {
+    "none": "every deposited column is shipped; ordinal1-3 as date"
+  },
+  "notes": "date = 2024 + the deposited ordinal day; the year is from the abstract on the Dryad page, not the data file or README, and the ordinals span exactly the abstract's dates. At 5 sites occasions 2 and 3 share a date, with occasion 3 later by minutes since sunset. obs_barometric_pressure is as deposited; the README states no unit, and the values are consistent with station pressure in inHg at about 300 m. obs_minutes_since_sunset runs 10-1431 as deposited, never negative. An invasive species, so the flagged-taxon coordinate rule does not apply; no coordinates are deposited in any case.",
+  "summary": {
+    "n_rows": 147,
+    "n_units": 49,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 147,
+    "y_values": "0,1",
+    "prop_zero": 0.85,
+    "n_traps": 1,
+    "n_zero": 125,
+    "n_positive": 22,
+    "n_units_detected": 16,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "obs_temp_f", "obs_barometric_pressure", "obs_wind_mph", "obs_minutes_since_sunset"],
+  "coreMd5": "240d92f678947450c3476e5e81b35599",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "92d61e42a8f45a63aed4bb541798c8e0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cecconi_2025_cricket_occ.R",
+  "buildDate": "2026-11-05"
+}

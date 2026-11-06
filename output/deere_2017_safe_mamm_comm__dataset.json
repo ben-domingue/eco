@@ -1,0 +1,65 @@
+{
+  "table": "deere_2017_safe_mamm_comm",
+  "title": "Weekly camera-trap detections of 28 medium and large mammals at 115 sites in logged forest, forest fragments and oil palm, SAFE project, Sabah, Malaysian Borneo, 2015",
+  "creator": "Deere, N.J.; Guillera-Arroita, G.; Baking, E.L.; Bernard, H.; Pfeifer, M.; Reynolds, G.; Wearn, O.R.; Davies, Z.G.; Struebig, M.J.",
+  "pubDate": "2017",
+  "doi": "10.5285/62774180-ae72-4873-9482-e8be3935f533",
+  "sourceURL": "https://doi.org/10.5285/62774180-ae72-4873-9482-e8be3935f533",
+  "citation": "Deere, N.J., Guillera-Arroita, G., Baking, E.L., Bernard, H., Pfeifer, M., Reynolds, G., Wearn, O.R., Davies, Z.G., & Struebig, M.J. (2017). Mammal detection data for the SAFE project site, Sabah, Malaysian Borneo, 2015 [HMTF]. NERC Environmental Information Data Centre. https://doi.org/10.5285/62774180-ae72-4873-9482-e8be3935f533. Contains data supplied by UK Centre for Ecology & Hydrology.",
+  "intellectualRights": {
+    "spdx": "OGL-UK-3.0",
+    "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  "abstract": "Camera traps across the Stability of Altered Forest Ecosystems (SAFE) project and surrounding oil palm estates in Sabah, Malaysian Borneo, May-September 2015, stratified across continuous logged forest, heavily degraded forest, forest fragments in oil palm and oil palm; detection matrices of 28 medium and large mammal species in six 7-day replicates at the 115 sites active for at least 7 days, used for occupancy modelling.",
+  "samplingProtocol": "One camera trap (Reconyx HC500 Hyperfire, 30 cm height, high sensitivity, 10 images per trigger) per location for 42 consecutive nights, in two rotations of 65 locations; on and off trails; the 42 days split into six 7-day replicates, NA where the camera had failed.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "Occupancy assumed closed across the six weekly replicates of a site's 42-day deployment.",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "SAFE project and Benta Wawasan oil palm estates, Kalabakan Forest Reserve, and Ulu Segama Forest Reserve, Sabah, Malaysian Borneo (about 4.77 N, 117.0 E)",
+  "temporalCoverage": "2015-05/2015-09",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords() to 0.1-degree cell centres: the table includes IUCN CR/EN/VU mammals in their native range and the deposited coordinates (5 decimals) are finer than 0.1 degree (E7)"
+  },
+  "covariateNote": "unit_habitat: the site's habitat class from its id prefix. unit_camera_nights: operational camera-trap nights (CTNs). date: first day of the 7-day replicate (deployment date + 7 x (replicate - 1)).",
+  "notShipped": {
+    "total_detection": "Total_Detection: the row sum of the replicates (asserted)",
+    "effort_extras": "Number_of_Photos, camera-trap hours and deployment times",
+    "unused_sites": "5 effort-table sites with 0-5 camera nights, which the authors excluded (no detection data)"
+  },
+  "notes": "Coordinates coarsened for threatened species; deere_2017_safe_mamm_exact_comm has the unflagged species at published precision. Scientific names assigned from common names.",
+  "summary": {
+    "n_rows": 18116,
+    "n_units": 115,
+    "n_taxa": 28,
+    "n_periods": 1,
+    "n_occasions": 6,
+    "n_surveys": 647,
+    "y_values": "0,1",
+    "prop_zero": 0.937,
+    "n_traps": 1,
+    "n_zero": 16979,
+    "n_positive": 1137,
+    "n_units_detected": 111,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_habitat", "unit_camera_nights", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "9c7963b665b9da4ab6e0175ff1daffa7",
+  "sideTables": {
+    "taxa": {
+      "rows": 28,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "c7b008f8e343fa490c63c25220cb2e46"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/deere_2017_safe_mamm_comm.R",
+  "buildDate": "2026-11-06"
+}

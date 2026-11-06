@@ -1,0 +1,70 @@
+{
+  "table": "peron_2017_sabap2_broodparasites_occ",
+  "title": "SABAP2 atlas-card detections of three indigobirds, three firefinches, lesser honeyguide and black-collared barbet in southern African quarter-degree cells, 2007-2013",
+  "creator": "Péron, Guillaume; Altwegg, Res; Jamie, Gabriel A.; Spottiswoode, Claire N.",
+  "pubDate": "2017",
+  "doi": "10.5061/dryad.5b8t8",
+  "sourceURL": "https://doi.org/10.5061/dryad.5b8t8",
+  "citation": "Péron, G., Altwegg, R., Jamie, G. A., & Spottiswoode, C. N. (2017). Data from: Coupled range dynamics of brood parasites and their hosts responding to climate and vegetation changes [Dataset]. Dryad. https://doi.org/10.5061/dryad.5b8t8",
+  "paperDOI": "10.1111/1365-2656.12546",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of four brood parasites (village, dusky and purple indigobirds; lesser honeyguide) and their hosts (red-billed, African and Jameson's firefinches; black-collared barbet) on 82,189 Second Southern African Bird Atlas Project checklists (atlas cards) in 2007-2013, grouped by quarter-degree grid cell and year, with detection in the initial intensive period and later on the card kept separately.",
+  "samplingProtocol": "SABAP2 atlas cards: an observer records every species found in a pentad, with an initial intensive period of at least two hours and further species added during up to five days; each card a complete checklist.",
+  "samplingProtocolCode": "checklist",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors model annual occupancy dynamics; cards within a cell-year are treated as replicates",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "South Africa, Lesotho and Swaziland (SABAP2 region); quarter-degree cell corners in decimal degrees",
+  "temporalCoverage": "2007/2013",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: quarter-degree cell corners; all eight species IUCN LC"
+  },
+  "notShipped": {
+    "card_numbers": "Cardno (pentad, observer number and date in mixed formats)",
+    "sabap1": "the SABAP1 file, whose columns do not match its README"
+  },
+  "notes": "unit is the quarter-degree cell (the card's pentad is not reliably parseable for all cards). Occasions are the cell-year's cards ordered by month then card number; cards within a month are not ordered in time. y = detected anywhere on the card; obs_iih and obs_oncard are the deposited initial-period and later flags (both 1 on many cards). The species are the authors' selection from complete checklists. Species 442 is named \"black-breasted barbet\" in the README and taken here as the black-collared barbet (see __taxa).",
+  "summary": {
+    "n_rows": 657512,
+    "n_units": 1846,
+    "n_taxa": 8,
+    "n_periods": 7,
+    "n_occasions": 422,
+    "n_surveys": 82189,
+    "y_values": "0,1",
+    "prop_zero": 0.923,
+    "n_traps": 1,
+    "n_zero": 606772,
+    "n_positive": 50740,
+    "n_units_detected": 1063,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_cell_lat", "unit_cell_long", "obs_iih", "obs_oncard", "obs_month"],
+  "coreMd5": "e4b21a4c87e0ed7922bf53c8054962e5",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "period_year"],
+      "md5": "052ea239410bdbb90d270bddea686c45"
+    },
+    "taxa": {
+      "rows": 8,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "ad477a010bbc5d9dd3511440df099ace"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/peron_2017_sabap2_broodparasites_occ.R",
+  "buildDate": "2026-11-05"
+}

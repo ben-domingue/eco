@@ -1,0 +1,68 @@
+{
+  "table": "dominoni_2024_glasgow_greattit_cjs",
+  "title": "Annual capture histories of 2922 great tits ringed at nest boxes and mist-net sites along an urban gradient, Glasgow to Loch Lomond, 2019-2023",
+  "creator": "Dominoni, D.M.; Capilla-Lasheras, P.; Branston, C.J.",
+  "pubDate": "2024",
+  "doi": "10.5285/9982cf52-7144-4877-9e17-1335f14140d8",
+  "sourceURL": "https://doi.org/10.5285/9982cf52-7144-4877-9e17-1335f14140d8",
+  "citation": "Dominoni, D.M.; Capilla-Lasheras, P.; Branston, C.J. (2024). Mark-recapture data of individual birds from ringing records, Glasgow, UK, 2014-2022. NERC EDS Environmental Information Data Centre. https://doi.org/10.5285/9982cf52-7144-4877-9e17-1335f14140d8. Contains data supplied by UK Centre for Ecology & Hydrology.",
+  "intellectualRights": {
+    "spdx": "OGL-UK-3.0",
+    "url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+  },
+  "abstract": "Ringing records of great tits from nest-box populations (adults caught on the nest, nestlings ringed at 13 days) and opportunistic mist netting at 21-27 sites a year along a 35 km urban-to-rural gradient from Glasgow city centre to Loch Lomond, Scotland, collapsed to annual capture histories for survival analysis.",
+  "samplingProtocol": "Nest boxes monitored 1 April-20 June each year; breeding adults caught on the nest 2-10 days after hatching and nestlings ringed at 13 days with BTO metal rings; opportunistic mist netting outside the breeding season; captures pooled to one annual occasion.",
+  "samplingProtocolCode": "nest_box",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one annual occasion per year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Glasgow city centre to Loch Lomond and the Trossachs National Park, Scotland, UK (site names only, no coordinates)",
+  "temporalCoverage": "2019/2023",
+  "covariateNote": "cluster_id: site of first capture. unit_first_age: BTO age code at first capture (1 nestling, X nestling that died in the nest, 3/3J juvenile, 4-6 adult). unit_sex: most frequent M/F recorded, else U. obs_found_dead: 1 if the bird was found dead that year. obs_removed: 1 on the last row of a bird that died in the nest or was found dead.",
+  "surveyEvidenceNote": "A site was monitored in a year when the deposit has any record there that year (either species). A bird-year is a survey when the bird's site of first capture (cluster_id) was monitored that year or the bird has a record that year; other bird-years have no row (ruling 2026-11-06, protocol-only zeros).",
+  "notShipped": {
+    "unmonitored": "94 bird-years at sites with no record that year, where the bird was not caught (protocol-only zeros, ruling 2026-11-06)",
+    "no_ring": "355 records (both species) whose ring_number is a note ('too small', 'unringed', ...) or blank",
+    "dead_only": "birds known only from a dead recovery (never caught alive): not units (E4.4)",
+    "within_year": "capture dates, times, biometrics, nest box, parents, RFID and colour rings (one annual occasion is shipped)"
+  },
+  "notes": "The deposit holds 2019-2023 although its title says 2014-2022. Sites with records per year (in __periods) vary from 19 to 23, so detection varies by year; a bird has a row in a year only when its site of first capture has a record that year or it was caught (surveyEvidenceNote; rebuilt 2026-11-06, batch 47). Nestlings have rows from their ringing year, other birds from 2019 (E4.4).",
+  "summary": {
+    "n_rows": 9784,
+    "n_units": 2922,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 1,
+    "n_surveys": 9784,
+    "y_values": "0,1",
+    "prop_zero": 0.684,
+    "n_traps": 1,
+    "n_zero": 6692,
+    "n_positive": 3092,
+    "n_units_detected": 2922,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_first_age", "unit_sex", "obs_found_dead", "obs_removed"],
+  "coreMd5": "b66a0ae5aefe01bc74f83aa3b6d040f8",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_sites_with_records"],
+      "md5": "d9aed08d067122156c19fde3a5084ea8"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "29bb5b89db0c8f560d153403c2a6a88a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/dominoni_2024_glasgow_tit_cjs.R",
+  "buildDate": "2026-11-06"
+}

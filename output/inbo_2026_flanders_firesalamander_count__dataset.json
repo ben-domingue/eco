@@ -1,0 +1,67 @@
+{
+  "table": "inbo_2026_flanders_firesalamander_count",
+  "title": "Meetnetten.be night transect counts of fire salamanders on 83 transects, Flanders, Belgium, 2016-2025",
+  "creator": "Piesschaert, Frederik; Speybroeck, Jeroen; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Van de Poel, Sander; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/nbsk9h",
+  "sourceURL": "https://doi.org/10.15468/nbsk9h",
+  "citation": "Piesschaert F, Speybroeck J, Brosens D, Westra T, Desmet P, Ledegen H, Van de Poel S, Pollet M (2026). Meetnetten.be - Transects for fire salamanders in Flanders, Belgium. Version 1.22. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/nbsk9h",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated night counts of fire salamanders (Salamandra salamandra) on 83 fixed forest transects of about 1 km in Flanders, from the Meetnetten.be priority-species monitoring network run by INBO and Natuurpunt Studie with specialised volunteers. Transects are walked between mid-August and mid-November on humid nights, at least twice a year. One row per visit: post-metamorphic salamanders counted.",
+  "samplingProtocol": "Fixed transect of about 1 km walked at night in humid weather between 15 August and 15 November; salamanders searched for by flashlight within 6 m either side of the trail and counted; at least two visits a year (De Bruyn et al. 2015; Speybroeck et al. 2020).",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = visit within an autumn season; period = calendar year; the population is treated as closed within the season by the protocol's design (repeat counts for N-mixture models)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Flanders, Belgium (INBO 5 km UTM centroids, coarsened to 0.1-degree cell centres)",
+  "temporalCoverage": "2016/2025",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): the 5 km UTM-square centroids INBO publishes (coordinateUncertaintyInMeters 3536) snapped to their 0.1-degree cell centre, because Salamandra salamandra is IUCN VU (GBIF IUCN record, asserted) in its native range (E7, ruling on the publisher 2026-11-06); uncertainty = 3536 m plus the cell half-diagonal."
+  },
+  "notes": "5 visits are dated outside August-November, kept as published. The source's occurrenceRemarks 'casual observation' is on every row, absences included, and is not a record type.",
+  "notShipped": {
+    "row-level counts": "a visit's count is split over several occurrence rows (mostly one per animal); summed into y"
+  },
+  "summary": {
+    "n_rows": 998,
+    "n_units": 83,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 11,
+    "n_surveys": 998,
+    "y_values": "0-400 (225 distinct)",
+    "prop_zero": 0.053,
+    "n_traps": 1,
+    "n_zero": 53,
+    "n_positive": 945,
+    "n_units_detected": 83,
+    "max_y": 400
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "805bdee694f63e2943efb938c20525a1",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year"],
+      "md5": "99fe8dd37eddce8f48511776efa7f028"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c7a3aadb56aba6686b410673a3f1e5c6"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_firesalamander_count.R",
+  "buildDate": "2026-11-06"
+}

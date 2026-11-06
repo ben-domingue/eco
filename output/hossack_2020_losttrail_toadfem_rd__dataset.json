@@ -1,0 +1,72 @@
+{
+  "table": "hossack_2020_losttrail_toadfem_rd",
+  "title": "Robust-design capture histories of 167 female boreal toads at 11 breeding ponds, Lost Trail National Wildlife Refuge, Montana, 2003-2018",
+  "abstract": "Sixteen years of night-time capture of breeding boreal toads at the Lost Trail National Wildlife Refuge, northwestern Montana. Females, deposited separately because they were rarely caught in more than one year: capture histories over 64 capture nights in 16 breeding seasons, with each toad's pond.",
+  "notShipped": {
+    "body_size": "ToadSVLdata_LOTR_2003-2017.csv: individual size and mass"
+  },
+  "notes": "One capture (2009, occasion 3) is coded 1 rather than a pond letter (y_raw = \"1\").",
+  "creator": "Hossack, Blake R.",
+  "pubDate": "2020",
+  "doi": "10.5066/P9C2VSF8",
+  "sourceURL": "https://doi.org/10.5066/P9C2VSF8",
+  "citation": "Hossack, B.R., 2020, Mark-recapture data for a boreal toad metapopulation at the Lost Trail National Wildlife Refuge, Montana (2003-2018): U.S. Geological Survey data release, https://doi.org/10.5066/P9C2VSF8.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (no use constraints)"
+  },
+  "samplingProtocol": "Night captures by hand (rarely dipnet) at up to 11 breeding ponds during the mid-May to early June breeding season, 0-8 capture sessions per pond per year; every adult toad measured, sexed and PIT-tagged if new, then released.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "robust design: secondary occasions are capture nights within one breeding season; occasion k need not be the same night at different ponds",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Lost Trail National Wildlife Refuge, Flathead County, Montana, USA",
+    "boundingBox": {
+      "west": -114.97,
+      "east": -114.78,
+      "south": 48.14,
+      "north": 48.2
+    }
+  },
+  "temporalCoverage": "2003-05/2018-06",
+  "summary": {
+    "n_rows": 5233,
+    "n_units": 167,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 8,
+    "n_surveys": 5233,
+    "y_values": "0,1",
+    "prop_zero": 0.96,
+    "n_traps": 1,
+    "n_zero": 5022,
+    "n_positive": 211,
+    "n_units_detected": 167,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_site", "unit_moved"],
+  "coreMd5": "369495db7facdad0857b240b52db9f90",
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "year"],
+      "md5": "25bf256a2610671a086788231bdafb67"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "4f3835b1ac835fc3044fcb747d81da9f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/hossack_2020_losttrail_toad.R",
+  "buildDate": "2026-11-06"
+}

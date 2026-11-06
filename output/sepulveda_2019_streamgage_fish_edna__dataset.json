@@ -1,0 +1,74 @@
+{
+  "table": "sepulveda_2019_streamgage_fish_edna",
+  "title": "Kokanee and yellow perch eDNA in four qPCR replicates of 190 water samples at nine USGS streamgages below reservoirs, Columbia and Colorado River basins, May-September 2018",
+  "creator": "Sepulveda, Adam J.",
+  "pubDate": "2019",
+  "doi": "10.5066/P9Q8GCLM",
+  "sourceURL": "https://doi.org/10.5066/P9Q8GCLM",
+  "paperDOI": "10.1002/ecs2.2843",
+  "citation": "Sepulveda, A.J., 2019, Environmental DNA surveillance data for USGS streamgage sampling in the Columbia River Basin, 2018 (ver. 1.1, July 2019): U.S. Geological Survey data release, https://doi.org/10.5066/P9Q8GCLM.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, no access or use constraints"
+  },
+  "abstract": "USGS hydrologic technicians collected eDNA water samples at streamgages downstream of eight Bureau of Reclamation reservoirs in the Columbia River Basin (Idaho, Montana, Oregon, Washington, Wyoming) and at Lees Ferry below Lake Powell, Arizona, six times between May and September 2018, to test whether streamgages can carry early-detection surveillance of what lives in the reservoir upstream. Each event took three 2-L river samples (ten at American Falls and Ririe on two events) and a field blank; each sample was assayed in quadruplicate qPCR for kokanee and for yellow perch, fish known from many of the reservoirs. A replicate is 1 when it reached the assay's limit of detection. Gage coordinates, distance from the reservoir outlet, reservoir storage and flows, inhibition, the field blank's result and fisheries managers' relative-abundance class ship as covariates.",
+  "samplingProtocol": "Field blank of 2 L deionised water exposed for 10 s, then three (or ten) 2-L grab samples from the river's edge near the streamgage, each filtered on site through one 1.5 um mixed cellulose ester filter, desiccated and shipped to USGS UMESC; DNA extracted (Qiagen Investigator Lyse & Spin with IBI gMAX); kokanee and yellow perch TaqMan qPCR in four 25 ul reactions each, 45 cycles; a replicate at or above the four-replicate LOD (kokanee 1.2, perch 1.9 copies/reaction) is a detection.",
+  "samplingProtocolCode": "eDNA",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = four qPCR replicates of one extract; periods (sampling events about two to six weeks apart) are open",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
+  "surveyEvidence": "deposited_matrix",
+  "temporalCoverage": "2018-05/2018-09",
+  "geographicCoverage": "Nine USGS streamgages below reservoirs: American Falls, Island Park, Jackson Lake, Palisades and Ririe (upper Snake River, Idaho and Wyoming), Owyhee (Oregon), Hungry Horse (Montana), Lake Roosevelt / Grand Coulee (Washington) and Lees Ferry below Lake Powell (Arizona), USA",
+  "crs": "EPSG:4326 (datum not stated; streamgage locations as published by USGS)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS (streamgage locations; neither target is a flagged taxon)"
+  },
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = streamgage, period = sampling event at that gage, unit = water sample (nested in one event), occasion = qPCR replicate. A sample is a unit of one period only; the gage's state across events is read through cluster_id x period.",
+  "notShipped": {
+    "field_blanks": "the 53 field blanks are controls, not river samples; their replicate count for each target is obs_fieldblank_pcr_pos (8 positive replicates, all kokanee, at Owyhee and Lees Ferry)",
+    "extraction_blank": "one laboratory extraction blank row (all negative)",
+    "relative_abundance_comment": "free-text personal communications from fisheries managers (one includes a telephone number); the Low/Mid/High class ships as obs_target_rel_abundance",
+    "dreissenid_assay": "the dreissenid mussel results (a separate file whose samples and dates do not match this one; held)"
+  },
+  "notes": "Two assays per sample: the taxa are the two targets, not a community survey (taxonInclusion = target). Sample-size test: 10 samples at American Falls (2018-07-30, 2018-09-25) and Ririe (2018-07-30, 2018-09-19).",
+  "summary": {
+    "n_rows": 1520,
+    "n_units": 190,
+    "n_taxa": 2,
+    "n_periods": 6,
+    "n_occasions": 4,
+    "n_surveys": 760,
+    "y_values": "0,1",
+    "prop_zero": 0.568,
+    "n_traps": 1,
+    "n_zero": 863,
+    "n_positive": 657,
+    "n_units_detected": 136,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_latitude", "unit_longitude", "unit_gage_dist_reservoir_km", "unit_reservoir_storage_m3", "unit_reservoir_inflow_cms", "unit_outflow_cms", "obs_inhibited", "obs_fieldblank_pcr_pos", "obs_target_rel_abundance"],
+  "coreMd5": "ebb35f43f92a75d8e1be52572a30c217",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "label", "year"],
+      "md5": "12869eb2f81465a9b3edd495b8e42840"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "7c48c0c803db4c0f9d8c60854a477aba"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sepulveda_2019_streamgage_fish_edna.R",
+  "buildDate": "2026-11-05"
+}

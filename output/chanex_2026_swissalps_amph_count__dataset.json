@@ -1,0 +1,71 @@
+{
+  "table": "chanex_2026_swissalps_amph_count",
+  "title": "Repeated visual-encounter counts of adult amphibians (three species) at 79 snow-making reservoirs and ponds, Swiss Alps, 2025",
+  "creator": "Chanex, Arnaud; Schmidt, Benedikt R.; Zemp, Clara",
+  "pubDate": "2026",
+  "doi": "10.5281/zenodo.19856651",
+  "sourceURL": "https://doi.org/10.5281/zenodo.19856651",
+  "citation": "Chanex, A. (2026). The ecological potential of snow-making reservoirs for amphibians in the Swiss Alps (1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.19856651",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Snow-making reservoirs, artificial ponds and natural ponds between 1,340 and 2,641 m in the Swiss Alps were each surveyed four times in June-August 2025 by visual encounter for common frogs, common toads and alpine newts, to assess the habitat value of snow-making reservoirs.",
+  "samplingProtocol": "Visual encounter surveys around each water body, four visits (two on each of two days) between June and August 2025; adults counted by species with water turbidity, start time and duration recorded.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "closureNote": "occasion = visit; visits 1-2 and 3-4 were made on the same day each.",
+  "geographicCoverage": {
+    "description": "Swiss Alps (cantons of Vaud, Valais, Bern, Obwalden and Lucerne), Switzerland",
+    "boundingBox": {
+      "west": 6.8261,
+      "east": 8.4108,
+      "south": 46.0529,
+      "north": 46.8415
+    }
+  },
+  "temporalCoverage": "2025-06/2025-08",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published (WGS84, raw_cov.csv); no taxon CR, EN or VU."
+  },
+  "notShipped": {
+    "early_stages": "egg clutches / strings, tadpoles, larvae and juveniles (some recorded as ranges)",
+    "subsets_and_derived": "raw_res_ and final_ files (a subset of the same surveys, and the authors' processed versions)"
+  },
+  "notes": "The raw files are used; the authors' final files drop two of the 79 sites without a stated reason.",
+  "summary": {
+    "n_rows": 948,
+    "n_units": 79,
+    "n_taxa": 3,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 316,
+    "y_values": "0-544 (56 distinct)",
+    "prop_zero": 0.77,
+    "n_traps": 1,
+    "n_zero": 730,
+    "n_positive": 218,
+    "n_units_detected": 64,
+    "max_y": 544
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_type", "unit_fish", "unit_veg_cover_pct", "unit_decimalLatitude", "unit_decimalLongitude", "obs_turbidity_pct", "obs_start_time", "obs_duration_min"],
+  "coreMd5": "dfaed855f00344be13361ee4d74c4d93",
+  "sideTables": {
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0054f7cb925ad7527a95d094e679f23b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/chanex_2026_swissalps_amph_count.R",
+  "buildDate": "2026-11-06"
+}

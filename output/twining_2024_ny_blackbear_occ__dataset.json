@@ -1,0 +1,60 @@
+{
+  "table": "twining_2024_ny_blackbear_occ",
+  "creator": "Twining, Joshua P.; Fuller, Angela K.; Sun, Catherine C.; Calderón-Acevedo, Camilo A.; Schlesinger, Matthew D.; Berger, Melanie; Kramer, David; Frair, Jacqueline L.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.ghx3ffbwf",
+  "sourceURL": "https://doi.org/10.5061/dryad.ghx3ffbwf",
+  "citation": "Twining, J. P., Fuller, A. K., Sun, C. C., Calderón-Acevedo, C. A., Schlesinger, M. D., Berger, M., Kramer, D., & Frair, J. L. (2024). Integrating presence-only and detection/non-detection data to estimate distributions and expected abundance of difficult-to-monitor species on a landscape-scale [Dataset]. Dryad. https://doi.org/10.5061/dryad.ghx3ffbwf",
+  "paperDOI": "10.1111/1365-2664.14633",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Two-week camera and hair-snare detections of black bears at 673 site-years in southern New York, summers 2016-2018",
+  "abstract": "Detection/non-detection of American black bears on five two-week occasions at camera traps set opposite hair snares in the High Allegheny Plateau, Western Allegheny Plateau and Lower New England ecoregions of New York, summers 2016-2018, with UTM coordinates and 10-km2 landscape covariates.",
+  "samplingProtocol": "Camera trap opposite a barbed-wire hair snare encircling 3-6 trees near the centre of each 25-km2 cell; checked and re-baited every two weeks for ten weeks; at most one detection per two-week period.",
+  "closure": "closed",
+  "closureNote": "ten weeks of one summer deployment per site-year",
+  "geographicCoverage": "Southern New York State, USA; camera UTM coordinates as published",
+  "temporalCoverage": "2016-05-30/2018-08-12",
+  "notShipped": {
+    "po_density": "PO_join_count_truncated (presence-only density)",
+    "presence_only": "presence-only bear records (iSeeMammals and online repositories)"
+  },
+  "notes": "unit = site-year. date is the deposited ordinal day of each occasion converted from 1 January of the year. The Dryad methods mention 2017 and 2018 surveys; the file also has 2016.",
+  "summary": {
+    "n_rows": 3234,
+    "n_units": 673,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 3234,
+    "y_values": "0,1",
+    "prop_zero": 0.712,
+    "n_traps": 1,
+    "n_zero": 2303,
+    "n_positive": 931,
+    "n_units_detected": 343,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_year", "unit_station", "unit_utm_x", "unit_utm_y", "unit_grid10km", "unit_deciduous", "unit_coniferous", "unit_mixed_forest", "unit_scrub", "unit_grassland", "unit_pasture", "unit_crops", "unit_road_density", "unit_elevation_m", "unit_forest_edge"],
+  "coreMd5": "2c780f7ad35328daf16bf7190818ff88",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "1733584c1b80ff66d7f2f04d48e90f94"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/twining_2024_newyork_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}
