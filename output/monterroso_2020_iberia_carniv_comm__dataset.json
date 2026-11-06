@@ -1,0 +1,67 @@
+{
+  "table": "monterroso_2020_iberia_carniv_comm",
+  "title": "Daily camera-trap detections of eight carnivores at 446 station-seasons in six Iberian study areas",
+  "creator": "Monterroso, Pedro; Díaz-Ruiz, Francisco; Lukacs, Paul; Alves, Paulo Célio; Ferreras, Pablo",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.59zw3r247",
+  "sourceURL": "https://doi.org/10.5061/dryad.59zw3r247",
+  "citation": "Monterroso, P., Díaz-Ruiz, F., Lukacs, P., Alves, P., & Ferreras, P. (2021). Ecological traits and the spatial structure of competitive coexistence among carnivores [Dataset]. Dryad. https://doi.org/10.5061/dryad.59zw3r247",
+  "paperDOI": "10.1002/ecy.3059",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily detection/non-detection of eight carnivores (Iberian lynx, badger, red fox, wildcat, stone and pine martens, Egyptian mongoose, common genet) at 237 camera stations in six study areas of the Iberian Peninsula, each surveyed in a breeding and / or a nonbreeding season (446 station-seasons, up to 64 days), with trail placement, distances to water, settlements and humans, vegetation index and coordinates coarsened to 0.1 degree.",
+  "samplingProtocol": "Camera-trap stations in six Iberian protected areas, surveyed in the breeding and nonbreeding seasons; detections per species per day, up to 64 days.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "each station-season analysed as a single-season survey",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Six study areas in the Iberian Peninsula (CNP, GVNP, MNP, MNR, PGNP, SANP); coordinates coarsened to 0.1 degree",
+  "temporalCoverage": "survey years not stated in the deposit (paper 2020)",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "station coordinates (deposited in columns named utm_x / utm_y but holding decimal degrees to 5 places) coarsened to the 0.1 degree cell centre with coarsen_coords(): Iberian lynx (IUCN VU, EN until 2024) shares the cameras"
+  },
+  "notShipped": {
+    "shared_detector": "7 station-day cells NA for some species and not others: dropped for all species (shared detector ruling)",
+    "trap_success": "rabbit and rodent trap success and the habitat indices built on them (from the same cameras)",
+    "detection_covariates": "det.Covs per-occasion covariates: NA pattern does not match the histories",
+    "exact_coordinates": "station coordinates finer than 0.1 degree"
+  },
+  "notes": "unit is the station-season (C03a = nonbreeding, C03w = breeding at station C03); the deposit gives no survey year or which season came first. Species codes expanded by the processor from the authors' two-letter initials (lp, mm, vv, fs, mf, mmt, hi, gg), consistent with the guild named in the scripts.",
+  "summary": {
+    "n_rows": 110528,
+    "n_units": 446,
+    "n_taxa": 8,
+    "n_periods": 1,
+    "n_occasions": 64,
+    "n_surveys": 13816,
+    "y_values": "0,1",
+    "prop_zero": 0.984,
+    "n_traps": 1,
+    "n_zero": 108814,
+    "n_positive": 1714,
+    "n_units_detected": 339,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_station", "unit_study_area", "unit_season", "unit_on_trail", "unit_dist_waterbodies", "unit_dist_settlement", "unit_dist_human", "unit_evi_500m_nonbreeding", "unit_evi_500m_breeding", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "b7e1dffbbbd6ef35e0c61c891e8060b7",
+  "sideTables": {
+    "taxa": {
+      "rows": 8,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b66c1db0e7ecb2470132fb380388a681"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/monterroso_2020_iberia_carniv_comm.R",
+  "buildDate": "2026-11-05"
+}

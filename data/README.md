@@ -286,6 +286,7 @@ CSVs with `upload/red_up_eco.py`.
 | `hostetter_2020_minnesota_lynx_dynocc.R` | dynamic occupancy, Canada lynx snow tracks x 431 cells x 5 winters (batch 37) | Dryad | CC0 |
 | `jones_2021_madagascar_plovers_cjs.R` | three CJS tables, Kittlitz's, Madagascar (VU) and white-fronted plovers, 2008-2020 (batch 37) | Dryad | CC0 |
 | `wang_2019_amazon_ocelot_occ.R` | single-season occupancy with effort, ocelot x 899 cameras, Brazilian Amazon (batch 37) | Dryad | CC0 |
+| `monterroso_2020_iberia_carniv_comm.R` | community occupancy, 8 carnivores x 446 Iberian station-seasons x 64 days; coordinates coarsened (Iberian lynx) (batch 37) | Dryad | CC0 |
 | `green_2018_ncal_mesocarnivores.R` | dynamic occupancy of fisher, grey fox and ringtail on track plates, and fisher hair-snare SCR, northwestern California (batch 37) | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
