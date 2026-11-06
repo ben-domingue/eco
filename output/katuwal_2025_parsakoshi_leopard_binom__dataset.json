@@ -1,0 +1,61 @@
+{
+  "table": "katuwal_2025_parsakoshi_leopard_binom",
+  "title": "Leopard detections over three weekly occasions at 154 camera sites, Parsa-Koshi Complex, Nepal, December 2022 to March 2023",
+  "creator": "Katuwal, Hem Bahadur; Bhattarai, Bishnu Prasad; Regmi, Sandeep; Bhandari, Shivish; Aryal, Bishnu; Tamang, Krishna; Nepali, Amrit; K.C., Sabin; Adhikari, Dipendra; Baral, Basu; Devkota, Surya; Koirala, Sabina; Mandal, Dev Narayan; Belant, Jerrold L.; Sharma, Hari Prasad; Quan, Rui-Chang",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.w3r2280z2",
+  "sourceURL": "https://doi.org/10.5061/dryad.w3r2280z2",
+  "citation": "Katuwal, H. B., Bhattarai, B. P., Regmi, S., Bhandari, S., Aryal, B., Tamang, K., Nepali, A., K.C., S., Adhikari, D., Baral, B., Devkota, S., Koirala, S., Mandal, D. N., Belant, J. L., Sharma, H. P., & Quan, R.-C. (2025). Leopard occupancy correlates with tiger and prey occurrences [Dataset]. Dryad. https://doi.org/10.5061/dryad.w3r2280z2",
+  "paperDOI": "10.1111/jzo.13251",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera traps at 154 stations on wildlife trails throughout the Parsa-Koshi Complex, Nepal (Parsa National Park to Koshi Tappu Wildlife Reserve), each run for 21 days between December 2022 and March 2023, to model leopard occupancy against tigers, prey and human activity. The deposit gives, per camera, the number of the three weeks in which a leopard was photographed (the weekly histories are not deposited), with distance to settlement, humans, livestock, tiger and prey detected at the camera, and water and forest area within 500 m.",
+  "samplingProtocol": "One camera trap per station on a wildlife trail, run for 21 days; the deployment split into three one-week occasions, y = weeks with a leopard photograph.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "binomial_count",
+  "effortColumn": "obs_trials",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one season; the three weekly occasions of each 21-day deployment are collapsed by the source into obs_trials = 3 (the protocol value; per-camera operation days are not deposited).",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Parsa-Koshi Complex (Parsa National Park to Koshi Tappu Wildlife Reserve), Madhesh Province, Nepal (no coordinates deposited)",
+  "temporalCoverage": "2022-12/2023-03",
+  "covariateNote": "unit_dist_settlement_m: distance to nearest human settlement (m). unit_humans_detected, unit_livestock_detected: humans and livestock detected at the camera (counts as deposited; the counting rule is not stated). unit_tiger_detected, unit_prey_detected: tiger / any prey species detected at the camera (1/0; the prey species are not listed). unit_water_area_500m_m2, unit_forest_area_500m_m2: area of water bodies and of forest within 500 m of the camera (m2).",
+  "notShipped": {
+    "model_output": "occupancy and detection estimates and the temporal-overlap analysis (not deposited)"
+  },
+  "notes": "obs_trials = 3 for every camera is the protocol value (three weeks of a 21-day deployment); the deposit does not record camera failures. Panthera pardus is IUCN VU; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 154,
+    "n_units": 154,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 154,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.786,
+    "n_traps": 1,
+    "n_zero": 121,
+    "n_positive": 33,
+    "n_units_detected": 33,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_dist_settlement_m", "unit_humans_detected", "unit_livestock_detected", "unit_tiger_detected", "unit_prey_detected", "unit_water_area_500m_m2", "unit_forest_area_500m_m2", "obs_trials"],
+  "coreMd5": "6abc1b663a68370664f06d062cc10fac",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a35a96621c1d9b29ee5c88b91545fb1e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/katuwal_2025_parsakoshi_leopard_binom.R",
+  "buildDate": "2026-11-05"
+}

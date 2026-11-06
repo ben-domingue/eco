@@ -1,0 +1,73 @@
+{
+  "table": "whittington_2025_banff_grizzly_occ",
+  "title": "Grizzly bear detections in 14-day occasions at 625 remote camera sites in Banff, Kootenay and Yoho National Parks and the Ya Ha Tinda, Alberta and British Columbia, May-October 2012-2021",
+  "creator": "Whittington, Jesse; Hebblewhite, Mark; Meyer, Mike; Johnston, Brenda; Forshner, Anne; Macbeth, Bryan; Einfeldt, Abbie; Cherry, Mike",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.g79cnp5wv",
+  "sourceURL": "https://doi.org/10.5061/dryad.g79cnp5wv",
+  "citation": "Whittington, J., Hebblewhite, M., Meyer, M., Johnston, B., Forshner, A., Macbeth, B., Einfeldt, A., & Cherry, M. (2025). Data from: One-stage spatial mark-resight analysis reveals an increasing grizzly bear population with declining density near roads [Dataset]. Dryad. https://doi.org/10.5061/dryad.g79cnp5wv",
+  "paperDOI": "10.1002/ecs2.70246",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Parks Canada remote cameras on trails, bear rub trees and mineral licks, and highway underpasses and overpasses across Banff, Kootenay and Yoho National Parks and the Ya Ha Tinda ecosystem recorded grizzly bears from May to October, 2012-2021. Detections are summarised per camera in 14-day occasions with the days the camera ran, event counts and family-group and cub-of-the-year events. The authors combined these unmarked counts with resightings of 25 radio-collared bears and their GPS telemetry in a one-stage spatial mark-resight model of density.",
+  "samplingProtocol": "Remote cameras at fixed sites (trails, rub trees or mineral licks, highway crossing structures), run May to October; grizzly bear detections pooled into 14-day occasions from 1 May (the fourteenth occasion is 30 October alone), with the number of days the camera ran in each.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "effortColumn": "obs_days_active",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasions span May to October each year; bears move widely across that season, so occupancy within a year is site use. Years are periods.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "EPSG:26911",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "camera positions as published by Parks Canada (UTM zone 11N NAD83, also embedded in every site name) on public land; grizzly bear is IUCN LC and Special Concern under Canada's SARA, kept under the E7 agency rule"
+  },
+  "geographicCoverage": "Banff, Kootenay and Yoho National Parks and the Ya Ha Tinda ecosystem, Rocky Mountains, Alberta and British Columbia, Canada (UTM 11N 482334-629027 E, 5607028-5787216 N)",
+  "temporalCoverage": "2012-05/2021-10",
+  "covariateNote": "unit_type: trail, rubtree (rub tree or mineral lick), underpass, overpass (overpass or open-span underpass); unit_rubtree / unit_underpass / unit_overpass: 0/1 as deposited. unit_rsf: mean grizzly resource selection function value (30 m); unit_rsf_spring / _summer / _fall: seasonal RSF bins 0-10; unit_tri: vector ruggedness. obs_days_active: days the camera ran in the occasion (as deposited, up to 16 in a 14-day window). obs_n_detections, obs_n_events: detections and detection events (NTotal, NEvents); obs_n_family_events, obs_n_yoy_events: family-group events and events with cubs of the year; obs_yoy_detected: a cub of the year was seen (0/1). date is the occasion start, obs_end_date its end.",
+  "notShipped": {
+    "spatial_mark_resight": "detect_marked.csv (collared-bear resightings), gps_day.csv (daily GPS of 25 collared bears), tbl_juvenile.csv, pix_xy.csv, pixel_lookup.csv, d2_cam.csv, tbl_specs.csv, tbl_area_parks.csv and the .sqlite shapefiles: inputs of the mark-resight model with telemetry, not an E9 design",
+    "site_summaries": "site_cam nSpecies, NDays, NEvents, NDetectDays, DetectRate14 (summaries over a span longer than the occasion table) and detect_year_cam.csv (occ_long_cam summed by site-year, asserted; its cub-of-the-year event count is lower than the occasion sum in 32 site-years)",
+    "model_output": "the authors' density, abundance and trend estimates"
+  },
+  "notes": "Occasion 14 is a single day (30 October). In 91 rows the camera-days exceed the window length by one or two days, as deposited. The paper was not read; the design is from the deposit's metadata and data description.",
+  "summary": {
+    "n_rows": 31180,
+    "n_units": 625,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 14,
+    "n_surveys": 31180,
+    "y_values": "0,1",
+    "prop_zero": 0.817,
+    "n_traps": 1,
+    "n_zero": 25464,
+    "n_positive": 5716,
+    "n_units_detected": 455,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_location", "unit_x", "unit_y", "unit_type", "unit_rubtree", "unit_underpass", "unit_overpass", "unit_rsf", "unit_rsf_spring", "unit_rsf_summer", "unit_rsf_fall", "unit_tri", "obs_days_active", "obs_end_date", "obs_n_detections", "obs_n_events", "obs_n_family_events", "obs_n_yoy_events", "obs_yoy_detected"],
+  "coreMd5": "6593ec72df9c327ee86cb6ba7869d1b8",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year", "first_date", "last_date", "n_cameras"],
+      "md5": "e5b6f30260e510429d81f478d65a7ef0"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "328523bcd685433a25aedfc6680e6027"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/whittington_2025_banff_grizzly_occ.R",
+  "buildDate": "2026-11-05"
+}

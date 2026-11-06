@@ -1614,3 +1614,125 @@ What this table says about the standard and the tools:
 - **E8 and the year.** The data file and README give only an ordinal day; the year is in the abstract on the Dryad page. `date` is built from 2024 + the ordinal, and the script asserts that the ordinals span exactly the abstract's two dates. The queue note's "2024 per README" is wrong.
 - **Closure over seven weeks.** `closure = open` (changed from `closed` in review, PR #64): the counts span about seven weeks across the end of the calling season. `closureNote` records that the authors fit single-season occupancy.
 - **`metadata/run_pipeline.sh`** uses `declare -A`, which macOS's bash 3.2 cannot run, and on a clone without the gitignored cores stages 01 to 03 would drop those tables' rows. Only this table's `metadata.csv` row was added, computed by the unmodified `01_metadata.R`; `biblio.csv`, `tags.csv` and `status.json` were not regenerated. Since fixed on `main`: bash 3.2 by #67 (filed as #65), the dropped rows by #74 (filed as #66).
+
+## Batch 35 — 2026-11-06 (papers Ben fetched, rows #116 lifted, the puma and Swiss MHB, more Dryad rows on a short-lived token)
+
+One coordinating agent in `~/eco-b35` (branch `batch-35`, from main with rulings #116 and a `download_dryad()` token
+change; main merged in again for the shard-aware uploader, #119), with up to two build agents at a time. Ben supplied
+a one-off Dryad API token valid from about 03:00 to 13:00 UTC; it was loaded into the shell for each run and never
+printed or committed. `processing_guide.md` and the standard's changelog now say the intake is anonymous by default
+and uses `DRYAD_TOKEN` when Ben supplies one. Papers Ben fetched (`~/eco_papers/`) settled the sage-grouse occasions,
+the Corbett tiger primaries, the Kapitia skink secondaries, the NSW bird codes, the tidewater goby and saltmarsh
+sparrow survey years; they did not settle the Mediterranean fish visual census, the Nevada season blocks, the
+Bolivian bird species order or the steelhead occasion structure. One table family (`goldingay_2026_bendigo_camera_occ`)
+went to the new Redivis shard `datapages.eco_2`, as Ben asked; every other table went to `datapages.eco`. Drafts only.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| goldingay_2026_bendigo_camera_occ | dynamic occupancy, cameras | Dryad CC0 | 3,086 | phascogale and inland sugar glider, 30 sites (near / far from nest boxes, Sedgwick SF) x 60 weeks in 5 season blocks, Jan 2023-Feb 2024; 14 site-weeks with no camera for one species dropped for both (shared-detector ruling); on the new shard `datapages.eco_2` |
+| sharma_2021_spiti_snowleopard_scr | count-detector SCR, cameras | Dryad CC0 | 480 | first table under the count-detector ruling: 16 snow leopards x 30 traps, y = encounters under the 4-hour rule, obs_effort_days; trap coordinates displaced by the source and shipped as published (E7.5); habitat mask not shipped |
+| schorr_2021_yampa_mylu_rd | robust design, PIT antennas | Dryad CC0 | 65,245 | 1,741 little brown bats at a house and a barn roost, 10 closed sessions (early / late summer 2014-2018), weekly occasions; survey set inferred (a roost-week with any detection, ruling 2026-11-06), 82 of 96 roost-weeks; juveniles from their marking session; mean-filled body condition not shipped |
+| botsch_2020_tits_territory_count | repeated counts, territory mapping | Dryad CC0 | 1,008 | first territory-editor table: Great and Blue Tit x 24 subsites, 3-4 visits x 3 editors (occasion = visit x editor, observer = editor, closure dependent), Switzerland 2014-2015; per-territory histories not shipped; the editors' totals file disagrees with the DH file in 1 of 288 cells |
+| sepulveda_2019_streamgage_dreis_edna | multi-scale eDNA (gage > event > sample > qPCR) | USGS ScienceBase, public domain | 776 | dreissenid DRE16S screen, 200 river samples x 4 replicates at 9 gages, 6 events 2018; y = amplified, Cq in y_raw; obs_blank_positive on 5 events whose field blank amplified; the QM / ZM / 16S verification (contamination at Jackson Lake and Palisades) not shipped; American Falls samples 5-10 have their replicates split over two event dates as deposited |
+| osborne_2026_largeheath_dynocc | dynamic occupancy, transect visits | MMU figshare, ODC-By 1.0 | 27,508 | reintroduced Large Heath, 380 nine-metre bog compartments x 9-23 visits a year, 2021-2025; first ODC-By table; coordinates snapped to the 10 km UTM cell (the source calls the species threatened); one site id typo normalised |
+| inbo_2026_flanders_butterfly_count | community counts, Pollard walks | GBIF / INBO IPT, CC BY-NC 4.0 (stricter of CC BY-NC and CC0) | 445,300 | 50 butterfly taxa x 8,906 visits on 112 routes, Flanders 1991-2020; sections summed per visit (empty sections are not in the archive); visit weather as obs_; coordinates as INBO generalised them |
+| ohrens_2026_latam_puma_occ | occupancy, cameras (daily) | Dryad CC0 | 1,169,563 | puma at 13,148 stations in 19 countries, 2001-2023, compiled from 200+ contributors; period = calendar year, occasion = active day; obs_survey; fetched file by file with the token (703 MB zip refused) |
+| chauvenet_2014_crundale_serotine_ms | multi-state CJS (J / U / B) | Dryad CC0 | 4,076 | 228 female serotine bats, Crundale roost, Kent, 23 capture years 1987-2011; juveniles from their marking year; POPAN files a recode (asserted) |
+| chauvenet_2014_hollingbury_serotine_ms | multi-state CJS (J / U / B) | Dryad CC0 | 972 | 102 females, Hollingbury roost, Brighton, 12 capture years 1989-2011 |
+| perea_2025_coastalplain_bats_comm | community occupancy, acoustic | Dryad CC0 | 5,760 | 8 bat taxa (two pooled call groups) x 240 sites x 3 nights, six pine-forest landscapes FL-NC, winters 2020-2022; no coordinates (private land) |
+| goldberg_2015_manas_leopard_scr | closed SCR, cameras | Dryad CC0 | 58,058 | 22 leopards x 29 stations x 91 days, Royal Manas NP, Bhutan, 2010-2011; survey set from the paper's statement of continuous operation (inferred); traps centred (IUCN VU) |
+| schmelzle_2016_tidewatergoby_edna | multi-scale occupancy, eDNA | Dryad CC0 | 2,148 | endangered tidewater goby, 358 water samples x 6 qPCR wells at 39 coastal sites (CA/OR), Aug-Dec 2014, cluster_id = site; raw lab sheet shipped over the WinBUGS input (27 samples differ; raw matches the paper's 19/39 positive sites); coordinates = 0.1-deg cell of each site's median (11 keying errors), names withheld; paired seine not shipped (no sample-level seine survey set) |
+| marshall_2020_saltmarshsparrow_nmix | N-mixture, point counts | Dryad CC0 | 2,718 | endangered Saltmarsh Sparrow, 913 SHARP points in 413 marsh patches x 2-3 counts, Maine-Maryland, Apr-Jul 2012 (year from the paper); survey covariates z-scores only, 4 all-zero (mean-filled) survey records set NA; latitude only, coarsened (IUCN EN); cluster_id = patch |
+| bisht_2019_corbett_tiger_rd | robust design, camera-trap CR | Dryad CC0 | 77,364 | 307 tigers x 6 annual primaries x 42 nights (paper s. 2.4, p. 5); full rectangle E4.4; cluster_id = MARK block; the deposit's per-year counts differ from the paper's Table 2 (cumulative totals agree within 2; asserted, noted); IUCN EN, no coordinates |
+| shyvers_2020_ppr_sagegrouse_rd | robust design, genetic CR (faecal pellets) | Dryad CC0 | 8,145 | 543 greater sage-grouse, 2 winters x 7/8 occasions, NW Colorado; occasions identified by reproducing the paper's Table 3 p (trailing history characters are padding); ids linked across seasons (82, as the paper); y_raw = M/F letter; no coordinates |
+| jordan_2025_kapitia_skink_rd | robust design, photo-ID under cover objects | Dryad CC0 | 18,720 | 360 Kapitia skinks x 5 primaries (10,10,11,10,11 secondaries, the only split that reproduces the collapsed files); AI-supplemented identities only, human-only set in notShipped; IUCN CR, no coordinates |
+| belder_2020_nsw_*_cjs (13 tables) | CJS, mist nets | Dryad CC0 | 3,151 in all | one table per species (ruling #20), 21 restoration sites, NSW, 2015-2017; 13 of 38 codes fixed from the paper (the 10 colour-banded species by initials, plus the top-5 list), 25 undefined codes (208 birds) not built; R5_CJS is a recode of R5; Barker resightings not shipped; diamondfiretail (VU) coarsened to 0.1 deg and site names replaced by sequential ids (E7.4) |
+| morrison_2023_fundy_salmon_edna | multi-scale eDNA (station > day > bottle > qPCR) | Dryad CC0 | 1,641 | Inner Bay of Fundy Atlantic salmon (SARA endangered): 2020 parr survey, 2020 full transect and 2021 smolt survey in one table (21 days, 547 bottles, 53 stations); y = Ct present (no call stated), Ct in y_raw; obs_blank_positive = 1 on day iv (FB3iv), NA on days vii and ix (no blank deposited); coordinates coarsened, river/pool names withheld; Full_trans pool repeats disagree in 16 of 288 Ct (All_df shipped); Full_rls_mean (means only) not shipped |
+| strebel_2026_swiss_mhb_count | community counts (N-mixture), multi-season | Zenodo CC BY 4.0 (paper doi:10.1002/ecy.70268) | 2,867,650 | Swiss MHB 1999-2025, 267 squares x 2-3 visits, territories per visit; 158 of 162 species (4 never positive per visit); __survey_taxa (taxon x square x year x visit) for date limits, undigitised maps (39,211 species x square-years) and invalid records (188); coarsened to 0.1 deg (turtle dove VU); 4 species withheld by the source (taxaWithheld); overlaps kery_2014_mhb_comm |
+| strebel_2026_swiss_mhb_exact_count | same | same | 2,854,066 | E7.3 sibling without the turtle dove, coordinates as published |
+| strebel_2026_swiss_mhb_total_count | season territory totals (count), multi-season | same | 1,152,118 | season total per square-year, 162 species (per-visit series and season total ruling): 36,530 positive totals have no per-visit values (33,407 at 3-visit squares, 3,123 at 2-visit squares); obs_per_visit_values; coarsened |
+| strebel_2026_swiss_mhb_total_exact_count | same | same | 1,145,005 | E7.3 sibling without the turtle dove |
+| roderiksen_2023_norway_tundra_carniv_occ | community occupancy, cameras (daily) | Dryad CC0 | 93,892 | 4 predators at 96 baited stations, late winters 2011-2020, alpine and Arctic files in one table (unit_region); ISO date from year + day of year; obs_bait_present; period_rodent_index (separate snap-trap survey); station coordinates not shipped; the deposit says 98 sites, the files hold 96 |
+| sovie_2023_ichauway_wildlife_comm | community occupancy, cameras (5-day occasions) | Dryad CC0 | 4,158 | 11 mammals and game birds on pine / edge / hardwood transects in 6 patches (methods say 5), Ichauway, Georgia; cluster_id = patch; common names resolved to the region's only species of that name, rabbit at genus; no occasion dates |
+| barrueto_2023_nwt_grizzly_scr | SCR, hair snags, multi-session | Dryad CC0 | 533,664 | 204 genotyped grizzly bears x 218 detectors x 6 visits, 2012-2014, ids linked across years; obs_lure; traps centred on the array (E7 a: the source calls the grizzly a species at risk in Canada) |
+| sossover_2026_outerbanks_coyote_ms | multi-state robust design, faecal DNA | Dryad CC0 | 744 | 62 coyotes, 7 Outer Banks islands as states, 3 primaries x 4 secondaries; Bodie (state 1) not surveyed in period 1 (__periods states_not_surveyed); no paper linked |
+| bauer_2022_neshrubland_birds_count | community point counts (N-mixture) | Dryad CC0 | 26,070 | 79 taxa x 66 points (44 in 2015) x 3 visits x 2 years, New England cottontail shrublands; y within 50 m, no flyovers (the authors' set); minute intervals as obs_int1-10 and outer-bin and flyover counts as obs_; 14 outer-only taxa and the undefined WOSP not shipped |
+| bedwell_2020_sierranevada_edna_binom | binomial_count, eDNA, multi-season | Dryad CC0 | 80 | 10 lakes and streams x 4 months (May-August 2016) x Bd and yellow-legged frogs (pooled); y = sampling sites the authors called positive (2 of 6 qPCR replicates) of obs_trials sites sampled; filter-level files zero-truncated, not shipped |
+| katuwal_2025_parsakoshi_leopard_binom | binomial_count, cameras | Dryad CC0 | 154 | leopard at 154 cameras, Parsa-Koshi, Nepal: weeks detected of 3 (the README's protocol; failures not recorded); tiger, prey, human and livestock detections as unit_ covariates; no coordinates |
+| manzo_2024_pedregulho_tayra_dog_occ | single-season occupancy, cameras | Dryad CC0 | 1,904 | tayra and domestic dog x 69 points (README says 73) x 21 five-day occasions, Brazil; 20 point-occasions surveyed for one species only dropped for both (shared-detector ruling) |
+| whitworth_2019_manu_terr_mamm_binom | binomial_count, community cameras | Dryad CC0 | 2,002 | 26 terrestrial mammals x 68 stations, Manu, Peru, 2015-2016; y = six-day sessions with a detection of sessions surveyed (the authors' dbin likelihood); arboreal cameras held |
+| zamuda_2022_yalemyers_mesopred_dynocc | dynamic occupancy, cameras | Dryad CC0 | 6,272 | 4 mesopredators x 56 sites (paper says 60) x 4 seasons x 7 three-day surveys, Connecticut; complete matrix |
+| curveirasantos_2019_guadiana_carn_occ | single-season occupancy, cameras | Dryad CC0 | 1,220 | 4 carnivores x 77 stations x four 6-day occasions, Guadiana valley, Portugal; occupied-station counts match the paper's Table 2; badger, genet and otter not deposited |
+| raman_2006_anamalai_birds_count | community counts, spatial replicates | Dryad CC0 | 40,767 | 107 bird taxa x 13 rainforest fragments x 25-30 point counts, Anamalai, India; coarsened (great and Malabar grey hornbills VU), site names dropped; flock-size estimates not shipped |
+| raman_2006_anamalai_birds_exact_count | same | same | 40,005 | E7.3 sibling without the two hornbills, coordinates as published |
+| roberts_2019_sierranevada_birds_count | community counts, multi-season | Dryad CC0 | 2,338,028 | 154 bird taxa x 1,353 points, 15,182 visits, Sierra Nevada, 2009-2016; explicit no-detection rows; coarsened for the evening grosbeak (VU), elevation to 100 m; 24 undefined X-codes (3,438 records) not shipped; alpha codes from the IBP list fetched from GitHub |
+| roberts_2019_sierrane_birds_exact_count | same | same | 2,322,846 | E7.3 sibling without the evening grosbeak |
+| cove_2018_lowerkeys_dynocc | dynamic occupancy, cameras | Dryad CC0 | 5,124 | Lower Keys marsh rabbit (endangered, as the source says) and feral cat x 84 sites x 2 periods x 16 occasions; UTM snapped to 10 km cells, LiDAR elevation (standardised) not shipped; the 2013-14 cat-count columns are copies of 2015, only 2015 ships |
+| cove_2018_lowerkeys_exact_dynocc | same | same | 2,562 | E7.3 sibling, cat only, UTM as deposited |
+| bruce_2022_wettropics_cat_occ | single-season occupancy, cameras | Dryad CC0 | 911 | feral cat x 90 sites x 18 five-day occasions, Wet Tropics, Australia; NA cells match the effort file; 18 Paluma NP sites in the paper not deposited |
+| barrile_2022_bridgerteton_toad_msrd | multi-state robust design | Dryad CC0 | 45,318 | 1,415 boreal toads, 6 seasons x 3-9 occasions (layout recovered from capture dates, asserted), states = primary / alternative breeding site; survey set inferred (a site-occasion with any capture); paper not read |
+| sweeney_2026_ocracoke_plover_cjs | CJS / Jolly-Seber stopover, resightings | Dryad CC0 | 81,230 | 399 colour-marked piping plovers x 8 seasons x up to 37 surveys, Ocracoke, NC; surveys file lists every survey; hatch-year birds from their hatch year; banding-year resightings of South Point birds were removed by the authors, so those rows are absent |
+| sweeney_2026_ocracoke_plover_count | repeated counts | same | 207 | the same surveys' plover counts at one site, with obs_marked; below the sample floor |
+| feldman_2023_quebec_wetland_comm | community occupancy, cameras | Dryad CC0 | 78,008 | 56 taxa (French names mapped by hand) x 50 ponds x 2 seven-day sessions per year x 2 years; Rusty Blackbird (VU) => latitude (the only coordinate deposited) snapped to its 0.1 deg band; the README's session labels are contradicted by the days-since-snowmelt data, and the data are followed |
+| feldman_2023_quebec_wetland_exact_comm | same | same | 76,615 | E7.3 sibling without the Rusty Blackbird |
+| fiss_2024_pennsylvania_birds_count | N-mixture point counts | Dryad CC0 | 2,292 | 2 warblers x 573 points x 2 visits x 2 years; minute of first detection as obs_ttd with obs_ttd_censored (ruling 2026-11-06), distance bins as obs_ (breaks not deposited) |
+| fiss_2024_pennsylvania_birds_aru_occ | occupancy, ARU | same | 8,140 | classifier-verified daily detections at 571 points x 10 days; __survey_taxa (Cerulean Warbler classified at 2 of 5 blocks) |
+| barros_2024_mostela_weasel_occ | multi-scale occupancy, paired methods (obs_method) | Zenodo CC BY 4.0 | 781 | least weasel, 56 stations x 7 five-day occasions x 2 devices (Mostela box, tree camera), Portugal, Jan-Apr 2021; the paper (Basic Appl Ecol 75:18-25, p.19-21, Table 1) settled the year, the occasions and the 3 NAs (station 19's Mostela not operating on occasions 1-3); tree-camera trap-nights at CL 1,068 in the deposit vs 1,029 in Table 1 |
+| letourneux_2022_snowgoose_ms | multi-state CMR with dead recoveries (multievent) | Dryad CC0 | 623,530 | 22,599 adult female greater snow geese, 30 yearly occasions 1990-2019: ring only / ring + collar / shot and recovered; histories expanded by frequency, wild adults from 1990; a recovery ends the history (obs_removed); 344 birds lose a collar; the deposited harvest-rate covariate not shipped (it may be estimated from these recoveries); paper not supplied |
+| whittington_2025_banff_grizzly_occ | dynamic occupancy, cameras | Dryad CC0 | 31,180 | grizzly bear at 625 Parks Canada camera sites x 10 years (2012-2021) x 14 occasions (14-day windows from 1 May); NDays effort; UTM coordinates kept as published (agency rule); the spatial mark-resight part (collared bears, GPS telemetry) not an E9 design, not shipped |
+
+Not built (`queue/human_review.csv`, one row each with the question):
+
+- Held after reading the paper Ben fetched: Mediterranean fish visual census (protocols, visits and `sp.n = 0` rows not
+  in the paper; Appendix S1 missing), Northern Nevada cameras (the six season blocks can only be inferred from the lure
+  covariate), Bolivian Andes birds (species order of the count array), Upper Columbia steelhead (structure settled,
+  but space-ordered occasions with undated dead recoveries need a ruling), Hutchinson penalised occupancy (no names,
+  place or years in the paper), Colorado ants (San Juan species unnamed; Appendix 1 missing), great crested newts
+  (per-population years only plotted), Western Ghats frogs (one night search per site: replication rule), Von der
+  Decken's hornbill (author-discretised route buffers with an outcome-dependent exclusion: ruling).
+- Settled by the paper but not downloaded tonight (Dryad 429 from 04:20 UTC): three eider colonies (RC = cholera
+  death, right-censored), Issa chimp PAM sheet (a row is a four-sensor cluster location), dusky grouse (visits are
+  passive / playback pairs), boreal caribou (T-to-winter map must come from the deposit), St. Marks amphibians ("-"
+  undefined in the paper).
+- Held or blocked for other reasons: the Bornand time-to-detection plants (species named by one word; paper closed),
+  the Niobrara all-zero mussel eDNA (built, blocked by the validator, #120), the paired seine of the tidewater goby
+  deposit, the human-only Kapitia skink identifications, the arboreal Manu cameras, the Himachal snow leopard SECR
+  (traps encrypted), the Golden-winged Warbler point counts (survey key does not reconcile), the Scottish badger and
+  Maine marten cameras (no survey years; papers closed), the Finnmark mesocarnivores (species key mismatch), the
+  western sandpiper radio-detection histories (telemetry scope), the fisher occupancy + SCR deposited only as R code,
+  the coyote / fisher / marten weekly counts (survey set not evidenced), the bat acoustic inputs (species codes
+  undefined), the black bear SCR + REM (trap list incomplete; REM scope), and the Whittington grizzly spatial
+  mark-resight part.
+- Blocked at Dryad even with the token: Tutakoke brant, Chure leopard and Trijuga sloth bear (404 on the zip and on
+  every file).
+
+What this batch says about the standard and the tools:
+
+- **The validator disagrees with the standard twice** (#120). The all-zero Niobrara mussel eDNA table
+  (`klymus_2023_niobrara_mussel_edna`, script committed) conforms to the eco standard but `--irw` blocks it with
+  `irw:resp_variation`, so it was not uploaded; and the `replication` intake warning fires on the count-detector SCR
+  (`sharma_2021_spiti_snowleopard_scr`) that the standard exempts. The validator was not edited.
+- **An event with no field blank** (Fundy salmon): the eDNA ruling says `obs_blank_positive` is 0 on every row of an
+  event whose blank did not amplify; two sampling days have no blank deposited at all, and the table carries NA there,
+  not 0, since a missing blank is not a clean one. Worth a sentence in the guide.
+- **"The source says so" for E7 (a)** was read three times: the Large Heath (IUCN LC, "a threatened butterfly" in the
+  source title), the grizzly ("a species at risk" in Canada) and the snow leopard deposits. Coordinates were coarsened
+  or trap arrays centred in the first two; both are reversible if Ben reads (a) as an explicit sensitivity flag only.
+- **Coarsening one species while its siblings stay exact** (NSW woodland birds): the Diamond Firetail (VU) table is
+  coarsened and its site names replaced, but its site attributes (area, perimeter, planting age) match the twelve
+  sibling species tables, which publish the exact site coordinates, so a user can re-link them. E7 does not address
+  linkage across tables from one deposit.
+- **A state not surveyed in one period** (Outer Banks coyotes, islands as states): there is no per-row place to say a
+  state could not be observed; it is recorded in `__periods`.
+- **Survey sets taken from a paper's sentence** (Manas leopards: "stations operated continuously"): shipped as
+  `inferred` with the sentence quoted in `surveyEvidenceNote`, since the deposit itself has no operation table.
+- **Two identification sets from the same photographs** (Kapitia skink: human-only and AI-supplemented): only the
+  corrected set ships; whether the other is a second table is a question for Ben.
+- **Data deposited as R code** (`dput` objects, fisher occupancy + SCR): not read, since the pipeline does not execute
+  code from a deposit.
+- **Dryad with a token**: the version zip is still refused for large deposits and for some small ones (404); per-file
+  downloads worked for the puma (703 MB) and others, but for the Chure leopard, Trijuga sloth bear and Tutakoke brant
+  deposits every file also returns 404, so their files are gone at Dryad. The token's rate limit is not unlimited:
+  429s began after about 120 requests in a few minutes (03:22 UTC); pacing at one deposit per 20 s then fetched about
+  20 more, but from about 04:20 UTC Dryad answered 429 to every request, with the token and anonymously, even at one
+  request per 75-90 s, so the batch stopped asking. The token never returned 401. Roughly 220 Dryad requests in all.

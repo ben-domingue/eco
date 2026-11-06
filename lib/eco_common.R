@@ -118,20 +118,44 @@ download_neon <- function(product, table, release, tables, sites = NULL, months 
 # Zenodo mirror. The version "download" endpoint (a zip of the whole deposit) is
 # served anonymously. Fetch it once into .cache/raw/<table>/dryad_<version>/ and
 # return that directory; the caller asserts on the file names it expects.
+# Optional token: when DRYAD_TOKEN is set in the environment (an API-account
+# bearer token, valid 10 h; never in the repo), every request carries it, which
+# raises Dryad's rate limit, and a deposit whose zip is refused (404/405, e.g.
+# too large to zip) is fetched file by file instead. Without the token nothing
+# changes: the build stays anonymous and such a deposit fails as before.
 download_dryad <- function(doi, table) {
   doi <- sub("^doi:", "", doi)
   api <- "https://datadryad.org/api/v2"
+  tok <- Sys.getenv("DRYAD_TOKEN")
+  hdr <- c("User-Agent" = UA, if (nzchar(tok)) c(Authorization = paste("Bearer", tok)))
   meta_f <- file.path(RAW_DIR, table, "dryad_dataset.json"); dir.create(dirname(meta_f), showWarnings = FALSE, recursive = TRUE)
   if (!file.exists(meta_f))
     download.file(paste0(api, "/datasets/doi%3A", URLencode(doi, reserved = TRUE)), meta_f, quiet = TRUE,
-                  headers = c("User-Agent" = UA))
+                  headers = hdr)
   meta <- fromJSON(meta_f)
   ver <- basename(meta[["_links"]][["stash:version"]][["href"]])
   lic <- meta$license %||% NA_character_
   dir <- file.path(RAW_DIR, table, paste0("dryad_", ver))
   if (!dir.exists(dir) || !length(list.files(dir))) {
-    zip <- download_cached(paste0(api, "/versions/", ver, "/download"), table, filename = paste0("dryad_", ver, ".zip"))
-    dir.create(dir, showWarnings = FALSE); unzip(zip, exdir = dir)
+    zip <- try(download_cached(paste0(api, "/versions/", ver, "/download"), table,
+                               filename = paste0("dryad_", ver, ".zip"), headers = hdr[-1]), silent = TRUE)
+    dir.create(dir, showWarnings = FALSE)
+    if (!inherits(zip, "try-error")) {
+      unzip(zip, exdir = dir)
+    } else if (nzchar(tok)) {              # zip refused: list the version's files and fetch each one
+      message("  Dryad zip refused; fetching files one by one with the token")
+      nxt <- paste0(api, "/versions/", ver, "/files")
+      while (!is.null(nxt)) {
+        pg <- tempfile(fileext = ".json")
+        download.file(nxt, pg, quiet = TRUE, headers = hdr)
+        pj <- fromJSON(pg, simplifyVector = FALSE)
+        for (f in pj[["_embedded"]][["stash:files"]])
+          download_cached(paste0("https://datadryad.org", f[["_links"]][["self"]][["href"]], "/download"), table,
+                          filename = f$path, subdir = paste0("dryad_", ver), headers = hdr[-1])
+        nx <- pj[["_links"]][["next"]][["href"]]
+        nxt <- if (is.null(nx)) NULL else paste0("https://datadryad.org", nx)
+      }
+    } else stop("Dryad refused the anonymous zip for ", doi, " (", conditionMessage(attr(zip, "condition")), "); blocked without a token")
   }
   message(sprintf("  Dryad %s: version %s, licence %s, %d file(s)", doi, ver, lic, length(list.files(dir, recursive = TRUE))))
   attr(dir, "license") <- lic; attr(dir, "version") <- ver

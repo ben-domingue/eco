@@ -1,0 +1,69 @@
+{
+  "table": "raman_2006_anamalai_birds_count",
+  "title": "Bird counts from 381 five-minute point counts at 13 rainforest fragment, plantation and control sites, Anamalai hills, Western Ghats, India, 2001-2002 (coordinates coarsened)",
+  "creator": "Raman, T. R. Shankar",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.4mw6m907q",
+  "sourceURL": "https://doi.org/10.5061/dryad.4mw6m907q",
+  "citation": "Raman, T. R. S. (2020). Data from: Effects of habitat structure and adjacent habitats on birds in tropical rainforest fragments and shaded plantations in the Western Ghats, India [Dataset]. Dryad. https://doi.org/10.5061/dryad.4mw6m907q",
+  "paperDOI": "10.1007/s10531-005-2352-5",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocol": "Five-minute stationary bird point counts (25-30 per site) recording every bird seen or heard with its radial distance band (0-50 m) and cue; y = individuals detected of the species in the count (the source's 'Number', summed over its records).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the 25-30 point counts of a site, made on 2-4 mornings between December 2001 and April 2002, are its replicates; they are sequential counts within the site (the deposit gives no point locations and does not say whether a point was revisited), so occasion = count number within the site, in the source's order.",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "temporalCoverage": "2001-12/2002-04",
+  "covariateNote": "unit_stratum (rainforest / plantation), unit_stratum_detail (control, fragment, coffee, cardamom), unit_connectivity (canopy connectivity with adjacent habitat, high / low, as in Raman 2006). obs_time_hhmm: time of the count's first record (hhmm, morning).",
+  "abstract": "Bird point counts in a Western Ghats landscape of rainforest fragments and shade plantations (Valparai plateau and Indira Gandhi Wildlife Sanctuary, Anamalai hills): 13 sites (one primary rainforest control, six fragments of high or low canopy connectivity, five coffee and one cardamom plantation), 25-30 five-minute counts each, December 2001 to April 2002; 107 taxa. One row per count x taxon, y = individuals detected. Site coordinates are coarsened to 0.1 degree because Buceros bicornis (IUCN VU) and Ocyceros griseus (IUCN VU) are in the table; raman_2006_anamalai_birds_exact_count has the other taxa at the published coordinates.",
+  "geographicCoverage": "Valparai plateau and Indira Gandhi Wildlife Sanctuary, Anamalai hills, Western Ghats, Tamil Nadu, India (site coordinates coarsened to 0.1 degree)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "site coordinates (6 decimals in the source) replaced by 0.1 degree cell centres (coarsen_coords) because Buceros bicornis (IUCN VU) and Ocyceros griseus (IUCN VU) occur in the table; site names not shipped (E7.4); the unit is the source's site letter"
+  },
+  "notShipped": {
+    "total_estimated": "Total: individuals estimated with supplementary flock-size data, not the count made (Total > Number in 928 records, < Number in 67, 66 of them heard birds)",
+    "distance_cues": "per-record radial distance band and cue (heard / seen / flying); a distance-sampling table could be built from them",
+    "remarks": "free-text Remarks",
+    "summaries": "05_Detections, 06_Abundance (sums of these records, rebuilt and asserted) and 07_Appendix (rates per 25 counts and deviations)",
+    "vegetation": "08-11 vegetation plots (PCQ, habitat structure, Siva Coffee plots and trees), keyed to vegetation points, not to the bird counts",
+    "unit_site_name": "site names (E7.4: a coarsened table names no place); in raman_2006_anamalai_birds_exact_count"
+  },
+  "notes": "Taxa are the eBird India 2018 names; four are slash pairs for species split after 2006 and UNID is an unidentified bird (class Aves). raman_2006_anamalai_birds_exact_count has the 105 taxa other than the two hornbills at the published coordinates.",
+  "summary": {
+    "n_rows": 40767,
+    "n_units": 13,
+    "n_taxa": 107,
+    "n_periods": 1,
+    "n_occasions": 30,
+    "n_surveys": 381,
+    "y_values": "0,1,2,3,4,5,6,7,8,9,10,15",
+    "prop_zero": 0.925,
+    "n_traps": 1,
+    "n_zero": 37728,
+    "n_positive": 3039,
+    "n_units_detected": 13,
+    "max_y": 15
+  },
+  "sampleFloor": "below (13 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_stratum", "unit_stratum_detail", "unit_connectivity", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_time_hhmm"],
+  "coreMd5": "ea0982a58f6ffe21d205bc5be8c02566",
+  "sideTables": {
+    "taxa": {
+      "rows": 107,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_name2006", "taxon_category", "taxon_habitat", "taxon_iucnCategory"],
+      "md5": "fcb0c6b5a1f2a299f3a8795825a07c29"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/raman_2006_anamalai_birds_count.R",
+  "buildDate": "2026-11-05"
+}

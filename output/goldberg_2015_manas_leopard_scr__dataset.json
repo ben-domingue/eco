@@ -1,0 +1,72 @@
+{
+  "table": "goldberg_2015_manas_leopard_scr",
+  "title": "Spatial capture-recapture of 22 leopards at 29 camera stations over 91 days, Royal Manas National Park, Bhutan, November 2010 to February 2011",
+  "creator": "Goldberg, Joshua F.; Tempa, Tshering; Norbu, Nawang; Hebblewhite, Mark; Mills, L. Scott; Wangchuk, Tshewang R.; Lukacs, Paul",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.mr1pt",
+  "sourceURL": "https://doi.org/10.5061/dryad.mr1pt",
+  "citation": "Goldberg, J. F., Tempa, T., Norbu, N., Hebblewhite, M., Mills, L. S., Wangchuk, T. R., & Lukacs, P. (2015). Data from: Examining temporal sample scale and model choice with spatial capture-recapture models in the common leopard Panthera pardus [Dataset]. Dryad. https://doi.org/10.5061/dryad.mr1pt",
+  "paperDOI": "10.1371/journal.pone.0140757",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Paired camera traps at 29 stations in a 162 km2 grid in the foothills of Royal Manas National Park, Bhutan, run continuously for 91 days (17 November 2010 to 15 February 2011); 22 leopards identified from pelage, 82 captures. The authors compared SCR density estimates under daily, weekly, monthly and quarterly sampling intervals. One row per leopard x station x day.",
+  "samplingProtocol": "Pairs of Reconyx cameras on paths and animal trails at 29 locations on a 2.5 km grid, unbaited, not moved for 91 days, serviced every two to four weeks; a leopard photographed at a station on a day is a capture.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "The deposit has no camera operation table. The paper (p. 7) states that every station operated continuously for the 91 days (both cameras of a pair never failed together), 2,639 trap-nights = 29 x 91; every station x day is a survey on that statement.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "a 91-day winter session treated as closed by the authors; daily occasions",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Royal Manas National Park, Bhutan; camera array centroid 26.9 N, 91.0 E (0.1 degree); trap positions in __traps as local metres centred on the array",
+  "temporalCoverage": "2010-11/2011-02",
+  "crs": "local: metres, UTM 46N (WGS84) easting/northing minus the array centroid (processor-centred)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "trap coordinates centred on the array centroid by the processor (local metres; exact UTM 46N positions withheld) because the leopard is IUCN VU; the centroid is given at 0.1 degree in geographicCoverage"
+  },
+  "notShipped": {
+    "capture_xy": "the x, y of each capture (the trap's UTM position, asserted)",
+    "exact_coordinates": "UTM 46N trap positions (centred, E7)",
+    "model_output": "density estimates"
+  },
+  "notes": "At most one capture per leopard, station and day in the deposit.",
+  "summary": {
+    "n_rows": 58058,
+    "n_units": 22,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 91,
+    "n_surveys": 58058,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 29,
+    "n_zero": 57976,
+    "n_positive": 82,
+    "n_units_detected": 22,
+    "max_y": 1
+  },
+  "sampleFloor": "below (22 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "date", "unit_sex"],
+  "coreMd5": "6c0d9acdcb8922798bd015806d3cce2d",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "b234c475bd2eb783accfdd2d4aba1c5a"
+    },
+    "traps": {
+      "rows": 29,
+      "columns": ["trap", "x_m", "y_m", "n_days_operating"],
+      "md5": "7f96694ace246463cfe982b4ce56a455"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldberg_2015_manas_leopard_scr.R",
+  "buildDate": "2026-11-05"
+}

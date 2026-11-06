@@ -1,0 +1,63 @@
+{
+  "table": "manzo_2024_pedregulho_tayra_dog_occ",
+  "title": "Five-day camera detections of tayra and domestic dog at 69 sampling points in an agricultural landscape, Pedregulho, Brazil, 2020 to 2022",
+  "creator": "Manzo, Isabele Aparecida; Gonçalves da Silva, Rodolpho; Bianchi, Rita de Cassia",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.zgmsbccn3",
+  "sourceURL": "https://doi.org/10.5061/dryad.zgmsbccn3",
+  "citation": "Manzo, I., da Silva, R. G., & Bianchi, R. de C. (2024). The influence of domestic dogs on the spatial and temporal distribution of tayra [Dataset]. Dryad. https://doi.org/10.5061/dryad.zgmsbccn3",
+  "paperDOI": "10.1002/wlb3.01298",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera traps rotated over sampling points about 2 km apart in an agricultural landscape (a protected area, agro-livestock areas, an urban area and rural households) between December 2020 and August 2022, to test whether domestic dogs displace tayras. Detection of each species per point per 5-day occasion (up to 21 occasions), with normalized temperature and precipitation per occasion and normalized land-use percentages per point.",
+  "samplingProtocol": "One camera trap per sampling point, 30-40 cm above ground, running 24 h a day for at least 60 consecutive days; the deployment split into 5-day occasions, y = 1 when the species was photographed in the occasion.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single-season occupancy as the authors fit it; points were surveyed at different times between December 2020 and August 2022 (40 cameras rotated over the points), and the deposit does not give each point's deployment dates.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Agricultural landscape around Pedregulho, Brazil (the deposit's locality); no coordinates deposited",
+  "temporalCoverage": "2020-12/2022-08",
+  "covariateNote": "obs_temp_std, obs_precip_std: mean temperature and precipitation of the 5-day occasion, normalized as deposited (varocc t1..t21, p1..p21). unit_landuse_<class>_<buffer m>_std: percentage of the land-use class within the buffer, normalized as deposited (varsite).",
+  "notShipped": {
+    "shared_detector": "20 point-occasions marked not surveyed ('-') for one species and 0 for the other (19 for tayra, 1 for dog): one camera surveys both, so they have no rows for either species (shared-detector ruling, 2026-11-06)",
+    "activity_records": "Activitypattern2.csv: 132 record-level times (date, time, radians) for the activity-overlap analysis",
+    "duplicate_columns": "the eight '*ms' columns of varsite.csv, identical to the plain land-use columns",
+    "model_output": "occupancy estimates and activity-overlap coefficients"
+  },
+  "notes": "The README describes 73 sampling points; the deposited matrices hold 69. Occasion k is the k-th 5-day block of a point's own deployment; deployment dates are not deposited, so there is no date column.",
+  "summary": {
+    "n_rows": 1904,
+    "n_units": 69,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 21,
+    "n_surveys": 952,
+    "y_values": "0,1",
+    "prop_zero": 0.95,
+    "n_traps": 1,
+    "n_zero": 1809,
+    "n_positive": 95,
+    "n_units_detected": 46,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_landuse_agriculture_200_std", "unit_landuse_temporary_200_std", "unit_landuse_agriculture_500_std", "unit_landuse_forest_800_std", "unit_landuse_pasture_800_std", "unit_landuse_perennial_1000_std", "unit_landuse_forest_1000_std", "unit_landuse_temporary_1000_std", "obs_temp_std", "obs_precip_std"],
+  "coreMd5": "3cef1cedd95716ed845cda6cbeac4c7c",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "1d9696fa1dd76f56f3a413f8f3dab949"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/manzo_2024_pedregulho_tayra_dog_occ.R",
+  "buildDate": "2026-11-05"
+}

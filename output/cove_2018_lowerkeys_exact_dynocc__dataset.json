@@ -1,0 +1,77 @@
+{
+  "table": "cove_2018_lowerkeys_exact_dynocc",
+  "title": "Daily camera detections of free-ranging cats at 84 sites on Big Pine Key, Florida, 2013-2015 (exact coordinates)",
+  "creator": "Cove, Michael V.; Gardner, Beth; Simons, Theodore R.; O'Connell, Allan F.",
+  "pubDate": "2019-03-30",
+  "doi": "10.5061/dryad.748pd64",
+  "paperDOI": "10.1002/ece3.3954",
+  "sourceURL": "https://doi.org/10.5061/dryad.748pd64",
+  "citation": "Cove, M. V., Gardner, B., Simons, T. R., & O'Connell, A. F. (2019). Data from: Co-occurrence dynamics of endangered Lower Keys marsh rabbits and free-ranging domestic cats: prey responses to an exotic predator removal program [Dataset]. Dryad. https://doi.org/10.5061/dryad.748pd64",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap surveys of the endangered Lower Keys marsh rabbit and free-ranging domestic cats at 84 sites on Big Pine Key, Florida, first in 2013 or 2014 and again in 2015, during a cat removal programme; daily detection histories over 15-16 days per survey, with habitat, distance and cat-removal covariates. The authors fitted dynamic occupancy and dynamic co-occurrence models.",
+  "samplingProtocol": "Two opposing camera traps 2-5 m apart on game trails at each site, active 15-16 days per primary period; a photograph of the species on a day is a detection for that day; sites surveyed once in 2013 or 2014 and again in 2015.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors assume closure within each 15-16 day primary period (gestation and movement arguments, paper section 2.2); period 1 is 2013 for some sites and 2014 for others (period_year)",
+  "occasionKind": "time",
+  "temporalCoverage": "2013/2015",
+  "crs": "EPSG:26917 (NAD83 / UTM zone 17N assumed: the deposit gives UTM northing and easting without zone or datum; the values fall in zone 17 over Big Pine Key)",
+  "covariateNote": "unit_*_z: standardised z-scores as deposited (distance between the paired cameras, to the nearest road, development, and cat removed in 2014 / 2015; habitat patch size; LiDAR mean elevation within 25 m). unit_rabbit_habitat(_buffer): patch (and its 100 m buffer) is marsh rabbit habitat. unit_cat_removed_500m_*: a cat was trapped and removed within 500 m. unit_freshwater / unit_coastal_salt_buttonwood / unit_upland: the paper's three habitat groups. period_cat_individuals / period_cat_detections: individual cats (by pelage) and cat detections at the site in 2015 (period 2 only; the 2013/14 values are not deposited). period_deploy_start / _end: 2015 camera dates (period 2 only).",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Big Pine Key, Lower Florida Keys, USA (about 24.7 N, 81.4 W); National Key Deer Refuge and adjacent public land",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "The cat is not flagged; the UTM pair is as deposited. The marsh rabbit (flagged, E7 a) is in cove_2018_lowerkeys_dynocc with coarsened coordinates."
+  },
+  "notShipped": {
+    "site_id_copy": "an unnamed column repeating the site id in upper case",
+    "rabbit_presence": "RabbitPresence_2013_14, a summary of detections that disagrees with the deposited 2013/14 rabbit history at 18 of 84 sites",
+    "cat_2013_14_counts": "Total CatCaps_2013_14 and CatIndividuals_2013_14: copies of the 2015 columns (equal at 83 and 84 of 84 sites; CatIndividuals > 0 where a cat was detected in 2015 at 83 sites); the 2013/14 values are not in the deposit",
+    "human_trail": "both HumanTrail columns: two columns of one name that disagree at 10 sites; which one the readme defines is not knowable",
+    "bad_date": "the 2015 start date '4/30/16' of one site (end 5/15/15): shipped as NA",
+    "dates_2013_14": "2013/14 camera dates: not deposited (readme: on request from the lead author); slot dates in 2015 are not exactly recoverable (start-end spans of 15-17 days for 16 slots)",
+    "model_output": "occupancy, colonisation, extinction and co-occurrence estimates",
+    "flagged_taxon": "the Lower Keys marsh rabbit (endangered; in cove_2018_lowerkeys_dynocc with coarsened coordinates, E7 ruling 3)"
+  },
+  "notes": "The _exact sibling of cove_2018_lowerkeys_dynocc (E7 ruling 3): the cat, at the source's precision.",
+  "summary": {
+    "n_rows": 2562,
+    "n_units": 84,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 16,
+    "n_surveys": 2562,
+    "y_values": "0,1",
+    "prop_zero": 0.895,
+    "n_traps": 1,
+    "n_zero": 2292,
+    "n_positive": 270,
+    "n_units_detected": 65,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_dist_cameras_z", "unit_rabbit_habitat", "unit_rabbit_habitat_buffer", "unit_dist_road_z", "unit_dist_development_z", "unit_dist_cat_removed_2014_z", "unit_dist_cat_removed_2015_z", "unit_cat_removed_500m_2014", "unit_cat_removed_500m_2015", "unit_cat_removed_500m_2014_2015", "unit_habitat", "unit_freshwater", "unit_coastal_salt_buttonwood", "unit_upland", "unit_patch_size_z", "unit_lidar_elevation_z", "unit_x", "unit_y", "period_year", "period_deploy_start", "period_deploy_end", "period_cat_individuals", "period_cat_detections"],
+  "coreMd5": "e138483763469158235d962b3893ffc0",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "label", "year_start", "year_end"],
+      "md5": "cb1b608dc7db901e2277a088219dbde2"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "d5d4c053d36139a0b22671a415489332"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cove_2018_lowerkeys_dynocc.R",
+  "buildDate": "2026-11-05"
+}

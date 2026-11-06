@@ -1,0 +1,71 @@
+{
+  "table": "fiss_2024_pennsylvania_birds_aru_occ",
+  "title": "Daily ARU detections of Wood Thrush and Cerulean Warbler from a verified machine-learning classifier over 10 recording days at forest points in Pennsylvania, 2020-2021",
+  "creator": "Fiss, Cameron; Lapp, Samuel; Cohen, Jonathan; Parker, Halie; Larkin, Jeffery T.; Larkin, Jeffery L.; Kitzes, Justin",
+  "pubDate": "2024-08-27",
+  "doi": "10.5061/dryad.4j0zpc8k0",
+  "paperDOI": "10.1002/ecs2.4954",
+  "sourceURL": "https://doi.org/10.5061/dryad.4j0zpc8k0",
+  "citation": "Fiss, C., Lapp, S., Cohen, J., Parker, H., Larkin, J. T., Larkin, J. L., & Kitzes, J. (2024). Data from: Performance of unmarked abundance models with data from machine-learning classification of passive acoustic recordings [Dataset]. Dryad. https://doi.org/10.5061/dryad.4j0zpc8k0",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Point counts and autonomous recording units at the same points in forests of Pennsylvania, spring 2020 and 2021, for Wood Thrush and Cerulean Warbler; the authors compared Royle-Nichols, time-to-detection, N-mixture and distance abundance models fitted to point counts and to classifier-derived ARU detection histories.",
+  "unitKind": "site",
+  "surveyEvidence": "deposited_matrix",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Forests of south-western Pennsylvania, USA (study blocks Laurel Ridge, Ohiopyle, State Game Lands 025, 060 and 089); no coordinates deposited",
+  "temporalCoverage": "2020/2021",
+  "responseType": "detection",
+  "samplingProtocolCode": "acoustic",
+  "samplingProtocol": "Autonomous recording units at point-count locations for 10 days; recordings processed with a machine-learning classifier and positives verified by a human listener; a species is detected on a day if any verified detection occurred that day.",
+  "closure": "closed",
+  "closureNote": "10 consecutive recording days within one breeding season; each point recorded in one year only",
+  "covariateNote": "obs_wind: wind on the recording day (as deposited). obs_date_scaled: recording day, scaled (z-score) as deposited. unit_block: study block. Cerulean Warbler histories exist only at the Ohiopyle and SGL089 blocks (__survey_taxa).",
+  "notShipped": {
+    "ttd": "the ttd column (first day detected; rebuilt exactly from det1..det10)",
+    "model_output": "abundance and detection estimates"
+  },
+  "notes": "The classifier was applied for the Cerulean Warbler at two of the five blocks; __survey_taxa lists the species surveyed for at each point. Point counts at the same points: fiss_2024_pennsylvania_birds_count.",
+  "summary": {
+    "n_rows": 8140,
+    "n_units": 571,
+    "n_taxa": 2,
+    "n_periods": 2,
+    "n_occasions": 10,
+    "n_surveys": 5710,
+    "y_values": "0,1",
+    "prop_zero": 0.729,
+    "n_traps": 1,
+    "n_zero": 5938,
+    "n_positive": 2202,
+    "n_units_detected": 376,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_block", "obs_wind", "obs_date_scaled"],
+  "coreMd5": "2247f588dde5c79a2abf7cd4d5ca8754",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "f5d8e8e973f2379658b101b12a2525ec"
+    },
+    "survey_taxa": {
+      "rows": 814,
+      "columns": ["taxon", "unit"],
+      "md5": "d07e19cbf6c8a98de51f8666546db3f3"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "47a086f892d51fe7b45d07966935c3c4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/fiss_2024_pennsylvania_birds_count.R",
+  "buildDate": "2026-11-05"
+}

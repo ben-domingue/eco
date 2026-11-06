@@ -1,0 +1,63 @@
+{
+  "table": "bruce_2022_wettropics_cat_occ",
+  "title": "Feral cat detections in 5-day occasions at 90 paired camera-trap sites in the Australian Wet Tropics, 2019-2020",
+  "creator": "Bruce, Tom; Williams, Stephen; Amin, Rajan; L'Hotellier, Felicity; Hirsch, Ben",
+  "pubDate": "2022-06-21",
+  "doi": "10.5061/dryad.2v6wwpzq4",
+  "paperDOI": "10.1002/ece3.9105",
+  "sourceURL": "https://doi.org/10.5061/dryad.2v6wwpzq4",
+  "citation": "Bruce, T., Williams, S., Amin, R., L'Hotellier, F., & Hirsch, B. (2022). Laying low: Rugged lowland rainforest preferred by feral cats in the Australian wet tropics [Dataset]. Dryad. https://doi.org/10.5061/dryad.2v6wwpzq4",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Paired camera traps (one on a road or track, one 50 m into the forest) at sites in six study areas of the Australian Wet Tropics, 2019-2020, surveyed for at least six weeks; feral cat detection per 5-day occasion with survey effort and site covariates (elevation, ruggedness, habitat, road width, fragmentation, prey and invasive herbivore indices). The authors fitted single-season occupancy (site use) models.",
+  "samplingProtocol": "At each site a camera facing a road or track and a second camera 50 m into the forest, unbaited, run for at least six weeks; independent feral cat captures from either camera summarised into 5-day occasions; an occasion is kept if either camera ran 3 days or more.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single deployment per site (six weeks or more); the authors interpret occupancy as site use because cats range over several sites",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Australian Wet Tropics, Queensland, Australia (Wooroonooran, Koombooloomba-Tully Falls and Kirrama National Parks, Tumoulin State Forest, a Paluma cattle property, Mount Zero-Taravale Wildlife Sanctuary); no coordinates deposited",
+  "temporalCoverage": "2019-04/2020-07",
+  "effortColumn": "obs_effort_scaled",
+  "covariateNote": "obs_effort_scaled: camera-days of both cameras in the occasion, scaled (z-score) as deposited. unit_ covariates unscaled as deposited (sources in the paper's Table S1): elevation (m), forest integrity, understorey vegetation < 5 m, fragmentation, distance to nearest human population, mean annual precipitation, terrain ruggedness index, invasive herbivore trapping rate, prey biomass index, fire regime, road width (m), habitat (RF rainforest, EUC eucalypt), study area code (BF Paluma cattle property, KIR Kirrama, KOM Koombooloomba, MZT Mount Zero-Taravale, TUM Tumoulin, WOO Wooroonooran).",
+  "notShipped": {
+    "model_output": "occupancy and detection estimates",
+    "dates": "occasion dates are not deposited (the paper's Table 1 gives each study area's survey span)",
+    "paluma_np": "the 18 Paluma National Park sites of the paper's Table 1 are not in the deposit (Site_num 1..108 with 90 present)"
+  },
+  "notes": "Occasions are 5-day windows from each site's deployment; an occasion with under 3 active camera-days is not surveyed (no row).",
+  "summary": {
+    "n_rows": 911,
+    "n_units": 90,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 18,
+    "n_surveys": 911,
+    "y_values": "0,1",
+    "prop_zero": 0.688,
+    "n_traps": 1,
+    "n_zero": 627,
+    "n_positive": 284,
+    "n_units_detected": 63,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_elevation_m", "unit_forest_integrity", "unit_understorey_veg", "unit_fragmentation", "unit_dist_human_population", "unit_annual_precip", "unit_ruggedness", "unit_invasive_herbivore_rate", "unit_prey_biomass_index", "unit_fire", "unit_road_width_m", "unit_habitat", "unit_study_area", "obs_effort_scaled"],
+  "coreMd5": "01920e1ae44bff67abde55f9bddd7695",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "280ce6c96489b4aec8482f3066713706"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bruce_2022_wettropics_cat_occ.R",
+  "buildDate": "2026-11-05"
+}

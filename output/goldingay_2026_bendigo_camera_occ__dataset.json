@@ -1,0 +1,67 @@
+{
+  "table": "goldingay_2026_bendigo_camera_occ",
+  "title": "Weekly camera detections of brush-tailed phascogale and inland sugar glider at 30 sites near and away from nest boxes, Bendigo, Victoria, January 2023 to February 2024",
+  "creator": "Goldingay, Ross; Thomas, Karen; Quin, Darren",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.j3tx95xwd",
+  "sourceURL": "https://doi.org/10.5061/dryad.j3tx95xwd",
+  "citation": "Goldingay, R., Thomas, K., & Quin, D. (2026). Can artificial tree cavities provide population support to cavity-dependent non-flying mammals? [Dataset]. Dryad. https://doi.org/10.5061/dryad.j3tx95xwd",
+  "paperDOI": "10.1002/ece3.74280",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera traps at 30 sites, 10 near nest boxes used by maternal phascogales in Diamond Hill (Bendigo Regional Park), 10 at least 300 m from a nest-box site, and 10 in Sedgwick State Forest with no nest boxes, run for 60 weeks from January 2023 to February 2024 to test whether nest boxes raise the local abundance of two cavity-dependent marsupials. Weekly detection of each species per site.",
+  "samplingProtocol": "One baited camera per site (Swift Enduro / Swift 3C, 5 images per trigger, 1 min quiet period) aimed at a canister of bait on a tree 2-3 m away, serviced about every two months; a week with any image of the species is a detection.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "weeks within a season block are the occasions; the deposit assigns each week to a season, and blocks are the periods. Closure within a season is the user's assumption.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Diamond Hill (Bendigo Regional Park) and Sedgwick State Forest, near Bendigo, Victoria, Australia (no coordinates deposited)",
+  "temporalCoverage": "2023-01/2024-02",
+  "covariateNote": "unit_site_type: near_nestbox (camera within 10 m of a nest box used by maternal phascogales in 2022), far_nestbox (>= 300 m from a nest-box site), sedgwick_no_nestbox. obs_week: week 1..60 of the deposit, counted from January 2023 (start day not deposited).",
+  "notShipped": {
+    "shared_detector": "14 site-weeks marked not surveyed ('-') for one species and 0 for the other: one camera surveys both, so they have no rows for either species (shared-detector ruling, 2026-11-06)",
+    "nest_box_censuses": "Tables 1-3, the nest-box censuses: shipped as goldingay_2026_diamondhill_nestbox_occ",
+    "model_output": "occupancy and abundance estimates"
+  },
+  "notes": "Week k is the k-th week from January 2023; the deposit gives no start day, so there is no date column. The fifth period is the second summer (December 2023 to February 2024).",
+  "summary": {
+    "n_rows": 3086,
+    "n_units": 30,
+    "n_taxa": 2,
+    "n_periods": 5,
+    "n_occasions": 14,
+    "n_surveys": 1543,
+    "y_values": "0,1",
+    "prop_zero": 0.791,
+    "n_traps": 1,
+    "n_zero": 2442,
+    "n_positive": 644,
+    "n_units_detected": 29,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_site_type", "obs_week"],
+  "coreMd5": "d454547fd094e7af5cf336b4255584e3",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "season", "first_week", "last_week", "season_years"],
+      "md5": "f08b1bdbf08d3d893b1a902cc51a634e"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "ed13040276f7d799dd2f0b7436919d06"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldingay_2026_bendigo_camera_occ.R",
+  "buildDate": "2026-11-05"
+}

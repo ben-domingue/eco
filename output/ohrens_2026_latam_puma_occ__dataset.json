@@ -1,0 +1,70 @@
+{
+  "table": "ohrens_2026_latam_puma_occ",
+  "title": "Daily camera-trap detections of pumas at 13,148 stations in 19 countries, Mexico and the USA to Patagonia, 2001-2023",
+  "creator": "Ohrens, Omar; Williams, Sara; Elbroch, L. Mark; Robertson, Jamie; Robinson, Hugh; and 220 further contributors (see the Dryad record)",
+  "pubDate": "2026",
+  "doi": "10.5061/dryad.k6djh9wj8",
+  "sourceURL": "https://doi.org/10.5061/dryad.k6djh9wj8",
+  "citation": "Ohrens, O., et al. (2026). Data from: Collaborative camera-trap detection data set for pumas across Latin America [Dataset]. Dryad. https://doi.org/10.5061/dryad.k6djh9wj8",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Puma (Puma concolor) detections from camera-trap surveys compiled from over 200 contributors and Panthera's PantheraIDS, 1,169,563 camera-trap days at 13,148 stations in 19 countries from Sonora, Mexico (and Big Bend, Texas) to southern Patagonia, 2001-2023. One row per camera station and active day, with a 0/1 puma detection.",
+  "samplingProtocol": "Camera traps deployed by many independent surveys with their own designs; each contributor coded each station x survey day as detected, not detected or inactive; the authors kept active days only. A day with any puma image is a detection.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "occasions are the active days of a station within a calendar year, which can span many months and more than one deployment; period = calendar year. The deposit does not give deployment boundaries.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Latin America and the southwestern USA: 19 countries from Sonora, Mexico and Big Bend, Texas to southern Patagonia, Chile",
+  "temporalCoverage": "2001-08/2023-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Puma concolor is IUCN LC; station coordinates kept as deposited"
+  },
+  "covariateNote": "obs_survey: the contributor's survey or project label (a station appears under up to 7 labels across years). unit_country: the station's country.",
+  "notShipped": {
+    "duplicate_formats": "the .Rdata, shapefile and GeoJSON copies of the same rows",
+    "effort": "the effort column (1 on every row)",
+    "scripts": "the authors' R cleaning and summary scripts"
+  },
+  "notes": "A compilation of many surveys with different camera designs and seasons; obs_survey identifies the contributing survey. Station-days absent from the deposit had no camera effort.",
+  "summary": {
+    "n_rows": 1169563,
+    "n_units": 13148,
+    "n_taxa": 1,
+    "n_periods": 23,
+    "n_occasions": 366,
+    "n_surveys": 1169563,
+    "y_values": "0,1",
+    "prop_zero": 0.989,
+    "n_traps": 1,
+    "n_zero": 1157251,
+    "n_positive": 12312,
+    "n_units_detected": 3459,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_country", "unit_decimalLatitude", "unit_decimalLongitude", "obs_survey"],
+  "coreMd5": "b7696fb77b109308fc4b8a1b0edd6883",
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "year"],
+      "md5": "89e4af938ce26b938cecab6736c88743"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "e6af3a6b1296ee4ecd1bd05863ea6e4c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ohrens_2026_latam_puma_occ.R",
+  "buildDate": "2026-11-05"
+}

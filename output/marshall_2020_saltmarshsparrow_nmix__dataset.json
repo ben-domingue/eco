@@ -1,0 +1,65 @@
+{
+  "table": "marshall_2020_saltmarshsparrow_nmix",
+  "title": "Saltmarsh Sparrow repeated point counts at 913 tidal-marsh points from Maine to Maryland, 2012",
+  "creator": "Marshall, Hallie; Blomberg, Erik; Watson, Valerie; Conway, Meaghan; Cohen, Jonathan; Correll, Maureen; Elphick, Chris; Hodgman, Thomas; Kocek, Alison; Kovach, Adrienne; Shriver, W. Gregory; Wiest, Whitney; Olsen, Brian",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.vhhmgqnqg",
+  "sourceURL": "https://doi.org/10.5061/dryad.vhhmgqnqg",
+  "paperDOI": "10.1093/condor/duaa019",
+  "citation": "Marshall, H., Blomberg, E., Watson, V., Conway, M., Cohen, J., Correll, M., Elphick, C., Hodgman, T., Kocek, A., Kovach, A., Shriver, W. G., Wiest, W., & Olsen, B. (2021). Habitat openness and edge avoidance predict saltmarsh sparrow abundance better than habitat area [Dataset]. Dryad. https://doi.org/10.5061/dryad.vhhmgqnqg",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "SHARP (Saltmarsh Habitat and Avian Research Program) point counts of the endangered Saltmarsh Sparrow at 913 GRTS-sampled points in 413 tidal-marsh patches across six ecogeographic regions from Maine to Maryland, each surveyed 2-3 times between 15 April and 31 July 2012 (2,718 surveys, 663 birds). Site covariates (angle to the maximum horizon, average horizon angle, patch area, high-marsh cover, distance to edge, state, region) and z-standardised survey covariates (temperature, sky, wind, noise, hours after midnight, survey window) as the paper's N-mixture models used them.",
+  "samplingProtocol": "SHARP point counts: 5 min of passive observation following a modified North American Marsh Bird Monitoring Protocol, all aural and visual detections of Saltmarsh Sparrows within 50 m, 2-3 replicate surveys at least 10 days apart between 30 min before sunrise and 11:00.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "2-3 surveys within one breeding season (15 April-31 July 2012); the authors timed survey windows by region to approximate closure",
+  "geographicCoverage": "Tidal marshes from Maine to Maryland, USA (about 38.0-44.9 N), six SHARP ecogeographic regions; latitude coarsened to 0.1 degree, no longitude deposited",
+  "temporalCoverage": "2012-04/2012-07",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Latitude (6 decimals in the deposit; no longitude is deposited) coarsened to the centre of its 0.1-degree band with coarsen_coords(): Saltmarsh Sparrow is IUCN EN."
+  },
+  "crs": "EPSG:4326",
+  "notShipped": {
+    "z_site_covariates": "the z-standardised copies of latitude, horizon angles, patch area, high-marsh cover and distance to edge (recomputable from the shipped values)",
+    "model_output": "N-mixture abundance and detection estimates"
+  },
+  "notes": "Survey covariates are deposited only as z-scores and ship as given (obs_*_z); obs_window_z takes five equally spaced values although the paper names three windows (early, mid, late summer; regional definitions in Wiest et al. 2016), so it is not decoded. At 4 conducted surveys all six survey covariates are exactly 0 (the mean, as at the 21 surveys that did not happen), taken to be a filled missing record and set NA. Survey dates are not deposited. Openness was measured in 2014 for the 70 Long Island points; the counts are from 2012.",
+  "summary": {
+    "n_rows": 2718,
+    "n_units": 913,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 2718,
+    "y_values": "0,1,2,3,4,5,6,7,8,10,11",
+    "prop_zero": 0.872,
+    "n_traps": 1,
+    "n_zero": 2369,
+    "n_positive": 349,
+    "n_units_detected": 221,
+    "max_y": 11
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_state", "unit_region", "unit_angle_max_horizon_deg", "unit_avg_horizon_angle_deg", "unit_patch_area_ha", "unit_high_marsh_pct", "unit_dist_edge_m", "unit_decimalLatitude", "obs_temp_z", "obs_sky_z", "obs_wind_z", "obs_noise_z", "obs_hours_z", "obs_window_z"],
+  "coreMd5": "5b6521cbf7c5636b187c6474208dbd34",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "46085a5b4246881563e3531b25491f9b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/marshall_2020_saltmarshsparrow_nmix.R",
+  "buildDate": "2026-11-05"
+}
