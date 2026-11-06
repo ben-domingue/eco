@@ -17,13 +17,14 @@ eco_filter(
   min_periods = NULL,
   min_taxa = NULL,
   multi_species = NULL,
-  sample_floor = NULL
+  sample_floor = NULL,
+  licence = NULL
 )
 }
 \arguments{
 \item{model_family, response_type, taxon_group, protocol, unit_kind, realm, country}{Character, one or more values; \code{protocol} is the tags column
 \code{sampling_protocol}. \code{response_type} is one of \code{detection}, \code{count},
-\code{state}, \code{ordinal}, \code{multinomial_cell}, \code{detection_event}.}
+\code{state}, \code{ordinal}, \code{multinomial_cell}, \code{detection_event}, \code{binomial_count}.}
 
 \item{min_units, min_occasions, min_periods, min_taxa}{Numeric lower bounds on
 the computed counts.}
@@ -33,10 +34,20 @@ single-taxon tables, \code{NULL} (default) both.}
 
 \item{sample_floor}{\code{TRUE} keeps only tables meeting the standard's sample
 floor (30 units and 2 occasions or periods); \code{NULL} keeps all.}
+
+\item{licence}{The licence a table is redistributed under (the \code{spdx}
+column of \code{\link[=eco_biblio]{eco_biblio()}}; each table keeps its source's licence). One or
+more SPDX ids (\code{"CC0-1.0"}, \code{"CC-BY-4.0"}, ...), or a shortcut:
+\code{"permissive"} keeps tables whose licence allows commercial use and asks
+at most for attribution (no NonCommercial, ShareAlike, NoDerivatives,
+ODbL or GPL clause); \code{"public-domain"} keeps CC0 and public-domain
+dedications only. A table with no recorded licence is never kept by a
+licence filter. Attribution is still owed under CC BY, and citing the
+deposit is asked of every use (see \code{\link[=eco_cite]{eco_cite()}}).}
 }
 \value{
 A data.frame of the matching tables with their metadata and tags
-columns, sorted by \code{table}. Zero rows when nothing matches.
+columns and \code{licence} (SPDX id), sorted by \code{table}. Zero rows when nothing matches.
 }
 \description{
 Joins \code{\link[=eco_metadata]{eco_metadata()}} and \code{\link[=eco_tags]{eco_tags()}} and keeps the tables matching every
@@ -49,5 +60,6 @@ or any of several values. The result goes straight into \code{\link[=eco_fetch]{
 eco_filter(model_family = "Single-season occupancy")
 eco_filter(response_type = "count", min_units = 100)
 eco_filter(taxon_group = "Amphibians", multi_species = TRUE)
+eco_filter(model_family = "occupancy", licence = "permissive")   # e.g. commercial use
 }
 }

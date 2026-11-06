@@ -47,6 +47,8 @@ website:
             text: Vignettes
           - href: agents.qmd
             text: Using an AI assistant
+          - href: use.qmd
+            text: Using eco responsibly
       - text: The format
         menu:
           - href: standard.qmd

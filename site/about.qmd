@@ -68,7 +68,9 @@ Each table keeps the licence of its source, shown on its entry on the
 fieldwork: cite the original deposit and paper for each table you use, not
 only eco, and the eco version you read, which pins the data (`eco_version()`).
 `eco_cite()` in the [R package](r.html#how-to-cite) writes the reference list
-or BibTeX for the tables you used, one entry per deposit.
+or BibTeX for the tables you used, one entry per deposit. What else we ask of
+users, on licences, commercial use and coarsened coordinates, is in
+[Using eco responsibly](use.html).
 
 ## People
 
