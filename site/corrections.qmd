@@ -37,7 +37,7 @@ table.
 
 Written by `releases/manifest.py` from Redivis' own version history. The core
 tables are in the Redivis datasets `r shard_links_md` (Redivis caps a dataset
-at 1000 tables, so new tables go to the newest), the metadata in `eco_meta`.
+at 1000 tables; each is filled to about 950 before the next is used), the metadata in `eco_meta`.
 
 ```{r}
 #| label: releases

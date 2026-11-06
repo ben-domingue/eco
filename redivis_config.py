@@ -8,11 +8,14 @@ compares the two in CI, so adding a shard is one edit in each file.
 **Why shards.** Redivis caps a dataset at 1000 tables, and a core table with its
 side tables is two to five of them. As IRW does (`item_response_warehouse`,
 `_2`, ...), eco adds a dataset with the same structure when the newest one nears
-the cap. The rules, also IRW's:
+the cap. The rules (IRW's, except that eco fills a shard before moving on):
 
   * A core table and its side tables always live in the same shard.
-  * A new table goes to `CORE_DEFAULT` when that is set, else to the newest
-    shard. An existing table is updated in the shard that already holds it.
+  * Shards fill oldest first: a new table goes to the oldest shard holding
+    fewer than SWITCH_AT tables (counting its draft), so eco takes new tables
+    until it reaches about 950 and eco_2 after that (Ben, 2026-11-05). Setting
+    CORE_DEFAULT overrides this. An existing table is updated in the shard that
+    already holds it.
     Tables are never moved between shards: a copy in a second shard shadows
     the first, which is the problem moving was meant to solve.
   * Readers search the shards newest-first and take the first match; the
@@ -58,12 +61,13 @@ CORE_SHARDS: tuple[Dataset, ...] = (
 #: The pipeline's own tables (metadata, biblio, tags). Not a shard.
 META = Dataset("eco_meta", "241c")
 
-#: Where NEW core tables go, overriding "the newest shard" while set (a shard
-#: name). None: the newest shard.
+#: Where NEW core tables go, overriding the fill rule while set (a shard
+#: name). None: the oldest shard under SWITCH_AT.
 CORE_DEFAULT: str | None = None
 
-TABLE_CAP = 1000
-TABLE_WARN = 950
+TABLE_CAP = 1000        # Redivis' limit; an upload past it is refused
+SWITCH_AT = 950         # a shard at or above this takes no new tables
+TABLE_WARN = 950        # the uploader warns when an upload leaves a shard above this
 
 
 def shard(name: str) -> Dataset:
@@ -74,6 +78,16 @@ def shard(name: str) -> Dataset:
                    + ", ".join(d.name for d in CORE_SHARDS))
 
 
-def default_shard() -> Dataset:
-    """The shard new core tables go to."""
-    return shard(CORE_DEFAULT) if CORE_DEFAULT else CORE_SHARDS[-1]
+def default_shard(counts: dict[str, int] | None = None) -> Dataset:
+    """The shard new core tables go to, given each shard's table count now.
+
+    Without counts (no Redivis access) this cannot apply the fill rule and
+    answers the newest shard; the uploader always passes them."""
+    if CORE_DEFAULT:
+        return shard(CORE_DEFAULT)
+    if counts is None:
+        return CORE_SHARDS[-1]
+    for d in CORE_SHARDS:
+        if counts.get(d.name, 0) < SWITCH_AT:
+            return d
+    return CORE_SHARDS[-1]      # every shard full: the cap check will refuse; add a shard

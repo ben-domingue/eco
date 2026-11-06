@@ -44,8 +44,9 @@ pipeline; eco does not, and one repo means one place to look.
 dataset at 1000 tables, so when the newest shard nears it Ben creates the next
 one and it is registered in `redivis_config.py` and `Rpkg/R/config.R`
 (`tools/check_config_parity.py` compares them in CI). A core table and its side
-tables are always in the same shard. New tables go to the newest shard (or
-`CORE_DEFAULT`); an existing table is updated where it lives and never moved; the
+tables are always in the same shard. Shards fill oldest first: new tables go to
+the oldest shard under 950 tables (`SWITCH_AT`; `CORE_DEFAULT` overrides), so `eco`
+takes them until about 950 and `eco_2` after; an existing table is updated where it lives and never moved; the
 uploader lists every shard first, refuses a name already in another shard, and
 refuses an upload that would take a shard past the cap. Readers (the R package,
 `validate/validate_redivis.py`) search the shards newest-first. Which shard holds

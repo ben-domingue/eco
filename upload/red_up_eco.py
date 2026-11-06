@@ -8,8 +8,8 @@
 
 Which shard: the core shards are listed in `redivis_config.py` (the rules are
 there). Every shard is listed first; a table already on Redivis is updated in
-the shard that holds it, a new table and its side tables go to the default
-shard (the newest, unless CORE_DEFAULT pins one) or to `--dataset`, and an
+the shard that holds it, a new table and its side tables go to the oldest
+shard under 950 tables (unless CORE_DEFAULT pins one) or to `--dataset`, and an
 upload that would take a shard past 1000 tables is refused before anything is
 written. The plan, dry run included, prints each table's shard.
 
@@ -287,8 +287,8 @@ def main(argv=None) -> int:
     ap.add_argument("paths", nargs="*", default=[str(OUT)],
                     help="CSV files or directories (default: output/)")
     ap.add_argument("--dataset", default=None, choices=[d.name for d in rc.CORE_SHARDS],
-                    help="the shard NEW tables go to (default: redivis_config.default_shard(), "
-                         f"now {rc.default_shard().name}); existing tables always stay where they are")
+                    help="the shard NEW tables go to (default: the oldest shard under "
+                         f"{rc.SWITCH_AT} tables, redivis_config.py); existing tables always stay where they are")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--describe", action="store_true",
                     help="print the dataset description and every table's generated description, then exit (no token needed)")
@@ -398,6 +398,8 @@ def main(argv=None) -> int:
     try:
         authenticate()
         listing = shard_listing(owner)
+        if not args.dataset:
+            default = rc.default_shard({s: len(n) for s, n in listing.items()}).name
         plan = place([r.table for r in reports], listing, default=default, forced=args.dataset,
                      cap=rc.TABLE_CAP, warn=rc.TABLE_WARN)
     except (Exception, SystemExit) as exc:

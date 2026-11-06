@@ -59,7 +59,10 @@ def test_cap_and_warning_count_existing_tables():
 
 def test_registry():
     assert [d.name for d in rc.CORE_SHARDS][:2] == ["eco", "eco_2"]
-    assert rc.default_shard().name == (rc.CORE_DEFAULT or rc.CORE_SHARDS[-1].name)
+    if not rc.CORE_DEFAULT:
+        assert rc.default_shard({"eco": 690, "eco_2": 0}).name == "eco"
+        assert rc.default_shard({"eco": rc.SWITCH_AT, "eco_2": 0}).name == "eco_2"
+        assert rc.default_shard({"eco": 999, "eco_2": 999}).name == rc.CORE_SHARDS[-1].name
     assert rc.shard("eco").qualified == "eco:4j5q"
     assert rc.shard("eco_2").manifest_column == "eco_2_redivis_version"
     assert len({d.name for d in rc.CORE_SHARDS}) == len(rc.CORE_SHARDS)
