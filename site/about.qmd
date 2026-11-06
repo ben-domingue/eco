@@ -77,3 +77,4 @@ Stanford. The code, the standard and this site are at
 Additional contributors include:
 
 - [Milan Gorislavets](https://github.com/themilan1337)
+- Stacy Cremer
