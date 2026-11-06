@@ -1,0 +1,63 @@
+{
+  "table": "silva_2018_scotland_badger_occ",
+  "title": "Weekly camera-trap detections of European badgers at 168 baited stations in 11 study areas across northern Scotland, 2010-2013",
+  "creator": "Silva, André P.; Curveira-Santos, Gonçalo; Kilshaw, Kerry; Newman, Chris; Macdonald, David W.; Simões, Luciana G.; Rosalino, Luís M.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.n7h91",
+  "sourceURL": "https://doi.org/10.5061/dryad.n7h91",
+  "citation": "Silva, A. P., Curveira-Santos, G., Kilshaw, K., Newman, C., Macdonald, D. W., Simões, L. G. & Rosalino, L. M. (2018). Data from: Climate and anthropogenic factors determine site occupancy in Scotland's Northern-range badger population: implications of context-dependent responses under environmental change [Dataset]. Dryad. https://doi.org/10.5061/dryad.n7h91",
+  "paperDOI": "10.1111/ddi.12564",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap survey of the European badger at the northern edge of its range: 168 baited stations of paired cameras in 11 study areas across northern Scotland, October 2010 to March 2013, each active 60-80 days, with detections pooled into 7-day occasions. Station covariates describe topography, winter climate, land cover and roads and settlements within 500 m. The authors fitted single-season occupancy models within two topo-climatic contexts.",
+  "samplingProtocol": "Grids of 10-20 camera-trap stations about 1 km apart in each study area; two opposing cameras per station, baited (bait on a stake) and lured, active 60-80 days and checked every 10-14 days; a station-week is a detection if at least one badger photograph was taken.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a station's 4-10 surveyed weeks (one session per station)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Northern Scotland, UK: 11 study areas (Darnaway, Dundreggan, Dunrobin, Fetteresso, Hope, Inchnadamph, Inverewe, Inverlael, Seafield and Strathspey, Spinningdale, Trossachs); station coordinates not deposited (available from the authors)",
+  "temporalCoverage": "2010-10/2013-03",
+  "covariateNote": "cluster_id: study area. unit_context: the authors' topo-climatic context as deposited ('Undifined' as spelled). Within 500 m of the station (paper Table 2): unit_elev_m; winter (Nov-Apr 2007-2011) means unit_wtemp_min_c (daily minimum), unit_wtemp_range_c (daily range, WTempV), unit_rain_mm, unit_snow_days (excluded by the authors), unit_frost_days; land cover per cent unit_agric_pct, unit_mixed_forest_pct, unit_conifer_pct, unit_grass_pct, unit_heath_pct, unit_bog_pct, unit_water_pct; unit_dist_river_m; unit_habitat_richness (land-cover classes); unit_dist_main_road_m, unit_main_road_m (length within 500 m), unit_dist_minor_road_m, unit_minor_road_m, unit_dist_settlement_m.",
+  "notShipped": {
+    "Humans": "human captures per 100 trap nights: an index from the same cameras (ruled 2026-11-06, not a covariate)",
+    "ALLC": "red fox, wildcat and pine marten captures per 100 trap nights: an index from the same cameras",
+    "SA": "a 1-11 index of the study area (cluster_id)",
+    "dates": "session dates per study area (the paper's Table S1) are not deposited"
+  },
+  "notes": "The 22 week columns are a calendar shared within each study area (every station of an area starts at the same column); which calendar weeks or years they are is not deposited. Badger detection rule from the paper (s.2.4).",
+  "summary": {
+    "n_rows": 1230,
+    "n_units": 168,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 22,
+    "n_surveys": 1230,
+    "y_values": "0,1",
+    "prop_zero": 0.851,
+    "n_traps": 1,
+    "n_zero": 1047,
+    "n_positive": 183,
+    "n_units_detected": 66,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_context", "unit_elev_m", "unit_wtemp_min_c", "unit_wtemp_range_c", "unit_rain_mm", "unit_snow_days", "unit_frost_days", "unit_agric_pct", "unit_mixed_forest_pct", "unit_conifer_pct", "unit_grass_pct", "unit_heath_pct", "unit_bog_pct", "unit_water_pct", "unit_dist_river_m", "unit_habitat_richness", "unit_dist_main_road_m", "unit_main_road_m", "unit_dist_minor_road_m", "unit_minor_road_m", "unit_dist_settlement_m"],
+  "coreMd5": "270f5cd3c60c807450e9b35bf5e525a3",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "5fbe8b816b50e1db6ce0f151ed9d1e0f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/silva_2018_scotland_badger_occ.R",
+  "buildDate": "2026-11-06"
+}

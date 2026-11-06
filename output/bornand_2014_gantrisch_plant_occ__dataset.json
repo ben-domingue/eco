@@ -1,0 +1,61 @@
+{
+  "table": "bornand_2014_gantrisch_plant_occ",
+  "title": "Double-observer time-to-detection surveys of 17 grassland plant species in 44 quadrats, Gurnigel-Gantrisch, Swiss Alps, August 2011",
+  "creator": "Bornand, Christophe N.; Kéry, Marc; Bueche, Lena; Fischer, Markus",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.v2c17",
+  "sourceURL": "https://doi.org/10.5061/dryad.v2c17",
+  "citation": "Bornand, C. N., Kéry, M., Bueche, L. & Fischer, M. (2015). Data from: Hide and seek in vegetation: time-to-detection is an efficient design for estimating detectability and occurrence [Dataset]. Dryad. https://doi.org/10.5061/dryad.v2c17",
+  "paperDOI": "10.1111/2041-210X.12171",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Two experienced botanists independently searched 44 randomly placed 10 m x 10 m quadrats in grazed wet meadows and fens of the Gurnigel-Gantrisch region, Swiss Alps, for 17 plant species of differing conspicuousness, each for at most 8 minutes, recording the time to first detection of each species. The authors compared traditional (double-observer) and time-to-detection occupancy models.",
+  "samplingProtocol": "Each of two observers searched each 10 m x 10 m quadrat independently for all 17 target species at once, for at most 8 minutes, moving freely within it and pausing a stopwatch at each first detection; species visible at a glance before the start were given 1 s. 16-31 August 2011.",
+  "samplingProtocolCode": "botanical_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = observer: two independent searches of each quadrat within the 16-31 August 2011 field period, during which the authors judged occurrence and phenology stable",
+  "occasionKind": "observer",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Gurnigel-Gantrisch region, canton of Bern, Swiss Alps (about 46.74 N, 7.45 E), 1450-1510 m; no quadrat coordinates deposited",
+  "temporalCoverage": "2011-08/2011-08",
+  "covariateNote": "observer: A or B (the paper's two observers, CNB and LB; which is which is not stated). obs_ttd_s: seconds to first detection, or 480 (the 8-minute search) where the species was not detected. obs_ttd_censored: 1 where not detected (censored at 480 s), else 0.",
+  "notShipped": {
+    "detection_file": "SuppInfo_DetectionNondetectionData.txt: the same detections as the time-to-detection file (asserted equal)",
+    "extra_search": "the extra detections during the later abundance assessment (oextra in the paper's Table 1) are not deposited"
+  },
+  "notes": "Time to detection (ruling 2026-11-06) with two independent observers as occasions. Species names from the paper's Table 1 (the deposit gives one word per species; its observed counts per observer equal Table 1's, asserted).",
+  "summary": {
+    "n_rows": 1496,
+    "n_units": 44,
+    "n_taxa": 17,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 88,
+    "y_values": "0,1",
+    "prop_zero": 0.283,
+    "n_traps": 1,
+    "n_zero": 423,
+    "n_positive": 1073,
+    "n_units_detected": 44,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "observer", "obs_ttd_s", "obs_ttd_censored"],
+  "coreMd5": "dce4ad3d25b5d709afe475f68224a532",
+  "sideTables": {
+    "taxa": {
+      "rows": 17,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "5b1c246cc6bde3b17114ffd3ff107dc3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bornand_2014_gantrisch_plant_occ.R",
+  "buildDate": "2026-11-06"
+}

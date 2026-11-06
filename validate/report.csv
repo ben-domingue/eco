@@ -51,6 +51,7 @@ blount_2025_neturkiye_carniv_count,7080,216,2,TRUE,"","",TRUE,"",TRUE,meets,depo
 blount_2025_neturkiye_lynx_occ,3540,216,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 boone_2023_minnesota_bombus_count,1815,25,15,TRUE,"",sample_floor,TRUE,"",TRUE,below (25 units < 30),row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support; sample_floor
 boone_2023_minnesota_bombus_exact_count,1694,25,14,TRUE,"",sample_floor,TRUE,"",TRUE,below (25 units < 30),row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support; sample_floor
+bornand_2014_gantrisch_plant_occ,1496,44,17,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; item_scale_outlier; sample_floor
 botsch_2020_tits_territory_count,1008,24,2,TRUE,"",sample_floor,TRUE,"",TRUE,below (24 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; sample_floor
 bradferlawrence_2025_ukwood_beetle_comm,34385,60,115,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 bradferlawrence_2025_ukwood_bird_comm,17712,125,54,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
@@ -122,6 +123,7 @@ dougherty_2016_rustycrayfish_edna,732,261,1,TRUE,"","",TRUE,"",TRUE,meets,deposi
 doyle_2025_chinalake_tortoise_scr,45936,24,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (24 units < 30),effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; item_scale_outlier; sample_floor
 duboisgagnon_2021_quebec_chorusfrog_occ,410,180,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 dutta_2024_panna_carnivore_occ,17352,814,3,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
+dwyer_2024_phoenix_bat_occ,14000,50,14,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 dyck_2022_carpathians_carniv_occ,3012,140,3,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 evans_2021_maine_marten_dynocc,15792,197,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 fabritius_2015_merikarvia_fritillary_cjs,3129,149,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
@@ -176,6 +178,7 @@ grant_2023_canaanvalley_amph_count,13712,108,4,TRUE,"","",TRUE,"",TRUE,meets,sam
 green_2018_ncal_fisher_scr,107364,138,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; multi_scale*; resp_scale_nested_support
 green_2018_ncal_mesocarn_dynocc,4416,100,3,TRUE,"","",TRUE,"",TRUE,meets,row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 gustafson_2024_seward_gyrfalcon_dynocc,1068,97,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
+gustafson_2024_seward_prey_count,2964,988,3,TRUE,"",sample_floor,TRUE,"",TRUE,below (no replication),row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support
 guzy_2018_southcarolina_anuran_comm,4914,42,13,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 haas_2025_sweden_waterbird_count,3466890,3724,70,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
 haas_2025_sweden_waterbirdsep_count,564528,1645,48,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
@@ -186,6 +189,8 @@ hamer_2024_hungary_amph_comm,2691,100,9,TRUE,"","",TRUE,"",TRUE,meets,deposited_
 hamm_2013_satyr_ds,625,125,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 hanslowe_2022_marianas_rat_occ,6945,1026,1,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 hartley_2024_cpraealtus_occ,1404,113,1,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
+hastings_2018_forrester_philopatry_ms,2009,183,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix
+hastings_2018_seak_philopatry_ms,5007,369,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 hastings_2018_seak_sealion_cjs,39645,2795,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 henden_2013_finnmark_birds_dynocc,7480,37,17,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
 henry_2020_karoo_birds_comm,66465,61,63,TRUE,"","",TRUE,"",TRUE,meets,row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
@@ -318,6 +323,8 @@ murn_2016_kruger_vulture_occ,359,17,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (1
 murphy_2021_riogrande_otter_scr,4551,37,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; multi_scale*; item_scale_outlier; sample_floor
 murray_2021_chicago_coyote_mange,32898,115,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 muths_2020_blackrock_toad_rd,220748,3509,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
+nakashima_2024_kanagawa_nestpred_occ,64,32,2,TRUE,"",sample_floor,TRUE,"",TRUE,below (no replication),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
+nakashima_2024_yakumo_scavenger_occ,138,69,2,TRUE,"",sample_floor,TRUE,"",TRUE,below (no replication),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 neateclegg_2018_cusuco_birds_count,149017,25,209,TRUE,"",sample_floor,TRUE,"",TRUE,below (25 units < 30),row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 neon_2026_carabids_count,5976135,2029,55,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
 neon_2026_fish_removal,386260,223,155,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
@@ -410,6 +417,7 @@ sepulveda_2019_streamgage_fish_edna,1520,190,2,TRUE,"","",TRUE,"",TRUE,meets,dep
 shah_2025_bardia_tiger_occ,14337,719,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 sharma_2021_spiti_snowleopard_scr,480,16,1,TRUE,"",sample_floor; replication,TRUE,"",TRUE,below (16 units < 30; no replication),effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 shyvers_2020_ppr_sagegrouse_rd,8145,543,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
+silva_2018_scotland_badger_occ,1230,168,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 siren_2024_vtnh_moose_count,4400,225,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 smith_2019_greatbasin_csf_edna,504,168,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 smith_2019_greatbasin_csf_qpcr,1512,504,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
