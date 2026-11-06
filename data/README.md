@@ -429,6 +429,11 @@ CSVs with `upload/red_up_eco.py`.
 | `chanex_2026_swissalps_amph_count.R` | community counts at snow-making reservoirs and ponds, read from a 1.1 GB zip by range requests | Zenodo | CC BY 4.0 |
 | `lebeuftaylor_2026_alpac_songbird_dynocc.R` | dynamic community occupancy from classifier detections on ARU recordings | Borealis | CC0 |
 | `steinmetz_2025_maewong_tiger_rd.R` | robust design, tigers (IUCN EN) in six biennial camera sessions | figshare | CC BY 4.0 |
+| `inbo_2026_flanders_batwinter_count.R` | Meetnetten.be winter counts of hibernating bats, 23 identification classes, 1,380 sites, 1943-2024 | GBIF (INBO IPT) | CC0 |
+| `inbo_2026_flanders_firesalamander_count.R` | Meetnetten.be night transect counts of fire salamanders, 83 transects, 2016-2025 | GBIF (INBO IPT) | CC0 |
+| `haas_2025_sweden_waterbirdsep_count.R` | Swedish September waterbird census, 48 species on 1,645 sectors, 1973-2024, method as occasion | GBIF (Swedish IPT) | CC0 |
+| `lindstrom_2025_sweden_winterpoints_count.R` | Swedish winter point count routes, 262 taxa, 2,452 routes, survey period as occasion, winter parts | GBIF (Swedish IPT) | CC0 |
+| `carro_2023_donana_tracks_count.R` | Doñana carnivore track counts, nine per-taxon GBIF datasets joined, 12 transects, coarsened (lynx) | GBIF (GBIF Spain IPT) | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
