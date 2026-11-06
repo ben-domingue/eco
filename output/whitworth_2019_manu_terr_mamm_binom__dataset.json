@@ -1,6 +1,6 @@
 {
   "table": "whitworth_2019_manu_terr_mamm_binom",
-  "title": "Terrestrial camera-trap detections of 26 mammal species at 77 station-years across a disturbance gradient, Manu Biosphere Reserve, Peru, 2015 and 2016: six-day sessions with a detection out of sessions surveyed",
+  "title": "Terrestrial camera-trap detections of 26 mammal species at 68 stations, 9 of them surveyed in both years, across a disturbance gradient, Manu Biosphere Reserve, Peru, 2015 and 2016: six-day sessions with a detection out of sessions surveyed",
   "creator": "Whitworth, Andrew; Beirne, Chris; Pillco Huarcaya, Ruthmery; Whittaker, Lawrence; Serrano Rojas, Shirley Jennifer; Tobler, Mathias; MacLeod, Ross",
   "pubDate": "2019",
   "doi": "10.5061/dryad.32464qs",
@@ -11,7 +11,7 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "abstract": "Arboreal and terrestrial camera traps across a gradient of rainforest disturbance in the Manu Biosphere Reserve, southeast Peru, to compare how the canopy and ground mammal communities respond. This table is the terrestrial survey: 77 station-years at six sites (2015 and 2016; 9 stations resurveyed in both years at two sites), 26 species. For each station-year and species the deposit gives the number of six-day sessions with a detection out of the sessions surveyed, as the authors' multi-season Royle-Nichols community model uses it, with habitat and disturbance covariates.",
+  "abstract": "Arboreal and terrestrial camera traps across a gradient of rainforest disturbance in the Manu Biosphere Reserve, southeast Peru, to compare how the canopy and ground mammal communities respond. This table is the terrestrial survey: 68 stations at six sites, 9 of them surveyed in both years, (2015 and 2016; 9 stations resurveyed in both years at two sites), 26 species. For each station-year and species the deposit gives the number of six-day sessions with a detection out of the sessions surveyed, as the authors' multi-season Royle-Nichols community model uses it, with habitat and disturbance covariates.",
   "samplingProtocol": "Terrestrial camera traps at stations along a forest disturbance gradient; each deployment divided into six-day sessions (9-32 per station-year), y = sessions in which the species was photographed.",
   "samplingProtocolCode": "camera_trap",
   "surveyEvidence": "effort_table",

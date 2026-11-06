@@ -11,7 +11,7 @@
     "spdx": "CC0-1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/"
   },
-  "abstract": "Lured camera arrays (three cameras per pond) at 50 beaver and peatland ponds in northern Quebec, two 7-day sessions in each of 2018 and 2019; daily detection of 11 mammal and 45 bird species, with rainfall, days since snowmelt, active cameras, pond type, distance to road, forest cover and latitude. The authors fitted a multispecies occupancy model.",
+  "abstract": "Lured camera arrays (three cameras per pond) at 50 beaver and peatland ponds in northern Quebec, two 7-day sessions in each of 2018 and 2019; daily detection of 56 taxa (11 mammals, the rest birds), with rainfall, days since snowmelt, active cameras, pond type, distance to road, forest cover and latitude. The authors fitted a multispecies occupancy model.",
   "samplingProtocol": "Three infrared cameras per pond in a triangle at the pond edge with a scent lure, run 24 h for two sessions of seven consecutive days each summer; records of a species from any of the three cameras on a day are one daily detection.",
   "samplingProtocolCode": "camera_trap",
   "surveyEvidence": "deposited_matrix",

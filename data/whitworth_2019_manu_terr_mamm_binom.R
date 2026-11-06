@@ -79,14 +79,14 @@ periods <- data.table(period = 1:2, year = c(2015L, 2016L), source_year_code = c
                                                                             paste(sort(unique(stn[period == 2]$unit_site)), collapse = ",")))
 
 dataset <- list(
-  title = "Terrestrial camera-trap detections of 26 mammal species at 77 station-years across a disturbance gradient, Manu Biosphere Reserve, Peru, 2015 and 2016: six-day sessions with a detection out of sessions surveyed",
+  title = "Terrestrial camera-trap detections of 26 mammal species at 68 stations, 9 of them surveyed in both years, across a disturbance gradient, Manu Biosphere Reserve, Peru, 2015 and 2016: six-day sessions with a detection out of sessions surveyed",
   creator = "Whitworth, Andrew; Beirne, Chris; Pillco Huarcaya, Ruthmery; Whittaker, Lawrence; Serrano Rojas, Shirley Jennifer; Tobler, Mathias; MacLeod, Ross",
   pubDate = "2019",
   doi = "10.5061/dryad.32464qs", sourceURL = "https://doi.org/10.5061/dryad.32464qs",
   citation = "Whitworth, A., Beirne, C., Pillco Huarcaya, R., Whittaker, L., Serrano Rojas, S. J., Tobler, M., & MacLeod, R. (2019). Data from: Human disturbance impacts on rainforest mammals are most notable in the canopy; especially for larger-bodied species [Dataset]. Dryad. https://doi.org/10.5061/dryad.32464qs",
   paperDOI = "10.1111/ddi.12930",
   intellectualRights = list(spdx = "CC0-1.0", url = "https://creativecommons.org/publicdomain/zero/1.0/"),
-  abstract = "Arboreal and terrestrial camera traps across a gradient of rainforest disturbance in the Manu Biosphere Reserve, southeast Peru, to compare how the canopy and ground mammal communities respond. This table is the terrestrial survey: 77 station-years at six sites (2015 and 2016; 9 stations resurveyed in both years at two sites), 26 species. For each station-year and species the deposit gives the number of six-day sessions with a detection out of the sessions surveyed, as the authors' multi-season Royle-Nichols community model uses it, with habitat and disturbance covariates.",
+  abstract = "Arboreal and terrestrial camera traps across a gradient of rainforest disturbance in the Manu Biosphere Reserve, southeast Peru, to compare how the canopy and ground mammal communities respond. This table is the terrestrial survey: 68 stations at six sites, 9 of them surveyed in both years, (2015 and 2016; 9 stations resurveyed in both years at two sites), 26 species. For each station-year and species the deposit gives the number of six-day sessions with a detection out of the sessions surveyed, as the authors' multi-season Royle-Nichols community model uses it, with habitat and disturbance covariates.",
   samplingProtocol = "Terrestrial camera traps at stations along a forest disturbance gradient; each deployment divided into six-day sessions (9-32 per station-year), y = sessions in which the species was photographed.",
   samplingProtocolCode = "camera_trap", surveyEvidence = "effort_table",
   responseType = "binomial_count", effortColumn = "obs_trials", unitKind = "site",
@@ -104,7 +104,7 @@ dataset <- list(
 
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/whitworth_2019_manu_terr_mamm_binom.R")
 stage_dict_row(TABLE,
-  description = "Terrestrial camera-trap community data for 26 mammal species at 77 station-years along a rainforest disturbance gradient in the Manu Biosphere Reserve, Peru, 2015-2016: six-day sessions with a detection out of sessions surveyed (binomial_count), with habitat covariates.",
+  description = "Terrestrial camera-trap community data for 26 mammal species at 68 stations, 9 of them surveyed in both years, along a rainforest disturbance gradient in the Manu Biosphere Reserve, Peru, 2015-2016: six-day sessions with a detection out of sessions surveyed (binomial_count), with habitat covariates.",
   url = "https://doi.org/10.5061/dryad.32464qs",
   reference = "Whitworth, A., Beirne, C., Pillco Huarcaya, R., Whittaker, L., Serrano Rojas, S. J., Tobler, M. W. & MacLeod, R. (2019). Human disturbance impacts on rainforest mammals are most notable in the canopy, especially for larger-bodied species. Diversity and Distributions 25, 1166-1178. https://doi.org/10.1111/ddi.12930",
   doi_paper = "10.1111/ddi.12930", doi_data = "10.5061/dryad.32464qs",
@@ -112,6 +112,6 @@ stage_dict_row(TABLE,
   notes = "Terrestrial survey only; the arboreal survey of the same deposit is held (13 species codes undefined).",
   source_via = "Dryad (version zip)")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Community occupancy (binomial counts over six-day sessions, multi-season)",
-  sampling_protocol = "camera_trap", design = "Multi-season (2 years; 77 station-years, 9-32 six-day sessions collapsed to a count)",
+  sampling_protocol = "camera_trap", design = "Multi-season (2 years; 68 stations, 9 surveyed in both years, 9-32 six-day sessions collapsed to a count)",
   realm = "Terrestrial", country = "PER", coordinates = "None in source",
   notes = "Terrestrial cameras along a disturbance gradient; several VU species; no coordinates.")
