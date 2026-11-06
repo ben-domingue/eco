@@ -28,7 +28,7 @@
 #           (binary sign arrays, scaled covariates); nonfpmodel_cplx_EE.R: model code.
 # Mapping (dynamic occupancy, single species): unit = plot, taxon = OCHPRI, period = year - 2009
 #   (2010 = 1, ..., 2021 = 12; no surveys in 2015-2016), occasion = survey within plot-year in date
-#   order (1-3), y = hassign (any pika sign), date = Field_Date. The sign counts ship as
+#   order (1-3), y = any fresh sign (FS, FH, PC or PS > 0), date = Field_Date. The sign counts ship as
 #   obs_n_old_scat, obs_n_old_haypile, obs_n_fresh_haypile, obs_n_sighting, obs_n_call,
 #   obs_n_fresh_scat, obs_n_fresh_scat_unambiguous, so the paper's multi-sign model (a detection
 #   process per sign type) can be refitted from the rows; obs_resurvey, obs_season; obs_cover_*
@@ -36,12 +36,14 @@
 #   obs_tmax_mean_c and obs_precip_sum_mm (plot-year values; tmaxmean varies within a plot-year
 #   in a few cases, so both are obs_). Survey evidence = sample_table: post_process.csv lists the
 #   conducted surveys, with explicit zero counts.
-#   y is the authors' hassign, which includes old scat and old haypiles; a user who treats old
-#   sign as ambiguous (the paper's false-positive model) builds y from the fresh-sign columns.
+#   y follows the paper's detection definition (ruling 2026-11-06, #10): "Observations of old
+#   sign were not included in our analyses", so y = any fresh sign, not the deposited hassign
+#   (which also counts old scat and old haypiles). hassign is not shipped; it is obs_n_old_* > 0
+#   or y. The sign counts let a user refit the multi-sign and false-positive models.
 #   No coordinates are deposited (plot ids only); the pika is IUCN LC.
 # Not shipped: ssn and Month / Yday (recodes of Season and the shipped date); Location_ID and
 #   Survey_ID (concatenations of plot, year and date); Plot_ID (the plot number within the park,
-#   part of plot); the RData file (the same surveys reshaped and scaled for JAGS).
+#   part of plot); hassign (see above); the RData file (the same surveys reshaped and scaled for JAGS).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "goldman_2023_pnw_pika_dynocc"
 dir <- download_dryad("10.5061/dryad.ttdz08m2n", TABLE)
@@ -63,7 +65,9 @@ setorder(d, plot, dt)
 d[, occasion := seq_len(.N), by = .(plot, Year)]
 stopifnot(identical(as.integer(table(d$occasion)), c(4012L, 1107L, 7L)), all(d[occasion == 2L]$resurv == 1L))
 
-long <- d[, .(unit = plot, taxon = "OCHPRI", y = hassign, period = Year - 2009L, occasion, date = as.character(dt),
+d[, fresh := as.integer(FS + FH + PC + PS > 0)]
+stopifnot(all(d$fresh <= d$hassign))
+long <- d[, .(unit = plot, taxon = "OCHPRI", y = fresh, period = Year - 2009L, occasion, date = as.character(dt),
               unit_park = Park, unit_lava_complexity = lava_complx,
               obs_n_old_scat = OS, obs_n_old_haypile = OH, obs_n_fresh_haypile = FH, obs_n_sighting = PS, obs_n_call = PC,
               obs_n_fresh_scat = FS, obs_n_fresh_scat_unambiguous = FS_U, obs_resurvey = resurv,
@@ -95,8 +99,9 @@ dataset <- list(
   temporalCoverage = "2010/2021",
   notShipped = list(recodes = "ssn, Month and Yday (recodes of Season and the date)",
                     identifiers = "Survey_ID, Location_ID and Plot_ID (concatenations or parts of plot, year and date)",
+                    hassign = "the source's any-sign flag, which counts old sign the paper did not analyse; recoverable as y or any obs_n_old_* > 0",
                     jags_data = "DataForJAGS_MultiSign.RData: the same surveys reshaped and scaled for the authors' JAGS model"),
-  notes = "y = hassign, the source's any-sign indicator, which includes old scat and old haypiles; for the paper's multi-sign or false-positive models use the obs_n_* counts (fresh scat, fresh haypile, call, sighting). obs_n_fresh_scat_unambiguous is NA on 682 surveys where it was not recorded. obs_cover_* are Daubenmire class codes as deposited (T = trace). No coordinates are deposited. The README asks that use of the data attribute the OSU-Cascades Human and Ecosystem Resilience and Sustainability Lab, with support from the National Park Service.")
+  notes = "y = any fresh sign (fresh scat, fresh haypile, call or sighting), the paper's detection definition (old sign was not analysed); the source's hassign also counts old scat and old haypiles and is not shipped (it equals y or any obs_n_old_* > 0). For the paper's multi-sign or false-positive models use the obs_n_* counts. obs_n_fresh_scat_unambiguous is NA on 682 surveys where it was not recorded. obs_cover_* are Daubenmire class codes as deposited (T = trace). No coordinates are deposited. The README asks that use of the data attribute the OSU-Cascades Human and Ecosystem Resilience and Sustainability Lab, with support from the National Park Service.")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/goldman_2023_pnw_pika_dynocc.R")
 
 stage_dict_row(TABLE,
@@ -105,7 +110,7 @@ stage_dict_row(TABLE,
   reference = "Goldman, M. R., Shinderman, M., Jeffress, M. R., Rodhouse, T. J., & Shoemaker, K. T. (2023). Integrating multiple sign types to improve occupancy estimation for inconspicuous species. Ecology and Evolution, 13(5), e10019.",
   doi_paper = "10.1002/ece3.10019", doi_data = "10.5061/dryad.ttdz08m2n",
   original_license = "CC0 1.0 (README requests attribution to the OSU-Cascades HERS Lab)", derived_license = "CC0 1.0",
-  notes = "Dynamic occupancy with sign-type counts as obs_ columns (multi-sign model refittable); y = any sign as deposited.",
+  notes = "Dynamic occupancy with sign-type counts as obs_ columns (multi-sign model refittable); y = any fresh sign, as in the paper (old sign in obs_ columns).",
   source_via = "Dryad (version zip)")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Dynamic occupancy (multi-sign; sign-type counts per survey)",
   sampling_protocol = "sign_survey", design = "Multi-season (10 years, 2010-2021; 1-3 surveys per plot-year)",
