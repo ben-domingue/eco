@@ -5,6 +5,7 @@ title: "Corrections and releases"
 ```{r}
 #| label: load
 rel <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
+source("_shards.R")
 chg <- read.csv("../releases/table_changes.csv", stringsAsFactors = FALSE, colClasses = "character")
 chg <- chg[order(chg$date, decreasing = TRUE), ]
 ```
@@ -34,17 +35,21 @@ table.
 
 ## Releases
 
-Written by `releases/manifest.py` from Redivis' own version history. The Redivis
-dataset is [`datapages.eco`](https://redivis.com/datasets/4j5q).
+Written by `releases/manifest.py` from Redivis' own version history. The core
+tables are in the Redivis datasets `r shard_links_md` (Redivis caps a dataset
+at 1000 tables; each is filled to about 950 before the next is used), the metadata in `eco_meta`.
 
 ```{r}
 #| label: releases
 #| output: asis
-cat("| eco version | Released | Redivis `eco` | Redivis `eco_meta` | Tables | Note |\n|---|---|---|---|---|---|\n")
+core_cols <- setdiff(grep("_redivis_version$", names(rel), value = TRUE), "eco_meta_redivis_version")
+dash <- function(x) ifelse(is.na(x) | !nzchar(x), "-", x)
+cat("| eco version | Released | ", paste0("Redivis `", sub("_redivis_version$", "", core_cols), "`", collapse = " | "),
+    " | Redivis `eco_meta` | Tables | Note |\n|", strrep("---|", length(core_cols) + 5), "\n", sep = "")
 for (i in rev(seq_len(nrow(rel)))) {
   r <- rel[i, ]
   cat(sprintf("| **eco v%s** | %s | %s | %s | %s | %s |\n", r$eco_version, substr(r$date, 1, 10),
-              r$eco_redivis_version, if (nzchar(r$eco_meta_redivis_version)) r$eco_meta_redivis_version else "-",
+              paste(dash(unlist(r[core_cols])), collapse = " | "), dash(r$eco_meta_redivis_version),
               r$n_tables, r$note))
 }
 ```

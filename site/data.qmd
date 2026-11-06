@@ -26,12 +26,14 @@ d <- merge(d, val[, .(table, irw_v1, irw_warnings)], by = "table")
 dn <- as.data.table(read.csv("../releases/data_notes.csv", stringsAsFactors = FALSE, colClasses = "character"))
 setorder(d, table)
 redivis <- "https://redivis.com/datasets/4j5q"
+source("_shards.R")
 gh <- "https://github.com/ben-domingue/eco/blob/main"
 ```
 
 Every table below was built by a script in the repository's `data/`
-directory from a public deposit, validated against the draft standard, and published on Redivis as the dataset
-[`datapages.eco`](`r redivis`). Each table ships with a `__taxa`
+directory from a public deposit, validated against the draft standard, and published on Redivis in the datasets
+`r shard_links_md`
+(Redivis caps a dataset at 1000 tables; a table and its side tables are always in the same one). Each table ships with a `__taxa`
 side table (taxon resolution via GBIF, plus traits where the source has them),
 a `__periods` side table where there are primary periods, `__units` or
 `__traps` where the sampling frame or trap layout needs one, and a
@@ -113,8 +115,8 @@ for (i in seq_len(nrow(d))) {
 
 ## Getting the data
 
-The dataset is on Redivis as [`datapages.eco`](`r redivis`). Its public
-access level is "data", so every table is served as CSV to anyone, no account
+The tables are on Redivis as `r shard_links_md`; the R package searches
+them all, so you never need to know which holds a table. Their public access level is "data", so every table is served as CSV to anyone, no account
 needed; the [R package](r.html) reads it that way:
 
 ```r

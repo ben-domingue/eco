@@ -17,7 +17,7 @@ Invisibly, the manifest row pinned.
 }
 \description{
 After \code{eco_set_version(1)}, every fetch and every metadata read goes to the
-Redivis versions of \code{eco} and \code{eco_meta} that eco version 1 consists of, so a
+Redivis versions of the datasets that eco version 1 consists of, so a
 script reproduces what it read then. \code{\link[=eco_reset_version]{eco_reset_version()}} returns to the
 current releases. \code{\link[=eco_version]{eco_version()}} says what is in force.
 }

@@ -7,7 +7,7 @@
 eco_clear_cache(dataset = NULL)
 }
 \arguments{
-\item{dataset}{Optionally \code{"eco"} or \code{"eco_meta"} to clear only that dataset.}
+\item{dataset}{Optionally a dataset name (\code{"eco"}, \code{"eco_2"}, ..., \code{"eco_meta"}) to clear only that dataset.}
 }
 \value{
 Invisibly, the number of files removed.
