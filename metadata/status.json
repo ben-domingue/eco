@@ -1,10 +1,10 @@
 {
   "date": "2026-11-06",
-  "n_tables": 380,
-  "n_rows": 210683024,
-  "n_units": 385064,
-  "n_taxa_rows": 10419,
-  "n_surveys": 20320931,
+  "n_tables": 381,
+  "n_rows": 210688649,
+  "n_units": 385092,
+  "n_taxa_rows": 10422,
+  "n_surveys": 20322806,
   "n_families": 57,
   "families": {
     "Abundance": 2,
@@ -23,7 +23,7 @@
     "Distance sampling": 7,
     "Double-observer": 2,
     "Dynamic co-occurrence occupancy": 1,
-    "Dynamic community occupancy": 8,
+    "Dynamic community occupancy": 9,
     "Dynamic occupancy": 26,
     "Jolly-Seber": 1,
     "Multi-scale / multi-method occupancy": 1,
@@ -68,7 +68,7 @@
   "response_types": {
     "binomial_count": 19,
     "count": 85,
-    "detection": 224,
+    "detection": 225,
     "multinomial_cell": 14,
     "ordinal": 1,
     "state": 37
@@ -78,25 +78,25 @@
     "Birds": 112,
     "Fish": 24,
     "Invertebrates": 43,
-    "Mammals": 145,
+    "Mammals": 146,
     "Multiple": 9,
     "Plants": 13,
     "Reptiles": 13
   },
   "survey_evidence": {
-    "deposited_matrix": 214,
+    "deposited_matrix": 215,
     "effort_table": 59,
     "inferred": 21,
     "row_presence": 33,
     "sample_table": 53
   },
-  "n_below_floor": 64,
+  "n_below_floor": 65,
   "n_with_coordinates": 110,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 380,
-  "n_irw_conforms": 380,
+  "n_valid": 381,
+  "n_irw_conforms": 381,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 380
+    "eco v1.1-draft (2026-11-03)": 381
   }
 }

@@ -1601,6 +1601,163 @@ What this batch says about the standard and the tools:
 - **National pools again** (batch 14): fish (155 taxa nationally, a median of 6 per site) and ticks are small enough to
   ship whole; mosquitoes needed the carabid-style cut; plants cannot be built at all under one pool.
 
+## Batch 37 — 2026-11-06 (needs-look Dryad rows, with a one-night Dryad token)
+
+One agent in `~/eco-b37` (branch `batch-37`, from main at a6d2647 plus the `download_dryad()` DRYAD_TOKEN commit;
+batch 35 merged in mid-batch). Scope: the `needs-look` rows of `queue/candidates.csv` (187 Dryad, 1 figshare). Each
+deposit was screened from the Dryad dataset API and its file list first, and downloaded only where a build looked
+likely. The dataset and file-list endpoints never refused. Downloads are metered separately: up to 100 per clock
+hour, and 500 per day (token and anonymous alike), resetting at 00:00 UTC. The version zip answered 429 from the
+first request of the night, so files were fetched one by one, hour by hour. The daily 500 ran out at 08:00 UTC,
+and 77 needs-look rows were never fetched. They stay `needs-look` and unclaimed for the next batch.
+
+111 needs-look rows were worked: 59 built (80 tables, all on the Redivis draft; the later ones on `eco_2`, since
+`eco` passed SWITCH_AT during the batch), 26 not built, 17 blocked, 9 held (each with a question in
+`queue/human_review.csv`).
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| amir_2022_seasia_coabundance_count | Community N-mixture (repeated counts) | count | 22,188 | 416 | 4 | 1 |
+| bianchi_2021_furnas_carniv_occ | Multi-species occupancy | detection | 1,263 | 57 | 3 | 1 |
+| braga_2024_saopaulo_guan_occ | Single-season occupancy | detection | 1,227 | 205 | 1 | 1 |
+| burgstahler_2026_wa_shrubsteppe_mamm_occ | Single-season occupancy (spatial replicates) | detection | 2,820 | 141 | 5 | 4 |
+| chambert_2018_pigfrog_acoustic_count | Occupancy with false positives (detection counts) | count | 480 | 60 | 1 | 1 |
+| chambert_2018_treefrog_acoustic_count | Occupancy with false positives (detection counts) | count | 360 | 60 | 1 | 1 |
+| croose_2019_michigan_mustelid_dynocc | Dynamic community occupancy | detection | 1,500 | 64 | 2 | 3 |
+| fidino_2018_chicago_mesocarn_dynocc | Dynamic community occupancy (co-occurrence) | detection | 78,201 | 111 | 3 | 13 |
+| fidino_2021_lincolnpark_birds_binom | Community occupancy (binomial counts) | binomial_count | 3,088 | 1 | 193 | 16 |
+| fogarty_2022_greatbasin_birds_count | Community N-mixture (multi-season) | count | 264,256 | 275 | 32 | 15 |
+| furnas_2021_ncalifornia_carniv_comm | Community occupancy (multi-season) | detection | 406,650 | 1,340 | 15 | 10 |
+| gaynor_2020_gorongosa_mamm_binom | Community occupancy (single season, binomial counts) | binomial_count | 2,280 | 60 | 38 | 1 |
+| goldingay_2022_grafton_underpass_occ | Community occupancy (single season) | detection | 14,179 | 13 | 11 | 1 |
+| goldingay_2022_port_underpass_occ | Community occupancy (single season) | detection | 8,442 | 11 | 9 | 1 |
+| goldman_2025_pennsylvania_grouse_occ | Single-season occupancy | detection | 1,431 | 299 | 1 | 3 |
+| green_2018_ncal_fisher_scr | Spatial capture-recapture (binomial counts) | binomial_count | 107,364 | 138 | 1 | 8 |
+| green_2018_ncal_mesocarn_dynocc | Dynamic community occupancy (interactions) | detection | 4,416 | 100 | 3 | 7 |
+| gustafson_2024_seward_gyrfalcon_dynocc | Dynamic occupancy | detection | 1,068 | 97 | 1 | 6 |
+| guzy_2018_southcarolina_anuran_comm | Community occupancy (single season) | detection | 4,914 | 42 | 13 | 1 |
+| hamer_2017_wtp_growlingfrog_dynocc | Dynamic occupancy | detection | 233 | 33 | 1 | 4 |
+| henden_2013_finnmark_birds_dynocc | Dynamic community occupancy | detection | 7,480 | 37 | 17 | 4 |
+| higgins_2022_utila_anole_ccr | Closed-population capture-recapture | detection | 356 | 89 | 1 | 1 |
+| hostetter_2020_minnesota_lynx_dynocc | Dynamic occupancy | detection | 4,399 | 431 | 1 | 5 |
+| husemann_2015_ch_greenbul_cjs | Cormack-Jolly-Seber | detection | 2,161 | 264 | 1 | 25 |
+| husemann_2015_fu_greenbul_cjs | Cormack-Jolly-Seber | detection | 374 | 46 | 1 | 26 |
+| husemann_2015_mb_greenbul_cjs | Cormack-Jolly-Seber | detection | 1,211 | 177 | 1 | 20 |
+| husemann_2015_nd_greenbul_cjs | Cormack-Jolly-Seber | detection | 345 | 38 | 1 | 25 |
+| husemann_2015_ng_greenbul_cjs | Cormack-Jolly-Seber | detection | 2,281 | 285 | 1 | 24 |
+| iknayan_2023_svalley_pollinator_occ | Community occupancy (single season) | detection | 4,956 | 41 | 42 | 1 |
+| jacobson_2020_cookinlet_beluga_cjs | Cormack-Jolly-Seber | detection | 4,632 | 386 | 1 | 12 |
+| jones_2021_mdg_kittlitzplover_cjs | Cormack-Jolly-Seber | detection | 13,923 | 1,071 | 1 | 13 |
+| jones_2021_mdg_madagascarplover_cjs | Cormack-Jolly-Seber | detection | 4,849 | 373 | 1 | 13 |
+| jones_2021_mdg_whitefrontplover_cjs | Cormack-Jolly-Seber | detection | 5,187 | 399 | 1 | 13 |
+| joshi_2025_shuklaphanta_leopard_occ | Single-season occupancy | detection | 368 | 92 | 1 | 1 |
+| laytonmatthews_2024_hornoya_gull_cjs | Cormack-Jolly-Seber | detection | 2,686 | 158 | 1 | 17 |
+| lindenmayer_2022_nsw_woodland_birds_comm | Dynamic community occupancy | detection | 143,437 | 259 | 31 | 17 |
+| lloyd_2020_marion_elephantseal_ms | Multi-state / multi-event capture-recapture | state | 134,247 | 6,245 | 1 | 34 |
+| lyngdoh_2023_spiti_carniv_occ | Multi-species occupancy with interactions | detection | 1,720 | 97 | 4 | 1 |
+| mackenzie_2021_stexas_mesocarniv_dynocc | Dynamic community occupancy (co-occurrence) | detection | 5,625 | 28 | 3 | 14 |
+| mcnew_2025_sagegrouse_lek_count | N-mixture (repeated counts) | count | 94 | 23 | 1 | 2 |
+| mizel_2018_alaska_sparrows_count | N-mixture (repeated counts) | count | 932 | 150 | 2 | 1 |
+| monterroso_2020_iberia_carniv_comm | Community occupancy (single season) | detection | 110,528 | 446 | 8 | 1 |
+| morganti_2017_carmagnola_pallidswift_cjs | Cormack-Jolly-Seber | detection | 558 | 93 | 1 | 6 |
+| morganti_2017_modena_commonswift_cjs | Cormack-Jolly-Seber | detection | 1,278 | 213 | 1 | 6 |
+| murn_2016_kruger_vulture_occ | Single-season occupancy (detection only; occupancy known) | detection | 359 | 17 | 1 | 1 |
+| palmero_2023_bpp_lynx_scr | Spatial capture-recapture (binomial counts with day effort) | binomial_count | 686 | 14 | 1 | 1 |
+| palmero_2023_sbnp_lynx_scr | Spatial capture-recapture (binomial counts with day effort) | binomial_count | 160 | 5 | 1 | 1 |
+| palmero_2023_ucez_lynx_scr | Spatial capture-recapture (binomial counts with day effort) | binomial_count | 1,430 | 22 | 1 | 1 |
+| paquet_2015_weaver_helpers_ms | Multi-state / multi-event capture-recapture | state | 2,184 | 168 | 1 | 13 |
+| peron_2017_sabap2_broodparasites_occ | Dynamic community occupancy (interactions) | detection | 657,512 | 1,846 | 8 | 7 |
+| poutanen_2018_finland_whitetail_scr | Spatial capture-recapture | detection | 14,580 | 27 | 1 | 1 |
+| priol_2014_quebec_flyingsquirrel_rd | Robust design capture-recapture | detection | 1,200 | 300 | 1 | 2 |
+| regmi_2024_madhesh_tiger_binom | Community occupancy (single season, binomial counts) | binomial_count | 658 | 94 | 7 | 1 |
+| rich_2019_mojave_birds_binom | Community occupancy (single season, binomial counts) | binomial_count | 9,240 | 210 | 44 | 1 |
+| rich_2019_mojave_mamm_binom | Community occupancy (single season, binomial counts) | binomial_count | 3,150 | 210 | 15 | 1 |
+| rivera_2022_chicago_coyote_dielocc | Multi-state occupancy (diel) | state | 5,493 | 105 | 1 | 13 |
+| rivera_2022_makira_fosa_dielocc | Multi-state occupancy (diel) | state | 3,004 | 290 | 1 | 1 |
+| rivera_2022_rnp_fosa_dielocc | Multi-state occupancy (diel) | state | 831 | 42 | 1 | 1 |
+| roder_2020_valais_ungulates_count | Community N-mixture (multi-season) | count | 8,460 | 218 | 5 | 4 |
+| rota_2016_midatlantic_carniv_occ | Multi-species occupancy with interactions | detection | 170,224 | 1,906 | 4 | 1 |
+| roth_2016_aargau_amph_count | Community N-mixture (repeated counts) | count | 3,848 | 481 | 4 | 1 |
+| saeed_2022_murree_spinyfrogs_dynocc | Dynamic community occupancy | detection | 1,426 | 34 | 2 | 2 |
+| shah_2025_bardia_tiger_occ | Single-season occupancy | detection | 14,337 | 719 | 1 | 1 |
+| taraporevala_2025_kansas_canids_dynocc | Dynamic community occupancy | detection | 2,390 | 74 | 2 | 4 |
+| thomas_2025_boreal_moose_ms | Multi-state occupancy | state | 358 | 89 | 1 | 1 |
+| thomas_2025_boreal_moose_occ | Single-season occupancy | detection | 358 | 89 | 1 | 1 |
+| thuma_2025_ma_bgriseocollis_nest_cr | Capture-recapture (nests, within-season) | detection | 230 | 46 | 1 | 6 |
+| thuma_2025_ma_bimpatiens_nest_cr | Capture-recapture (nests, within-season) | detection | 290 | 58 | 1 | 7 |
+| tjornlov_2020_christianso_eider_ld | Dead recovery (Burnham live-dead) | state | 240,195 | 11,192 | 1 | 25 |
+| tjornlov_2020_vlieland_eider_ld | Dead recovery (Burnham live-dead) | state | 265,036 | 10,236 | 1 | 33 |
+| twining_2024_ny_blackbear_occ | Single-season occupancy | detection | 3,234 | 673 | 1 | 1 |
+| twining_2024_ny_bobcat_coyote_occ | Multi-species occupancy | detection | 22,376 | 3,849 | 2 | 1 |
+| vandeweyer_2024_australia_mouse_scr | Spatial capture-recapture (multi-session) | detection | 1,993,088 | 1,656 | 1 | 4 |
+| visagie_2026_tswalu_brownhyaena_scr | Spatial capture-recapture | detection | 389,298 | 39 | 1 | 1 |
+| visagie_2026_tswalu_leopard_scr | Spatial capture-recapture | detection | 49,910 | 5 | 1 | 1 |
+| visagie_2026_tswalu_spothyaena_scr | Spatial capture-recapture | detection | 69,874 | 7 | 1 | 1 |
+| wang_2019_amazon_ocelot_occ | Single-season occupancy | detection | 4,018 | 899 | 1 | 1 |
+| warretrodrigues_2022_iguana_msrd | Multi-state robust design capture-recapture | state | 52,020 | 1,156 | 1 | 9 |
+| wong_2022_sabah_acacia_mamm_comm | Community occupancy (single season) | detection | 53,575 | 142 | 25 | 1 |
+| zuberogoitia_2021_basque_owls_count | Community N-mixture (repeated counts) | count | 23,175 | 526 | 9 | 1 |
+
+Held (`queue/human_review.csv`, each with its question):
+- Twining pine marten: the camera operation matrix and capture history named in the README are not deposited, and
+  live-trap and hair-tube usage is absent. Build with an all-operated rule?
+- Crum right whale: line-transect SCR (the standing hold).
+- McFarlane caribou: polygon search-encounter SCR, which has no E9 layout.
+- Nakashima time-to-detection: one survey per station. Is this an exception to the replication ruling?
+- Strait trout: part of each state is a growth-curve projection.
+- Price / Sherman amphibians: the two count files disagree.
+- Three spatial mark-resight deposits (Rees feral cats, Whittington grizzlies, the group-association SMR): these
+  wait on the same SMR ruling as the grizzly deposit already held.
+
+Blocked:
+- On the paper (species, state or event codes undefined in the deposit): Tilker Annamites, Jimenez-Franco 2019 and
+  2023 (the same 73 six-letter codes), Hastings sea lions, Cayuela toads, Fortuna shags (events 1-4), Davis wild pig
+  eDNA, Davis rabies surveillance, Duangchatrasiri tigers.
+- On size: Cole, Holm, Dorning, Geary and DiRenzo (the data sit inside multi-GB archives). Amir was unblocked by
+  fetching per file and built; Holm's 48 MB eDNA zip and Dorning's image list were queued per file when the quota ran
+  out.
+- On a 404: Riecke tits.
+- On the download quota: two rows that were claimed before the quota ran out.
+
+What this batch says about the standard and the tools:
+
+- **Dryad's download limit is per clock hour, not per night.** With a token the dataset and file-list endpoints
+  answered every request (several hundred), but the download endpoints (version zip and per-file) answered 429 after
+  about 100 downloads and reported `ratelimit-limit: 100`, `ratelimit-reset` on the next hour. The version zip was
+  refused (429) from the first request. Fetching file by file inside each hour worked; the per-file route redirects
+  to S3, and the redirect must not carry the Authorization header (S3 answers 400 if it does; R's libcurl drops it,
+  Python's urllib does not).
+- **`download_dryad()` fetches whole deposits.** Eight deposits were blocked only because a small data file sits
+  beside gigabytes of images or model output. Fetching per file unblocked three of them (Amir built; Fortuna then
+  blocked on undefined event codes; Rees held for SMR). A `files =` argument to `download_dryad()` would let the
+  scripts do this; it is a lib/ change, so it is left for Ben.
+- **The eco shard reached SWITCH_AT during the batch.** The uploader placed the last tables in `eco_2` on its own
+  (no `--dataset` passed), as the shard rule says; earlier tables of this batch are in `eco`.
+- **Indices from the same cameras.** Several deposits ship covariates computed from the same detector's detections of
+  other species or of people (prey and carnivore RAIs, human and dog trap success, a bear detection rate, hikers per
+  site, the noisy-miner flag). Following the "dog activity index" precedent they are not shipped; the guide could say
+  so in one line, since the cases are common.
+- **Multi-state diel occupancy** (Rivera): states not detected / day / night / both fit `responseType = state`
+  directly; the deposited codes are 1-4 and were shifted to 0-3 with the deposited code in `y_raw`.
+- **Burnham live-dead from MARK LDLD files** (Tjornlov): the second and third live-dead tables after the Hunder trout;
+  ducklings marked at hatch start at their ringing year (E4.4), adults at the study's first year.
+- **Covariate files in a different row order** (Burgstahler camera visibility, Monterroso site covariates, Wang site
+  covariates with re-spelled ids): two were joined by key; Wang's could not be joined and was not shipped.
+- **Single-visit with timed intervals** (Gustafson prey point counts, five 2-minute intervals) was not built under the
+  replication ruling, although a time-removal model is identifiable from it; worth a sentence in the ruling if Ben
+  wants removal-interval point counts admitted.
+- **Per-file fetch makes "blocked on size" mostly go away.** With a filename whitelist the hourly fetcher took only
+  the data files of deposits that are gigabytes of images or model output (and of large code-and-output deposits),
+  which cut the night's download count by roughly a third. A `files =` argument to `download_dryad()` would let the
+  scripts do the same; until then a script built from a partial fetch reads only the files its header names.
+- **Stacked site-years.** Two New York camera surveys reuse site names across years at different coordinates, so
+  the unit is the site-year (as the authors fit them); the coordinates let a user link years if they want to.
+- **One-site series.** The Lincoln Park bird walks are one unit (days seen of days walked, 16 years over a
+  century); the floor flags it, the data are still a clean binomial series.
+- **Overlap between deposits.** The statewide New York winter survey contains the Northern Zone 2016-2018 coyote
+  detections already in twining_2024_adirondack_carniv_occ; built, with the overlap stated in notes. The standard
+  says nothing about partial overlap between deposits.
+
 ## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
 
 One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.
