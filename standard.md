@@ -591,5 +591,5 @@ shipped and why. Facts about the source are assertions, not comments.
   - E3 (existing rule applied): an editor's territory delineation from shared field visits is an observation; occasion = visit × editor, `observer` = editor, `closure = dependent`.
   - Intake: a single-visit site-unit table (`n_occasions = 1`, `n_periods = 1`) is generally not eligible; exceptions are Ben's case-by-case call (first: `bradferlawrence_2025_ukwood_plant_comm`, kept).
   - Intake (scale, #24): the Breeding Bird Survey block and stop tables stay regional (BCR 15); national block (about 210M rows) and stop (about 1.26B rows) tables are not built.
-  - Intake (`processing_guide.md`): no Dryad token; a deposit whose anonymous download fails (404/405) is `blocked`.
+  - Intake (`processing_guide.md`): the Dryad intake is anonymous by default and a deposit whose anonymous download fails (404/405) is `blocked`; a short-lived token Ben supplies in `DRYAD_TOKEN` is used when set (amended 2026-11-06, batch 35).
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

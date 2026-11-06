@@ -1,0 +1,67 @@
+{
+  "table": "sweeney_2026_ocracoke_plover_cjs",
+  "title": "Resighting histories of 399 marked piping plovers on fall-migration surveys at South Point, Ocracoke Island, North Carolina, 2016-2023",
+  "creator": "Sweeney, Chelsea E.; Wails, Christy N.; Alvino, Camille R.; Oliver, Katie W.; Maddock, Sidney B.; Catlin, Daniel H.; Fraser, James D.; Karpanty, Sarah M.",
+  "pubDate": "2026-09-17",
+  "doi": "10.5061/dryad.0zpc867d2",
+  "sourceURL": "https://doi.org/10.5061/dryad.0zpc867d2",
+  "citation": "Sweeney, C. E., Wails, C. N., Alvino, C. R., Oliver, K. W., Maddock, S. B., Catlin, D. H., Fraser, J. D., & Karpanty, S. M. (2026). Data from: Storm-driven habitat loss reduced migrating piping plover abundance and stopover time, not body condition, at a key site [Dataset]. Dryad. https://doi.org/10.5061/dryad.0zpc867d2",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Fall-migration surveys of piping plovers on South Point, Ocracoke Island, North Carolina, July-October 2016-2023, spanning Hurricane Dorian (September 2019): counts of all and of marked plovers on 20-37 surveys a year, resighting histories of individually marked birds, and mass, tarsus and age of birds trapped there. The authors fitted an integrated Jolly-Seber and binomial-count superpopulation model of passage abundance and stopover duration.",
+  "samplingProtocol": "Repeated surveys of the South Point stopover site in July-October; observers counted all plovers once and recorded the band or flag combination of marked birds; plovers were also trapped, banded and measured.",
+  "surveyEvidence": "sample_table",
+  "taxonInclusion": "single",
+  "temporalCoverage": "2016-07/2023-10",
+  "geographicCoverage": "South Point, Ocracoke Island, Outer Banks, North Carolina, USA (about 35.07 N, 76.0 W); no coordinates deposited",
+  "occasionKind": "time",
+  "samplingProtocolCode": "tag_resight",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "open",
+  "closureNote": "stopover: birds arrive and depart within each July-October season (Jolly-Seber within a year); open between years",
+  "covariateNote": "unit_capture_year, unit_capture_age (HY hatch-year, AHY after-hatch-year), unit_capture_mass_g, unit_capture_tarsus_mm: from the bird's capture on South Point (NA for birds banded elsewhere).",
+  "notShipped": {
+    "flag_codes": "band and flag codes of the masses file (the source anonymised identifiers for this threatened species)",
+    "banding_year": "the banding year of birds banded on South Point: the authors removed those resightings from the histories (README), so those years have no rows for those birds",
+    "unlinked_captures": "39 captured birds with no history (anon NA) and birds banded here and never in a later history: no detections in the table, not units (E4.4)",
+    "model_output": "superpopulation, stopover and body-condition estimates"
+  },
+  "notes": "Hatch-year birds trapped here have rows from their hatch year; other birds from 2016. Rows in a bird's South Point banding year are absent (resightings excluded by the authors). Integrated with the count table sweeney_2026_ocracoke_plover_count.",
+  "summary": {
+    "n_rows": 81230,
+    "n_units": 399,
+    "n_taxa": 1,
+    "n_periods": 8,
+    "n_occasions": 37,
+    "n_surveys": 81230,
+    "y_values": "0,1",
+    "prop_zero": 0.968,
+    "n_traps": 1,
+    "n_zero": 78659,
+    "n_positive": 2571,
+    "n_units_detected": 399,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_capture_year", "unit_capture_age", "unit_capture_mass_g", "unit_capture_tarsus_mm"],
+  "coreMd5": "5e056b4f947a020aac33fd98d3fbf3b0",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year", "n_surveys", "first_survey", "last_survey", "hurricane_dorian"],
+      "md5": "c84c03c87d0f05bce2bd82ba5161dbff"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "447b7c78839a771a5b6cc24a94a96f50"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sweeney_2026_ocracoke_plover_cjs.R",
+  "buildDate": "2026-11-05"
+}

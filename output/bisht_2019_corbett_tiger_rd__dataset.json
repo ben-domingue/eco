@@ -1,0 +1,66 @@
+{
+  "table": "bisht_2019_corbett_tiger_rd",
+  "title": "Robust-design camera-trap capture histories of 307 tigers, Corbett National Park, India, 2010-2015",
+  "creator": "Bisht, Shikha; Banerjee, Sudip; Qureshi, Qamar; Jhala, Yadavendradev",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.vc3143h",
+  "sourceURL": "https://doi.org/10.5061/dryad.vc3143h",
+  "citation": "Bisht, S., Banerjee, S., Qureshi, Q., & Jhala, Y. (2019). Data from: Demography of a high density tiger population and its implications for tiger recovery [Dataset]. Dryad. https://doi.org/10.5061/dryad.vc3143h",
+  "paperDOI": "10.1111/1365-2664.13410",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap capture-recapture of tigers (Panthera tigris) over 521 km2 of Corbett National Park, Uttarakhand, India: 307 individuals (115 male, 133 female, 59 of unknown sex in the deposit) photographed on 2,910 tiger-nights in six annual primary periods (2010-2015) of 42 camera-trap nights each, used in Pollock's robust design to estimate abundance, sex-specific survival, temporary emigration and recruitment.",
+  "samplingProtocol": "Paired camera traps at stations 1-1.5 km apart along trails, run for 42 nights per year; tigers identified from stripe patterns (EXTRACTCOMPARE). In 2010-2012 the area was trapped in two blocks of ~250 km2 sampled 120-150 days apart (low camera density, 1 per 5 km2); in 2013-2015 the whole area at once (2 per 5 km2). Cubs under one year excluded.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every one of the 252 history columns is a camera-trap night of the 42-night annual session (paper s. 2.4 and Table 2 trap-nights); the deposit has no missing-occasion code.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "occasion = camera-trap night within the annual primary (robust design, closed within a year as the paper assumes). In 2010-2012 the two blocks were trapped 120-150 days apart and merged into one primary, so occasion k is the k-th night of the tiger's block, not one calendar night; the paper notes this may violate closure within those primaries (s. 4) and that block-2 tigers had a 6-month interval between the 2012 and 2013 primaries (s. 2.4). Ids are valid across the whole study.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Corbett National Park (521 km2), Uttarakhand, India (no coordinates deposited)",
+  "temporalCoverage": "2010/2015",
+  "notShipped": {
+    "model_estimates": "abundance, density, survival, temporary emigration, recruitment and breeding-female estimates (model outputs)",
+    "table2_counts": "the paper's per-year individual counts (Table 2 Mt+1, #M, #F): the deposit does not reproduce them (see notes)"
+  },
+  "notes": "unit ids T001-T307 follow the order of the MARK file. cluster_id is the MARK block group (B1, B2) the authors assigned each tiger; in 2013-2015 both blocks were trapped together. The deposit gives 90, 85, 79, 78, 104, 116 tigers detected per year and 115 male / 133 female / 59 unknown, against the paper's Table 2 (89, 98, 93, 109, 118, 115) and text (118 / 130 / 59); the cumulative counts nearly agree (deposit 90, 130, 163, 199, 249, 307; paper 89, 129, 162, 201, 251, 307). All tigers were wild-caught with unknown age, so each carries all 252 nights (E4.4); condition on first capture to reproduce MARK's robust design. Tiger is IUCN EN; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 77364,
+    "n_units": 307,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 42,
+    "n_surveys": 77364,
+    "y_values": "0,1",
+    "prop_zero": 0.962,
+    "n_traps": 1,
+    "n_zero": 74454,
+    "n_positive": 2910,
+    "n_units_detected": 307,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_sex"],
+  "coreMd5": "58de190d671f23d1154775e818c7e5e9",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "year", "n_occasions", "camera_density", "trap_nights", "sampling", "note"],
+      "md5": "af444b7352f0ee21e30aab595d6fde8d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b5bae96b706a789e93a6496d4e9e774b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bisht_2019_corbett_tiger_rd.R",
+  "buildDate": "2026-11-05"
+}

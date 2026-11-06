@@ -313,6 +313,47 @@ CSVs with `upload/red_up_eco.py`.
 | `twining_2024_newyork_carniv_occ.R` | two stacked occupancy tables: bobcat and coyote (winters 2013-2021, 3,849 site-years) and black bear (summers 2016-2018), New York (batch 37) | Dryad | CC0 |
 | `fidino_2021_lincolnpark_birds_binom.R` | binomial counts, days seen of days walked, 193 birds x 16 years over a century, Lincoln Park, Chicago (batch 37) | Dryad | CC0 |
 | `husemann_2015_taita_greenbul_cjs.R` | five CJS tables (one per forest fragment), Cabanis's greenbul, Taita Hills, 1996-2009 (batch 37) | Dryad | CC0 |
+| `goldingay_2026_bendigo_camera_occ.R` | dynamic occupancy, cameras: phascogale and sugar glider x 30 sites near / away from nest boxes x 60 weeks in 5 season blocks, Bendigo, Victoria, 2023-2024; shared-detector ruling | Dryad | CC0 |
+| `sharma_2021_spiti_snowleopard_scr.R` | count-detector SCR: 16 snow leopards x 30 cameras, encounters under a 4-hour rule, Spiti Valley, India, 2011-2012; coordinates displaced by the source | Dryad | CC0 |
+| `schorr_2021_yampa_mylu_rd.R` | robust design, PIT antennas: 1,741 little brown bats at two roosts, 10 closed sessions with weekly occasions, Colorado, 2014-2018; survey set inferred | Dryad | CC0 |
+| `botsch_2020_tits_territory_count.R` | repeated territory-mapping counts, occasion = visit x territory editor: two tits x 24 subsites, Switzerland, 2014-2015 | Dryad | CC0 |
+| `schmelzle_2016_tidewatergoby_edna.R` | multi-scale eDNA: tidewater goby, 358 water samples x 6 qPCR wells at 39 sites, California, 2014; coarsened | Dryad | CC0 |
+| `marshall_2020_saltmarshsparrow_nmix.R` | N-mixture point counts: saltmarsh sparrow x 913 points x 2-3 counts, Maine-Maryland, 2012; coarsened | Dryad | CC0 |
+| `bisht_2019_corbett_tiger_rd.R` | robust design, camera traps: 307 tigers x 6 annual primaries x 42 nights, Corbett, India, 2010-2015 | Dryad | CC0 |
+| `shyvers_2020_ppr_sagegrouse_rd.R` | robust design, genetic CR from faecal pellets: 543 greater sage-grouse, 2 winters, NW Colorado | Dryad | CC0 |
+| `jordan_2025_kapitia_skink_rd.R` | robust design, photo-ID: 360 Kapitia skinks x 5 primaries, New Zealand, 2019-2021 | Dryad | CC0 |
+| `belder_2020_nsw_woodbird_cjs.R` | CJS, mist nets: 13 per-species tables (`belder_2020_nsw_<species>_cjs`), 21 restoration sites, NSW, 2015-2017 | Dryad | CC0 |
+| `morrison_2023_fundy_salmon_edna.R` | multi-scale eDNA: Atlantic salmon, 547 bottles x 3 qPCR replicates on 21 days, Inner Bay of Fundy, 2020-2021; Ct in y_raw; coarsened | Dryad | CC0 |
+| `sepulveda_2019_streamgage_dreis_edna.R` | multi-scale eDNA: dreissenid 16S screen, 200 samples x 4 replicates at 9 streamgages, 6 events, 2018; blank-positive flag | USGS ScienceBase | public domain |
+| `osborne_2026_largeheath_dynocc.R` | dynamic occupancy: reintroduced Large Heath butterfly x 380 bog compartments x 9-23 visits a year, NW England, 2021-2025; coarsened | MMU figshare | ODC-By 1.0 |
+| `inbo_2026_flanders_butterfly_count.R` | community counts, Pollard walks: 50 butterfly taxa x 112 routes, Flanders, 1991-2020, sections summed per visit | GBIF (INBO IPT) | CC BY-NC 4.0 |
+| `ohrens_2026_latam_puma_occ.R` | occupancy, cameras: puma x 13,148 stations, daily occasions by calendar year, 19 countries, 2001-2023 (1.17M rows) | Dryad | CC0 |
+| `strebel_2026_swiss_mhb_count.R` | Swiss MHB 1999-2025: per-visit territory counts and season totals (four tables: `_count`, `_exact_count`, `_total_count`, `_total_exact_count`), 267 squares | Zenodo | CC BY 4.0 |
+| `chauvenet_2014_serotine_ms.R` | multi-state CJS (juvenile / immature / breeder): female serotine bats at two roosts (`chauvenet_2014_crundale_serotine_ms`, `chauvenet_2014_hollingbury_serotine_ms`), England, 1987-2011 | Dryad | CC0 |
+| `perea_2025_coastalplain_bats_comm.R` | community occupancy, acoustic: 8 bat taxa x 240 sites x 3 nights, southeastern US Coastal Plain, winters 2020-2022 | Dryad | CC0 |
+| `goldberg_2015_manas_leopard_scr.R` | closed SCR, cameras: 22 leopards x 29 stations x 91 days, Royal Manas NP, Bhutan, 2010-2011; traps centred (VU) | Dryad | CC0 |
+| `roderiksen_2023_norway_tundra_carniv_occ.R` | community occupancy, cameras: 4 predators x 96 baited stations, daily occasions, late winters 2011-2020, Norway | Dryad | CC0 |
+| `sovie_2023_ichauway_wildlife_comm.R` | community occupancy, cameras: 11 mammals and game birds x 71 cameras, Ichauway, Georgia | Dryad | CC0 |
+| `barrueto_2023_nwt_grizzly_scr.R` | SCR, hair snags: 204 grizzly bears x 218 detectors x 6 visits, NWT, 2012-2014; traps centred | Dryad | CC0 |
+| `sossover_2026_outerbanks_coyote_ms.R` | multi-state robust design, faecal DNA: 62 coyotes, islands as states, Outer Banks, NC | Dryad | CC0 |
+| `bauer_2022_neshrubland_birds_count.R` | community point counts with minute intervals: 79 taxa x 66 points x 3 visits x 2 years, New England shrublands | Dryad | CC0 |
+| `bedwell_2020_sierranevada_edna_binom.R` | binomial_count eDNA: Bd and yellow-legged frogs, 10 lakes and streams x 4 months, Sierra Nevada, 2016 | Dryad | CC0 |
+| `katuwal_2025_parsakoshi_leopard_binom.R` | binomial_count, cameras: leopard x 154 cameras, Parsa-Koshi, Nepal | Dryad | CC0 |
+| `manzo_2024_pedregulho_tayra_dog_occ.R` | single-season occupancy, cameras: tayra and domestic dog x 69 points x 21 five-day occasions, Brazil | Dryad | CC0 |
+| `whitworth_2019_manu_terr_mamm_binom.R` | binomial_count, cameras: 26 terrestrial mammals x 68 stations, Manu, Peru, 2015-2016 | Dryad | CC0 |
+| `zamuda_2022_yalemyers_mesopred_dynocc.R` | dynamic occupancy, cameras: 4 mesopredators x 56 sites x 4 seasons x 7 surveys, Connecticut | Dryad | CC0 |
+| `curveirasantos_2019_guadiana_carn_occ.R` | single-season occupancy, cameras: 4 carnivores x 77 stations, Guadiana valley, Portugal | Dryad | CC0 |
+| `raman_2006_anamalai_birds_count.R` | community counts, spatial replicates: 107 bird taxa x 13 rainforest fragments (`_count` coarsened, `_exact_count`), Anamalai, India | Dryad | CC0 |
+| `roberts_2019_sierranevada_birds_count.R` | community point counts: 154 taxa x 1,353 points, Sierra Nevada, 2009-2016 (`roberts_2019_sierranevada_birds_count` coarsened, `roberts_2019_sierrane_birds_exact_count`) | Dryad | CC0 |
+| `cove_2018_lowerkeys_dynocc.R` | dynamic occupancy, cameras: Lower Keys marsh rabbit and feral cat x 84 sites (`_dynocc` coarsened, `_exact_dynocc` cat only), Florida | Dryad | CC0 |
+| `bruce_2022_wettropics_cat_occ.R` | single-season occupancy, cameras: feral cat x 90 sites x 18 five-day occasions, Wet Tropics, Australia | Dryad | CC0 |
+| `barrile_2022_bridgerteton_toad_msrd.R` | multi-state robust design: 1,415 boreal toads, breeding sites as states, Bridger-Teton, 6 seasons; survey set inferred | Dryad | CC0 |
+| `sweeney_2026_ocracoke_plover_cjs.R` | stopover CJS and counts of piping plovers (`_cjs`, `_count`), Ocracoke, NC, 8 seasons | Dryad | CC0 |
+| `feldman_2023_quebec_wetland_comm.R` | community occupancy, cameras: 56 taxa x 50 ponds x 2 years (`_comm` coarsened latitude, `_exact_comm`), Quebec | Dryad | CC0 |
+| `fiss_2024_pennsylvania_birds_count.R` | point counts with time to detection and ARU daily detections of two warblers (`_count`, `_aru_occ`), Pennsylvania | Dryad | CC0 |
+| `barros_2024_mostela_weasel_occ.R` | multi-scale occupancy, paired methods: least weasel x 56 stations x 7 occasions x 2 devices (Mostela box, camera), Portugal, 2021 | Zenodo | CC BY 4.0 |
+| `letourneux_2022_snowgoose_ms.R` | multi-state CMR with dead recoveries: 22,599 adult female greater snow geese, collar vs leg ring, 1990-2019 | Dryad | CC0 |
+| `whittington_2025_banff_grizzly_occ.R` | dynamic occupancy, cameras: grizzly bear x 625 Parks Canada camera sites x 10 years, Canadian Rockies, 2012-2021 | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

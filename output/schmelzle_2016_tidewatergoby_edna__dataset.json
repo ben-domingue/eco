@@ -1,0 +1,70 @@
+{
+  "table": "schmelzle_2016_tidewatergoby_edna",
+  "title": "Tidewater goby eDNA: six qPCR replicates of 358 water samples at 39 northern California and southern Oregon coastal sites, 2014",
+  "creator": "Schmelzle, Molly C.; Kinziger, Andrew P.",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.6rs23",
+  "sourceURL": "https://doi.org/10.5061/dryad.6rs23",
+  "paperDOI": "10.1111/1755-0998.12501",
+  "citation": "Schmelzle, M. C., & Kinziger, A. P. (2015). Data from: Using occupancy modeling to compare environmental DNA to traditional field methods for regional-scale monitoring of an endangered aquatic species [Dataset]. Dryad. https://doi.org/10.5061/dryad.6rs23",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Sloughs, estuaries and lagoons along 400 km of the northern California and southern Oregon coast, each visited once between August and December 2014. At 2 to 23 sub-sampling locations per site, about 100 m apart, a 2 L water sample was filtered and assayed for the endangered tidewater goby in six qPCR replicates (two runs of three wells). cluster_id = site, unit = water sample, occasion = qPCR replicate; eDNA detected the goby at 19 of the 39 sites. Seine hauls paired with the water samples at 29 sites are not in this table (the deposit does not record which samples were seined).",
+  "samplingProtocol": "Environmental DNA: one 2 L water sample per sub-sampling location (2-23 per site, about 100 m apart, within 1-2 h of low tide), filtered on a 3 um polycarbonate filter, extracted, and assayed with a species-specific TaqMan qPCR assay (cytochrome b) in six replicates; any amplification is a detection.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one visit per site; occasion = qPCR replicate of one water sample; water samples nest in sites (cluster_id)",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = site (occupancy), unit = water sample (availability), occasion = qPCR replicate (detection), as the paper's hierarchical model.",
+  "geographicCoverage": "Coastal sloughs, estuaries and lagoons from Curry County, Oregon, to Mendocino County, California, USA (about 38.9-42.4 N); coordinates coarsened to 0.1 degree",
+  "temporalCoverage": "2014-08/2014-12",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Coordinates (4-6 decimals per sample in the deposit) given as the 0.1-degree cell (coarsen_coords()) of each site's median sample position, for every sample of the site, because 11 deposited sample positions look like keying errors (more than 0.04 degree from their site's median): the tidewater goby is listed as endangered under the US Endangered Species Act, as the source states (IUCN category via GBIF: VU). Site names withheld (E7.4); cluster_id is a sequential site id S01..S39 in the deposit's order."
+  },
+  "crs": "EPSG:4326",
+  "notShipped": {
+    "seine": "the seine hauls paired with 254 water samples at 29 sites (paper): the deposit does not record which samples were seined (CPUE 0 is also given at the 10 water-only sites; 265 raw samples with a CPUE at the 29 paired sites against 256 hauls in the PRESENCE input and 254 in the paper), so the seine has no sample-level survey set",
+    "TWG CPUE and Other Fishes CPUE": "the seine catch per haul (free text), withheld with the seine",
+    "site_names": "place names (E7.4: coordinates are coarsened for the endangered goby)",
+    "model_inputs": "the PRESENCE multi-method input, the WinBUGS input (edna_p6, eDNA_pcov6) and the GLM input: standardised copies of the shipped values and analysis inputs",
+    "noyo_dropped_sample": "one Noyo River sample recorded as 'Dropped Sample' with no qPCR (no rows)",
+    "model_output": "occupancy, availability and detection estimates"
+  },
+  "notes": "The raw lab sheet and the authors' WinBUGS input disagree in 27 samples (45 wells, 6 of them wells the WinBUGS input leaves empty in two samples); the raw sheet is shipped because it reproduces the paper's counts (19 of 39 sites positive). The paper reports no amplification in any field, filter, extraction or qPCR blank (blanks are not deposited per sample). Coordinates are the 0.1-degree cell of the site's median sample position, the same for every sample of a site: the deposited sample coordinates carry keying errors at about 11 samples (more than 0.04 degree from the site median: a latitude of 71.25, positive longitudes, a longitude of -1123.8, first samples placed at another site), and the other samples of a site spread up to 0.04 degree, so a sample may lie in a neighbouring cell. unit_filter_time_s is NA for one Hunter Creek sample entered as an Excel time (0:56). unit_vegetation is NA where the deposit has NA (18 samples), unit_do_mgl where it has NA (119). unit_subsite = 2 marks the pond samples (one at Gannon Slough, three at Davis Lake) that the deposit labels as separate sites and the paper merges.",
+  "summary": {
+    "n_rows": 2148,
+    "n_units": 358,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 6,
+    "n_surveys": 2148,
+    "y_values": "0,1",
+    "prop_zero": 0.658,
+    "n_traps": 1,
+    "n_zero": 1414,
+    "n_positive": 734,
+    "n_units_detected": 162,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_sample_label", "unit_subsite", "unit_vegetation", "unit_substrate", "unit_salinity_ppt", "unit_temp_c", "unit_do_mgl", "unit_filter_time_s", "unit_dna_copies_per_ul", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_qpcr_run"],
+  "coreMd5": "5a9312d779016a2e35170202d0dd4c3a",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d207951d9a484559e837b887aae00824"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/schmelzle_2016_tidewatergoby_edna.R",
+  "buildDate": "2026-11-05"
+}

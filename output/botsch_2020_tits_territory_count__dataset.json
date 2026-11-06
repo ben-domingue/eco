@@ -1,0 +1,69 @@
+{
+  "table": "botsch_2020_tits_territory_count",
+  "title": "Territory-mapping counts of Great Tit and Blue Tit per visit and territory editor at 24 forest subsites, Switzerland, 2014-2015",
+  "creator": "Bötsch, Yves; Jenni, Lukas; Kéry, Marc",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.fttdz08nx",
+  "sourceURL": "https://doi.org/10.5061/dryad.fttdz08nx",
+  "citation": "Bötsch, Y., Jenni, L., & Kéry, M. (2019). Field evaluation of abundance estimates under binomial and multinomial N-mixture models [Dataset]. Dryad. https://doi.org/10.5061/dryad.fttdz08nx",
+  "paperDOI": "10.1111/ibi.12802",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Conventional territory mapping of two cavity-nesting tits in 24 forest subsites (12 plots) in Switzerland, three visits in 2014 and four in 2015. Three ornithologists independently assigned territories from the same field records; for each editor the count is the number of that editor's territories recorded on a visit, the binomial N-mixture input the paper compares across editors.",
+  "samplingProtocol": "Territory mapping: a surveyor walked each subsite on 3 (2014) or 4 (2015) mornings in the breeding season and mapped every registration of the two species; three territory editors (CR, DH, YB) then delineated territories from the same maps, and each territory's visit-by-visit record is the editor's interpretation.",
+  "samplingProtocolCode": "territory_survey",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "dependent",
+  "closureNote": "occasion = visit x editor; the editors' counts of one visit are interpretations of the same field record, not independent surveys. Across visits, the authors assumed closure within a breeding season.",
+  "occasionKind": ["time", "observer"],
+  "taxonInclusion": "target",
+  "geographicCoverage": "Forest plots in Switzerland (study area of Bötsch et al., with a dense nest-box scheme); no coordinates deposited",
+  "temporalCoverage": "2014/2015",
+  "covariateNote": "observer: the territory editor. obs_visit: visit 1..4 within the year (occasion = (obs_visit - 1) x 3 + editor index, editors CR, DH, YB). obs_date_doy: day of year of the visit (the deposit's juliandate). obs_start_min: start time in minutes after midnight; obs_duration_min: minutes. obs_field_observer: the surveyor (HL or YB). unit_area_ha: subsite area.",
+  "notShipped": {
+    "territory_histories": "per-territory visit records (the multinomial N-mixture input); the counts are their per-visit sums, and territories are each editor's construct",
+    "squared_terms": "squared date and time columns (derivable)",
+    "editor_totals": "CoeffofVar_Surveydata_Editoreffect.csv, territories per subsite-year-species and editor (equal to the files' row counts in 287 of 288 cells); covers no survey the per-visit counts lack",
+    "plot_area": "plotarea (CR and DH files only; twice the subsite area)",
+    "model_output": "N-mixture abundance estimates"
+  },
+  "notes": "The editors' totals file gives DH 2 Great Tit territories at subsite 340 in 2015 where the DH file has 5; the file is used. One territory per editor file has no record on any visit (a delineated territory never mapped on a visit); it adds 0 to every count. The editor YB is also one of the two field surveyors.",
+  "summary": {
+    "n_rows": 1008,
+    "n_units": 24,
+    "n_taxa": 2,
+    "n_periods": 2,
+    "n_occasions": 12,
+    "n_surveys": 504,
+    "y_values": "0,1,2,3,4,5,6,7",
+    "prop_zero": 0.21,
+    "n_traps": 1,
+    "n_zero": 212,
+    "n_positive": 796,
+    "n_units_detected": 24,
+    "max_y": 7
+  },
+  "sampleFloor": "below (24 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "observer", "cluster_id", "unit_area_ha", "obs_visit", "obs_date_doy", "obs_start_min", "obs_duration_min", "obs_field_observer"],
+  "coreMd5": "8a1a8a10eaf30ba5bc8469c36adda745",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year", "n_visits"],
+      "md5": "d48c17703d6d9ff8e6c299f8e13f0286"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "29dd7837708fe24e27a3922debb79797"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/botsch_2020_tits_territory_count.R",
+  "buildDate": "2026-11-05"
+}

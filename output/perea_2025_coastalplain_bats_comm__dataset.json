@@ -1,0 +1,67 @@
+{
+  "table": "perea_2025_coastalplain_bats_comm",
+  "title": "Winter acoustic detections of eight bat taxa at 240 sites in six working pine-forest landscapes, southeastern US Coastal Plain, 2020-2022",
+  "creator": "Perea, Santiago; Fandos, Guillermo; Larsen-Gray, Angela; Greene, D. Ulrich; Chandler, Richard B.; Castleberry, Steven B.",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.m0cfxpp9f",
+  "sourceURL": "https://doi.org/10.5061/dryad.m0cfxpp9f",
+  "citation": "Perea, S., Fandos, G., Larsen-Gray, A., Greene, D. U., Chandler, R. B., & Castleberry, S. B. (2025). Data from: Bat winter foraging habitat use in working forests: A multispecies spatial occupancy approach [Dataset]. Dryad. https://doi.org/10.5061/dryad.m0cfxpp9f",
+  "paperDOI": "10.1111/acv.12924",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Anabat Swift acoustic detectors at 40 random grid points in each of six working pine-forest landscapes (Florida, Georgia, Louisiana, Mississippi, North Carolina, South Carolina), three nights per site in January-March of 2020, 2021 or 2022. Nightly detection of five bat species and pooled groups, with sunset temperature and site vegetation structure; the authors fitted spatial factor multi-species occupancy models.",
+  "samplingProtocol": "One acoustic detector per site for three nights in winter; calls identified to species or species group; a night with any identified call of the taxon is a detection.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "three nights at one site within the landscape's one-month sampling window",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Six working forest landscapes in the southeastern United States Coastal Plain (FL, GA, LA, MS, NC, SC); no coordinates deposited",
+  "temporalCoverage": "2020/2022",
+  "covariateNote": "obs_temp_sunset_c: temperature at sunset on the night (HOBO logger). unit_temp_sunset_mean_c: the source's mean of the three. unit_canopy_openness_pct (spherical densiometer), unit_basal_area (10-factor prism value as deposited; the README says m2/ha), unit_veg_clutter (modified Nudds board). cluster_id: the state's landscape (sampled in one year).",
+  "notShipped": {
+    "private_data": "further site data the authors withheld as sensitive (private land)",
+    "model_output": "occupancy and richness estimates",
+    "code": "model and figure scripts"
+  },
+  "notes": "Each landscape was sampled in one winter only (Georgia and Louisiana 2020, Mississippi and South Carolina 2021, Florida and North Carolina 2022), so period and cluster_id are confounded. 225 of 240 sites have a detection in the deposit; the abstract says 224.",
+  "summary": {
+    "n_rows": 5760,
+    "n_units": 240,
+    "n_taxa": 8,
+    "n_periods": 3,
+    "n_occasions": 3,
+    "n_surveys": 720,
+    "y_values": "0,1",
+    "prop_zero": 0.725,
+    "n_traps": 1,
+    "n_zero": 4177,
+    "n_positive": 1583,
+    "n_units_detected": 225,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_temp_sunset_mean_c", "unit_canopy_openness_pct", "unit_basal_area", "unit_veg_clutter", "obs_temp_sunset_c"],
+  "coreMd5": "91f14697789bc102c8b50b783eb90707",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "season"],
+      "md5": "de2a3a425e9bf622007b4e4b91ebfde8"
+    },
+    "taxa": {
+      "rows": 8,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "743e3ca5d0c607d5d6dfe6879049bb9d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/perea_2025_coastalplain_bats_comm.R",
+  "buildDate": "2026-11-05"
+}

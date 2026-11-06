@@ -1,0 +1,68 @@
+{
+  "table": "sepulveda_2019_streamgage_dreis_edna",
+  "title": "Dreissenid mussel eDNA (16S qPCR) in water samples at nine USGS streamgages below reservoirs, Columbia and Colorado River basins, May-September 2018",
+  "creator": "Sepulveda, Adam J.",
+  "pubDate": "2019",
+  "doi": "10.5066/P9Q8GCLM",
+  "sourceURL": "https://doi.org/10.5066/P9Q8GCLM",
+  "citation": "Sepulveda, A.J., 2019, Environmental DNA surveillance data for USGS streamgage sampling in the Columbia River Basin, 2018 (ver. 1.1, July 2019): U.S. Geological Survey data release, https://doi.org/10.5066/P9Q8GCLM.",
+  "paperDOI": "10.1002/ecs2.2843",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain, no access or use constraints"
+  },
+  "abstract": "Early-detection eDNA surveillance for invasive zebra and quagga mussels at USGS streamgages below eight Bureau of Reclamation reservoirs in the Columbia River Basin and at Lees Ferry below Lake Powell (invaded), with six sampling events May-September 2018. Each 2-L river sample was screened with the Dreissena 16S qPCR assay in four replicates; one row per sample x replicate, with the event's field-blank result.",
+  "samplingProtocol": "USGS hydrologic technicians took a 2-L deionised-water field blank and then three (or ten) 2-L grab samples of river water at each gage and event, filtered on site (1.5 um MCE); DNA extracted at UMESC and screened with the DRE16S qPCR assay in quadruplicate reactions.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "qPCR replicates of one extract; sampling events (periods) are about a month apart",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "geographicCoverage": "USGS streamgages below American Falls, Grand Coulee, Hungry Horse, Island Park, Jackson Lake, Owyhee, Palisades and Ririe reservoirs (Idaho, Montana, Oregon, Washington, Wyoming) and at Lees Ferry, Arizona (Colorado River); no coordinates in this file",
+  "temporalCoverage": "2018-05/2018-09",
+  "covariateNote": "obs_sq_copies: estimated copies per 25-ul reaction (0 where no amplification). obs_inhibited: 1 if the sample was inhibited. obs_blank_positive: 1 on every row of an event whose field blank amplified in any of its four DRE16S replicates (Jackson Lake and Palisades June, Grand Coulee June, Owyhee July_1, Lees Ferry July_2).",
+  "notShipped": {
+    "controls": "field blanks (54 events x 4 replicates; summarised in obs_blank_positive) and the extraction negatives",
+    "verification": "QM and ZM species assays and 16S sequencing of the June Jackson Lake and Palisades samples and blanks (Phase 2-4 verification); they read zebra mussel in blank and sample alike, i.e. contamination",
+    "sequences": "BLAST query length, coverage, identity, species and sequence fields"
+  },
+  "notes": "Positive replicates outside Lees Ferry (Lake Powell is invaded) are single replicates and several come from events whose field blank also amplified; the release's own verification treats the June Jackson Lake and Palisades positives as contamination. American Falls samples 5-10 of the second July event have replicates 1 and 3 under 2018-07-18 and 2 and 4 under 2018-07-30, as deposited. The June dates at Lees Ferry and Island Park are recorded as 20180600, so those rows have no date.",
+  "summary": {
+    "n_rows": 776,
+    "n_units": 200,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 4,
+    "n_surveys": 776,
+    "y_values": "0,1",
+    "prop_zero": 0.883,
+    "n_traps": 1,
+    "n_zero": 685,
+    "n_positive": 91,
+    "n_units_detected": 30,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "obs_sq_copies", "obs_inhibited", "obs_blank_positive"],
+  "coreMd5": "59e993b44c40feb2ba3f14aa1a35909c",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "event", "month", "year"],
+      "md5": "60a66c30b03ec3505dae78085a844906"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "fafb2861a430e9fc492363d729424f5a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sepulveda_2019_streamgage_dreis_edna.R",
+  "buildDate": "2026-11-05"
+}

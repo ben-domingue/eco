@@ -100,9 +100,12 @@ hold the deposit.
 Download into `.cache/raw/<table>/` with `download_cached()` or `download_dryad()`
 (the Dryad version zip is the only anonymous route; per-file downloads need a
 token; a few Dryad deposits also have a Zenodo copy, most do not). EDI's portal and PASTA refuse
-scripted requests; use DataONE or hold. The intake is anonymous: a deposit whose anonymous
-download fails (404, 405) is `blocked`, not fetched with a token or by hand (ruling
-2026-11-06). Read every file the deposit ships, not only
+scripted requests; use DataONE or hold. The intake is anonymous by default: a deposit whose
+anonymous download fails (404, 405) is `blocked`, not fetched by hand (ruling 2026-11-06). When
+Ben supplies a short-lived Dryad API token in `DRYAD_TOKEN`, `download_dryad()` sends it (a
+higher rate limit) and fetches a deposit whose zip is refused file by file; a deposit whose
+files Dryad refuses even then (404 on every file) stays `blocked`. The token is loaded into the
+shell for the run only, never printed, logged or committed. Read every file the deposit ships, not only
 the obvious one: the covariate files often reveal which cells were surveyed, and
 the readme often carries the licence and the species code list.
 

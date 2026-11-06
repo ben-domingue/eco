@@ -1,0 +1,73 @@
+{
+  "table": "chauvenet_2014_crundale_serotine_ms",
+  "title": "Multi-state capture histories (juvenile, immature/unknown, breeder) of 228 female serotine bats at the Crundale maternity roost, England, 1987-2011",
+  "creator": "Chauvenet, Aliénor L. M.; Hutson, Anthony M.; Smith, Graham C.; Aegerter, James N.",
+  "pubDate": "2014",
+  "doi": "10.5061/dryad.6kp2j",
+  "sourceURL": "https://doi.org/10.5061/dryad.6kp2j",
+  "citation": "Chauvenet, A. L. M., Hutson, A. M., Smith, G. C., & Aegerter, J. N. (2014). Data from: Demographic variation in the U.K. serotine bat: filling gaps in knowledge for management [Dataset]. Dryad. https://doi.org/10.5061/dryad.6kp2j",
+  "paperDOI": "10.1002/ece3.1174",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Female serotine bats (Eptesicus serotinus) ringed and recaptured at the Crundale maternity roost in south-east England in 23 capture years between 1987 and 2011, each capture assigned to a life stage (juvenile, immature/unknown, breeder). The authors fitted multistate CJS and POPAN models to estimate stage-specific survival, transitions and abundance.",
+  "samplingProtocol": "Annual or ad hoc capture visits to a maternity roost (usually twice between May and August, or once in August), bats caught by hand in the roost or with hand nets / harp traps outside, ringed, aged by ossification and assessed for breeding; captures pooled to one annual occasion per year.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not caught",
+    "1": "caught as a juvenile (J)",
+    "2": "caught as immature or unknown stage (U: adult-looking, breeding not recorded or not determinable)",
+    "3": "caught as a breeder (B)"
+  },
+  "closure": "none",
+  "closureNote": "one annual occasion per capture year (visits within a year pooled by the authors); capture years are unevenly spaced (__periods)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Crundale, Kent, England (roof void of a family home, rural)",
+  "temporalCoverage": "1987/2011",
+  "notShipped": {
+    "popan_files": "the POPAN 0/1 histories: the MS histories with J/U/B recoded to 1 (asserted)",
+    "mark_projects": "MARK .DBF / .FPT project files and model results",
+    "ibm": "the individual-based simulation script",
+    "males": "males, excluded by the authors and not deposited"
+  },
+  "notes": "Females only. A female first caught as a juvenile has rows from that year; one first caught as U or B from the first capture year (E4.4). The authors assumed a bat once recorded as a breeder stays a breeder; U after B occurs in the data as recorded (y_raw).",
+  "summary": {
+    "n_rows": 4076,
+    "n_units": 228,
+    "n_taxa": 1,
+    "n_periods": 23,
+    "n_occasions": 1,
+    "n_surveys": 4076,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.894,
+    "n_traps": 1,
+    "n_zero": 3643,
+    "n_positive": 433,
+    "n_units_detected": 228,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period"],
+  "coreMd5": "b9aa1d63857ad8957a3216ae25e52be9",
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "year"],
+      "md5": "0811e9ca6b6c1701fb073facd5835bcc"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "162c4c2f0595873641130db827b55b86"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/chauvenet_2014_serotine_ms.R",
+  "buildDate": "2026-11-05"
+}

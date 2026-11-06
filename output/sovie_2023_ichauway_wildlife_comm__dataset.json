@@ -1,0 +1,61 @@
+{
+  "table": "sovie_2023_ichauway_wildlife_comm",
+  "title": "Five-day camera detections of 11 mammal and game-bird species at 71 working baited cameras (72 deployed) across longleaf pine to hardwood-patch edges, Ichauway, Georgia",
+  "creator": "Sovie, Adia",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.c59zw3rdb",
+  "sourceURL": "https://doi.org/10.5061/dryad.c59zw3rdb",
+  "citation": "Sovie, A. (2023). Data for: At a fine scale, hardwood patches support wildlife diversity in longleaf pine woodlands [Dataset]. Dryad. https://doi.org/10.5061/dryad.c59zw3rdb",
+  "paperDOI": "10.1002/wll2.12018",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera traps on transects across the edges of hardwood patches embedded in longleaf pine woodland at The Jones Center at Ichauway, Georgia (a camera 10 m into the pine, one at the edge, one 10 m into the hardwood), to test how mid-sized mammals and game birds use the pine-hardwood transition. Detection/non-detection of 11 species per camera and 5-day occasion.",
+  "samplingProtocol": "Baited camera traps (pecans and cracked corn, re-baited every 5 days), 50 cm above ground, 3-photo bursts with a 3-minute rest, deployed repeatedly for 10-15 days; photos of a species more than 20 minutes apart are independent; the authors collapsed detections to 5-day occasions; camera failure is NA.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "eight 5-day occasions treated by the authors as one closed season (a single-season multi-species occupancy model); the dates of the occasions are not deposited.",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "The Jones Center at Ichauway, Newton, Baker County, Georgia, USA (no coordinates deposited)",
+  "temporalCoverage": "field dates not stated in the deposit (IACUC protocol 201709855; deposit published 2023-05)",
+  "covariateNote": "cluster_id: hardwood patch (12 cameras each; four transects of three cameras). unit_canopy_position: open_pine (10 m into the longleaf pine), edge, hardwood (10 m into the patch), the source's loc 1/2/3. unit_visual_obstruction: mean Robel-pole visual obstruction in front of the camera, as deposited.",
+  "notShipped": {
+    "model_output": "occupancy and detection estimates",
+    "analysis_script": "Sovie_etal_2023_MSOM_r_code.R (JAGS MSOM)"
+  },
+  "notes": "Occasion dates are not deposited. The deposit's methods describe five patches; the data (and README) hold six (Box, Control, Cow, MFM, Pond, Road). Cameras in Box and Control have all 8 occasions; the others 2 to 7, and one MFM camera has none (no rows; 71 cameras in the table). Rabbit is at genus Sylvilagus. The deposit gives no field dates.",
+  "summary": {
+    "n_rows": 4158,
+    "n_units": 71,
+    "n_taxa": 11,
+    "n_periods": 1,
+    "n_occasions": 8,
+    "n_surveys": 378,
+    "y_values": "0,1",
+    "prop_zero": 0.863,
+    "n_traps": 1,
+    "n_zero": 3588,
+    "n_positive": 570,
+    "n_units_detected": 67,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_canopy_position", "unit_visual_obstruction"],
+  "coreMd5": "26afe1545b37448809b68a470009e0cf",
+  "sideTables": {
+    "taxa": {
+      "rows": 11,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_deposited_name", "taxonRemarks"],
+      "md5": "a59cfabd0b0282936277dad1aa0bca94"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sovie_2023_ichauway_wildlife_comm.R",
+  "buildDate": "2026-11-05"
+}
