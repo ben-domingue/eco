@@ -65,10 +65,10 @@ jobs:
           use-public-rspm: true
 
       # The vignettes under site/vignettes/ fetch tables with the eco package
-      # (installed from this checkout's Rpkg/) and fit them with unmarked.
+      # (installed from this checkout's Rpkg/) and fit them with unmarked, marked and lme4.
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly", "marked", "R2ucare"))'
+          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly", "marked", "R2ucare", "lme4"))'
           R CMD INSTALL Rpkg
 
       # prerender.R builds the eco_validate wheel the browser validator loads
