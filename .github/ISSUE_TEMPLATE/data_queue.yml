@@ -131,6 +131,6 @@ body:
     id: notes
     attributes:
       label: Anything else
-      description: Sample size (units and repeat surveys), the files in the deposit, questions for a maintainer, or whether you are claiming the deposit to build it yourself.
+      description: "Sample size (units and repeat surveys), the files in the deposit, questions for a maintainer, or whether you are claiming the deposit to build it yourself. If each site was visited only once (one occasion and one period), say so: such a table is generally not eligible, and admitting one is a maintainer's call case by case."
     validations:
       required: false

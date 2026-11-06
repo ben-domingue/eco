@@ -30,7 +30,8 @@ cheap ones.
 
 1. **[Licence](#licence).** Check it on the source page. Some licences mean stop.
 2. **[Sample floor](#sample-floor).** Count the units and the repeat surveys.
-   A small table still ships, but you should know before you start.
+   A small table still ships, but a single visit to each site usually stops a
+   deposit.
 3. **[Build and check](#build-and-check).** Write the script, run it, and check
    the table in the [browser validator](validate.qmd). The command-line validator
    runs the same checks locally.
@@ -123,6 +124,18 @@ at least 2 repeat surveys per unit (2 periods for capture-recapture). Below that
 it still ships, marked `below`, so users can filter it out, and it is a lower
 priority. Count both numbers from the deposit's description before you start.
 The script also reports them (`floor=meets` in its last line).
+
+**A single visit is different: it usually stops the deposit (ruled
+2026-11-06).** If the units are sites (not individual animals) and the deposit
+holds just one visit to each one -- one occasion and one period, such as a
+site-by-species matrix from a single survey -- the table fits the format but
+supports none of the core designs in E9, because one visit cannot separate "not
+there" from "there but missed". Such a table is generally not eligible. A
+maintainer can still admit one, case by case, with the reason recorded in the
+table's `notes`. Two kinds of table only look single-visit and are fine: a
+`binomial_count` table, whose repeat visits are summarised in `obs_trials`
+instead of an occasion column, and an individual-unit table replicated over
+traps (count-detector spatial capture-recapture).
 
 Check the design too: the [standard's scope (E9)](standard.qmd) lists which
 designs are in. Presence-only records, telemetry and model outputs are out.
