@@ -434,6 +434,13 @@ CSVs with `upload/red_up_eco.py`.
 | `haas_2025_sweden_waterbirdsep_count.R` | Swedish September waterbird census, 48 species on 1,645 sectors, 1973-2024, method as occasion | GBIF (Swedish IPT) | CC0 |
 | `lindstrom_2025_sweden_winterpoints_count.R` | Swedish winter point count routes, 262 taxa, 2,452 routes, survey period as occasion, winter parts | GBIF (Swedish IPT) | CC0 |
 | `carro_2023_donana_tracks_count.R` | Doñana carnivore track counts, nine per-taxon GBIF datasets joined, 12 transects, coarsened (lynx) | GBIF (GBIF Spain IPT) | CC BY 4.0 |
+| `klymus_2023_niobrara_mussel_edna.R` | eDNA qPCR, all-zero table (admitted 2026-11-06) | USGS ScienceBase | US public domain |
+| `nakashima_2024_japan_ttd_occ.R` | time to detection at ephemeral resources (nests, carcasses), two tables | Dryad | CC0 |
+| `gustafson_2024_seward_prey_count.R` | single-visit time-removal point counts, intervals as obs_ | Dryad | CC0 |
+| `bornand_2014_gantrisch_plant_occ.R` | double-observer time-to-detection plant search | Dryad | CC0 |
+| `dwyer_2024_phoenix_bat_occ.R` | acoustic bat detections, four seasons | Dryad | CC0 |
+| `hastings_2018_sealion_philopatry_ms.R` | multistate philopatry, two spatial scales, two tables | Dryad | CC0 |
+| `silva_2018_scotland_badger_occ.R` | camera-trap occupancy, weekly | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

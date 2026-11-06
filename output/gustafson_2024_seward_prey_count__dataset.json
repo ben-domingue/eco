@@ -1,0 +1,60 @@
+{
+  "table": "gustafson_2024_seward_prey_count",
+  "title": "Time-removal point counts of rock and willow ptarmigan and Arctic ground squirrels at 988 points on the Seward Peninsula, Alaska, 2019-2022, five 2-minute intervals",
+  "creator": "Gustafson, Michaela; McCabe, Jennifer; Rolek, Brian; Booms, Travis; Henderson, Michael; Dunn, Leah; Anderson, David; Cruz, Jennyffer",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.djh9w0w94",
+  "sourceURL": "https://doi.org/10.5061/dryad.djh9w0w94",
+  "citation": "Gustafson, M. et al. (2024). Gyrfalcon prey abundance and their habitat associations in a changing Arctic [Dataset]. Dryad. https://doi.org/10.5061/dryad.djh9w0w94",
+  "paperDOI": "10.1002/ece3.70763",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Point counts of three small herbivores that Gyrfalcons prey on, at 988 points along the road corridors of the southern Seward Peninsula, Alaska, in 2019, 2021 and 2022, each point surveyed once for 10 minutes after a 2-minute quiet period. The first detection of each individual within 400 m was recorded in one of five 2-minute intervals (a time-removal design); ptarmigan counts are adult males. The authors fitted time-removal N-mixture models relating abundance to habitat.",
+  "samplingProtocol": "One 10-minute point count per point (after a 2-minute quiet period), recording the first detection of each individual (auditory or visual) within 400 m in five 2-minute intervals; male rock and willow ptarmigan and all Arctic ground squirrels counted; surveys from 30 minutes before sunrise to about midday, May-July 2019, 2021 and 2022.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "One visit per point (no occasion column); the five 2-minute intervals within it are the time-removal replicates, shipped as obs_int1-obs_int5 (E8 within-visit intervals ruling); the population is assumed closed within the 10-minute count.",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Southern Seward Peninsula, Alaska, USA, along the road corridors from Nome (no coordinates deposited)",
+  "temporalCoverage": "2019-05/2022-07",
+  "covariateNote": "obs_int1-obs_int5: individuals first detected in each 2-minute interval (they sum to y). observer: primary observer (DS, KW, MG). obs_wind_std, obs_julian_std (day of year), obs_min_after_sun_std: standardized as deposited. unit_lowshrub_std, unit_tallshrub_std, unit_tundra_std, unit_sparseveg_std, unit_tussock_std: standardized percent cover within 800 m of the point; unit_elev_std: standardized mean elevation (NA at 5 points). The authors used tallshrub and tussock for willow ptarmigan and lowshrub and sparseveg for the others; all are shipped for every row.",
+  "notShipped": {
+    "gyrfalcon": "widedf.csv, the Gyrfalcon territory occupancy, is its own table (gustafson_2024_seward_gyrfalcon_dynocc)"
+  },
+  "notes": "Single visit replicated within the visit by five recorded 2-minute intervals (Intake Replication ruling 2026-11-06). Ptarmigan y counts adult males only (the authors' filter; the deposit holds no females or juveniles); ground squirrel y counts all individuals. The survey year of each point (2019, 2021 or 2022) is not deposited. The paper reports 983 point counts; the deposit has 988 points.",
+  "summary": {
+    "n_rows": 2964,
+    "n_units": 988,
+    "n_taxa": 3,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 988,
+    "y_values": "0,1,2,3,4,5,6,8,9",
+    "prop_zero": 0.887,
+    "n_traps": 1,
+    "n_zero": 2629,
+    "n_positive": 335,
+    "n_units_detected": 311,
+    "max_y": 9
+  },
+  "sampleFloor": "below (no replication)",
+  "columns": ["unit", "taxon", "y", "observer", "unit_lowshrub_std", "unit_tundra_std", "unit_sparseveg_std", "unit_elev_std", "unit_tallshrub_std", "unit_tussock_std", "obs_int1", "obs_int2", "obs_int3", "obs_int4", "obs_int5", "obs_wind_std", "obs_julian_std", "obs_min_after_sun_std"],
+  "coreMd5": "80d5621db1663fef05e7c719c3f570db",
+  "sideTables": {
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "095b759aad0b9f3d74d19bfe66af2851"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/gustafson_2024_seward_prey_count.R",
+  "buildDate": "2026-11-06"
+}

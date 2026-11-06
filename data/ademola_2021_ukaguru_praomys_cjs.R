@@ -20,11 +20,12 @@
 #         captures of anything.
 # Mapping (CJS, monthly sessions): unit = "<grid>_<toe code>", cluster_id = grid, taxon = PRADEL, period = month
 #   (1 = June 2018 ... 21 = February 2020), y = 1 if the animal was caught in that grid's session, else 0 (the three
-#   nights pooled, as the authors' monthly model does). Survey set (surveyEvidence = inferred): every grid was trapped
-#   every month (the paper's protocol) from its first month with any capture (H2, L2: June 2018; D1, D2: July 2018,
-#   when the all-species file has their first captures) to February 2020. L2 has no capture of any species in March
-#   and April 2019; those sessions are taken as surveyed with no capture (the protocol), not as missing. Each animal
-#   has rows from its grid's first session (wild-caught, unknown age, E4.4). unit_habitat (intact / disturbed
+#   nights pooled, as the authors' monthly model does). Survey set (surveyEvidence = inferred): a grid-month is a
+#   session where the all-species file has a capture of any small mammal on that grid. The paper's protocol schedules
+#   every grid every month from June 2018 to February 2020 (84 grid-months); four have no capture of any species
+#   (D1 and D2 in June 2018, L2 in March and April 2019) and are not shipped (ruling 2026-11-06, protocol-only zeros;
+#   batch 43 had kept L2's two months as surveyed with no capture), leaving 80. Each animal has rows from its grid's
+#   first session at every session of its grid (wild-caught, unknown age, E4.4). unit_habitat (intact / disturbed
 #   forest), unit_sex (as recorded; constant per animal, asserted). No coordinates deposited (grid names only).
 #   Praomys delectorum IUCN LC.
 #   Not shipped: trap line and station of each capture (SCR would need every trap's nights, which are not
@@ -55,11 +56,20 @@ stopifnot(identical(first[order(Grid)]$first, c(2L, 2L, 1L, 1L)))
 cov <- a[, .(n = .N), by = .(Grid, period)]
 gaps <- CJ(Grid = first$Grid, period = 1:21)[first, on = "Grid"][period >= first][!cov, on = .(Grid, period)]
 stopifnot(nrow(gaps) == 2L, all(gaps$Grid == "L2"), identical(sort(gaps$period), c(10L, 11L)))
+# Protocol-only sessions (ruling 2026-11-06): scheduled by the protocol, no capture of any species there.
+sessions <- unique(a[, .(Grid, period)])
+proto <- CJ(Grid = first$Grid, period = 1:21)[!sessions, on = .(Grid, period)]
+stopifnot(nrow(sessions) == 80L, nrow(proto) == 4L,
+          identical(proto[order(Grid, period), paste(Grid, period)], c("D1 1", "D2 1", "L2 10", "L2 11")))
 stopifnot(p[, uniqueN(Grid), by = `Toe Codes`][, all(V1 == 1L)], p[, uniqueN(Sex), by = .(Grid, `Toe Codes`)][, all(V1 == 1L)])
 ind <- unique(p[, .(unit = paste0(Grid, "_", `Toe Codes`), Grid, unit_habitat = tolower(sub(" forest$", "", Habitat_Type)), unit_sex = Sex)])
 stopifnot(!anyDuplicated(ind$unit))
 ind <- merge(ind, first, by = "Grid")
 long <- ind[, .(period = first:21L), by = .(unit, Grid, unit_habitat, unit_sex)]
+n_before <- nrow(long)
+long <- long[sessions, on = .(Grid, period), nomatch = NULL]
+n_proto_rows <- n_before - nrow(long)
+stopifnot(n_proto_rows == ind[Grid == "L2", .N] * 2L)
 caps <- unique(p[, .(unit = paste0(Grid, "_", `Toe Codes`), period)])
 long[, y := 0L][caps, on = .(unit, period), y := 1L]
 long[, `:=`(taxon = "PRADEL", cluster_id = Grid)][, Grid := NULL]
@@ -79,7 +89,7 @@ dataset <- list(
   abstract = "Capture-mark-recapture of the endemic rodent Praomys delectorum on four 7 x 7 Sherman-trap grids (two in intact, two in disturbed montane forest) in the Ukaguru Mountains, Eastern Arc, Tanzania, trapped for three consecutive nights every month from June 2018 to February 2020; animals individually marked by toe clipping. The authors modelled survival and maturation by forest type.",
   samplingProtocol = "Four 70 x 70 m grids of 49 Sherman LFA live traps (7 lines x 7 stations, 10 m apart), baited with peanut butter and maize bran, run for three consecutive nights every month and checked each morning; animals toe-clipped, sexed, weighed and aged.",
   samplingProtocolCode = "live_trap", surveyEvidence = "inferred",
-  surveyEvidenceNote = "Sessions are grid-months. Every grid is taken as trapped every month from its first month with a capture of any species (H2, L2 June 2018; D1, D2 July 2018) to February 2020, following the paper's protocol ('three consecutive nights every month'). L2 has no capture of any species in March and April 2019; those two sessions are assumed surveyed with no capture. The deposit has no list of trapping sessions.",
+  surveyEvidenceNote = "Sessions are grid-months, inferred from detections: a grid-month is a session where the deposit's all-species file has a capture of any small mammal on that grid (80 grid-months). Sessions with no capture of anything are absent: the paper's protocol ('three consecutive nights every month', June 2018 to February 2020) also schedules D1 and D2 in June 2018 and L2 in March and April 2019, which have no capture of any species and are not shipped (ruling 2026-11-06). The deposit has no list of trapping sessions.",
   responseType = "detection", unitKind = "individual", closure = "none",
   closureNote = "One period per monthly session; the three nights of a session are pooled (the deposit's dates allow nights, but nights with no capture on a grid are not recorded).",
   occasionKind = "none", taxonInclusion = "single",
@@ -88,16 +98,17 @@ dataset <- list(
   covariateNote = "cluster_id: trapping grid. unit_habitat: intact or disturbed forest. unit_sex: F or M.",
   notShipped = list(trap_station = "trap line and station of each capture", per_capture = "weight and reproductive condition at each capture",
                     star_column = "an unnamed column with '*' on 2 rows (undefined)",
-                    other_species = "captures of 9 other small-mammal taxa in the all-species file (used only to check session coverage)"),
-  notes = "Animals have rows from their grid's first session (E4.4). Session coverage is inferred from the protocol (surveyEvidenceNote).")
+                    other_species = "captures of 9 other small-mammal taxa in the all-species file (used only to check session coverage)",
+                    protocol_only_sessions = sprintf("4 grid-months the protocol schedules but with no capture of any species (D1 and D2 June 2018, L2 March and April 2019; ruling 2026-11-06, protocol-only zeros), %d animal rows at L2", n_proto_rows)),
+  notes = "Animals have rows from their grid's first session (E4.4), at every session of their grid. Sessions are grid-months with a capture of any species; L2 has no session in March and April 2019 (surveyEvidenceNote). Rebuilt 2026-11-06 (batch 47) to drop those two protocol-only sessions.")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/ademola_2021_ukaguru_praomys_cjs.R")
 stage_dict_row(TABLE,
   description = "Monthly CJS capture histories of Praomys delectorum on four live-trapping grids in intact and disturbed forest, Ukaguru Mountains, Tanzania, 2018-2020.",
   url = "https://doi.org/10.5061/dryad.j6q573ncr",
   reference = "Ademola, O. J., Vanden Broecke, B., Leirs, H., Mulungu, L. S., Massawe, A. W. & Makundi, R. H. (2021). Effects of forest disturbance on the fitness of an endemic rodent in a biodiversity hotspot. Ecology and Evolution 11, 2391-2401. https://doi.org/10.1002/ece3.7214",
   doi_paper = "10.1002/ece3.7214", doi_data = "10.5061/dryad.j6q573ncr", original_license = "CC0 1.0", derived_license = "CC0 1.0",
-  notes = "Dryad deposit fetched from its Zenodo mirror (record 5907851, carrying the Dryad DOI). Sessions inferred from the protocol.",
+  notes = "Dryad deposit fetched from its Zenodo mirror (record 5907851, carrying the Dryad DOI). Sessions inferred from captures of any species.",
   source_via = "Zenodo mirror of Dryad (file API)")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "CJS capture-recapture",
   sampling_protocol = "live_trap", design = "Multi-session (21 monthly sessions, 4 grids)",
-  realm = "Terrestrial", country = "TZA", coordinates = "None in source", notes = "Survey set inferred from the protocol.")
+  realm = "Terrestrial", country = "TZA", coordinates = "None in source", notes = "Survey set inferred from captures of any species.")
