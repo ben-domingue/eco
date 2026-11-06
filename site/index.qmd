@@ -38,7 +38,7 @@ rerun on exactly the data it used.
 <div class="stat"><div class="n">`r km(s$n_rows)`</div><div class="l">survey observations</div></div>
 :::
 
-<p class="eco-release">Current release: <strong>eco v`r s$eco_version`</strong> (Redivis `eco` `r s$release_redivis`, `r s$release_date`). Tables built since then are in the repository and the Redivis draft until the next release. <a href="corrections.html">Releases and corrections</a>.</p>
+<p class="eco-release">Current release: <strong>eco v`r s$eco_version`</strong> (Redivis `r s$release_redivis`, `r s$release_date`). Tables built since then are in the repository and the Redivis draft until the next release. <a href="corrections.html">Releases and corrections</a>.</p>
 
 ## What a table looks like
 

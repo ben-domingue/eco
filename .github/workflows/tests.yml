@@ -51,6 +51,16 @@ jobs:
       - name: Validator tests
         run: python -m pytest eco_validate/tests -q
 
+      # Shard placement in the uploader and the release manifest's merge of
+      # core-shard releases (offline: no Redivis).
+      - name: Uploader and manifest tests
+        run: python -m pytest upload/tests releases/tests -q
+
+      # redivis_config.py and Rpkg/R/config.R list the same core shards, in
+      # the same order, and the same eco_meta.
+      - name: Redivis dataset lists agree
+        run: python tools/check_config_parity.py
+
       # Every output/<t>__dataset.json records a __taxa side table and has a
       # dictionary row, a tags row and a metadata.csv row (IRW's 17_coverage.R, at PR time).
       - name: Every table has its companions

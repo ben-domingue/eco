@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
-"""Ship output/ to the Redivis dataset `eco` with IRW's uploader, red_up.
+"""Ship output/ to the eco core shards on Redivis (`eco`, `eco_2`, ...) with IRW's uploader, red_up.
 
     python3 upload/red_up_eco.py --dry-run     # plan only
     python3 upload/red_up_eco.py               # confirm, then upload to the draft
     python3 upload/red_up_eco.py --yes
+    python3 upload/red_up_eco.py --dataset eco    # put NEW tables in this shard
+
+Which shard: the core shards are listed in `redivis_config.py` (the rules are
+there). Every shard is listed first; a table already on Redivis is updated in
+the shard that holds it, a new table and its side tables go to the oldest
+shard under 950 tables (unless CORE_DEFAULT pins one) or to `--dataset`, and an
+upload that would take a shard past 1000 tables is refused before anything is
+written. The plan, dry run included, prints each table's shard.
 
 Borrowed from ben-domingue/irw `src/red_up` (installed editable from that
 checkout): its CSV scan and duplicate-name checks, the IRW format validator
@@ -20,9 +28,9 @@ adds, and why red_up alone is not enough here:
     view of each core table. The eco side tables (`__taxa`, `__periods`,
     `__units`, `__traps`) are real tables that belong beside the core file;
     eco-validate checks them against their core table and they are uploaded here.
-  * red_up's targets come from IRW's redivis_config.R, where `eco` is not and
-    should not be registered: the eco corpus is a separate dataset under the
-    same owner, not an IRW shard.
+  * red_up's targets come from IRW's redivis_config.R, where eco is not and
+    should not be registered: eco's shards are separate datasets under the
+    same owner, registered in this repo's redivis_config.py.
   * Each table gets its description from output/<table>__dataset.json (title,
     citation, licence, counts), which IRW keeps in a sheet instead.
   * A core must be the build its __dataset.json describes: `coreMd5` (or an
@@ -52,10 +60,12 @@ from red_up.auth import authenticate
 from red_up.checks import FileReport, check_all, scan
 from red_up.push import UploadResult, open_draft, push_one
 from red_up.verify import verify
-from red_up.targets import load_registry
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))            # eco_validate/ lives at the repo root
+sys.path.insert(0, str(ROOT))            # eco_validate/ and redivis_config.py live at the repo root
+import redivis_config as rc   # noqa: E402
+sys.path.insert(0, str(ROOT / "upload"))
+from placement import place   # noqa: E402
 from eco_validate import validate_file   # noqa: E402
 sys.path.insert(0, str(ROOT / "validate"))
 from report import dataset_meta, report_row, update_report   # noqa: E402
@@ -64,7 +74,6 @@ from eco_validate.model import STANDARD_URL   # noqa: E402
 
 OUT = ROOT / "output"
 TAGS = ROOT / "tags" / "tags_auto.csv"
-DATASET = "eco"
 
 
 def dataset_description() -> str:
@@ -243,24 +252,43 @@ def blocked_by_tags() -> dict[str, str]:
     return out
 
 
-def ensure_dataset(owner: str, name: str, assume: bool) -> None:
+def shard_listing(owner: str) -> dict[str, set[str]]:
+    """Table names in every core shard, oldest first, as the next upload finds
+    them: the open draft, else the latest release. Needs a token (drafts are
+    not public). A shard that cannot be read stops the run: placing a table
+    without seeing every shard is how a name ends up in two of them."""
     import redivis
-    ds = redivis.organization(owner).dataset(name)
-    if ds.exists():
-        return
-    print(f"\n{owner}.{name} does not exist on Redivis.")
-    if not assume and sys.stdin.isatty():
-        if input("Create it (private, unreleased)? [y/N] ").strip().lower() != "y":
-            raise SystemExit("Cancelled.")
-    ds.create(public_access_level="none", description=dataset_description())
-    print(f"created {owner}.{name} (private)")
+    import warnings
+    warnings.filterwarnings("ignore", message="No reference id")
+    org = redivis.organization(owner)
+    out = {}
+    for d in rc.CORE_SHARDS:
+        try:
+            tables = org.dataset(d.qualified, version="next").list_tables()
+        except Exception:
+            try:
+                tables = org.dataset(d.qualified).list_tables()
+            except Exception as exc:
+                raise RuntimeError(f"cannot list {owner}.{d.name} ({d.ref}): {type(exc).__name__}: {exc}") from exc
+        out[d.name] = {t.name for t in tables}
+    return out
+
+
+def ensure_dataset(owner: str, name: str) -> None:
+    """Shards are created by Ben on Redivis, never here (redivis_config.py)."""
+    import redivis
+    if not redivis.organization(owner).dataset(rc.shard(name).qualified).exists():
+        raise SystemExit(f"{owner}.{name} is registered in redivis_config.py but does not exist on "
+                         "Redivis. Ask Ben to create it (public access level \"data\", like eco).")
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("paths", nargs="*", default=[str(OUT)],
                     help="CSV files or directories (default: output/)")
-    ap.add_argument("--dataset", default=DATASET)
+    ap.add_argument("--dataset", default=None, choices=[d.name for d in rc.CORE_SHARDS],
+                    help="the shard NEW tables go to (default: the oldest shard under "
+                         f"{rc.SWITCH_AT} tables, redivis_config.py); existing tables always stay where they are")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--describe", action="store_true",
                     help="print the dataset description and every table's generated description, then exit (no token needed)")
@@ -300,7 +328,7 @@ def main(argv=None) -> int:
                 print(f"ERROR: __dataset.json lacks {exc}\n")
         return 1 if bad else 0
 
-    owner, _ = load_registry()          # the owner (datapages) from IRW's config; eco is not a shard
+    owner = rc.OWNER
 
     reports = check_all([(p, p.stem) for p in csvs])
     for d in parted:
@@ -363,33 +391,76 @@ def main(argv=None) -> int:
         if not ((OUT / f"{base}.csv").exists() or is_parted(OUT / f"{base}.parts")):
             r.errors.append("no core table for this side table")
 
-    print(f"red_up_eco -- {len(reports)} CSV file(s) -> {owner}.{args.dataset}:next\n")
+    # Which shard each table goes to. Every shard is read first (a token is
+    # needed for drafts); a dry run without one says so and places nothing.
+    default = args.dataset or rc.default_shard().name
+    plan = None
+    try:
+        authenticate()
+        listing = shard_listing(owner)
+        if not args.dataset:
+            default = rc.default_shard({s: len(n) for s, n in listing.items()}).name
+        plan = place([r.table for r in reports], listing, default=default, forced=args.dataset,
+                     cap=rc.TABLE_CAP, warn=rc.TABLE_WARN)
+    except (Exception, SystemExit) as exc:
+        if not args.dry_run:
+            print(f"cannot place tables in shards: {exc}", file=sys.stderr); return 2
+        print(f"(shards not read, so no table is placed: {exc})\n")
+    if plan:
+        for r in reports:
+            if r.table in plan.errors:
+                r.errors.append(plan.errors[r.table])
+
+    print(f"red_up_eco -- {len(reports)} CSV file(s) -> {owner}: "
+          + ", ".join(f"{d.name}:next" for d in rc.CORE_SHARDS) + f" (new tables -> {default})\n")
     for r in sorted(reports, key=lambda r: r.table):
         status = "SKIP" if r.errors else ("CORE" if r in core else "SIDE")
         parts = f"  ({len(part_files(r.path))} parts -> one table)" if is_parted(r.path) else ""
-        print(f"  {status:<5} {r.table:<40} {r.rows:>8,} rows  {len(r.columns):>3} cols{parts}")
+        where = ""
+        if plan and r.table in plan.home:
+            where = f"  -> {plan.home[r.table]}" + (" (new)" if r.table in plan.new.get(plan.home[r.table], []) else "")
+        print(f"  {status:<5} {r.table:<40} {r.rows:>8,} rows  {len(r.columns):>3} cols{where}{parts}")
         for e in r.errors:
             print(f"        error: {e}")
         for w in r.warnings:
             print(f"        warn:  {w}")
     live = [r for r in reports if not r.errors]
     skipped = [r for r in reports if r.errors]
+    if plan:
+        # Count only what will actually be written: skipped tables add nothing.
+        plan = place([r.table for r in live], listing, default=default, forced=args.dataset,
+                     cap=rc.TABLE_CAP, warn=rc.TABLE_WARN)
+        for s, n in plan.over_warn.items():
+            print(f"  warning: {owner}.{s} will hold {n} tables (cap {rc.TABLE_CAP}); the next shard is due "
+                  "(redivis_config.py says how to add one)")
+        if plan.over_cap:
+            for s, n in plan.over_cap.items():
+                print(f"  error: {owner}.{s} would hold {n} tables, over Redivis' cap of {rc.TABLE_CAP}. "
+                      "Nothing uploaded. Set CORE_DEFAULT / --dataset to another shard, or add one.",
+                      file=sys.stderr)
+            return 2
     if not live:
         print("nothing to upload", file=sys.stderr); return 2
     if args.dry_run:
         print(f"\n--dry-run: {len(live)} table(s) would be uploaded; {len(skipped)} skipped. Nothing written.")
         return 1 if skipped else 0
 
-    authenticate()
-    ensure_dataset(owner, args.dataset, args.yes)
+    by_shard: dict[str, int] = {}
+    for r in live:
+        by_shard[plan.home[r.table]] = by_shard.get(plan.home[r.table], 0) + 1
+    summary = ", ".join(f"{n} to {owner}.{s}:next" for s, n in by_shard.items())
+    for s in by_shard:
+        ensure_dataset(owner, s)
     if not args.yes and sys.stdin.isatty():
-        if input(f"\nUpload {len(live)} table(s) to {owner}.{args.dataset}:next? [y/N] ").strip().lower() != "y":
+        if input(f"\nUpload {summary}? [y/N] ").strip().lower() != "y":
             print("Cancelled."); return 0
 
-    dataset = open_draft(owner, args.dataset)
+    drafts = {s: open_draft(owner, rc.shard(s).qualified) for s in by_shard}
     results = []
-    for n, r in enumerate(sorted(live, key=lambda r: r.table), 1):
-        print(f"  [{n}/{len(live)}] {r.table}", flush=True)
+    order = sorted(live, key=lambda r: (plan.home[r.table], r.table))
+    for n, r in enumerate(order, 1):
+        dataset = drafts[plan.home[r.table]]
+        print(f"  [{n}/{len(live)}] {plan.home[r.table]}.{r.table}", flush=True)
         res = (push_parts(dataset, r.path, r.table, r.rows) if is_parted(r.path)
                else push_one(dataset, r.path, r.table, r.rows))
         if res.ok:
@@ -414,7 +485,8 @@ def main(argv=None) -> int:
     if skipped:
         print(f"{len(skipped)} skipped for errors: {', '.join(r.table for r in skipped)}", file=sys.stderr)
     if not failed:
-        print(f"\nDRAFT only: review {owner}.{args.dataset}:next on Redivis and publish by hand.")
+        print("\nDRAFT only: review " + ", ".join(f"{owner}.{s}:next" for s in by_shard)
+              + " on Redivis and publish by hand.")
     return 1 if (failed or skipped) else 0
 
 
