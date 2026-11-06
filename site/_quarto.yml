@@ -19,6 +19,10 @@ website:
   # GitHub Pages project site. The custom-domain step is a one-line change
   # here plus a CNAME file if that ever happens.
   site-url: https://ben-domingue.github.io/eco/
+  # GA4 property "eco" (separate from IRW's). Search Console verifies the
+  # URL-prefix property https://ben-domingue.github.io/eco/ through this tag;
+  # if the site moves to its own domain, keep this ID and add a Domain property.
+  google-analytics: G-H94NN0RR8L
   repo-url: https://github.com/ben-domingue/eco
   repo-actions: [issue]
   description: "Ecological detection data in one format: occupancy surveys, repeated counts and capture histories from public deposits, validated and versioned."
