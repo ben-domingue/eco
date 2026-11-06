@@ -8,7 +8,9 @@ big_listing <- function() {
 }
 
 test_that("a table over the cap is flagged in the listing", {
-  local_mocked_bindings(.eco_table_listing = function(...) big_listing(), .eco_tag_for = function(...) NULL)
+  local_mocked_bindings(.eco_table_listing = function(...) big_listing(), .eco_tag_for = function(...) NULL,
+                        .eco_core_tags = function() c(eco = "v1.0", eco_2 = NA))
+  .eco_clear_session_cache(); on.exit(.eco_clear_session_cache(), add = TRUE)
   tabs <- eco_list_tables()
   expect_equal(tabs$needs_login, c(TRUE, FALSE))
 })

@@ -466,12 +466,16 @@ A cut the processor made beyond that (taxa below a record threshold) is stated i
 `notShipped`. Records identified only to a higher rank are not cut: they are their own
 taxa (E6).
 
-**Ruling (Q8, 2026-11-01).** One Redivis dataset, `datapages.eco`, holds every core
-table and its side tables, next to each other. A table's kind is defined by its key
+**Ruling (Q8, 2026-11-01; amended 2026-11-05).** Every core table and its side tables
+live next to each other in one Redivis dataset. The core datasets are shards with
+identical structure, `datapages.eco`, `datapages.eco_2`, ..., because Redivis caps a
+dataset at 1000 tables; a table and its side tables are never split across shards,
+and a name is in at most one shard. A table's kind is defined by its key
 column, not by where it lives. Per-table metadata travels as the Redivis table
 description, generated from `__dataset.json`. The pipeline's own tables (metadata,
 biblio, tags, collections) go in a second dataset, `eco_meta`, so a `LIKE` query over
-`eco` sees only data. Sharding is not a concern at the expected scale.
+a core shard sees only data. Where the shards are listed and how a table is placed
+is infrastructure, not format: `ARCHITECTURE.md` section 2.
 
 ---
 
