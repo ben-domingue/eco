@@ -1,0 +1,71 @@
+{
+  "table": "finnegan_2024_afognak_deer_scr",
+  "title": "Spatial capture-recapture of 23 Sitka black-tailed deer bucks at 26 cameras over 32 nights, Afognak Island, Alaska, September-October 2022",
+  "creator": "Finnegan, Shannon",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.brv15dvk2",
+  "sourceURL": "https://doi.org/10.5061/dryad.brv15dvk2",
+  "paperDOI": "10.1002/wlb3.01360",
+  "citation": "Finnegan, S. (2024). Sitka Black-tailed Deer Camera trap data for density estimation from Afognak Island, Alaska [Data set]. Dryad. https://doi.org/10.5061/dryad.brv15dvk2",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Twenty-six unbaited camera traps about 400 m apart along inactive logging roads on Afognak Island, Alaska, photographed Sitka black-tailed deer from 1 September 2022; bucks were identified individually from antler characteristics and natural markings, with independent events separated by six minutes. The deposit gives each buck's capture events, a camera x night operating matrix (32 nights; one camera failed after night 18) and camera coordinates, the inputs of a closed spatial capture-recapture density estimate that the authors compared with thermal-drone counts. The table is one row per buck x camera x worked night, y = 1 on detection, y_raw = the number of independent events that night.",
+  "samplingProtocol": "26 Browning Strike Force HD cameras on poles or stumps about 100 cm high along inactive logging roads, about 400 m apart, unbaited, operating 24 h with a three-photo burst; events at one camera separated by at least six minutes; bucks identified from antler shape, length, points, brow tines and scars by one observer.",
+  "samplingProtocolCode": "camera_trap",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "surveyEvidence": "effort_table",
+  "closure": "closed",
+  "closureNote": "one period of 32 nights treated as a closed population for SCR density",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "temporalCoverage": "2022-09/2022-10",
+  "geographicCoverage": "Afognak Island, Kodiak Archipelago, Alaska, USA (about 58.3 N, 152.3 W); camera coordinates in __traps",
+  "crs": "UTM zone 5N (EPSG:32605 assumed; the deposit gives eastings and northings without a CRS, and the zone is inferred from the island's location)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published (deer are not a flagged taxon)"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps; closed population, nightly occasions. Night k of the operating matrix is calendar day 2022-09-01 + k - 1 (every capture falls on a worked night under this reading).",
+  "notShipped": {
+    "bucks_does_fawns": "Bucks_does_fawns.csv: an event list of does, fawns and unidentified bucks with group sizes (not individual histories); its identified-buck events (121) differ from the deposited capture history (117)",
+    "drone_counts": "not deposited"
+  },
+  "notes": "Bucks only: does and fawns were not individually identified. The Dryad methods say cameras were active to 6 October; the deposited operating matrix covers 32 nights (to 2 October).",
+  "summary": {
+    "n_rows": 18814,
+    "n_units": 23,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 32,
+    "n_surveys": 18814,
+    "y_values": "0,1",
+    "prop_zero": 0.994,
+    "n_traps": 26,
+    "n_zero": 18710,
+    "n_positive": 104,
+    "n_units_detected": 23,
+    "max_y": 1
+  },
+  "sampleFloor": "below (23 units < 30)",
+  "columns": ["unit", "taxon", "y", "y_raw", "trap", "occasion", "date"],
+  "coreMd5": "44fac245e442029c597a6959fb8643da",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "dea62984078b18750ac321aea6a43eda"
+    },
+    "traps": {
+      "rows": 26,
+      "columns": ["trap", "x", "y", "n_nights_operating"],
+      "md5": "f4d5181f83a7432106f3a1a43576fe3b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/finnegan_2024_afognak_deer_scr.R",
+  "buildDate": "2026-11-05"
+}

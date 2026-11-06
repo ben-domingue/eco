@@ -1,0 +1,65 @@
+{
+  "table": "siren_2024_vtnh_moose_count",
+  "title": "Moose calves and adult cows: monthly maximum counts at 225 camera sites, May-August 2014-2019, Vermont and New Hampshire",
+  "creator": "Siren, Alexej; Kilborn, Jillian; Bernier, Chris; Patry, Riley; Cliche, Rachel; Prout, Leighlan; Gifford, Suzanne; Callahan, Catherine; Wixsom, Scott",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.tqjq2bw76",
+  "sourceURL": "https://doi.org/10.5061/dryad.tqjq2bw76",
+  "paperDOI": "10.1002/ece3.70583",
+  "citation": "Siren, A., Kilborn, J., Bernier, C., Patry, R., Cliche, R., Prout, L., Gifford, S., Callahan, C., & Wixsom, S. (2024). Monitoring animal populations with cameras using open, multistate, N-mixture models [Data set]. Dryad. https://doi.org/10.5061/dryad.tqjq2bw76",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera traps at 225 sites across Vermont and New Hampshire recorded moose from 2014 to 2019. For each site, year and summer month (May-August) the authors recorded the maximum number of calves and of adult cows seen together in one picture, to avoid double counting, and analysed the counts with an open, multistate (calf, adult) Dail-Madsen N-mixture model to estimate abundance, apparent survival and recruitment. About half of the site-months were not surveyed (battery failure, malfunction, staggered entry of cameras); those cells have no rows.",
+  "samplingProtocol": "Remote cameras at independent locations (not randomised; for example along game trails) operated across years; each May-August month is a survey occasion, and the response is the maximum number of calves and of adult cows detected within one picture at the site in that month.",
+  "samplingProtocolCode": "camera_trap",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors assumed closure across the four monthly occasions of a May-August season; the population is open between years (Dail-Madsen)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "surveyEvidence": "deposited_matrix",
+  "temporalCoverage": "2014-05/2019-08",
+  "geographicCoverage": "Vermont and New Hampshire, USA (no coordinates deposited)",
+  "notShipped": {
+    "bulls_file": "moose_data_bulls.rds: README describes counts of bulls and cows, but the array has the same two states as the main file (Juveniles identical; Adults greater or equal); not analysed by the authors",
+    "model_outputs": "abundance, survival and recruitment estimates and the simulation study"
+  },
+  "notes": "taxon is species x life stage (E6): ALCALC_J calves, ALCALC_A adult cows. Site indices are the deposit's (1..257, 225 used). The README asks those reusing the moose data to contact the authors to discuss collaboration (a request; the deposit is CC0).",
+  "summary": {
+    "n_rows": 4400,
+    "n_units": 225,
+    "n_taxa": 2,
+    "n_periods": 6,
+    "n_occasions": 4,
+    "n_surveys": 2200,
+    "y_values": "0,1,2",
+    "prop_zero": 0.829,
+    "n_traps": 1,
+    "n_zero": 3649,
+    "n_positive": 751,
+    "n_units_detected": 121,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "4bfd71e83c5bbb8c1a8185c06f69d09d",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "year", "start", "end"],
+      "md5": "48aaa5170a0eebafd7d738b17a79ad67"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxonRemarks"],
+      "md5": "256dc056857268110be5c9d4c408bce8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/siren_2024_vtnh_moose_count.R",
+  "buildDate": "2026-11-05"
+}

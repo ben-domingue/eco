@@ -1482,6 +1482,43 @@ What this batch says about the standard:
 - **A checklist that grows between years** (Zwin): 21 taxa in 2023-2024, 27 in 2025. Not tested here because only
   2025 has route identity, but a multi-year build would need `__survey_taxa` by period (E4.2).
 
+## Batch 33 — 2026-11-05 (ScienceBase eDNA rows, then small Dryad deposits: streamgage fish eDNA, Vermont moose, Afognak deer, Finnish dunlin)
+
+One agent in `~/eco-b33` (branch `batch-33`, from main at a506650). The two ScienceBase rows went first (no Dryad
+quota), then small Dryad deposits on a budget of 12 anonymous requests (6 dataset records, 6 version zips; no
+429). Nine deposits read, four tables built and uploaded to the Redivis draft, four held, one blocked.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| sepulveda_2019_streamgage_fish_edna | multi-scale eDNA (streamgage > event > sample > qPCR replicate) | USGS ScienceBase, public domain | 1,520 | kokanee and yellow perch at nine streamgages below reservoirs, six events May-September 2018, 190 water samples x 4 replicates; cluster_id = gage, period = event; field-blank replicate count, inhibition and managers' relative abundance as obs_; the free-text abundance comments (one has a phone number) not shipped |
+| siren_2024_vtnh_moose_count | open multistate N-mixture (Dail-Madsen) counts, cameras | Dryad CC0 | 4,400 | monthly maximum counts of calves and adult cows at 225 camera sites, May-August 2014-2019, Vermont and New Hampshire; taxon = species x stage (E6, lifeStage); count sums match the paper (568 cows, 192 calves); the bulls array not shipped (layout does not match its README) |
+| finnegan_2024_afognak_deer_scr | closed SCR, camera traps | Dryad CC0 | 18,814 | 23 Sitka black-tailed deer bucks x 26 cameras x 32 nights, Afognak Island, Alaska, 2022; y_raw = independent events per buck-camera-night; night k read as 2022-09-01 + k - 1 (every capture on a worked night); UTM 5N inferred; below the sample floor (23 units) |
+| pakanen_2020_dunlin_ms | multi-state CJS (geolocator status) | Dryad CC0 | 5,666 | 337 colour-ringed southern dunlins, 2002-2018, states A/B/C = without, carrying, after removal of a geolocator; seven nest-cage kills removed after 2009 (obs_removed); the authors' design covariates not shipped; the abstract says 338 birds |
+
+Not built (`queue/human_review.csv`): the streamgage release's dreissenid file (held: its June positives at Jackson Lake
+and Palisades come with positive field blanks and zebra-mussel sequences, i.e. contamination, and its sample sets do
+not match the fish file), the Niobrara mussel qPCR assays (held: every field reaction negative; ship an all-zero
+survey?), the TEAM functional-diversity deposit (held: occupancy estimates only), the BC/Chile point-count and ARU
+deposit (held: BC point counts dated 2018 in the data, 2019 in the paper). Blocked: the Latin American puma
+deposit (Dryad refuses the 703 MB version zip anonymously, HTTP 405; needs a token). Also fixed: row 515 of
+`queue/candidates.csv` (the Mara cheetah row) had an unquoted comma in its status, which broke pandas.
+
+What this batch says about the standard:
+
+- **Multi-scale eDNA with time** (streamgage): the standard's E9 mapping is cluster_id = site, unit = sample,
+  occasion = replicate; repeated sampling events at a site were added as `period`, so each unit (a water sample)
+  lives in one period only. That is legal and keeps the event order a key column, but it is the first table where
+  `period` indexes the cluster rather than the unit; a user fitting a dynamic model reads the state at
+  cluster_id x period.
+- **A field blank is a control, not a unit** (streamgage): blanks were not shipped as rows; each sample carries the
+  count of its event's blank replicates that amplified for the same target (`obs_fieldblank_pcr_pos`). Batch 6's
+  eDNA tables had no blank data; if this becomes common, a rule in the guide would help.
+- **Stage-structured counts with a sex-restricted stage** (moose): the adult class counts cows only. Shipped as
+  species x stage under E6 with `taxonRemarks` saying the class is female-only, not as a species x sex composite,
+  which E6 forbids.
+- **Dryad's version zip has a size ceiling** for anonymous users (the puma deposit, 703 MB, returns 405).
+  `download_dryad()` cannot fetch such deposits; per-file downloads need a token.
+
 ## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
 
 One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.

@@ -1,0 +1,71 @@
+{
+  "table": "pakanen_2020_dunlin_ms",
+  "title": "Southern dunlin multi-state capture-resight histories by geolocator status, 337 colour-ringed breeding adults, Finland, 2002-2018",
+  "creator": "Pakanen, Veli-Matti; Rönkä, Nelli; Thomson, Robert L.; Blomqvist, Donald; Koivula, Kari",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.6m905qfxp",
+  "sourceURL": "https://doi.org/10.5061/dryad.6m905qfxp",
+  "paperDOI": "10.1111/jav.02555",
+  "citation": "Pakanen, V.-M., Rönkä, N., Thomson, R. L., Blomqvist, D., & Koivula, K. (2020). Survival probability in a small shorebird decreases with the time an individual carries a tracking device [Data set]. Dryad. https://doi.org/10.5061/dryad.6m905qfxp",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual capture and resighting histories of colour-ringed breeding adult southern dunlins (Calidris alpina schinzii) in a closely monitored Finnish population, 2002-2018, used to test whether apparent survival falls with the number of years a bird carries a geolocator. Each encounter is coded by the bird's geolocator status: A without a geolocator, B carrying one, C after it was removed. Seven birds were killed under nest protective cages in 2009 and leave the study then (obs_removed).",
+  "samplingProtocol": "Breeding adults captured and colour-ringed, some fitted with leg-mounted geolocators that were later removed on recapture; each breeding season the population is searched and birds are recaptured or resighted by their colour rings (field methods in Pakanen et al. 2011-2020).",
+  "samplingProtocolCode": "live_trap",
+  "responseType": "state",
+  "unitKind": "individual",
+  "stateCodes": {
+    "0": "not encountered",
+    "1": "encountered, no geolocator (A)",
+    "2": "encountered, carrying a geolocator (B)",
+    "3": "encountered, geolocator removed (C)"
+  },
+  "closure": "none",
+  "closureNote": "one encounter per breeding season; open between years (CJS / multi-state)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The deposited MARK history has one column per breeding season 2002-2018; every bird is surveyed in every season from 2002 (wild-caught adults, E4.4), including seasons before its first encounter (y = 0), until 2018 or its removal.",
+  "temporalCoverage": "2002/2018",
+  "geographicCoverage": "One breeding population of the southern dunlin in Finland (the deposit names no site; no coordinates deposited)",
+  "notShipped": {
+    "design_covariates": "34 columns of GEOC2, GEOC2 squared, GEOC1 and time-since-marking covariates by year: computed by the authors from the A/B/C histories, recoverable from y_raw"
+  },
+  "notes": "No ring ids in the deposit: units are sheet rows. The Dryad abstract says 338 birds; the sheet has 337. Rows before a bird's first encounter are y = 0 (drop them to condition on first capture, as MARK does). States only move A -> B -> C (asserted).",
+  "summary": {
+    "n_rows": 5666,
+    "n_units": 337,
+    "n_taxa": 1,
+    "n_periods": 17,
+    "n_occasions": 1,
+    "n_surveys": 5666,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.813,
+    "n_traps": 1,
+    "n_zero": 4607,
+    "n_positive": 1059,
+    "n_units_detected": 337,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_sex", "obs_removed"],
+  "coreMd5": "00a271b0e039c04c89b62f911261c779",
+  "sideTables": {
+    "periods": {
+      "rows": 17,
+      "columns": ["period", "year", "n_encountered"],
+      "md5": "c9ce0dab26bfd1f1380461d81769bbc5"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "fae3cd15a40b2f96a7bd50484e00390a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/pakanen_2020_dunlin_ms.R",
+  "buildDate": "2026-11-05"
+}
