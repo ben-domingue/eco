@@ -15,6 +15,7 @@ deposit's source, DOI/URL, licence, data type, difficulty and notes.
 | `claimed` | someone is building it (rarely set: the open issue is the claim) |
 | `built: <table>` | built; several tables from one deposit are separated by `;` |
 | `held: <reason>`, `blocked: <reason>`, `deferred: <reason>`, `not built: <reason>` | not buildable now, with the reason (often a row in `human_review.csv`) |
+| `rejected <date>; <reason>` | out of scope or not eligible; kept so the deposit is not triaged again (its row in `human_review.csv` gives the ruling) |
 
 To claim one: open a data-queue issue on `ben-domingue/eco` with the issue form
 (it applies the `data queue` label), titled with the table name you intend to use

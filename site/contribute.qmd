@@ -11,7 +11,8 @@ q <- as.data.table(read.csv("../queue/candidates.csv", stringsAsFactors = FALSE)
 q[, state := fifelse(grepl("^built", status), "built",
              fifelse(grepl("^claimed", status), "claimed",
              fifelse(grepl("^available", status), "available",
-             fifelse(grepl("^needs-look", status), "needs-look", "held"))))]
+             fifelse(grepl("^needs-look", status), "needs-look",
+             fifelse(grepl("^rejected", status), "rejected", "held")))))]
 counts <- q[, .N, by = state]
 n <- function(s) { v <- counts[state == s, N]; if (length(v)) v else 0L }
 ```
@@ -21,7 +22,7 @@ convert another public deposit and see what breaks. There are
 `r n("available")` inspected candidates waiting, `r n("needs-look")` more that
 nobody has opened yet, `r n("claimed")` claimed, `r n("built")` built and
 `r n("held")` held back (an access wall, no licence, or a design the standard
-does not yet cover). Each conversion is one R script plus the files it writes.
+does not yet cover) and `r n("rejected")` rejected. Each conversion is one R script plus the files it writes.
 
 ## The checklist
 
@@ -87,12 +88,12 @@ Then check the deposited readme and data files for a different licence, because
 the stricter of the two applies.
 
 ::: {.callout-warning}
-## Licence policy (draft for Ben to confirm)
+## Licence policy
 
-Adapted from IRW's "Before you start" and eco's intake rules
-([standard, Intake policy](standard.qmd)):
+The rule is the [standard's Intake policy](standard.qmd), adapted from IRW's
+"Before you start". In short:
 
-- **CC0, CC BY, CC BY-SA or public domain:** go ahead.
+- **CC0, CC BY, CC BY-SA, ODC-By 1.0 or public domain:** go ahead.
 - **Non-commercial (CC BY-NC and the like), ODbL, GPL or another licence that
   carries a condition forward:** go ahead. The condition goes into the table's
   `derived_license`, so anyone who needs to can find and exclude the table.
@@ -100,6 +101,11 @@ Adapted from IRW's "Before you start" and eco's intake rules
   "contact the author":** stop. Email the owner for written permission (IRW's
   template is `processing_notes/Licensing.txt` in `ben-domingue/irw`), and build
   nothing until it arrives.
+- **Unclear terms:** a repository licence that names no licence text (Zenodo's
+  "Other (Open)"), or a CC0 badge next to a clause asking users to consult the
+  authors. Stop and ask by email, as above.
+- **Permission refused, or no reply:** the deposit may be linked but not
+  reshared. Permission to use is not permission to reshare.
 - **ND (no derivatives):** stop. Reshaping the data into eco's format is a
   derivative, which ND forbids.
 - **The repository page and the files disagree** (say, Dryad shows CC0 but the
