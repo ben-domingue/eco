@@ -51,6 +51,7 @@ blount_2025_neturkiye_carniv_count,40.3,42.6,locality,44,149,unit coordinates,un
 blount_2025_neturkiye_lynx_occ,40.3,42.6,locality,44,149,unit coordinates,unit_decimalLatitude
 boone_2023_minnesota_bombus_count,45.3,-93.7,state,538,25,unit coordinates,unit_decimalLatitude
 boone_2023_minnesota_bombus_exact_count,45.3,-93.7,state,539,25,unit coordinates,unit_decimalLatitude
+bornand_2014_gantrisch_plant_occ,46.7,7.5,locality,5,,place name,"Gurnigel-Gantrisch, study area coordinates in the paper (46°44'20""N, 7°26'45""E)"
 botsch_2020_tits_territory_count,46.8,8.2,country,300,,place name,Switzerland centroid
 bradferlawrence_2025_ukwood_beetle_comm,54.7,-1.9,state,644,,bounding box,geographicCoverage.boundingBox
 bradferlawrence_2025_ukwood_bird_comm,54.7,-1.9,state,644,,bounding box,geographicCoverage.boundingBox
@@ -122,6 +123,7 @@ dougherty_2016_rustycrayfish_edna,46.1,-89.7,locality,39,261,unit coordinates,un
 doyle_2025_chinalake_tortoise_scr,35.5,-117.0,site,,,place name,stated plot centroid
 duboisgagnon_2021_quebec_chorusfrog_occ,45.4,-73.2,region,150,,place name,"Monteregie, Quebec"
 dutta_2024_panna_carnivore_occ,24.6,80.0,locality,50,,place name,Panna Tiger Reserve
+dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolitan area (no site coordinates deposited)
 dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
 evans_2021_maine_marten_dynocc,45.3,-69.2,state,450,,place name,Maine centroid
 fabritius_2015_merikarvia_fritillary_cjs,61.9,21.6,locality,10,,place name,stated cell centre
@@ -176,6 +178,7 @@ grant_2023_canaanvalley_amph_count,39.1,-79.4,locality,17,,bounding box,geograph
 green_2018_ncal_fisher_scr,41.0,-123.5,region,250,,place name,northwestern California
 green_2018_ncal_mesocarn_dynocc,41.0,-123.5,region,250,,place name,northwestern California
 gustafson_2024_seward_gyrfalcon_dynocc,65.3,-164.5,region,300,,place name,Seward Peninsula
+gustafson_2024_seward_prey_count,64.8,-165.0,region,150,,place name,southern Seward Peninsula road corridors from Nome
 guzy_2018_southcarolina_anuran_comm,34.9,-81.6,region,80,,place name,Broad and Pacolet Rivers
 haas_2025_sweden_waterbird_count,58.3,15.7,country,1084,3724,unit coordinates,unit_decimalLatitude
 haas_2025_sweden_waterbirdsep_count,58.3,15.7,country,1300,1645,unit coordinates,unit_decimalLatitude
@@ -186,6 +189,8 @@ hamer_2024_hungary_amph_comm,47.2,19.5,country,500,,place name,Hungary centroid
 hamm_2013_satyr_ds,42.3,-85.0,state,250,,place name,lower Michigan (site not located)
 hanslowe_2022_marianas_rat_occ,13.7,145.0,region,162,,bounding box,geographicCoverage.boundingBox
 hartley_2024_cpraealtus_occ,-36.5,148.3,region,250,,place name,Australian Alps
+hastings_2018_forrester_philopatry_ms,54.8,-133.5,locality,15,,place name,Forrester Island Complex rookery
+hastings_2018_seak_philopatry_ms,56.0,-134.5,region,400,,place name,southeastern Alaska rookeries (Forrester Island to Graves Rocks)
 hastings_2018_seak_sealion_cjs,56.6,-135.3,region,450,,place name,centre of 4 named rookeries
 henden_2013_finnmark_birds_dynocc,70.0,25.0,state,400,,place name,Finnmark
 henry_2020_karoo_birds_comm,-32.1,23.4,state,696,1116,unit coordinates,"unit_decimalLatitude, obs_decimalLatitude"
@@ -242,6 +247,7 @@ king_2018_lakeerie_watersnake_cjs,41.6,-82.8,locality,25,,place name,western Lak
 kleeman_2024_dixiefire_ranaboylii_occ,40.3,-120.9,region,179,,bounding box,geographicCoverage.boundingBox
 kleiven_2020_varanger_dynocc,70.4,30.0,region,120,,place name,Varanger Peninsula
 klmn_2026_klamath_landbird_count,41.5,-122.3,state,378,1616,unit coordinates,unit_decimalLatitude
+klymus_2023_niobrara_mussel_edna,42.7,-101.0,region,150,,place name,Niobrara National Scenic River (Valentine reach) and Agate Fossil Beds
 knape_2018_shoveler_count,58.5,15.5,state,550,,place name,"RT90 northings give 55.7-60.5 N; no eastings, placed mid southern Sweden"
 koester_2023_aldabra_reeffish_count,-9.4,46.3,locality,49,,bounding box,geographicCoverage.boundingBox
 koester_2023_aldabra_reeffishext_count,-9.4,46.3,locality,49,,bounding box,geographicCoverage.boundingBox
@@ -317,6 +323,8 @@ murn_2016_kruger_vulture_occ,-24.0,31.5,region,300,,place name,Kruger National P
 murphy_2021_riogrande_otter_scr,36.5,-105.7,region,100,,place name,"Upper Rio Grande, Taos County"
 murray_2021_chicago_coyote_mange,41.9,-87.9,region,94,115,unit coordinates,unit_decimalLatitude
 muths_2020_blackrock_toad_rd,43.8,-110.2,locality,27,,bounding box,geographicCoverage.boundingBox
+nakashima_2024_kanagawa_nestpred_occ,35.3,139.6,locality,10,,place name,"Futagoyama region, south-eastern Kanagawa"
+nakashima_2024_yakumo_scavenger_occ,42.2,140.3,locality,15,,place name,"Yakumo Study Forest, Hokkaido"
 neateclegg_2018_cusuco_birds_count,15.5,-88.2,locality,20,,place name,Cusuco National Park
 neon_2026_carabids_count,40.2,-101.2,multi,8111,535,unit coordinates,decimalLatitude in __units
 neon_2026_fish_removal,39.4,-101.3,multi,7828,220,unit coordinates,decimalLatitude in __units
@@ -409,6 +417,7 @@ sepulveda_2019_streamgage_fish_edna,43.9,-113.3,country,1449,9,unit coordinates,
 shah_2025_bardia_tiger_occ,28.4,81.7,region,120,,place name,Bardia and Banke NPs
 sharma_2021_spiti_snowleopard_scr,32.2,78.0,locality,40,,place name,"stated coords, Spiti Valley"
 shyvers_2020_ppr_sagegrouse_rd,39.8,-108.3,region,80,,place name,"Parachute-Piceance-Roan, NW Colorado"
+silva_2018_scotland_badger_occ,57.3,-4.5,region,300,,place name,11 study areas across northern Scotland (no station coordinates)
 siren_2024_vtnh_moose_count,44.0,-72.0,state,350,,place name,Vermont and New Hampshire
 smith_2019_greatbasin_csf_edna,42.0,-117.0,multi,700,,place name,"SE Oregon, SW Idaho, Nevada"
 smith_2019_greatbasin_csf_qpcr,42.0,-117.0,multi,700,,place name,"SE Oregon, SW Idaho, Nevada"
