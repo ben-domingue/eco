@@ -1,0 +1,78 @@
+{
+  "table": "rogers_2024_bighunting_sculpin_cjs",
+  "title": "PIT-tag resight histories of 385 translocated Blue Ridge sculpin on 11 mobile-antenna surveys, Big Hunting Creek, Maryland, 2022-2023",
+  "creator": "Rogers, Karli M.; Kelly, Zachary A.; Hitt, Nathaniel P.",
+  "pubDate": "2024",
+  "doi": "10.5066/P1X9JF86",
+  "sourceURL": "https://doi.org/10.5066/P1X9JF86",
+  "citation": "Rogers, K.M., Kelly, Z.A., and Hitt, N.P., 2024, Capture-recapture data for a restored population of Blue Ridge sculpin (Cottus caeruleomentum) with environmental covariates: U.S. Geological Survey data release, https://doi.org/10.5066/P1X9JF86.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Blue Ridge sculpin from four source populations were PIT-tagged and released into Big Hunting Creek, Maryland, to restore the species there; the reach was resurveyed with a rod-mounted mobile PIT antenna and GNSS ten times over the following year to assess movement and survival.",
+  "samplingProtocol": "Mobile PIT-tag surveys: a rod-mounted antenna swept along the creek with a GNSS receiver; each tag's earliest detection on a survey day is kept with its position snapped to the stream line.",
+  "samplingProtocolCode": "pit_resight",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "The survey days are the 11 days with any detection (the flow file lists 10 of them); a survey on which no fish was detected would be absent.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Big Hunting Creek, Catoctin Mountain Park, Frederick County, Maryland, USA",
+    "boundingBox": {
+      "west": -77.5,
+      "east": -77.41,
+      "south": 39.61,
+      "north": 39.68
+    }
+  },
+  "temporalCoverage": "2022-09/2023-09",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "detection positions as published (obs_latitude / obs_longitude)"
+  },
+  "notShipped": {
+    "duplicate_rows": "80 tag-days deposited a second time without a position (one row kept)",
+    "temperature": "BRS_StreamTemperature_2023.csv: gauge time series, not linked to detections",
+    "flow_cfs": "Q_ft3/s: the same flow in cubic feet per second"
+  },
+  "notes": "Survey 1 (2022-09-23) is the release survey at which every fish was first recorded.",
+  "summary": {
+    "n_rows": 4235,
+    "n_units": 385,
+    "n_taxa": 1,
+    "n_periods": 11,
+    "n_occasions": 1,
+    "n_surveys": 4235,
+    "y_values": "0,1",
+    "prop_zero": 0.472,
+    "n_traps": 1,
+    "n_zero": 2000,
+    "n_positive": 2235,
+    "n_units_detected": 385,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "unit_source_pop", "unit_weight_g", "unit_total_length_mm", "unit_fulton_k", "obs_latitude", "obs_longitude"],
+  "coreMd5": "ddca8f5b2d99eacadc6b283835fc877e",
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "date", "flow_m3s"],
+      "md5": "4e072ae28843fade42e75a8cb6e4f0f9"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "eafb02e2126989648af5bd2a7eac611a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rogers_2024_bighunting_sculpin_cjs.R",
+  "buildDate": "2026-11-06"
+}

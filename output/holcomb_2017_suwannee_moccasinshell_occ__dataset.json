@@ -1,0 +1,74 @@
+{
+  "table": "holcomb_2017_suwannee_moccasinshell_occ",
+  "title": "Suwannee moccasinshell detection by each surveyor at 220 mussel survey sites, Suwannee River basin, Florida and Georgia, 2013-2016",
+  "creator": "Holcomb, Jordan M.; Shea, Colin P.; Johnson, Nathan A.",
+  "pubDate": "2017",
+  "doi": "10.5066/F7VX0DPM",
+  "sourceURL": "https://doi.org/10.5066/F7VX0DPM",
+  "citation": "Holcomb, J.M., Shea, C.P., and Johnson, N.A., 2017, Cumulative spring discharge and survey effort influence threatened Suwannee moccasinshell, Medionidus walkeri, occupancy and detection: U.S. Geological Survey data release, https://doi.org/10.5066/F7VX0DPM.",
+  "paperDOI": "10.3996/052017-JFWM-042",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Mussel surveys at 220 locations in the Suwannee River basin, 2013-2016, compiled to model the occupancy of the federally threatened Suwannee moccasinshell against cumulative upstream spring discharge. Each site was surveyed once by two to eight surveyors, each searching a separate stretch of shoreline; each surveyor's detection of M. walkeri is recorded with the survey effort.",
+  "samplingProtocol": "Two to eight surveyors snorkelled and searched by touch all available habitat to about 2.5 m depth along 30-50 m of shoreline, each in a separate area with no overlap; total effort generally about one person-hour, and each surveyor's catch recorded separately.",
+  "samplingProtocolCode": "visual_search",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasions are surveyors searching separate stretches of the site at one visit",
+  "occasionKind": "observer",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_effort_ph",
+  "geographicCoverage": {
+    "description": "Suwannee River basin, Florida and Georgia, USA",
+    "boundingBox": {
+      "west": -83.35,
+      "east": -82.35,
+      "south": 29.45,
+      "north": 30.85
+    }
+  },
+  "temporalCoverage": "2013-10/2016-07",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "coarsen_coords(): 0.1-degree cell centre, because Medionidus walkeri is IUCN CR and federally threatened (US ESA, cited by the source); USGS published the exact sites (batch 40 bull trout precedent, open question for Ben)"
+  },
+  "notShipped": {
+    "standardised": "stSpringQcms and stEffort1..8: standardised copies of shipped columns",
+    "spring_q_cfs": "SpringQcfs: the same discharge in cfs (unit_spring_q_cms shipped)",
+    "exact_coordinates": "coarsened to 0.1 degree (IUCN CR, federally threatened)"
+  },
+  "summary": {
+    "n_rows": 662,
+    "n_units": 220,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 8,
+    "n_surveys": 662,
+    "y_values": "0,1",
+    "prop_zero": 0.937,
+    "n_traps": 1,
+    "n_zero": 620,
+    "n_positive": 42,
+    "n_units_detected": 26,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_stream", "unit_n_springs_mag1", "unit_n_springs_mag2", "unit_n_springs_mag3", "unit_n_springs_mag4", "unit_n_springs", "unit_spring_q_cms", "unit_total_effort_ph", "unit_n_surveyors", "unit_total_mw_count", "obs_effort_ph"],
+  "coreMd5": "acbfd6023019e3cb3405fc050742565e",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "9997be233a98dddc5a28e2fd5517bb75"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/holcomb_2017_suwannee_moccasinshell_occ.R",
+  "buildDate": "2026-11-06"
+}

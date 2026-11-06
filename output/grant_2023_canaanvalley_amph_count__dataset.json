@@ -1,0 +1,73 @@
+{
+  "table": "grant_2023_canaanvalley_amph_count",
+  "title": "Wood frog and spotted salamander egg-mass and larval counts by two observers at 108 vernal pools, Canaan Valley NWR, West Virginia, 2004-2016",
+  "creator": "Grant, Evan H. Campbell; Brand, Adrianne B.",
+  "pubDate": "2023",
+  "doi": "10.5066/P9APRBB8",
+  "sourceURL": "https://doi.org/10.5066/P9APRBB8",
+  "citation": "Grant, E.H.C., and Brand, A.B., 2023, Long-term effects of timber harvest on vernal pool availability and occupancy of two obligate amphibians: U.S. Geological Survey data release, https://doi.org/10.5066/P9APRBB8.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Vernal pool surveys at Canaan Valley National Wildlife Refuge, West Virginia, 2004-2016, in harvested and unharvested forest. At each visit (one to five a year, March to June) two observers each counted wood frog and spotted salamander egg masses and larvae, and the pool's water temperature, pH, dimensions and whether it was dry were recorded.",
+  "samplingProtocol": "Repeated spring visits to vernal pools; at each visit two observers each searched the pool and counted egg masses and larvae of wood frogs and spotted salamanders.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "visits span late March to June, over which egg masses are laid and hatch and larvae develop; within a visit the two observers' counts are of the same pool at the same time (their independence is not stated)",
+  "occasionKind": ["time", "observer"],
+  "taxonInclusion": "target",
+  "geographicCoverage": {
+    "description": "Canaan Valley National Wildlife Refuge, Tucker County, West Virginia, USA",
+    "boundingBox": {
+      "west": -79.4428,
+      "east": -79.3254,
+      "south": 39.0272,
+      "north": 39.1546
+    }
+  },
+  "temporalCoverage": "2004-03/2016-06",
+  "notShipped": {
+    "duplicate_record": "CVNWR32 I-9 on 2016-03-25 deposited twice, identically; one copy kept",
+    "plot_searches": "ACS data.csv: pools found per 50 x 50 m plot, a pool-availability survey, not an amphibian survey",
+    "landscape_estimates": "Landscape data.csv: estimated pool numbers and densities, model-based estimates"
+  },
+  "summary": {
+    "n_rows": 13712,
+    "n_units": 108,
+    "n_taxa": 4,
+    "n_periods": 13,
+    "n_occasions": 10,
+    "n_surveys": 3428,
+    "y_values": "0-800 (121 distinct)",
+    "prop_zero": 0.866,
+    "n_traps": 1,
+    "n_zero": 11873,
+    "n_positive": 1839,
+    "n_units_detected": 93,
+    "max_y": 800
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_harvested", "obs_visit", "obs_observer_slot", "obs_pool_dry", "obs_water_temp_c", "obs_ph", "obs_width_m", "obs_length_m", "obs_depth_cm"],
+  "coreMd5": "67c72020ef88fdce9bce27daf9db20e3",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "year"],
+      "md5": "98e1a8106e2bb135dd6b16cd375e4380"
+    },
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "9dc7217d6a9d3a03d4b49fd0eb4cb7df"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/grant_2023_canaanvalley_amph_count.R",
+  "buildDate": "2026-11-06"
+}

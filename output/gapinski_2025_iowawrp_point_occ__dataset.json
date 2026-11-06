@@ -1,0 +1,68 @@
+{
+  "table": "gapinski_2025_iowawrp_point_occ",
+  "title": "Point-level presence of 54 bird species on three visits to 494 points on wetland easements in Iowa, 2022-2023, with vegetation",
+  "abstract": "The 2022-2023 point counts at Iowa Wetlands Reserve Program easements, deposited at point level for a multispecies analysis of fine-scale vegetation associations: presence of 54 species at each point on each of three visits, with vegetation measured at each point.",
+  "samplingProtocol": "Point counts on three visits between 15 May and 31 July at 7-10 points per wetland easement; vegetation (emergent cover, water, trees, dbh, visual obstruction, litter depth, forb / grass / woody cover) measured at each point from mid-July to early September.",
+  "responseType": "detection",
+  "taxonInclusion": "target",
+  "closureNote": "three visits within a breeding season; period = year",
+  "temporalCoverage": "2022-05/2023-07",
+  "creator": "Gapinski, Lindsey A.W.; Kinkead, Karen E.; Tucker, Anna M.; Dinsmore, Stephen J.; Bishop, Todd",
+  "pubDate": "2025",
+  "doi": "10.5066/P13DFQSX",
+  "sourceURL": "https://doi.org/10.5066/P13DFQSX",
+  "citation": "Gapinski, L.A., Kinkead, K.E., Tucker, A.M., Dinsmore, S.J., and Bishop, T., 2025, Bird point count and covariate data from wetland easements in Iowa, 2007-2009 and 2022-2023 (ver. 3.0, July 2026): U.S. Geological Survey data release, https://doi.org/10.5066/P13DFQSX.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "geographicCoverage": {
+    "description": "Wetlands Reserve Program easements across Iowa, USA",
+    "boundingBox": {
+      "west": -95.8447,
+      "east": -92.2302,
+      "south": 41.3933,
+      "north": 43.4928
+    }
+  },
+  "summary": {
+    "n_rows": 157950,
+    "n_units": 494,
+    "n_taxa": 54,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 2925,
+    "y_values": "0,1",
+    "prop_zero": 0.864,
+    "n_traps": 1,
+    "n_zero": 136396,
+    "n_positive": 21554,
+    "n_units_detected": 494,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "period_easement_age", "period_emergent_veg_pct", "period_water", "period_trees", "period_avg_dbh_cm", "period_visual_obstruction_cm", "period_litter_cm", "period_forb_pct", "period_grass_pct", "period_woody_pct", "obs_min_after_sunrise"],
+  "coreMd5": "792f5ec3e773555e35323f88a6acef18",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "year"],
+      "md5": "ab1f7a9f60353621a509f450a24886c7"
+    },
+    "taxa": {
+      "rows": 54,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "ced1f7b597f3b0ecc27639b883197a3d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/gapinski_2025_iowawrp_birds.R",
+  "buildDate": "2026-11-06"
+}
