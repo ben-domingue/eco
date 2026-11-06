@@ -6,6 +6,11 @@ title: "The R package"
 #| label: load
 m <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
 cur <- m[nrow(m), ]
+core_cols <- setdiff(grep("_redivis_version$", names(m), value = TRUE), "eco_meta_redivis_version")
+core_tags <- function(r) {
+  v <- unlist(r[core_cols]); v <- v[!is.na(v) & nzchar(v)]
+  paste(sub("_redivis_version$", "", names(v)), v, collapse = ", ")
+}
 ```
 
 The `eco` R package reads the warehouse from R with **no account or token**.
@@ -52,11 +57,12 @@ vector) a named list. The side tables come from `eco_taxa()`, `eco_periods()`,
 
 ## Versions
 
-Redivis versions `eco` and `eco_meta` separately; the
-[release manifest](corrections.html) pairs them into numbered eco versions.
-By default the package reads the current release of each (now eco
-v`r cur$eco_version`: Redivis `eco` `r cur$eco_redivis_version`, `eco_meta`
-`r cur$eco_meta_redivis_version`). `eco_set_version(1)` pins both to what eco
+Redivis versions each dataset separately (the core tables are split across
+`eco`, `eco_2`, ..., because Redivis caps a dataset at 1000 tables; then
+`eco_meta`); the [release manifest](corrections.html) pairs them into numbered
+eco versions. By default the package reads the current release of each (now eco
+v`r cur$eco_version`: Redivis `r core_tags(cur)`, `eco_meta`
+`r cur$eco_meta_redivis_version`). `eco_set_version(1)` pins all of them to what eco
 version 1 consisted of, so a script reproduces what it read then. Tables the
 pipeline has built but Redivis has not yet released are not offered by
 `eco_filter()`; they are listed in `attr(eco_metadata(), "unreleased")`.

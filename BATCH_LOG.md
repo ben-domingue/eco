@@ -1481,3 +1481,136 @@ What this batch says about the standard:
   ruling on records inside a dated failure window, where the window is known.
 - **A checklist that grows between years** (Zwin): 21 taxa in 2023-2024, 27 in 2025. Not tested here because only
   2025 has route identity, but a multi-year build would need `__survey_taxa` by period (E4.2).
+
+## Batch 33 — 2026-11-05 (ScienceBase eDNA rows, then small Dryad deposits: streamgage fish eDNA, Vermont moose, Afognak deer, Finnish dunlin)
+
+One agent in `~/eco-b33` (branch `batch-33`, from main at a506650). The two ScienceBase rows went first (no Dryad
+quota), then small Dryad deposits on a budget of 12 anonymous requests (6 dataset records, 6 version zips; no
+429). Nine deposits read, four tables built and uploaded to the Redivis draft, four held, one blocked.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| sepulveda_2019_streamgage_fish_edna | multi-scale eDNA (streamgage > event > sample > qPCR replicate) | USGS ScienceBase, public domain | 1,520 | kokanee and yellow perch at nine streamgages below reservoirs, six events May-September 2018, 190 water samples x 4 replicates; cluster_id = gage, period = event; field-blank replicate count, inhibition and managers' relative abundance as obs_; the free-text abundance comments (one has a phone number) not shipped |
+| siren_2024_vtnh_moose_count | open multistate N-mixture (Dail-Madsen) counts, cameras | Dryad CC0 | 4,400 | monthly maximum counts of calves and adult cows at 225 camera sites, May-August 2014-2019, Vermont and New Hampshire; taxon = species x stage (E6, lifeStage); count sums match the paper (568 cows, 192 calves); the bulls array not shipped (layout does not match its README) |
+| finnegan_2024_afognak_deer_scr | closed SCR, camera traps | Dryad CC0 | 18,814 | 23 Sitka black-tailed deer bucks x 26 cameras x 32 nights, Afognak Island, Alaska, 2022; y_raw = independent events per buck-camera-night; night k read as 2022-09-01 + k - 1 (every capture on a worked night); UTM 5N inferred; below the sample floor (23 units) |
+| pakanen_2020_dunlin_ms | multi-state CJS (geolocator status) | Dryad CC0 | 5,666 | 337 colour-ringed southern dunlins, 2002-2018, states A/B/C = without, carrying, after removal of a geolocator; seven nest-cage kills removed after 2009 (obs_removed); the authors' design covariates not shipped; the abstract says 338 birds |
+
+Not built (`queue/human_review.csv`): the streamgage release's dreissenid file (held: its June positives at Jackson Lake
+and Palisades come with positive field blanks and zebra-mussel sequences, i.e. contamination, and its sample sets do
+not match the fish file), the Niobrara mussel qPCR assays (held: every field reaction negative; ship an all-zero
+survey?), the TEAM functional-diversity deposit (held: occupancy estimates only), the BC/Chile point-count and ARU
+deposit (held: BC point counts dated 2018 in the data, 2019 in the paper). Blocked: the Latin American puma
+deposit (Dryad refuses the 703 MB version zip anonymously, HTTP 405; needs a token). Also fixed: row 515 of
+`queue/candidates.csv` (the Mara cheetah row) had an unquoted comma in its status, which broke pandas.
+
+What this batch says about the standard:
+
+- **Multi-scale eDNA with time** (streamgage): the standard's E9 mapping is cluster_id = site, unit = sample,
+  occasion = replicate; repeated sampling events at a site were added as `period`, so each unit (a water sample)
+  lives in one period only. That is legal and keeps the event order a key column, but it is the first table where
+  `period` indexes the cluster rather than the unit; a user fitting a dynamic model reads the state at
+  cluster_id x period.
+- **A field blank is a control, not a unit** (streamgage): blanks were not shipped as rows; each sample carries the
+  count of its event's blank replicates that amplified for the same target (`obs_fieldblank_pcr_pos`). Batch 6's
+  eDNA tables had no blank data; if this becomes common, a rule in the guide would help.
+- **Stage-structured counts with a sex-restricted stage** (moose): the adult class counts cows only. Shipped as
+  species x stage under E6 with `taxonRemarks` saying the class is female-only, not as a species x sex composite,
+  which E6 forbids.
+- **Dryad's version zip has a size ceiling** for anonymous users (the puma deposit, 703 MB, returns 405).
+  `download_dryad()` cannot fetch such deposits; per-file downloads need a token.
+
+## Batch 34 — 2026-11-05 (small Dryad deposits: Porsanger voles, Indiana forest birds, Pacific Northwest pika, Ingula grassland birds)
+
+One agent in `~/eco-b34` (branch `batch-34`, from main at 70eba21 after batch 33). Small Dryad deposits, chosen for
+designs the corpus is thin on (closed capture-recapture, multi-sign occupancy, interval detections), on a budget of
+23 anonymous Dryad requests (12 dataset records, 11 version zips; no 429). Eleven deposits read, four tables built and
+uploaded to the Redivis draft, three held, four blocked.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| nicolau_2021_porsanger_vole_ccr | closed capture-recapture, multi-session | Dryad CC0 | 6,290 | 3,145 gray-sided voles x 2 visits in 36 spring and autumn sessions (2000-2017) at 21 roadside stations, Porsanger, Norway; cluster_id = station, period = session; ids are session-scoped (the source treats animals in different sessions as different), so each vole has rows only in its session, as in the Mara cheetah table; station UTM 33 coordinates as published (LC); zero-capture station-sessions are not in the deposit |
+| valente_2018_indiana_birds_comm | community occupancy, point counts | Dryad CC0 | 11,001 | 19 forest bird species x 193 stations x 3 visits, southern Indiana, June-July 2014; the three 3 min 20 s intervals of each count as obs_det_interval1-3 (time-to-detection refittable); closure = open, since the paper's own finding is that visits within the season are not closed; the authors deposited only their 19 case-study species |
+| goldman_2023_pnw_pika_dynocc | dynamic occupancy, sign surveys | Dryad CC0 | 5,126 | American pika at 771 plots in five park units (OR, ID, CA), 2010-2014 and 2017-2021, 1-3 surveys per plot-year (sample table); y = the source's any-sign flag, with counts of old and fresh scat and haypiles, calls and sightings as obs_ columns so the paper's multi-sign / false-positive model can be refitted |
+| maphisa_2019_ingula_birds_comm | community occupancy, walked plot surveys | Dryad CC0 | 32,292 | 92 grassland bird taxa x 20 plots x 351 surveys in 11 months (March 2010 to February 2012), Ingula, South Africa; a record table (row_presence), months as periods, y_raw = records per survey; English names resolved by hand; below the sample floor (20 units) |
+
+Not built (`queue/human_review.csv`): Colorado sage-grouse faecal-pellet genetic CMR (held: the .inp headers say 7 and 8
+occasions but the histories have 9 and 10 characters), Swiss MHB passerine territory totals 1999-2014 (held: same
+territory-total question as the Swiss MHB 1999-2025 hold, and no quadrat ids), Hutchinson et al. penalised-likelihood
+occupancy data (held: species are numbered 1-35 with no names, and no place or year). Blocked: Corbett tigers (paper:
+252 MARK occasions with no primary-period boundaries), the tidewater goby eDNA + seine comparison (paper: no sampling
+year anywhere in the deposit), and the Chure leopard and Trijuga sloth bear occupancy deposits (Dryad answers 404 to
+the anonymous version zip, as Tutakoke brant did).
+
+What this batch says about the standard and the tools:
+
+- **Session-scoped ids in closed CR** (voles): the second table, after the Mara cheetahs, where an animal id lives in
+  one session. E4.4 still says a wild animal is at risk from the study's first period; the cheetah precedent (rows only
+  in the id's session) was followed. A sentence in E4.4 would make this objective rather than a precedent.
+- **Sub-occasion detections** (Indiana birds): the within-count intervals were shipped as obs_ columns on the visit
+  row, keeping `occasion` = visit. The alternative (occasion = visit x interval, occasionKind time) would also be
+  legal; the standard does not say which, and the choice decides what the IRW view treats as an item.
+- **Multi-sign occupancy** (pika): sign-type counts as obs_ columns with `y` = any sign. The paper's model treats each
+  sign type as its own detection process with false positives for old sign; E9's multi-method form (`obs_method`, one
+  row set per method) could carry that instead, at four times the rows. Left as obs_ because the source records all
+  sign types in one search, which is one survey, not a paired method.
+- **Common names to taxa** (Ingula): spelling variants and the source's own synonyms (Fan-tailed / Zitting Cisticola,
+  White-bellied Bustard / Korhaan, Wattled / African Wattled Lapwing) were merged; three names that do not identify a
+  species were kept at genus or family rank with taxonRemarks. The merge of synonyms is a judgement the processing
+  guide does not state; each is listed in `__taxa`.
+- **Dryad 404 on the version zip** for small deposits (7 KB and 27 KB) is a second failure mode besides the 405 on large
+  ones; both need a token.
+
+## Batch 36 — 2026-11-05 (NEON aquatic and vector products: stream fish, ticks, mosquitoes)
+
+One agent in `~/eco-b36` (branch `batch-36-neon`, from main at 002865e). NEON has no daily request cap, so this batch
+added NEON products while Dryad is rate-limited: five products read (readme, variables, every site-month of three),
+three tables built and uploaded to the Redivis draft, one held, one left available. All three use `RELEASE-2026`, the
+basic package and NEON's agency-published plot or reach coordinates; downloads ran as site shards under the 8
+requests/s token limit.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_fish_removal | removal (multinomial_cell, removal), community | NEON DP1.20107.001 CC BY 4.0 | 378,355 | 2,441 electrofishing passes in 1,252 reach-bouts at 223 wadeable-stream reaches (23 sites), 272 bouts 2016-2024, 155 taxa (123 species, 32 higher rank incl. NEON-fuzzed ids); three passes at fixed reaches, one at random reaches; y = per-fish records + bulk counts; 23 reach-bouts with an estimated bulk count (13,768 fish), 26 net-compromised bouts and 6 broken pass series dropped whole; lakes not shipped |
+| neon_2026_ticks_count | repeated counts, community, drag / flag | NEON DP1.10093.001 CC BY 4.0 | 216,104 | 7,718 plot-bouts at 287 plots (46 sites), 2019-2024, 28 species x life-stage taxa (adult = male + female; larvae mostly Ixodidae only); area dragged as effort; 6,253 surveys before 2019 not shipped (lab counts possibly subsampled, NEON issue log); 20 larval counts are whole thousands, shipped as published and noted |
+| neon_2026_mosquitoes_count | repeated counts, community, CO2 light trap | NEON DP1.10043.001 CC BY 4.0 | 7,464,149 | 96,937 trap collections at 518 plots (47 sites), 2014-2024, 77 taxa with >= 1,000 identified individuals (99.7% of individuals; 57 below the cut); y = identified-subsample count, all sexes, with obs_proportion_identified and trap hours as effort; zero-catch collections (no sample kept) are y = 0; year parts, 627 MB, gitignored |
+
+Not built: plant presence DP1.10058.001 (held, `queue/human_review.csv`: the survey set is clean, but a national
+pool of thousands of taxa at ~150k subplot surveys forces a cut to under 5% of the flora; asks whether a per-site
+pool in `__survey_taxa` is acceptable for NEON products). Macroinvertebrates DP1.20120.001 left `available` (lab
+subsampling with subsamplePercent, several sampler types per site; would follow the mosquito pattern).
+
+What this batch says about the standard and the tools:
+
+- **Estimated counts.** E2 removes imputed or interpolated counts but says nothing of a field estimate the source
+  labels as such (NEON fish `actualOrEstimated = estimated`, 80% of all fish in the product, mostly lake sites).
+  The fish table drops the reach-bout whole rather than flag the row, because dropping one pass breaks the removal
+  series; that removes the largest catches, so the choice is not neutral. A sentence in E2 (drop, or keep with an
+  `obs_` flag) would settle it. The ticks have the unflagged version: larval counts of exactly 10,000-35,000.
+- **Subsample counts.** Mosquito `y` is the count in the identified subsample, with the subsample's share
+  (`proportionIdentified`, by wet weight) as an `obs_` column; the whole-catch estimate is not shipped. This is the
+  first eco table where `y` counts a known fraction of the sample; it fits E2 as written, but a `subsampleColumn`
+  in E10 (like `effortColumn`) would let tools find the offset. Macroinvertebrates, zooplankton and NEON's other
+  sorted-sample products would use it too.
+- **Survey-quality filters.** Each NEON product needed the same rules: a survey is a sampling-event row with
+  samplingImpractical OK or blank; samples NEON marks lost, incomplete, damaged or estimated are dropped; a "target
+  taxa present" sample with no laboratory rows is dropped, not zeroed. These are now repeated in five NEON scripts
+  and could be one helper in `lib/`.
+- **Split bouts.** NEON files the passes after a block-net failure under a second eventID (`.netCompromised`); the
+  remaining passes of the bout then look like a 1,3 or 2,3 removal series. Dropped; a removal design needs the
+  passes 1..k of one closed bout.
+- **National pools again** (batch 14): fish (155 taxa nationally, a median of 6 per site) and ticks are small enough to
+  ship whole; mosquitoes needed the carabid-style cut; plants cannot be built at all under one pool.
+
+## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
+
+One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| cecconi_2025_cricket_occ | single-season occupancy, aural point counts | Dryad CC0 | 147 | invasive cricket, 49 sites x 3 counts, central Kentucky, 19 September to 5 November 2024; detected at 16 sites; no coordinates deposited |
+
+What this table says about the standard and the tools:
+
+- **E8 and the year.** The data file and README give only an ordinal day; the year is in the abstract on the Dryad page. `date` is built from 2024 + the ordinal, and the script asserts that the ordinals span exactly the abstract's two dates. The queue note's "2024 per README" is wrong.
+- **Closure over seven weeks.** `closure = open` (changed from `closed` in review, PR #64): the counts span about seven weeks across the end of the calling season. `closureNote` records that the authors fit single-season occupancy.
+- **`metadata/run_pipeline.sh`** uses `declare -A`, which macOS's bash 3.2 cannot run, and on a clone without the gitignored cores stages 01 to 03 would drop those tables' rows. Only this table's `metadata.csv` row was added, computed by the unmodified `01_metadata.R`; `biblio.csv`, `tags.csv` and `status.json` were not regenerated. Since fixed on `main`: bash 3.2 by #67 (filed as #65), the dropped rows by #74 (filed as #66).

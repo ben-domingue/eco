@@ -66,4 +66,7 @@ up in `main` sooner than the PR does.
 `human_review.csv` is the IRW-style record of inspected deposits (or parts of
 deposits) that were held, rejected or need a human ruling, with the reason, so
 they are not re-triaged. Columns: `candidate`, `source`, `doi_or_url`, `decision`
-(`held`, `rejected`, `needs-human`), `reason`, `date`, `reviewer`.
+(`held`, `blocked`, `rejected`, `needs-human`; `available` when a ruling lifts a hold
+and the deposit can be built, `resolved` once it is), `reason` (appended to, never
+overwritten), `date`, `reviewer`. A rejected deposit's `candidates.csv` row is
+`not built: <reason>`.

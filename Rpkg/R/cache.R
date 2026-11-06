@@ -56,7 +56,7 @@ eco_cache_info <- function() {
 
 #' Delete cached tables
 #'
-#' @param dataset Optionally `"eco"` or `"eco_meta"` to clear only that dataset.
+#' @param dataset Optionally a dataset name (`"eco"`, `"eco_2"`, ..., `"eco_meta"`) to clear only that dataset.
 #' @return Invisibly, the number of files removed.
 #' @export
 eco_clear_cache <- function(dataset = NULL) {

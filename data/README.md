@@ -141,11 +141,14 @@ CSVs with `upload/red_up_eco.py`.
 | `neon_2026_smallmammals_count.R` | robust-design nightly counts of individuals, 143 small-mammal species x 332 NEON trapping grids x 1,612 bouts, traps set as effort; core CSV not tracked (304 MB) | NEON DP1.10072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `neon_2026_smallmammals_rd.R` | four single-species robust-design capture histories (Peromyscus maniculatus, P. leucopus, Sigmodon hispidus, Microtus pennsylvanicus), individuals x bouts x nights at the home grid | NEON DP1.10072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `neon_2026_carabids_count.R` | biweekly pitfall counts, 55 carabid species x 2,029 NEON traps x 2013-2023, trapping days as effort; core CSV not tracked (354 MB) | NEON DP1.10022.001 RELEASE-2026 (API token) | CC BY 4.0 |
+| `neon_2026_fish_removal.R` | three-pass electrofishing removal (one pass at random reaches), 155 fish taxa x 223 NEON wadeable-stream reaches (23 sites) x 272 bouts, 2016-2024, multinomial_cell / removal; estimated bulk counts and net-compromised bouts dropped | NEON DP1.20107.001 RELEASE-2026 (API token) | CC BY 4.0 |
+| `neon_2026_ticks_count.R` | drag / flag counts per plot-bout, 28 tick species x life-stage taxa x 287 NEON plots (46 sites), 2019-2024, area sampled as effort | NEON DP1.10093.001 RELEASE-2026 (API token) | CC BY 4.0 |
+| `neon_2026_mosquitoes_count.R` | CO2 light-trap collections, identified-subsample counts of 77 mosquito taxa x 518 NEON plots (47 sites), 2014-2024, trap hours and proportion identified; year parts (7.5M rows), not tracked | NEON DP1.10043.001 RELEASE-2026 (API token) | CC BY 4.0 |
 | `tetzlaff_2026_crotalus_cjs.R` | CJS histories, 707 adult female timber rattlesnakes, New York, 1983-2019, den group, annual covariates | Dryad | CC0 |
 | `gelle_2026_mauritius_parakeet_ms.R` | multi-state CJS, 2,734 echo parakeets ringed as nestlings, Mauritius, 1994-2022 | Dryad | CC0 |
 | `cubaynes_2021_svalbard_polarbear_ms.R` | multievent capture-recapture, 158 female polar bear family units, Svalbard, 1992-2019 | Dryad | CC0 |
 | `moinet_2024_nz_mouse_scr.R` | SCR with a removal phase, house mice on two Longworth grids, New Zealand | Dryad | CC0 |
-| `broekhuis_2020_mara_cheetah_scr.R` | search-encounter SCR (pixel x day traps, km driven), cheetahs, Maasai Mara; do_not_publish pending ruling | Dryad | CC0 |
+| `broekhuis_2020_mara_cheetah_scr.R` | search-encounter SCR (pixel x day traps, km driven), cheetahs, Maasai Mara; E9 search-encounter ruling (2026-11-05) | Dryad | CC0 |
 | `todaro_2025_wyoming_shrike_dynocc.R` | dynamic occupancy, loggerhead shrike point counts, Wyoming, 2015-2024 | Dryad | CC0 |
 | `betancur_2021_antioquia_birds_count.R` | two-species repeated counts, endemic Andean birds, Colombia, coarsened coordinates | Dryad | CC0 |
 | `hamer_2021_kooragang_amph_comm.R` | multi-season community occupancy, 11 frog species x 55 wetlands, Kooragang Island NSW, 2000-2002 | Dryad | CC0 |
@@ -244,6 +247,15 @@ CSVs with `upload/red_up_eco.py`.
 | `davis_2019_kasungu_scr.R` | SCR, multi-session (three annual surveys), partial identity (single-flank ids), two species tables (`davis_2019_kasungu_leopard_scr`, `davis_2019_kasungu_hyaena_scr`), traps centred (VU), Malawi | Zenodo | CC BY 4.0 |
 | `iannarilli_2026_snapshoteurope_comm.R` | community detection, cameras, camera-weeks from a Wildlife Insights deployment + sequence export, failed deployments dropped, coordinates coarsened (EN/VU), 24 European countries and Israel | Edmond (Dataverse) | CC BY-SA 4.0 (derived CC BY-NC-SA 4.0) |
 | `faveyts_2026_zwin_butterfly_count.R` | community counts, butterfly transects, checklist with explicit zeros, 12 routes, one season, Belgium | GBIF (Belgian IPT) | CC BY 4.0 |
+| `sepulveda_2019_streamgage_fish_edna.R` | multi-scale eDNA, kokanee and yellow perch, 9 streamgages x 6 events x 3-10 water samples x 4 qPCR replicates, field-blank and inhibition covariates, Columbia and Colorado basins 2018 | USGS ScienceBase | US public domain (CC0) |
+| `siren_2024_vtnh_moose_count.R` | open multistate N-mixture counts, moose calves and adult cows (species x stage taxa), 225 camera sites x 6 years x 4 months, Vermont and New Hampshire | Dryad | CC0 |
+| `finnegan_2024_afognak_deer_scr.R` | closed SCR, 23 Sitka black-tailed deer bucks x 26 cameras x 32 nights, Afognak Island, Alaska | Dryad | CC0 |
+| `pakanen_2020_dunlin_ms.R` | multi-state CJS by geolocator status, 337 southern dunlins, 2002-2018, removals flagged, Finland | Dryad | CC0 |
+| `nicolau_2021_porsanger_vole_ccr.R` | closed capture-recapture, multi-session: 3,145 gray-sided voles x 2 visits in 36 spring and autumn sessions at 21 stations, session-scoped ids, Porsanger, Norway, 2000-2017 | Dryad | CC0 |
+| `valente_2018_indiana_birds_comm.R` | community occupancy, 19 forest birds x 193 point-count stations x 3 visits with three within-count intervals as obs_, southern Indiana 2014 | Dryad | CC0 |
+| `goldman_2023_pnw_pika_dynocc.R` | dynamic occupancy, American pika sign surveys at 771 plots in five park units, 2010-2021, counts per sign type as obs_ (multi-sign model), Oregon / Idaho / California | Dryad | CC0 |
+| `maphisa_2019_ingula_birds_comm.R` | community occupancy from a record table, 92 grassland bird taxa x 20 plots, 11 months 2010-2012, English names resolved by hand, Ingula, South Africa | Dryad | CC0 |
+| `cecconi_2025_cricket_occ.R` | single-season occupancy, Japanese burrowing cricket x 49 sites x 3 aural point counts, Kentucky 2024 | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

@@ -1,9 +1,19 @@
-# Where the data lives. The reference ids (4j5q, 241c) survive a rename on Redivis;
-# the names are what people read. Nothing here is a credential: both datasets are
-# public at access level "data", which is what makes the anonymous CSV route work.
+# Where the data lives. The reference ids survive a rename on Redivis; the names
+# are what people read. Nothing here is a credential: the datasets are public at
+# access level "data", which is what makes the anonymous CSV route work.
+#
+# The core tables are sharded, as IRW's are: Redivis caps a dataset at 1000
+# tables, so `eco`, `eco_2`, ... hold core tables with their side tables, and a
+# reader searches them newest-first. The repository's redivis_config.py carries
+# the same list; tools/check_config_parity.py fails CI when the two disagree.
 
 .eco_owner <- "datapages"
-.eco_core <- list(name = "eco", ref = "4j5q")
+#: Core shards, oldest first.
+.eco_cores <- list(
+  list(name = "eco", ref = "4j5q"),
+  list(name = "eco_2", ref = "3fnj")
+)
+.eco_core <- .eco_cores[[1]]
 .eco_meta <- list(name = "eco_meta", ref = "241c")
 
 #: Redivis refuses an unauthenticated rows request over 100 MB. Most eco tables

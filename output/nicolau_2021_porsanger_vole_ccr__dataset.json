@@ -1,0 +1,71 @@
+{
+  "table": "nicolau_2021_porsanger_vole_ccr",
+  "title": "Two-visit live-trapping capture-recapture of gray-sided voles at 21 stations in Porsanger, northern Norway, spring and autumn 2000-2017",
+  "creator": "Nicolau, Pedro G.; Sørbye, Sigrunn H.; Yoccoz, Nigel G.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.fj6q573rr",
+  "sourceURL": "https://doi.org/10.5061/dryad.fj6q573rr",
+  "citation": "Nicolau, P. G., Sørbye, S. H., & Yoccoz, N. G. (2021). Data from: Incorporating capture heterogeneity in the estimation of autoregressive coefficients of animal population dynamics using capture-recapture data [Dataset]. Dryad. https://doi.org/10.5061/dryad.fj6q573rr",
+  "paperDOI": "10.1002/ece3.6642",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Gray-sided voles (Myodes rufocanus) live-trapped at stations along 155 km of road in Porsanger, Finnmark, Norway, in spring and autumn of every year from 2000 to 2017 (36 sessions). Each capture session has two visits; each row of the deposit is a vole with its two-visit capture history, sex and mean weight. The paper estimates individual capture probabilities with a heterogeneity model and Horvitz-Thompson abundance per station and session, then fits autoregressive models of population dynamics.",
+  "samplingProtocol": "Live trapping at fixed stations spaced along a road, two capture visits per session, sessions in spring and autumn; voles identified within a session, weighed and sexed; animals dead on the first visit excluded by the authors.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "each station x session is a closed population over its two visits (the paper's model); identities are not linked across sessions, so a vole has rows only in its own session",
+  "geographicCoverage": "Porsanger, Finnmark, northern Norway (about 70 N, 25 E), stations from Lillefjord to Karasjok",
+  "temporalCoverage": "2000/2017",
+  "crs": "UTM zone 33 metres as the deposited readme states (northing and easting; datum not stated, ETRS89 / WGS 84 UTM 33N assumed): unit_x = easting, unit_y = northing",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Station coordinates kept as the readme gives them (gray-sided vole IUCN LC, not flagged); stations 9 and 8B have no coordinates in the deposit"
+  },
+  "designNote": "Multi-session closed capture-recapture: cluster_id = station, period = session (spring / autumn), occasion = visit. Each vole id exists in one session only; station x session is the closed population.",
+  "notShipped": {
+    "derived_rds": "countdata.rds (captures per station x session, zeros filled for every combination) and data4inla.rds (the INLA multinomial frame), both derived from the csv by the authors' script",
+    "simulation_code": "AR2-Simulation-code.zip (no data)"
+  },
+  "notes": "Station x session combinations with no capture are not in the deposit: such a session has no rows, and the table cannot say whether the station was trapped. Station 8B (3 voles, session 2) and station 9 (sessions 3-8) are as deposited and have no coordinates; the paper speaks of 20 stations. 52 voles have no sex (the paper excluded them, leaving 3,093 of which it reports 3,090). unit_weight_g is the mean of the visits' weights, as deposited.",
+  "summary": {
+    "n_rows": 6290,
+    "n_units": 3145,
+    "n_taxa": 1,
+    "n_periods": 36,
+    "n_occasions": 2,
+    "n_surveys": 6290,
+    "y_values": "0,1",
+    "prop_zero": 0.335,
+    "n_traps": 1,
+    "n_zero": 2110,
+    "n_positive": 4180,
+    "n_units_detected": 3145,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_sex", "unit_weight_g", "unit_x", "unit_y"],
+  "coreMd5": "e48ad60298f10686b0072df0cac6a47f",
+  "sideTables": {
+    "periods": {
+      "rows": 36,
+      "columns": ["period", "year", "season"],
+      "md5": "0625642485e1287963a1672dba3cd637"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "dfea10ab3ff13c1045ee6bf6a6474635"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/nicolau_2021_porsanger_vole_ccr.R",
+  "buildDate": "2026-11-05"
+}

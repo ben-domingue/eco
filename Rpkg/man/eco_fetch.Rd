@@ -12,7 +12,8 @@ returned by \code{\link[=eco_filter]{eco_filter()}} or \code{\link[=eco_list_tab
 }
 \value{
 For one table, a data.frame in the eco format (\code{unit}, \code{taxon},
-\code{y}, ...; see the package help) with attributes \code{eco_table} and
+\code{y}, ...; see the package help) with attributes \code{eco_table},
+\code{eco_redivis_dataset} (the core shard it came from) and
 \code{eco_redivis_version}. For several, a named list of them.
 }
 \description{

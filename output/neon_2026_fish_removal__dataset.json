@@ -1,0 +1,81 @@
+{
+  "table": "neon_2026_fish_removal",
+  "title": "NEON wadeable-stream fish, three-pass electrofishing removal, RELEASE-2026: fish of 155 taxa per pass at 223 reaches on 23 NEON stream sites, 2016-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/s1e6-df79",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Fish electrofishing, gill netting, and fyke netting counts (DP1.20107.001), RELEASE-2026. https://doi.org/10.48443/s1e6-df79. Dataset accessed from https://data.neonscience.org/data-products/DP1.20107.001/RELEASE-2026 on 2026-11-05",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's fish survey in wadeable streams: ten reaches of about 100 m per site, three fixed reaches fished by three-pass electrofishing removal and the others by a single pass, in spring and fall bouts. Every fish is identified (to species where possible) and up to 50-100 per taxon per pass are measured; the rest are bulk-counted. This table is the number of fish of each taxon per pass, with every taxon on every pass (national pool, 155 taxa). Reach-centre coordinates are as NEON publishes them.",
+  "samplingProtocol": "Backpack (or two-unit) electrofishing of a ~100 m reach in an upstream direction; fixed reaches fished in three consecutive removal passes, random reaches in one; fish netted, identified, a subset measured and weighed, and released after the bout (NEON AOS fish sampling protocol, NEON.DOC.001295)",
+  "samplingProtocolCode": "electrofishing",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "fsh_fieldData lists every reach-bout (with samplingImpractical where it was not fished) and fsh_perPass every pass; a survey is a pass of a reach-bout with samplingImpractical blank. A pass with targetTaxaPresent = N is y = 0 for every taxon.",
+  "responseType": "multinomial_cell",
+  "multinomialType": "removal",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = removal pass within one reach-bout; passes are consecutive, almost all on one day (at most 3 days apart, asserted); period = bout (spring or fall, a few 'other'), indexed globally by first pass date",
+  "occasionKind": "cell",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "23 NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; reach-centre coordinates as published by NEON (WGS 84) in __units; latitude 18.1 to 68.7, longitude -149.2 to -66.8",
+  "temporalCoverage": "2016-03/2024-12",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published by NEON (agency-published reach-centre coordinates with coordinateUncertaintyInMeters; NEON fuzzes species of concern to a higher rank rather than the coordinates); 4 reaches were re-surveyed by a few metres between bouts and __units carries the latest"
+  },
+  "covariateNote": "obs_sampler_type electrofisher / two electrofishers; obs_ef_time_s = electrofisher operating seconds on the pass (effort, NA where not recorded); obs_water_temp_c and obs_habitat_type per pass as published; period_reach_type = fixed (three-pass) or random (one-pass) reach as NEON labels the reach-bout; period_reach_length_m = measured reach length (NA where not measured).",
+  "notes": "y = per-fish records plus bulk counts of the taxon on the pass. Taxa: 123 species (subspecies rolled up) and 32 records identified, or fuzzed by NEON, only to a higher rank, each its own taxon (E6); NEON 'sp.' and 'spp.' codes of one name merged; morphospecies counted under their genus or family code. Surveys: 2441 passes in 1252 reach-bouts; 556 reach-bouts sampling impractical have no rows; 23 reach-bouts with a bulk count NEON marks estimated (13768 fish), 26 filed by NEON as net-compromised, 5 other whose passes are not numbered 1..k and 1 with a pass marked targetTaxaPresent = Y but no fish records were dropped whole. Bulk counts with actualOrEstimated blank (before the field was recorded) are kept as counts. Passes after the first are present only on fixed reaches, so a random reach-bout has one removal cell.",
+  "notShipped": {
+    "lake surveys": "gill net, mini-fyke net and shoreline electrofishing at the 5 lake sites (CRAM, LIRO, PRLA, PRPO, TOOK): other protocols",
+    "estimated bulk counts": "23 stream reach-bouts with a bulk count marked 'estimated' (13768 fish in those counts), dropped with all their passes: an eyeballed total is not a count (E2), and keeping the other passes would break the removal series",
+    "net-compromised bouts": "26 reach-bouts NEON filed under an eventID ending .netCompromised (a block net failed; the passes after the failure are split from the bout)",
+    "incomplete pass series": "5 other reach-bouts whose passes are not numbered 1..k; 1 reach-bouts with a pass marked targetTaxaPresent = Y but no fish records",
+    "per-fish measurements": "fsh_perFish lengths, weights, life stages, DELT and injury flags, voucher and DNA sample ids",
+    "invertebrate bycatch": "fsh_invertBycatch (D04 decapods)"
+  },
+  "summary": {
+    "n_rows": 378355,
+    "n_units": 223,
+    "n_taxa": 155,
+    "n_periods": 272,
+    "n_occasions": 3,
+    "n_surveys": 2441,
+    "y_values": "0-2075 (282 distinct)",
+    "prop_zero": 0.98,
+    "n_traps": 1,
+    "n_zero": 370688,
+    "n_positive": 7667,
+    "n_units_detected": 223,
+    "max_y": 2075
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_site", "period_reach_type", "period_reach_length_m", "obs_sampler_type", "obs_ef_time_s", "obs_water_temp_c", "obs_habitat_type"],
+  "coreMd5": "e4538124616ea2873ec1a24966e907a5",
+  "sideTables": {
+    "periods": {
+      "rows": 272,
+      "columns": ["period", "eventID", "site", "year", "season", "first_pass_date", "last_pass_date"],
+      "md5": "d3defe539b19ad350364242f1b73052c"
+    },
+    "taxa": {
+      "rows": 155,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_fish"],
+      "md5": "b02278478ba86b6142ca9183c72265b0"
+    },
+    "units": {
+      "rows": 223,
+      "columns": ["unit", "site", "domain", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "30f586961ea9123da7edb87ee365d918"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_fish_removal.R",
+  "buildDate": "2026-11-05"
+}

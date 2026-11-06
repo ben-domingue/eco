@@ -1,0 +1,67 @@
+{
+  "table": "goldman_2023_pnw_pika_dynocc",
+  "title": "American pika sign surveys at 771 plots in five national park units of Oregon, Idaho and California, 2010-2014 and 2017-2021, with counts by sign type",
+  "creator": "Goldman, Mia R.; Shinderman, Matthew; Jeffress, Mackenzie R.; Rodhouse, Thomas J.; Shoemaker, Kevin T.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.ttdz08m2n",
+  "sourceURL": "https://doi.org/10.5061/dryad.ttdz08m2n",
+  "citation": "Goldman, M. R., Shinderman, M., Jeffress, M. R., Rodhouse, T. J., & Shoemaker, K. T. (2023). Data from: Integrating multiple sign types to improve occupancy estimation for inconspicuous species [Dataset]. Dryad. https://doi.org/10.5061/dryad.ttdz08m2n",
+  "paperDOI": "10.1002/ece3.10019",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual surveys for American pika sign in 12 m radius plots at Crater Lake National Park, Craters of the Moon, Lava Beds and Newberry National Monuments and Lassen Volcanic National Park (2010-2014 by the National Park Service, 2017-2021 by the OSU-Cascades HERS Lab), with a resurvey of about a third of plots within weeks of the first visit. Each survey records counts of old and fresh scat, old and fresh haypiles, calls and sightings, with cover classes and substrate complexity. The paper fits multi-sign dynamic occupancy models with sign-specific detection and false positives.",
+  "samplingProtocol": "Sign survey of a 12 m radius circular plot on talus or lava, up to 30 minutes, recording up to 10 sign observations (old / fresh scat, old / fresh haypile, call, sighting) and Daubenmire cover classes; about 30% of plots resurveyed within two weeks to a month of the original survey each year.",
+  "samplingProtocolCode": "sign_survey",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "surveys within a plot-year are treated as closed (the paper: resurveys within two weeks to ensure no occupancy turnover); years are periods. Seven plot-years have three surveys.",
+  "geographicCoverage": "Crater Lake NP (Oregon), Newberry National Volcanic Monument (Oregon), Craters of the Moon NM&P (Idaho), Lava Beds NM and Lassen Volcanic NP (California), USA",
+  "temporalCoverage": "2010/2021",
+  "notShipped": {
+    "recodes": "ssn, Month and Yday (recodes of Season and the date)",
+    "identifiers": "Survey_ID, Location_ID and Plot_ID (concatenations or parts of plot, year and date)",
+    "hassign": "the source's any-sign flag, which counts old sign the paper did not analyse; recoverable as y or any obs_n_old_* > 0",
+    "jags_data": "DataForJAGS_MultiSign.RData: the same surveys reshaped and scaled for the authors' JAGS model"
+  },
+  "notes": "y = any fresh sign (fresh scat, fresh haypile, call or sighting), the paper's detection definition (old sign was not analysed); the source's hassign also counts old scat and old haypiles and is not shipped (it equals y or any obs_n_old_* > 0). For the paper's multi-sign or false-positive models use the obs_n_* counts. obs_n_fresh_scat_unambiguous is NA on 682 surveys where it was not recorded. obs_cover_* are Daubenmire class codes as deposited (T = trace). No coordinates are deposited. The README asks that use of the data attribute the OSU-Cascades Human and Ecosystem Resilience and Sustainability Lab, with support from the National Park Service.",
+  "summary": {
+    "n_rows": 5126,
+    "n_units": 771,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 3,
+    "n_surveys": 5126,
+    "y_values": "0,1",
+    "prop_zero": 0.64,
+    "n_traps": 1,
+    "n_zero": 3282,
+    "n_positive": 1844,
+    "n_units_detected": 442,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_park", "unit_lava_complexity", "obs_n_old_scat", "obs_n_old_haypile", "obs_n_fresh_haypile", "obs_n_sighting", "obs_n_call", "obs_n_fresh_scat", "obs_n_fresh_scat_unambiguous", "obs_resurvey", "obs_season", "obs_cover_rock", "obs_cover_bare", "obs_cover_grass", "obs_cover_shrub", "obs_cover_tree", "obs_cover_forb", "obs_tmax_mean_c", "obs_precip_sum_mm"],
+  "coreMd5": "ce1b2c1c714c1590f4f54be96696a8b8",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year"],
+      "md5": "b88af6d31c00c07aa1f717f3396750bc"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "06472a29e8651a14619542bcdcd85ca4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldman_2023_pnw_pika_dynocc.R",
+  "buildDate": "2026-11-05"
+}

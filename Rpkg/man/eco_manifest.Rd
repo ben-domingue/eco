@@ -11,6 +11,7 @@ A data.frame.
 }
 \description{
 One row per eco version: when it was released, which Redivis versions of
-\code{eco} and \code{eco_meta} it is, how many tables, and a note. Read from the
+the core shards (\code{eco}, \code{eco_2}, ...) and \code{eco_meta} it is, how many tables,
+and a note. Read from the
 repository (\code{releases/manifest.csv}), which is updated after each release.
 }

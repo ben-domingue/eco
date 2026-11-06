@@ -20,8 +20,34 @@
 
 .eco_is_side <- function(name) grepl(paste0("(", paste(names(.eco_side_keys), collapse = "|"), ")$"), name)
 .eco_core_names <- function() {
-  l <- .eco_table_listing(.eco_core, .eco_tag_for(.eco_core))
+  l <- .eco_core_listing()
   l$name[!.eco_is_side(l$name)]
+}
+
+# Every table in every core shard of the version being read, with the shard it
+# is in (`dataset`). Shards are searched newest-first and the first match wins,
+# as in IRW; the uploader keeps a name out of a second shard, so a duplicate
+# means someone broke that rule by hand.
+.eco_core_listing <- function() {
+  if (!is.null(.eco_env$core_listing)) return(.eco_env$core_listing)
+  parts <- lapply(.eco_cores_in_force(), function(d) {
+    l <- .eco_table_listing(d, .eco_tag_for(d))
+    l$dataset <- rep(d$name, nrow(l))
+    l
+  })
+  l <- do.call(rbind, parts)
+  l <- l[!duplicated(l$name), , drop = FALSE]
+  l <- l[order(l$name), , drop = FALSE]; rownames(l) <- NULL
+  .eco_env$core_listing <- l
+  l
+}
+
+# The core shard (a dataset list) holding `table`, or NULL.
+.eco_shard_of <- function(table) {
+  l <- .eco_core_listing()
+  hit <- l$dataset[l$name == table]
+  if (!length(hit)) return(NULL)
+  .eco_cores[[which(vapply(.eco_cores, `[[`, "", "name") == hit[1])]]
 }
 
 #' The tables in the corpus
@@ -31,18 +57,21 @@
 #'
 #' @return A data.frame: `table`, `n_rows`, `bytes`, `needs_login` (over the
 #'   100 MB Redivis serves without a login; see [eco_fetch()]), `taxa`,
-#'   `periods`, `units`, `traps` (logical: the side table exists).
+#'   `periods`, `units`, `traps`, `survey_taxa` (logical: the side table
+#'   exists), and `dataset`, the Redivis core shard holding it (`eco`,
+#'   `eco_2`, ...).
 #' @examples
 #' \donttest{
 #' eco_list_tables()
 #' }
 #' @export
 eco_list_tables <- function() {
-  l <- .eco_table_listing(.eco_core, .eco_tag_for(.eco_core))
+  l <- .eco_core_listing()
   core <- l[!.eco_is_side(l$name), , drop = FALSE]
   out <- data.frame(table = core$name, n_rows = core$rows, bytes = core$bytes,
                     needs_login = !is.na(core$bytes) & core$bytes > .eco_anon_cap, stringsAsFactors = FALSE)
   for (s in names(.eco_side_keys)) out[[sub("^__", "", s)]] <- paste0(core$name, s) %in% l$name
+  out$dataset <- core$dataset
   rownames(out) <- NULL
   out
 }

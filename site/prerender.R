@@ -9,9 +9,17 @@ val  <- read.csv("../validate/report.csv", stringsAsFactors = FALSE)
 bib  <- read.csv("../metadata/biblio.csv", check.names = FALSE, stringsAsFactors = FALSE)
 rel  <- read.csv("../releases/manifest.csv", stringsAsFactors = FALSE, colClasses = "character")
 last <- rel[nrow(rel), ]
+source("_shards.R")   # shard_names, shard_refs, shard_urls: the core shards
+# The core shards (eco, eco_2, ...) each have a <name>_redivis_version column;
+# blank before a shard's first release. "eco v2.4, eco_2 v1.0".
+core_cols <- setdiff(grep("_redivis_version$", names(rel), value = TRUE), "eco_meta_redivis_version")
+core_tags <- function(r) {
+  v <- unlist(r[core_cols]); v <- v[!is.na(v) & nzchar(v)]
+  paste(sub("_redivis_version$", "", names(v)), v, collapse = ", ")
+}
 stats <- list(
   eco_version = last$eco_version, release_date = substr(last$date, 1, 10),
-  release_redivis = last$eco_redivis_version, release_tables = last$n_tables,
+  release_redivis = core_tags(last), release_tables = last$n_tables,
   n_tables   = nrow(meta),
   n_rows     = sum(meta$n_rows),
   n_units    = sum(meta$n_units),
@@ -99,7 +107,10 @@ tab_str <- function(x) { t <- sort(table(x), decreasing = TRUE); paste(names(t),
 pub <- meta[!meta$table %in% tags$table[grepl("do_not_publish", tags$status)], ]
 fill <- list(
   as_of = substr(last$date, 1, 10), eco_version = last$eco_version,
-  eco_redivis = last$eco_redivis_version, eco_meta_redivis = last$eco_meta_redivis_version,
+  shard_urls = paste(shard_urls, collapse = " "),
+  shard_names = paste0("datapages.", shard_names, collapse = ", "),
+  shard_refs = paste(shard_refs, collapse = ", "), newest_ref = shard_refs[length(shard_refs)],
+  eco_redivis = core_tags(last), eco_meta_redivis = last$eco_meta_redivis_version,
   n_tables = fmt(nrow(pub)), n_rows = fmt(sum(pub$n_rows)), n_units = fmt(sum(pub$n_units)),
   by_response_type = tab_str(pub$response_type), by_closure = tab_str(pub$closure),
   n_inferred = fmt(sum(pub$survey_evidence == "inferred")),
