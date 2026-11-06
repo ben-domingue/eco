@@ -1,0 +1,69 @@
+{
+  "table": "maphisa_2019_ingula_birds_comm",
+  "title": "Grassland bird surveys on 20 plots at Ingula, KwaZulu-Natal / Free State, South Africa: 30-minute walks, March 2010 to February 2012, three a month in the 2011-12 summer",
+  "creator": "Maphisa, David H.; Smit-Robinson, Hanneline; Altwegg, Res",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.pn3623b",
+  "sourceURL": "https://doi.org/10.5061/dryad.pn3623b",
+  "citation": "Maphisa, D. H., Smit-Robinson, H., & Altwegg, R. (2019). Data from: Dynamic multi-species occupancy models reveal individualistic habitat preferences in a high-altitude grassland bird community [Dataset]. Dryad. https://doi.org/10.5061/dryad.pn3623b",
+  "paperDOI": "10.7717/peerj.6276",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Bird records from 30-minute walked surveys of 500 m x 500 m plots in the high-altitude grasslands of the Ingula Important Bird and Biodiversity Area and neighbouring farms, South Africa. All the paper's study plots (every plot but P04) were surveyed three times a month from November 2011 to February 2012 (P66 not in November), the season the paper models with a dynamic multi-species occupancy model; earlier surveys from March 2010 to March 2011 cover 4 to 12 plots in single months of each season.",
+  "samplingProtocol": "One observer walked a fixed route 150 m inside the edge of a 500 m x 500 m plot at constant pace for 30 minutes, recording all birds seen inside the plot and birds heard calling from within it; up to three surveys per plot per month, the third also measuring grass height and cover.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "surveys within a calendar month are the replicates (the paper's primary period is the month and the repeat surveys were close together); months are periods",
+  "geographicCoverage": "Ingula Pumped Storage Scheme and neighbouring farms, near Van Reenen, on the KwaZulu-Natal / Free State escarpment, South Africa (about 28.2 S, 29.6 E); no plot coordinates deposited",
+  "temporalCoverage": "2010-03/2012-02",
+  "notShipped": {
+    "record_conditions": "Weather, Wind, visibility, Start time and Day: they vary between records of one survey in the sheet, so they are not survey covariates as deposited",
+    "record_timing": "Time (min) and grid (min): timing of each record within the walk",
+    "species_attributes": "Status, Category, desired, unimportant, negative indicators (species attributes) and Breeding (per-record breeding evidence)",
+    "livestock": "Animals (livestock present / absent, per record)",
+    "land": "Where and Farm (land owner and farm, inconsistent within plot on a few records)",
+    "vegetation_workbook": "Study plots vegetation Summers 2010-12.xlsx: quadrat-level grass height and cover; plot-survey summaries would be derived values"
+  },
+  "notes": "y_raw is the number of records of the taxon on the survey (each record has Total = 1; whether a record is one bird is not stated). Taxa resolved from English names by hand; spelling variants and the source's two names for one species are merged and taxonRemarks lists the names. Three ambiguous names are kept at genus or family rank. A survey with no bird record would be missing (the sheet is the only record of visits). P04 was surveyed in 2010 only and is not one of the paper's 19 plots.",
+  "summary": {
+    "n_rows": 32292,
+    "n_units": 20,
+    "n_taxa": 92,
+    "n_periods": 11,
+    "n_occasions": 3,
+    "n_surveys": 351,
+    "y_values": "0,1",
+    "prop_zero": 0.909,
+    "n_traps": 1,
+    "n_zero": 29353,
+    "n_positive": 2939,
+    "n_units_detected": 20,
+    "max_y": 1
+  },
+  "sampleFloor": "below (20 units < 30)",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "obs_survey_days", "obs_vegetation_visit"],
+  "coreMd5": "d8cb638cbf288b26c32411cf5df1f89e",
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "year", "month"],
+      "md5": "deb833cce6fbd3d6850cf0ec0826288c"
+    },
+    "taxa": {
+      "rows": 92,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "975613b27e05f58836e4f6855f36e091"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/maphisa_2019_ingula_birds_comm.R",
+  "buildDate": "2026-11-05"
+}
