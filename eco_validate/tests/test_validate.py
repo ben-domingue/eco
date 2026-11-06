@@ -386,6 +386,18 @@ def test_taxon_inclusion_and_withheld():
     assert "meta_conditional" not in checks_of(run(meta=good_meta(taxaWithheld=["Z z"])))
 
 
+def test_subsample_column():
+    """Ruling 21 (2026-11-06): subsampleColumn names the obs_ column holding the identified fraction."""
+    df = good_frame(); df["obs_prop_id"] = [0.5 if i % 2 else None for i in range(len(df))]
+    assert "meta_conditional" not in checks_of(run(df, good_meta(subsampleColumn="obs_prop_id")))
+    assert "meta_conditional" in checks_of(run(meta=good_meta(subsampleColumn="obs_prop_id")), "error")
+    assert "meta_conditional" in checks_of(run(meta=good_meta(subsampleColumn="unit_elev")), "error")
+    df2 = df.copy(); df2.loc[0, "obs_prop_id"] = 2.0
+    assert "meta_conditional" in checks_of(run(df2, good_meta(subsampleColumn="obs_prop_id")), "error")
+    df3 = df.copy(); df3.loc[1, "obs_prop_id"] = 0.0
+    assert "meta_conditional" in checks_of(run(df3, good_meta(subsampleColumn="obs_prop_id")), "error")
+
+
 def test_survey_taxa():
     # unit 1-20 surveyed for AAA and BBB, units 21-40 for AAA only
     df = good_frame()

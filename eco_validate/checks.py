@@ -744,6 +744,19 @@ def check_meta_conditional(t: Table):
                 out.append(_f("meta_conditional", "error",
                               f"taxonInclusion = recorded but {len(never)} taxon/taxa are never "
                               f"recorded in this table (E10): {_sample(never)}", t, details=never))
+    sc = d.get("subsampleColumn")
+    if sc is not None:
+        if not (isinstance(sc, str) and sc.startswith("obs_") and sc in df.columns):
+            out.append(_f("meta_conditional", "error",
+                          f"subsampleColumn must name an obs_ column of the core table (E10); "
+                          f"found `{json.dumps(sc)[:60]}`", t))
+        else:
+            v = pd.to_numeric(df[sc], errors="coerce")
+            bad = v.notna() & ~((v > 0) & (v <= 1))
+            if (df[sc].notna() & v.isna()).any() or bad.any():
+                out.append(_f("meta_conditional", "error",
+                              f"subsampleColumn `{sc}` must hold the identified fraction, "
+                              f"in (0, 1] or empty (E10)", t))
     tw = d.get("taxaWithheld")
     if tw is not None:
         if not (isinstance(tw, list) and all(isinstance(x, str) and x.strip() for x in tw)):
