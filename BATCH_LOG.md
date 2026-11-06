@@ -1560,6 +1560,47 @@ What this batch says about the standard and the tools:
 - **Dryad 404 on the version zip** for small deposits (7 KB and 27 KB) is a second failure mode besides the 405 on large
   ones; both need a token.
 
+## Batch 36 — 2026-11-05 (NEON aquatic and vector products: stream fish, ticks, mosquitoes)
+
+One agent in `~/eco-b36` (branch `batch-36-neon`, from main at 002865e). NEON has no daily request cap, so this batch
+added NEON products while Dryad is rate-limited: five products read (readme, variables, every site-month of three),
+three tables built and uploaded to the Redivis draft, one held, one left available. All three use `RELEASE-2026`, the
+basic package and NEON's agency-published plot or reach coordinates; downloads ran as site shards under the 8
+requests/s token limit.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_fish_removal | removal (multinomial_cell, removal), community | NEON DP1.20107.001 CC BY 4.0 | 378,355 | 2,441 electrofishing passes in 1,252 reach-bouts at 223 wadeable-stream reaches (23 sites), 272 bouts 2016-2024, 155 taxa (123 species, 32 higher rank incl. NEON-fuzzed ids); three passes at fixed reaches, one at random reaches; y = per-fish records + bulk counts; 23 reach-bouts with an estimated bulk count (13,768 fish), 26 net-compromised bouts and 6 broken pass series dropped whole; lakes not shipped |
+| neon_2026_ticks_count | repeated counts, community, drag / flag | NEON DP1.10093.001 CC BY 4.0 | 216,104 | 7,718 plot-bouts at 287 plots (46 sites), 2019-2024, 28 species x life-stage taxa (adult = male + female; larvae mostly Ixodidae only); area dragged as effort; 6,253 surveys before 2019 not shipped (lab counts possibly subsampled, NEON issue log); 20 larval counts are whole thousands, shipped as published and noted |
+| neon_2026_mosquitoes_count | repeated counts, community, CO2 light trap | NEON DP1.10043.001 CC BY 4.0 | 7,464,149 | 96,937 trap collections at 518 plots (47 sites), 2014-2024, 77 taxa with >= 1,000 identified individuals (99.7% of individuals; 57 below the cut); y = identified-subsample count, all sexes, with obs_proportion_identified and trap hours as effort; zero-catch collections (no sample kept) are y = 0; year parts, 627 MB, gitignored |
+
+Not built: plant presence DP1.10058.001 (held, `queue/human_review.csv`: the survey set is clean, but a national
+pool of thousands of taxa at ~150k subplot surveys forces a cut to under 5% of the flora; asks whether a per-site
+pool in `__survey_taxa` is acceptable for NEON products). Macroinvertebrates DP1.20120.001 left `available` (lab
+subsampling with subsamplePercent, several sampler types per site; would follow the mosquito pattern).
+
+What this batch says about the standard and the tools:
+
+- **Estimated counts.** E2 removes imputed or interpolated counts but says nothing of a field estimate the source
+  labels as such (NEON fish `actualOrEstimated = estimated`, 80% of all fish in the product, mostly lake sites).
+  The fish table drops the reach-bout whole rather than flag the row, because dropping one pass breaks the removal
+  series; that removes the largest catches, so the choice is not neutral. A sentence in E2 (drop, or keep with an
+  `obs_` flag) would settle it. The ticks have the unflagged version: larval counts of exactly 10,000-35,000.
+- **Subsample counts.** Mosquito `y` is the count in the identified subsample, with the subsample's share
+  (`proportionIdentified`, by wet weight) as an `obs_` column; the whole-catch estimate is not shipped. This is the
+  first eco table where `y` counts a known fraction of the sample; it fits E2 as written, but a `subsampleColumn`
+  in E10 (like `effortColumn`) would let tools find the offset. Macroinvertebrates, zooplankton and NEON's other
+  sorted-sample products would use it too.
+- **Survey-quality filters.** Each NEON product needed the same rules: a survey is a sampling-event row with
+  samplingImpractical OK or blank; samples NEON marks lost, incomplete, damaged or estimated are dropped; a "target
+  taxa present" sample with no laboratory rows is dropped, not zeroed. These are now repeated in five NEON scripts
+  and could be one helper in `lib/`.
+- **Split bouts.** NEON files the passes after a block-net failure under a second eventID (`.netCompromised`); the
+  remaining passes of the bout then look like a 1,3 or 2,3 removal series. Dropped; a removal design needs the
+  passes 1..k of one closed bout.
+- **National pools again** (batch 14): fish (155 taxa nationally, a median of 6 per site) and ticks are small enough to
+  ship whole; mosquitoes needed the carabid-style cut; plants cannot be built at all under one pool.
+
 ## Japanese burrowing cricket (#53, part of #17) — 2026-11-04
 
 One queue row, one table, nothing held. Passes `eco-validate --irw` (exit 0) with four IRW warnings: `cov_prefix`, `imputed_values`, `sample_floor` (animal data are exempt) and `pii_screen_unavailable`; `pytest eco_validate/tests` passes.
