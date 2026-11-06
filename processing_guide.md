@@ -78,9 +78,11 @@ when any coordinate column exists; otherwise leave it out. When set, it is
 `list(value = TRUE/FALSE, method = "...")`, never a bare string or logical: the
 validator and `metadata/01_metadata.R` read `$value`.
 
-**Sample floor and replication** are reported, not gates: `write_table()` computes
-`sampleFloor` (30 units and 2 occasions or periods). A single-visit community matrix
-is admitted and filterable; do not seek such tables out.
+**Sample floor** is reported, not a gate: `write_table()` computes `sampleFloor` (30
+units and 2 occasions or periods). **Replication is a gate** (ruling 2026-11-06): a
+site-unit deposit with one visit per unit and one period (a single-visit community
+matrix) is not built; record it in `queue/human_review.csv` as `rejected`. Within-visit
+intervals do not make it replicated (they are `obs_` columns, E8).
 
 **Name**: `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer; type
 suffixes `occ`, `count` / `nmix`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`,
