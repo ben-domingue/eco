@@ -244,6 +244,10 @@ CSVs with `upload/red_up_eco.py`.
 | `davis_2019_kasungu_scr.R` | SCR, multi-session (three annual surveys), partial identity (single-flank ids), two species tables (`davis_2019_kasungu_leopard_scr`, `davis_2019_kasungu_hyaena_scr`), traps centred (VU), Malawi | Zenodo | CC BY 4.0 |
 | `iannarilli_2026_snapshoteurope_comm.R` | community detection, cameras, camera-weeks from a Wildlife Insights deployment + sequence export, failed deployments dropped, coordinates coarsened (EN/VU), 24 European countries and Israel | Edmond (Dataverse) | CC BY-SA 4.0 (derived CC BY-NC-SA 4.0) |
 | `faveyts_2026_zwin_butterfly_count.R` | community counts, butterfly transects, checklist with explicit zeros, 12 routes, one season, Belgium | GBIF (Belgian IPT) | CC BY 4.0 |
+| `sepulveda_2019_streamgage_fish_edna.R` | multi-scale eDNA, kokanee and yellow perch, 9 streamgages x 6 events x 3-10 water samples x 4 qPCR replicates, field-blank and inhibition covariates, Columbia and Colorado basins 2018 | USGS ScienceBase | US public domain (CC0) |
+| `siren_2024_vtnh_moose_count.R` | open multistate N-mixture counts, moose calves and adult cows (species x stage taxa), 225 camera sites x 6 years x 4 months, Vermont and New Hampshire | Dryad | CC0 |
+| `finnegan_2024_afognak_deer_scr.R` | closed SCR, 23 Sitka black-tailed deer bucks x 26 cameras x 32 nights, Afognak Island, Alaska | Dryad | CC0 |
+| `pakanen_2020_dunlin_ms.R` | multi-state CJS by geolocator status, 337 southern dunlins, 2002-2018, removals flagged, Finland | Dryad | CC0 |
 | `cecconi_2025_cricket_occ.R` | single-season occupancy, Japanese burrowing cricket x 49 sites x 3 aural point counts, Kentucky 2024 | Dryad | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
