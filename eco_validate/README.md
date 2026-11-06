@@ -49,7 +49,7 @@ differ by intake policy, which is not part of the format.
 | E7 spatial | `coordinates_declared` (`coordinatesCoarsened` key present when coordinates exist, in the core or `__units`), `crs_declared` (for `unit_x` / `unit_y`), `coordinates_sensitive` (warn: IUCN CR/EN/VU taxon with coordinates finer than 0.1 degree) |
 | E8 time | `date_iso`, `index_integer` (`period`, `occasion`) |
 | E10 metadata | `meta_present`, `meta_required`, `meta_vocab` (`responseType`, `surveyEvidence`, `unitKind`, `intellectualRights.spdx`, `coordinatesCoarsened` shape `{value, method}` or null), `meta_conditional` (`stateCodes`, `multinomialType` / `distanceBreaks`, `surveyEvidenceNote`, `effortColumn = "obs_trials"` for `binomial_count`) |
-| intake policy | `table_name`, `standard_version` (`eco v1.0`), `sample_floor` (warn), `replication` (warn) |
+| intake policy | `table_name`, `standard_version` (`eco v1.0`), `sample_floor` (warn), `replication` (warn; not for `binomial_count`, individual units over traps, `obs_int<k>` / `obs_n_int<k>_...` interval columns or `obs_ttd`), `all_zero` (warn: an all-zero table whose notes lack "not estimable"). With `--irw`, `irw:resp_variation*` is a warning, not a block, on an all-zero table the standard admits (site units, `taxonInclusion` target or single; #120) |
 
 `--irw` adds irw-validate (upload profile) on the IRW view of the table
 (`eco_to_irw`: `id/item/resp`, `cov_`/`itemcov_`/`periodcov_` prefixes,
