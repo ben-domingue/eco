@@ -98,7 +98,9 @@ hold the deposit.
 Download into `.cache/raw/<table>/` with `download_cached()` or `download_dryad()`
 (the Dryad version zip is the only anonymous route; per-file downloads need a
 token; a few Dryad deposits also have a Zenodo copy, most do not). EDI's portal and PASTA refuse
-scripted requests; use DataONE or hold. Read every file the deposit ships, not only
+scripted requests; use DataONE or hold. The intake is anonymous: a deposit whose anonymous
+download fails (404, 405) is `blocked`, not fetched with a token or by hand (ruling
+2026-11-06). Read every file the deposit ships, not only
 the obvious one: the covariate files often reveal which cells were surveyed, and
 the readme often carries the licence and the species code list.
 
@@ -195,6 +197,38 @@ table to avoid them. Two methods are two tables.
   IUCN endpoint can answer for a synonym's different species. `make_taxa()` asserts
   EXACT matches and `iucn_category()` checks the assessed name; HTTP 204 is "not
   assessed".
+
+**Rules from the 2026-11-06 rulings** (clauses in `standard.md`; the how-to here):
+
+- eDNA with Ct values and no call: `y = as.integer(!is.na(ct) & ct != "Undetermined")`,
+  `y_raw` the Ct string as deposited. Find the field blanks per sampling event in the
+  deposit, assert their count, and set `obs_blank_positive` on every row of an event
+  whose blank amplified. An author's call (a Ct cutoff, an LOD rule in the readme)
+  wins; cite it in the header.
+- An all-zero table: assert that `y` is all 0, and put "No detection in any survey;
+  detection probability is not estimable from this table alone" in `notes`.
+- A detector shared by all taxa with a not-surveyed mark for one taxon: drop that
+  survey for every taxon, assert the number dropped, list it in `notShipped`.
+- Count-detector SCR: one row per individual x trap operated, `y` the encounter count
+  under the source's independence rule (name it in `samplingProtocol`),
+  `effortColumn = "obs_effort_days"`, `closure = "none"`, `occasionKind = "none"`.
+- Time to detection: `obs_ttd` (units in the column description) holds the time, or
+  the survey length where not detected; `obs_ttd_censored` is 1 there and 0 otherwise.
+- A survey set inferred from detections: state the rule in `surveyEvidenceNote` and
+  the header, and say that surveys with no detection of anything are absent.
+- Ids valid only within a session: make the unit `<session>_<id>` (or assert the
+  source's ids are already unique across sessions) and say so in `closureNote`.
+- Within-visit intervals: `occasion` is the visit; `y` is the visit's detection or
+  total, built from the intervals and asserted equal to any visit-level value the
+  source gives; `obs_int1`, `obs_int2`, ... carry the intervals.
+- Several sign types: read which sign types the authors' model counts as a detection
+  and build `y` from those; ship each sign count as `obs_<sign>`; cite the paper's
+  definition in the header.
+- Synonyms: merge only names the source uses for one species, assert the merge, and
+  list both names in `taxonRemarks`.
+- Licence: ODC-By 1.0 proceeds like CC BY. Zenodo "Other (Open)" with no text, or a
+  CC0 badge with a consult-the-PIs clause: hold as `held: unclear licence terms` and
+  ask by email; a refusal or no reply leaves the deposit linked, not reshared.
 
 ## Metadata (`__dataset.json`)
 

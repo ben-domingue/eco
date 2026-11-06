@@ -89,6 +89,12 @@ authors *estimated* from the same observations (a model-based occupancy estimate
 predicted density) is a model output, not a covariate or a `y`, and MUST NOT be
 shipped; the omission is recorded in `notShipped`.
 
+**Ruling (detection definition, 2026-11-06).** Where the source records several sign
+types (fresh and old scat, fresh and old haypiles), `y` follows the detection definition
+of the authors' own model. When the deposit's summary flag also counts sign the authors
+treat as ambiguous, `y` is built from the sign types the model uses, not from the flag,
+and every sign count still ships as an `obs_` column.
+
 ## E3. Uniqueness
 
 The key is `(unit, taxon, trap, period, occasion)`, with absent columns treated as a
@@ -128,7 +134,10 @@ whatever release convention the authors' analysis used), or no longer
    build per-session histories for a closed model (`eco_to_ch()`) drop all-zero
    unit × period blocks unless asked to keep them (ruling #30). An individual with no
    detection anywhere in the table (a catalogue entry never sighted) is not a unit
-   and has no rows.
+   and has no rows. Where the source's individual ids are valid only within a session
+   (ids assigned afresh each session), the unit is the id within its session: it has
+   rows only in that session and is not linked to any id of another session, and
+   `closureNote` says so.
 
 **Ruling (#20, 2026-11-01).** Consequence 2 applies to `unitKind = site`. When the
 unit is an individual (`cjs`, `scr`, closed captures) the taxon is a property of the
@@ -147,6 +156,12 @@ with `obs_method`, under the multi-method form of E9 (*Experimental*). The rulin
 taxon lists only, so it does not touch
 `unitKind = individual` tables, which split by taxon (ruling #20) and stay separate
 where the source deposited separate analysis sets or populations.
+
+**Ruling (shared detector, 2026-11-06).** When one detector surveys all of a table's
+taxa at once (a camera, an ARU, a nest box checked for every species) and the source
+marks a survey at that detector as not surveyed for one taxon, the survey is not
+surveyed for any taxon: it has no rows. The script asserts how many surveys this
+removes and records them in `notShipped`.
 
 **Ruling (Q3, 2026-11-01).** Dense explicit zeros are the only canonical form. A sparse
 detections-only table is not accepted as a core table. Across twelve deposits the
@@ -169,9 +184,11 @@ record rests on. `surveyEvidence` in `__dataset.json` (E10) MUST be one of:
 | `effort_table` | The source deposited effort per unit × occasion, and a survey exists where effort > 0. |
 | `deposited_matrix` | The source deposited a unit × occasion matrix in which not-surveyed (`NA`, blank) and not-detected (0) are distinct. |
 | `row_presence` | The source is a record table and a survey exists where it has at least one row, including explicit zero-count rows. |
-| `inferred` | The survey set was reconstructed by a rule the script states in `surveyEvidenceNote` (for example, first-to-last detection span per camera-year). |
+| `inferred` | The survey set was reconstructed by a rule the script states in `surveyEvidenceNote` (for example, first-to-last detection span per camera-year, or a survey exists wherever any taxon or individual was detected, such as a roost-week with any detection). |
 
-`inferred` is a warning in the validator and a filterable fact for users. A
+`inferred` is a warning in the validator and a filterable fact for users. A survey
+set inferred from detections alone omits every survey at which nothing was detected;
+`surveyEvidenceNote` says so (ruling 2026-11-06). A
 `__surveys` side table is NOT required: the core table already lists every survey as
 `distinct(unit, trap, period, occasion)`. Where the source's own record of surveys
 disagrees with its detections (deployment dates that contradict detection dates),
@@ -225,6 +242,12 @@ Core). Records the source identified only to a higher rank are their own taxon, 
 shipped as recorded and `__taxa` says so in `taxonRemarks`. `taxonID` MAY be empty only
 for a group the GBIF backbone does not hold (a pooled group, a subfamily absent from the
 backbone), and `taxonRemarks` then says so.
+
+**Ruling (synonyms, 2026-11-06).** Names the source itself treats as synonyms (both
+forms used for one species) are one taxon, and `taxonRemarks` in `__taxa` records the
+merged names. A name that does not identify a species is kept at the lowest rank it
+does identify (genus, family). Names are never merged on outside authority alone (a
+backbone synonymy the source does not use).
 
 ## E7. Spatial information
 
@@ -308,6 +331,11 @@ the source's. When each occasion is a crossing of two kinds (a method × a repli
 a visit × a method), `occasionKind` is the list of both, outer first
 (`["method", "spatial"]`), and the components are recoverable from `obs_` columns.
 
+**Ruling (within-visit intervals, 2026-11-06).** When a visit is split into timed
+intervals (three intervals within a point count), the occasion is the visit, and the
+detection or count in each interval ships as an `obs_` column (`obs_int1`, `obs_int2`,
+...). Nothing is lost: a removal or interval model rebuilds the intervals from them.
+
 ## E9. Scope
 
 **Ruling (Q6, 2026-11-01).** Three lists. The test for the second is that the
@@ -368,6 +396,27 @@ named by `effortColumn`. Nothing is discretised by the processor. A survey whose
 detector is a continuous track or whose detections carry continuous locations without a
 deposited discretisation is held until the standard has a form for it.
 
+**Ruling (count-detector SCR, 2026-11-06).** Spatial capture–recapture whose detector
+records a count of encounters per individual × trap (independent photographs under a
+stated rule, over one deployment) is admitted under the form above: `unitKind =
+individual`, `responseType = count` (`y` = the individual's encounters at the trap),
+`trap` with `__traps`, the trap's effort in an `obs_` column named by `effortColumn`
+(`obs_effort_days`), and no `occasion` column when the source has a single occasion
+(`occasionKind = none`). Every individual has a row at every trap operated.
+
+**Ruling (eDNA detection call, 2026-11-06).** A detection call the source states for a
+qPCR replicate is `y`. When the source gives Ct (Cq) values or quantities but no call,
+`y = 1` for a replicate that amplified at all (a Ct value, not "Undetermined", blank or
+NA) and `y = 0` otherwise, with the Ct as deposited in `y_raw`. A sampling event whose
+field blank amplified ships as recorded, with `obs_blank_positive = 1` on its rows and
+0 on every other row.
+
+**Ruling (time to detection, 2026-11-06).** A survey that records the time to first
+detection is `responseType = detection`, `y` = 0/1 per survey; there is no
+time-to-detection response type. The time to first detection is an `obs_` column, set
+to the survey length where the taxon was not detected, and a 0/1 `obs_` column says
+which values are censored (1 = censored at the survey length).
+
 **Out of scope:** presence-only occurrence records, telemetry and movement,
 used–available resource selection, aggregated indices without unit-level data, model
 outputs. A deposit that fits none of the three lists is logged against the matching
@@ -422,11 +471,16 @@ These rules govern what enters the corpus; they are not part of the format and
 `eco-validate` reports them under a separate intake profile.
 
 **Licence.** Verify on the source page before writing a script. CC0, CC BY, CC BY-SA,
-public domain: proceed. CC BY-NC, ODbL, GPL and other licences with a propagating
-clause: proceed, and `derived_license` carries the clause so a reuser can exclude the
+ODC-By 1.0 (attribution only), public domain: proceed. CC BY-NC, ODbL, GPL and other
+licences with a propagating clause: proceed, and `derived_license` carries the clause so a reuser can exclude the
 table. No licence, an unresolvable licence UUID, or "contact the author": stop and ask
 by email (IRW's template, `processing_notes/Licensing.txt` in `ben-domingue/irw`);
-process only once permission is written. ND: stop; reshaping is a derivative.
+process only once permission is written. A repository licence that names no licence
+text (Zenodo's "Other (Open)"), or a CC0 badge alongside a data-use clause asking users
+to consult the PIs, is unclear terms: stop and ask by email. If permission is refused or
+no reply comes, the deposit may be linked but not reshared: permission to use is not
+permission to reshare (IRW's licensing review, adopted 2026-11-06). ND: stop; reshaping
+is a derivative.
 **Conflicts (ruled 2026-11-01):** when the repository's metadata and the deposited
 files disagree (Dryad says CC0, the readme says ODbL), the stricter licence governs
 and propagates, because the originator's terms govern over a repository default;
@@ -442,6 +496,14 @@ understates the information, which is one reason the floor is a filter.
 **Replication.** A table with `n_occasions = 1` and `n_periods = 1` (a single-visit
 community matrix) fits the format but supports none of the models in E9's core list.
 It is admitted with that fact filterable; the pipeline does not seek such tables out.
+
+**All-zero tables (ruled 2026-11-06).** A table in which nothing was detected (every
+`y = 0`) is admitted. Its `notes` say that nothing was detected and that detection
+probability is not estimable from the table alone. Such a table has site units and
+`taxonInclusion` `target` or `single`: an individual never detected is not a unit
+(E4.4), and a taxon never recorded is not on a `recorded` list (E10). Within a table
+that has detections, all-zero sessions and never-detected target taxa keep their rows
+as before (E4.4, ruling #30).
 
 **Naming.** `author_year_taxonOrPlace_type`, lower case, ≤ 40 characters; type
 suffixes `occ`, `count` / `nmix`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`, `scr`,
@@ -494,4 +556,17 @@ shipped and why. Facts about the source are assertions, not comments.
   survey the source deposited as detector locations × occasions searched (with effort)
   is spatial capture–recapture under the existing form; one with continuous tracks or
   locations is held. First table: `broekhuis_2020_mara_cheetah_scr`.
+- **v1.1-draft, rulings of 2026-11-06** (holds in the review queue through batch 34, #10):
+  - E2: with several sign types, `y` follows the authors' model's detection definition; every sign count ships as `obs_`.
+  - E4.4: individual ids valid only within a session give units scoped to that session, not linked across sessions.
+  - E4: a survey not surveyed for one taxon at a detector shared by all taxa is not surveyed for any (no rows).
+  - E4: `inferred` covers a survey set inferred from detections (a survey iff anything was detected there).
+  - E6: names the source treats as synonyms are one taxon; no merging on outside authority; a non-species name stays at the rank it identifies.
+  - E8: within-visit timed intervals: the occasion is the visit, the intervals are `obs_` columns.
+  - E9: count-detector SCR admitted (`responseType = count`, `trap`, `__traps`, effort `obs_`, no `occasion` for one occasion).
+  - E9: eDNA detection call: the source's call, else y = 1 where the replicate amplified, Ct in `y_raw`; `obs_blank_positive` for a positive field blank.
+  - E9: time to detection ships as `detection` 0/1 with the time and a censoring flag as `obs_` columns.
+  - Intake: ODC-By 1.0 proceeds; "Other (Open)" and a CC0 badge with a consult-the-PIs clause are unclear terms; refusal or no reply means link, not reshare.
+  - Intake: an all-zero table is admitted, with notes saying nothing was detected and p is not estimable from it alone.
+  - Intake (`processing_guide.md`): no Dryad token; a deposit whose anonymous download fails (404/405) is `blocked`.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
