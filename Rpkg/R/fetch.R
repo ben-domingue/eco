@@ -116,7 +116,8 @@ eco_traps <- function(table) .eco_side(.eco_name_of(table), "__traps")
 #' Describe a table, or the corpus
 #'
 #' With a table name, prints its title, dimensions, model family, response
-#' type, licence and citation. Without one, prints the corpus totals.
+#' type, licence and citation. Without one, prints the corpus totals: tables,
+#' the deposits they come from (see [eco_list_deposits()]), rows and units.
 #'
 #' @param table A table name, or `NULL`.
 #' @return Invisibly, the merged metadata row (or the totals as a list).
@@ -131,11 +132,12 @@ eco_info <- function(table = NULL) {
   if (is.null(table)) {
     v <- suppressMessages(eco_version())
     cores <- .eco_core_tags(); cores <- cores[!is.na(cores)]
-    out <- c(list(n_tables = nrow(m), n_rows = sum(m$n_rows), n_units = sum(m$n_units),
+    n_dep <- length(unique(.eco_deposit_id(eco_biblio())))
+    out <- c(list(n_tables = nrow(m), n_deposits = n_dep, n_rows = sum(m$n_rows), n_units = sum(m$n_units),
                   families = length(unique(eco_tags()$model_family))),
              as.list(cores), list(eco_meta = v$eco_meta))
-    message(sprintf("eco: %d tables, %s rows, %s units, %d model families\n",
-                    out$n_tables, format(out$n_rows, big.mark = ","), format(out$n_units, big.mark = ","), out$families),
+    message(sprintf("eco: %d tables from %d deposits, %s rows, %s units, %d model families\n",
+                    out$n_tables, out$n_deposits, format(out$n_rows, big.mark = ","), format(out$n_units, big.mark = ","), out$families),
             sprintf("Redivis %s, eco_meta %s%s\n", paste(names(cores), cores, collapse = ", "), out$eco_meta,
                     if (is.na(v$eco_version)) "" else sprintf(" (eco version %d)", v$eco_version)),
             "standard: ", .eco_site, "standard.html\ndata: ",

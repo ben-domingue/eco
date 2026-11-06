@@ -1,0 +1,120 @@
+---
+title: "Glossary"
+---
+
+```{r}
+#| label: stats
+#| include: false
+s <- jsonlite::read_json("data/site_stats.json")
+```
+
+The words this site uses, in the sense it uses them. Where a word means one
+thing to an ecologist and another on Redivis, the entry says which is meant.
+The [standard](standard.html) is the full statement of the format; this page
+is a reminder.
+
+## Counting the corpus
+
+The corpus now holds `r s$n_tables` tables from `r s$n_deposits` deposits.
+
+### Deposit {#deposit}
+
+The source the data came from: one published dataset with its own DOI or
+archive record, on Dryad, Zenodo, figshare, ScienceBase, a data portal, or
+the example data of an R package. eco never calls a deposit a "dataset",
+because on Redivis that word means something else (see [shard](#shard)).
+`eco_list_deposits()` in the [R package](r.html) lists them, with the
+tables built from each.
+
+### Table {#table}
+
+One eco table: the observations from one survey design with one kind of
+response, from one deposit. A deposit with, say, an occupancy survey and a
+mark-recapture study yields two tables; a deposit with one survey yields
+one. A table is a [core](#core) plus its [side tables](#side-tables), and is
+named `author_year_taxonOrPlace_type` (for example
+`kery_2008_willowtit_occ`). `eco_list_tables()` lists them.
+
+### Core {#core}
+
+The table's main file, one row per survey of one unit for one taxon, with
+the columns `unit`, `taxon` and `y` and any of the others below. "Core
+table" means the same thing.
+
+### Side tables {#side-tables}
+
+Small files that travel with a core and share its name plus a suffix:
+`__taxa` (each taxon code with its scientific name and GBIF key, always
+present), `__periods` (dates and facts about each primary period),
+`__units` (the sampling frame, including units never surveyed), `__traps`
+(trap locations, for spatial capture-recapture) and `__survey_taxa` (which
+taxa were looked for at which surveys, where that varied). In the metadata
+file they are listed under `sideTables`.
+
+## Redivis
+
+The tables are published on [Redivis](https://redivis.com/datasets/4j5q),
+which has its own words for things.
+
+### Shard {#shard}
+
+One of the Redivis datasets that hold the cores and side tables:
+`datapages.eco`, `datapages.eco_2`, and so on. Redivis caps a dataset at 1000
+entries, so a new shard is started when the last one fills. Each table, with
+its side tables, is in exactly one shard; the R package finds it for you.
+The metadata about all tables is in a separate Redivis dataset, `eco_meta`.
+
+### Entry {#entry}
+
+One physical table on Redivis. A table with a `__taxa` and a `__periods`
+side table is three entries; a very large core uploaded in parts is one
+entry per part. Entries matter only for uploading and for Redivis' cap; when
+the site counts the corpus it counts tables.
+
+## Inside a table
+
+### Unit {#unit}
+
+The thing with the latent state the model estimates: a site, a camera
+station, a pond, a transect, or, in capture-recapture, an individual animal.
+
+### Taxon {#taxon}
+
+A short, stable species code (or a code for a genus or species group, where
+that is what the source recorded), resolved to a scientific name in
+`__taxa`. Every table has the column, even with one species.
+
+### y {#y}
+
+The observation: a 0/1 detection, a count, or a coded state, as declared by
+the table's [response type](#responsetype). It is never missing.
+
+### Period {#period}
+
+A primary period: a season, year or session, numbered in time order. The
+state (occupied, alive, abundance) may change between periods.
+
+### Occasion {#occasion}
+
+A repeat survey within a period: a visit, a camera-day, a trap night, a
+sample. Whether the state is assumed constant across occasions is stated in
+the table's metadata (`closure`).
+
+### Survey set {#survey-set}
+
+Which unit, period and occasion combinations were actually surveyed. In eco
+a row exists only where a survey happened, so a 0 means "surveyed, not
+detected" and a missing row means "not surveyed". Each table says what its
+survey set rests on (`surveyEvidence`): a deposited list of surveys, an
+effort table, a matrix that tells blanks from zeros, the source's own rows,
+or, flagged as `inferred`, a rule the script states.
+
+### Response type {#responsetype}
+
+What `y` means, declared as `responseType` in the table's metadata:
+`detection` (0/1), `count`, `state` (a coded latent state, such as breeding
+or not), `ordinal` (an ordered index, such as a calling index),
+`binomial_count` (occasions with a detection out of `obs_trials`),
+`multinomial_cell` (removal, double-observer or distance-bin counts) or
+`detection_event` (one row per detection). See
+[the standard, E2](standard.html).

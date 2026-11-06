@@ -44,7 +44,7 @@ vector) a named list. The side tables come from `eco_taxa()`, `eco_periods()`,
 
 | | |
 |---|---|
-| `eco_list_tables()`, `eco_metadata()`, `eco_biblio()`, `eco_tags()`, `eco_tag_options()` | the corpus and its descriptions, from the `eco_meta` dataset |
+| `eco_list_tables()`, `eco_list_deposits()`, `eco_metadata()`, `eco_biblio()`, `eco_tags()`, `eco_tag_options()` | the corpus and its descriptions, from the `eco_meta` dataset; `eco_list_deposits()` is one row per source deposit with the tables built from it |
 | `eco_filter(model_family=, response_type=, taxon_group=, protocol=, min_units=, min_occasions=, multi_species=, sample_floor=)` | choose tables |
 | `eco_fetch(x)`; `eco_taxa()`, `eco_periods()`, `eco_units()`, `eco_traps()` | a table and its side tables |
 | `eco_info(table)` | one table, or the corpus totals |
@@ -58,7 +58,7 @@ vector) a named list. The side tables come from `eco_taxa()`, `eco_periods()`,
 ## Versions
 
 Redivis versions each dataset separately (the core tables are split across
-`eco`, `eco_2`, ..., because Redivis caps a dataset at 1000 tables; then
+the shards `eco`, `eco_2`, ..., because Redivis caps a dataset at 1000 entries, side tables included; then
 `eco_meta`); the [release manifest](corrections.html) pairs them into numbered
 eco versions. By default the package reads the current release of each (now eco
 v`r cur$eco_version`: Redivis `r core_tags(cur)`, `eco_meta`
