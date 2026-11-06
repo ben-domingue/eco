@@ -1,0 +1,67 @@
+{
+  "table": "lenzi_2024_alpine_toad_cjs",
+  "title": "Annual capture histories of 3,117 PIT-tagged common toads at a high-elevation breeding site in the Swiss Alps, 1993-2022",
+  "creator": "Lenzi, Omar; Grossenbacher, Kurt; Zumbach, Silvia; Luscher, Beatrice; Althaus, Sarah; Thoma, Marco; Schmocker, Daniela; Recher, Helmut; Ozgul, Arpat; Schmidt, Benedikt R.",
+  "pubDate": "2024",
+  "doi": "10.5281/zenodo.10908913",
+  "sourceURL": "https://doi.org/10.5281/zenodo.10908913",
+  "paperDOI": "10.1101/2022.08.16.503739",
+  "citation": "Lenzi, O., Grossenbacher, K., Zumbach, S., Luscher, B., Althaus, S., Thoma, M., Schmocker, D., Recher, H., Ozgul, A. & Schmidt, B. R. (2024). Data for: Interplay of abiotic conditions, density, and body size in shaping demography in a high-elevation toad population. Zenodo, https://doi.org/10.5281/zenodo.10908913.",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Common toads of an alpine population in the Swiss Alps have been captured at their breeding site every spring since 1982 and individually PIT-tagged since 1993; histories with body size support survival, breeding-probability and growth models.",
+  "samplingProtocol": "Capture of toads at the breeding site during each breeding season (several sessions); individuals PIT-tagged from 1993, sexed, measured (snout-vent length) and weighed; season averages of size per toad.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The deposit has one row per toad per breeding season with a capture; every season 1993-2022 was surveyed (captures in each, Yearly_totals.csv), so a season with no row for a toad is a zero.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "closureNote": "period = breeding season (year); within-season sessions are collapsed as in the authors' model.",
+  "geographicCoverage": "A high-elevation breeding site in the Swiss Alps, Switzerland (no coordinates in the deposit)",
+  "temporalCoverage": "1993/2022",
+  "notShipped": {
+    "cohort_marks": "tags ending in 'er' (cohort marks 1985-1993) and records with Year_Obs before 1993 or missing (the authors' rule)",
+    "sessions": "AllObservations.csv: individual capture sessions within seasons and field teams",
+    "covariates": "climate series, yearly totals, MCMC output"
+  },
+  "notes": "Units are <sex>_<tag>: the sexes come from separate files and 8 tag numbers occur in both. Females breed intermittently, so a female's zero can be a non-breeding year (the authors model breeding probability).",
+  "summary": {
+    "n_rows": 93510,
+    "n_units": 3117,
+    "n_taxa": 1,
+    "n_periods": 30,
+    "n_occasions": 1,
+    "n_surveys": 93510,
+    "y_values": "0,1",
+    "prop_zero": 0.926,
+    "n_traps": 1,
+    "n_zero": 86584,
+    "n_positive": 6926,
+    "n_units_detected": 3117,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "obs_svl_mm", "obs_mass_g"],
+  "coreMd5": "69d4250ed61ad11b544b57fda07ac624",
+  "sideTables": {
+    "periods": {
+      "rows": 30,
+      "columns": ["period", "year"],
+      "md5": "1bfa128c33310cf0aaf18b1d3620c70c"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "94c9fee63674e6eeb25daf63e99ad1c3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/lenzi_2024_alpine_toad_cjs.R",
+  "buildDate": "2026-11-06"
+}

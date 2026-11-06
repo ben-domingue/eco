@@ -1,0 +1,69 @@
+{
+  "table": "inbo_2026_flanders_alconegg_count",
+  "title": "Meetnetten.be egg counts of the Alcon blue (Phengaris alcon) at 19 locations, Flanders, Belgium, 2016-2025",
+  "creator": "Piesschaert, Frederik; Maes, Dirk; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Veraghtert, Wouter; Van de Poel, Sander; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/hsfq2u",
+  "sourceURL": "https://doi.org/10.15468/hsfq2u",
+  "citation": "Piesschaert F, Maes D, Brosens D, Westra T, Desmet P, Ledegen H, Veraghtert W, Van de Poel S, Pollet M (2026). Meetnetten.be - Egg counts for butterflies in Flanders, Belgium. Version 1.26. Research Institute for Nature and Forest (INBO). Samplingevent dataset. https://doi.org/10.15468/hsfq2u",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Alcon blue monitoring in the Meetnetten.be priority-species network (INBO and Natuurpunt Studie with volunteers): eggs on marsh gentians counted in 10 x 10 m plots at fixed locations in wet heathland, once a year in August.",
+  "samplingProtocol": "Egg counts of Phengaris alcon on its host plant Gentiana pneumonanthe in 10 x 10 m plots at the locations with the highest gentian density, once a year in August (Maes et al. 2019, Meetnetten.be butterfly protocol 2.0).",
+  "samplingProtocolCode": "egg_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = plot count within one August season; most location-years have one count",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_n_records",
+  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 5 or 10 km UTM square centroids)",
+  "temporalCoverage": "2016/2025",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 or 10 km UTM square before publication; kept as published."
+  },
+  "notes": "y = eggs counted, summed over the count's occurrence records; obs_n_records = number of records (absent and present) in the count, which the archive does not define further.",
+  "notShipped": {
+    "locality": "location place names",
+    "per-record counts": "summed per count (obs_n_records)"
+  },
+  "summary": {
+    "n_rows": 178,
+    "n_units": 19,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 8,
+    "n_surveys": 178,
+    "y_values": "0-579 (99 distinct)",
+    "prop_zero": 0.253,
+    "n_traps": 1,
+    "n_zero": 45,
+    "n_positive": 133,
+    "n_units_detected": 19,
+    "max_y": 579
+  },
+  "sampleFloor": "below (19 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_records"],
+  "coreMd5": "e40b69357b4ab4a7978987ed271e8d37",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year"],
+      "md5": "99fe8dd37eddce8f48511776efa7f028"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e77165e828d54f314e22ffde1e0e05ff"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_alconegg_count.R",
+  "buildDate": "2026-11-06"
+}

@@ -1,0 +1,65 @@
+{
+  "table": "messerman_2020_amb_texanum_cjs",
+  "title": "Capture histories of 54 PIT-tagged juvenile small-mouthed salamanders in semi-natural enclosures, half-monthly recaptures over 11 months, 2016-2017",
+  "creator": "Messerman, Arianne F.; Semlitsch, Raymond D.; Leal, Manuel",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.jm63xsj65",
+  "sourceURL": "https://doi.org/10.5061/dryad.jm63xsj65",
+  "paperDOI": "10.1002/jwmg.21815",
+  "citation": "Messerman, A. F., Semlitsch, R. D. & Leal, M. (2020). Data from: Estimating survival for elusive juvenile pond-breeding salamanders. Dryad (served by Zenodo), https://doi.org/10.5061/dryad.jm63xsj65.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Juveniles of three pond-breeding Ambystoma salamanders were PIT-tagged and released into semi-natural terrestrial enclosures, then recaptured over an 11-month mark-recapture study to estimate juvenile survival with Bayesian CJS models.",
+  "samplingProtocol": "PIT-tagged juvenile salamanders released into replicated semi-natural enclosures (pens within five blocks) and searched for on 22 recapture occasions over 11 months.",
+  "samplingProtocolCode": "enclosure_recapture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "closureNote": "period = recapture occasion; intervals between occasions in __periods as deposited. Histories start at release.",
+  "geographicCoverage": "Semi-natural terrestrial enclosures, USA (no location in the deposit)",
+  "temporalCoverage": "2016/2017",
+  "notShipped": {
+    "secondary": "Ambystoma_Secondary.txt: 40-occasion histories including appended opportunistic sampling of unstated effort",
+    "other": "model code, abiotic covariates, dissections and body-size files"
+  },
+  "notes": "Enclosure (pen) study of released juveniles; unit_mass_g from the secondary file.",
+  "summary": {
+    "n_rows": 1026,
+    "n_units": 54,
+    "n_taxa": 1,
+    "n_periods": 19,
+    "n_occasions": 1,
+    "n_surveys": 1026,
+    "y_values": "0,1",
+    "prop_zero": 0.726,
+    "n_traps": 1,
+    "n_zero": 745,
+    "n_positive": 281,
+    "n_units_detected": 54,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_block", "unit_mass_g"],
+  "coreMd5": "af62966b8b2ed9df99e38803e3751512",
+  "sideTables": {
+    "periods": {
+      "rows": 19,
+      "columns": ["period", "interval_to_next", "label", "temp_c", "temp_sd", "precip"],
+      "md5": "77fb3501b5f5a0df239f71efb5cdf942"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2531676e172a7fc209fc0a9b289e26be"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/messerman_2020_ambystoma_cjs.R",
+  "buildDate": "2026-11-06"
+}

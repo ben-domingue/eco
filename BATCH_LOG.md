@@ -2106,3 +2106,76 @@ Harvard Dataverse 2, TERN 2, NPS IRMA 1; PANGAEA and OSF gave nothing in scope (
 oceanographic and plankton series, OSF's are code and preregistrations). One Borealis hit (Calopteryx exul CMR) was
 the Dryad deposit already built as khelifa_2021_seybouse_calexul_cjs and was dropped. EDI and DataONE were skipped
 (403).
+
+## Batch 44 — 2026-11-06 (leftover non-Dryad rows: ScienceBase, GBIF needs-look, batch 42 discovery)
+
+One agent in `~/eco-b44` (branch `batch-44-leftovers`, from main at 3316146), in parallel with batch 43 in `~/eco-b43`. No Dryad
+requests: four Dryad deposits were read from their Zenodo copies (records whose DOI is the Dryad DOI). 42 rows claimed: the
+eleven ScienceBase rows batch 41 inspected, the seven GBIF `needs-look: inspected batch 42` rows that were not blocked, and the
+24 `needs-look: not opened` rows from batch 42's discovery. Every ScienceBase release's FGDC `useconst` was read first.
+29 tables built from 20 deposits, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| alchokhachy_2024_duckcreek_bnt_cjs | CJS, seasonal electrofishing (brown trout) | detection | 18,640 | 1,200 | 1 | 18 |
+| alchokhachy_2024_duckcreek_yct_cjs | CJS, seasonal electrofishing (Yellowstone cutthroat) | detection | 30,244 | 1,761 | 1 | 20 |
+| bauwens_2019_belgium_adder_ms | multi-state CJS (breeding state), MARK .inp | state | 16,344 | 908 | 1 | 18 |
+| brinck_2022_maunakea_palila_count | point counts, 1-4 visits a year | count | 11,251 | 455 | 1 | 21 |
+| buhl_2023_ndmt_grassbirds_count | community counts, PLSS locators coded | count | 235,815 | 1,160 | 28 | 3 |
+| buhl_2023_ndmt_grassbirds_exact_count | E7.3 sibling without SPPI, CCLO | count | 215,725 | 1,160 | 26 | 3 |
+| chanex_2026_swissalps_amph_count | community counts, four visits | count | 948 | 79 | 3 | 1 |
+| dittman_2025_genesee_sturgeon_count | gill-net counts per site visit, coarsened | count | 904 | 23 | 1 | 21 |
+| fancourt_2019_aus_catdingo_occ | two-species camera occupancy | detection | 2,580 | 60 | 2 | 1 |
+| glorioso_2026_bayouteche_hchr_cjs | CJS, PVC-pipe treefrogs | detection | 51,870 | 853 | 1 | 62 |
+| glorioso_2026_bayouteche_hcin_cjs | CJS, PVC-pipe treefrogs | detection | 25,368 | 418 | 1 | 62 |
+| glorioso_2026_bayouteche_hsqu_cjs | CJS, PVC-pipe treefrogs | detection | 141,021 | 2,400 | 1 | 62 |
+| glorioso_2026_bayouteche_pcru_cjs | CJS, PVC-pipe treefrogs | detection | 2,201 | 36 | 1 | 62 |
+| hitchcock_2025_garden_hedgehog_count | weekly camera detection counts | count | 1,446 | 415 | 1 | 1 |
+| inbo_2026_flanders_alconegg_count | annual egg counts | count | 178 | 19 | 1 | 10 |
+| law_2018_nsw_koala_occ | acoustic single-season occupancy | detection | 1,463 | 171 | 1 | 1 |
+| lebeuftaylor_2026_alpac_songbird_dynocc | classifier detections, dynamic community occupancy | detection | 22,788 | 162 | 6 | 8 |
+| lenzi_2024_alpine_toad_cjs | annual CJS, 30 seasons | detection | 93,510 | 3,117 | 1 | 30 |
+| levy_2025_sclerodawsoniae_ms | multi-state plant census | state | 38,326 | 2,595 | 1 | 17 |
+| levy_2025_scleroglaucus_ms | multi-state plant census | state | 13,366 | 896 | 1 | 17 |
+| mellado_2021_carollia_injury_ms | multi-state CJS (arm-band injury) | state | 30,197 | 1,183 | 1 | 31 |
+| mellado_2021_carollia_tagloss_ms | multi-state CJS (tag carried) | state | 43,148 | 1,598 | 1 | 31 |
+| messerman_2020_amb_annulatum_cjs | CJS, enclosure juveniles | detection | 1,320 | 60 | 1 | 22 |
+| messerman_2020_amb_maculatum_cjs | CJS, enclosure juveniles | detection | 1,140 | 60 | 1 | 19 |
+| messerman_2020_amb_texanum_cjs | CJS, enclosure juveniles | detection | 1,026 | 54 | 1 | 19 |
+| muths_2020_blackrock_toad_rd | robust design with Bd status | detection | 220,748 | 3,509 | 1 | 16 |
+| poessel_2026_coso_mgs_rd | robust design, days inferred | detection | 167,708 | 1,403 | 1 | 31 |
+| rowe_2021_deschutes_ospfrog_rd | robust design, 3 visits per season | detection | 14,460 | 482 | 1 | 10 |
+| steinmetz_2025_maewong_tiger_rd | robust design, biennial sessions | detection | 2,376 | 33 | 1 | 6 |
+
+Held (`queue/human_review.csv`, each with a question): polar bear (a third of encounters have type Unknown; telemetry
+relocations mixed with captures), giant gartersnake (the "questions on appropriate use ... to the Point of Contact" clause, the
+standing call), Russell amphibian CMR (PIT codes rounded by a spreadsheet: four ids absorb 3,827 captures; no site or survey list),
+MEMO and AIMSurv mosquitoes (per-protocol taxon lists, trap units; team protocols), EDP Foz Tua cameras (is an event a 12-day
+deployment or a 3-day check?) and point counts (2017 key, as batch 42 found), NEON / forest camera traps (possible overlap with
+Snapshot USA), coastal giant salamander (batch marks mixed with PIT tags), Central European wolves (variable-length histories,
+calendar alignment). Rejected: Sonoran yellow-billed cuckoo (no point id; 2,754 coordinates in 3,126 points), SBL point counts
+(annual totals), western India carnivores (key-informant interviews), eDNA metabarcoding vs electrofishing (raw reads only),
+Newfoundland boreal birds (single visit), Hillesden transects (annual maxima). Inspected and released with notes, not reached:
+Reef Check California, Rhode Island cameras (deployments + 1.4M image records), Savannah River raccoon cameras (records only),
+Bedford / Luton / Milton Keynes point counts (86 species by BTO code only), the two TERN plot networks (no download link in the
+GeoNetwork record).
+
+Facts carried into the tables: the Bayou Teche frog comments record 225 frogs found dead in a later survey (mostly the February
+2021 freeze; history ends at the survey before) and 23 dead at release, and 222 frogs retagged after losing a tag; the lost tag is
+rarely named, so its history is not truncated (a strain, below). The Mohave ground squirrel release has no trapping schedule
+(trapping days inferred from captures; several sessions a year until 1996). Lake sturgeon is IUCN EN per GBIF: USGS net positions
+coarsened under the bull trout / moccasinshell precedent. The Palila release counts one row per bird and an NA row per empty
+count; 76 detections filed under survey 9999 (outside the area of inference) are obs_n_outside, not y. The Blackrock toad file
+has two columns per date on two days (different sites), a 16-May / 18-May header mismatch between its two matrices (aligned by
+position, asserted), 13 toads never seen, 2 not released (removed), and an undefined Bd code T on 130 captures. The Northern
+Great Plains release's StopID is a PLSS section; Sprague's pipit (VU) and chestnut-collared longspur (VU) are on the lists, so the
+whole table carries sequential codes and the `_exact` sibling keeps the PLSS ids without those two species (and without the
+SPPI1 count). Sclerocactus dawsoniae (split 2024) is not in the GBIF backbone (no_key with a remark). The snow-making reservoir
+deposit is one 1.1 GB zip; the two raw CSVs were read through HTTP range requests on the zip directory (stdlib Python called
+from the script). The alpine toad table follows the authors' own filter (no cohort marks, PIT era from 1993).
+
+What strained the standard: (1) tag loss without the lost tag's identity (Bayou Teche): E4.4 ends a history when the mark is
+lost, but the source names the lost tag only as "probably X"; the tables flag the new tag (unit_retagged) and leave the old
+histories open; a rule for unidentified lost marks would help. (2) The agency-coordinates question now also covers a locator
+that is an id (PLSS section in StopID), handled under E7.4 with an `_exact` sibling. (3) Classifier detections at the authors'
+thresholds (Alberta ARUs) are treated like an author's eDNA call; worth stating as a rule.

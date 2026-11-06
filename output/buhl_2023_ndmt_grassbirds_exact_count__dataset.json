@@ -1,0 +1,82 @@
+{
+  "table": "buhl_2023_ndmt_grassbirds_exact_count",
+  "title": "Repeated counts of 26 grassland bird species at on-, near- and off-road stops, North Dakota 2015 and Montana 2017-2018 (IUCN-threatened species omitted)",
+  "creator": "Buhl, Thomas K.; Shaffer, Terry L.",
+  "pubDate": "2023",
+  "doi": "10.5066/P9JNSTKL",
+  "sourceURL": "https://doi.org/10.5066/P9JNSTKL",
+  "citation": "Buhl, T.K., and Shaffer, T.L., 2023, Investigating Detection and Roadside Bias in Surveys of Grassland Birds in the Northern Great Plains, ND 2015, MT 2017-2018: U.S. Geological Survey data release, https://doi.org/10.5066/P9JNSTKL.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (NPWRC disclaimer; no use restriction)"
+  },
+  "abstract": "Northern Prairie Wildlife Research Center crews counted focal grassland birds within 100 m of on-, near- and off-road stops nine times a breeding season (three rounds of three back-to-back days, late May to mid-July), North Dakota 2015 and Montana 2017-2018, to measure detection and roadside bias in Breeding Bird Survey style counts; perch habitat was recorded once per stop.",
+  "samplingProtocol": "Breeding Bird Survey style 3-minute stop counts of focal species within 100 m, at on-road, near-road and off-road stops along routes; three survey rounds per season, each of three replicate surveys on back-to-back days; observers assigned by a design that allows observer effects; perch habitat within 100 m recorded once.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "row_presence",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "closureNote": "occasion = (round - 1) x 3 + day: replicate days within a round are closed by design; rounds span late May to mid-July.",
+  "geographicCoverage": {
+    "description": "Grasslands of North Dakota (2015) and Montana (2017-2018), USA",
+    "boundingBox": {
+      "west": -108.22,
+      "east": -98.29,
+      "south": 46.63,
+      "north": 48.99
+    }
+  },
+  "temporalCoverage": "2015-05/2018-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Stop and route ids are PLSS sections as published; the IUCN CR/EN/VU species (SPPI, CCLO) are not in this table (E7.3)"
+  },
+  "notShipped": {
+    "route_level": "route end time and weather, helper, route and species comments, PerchDate, habitat observer",
+    "flagged_taxa": "SPPI, CCLO, and SPPI1 (Sprague's pipits beyond 100 m): in buhl_2023_ndmt_grassbirds_count only"
+  },
+  "notes": "Species lists differ by state (NA columns): __survey_taxa. unit_ habitat fields are the release's codes (FenceType 1 barbed wire ... 5 none; Trees, Shrubs, Wetlands 1 present 2 absent; RoadSurface 1 gravel 2 paved 3 none; Management 2 pasture 3 idle; Ownership 1-6). obs_route_start_* are the route's start weather; obs_noise, obs_livestock, obs_vehicles per stop count.",
+  "summary": {
+    "n_rows": 215725,
+    "n_units": 1160,
+    "n_taxa": 26,
+    "n_periods": 3,
+    "n_occasions": 9,
+    "n_surveys": 10045,
+    "y_values": "0-50 (26 distinct)",
+    "prop_zero": 0.873,
+    "n_traps": 1,
+    "n_zero": 188270,
+    "n_positive": 27455,
+    "n_units_detected": 1160,
+    "max_y": 50
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "cluster_id", "unit_stop_type", "unit_numfences", "unit_fencetype", "unit_trees", "unit_sageshrubpportion", "unit_dominant", "unit_shrubs", "unit_numutilpoles", "unit_numutillines", "unit_other", "unit_roadsurface", "unit_wetlands", "unit_management", "unit_ownership", "obs_start_time", "obs_distance_m", "obs_noise", "obs_livestock", "obs_vehicles", "obs_route_start_temp_f", "obs_route_start_wind", "obs_route_start_sky"],
+  "coreMd5": "f2c375e13f6ce87aa3d4aeb8a20af591",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "state"],
+      "md5": "27da7bbb401c4491290f7b3f5c526c39"
+    },
+    "survey_taxa": {
+      "rows": 24935,
+      "columns": ["taxon", "unit"],
+      "md5": "839913d5cb1a432bd0548eab72db21e0"
+    },
+    "taxa": {
+      "rows": 26,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "6b8ed7cb12221c75014072e8e0a4deaa"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/buhl_2023_ndmt_grassbirds_count.R",
+  "buildDate": "2026-11-06"
+}

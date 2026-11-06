@@ -1,0 +1,77 @@
+{
+  "table": "muths_2020_blackrock_toad_rd",
+  "title": "Capture histories of 3,509 boreal toads on breeding-season survey dates at ten sites near Blackrock, Wyoming, 2003-2019, with Bd status",
+  "creator": "Muths, Erin",
+  "pubDate": "2020",
+  "doi": "10.5066/P9VACHX0",
+  "sourceURL": "https://doi.org/10.5066/P9VACHX0",
+  "citation": "Muths, E., 2020, Capture-recapture, disease and covariate data for boreal toads from Blackrock Wyoming 2019: U.S. Geological Survey data release, https://doi.org/10.5066/P9VACHX0.",
+  "paperDOI": "10.1655/0018-0831-76.2.132",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Boreal toads were captured, marked and released on breeding-season survey dates at sites along the Buffalo Fork River near Blackrock, Wyoming, from 2003 to 2019 to study how fall soil temperature, snowpack and a second anuran host affect survival under chytrid (Bd) infection; Bd test results are given per capture.",
+  "samplingProtocol": "Breeding-season capture surveys at each site on several dates a year; toads individually marked, sexed and released; many captures swabbed for Batrachochytrium dendrobatidis.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "closureNote": "Robust design as in the paper: period = year, occasion = survey date (column) within the breeding season; occasion k is a column of the deposit, not one date at every site. Ids are valid across the study.",
+  "geographicCoverage": {
+    "description": "Buffalo Fork River near Blackrock, Teton County, Wyoming, USA",
+    "boundingBox": {
+      "west": -110.4,
+      "east": -110.1,
+      "south": 43.8,
+      "north": 43.9
+    }
+  },
+  "temporalCoverage": "2003-05/2019-06",
+  "notShipped": {
+    "never_seen": "13 toads with no 1 in any surveyed cell (catalogue entries; E4.4)",
+    "empty_cells": "2 empty cells ('No Data')",
+    "after_nonrelease": "64 surveyed cells after a toad was not released",
+    "bd_code_T": "130 captures with Bd code T (undefined in the metadata); 6 Bd test results on dates the toad is recorded as not seen",
+    "egg_masses": "Columbia spotted frog egg-mass counts per site-year (a paper covariate)"
+  },
+  "notes": "obs_bd on captures only: 0 tested negative, 2 tested positive, 1 not tested (as deposited; NA before 2006 and where the code is T). __periods carries fall soil temperature (C) and snow water equivalent of the preceding winter, 2012-2018.",
+  "summary": {
+    "n_rows": 220748,
+    "n_units": 3509,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 28,
+    "n_surveys": 220748,
+    "y_values": "0,1",
+    "prop_zero": 0.969,
+    "n_traps": 1,
+    "n_zero": 213872,
+    "n_positive": 6876,
+    "n_units_detected": 3509,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_sex", "obs_bd", "obs_removed"],
+  "coreMd5": "9764ad019b140a8dba7796de6fee471b",
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "year", "fall_soil_temp_c", "swe"],
+      "md5": "67937b7bfd096d8cb374dcb9af789488"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c8c7d485b0ef5207681a2ca1f5021e9c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/muths_2020_blackrock_toad_rd.R",
+  "buildDate": "2026-11-06"
+}
