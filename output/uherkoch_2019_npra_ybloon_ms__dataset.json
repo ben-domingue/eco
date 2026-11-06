@@ -1,0 +1,78 @@
+{
+  "table": "uherkoch_2019_npra_ybloon_ms",
+  "title": "Yellow-billed loon breeding-state resight histories of 38 colour-banded adults, National Petroleum Reserve-Alaska, 2011-2014",
+  "creator": "Uher-Koch, Brian D.; Schmutz, Joel A.",
+  "pubDate": "2019",
+  "doi": "10.5066/F7HH6J9C",
+  "sourceURL": "https://doi.org/10.5066/F7HH6J9C",
+  "citation": "Uher-Koch, B., and Schmutz, J., 2019, Pacific (Gavia pacifica) and Yellow-billed Loon (G. adamsii) mark-resight encounter history data; National Petroleum Reserve-Alaska, 2011-2014: U.S. Geological Survey data release, https://doi.org/10.5066/F7HH6J9C.",
+  "paperDOI": "10.1093/condor/duy021",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Annual resighting of colour-banded yellow-billed loons on their breeding territories on the Arctic Coastal Plain of the National Petroleum Reserve-Alaska (Chipp North and Chipp South study areas), 2011-2014, recording whether each marked loon was seen on its territory and, if so, whether it was a non-breeder, an unsuccessful breeder or a successful breeder (chicks surviving three weeks), to estimate territory retention and apparent survival.",
+  "samplingProtocol": "Loons were caught on their territories (suspended dive-net), colour-banded and measured; each summer territories were searched from shore with spotting scopes, binoculars or telephoto cameras and banded birds identified, and nesting outcome recorded.",
+  "samplingProtocolCode": "resighting",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not resighted on territory",
+    "1": "non-breeder resighted on territory",
+    "2": "unsuccessful breeder resighted on territory",
+    "3": "successful breeder (chicks survived at least 3 weeks)"
+  },
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": {
+    "description": "Chipp River area, Arctic Coastal Plain, National Petroleum Reserve-Alaska, USA",
+    "boundingBox": {
+      "west": -155.5206,
+      "east": -155.1706,
+      "south": 70.3637,
+      "north": 70.7126
+    }
+  },
+  "temporalCoverage": "2011/2014",
+  "notShipped": {
+    "other_species": "the Pacific loons in the same file ship as the sibling table"
+  },
+  "notes": "Histories left-padded to four years (the deposited numbers lost leading zeros). Adults of unknown age: rows from 2011 (E4.4), y = 0 before capture.",
+  "summary": {
+    "n_rows": 152,
+    "n_units": 38,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 1,
+    "n_surveys": 152,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.276,
+    "n_traps": 1,
+    "n_zero": 42,
+    "n_positive": 110,
+    "n_units_detected": 38,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_sex", "unit_mass_z", "unit_lake_size_km2", "unit_single_territory_lake", "unit_study_area"],
+  "coreMd5": "5e4b64db3db201945fbf30aec1d3b3cb",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year"],
+      "md5": "e7c5a3ac11875f5ffddfd948eef0b342"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "cf716606d9ecedfb716887588b26a8e6"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/uherkoch_2019_npra_loon_ms.R",
+  "buildDate": "2026-11-06"
+}

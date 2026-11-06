@@ -1,0 +1,88 @@
+{
+  "table": "glorioso_2020_bigthicket_calls",
+  "title": "Anuran calling index at 52 sites in Big Thicket National Preserve, Texas, 2010-2018 (14 species, inside and outside the survey area)",
+  "abstract": "Calling surveys made with each Amphibian Research and Monitoring Initiative visit to 52 sites in Big Thicket National Preserve, 2010-2018: for each of 14 frog and toad species the calling index (0 none to 3 full chorus) heard inside the survey area, with the index heard outside it as a covariate.",
+  "samplingProtocol": "At each night-time visit the observers record, for each anuran species on the data sheet, the calling index heard inside the survey area and outside it (0 none; 1 individuals countable; 2 calls overlapping, individuals distinguishable; 3 full chorus).",
+  "samplingProtocolCode": "call_survey",
+  "responseType": "ordinal",
+  "stateCodes": {
+    "0": "no calling inside the survey area",
+    "1": "individuals can be counted; gaps between calls",
+    "2": "calls overlap but individuals distinguishable",
+    "3": "full chorus; individuals not distinguishable"
+  },
+  "taxonInclusion": "target",
+  "notShipped": {
+    "not_scored": "Eleutherodactylus cystignathoides at the 40 surveys of rounds 3 and 4 of 2012 at the 20 sites added that year: no value deposited (not surveyed for it; __survey_taxa)",
+    "ves": "the visual encounter counts are table glorioso_2020_bigthicket_ves",
+    "loggers": "BITH*.csv: hourly conductivity and water temperature, not linked to surveys"
+  },
+  "creator": "Glorioso, Brad M.; Waddle, J. Hardin",
+  "pubDate": "2020",
+  "doi": "10.5066/P99Z3UZU",
+  "sourceURL": "https://doi.org/10.5066/P99Z3UZU",
+  "citation": "Glorioso, B.M., and Waddle, J.H., 2020, Data from visual encounter and acoustic monitoring surveys targeting amphibians and reptiles in Big Thicket National Preserve in southeast Texas from August 2010 to September 2018: U.S. Geological Survey data release, https://doi.org/10.5066/P99Z3UZU.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (no access or use constraints beyond the product-names disclaimer)"
+  },
+  "surveyEvidence": "sample_table",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = sampling round within a calendar year (one to six rounds); period = year",
+  "occasionKind": "time",
+  "geographicCoverage": {
+    "description": "Big Thicket National Preserve (Lower Neches River corridor and nearby units), Jefferson, Hardin and Orange counties, Texas, USA",
+    "boundingBox": {
+      "west": -94.1843,
+      "east": -94.0565,
+      "south": 30.1101,
+      "north": 30.1866
+    }
+  },
+  "temporalCoverage": "2010-08/2018-09",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published by USGS (sites in Big Thicket National Preserve; no species is IUCN CR, EN or VU)"
+  },
+  "summary": {
+    "n_rows": 24866,
+    "n_units": 52,
+    "n_taxa": 14,
+    "n_periods": 9,
+    "n_occasions": 6,
+    "n_surveys": 1779,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.952,
+    "n_traps": 1,
+    "n_zero": 23663,
+    "n_positive": 1203,
+    "n_units_detected": 52,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_decimalLatitude", "unit_decimalLongitude", "unit_management_unit", "obs_duration_min", "obs_air_temp_c", "obs_humidity_pct", "obs_wind_mph", "obs_water_temp_c", "obs_salinity_ppt", "obs_weather", "obs_call_index_outside"],
+  "coreMd5": "d7e632b19ebaf6fb3f1eacdaf3d959f2",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year"],
+      "md5": "db3b46248390dd9665bdf618675b670f"
+    },
+    "survey_taxa": {
+      "rows": 24866,
+      "columns": ["unit", "period", "occasion", "taxon"],
+      "md5": "ae3444128e315c56de7849ea2136cec0"
+    },
+    "taxa": {
+      "rows": 14,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2e75ab38f85c96d3c630d7235c9c2ffb"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/glorioso_2020_bigthicket.R",
+  "buildDate": "2026-11-06"
+}

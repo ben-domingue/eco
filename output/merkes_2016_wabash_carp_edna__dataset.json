@@ -1,0 +1,64 @@
+{
+  "table": "merkes_2016_wabash_carp_edna",
+  "title": "Bighead and silver carp eDNA detections in duplicate qPCR reactions of 611 water samples at three Wabash River sites, Indiana, 2013",
+  "creator": "Merkes, Christopher; Erickson, Richard",
+  "pubDate": "2016",
+  "doi": "10.5066/F70G3H7X",
+  "sourceURL": "https://doi.org/10.5066/F70G3H7X",
+  "citation": "Merkes, C., and Erickson, R., 2016, Seasonal trends in eDNA detection and occupancy of bigheaded carps, Wabash River, IN: Raw Data: U.S. Geological Survey data release, https://doi.org/10.5066/F70G3H7X.",
+  "paperDOI": "10.1016/j.jglr.2017.06.003",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "Water samples taken at 18 points along a transect at three Wabash River sites spanning a gradient of bigheaded carp density, on 13 days from May to November 2013, each analysed in duplicate with a new multiplex qPCR marker that detects and distinguishes silver and bighead carp DNA, to describe seasonal change in eDNA occurrence and the probability of detecting DNA within a sample.",
+  "samplingProtocol": "Surface water samples at 18 transect points per site and collection day, filtered and extracted; each extract run in two reactions of a multiplex qPCR assay (FAM: silver carp, JOE: bighead carp) with calibration standards on every plate.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasions are the two qPCR reactions of one water sample",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
+  "geographicCoverage": {
+    "description": "Wabash River at Mascouten boat launch (rkm 499), Americus (rkm 518) and French Post (rkm 531), Tippecanoe County, Indiana, USA"
+  },
+  "temporalCoverage": "2013-05/2013-11",
+  "notShipped": {
+    "standards": "Standards_Data.csv: the calibration standards of each plate",
+    "dye": "Dye: determined by the target (FAM silver carp, JOE bighead carp)",
+    "controls": "no-template controls are described but not deposited; no field blanks are deposited"
+  },
+  "notes": "y = 1 where a reaction amplified (any Ct), per the 2026-11-06 eDNA ruling; the source states no Ct cutoff.",
+  "summary": {
+    "n_rows": 2444,
+    "n_units": 611,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 1222,
+    "y_values": "0,1",
+    "prop_zero": 0.711,
+    "n_traps": 1,
+    "n_zero": 1737,
+    "n_positive": 707,
+    "n_units_detected": 279,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_day", "unit_point", "unit_rkm", "obs_copies", "obs_plate"],
+  "coreMd5": "29c076444cf181b044eece50186324ba",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "afc6b73ee65f27775c30d29ab884b3a5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/merkes_2016_wabash_carp_edna.R",
+  "buildDate": "2026-11-06"
+}

@@ -1,0 +1,69 @@
+{
+  "table": "glorioso_2021_louisiana_turtle_count",
+  "title": "Turtle captures in baited hoop nets at 119 trap sites in south-central Louisiana, 2019 (alligator snapping turtle occupancy survey)",
+  "creator": "Glorioso, Brad M.; Waddle, J. Hardin",
+  "pubDate": "2021",
+  "doi": "10.5066/P90JT34K",
+  "sourceURL": "https://doi.org/10.5066/P90JT34K",
+  "citation": "Glorioso, B.M., and Waddle, J.H., 2021, Data from a 2019 occupancy survey of alligator snapping turtles, Macrochelys temminckii, in south-central Louisiana: U.S. Geological Survey data release, https://doi.org/10.5066/P90JT34K.",
+  "paperDOI": "10.1656/058.022.0sp1227",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release; US public domain (use constraints: none)"
+  },
+  "abstract": "A 2019 trapping effort for alligator snapping turtles in nine parishes of south-central Louisiana: baited hoop nets set at 119 trap sites, each checked on two consecutive mornings. Every turtle caught was identified to species; seven species were caught, including six captures of five alligator snapping turtles.",
+  "samplingProtocol": "Fiberglass hoop nets (1.22 m hoops) baited with carp or pogy, set at a trap site and checked the next morning, re-set and checked again the following morning; the turtles in the net at each check were counted by species.",
+  "samplingProtocolCode": "hoop_net",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "two consecutive one-night checks of the same net at the same site",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": {
+    "description": "Allen, Calcasieu, Iberia, Iberville, Jefferson Davis, Lafayette, Pointe Coupee, St. Landry and St. Martin parishes, Louisiana, USA (locations published to parish only)",
+    "boundingBox": {
+      "west": -93.1888,
+      "east": -91.0506,
+      "south": 29.8025,
+      "north": 30.8445
+    }
+  },
+  "temporalCoverage": "2019-05/2019-10",
+  "notShipped": {
+    "individual_records": "AST Data.csv and Non-AST Data.csv: measurements, marks, PIT codes and samples of captured turtles (totals asserted equal to the catch counts)",
+    "bycatch": "fish and other non-turtle bycatch in Comments/Bycatch",
+    "water_data": "Water Data.csv: chemistry keyed by parish and time, not linkable to a trap site"
+  },
+  "summary": {
+    "n_rows": 1666,
+    "n_units": 119,
+    "n_taxa": 7,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 238,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.977,
+    "n_traps": 1,
+    "n_zero": 1627,
+    "n_positive": 39,
+    "n_units_detected": 28,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_parish", "unit_water_width_m", "unit_net_type", "unit_mesh_size_cm", "unit_hoop_diameter_m", "unit_waterbody", "unit_habitat", "unit_microhabitat", "unit_bank_disturbance", "unit_water_temp_c", "unit_salinity_ppt", "unit_canopy_pct", "unit_air_temp_c", "obs_bait", "obs_time_set", "obs_check_start"],
+  "coreMd5": "c339f68fb60b24ea6f55b5a9879f9771",
+  "sideTables": {
+    "taxa": {
+      "rows": 7,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0768351232ba92cdce433cc3919795c1"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/glorioso_2021_louisiana_turtle_count.R",
+  "buildDate": "2026-11-06"
+}
