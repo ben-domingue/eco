@@ -1,0 +1,72 @@
+{
+  "table": "inbo_2026_flanders_crestednewt_count",
+  "title": "Meetnetten.be fyke counts of great crested newts (Triturus cristatus) in 145 ponds, Flanders, Belgium, 2017-2025",
+  "creator": "Piesschaert, Frederik; Speybroeck, Jeroen; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Van de Poel, Sander; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/zeaq2t",
+  "sourceURL": "https://doi.org/10.15468/zeaq2t",
+  "citation": "Piesschaert F, Speybroeck J, Brosens D, Westra T, Desmet P, Ledegen H, Van de Poel S, Pollet M (2026). Meetnetten.be - Fyke counts for Amphibia in Flanders, Belgium. Version 1.26. Research Institute for Nature and Forest (INBO). Sampling event dataset. https://doi.org/10.15468/zeaq2t",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Great crested newt monitoring of the Meetnetten.be priority-species network (INBO and Natuurpunt Studie with volunteers): small fykes set overnight in monitored ponds in spring, several visits in a counting year. One row per pond visit: adult great crested newts caught, summed over the fykes set (obs_n_fykes).",
+  "samplingProtocol": "Amphibian fykes (small funnel traps) set in a pond and emptied the next day, during the newts' aquatic phase (March to June), several visits per counting year; adults of the target counted by sex (Meetnetten.be amphibian protocol).",
+  "samplingProtocolCode": "funnel_trap",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = visit within one breeding season (March to June); populations may change between years (period)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_n_fykes",
+  "geographicCoverage": "Flanders, Belgium (coordinates generalised by INBO to 5 km UTM square centroids)",
+  "temporalCoverage": "2017/2025",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Generalised by the publisher (INBO, a government agency) to the centroid of a 5 km UTM square before publication; kept as published."
+  },
+  "covariateNote": "obs_n_fykes = number of fykes set on the visit (effort); y sums the adults caught in them.",
+  "notes": "y = adults (male, female and unknown-sex adults) summed over the visit's fykes. 61 juveniles were reported in total and are not shipped (the category is missing at 222 fykes).",
+  "notShipped": {
+    "juveniles": "the juvenile category (missing at 222 of 1,486 fykes, so its zeros are not evidenced everywhere; 61 juveniles)",
+    "per-fyke counts": "summed per visit (obs_n_fykes gives the number of fykes)",
+    "other amphibians": "ten other species reported at some fykes only (where caught)",
+    "locality": "pond names"
+  },
+  "summary": {
+    "n_rows": 619,
+    "n_units": 145,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 7,
+    "n_surveys": 619,
+    "y_values": "0-64 (40 distinct)",
+    "prop_zero": 0.396,
+    "n_traps": 1,
+    "n_zero": 245,
+    "n_positive": 374,
+    "n_units_detected": 103,
+    "max_y": 64
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_fykes"],
+  "coreMd5": "ffb81d0d693c3be47b64e48d7bb619ca",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year"],
+      "md5": "23cd006240a46a6ecab8f8a790c7f983"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7113f5969549f837cb262714e96ddf48"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_crestednewt_count.R",
+  "buildDate": "2026-11-06"
+}

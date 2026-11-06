@@ -2055,3 +2055,54 @@ deposits three analysis sets of overlapping surveys (property presence, property
 presence), shipped as three tables because none can be rebuilt from another; and the Lost Trail males
 and females ship as two tables because the source deposited them as separate analysis sets (ruling
 #31's wording), though one table with unit_sex would also fit.
+
+## Batch 42 — 2026-11-06 (GBIF sampling-event rows from batch 40, and non-Dryad discovery)
+
+One agent in `~/eco-b42` (branch `batch-42-gbif`, from main at e3df983). No Dryad requests. The 23 GBIF
+sampling-event rows queued by batch 40 were claimed and every Darwin Core Archive was opened from its IPT
+endpoint (event core plus extensions); seven tables built, all to eco_2 drafts.
+
+| Table | Family | Response | Rows | Units | Taxa | Periods |
+|---|---|---|---|---|---|---|
+| inbo_2026_flanders_abv_count | Flemish common breeding birds (ABV), point counts summed per square visit | count | 885,960 | 757 | 180 | 9 |
+| haas_2025_sweden_waterbird_count | Swedish midwinter waterbird census, method as occasion | count | 3,466,890 | 3,724 | 70 | 59 |
+| inbo_2026_flanders_priobutterfly_count | Meetnetten.be priority butterfly transects (one target per transect) | count | 2,595 | 144 | 9 | 10 |
+| inbo_2026_flanders_odonatasite_count | Meetnetten.be priority dragonfly site counts (one target per site) | count | 900 | 65 | 6 | 10 |
+| inbo_2026_flanders_crestednewt_count | Meetnetten.be great crested newt fyke counts, fykes as effort | count | 619 | 145 | 1 | 9 |
+| nrm_2024_sweden_porpoise_occ | Swedish national C-POD porpoise monitoring, daily detections | detection | 40,677 | 34 | 1 | 9 |
+| kuczkowska_2026_warsaw_owl_occ | Warsaw owl playback survey, habitat-based species lists | detection | 3,295 | 431 | 5 | 1 |
+
+Held or rejected (`queue/human_review.csv`): Solhomfjell vegetation (held: the archive has no dates or plot keys),
+LifeWatch C-POD network (held: every event row says 'not-for-profit use only' against CC BY 4.0), Astragalus
+microcymbus (held: the Dryad study already built, extended on GBIF to 2025), Norwegian alpine cameras (rejected:
+duplicate of roderiksen_2023), FSFN carabids (rejected: single visit), both Fukushima ARU datasets (blocked: the
+gbif.jp IPT serves a Cloudflare challenge). Inspected and left `needs-look` with notes for a later batch: Meetnetten
+butterfly eggs, MEMO and AIMSurv mosquitoes, the Swedish forest inventory (no plot id; plots linkable only through
+obfuscated coordinates; 5.9 GB occurrence file), EDP Foz Tua cameras and point counts (2017 point renumbering),
+Florida Keys RVC (the IPT resource is the 2009 year only, with derived per-5-minute abundances), Reef Check
+California (transect types set the taxa), Sclerocactus demography (a multi-state CJS like the Astragalus tables).
+
+Facts carried into the tables: ABV's point is not a usable unit (598 visits record every point under one
+locationID; some squares' points were entered as separate visits), so the unit is the 1 km square and the survey a
+square-date, point counts summed with their number as effort; 14 square-dates with 7 to 12 point counts are double
+entries and dropped (and with them Netta rufina, recorded only there). The waterbird census year is the source's
+season: 45 December counts belong to the next January. The SHARK porpoise archive mixes 178 monthly summary samples
+into the daily ones (dropped) and has 10 days on which two loggers overlapped at NMN2 (the earlier logger kept);
+350 days at two stations give logger positions 4.5-19 km off the station (probably mistyped longitudes, kept in
+obs_ coordinates as published). INBO, SMHI/HaV and the Swedish EPA publish generalised or station coordinates, kept
+as published (agency rule); the waterbird table holds six IUCN VU species at 8 km sector centres, a call for Ben.
+
+What strained the standard: summing ABV point counts per square visit is the Pollard-walk rule applied to points,
+chosen because point identity is broken in the source; it is a processing choice Ben may want stated as a rule (or
+a point-level table built for the 4,375 visits whose points are identifiable).
+
+Discovery (part 2): API searches of Zenodo, Harvard and Borealis Dataverse, figshare, PANGAEA, UK EIDC, TERN, OSF
+and NPS IRMA (twelve design queries each, 13 on TERN and OSF; 4,878 distinct hits, 1,307 after keyword screening and
+deduplication against the queue, human_review, the discovery log, the dictionary and every `__dataset.json` DOI),
+read by title and description; licences checked through each repository's API. 50 rows appended to
+`queue/candidates.csv` and `discovery_log.csv` (26 `available`, 24 `needs-look`): Zenodo 28 (16 of them Dryad deposits
+mirrored on Zenodo, fetchable without the Dryad quota), figshare 6, EIDC 6 (Open Government Licence), Borealis 5,
+Harvard Dataverse 2, TERN 2, NPS IRMA 1; PANGAEA and OSF gave nothing in scope (PANGAEA's hits are
+oceanographic and plankton series, OSF's are code and preregistrations). One Borealis hit (Calopteryx exul CMR) was
+the Dryad deposit already built as khelifa_2021_seybouse_calexul_cjs and was dropped. EDI and DataONE were skipped
+(403).
