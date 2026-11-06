@@ -358,6 +358,15 @@ CSVs with `upload/red_up_eco.py`.
 | `barros_2024_mostela_weasel_occ.R` | multi-scale occupancy, paired methods: least weasel x 56 stations x 7 occasions x 2 devices (Mostela box, camera), Portugal, 2021 | Zenodo | CC BY 4.0 |
 | `letourneux_2022_snowgoose_ms.R` | multi-state CMR with dead recoveries: 22,599 adult female greater snow geese, collar vs leg ring, 1990-2019 | Dryad | CC0 |
 | `whittington_2025_banff_grizzly_occ.R` | dynamic occupancy, cameras: grizzly bear x 625 Parks Canada camera sites x 10 years, Canadian Rockies, 2012-2021 | Dryad | CC0 |
+| `carter_2021_louisiana_lamp_calls.R` | NAAMP roadside calling index (ordinal 0-3), 27 anuran taxa x 540 route stops x 21 years, up to 3 seasonal runs | USGS ScienceBase | US public domain |
+| `zipkin_2017_oregon_barredowl.R` | Barred Owl: incidental detections 1995-2014 (dynocc) and pair counts 2015-2016 (count), two tables | USGS ScienceBase | US public domain |
+| `wiens_2021_socal_goldeneagle_dynocc.R` | Golden Eagle territorial-pair dynamic occupancy, 175 hexagons x 2 seasons x 4 windows | USGS ScienceBase | US public domain |
+| `waddle_2020_louisiana_marshbird_comm.R` | ARU community occupancy, 11 marsh birds x 33 sites x 20 windows | USGS ScienceBase | US public domain |
+| `rose_2024_sjvalley_leglesslizard_occ.R` | cover-board occupancy (checks within weeks within years), Temblor legless lizard | USGS ScienceBase | US public domain |
+| `laramie_2019_bruneau_trout_edna.R` | eDNA occupancy, bull and rainbow trout, 26 sites x 12 months x 3 replicates, coarsened coordinates | USGS ScienceBase | US public domain |
+| `hunter_2025_georgia_pinesavanna_occ.R` | single-season occupancy, Bachman's Sparrow and Northern Bobwhite, 161 points x 3 visits | USGS ScienceBase | CC0 |
+| `halstead_2025_yosemite_rasi_cjs.R` | daily capture histories of 1,251 Sierra Nevada yellow-legged frogs, 192 survey days over 20 years | USGS ScienceBase | CC0 |
+| `direnzo_2025_elcope_espadarana.R` | glass frog CJS before (2000-2004) and multi-state Bd infection after (2010-2014) the chytrid outbreak, two tables | USGS ScienceBase | CC0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

@@ -82,5 +82,5 @@ stage_dict_row(TABLE,
   original_license = "US public domain (USGS data release; use constraints none)", derived_license = "CC0 1.0",
   notes = "ARU detection histories; occasions renumbered in date order.", source_via = "USGS ScienceBase")
 stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "Community occupancy", sampling_protocol = "acoustic",
-  design = "Single season (20 recording windows)", realm = "Freshwater", country = "USA", coordinates = "As published",
+  design = "Single-season (20 recording windows)", realm = "Freshwater", country = "USA", coordinates = "As published",
   notes = "Automated recording units; 11 target species.")

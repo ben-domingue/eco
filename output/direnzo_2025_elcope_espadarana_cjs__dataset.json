@@ -1,0 +1,66 @@
+{
+  "table": "direnzo_2025_elcope_espadarana_cjs",
+  "title": "Annual capture histories of 415 male Espadarana prosoblepon glass frogs before the chytrid outbreak, El Cope, Panama, 2000-2004",
+  "creator": "DiRenzo, Graziella V.; McCaffery, Rebecca; Longo, Ana V.; Zamudio, Kelly R.; Lips, Karen R.",
+  "pubDate": "2025",
+  "doi": "10.5066/P1A8KDTE",
+  "sourceURL": "https://doi.org/10.5066/P1A8KDTE",
+  "citation": "DiRenzo, G.V., McCaffery, R., Longo, A.V., Zamudio, K.R., and Lips, K.R., 2025, Ten years of capture-mark-recapture data for Espadarana prosoblepon in El Cope, Cocle Province, Panama before and after a chytridiomycosis outbreak (2000-2014): U.S. Geological Survey data release, https://doi.org/10.5066/P1A8KDTE.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "USGS data release marked CC0 1.0"
+  },
+  "abstract": "Five years (2000-2004) of capture-mark-recapture data for male Espadarana prosoblepon before Batrachochytrium dendrobatidis arrived in El Cope, Panama in September 2004, and five years (2010-2014) after the outbreak in the same population, with infection status and load.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "unitKind": "individual",
+  "taxonInclusion": "single",
+  "closure": "none",
+  "closureNote": "one occasion per season as deposited",
+  "occasionKind": "none",
+  "geographicCoverage": {
+    "description": "Stream transects at El Cope, Cocle Province, Panama (8.571 N, 80.587 W)"
+  },
+  "samplingProtocol": "Night visual encounter surveys of stream transects about weekly May-August each wet season; males captured and individually marked; each season collapsed to detected / not detected by the authors.",
+  "responseType": "detection",
+  "temporalCoverage": "2000/2004",
+  "notes": "The release gives no frog ids for 2000-2004; units are numbered by row. Companion: direnzo_2025_elcope_espadarana_ms (post-outbreak).",
+  "notShipped": {
+    "within_season_occasions": "the weekly surveys are not deposited; the authors collapsed each season to one occasion"
+  },
+  "summary": {
+    "n_rows": 2075,
+    "n_units": 415,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 1,
+    "n_surveys": 2075,
+    "y_values": "0,1",
+    "prop_zero": 0.703,
+    "n_traps": 1,
+    "n_zero": 1458,
+    "n_positive": 617,
+    "n_units_detected": 415,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "9e60016da0d0c1d499f295980b0ab085",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year"],
+      "md5": "0a46357ff7b9c50cfc91bbb82f53d0ad"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "03af26e381be46b41a60f49c16d4431c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/direnzo_2025_elcope_espadarana.R",
+  "buildDate": "2026-11-06"
+}
