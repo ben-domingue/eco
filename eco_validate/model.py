@@ -53,6 +53,7 @@ CLAUSES = {
     "side_traps":           "E6",
     "side_survey_taxa":     "E6",
     "taxon_rows":           "E6",
+    "taxon_kingdom":        "E6",
     "side_key_na":          "E6",
     "coordinates_declared": "E7",
     "coordinates_sensitive": "E7",

@@ -462,6 +462,22 @@ def test_taxon_id_needs_remarks():
     assert "taxon_rows" not in checks_of(run(taxa=taxa))
 
 
+def test_taxon_id_at_kingdom():
+    """batch 38: genera whose GBIF match fell to gbif.org/species/1 (Animalia)."""
+    taxa = good_taxa(); taxa["taxonID"] = ["https://www.gbif.org/species/2433433", "https://www.gbif.org/species/1"]
+    assert "taxon_kingdom" in checks_of(run(taxa=taxa), "error")
+    taxa.loc[1, "taxonRank"] = "kingdom"                      # a record identified only to Animalia
+    assert "taxon_kingdom" not in checks_of(run(taxa=taxa))
+    taxa.loc[1, ["taxonRank", "taxonID"]] = ["genus", "https://www.gbif.org/species/10"]
+    assert "taxon_kingdom" not in checks_of(run(taxa=taxa))
+
+
+def test_r_twin_kingdom_keys_match():
+    r = (ROOT / "lib" / "eco_common.R").read_text()
+    m = re.search(r"GBIF_KINGDOM_KEYS <- 0:([0-9]+)", r)
+    assert m and tuple(range(int(m.group(1)) + 1)) == checks.GBIF_KINGDOM_KEYS
+
+
 def test_trap_coordinates_of_flagged_taxa():
     df = good_frame(); df = df[df["taxon"] == "AAA"].copy()
     df["trap"] = 1

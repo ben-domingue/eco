@@ -53,9 +53,21 @@ ehv <- eh[cbind(match(codes0[match(long$taxon, code)], dimnames(eh)$species), ma
 stopifnot(all(ehv[!is.na(ehv)] == long$det[!is.na(ehv)]), sum(is.na(ehv)) == 3, all(long$det[is.na(ehv)] == 1))
 long <- order_eco(long[, .(unit, taxon, y = det, occasion, date, obs_individuals = n)])
 stopifnot(nrow(long) == 118 * 42)
-nk <- code[codes0 %in% c("Ceratina sp.", "Osmia sp.")]
+# Four insect genera share their name with a plant genus, and GBIF's strict match
+# does not resolve them (batch 39, #10: Anthophora and Polistes had fallen to
+# gbif.org/species/1, Animalia). They are matched with kingdom Animalia and class
+# Insecta as hints (gbif_taxon_hinted()), accepted only when GBIF returns the genus
+# itself among animals.
+homonym <- c("Anthophora sp.", "Ceratina sp.", "Osmia sp.", "Polistes sp.")
+nk <- code[codes0 %in% homonym]
 taxa <- make_taxa(code, codes0, lookupName = nm, taxonRank = rank, allow_higher = setdiff(code[rank != "species"], nk), no_key = nk,
-                  taxonRemarks = ifelse(code %in% nk, "genus; no taxonID: GBIF strict matching does not resolve the genus name uniquely", NA))
+                  taxonRemarks = ifelse(code %in% nk, "genus; a homonym of a plant genus, matched on GBIF with kingdom Animalia and class Insecta as hints", NA))
+for (tk in nk) {
+  h <- gbif_taxon_hinted(nm[code == tk], list(kingdom = "Animalia", class = "Insecta"))
+  stopifnot(identical(h$canonicalName, nm[code == tk]), identical(h$kingdom, "Animalia"), identical(h$rank, "genus"))
+  taxa[taxon == tk, `:=`(taxonID = h$taxonID, gbifMatchType = paste0(h$matchType, " (hinted)"))]
+}
+stopifnot(!anyNA(taxa$taxonID), !any(kingdom_taxonID(taxa$taxonID)))
 dataset <- list(
   title = "Visual detections of 42 flower-visiting insect taxa on 1-4 surveys of 41 office-park plots in Silicon Valley, California, 2017",
   creator = "Iknayan, Kelly; Heath, Sacha; Terrill, Scott; Wenny, Daniel; Panlasigui, Stephanie; Wang, Yiwei; Beller, Erin; Spotswood, Erica",
