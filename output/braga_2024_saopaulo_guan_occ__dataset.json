@@ -1,0 +1,59 @@
+{
+  "table": "braga_2024_saopaulo_guan_occ",
+  "title": "Camera-trap detections of the rusty-margined guan at 205 sites in southeastern Brazil, six occasions",
+  "creator": "Braga, Pâmela Rodrigues; Pônzio, Marcella do Carmo; Pasqualotto, Nielson; Alberici, Vinicius; Paolino, Roberta Montanheiro; Rodrigues, Rodolpho Credo; Chiarello, Adriano Garcia",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.kprr4xhdj",
+  "sourceURL": "https://doi.org/10.5061/dryad.kprr4xhdj",
+  "citation": "Braga, P. R. et al. (2024). Anthropogenic landscape features affect the ground habitat use of Penelope superciliaris (Cracidae), a large seed disperser bird in southeastern Brazil [Dataset]. Dryad. https://doi.org/10.5061/dryad.kprr4xhdj",
+  "paperDOI": "10.1111/btp.13382",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the rusty-margined guan (Penelope superciliaris) on six sampling occasions of one camera trap at each of 205 sites in an agricultural (sugarcane, managed forest) and native-vegetation landscape of southeastern Brazil, with distances to edges, farmhouses and water, land-cover proportions and placement covariates.",
+  "samplingProtocol": "One camera trap per site on or off unpaved roads and trails, inside and outside protected native vegetation; detections summarised per sampling occasion (six per site).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one deployment per site; the authors' single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Southeastern Brazil (São Paulo state; JES/LAES and surrounding landscapes); no coordinates deposited",
+  "temporalCoverage": "survey dates not stated in the deposit (paper 2024)",
+  "notShipped": {
+    "none": "every deposited column is shipped"
+  },
+  "notes": "Occasion length and survey dates are in the paper, not the deposit. Three sites lack the sixth occasion.",
+  "summary": {
+    "n_rows": 1227,
+    "n_units": 205,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 6,
+    "n_surveys": 1227,
+    "y_values": "0,1",
+    "prop_zero": 0.969,
+    "n_traps": 1,
+    "n_zero": 1189,
+    "n_positive": 38,
+    "n_units_detected": 27,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_edge_dist_m", "unit_sugarcane_pct_12_5ha", "unit_managed_forest_pct_12_5ha", "unit_open_native_pct_25ha", "unit_closed_native_pct_200ha", "unit_dist_farmhouse_m", "unit_landscape_jes_laes", "unit_unpaved_road", "unit_dist_water_m", "unit_inside_protected"],
+  "coreMd5": "2482e151491cc0e4d646463785d34134",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a6614fd063718e09a4eaaa66f48e6bdf"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/braga_2024_saopaulo_guan_occ.R",
+  "buildDate": "2026-11-05"
+}

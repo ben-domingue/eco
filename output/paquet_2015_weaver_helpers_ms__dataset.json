@@ -1,0 +1,73 @@
+{
+  "table": "paquet_2015_weaver_helpers_ms",
+  "title": "Multi-event capture histories of 168 breeding sociable weavers with the number of helpers at the nest, 13 annual occasions",
+  "creator": "Paquet, Matthieu; Doutrelant, Claire; Hatchwell, Ben J.; Spottiswoode, Claire N.; Covas, Rita",
+  "pubDate": "2016",
+  "doi": "10.5061/dryad.mk44c",
+  "sourceURL": "https://doi.org/10.5061/dryad.mk44c",
+  "citation": "Paquet, M., Doutrelant, C., Hatchwell, B. J., Spottiswoode, C. N., & Covas, R. (2016). Data from: Antagonistic effect of helpers on breeding male and female survival in a cooperatively breeding bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.mk44c",
+  "paperDOI": "10.1111/1365-2656.12377",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual capture histories of 168 breeding sociable weavers (Philetairus socius), each capture coded by the number of helpers at the breeder's nest (none, 1-4, or unknown), with sex and mass and minimum age at first capture: the input of a multi-event model of helper effects on breeder survival.",
+  "samplingProtocol": "Annual capture of colony members at sociable weaver colonies during the breeding season; breeders' nests monitored to count helpers.",
+  "samplingProtocolCode": "net_capture",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured, no helpers",
+    "2": "captured, 1 helper",
+    "3": "captured, 2 helpers",
+    "4": "captured, 3 helpers",
+    "5": "captured, 4 helpers",
+    "6": "captured, number of helpers not known"
+  },
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one record per breeder per year; open between years (multi-event CMR)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Sociable weaver colonies in the Northern Cape, South Africa (see the paper); no coordinates deposited",
+  "temporalCoverage": "13 annual occasions; calendar years not stated in the deposit (paper 2015)",
+  "notShipped": {
+    "none": "the whole sheet is shipped"
+  },
+  "notes": "Unit ids follow the sheet order. Mass (g) and minimum age (years) are the values at first entry into the history (legend sheet). Code 6 is a capture whose helper number is unknown (an uncertain event in the multi-event model).",
+  "summary": {
+    "n_rows": 2184,
+    "n_units": 168,
+    "n_taxa": 1,
+    "n_periods": 13,
+    "n_occasions": 1,
+    "n_surveys": 2184,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.802,
+    "n_traps": 1,
+    "n_zero": 1752,
+    "n_positive": 432,
+    "n_units_detected": 168,
+    "max_y": 6
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex", "unit_mass_first_g", "unit_min_age_first"],
+  "coreMd5": "9ae2a3f5fadf311ff6d681cf79157a1f",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "period_note"],
+      "md5": "62057c52ddd2aa5d57443461c4d5c2ee"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "ee22e4ec4e94a540d92e3d97eeb2f37e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/paquet_2015_weaver_helpers_ms.R",
+  "buildDate": "2026-11-05"
+}

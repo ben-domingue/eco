@@ -1,0 +1,75 @@
+{
+  "table": "warretrodrigues_2022_iguana_msrd",
+  "title": "Multi-state robust-design capture histories of 1,156 Lesser Antillean iguanas on an islet, 9 years x 5 capture days, 2012-2020",
+  "creator": "Warret Rodrigues, Chloé; Angin, Baptiste; Besnard, Aurélien",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.9p8cz8wgv",
+  "sourceURL": "https://doi.org/10.5061/dryad.9p8cz8wgv",
+  "citation": "Warret Rodrigues, C., Angin, B., & Besnard, A. (2022). Favoring recruitment as a conservation strategy to improve the resilience of long-lived reptile populations: insights from a population viability analysis [Dataset]. Dryad. https://doi.org/10.5061/dryad.9p8cz8wgv",
+  "paperDOI": "10.1002/ece3.8021",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture histories of PIT-tagged Lesser Antillean iguanas (Iguana delicatissima, IUCN CR) from a yearly mark-recapture survey of an islet population, 2012-2020: nine primary sessions of five consecutive capture days each, with the age-sex class (juvenile, subadult or adult; female, male or undetermined) recorded at each capture.",
+  "samplingProtocol": "Yearly survey at the end of the males' reproductive peak: five consecutive days of 7.5 hours of systematic search by two-person teams rotating among five zones of the islet; iguanas caught by hand or noose, scanned and PIT-tagged.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not captured",
+    "1": "captured as a juvenile",
+    "2": "captured as a subadult female",
+    "3": "captured as a subadult male",
+    "4": "captured as a subadult of undetermined sex",
+    "5": "captured as an adult female",
+    "6": "captured as an adult male",
+    "7": "captured as an adult of undetermined sex"
+  },
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "closed within a year's five capture days, open between the nine years (robust design; the authors fit a robust-design Pradel model to adults)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "An islet population of Iguana delicatissima in the Lesser Antilles (see the paper); no coordinates deposited",
+  "temporalCoverage": "2012/2020",
+  "designNote": "Multi-state robust design: period = year, occasion = capture day within the year, y = age-sex class at capture.",
+  "notShipped": {
+    "none": "the whole history file is shipped; README code 8 (found dead) does not occur"
+  },
+  "notes": "Unit ids I0001-I1156 follow the deposited row order (no tag numbers are deposited). States are the class recorded at each capture; a few histories change class or sex between captures, as deposited. Iguana delicatissima is IUCN CR; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 52020,
+    "n_units": 1156,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 5,
+    "n_surveys": 52020,
+    "y_values": "0,1,2,3,4,5,6,7",
+    "prop_zero": 0.936,
+    "n_traps": 1,
+    "n_zero": 48681,
+    "n_positive": 3339,
+    "n_units_detected": 1156,
+    "max_y": 7
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "19e0b6f038d5f5b63c85439d30fe5aca",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "period_year"],
+      "md5": "3d4afc52a98b537b8a87303e833fd412"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "3169475db4b5aa2685dcf578d07cb6c3"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/warretrodrigues_2022_iguana_msrd.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,64 @@
+{
+  "table": "mackenzie_2021_stexas_mesocarniv_dynocc",
+  "title": "Camera detections of ocelot, bobcat and coyote at 28 South Texas sites over 14 seasons of five 4-week occasions",
+  "creator": "MacKenzie, Darryl I.; Lombardi, Jason V.; Tewes, Michael E.",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.59zw3r26t",
+  "sourceURL": "https://doi.org/10.5061/dryad.59zw3r26t",
+  "citation": "MacKenzie, D. I., Lombardi, J. V., & Tewes, M. E. (2021). Investigating cooccurrence patterns and dynamics for many imperfectly detected species, using a log-linear modelling parameterisation [Dataset]. Dryad. https://doi.org/10.5061/dryad.59zw3r26t",
+  "paperDOI": "10.1002/ece3.7604",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of ocelot, bobcat and coyote at 28 camera sites in South Texas over 14 seasons, each of five four-week occasions, decoded from the multi-species detection codes of the authors' log-linear co-occurrence example.",
+  "samplingProtocol": "Camera traps; detections of the three mesocarnivores collapsed to four-week occasions, five per season, and coded jointly as which species were detected.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "five four-week occasions per season, the authors' dynamic co-occurrence model",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "South Texas, USA; no coordinates deposited",
+  "temporalCoverage": "seasons not dated in the deposit (14 seasons)",
+  "notShipped": {
+    "none": "every data object is shipped (decoded)"
+  },
+  "notes": "The joint codes 1-8 are decoded with the deposit's state_code(): code c is row c of expand.grid over ocelot, bobcat, coyote. The underlying camera data are Lombardi et al., Dryad doi:10.5061/dryad.931zcrjgp (not built here).",
+  "summary": {
+    "n_rows": 5625,
+    "n_units": 28,
+    "n_taxa": 3,
+    "n_periods": 14,
+    "n_occasions": 5,
+    "n_surveys": 1875,
+    "y_values": "0,1",
+    "prop_zero": 0.68,
+    "n_traps": 1,
+    "n_zero": 3823,
+    "n_positive": 1802,
+    "n_units_detected": 28,
+    "max_y": 1
+  },
+  "sampleFloor": "below (28 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "e79665240287f381b6a5c47e7f9de8f3",
+  "sideTables": {
+    "periods": {
+      "rows": 14,
+      "columns": ["period", "period_season"],
+      "md5": "6554343ef03b05b48922086ecc1a9ac0"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d55459d7eae11e983ba6478387c70b6c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/mackenzie_2021_stexas_mesocarniv_dynocc.R",
+  "buildDate": "2026-11-06"
+}

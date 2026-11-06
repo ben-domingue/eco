@@ -1,0 +1,65 @@
+{
+  "table": "rota_2016_midatlantic_carniv_occ",
+  "title": "Daily camera-trap detections of bobcat, coyote, gray fox and red fox at 1,906 sites in six Mid-Atlantic states, USA",
+  "creator": "Rota, Christopher T.; Ferreira, Marco A. R.; Kays, Roland W.; Forrester, Tavis D.; Kalies, Elizabeth L.; McShea, William J.; Parsons, Arielle W.; Millspaugh, Joshua J.",
+  "pubDate": "2017",
+  "doi": "10.5061/dryad.pq624",
+  "sourceURL": "https://doi.org/10.5061/dryad.pq624",
+  "citation": "Rota, C. T., Ferreira, M. A. R., Kays, R. W., Forrester, T. D., Kalies, E. L., McShea, W. J., Parsons, A. W., & Millspaugh, J. J. (2017). Data from: A multispecies occupancy model for two or more interacting species [Dataset]. Dryad. https://doi.org/10.5061/dryad.pq624",
+  "paperDOI": "10.1111/2041-210X.12587",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily detection/non-detection of four carnivores (bobcat, coyote, gray fox, red fox) at 1,906 camera-trap sites across six Mid-Atlantic states of the eastern USA, 1-71 camera days per site, with disturbance, housing density, trail placement, camera detection distance and site coordinates: the input of Rota et al.'s (2016) multispecies occupancy model with interactions.",
+  "samplingProtocol": "Passive camera traps at sites on and off hiking trails across six Mid-Atlantic states (eMammal survey); each camera day is a replicate survey with detection 0/1 per species.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one deployment per site; the authors' single-season multispecies occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Six Mid-Atlantic states, eastern USA (about 34.5-39.7 N, 76.9-85.4 W); site coordinates as deposited (x 100)",
+  "temporalCoverage": "survey years not stated in the deposit (paper 2016)",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: the deposit gives decimal degrees / 100 to 7 places, multiplied back by 100; all four species are IUCN LC"
+  },
+  "notShipped": {
+    "People_site": "hikers photographed per site / 1000, an index from the same camera detections",
+    "model_files": "design matrix and Stan/R model code"
+  },
+  "notes": "occasion is the camera day in deposited order (1..cday per site; no dates deposited). Site ids S0001-S1906 are the deposited row order. Latitude/longitude are the deposit's values x 100.",
+  "summary": {
+    "n_rows": 170224,
+    "n_units": 1906,
+    "n_taxa": 4,
+    "n_periods": 1,
+    "n_occasions": 71,
+    "n_surveys": 42556,
+    "y_values": "0,1",
+    "prop_zero": 0.986,
+    "n_traps": 1,
+    "n_zero": 167792,
+    "n_positive": 2432,
+    "n_units_detected": 845,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_dist_5km", "unit_housing_density_5km", "unit_trail", "unit_det_dist_m", "unit_decimalLatitude", "unit_decimalLongitude"],
+  "coreMd5": "ef0bc375e745374fcb2b562ee22a2b48",
+  "sideTables": {
+    "taxa": {
+      "rows": 4,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "55abe9a79a7c9baee6632bd406f8eb1b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rota_2016_midatlantic_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

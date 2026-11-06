@@ -1,0 +1,73 @@
+{
+  "table": "rivera_2022_chicago_coyote_dielocc",
+  "creator": "Rivera, Kimberly; Gerber, Brian; Fidino, Mason; Magle, Seth; Farris, Zach; Murphy, Asia",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.bvq83bk9w",
+  "sourceURL": "https://doi.org/10.5061/dryad.bvq83bk9w",
+  "citation": "Rivera, K., Gerber, B., Fidino, M., Magle, S., Farris, Z., & Murphy, A. (2022). Multi-state diel occupancy model [Dataset]. Dryad. https://doi.org/10.5061/dryad.bvq83bk9w",
+  "paperDOI": "10.1086/720714",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not detected in the occasion (deposited code 1)",
+    "1": "detected during the day only (code 2)",
+    "2": "detected at night only (code 3)",
+    "3": "detected both day and night (code 4)"
+  },
+  "unitKind": "site",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Weekly diel detection states of coyotes (not detected, day, night, both) at 105 Chicago camera sites over 13 seasons, 2016-2019",
+  "abstract": "Weekly multi-state detections of coyotes (not detected, day only, night only, day and night) at 105 Urban Wildlife Information Network camera sites in the Chicago region, sampled in January, April, July and October from July 2016 to July 2019 (13 seasons, up to 8 weeks each), with tree cover, impervious cover and housing density.",
+  "samplingProtocol": "Camera traps of the Chicago Urban Wildlife Information Network, sampled for up to eight weeks in each of four seasons a year; each week classified by whether coyotes were photographed in the day, at night, both or neither.",
+  "closure": "closed",
+  "closureNote": "closed within a season, open between the 13 seasons (dynamic multi-state diel occupancy)",
+  "geographicCoverage": "Chicago metropolitan region, Illinois, USA; site coordinates not in the deposited tables",
+  "temporalCoverage": "2016-06/2019-08",
+  "notShipped": {
+    "urb": "an urbanization score computed from the three shipped covariates",
+    "daily_files": "camera_active.csv and coyote_datetime.csv, the daily activity and photo times behind the weekly states"
+  },
+  "notes": "date is the first day of the sampling week (Start + 7 x (week - 1)). The same camera network's earlier coyote, opossum and raccoon days are fidino_2018_chicago_mesocarn_dynocc (2010-2013).",
+  "design_tag": "Multi-season (13 seasons x 8 weeks)",
+  "iso": "USA",
+  "summary": {
+    "n_rows": 5493,
+    "n_units": 105,
+    "n_taxa": 1,
+    "n_periods": 13,
+    "n_occasions": 8,
+    "n_surveys": 5493,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.814,
+    "n_traps": 1,
+    "n_zero": 4470,
+    "n_positive": 1023,
+    "n_units_detected": 94,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_tree_1km", "unit_impervious_1km", "unit_housing_density_km2"],
+  "coreMd5": "bfa2fe2f2f6f4e57848352f5670cf35f",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "period_label", "period_month", "period_year"],
+      "md5": "526315292e19a62486090440f168e20e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "2645f1f41e03f1947280a62fa729af42"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rivera_2022_diel_msocc.R",
+  "buildDate": "2026-11-05"
+}

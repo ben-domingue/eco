@@ -1,0 +1,67 @@
+{
+  "table": "priol_2014_quebec_flyingsquirrel_rd",
+  "title": "Live-trap capture histories of 300 northern flying squirrels at 55 sites in northwestern Quebec, two occasions in each of 2008 and 2012",
+  "creator": "Priol, Pauline; Mazerolle, Marc J.; Imbeau, Louis; Drapeau, Pierre; Trudeau, Caroline; Ramière, Jessica",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.p2r8r",
+  "sourceURL": "https://doi.org/10.5061/dryad.p2r8r",
+  "citation": "Priol, P., Mazerolle, M. J., Imbeau, L., Drapeau, P., Trudeau, C., & Ramière, J. (2015). Data from: Using dynamic N-mixture models to test cavity limitation on northern flying squirrel demographic parameters using experimental nest box supplementation [Dataset]. Dryad. https://doi.org/10.5061/dryad.p2r8r",
+  "paperDOI": "10.1002/ece3.1086",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Capture histories of individually tagged northern flying squirrels (Glaucomys sabrinus) live-trapped at 56 deciduous-forest sites in northwestern Quebec (55 with a capture), two occasions in 2008 and two in 2012, in a before-after control-impact experiment adding nest boxes at half the sites, with snag and conifer basal area per site.",
+  "samplingProtocol": "Live trapping at 56 sites in deciduous stands, two capture occasions per trapping year (2008 and 2012); captured squirrels tagged; nest boxes added at 29 sites after the 2008 trapping (BACI).",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "closed within a trapping year (two occasions), open between 2008 and 2012 (robust design; the authors fit CJS, closed CMR and dynamic N-mixture models)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Deciduous forest stands, Abitibi region of northwestern Quebec, Canada; no coordinates deposited",
+  "temporalCoverage": "2008/2012",
+  "designNote": "Robust design: period = trapping year, occasion = capture occasion within year, cluster_id = site.",
+  "notShipped": {
+    "Count.data": "per site-visit counts of captured individuals, asserted equal to the tallies of the capture histories (a recode)",
+    "pola.txt": "four counts per season per site with no site ids, not documented and not matching the two capture occasions",
+    "cmr_by_year": "cmr2008.txt / cmr2012.txt, the same histories split by year"
+  },
+  "notes": "unit = '<site>_<tag>'; the 5 'INC' (unidentified) rows are numbered within site. Tags 049 and 028D each appear at two sites and are kept as separate histories, as in the authors' file. unit_nestbox_site is the site's nest-box assignment (boxes added after the 2008 trapping), not a per-period treatment.",
+  "summary": {
+    "n_rows": 1200,
+    "n_units": 300,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 2,
+    "n_surveys": 1200,
+    "y_values": "0,1",
+    "prop_zero": 0.684,
+    "n_traps": 1,
+    "n_zero": 821,
+    "n_positive": 379,
+    "n_units_detected": 300,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "cluster_id", "unit_snag_ba_z", "unit_conifer_ba_z", "unit_nestbox_site"],
+  "coreMd5": "20c0ac4edbd3b345d16ad0f50b816fd3",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "period_year"],
+      "md5": "374d811a29cb7afd18ab3702dbfc72c2"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a9d4260c3f895db8cf588c1d6d251ddc"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/priol_2014_quebec_flyingsquirrel_rd.R",
+  "buildDate": "2026-11-05"
+}

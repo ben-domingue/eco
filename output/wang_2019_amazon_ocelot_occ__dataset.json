@@ -1,0 +1,61 @@
+{
+  "table": "wang_2019_amazon_ocelot_occ",
+  "title": "Ocelot camera-trap detections at 899 stations in twelve Brazilian Amazon sites, 12-day occasions, 2010-2017",
+  "creator": "Wang, Bingxin; Rocha, Daniel G.; Abrahams, Mark I.; Antunes, André P.; Costa, Hugo C. M.; Gonçalves, André Luis Sousa; Spironello, Wilson Roberto; de Paula, Milton José; Peres, Carlos A.; Pezzuti, Juarez; Ramalho, Emiliano; Reis, Marcelo Lima; Carvalho Jr, Elildo; Rohe, Fabio; Macdonald, David W.; Tan, Cedric Kai Wei",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.p7410jm",
+  "sourceURL": "https://doi.org/10.5061/dryad.p7410jm",
+  "citation": "Wang, B. et al. (2019). Data from: Habitat use of the ocelot (Leopardus pardalis) in Brazilian Amazon [Dataset]. Dryad. https://doi.org/10.5061/dryad.p7410jm",
+  "paperDOI": "10.1002/ece3.5005",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of ocelot (Leopardus pardalis) in 12-day sampling occasions at 899 camera-trap stations in twelve study sites across the Brazilian Amazon, surveyed between 2010 and 2017, with camera-days of effort per occasion.",
+  "samplingProtocol": "Camera-trap stations at twelve Amazonian sites (protected areas and forest reserves), 2010-2017; detections summarised per 12-day occasion with camera-days operating.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one deployment per station (up to ten 12-day occasions); the authors' single-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_effort_days",
+  "geographicCoverage": "Twelve sites in the Brazilian Amazon (REMJ, BRA319, Uatuma, PNCA, RDSA, TMES, PNM, PDBFF, ZF2, DUCKE, SBR, PNJU)",
+  "temporalCoverage": "2010/2017",
+  "notShipped": {
+    "all_site_cov": "site covariates and lat/long: ids spelled differently from the detection file for 101 stations and in another order, so they cannot be joined by key",
+    "XY": "station X/Y in unnamed, mixed UTM zones"
+  },
+  "notes": "Survey years per site are not deposited (2010-2017 overall). The effort file has no keys and is aligned to the detection file by row (its zeros fall exactly on the NA occasions).",
+  "summary": {
+    "n_rows": 4018,
+    "n_units": 899,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 10,
+    "n_surveys": 4018,
+    "y_values": "0,1",
+    "prop_zero": 0.93,
+    "n_traps": 1,
+    "n_zero": 3736,
+    "n_positive": 282,
+    "n_units_detected": 206,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "obs_effort_days"],
+  "coreMd5": "f2a5f289cdc73fd4d1ba23bbc1c06e4c",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "fd4b92b06fce532ad5b21dfce091a6d8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/wang_2019_amazon_ocelot_occ.R",
+  "buildDate": "2026-11-05"
+}

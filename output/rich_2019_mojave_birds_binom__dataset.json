@@ -1,0 +1,62 @@
+{
+  "table": "rich_2019_mojave_birds_binom",
+  "title": "Acoustic detections of 44 songbird species at 210 Mojave Desert sites, California, 2016: nights with a detection out of nights surveyed",
+  "creator": "Rich, Lindsey N.; Furnas, Brett J.; Newton, D. Scott; Brashares, Justin S.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.2806394",
+  "sourceURL": "https://doi.org/10.5061/dryad.2806394",
+  "citation": "Rich, L. N., Furnas, B. J., Newton, D. S., & Brashares, J. S. (2019). Data from: Acoustic and camera surveys inform models of current and future vertebrate distributions in a changing desert ecosystem [Dataset]. Dryad. https://doi.org/10.5061/dryad.2806394",
+  "paperDOI": "10.1111/ddi.12952",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Acoustic survey of 44 songbird species at 210 sites in the Mojave Desert, California, March to July 2016 (Rich et al. 2019): the number of nights with a detection out of the nights surveyed per site and species, with seven site covariates.",
+  "samplingProtocol": "Acoustic recorders at the same 210 sites, nine recording nights' mornings per site, March to July 2016; songbirds identified to species from recordings; detections collapsed by the authors to nights with a detection per site and species.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every site has an explicit count for every deposited species and its nights surveyed (num.nights); which nights were surveyed is not deposited, so there is no occasion column (ruling #34).",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "single season; one deployment per site, which the authors analysed as single-season multispecies occupancy",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Mojave Desert, California, USA; no coordinates deposited",
+  "temporalCoverage": "2016-03/2016-07",
+  "notShipped": {
+    "Julian day squared": "the square of Julian day (asserted), a model term",
+    "other songbirds": "the abstract reports 68 songbird species detected; 24 are not in the deposit (the source's cut, not stated)"
+  },
+  "notes": "The abstract reports 68 songbird species detected; the deposit holds 44, and does not say how they were chosen. Scientific names are the processor's, from the deposited common names (SpeciesCodes sheet). Julian day and background noise are site-level values as deposited (non-integer Julian days suggest a mean over visits). The other table from this deposit is rich_2019_mojave_mamm_binom (camera).",
+  "summary": {
+    "n_rows": 9240,
+    "n_units": 210,
+    "n_taxa": 44,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 210,
+    "y_values": "0,1,2,3,4,5,6,7,8,9",
+    "prop_zero": 0.894,
+    "n_traps": 1,
+    "n_zero": 8259,
+    "n_positive": 981,
+    "n_units_detected": 196,
+    "max_y": 9
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_slope", "unit_dist_water_km", "unit_dist_pinyon_juniper_km", "unit_max_temp_c", "unit_dist_developed_km", "unit_human_impact", "unit_julian_day", "unit_background_noise", "obs_trials"],
+  "coreMd5": "17ba554dd86e92968a2fc0b2ea20e7ea",
+  "sideTables": {
+    "taxa": {
+      "rows": 44,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "8be5f9127c7d2111ec5e64ff7072c7e5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rich_2019_mojave_binom.R",
+  "buildDate": "2026-11-05"
+}

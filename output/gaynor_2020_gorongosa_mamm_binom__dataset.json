@@ -1,0 +1,61 @@
+{
+  "table": "gaynor_2020_gorongosa_mamm_binom",
+  "title": "Camera-trap detections of 38 mammal species at 60 stations in Gorongosa National Park, Mozambique: days with a detection out of days operated",
+  "creator": "Gaynor, Kaitlyn M.; Daskin, Joshua H.; Rich, Lindsey N.; Brashares, Justin S.",
+  "pubDate": "2020",
+  "doi": "10.25349/D9CK5Q",
+  "sourceURL": "https://doi.org/10.25349/D9CK5Q",
+  "citation": "Gaynor, K. M., Daskin, J. H., Rich, L. N., & Brashares, J. S. (2020). Data from: Postwar wildlife recovery in an African savanna: Evaluating patterns and drivers of species occupancy and richness [Dataset]. Dryad. https://doi.org/10.25349/D9CK5Q",
+  "paperDOI": "10.1111/acv.12661",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Camera-trap survey of the large and medium mammal community on a grid of 60 camera traps in Gorongosa National Park, Mozambique (Gaynor et al. 2021): the number of days each of 38 species was detected at each camera out of the days the camera operated (17-91), with site covariates (ground cover, termite mounds, tree cover, fire interval, distances to road and Lake Urema, hunting) and species' functional groups.",
+  "samplingProtocol": "A grid of 60 passive camera traps in the woodland savanna of southern Gorongosa National Park, each operated for up to 91 days; species identified from photographs and detections collapsed by the authors to days with a detection per camera and species.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every camera has an explicit day count for all 38 species and its operation period in days (Operation, the authors' binomial N); which days it operated is not deposited, so there is no occasion column (ruling #34).",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "single season; one deployment per camera analysed as single-season multi-species occupancy",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Gorongosa National Park, Sofala Province, Mozambique; no coordinates deposited",
+  "temporalCoverage": "survey year not stated in the deposit (paper 2021; cameras operated up to 91 days)",
+  "notShipped": {
+    "raw_detections": "image-level records, not deposited (available from the authors on request)"
+  },
+  "notes": "Elephant (IUCN EN), lion and hippopotamus (VU) are among the 38 species; no coordinates are deposited. 'Helogale ' carries a trailing space in the deposit (trimmed). unit_detect_obscured is the authors' detection covariate, constant per camera.",
+  "summary": {
+    "n_rows": 2280,
+    "n_units": 60,
+    "n_taxa": 38,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 60,
+    "y_values": "0-88 (72 distinct)",
+    "prop_zero": 0.579,
+    "n_traps": 1,
+    "n_zero": 1319,
+    "n_positive": 961,
+    "n_units_detected": 60,
+    "max_y": 88
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_detect_obscured", "unit_cover_ground", "unit_termite_count_100m", "unit_tree_cover_hansen", "unit_fire_interval", "unit_road_major_distance_m", "unit_urema_distance_m", "unit_hunting", "obs_trials"],
+  "coreMd5": "6ad1135c893802639c6b88261d6eef2e",
+  "sideTables": {
+    "taxa": {
+      "rows": 38,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_order", "taxon_functional_group"],
+      "md5": "8f1c3f700ecd217f43d290964220601c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/gaynor_2020_gorongosa_mamm_binom.R",
+  "buildDate": "2026-11-05"
+}

@@ -1,0 +1,70 @@
+{
+  "table": "poutanen_2018_finland_whitetail_scr",
+  "title": "Faecal-DNA spatial capture-recapture of 27 white-tailed deer at 180 sample plots in southwestern Finland, three weekly visits, autumn 2015",
+  "creator": "Poutanen, Jenni; Pusenius, Jyrki; Wikström, Mikael; Brommer, Jon E.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.43j74d0",
+  "sourceURL": "https://doi.org/10.5061/dryad.43j74d0",
+  "citation": "Poutanen, J., Pusenius, J., Wikström, M., & Brommer, J. E. (2018). Data from: Estimating population density of the white-tailed deer in Finland using non-invasive genetic sampling and spatial capture-recapture [Dataset]. Dryad. https://doi.org/10.5061/dryad.43j74d0",
+  "paperDOI": "10.5735/086.056.0101",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Genotyped faecal samples of white-tailed deer (Odocoileus virginianus) from 180 20 x 20 m plots in clusters of four, searched on three weekly visits in autumn 2015 in southwestern Finland: one row per identified deer x plot-visit in use, y = 1 where the deer was genotyped, with sex and plot coordinates.",
+  "samplingProtocol": "Faecal pellet groups collected from 180 fixed 20 x 20 m plots (clusters of four) on three weekly visits; individuals and sex identified from 12-14 microsatellites; plots are proximity detectors.",
+  "samplingProtocolCode": "noninvasive_genetic",
+  "surveyEvidence": "effort_table",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "three weekly visits before the hunting season, analysed as closed (secr)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "crs": "projected metres as deposited; no CRS named (values consistent with ETRS89 / TM35FIN, EPSG:3067)",
+  "geographicCoverage": "Southwestern Finland (study plots in __traps)",
+  "temporalCoverage": "2015",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: white-tailed deer is introduced in Finland and IUCN LC"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key (sample plot) and __traps, usage per occasion.",
+  "notShipped": {
+    "none": "the encounter and plot files are shipped whole; precipitation per visit comes from the authors' script"
+  },
+  "notes": "obs_precip_mm is the per-visit precipitation the authors give in their R script (0.1, 2.9, 0.3 mm). 209 of 245 faecal samples could not be identified to an individual (abstract); they are not in the deposit.",
+  "summary": {
+    "n_rows": 14580,
+    "n_units": 27,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 14580,
+    "y_values": "0,1",
+    "prop_zero": 0.998,
+    "n_traps": 180,
+    "n_zero": 14544,
+    "n_positive": 36,
+    "n_units_detected": 27,
+    "max_y": 1
+  },
+  "sampleFloor": "below (27 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_sex", "obs_precip_mm"],
+  "coreMd5": "001f3ce2708dc186d2f4fea43b272241",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "21748c8f36a3be32752613aba9448aff"
+    },
+    "traps": {
+      "rows": 180,
+      "columns": ["trap", "x", "y", "used_occ1", "used_occ2", "used_occ3"],
+      "md5": "b891804edd13c97abaede61d72af0f5d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/poutanen_2018_finland_whitetail_scr.R",
+  "buildDate": "2026-11-05"
+}

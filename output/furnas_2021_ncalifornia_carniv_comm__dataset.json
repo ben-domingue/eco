@@ -1,0 +1,73 @@
+{
+  "table": "furnas_2021_ncalifornia_carniv_comm",
+  "title": "Daily camera-trap detections of 15 carnivore species at 1,340 sites in northern California forests, 2009-2018 (one to three years per site)",
+  "creator": "Furnas, Brett J.; Goldstein, Benjamin R.; Figura, Peter J.",
+  "pubDate": "2021",
+  "doi": "10.6078/D1DT4S",
+  "sourceURL": "https://doi.org/10.6078/D1DT4S",
+  "citation": "Furnas, B. J., Goldstein, B. R., & Figura, P. (2021). Intermediate fire severity diversity promotes richness of forest carnivores in California [Dataset]. Dryad. https://doi.org/10.6078/D1DT4S",
+  "paperDOI": "10.1111/ddi.13374",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Daily detection/non-detection of 15 mammalian carnivores from camera traps at 1,340 sites across northern California forests, surveyed between early August and early December in 2009-2018 for up to 30 days, with day of year, climate, vegetation and fire severity / pyrodiversity covariates per site-year and site-year coordinates coarsened to 0.1 degree.",
+  "samplingProtocol": "Paired camera traps per hexagon surveyed concurrently for 2-5 weeks between early August and early December each year; all mammal detections identified to species; detection per species per 24-hour survey day, up to 30 days.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a site's annual survey (up to 30 days), open between years; 111 sites were surveyed in more than one year",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Northern California forests, USA (about 38.2-42.0 N, 120-124 W)",
+  "temporalCoverage": "2009-08/2018-11",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "site coordinates (deposited to about 8 decimal places) coarsened to the 0.1 degree cell centre with coarsen_coords(): fisher (southern Sierra Nevada DPS) and Sierra Nevada red fox (DPS) are listed as endangered under the US Endangered Species Act; a precaution, as no species is IUCN CR/EN/VU"
+  },
+  "notShipped": {
+    "lag": "the authors' previous-day detection term, a function of y",
+    "project": "a 0/1 per site-year flag the deposit does not define",
+    "rands.out": "random prediction points (not observations)",
+    "standards": "covariate scaling constants",
+    "exact_coordinates": "site coordinates finer than 0.1 degree (E7 precaution)"
+  },
+  "notes": "Coordinates differ between years at 72 revisited sites and are given per site-year (period_). Covariates are per site-year as the authors computed them (period_). Day of year is deposited for all 30 days; y is NA on days the camera was not operating, so a site-year's surveyed days need not be consecutive. Two survey days carry a day of year above 365 and so fall in the following January.",
+  "summary": {
+    "n_rows": 406650,
+    "n_units": 1340,
+    "n_taxa": 15,
+    "n_periods": 10,
+    "n_occasions": 30,
+    "n_surveys": 27110,
+    "y_values": "0,1",
+    "prop_zero": 0.986,
+    "n_traps": 1,
+    "n_zero": 400858,
+    "n_positive": 5792,
+    "n_units_detected": 1167,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "period_evc", "period_elev_m", "period_ppt_mm", "period_coast", "period_fire_lo_10", "period_fire_mod_10", "period_fire_hi_10", "period_fire_lo_25", "period_fire_mod_25", "period_fire_hi_25", "period_fire_mohi_25", "period_pyro_10", "period_pyro_25", "period_fire_0_10", "period_fire_10_20", "period_fire_20_30", "period_fire_30_40", "period_fire_40", "period_pyro_time", "period_whrsize", "period_decimalLatitude", "period_decimalLongitude", "period_coordinateUncertaintyInMeters"],
+  "coreMd5": "542b62c062bb6042ac31c1be4040b552",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "period_year"],
+      "md5": "203b69b7432df4a51e6e7443fbf5a6c0"
+    },
+    "taxa": {
+      "rows": 15,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "6c223b2b556cdb4aaa372dad42f1532a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/furnas_2021_ncalifornia_carniv_comm.R",
+  "buildDate": "2026-11-05"
+}

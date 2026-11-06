@@ -1,0 +1,62 @@
+{
+  "table": "regmi_2024_madhesh_tiger_binom",
+  "title": "Camera-trap detections of tiger and its ungulate prey at 94 stations in Madhesh Province, Nepal: weeks with a detection out of three, winter 2022-23",
+  "creator": "Regmi, Sandeep; Sharma, Hari Prasad; Bhattarai, Bishnu Prasad; Shaner, Pei-Jen Lee; Bhandari, Shivish; Nepali, Amrit; Aryal, Bishnu; Tamang, Krishna; K. C., Sabin; Karki, Ajay; Ram, Ashok Kumar; Belant, Jerrold L.; Katuwal, Hem Bahadur",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.5tb2rbpbk",
+  "sourceURL": "https://doi.org/10.5061/dryad.5tb2rbpbk",
+  "citation": "Regmi, S. et al. (2024). Tiger occurrence in response to prey and anthropogenic disturbances [Dataset]. Dryad. https://doi.org/10.5061/dryad.5tb2rbpbk",
+  "paperDOI": "10.1098/rspb.2024.1939",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Weeks with a detection out of three surveyed weeks for tiger and its prey (barking deer, nilgai, chital, gaur, sambar, wild boar) at 94 camera-trap stations in Parsa, Bara and Rautahat districts, Nepal, December 2022 - March 2023, with canopy cover and distances to roads, water and buildings.",
+  "samplingProtocol": "Camera-trap stations surveyed for three weeks each in Parsa National Park and adjoining districts; detections collapsed by the authors to the number of weeks with a detection per species.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every station has a value for every species and the README states three surveyed weeks per station; which weeks were detections is not deposited (ruling #34).",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "no occasion column; one three-week deployment per station (the authors' single-season occupancy)",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Parsa, Bara and Rautahat districts, Madhesh Province, Nepal; no coordinates deposited",
+  "temporalCoverage": "2022-12/2023-03",
+  "notShipped": {
+    "Human": "people detected on the same cameras",
+    "Livestock": "livestock detected on the same cameras"
+  },
+  "notes": "Tiger is IUCN EN, gaur and sambar VU; no coordinates are deposited. Distances are as deposited (units not stated; metres by their magnitude).",
+  "summary": {
+    "n_rows": 658,
+    "n_units": 94,
+    "n_taxa": 7,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 94,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.687,
+    "n_traps": 1,
+    "n_zero": 452,
+    "n_positive": 206,
+    "n_units_detected": 65,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_canopy_cover", "unit_dist_road", "unit_dist_water", "unit_dist_building", "obs_trials"],
+  "coreMd5": "a724a64df4f3362e3729c6561ecba2b6",
+  "sideTables": {
+    "taxa": {
+      "rows": 7,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "468826107b13c5a2d199a0f010d1f40d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/regmi_2024_madhesh_tiger_binom.R",
+  "buildDate": "2026-11-05"
+}

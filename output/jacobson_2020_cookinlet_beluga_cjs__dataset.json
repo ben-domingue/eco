@@ -1,0 +1,64 @@
+{
+  "table": "jacobson_2020_cookinlet_beluga_cjs",
+  "title": "Photo-identification (right side) capture histories of 386 Cook Inlet beluga whales, Alaska, 2005-2016",
+  "creator": "Jacobson, Eiren K.; Boyd, Charlotte; McGuire, Tamara L.; Shelden, Kim E. W.; Himes Boor, Gina K.; Punt, André E.",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.9zw3r229w",
+  "sourceURL": "https://doi.org/10.5061/dryad.9zw3r229w",
+  "citation": "Jacobson, E. K., Boyd, C., McGuire, T. L., Shelden, K. E. W., Himes Boor, G. K., & Punt, A. E. (2020). Data from: Assessing cetacean populations using integrated population models: an example with Cook Inlet beluga whales [Dataset]. Dryad. https://doi.org/10.5061/dryad.9zw3r229w",
+  "paperDOI": "10.1002/eap.2114",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual right-side photo-identification capture histories of 386 Cook Inlet beluga whales (Delphinapterus leucas), Alaska, 2005-2016, collected by T. McGuire: the capture-recapture component of an integrated population model for this endangered population.",
+  "samplingProtocol": "Boat-based photo-identification of belugas in Cook Inlet; individuals identified from right-side photographs (marks and scars); one encounter record per whale per year.",
+  "samplingProtocolCode": "photo_id",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one record per whale per year; open between years (CJS)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Cook Inlet, Alaska, USA; no coordinates deposited",
+  "temporalCoverage": "2005/2016",
+  "notShipped": {
+    "model_inputs": "aerial survey abundance posteriors and estimates, hunt records, JAGS model and scripts"
+  },
+  "notes": "The file has no header; the authors' script reads it with a header and so drops the first whale (385 in their analysis); all 386 are shipped. The README asks users to contact T. McGuire about how the histories were processed. The Cook Inlet population is listed as endangered under the US ESA; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 4632,
+    "n_units": 386,
+    "n_taxa": 1,
+    "n_periods": 12,
+    "n_occasions": 1,
+    "n_surveys": 4632,
+    "y_values": "0,1",
+    "prop_zero": 0.644,
+    "n_traps": 1,
+    "n_zero": 2981,
+    "n_positive": 1651,
+    "n_units_detected": 386,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "7150a75bad42c69f5a79c66e57280401",
+  "sideTables": {
+    "periods": {
+      "rows": 12,
+      "columns": ["period", "period_year"],
+      "md5": "78caecb2fd95b706b124607abe98480b"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "31a07832ca706ae3d0087b6b99004c3d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/jacobson_2020_cookinlet_beluga_cjs.R",
+  "buildDate": "2026-11-05"
+}

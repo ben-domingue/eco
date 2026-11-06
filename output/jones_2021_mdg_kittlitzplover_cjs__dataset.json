@@ -1,0 +1,64 @@
+{
+  "table": "jones_2021_mdg_kittlitzplover_cjs",
+  "title": "Annual resighting histories of 1071 colour-ringed adult Kittlitz's plovers at a saltmarsh in south-west Madagascar, 2008-2020",
+  "creator": "Jones, William; Eberhart-Hertel, Luke; Freckleton, Robert; Hoffmann, Joseph; Krüger, Oliver; Sandercock, Brett; Vincze, Orsolya; Zefania, Sama; Székely, Tamás",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.8931zcrrv",
+  "sourceURL": "https://doi.org/10.5061/dryad.8931zcrrv",
+  "citation": "Jones, W. et al. (2021). Exceptionally high apparent adult survival in three tropical species of plovers in Madagascar [Dataset]. Dryad. https://doi.org/10.5061/dryad.8931zcrrv",
+  "paperDOI": "10.1111/jav.02911",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Annual recapture or resighting (0/1) of 1071 colour-ringed adult Kittlitz's plovers (Charadrius pecuarius, IUCN LC) breeding at an intensely monitored saltmarsh in south-west Madagascar, 13 years 2008-2020, with sex; one of three species tables from this deposit.",
+  "samplingProtocol": "Breeding adults captured at nests and fitted with unique colour-ring combinations; annual resighting and recapture during the breeding season.",
+  "samplingProtocolCode": "tag_resight",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "one encounter record per bird per year; open between years (CJS)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Saltmarsh breeding site in south-west Madagascar; no coordinates deposited",
+  "temporalCoverage": "2008/2020",
+  "notShipped": {
+    "none": "the survival matrix is shipped whole"
+  },
+  "notes": "Rows run from 2008 for every bird (adults caught in the wild); condition on first capture by dropping years before a bird's first 1.",
+  "summary": {
+    "n_rows": 13923,
+    "n_units": 1071,
+    "n_taxa": 1,
+    "n_periods": 13,
+    "n_occasions": 1,
+    "n_surveys": 13923,
+    "y_values": "0,1",
+    "prop_zero": 0.841,
+    "n_traps": 1,
+    "n_zero": 11711,
+    "n_positive": 2212,
+    "n_units_detected": 1071,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_sex"],
+  "coreMd5": "45d4d7b10908d0ec615ead3b839654e3",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "period_year"],
+      "md5": "0514ad9f51155e92e107c2899455cbb9"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "008b1fdeca3024edd2a11bb27b78c7d8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/jones_2021_madagascar_plovers_cjs.R",
+  "buildDate": "2026-11-05"
+}

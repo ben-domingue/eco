@@ -1,0 +1,68 @@
+{
+  "table": "rivera_2022_rnp_fosa_dielocc",
+  "creator": "Rivera, Kimberly; Gerber, Brian; Fidino, Mason; Magle, Seth; Farris, Zach; Murphy, Asia",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.bvq83bk9w",
+  "sourceURL": "https://doi.org/10.5061/dryad.bvq83bk9w",
+  "citation": "Rivera, K., Gerber, B., Fidino, M., Magle, S., Farris, Z., & Murphy, A. (2022). Multi-state diel occupancy model [Dataset]. Dryad. https://doi.org/10.5061/dryad.bvq83bk9w",
+  "paperDOI": "10.1086/720714",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not detected in the occasion (deposited code 1)",
+    "1": "detected during the day only (code 2)",
+    "2": "detected at night only (code 3)",
+    "3": "detected both day and night (code 4)"
+  },
+  "unitKind": "site",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Diel detection states of fosa at 42 camera stations in Ranomafana National Park, Madagascar, 22 occasions, 2007",
+  "abstract": "Multi-state detections of fosa (Cryptoprocta ferox, IUCN VU; not detected, day only, night only, day and night) on up to 22 sampling occasions at 42 camera stations in Ranomafana National Park, Madagascar, 2007, with distances to the nearest town, road and non-forest area.",
+  "samplingProtocol": "Camera-trap stations in Ranomafana National Park, 2007, up to 22 sampling occasions; each occasion classified by whether fosa was photographed in the day, at night, both or neither.",
+  "closure": "closed",
+  "closureNote": "one survey, analysed as a static multi-state diel occupancy model",
+  "geographicCoverage": "Ranomafana National Park, southeastern Madagascar; no coordinates deposited",
+  "temporalCoverage": "2007",
+  "notShipped": {
+    "Dog": "dog trap success on the same cameras",
+    "Human": "human trap success on the same cameras"
+  },
+  "notes": "Fosa is IUCN VU; no coordinates are deposited.",
+  "design_tag": "Single-season (42 stations x 22 occasions)",
+  "iso": "MDG",
+  "summary": {
+    "n_rows": 831,
+    "n_units": 42,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 22,
+    "n_surveys": 831,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.943,
+    "n_traps": 1,
+    "n_zero": 784,
+    "n_positive": 47,
+    "n_units_detected": 25,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_dist_town_m", "unit_dist_road_m", "unit_dist_nonforest_m"],
+  "coreMd5": "e7340e1f68d71484cca8879fa08f785a",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "dc32e86d2d134d03df4a6701079cb6c0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rivera_2022_diel_msocc.R",
+  "buildDate": "2026-11-05"
+}

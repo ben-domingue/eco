@@ -1,0 +1,59 @@
+{
+  "table": "bianchi_2021_furnas_carniv_occ",
+  "title": "Camera-trap detections of tayra, puma and free-ranging dogs at 57 sites in and around Furnas do Bom Jesus State Park, Brazil, nine 12-day occasions, 2017",
+  "creator": "Bianchi, Rita; Jenkins, Julianna; Lesmeister, Damon; Gouvea, Jéssica; Cesário, Clarice; Fornitano, Larissa; Oliveira, Mateus; Morais, Kimberly; Ribeiro, Renan; Gompper, Matthew",
+  "pubDate": "2021",
+  "doi": "10.5061/dryad.0cfxpnw2g",
+  "sourceURL": "https://doi.org/10.5061/dryad.0cfxpnw2g",
+  "citation": "Bianchi, R. et al. (2021). Tayra (Eira barbara) landscape use as a function of cover types, forest protection, and the presence of puma and free-ranging dogs [Dataset]. Dryad. https://doi.org/10.5061/dryad.0cfxpnw2g",
+  "paperDOI": "10.1111/btp.13005",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of tayra, puma and free-ranging domestic dogs in up to nine 12-day occasions at 57 unbaited camera-trap sites on a 1 km2 grid inside and outside Furnas do Bom Jesus State Park, a cerrado landscape in São Paulo State, Brazil, January - August 2017, with occasion day, precipitation and temperature and land-cover covariates.",
+  "samplingProtocol": "Unbaited camera traps at 1 km2 grid intersections, operating 24 h for 60-132 days, checked every 15-20 days; detections summarised in 12-day occasions.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "one deployment per site; the authors' single-season multi-species occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Furnas do Bom Jesus State Park and surroundings, Pedregulho, São Paulo State, Brazil; no coordinates deposited",
+  "temporalCoverage": "2017-01/2017-08",
+  "notShipped": {
+    "prey_indices": "preyTayra, preyDog, preyPuma: prey indices whose source the deposit does not state (possibly the same cameras)"
+  },
+  "notes": "obs_day, obs_precipitation and obs_temperature are as deposited per occasion (day index and units as in the paper).",
+  "summary": {
+    "n_rows": 1263,
+    "n_units": 57,
+    "n_taxa": 3,
+    "n_periods": 1,
+    "n_occasions": 9,
+    "n_surveys": 421,
+    "y_values": "0,1",
+    "prop_zero": 0.911,
+    "n_traps": 1,
+    "n_zero": 1150,
+    "n_positive": 113,
+    "n_units_detected": 45,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_dense500", "unit_dense200", "unit_dense100", "unit_open500", "unit_open200", "unit_open100", "unit_coffee500", "unit_coffee200", "unit_coffee100", "unit_pasture500", "unit_pasture200", "unit_pasture100", "unit_builds500", "unit_builds200", "unit_builds100", "unit_slope", "unit_road", "unit_urban", "unit_water", "unit_inside_park", "obs_day", "obs_precipitation", "obs_temperature"],
+  "coreMd5": "c65324d3d4c05aa35bd762cc390c3318",
+  "sideTables": {
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "0f7eb1ed7981aed8e17c5e7230560b1c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/bianchi_2021_furnas_carniv_occ.R",
+  "buildDate": "2026-11-05"
+}

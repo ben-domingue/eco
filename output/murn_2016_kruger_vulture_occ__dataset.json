@@ -1,0 +1,61 @@
+{
+  "table": "murn_2016_kruger_vulture_occ",
+  "title": "White-headed vulture sightings on 359 visits to 17 known breeding territories in Kruger National Park, South Africa",
+  "creator": "Murn, Campbell; Holloway, Graham J.",
+  "pubDate": "2016",
+  "doi": "10.5061/dryad.72j20",
+  "sourceURL": "https://doi.org/10.5061/dryad.72j20",
+  "citation": "Murn, C., & Holloway, G. J. (2016). Data from: Using areas of known occupancy to identify sources of variation in detection probability of raptors: taking time lowers replication effort for surveys [Dataset]. Dryad. https://doi.org/10.5061/dryad.72j20",
+  "paperDOI": "10.1098/rsos.160368",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Detection/non-detection of the white-headed vulture (Trigonoceps occipitalis, IUCN CR) on 359 visits to 17 breeding territories of known occupancy in Kruger National Park, with visit time, duration, speed, time on foot, distance and travel mode, and territory habitat and topography ratings: data for estimating detection probability where occupancy is 1 by design.",
+  "samplingProtocol": "Repeated visits by vehicle and on foot to known white-headed vulture breeding territories; the vulture recorded as seen or not on each visit, with entry time, duration, average speed, distance and time on foot.",
+  "samplingProtocolCode": "territory_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "territories known to be occupied throughout; the authors fixed occupancy at 1",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Kruger National Park, South Africa; no coordinates deposited",
+  "temporalCoverage": "survey dates not stated in the deposit (paper 2016)",
+  "notShipped": {
+    "second_block": "rows 22-37 of the detection sheet, a copy of the histories without Nkumbe",
+    "summaries": "per-territory summary columns and the totals rows",
+    "site_indices": "topography and habitat indices, products of the shipped ratings"
+  },
+  "notes": "Occupancy is known to be 1 at every territory (the study design). Covariate units and the Date and Travel mode codes are not defined in the deposit (see the paper); they are shipped as deposited. The white-headed vulture is IUCN CR; no coordinates are deposited.",
+  "summary": {
+    "n_rows": 359,
+    "n_units": 17,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 47,
+    "n_surveys": 359,
+    "y_values": "0,1",
+    "prop_zero": 0.799,
+    "n_traps": 1,
+    "n_zero": 287,
+    "n_positive": 72,
+    "n_units_detected": 16,
+    "max_y": 1
+  },
+  "sampleFloor": "below (17 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_ecozone", "unit_landscape_venter", "unit_habitat_rating", "unit_ruggedness", "unit_drainage", "obs_entry_time", "obs_duration", "obs_avg_speed", "obs_foot_time", "obs_distance", "obs_date_code", "obs_travel_mode_code"],
+  "coreMd5": "1bffcbc8b4fe4059e16fb33849e68335",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "33b49cb17a8828f112ae7ae6c4d849e2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/murn_2016_kruger_vulture_occ.R",
+  "buildDate": "2026-11-05"
+}

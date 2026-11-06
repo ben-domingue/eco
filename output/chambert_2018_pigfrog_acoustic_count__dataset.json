@@ -1,0 +1,59 @@
+{
+  "table": "chambert_2018_pigfrog_acoustic_count",
+  "title": "Automated acoustic detections of the pig frog at 60 sites, 8 occasions, with the validated split into true and false positives",
+  "creator": "Chambert, Thierry; Waddle, J. Hardin; Miller, David A. W.; Walls, Susan C.; Nichols, James D.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.949nc",
+  "sourceURL": "https://doi.org/10.5061/dryad.949nc",
+  "citation": "Chambert, T., Waddle, J. H., Miller, D. A. W., Walls, S. C., & Nichols, J. D. (2018). Data from: A new framework for analysing automated acoustic species detection data: occupancy estimation and optimization of recordings post-processing [Dataset]. Dryad. https://doi.org/10.5061/dryad.949nc",
+  "paperDOI": "10.1111/2041-210X.12910",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Counts of automated classifier detections of pig frog (Lithobates grylio) calls on acoustic recorders at 60 sites over 8 occasions, with each count split by human post-validation into true and false positives: the data for occupancy models with false positives that use the number of detections.",
+  "samplingProtocol": "Autonomous acoustic recorders at wetland sites; recordings processed by an automated species classifier and the detections post-validated by a human observer; counts per site and occasion.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasions within one season; the authors' single-season occupancy with false positives",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Wetland sites of the USGS amphibian monitoring program, south-eastern USA (see the paper); no locations deposited",
+  "temporalCoverage": "survey dates not stated in the deposit (paper 2018)",
+  "notShipped": {
+    "code": "model and simulation code (Appendix S1, S2)"
+  },
+  "notes": "Site ids S01-S60 follow the deposited row order; the deposit has no site names, dates or locations. y counts calls detected by the classifier, not individuals.",
+  "summary": {
+    "n_rows": 480,
+    "n_units": 60,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 8,
+    "n_surveys": 480,
+    "y_values": "0-158 (30 distinct)",
+    "prop_zero": 0.685,
+    "n_traps": 1,
+    "n_zero": 329,
+    "n_positive": 151,
+    "n_units_detected": 50,
+    "max_y": 158
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "obs_true_positives", "obs_false_positives"],
+  "coreMd5": "76576be91980f2d451bfd19a5a8c4989",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "a669d3f544e91228e23eb8575e534777"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/chambert_2018_frogs_acoustic_count.R",
+  "buildDate": "2026-11-05"
+}

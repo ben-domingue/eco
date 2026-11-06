@@ -1,0 +1,60 @@
+{
+  "table": "goldingay_2022_port_underpass_occ",
+  "title": "Weekly camera detections of 9 mammal and lizard taxa at 5 road underpasses and 6 forest sites, Port Macquarie, NSW, 165 weeks",
+  "creator": "Goldingay, Ross L.; Rohweder, David; Taylor, Brendan D.; Parkyn, Jonathan L.",
+  "pubDate": "2022",
+  "doi": "10.5061/dryad.cvdncjt6m",
+  "sourceURL": "https://doi.org/10.5061/dryad.cvdncjt6m",
+  "citation": "Goldingay, R. L., Rohweder, D., Taylor, B. D., & Parkyn, J. L. (2022). Use of road underpasses by mammals and a monitor lizard in eastern Australia and consideration of the prey-trap hypothesis [Dataset]. Dryad. https://doi.org/10.5061/dryad.cvdncjt6m",
+  "paperDOI": "10.1002/ece3.9075",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Weekly detection/non-detection of macropods, bandicoots, possums, predators and the lace monitor from camera traps in road underpasses and at random forest sites along the Oxley Highway at Port Macquarie (5 underpasses, 6 forest sites; 31.46 S, 152.84 E), New South Wales, Australia, 2013-2017.",
+  "samplingProtocol": "Reconyx (and one KeepGuard) cameras inside underpasses and at random forest clearings within 100 m of the road; passes of each species collated per site (30-minute independence) and converted to weekly detection histories; weeks without a working camera marked missing.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "weekly detections over three to four years; the authors compared the proportion of weeks used, not a closed-season occupancy",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Oxley Highway at Port Macquarie (5 underpasses, 6 forest sites; 31.46 S, 152.84 E)",
+  "temporalCoverage": "2013-06-18/2016-08-15",
+  "notShipped": {
+    "season_row": "the lace monitor files' spring/summer flag row (derivable from date)",
+    "inconsistent_weeks": "site-weeks marked missing for some species but not others: dropped for all (shared-detector ruling)"
+  },
+  "notes": "Forest cameras ran in different weeks from the underpass cameras (at Grafton they overlapped for 11 weeks), so most weeks have only one site type. taxonInclusion = target: the species analysed by the authors, not every species photographed.",
+  "summary": {
+    "n_rows": 8442,
+    "n_units": 11,
+    "n_taxa": 9,
+    "n_periods": 1,
+    "n_occasions": 165,
+    "n_surveys": 938,
+    "y_values": "0,1",
+    "prop_zero": 0.768,
+    "n_traps": 1,
+    "n_zero": 6485,
+    "n_positive": 1957,
+    "n_units_detected": 11,
+    "max_y": 1
+  },
+  "sampleFloor": "below (11 units < 30)",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "unit_site_type"],
+  "coreMd5": "8737740f195b1156b0823b5247a70b53",
+  "sideTables": {
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks"],
+      "md5": "8514e44d2a2e2a56216a5b941948d1dd"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/goldingay_2022_nsw_underpass_mamm_occ.R",
+  "buildDate": "2026-11-05"
+}

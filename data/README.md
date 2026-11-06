@@ -258,6 +258,65 @@ CSVs with `upload/red_up_eco.py`.
 | `goldman_2023_pnw_pika_dynocc.R` | dynamic occupancy, American pika sign surveys at 771 plots in five park units, 2010-2021, counts per sign type as obs_ (multi-sign model), Oregon / Idaho / California | Dryad | CC0 |
 | `maphisa_2019_ingula_birds_comm.R` | community occupancy from a record table, 92 grassland bird taxa x 20 plots, 11 months 2010-2012, English names resolved by hand, Ingula, South Africa | Dryad | CC0 |
 | `cecconi_2025_cricket_occ.R` | single-season occupancy, Japanese burrowing cricket x 49 sites x 3 aural point counts, Kentucky 2024 | Dryad | CC0 |
+| `shah_2025_bardia_tiger_occ.R` | single-season occupancy, tiger camera traps x 719 grid cells x 20 replicates, Bardia-Banke, Nepal 2021-22 (batch 37) | Dryad | CC0 |
+| `joshi_2025_shuklaphanta_leopard_occ.R` | single-season occupancy, leopard camera traps x 92 grid cells x 4 blocks, Shuklaphanta, Nepal 2022-23 (batch 37) | Dryad | CC0 |
+| `goldman_2025_pennsylvania_grouse_occ.R` | single-season occupancy, ruffed grouse drumming on ARUs x 305 points x 5 weeks, Pennsylvania 2021-23; zero-minute weeks dropped (batch 37) | Dryad | CC0 |
+| `palmero_2023_lynx_scr.R` | three SCR tables (binomial counts per station, days operated), Eurasian lynx in Chornobyl, Skolivski Beskydy and Pripyat-Polesia (batch 37) | Dryad | CC0 |
+| `visagie_2026_tswalu_carniv_scr.R` | three SCR tables (daily occasions, operation matrix), leopard, brown and spotted hyaena, Tswalu Kalahari; stations centred (batch 37) | Dryad | CC0 |
+| `rich_2019_mojave_binom.R` | two binomial_count community tables, Mojave camera mammals and acoustic songbirds x 210 sites (batch 37) | Dryad | CC0 |
+| `zuberogoitia_2021_basque_owls_count.R` | community repeated counts, 9 owls and nightjar x 527 playback points x 8 rounds, Basque Country 2018 (batch 37) | Dryad | CC0 |
+| `gaynor_2020_gorongosa_mamm_binom.R` | binomial_count community, 38 mammals x 60 cameras, Gorongosa (batch 37) | Dryad | CC0 |
+| `rota_2016_midatlantic_carniv_occ.R` | multi-species occupancy, 4 carnivores x 1,906 camera sites x camera days, Mid-Atlantic USA (batch 37) | Dryad | CC0 |
+| `fidino_2018_chicago_mesocarn_dynocc.R` | dynamic community occupancy, coyote/opossum/raccoon x 111 Chicago stations x 13 seasons x 28 days (batch 37) | Dryad | CC0 |
+| `burgstahler_2026_wa_shrubsteppe_mamm_occ.R` | occupancy with spatial replicates, 5 mammals x 141 sites x 4 cameras, eastern Washington 2021-24 (batch 37) | Dryad | CC0 |
+| `gustafson_2024_seward_gyrfalcon_dynocc.R` | dynamic occupancy, gyrfalcon territories x 6 years x 2 helicopter surveys, Seward Peninsula (batch 37) | Dryad | CC0 |
+| `furnas_2021_ncalifornia_carniv_comm.R` | multi-season community occupancy, 15 carnivores x 1,451 site-years x 30 days, northern California 2009-18; coordinates coarsened (batch 37) | Dryad | CC0 |
+| `wong_2022_sabah_acacia_mamm_comm.R` | community occupancy with effort, 25 taxa x 142 cameras x 31 occasions, Sabah (batch 37) | Dryad | CC0 |
+| `higgins_2022_utila_anole_ccr.R` | closed capture-recapture, Utila anole (CR) x 10 plots x 4 visits (batch 37) | Dryad | CC0 |
+| `iknayan_2023_svalley_pollinator_occ.R` | community occupancy, 42 pollinator taxa x 41 plots x 1-4 visual surveys, Silicon Valley 2017 (batch 37) | Dryad | CC0 |
+| `priol_2014_quebec_flyingsquirrel_rd.R` | robust design CMR, northern flying squirrel x 56 sites, 2008 and 2012 x 2 occasions, nest-box BACI (batch 37) | Dryad | CC0 |
+| `warretrodrigues_2022_iguana_msrd.R` | multi-state robust design, Lesser Antillean iguana (CR) x 9 years x 5 days, age-sex class at capture (batch 37) | Dryad | CC0 |
+| `morganti_2017_swift_cjs.R` | two CJS tables, common and pallid swifts with and without geolocators, Italy (batch 37) | Dryad | CC0 |
+| `poutanen_2018_finland_whitetail_scr.R` | SCR, faecal-DNA white-tailed deer x 180 plots x 3 visits, Finland 2015 (batch 37) | Dryad | CC0 |
+| `vandeweyer_2024_australia_mouse_scr.R` | multi-session SCR, house mice x 8 live-trap grids x 4 sessions; nights and trap positions inferred (batch 37) | Dryad | CC0 |
+| `lindenmayer_2022_nsw_woodland_birds_comm.R` | dynamic community occupancy, 31 woodland birds x 259 sites x 17 years (batch 37) | Dryad | CC0 |
+| `henden_2013_finnmark_birds_dynocc.R` | dynamic community occupancy, 17 tundra birds x 37 willow plots x 4 years x 3 visits (batch 37) | Dryad | CC0 |
+| `thomas_2025_boreal_moose.R` | occupancy and multi-state occupancy (female, female with calf), moose x 89 cameras (batch 37) | Dryad | CC0 |
+| `mcnew_2025_sagegrouse_lek_count.R` | N-mixture lek counts, greater sage-grouse x 23 leks, 2021-22 (batch 37) | Dryad | CC0 |
+| `rivera_2022_diel_msocc.R` | three multi-state diel occupancy tables: Chicago coyote, Makira and Ranomafana fosa (batch 37) | Dryad | CC0 |
+| `tjornlov_2020_eider_ld.R` | two Burnham live-dead tables, common eiders at Christianso and Vlieland (batch 37) | Dryad | CC0 |
+| `hostetter_2020_minnesota_lynx_dynocc.R` | dynamic occupancy, Canada lynx snow tracks x 431 cells x 5 winters (batch 37) | Dryad | CC0 |
+| `jones_2021_madagascar_plovers_cjs.R` | three CJS tables, Kittlitz's, Madagascar (VU) and white-fronted plovers, 2008-2020 (batch 37) | Dryad | CC0 |
+| `wang_2019_amazon_ocelot_occ.R` | single-season occupancy with effort, ocelot x 899 cameras, Brazilian Amazon (batch 37) | Dryad | CC0 |
+| `monterroso_2020_iberia_carniv_comm.R` | community occupancy, 8 carnivores x 446 Iberian station-seasons x 64 days; coordinates coarsened (Iberian lynx) (batch 37) | Dryad | CC0 |
+| `murn_2016_kruger_vulture_occ.R` | single-season occupancy (occupancy known), white-headed vulture (CR) x 17 territories x 359 visits, Kruger (batch 37) | Dryad | CC0 |
+| `green_2018_ncal_mesocarnivores.R` | dynamic occupancy of fisher, grey fox and ringtail on track plates, and fisher hair-snare SCR, northwestern California (batch 37) | Dryad | CC0 |
+| `regmi_2024_madhesh_tiger_binom.R` | binomial_count community, tiger and six prey x 94 cameras x 3 weeks, Madhesh, Nepal (batch 37) | Dryad | CC0 |
+| `braga_2024_saopaulo_guan_occ.R` | single-season occupancy, rusty-margined guan x 205 cameras x 6 occasions, Brazil (batch 37) | Dryad | CC0 |
+| `roth_2016_aargau_amph_count.R` | community N-mixture counts, three endangered toads and water frogs x 481 sites x 2 visits, Aargau (batch 37) | Dryad | CC0 |
+| `bianchi_2021_furnas_carniv_occ.R` | multi-species occupancy, tayra, puma, dogs x 57 cameras x 9 occasions, Brazil (batch 37) | Dryad | CC0 |
+| `paquet_2015_weaver_helpers_ms.R` | multi-event CMR, sociable weaver breeders coded by helper number, 13 years (batch 37) | Dryad | CC0 |
+| `mizel_2018_alaska_sparrows_count.R` | N-mixture counts, two sparrows x 150 Alaska sites x 5 visits (batch 37) | Dryad | CC0 |
+| `chambert_2018_frogs_acoustic_count.R` | two count tables of automated acoustic detections with validated false positives, pig frog and green treefrog (batch 37) | Dryad | CC0 |
+| `fogarty_2022_greatbasin_birds_count.R` | multi-season community N-mixture, 32 riparian birds x 275 points x 15 years, Nevada (batch 37) | Dryad | CC0 |
+| `thuma_2025_massachusetts_bombus_nests.R` | two within-season nest capture-recapture tables, Bombus impatiens and B. griseocollis, 2018-2024 (batch 37) | Dryad | CC0 |
+| `roder_2020_valais_ungulates_count.R` | multi-season community N-mixture, five ungulates from snow tracks x 218 transects x 4 winters (batch 37) | Dryad | CC0 |
+| `taraporevala_2025_kansas_canids_dynocc.R` | dynamic two-species occupancy with effort, coyote and red fox x 74 urban cameras x 4 seasons (batch 37) | Dryad | CC0 |
+| `croose_2019_michigan_mustelid_dynocc.R` | dynamic two-species occupancy with effort, marten and fisher x 64 cells x 3 winters (batch 37) | Dryad | CC0 |
+| `jacobson_2020_cookinlet_beluga_cjs.R` | CJS photo-ID, 386 Cook Inlet belugas, 2005-2016 (batch 37) | Dryad | CC0 |
+| `hamer_2017_wtp_growlingfrog_dynocc.R` | dynamic occupancy, growling grass frog (VU) x 33 wetlands x 4 seasons (batch 37) | Dryad | CC0 |
+| `peron_2017_sabap2_broodparasites_occ.R` | dynamic community occupancy, 8 brood-parasite and host birds on 82,189 SABAP2 atlas cards, 2007-2013 (batch 37) | Dryad | CC0 |
+| `lloyd_2020_marion_elephantseal_ms.R` | multi-event resighting (breeding status x tag loss), 6,245 male southern elephant seals, Marion Island, 1983-2016 (batch 37) | Dryad | CC0 |
+| `laytonmatthews_2024_hornoya_gull_cjs.R` | CJS, 158 great black-backed gulls with contaminant levels, Hornoya, 2001-2017 (batch 37) | Dryad | CC0 |
+| `guzy_2018_southcarolina_anuran_comm.R` | community occupancy, 13 calling anurans x 42 riparian sites x 9 surveys, South Carolina (batch 37) | Dryad | CC0 |
+| `goldingay_2022_nsw_underpass_mamm_occ.R` | two weekly camera detection tables (Grafton, Port Macquarie), mammals and lace monitor in road underpasses and forest (batch 37) | Dryad | CC0 |
+| `saeed_2022_murree_spinyfrogs_dynocc.R` | two-species occupancy, Himalayan spiny frogs x 34 streams x 21 VES visits, 2017-2018 (batch 37) | Dryad | CC0 |
+| `lyngdoh_2023_spiti_carniv_occ.R` | multi-species occupancy, dog, red fox, snow leopard, wolf x 97 cameras x 6 weeks, Spiti Valley (batch 37) | Dryad | CC0 |
+| `twining_2024_newyork_carniv_occ.R` | two stacked occupancy tables: bobcat and coyote (winters 2013-2021, 3,849 site-years) and black bear (summers 2016-2018), New York (batch 37) | Dryad | CC0 |
+| `fidino_2021_lincolnpark_birds_binom.R` | binomial counts, days seen of days walked, 193 birds x 16 years over a century, Lincoln Park, Chicago (batch 37) | Dryad | CC0 |
+| `husemann_2015_taita_greenbul_cjs.R` | five CJS tables (one per forest fragment), Cabanis's greenbul, Taita Hills, 1996-2009 (batch 37) | Dryad | CC0 |
+| `amir_2022_seasia_coabundance_count.R` | community counts, tiger, clouded leopard, sambar, red muntjac x 416 3-km cells x 40 five-day occasions, Southeast Asia (batch 37) | Dryad | CC0 |
+| `mackenzie_2021_stexas_mesocarniv_dynocc.R` | dynamic three-species occupancy, ocelot, bobcat, coyote x 28 cameras x 14 seasons x 5 occasions, South Texas (batch 37) | Dryad | CC0 |
 | `goldingay_2026_bendigo_camera_occ.R` | dynamic occupancy, cameras: phascogale and sugar glider x 30 sites near / away from nest boxes x 60 weeks in 5 season blocks, Bendigo, Victoria, 2023-2024; shared-detector ruling | Dryad | CC0 |
 | `sharma_2021_spiti_snowleopard_scr.R` | count-detector SCR: 16 snow leopards x 30 cameras, encounters under a 4-hour rule, Spiti Valley, India, 2011-2012; coordinates displaced by the source | Dryad | CC0 |
 | `schorr_2021_yampa_mylu_rd.R` | robust design, PIT antennas: 1,741 little brown bats at two roosts, 10 closed sessions with weekly occasions, Colorado, 2014-2018; survey set inferred | Dryad | CC0 |

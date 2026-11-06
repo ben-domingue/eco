@@ -1,0 +1,65 @@
+{
+  "table": "roder_2020_valais_ungulates_count",
+  "title": "Snow-track counts of five ungulates on two visits per winter to 218 transects in the Western Swiss Alps, winters 2012-13 to 2015-16",
+  "creator": "Roder, Stefanie; Biollaz, François; Mettaz, Stéphane; Zimmermann, Fridolin; Manz, Ralph; Kéry, Marc; Vignali, Sergio; Fumagalli, Luca; Arlettaz, Raphaël; Braunisch, Veronika",
+  "pubDate": "2020",
+  "doi": "10.5061/dryad.2v6wwpzhx",
+  "sourceURL": "https://doi.org/10.5061/dryad.2v6wwpzhx",
+  "citation": "Roder, S. et al. (2020). Data from: Deer density drives habitat use of establishing wolves in the Western European Alps [Dataset]. Dryad. https://doi.org/10.5061/dryad.2v6wwpzhx",
+  "paperDOI": "10.1111/1365-2664.13609",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Minimum numbers of roe deer, red deer, chamois, wild boar and Alpine ibex estimated from snow tracks on two visits per winter to 218 1-km transects in 34 10 x 10 km squares of the Western Swiss Alps, four winters 2012-13 to 2015-16, with snow height, quality and cover, fresh snow and days since snowfall per visit.",
+  "samplingProtocol": "Snow-tracking along fixed 1-km transects, each walked twice per winter (December-March) by the same trained observer; minimum number of individuals per species from imprint size and track distribution (conservative).",
+  "samplingProtocolCode": "track_survey",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "closed within a winter (two visits), open between the four winters",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Western Swiss Alps (canton of Valais and surroundings), Switzerland; no coordinates deposited",
+  "temporalCoverage": "2013-01/2016-03",
+  "notShipped": {
+    "buffer_data": "habitat covariates per transect buffer: several columns are mis-parsed in the deposit (values such as 'Apr 35')",
+    "mouflon": "named in the methods but no column in the deposit"
+  },
+  "notes": "y is the observer's minimum number of individuals from tracks. obs_ snow covariates are as deposited (snow height in cm, cover in percent; codes per the paper). 50 transect-visits not walked have no rows.",
+  "summary": {
+    "n_rows": 8460,
+    "n_units": 218,
+    "n_taxa": 5,
+    "n_periods": 4,
+    "n_occasions": 2,
+    "n_surveys": 1692,
+    "y_values": "0,1,2,3,4,5,6,7,8,9,10",
+    "prop_zero": 0.669,
+    "n_traps": 1,
+    "n_zero": 5656,
+    "n_positive": 2804,
+    "n_units_detected": 214,
+    "max_y": 10
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "obs_snow_height", "obs_snow_quality", "obs_snow_cover_forest", "obs_snow_cover_open", "obs_weather_station", "obs_days_since_snowfall", "obs_fresh_snow", "obs_snow_class"],
+  "coreMd5": "ad65bd27c3c6c8ccaf1744b7d8f6c1f1",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "period_winter"],
+      "md5": "b235db55f71b9315dfc5e75dc88c85ad"
+    },
+    "taxa": {
+      "rows": 5,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "6d42dfec671f855445bb3cabb776e5ff"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/roder_2020_valais_ungulates_count.R",
+  "buildDate": "2026-11-05"
+}

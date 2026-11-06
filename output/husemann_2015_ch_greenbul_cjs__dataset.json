@@ -1,0 +1,64 @@
+{
+  "table": "husemann_2015_ch_greenbul_cjs",
+  "title": "Capture-recapture histories of 264 Cabanis's greenbuls in the Chawia forest fragment, Taita Hills, Kenya, 1996-2000 and 2005-2009",
+  "creator": "Husemann, Martin; Cousseau, Laurence; Callens, Tom; Matthysen, Erik; Vangestel, Carl; Hallmann, Caspar; Lens, Luc",
+  "pubDate": "2015",
+  "doi": "10.5061/dryad.8n5d7",
+  "sourceURL": "https://doi.org/10.5061/dryad.8n5d7",
+  "citation": "Husemann, M., Cousseau, L., Callens, T., Matthysen, E., Vangestel, C., Hallmann, C., & Lens, L. (2015). Data from: Post-fragmentation population structure in a cooperative breeding Afrotropical cloud forest bird: emergence of a source-sink population network [Dataset]. Dryad. https://doi.org/10.5061/dryad.8n5d7",
+  "paperDOI": "10.1111/mec.13105",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Mist-net capture-recapture histories of Cabanis's greenbul (Phyllastrephus cabanisi) in the Chawia cloud-forest fragment of the Taita Hills, Kenya, over two sampling periods (1996-2000 and 2005-2009) with irregular sessions; birds of the two periods are not linked.",
+  "samplingProtocol": "Repeated mist-netting sessions in the forest fragment; birds individually colour-ringed; one capture record per bird per session.",
+  "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "sessions months apart; open population (CJS)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Chawia fragment, Taita Hills, Taita-Taveta County, Kenya; no coordinates deposited",
+  "temporalCoverage": "1996/2009",
+  "notShipped": {
+    "genetics": "microsatellite genotypes and nestling / fledgling records (not survey data)"
+  },
+  "notes": "Periods number the sessions through P1 then P2; session start dates are as deposited (often the 15th of the month, so approximate) and are in __periods, not a date column. Each bird's rows run from its first capture to the last session of its sampling period.",
+  "summary": {
+    "n_rows": 2161,
+    "n_units": 264,
+    "n_taxa": 1,
+    "n_periods": 25,
+    "n_occasions": 1,
+    "n_surveys": 2161,
+    "y_values": "0,1",
+    "prop_zero": 0.778,
+    "n_traps": 1,
+    "n_zero": 1682,
+    "n_positive": 479,
+    "n_units_detected": 264,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "fcbc6b35346bfc429609d905162bdcda",
+  "sideTables": {
+    "periods": {
+      "rows": 25,
+      "columns": ["period", "period_sampling_period", "period_session", "period_session_start", "period_days_to_next"],
+      "md5": "57a71134524ca6639d7bebc869e6fda3"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "d53a37e2a69d4656dcaa1fcced78039c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/husemann_2015_taita_greenbul_cjs.R",
+  "buildDate": "2026-11-05"
+}
