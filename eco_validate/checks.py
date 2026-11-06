@@ -480,6 +480,13 @@ def _side_check(t: Table, suffix: str, required: bool, superset_of: str | None):
     return out
 
 
+#: GBIF backbone kingdom usage keys (0 incertae sedis, 1 Animalia, 2 Archaea,
+#: 3 Bacteria, 4 Chromista, 5 Fungi, 6 Plantae, 7 Protozoa, 8 Viruses); a twin of
+#: GBIF_KINGDOM_KEYS in lib/eco_common.R.
+GBIF_KINGDOM_KEYS = tuple(range(9))
+GBIF_KEY_RE = r"gbif\.org/species/([0-9]+)/?$"
+
+
 def check_side_taxa(t: Table):
     out = _side_check(t, "taxa", required=True, superset_of="taxon")
     side = t.side.get("taxa")
@@ -498,6 +505,16 @@ def check_side_taxa(t: Table):
                               f"{len(bad)} __taxa row(s) have no taxonID and no taxonRemarks saying "
                               f"why (E6: only a group the GBIF backbone does not hold): {_sample(list(bad))}",
                               t, details=[str(b) for b in bad]))
+            kid = side["taxonID"].astype(str).str.extract(GBIF_KEY_RE, expand=False)
+            rank = (side["taxonRank"].astype(str).str.strip().str.lower() if "taxonRank" in side.columns
+                    else pd.Series([""] * len(side), index=side.index))
+            king = kid.notna() & kid.fillna("-1").astype(int).isin(GBIF_KINGDOM_KEYS) & (rank != "kingdom")
+            if king.any():
+                rows = [f"{a}={b}" for a, b in zip(side.loc[king, "taxon"], side.loc[king, "taxonID"])]
+                out.append(_f("taxon_kingdom", "error",
+                              f"{len(rows)} __taxa row(s) have a GBIF kingdom as taxonID but a taxonRank "
+                              f"below kingdom (a match that fell to the kingdom; E6): {_sample(rows)}",
+                              t, details=rows))
     st = t.side.get("survey_taxa")
     if st is not None and side is not None and "taxon" in st.columns and "taxon" in side.columns:
         extra = sorted(set(st["taxon"].dropna().astype(str)) - set(side["taxon"].astype(str)))

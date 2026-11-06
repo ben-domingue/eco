@@ -89,9 +89,17 @@ vern <- c(AGOCHR = "Longfin dace", AMENAT = "Yellow bullhead", CATINS = "Sonora 
           MICSAL = "Largemouth bass", NATTAD = "native anuran tadpoles (unidentified)", ONCGIL = "Gila trout", ONCMYK = "Rainbow trout",
           ORCVIR = "Virile crayfish", PANCLA = "Desert sucker", PANPLE = "Rio Grande sucker", PIMPRO = "Fathead minnow",
           PYLOLI = "Flathead catfish", RHIOSC = "Speckled dace", SALTRU = "Brown trout", TIACOB = "Loach minnow")
-taxa <- make_taxa(tx, unname(sci[tx]), vernacularName = unname(vern[tx]), taxonRank = rank, allow_higher = "ICTSPP", no_key = "NATTAD",
-                  taxonRemarks = fifelse(tx == "NATTAD", "deposit code 'Native tadpole': unidentified native anuran tadpoles; no single GBIF key (GBIF strict match for Anura returns none)", NA_character_))
-taxa[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+# Ictalurus is a homonym on the GBIF backbone: the strict match falls to the phylum
+# Chordata (gbif.org/species/44; batch 39, #10). It is matched with the family as a
+# hint and accepted only when GBIF returns the genus itself among animals.
+taxa <- make_taxa(tx, unname(sci[tx]), vernacularName = unname(vern[tx]), taxonRank = rank, no_key = c("NATTAD", "ICTSPP"),
+                  taxonRemarks = fcase(tx == "NATTAD", "deposit code 'Native tadpole': unidentified native anuran tadpoles; no single GBIF key (GBIF strict match for Anura returns none)",
+                                       tx == "ICTSPP", "identified only to genus Ictalurus; a homonym on the GBIF backbone, matched with family Ictaluridae as a hint",
+                                       default = NA_character_))
+h <- gbif_taxon_hinted("Ictalurus", list(kingdom = "Animalia", family = "Ictaluridae"))
+stopifnot(identical(h$canonicalName, "Ictalurus"), identical(h$kingdom, "Animalia"), identical(h$rank, "genus"))
+taxa[taxon == "ICTSPP", `:=`(taxonID = h$taxonID, gbifMatchType = paste0(h$matchType, " (hinted)"))]
+taxa[, taxon_iucnCategory := fifelse(taxonRank == "species", iucn_category(taxonID, scientificName), NA_character_)]   # IUCN assesses species, not the genus ICTSPP
 # set by hand from the IUCN records GBIF returns (the assessed name differs from GBIF's accepted name for the key):
 # Lithobates catesbeianus LC (assessed as Aquarana catesbeianus, IUCN 58565), Pantosteus clarkii LC (62193),
 # Pantosteus plebeius DD (191238), Tiaroga cobitis VU (39285)

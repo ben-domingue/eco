@@ -201,7 +201,11 @@ table to avoid them. Two methods are two tables.
 - GBIF strict name matching can resolve a homonym to a kingdom or family, and the
   IUCN endpoint can answer for a synonym's different species. `make_taxa()` asserts
   EXACT matches and `iucn_category()` checks the assessed name; HTTP 204 is "not
-  assessed".
+  assessed". Even with `allow_higher`, `make_taxa()` refuses a match above the row's
+  rank (a genus that fell to its kingdom, `gbif.org/species/1`, batch 38/39), and
+  eco-validate's `taxon_kingdom` refuses a kingdom `taxonID` on a row below kingdom:
+  repair with `gbif_taxon_hinted()` and the source's classification, or leave
+  `taxonID` empty with a `taxonRemarks`.
 
 **Rules from the 2026-11-06 rulings** (clauses in `standard.md`; the how-to here):
 
