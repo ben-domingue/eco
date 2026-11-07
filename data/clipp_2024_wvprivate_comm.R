@@ -196,5 +196,5 @@ stage_dict_row(TABLE,
   source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Multiple", model_family = "Community occupancy (single season); two-species co-occurrence (deer, coyote)",
   sampling_protocol = "camera_trap", design = "Single-season (2-77 camera-days per deployment)", realm = "Terrestrial", country = "USA",
-  coordinates = "Coarsened (0.1 degree cells; cameras on private land, E7)", notes = "CC BY-NC (Wildlife Insights rows). All taxa identified to species shipped, including domestic cattle, horse, donkey, dog, cat; paper modelled deer and coyote only.",
+  coordinates = "Coarsened (0.1 deg) (cameras on private land, E7 private-land ruling)", notes = "CC BY-NC (Wildlife Insights rows). All taxa identified to species shipped, including domestic cattle, horse, donkey, dog, cat; paper modelled deer and coyote only.",
   status = "tagged")
