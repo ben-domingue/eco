@@ -19,7 +19,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 LEDGER = ROOT / "releases" / "withdrawals.csv"
 COLUMNS = ["table", "dataset", "withdrawn", "reason", "refs", "rows", "released", "script", "note", "reinstated"]
-REASONS = ("rights", "wrong_data", "duplicate", "unlicensed", "source_withdrawn", "out_of_scope", "misnamed")
+REASONS = ("rights", "wrong_data", "duplicate", "unlicensed", "source_withdrawn", "out_of_scope", "misnamed",
+           "care_review")
 
 
 def record(tables, *, dataset: str, reason: str, refs: str = "", note: str = "",

@@ -1,11 +1,11 @@
 {
   "date": "2026-11-06",
-  "n_tables": 513,
-  "n_deposits": 362,
-  "n_rows": 300726293,
-  "n_units": 510762,
-  "n_taxa_rows": 25910,
-  "n_surveys": 24193887,
+  "n_tables": 509,
+  "n_deposits": 358,
+  "n_rows": 299957452,
+  "n_units": 489052,
+  "n_taxa_rows": 25858,
+  "n_surveys": 23431364,
   "n_families": 67,
   "families": {
     "Abundance": 2,
@@ -19,7 +19,7 @@
     "Community abundance": 16,
     "Community N-mixture": 5,
     "Community N-mixture / occupancy": 1,
-    "Community occupancy": 73,
+    "Community occupancy": 72,
     "Community occupancy / N-mixture": 1,
     "Community occupancy or N-mixture": 2,
     "Cormack-Jolly-Seber": 12,
@@ -42,7 +42,7 @@
     "Multi-species occupancy with interactions": 2,
     "Multi-state": 3,
     "Multi-state / multi-event capture-recapture": 2,
-    "Multi-state capture-recapture": 4,
+    "Multi-state capture-recapture": 3,
     "Multi-state capture-recapture with dead recoveries": 1,
     "Multi-state CJS": 9,
     "Multi-state CJS capture-recapture": 10,
@@ -53,7 +53,7 @@
     "Multi-state robust design capture-recapture": 1,
     "Multievent / multi-state robust design capture-recapture": 1,
     "Multinomial N-mixture": 2,
-    "N-mixture": 81,
+    "N-mixture": 80,
     "N-mixture / annual count index": 6,
     "N-mixture / occupancy": 1,
     "N-mixture / robust-design counts": 1,
@@ -72,42 +72,42 @@
     "Single-season occupancy": 41,
     "Single-season occupancy / spatial count": 1,
     "Single-visit presence / absence": 1,
-    "Spatial capture-recapture": 30,
+    "Spatial capture-recapture": 29,
     "Spatial mark-resight": 1,
     "Two-species occupancy with misidentification": 1
   },
   "response_types": {
     "binomial_count": 19,
-    "count": 125,
-    "detection": 299,
+    "count": 123,
+    "detection": 298,
     "multinomial_cell": 15,
     "ordinal": 3,
-    "state": 52
+    "state": 51
   },
   "taxon_groups": {
     "Amphibians": 49,
-    "Birds": 155,
-    "Fish": 32,
-    "Invertebrates": 55,
-    "Mammals": 176,
+    "Birds": 154,
+    "Fish": 31,
+    "Invertebrates": 54,
+    "Mammals": 175,
     "Multiple": 12,
     "Plants": 18,
     "Reptiles": 16
   },
   "survey_evidence": {
-    "deposited_matrix": 281,
-    "effort_table": 62,
+    "deposited_matrix": 280,
+    "effort_table": 61,
     "inferred": 27,
-    "row_presence": 47,
-    "sample_table": 96
+    "row_presence": 46,
+    "sample_table": 95
   },
-  "n_below_floor": 78,
-  "n_with_coordinates": 152,
+  "n_below_floor": 77,
+  "n_with_coordinates": 150,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
   "n_valid": 513,
   "n_irw_conforms": 513,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 513
+    "eco v1.1-draft (2026-11-03)": 509
   }
 }

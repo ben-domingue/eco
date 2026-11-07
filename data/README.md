@@ -120,7 +120,7 @@ CSVs with `upload/red_up_eco.py`.
 | `blount_2025_neturkiye_carniv_count.R` | N-mixture community counts, grey wolf and brown bear, 229 camera deployments (2009-2023) x up to 104 seven-day occasions, 20 deployment covariates, exact coordinates | Zenodo (xlsx) | CC BY 4.0 |
 | `blount_2025_neturkiye_lynx_occ.R` | single-species camera occupancy, Eurasian lynx 0/1 on the same deployments and weeks; the lynx count matrix in the deposit cannot be aligned | Zenodo (xlsx) | CC BY 4.0 |
 | `hollanders_2022_brindle_mfleayi_msdis.R` | disease-structured multi-state robust-design capture histories, 116 juvenile frogs (IUCN EN) x 8 primary x 2 weekly secondaries, infection state from Bd qPCR per capture, run-level summaries as obs_ covariates | Dryad (version zip) | CC0 |
-| `obrist_2024_gooseisland_birds_count.R` | N-mixture community counts, 50 bird species x 50 points x 3 surveys (2011) in four habitat types on six BC islands, built from per-detection records under the authors' own minute-and-distance rule; coordinates, weather, observer | Zenodo (xlsx) | CC BY 4.0 |
+| `obrist_2024_gooseisland_birds_count.R` | **withdrawn 2026-11-06 (#150, care_review); not shipped.** N-mixture community counts, 50 bird species x 50 points x 3 surveys (2011) in four habitat types on six BC islands, built from per-detection records under the authors' own minute-and-distance rule; coordinates, weather, observer | Zenodo (xlsx) | CC BY 4.0 |
 | `murphy_2021_riogrande_otter_scr.R` | closed-population genetic SCR (scat genotyping at latrines), 37 river otters x 20 latrines x 8 occasions, usage string as survey set, UTM latrine coordinates in __traps; conservative individual id as unit covariate | Dryad (version zip, xlsx) | CC0 |
 | `valenzuela_2018_neltume_rhidar_rd.R` | robust-design search-encounter capture histories, 311 Darwin's frogs (IUCN EN) x 9 visited quarterly primaries x 4 capture days, plot-local capture coordinates and SVL on capture rows for a spatial CJS | Zenodo (txt) | CC BY-SA 4.0 (derived CC BY-SA 4.0) |
 | `whittington_2015_banff_tracks_comm.R` | multi-scale community occupancy from snow-track surveys, 7 mammals x 443 one-km segments nested in 39 hexagonal cells, 1-14 repeat walks, days since snowfall per survey, segment coordinates | Dryad (version zip) | CC0 |
@@ -165,7 +165,7 @@ CSVs with `upload/red_up_eco.py`.
 | `ahizi_2021_civ_crocodylians_occ.R` | spotlight occupancy, 2 crocodylian taxa x 42 sites x 5 nights, Ivory Coast | Dryad | CC0 |
 | `yadav_2022_rapti_gharial_count.R` | repeated counts, gharial x 18 river segments x 3 counts, Chitwan | Dryad | CC0 |
 | `moe_2020_hunder_trout_ld.R` | live-dead (Burnham) state-coded histories, 13,975 Hunder brown trout, 1966-2015 | Dryad | CC0 |
-| `banik_2025_dollyvarden_ms.R` | multistate CR, 21,430 anadromous Dolly Varden, five Yukon rivers, 14 autumns | Dryad | CC0 |
+| `banik_2025_dollyvarden_ms.R` | **withdrawn 2026-11-06 (#150, care_review); not shipped.** multistate CR, 21,430 anadromous Dolly Varden, five Yukon rivers, 14 autumns | Dryad | CC0 |
 | `tomke_2025_hellbender_edna.R` | multi-scale eDNA occupancy, Eastern Hellbender, 385 filters at 90 sites | Dryad | CC0 |
 | `swedberg_2023_springfish_occ.R` | multi-scale community occupancy, six spring-associated fishes x 153 sites, Oklahoma | Dryad | CC0 |
 | `kanno_2022_indiancreek_fish_cjs.R` | three CJS tables (bluehead chub, creek chub, mottled sculpin), 2-month occasions | Dryad | CC0 |
@@ -212,7 +212,7 @@ CSVs with `upload/red_up_eco.py`.
 | `symons_2018_bunbury_dolphin.R` | robust design photo-ID, plus female/calf multistate robust design | Dryad | CC0 |
 | `fabritius_2015_fritillary_cjs.R` | CJS from daily MRR with searched-area effort, three populations | Dryad | CC0 |
 | `maihoff_2023_berchtesgaden_bees_count.R` | community counts, wild bee transect walks, 2009 vs 2019 | Dryad | CC0 |
-| `johnson_2023_tweedsmuir_bombus_count.R` | community counts, bumble bee vane traps, postfire | Dryad | CC0 |
+| `johnson_2023_tweedsmuir_bombus_count.R` | **withdrawn 2026-11-06 (#150, care_review); not shipped.** community counts, bumble bee vane traps, postfire | Dryad | CC0 |
 | `ke_2022_costarica_birds_nmix.R` | community counts, repeated point counts, coarsened + `_exact` sibling | Dryad | CC0 |
 | `frishkoff_2014_costarica_birds_binom.R` | binomial counts, bird transects x season, 12 years | Dryad | CC0 |
 | `frank_2017_costarica_bats_comm.R` | community detection, bat mist nets, from a JAGS array | Dryad | CC0 |
@@ -338,7 +338,7 @@ CSVs with `upload/red_up_eco.py`.
 | `goldberg_2015_manas_leopard_scr.R` | closed SCR, cameras: 22 leopards x 29 stations x 91 days, Royal Manas NP, Bhutan, 2010-2011; traps centred (VU) | Dryad | CC0 |
 | `roderiksen_2023_norway_tundra_carniv_occ.R` | community occupancy, cameras: 4 predators x 96 baited stations, daily occasions, late winters 2011-2020, Norway | Dryad | CC0 |
 | `sovie_2023_ichauway_wildlife_comm.R` | community occupancy, cameras: 11 mammals and game birds x 71 cameras, Ichauway, Georgia | Dryad | CC0 |
-| `barrueto_2023_nwt_grizzly_scr.R` | SCR, hair snags: 204 grizzly bears x 218 detectors x 6 visits, NWT, 2012-2014; traps centred | Dryad | CC0 |
+| `barrueto_2023_nwt_grizzly_scr.R` | **withdrawn 2026-11-06 (#150, care_review); not shipped.** SCR, hair snags: 204 grizzly bears x 218 detectors x 6 visits, NWT, 2012-2014; traps centred | Dryad | CC0 |
 | `sossover_2026_outerbanks_coyote_ms.R` | multi-state robust design, faecal DNA: 62 coyotes, islands as states, Outer Banks, NC | Dryad | CC0 |
 | `bauer_2022_neshrubland_birds_count.R` | community point counts with minute intervals: 79 taxa x 66 points x 3 visits x 2 years, New England shrublands | Dryad | CC0 |
 | `bedwell_2020_sierranevada_edna_binom.R` | binomial_count eDNA: Bd and yellow-legged frogs, 10 lakes and streams x 4 months, Sierra Nevada, 2016 | Dryad | CC0 |
