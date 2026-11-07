@@ -14,7 +14,9 @@ is recorded here; drafts are published by a human.**
 | `data_notes.csv` | caveat about a *source* that is not an eco defect: `table, note, issue, date` | by hand, whenever a script's `notShipped` or header records something a user should know |
 
 `reason` in `withdrawals.csv` is one of `rights`, `wrong_data`, `duplicate`,
-`unlicensed`, `source_withdrawn`, `out_of_scope`, `misnamed`. A withdrawn table also
+`unlicensed`, `source_withdrawn`, `out_of_scope`, `misnamed`, `care_review` (the
+deposit involves Indigenous or community data, lands or knowledge, and is held
+until its originators have been asked; #150). A withdrawn table also
 gets a `table_changes.csv` row of kind `withdrawal` when the release goes live, so
 the public record and the internal index agree.
 

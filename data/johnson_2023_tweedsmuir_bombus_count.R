@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 # Table:  johnson_2023_tweedsmuir_bombus_count
+# WITHDRAWN 2026-11-06 (care_review, #150). Removed from the current release pending
+#   consultation with the originators; may be reinstated. Kept so it can be rebuilt; its
+#   tag status is do_not_publish, so the uploader refuses it. Why, and how to reinstate:
+#   notes/decisions/care_e7_screen_held.md and releases/withdrawals.csv.
 # Source: Dryad doi:10.5061/dryad.wdbrv15sr (CC0 1.0 as shown on the dataset JSON), version
 #   215373 (version 2, published 2023-01-13). Jackson, H. M. Data for: Positive impact of
 #   postfire environment on bumble bees not explained by habitat variables in a remote forested
@@ -170,4 +174,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Invertebrates", model_family = "Community occupancy (multi-species, burn status; counts reduce to detection)",
   sampling_protocol = "vane_trap", design = "Single-season (2 visits, 3 vane traps each)",
   realm = "Terrestrial", country = "CAN", coordinates = "As published",
-  notes = "Bumble bees, burned vs unburned forest; one season.", status = "tagged")
+  notes = "Bumble bees, burned vs unburned forest; one season.", status = "tagged; do_not_publish: care_review (#150), withdrawn 2026-11-06")
