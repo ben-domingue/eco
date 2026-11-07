@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 # Table:  banik_2025_dollyvarden_ms
+# WITHDRAWN 2026-11-06 (care_review, #150). Removed from the current release pending
+#   consultation with the originators; may be reinstated. Kept so it can be rebuilt; its
+#   tag status is do_not_publish, so the uploader refuses it. Why, and how to reinstate:
+#   notes/decisions/care_e7_screen_held.md and releases/withdrawals.csv.
 # Source: Dryad doi:10.5061/dryad.bzkh189pw, version 397201 (published 2025-09-22), licence CC0 1.0
 #         (as shown on Dryad). Banik, A., Gallagher, C., Howland, K., Lea, E., Dillon, F.,
 #         McLeod, R., Muthukumarana, S. & Cowen, L. "Assessing the effects of changes in
@@ -113,4 +117,5 @@ stage_dict_row(TABLE,
   source_via = "Dryad")
 stage_tag_row(TABLE, ds, taxon_group = "Fish", model_family = "Multi-state capture-recapture (reproductive state, Arnason-Schwarz / CJS)",
   sampling_protocol = "live_trap", design = "Multi-session (7-14 falls per river)", realm = "Freshwater",
-  country = "CAN", coordinates = "None in source", notes = "Individuals as unit; five river populations; full deposited rectangle incl. pre-first-capture rows.")
+  country = "CAN", coordinates = "None in source", notes = "Individuals as unit; five river populations; full deposited rectangle incl. pre-first-capture rows.",
+  status = "tagged; do_not_publish: care_review (#150), withdrawn 2026-11-06")
