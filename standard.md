@@ -355,6 +355,21 @@ its coordinates are kept as the source published them. (a) and (c) still apply, 
    are shipped as published, and `coordinatesCoarsened.method` says how they were
    displaced.
 
+**Ruling (private land, 2026-11-06, #152).** Coordinates finer than 0.1° are also
+coarsened, whatever the taxa, when the source says the sites are on private land, on
+community land, or on land reached under a landowner or community agreement, unless
+the source says the landowners agreed to the locations being published. The trigger is
+the source's own statement about the data (its README, metadata or methods), as for
+(a); land tenure is never inferred from a map, a place name or the kind of study.
+Where the source marks which units are on such land, only those units are coarsened,
+and `coordinatesCoarsened.units` lists them; otherwise the whole table is. Coarsening follows the flagged-taxon rule (the 0.1°
+cell, the uncertainty, E7 scope 1, 2 and 4), with no `_exact` sibling, since the reason
+is the place, not a taxon. `coordinatesCoarsened` carries `rule`: `private_land` here,
+`taxon` for (a) to (c), `taxon, private_land` for both, and `method` names the
+source's statement. A source that already withheld or displaced the coordinates for
+its landowners needs nothing more (scope 5). Trespass is the harm; the exact
+locations stay at the source, and eco does not make them easier to find and combine.
+
 ## E8. Time
 
 `period` and `occasion` are integers ordered in time (an `occasion` that indexes a
@@ -525,7 +540,8 @@ Every core table has a `__dataset.json`. Required fields: `title`, `creator`,
 `multinomialType` or `distanceBreaks` (for `multinomial_cell`), `effortColumn =
 "obs_trials"` (for `binomial_count`),
 `coordinatesCoarsened` (when coordinates exist; `null`, or an object
-`{"value": true|false, "method": "..."}` saying how or why not, E7), `surveyEvidenceNote` (when
+`{"value": true|false, "method": "..."}` saying how or why not, with optional `rule`
+(`taxon`, `private_land`) and, for a partly coarsened private-land table, `units`, E7), `surveyEvidenceNote` (when
 `surveyEvidence = inferred`), `taxaWithheld` (taxa the source surveyed for but did not
 publish, such as security-class species in a national scheme: a list of names, with no
 core rows and no zeros), `crs`, `effortColumn`, `detectionCertainty` (when a
@@ -703,4 +719,5 @@ shipped and why. Facts about the source are assertions, not comments.
   - E4.2: a complete-list protocol with no target list may take the per-site pool of taxa recorded in the table as the taxa surveyed for, through `__survey_taxa`, with `surveyEvidenceNote` saying the pool is derived from detections (19).
   - E6: "*X* sp." and "*X* spp." codes of one higher taxon are one taxon; `taxonRemarks` lists both codes (20).
   - E10: optional `subsampleColumn` names the `obs_` column holding the identified fraction; the validator checks it names such a column with values in (0, 1] (21).
+- **v1.1-draft, private-land ruling (2026-11-06, #152).** E7: coordinates are coarsened to 0.1° when the source says the sites are on private or community land, or reached under a landowner or community agreement, unless it says the landowners consented to publication; only the units the source marks, when it marks them; no `_exact` sibling. `coordinatesCoarsened.rule` (`taxon`, `private_land`) records the trigger, and the validator checks that a `private_land` table has no coordinate finer than the 0.1° grid. First table: `clipp_2024_wvprivate_comm`.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

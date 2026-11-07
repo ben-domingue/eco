@@ -610,6 +610,45 @@ def check_coordinates_sensitive(t: Table):
     return []
 
 
+CC_RULES = ("taxon", "private_land")
+
+
+def _cc_rules(cc) -> set:
+    if not isinstance(cc, dict) or not isinstance(cc.get("rule"), str):
+        return set()
+    return {r.strip() for r in cc["rule"].split(",") if r.strip()}
+
+
+def check_coordinates_private_land(t: Table):
+    """E7 private-land ruling (2026-11-06, #152): a table coarsened under
+    `rule: private_land` has every coordinate on a 0.1 degree cell centre, for
+    the units in `coordinatesCoarsened.units` when the source marked only some."""
+    cc = t.dataset.get("coordinatesCoarsened") if t.dataset is not None else None
+    if not (isinstance(cc, dict) and cc.get("value") is True and "private_land" in _cc_rules(cc)):
+        return []
+    only = cc.get("units")
+    only = {str(u) for u in only} if isinstance(only, list) else None
+    local = "local" in str(t.dataset.get("crs") or "").lower()
+    frames = [t.df, t.side.get("units")] + ([] if local else [t.side.get("traps")])
+    bad = set()
+    for frame in frames:
+        if frame is None:
+            continue
+        f = frame if only is None or "unit" not in frame.columns else frame[frame["unit"].astype(str).isin(only)]
+        for c in f.columns:
+            if c.endswith("decimalLatitude") or c.endswith("decimalLongitude"):
+                x = pd.to_numeric(f[c], errors="coerce").dropna() * 10 - 0.5
+                if (np.abs(x - np.round(x)) > 1e-6).any():
+                    bad.add(c)
+    if not bad:
+        return []
+    return [_f("coordinates_private_land", "error",
+               f"coordinatesCoarsened.rule says private_land but {_sample(sorted(bad))} "
+               f"has values off the 0.1 degree cell centres"
+               + ("" if only is None else " for the units listed in coordinatesCoarsened.units")
+               + "; E7 (private land) coarsens them", t)]
+
+
 # ---------------------------------------------------------------------------
 # E8 time
 # ---------------------------------------------------------------------------
@@ -697,6 +736,17 @@ def check_meta_vocab(t: Table):
                       "coordinatesCoarsened must be null or an object "
                       "{value: true/false, method: \"...\"} (E7/E10); found "
                       f"`{json.dumps(cc)[:60]}`", t))
+    elif isinstance(cc, dict) and "rule" in cc:
+        rules = _cc_rules(cc)
+        if not rules or not rules <= set(CC_RULES):
+            out.append(_f("meta_vocab", "error",
+                          f"coordinatesCoarsened.rule = `{cc.get('rule')}`: one or more of "
+                          f"{', '.join(CC_RULES)}, comma-separated (E7)", t))
+    if isinstance(cc, dict) and "units" in cc and not (
+            isinstance(cc["units"], list) and cc["units"] and "private_land" in _cc_rules(cc)):
+        out.append(_f("meta_vocab", "error",
+                      "coordinatesCoarsened.units is a non-empty list of the units the source "
+                      "marked as on private or community land, with rule private_land (E7)", t))
     rights = d.get("intellectualRights")
     if rights is not None and not (isinstance(rights, dict) and rights.get("spdx")):
         out.append(_f("meta_vocab", "error",
@@ -937,6 +987,7 @@ ALL_CHECKS = (
     check_survey_evidence,
     check_side_taxa, check_side_periods, check_side_units, check_side_traps,
     check_coordinates_declared, check_crs_declared, check_coordinates_sensitive,
+    check_coordinates_private_land,
     check_date_iso, check_index_integer,
     check_meta_present, check_meta_required, check_meta_vocab, check_meta_conditional,
     check_table_name, check_standard_version, check_sample_floor, check_replication,
