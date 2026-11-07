@@ -232,6 +232,29 @@ def test_coordinates():
     assert "coordinates_sensitive" not in checks_of(run(df, good_meta(coordinatesCoarsened=None), taxa=taxa))
 
 
+
+def test_coordinates_private_land():
+    # E7 private-land ruling (2026-11-06, #152): rule private_land -> 0.1 degree cell centres
+    df = good_frame(); df["unit_decimalLatitude"] = 39.123456; df["unit_decimalLongitude"] = -80.98765
+    cc = {"value": True, "method": "source: cameras on private land", "rule": "private_land"}
+    assert "coordinates_private_land" in checks_of(run(df, good_meta(coordinatesCoarsened=cc)), "error")
+    df["unit_decimalLatitude"] = 39.15; df["unit_decimalLongitude"] = -80.95
+    r = run(df, good_meta(coordinatesCoarsened=cc))
+    assert "coordinates_private_land" not in checks_of(r) and "meta_vocab" not in checks_of(r)
+    # only the units the source marked are checked
+    df = good_frame(); df["unit_decimalLatitude"] = 39.15; df["unit_decimalLongitude"] = -80.95
+    u0 = str(df["unit"].iloc[0]); df.loc[df["unit"].astype(str) != u0, "unit_decimalLatitude"] = 39.123
+    part = dict(cc, units=[u0])
+    assert "coordinates_private_land" not in checks_of(run(df, good_meta(coordinatesCoarsened=part)))
+    assert "coordinates_private_land" in checks_of(run(df, good_meta(coordinatesCoarsened=cc)), "error")
+    # vocabulary
+    for bad in ({"value": True, "method": "m", "rule": "landowner"}, {"value": True, "method": "m", "rule": ""},
+                {"value": True, "method": "m", "rule": "taxon", "units": ["a"]},
+                {"value": True, "method": "m", "rule": "private_land", "units": []}):
+        assert "meta_vocab" in checks_of(run(meta=good_meta(coordinatesCoarsened=bad)), "error"), bad
+    both = {"value": True, "method": "m", "rule": "taxon, private_land"}
+    assert "meta_vocab" not in checks_of(run(meta=good_meta(coordinatesCoarsened=both)))
+
 def test_time():
     df = good_frame(); df["date"] = "2020"
     assert "date_iso" in checks_of(run(df), "error")

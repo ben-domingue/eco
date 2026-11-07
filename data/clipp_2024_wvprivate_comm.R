@@ -43,8 +43,11 @@
 #   calendar date, y = 1 if the taxon has at least one sequence in that camera-day, y_raw =
 #   number of sequences. Survey evidence: the deployment table; a camera-day exists iff the
 #   deployment window covers part of the date and obs_camera_hours is the covered part.
-#   unit_decimalLatitude / unit_decimalLongitude as published (no flagged taxon: none of the
-#   taxa is IUCN CR/EN/VU), unit_detection_distance_m, unit_camera_working_at_retrieval
+#   unit_decimalLatitude / unit_decimalLongitude coarsened to the 0.1 degree cell centre, with
+#   unit_coordinateUncertaintyInMeters, under the E7 private-land ruling (2026-11-06, #152): the
+#   source places every camera on private land and does not say the landowners agreed to the
+#   locations being published (no taxon is flagged: none is IUCN CR/EN/VU). The deposited
+#   coordinates (5-6 decimals) and UTM pairs stay at the source; unit_detection_distance_m, unit_camera_working_at_retrieval
 #   (0/1; 14 cameras were not working when retrieved, so their later camera-days may
 #   overstate effort; the deposit does not say when they failed). Not shipped: group_size,
 #   age, sex (per sequence), the out-of-window sequences, NDVI (author-derived), the Stan
@@ -117,6 +120,14 @@ pseudo <- setNames(dep$unit, dep$unit_src)    # sp has a column named dep, so lo
 sp[, deployment_id := pseudo[deployment_id]]
 stopifnot(!anyNA(sp$deployment_id))
 
+# E7 private land (2026-11-06, #152): every camera is on private land, so the coordinates go to
+# the 0.1 degree cell centre whatever the taxa
+stopifnot(all(dep$lat > 37 & dep$lat < 41), all(dep$lon > -83 & dep$lon < -77),
+          any(abs(dep$lat * 1000 - round(dep$lat * 1000)) > 1e-9))   # finer than 0.001 in the deposit
+cc <- coarsen_coords(dep$lat, dep$lon)
+dep[, `:=`(lat = cc$lat, lon = cc$lon, unc_m = cc$uncertainty_m)]
+cat(sprintf("  coordinates coarsened to %d 0.1-degree cells (E7, private land)\n", uniqueN(dep[, .(lat, lon)])))
+
 # survey set: camera-days from the deployment table
 days <- dep[, .(date = seq(as.IDate(dep), as.IDate(ret), by = "day")), by = .(unit, dep, ret)]
 days[, d0 := as.POSIXct(paste(date, "00:00:00"), tz = "UTC")]
@@ -131,9 +142,10 @@ stopifnot(nrow(counts[!days, on = .(unit, date)]) == 0)
 long <- days[rep(seq_len(.N), each = nrow(species))][, taxon := rep(species$taxon, times = nrow(days))]
 long <- merge(long, counts, by = c("unit", "date", "taxon"), all.x = TRUE)
 long[is.na(sequences), sequences := 0L]
-long <- merge(long, dep[, .(unit, cluster, lat, lon, dist_m, working)], by = "unit")
+long <- merge(long, dep[, .(unit, cluster, lat, lon, unc_m, dist_m, working)], by = "unit")
 long <- long[, .(unit, taxon, y = as.integer(sequences > 0), y_raw = sequences, occasion, date = format(date), cluster_id = cluster,
-                 unit_decimalLatitude = lat, unit_decimalLongitude = lon, unit_detection_distance_m = dist_m,
+                 unit_decimalLatitude = lat, unit_decimalLongitude = lon, unit_coordinateUncertaintyInMeters = unc_m,
+                 unit_detection_distance_m = dist_m,
                  unit_camera_working_at_retrieval = as.integer(working == "Y"), obs_camera_hours = camera_hours)]
 long <- order_eco(long)
 stopifnot(nrow(long) == nrow(days) * nrow(species), sum(long$y_raw) == nrow(sp), uniqueN(long$unit) == 146)
@@ -142,7 +154,8 @@ stopifnot(nrow(long) == nrow(days) * nrow(species), sum(long$y_raw) == nrow(sp),
 # dorsatum): the same species, looked up under the backbone spelling
 taxa <- make_taxa(species$taxon, species$scientificName, vernacularName = species$common_name, taxon_class = species$class,
                   lookupName = fifelse(species$scientificName == "Erethizon dorsatum", "Erethizon dorsatus", species$scientificName))
-units <- dep[, .(unit, cluster_id = cluster, decimalLatitude = lat, decimalLongitude = lon, detection_distance_m = dist_m,
+units <- dep[, .(unit, cluster_id = cluster, decimalLatitude = lat, decimalLongitude = lon, coordinateUncertaintyInMeters = unc_m,
+                 detection_distance_m = dist_m,
                  camera_working_at_retrieval = as.integer(working == "Y"), deployed = format(dep, "%Y-%m-%dT%H:%MZ"),
                  retrieved = format(ret - 59, "%Y-%m-%dT%H:%MZ"), camera_days = round(dur, 2), modelled_in_paper = as.integer(!(cluster == "Jackson-Mason" & row > 43)))]   # the paper's code reads rows 3-43 / 3-58 / 3-43
 stopifnot(sum(units$modelled_in_paper == 0) == 8, all(grepl("^(Fleming-[1-4]|Hoffman-[1236]) ", dep[units[modelled_in_paper == 0], on = "unit", unit_src])))
@@ -154,14 +167,15 @@ dataset <- list(
   paperDOI = "10.1002/ece3.11149",
   intellectualRights = list(spdx = "CC-BY-NC-4.0", url = "https://creativecommons.org/licenses/by-nc/4.0/",
                             note = "Zenodo record CC BY 4.0; every row of sequences.csv (Wildlife Insights export) carries licence CC-BY-NC, which governs"),
-  abstract = sprintf("Game cameras deployed for about two months in summer 2022 at 146 sites on private land in Jackson-Mason, Barbour-Upshur and Hampshire counties, West Virginia, one of three camera datasets Clipp et al. (2024) combined to fit a two-species occupancy model with a continuous-time detection process for white-tailed deer and coyote. The Wildlife Insights sequence export lists every identified sequence, so this table carries all %d taxa identified to species (wild and domestic mammals and birds) as daily detection/non-detection with the number of sequences, with camera coordinates as published.", nrow(species)),
+  abstract = sprintf("Game cameras deployed for about two months in summer 2022 at 146 sites on private land in Jackson-Mason, Barbour-Upshur and Hampshire counties, West Virginia, one of three camera datasets Clipp et al. (2024) combined to fit a two-species occupancy model with a continuous-time detection process for white-tailed deer and coyote. The Wildlife Insights sequence export lists every identified sequence, so this table carries all %d taxa identified to species (wild and domestic mammals and birds) as daily detection/non-detection with the number of sequences, with camera coordinates coarsened to the 0.1 degree cell because the cameras are on private land.", nrow(species)),
   samplingProtocol = "Game cameras on private land, deployed 1.7-76 days (median 62) between 2022-04-23 and 2022-09-15; images grouped into sequences (photos within one minute of each other) and identified in Wildlife Insights. Occasion = calendar day of the deployment; effort = hours the camera operated within that day, from the deployment and retrieval timestamps.",
   samplingProtocolCode = "camera_trap", occasionLength = "1 day", effortColumn = "obs_camera_hours",
   surveyEvidence = "effort_table",
   responseType = "detection", unitKind = "site", closure = "closed", closureNote = "occasion (camera-days within one deployment of up to 76 days, the paper's closure assumption); no period",
   occasionKind = "time", taxonInclusion = "recorded",
-  geographicCoverage = "Private land in Jackson, Mason, Barbour, Upshur and Hampshire counties, West Virginia, USA (camera coordinates as published)", temporalCoverage = "2022-04-23/2022-09-15",
-  coordinatesCoarsened = list(value = FALSE, method = "none: no taxon is flagged (no IUCN CR/EN/VU species; white-tailed deer and coyote are Least Concern); coordinates as deposited"),
+  geographicCoverage = "Private land in Jackson, Mason, Barbour, Upshur and Hampshire counties, West Virginia, USA (camera coordinates coarsened to 0.1 degree cells: private land, E7)", temporalCoverage = "2022-04-23/2022-09-15",
+  coordinatesCoarsened = list(value = TRUE, rule = "private_land",
+                              method = "camera coordinates (5-6 decimals in the deposit) replaced by 0.1 degree cell centres (coarsen_coords) under the E7 private-land ruling of 2026-11-06: the deposit's deployment sheets and the paper place all 146 cameras on private land, and neither says the landowners agreed to the locations being published; no taxon is flagged (no IUCN CR/EN/VU)"),
   notShipped = list(out_of_window = "265 sequences timestamped outside their deployment window: 199 with a wrong camera year (2017, 2021) at four cameras whose comments report clock faults, 66 at the deployment or retrieval boundary (61 by under an hour, 5 by 2-12 hours)",
                     `higher-rank, human, vehicle, insect labels` = "sequences not identified to a bird or mammal species (Unknown, Animal, Mammal, Rodent, Sciurus Species, Human-*, Vehicle, Insect, ...)",
                     `group_size, age, sex` = "per-sequence attributes that do not survive aggregation to camera-days",
@@ -173,14 +187,14 @@ dataset <- list(
 ds <- write_table(long, TABLE, dataset, taxa = taxa, units = units, script = "data/clipp_2024_wvprivate_comm.R")
 
 stage_dict_row(TABLE,
-  description = sprintf("Daily detection/non-detection (with sequence counts in y_raw) of %d bird and mammal taxa at 146 game cameras deployed about two months each on private land in three West Virginia county pairs in summer 2022, with camera-hours per day as effort, coordinates and detection distance; one of three datasets behind a deer-coyote two-species occupancy paper.", nrow(species)),
+  description = sprintf("Daily detection/non-detection (with sequence counts in y_raw) of %d bird and mammal taxa at 146 game cameras deployed about two months each on private land in three West Virginia county pairs in summer 2022, with camera-hours per day as effort, 0.1-degree coordinates and detection distance; one of three datasets behind a deer-coyote two-species occupancy paper.", nrow(species)),
   url = "https://doi.org/10.5281/zenodo.10391650",
   reference = "Clipp, H. L., Pesi, S. M., Miller, M. L., Gigliotti, L. C., Skelly, B. P., & Rota, C. T. (2024). White-tailed deer detection rates increase when coyotes are present. Ecology and Evolution, 14(3), e11149.",
   doi_paper = "10.1002/ece3.11149", doi_data = "10.5281/zenodo.10391650",
   original_license = "CC BY 4.0 (Zenodo record) / CC BY-NC (licence column of sequences.csv)", derived_license = "CC BY-NC 4.0",
-  notes = "Wildlife Insights export; the per-row CC BY-NC governs over the record's CC BY. Eight deployments beyond the paper's 138 shipped and marked in __units. Coordinates on private land as published; unit ids pseudonymised (deposited names are landowner surnames).",
+  notes = "Wildlife Insights export; the per-row CC BY-NC governs over the record's CC BY. Eight deployments beyond the paper's 138 shipped and marked in __units. Cameras on private land: coordinates coarsened to 0.1 degree cells (E7, private land); unit ids pseudonymised (deposited names are landowner surnames).",
   source_via = "Zenodo")
 stage_tag_row(TABLE, ds, taxon_group = "Multiple", model_family = "Community occupancy (single season); two-species co-occurrence (deer, coyote)",
   sampling_protocol = "camera_trap", design = "Single-season (2-77 camera-days per deployment)", realm = "Terrestrial", country = "USA",
-  coordinates = "As published", notes = "CC BY-NC (Wildlife Insights rows). All taxa identified to species shipped, including domestic cattle, horse, donkey, dog, cat; paper modelled deer and coyote only.",
+  coordinates = "Coarsened (0.1 degree cells; cameras on private land, E7)", notes = "CC BY-NC (Wildlife Insights rows). All taxa identified to species shipped, including domestic cattle, horse, donkey, dog, cat; paper modelled deer and coyote only.",
   status = "tagged")

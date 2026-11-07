@@ -78,6 +78,17 @@ when any coordinate column exists; otherwise leave it out. When set, it is
 `list(value = TRUE/FALSE, method = "...")`, never a bare string or logical: the
 validator and `metadata/01_metadata.R` read `$value`.
 
+Then ask a second question, whatever the taxa: does the source say the sites are on
+private land, community land, or land reached under a landowner or community
+agreement? If it does, and it does not say the landowners agreed to the locations
+being published, coarsen those coordinates the same way: only the units it marks,
+when it marks them (list them in `coordinatesCoarsened$units`), else all. Set
+`coordinatesCoarsened$rule` to `"private_land"` (`"taxon"` for a flagged taxon,
+`"taxon, private_land"` for both), and quote the source's statement in `method`. Go
+by the source's own statement about the data, never a guess about land tenure; a
+source that already withheld or displaced the coordinates for its landowners needs
+nothing more (standard E7, private-land ruling of 2026-11-06, #152).
+
 **Sample floor** is reported, not a gate: `write_table()` computes `sampleFloor` (30
 units and 2 occasions or periods). **Replication is a gate** (ruling 2026-11-06): a
 site-unit deposit with one visit per unit and one period (a single-visit community
