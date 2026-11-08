@@ -64,11 +64,12 @@
 #   season_ba (post-removal period; asserted identical to PostRemovalImpact, which ships once), b1-b3, psev_yrs,
 #   psev1-3, post_removal_psev1-3, post_removal_psev_yrs. GHO table: the same names without a buffer suffix (700 ha),
 #   plus period_n_arus (ARUs scored in the cell that year, from the FLM file). obs_aruhours: ARUhours as deposited;
-#   the README calls it total recording hours, but the values are the natural log of hours rounded to 2 dp (max
-#   4.43 = ln 84, a full 7 x 12 h week; the GHO cell value is ln of the two ARUs' summed hours), with 0 where the week
-#   was not recorded; shipped as deposited, described in notes.
+#   the README calls it total recording hours, but the values are the natural log of hours rounded to 2 dp (confirmed
+#   by J. Barry, email received by 2026-11-08; max 4.43 = ln 84, a full 7 x 12 h week; the GHO cell value is ln of the
+#   two ARUs' summed hours), with 0 where the week was not recorded; shipped as deposited, described in notes.
 # Not shipped: date.1.1-date.1.11 (scaled week index, k/10, identical on every row); Year code (in __periods);
-#   FR11, FR22, FR33, FR12, FR23 (in the corrected files only, not described in the README); the deposited csvs'
+#   FR11, FR22, FR33, FR12, FR23 (in the corrected files only; interaction terms, left out on J. Barry's advice, email
+#   received by 2026-11-08; asserted: FRij = Bj x (pSevi > 0), so they follow from shipped columns); the deposited csvs'
 #   superseded values; model code. Western screech and northern saw-whet owls were processed by the authors but not
 #   deposited. No coordinates are deposited ("All sensitive location information of forest owls has been omitted").
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
@@ -111,6 +112,9 @@ for (s in sp3) {
             all(sapply(1:11, function(k) all(x[[paste0("date.1.", k)]] == k / 10))),
             identical(x$SeasonBA, x$PostRemovalImpact),
             x[, all(uniqueN(RemovalTreat) == 1, uniqueN(FireTreat) == 1, uniqueN(topo_tr) == 1, uniqueN(Site) == 1), by = Cell_Unit][, all(V1)])
+  # FR columns are removal-by-fire interactions: FRij = Bj x (pSevi > 0), recoverable from the shipped columns
+  stopifnot(all(sapply(list(c(1, 1), c(2, 2), c(3, 3), c(1, 2), c(2, 3)), function(k)
+    all(x[[paste0("FR", k[1], k[2])]] == x[[paste0("B", k[2])]] * (x[[paste0("pSev", k[1])]] > 0)))))
   # ARUhours > 0 exactly where the week is scored
   stopifnot(identical(unname(is.na(as.matrix(x[, ..V]))), unname(as.matrix(x[, ..H]) == 0)))
   stopifnot(if (s == "GHO") all(grepl("^[0-9]+$", x$Cell_Unit)) else all(grepl("^[0-9]+\\.[1-4]$", x$Cell_Unit)))
@@ -231,10 +235,10 @@ nsc <- list(
   author_corrections = "The deposited FLM/NPO/GHO_data_stacked.csv values superseded by the authors' corrected files (see notes; differences counted in the script).",
   date_covariates = "date.1.1-date.1.11: a scaled week index (k/10), identical on every row; occasion carries it.",
   year_code = "Year (0-3): in __periods as source_year_code.",
-  FR_columns = "FR11, FR22, FR33, FR12, FR23: present only in the corrected files and not described in the README.",
+  FR_columns = "FR11, FR22, FR33, FR12, FR23: present only in the corrected files. Removal-by-fire interaction terms, left out on the first author's advice (email); each is FRij = Bj x (pSevi > 0) (asserted), so it can be recomputed from period_b1-b3 and period_psev1-3.",
   other_owls = "Western screech owl and northern saw-whet owl were processed but excluded by the authors for few detections; not deposited.",
   model_code = "barry_etal_owl_occupancy.R (ubms model code).")
-aru_note <- "obs_aruhours is ARUhours as deposited: the README calls it total recording hours in the week, but the values are the natural log of the hours, rounded to 2 dp (4.43 = ln 84, a full week of 12-hour nights), and 0 where the week was not recorded; exp(obs_aruhours) recovers the hours."
+aru_note <- "obs_aruhours is ARUhours as deposited: the README calls it total recording hours in the week, but the values are the natural log of the hours (confirmed by the first author by email), rounded to 2 dp (4.43 = ln 84, a full week of 12-hour nights), and 0 where the week was not recorded; exp(obs_aruhours) recovers the hours."
 cov_note <- "Fire and removal covariates are computed over species-specific home-range buffers (flammulated owl 50 ha and northern pygmy owl 300 ha around the ARU; great horned owl 700 ha around the cell centre). unit_removal_treat: buffer overlaps a barred owl removal home range (2,004 ha around each removal); unit_fire_treat: any high-severity fire (MTBS) in the buffer; period_psev_yrs: proportion of the buffer burned at high severity, any year post-fire; period_psev1-3: that proportion in year 1, 2, 3 after the fire (0 otherwise); period_season_ba: removal site in its post-removal years (the deposit's SeasonBA, identical to PostRemovalImpact); period_b1-b3: removal site 1, 2, 3+ years after removal; period_post_removal_psev1-3, period_post_removal_psev_yrs: removal followed by high-severity fire, by years since fire and for all post-fire years. period_bo_presence: a barred owl detected at either ARU of the cell that year (the authors' acoustic survey; a detection covariate in their models). unit_topo_tr: terrain ruggedness within 390 m of the ARU (cell centre for GHO), standardised as deposited."
 det_note <- "y is the authors' weekly detection call from BirdNET (custom model) at species x year score thresholds chosen for < 1% false positives per week"
 
