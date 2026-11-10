@@ -16,8 +16,17 @@
 #   lf_occ        spOccupancy::lfMsPGOcc(~1, ~1, n.factors = 1): ms_occ plus one
 #                 site latent variable w_i with a loading per species on logit
 #                 psi, the full species-as-items model on the latent state
+#   ms_det        msPGOcc(~1, ~ day_z + time_z): ms_occ with detection allowed to
+#                 depend on the day of the season and the time of day of each
+#                 visit (DET_TABLES only; part 1 of the plan on #14)
+#   lf_det        lfMsPGOcc(~1, ~ day_z + time_z, n.factors = 1): lf_occ with the
+#                 same detection model, so the loadings can be compared with and
+#                 without a detection model (DET_TABLES only)
 # and writes species_items_data/species_items.rds (summaries only, well under
 # 5 MB), which the vignette reads instead of refitting.
+#
+# The intercept-only fits are kept: the vignette compares the two, so both must
+# come from the same cache and the same MCMC settings.
 #
 # MCMC: 3 chains x 6000 iterations, 2000 burn-in, thinning 4 (3000 draws kept),
 # default spOccupancy priors. Convergence (Rhat, ESS) is saved and printed by
@@ -46,6 +55,23 @@ MCMC <- list(n.samples = 6000, n.burn = 2000, n.thin = 4, n.chains = 3)
 # with chains five times as long (30000 iterations, 10000 burn-in, thinning 20,
 # still 3000 draws kept), and the vignette reports which fits needed it.
 MCMC_LONG <- list(n.samples = 30000, n.burn = 10000, n.thin = 20, n.chains = 3)
+# Detection covariates (part 1, #14). The names are the obs_ columns with the
+# prefix stripped, which is how eco_to_array() returns them: obs_day_z and
+# obs_time_z, the standardised day of the season and time of day of each visit.
+# Fit only for the tables listed here; the Monongahela cameras have one occasion
+# per camera-day and no comparable per-visit covariates.
+DET_COVS <- c("day_z", "time_z")
+DET_TABLES <- "lebeuftaylor_2026_boreal_edges_aru_comm"
+# Sensitivity check on the detection fit. obs_time_z is a linear clock time, and on
+# the boreal table a handful of off-schedule recordings sit far out in its upper
+# tail and carry most of its leverage (the three largest of 1,627 visits are about
+# 29% of its sum of squares). The sensitivity fit sets y and both detection
+# covariates to NA for every visit with |time_z| > SENS_MAX_Z and refits ms_det, to
+# see whether the per-species detection effects survive without them. spOccupancy
+# rejects a site whose whole history is then missing, so such sites are dropped
+# from the sensitivity fit and counted; the comparison is on the species
+# parameters, which are community-level, not per site.
+SENS_MAX_Z <- 3
 max_rhat <- function(m) max(unlist(m$rhat[c("beta.comm", "tau.sq.beta", "alpha.comm", "tau.sq.alpha",
                                           "beta", "alpha", "lambda.lower.tri")]), na.rm = TRUE)
 run_mcmc <- function(fun, args) {
@@ -79,7 +105,7 @@ select_tables <- function() {
 
 summ <- function(x) c(med = median(x), lo = unname(quantile(x, 0.025)), hi = unname(quantile(x, 0.975)))
 
-fit_table <- function(tb, has_survey_taxa) {
+fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
   timing <- list()
   d <- as.data.table(eco_fetch(tb))
   tx <- as.data.table(eco_taxa(tb))
@@ -180,15 +206,113 @@ fit_table <- function(tb, has_survey_taxa) {
                      lf_w = colMeans(W), lf_w_sd = apply(W, 2, sd))
   site <- merge(site, sitecov, by = "unit", sort = FALSE)
 
+  # ---- detection covariates on p (part 1, #14) --------------------------------
+  # The same two models again, with det.formula = ~ day_z + time_z instead of ~1.
+  # det.covs are the site x visit matrices eco_to_array() already returns, NA in
+  # exactly the cells where no visit happened, which is what spOccupancy wants.
+  # The latent-factor fit keeps the anchor ordering `o` of lf_occ, so the two
+  # sets of loadings are on the same scale and can be compared species by species.
+  comm_det <- NULL; ms_d <- NULL; lf_d <- NULL; ms_s <- NULL; sens <- NULL
+  if (with_det) {
+    dc <- a$obs_covs[DET_COVS]
+    stopifnot(!any(vapply(dc, is.null, logical(1))), length(dc) == length(DET_COVS),
+              all(vapply(dc, function(m) all(dim(m) == dim(na1)), logical(1))),
+              all(vapply(dc, function(m) all(is.na(m) == na1), logical(1))),   # NA iff not surveyed
+              all(vapply(dc, function(m) all(is.finite(m[!na1])), logical(1))))
+    dfm <- stats::as.formula(paste("~", paste(DET_COVS, collapse = " + ")))
+    t0 <- Sys.time()
+    ms_d <- run_mcmc(msPGOcc, list(occ.formula = ~1, det.formula = dfm, verbose = FALSE,
+                                   data = list(y = y, det.covs = dc)))
+    timing$ms_det <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
+    t0 <- Sys.time()
+    lf_d <- run_mcmc(lfMsPGOcc, list(occ.formula = ~1, det.formula = dfm, n.factors = 1, verbose = FALSE,
+                                     data = list(y = y[o, , ], det.covs = dc,
+                                                 coords = matrix(0, length(sites), 2))))
+    timing$lf_det <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
+
+    # Columns of beta/alpha.samples are named "<coefficient>-<SPECIES>", so every
+    # summary below is selected by name and does not depend on the species order.
+    byname <- function(S, coef, codes) t(apply(S[, paste0(coef, "-", codes), drop = FALSE], 2, summ))
+    s <- byname(ms_d$beta.samples, "(Intercept)", species$taxon)
+    species[, c("msd_beta", "msd_beta_lo", "msd_beta_hi") := as.data.table(s)]
+    s <- byname(ms_d$alpha.samples, "(Intercept)", species$taxon)
+    species[, c("msd_alpha", "msd_alpha_lo", "msd_alpha_hi") := as.data.table(s)]
+    for (cv in DET_COVS) {
+      s <- byname(ms_d$alpha.samples, cv, species$taxon)
+      species[, paste0("msd_", cv, c("", "_lo", "_hi")) := as.data.table(s)]
+    }
+    species[, `:=`(msd_beta_rhat = ms_d$rhat$beta[match(species$taxon, sp)],
+                   msd_beta_ess  = ms_d$ESS$beta[match(species$taxon, sp)])]
+    Ld <- lf_d$lambda.samples; colnames(Ld) <- o
+    s <- t(apply(Ld[, species$taxon, drop = FALSE], 2, summ))
+    species[, c("lfd_lambda", "lfd_lambda_lo", "lfd_lambda_hi") := as.data.table(s)]
+    s <- byname(lf_d$beta.samples, "(Intercept)", species$taxon)
+    species[, c("lfd_beta", "lfd_beta_lo", "lfd_beta_hi") := as.data.table(s)]
+
+    Wd <- lf_d$w.samples[, 1, ]
+    site[, `:=`(lf_det_w = colMeans(Wd)[match(unit, sites)],
+                lf_det_w_sd = apply(Wd, 2, sd)[match(unit, sites)])]
+
+    # community parameters: occupancy mean and spread, then the detection
+    # intercept, its spread, and one community slope per detection covariate
+    ac <- ms_d$alpha.comm.samples
+    pr <- rbind(summ(ms_d$beta.comm.samples[, 1]), summ(ms_d$tau.sq.beta.samples[, 1]),
+                summ(ac[, 1]), summ(ms_d$tau.sq.alpha.samples[, 1]))
+    rh <- c(ms_d$rhat$beta.comm[1], ms_d$rhat$tau.sq.beta[1],
+            ms_d$rhat$alpha.comm[1], ms_d$rhat$tau.sq.alpha[1])
+    labs <- c("mu_psi", "tau2_psi", "mu_p", "tau2_p")
+    for (i in seq_along(DET_COVS)) {
+      pr <- rbind(pr, summ(ac[, i + 1])); rh <- c(rh, ms_d$rhat$alpha.comm[i + 1])
+      labs <- c(labs, paste0("mu_", DET_COVS[i]))
+    }
+    comm_det <- data.table(param = labs, pr, rhat = rh)
+
+    # sensitivity: the same fit without the off-schedule visits
+    bad <- !is.na(dc[["time_z"]]) & abs(dc[["time_z"]]) > SENS_MAX_Z
+    ys <- y
+    for (k in seq_len(dim(ys)[1])) { mk <- ys[k, , ]; mk[bad] <- NA; ys[k, , ] <- mk }
+    dcs <- lapply(dc, function(m) { m[bad] <- NA; m })
+    keep <- rowSums(!is.na(ys[1, , ])) > 0           # spOccupancy rejects an all-NA site
+    ys <- ys[, keep, , drop = FALSE]; dcs <- lapply(dcs, function(m) m[keep, , drop = FALSE])
+    stopifnot(sum(bad) > 0, all(apply(ys, 1, function(m) identical(is.na(m), is.na(ys[1, , ])))))
+    t0 <- Sys.time()
+    ms_s <- run_mcmc(msPGOcc, list(occ.formula = ~1, det.formula = dfm, verbose = FALSE,
+                                   data = list(y = ys, det.covs = dcs)))
+    timing$ms_sens <- as.numeric(difftime(Sys.time(), t0, units = "secs"))
+    s <- byname(ms_s$beta.samples, "(Intercept)", species$taxon)
+    species[, c("mss_beta", "mss_beta_lo", "mss_beta_hi") := as.data.table(s)]
+    for (cv in DET_COVS) {
+      s <- byname(ms_s$alpha.samples, cv, species$taxon)
+      species[, paste0("mss_", cv, c("", "_lo", "_hi")) := as.data.table(s)]
+    }
+    sens <- list(max_z = SENS_MAX_Z, n_visits_dropped = sum(bad), n_visits_total = sum(!na1),
+                 n_sites_dropped = sum(!keep), sites_dropped = dimnames(y)[[2]][!keep],
+                 n_sites_kept = sum(keep), max_rhat = max_rhat(ms_s),
+                 long_chains = attr(ms_s, "long"), minutes = timing$ms_sens / 60)
+  }
+
   conv <- data.table(model = c("msPGOcc", "lfMsPGOcc"), long_chains = c(attr(ms, "long"), attr(lf, "long")),
                      max_rhat = c(max_rhat(ms), max_rhat(lf)),
                      min_ess = c(min(unlist(ms$ESS[c("beta", "alpha")])),
                                  min(c(lf$ESS$beta, lf$ESS$alpha, lf$ESS$lambda[-1]))),   # anchor loading is fixed
                      minutes = c(timing$ms_occ, timing$lf_occ) / 60)
+  if (!is.null(ms_d))
+    conv <- rbind(conv, data.table(
+      model = c("msPGOcc_det", "lfMsPGOcc_det"),
+      long_chains = c(attr(ms_d, "long"), attr(lf_d, "long")),
+      max_rhat = c(max_rhat(ms_d), max_rhat(lf_d)),
+      min_ess = c(min(unlist(ms_d$ESS[c("beta", "alpha")])),
+                  min(c(lf_d$ESS$beta, lf_d$ESS$alpha, lf_d$ESS$lambda[-1]))),
+      minutes = c(timing$ms_det, timing$lf_det) / 60))
+  if (!is.null(ms_s))
+    conv <- rbind(conv, data.table(
+      model = "msPGOcc_sens", long_chains = attr(ms_s, "long"), max_rhat = max_rhat(ms_s),
+      min_ess = min(unlist(ms_s$ESS[c("beta", "alpha")])), minutes = timing$ms_sens / 60))
   cat(sprintf("%-42s %d sites x %d species: rasch %.0fs, 2pl %.0fs, nopool %.0fs; anchor %s\n",
               tb, length(sites), length(sp), timing$naive_rasch, timing$naive_2pl, timing$nopool, anchor))
   print(conv)
-  list(table = tb, species = species, site = site, comm_ms = comm_ms, conv = conv,
+  list(table = tb, species = species, site = site, comm_ms = comm_ms, comm_det = comm_det,
+       det_covs = if (with_det) DET_COVS else NULL, sens = sens, conv = conv,
        rasch_var = setNames(vc$vcov, vc$grp), anchor = anchor, timing = timing,
        n_sites = length(sites), n_species = length(sp), max_visits = dim(y)[3])
 }
@@ -196,7 +320,9 @@ fit_table <- function(tb, has_survey_taxa) {
 cand <- select_tables()
 print(cand[, .(table, n_units, n_taxa, picked, why)])
 picked <- cand[picked == TRUE]
-fits <- lapply(seq_len(nrow(picked)), function(i) fit_table(picked$table[i], isTRUE(picked$survey_taxa[i])))
+fits <- lapply(seq_len(nrow(picked)), function(i)
+  fit_table(picked$table[i], isTRUE(picked$survey_taxa[i]),
+            with_det = picked$table[i] %in% DET_TABLES))
 names(fits) <- picked$table
 
 dir.create("species_items_data", showWarnings = FALSE)

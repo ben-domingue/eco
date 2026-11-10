@@ -256,9 +256,9 @@ ms <- msPGOcc(occ.formula = ~1, det.formula = ~1, data = list(y = y),
 
 and the page reads its saved summaries. Both formulas are intercept-only on
 purpose: every species has one $\psi_k$ and one $p_k$, nothing else, so the
-comparison with the model above is like for like. (The table carries
-standardised day and time of each visit, `obs_day_z` and `obs_time_z`, which a
-real analysis of these birds would put on $p$.)
+comparison with the model above is like for like. (The table also carries the
+standardised day and time of each visit, `obs_day_z` and `obs_time_z`; both
+models are refitted with those on $p$ [below](#letting-detection-vary-by-day-and-time).)
 
 ```{r}
 #| label: ms-load
@@ -475,7 +475,192 @@ The reason is that detection which is the same everywhere for a species
 scales that species' row of the table down, which moves its intercept a lot
 and its pattern across sites less. Detection that changes along the gradient
 (a bird easier to hear in open regrowth than in closed forest) would bias the
-loadings as well, and these fits, with one $p_k$ per species, cannot see it.
+loadings as well, and a fit with one $p_k$ per species cannot see it. The next
+section gives detection something to vary with.
+
+## Letting detection vary by day and time
+
+Every fit so far gives each species a single detection probability, the same on
+the first morning of the season as on the last and at any hour. Birds do not
+work that way: song falls off as the breeding season ends, and the dawn chorus
+is not the mid-morning one. The boreal table carries the day of the season and
+the time of day of every recording, standardised, as `obs_day_z` and
+`obs_time_z`. Refitting both models with `det.formula = ~ obs_day_z + obs_time_z`
+asks whether that matters, with everything else held the same.
+
+```{r}
+#| label: det-load
+fb$comm_det[, .(parameter = param, median = med, lower = lo, upper = hi, Rhat = rhat)]
+fb$conv[grepl("_det$", model)]
+dt <- as.data.table(fb$species)
+dt[, `:=`(psi_i = plogis(ms_beta), psi_d = plogis(msd_beta),
+          p_i = plogis(ms_alpha), p_d = plogis(msd_alpha),
+          ci_i = plogis(ms_beta_hi) - plogis(ms_beta_lo),
+          day_cred = msd_day_z_lo > 0 | msd_day_z_hi < 0,
+          time_cred = msd_time_z_lo > 0 | msd_time_z_hi < 0)]
+```
+
+```{r}
+#| label: det-stats
+#| echo: false
+dr_psi <- cor(dt$psi_i, dt$psi_d)
+dr_lam <- cor(dt$lf_lambda, dt$lfd_lambda)
+dr_p   <- cor(dt$p_i, dt$p_d)
+d_top  <- dt[order(-abs(psi_d - psi_i))][1]
+l_top  <- dt[order(-abs(lfd_lambda - lf_lambda))][1]
+d_move <- sum(abs(dt$psi_d - dt$psi_i) > 0.25 * dt$ci_i)
+d_both <- sum(dt$day_cred & dt$time_cred); d_neither <- sum(!dt$day_cred & !dt$time_cred)
+dayn   <- dt[day_cred & msd_day_z < 0][order(msd_day_z)][1]
+timep  <- dt[time_cred & msd_time_z > 0][order(-msd_time_z)][1]
+cdet   <- fb$comm_det; cint <- fb$comm_ms
+gt <- function(tb, p, f) tb[param == p, get(f)]
+# How concentrated is obs_time_z? Its leverage on a linear term goes as the square,
+# so this is the share of its sum of squares held by the few most extreme visits.
+vz <- unique(d[, .(unit, occasion, tz = obs_time_z)])
+tz_ss <- sum(vz$tz^2)
+tz_sq <- sort(vz$tz^2, decreasing = TRUE)
+tz_top1 <- 100 * tz_sq[1] / tz_ss; tz_top3 <- 100 * sum(tz_sq[1:3]) / tz_ss
+dz_top3 <- 100 * sum(sort(unique(d[, .(unit, occasion, dz = obs_day_z)])$dz^2,
+                          decreasing = TRUE)[1:3]) / sum(unique(d[, .(unit, occasion, dz = obs_day_z)])$dz^2)
+# the sensitivity fit: same model without the off-schedule visits
+sv <- fb$sens
+cred <- function(lo, hi) lo > 0 | hi < 0
+sens_tab <- rbindlist(lapply(fb$det_covs, function(cv) {
+  f <- cred(dt[[paste0("msd_", cv, "_lo")]], dt[[paste0("msd_", cv, "_hi")]])
+  g <- cred(dt[[paste0("mss_", cv, "_lo")]], dt[[paste0("mss_", cv, "_hi")]])
+  data.table(covariate = cv, credible = sum(f), still_credible = sum(f & g),
+             credible_in_sensitivity = sum(g),
+             slope_correlation = cor(dt[[paste0("msd_", cv)]], dt[[paste0("mss_", cv)]]))
+}))
+dt[, psi_s := plogis(mss_beta)]
+sr_psi <- cor(dt$psi_d, dt$psi_s)
+```
+
+Both fits converged without needing longer chains (largest $\hat R$
+`r fmt(max(fb$conv[grepl("_det$", model), max_rhat]))`), in about
+`r fmt(sum(fb$conv[grepl("_det$", model), minutes]), 1)` minutes together.
+
+**At the level of the community, neither covariate matters.** The community
+slope on day of season is `r fmt(gt(cdet, "mu_day_z", "med"))`
+[`r fmt(gt(cdet, "mu_day_z", "lo"))`, `r fmt(gt(cdet, "mu_day_z", "hi"))`] and on
+time of day `r fmt(gt(cdet, "mu_time_z", "med"))`
+[`r fmt(gt(cdet, "mu_time_z", "lo"))`, `r fmt(gt(cdet, "mu_time_z", "hi"))`]:
+both intervals contain zero, so there is no direction the average bird in this
+community moves in.
+
+**Individual species are a different story.** Of the `r nrow(dt)` species,
+`r sum(dt$day_cred)` have a day-of-season slope whose 95% interval excludes
+zero and `r sum(dt$time_cred)` a time-of-day slope that does;
+`r d_both` species respond to both and `r d_neither` to neither. The
+directions disagree, which is exactly why the community averages sit at zero:
+`r sum(dt$day_cred & dt$msd_day_z < 0)` of the credible day slopes are negative
+and `r sum(dt$day_cred & dt$msd_day_z > 0)` positive, and for time of day
+`r sum(dt$time_cred & dt$msd_time_z > 0)` are positive against
+`r sum(dt$time_cred & dt$msd_time_z < 0)` negative. The
+`r dayn$vernacularName` gets harder to hear as the season runs on
+(`r fmt(dayn$msd_day_z)` per standard deviation of day). A model with one $p_k$
+per species was averaging over all of this.
+
+The time-of-day slopes need reading with more care than the day-of-season ones,
+because of what the covariate is. `obs_time_z` is the authors' standardised
+*clock* time of each recording, on a linear scale: most visits sit in a narrow
+band, and a few off-schedule recordings sit far out in the upper tail. Leverage
+on a linear term goes as the square of the covariate, so those few visits carry
+most of it — the three most extreme of the `r nrow(vz)` visits hold
+`r sprintf("%.0f%%", tz_top3)` of the covariate's sum of squares, and the single
+most extreme holds `r sprintf("%.0f%%", tz_top1)`, against
+`r sprintf("%.0f%%", dz_top3)` for the top three of `obs_day_z`. A linear term
+also cannot know that clock time is circular, so a recording late at night and
+one shortly after midnight sit at opposite ends of the scale while being close
+together in the night. Rebuilding the covariate as something circular, or as
+time relative to sunrise, would need the raw times, and the deposit ships only
+the standardised values.
+
+**And almost none of it reaches the conclusions.** Occupancy estimates are
+nearly unchanged: the correlation between the two versions is
+`r fmt(dr_psi, 3)`, the average species moves by
+`r fmt(mean(abs(dt$psi_d - dt$psi_i)), 3)` in occupancy, and only `r d_move` of
+`r nrow(dt)` species move by more than a quarter of their own credible
+interval's width. The site loadings are steadier still, correlating at
+`r fmt(dr_lam, 3)`. The largest occupancy shift belongs to the
+`r d_top$vernacularName`, from `r fmt(d_top$psi_i)` to `r fmt(d_top$psi_d)`, and
+the largest loading shift `r if (identical(d_top$taxon, l_top$taxon)) "to the same species" else paste("to the", l_top$vernacularName)`,
+from `r fmt(l_top$lf_lambda)` to `r fmt(l_top$lfd_lambda)`. That is the pattern: what
+moves is the species with little of its own data — the
+`r d_top$vernacularName` was recorded at `r d_top$n_sites_detected` of
+`r fb$n_sites` locations — where the detections were too few to pin down
+occupancy and detection separately in the first place.
+
+```{r}
+#| label: fig-det-compare
+#| fig-width: 8
+#| fig-height: 4.2
+#| fig-cap: "Each species' occupancy (left) and site loading (right) with detection held constant, against the same quantity when detection may depend on the day of the season and the time of day. The grey line is equality. Hover for the species."
+cmp <- rbind(
+  dt[, .(quantity = "Occupancy", x = psi_i, y = psi_d, taxon, vernacularName, n_sites_detected)],
+  dt[, .(quantity = "Site loading", x = lf_lambda, y = lfd_lambda, taxon, vernacularName, n_sites_detected)])
+cmp[, label := sprintf("%s (%s)\ndetected at %d locations\ndetection constant: %.2f\nday + time: %.2f",
+                       vernacularName, taxon, n_sites_detected, x, y)]
+g <- ggplot(cmp, aes(x, y, text = label)) +
+  geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
+  geom_point(colour = "#1e8a5a", size = 2.2, alpha = 0.85) +
+  facet_wrap(~ quantity, scales = "free") +
+  labs(x = "Detection constant per species", y = "Detection ~ day + time")
+plotly::ggplotly(g, tooltip = "text", width = 760, height = 410) |>
+  plotly::config(displayModeBar = FALSE)
+```
+
+**Do the off-schedule visits carry the result?** Since so much of
+`obs_time_z` sits in a few visits, the detection fit is worth
+repeating without them. The sensitivity fit sets `y` and both covariates to
+missing for every visit with a standardised time beyond
+$\pm`r sv$max_z`$ — `r sv$n_visits_dropped` of `r sv$n_visits_total` visits —
+and refits. spOccupancy will not take a location whose history is then entirely
+missing, so `r sv$n_sites_dropped` locations
+(`r paste(sv$sites_dropped, collapse = ", ")`) drop out with them, leaving
+`r sv$n_sites_kept`; the comparison below is on the species parameters, which
+are community-level rather than per location.
+
+```{r}
+#| label: det-sens
+sens_tab
+```
+
+The effects hold up. Every one of the `r sens_tab[covariate == "day_z", credible]`
+credible day-of-season slopes and all
+`r sens_tab[covariate == "time_z", credible]` credible time-of-day slopes are
+still credible without those visits, the slopes themselves correlating at
+`r fmt(sens_tab[covariate == "day_z", slope_correlation], 3)` and
+`r fmt(sens_tab[covariate == "time_z", slope_correlation], 3)`, and the
+occupancy estimates are untouched (correlation `r fmt(sr_psi, 4)`, largest
+change `r fmt(max(abs(dt$psi_d - dt$psi_s)), 3)`). The fit converged on the
+first attempt as well ($\hat R$ `r fmt(sv$max_rhat)`). So the concentration of
+leverage is real arithmetic but not, here, what is producing the per-species
+effects: they come from the `r sv$n_visits_total - sv$n_visits_dropped`
+ordinary dawn visits. What the sensitivity fit cannot repair is the shape of the
+scale itself, which is why the slopes are better read as "detection is not
+constant through the morning or the season" than as a number of logits per hour.
+
+What does change is the meaning of the detection intercept, and it is worth
+reading carefully. With covariates, $\alpha_k$ is detection for species $k$ at
+an *average* day and time rather than averaged over the visits that happened, so
+the community's median per-visit detection moves from
+`r fmt(plogis(gt(cint, "mu_p", "med")))` to
+`r fmt(plogis(gt(cdet, "mu_p", "med")))` and the spread between species widens
+(`tau2_p` from `r fmt(gt(cint, "tau2_p", "med"))` to
+`r fmt(gt(cdet, "tau2_p", "med"))`). The per-species detection probabilities
+still correlate at `r fmt(dr_p, 3)`, so the ordering of easy and hard species
+survives; it is the baseline that has shifted under them.
+
+The honest summary is that this table had the covariates to test the worry
+raised above, and the worry does not bite here. Detection really does depend on
+when you listen, for `r sum(dt$day_cred | dt$time_cred)` of the `r nrow(dt)`
+species, and that survives dropping the off-schedule visits, but the effects
+point in enough different directions and are small enough that the occupancy
+estimates and the habitat gradient come out the same. That is a result about this
+table, not a general one: it holds because most locations were recorded
+`r names(sort(table(fb$site$visits), decreasing = TRUE))[1]` times within a
+single season, so there was never much variation in day or time to exploit.
 
 ## A sparse community: the Monongahela cameras
 
@@ -573,10 +758,13 @@ only the species side is.
   `eco_traits()`) explain why species differ instead of only how much. Site
   covariates on $\psi$ explain $w_i$ instead of discovering it.
 
-The fits here are deliberately bare: intercept-only detection, no spatial
+The fits here are close to bare. Detection depends on the day of the season and
+the time of day on the boreal table and is intercept-only on the cameras, which
+carry no comparable per-visit covariate; beyond that there is no spatial
 structure (the boreal locations come in transects of three, recorded in
-`cluster_id`, and neighbouring locations share birds), and default priors.
-Each is a line in the spOccupancy call.
+`cluster_id`, and neighbouring locations share birds), nothing explaining why
+species differ rather than how much (traits on $\beta_k$), and no prior other
+than the default. Each is a line in the spOccupancy call.
 
 ## Reproducibility
 
