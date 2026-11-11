@@ -63,7 +63,7 @@ META = Dataset("eco_meta", "241c")
 
 #: Where NEW core tables go, overriding the fill rule while set (a shard
 #: name). None: the oldest shard under SWITCH_AT.
-CORE_DEFAULT: str | None = None
+CORE_DEFAULT: str | None = "eco_2"   # eco reached 951 tables and was published 2026-11-11 (Ben): it takes no new tables
 
 TABLE_CAP = 1000        # Redivis' limit; an upload past it is refused
 SWITCH_AT = 950         # a shard at or above this takes no new tables
