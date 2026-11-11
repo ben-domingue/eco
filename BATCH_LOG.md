@@ -2487,3 +2487,33 @@ ln 84), said in notes.
 Strained the standard: E10 has no provenance field for author-supplied files; the statement is in `notes` and
 `notShipped$author_corrections`. Questions for the author: what FR11-FR23 are (not shipped), and whether ARUhours is
 ln(hours).
+
+## Batch 49 — 2026-11-11 (one hold cleared by an author reply: Tasmanian giant freshwater crayfish eDNA)
+
+Built in `~/eco-b49` (branch `batch-49`, from main at c71ce71), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| trujillo_2020_tasmania_crayfish_edna | eDNA multi-scale (stream > water sample > qPCR replicate) | Zenodo doi:10.5281/zenodo.4692079 (CC BY 4.0) + author-supplied sampling metadata | 144 | 6 streams (`cluster_id`), 4 samples each, 6 wells; 53 positive wells; deposited_matrix; below the sample floor (24 units) |
+
+**Crayfish.** Held 2026-11-02 because the sample names could not be tied to sites and field samples. A. Trujillo-Gonzalez
+replied 2026-11-11: CONCATENATED column A is site|replicate, one row per field sample collected, and he sent the
+project's sampling metadata (coordinates, dates, positive/negative site labels). His copy of the amplification workbook
+is identical to the deposit; the sampling metadata is author-supplied (`.cache/author_supplied/trujillo_crayfish/`,
+md5 asserted, not in git). Ben supplied the paper (doi:10.1002/edn3.204), which the script reads against.
+
+Found in the deposit: run sheet `2020-05-01_2` is a second copy of run `2020-04-30` (same run end time, all 96 wells
+identical), and CONCATENATED stacks it too, so a naive read counts each field well of that run twice (9 wells per sample
+instead of 6). Counted once, the per-site positives match the paper exactly (Lowries Creek 4/24, Minnow 3/24, none at
+the negative site). `y` is the authors' call (CT <= 55, which here equals any amplification); `y_raw` the CT.
+
+Field controls: only two were run. `FC SA` (Site A, the metadata's code) amplified in 2 of 6 wells and `FC NEG` in 1 of
+6; `FC NEG` is read as the negative site's (UBR) control, an inference from the label. `obs_blank_positive = 1` on both
+sites' rows; at the other four sites 0 means not tested (said in notes). Captive validation samples (lobster pond tanks,
+Huon trough) are not shipped. IUCN EN: coordinates coarsened, stream names withheld (E7.4).
+
+Open questions for the author (to go with Ben's reply): which four of the eight bottles per site were amplified (or
+were they pooled); whether `FC NEG` is the UBR field control; whether Site 1P and Site A really share coordinates (identical
+to 1e-6 degree in the metadata, probably a copy error; the same 0.1-degree cell either way). Strained the standard
+again: E10 has no provenance field for author-supplied files (as in batch 48); `obs_blank_positive` cannot say "blank not
+tested".

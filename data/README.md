@@ -446,6 +446,7 @@ CSVs with `upload/red_up_eco.py`.
 | `silva_2018_scotland_badger_occ.R` | camera-trap occupancy, weekly | Dryad | CC0 |
 | `jenkins_2019_olympic_fisher_occ.R` | camera + hair-snare occupancy, hexagon x 14-day interval | ScienceBase | US PD |
 | `barry_2025_sierra_owls_comm.R` | acoustic ARU occupancy, two units (ARU community; cell GHO), two tables, author-corrected files | Dryad | CC0 |
+| `trujillo_2020_tasmania_crayfish_edna.R` | eDNA multi-scale, stream > water sample > qPCR replicate, author-supplied site metadata | Zenodo | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

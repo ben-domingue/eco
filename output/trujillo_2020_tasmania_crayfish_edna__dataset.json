@@ -1,0 +1,73 @@
+{
+  "table": "trujillo_2020_tasmania_crayfish_edna",
+  "title": "Giant freshwater crayfish eDNA: six qPCR replicates of four water samples at each of six northern Tasmanian streams, November 2019",
+  "creator": "Trujillo, Alejandro; Hinlo, Rheyda; Godwin, Sam; Barmuta, Leon A.; Watson, Anne; Koch, Amy; Turner, Perpetua; Gleeson, Dianne",
+  "pubDate": "2020",
+  "doi": "10.5281/zenodo.4692079",
+  "sourceURL": "https://doi.org/10.5281/zenodo.4692079",
+  "citation": "Trujillo, A., Hinlo, R., Godwin, S., Barmuta, L. A., Watson, A., Koch, A., Turner, P., & Gleeson, D. (2020). Environmental DNA detection of the giant freshwater crayfish (Astacopsis gouldi) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.4692079",
+  "paperDOI": "10.1002/edn3.204",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "note": "Zenodo record licence. Site coordinates and dates come from the authors' sampling metadata, sent by A. Trujillo-Gonzalez on 2026-11-11 for this purpose; not in the public record."
+  },
+  "abstract": "Water samples from five northern Tasmanian streams with known populations of the endangered giant freshwater crayfish and one stream with none known, tested with a species-specific TaqMan qPCR assay. Four 1 L samples per stream were amplified in three wells in each of two runs (six qPCR replicates). The authors called a well positive if it crossed the run threshold with CT <= 55 and confirmed positives by Sanger sequencing. Detections came from all five known-population streams and none from the sixth. cluster_id = stream site, unit = water sample, occasion = qPCR replicate.",
+  "samplingProtocol": "Environmental DNA: eight 1 L surface water samples and one 1 L field control per stream, about 50 cm from opposing banks along about 100 m, upstream direction; filtered within 24 h on 1.2 um cellulose nitrate (two or three filters per sample, an equipment blank before each), DNeasy extraction, inhibition screening (neat, 1:10, spiked); TaqMan assay 269F/489R/292P (COI, 219 bp), 55 cycles; three wells per sample per run, two runs. Four samples per stream appear in the amplification data.",
+  "samplingProtocolCode": "eDNA",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = six qPCR replicates of one water sample's extract; samples nest in stream sites (cluster_id); one visit per site",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "surveyEvidence": "deposited_matrix",
+  "temporalCoverage": "2019-11-07/2019-11-08",
+  "geographicCoverage": "Six streams in northern Tasmania, Australia (about 40.9 to 41.5 S, 146 to 148 E); coordinates coarsened to 0.1 degree",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "Site coordinates (to 1e-5 to 1e-6 degree in the authors' sampling metadata) coarsened to 0.1 degree with coarsen_coords(): Astacopsis gouldi is IUCN EN in its native range (northern Tasmania). Stream names not shipped (E7.4); cluster_id is the deposit's site code.",
+    "rule": "taxon"
+  },
+  "crs": "EPSG:4326",
+  "designNote": "Experimental list of E9 (multi-scale / eDNA): cluster_id = stream site, unit = water sample, occasion = qPCR replicate.",
+  "notShipped": {
+    "captive_samples": "Lobster Ponds Haven tanks (Agro, Bazza, Danny, Max) and the Huon Aquaculture trough (three samples), with their neat and 1:10 re-runs of 2020-05-26: captive animals of known presence (the paper's assay validation), not a survey of a wild population",
+    "duplicate_run_sheet": "sheet 2020-05-01_2_crayfish eDNA, a second copy of run 2020-04-30 (same run end time and all 96 wells identical); CONCATENATED stacks it too, so it counts every field well of that run twice",
+    "lab_controls": "no-template controls, positive controls (POS 269F, pos) and the standard curve",
+    "site_names": "stream names (E7.4: coordinates are coarsened for an endangered species)",
+    "sample_volumes_and_equipment_blanks": "per-sample filter volumes and equipment blanks in the authors' sampling metadata: it lists eight samples per site, numbered 1-8, and does not say which four were amplified",
+    "ct_summaries": "Ct Mean, Ct SD and copy number per sample (summaries of the shipped CTs; copy number is a standard-curve estimate)",
+    "inhibition_tests": "Inhibition tests metadata.xlsx: neat / 1:10 / spiked inhibition screening of each extract (quality control)"
+  },
+  "notes": "The authors' detection rule (crossed the run threshold, CT <= 55) is y; every CT in the field wells is <= 55, so it equals any amplification; y_raw is the CT as deposited. Many positive wells have CT above the paper's LOD (CT 41); positives were confirmed by Sanger sequencing. Per-site positives out of 24 wells match the paper (Lowries Creek 4/24, Minnow 3/24, none at the negative site). The amplification data has four samples per site and the sampling metadata eight; which four were amplified is not stated. obs_blank_positive: only two field controls were run. 'FC SA' (Site A, the metadata's code) amplified in 2 of 6 wells (CT 37.2, 37.7). 'FC NEG' amplified in 1 of 6 wells (CT 38.6); it is read as the field control of the negative site (UBR), an inference from its label. Field controls of the other four sites were not run, so 0 there means not tested, not clean. Site coordinates and collection dates are from the authors' sampling metadata (sent 2026-11-11, not in the public record). In that metadata Site 1P (Lowries Creek) and Site A (Great Forester River) have identical coordinates to 1e-6 degree, probably one copied from the other; both are shipped as given, and at 0.1 degree they fall in the same cell as Site D.",
+  "summary": {
+    "n_rows": 144,
+    "n_units": 24,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 6,
+    "n_surveys": 144,
+    "y_values": "0,1",
+    "prop_zero": 0.632,
+    "n_traps": 1,
+    "n_zero": 91,
+    "n_positive": 53,
+    "n_units_detected": 16,
+    "max_y": 1
+  },
+  "sampleFloor": "below (24 units < 30)",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_known_population", "unit_decimalLatitude", "unit_decimalLongitude", "obs_qpcr_run", "obs_blank_positive"],
+  "coreMd5": "c7bfff4922564aba8ceadfb46ec76501",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "8a75da973123fbc2b56b1e86c9b80531"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/trujillo_2020_tasmania_crayfish_edna.R",
+  "buildDate": "2026-11-11"
+}
