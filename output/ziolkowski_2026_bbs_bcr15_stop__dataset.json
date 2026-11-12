@@ -23,16 +23,17 @@
   "closureNote": "period = year (index year - 1965); occasion = stop number along the route (1 to the last stop with evidence). Stops are sequential spatial points about 800 m apart along a route of about 39.2 km, counted once, in one morning of about five hours, by one moving observer: they are not temporal repeats at one place, so no closure of the kind that N-mixture or occupancy models assume holds across stops. A bird can be counted at two stops. On spatial subunits as replicates see Kendall and White (2009, doi:10.1111/j.1365-2664.2009.01732.x); on N-mixture reliability, Barker et al. (2018, doi:10.1111/biom.12734) and Link et al. (2018, doi:10.1002/ecy.2362). Across years a route's rows are not a closed population.",
   "surveyEvidenceNote": "Weather.csv lists every run but no file says how many stops a run sampled. Evidence that a stop was sampled: a bird record in 50-StopData or Migrants, or Car > 0 or Noise > 0 in VehicleData. K = the last stop with evidence; stops 1 to K are surveys, and a zero at an empty stop before K is fair because the observer went on past it. Stops after K have no row and their number is in notShipped. A mid-route skip inside a run cannot be seen in this deposit, so a stop zero there could be unsupported; nationally obs_quality_current = 0 marks more than 85% of runs from 1997 with K below 45. Pool: every taxon recorded in this table's runs, in the breeding or the non-breeder stop files.",
   "temporalCoverage": "2009-05-26/2025-07-12",
-  "geographicCoverage": "Bird Conservation Region 15 (Sierra Nevada; BCR code and name as in this release's Routes.csv and metadata), roadside routes in California; route start points as published",
+  "geographicCoverage": "Bird Conservation Region 15 (Sierra Nevada; BCR code and name as in this release's Routes.csv and metadata), roadside routes in California; route start points coarsened to 0.1 degree (E7)",
   "crs": "EPSG:4269 (NAD83)",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "route start points as USGS publishes them; agency coordinates are kept as published under E7"
+    "value": true,
+    "method": "coarsen_coords(): USGS's route start points in __units snapped to their 0.1-degree cell centre, unit_coordinateUncertaintyInMeters the route length (39.2 km) plus the cell half-diagonal, and unit_route_name (a place name) not shipped, because taxa IUCN CR/EN/VU in their native range are in the table (Centrocercus urophasianus (VU), Gymnorhinus cyanocephalus (VU), Coccothraustes vespertinus (VU), Agelaius tricolor (EN); E7, ruling on the publisher 2026-11-06, which withdrew the agency exception this table was first built under). Route codes (unit) are USGS's own and kept. ziolkowski_2026_bbs_bcr15_exact_stop keeps the other taxa at USGS's precision."
   },
   "covariateNote": "obs_nonbreeder_count: the recorded non-breeder count at the stop, 0 where none. obs_cars: the vehicle count at the stop where RecordedCar = 1 (the metadata: recorded at all sampled stops) or Car > 0, else NA, because the metadata makes no promise for a 0 there. obs_noise: 1 if excessive noise from sources other than passing vehicles (more than 45 seconds, interfering with hearing birds) was recorded at the stop, 0 if not, NA where the run has no VehicleData row. Codes, from the release metadata: wind is Beaufort 0 to 8; sky is 0 clear or few clouds, 1 partly cloudy or variable, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers; obs_assistant is 1 if an assistant recorded the data; obs_quality_current is 1 if the run met all quality criteria (manual inspection before 1997, by rule from 1997); minutes are after midnight; wind or sky code 9 (no data) is NA.",
   "designNote": "One row per run, stop and taxon; occasion = stop. Stops past the last stop with evidence of sampling have no row.",
-  "components": ["ziolkowski_2026_bbs_count", "ziolkowski_2026_bbs_bcr15_block"],
+  "components": ["ziolkowski_2026_bbs_count", "ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_exact_stop"],
   "notShipped": {
+    "unit_route_name": "route names (place names; E7 scope, 4): in ziolkowski_2026_bbs_bcr15_exact_stop",
     "runs_outside_the_design": "728 of the 1095 runs in BCR 15 are outside this table: 728 before 2009 and 0 from 2009 that are not RPID 101 on a Detail 1 or 2 route; they are in the national count table",
     "stops_after_last_stop_with_evidence": "111 stops of this table's runs, past K",
     "stop_rows_before_2009": "stop-level rows of BCR 15 before 2009 are in the deposit and not shipped, for size; the block table covers all years",
@@ -57,6 +58,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_rpid", "obs_run_type", "obs_quality_current", "obs_start_temp", "obs_end_temp", "obs_temp_scale", "obs_start_wind", "obs_end_wind", "obs_start_sky", "obs_end_sky", "obs_start_minute", "obs_end_minute", "obs_assistant", "obs_cars", "obs_noise", "obs_nonbreeder_count"],
+  "coreMd5": "269809aae2041062d026513cc0e4d282",
   "sideTables": {
     "periods": {
       "rows": 17,
@@ -65,17 +67,17 @@
     },
     "taxa": {
       "rows": 217,
-      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_aou", "taxonRemarks", "taxon_gbifRank", "taxon_first_year", "taxon_last_year", "taxon_nonbreeder_share_1999on"],
-      "md5": "28b2d918347ae1addb9af1c2788bc1d4"
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_aou", "taxonRemarks", "taxon_gbifRank", "taxon_first_year", "taxon_last_year", "taxon_nonbreeder_share_1999on", "taxon_iucnCategory"],
+      "md5": "be35179058aaaa613f2699bbfd6543a3"
     },
     "units": {
       "rows": 34,
-      "columns": ["unit", "unit_route_name", "unit_country_num", "unit_state_num", "unit_route", "unit_stratum", "unit_bcr", "unit_route_type_id", "unit_route_type_detail_id", "unit_active", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
-      "md5": "1524b0fe1aa88becefa98a3597ed1f01"
+      "columns": ["unit", "unit_country_num", "unit_state_num", "unit_route", "unit_stratum", "unit_bcr", "unit_route_type_id", "unit_route_type_detail_id", "unit_active", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "bcbcd61007b9b46d00f4ee106d42b2a1"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ziolkowski_2026_bbs.R",
-  "buildDate": "2026-11-04"
+  "buildDate": "2026-11-11"
 }

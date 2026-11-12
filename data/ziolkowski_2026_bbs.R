@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# Tables: 3 from one script and one deposit (`Rscript data/ziolkowski_2026_bbs.R`).
+# Tables: 6 from one script and one deposit (3 below, each with an _exact sibling: see Coordinates) (`Rscript data/ziolkowski_2026_bbs.R`).
 #     ziolkowski_2026_bbs_count          every run of the release, 1966-2025, x all 764 taxa: 110,127,544 rows, stored as
 #                                        period parts output/ziolkowski_2026_bbs_count.parts/part-NN.csv (standard E4)
 #     ziolkowski_2026_bbs_bcr15_block    BCR 15, RPID 101, 50-stop routes, five 10-stop blocks per run, 1968-2025
@@ -74,7 +74,11 @@
 #   impossible values before 1997); block and stop tables outside BCR 15 and stop rows of BCR 15 before 2009 (size: 17.6 GB and 112 GB nationally); the 90
 #   MigrantSummary records without a Migrants twin are in the count and block tables and cannot enter the stop table (all are
 #   from before 1997); the experimental distance bands and one-minute periods of RPID 501/502 (pooled in the deposit).
-# Coordinates: USGS-published route start points kept as published (E7 agency rule); not bird locations.
+# Coordinates (E7; rebuilt 2026-11-12 under the ruling on the publisher of 2026-11-06, which withdrew the agency exception
+#   this script was first built under): 40 taxa are IUCN CR/EN/VU (asserted below), so each table ships twice. Under its
+#   own name with route start points coarsened to the 0.1-degree cell centre (uncertainty = route length + cell
+#   half-diagonal) and the route names (place names) dropped; and as an _exact sibling (ziolkowski_2026_bbs_exact_count,
+#   _bcr15_exact_block, _bcr15_exact_stop) without the flagged taxa, at USGS's coordinates and with route names.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 SCRIPT <- "data/ziolkowski_2026_bbs.R"
 CACHE <- "ziolkowski_2026_bbs"
@@ -401,11 +405,13 @@ build_master_taxa <- function(d) {
   # higher rank, carry no key, and taxonRemarks says why
   pre <- vapply(d$lookupName, function(nm) gbif_taxon(nm)$matchType %||% NA_character_, "")
   stopifnot(!any(pre == "ERROR"))
+  pre_rank <- vapply(d$lookupName, function(nm) tolower(gbif_taxon(nm)$rank %||% NA_character_), "")
   d[, taxonRemarks := fcase(
        taxonRank == "species complex", sprintf("survey category for a bird identified only to this group (%s); not one taxon of the GBIF backbone, so no key", English_Common_Name),
        taxonRank == "hybrid", sprintf("hybrid (%s); the GBIF backbone holds no key for it", English_Common_Name),
        taxonRank == "functional group", sprintf("survey category (%s), not a taxon of the GBIF backbone, so no key", English_Common_Name),
        taxonRank %in% c("species", "genus", "family") & pre == "HIGHERRANK", sprintf("GBIF matches %s only at a higher rank, so no key at this rank", lookupName),
+       taxonRank == "subspecies" & pre_rank != "subspecies", sprintf("the GBIF backbone holds no subspecies key for %s; its parent species' key is not this taxon's (make_taxa() refuses a match above the row's rank), so no key", scientificName),
        default = NA_character_)]
   taxa <- make_taxa(d$taxon, d$scientificName, vernacularName = d$English_Common_Name, taxonRank = d$taxonRank,
                     lookupName = d$lookupName, taxon_aou = d$AOU, taxonRemarks = d$taxonRemarks,
@@ -438,7 +444,28 @@ chk(sum(bsp$l < 1997L) == 11L && sum(bsp$f >= 1997L) == 71L && nrow(bsp) == 748L
 chk(all(tx_year$taxon_first_year[match(c("00010", "00011"), AOU)] == 1986L), "Western and Clark's Grebe have no record before 1986")
 chk(sum(tx_year$taxon_last_year < 1997L) == 10L && sum(tx_year$taxon_first_year >= 1997L) == 86L, "breeding or non-breeder files: 10 taxa only before 1997, 86 only from 1997")
 rm(rec)
-say("master taxa ready")
+# E7 (ruling on the publisher, 2026-11-06, which withdrew the agency exception this script was first built under): taxa IUCN
+# CR/EN/VU (GBIF's IUCN record, iucn_category()) are flagged, so every table ships with coarsened route start points and an
+# _exact sibling without the flagged taxa at USGS's precision (E7 scope, 3). Two records fail iucn_category()'s name check
+# only through spelling or genus (Pica nutalli as assessed; GBIF's species name Oceanodroma leucorhoa for Hydrobates
+# leucorhous), so their category is read from the record and asserted. Records identified only to a higher rank (species
+# complexes, genera) carry no category and stay in both tables, as in the NEON tables. Every flagged taxon has native range
+# in the BBS area; Red-crowned Parrot (EN) is native to the lower Rio Grande and kept flagged.
+MASTER[, taxon_iucnCategory := iucn_category(taxonID, scientificName)]
+IUCN_VARIANT <- c(A04760 = "Pica nutalli", A01060 = "Hydrobates leucorhous")
+for (tx in names(IUCN_VARIANT)) {
+  key <- sub(".*/", "", MASTER[taxon == tx, taxonID])
+  r <- fromJSON(file.path(GBIF_DIR, paste0("iucn_", key, ".json")))
+  chk(is.na(MASTER[taxon == tx, taxon_iucnCategory]) && startsWith(r$scientificName, IUCN_VARIANT[[tx]]) && r$code == "VU",
+      sprintf("%s: the IUCN record is %s, VU", tx, IUCN_VARIANT[[tx]]))
+  MASTER[taxon == tx, taxon_iucnCategory := r$code]
+}
+FLAG <- MASTER[taxon_iucnCategory %in% c("CR", "EN", "VU"), taxon]
+chk(length(FLAG) == 40L && identical(vcount(MASTER[taxon %in% FLAG, taxon_iucnCategory]), c(CR = 1L, EN = 10L, VU = 29L)),
+    "40 taxa IUCN CR/EN/VU: 1 CR (California Condor), 10 EN, 29 VU")
+FLAG_IDX <- match(FLAG, TAXON)
+flag_txt <- function(idx) { f <- MASTER[taxon %in% TAXON[intersect(idx, FLAG_IDX)]]; paste(sprintf("%s (%s)", f$scientificName, f$taxon_iucnCategory), collapse = ", ") }
+say("master taxa ready; %d taxa IUCN CR/EN/VU", length(FLAG))
 
 # ---- shared text ------------------------------------------------------------------------------------
 CITATION <- paste0("Ziolkowski, D.J., Lutmerding, M., Skalos, S.M., English, W.B., and Hudson, M-A.R., 2026, North American Breeding Bird Survey Dataset 1966 - 2025: ",
@@ -477,12 +504,28 @@ run_level <- function(runs) {   # the run-level columns of a table, one row per 
             obs_start_temp = start_temp, obs_end_temp = end_temp, obs_temp_scale = temp_scale, obs_start_wind = start_wind, obs_end_wind = end_wind,
             obs_start_sky = start_sky, obs_end_sky = end_sky, obs_start_minute = start_minute, obs_end_minute = end_minute, obs_assistant = assistant)]
 }
-units_table <- function(runs) {
+ROUTE_M <- 39200L   # route length (XML, asserted): a bird is anywhere along the route, not at its start point
+units_table <- function(runs, exact) {
   u <- RO[ckey %in% W$ckey[runs]]; setorder(u, ckey)
-  data.table(unit = u$ckey, unit_route_name = u$route_name, unit_country_num = u$country_num, unit_state_num = u$state_num, unit_route = u$route,
-             unit_stratum = u$stratum, unit_bcr = u$bcr, unit_route_type_id = u$route_type_id, unit_route_type_detail_id = u$detail, unit_active = u$active,
-             unit_decimalLatitude = u$lat, unit_decimalLongitude = u$lon, unit_coordinateUncertaintyInMeters = 39200L)
+  d <- data.table(unit = u$ckey, unit_route_name = u$route_name, unit_country_num = u$country_num, unit_state_num = u$state_num, unit_route = u$route,
+                  unit_stratum = u$stratum, unit_bcr = u$bcr, unit_route_type_id = u$route_type_id, unit_route_type_detail_id = u$detail, unit_active = u$active,
+                  unit_decimalLatitude = u$lat, unit_decimalLongitude = u$lon, unit_coordinateUncertaintyInMeters = ROUTE_M)
+  if (exact) return(d)
+  # E7: start point to its 0.1-degree cell centre; the uncertainty adds the cell half-diagonal to the route length, the
+  # farthest a counted bird can be from the cell centre. The route name names a place (E7 scope, 4): not shipped.
+  cc <- coarsen_coords(d$unit_decimalLatitude, d$unit_decimalLongitude, 0.1)
+  d[, `:=`(unit_decimalLatitude = cc$lat, unit_decimalLongitude = cc$lon, unit_coordinateUncertaintyInMeters = as.integer(ROUTE_M + cc$uncertainty_m),
+           unit_route_name = NULL)]
+  chk(all(abs(d$unit_decimalLatitude * 100 - round(d$unit_decimalLatitude * 100)) < 1e-6) && !"unit_route_name" %in% names(d), "coarsened __units: 0.1-degree cell centres, no route name")
+  d
 }
+exact_name <- function(name) sub("_(count|block|stop)$", "_exact_\\1", name)
+COARSE_METHOD <- function(idx, sib) sprintf(paste0(
+  "coarsen_coords(): USGS's route start points in __units snapped to their 0.1-degree cell centre, unit_coordinateUncertaintyInMeters the route length (39.2 km) plus the cell half-diagonal, ",
+  "and unit_route_name (a place name) not shipped, because taxa IUCN CR/EN/VU in their native range are in the table (%s; E7, ruling on the publisher 2026-11-06, which withdrew ",
+  "the agency exception this table was first built under). Route codes (unit) are USGS's own and kept. %s keeps the other taxa at USGS's precision."), flag_txt(idx), sib)
+EXACT_METHOD <- function(idx, sib) sprintf("Route start points as USGS publishes them (NAD83), in __units. The IUCN-threatened taxa (%s) are not in this table (E7 scope, 3); %s has them, with coordinates coarsened. Records identified only to a higher rank stay in both tables.",
+                                           flag_txt(idx), sib)
 periods_table <- function(runs, block = FALSE) {
   yrs <- min(W$year[runs]):max(W$year[runs])
   p <- data.table(period = yrs - 1965L, year = yrs,
@@ -505,8 +548,9 @@ dense_long <- function(lvl, tx, yv, nbv) {   # lvl: one row per survey, tx: taxo
 states_of <- function(runs) sort(unique(RO$state[match(W$ckey[runs], RO$ckey)]))
 countries_of <- function(runs) paste(ISO3[as.character(sort(unique(W$cn[runs])))], collapse = ",")
 bcr_label <- function(b) sprintf("BCR %d, %s", b, BCR_NAMES[b])
-cover <- function(b, runs) sprintf("Bird Conservation Region %d (%s; BCR code and name as in this release's Routes.csv and metadata), roadside routes in %s; route start points as published",
-                                   b, BCR_NAMES[b], paste(states_of(runs), collapse = ", "))
+pts <- function(exact) if (exact) "route start points as published" else "route start points coarsened to 0.1 degree (E7)"
+cover <- function(b, runs, exact) sprintf("Bird Conservation Region %d (%s; BCR code and name as in this release's Routes.csv and metadata), roadside routes in %s; %s",
+                                   b, BCR_NAMES[b], paste(states_of(runs), collapse = ", "), pts(exact))
 nb_flag <- function(runs) if (any(W$year[runs] < 1999L)) "NA before 1999 where no non-breeder record exists, 0 from 1999 where none does" else "0 where no non-breeder record exists"
 
 NOTES_COMMON <- function(runs, extra = NULL) {
@@ -538,7 +582,7 @@ PARTS <- unname(split(ypr$year - 1965L, grp))
 chk(all(vapply(PARTS, function(pp) sum(ypr$N[match(pp + 1965L, ypr$year)]) * M_POOL, 0) <= PART_CAP), "every part holds at most 5,000,000 rows")
 ST_PER <- W$year[ST$run] - 1965L; MS_PER <- W$year[MS$run] - 1965L
 NAT_TOT <- new.env(); NAT_TOT$y <- 0; NAT_TOT$brd <- 0; NAT_TOT$rows <- 0; NAT_TOT$nz <- 0
-build_nat_part <- function(pers) {
+build_nat_part <- function(pers, exact = FALSE) {
   runs <- which((W$year - 1965L) %in% pers); n <- length(runs); m <- M_POOL
   sst <- which(ST_PER %in% pers); sms <- which(MS_PER %in% pers)
   rpos <- match(seq_len(NRUN), runs)
@@ -548,67 +592,77 @@ build_nat_part <- function(pers) {
   chk(sum(as.numeric(y)) == sum(as.numeric(ST$spp[sst])) + sum(as.numeric(MS$spp[sms])), "part: sum(y) = breeding + non-breeder SpeciesTotal")
   chk(sum(as.numeric(y) - ifelse(is.na(nbv), 0, nbv)) == sum(as.numeric(ST$spp[sst])), "part: y - obs_nonbreeder_count = published breeding total")
   nz <- sum(y > 0L); chk(nz == length(unique(c(ST$key[sst], MS$key[sms]))), "part: one non-zero row per source run x taxon")
-  NAT_TOT$y <- NAT_TOT$y + sum(as.numeric(y)); NAT_TOT$brd <- NAT_TOT$brd + sum(as.numeric(ST$spp[sst]))
-  NAT_TOT$rows <- NAT_TOT$rows + n * m; NAT_TOT$nz <- NAT_TOT$nz + nz
+  if (!exact) {
+    NAT_TOT$y <- NAT_TOT$y + sum(as.numeric(y)); NAT_TOT$brd <- NAT_TOT$brd + sum(as.numeric(ST$spp[sst]))
+    NAT_TOT$rows <- NAT_TOT$rows + n * m; NAT_TOT$nz <- NAT_TOT$nz + nz
+  }
   lvl <- run_level(runs); lvl[, obs_last_stop := W$last_stop[runs]]
   long <- dense_long(lvl, TAXON[POOL], y, nbv)
   chk(nrow(long) == n * m, "part: rows = runs x pool")
+  if (exact) { long <- long[!taxon %in% FLAG]; chk(nrow(long) == n * (m - length(FLAG)), "exact part: rows = runs x (pool - flagged)") }
   long
 }
-build_national <- function() {
-  runs <- seq_len(NRUN); n <- NRUN; m <- M_POOL
-  taxa <- MASTER[taxon %in% TAXON[POOL]]; setorder(taxa, taxon)
-  units <- units_table(runs); periods <- periods_table(runs)
+build_national <- function(exact = FALSE) {
+  name <- if (exact) exact_name(NAT) else NAT
+  pool <- if (exact) setdiff(POOL, FLAG_IDX) else POOL
+  runs <- seq_len(NRUN); n <- NRUN; m <- length(pool)
+  pool_all <- POOL
+  taxa <- MASTER[taxon %in% TAXON[pool]]; setorder(taxa, taxon)
+  units <- units_table(runs, exact); periods <- periods_table(runs)
   dates <- range(W$date); yrs <- range(W$year); nr1 <- sum(W$runtype == 1L); n_u <- uniqueN(W$unit)
   n_states <- length(states_of(runs))
   ry <- W[, .(n = .N, first101 = rpid[1] == 101L), by = .(unit, year)]   # W is sorted by occasion within a route-year
   dataset <- list(
-    title = sprintf("North American Breeding Bird Survey: run totals of %d bird taxa on %s roadside routes in the United States and Canada, %d-%d", m, nice(n_u), yrs[1], yrs[2]),
+    title = paste0(sprintf("North American Breeding Bird Survey: run totals of %d bird taxa on %s roadside routes in the United States and Canada, %d-%d", m, nice(n_u), yrs[1], yrs[2]), if (exact) " (without IUCN-threatened taxa; route start points as published)" else ""),
     creator = CREATOR, pubDate = "2026-05-28", doi = "10.5066/P144YU3S", sourceURL = "https://doi.org/10.5066/P144YU3S", citation = CITATION,
     intellectualRights = RIGHTS,
-    abstract = sprintf("The North American Breeding Bird Survey: each breeding season, mostly in June, a skilled observer drives a roadside route of about 39.2 km and counts every bird seen within 400 m or heard at 50 stops per route, one run per route and year (a route-year can have a replicate or secondary-observer run). This table holds all %s runs on %s routes in %d US states and Canadian provinces, %d-%d. One row per run and bird taxon: y is the run total over the stops (breeding-category plus non-breeder records), zero for each of the %d taxa of the survey's species list not seen on that run. The run's date, observer, weather, start and end time, the last stop with evidence of sampling and the non-breeder part of y come with it; route coordinates, stratum and Bird Conservation Region are in the __units table.",
-                       nice(n), nice(n_u), n_states, yrs[1], yrs[2], m),
+    abstract = sprintf("The North American Breeding Bird Survey: each breeding season, mostly in June, a skilled observer drives a roadside route of about 39.2 km and counts every bird seen within 400 m or heard at 50 stops per route, one run per route and year (a route-year can have a replicate or secondary-observer run). This table holds all %s runs on %s routes in %d US states and Canadian provinces, %d-%d. One row per run and bird taxon: y is the run total over the stops (breeding-category plus non-breeder records), zero for each of the %d taxa of the survey's species list%s not seen on that run. The run's date, observer, weather, start and end time, the last stop with evidence of sampling and the non-breeder part of y come with it; route coordinates, stratum and Bird Conservation Region are in the __units table.",
+                       nice(n), nice(n_u), n_states, yrs[1], yrs[2], m, if (exact) sprintf(" (all %d but the %d IUCN-threatened ones, which are in %s)", M_POOL, length(FLAG), NAT) else ""),
     samplingProtocol = "North American Breeding Bird Survey: 3-minute point counts of all birds seen within 400 m or heard at 50 stops per route, spaced about 800 m along a roadside route of about 39.2 km, once per year in the breeding season (mostly June), beginning 30 minutes before local sunrise, by one observer (an assistant may record); y is the run total over the stops.",
     samplingProtocolCode = "point_count", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
     closure = "closed", occasionKind = "time", taxonInclusion = "recorded",
     closureNote = paste(sprintf("period = year (index year - 1965); occasion = rank of the run within its route-year by date, start time and RPID. %d route-years have 2 to 4 runs (replicate, secondary-observer or experimental-protocol runs of one breeding season); every other route-year has occasion 1 only. Across years a route's rows are not a closed population, and the run is a total over its stops.", sum(ry$n > 1L)), STOP_POINTS),
-    surveyEvidenceNote = sprintf("Weather.csv lists every run (one row per run, %s), so the survey set is a sample table. Observers record every bird at every run, so every run carries every taxon recorded anywhere in the release (in the breeding States or the non-breeder MigrantSummary files, any year; all %d taxa of SpeciesList are), and y = 0 is a fair not-detected. Before 1999 the non-breeder files hold almost nothing, so a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder.", nice(n), m),
+    surveyEvidenceNote = sprintf("Weather.csv lists every run (one row per run, %s), so the survey set is a sample table. Observers record every bird at every run, so every run carries every taxon recorded anywhere in the release (in the breeding States or the non-breeder MigrantSummary files, any year; all %d taxa of SpeciesList are%s), and y = 0 is a fair not-detected. Before 1999 the non-breeder files hold almost nothing, so a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder.", nice(n), M_POOL, if (exact) sprintf("; this table omits the %d IUCN-threatened taxa", length(FLAG)) else ""),
     temporalCoverage = sprintf("%s/%s", dates[1], dates[2]),
-    geographicCoverage = sprintf("United States and Canada: roadside routes in %s; Bird Conservation Regions 1 to 37 (BCR code and name as in this release's Routes.csv and metadata, in __units); route start points as published", paste(states_of(runs), collapse = ", ")),
+    geographicCoverage = sprintf("United States and Canada: roadside routes in %s; Bird Conservation Regions 1 to 37 (BCR code and name as in this release's Routes.csv and metadata, in __units); %s", paste(states_of(runs), collapse = ", "), pts(exact)),
     crs = "EPSG:4269 (NAD83)",
-    coordinatesCoarsened = list(value = FALSE, method = "route start points as USGS publishes them; agency coordinates are kept as published under E7"),
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = EXACT_METHOD(pool_all, NAT)) else list(value = TRUE, method = COARSE_METHOD(pool_all, exact_name(NAT))),
     covariateNote = paste0("obs_nonbreeder_count: ", nb_flag(runs), ". obs_last_stop: the last stop with evidence of sampling, 1997 on (NA before).", CODES_NOTE),
     designNote = paste0(sprintf("One row per run and taxon; y = run total. occasion orders runs within a route-year. %s of the %s runs have RunType 1 (obs_run_type). ", nice(nr1), nice(n)),
                         "RouteTypeDetailID 3 routes (see __units) count fewer than the standard stops, so their run totals are not comparable; obs_run_type == 1 excludes them. ",
                         sprintf("Stored as %d period parts of at most 5,000,000 rows (standard E4); on Redivis one table. To work by region, filter on unit_bcr or unit_stratum from __units.", length(PARTS))),
-    components = c("ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_stop"),
-    notShipped = list(
+    components = if (exact) c(NAT, exact_name("ziolkowski_2026_bbs_bcr15_block"), exact_name("ziolkowski_2026_bbs_bcr15_stop")) else c(exact_name(NAT), "ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_stop"),
+    notShipped = c(if (exact) list(threatened = sprintf("%s: in %s only, with coarsened coordinates (E7 scope, 3)", flag_txt(pool_all), NAT)) else
+                     list(unit_route_name = sprintf("route names (place names; E7 scope, 4): in %s", exact_name(NAT))), list(
       TotalSpp = sprintf("per-run count of breeding records; equals the number of breeding records of every one of the %s runs (asserted); not shipped", nice(n)),
       StopTotal = sprintf("per-taxon number of stops with the taxon, %s breeding records; before 1997 it is impossible in %d records; not shipped (it would also need a stop-level merge for the 18 breeding/non-breeder pairs)", nice(nrow(ST)), N_BAD_STOPTOTAL),
       stop_and_block_level = sprintf("the 10-stop blocks and per-stop counts of these runs (%s runs from 1997 have 50-StopData rows) are in the deposit; only BCR 15 is built at that level (ziolkowski_2026_bbs_bcr15_block, _stop), for size: nationally 17.6 GB of blocks and 112 GB of stops", nice(sum(W$year >= 1997L))),
-      experimental_protocol_detail = sprintf("distance bands and one-minute periods of the %s here (RPID 501/502) are pooled in the deposit", np(sum(W$rpid %in% c(501L, 502L)), "run"))),
+      experimental_protocol_detail = sprintf("distance bands and one-minute periods of the %s here (RPID 501/502) are pooled in the deposit", np(sum(W$rpid %in% c(501L, 502L)), "run")))),
     notes = NOTES_COMMON(runs, sprintf("occasion is the rank of the run in its route-year; %d route-years have several runs, and in %d of them occasion 1 is not the RPID 101 run, so use obs_rpid.", sum(ry$n > 1L), sum(ry$n > 1L & !ry$first101))))
-  ds <- write_table_parts(PARTS, build_nat_part, NAT, dataset, taxa = taxa, periods = periods, units = units, script = SCRIPT)
-  chk(NAT_TOT$rows == 110127544 && NAT_TOT$y == sum(as.numeric(ST$spp)) + sum(as.numeric(MS$spp)) && NAT_TOT$brd == sum(as.numeric(ST$spp)),
+  ds <- write_table_parts(PARTS, function(pp) build_nat_part(pp, exact), name, dataset, taxa = taxa, periods = periods, units = units, script = SCRIPT)
+  if (!exact) chk(NAT_TOT$rows == 110127544 && NAT_TOT$y == sum(as.numeric(ST$spp)) + sum(as.numeric(MS$spp)) && NAT_TOT$brd == sum(as.numeric(ST$spp)),
       "national table: 110,127,544 rows; sum(y) = every breeding + non-breeder SpeciesTotal; the breeding part = every published SpeciesTotal")
-  chk(NAT_TOT$nz == length(unique(c(ST$key, MS$key))), "national table: one non-zero row per source run x taxon record")
-  stage_dict_row(NAT,
-    description = sprintf("Run totals of %d bird taxa on all %s North American Breeding Bird Survey runs of %s roadside routes in the United States and Canada, %d-%d, one row per run and taxon with date, observer, weather and the non-breeder part of the count; route coordinates, stratum and BCR in __units.", m, nice(n), nice(n_u), yrs[1], yrs[2]),
+  if (!exact) chk(NAT_TOT$nz == length(unique(c(ST$key, MS$key))), "national table: one non-zero row per source run x taxon record")
+  stage_dict_row(name,
+    description = sprintf("Run totals of %d bird taxa on all %s North American Breeding Bird Survey runs of %s roadside routes in the United States and Canada, %d-%d, one row per run and taxon with date, observer, weather and the non-breeder part of the count; route coordinates, stratum and BCR in __units%s.", m, nice(n), nice(n_u), yrs[1], yrs[2],
+                          if (exact) "; IUCN-threatened taxa omitted, route start points as published" else "; route start points coarsened to 0.1 degree"),
     url = "https://doi.org/10.5066/P144YU3S", reference = CITATION, doi_paper = "", doi_data = "10.5066/P144YU3S",
     original_license = ORIGINAL_LICENSE, derived_license = "CC0 1.0",
-    notes = "Every taxon zero-filled at every run (national pool, ruling #31). y = run total including non-breeder records (obs_nonbreeder_count NA before 1999 where none is recorded). All runs shipped; filter obs_run_type == 1 for the standard set. Stored as period parts (E4); one table on Redivis. sha256 of the raw files asserted.",
+    notes = paste0("Every taxon zero-filled at every run (national pool, ruling #31). y = run total including non-breeder records (obs_nonbreeder_count NA before 1999 where none is recorded). All runs shipped; filter obs_run_type == 1 for the standard set. Stored as period parts (E4); one table on Redivis. sha256 of the raw files asserted. ", if (exact) sprintf("E7 scope 3 sibling of %s without the %d IUCN CR/EN/VU taxa.", NAT, length(FLAG)) else sprintf("Route start points coarsened (E7); %s keeps the unflagged taxa at USGS precision.", exact_name(NAT))),
     source_via = "USGS ScienceBase")
-  stage_tag_row(NAT, ds, taxon_group = "Birds", model_family = "N-mixture / annual count index (multi-species, multi-season)", sampling_protocol = "point_count",
+  stage_tag_row(name, ds, taxon_group = "Birds", model_family = "N-mixture / annual count index (multi-species, multi-season)", sampling_protocol = "point_count",
     design = "Multi-season (annual route runs; a route-year can have several runs; stops summed within the run)", realm = "Terrestrial", country = countries_of(runs),
-    coordinates = "As published (USGS route start points, kept as published)",
+    coordinates = if (exact) "As published (USGS route start points)" else "Coarsened (0.1 deg)",
     notes = "All route runs of the release, every taxon at every run; RunType in obs_run_type; non-breeder counts in y with obs_nonbreeder_count; BCR and stratum in __units.")
   invisible(NAT_TOT$rows)
 }
 r <- build_national(); say("national count table done: %s rows in %d parts", nice(r), length(PARTS))
+build_national(exact = TRUE); say("national _exact table done")
 
 # ---- BCR 15: block and stop tables ---------------------------------------------------------------------
-build_block <- function() {
-  name <- "ziolkowski_2026_bbs_bcr15_block"; sib <- "ziolkowski_2026_bbs_bcr15_stop"; cnt <- NAT
+build_block <- function(exact = FALSE) {
+  base <- "ziolkowski_2026_bbs_bcr15_block"; name <- if (exact) exact_name(base) else base
+  sib <- "ziolkowski_2026_bbs_bcr15_stop"; if (exact) sib <- exact_name(sib); cnt <- if (exact) exact_name(NAT) else NAT
   runs <- which(W$bcr == 15L & W$rpid == 101L & W$detail %in% 1:2); n <- length(runs)
   all15 <- which(W$bcr == 15L)
   sst <- which(W$bcr[ST$run] == 15L & W$rpid[ST$run] == 101L & W$detail[ST$run] %in% 1:2); sms <- which(W$bcr[MS$run] == 15L & W$rpid[MS$run] == 101L & W$detail[MS$run] %in% 1:2)
@@ -636,13 +690,15 @@ build_block <- function() {
   long <- dense_long(lvl, TAXON[pool], y, nbv)
   chk(nrow(long) == S * m && nrow(long) <= n * m * 5L, "block table: rows = blocks with evidence x pool")
   rm(y, nbv, lvl); gc(FALSE)
+  pool_all <- pool
+  if (exact) { long <- long[!taxon %in% FLAG]; pool <- setdiff(pool, FLAG_IDX); m <- length(pool); chk(uniqueN(long$taxon) == m, "exact: flagged taxa removed") }
   taxa <- MASTER[taxon %in% TAXON[pool]]; setorder(taxa, taxon)
-  units <- units_table(runs); periods <- periods_table(runs, block = TRUE)
+  units <- units_table(runs, exact); periods <- periods_table(runs, block = TRUE)
   dates <- range(W$date[runs]); yrs <- range(W$year[runs]); n_u <- uniqueN(W$unit[runs])
   chk(uniqueN(long[, .(unit, period)]) == n, "block table: one run per route-year")
   dropped_blocks <- sum(5L - nb)
   dataset <- list(
-    title = sprintf("North American Breeding Bird Survey, BCR 15, Sierra Nevada: 10-stop block counts of %d bird taxa on %d routes, %d-%d", m, n_u, yrs[1], yrs[2]),
+    title = paste0(sprintf("North American Breeding Bird Survey, BCR 15, Sierra Nevada: 10-stop block counts of %d bird taxa on %d routes, %d-%d", m, n_u, yrs[1], yrs[2]), if (exact) " (without IUCN-threatened taxa; route start points as published)" else ""),
     creator = CREATOR, pubDate = "2026-05-28", doi = "10.5066/P144YU3S", sourceURL = "https://doi.org/10.5066/P144YU3S", citation = CITATION,
     intellectualRights = RIGHTS,
     abstract = sprintf("The standard runs (RPID 101) of the 50-stop routes of Bird Conservation Region 15 (Sierra Nevada; %s), %d-%d, as five 10-stop blocks per run. One row per run, block and bird taxon: y is the count of the taxon over the block's stops (breeding-category plus non-breeder records), zero for each of the %d taxa recorded in these runs and not seen in that block. Blocks after the last stop with evidence of sampling have no row. Blocks are consecutive stretches of a route about 8 km long, not temporal repeats.",
@@ -653,38 +709,40 @@ build_block <- function() {
     closureNote = paste("period = year (index year - 1965); occasion = 10-stop block along the route (1 to 5). Blocks are consecutive stretches of the route, counted in sequence once in a morning, not temporal repeats. Across years a route's rows are not a closed population.", STOP_GEOMETRY),
     surveyEvidenceNote = "Weather.csv lists every run but no file says how many stops a run sampled. Evidence that a stop was sampled: a bird record in the 50-stop or non-breeder stop files, or Car > 0 or Noise > 0 in VehicleData. K = the last stop with evidence, from 1997 (when stop data are complete); before 1997 the last block with a non-zero count (breeding or non-breeder) is the last block. Blocks 1 to ceiling(K/10) are surveys; a zero in an empty block before the last is fair because the observer went on past it. Blocks after have no row. A mid-route skip inside a run cannot be seen, so a zero there could be unsupported; nationally obs_quality_current = 0 marks more than 85% of runs from 1997 with K below 45. Pool: every taxon recorded in this table's runs, in the breeding or the non-breeder files; observers record every bird at every run.",
     temporalCoverage = sprintf("%s/%s", dates[1], dates[2]),
-    geographicCoverage = cover(15L, runs), crs = "EPSG:4269 (NAD83)",
-    coordinatesCoarsened = list(value = FALSE, method = "route start points as USGS publishes them; agency coordinates are kept as published under E7"),
+    geographicCoverage = cover(15L, runs, exact), crs = "EPSG:4269 (NAD83)",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = EXACT_METHOD(pool_all, base)) else list(value = TRUE, method = COARSE_METHOD(pool_all, exact_name(base))),
     covariateNote = paste0("obs_nonbreeder_count: the non-breeder count in this block; ", nb_flag(runs), ". obs_block_stops: stops of the block up to K (1 to 10), 1997 on; NA before.", CODES_NOTE),
     designNote = "Five blocks per run at most; occasion = block. Blocks past the last stop with evidence of sampling have no row.",
-    components = c(cnt, sib),
-    notShipped = list(
+    components = c(cnt, sib, if (exact) base else exact_name(base)),
+    notShipped = c(if (exact) list(threatened = sprintf("%s: in %s only, with coarsened coordinates (E7 scope, 3)", flag_txt(pool_all), base)) else
+                     list(unit_route_name = sprintf("route names (place names; E7 scope, 4): in %s", exact_name(base))), list(
       runs_outside_the_design = if (length(all15) == n) sprintf("none: all %d runs of BCR 15 are RPID 101 on a Detail 1 or 2 route and are in this table", n) else
         sprintf("%d of the %d runs in BCR 15 are not RPID 101 on a Detail 1 or 2 route (Detail 3: %d); they are in the national count table", length(all15) - n, length(all15), sum(W$detail[all15] == 3L)),
       blocks_after_last_stop_with_evidence = sprintf("%s blocks of this table's runs, past ceiling(K/10) from 1997 or past the last non-zero block before 1997", nice(dropped_blocks)),
       TotalSpp = "per-run count of breeding records; an assertion; not shipped",
       StopTotal = sprintf("per-taxon number of stops with the taxon; impossible in %d records before 1997 nationally; not shipped", N_BAD_STOPTOTAL),
-      stop_level_counts = "shipped for 2009 on in ziolkowski_2026_bbs_bcr15_stop; before 2009 for size"),
+      stop_level_counts = "shipped for 2009 on in ziolkowski_2026_bbs_bcr15_stop; before 2009 for size")),
     notes = NOTES_COMMON(runs, c(
       "Block table: the 50-stop data are complete only from 1997 (86,210 of 86,210 runs from 1997; 293 before), so blocks before 1997 come from States and MigrantSummary and obs_block_stops is NA there; stop_data_complete in __periods says which years.",
       "Several runs of one route-year: this table keeps RPID 101 only, so each route-year has one run and occasion is the block.")))
   dataset <- Filter(Negate(is.null), dataset)
   ds <- write_table(long, name, dataset, taxa = taxa, periods = periods, units = units, script = SCRIPT)
   stage_dict_row(name,
-    description = sprintf("Five 10-stop block counts of %d bird taxa on %s standard Breeding Bird Survey runs of %d routes in Bird Conservation Region 15 (Sierra Nevada), %d-%d, blocks past the last stop with evidence of sampling omitted; date, observer, weather and non-breeder part of the count; route coordinates in __units.", m, nice(n), n_u, yrs[1], yrs[2]),
+    description = sprintf("Five 10-stop block counts of %d bird taxa on %s standard Breeding Bird Survey runs of %d routes in Bird Conservation Region 15 (Sierra Nevada), %d-%d, blocks past the last stop with evidence of sampling omitted; date, observer, weather and non-breeder part of the count; route coordinates in __units%s.", m, nice(n), n_u, yrs[1], yrs[2], if (exact) "; IUCN-threatened taxa omitted" else ""),
     url = "https://doi.org/10.5066/P144YU3S", reference = CITATION, doi_paper = "", doi_data = "10.5066/P144YU3S",
     original_license = ORIGINAL_LICENSE, derived_license = "CC0 1.0",
-    notes = "Survey set inferred: blocks up to the last stop with a bird, car or noise record (from 1997) or the last non-zero block (before). Blocks are spatial, not temporal, replicates. sha256 of the raw files asserted.",
+    notes = paste0("Survey set inferred: blocks up to the last stop with a bird, car or noise record (from 1997) or the last non-zero block (before). Blocks are spatial, not temporal, replicates. sha256 of the raw files asserted.", if (exact) sprintf(" E7 scope 3 sibling of %s without the IUCN CR/EN/VU taxa.", base) else sprintf(" Route start points coarsened (E7); %s keeps the unflagged taxa at USGS precision.", exact_name(base))),
     source_via = "USGS ScienceBase")
   stage_tag_row(name, ds, taxon_group = "Birds", model_family = "N-mixture (spatial replicates: blocks along a route; closure not met)", sampling_protocol = "point_count",
     design = "Multi-season (annual runs; five consecutive 10-stop blocks per run as spatial replicates)", realm = "Terrestrial", country = countries_of(runs),
-    coordinates = "As published (USGS route start points, kept as published)", notes = "Pilot region for replicated counts; survey set inferred from stop-level evidence.")
+    coordinates = if (exact) "As published (USGS route start points)" else "Coarsened (0.1 deg)", notes = "Pilot region for replicated counts; survey set inferred from stop-level evidence.")
   rm(long); gc(FALSE)
   invisible(list(rows = S * m))
 }
 
-build_stop <- function() {
-  name <- "ziolkowski_2026_bbs_bcr15_stop"; sib <- "ziolkowski_2026_bbs_bcr15_block"; cnt <- NAT
+build_stop <- function(exact = FALSE) {
+  base <- "ziolkowski_2026_bbs_bcr15_stop"; name <- if (exact) exact_name(base) else base
+  sib <- "ziolkowski_2026_bbs_bcr15_block"; if (exact) sib <- exact_name(sib); cnt <- if (exact) exact_name(NAT) else NAT
   runs <- STOP_RUNS; n <- length(runs)
   all15 <- which(W$bcr == 15L)
   br <- list(run = unlist(lapply(keep, `[[`, "run")), tax = unlist(lapply(keep, `[[`, "tax")), M = do.call(rbind, lapply(keep, `[[`, "M")))
@@ -722,12 +780,14 @@ build_stop <- function() {
   long <- dense_long(lvl, TAXON[pool], y, nbv)
   chk(nrow(long) == S * m, "stop table: rows = stops with evidence x pool")
   rm(y, nbv, lvl); gc(FALSE)
+  pool_all <- pool
+  if (exact) { long <- long[!taxon %in% FLAG]; pool <- setdiff(pool, FLAG_IDX); m <- length(pool); chk(uniqueN(long$taxon) == m, "exact: flagged taxa removed") }
   taxa <- MASTER[taxon %in% TAXON[pool]]; setorder(taxa, taxon)
-  units <- units_table(runs); periods <- periods_table(runs)
+  units <- units_table(runs, exact); periods <- periods_table(runs)
   dates <- range(W$date[runs]); yrs <- range(W$year[runs]); n_u <- uniqueN(W$unit[runs])
   dropped_stops <- sum(50L - Kr)
   dataset <- list(
-    title = sprintf("North American Breeding Bird Survey, BCR 15, Sierra Nevada: stop counts of %d bird taxa on %d routes, %d-%d", m, n_u, yrs[1], yrs[2]),
+    title = paste0(sprintf("North American Breeding Bird Survey, BCR 15, Sierra Nevada: stop counts of %d bird taxa on %d routes, %d-%d", m, n_u, yrs[1], yrs[2]), if (exact) " (without IUCN-threatened taxa; route start points as published)" else ""),
     creator = CREATOR, pubDate = "2026-05-28", doi = "10.5066/P144YU3S", sourceURL = "https://doi.org/10.5066/P144YU3S", citation = CITATION,
     intellectualRights = RIGHTS,
     abstract = sprintf("The standard runs (RPID 101) of the 50-stop routes of Bird Conservation Region 15 (Sierra Nevada; %s), %d-%d, one row per run, stop and bird taxon: y is the count at that stop (breeding-category plus non-breeder records), zero for each of the %d taxa recorded in these runs and not seen at the stop. Stops after the last stop with evidence of sampling have no row. Vehicle and noise records per stop come with it. Stops are sequential points about 800 m apart, counted once in one morning, not temporal repeats.",
@@ -738,34 +798,37 @@ build_stop <- function() {
     closureNote = paste("period = year (index year - 1965); occasion = stop number along the route (1 to the last stop with evidence).", STOP_GEOMETRY, "Across years a route's rows are not a closed population."),
     surveyEvidenceNote = "Weather.csv lists every run but no file says how many stops a run sampled. Evidence that a stop was sampled: a bird record in 50-StopData or Migrants, or Car > 0 or Noise > 0 in VehicleData. K = the last stop with evidence; stops 1 to K are surveys, and a zero at an empty stop before K is fair because the observer went on past it. Stops after K have no row and their number is in notShipped. A mid-route skip inside a run cannot be seen in this deposit, so a stop zero there could be unsupported; nationally obs_quality_current = 0 marks more than 85% of runs from 1997 with K below 45. Pool: every taxon recorded in this table's runs, in the breeding or the non-breeder stop files.",
     temporalCoverage = sprintf("%s/%s", dates[1], dates[2]),
-    geographicCoverage = cover(15L, runs), crs = "EPSG:4269 (NAD83)",
-    coordinatesCoarsened = list(value = FALSE, method = "route start points as USGS publishes them; agency coordinates are kept as published under E7"),
+    geographicCoverage = cover(15L, runs, exact), crs = "EPSG:4269 (NAD83)",
+    coordinatesCoarsened = if (exact) list(value = FALSE, method = EXACT_METHOD(pool_all, base)) else list(value = TRUE, method = COARSE_METHOD(pool_all, exact_name(base))),
     covariateNote = paste0("obs_nonbreeder_count: the recorded non-breeder count at the stop, 0 where none. obs_cars: the vehicle count at the stop where RecordedCar = 1 (the metadata: recorded at all sampled stops) or Car > 0, else NA, because the metadata makes no promise for a 0 there. obs_noise: 1 if excessive noise from sources other than passing vehicles (more than 45 seconds, interfering with hearing birds) was recorded at the stop, 0 if not, NA where the run has no VehicleData row.", CODES_NOTE),
     designNote = "One row per run, stop and taxon; occasion = stop. Stops past the last stop with evidence of sampling have no row.",
-    components = c(cnt, sib),
-    notShipped = list(
+    components = c(cnt, sib, if (exact) base else exact_name(base)),
+    notShipped = c(if (exact) list(threatened = sprintf("%s: in %s only, with coarsened coordinates (E7 scope, 3)", flag_txt(pool_all), base)) else
+                     list(unit_route_name = sprintf("route names (place names; E7 scope, 4): in %s", exact_name(base))), list(
       runs_outside_the_design = sprintf("%d of the %d runs in BCR 15 are outside this table: %d before 2009 and %d from 2009 that are not RPID 101 on a Detail 1 or 2 route; they are in the national count table",
                                         length(all15) - n, length(all15), sum(W$year[all15] < 2009L), sum(W$year[all15] >= 2009L) - n),
       stops_after_last_stop_with_evidence = sprintf("%s stops of this table's runs, past K", nice(dropped_stops)),
       stop_rows_before_2009 = "stop-level rows of BCR 15 before 2009 are in the deposit and not shipped, for size; the block table covers all years",
       TotalSpp = "per-run count of breeding records; an assertion; not shipped",
-      StopTotal = "per-taxon number of stops with the taxon; derivable from y; not shipped"),
+      StopTotal = "per-taxon number of stops with the taxon; derivable from y; not shipped")),
     notes = NOTES_COMMON(runs, c(
       "Stop table: runs from 2009 on, so non-breeder records are preserved throughout (obs_nonbreeder_count is 0 where none) and stop data are complete.")))
   dataset <- Filter(Negate(is.null), dataset)
   ds <- write_table(long, name, dataset, taxa = taxa, periods = periods, units = units, script = SCRIPT)
   stage_dict_row(name,
-    description = sprintf("Stop-level counts of %d bird taxa on %s standard Breeding Bird Survey runs of %d routes in Bird Conservation Region 15 (Sierra Nevada), %d-%d, stops past the last stop with evidence of sampling omitted; vehicle and noise per stop, date, observer and weather; route coordinates in __units.", m, nice(n), n_u, yrs[1], yrs[2]),
+    description = sprintf("Stop-level counts of %d bird taxa on %s standard Breeding Bird Survey runs of %d routes in Bird Conservation Region 15 (Sierra Nevada), %d-%d, stops past the last stop with evidence of sampling omitted; vehicle and noise per stop, date, observer and weather; route coordinates in __units%s.", m, nice(n), n_u, yrs[1], yrs[2], if (exact) "; IUCN-threatened taxa omitted" else ""),
     url = "https://doi.org/10.5066/P144YU3S", reference = CITATION, doi_paper = "", doi_data = "10.5066/P144YU3S",
     original_license = ORIGINAL_LICENSE, derived_license = "CC0 1.0",
-    notes = "Survey set inferred: stops up to the last stop with a bird, car or noise record. Stops are sequential spatial points, not temporal replicates. sha256 of the raw files asserted.",
+    notes = paste0("Survey set inferred: stops up to the last stop with a bird, car or noise record. Stops are sequential spatial points, not temporal replicates. sha256 of the raw files asserted.", if (exact) sprintf(" E7 scope 3 sibling of %s without the IUCN CR/EN/VU taxa.", base) else sprintf(" Route start points coarsened (E7); %s keeps the unflagged taxa at USGS precision.", exact_name(base))),
     source_via = "USGS ScienceBase")
   stage_tag_row(name, ds, taxon_group = "Birds", model_family = "N-mixture (spatial replicates: stops along a route; closure not met)", sampling_protocol = "point_count",
     design = "Multi-season (annual runs; consecutive stops along the route as spatial replicates)", realm = "Terrestrial", country = countries_of(runs),
-    coordinates = "As published (USGS route start points, kept as published)", notes = "Pilot region for stop-level counts; survey set inferred from stop-level evidence.")
+    coordinates = if (exact) "As published (USGS route start points)" else "Coarsened (0.1 deg)", notes = "Pilot region for stop-level counts; survey set inferred from stop-level evidence.")
   rm(long); gc(FALSE)
   invisible(list(rows = S * m))
 }
-r <- build_block(); say("BCR 15 block table done: %s rows", nice(r$rows))
-r <- build_stop();  say("BCR 15 stop table done: %s rows", nice(r$rows))
+for (ex in c(FALSE, TRUE)) {
+  r <- build_block(ex); say("BCR 15 block table%s done: %s rows", if (ex) " (_exact)" else "", nice(r$rows))
+  r <- build_stop(ex);  say("BCR 15 stop table%s done: %s rows", if (ex) " (_exact)" else "", nice(r$rows))
+}
 say("done")

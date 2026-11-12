@@ -1,0 +1,239 @@
+{
+  "table": "ziolkowski_2026_bbs_exact_count",
+  "title": "North American Breeding Bird Survey: run totals of 724 bird taxa on 5,655 roadside routes in the United States and Canada, 1966-2025 (without IUCN-threatened taxa; route start points as published)",
+  "creator": "Ziolkowski, David J., Jr.; Lutmerding, Michael; Skalos, Shannon M. (U.S. Geological Survey, Eastern Ecological Science Center); English, Willow B.; Hudson, Marie-Anne R. (Environment and Climate Change Canada, Canadian Wildlife Service)",
+  "pubDate": "2026-05-28",
+  "doi": "10.5066/P144YU3S",
+  "sourceURL": "https://doi.org/10.5066/P144YU3S",
+  "citation": "Ziolkowski, D.J., Lutmerding, M., Skalos, S.M., English, W.B., and Hudson, M-A.R., 2026, North American Breeding Bird Survey Dataset 1966 - 2025: U.S. Geological Survey data release, https://doi.org/10.5066/P144YU3S. All work using these data should acknowledge the thousands of dedicated U.S. and Canadian participants who annually perform and coordinate the survey.",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "note": "DataCite (doi:10.5066/P144YU3S) and the USGS data page mark the release CC0 1.0 Universal. The release metadata XML names no licence, states 'No access constraints', approves the release for USGS and ECCC (Canadian Wildlife Service), disclaims liability, and asks for citation and an acknowledgement of the participants; both are in the citation. ECCC co-approves the release and names no Canadian licence."
+  },
+  "abstract": "The North American Breeding Bird Survey: each breeding season, mostly in June, a skilled observer drives a roadside route of about 39.2 km and counts every bird seen within 400 m or heard at 50 stops per route, one run per route and year (a route-year can have a replicate or secondary-observer run). This table holds all 144,146 runs on 5,655 routes in 62 US states and Canadian provinces, 1966-2025. One row per run and bird taxon: y is the run total over the stops (breeding-category plus non-breeder records), zero for each of the 724 taxa of the survey's species list (all 764 but the 40 IUCN-threatened ones, which are in ziolkowski_2026_bbs_count) not seen on that run. The run's date, observer, weather, start and end time, the last stop with evidence of sampling and the non-breeder part of y come with it; route coordinates, stratum and Bird Conservation Region are in the __units table.",
+  "samplingProtocol": "North American Breeding Bird Survey: 3-minute point counts of all birds seen within 400 m or heard at 50 stops per route, spaced about 800 m along a roadside route of about 39.2 km, once per year in the breeding season (mostly June), beginning 30 minutes before local sunrise, by one observer (an assistant may record); y is the run total over the stops.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "period = year (index year - 1965); occasion = rank of the run within its route-year by date, start time and RPID. 103 route-years have 2 to 4 runs (replicate, secondary-observer or experimental-protocol runs of one breeding season); every other route-year has occasion 1 only. Across years a route's rows are not a closed population, and the run is a total over its stops. Stops are sequential spatial points about 800 m apart along a route of about 39.2 km, counted once, in one morning of about five hours, by one moving observer: they are not temporal repeats at one place, so no closure of the kind that N-mixture or occupancy models assume holds across stops.",
+  "surveyEvidenceNote": "Weather.csv lists every run (one row per run, 144,146), so the survey set is a sample table. Observers record every bird at every run, so every run carries every taxon recorded anywhere in the release (in the breeding States or the non-breeder MigrantSummary files, any year; all 764 taxa of SpeciesList are; this table omits the 40 IUCN-threatened taxa), and y = 0 is a fair not-detected. Before 1999 the non-breeder files hold almost nothing, so a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder.",
+  "temporalCoverage": "1966-05-24/2025-07-15",
+  "geographicCoverage": "United States and Canada: roadside routes in Alabama, Alaska, Alberta, Arizona, Arkansas, British Columbia, California, Colorado, Connecticut, Delaware, Florida, Georgia, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Manitoba, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Brunswick, New Hampshire, New Jersey, New Mexico, New York, Newfoundland and Labrador, North Carolina, North Dakota, Northwest Territories, Nova Scotia, Nunavut, Ohio, Oklahoma, Ontario, Oregon, Pennsylvania, Prince Edward Island, Quebec, Rhode Island, Saskatchewan, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming, Yukon; Bird Conservation Regions 1 to 37 (BCR code and name as in this release's Routes.csv and metadata, in __units); route start points as published",
+  "crs": "EPSG:4269 (NAD83)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Route start points as USGS publishes them (NAD83), in __units. The IUCN-threatened taxa (Polysticta stelleri (VU), Clangula hyemalis (VU), Centrocercus urophasianus (VU), Centrocercus minimus (EN), Tympanuchus pallidicinctus (VU), Podiceps auritus (VU), Cypseloides niger (VU), Chaetura pelagica (VU), Laterallus jamaicensis (EN), Grus americana (EN), Pluvialis squatarola (VU), Limosa haemastica (VU), Limosa fedoa (VU), Calidris acuminata (VU), Calidris fuscicollis (VU), Calidris subruficollis (VU), Limnodromus griseus (VU), Tringa flavipes (VU), Brachyramphus marmoratus (EN), Fratercula arctica (VU), Rissa tridactyla (VU), Onychoprion aleuticus (VU), Hydrobates leucorhous (VU), Gymnogyps californianus (CR), Bubo scandiacus (VU), Amazona viridigenalis (EN), Gymnorhinus cyanocephalus (VU), Aphelocoma coerulescens (VU), Pica nuttalli (VU), Toxostoma bendirei (VU), Catharus bicknelli (VU), Anthus spragueii (VU), Coccothraustes vespertinus (VU), Leucosticte atrata (EN), Leucosticte australis (EN), Calcarius ornatus (VU), Ammospiza caudacuta (EN), Agelaius tricolor (EN), Euphagus carolinus (VU), Setophaga chrysoparia (EN)) are not in this table (E7 scope, 3); ziolkowski_2026_bbs_count has them, with coordinates coarsened. Records identified only to a higher rank stay in both tables."
+  },
+  "covariateNote": "obs_nonbreeder_count: NA before 1999 where no non-breeder record exists, 0 from 1999 where none does. obs_last_stop: the last stop with evidence of sampling, 1997 on (NA before). Codes, from the release metadata: wind is Beaufort 0 to 8; sky is 0 clear or few clouds, 1 partly cloudy or variable, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers; obs_assistant is 1 if an assistant recorded the data; obs_quality_current is 1 if the run met all quality criteria (manual inspection before 1997, by rule from 1997); minutes are after midnight; wind or sky code 9 (no data) is NA.",
+  "designNote": "One row per run and taxon; y = run total. occasion orders runs within a route-year. 130,303 of the 144,146 runs have RunType 1 (obs_run_type). RouteTypeDetailID 3 routes (see __units) count fewer than the standard stops, so their run totals are not comparable; obs_run_type == 1 excludes them. Stored as 26 period parts of at most 5,000,000 rows (standard E4); on Redivis one table. To work by region, filter on unit_bcr or unit_stratum from __units.",
+  "components": ["ziolkowski_2026_bbs_count", "ziolkowski_2026_bbs_bcr15_exact_block", "ziolkowski_2026_bbs_bcr15_exact_stop"],
+  "notShipped": {
+    "threatened": "Polysticta stelleri (VU), Clangula hyemalis (VU), Centrocercus urophasianus (VU), Centrocercus minimus (EN), Tympanuchus pallidicinctus (VU), Podiceps auritus (VU), Cypseloides niger (VU), Chaetura pelagica (VU), Laterallus jamaicensis (EN), Grus americana (EN), Pluvialis squatarola (VU), Limosa haemastica (VU), Limosa fedoa (VU), Calidris acuminata (VU), Calidris fuscicollis (VU), Calidris subruficollis (VU), Limnodromus griseus (VU), Tringa flavipes (VU), Brachyramphus marmoratus (EN), Fratercula arctica (VU), Rissa tridactyla (VU), Onychoprion aleuticus (VU), Hydrobates leucorhous (VU), Gymnogyps californianus (CR), Bubo scandiacus (VU), Amazona viridigenalis (EN), Gymnorhinus cyanocephalus (VU), Aphelocoma coerulescens (VU), Pica nuttalli (VU), Toxostoma bendirei (VU), Catharus bicknelli (VU), Anthus spragueii (VU), Coccothraustes vespertinus (VU), Leucosticte atrata (EN), Leucosticte australis (EN), Calcarius ornatus (VU), Ammospiza caudacuta (EN), Agelaius tricolor (EN), Euphagus carolinus (VU), Setophaga chrysoparia (EN): in ziolkowski_2026_bbs_count only, with coarsened coordinates (E7 scope, 3)",
+    "TotalSpp": "per-run count of breeding records; equals the number of breeding records of every one of the 144,146 runs (asserted); not shipped",
+    "StopTotal": "per-taxon number of stops with the taxon, 7,562,439 breeding records; before 1997 it is impossible in 322 records; not shipped (it would also need a stop-level merge for the 18 breeding/non-breeder pairs)",
+    "stop_and_block_level": "the 10-stop blocks and per-stop counts of these runs (86,210 runs from 1997 have 50-StopData rows) are in the deposit; only BCR 15 is built at that level (ziolkowski_2026_bbs_bcr15_block, _stop), for size: nationally 17.6 GB of blocks and 112 GB of stops",
+    "experimental_protocol_detail": "distance bands and one-minute periods of the 311 runs here (RPID 501/502) are pooled in the deposit"
+  },
+  "notes": "BCR codes and names are this release's (1 to 37); bbsBayes2 has since renumbered some. USGS and bbsBayes2 analyse RunType 1 only: filter obs_run_type == 1. RPID 501/502 (experimental) lower counts on average (Sauer et al. 2019, doi:10.1093/condor/duz009). Non-breeder records are nearly absent before 1999, when the survey began to keep them: a zero then with obs_nonbreeder_count NA cannot exclude a non-breeder, and y steps up at 1999 for such taxa. y - obs_nonbreeder_count (NA as 0) is the published breeding count in every year. taxon_nonbreeder_share_1999on in __taxa is the national share of a taxon's records from 1999 that are non-breeder records (records, not birds; NA with no record from 1999). taxon_first_year and taxon_last_year in __taxa are national; a zero before taxon_first_year can mean the category did not exist yet. Unidentified groups, forms and hybrids are their own taxa, with nothing rolled up. Route covariates and route start points (not bird locations) are in __units, so eco_to_unmarked() starts with empty siteCovs; join on unit. Temperatures are as recorded, value plus scale; impossible values are kept. period = year - 1965 in every table, with the calendar year in __periods, which lists every year from the table's first to its last; a year without a run has n_runs = 0. 2020 had no field work (no row in any data file), so period 55 never occurs. eco_to_unmarked(family = \"colext\") builds numPrimary = max(period) and one column per (period, occasion) present, so a year without a run breaks it or misaligns it: filter to occasion == 1 and pad the periods yourself before fitting a dynamic occupancy model. occasion is the rank of the run in its route-year; 103 route-years have several runs, and in 30 of them occasion 1 is not the RPID 101 run, so use obs_rpid. Rationale: notes/decisions/bbs_design.md.",
+  "summary": {
+    "n_rows": 104361704,
+    "n_units": 5655,
+    "n_taxa": 724,
+    "n_periods": 59,
+    "n_occasions": 4,
+    "n_surveys": 144146,
+    "y_values": "0-7782 (more than 12 distinct)",
+    "prop_zero": 0.928,
+    "n_traps": 1,
+    "n_zero": 96885048,
+    "n_positive": 7476656,
+    "n_units_detected": 5655,
+    "max_y": 7782
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "obs_rpid", "obs_run_type", "obs_quality_current", "obs_start_temp", "obs_end_temp", "obs_temp_scale", "obs_start_wind", "obs_end_wind", "obs_start_sky", "obs_end_sky", "obs_start_minute", "obs_end_minute", "obs_assistant", "obs_last_stop", "obs_nonbreeder_count"],
+  "parts": [
+    {
+      "file": "part-01.csv",
+      "periods": [1, 2, 3, 4, 5],
+      "n_rows": 3932044,
+      "md5": "ca619b5b9d4a08ea7c8b8e116407e69d"
+    },
+    {
+      "file": "part-02.csv",
+      "periods": [6, 7, 8, 9],
+      "n_rows": 4707448,
+      "md5": "82b724a4142d8192f8bf7c26a10cb4a2"
+    },
+    {
+      "file": "part-03.csv",
+      "periods": [10, 11, 12],
+      "n_rows": 3839372,
+      "md5": "e19c7891b7a7ac324f86e6ff7ba7c4dd"
+    },
+    {
+      "file": "part-04.csv",
+      "periods": [13, 14, 15],
+      "n_rows": 3969692,
+      "md5": "2181083631e1fbe7b7879eea0541aa7a"
+    },
+    {
+      "file": "part-05.csv",
+      "periods": [16, 17, 18],
+      "n_rows": 3865436,
+      "md5": "798808f1f8c625d116f1e258ef9c904b"
+    },
+    {
+      "file": "part-06.csv",
+      "periods": [19, 20, 21],
+      "n_rows": 3755388,
+      "md5": "8f378eb2f9d47316930685d63f037a1f"
+    },
+    {
+      "file": "part-07.csv",
+      "periods": [22, 23, 24],
+      "n_rows": 4458392,
+      "md5": "82f28f7ad33e10bb40c87860a2a9c394"
+    },
+    {
+      "file": "part-08.csv",
+      "periods": [25, 26],
+      "n_rows": 3220352,
+      "md5": "d655adfe7339c04ad23ca077c19c1d3e"
+    },
+    {
+      "file": "part-09.csv",
+      "periods": [27, 28],
+      "n_rows": 3781452,
+      "md5": "1b84b1a087db88d44935d107d7e990cb"
+    },
+    {
+      "file": "part-10.csv",
+      "periods": [29, 30],
+      "n_rows": 4254948,
+      "md5": "9678fe58797163f485035418731b6cc5"
+    },
+    {
+      "file": "part-11.csv",
+      "periods": [31, 32],
+      "n_rows": 4305628,
+      "md5": "4761efbd6e4736c2bb4d8f75f358dbdc"
+    },
+    {
+      "file": "part-12.csv",
+      "periods": [33, 34],
+      "n_rows": 4275944,
+      "md5": "ea40f282ee19336c0ea89b74fc4b9277"
+    },
+    {
+      "file": "part-13.csv",
+      "periods": [35, 36],
+      "n_rows": 4344724,
+      "md5": "d4cd5d35bd968933c0ff67d24c1597ea"
+    },
+    {
+      "file": "part-14.csv",
+      "periods": [37, 38],
+      "n_rows": 4262912,
+      "md5": "8d2b31eb926d2d8a1ac7c2a9b5ddf1b6"
+    },
+    {
+      "file": "part-15.csv",
+      "periods": [39, 40],
+      "n_rows": 4409160,
+      "md5": "2f1b3094118e788d568ef610f3a22ebf"
+    },
+    {
+      "file": "part-16.csv",
+      "periods": [41, 42],
+      "n_rows": 4509796,
+      "md5": "47e0ac35534e206c2009d333812f6314"
+    },
+    {
+      "file": "part-17.csv",
+      "periods": [43, 44],
+      "n_rows": 4535136,
+      "md5": "e443539ebe4cc7a236775a9b048c641e"
+    },
+    {
+      "file": "part-18.csv",
+      "periods": [45, 46],
+      "n_rows": 4661112,
+      "md5": "dac64e2b4d8d4d651e80129990718df2"
+    },
+    {
+      "file": "part-19.csv",
+      "periods": [47, 48],
+      "n_rows": 4611156,
+      "md5": "761762bbc3428cf786416c6f3a67d4db"
+    },
+    {
+      "file": "part-20.csv",
+      "periods": [49, 50],
+      "n_rows": 4679212,
+      "md5": "ab725128ee43f7a5575a305c73dd8520"
+    },
+    {
+      "file": "part-21.csv",
+      "periods": [51],
+      "n_rows": 2369652,
+      "md5": "b94e18c5572808640f8c47e899ff44f4"
+    },
+    {
+      "file": "part-22.csv",
+      "periods": [52],
+      "n_rows": 2426848,
+      "md5": "b967f629ebce837cc13253a36366d96b"
+    },
+    {
+      "file": "part-23.csv",
+      "periods": [53],
+      "n_rows": 2419608,
+      "md5": "8e8fe47b51bc83269cc89e143a0789f8"
+    },
+    {
+      "file": "part-24.csv",
+      "periods": [54, 56],
+      "n_rows": 4466356,
+      "md5": "3437b70b3e6a9df1704364c9fdb1e2f7"
+    },
+    {
+      "file": "part-25.csv",
+      "periods": [57, 58],
+      "n_rows": 4219472,
+      "md5": "6230254c4e335649b9dfa3856d4f19fc"
+    },
+    {
+      "file": "part-26.csv",
+      "periods": [59, 60],
+      "n_rows": 4080464,
+      "md5": "ef1710427c9e5056a70c96238ec8cca5"
+    }
+  ],
+  "sideTables": {
+    "periods": {
+      "rows": 60,
+      "columns": ["period", "year", "n_runs", "n_routes", "nonbreeder_records_preserved"],
+      "md5": "be2c04948346a7a6d5c80979e527ebeb"
+    },
+    "taxa": {
+      "rows": 724,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_aou", "taxonRemarks", "taxon_gbifRank", "taxon_first_year", "taxon_last_year", "taxon_nonbreeder_share_1999on", "taxon_iucnCategory"],
+      "md5": "85877f1c86f0e9ea480619809ecd3fe3"
+    },
+    "units": {
+      "rows": 5655,
+      "columns": ["unit", "unit_route_name", "unit_country_num", "unit_state_num", "unit_route", "unit_stratum", "unit_bcr", "unit_route_type_id", "unit_route_type_detail_id", "unit_active", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+      "md5": "d8c55c49fb7214ec84d302f2f24ecc90"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ziolkowski_2026_bbs.R",
+  "buildDate": "2026-11-11"
+}
