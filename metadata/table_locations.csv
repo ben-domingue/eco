@@ -353,6 +353,7 @@ neon_2026_sighis_rd,39.8,-98.6,multi,4500,,place name,13 NEON sites across USA
 neon_2026_smallmammals_count,41.0,-101.2,multi,8107,332,unit coordinates,decimalLatitude in __units
 neon_2026_ticks_count,40.8,-100.7,multi,8110,287,unit coordinates,decimalLatitude in __units
 neubauer_2021_bialowieza_marshtit_nmix,52.8,23.9,locality,20,,place name,Bialowieza National Park
+nichols_2025_hawaii_acanthophora_edna,24.4,-166.9,multi,2572,91,unit coordinates,unit_decimalLatitude
 nicolau_2021_porsanger_vole_ccr,70.0,25.0,region,100,,place name,stated coords (Porsanger)
 nina_2026_norway_pollinator_count,62.3,10.8,country,1805,128,unit coordinates,unit_decimalLatitude in __units
 nina_2026_norway_pollinator_exact_count,61.9,10.7,country,1804,2638,unit coordinates,unit_decimalLatitude in __units
