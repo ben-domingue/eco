@@ -1,0 +1,63 @@
+{
+  "table": "jimenezfranco_2023_murcia_birds_binom",
+  "title": "Forest birds on 198 one-km transects grouped into 139 grid cells in Murcia, south-east Spain, 2012 and 2017: transects with the species out of transects walked (binomial counts)",
+  "creator": "Jiménez-Franco, María V.; Kéry, Marc; León-Ortega, Mario; Martínez-Ródenas, Jacinto; Robledano, Francisco; Esteve, Miguel A.; Calvo, José F.",
+  "pubDate": "2023",
+  "doi": "10.5061/dryad.j9kd51chz",
+  "sourceURL": "https://doi.org/10.5061/dryad.j9kd51chz",
+  "citation": "Jiménez-Franco, M. V., Kéry, M., León-Ortega, M., Martínez-Ródenas, J., Robledano, F., Esteve, M. A., & Calvo, J. F. (2023). Data from: Evaluating temporal turnover in avian species richness in a Mediterranean semiarid region: different responses to elevation and forest cover [Dataset]. Dryad. https://doi.org/10.5061/dryad.j9kd51chz",
+  "paperDOI": "10.1111/ddi.13791",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "The modern survey of Jiménez-Franco et al. (2024, Diversity and Distributions): 198 one-km transects in Mediterranean forest and scrub across the region of Murcia (south-east Spain), each walked once in May-July of 2012 or 2017 recording every bird species seen or heard, grouped by the authors into 139 grid cells of 2 x 2 km as spatial replicates. For each cell and each of the 71 species recorded in the modern survey (of the authors' 77), the number of the cell's transects on which the species was recorded, out of the transects in the cell (binomial_count), with standardised forest cover and elevation per cell. The historical survey (1991-1992) of the same paper is jimenezfranco_2019_murcia_birds_binom; the two periods used different transects.",
+  "samplingProtocol": "1-km line transects walked once each in the breeding season (May-July) of 2012 or 2017 by one of two observers, recording every bird species seen or heard; transects grouped into 2 x 2 km grid cells, each transect a spatial replicate of its cell (Jiménez-Franco et al. 2024, Methods 2.2-2.3).",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "nrep (transects per cell, 1-5, summing to 198) is deposited for every cell; every species column is filled for every cell, so a species not recorded in a cell is y = 0 out of nrep.",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "no occasion column (binomial_count): the replicates are transects within a cell (spatial), walked in 2012 or 2017 and treated by the authors as one closed survey",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Region of Murcia, south-east Spain (about 37.4-38.8 N, 0.7-2.3 W): forested areas; cell coordinates not deposited",
+  "temporalCoverage": "2012/2017",
+  "notShipped": {
+    "historical": "BirdsCC_Historical_period.RData: the 1991-1992 survey, the same 377 transects and 4,886 detections as jimenezfranco_2019_murcia_birds_binom regrouped into 226 cells of 2 x 2 km (asserted); its standardised elevation is the only addition",
+    "transect year": "which transects were walked in 2012 and which in 2017 is not deposited",
+    "unrecorded species": "six species of the authors' 77-species list (recorded only in the historical survey) have no modern record: Alauda arvensis, Coturnix coturnix, Dendrocopos major, Ficedula hypoleuca, Oenanthe oenanthe, Sylvia borin (taxonInclusion = recorded)"
+  },
+  "notes": "Species codes are the deposit's six-letter codes; the 73 shared with the historical survey are named from Table S1 of Jiménez-Franco et al. (2019) through the 2019 deposit's codes (same column order), and the four new species from the paper's text. Six species of the authors' list were not recorded in the modern survey and are not shipped. Covariates (suffix _z) are standardised as deposited. Streptopelia turtur and Lanius meridionalis are IUCN VU; the source deposits no coordinates.",
+  "summary": {
+    "n_rows": 9869,
+    "n_units": 139,
+    "n_taxa": 71,
+    "n_periods": 1,
+    "n_occasions": 1,
+    "n_surveys": 139,
+    "y_values": "0,1,2,3,4,5",
+    "prop_zero": 0.847,
+    "n_traps": 1,
+    "n_zero": 8356,
+    "n_positive": 1513,
+    "n_units_detected": 139,
+    "max_y": 5
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "unit_forest_cover_z", "unit_elev_z", "obs_trials"],
+  "coreMd5": "30a1383ef6b0242db522900f78db9831",
+  "sideTables": {
+    "taxa": {
+      "rows": 71,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_tableS1_2019", "taxon_iucnCategory"],
+      "md5": "efaadaf28ef082e29017c8932d466121"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/jimenezfranco_2023_murcia_birds_binom.R",
+  "buildDate": "2026-11-11"
+}
