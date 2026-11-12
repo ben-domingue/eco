@@ -448,6 +448,7 @@ CSVs with `upload/red_up_eco.py`.
 | `barry_2025_sierra_owls_comm.R` | acoustic ARU occupancy, two units (ARU community; cell GHO), two tables, author-corrected files | Dryad | CC0 |
 | `trujillo_2020_tasmania_crayfish_edna.R` | eDNA multi-scale, stream > water sample > qPCR replicate, author-supplied site metadata | Zenodo | CC BY 4.0 |
 | `debusschere_2026_bpns_porpoise_occ.R` | passive acoustic detection, harbour porpoise per deployment-hour (C-POD / F-POD), 172 deployments at 24 stations, Belgian North Sea, 2014-2024 | VLIZ IPT | CC BY 4.0 |
+| `azzurro_2022_med_climatefish_count.R` | repeated counts, diver transects (4 per location x depth layer x visit), 15 Mediterranean coastal fish incl. 8 non-indigenous, 2009-2021 | VLIZ IPT / SEANOE | CC BY 4.0 |
 | `szewczyk_2019_colorado_ants_binom.R` | pitfall binomial counts, multi-scale (site > trap pair), per-region lists, two tables (coarsened + `_exact`) | Dryad | CC0 |
 | `jimenezfranco_2019_murcia_birds_binom.R` | line-transect binomial counts, transects as spatial replicates of grid cells | Dryad | CC0 |
 | `jimenezfranco_2023_murcia_birds_binom.R` | line-transect binomial counts, modern resurvey (2012, 2017) of the same region, cells of 2 x 2 km | Dryad | CC0 |
