@@ -36,14 +36,15 @@ website:
   repo-actions: [issue]
   description: "Ecological detection data in one format: occupancy surveys, repeated counts and capture histories from public deposits, validated and versioned."
   favicon: logos/favicon.ico
-  # Social-sharing cards. Quarto makes the image URL absolute from site-url.
+  # Social-sharing cards. Absolute URL: a relative one resolves against each
+  # page, so pages in vignettes/ would point at vignettes/logos/.
   open-graph:
-    image: logos/og-image.png
+    image: https://ben-domingue.github.io/eco/logos/og-image.png
     image-width: 1200
     image-height: 630
   twitter-card:
     card-style: summary_large_image
-    image: logos/og-image.png
+    image: https://ben-domingue.github.io/eco/logos/og-image.png
     image-width: 1200
     image-height: 630
   navbar:
