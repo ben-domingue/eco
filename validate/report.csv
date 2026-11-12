@@ -15,6 +15,7 @@ armstrong_2024_hydrilla_dynocc,4211,506,1,TRUE,"","",TRUE,"",TRUE,meets,row_pres
 arsocivil_2019_scotland_dolphin_rd,26855,205,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 arsocivil_2019_scotland_dolphincalf_cjs,452,56,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
 asfaw_2025_omo_carniv_occ,1876,36,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
+azzurro_2022_med_climatefish_count,47130,183,15,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; date_numeric*; resp_scale_nested_support
 barea_2021_sierran_butterfly_exact_count,172500,22,100,TRUE,"",sample_floor,TRUE,"",TRUE,below (22 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support; sample_floor
 barea_2021_sierranevada_butterfly_count,175950,22,102,TRUE,"",sample_floor,TRUE,"",TRUE,below (22 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support; sample_floor
 barrile_2022_bridgerteton_toad_msrd,45318,1415,1,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*

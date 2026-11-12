@@ -2594,3 +2594,33 @@ shipped; Ben chose the modern period only. The 73 codes shared with 2019 are nam
 order); the four modern-only codes are named in the paper's text. Six species of the authors' 77-species list have no
 modern record and are not shipped (`taxonInclusion = recorded`). Which transects were walked in 2012 vs 2017 is not
 deposited, so there is no period column.
+
+## Batch 53 — 2026-11-11 (EDITO / EurOBIS discovery pass; one table)
+
+Built in `~/eco-edito` (branch `edito-marine`, from main at f714a49), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| azzurro_2022_med_climatefish_count | repeated counts, diver transects, fish community (15 target species) | VLIZ IPT climate-fish-abundance = SEANOE doi:10.17882/86784 (CC BY 4.0) | 47,130 | 183 location x depth layer units at 102 locations (`cluster_id`), period = month, occasion = transect (mostly 4); sample_table; coordinates coarsened (Epinephelus marginatus VU) |
+
+**Discovery.** The EDITO / EMODnet Biology occurrence parquet (71.3M rows, 2026-09-30) keeps `occurrenceStatus`: 13.7M
+absences in 207 IMIS datasets. Profiled each (events, taxa, sites, events per site, duplicate event x taxon rows) and
+looked it up in IMIS: `discovery/edito_eurobis_absent_2026-11-11.csv`, script `discovery/edito_eurobis_profile.py`.
+68 overlap the batch 45 GBIF sampling-event pass, 65 have one event per site, 54 eligible ones are untriaged.
+
+**Triaged and queued.** Shore Thing timed searches (held: are the three habitats occasions of one survey, with different
+species lists?); SeaWatch-B (available: one table per method, flatfish size classes summed within a trawl); Dutch shellfish
+monitoring (held: presence rows only, densities from subsampled hauls, zeros need the sampling handbook); three Azores
+limpet quadrat sets (blocked: publisher IPT ipt.gbif.pt 404); Plymouth towed video (rejected: single visit, percent cover).
+ANEMOON beach washup (in the queue since batch 45) opened and held: species x remains class (live, dead, shells, egg...),
+an E9 scope question.
+
+**Mistake caught.** I rebuilt the SHARK harbour porpoise table before noticing it is `nrm_2024_sweden_porpoise_occ` (batch
+42): the duplicate check matched IMIS DOIs, and IMIS has none for that dataset. Reverted before upload; nothing shipped.
+Duplicate checks for EurOBIS candidates must go through the GBIF DOI (the discovery CSV notes it).
+
+**ClimateFish.** IUCN lists the dusky grouper under Mycteroperca marginata, so `iucn_category()` returns NA for
+Epinephelus marginatus; set to VU by hand from the GBIF IUCN record. 457 transects are dated to the month only (`date` empty,
+the month is the period). Pempheris rhomboidea was never counted (all zeros: a target species not seen).
+
+Strained the standard: nothing new.
