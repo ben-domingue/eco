@@ -2517,3 +2517,27 @@ were they pooled); whether `FC NEG` is the UBR field control; whether Site 1P an
 to 1e-6 degree in the metadata, probably a copy error; the same 0.1-degree cell either way). Strained the standard
 again: E10 has no provenance field for author-supplied files (as in batch 48); `obs_blank_positive` cannot say "blank not
 tested".
+
+## Batch 50 — 2026-11-11 (one hold cleared: VLIZ LifeWatch porpoise C-POD network)
+
+Built in `~/eco-cpod` (branch `cpod-vliz`, from main at e050336), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| debusschere_2026_bpns_porpoise_occ | passive acoustic detection, continuous (deployment x month x hour) | VLIZ IPT lifewatch_cpod v1.10, doi:10.14284/639 (CC BY 4.0) | 449,119 | 172 deployments (unit) at 24 stations (`cluster_id`), 2014-06 to 2024-12; y = any detection-positive minute in the hour, y_raw = DPM, `obs_recorded_min` effort; sample_table |
+
+**Licence.** Held since batch 42 because the event rows carried accessRights "not-for-profit use only" beside a CC BY 4.0
+EML. E. Debusschere (VLIZ) confirmed CC BY 4.0 on 2026-11-10; the IMIS record (5531) says CC BY 4.0, and IPT version 1.10
+(2026-11-06) has accessRights "CC BY 4.0" on every row (asserted). Built from the IPT archive without waiting for the GBIF
+re-harvest (Ben, 2026-11-11). Found via the EDITO / EMODnet Biology occurrence parquet (IMIS 5531 is there with its
+absences); the EDITO copy drops `eventDate` and the eMoF counts, so the IPT archive is the source.
+
+**Design.** Unit = deployment, not station: coordinates, depth, mooring and device (C-POD / F-POD) vary between
+deployments at a station, and 15,568 station-hours have two PODs recording at once (paired C-POD and F-POD, or overlap
+during a swap). Station is `cluster_id`. Period = calendar month, occasion = hour of the month, `closure = open`.
+One F-POD deployment at ReefballsBelwind (D57130) is published 0.1 deg east of the station's others, kept as published.
+"Number of filtered clicks" not shipped (a second measure of the detection); `obs_total_clicks` ships as a noise covariate.
+
+Strained the standard: nothing new. A station-level occupancy view needs aggregating units by `cluster_id`. The hour is the
+source's own summary unit (VLIZ publishes one event per hour), so nothing is discretised here; month only groups hours
+into periods (`date` and `obs_hour_utc` let users regroup).
