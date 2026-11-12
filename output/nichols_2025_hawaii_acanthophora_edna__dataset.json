@@ -1,0 +1,67 @@
+{
+  "table": "nichols_2025_hawaii_acanthophora_edna",
+  "title": "qPCR eDNA detections of the non-indigenous red alga Acanthophora spicifera in surface seawater at 91 reef sites, main Hawaiian Islands and Papahanaumokuakea, 2020-2023",
+  "creator": "Nichols, Patrick; Sherwood, Alison; Fraiola, Ka'ua'oa; Ely, Taylor; Hauk, Brian; Counsell, Chelsie; Porter, Megan; Marko, Peter",
+  "pubDate": "2025",
+  "doi": "10.5061/dryad.cfxpnvxjd",
+  "sourceURL": "https://doi.org/10.5061/dryad.cfxpnvxjd",
+  "paperDOI": "10.1002/aff2.70135",
+  "citation": "Nichols P, Sherwood A, Fraiola K, Ely T, Hauk B, Counsell C, Porter M, Marko P (2025). Detection of a non-indigenous marine macroalga (Acanthophora spicifera) with environmental DNA from surface seawater. Dryad. https://doi.org/10.5061/dryad.cfxpnvxjd",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Environmental DNA survey for Acanthophora spicifera, a red alga introduced to Hawaiian coral reefs: two surface-seawater samples at each of 91 reef sites in the main Hawaiian Islands and the Papahanaumokuakea Marine National Monument, each extract run in three qPCR wells with a species-specific rbcL SYBR assay. One row per well: y = 1 where the well amplified (a Cq), y_raw = Cq, obs_melt_peak_c = the melt-curve peak. The unit is the water sample and cluster_id the site; unit_visual_presence marks sites where an opportunistic visual survey saw the alga.",
+  "samplingProtocol": "Surface seawater filtered for eDNA, two samples per reef site; each extract amplified in three qPCR wells with species-specific primers on a 131 bp rbcL region (SYBR chemistry, melt-curve analysis); opportunistic visual surveys for the alga at some sites.",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = three qPCR wells of one water sample's extract; samples nest in reef sites (cluster_id); one visit per site (one site has two dates, one sample each)",
+  "occasionKind": "spatial",
+  "taxonInclusion": "single",
+  "detectionCertainty": "Opportunistic visual survey at site level: unit_visual_presence = 1 where the alga was seen; NA where it was not seen or not surveyed (the deposit does not separate the two).",
+  "geographicCoverage": "Hawaiian Archipelago: Oahu, Kauai, Maui and Hawaii (main islands) and Kuaihelani (Midway), Holaniku (Kure), Manawai (Pearl and Hermes), Kapou (Lisianski) and Lalo (French Frigate Shoals) in Papahanaumokuakea",
+  "temporalCoverage": "2020/2023",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "An introduced alga (not a flagged taxon); reef sites; coordinates as deposited."
+  },
+  "notes": "y follows the eDNA detection-call ruling: the deposit gives Cq values (the data the authors modelled) and no other call. Every amplified well but one has its melt peak at 79-80 C; one (obs_melt_peak_c = 87) peaks elsewhere, likely a non-target product; users who want the authors' melt-curve screen can require obs_melt_peak_c < 81. Field blanks and other controls were run (399 wells in the metadata) but their results are not deposited, so obs_blank_positive cannot be set. The paper reports detections in Papahanaumokuakea that its controls, sequencing and visual surveys suggest are real.",
+  "notShipped": {
+    "starting quantities": "SQ: a transform of Cq through the standard curve",
+    "control wells": "399 field-blank and negative-control wells listed in the metadata; results not deposited",
+    "amplification and melt curves": "summarised by obs_melt_peak_c",
+    "metabarcoding": "OTU table and reads: a different method (high-throughput sequencing)"
+  },
+  "summary": {
+    "n_rows": 543,
+    "n_units": 181,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 543,
+    "y_values": "0,1",
+    "prop_zero": 0.79,
+    "n_traps": 1,
+    "n_zero": 429,
+    "n_positive": 114,
+    "n_units_detected": 47,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_region", "unit_island", "unit_depth_m", "unit_visual_presence", "unit_decimalLatitude", "unit_decimalLongitude", "obs_melt_peak_c"],
+  "coreMd5": "c79cc97f14db1304c8560e15e682d3e1",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "ce8024c2764605e59f9d69ab206a0f10"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/nichols_2025_hawaii_acanthophora_edna.R",
+  "buildDate": "2026-11-11"
+}

@@ -2624,3 +2624,27 @@ Epinephelus marginatus; set to VU by hand from the GBIF IUCN record. 457 transec
 the month is the period). Pempheris rhomboidea was never counted (all zeros: a target species not seen).
 
 Strained the standard: nothing new.
+
+## Batch 54 — 2026-11-11 (marine follow-ups from the EDITO pass, and two Hawaiian eDNA deposits; one table)
+
+Built in `~/eco-b54` (branch `batch-54-marine`, from main at 6dfb7f4), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| nichols_2025_hawaii_acanthophora_edna | eDNA multi-scale (reef site > water sample > qPCR well) | Dryad doi:10.5061/dryad.cfxpnvxjd (CC0) | 543 | 91 sites (`cluster_id`), 181 samples (unit), 3 wells; 114 amplified wells at 28 sites; y = Cq present (eDNA ruling), `obs_melt_peak_c` shipped; deposited_matrix |
+
+**Acanthophora.** The paper (doi:10.1002/aff2.70135) was not readable (Wiley 403), so the call is the 2026-11-06 eDNA
+ruling's default: a Cq is a detection. Every amplified well but one peaks at 79-80 C in the melt data; one peaks at 87 C
+(likely non-target); the peak ships as `obs_melt_peak_c`. Control wells (399) are listed in the metadata but their
+results are not deposited, so `obs_blank_positive` is not set. Visual sightings at 14 sites are `unit_visual_presence`
+(NA = not seen or not surveyed), declared in `detectionCertainty`.
+
+**Held.** Chondria tumulosa eDNA (sister deposit): no well-to-sample key; grouping wells by ID order is unsafe at up to 11 of 63
+sites. Mugil liza surf-zone counts: occurrenceStatus contradicts the count in 42 of 144 rows, in the SEANOE original too.
+Adriatic pair-trawl bycatch: counts summed over hauls by cell-year (E1). SeaWatch-B stays available with its mess noted.
+The three Azores limpet sets are still blocked (publisher IPT 404).
+
+Tooling: `DRYAD_TOKEN` in `~/.bashrc` now gets 401 from the Dryad API while anonymous requests succeed; ran
+`download_dryad()` with the variable unset (`env -u DRYAD_TOKEN`). The token needs renewing.
+
+Strained the standard: nothing new.
