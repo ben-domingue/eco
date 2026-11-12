@@ -8,6 +8,10 @@ $body-color: #222;
 
 /*-- scss:rules --*/
 .navbar-brand { font-weight: 700; letter-spacing: 0.02em; }
+// Navbar lockup (logos/eco-lockup-dark.svg). Quarto caps .navbar-logo at 24px,
+// where the four tracks blur; 36px is the smallest size at which they still
+// read as tracks (logos/reference/kit-navbar-test.png).
+.navbar .navbar-logo { max-height: 36px; height: 36px; width: auto; padding-right: 0; margin-right: .75rem; }
 
 .eco-hero {
   padding: 2.5rem 0 1.5rem;

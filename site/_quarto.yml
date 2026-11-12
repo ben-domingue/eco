@@ -8,6 +8,14 @@ project:
     - map.js
     - llms.txt
     - wheels/**/*.whl     # the browser validator's wheel, built by prerender.R (#8)
+    # Logo kit (logos/README.md). The app icons are named only in
+    # site.webmanifest and the other variants by no page, so resource discovery
+    # would not copy them. logos/reference/ (test renders, build scripts) is
+    # deliberately left out.
+    - logos/*.svg
+    - logos/*.png
+    - logos/*.ico
+    - site.webmanifest
   # Writes data/site_stats.json from the pipeline's staging files so the
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
@@ -27,8 +35,23 @@ website:
   repo-url: https://github.com/ben-domingue/eco
   repo-actions: [issue]
   description: "Ecological detection data in one format: occupancy surveys, repeated counts and capture histories from public deposits, validated and versioned."
+  favicon: logos/favicon.ico
+  # Social-sharing cards. Quarto makes the image URL absolute from site-url.
+  open-graph:
+    image: logos/og-image.png
+    image-width: 1200
+    image-height: 630
+  twitter-card:
+    card-style: summary_large_image
+    image: logos/og-image.png
+    image-width: 1200
+    image-height: 630
   navbar:
-    title: "eco"
+    # The dark lockup carries the name, so the text title is hidden; logo-alt
+    # keeps it for screen readers. Sized in custom.scss (.navbar-logo).
+    title: false
+    logo: logos/eco-lockup-dark.svg
+    logo-alt: "eco"
     search: true
     left:
       - text: Data
@@ -82,6 +105,8 @@ format:
     toc-depth: 3
     code-fold: true
     link-external-newwindow: true
+    # Favicon PNGs, touch icon and manifest beyond the one website.favicon emits.
+    include-in-header: logos/_head.html
 
 execute:
   echo: false
