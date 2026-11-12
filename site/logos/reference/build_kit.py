@@ -2,7 +2,7 @@
 """Build the eco logo kit (site/logos/) from the design constants below.
 
 The design is the "Bird feet" mark: four bird tracks walking bottom-left to
-top-right, read as the capture history 1 0 1 1 (the dashed track is a survey
+top-right, read as the capture history 1 0 1 1 (the faded track is a survey
 that missed an animal that was there). This script only refines the hand-off
 masters: tight viewBoxes, outlined text, pixel-tuned favicons, rasters.
 
@@ -22,6 +22,9 @@ KIT = os.path.dirname(HERE)                      # site/logos/
 # ---- colours (site/custom.scss) ---------------------------------------------
 PINE = "#1f3d2f"      # tracks + text, light backgrounds; also the navbar
 MIST = "#f3f6f4"      # tracks + text on pine
+FADE = "#bfd3c7"      # the missed track on light grounds
+FADE_DARK = "#4f7a64" # the missed track on pine
+FADED = {PINE: FADE, MIST: FADE_DARK}   # detected colour -> missed colour
 BG_TOUCH = "#f4f7f5"  # apple-touch-icon / manifest icons
 BG_OG = "#fbfcfb"     # light OG card
 FOREST = "#2f6b4f"    # accent
@@ -29,7 +32,10 @@ RUST = "#b0522a"      # accent
 
 # ---- the track glyph (100-unit icon box, before the 0.95 scale) -------------
 TOES = [((0, 6), (0, -13)), ((0, 3), (-10, -9)), ((0, 3), (10, -9)), ((0, 6), (0, 13))]
-SW_SOLID, SW_MISSED, DASH = 4.4, 3.0, "3.2 2.6"
+# A missed track is the same glyph at the same stroke width, solid, in the
+# faded colour (it replaced the hand-off's thinner dashed track, which at large
+# sizes read as a different, thinner bird rather than a missed one).
+SW_SOLID = 4.4
 SCALE = 0.95
 # Four tracks evenly spaced on (16,86)->(84,16), offset 8 at right angles,
 # alternating; detected = 1, missed = 0. Same transforms as the hand-off master.
@@ -71,13 +77,9 @@ TOE_D = "".join(f"M{f(a[0])} {f(a[1])}L{f(b[0])} {f(b[1])}" for a, b in TOES)
 
 def track_svg(tx, ty, hit, col, scale=SCALE, deg=45):
     tr = f'translate({f(tx)} {f(ty)}) rotate({f(deg)}) scale({f(scale)})'
-    if hit:
-        return (f'<path transform="{tr}" d="{TOE_D}" fill="none" stroke="{col}" '
-                f'stroke-width="{SW_SOLID}" stroke-linecap="round"/>')
-    # one path per toe so every toe starts its dash pattern at the toe's base
-    toes = "".join(f'<path d="M{f(a[0])} {f(a[1])}L{f(b[0])} {f(b[1])}"/>' for a, b in TOES)
-    return (f'<g transform="{tr}" fill="none" stroke="{col}" stroke-width="{f(SW_MISSED)}" '
-            f'stroke-dasharray="{DASH}" stroke-linecap="round">{toes}</g>')
+    c = col if hit else FADED[col]
+    return (f'<path transform="{tr}" d="{TOE_D}" fill="none" stroke="{c}" '
+            f'stroke-width="{SW_SOLID}" stroke-linecap="round"/>')
 
 def trail(col, positions=None, history=HISTORY, scale=SCALE, dx=0, dy=0):
     positions = positions or trail_positions()
@@ -152,19 +154,19 @@ WM = dict(x=118, y=78, size=96, tracking=-1)
 #
 # Both favicons sit on a rounded pine tile with light tracks: transparent pine
 # tracks vanish on dark browser tab strips (see reference/favicon-test.png).
-def px_track(B, L, C, H, col, sw, dashed=False):
+def px_track(B, L, C, H, col, sw):
     bx, by = B
     segs = [((bx, by - L), (bx, by)), ((bx + L, by), (bx, by)), ((bx + C, by - C), (bx - H, by + H))]
-    if dashed:  # drawn tip-first so every toe starts on a dash; butt caps keep the gaps open
-        return "".join(f'<path d="M{f(a[0])} {f(a[1])}L{f(b[0])} {f(b[1])}"/>' for a, b in segs).join(
-            [f'<g fill="none" stroke="{col}" stroke-width="{f(sw)}" stroke-dasharray="2 1" stroke-linecap="butt">', '</g>'])
     d = "".join(f"M{f(a[0])} {f(a[1])}L{f(b[0])} {f(b[1])}" for a, b in segs)
     return f'<path d="{d}" fill="none" stroke="{col}" stroke-width="{f(sw)}" stroke-linecap="round"/>'
+
+# The missed track on the 32px tile; tuned against the 1x render.
+FAV_FADE = FADE_DARK
 
 def favicon32():
     body = (f'<rect width="32" height="32" rx="6" fill="{PINE}"/>'
             + px_track((7, 25), 8, 6, 3, MIST, 2)
-            + px_track((20, 12), 8, 6, 3, MIST, 2, dashed=True))
+            + px_track((20, 12), 8, 6, 3, FAV_FADE, 2))
     return svg_doc((0, 0, 32, 32), body, "eco")
 
 def favicon16():

@@ -98,12 +98,12 @@ section{{border-top:1px solid #dfe7e2;padding:28px 0}}
 .cap{{font-size:16px;color:#3d5a4b}}
 .dark{{background:#1f3d2f;border-radius:12px;padding:26px 28px;display:flex;align-items:center;gap:60px;color:#f3f6f4}}
 .mock{{border:1px solid #dfe7e2;border-radius:10px;overflow:hidden;background:#fff}}
-.sw{{display:inline-block;text-align:center;margin-right:28px;font-size:15px}} .sw span{{display:block;font-size:13px;color:#55705f}}
-.dot{{width:84px;height:84px;border-radius:50%;border:2px solid #1f3d2f;margin:0 auto 8px}}
+.sw{{display:inline-block;text-align:center;margin-right:14px;font-size:15px}} .sw span{{display:block;font-size:13px;color:#55705f}}
+.dot{{width:72px;height:72px;border-radius:50%;border:2px solid #1f3d2f;margin:0 auto 8px}}
 </style></head><body>
 <h1>eco logo &amp; brand kit</h1>
 <p class="lead">A walking trail of four bird tracks, read as the capture history <b>1&nbsp;0&nbsp;1&nbsp;1</b>.
-The dashed track is a survey that missed an animal that was there: imperfect detection, the idea the project is built around.</p>
+The faded track is a survey that missed an animal that was there: imperfect detection, the idea the project is built around.</p>
 <section><h2>Primary lockup</h2><div style="text-align:center;padding:16px 0"><img src="{uri('eco-lockup.svg')}" style="height:210px"></div></section>
 <section><h2>Scaling &amp; variations</h2><div class="cols">
 <div><img src="{uri('eco-icon.svg')}" style="height:150px"><div class="cap"><b>ICON</b>The trail, four tracks.<br>Use at 48px and up.</div></div>
@@ -111,7 +111,7 @@ The dashed track is a survey that missed an animal that was there: imperfect det
 <div><div style="height:150px;display:flex;align-items:center;justify-content:center;gap:26px">
 <img src="{uri('eco-favicon-32.svg')}" style="width:96px;image-rendering:pixelated"><img src="{uri('eco-favicon-16.svg')}" style="width:64px">
 <img src="{uri('favicon-32.png')}" width="32"><img src="{f16}" width="16"></div>
-<div class="cap"><b>FAVICONS</b>Hand-tuned 32 (two tracks) and 16 (one)<br>on a pine tile, shown large and at 1x.</div></div>
+<div class="cap"><b>FAVICONS</b>Hand-tuned 32 (solid + faded) and 16 (one)<br>on a pine tile, shown large and at 1x.</div></div>
 </div></section>
 <section style="border:0"><div class="dark"><div style="font-size:15px;letter-spacing:.14em;font-weight:600;align-self:flex-start;color:#9fb8aa">DARK</div>
 <img src="{uri('eco-lockup-dark.svg')}" style="height:140px"><img src="{uri('eco-icon-dark.svg')}" style="height:120px;margin-left:auto"></div></section>
@@ -130,8 +130,8 @@ The dashed track is a survey that missed an animal that was there: imperfect det
 <div><h2>Typography</h2><div style="font-size:72px;font-weight:700;line-height:1">Source Sans 3</div>
 <div class="cap" style="text-align:left;margin-top:10px">Bold, slight negative tracking, in the wordmark (outlined).<br>The site sets everything in Source Sans 3.</div>
 <div style="font-size:22px;letter-spacing:.08em;margin-top:14px;font-weight:700">ABCDEFGHIJKLM abcdefghijklm 0123456789</div></div>
-<div><h2>Colour</h2>{sw('#1f3d2f','Pine')}{sw('#f3f6f4','Mist')}{sw('#f4f7f5','Ground')}{sw('#2f6b4f','Forest')}{sw('#b0522a','Rust')}
-<div class="cap" style="text-align:left;margin-top:14px">Pine marks on light grounds; mist marks on pine. Forest and rust are accents, never in the mark.</div></div>
+<div><h2>Colour</h2>{sw('#1f3d2f','Pine')}{sw('#f3f6f4','Mist')}{sw('#f4f7f5','Ground')}{sw('#bfd3c7','Faded')}{sw('#4f7a64','Faded on pine')}{sw('#2f6b4f','Forest')}{sw('#b0522a','Rust')}
+<div class="cap" style="text-align:left;margin-top:14px">Pine marks on light grounds, mist on pine; the missed track is faded (#BFD3C7 / #4F7A64). Forest and rust are accents, never in the mark.</div></div>
 </div></section>
 <section><h2>Social card</h2><img src="{uri('og-image.png')}" style="width:700px;border:1px solid #dfe7e2;border-radius:8px;margin-right:24px"><img src="{uri('og-image-dark.png')}" style="width:700px;border-radius:8px"></section>
 </body></html>"""
