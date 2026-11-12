@@ -1,0 +1,107 @@
+---
+title: "Coordinate coarsening"
+description: "When eco generalises the coordinates of a table, how, and what a user should do about it."
+---
+
+```{r}
+#| label: counts
+#| include: false
+m <- read.csv("../metadata/metadata.csv", stringsAsFactors = FALSE)
+n_all <- nrow(m)
+n_coarse <- sum(as.logical(m$coordinates_coarsened), na.rm = TRUE)
+n_exact <- sum(grepl("_exact_", m$table))
+```
+
+Many eco tables give the location of every site, camera or trap. For a
+threatened species, a list of exact locations can help a poacher, a collector or
+a careless visitor. So for some tables eco publishes coordinates that are
+coarser than the source's. This page sets out when that happens and what it
+means for you. The binding text is clause E7 of the [standard](standard.html);
+this page is a summary of it.
+
+At present `r n_coarse` of `r n_all` tables have coarsened coordinates. Each
+one is marked on [Browse the tables](data.html).
+
+## The rule in one paragraph
+
+eco never publishes coordinates more precise than the source did. When a table
+includes a *flagged* taxon, or sites on private or community land, and the
+source's coordinates are finer than 0.1 degree, eco snaps them to the centre of
+their 0.1-degree grid cell (about 11 km north to south). The uncertainty column
+is set to the half-diagonal of that cell, and the table's metadata records that
+the coordinates were coarsened and how. Coordinates are coarsened, never
+dropped: spatial occupancy and capture-recapture models need them, and a 10 km
+cell is also what GBIF publishes for sensitive taxa.
+
+## When a taxon is flagged
+
+A taxon is flagged when any of these holds:
+
+1. **The source says so.** The deposit, in its own text about the data, says the
+   locations are sensitive or withheld, or that the taxon is protected or
+   threatened. A word in a paper's title is not enough.
+2. **IUCN lists it as Critically Endangered, Endangered or Vulnerable**, and the
+   survey is within the taxon's native range. An introduced population, such as
+   a garden escape or an invasive, is not flagged by its global category, so its
+   coordinates are kept as the source published them.
+3. **A national red list that the source cites lists it.**
+
+The rule applies whoever published the source, government agencies included.
+The exact coordinates remain one link away at the source. eco's job is not to
+make them easier to find, filter and combine across hundreds of tables, and 0.1
+degree costs little for most models.
+
+## Private and community land
+
+Coordinates finer than 0.1 degree are also coarsened, whatever the taxa, when
+the source says the sites are on private land or community land, or on land
+reached under an agreement with landowners or a community. The exception is
+when the source says the landowners agreed to the locations being published.
+The trigger is always the source's own statement about the data: eco never
+infers land tenure from a map, a place name or the kind of study. If the
+source says which sites are on such land, only those are coarsened. Otherwise
+the whole table is.
+
+## How different kinds of table are handled
+
+- **Tables with only some flagged taxa.** Two tables ship. The full table, with
+  coarsened coordinates, keeps the table's name. A second table drops the
+  flagged taxa and keeps the source's precision; its name has `_exact` before
+  the type suffix (for example `stallings_2025_gulfreefs_exact_count`). You
+  choose which to use. Nothing the source published is lost. There are
+  currently `r n_exact` `_exact` tables. Private-land coarsening has no `_exact`
+  table, because the reason is the place rather than a taxon.
+- **Projected coordinates** (metres on a national grid) are snapped to the
+  centre of a 10 km cell of the source's grid, with an uncertainty of 7,071 m.
+- **Trap arrays for spatial capture-recapture.** Coarsening individual traps
+  would destroy the distances between them, which are what the model uses. For
+  a flagged taxon, eco instead recentres the trap coordinates on the array, in
+  local metres with the mean trap position at zero. The array's own location is
+  given as a 0.1-degree cell, and `crs` is `local`.
+- **Other location clues.** In a coarsened table, elevations are rounded to the
+  nearest 100 m. Columns that name a place, such as a locality or site name, are
+  not shipped, and a unit identifier that names a place is replaced by the
+  source's code or a sequential id. The `_exact` table keeps them as published.
+- **Coordinates the source already displaced** for privacy are shipped as
+  published, and the metadata says how the source displaced them.
+
+## Where to see it in a table
+
+- The `coordinatesCoarsened` field of the table's metadata has `value` (true or
+  false) and `method`, a sentence saying what was done and why. If a listed
+  taxon was not coarsened (an introduced population, say), `method` says why.
+  `rule` says which trigger applied: `taxon`, `private_land`, or both.
+- `unit_coordinateUncertaintyInMeters` gives the uncertainty for each unit.
+- The table's tags and its entry on [Browse the tables](data.html) say that its
+  coordinates are coarsened. Some tables also have a [data note](data_notes.html).
+
+## What we ask of users
+
+**Do not try to recover coarsened coordinates.** Do not reconstruct them from
+the source, from other datasets or from other eco tables, and do not join eco
+tables to anything that would. If your research really needs the exact
+locations, contact the people who collected the data, as described in
+[Using eco responsibly](use.html).
+
+**If you collected the data** and want the locations handled differently, open an
+[issue](https://github.com/ben-domingue/eco/issues).

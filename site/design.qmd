@@ -36,8 +36,9 @@ surveyed" and 0 "not detected", and in three deposits the pattern could be
 cross-checked against an effort table. It was ambiguous where the source was a
 record table with no survey list, so every table now declares what its survey
 set rests on (`surveyEvidence`), and three tables carry a set reconstructed by
-a stated rule. Coarsening was needed twice, for an Endangered tapir deposited with exact
-camera coordinates and for a bird community that includes Vulnerable taxa. A
+a stated rule. In the first tables, coarsening was needed twice, for an Endangered tapir
+deposited with exact camera coordinates and for a bird community that includes
+Vulnerable taxa. A
 multi-state loon table fit with `y` as a species-specific state code. A MARK
 input file with losses on capture exercised the `obs_removed` encoding.
 Covariates that were really model outputs were dropped and logged. The
@@ -83,7 +84,9 @@ rulings, made when the eDNA tables arrived, are listed after them.
 4. **Sensitive-species coordinates.** Coarsen by rule to a 0.1-degree grid
    with the uncertainty recorded, or drop coordinates for any flagged taxon.
    *Ruled: coarsen, never drop; a taxon is flagged by the source, by IUCN
-   CR/EN/VU, or by a cited national red list.*
+   CR/EN/VU in its native range, or by a cited national red list; later rulings
+   extended it to agency data and to private land
+   ([Coordinate coarsening](coarsening.html)).*
 5. **How far to stretch.** Double-observer and binned distance sampling fit by
    using `occasion` for a category rather than a time-ordered replicate;
    spatial capture-recapture adds a `trap` index. Accept the stretched
