@@ -2541,3 +2541,40 @@ One F-POD deployment at ReefballsBelwind (D57130) is published 0.1 deg east of t
 Strained the standard: nothing new. A station-level occupancy view needs aggregating units by `cluster_id`. The hour is the
 source's own summary unit (VLIZ publishes one event per hour), so nothing is discretised here; month only groups hours
 into periods (`date` and `obs_hour_utc` let users regroup).
+## Batch 51 — 2026-11-12 (two holds cleared: Colorado ants, Murcia forest birds)
+
+Built in `~/eco-b50` (branch `batch-50`; numbered 51 after the C-POD batch 50, PR #168, merged first), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| szewczyk_2019_colorado_ants_binom | binomial_count community, multi-scale (site > pitfall-trap pair) | Dryad doi:10.5061/dryad.rt679ng (CC0) + Ecography Appendix 1 | 45,706 | 551 trap pairs at 29 sites, 102 taxa on per-region lists (`__survey_taxa`); coarsened (Dorymyrmex insanus IUCN VU) |
+| szewczyk_2019_colorado_ants_exact_binom | same, E7.3 sibling | same | 45,432 | without D. insanus; site coordinates (0.01 deg) and elevations as published |
+| jimenezfranco_2019_murcia_birds_binom | binomial_count community, transects as spatial replicates of grid cells | Dryad doi:10.5061/dryad.8sf5v66 (CC0) + Ecol. Evol. Table S1 | 17,958 | 246 cells (AS2x2), 1-5 transects each, 73 species; no coordinates in source |
+
+**Colorado ants.** Held since 2026-11-05 as "San Juan species unnamed, no survey years". The species were named all
+along (`dimnames(y)` of the SJ array; the intake read only the numeric `tax` frame). C. McCain sent the Ecography
+appendices on 2026-11-11 (the publisher link is dead; her PDF is byte-identical to the 2019 Wayback copy of
+ecography.org's appendix). Table A1 gives every site's transect, year, elevation and coordinates; the deposit's two
+blocks of seven San Juan site codes match SJ-1 and SJ-2 by observed species and genus richness at all 14 sites (asserted).
+
+Found in the deposit: `FR-all_data_for_JAGS.rds` mislabels its last rows. It agrees with `FR-shared` species by
+species up to row 68; then FR-shared's SolenopsisMOLESTA .. TemnothoraxRUGATULUS are FR-all's rows 71, 73-76, and
+FR-shared's TemnothoraxTRICARINATUS is in no FR-all row. That species is detected at exactly four of the five Front
+Range sites where Table A1's richness exceeds FR-all's by one, so FR-shared is the correctly labelled file. The Front
+Range is FR-shared's 64 species plus FR-all's 10 FR-only species in rows 1-68; PolyergusMONTIVAGUS and StenammaDIECKI
+(FR-all rows 69, 70, 72 hold them and one unnamed species, order unrecoverable) are not shipped. Worth telling the
+authors. San Juan covariates (standardised) shipped; none were deposited for the Front Range (NA).
+GBIF: Temnothorax furunculus and T. obliquicanthus are on the backbone only as Leptothorax (lookupName).
+
+**Murcia birds.** Blocked since 2026-11-06 for want of Supporting Information Table S1, which Ben fetched 2026-11-11.
+All 73 six-letter codes map one-to-one: 68 by genus3 + epithet3, five by hand (Ccocor = Corvus corax, Corcor = Corvus
+corone, Emccir = Emberiza cirlus, Galsp. = Galerida cristata/theklae at genus rank, Lopcris = Lophophanes cristatus).
+The ravens are fixed by the authors' 2023 deposit (dryad.j9kd51chz), which has the same columns in the same order with
+Ccorax at column 11. The columns are not in Table S1 order, so mapping is by code. AS3x3 (same transects, coarser
+cells) not shipped. Chloris chloris needs a hinted GBIF match (grass-genus homonym).
+
+Still held: dryad.j9kd51chz (2023 Murcia resurvey): species now resolvable from the same key, but historical and modern
+cells are unnamed, so the two periods cannot be linked (two tables, or ask the authors).
+
+Infrastructure: the Dryad 401s on 2026-11-11 were an expired `DRYAD_TOKEN` (10 h), not the daily quota; run with
+`DRYAD_TOKEN=` for the anonymous version zip.

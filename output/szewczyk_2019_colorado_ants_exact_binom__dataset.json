@@ -1,0 +1,81 @@
+{
+  "table": "szewczyk_2019_colorado_ants_exact_binom",
+  "title": "Ant detections in 551 pitfall-trap pairs at 29 sites on four elevational transects in Colorado, 2010-2012: collections with the species out of collections made (binomial counts), without the IUCN-threatened species, coordinates as published",
+  "creator": "Szewczyk, Tim M.; McCain, Christy M.",
+  "pubDate": "2019",
+  "doi": "10.5061/dryad.rt679ng",
+  "sourceURL": "https://doi.org/10.5061/dryad.rt679ng",
+  "citation": "Szewczyk, T. M., & McCain, C. M. (2019). Data from: Disentangling elevational richness: a multi-scale hierarchical Bayesian occupancy model of Colorado ant communities [Dataset]. Dryad. https://doi.org/10.5061/dryad.rt679ng",
+  "paperDOI": "10.1111/ecog.04115",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Pitfall-trap ant surveys behind Szewczyk and McCain (2019, Ecography): four elevational transects in Colorado, two in the San Juan Mountains (1493-3508 m) and two in the Front Range (1728-3640 m), 7-8 sites each, 20 pitfall-trap pairs per site emptied up to six times over a 90-day summer, one summer per site in 2010-2012. For each trap pair and species, the number of collections containing the species out of the collections made (binomial_count). 101 taxa, on per-region lists (San Juan and Front Range), with site elevation, coordinates and, for the San Juan only, the authors' standardised site and trap covariates. This table omits Dorymyrmex insanus (IUCN VU) so that site coordinates and elevations ship as published; szewczyk_2019_colorado_ants_binom has every species with coarsened locations.",
+  "samplingProtocol": "At each site, 20 pairs of pitfall traps run for about 90 days in summer and emptied 1-6 times; ants identified to species. The authors collapsed each trap's collections to the number containing each species (Szewczyk & McCain 2019, Methods and Appendix 1).",
+  "samplingProtocolCode": "pitfall",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "k (collections per trap pair) is deposited for every trap; a trap pair is a survey iff k > 0 (6 San Juan and 23 Front Range pairs have k = 0 and no detections). Species lists are per region as deposited (__survey_taxa); a species not detected in a surveyed trap is y = 0.",
+  "surveyTaxaNote": "The deposit gives one species list per region (San Juan 92; Front Range 74 as shipped; 64 on both); __survey_taxa lists each region's species at its trap pairs, and taxon_region in __taxa says which list a taxon is on.",
+  "effortColumn": "obs_trials",
+  "responseType": "binomial_count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "no occasion column (binomial_count): one summer per site, collections collapsed by the authors, who treat site and trap-pair occupancy as closed over the 90-day season",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Colorado, USA: San Juan Mountains (37.2-37.9 N, 107.9-109.1 W) and Front Range (40.0-40.5 N, 105.2-105.7 W)",
+  "temporalCoverage": "2010/2012",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "as published: site coordinates at 0.01 degree and elevations from Appendix 1 Table A1, repeated on each trap pair; Dorymyrmex insanus (IUCN VU) omitted (in szewczyk_2019_colorado_ants_binom, coarsened)"
+  },
+  "notShipped": {
+    "FR-all rows 69, 70, 72": "FR-all's labels slip from row 69 (its rows 71, 73-76 are FR-shared's SolenopsisMOLESTA to TemnothoraxRUGATULUS, and it has no row for TemnothoraxTRICARINATUS); rows 69, 70 and 72 hold PolyergusMONTIVAGUS, StenammaDIECKI and one unnamed species in an unrecoverable order, so those two Front Range species are not shipped. The Front Range data are FR-shared's 64 species plus FR-all's 10 FR-only species in rows 1-68, where the two files agree",
+    "Y": "site x species detected, derived from y",
+    "genCov, Im": "genus-level phylogenetic covariance and identity matrices (model inputs)",
+    "Table A1 summaries": "ant worker counts, number of collections and observed richness per site (summaries of the same samples; richness used only to place the San Juan sites)",
+    "excluded sites": "the three disturbed sites the authors excluded (SJ-1 3241 m, SJ-2 3517 m, FR-2 3659 m) are not in the deposit",
+    "threatened species": "Dorymyrmex insanus (IUCN VU): in szewczyk_2019_colorado_ants_binom only, whose locations are coarsened"
+  },
+  "notes": "Site, transect, year, elevation and coordinates of the San Juan sites come from Appendix 1 Table A1, matched to the deposit's two blocks of seven site codes by observed species and genus richness, which agree exactly at all 14 sites. Covariates with suffix _z are the authors' standardised values as deposited (San Juan only; NA in the Front Range, where none were deposited). Taxon codes are Genus_epithet from the deposited Genus+EPITHET names.",
+  "summary": {
+    "n_rows": 45432,
+    "n_units": 551,
+    "n_taxa": 101,
+    "n_periods": 3,
+    "n_occasions": 1,
+    "n_surveys": 551,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.914,
+    "n_traps": 1,
+    "n_zero": 41537,
+    "n_positive": 3895,
+    "n_units_detected": 532,
+    "max_y": 6
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_region", "unit_transect", "unit_elev_m", "unit_decimalLatitude", "unit_decimalLongitude", "unit_site_habitat_div_z", "unit_site_soil_div_z", "unit_site_log_area_z", "unit_site_temp_mean_z", "unit_site_npp_z", "unit_site_temp_dayvar_z", "unit_canopy_z", "unit_n_trees_z", "unit_veg_volume_z", "unit_bare_ground_z", "obs_trials"],
+  "coreMd5": "6bd3c20734c5e3754528013fea52a15c",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "period_year", "period_n_sites"],
+      "md5": "91a132677b8cd526c9b01677061f6c02"
+    },
+    "survey_taxa": {
+      "rows": 45432,
+      "columns": ["taxon", "unit"],
+      "md5": "b946f7927a2114affa84986b95ea1fe6"
+    },
+    "taxa": {
+      "rows": 101,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_region", "taxon_iucnCategory"],
+      "md5": "b690d266717472ffc092f6ae391baa44"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/szewczyk_2019_colorado_ants_binom.R",
+  "buildDate": "2026-11-11"
+}
