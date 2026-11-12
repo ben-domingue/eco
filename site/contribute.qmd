@@ -299,7 +299,7 @@ the validator and refuses a bad table; the Python validator is the authority.
   from the same detections is dropped, and the drop is logged.
 - **Coordinates are never finer than the source.** Taxa the source or a red
   list flags as sensitive get a 0.1-degree coarsening, with the uncertainty
-  column and the dataset flag set.
+  column and the dataset flag set ([Coordinate coarsening](coarsening.html)).
 - **Table names** follow the standard's intake policy:
   `author_year_taxonOrPlace_type`, lower case, 40 characters or fewer.
 

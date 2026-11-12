@@ -38,7 +38,8 @@ are glad to help make the connection: open an
 **Do not try to recover coarsened coordinates.** Locations of threatened taxa
 are coarsened to 0.1 degree on purpose (standard clause E7), to protect the
 animals and plants. Do not reconstruct them from other sources, and do not join
-eco tables to anything that would.
+eco tables to anything that would. When and how coordinates are coarsened is
+set out in [Coordinate coarsening](coarsening.html).
 
 **If you collected the data.** If a table is built from your deposit and
 something is wrong, or you would like it described, restricted or handled

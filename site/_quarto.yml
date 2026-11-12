@@ -49,6 +49,8 @@ website:
             text: Using an AI assistant
           - href: use.qmd
             text: Using eco responsibly
+          - href: coarsening.qmd
+            text: Coordinate coarsening
       - text: The format
         menu:
           - href: standard.qmd
