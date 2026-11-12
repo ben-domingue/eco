@@ -2578,3 +2578,19 @@ cells are unnamed, so the two periods cannot be linked (two tables, or ask the a
 
 Infrastructure: the Dryad 401s on 2026-11-11 were an expired `DRYAD_TOKEN` (10 h), not the daily quota; run with
 `DRYAD_TOKEN=` for the anonymous version zip.
+
+## Batch 52 — 2026-11-12 (one hold cleared: Murcia forest birds, modern survey)
+
+Built in `~/eco-b52` (branch `batch-52`, from main after PR #169), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| jimenezfranco_2023_murcia_birds_binom | binomial_count community, transects as spatial replicates of 2 x 2 km cells | Dryad doi:10.5061/dryad.j9kd51chz (CC0) + Divers. Distrib. paper (Ben) | 9,869 | 139 cells, 198 transects (2012, 2017), 71 species; no coordinates in source |
+
+**Murcia modern survey.** Held because the historical and modern cells could not be linked. The paper (Methods 2.2, PDF
+supplied by Ben) settles it: the two periods used transects at different locations, so there is no panel to link. The
+historical file is the 2019 deposit's 377 transects regrouped into 226 cells (same 4,886 detections, asserted) and is not
+shipped; Ben chose the modern period only. The 73 codes shared with 2019 are named through the 2019 key (same column
+order); the four modern-only codes are named in the paper's text. Six species of the authors' 77-species list have no
+modern record and are not shipped (`taxonInclusion = recorded`). Which transects were walked in 2012 vs 2017 is not
+deposited, so there is no period column.
