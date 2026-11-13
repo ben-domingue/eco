@@ -1,0 +1,66 @@
+{
+  "table": "schaub_2021_albvorland_woodchat_cjs",
+  "sourceURL": "https://cran.r-project.org/package=IPMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "surveyEvidence": "inferred",
+  "coordinatesCoarsened": null,
+  "title": "Capture-resighting histories of 1,079 woodchat shrikes in orchard meadows of the Mittleres Albvorland, Germany, 1964-1992",
+  "creator": "Ullrich, Bruno (data); Schaub, Michael (distributed in the IPMbook R package)",
+  "pubDate": "2021",
+  "citation": "Schaub, M., Kéry, M., & Meredith, M. (2023). IPMbook: Functions and data for the book 'Integrated Population Models' (Version 0.1.5) [R package; dataset woodchat11]. CRAN. https://CRAN.R-project.org/package=IPMbook",
+  "paperDOI": "10.1111/acv.12639",
+  "abstract": "Bruno Ullrich ringed and resighted woodchat shrikes (Lanius senator) in the orchard meadows (Streuobstwiesen) of the Mittleres Albvorland, districts of Göppingen and Esslingen, southern Germany, from the discovery of the population in 1964 to its extinction in the early 1990s. The data are the IPMbook package's woodchat11 histories (1,079 birds, 967 first marked as nestlings); pair counts and brood productivity are not shipped. Analysed by Schaub & Ullrich (2021) and in Schaub & Kéry (2022, section 11.4).",
+  "samplingProtocol": "Nestlings and adults captured and colour-ringed; territorial adults resighted in the breeding season in the years with resighting effort; one occasion per year.",
+  "samplingProtocolCode": "resighting",
+  "surveyEvidenceNote": "The package's help page says that in some years no resighting data were collected; the book's code (IPM_11.all_tr.R, recap index) fixes recapture probability at 0 in 1973, 1978-1981 and 1984-1988, and the histories have no resighting in those years (asserted). A year is a resighting survey otherwise. In a year without resighting effort a bird has a row only if it was marked that year (nestlings were ringed in most such years). 1964, the first year, is marking only.",
+  "geographicCoverage": "Orchard meadows of the Mittleres Albvorland, districts of Göppingen and Esslingen, Baden-Württemberg, Germany (about 48.65 N, 9.45 E); no coordinates in the package",
+  "temporalCoverage": "1964/1992",
+  "designNote": "CJS with years as periods. At-risk span: nestlings from the marking year, adults from 1964 (E4.4).",
+  "notes": "unit_age_first_capture as deposited: 1 nestling, 2 adult (at least one year old). Males and females, sex not given. Unit ids are row numbers of the package's ch matrix. Woodchat shrike is Least Concern globally; the population went extinct (Ullrich 2017; Schaub & Ullrich 2021).",
+  "notShipped": {
+    "count_f_d_year": "annual pair counts and brood productivity: aggregates or non-detection data"
+  },
+  "summary": {
+    "n_rows": 10244,
+    "n_units": 1079,
+    "n_taxa": 1,
+    "n_periods": 29,
+    "n_occasions": 1,
+    "n_surveys": 10244,
+    "y_values": "0,1",
+    "prop_zero": 0.891,
+    "n_traps": 1,
+    "n_zero": 9124,
+    "n_positive": 1120,
+    "n_units_detected": 1079,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_age_first_capture"],
+  "coreMd5": "57712d7a4ae265a92567012ec385f838",
+  "sideTables": {
+    "periods": {
+      "rows": 29,
+      "columns": ["period", "year", "recapture_survey", "n_marked", "n_recaptured"],
+      "md5": "d67ac77ffa06e7be6049f6758faa243b"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "368f9e79032350dc09d31940f35fc14d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ipmbook_package_cjs.R",
+  "buildDate": "2026-11-13"
+}

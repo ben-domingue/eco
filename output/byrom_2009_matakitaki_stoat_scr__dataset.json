@@ -1,0 +1,70 @@
+{
+  "table": "byrom_2009_matakitaki_stoat_scr",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Hair-tube DNA spatial capture-recapture of 20 stoats at 94 tubes over 7 days, Matakitaki Valley, New Zealand, December 2001",
+  "creator": "Byrom, Andrea E.; Efford, Murray G.; Borchers, David L. (distributed in the secr R package)",
+  "pubDate": "2009",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset stoatCH]. CRAN. https://CRAN.R-project.org/package=secr",
+  "paperDOI": "10.1007/978-0-387-78151-8_11",
+  "abstract": "A pilot study of stoats (Mustela erminea), an introduced predator in New Zealand, in red beech forest in the Matakitaki Valley, South Island. 94 baited sticky hair tubes on a 3 x 3 km grid were checked daily for 7 days from 15 December 2001; hair was genotyped to individual at six microsatellite loci. 30 genotyped samples identify 20 stoats (of 40 samples collected; the rest presumably failed genotyping). The data are the secr package's stoatCH: one row per stoat x tube x day.",
+  "samplingProtocol": "94 sticky hair-sampling tubes baited with rabbit meat on a 3 km x 3 km grid (500 m between lines, 250 m along lines), checked daily for 7 days from 15 December 2001; individuals identified from DNA.",
+  "samplingProtocolCode": "hair_snag",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Tube usage is not deposited (no usage attribute in stoatCH). Every tube is taken as set on all 7 days, as the help page describes and secr assumes. Every stoat has rows at all 94 tubes x 7 days.",
+  "closureNote": "single session of 7 daily checks, treated as closed",
+  "geographicCoverage": "Matakitaki Valley, Buller district, South Island, New Zealand (about 41.9 S, 172.4 E); tube coordinates in __traps are local metres centred on the grid",
+  "temporalCoverage": "2001-12-15/2001-12-21",
+  "crs": "local metres centred on the grid (as distributed)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published (local grid coordinates); Mustela erminea is IUCN Least Concern and an introduced pest in New Zealand"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Hair tubes are proximity detectors; the source stores them as 'multi' and no stoat was detected at two tubes on one day (asserted).",
+  "notes": "Genotyping: six loci, mean 7.3 alleles per locus; not all loci amplified in 27% of samples (help page). 10 of the 40 hair samples collected are not in the data. The paper's '98 sampling sites' is an error per A. E. Byrom (help page).",
+  "notShipped": {
+    "stoat.model.HN_stoat.model.EX": "fitted secr models (model outputs)"
+  },
+  "summary": {
+    "n_rows": 13160,
+    "n_units": 20,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 7,
+    "n_surveys": 13160,
+    "y_values": "0,1",
+    "prop_zero": 0.998,
+    "n_traps": 94,
+    "n_zero": 13130,
+    "n_positive": 30,
+    "n_units_detected": 20,
+    "max_y": 1
+  },
+  "sampleFloor": "below (20 units < 30)",
+  "columns": ["unit", "taxon", "y", "trap", "occasion"],
+  "coreMd5": "ddd065bf871c584af22eb208e27a81bd",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "85e45ee47a6036e2a019af973b817a8f"
+    },
+    "traps": {
+      "rows": 94,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "1f833f2c00b31ecca0ab69f754cc1ea4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/secr_package_scr.R",
+  "buildDate": "2026-11-13"
+}
