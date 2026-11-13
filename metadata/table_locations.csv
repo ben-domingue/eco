@@ -132,6 +132,8 @@ fabritius_2015_merikarvia_fritillary_cjs,61.9,21.6,locality,10,,place name,state
 fabritius_2015_siitama_fritillary_cjs,61.6,24.1,locality,10,,place name,stated cell centre
 fabritius_2015_sorila_fritillary_cjs,61.5,23.9,locality,10,,place name,stated cell centre
 fancourt_2019_aus_catdingo_occ,-25.3,134.0,country,4000,,place name,"Australia centroid, sites not located"
+faria_2026_azores_mpa_patella_count,37.8,-25.5,locality,25,4,unit coordinates,unit_decimalLatitude
+faria_2026_azores_patella_count,38.7,-28.3,state,537,12,unit coordinates,unit_decimalLatitude
 faveyts_2026_zwin_butterfly_count,51.4,3.3,site,0,12,unit coordinates,unit_decimalLatitude
 feldman_2023_quebec_wetland_comm,51.0,-74.0,state,450,,place name,"latitude range stated (49.1-52.8 N); no longitude deposited, placed mid-Quebec"
 feldman_2023_quebec_wetland_exact_comm,51.0,-74.0,state,450,,place name,"latitude range stated (49.1-52.8 N); no longitude deposited, placed mid-Quebec"
@@ -433,6 +435,7 @@ schmelzle_2016_tidewatergoby_edna,40.8,-124.1,state,383,24,unit coordinates,unit
 schorr_2021_yampa_mylu_rd,40.4,-107.0,locality,50,,place name,centre of 2 named ranches near Steamboat/Hayden
 sepulveda_2019_streamgage_dreis_edna,43.5,-114.5,multi,1500,,place name,centre of streamgages in 6 western states
 sepulveda_2019_streamgage_fish_edna,43.9,-113.3,country,1449,9,unit coordinates,unit_latitude
+seys_2020_belgium_seawatch_count,51.2,2.9,region,51,14,unit coordinates,unit_decimalLatitude
 shah_2025_bardia_tiger_occ,28.4,81.7,region,120,,place name,Bardia and Banke NPs
 sharma_2021_spiti_snowleopard_scr,32.2,78.0,locality,40,,place name,"stated coords, Spiti Valley"
 shyvers_2020_ppr_sagegrouse_rd,39.8,-108.3,region,80,,place name,"Parachute-Piceance-Roan, NW Colorado"

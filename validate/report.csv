@@ -132,6 +132,8 @@ fabritius_2015_merikarvia_fritillary_cjs,3129,149,1,TRUE,"","",TRUE,"",TRUE,meet
 fabritius_2015_siitama_fritillary_cjs,21050,842,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 fabritius_2015_sorila_fritillary_cjs,3514,251,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 fancourt_2019_aus_catdingo_occ,2580,60,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
+faria_2026_azores_mpa_patella_count,480,8,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (8 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),sample_floor
+faria_2026_azores_patella_count,1080,36,2,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
 faveyts_2026_zwin_butterfly_count,2700,12,27,TRUE,"",sample_floor,TRUE,"",TRUE,below (12 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 feldman_2023_quebec_wetland_comm,78008,50,56,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 feldman_2023_quebec_wetland_exact_comm,76615,50,55,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
@@ -430,6 +432,7 @@ schmelzle_2016_tidewatergoby_edna,2148,358,1,TRUE,"","",TRUE,"",TRUE,meets,depos
 schorr_2021_yampa_mylu_rd,65245,1741,1,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 sepulveda_2019_streamgage_dreis_edna,776,200,1,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 sepulveda_2019_streamgage_fish_edna,1520,190,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
+seys_2020_belgium_seawatch_count,4750,14,50,TRUE,"",sample_floor,TRUE,"",TRUE,below (14 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support; sample_floor
 shah_2025_bardia_tiger_occ,14337,719,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 sharma_2021_spiti_snowleopard_scr,480,16,1,TRUE,"",sample_floor; replication,TRUE,"",TRUE,below (16 units < 30; no replication),effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
 shyvers_2020_ppr_sagegrouse_rd,8145,543,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*

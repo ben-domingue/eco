@@ -1,0 +1,72 @@
+{
+  "table": "seys_2020_belgium_seawatch_count",
+  "title": "SeaWatch-B: citizen push-net counts of 50 fish, crab, shrimp and jellyfish taxa in 95 trawls at 14 Belgian beaches, 2014-2018",
+  "creator": "Seys, Jan; Pint, Silke; Vervaele, K.; Vanhaecke, P.; et al.; Flanders Marine Institute (VLIZ)",
+  "pubDate": "2020",
+  "doi": "10.14284/401",
+  "sourceURL": "https://doi.org/10.14284/401",
+  "citation": "Seys J, Pint S, Vervaele K, Vanhaecke P, Van Landschoot W, Saevels M, Goossens H, Berkers M, Balcaen R, Coppens S, Vanden Eede S, Fabrice A, Willaert M, Nelen L, Colpaert N, Quartier M, Verbeke D; Flanders Marine Institute (VLIZ) (2020). SeaWatch-B: citizens monitoring the Belgian North Sea from the beach (2014-2018). Marine Data Archive. https://doi.org/10.14284/401",
+  "intellectualRights": {
+    "spdx": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "abstract": "SeaWatch-B is a VLIZ citizen-science programme in which volunteers visit Belgian beaches about once a season at low tide and record a fixed set of measurements. This table is the push-net component: a small shrimp net pulled along the shore (mostly over 100 m), with every animal of a 50-box field sheet counted (fish, crabs, shrimps, jellyfish, echinoderms). Flatfish are counted by size class; the table sums the classes and keeps them as obs_len_* columns. 95 trawls at 14 beaches, June 2014 to June 2018. One row per trawl and taxon, y = individuals counted; the unit is the beach, the period a calendar year, the occasion a trawl within it.",
+  "samplingProtocol": "Push-net (hand-pulled shrimp net) haul along the shore at low tide over a measured length (mostly 100 m), by trained volunteers about once a season per beach; all individuals of the field-sheet taxa counted, flatfish by size class (Seys et al. 2020, EML).",
+  "samplingProtocolCode": "trawl",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "Visits within a year are seasonal (one to seven per beach-year, mostly two to four), so abundance changes across the occasions of a period.",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "effortColumn": "obs_trawl_length_m",
+  "geographicCoverage": "Belgian North Sea coast: 14 beaches from Westende to Heist (one point per beach)",
+  "temporalCoverage": "2014-06/2018-06",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "One point per beach as published; public beaches, no flagged taxon."
+  },
+  "notes": "Citizen-science counts. The field sheet's higher-rank boxes (unidentified flatfish, Scophthalmus turbot-or-brill, Pleuronectinae flounder-or-dab, Clupeidae herring-or-sprat, Scyphozoa, Portunidae, Palaemon, amphipods) are their own taxa, overlapping the named species; taxonRemarks gives the source wording. Pleurobrachia pileus '>1000' at one trawl ships as 1000 with obs_count_estimated = 1. Two Palaemon counts are recorded as '0 (abundant afterwards)' and ship as 0 with the text in y_raw. Trawl length (obs_trawl_length_m, 50 to 450 m, mostly 100) and duration vary; effort is not standardised.",
+  "notShipped": {
+    "partial_trawls": "3 trawls with partial field sheets (Blankenberge_57: 11 boxes, all absent; Koksijde_49 and Koksijde_53: one box each)",
+    "trawl_missing_box": "Duinbergen_17: no row for the unidentified-jellyfish box, so the trawl is dropped for every taxon (shared-detector ruling)",
+    "other_methods": "the visit's other counts (Arenicola casts, Patella vulgata on groynes, washed-up jellyfish, strandline items): separate methods",
+    "individual_lengths": "4 individual length measurements",
+    "visit_times": "low tide time and survey start/end times"
+  },
+  "summary": {
+    "n_rows": 4750,
+    "n_units": 14,
+    "n_taxa": 50,
+    "n_periods": 5,
+    "n_occasions": 7,
+    "n_surveys": 95,
+    "y_values": "0-1000 (85 distinct)",
+    "prop_zero": 0.895,
+    "n_traps": 1,
+    "n_zero": 4249,
+    "n_positive": 501,
+    "n_units_detected": 14,
+    "max_y": 1000
+  },
+  "sampleFloor": "below (14 units < 30)",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "unit_beach", "unit_decimalLatitude", "unit_decimalLongitude", "obs_trawl_length_m", "obs_trawl_duration_min", "obs_air_temp_c", "obs_count_estimated", "obs_len_lt2_5", "obs_len_2_5to5", "obs_len_5to15", "obs_len_15to25", "obs_len_gt25", "obs_len_unsized"],
+  "coreMd5": "6962b8cabac6e2983de06c9d5192a6ae",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year"],
+      "md5": "5e28f1bdb99e0e2c081b0c6cd6f6f5c6"
+    },
+    "taxa": {
+      "rows": 50,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory", "taxon_size_classed"],
+      "md5": "a184e0c93d93592912f1e9b5ccf10bf5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/seys_2020_belgium_seawatch_count.R",
+  "buildDate": "2026-11-12"
+}

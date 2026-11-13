@@ -2649,6 +2649,47 @@ Tooling: `DRYAD_TOKEN` in `~/.bashrc` now gets 401 from the Dryad API while anon
 
 Strained the standard: nothing new.
 
+## Batch 55 — 2026-11-12 (EDITO / EurOBIS marine pass finished: SeaWatch-B, Azores limpets, audit of the batch 45 overlap; three tables)
+
+Built in `~/eco-b55` (branch `batch-55-edito`, from main at 7f5c0ab), no agents, no Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| seys_2020_belgium_seawatch_count | repeated counts, citizen-science shore push-net, community (50 field-sheet taxa) | VLIZ IPT seawatch-b, doi:10.14284/401 (CC BY-NC-SA 4.0 per IMIS; EML/GBIF say CC BY-NC; stricter governs) | 4,750 | 14 beaches, period = year (5), occasion = trawl in the beach-year; flatfish size classes summed, kept as `obs_len_*`; sample_table; below floor (14 units) |
+| faria_2026_azores_patella_count | repeated counts, spatial replicates (quadrats), two limpets | GBIF Portugal IPT gusphd, doi:10.15468/h2vu7v (CC BY 4.0) | 1,080 | 36 location x shore-level units at 12 locations (`cluster_id`), 15 quadrats each, 2006 |
+| faria_2026_azores_mpa_patella_count | repeated counts, spatial replicates, one limpet, multi-season | GBIF Portugal IPT gusmpa, doi:10.15468/m2qvj8 (CC BY 4.0) | 480 | 8 sites at 4 locations (partial / full MPA), 6 campaigns (May, Sept 2006-2008), 10 quadrats; below floor (8 units) |
+
+**SeaWatch-B.** Only the push-net trawl is built. The visit's other methods (Arenicola cast counts per 400 m2, Patella
+vulgata per 2.5 m2 on groynes, washed-up jellyfish, strandline items) are not: Patella has four non-integer values (means)
+in 87, and the strandline and jellyfish counts are wash-up, the E9 question held with ANEMOON. Three trawls carry partial
+field sheets (dropped); Duinbergen_17 lacks one box (unidentified jellyfish), so under the shared-detector ruling the
+whole trawl is dropped. The sheet's 'either A or B' and higher-rank boxes (Scophthalmus turbot-or-brill, Pleuronectinae
+flounder-or-dab, Clupeidae herring-or-sprat, unidentified flatfish, Scyphozoa, Portunidae, Palaemon, amphipods) are taxa
+of their own that overlap the named species; Pleuronectinae has no GBIF backbone record (no taxonID). One '>1000'
+Pleurobrachia count ships as 1000 with `obs_count_estimated = 1`; two Palaemon cells read '0 (abundant afterwards)' and
+ship as 0 with the text in `y_raw`. Licence: IMIS BY-NC-SA vs EML BY-NC; BY-NC-SA governs and propagates.
+
+**Azores limpets.** ipt.gbif.pt served all three archives on 2026-11-12 (404 on 11-11). Both built sets deposit densities
+per m2 computed from counts in 0.0625 m2 quadrats; every value is a multiple of 16, so `y` = density / 16 (exact) and
+`y_raw` = the density. The 2006 survey's quadrat events point at the wrong parent event and say 'Graciosa' for every
+island; the eventID prefix, locality and coordinates agree, and the location events give the island. The third set
+(IMIS 9141, recruitment plates 2019-20) is held: its abundance is labelled per m2 from a 0.0154 m2 plate but the values
+are small integers that are not multiples of 1/0.0154, so count vs density is unclear (`queue/human_review.csv`).
+
+**Audit of the 68 rows 'seen in batch 45 GBIF pass'.** Each was matched to its GBIF dataset by exact title (two by search:
+8755 and 6590 have newer GBIF titles), then checked by GBIF key and DOI against every `__dataset.json`, `data/` script,
+the dictionary, the queue and `human_review.csv`. None is built. One has a queue row (Finnish POHJE, needs-look). Batch 45
+rejected 36 with a reason. The other 31 had no queue row: 23 plankton, benthos, meiofauna and report-digitised epibenthos
+density series (9 that batch 45 had already set aside as plankton series, 14 on re-read) join the deferred plankton /
+benthos family (no ruling); 8 were re-read and rejected or
+ineligible (CHALIST hauls are not revisited stations and list presences only; the Scotland-Morocco intertidal set
+deposits per-stratum means and cover; the Azores kelp set is compiled from ROV, cameras, diving and by-catch; the Israeli
+jellyfish reports are opportunistic; Agonus predation is a gut-content study; Calvi bryozoans are 6 events; two Azores
+macroalgae sets are biomass and cover). Nothing new was queued or built from the audit. The result for each row is in the
+decision column of `discovery/edito_eurobis_absent_2026-11-11.csv`.
+
+Strained the standard: nothing new.
+
 ## Batch 56 — 2026-11-12 (NEON discovery pass: products not yet covered; three tables)
 
 Built in `~/eco-b56` (branch `batch-56-neon`, from main at 7f5c0ab), no agents.
