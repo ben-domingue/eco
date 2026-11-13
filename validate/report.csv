@@ -337,6 +337,7 @@ muths_2020_blackrock_toad_rd,220748,3509,1,TRUE,"","",TRUE,"",TRUE,meets,deposit
 nakashima_2024_kanagawa_nestpred_occ,64,32,2,TRUE,"",sample_floor,TRUE,"",TRUE,below (no replication),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 nakashima_2024_yakumo_scavenger_occ,138,69,2,TRUE,"",sample_floor,TRUE,"",TRUE,below (no replication),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 neateclegg_2018_cusuco_birds_count,149017,25,209,TRUE,"",sample_floor,TRUE,"",TRUE,below (25 units < 30),row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; resp_scale_nested_support; sample_floor
+neon_2026_aqplants_occ,1086768,240,153,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 neon_2026_carabids_count,5976135,2029,55,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
 neon_2026_fish_exact_removal,381276,223,153,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
 neon_2026_fish_removal,386260,223,155,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
@@ -354,6 +355,8 @@ neon_2026_plants_occ,24458465,12622,4980,TRUE,"","",TRUE,"",TRUE,meets,sample_ta
 neon_2026_sighis_rd,352759,4474,1,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 neon_2026_smallmammals_count,2531672,332,143,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
 neon_2026_ticks_count,216104,287,28,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; resp_scale_nested_support
+neon_2026_zooplankton_count,53217,7,208,TRUE,"",sample_floor,TRUE,"",TRUE,below (7 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; multi_scale*; resp_scale_nested_support; sample_floor
+neon_2026_zooplankton_exact_count,53034,7,207,TRUE,"",sample_floor,TRUE,"",TRUE,below (7 units < 30),sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; resp_ordinal*; imputed_values*; multi_scale*; resp_scale_nested_support; sample_floor
 neubauer_2021_bialowieza_marshtit_nmix,792,4,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (4 units < 30),deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; sample_floor
 nichols_2025_hawaii_acanthophora_edna,543,181,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 nicolau_2021_porsanger_vole_ccr,6290,3145,1,TRUE,"","",TRUE,"",TRUE,meets,row_presence,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
