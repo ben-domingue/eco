@@ -1,0 +1,69 @@
+{
+  "table": "coulombe_1965_ballona_mouse_scr",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Live-trapping spatial capture-recapture of 173 feral house mice on a 100-trap grid, morning and evening for 5 days, Ballona Creek salt marsh, California, December 1962",
+  "creator": "Coulombe, H. N. (data); Otis, David L.; Burnham, Kenneth P.; White, Gary C.; Anderson, David R. (distributed with program CAPTURE and in the secr R package)",
+  "pubDate": "1965",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset housemouse]. CRAN. https://CRAN.R-project.org/package=secr",
+  "abstract": "H. N. Coulombe live-trapped an outbreak of feral house mice (Mus musculus) in a salt marsh at Ballona Creek ('Ballana Creek' in the source), Los Angeles County, California, in mid-December 1962: a 10 x 10 grid of 100 Sherman traps 3 m apart, checked morning and evening for 5 days (10 occasions). Described by Otis et al. (1978) from Coulombe's 1965 UCLA MSc thesis and distributed with program CAPTURE; the secr package's housemouse. One row per mouse x trap x half-day.",
+  "samplingProtocol": "10 x 10 grid of Sherman live traps at 3 m spacing, checked twice daily (morning, evening) for 5 days in mid-December 1962.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited (no usage attribute). Every one of the 100 traps is taken as set on all 10 half-day occasions, as the help page describes and secr assumes. Every mouse has rows at all 100 traps x 10 occasions.",
+  "closureNote": "single session of 10 half-day occasions; Otis et al. (1978) tested closure on the full data and used the mornings for model selection",
+  "geographicCoverage": "Salt marsh at Ballona Creek, Los Angeles County, California, USA (about 33.97 N, 118.43 W); trap coordinates in __traps are grid metres",
+  "temporalCoverage": "1962-12",
+  "crs": "local grid metres (as distributed)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published (local grid coordinates); Mus musculus is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Sherman traps hold one animal, but the data have 30 double captures and one trap with 4 mice, so the source stores them as 'multi' detectors. obs_half_day: odd occasions are mornings (the help page's morning subset is occasions 1, 3, 5, 7, 9).",
+  "notes": "Covariates as in the capthist: sex (f, m; 2 NA) and age (j, sa, a). The place is spelled 'Ballana Creek' in the source; Ballona Creek is the salt marsh of that name in Los Angeles County.",
+  "notShipped": {
+    "none": "nothing: the capthist is shipped whole"
+  },
+  "summary": {
+    "n_rows": 173000,
+    "n_units": 173,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 10,
+    "n_surveys": 173000,
+    "y_values": "0,1",
+    "prop_zero": 0.997,
+    "n_traps": 100,
+    "n_zero": 172415,
+    "n_positive": 585,
+    "n_units_detected": 173,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_sex", "unit_age", "obs_half_day"],
+  "coreMd5": "64272ae4e9eb39011a392bd33f928ea9",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "3a7b1df2cada10c5e747e8625172b1c7"
+    },
+    "traps": {
+      "rows": 100,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "80a18ee8f82fce21783543210e00eaa5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/secr_package_scr.R",
+  "buildDate": "2026-11-13"
+}

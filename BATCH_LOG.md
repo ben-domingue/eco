@@ -2790,3 +2790,40 @@ E2); the four pathogen products rejected (out of scope for now).
 Strained the standard: whether an IUCN-listed name assigned by sequence similarity far outside its range is a
 detection of that species at all; handled under E7(b)'s native-range clause, but the names stay in the table as the
 laboratory assigned them.
+
+## Batch 59 — 2026-11-13 (datasets shipped in R packages: secr SCR and IPMbook CJS; eight tables)
+
+Built in `~/eco-b59` (branch `batch-59-rpkgs`, from main at 5e528b4, after the package sweep #190), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| efford_2005_waitarere_possum_scr | SCR, live traps (single-catch) | secr 5.5.1 `possumCH` (GPL >= 2) | 100,800 | 112 possums x 180 traps (5 hollow grids, grid in `__traps`) x 5 days, Waitarere NZ, April 2002; NZ Map Grid; 8 possibly previously tagged animals flagged `unit_prev_tagged` (help page) |
+| byrom_2009_matakitaki_stoat_scr | SCR, DNA hair tubes | secr `stoatCH` | 13,160 | 20 stoats x 94 tubes x 7 days, Matakitaki Valley NZ, Dec 2001; local grid coordinates; below the sample floor |
+| laufenberg_2013_smokies_blackbear_scr | SCR, DNA hair snags (proximity) | secr `blackbearCH` | 90,350 | 139 bears x 65 snags x 10 weeks, Great Smoky Mountains NP 2003; UTM 17N; sex |
+| reid_1978_colorado_deermouse_scr | SCR, live traps | secr `deermouse.ESG`, `deermouse.WSG` (CAPTURE examples) | 52,866 | 89 deer mice, two 99-trap grids (cluster_id) x 6 nights, Rio Blanco County CO, 1975; sex, age, weight (ESG only) |
+| coulombe_1965_ballona_mouse_scr | SCR, live traps | secr `housemouse` (CAPTURE examples) | 173,000 | 173 house mice x 100 traps x 10 half-days (`obs_half_day`), Ballona Creek CA, Dec 1962 |
+| schaub_2007_vex_horseshoebat_cjs | CJS | IPMbook 0.1.5 `bats` (GPL >= 3) | 4,922 | 574 greater horseshoe bats, Vex (Valais) 1989-2017; recapture sessions in 10 years only (book code), newborns marked in most others |
+| schaub_2012_valais_hoopoe_cjs | CJS | IPMbook `hoopoe` | 37,218 | 3,844 female hoopoes (3,374 ringed as nestlings), Valais nestboxes 2002-2017 |
+| schaub_2021_albvorland_woodchat_cjs | CJS | IPMbook `woodchat11` | 10,244 | 1,079 woodchat shrikes, Mittleres Albvorland 1964-1992; no resighting in 10 years (book code) |
+
+**Package data without the package.** secr does not install here (terra/sf need GDAL), so neither script loads a
+package: each downloads the pinned CRAN source tarball (current CRAN, then the Archive path once superseded) into the
+table's raw cache, asserts Version and License in DESCRIPTION, and loads `data/<name>.RData` / `.rda` with base R. A
+`capthist` is a base array (animal x occasion x detector) with `traps` and `covariates` attributes, so nothing of
+secr is needed to read it. Licence: the package's GPL, as for the earlier package tables (`derived_license` carries it).
+
+**Survey evidence (inferred, all eight).** The secr objects carry no `usage` attribute, which secr reads as every
+detector operated on every occasion; the help pages describe the same design, and the moinet/lazenby precedent
+applies. For bats and woodchat, the help pages say only that "in some years" there was no capture or resighting; the
+years come from the book's own chapter code (github.com/mikemeredith/IPM_code, IPM_13 `k`, IPM_11 `recap`, where p
+is fixed at 0), restated as constants and asserted against the histories (no recapture in exactly those years). In a
+year without recapture effort an animal has a row only in its own marking year: nestlings and newborns were still
+marked in most of those years. This is a partial survey (marking without recapture) that E4 does not name; the
+rule is stated in each `surveyEvidenceNote`.
+
+**At-risk span.** Nestlings and newborns from their marking year; a bat marked as a one-year-old from the year
+before; adults of unknown age from the study's first year (E4.4).
+
+**Not built this batch, from the same sweep.** IPMbook `stork` (19 dead recoveries coded 2, and only birds resighted
+at least once after age 2: a live-dead table on the `moe_2020_hunder_trout_ld` form, with the selection stated) and
+`cormorant` (multistate), next batch.

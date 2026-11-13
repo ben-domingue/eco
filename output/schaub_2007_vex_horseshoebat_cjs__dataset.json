@@ -1,0 +1,66 @@
+{
+  "table": "schaub_2007_vex_horseshoebat_cjs",
+  "sourceURL": "https://cran.r-project.org/package=IPMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "surveyEvidence": "inferred",
+  "coordinatesCoarsened": null,
+  "title": "Capture-recapture histories of 574 greater horseshoe bats at a nursery colony in Vex, Valais, Switzerland, 1989-2017",
+  "creator": "Arlettaz, Raphaël; Biollaz, François; Sierro, Antoine (data); Schaub, Michael; Gimenez, Olivier (distributed in the IPMbook R package)",
+  "pubDate": "2007",
+  "citation": "Schaub, M., Kéry, M., & Meredith, M. (2023). IPMbook: Functions and data for the book 'Integrated Population Models' (Version 0.1.5) [R package; dataset bats]. CRAN. https://CRAN.R-project.org/package=IPMbook",
+  "paperDOI": "10.1111/j.1523-1739.2007.00743.x",
+  "abstract": "Greater horseshoe bats (Rhinolophus ferrumequinum) of a nursery colony in the church of St-Sylvie at Vex in the Valais, Switzerland, were marked from 1989 to 2017, mostly as newborns in the roost, and recaptured in the years with capture sessions (2004-2008, 2011-2013, 2015-2017). The data are the IPMbook package's bats capture histories (574 bats, 1989-2017; 1990 had neither marking nor capture), with age at first capture and sex; the package's annual roost and exit counts are aggregates and not shipped. Analysed in an integrated population model by Schaub et al. (2007) and in Schaub & Kéry (2022, chapter 13).",
+  "samplingProtocol": "Bats captured and marked in the nursery roost (newborns, and some adults), recaptured in years with capture sessions; one occasion per year.",
+  "samplingProtocolCode": "hand_capture",
+  "surveyEvidenceNote": "The package's help page says that in some years no capture was performed; the book's code (IPM_13.all_tr.R, recapture index k) fixes recapture probability at 0 in 1990-2003, 2009, 2010 and 2014, and the histories have no recapture in exactly those years (asserted). A year is a recapture survey otherwise (2004-2008, 2011-2013, 2015-2017; 2015 incomplete, flagged in __periods). In a year without recapture effort a bat has a row only if it was marked that year (newborns were marked in most such years). 1989, the first year, is marking only.",
+  "geographicCoverage": "Church of St-Sylvie, Vex, Valais, Switzerland (about 46.21 N, 7.40 E); no coordinates in the package",
+  "temporalCoverage": "1989/2017",
+  "designNote": "CJS with years as periods. At-risk span: newborns from the marking year, one-year-olds from the year before marking, older bats from 1989 (E4.4).",
+  "notes": "unit_age_first_capture as deposited: 1 juvenile (newborn), 2 one year old, 3 at least two years old. unit_sex: F, M. Unit ids are row numbers of the package's ch matrix. __periods gives per year whether recapture sessions took place, the number of bats first marked and the number recaptured. 2015 had incomplete capture (book). The colony is the subject of Sierro, Lugon & Arlettaz (2009, Le Rhinolophe 18).",
+  "notShipped": {
+    "J.count_Jm_Jf_A.count": "annual counts of newborns and of adults leaving the roost: aggregates without unit-level data (E9)"
+  },
+  "summary": {
+    "n_rows": 4922,
+    "n_units": 574,
+    "n_taxa": 1,
+    "n_periods": 28,
+    "n_occasions": 1,
+    "n_surveys": 4922,
+    "y_values": "0,1",
+    "prop_zero": 0.773,
+    "n_traps": 1,
+    "n_zero": 3806,
+    "n_positive": 1116,
+    "n_units_detected": 574,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_age_first_capture", "unit_sex"],
+  "coreMd5": "1a8c3d89893d6889f67234100a020b3e",
+  "sideTables": {
+    "periods": {
+      "rows": 29,
+      "columns": ["period", "year", "recapture_survey", "n_marked", "n_recaptured", "note"],
+      "md5": "4845c3f76b1769a5f3a8cec539401e66"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "91c0cd9a48a8e4abfbe39054708a2ccd"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ipmbook_package_cjs.R",
+  "buildDate": "2026-11-13"
+}

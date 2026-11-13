@@ -68,6 +68,7 @@ buhl_2023_ndmt_grassbirds_exact_count,47.8,-103.3,state,786,,bounding box,geogra
 burgar_2018_alberta_fisher_count,53.4,-112.9,locality,45,,place name,Beaver Hills hair-snag array of same study (stated range)
 burgar_2018_alberta_fisher_scr,53.4,-112.9,locality,45,,place name,"stated range if UTM 12N, Beaver Hills"
 burgstahler_2026_wa_shrubsteppe_mamm_occ,47.0,-119.5,region,300,,place name,eastern Washington shrub-steppe
+byrom_2009_matakitaki_stoat_scr,-41.9,172.4,site,5,,place name,"Matakitaki Valley, South Island, NZ (geographicCoverage; trap grid local coordinates)"
 carro_2023_donana_tracks_count,37.0,-6.5,locality,38,5,unit coordinates,unit_decimalLatitude
 carter_2021_louisiana_lamp_calls,31.1,-91.5,state,689,,bounding box,geographicCoverage.boundingBox
 cayuela_2020_bombina_cjs,46.6,2.4,country,900,,place name,France centroid
@@ -85,6 +86,7 @@ cleavitt_2017_hbef_plamac_ms,43.9,-71.8,locality,8,,place name,"stated range, Hu
 cleavitt_2017_hbef_plaorb_ms,43.9,-71.8,locality,8,,place name,"stated range, Hubbard Brook EF"
 clipp_2024_monongahela_comm,38.7,-79.8,region,150,,place name,Monongahela National Forest
 clipp_2024_wvprivate_comm,39.1,-80.3,state,300,146,unit coordinates,decimalLatitude in __units
+coulombe_1965_ballona_mouse_scr,34.0,-118.4,site,2,,place name,"Ballona Creek salt marsh, Los Angeles County (geographicCoverage)"
 cove_2018_lowerkeys_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
 cove_2018_lowerkeys_exact_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
 cox_2018_qubs_treeswallow_cjs,44.6,-76.3,site,,,place name,Queen's University Biological Station
@@ -127,6 +129,7 @@ duboisgagnon_2021_quebec_chorusfrog_occ,45.4,-73.2,region,150,,place name,"Monte
 dutta_2024_panna_carnivore_occ,24.6,80.0,locality,50,,place name,Panna Tiger Reserve
 dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolitan area (no site coordinates deposited)
 dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
+efford_2005_waitarere_possum_scr,-40.5,175.2,site,5,,place name,"Waitarere peninsula, Manawatu, NZ (geographicCoverage; traps in NZ Map Grid)"
 evans_2021_maine_marten_dynocc,45.3,-69.2,state,450,,place name,Maine centroid
 fabritius_2015_merikarvia_fritillary_cjs,61.9,21.6,locality,10,,place name,stated cell centre
 fabritius_2015_siitama_fritillary_cjs,61.6,24.1,locality,10,,place name,stated cell centre
@@ -269,6 +272,7 @@ lafferty_2024_estuaryfish_exact_mb,34.2,-119.3,region,88,14,unit coordinates,uni
 lafferty_2024_estuaryfish_mb,34.2,-119.3,region,86,4,unit coordinates,unit_decimalLatitude
 lafferty_2024_tidewatergoby_edna,34.2,-119.3,region,86,4,unit coordinates,unit_decimalLatitude
 laramie_2019_bruneau_trout_edna,42.3,-115.6,region,98,17,unit coordinates,unit_decimalLatitude
+laufenberg_2013_smokies_blackbear_scr,35.6,-83.6,region,30,,place name,Tennessee sector of Great Smoky Mountains NP (geographicCoverage)
 law_2018_nsw_koala_occ,-30.5,152.5,region,300,,place name,north-east NSW state forests
 law_2021_nsw_koala_occ,-30.5,152.5,region,300,,place name,north-east NSW private forests
 laytonmatthews_2024_hornoya_gull_cjs,70.4,31.2,site,,,place name,Hornoya island
@@ -404,6 +408,7 @@ raman_2024_nilgiris_birds_ds,11.4,76.6,locality,35,4,unit coordinates,decimalLat
 raman_2024_nilgiris_birds_exact_ds,11.4,76.6,locality,45,8,unit coordinates,decimalLatitude in __units
 rees_2023_victoria_cat_smr,-38.3,142.5,region,200,,place name,"between the Glenelg grids (about -38.0, 141.6) and the Otway Ranges grids (about -38.65, 143.45), station coordinates"
 regmi_2024_madhesh_tiger_binom,27.1,85.1,region,80,,place name,"Parsa, Bara, Rautahat districts"
+reid_1978_colorado_deermouse_scr,39.9,-108.2,region,50,,place name,"Rio Blanco County, Colorado: East Stuart and Wet Swizer Gulches (geographicCoverage)"
 rich_2016_botswana_mamm_binom,-19.5,23.7,region,54,15,unit coordinates,unit_decimalLatitude
 rich_2016_botswana_mamm_exact_binom,-19.5,23.7,region,57,221,unit coordinates,unit_decimalLatitude
 rich_2019_mojave_birds_binom,35.0,-116.0,region,300,,place name,Mojave Desert California
@@ -439,6 +444,9 @@ saracco_2019_saipan_goldwhiteeye_cjs,15.2,145.8,locality,20,,place name,Saipan
 saracco_2019_saipan_kingfisher_cjs,15.2,145.8,locality,20,,place name,Saipan
 saracco_2019_saipan_myzomela_cjs,15.2,145.8,locality,20,,place name,Saipan
 schank_2015_tapir_occ,11.1,-84.0,locality,24,6,unit coordinates,unit_decimalLatitude
+schaub_2007_vex_horseshoebat_cjs,46.2,7.4,site,1,,place name,"St-Sylvie church, Vex, Valais (geographicCoverage)"
+schaub_2012_valais_hoopoe_cjs,46.2,7.3,region,30,,place name,"Valais nestbox area, upper Rhone valley (geographicCoverage)"
+schaub_2021_albvorland_woodchat_cjs,48.6,9.4,region,20,,place name,"Mittleres Albvorland, Goeppingen and Esslingen districts (geographicCoverage)"
 schleimer_2019_gsl_finwhale_cjs,50.0,-63.5,region,200,,place name,Mingan Islands / Jacques Cartier Passage
 schmelzle_2016_tidewatergoby_edna,40.8,-124.1,state,383,24,unit coordinates,unit_decimalLatitude
 schorr_2021_yampa_mylu_rd,40.4,-107.0,locality,50,,place name,centre of 2 named ranches near Steamboat/Hayden
