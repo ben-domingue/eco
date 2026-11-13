@@ -357,3 +357,5 @@ neon_2026_macroinverts_dna_occ,39.8,-99.5,multi,7828,"34 NEON aquatic sites acro
 neon_2026_macroinverts_dna_exact_occ,39.8,-99.5,multi,7828,"as neon_2026_macroinverts_dna_occ (E7 sibling, same sites)"
 neon_2026_zooplankton_dna_occ,44.9,-98.8,multi,6055,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
 neon_2026_zooplankton_dna_exact_occ,44.9,-98.8,multi,6055,"as neon_2026_zooplankton_dna_occ (E7 sibling, same lakes)"
+seys_2020_belgium_patella_count,51.2,2.9,region,50,"Belgian coast, 13 beaches Koksijde to Duinbergen (mean of beach points, rounded)"
+seys_2020_belgium_arenicola_count,51.2,2.9,region,50,"Belgian coast, 14 beaches Koksijde to Duinbergen (mean of beach points, rounded)"

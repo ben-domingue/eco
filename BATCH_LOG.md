@@ -2722,6 +2722,30 @@ hours, or coincide); 510 points filed under the reach (CUPE, MAYF) have no trans
 Strained the standard: whether a fixed-count laboratory enumeration (algae) is a count, and pathogen detections in
 hosts (E9 scope), both left as questions.
 
+## Batch 57 — 2026-11-12 (SeaWatch-B Patella and Arenicola, ruling 2026-11-13; two tables)
+
+Built in `~/eco-b57` (branch `batch-57-seawatch`, from main at 218fe3c), no agents, no Dryad requests. Both tables are
+built at the end of `data/seys_2020_belgium_seawatch_count.R`, so the `script` field of all three SeaWatch-B tables
+maps to it.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| seys_2020_belgium_patella_count | repeated counts, single taxon (Patella vulgata), quadrat total per visit | VLIZ IPT seawatch-b, doi:10.14284/401 (CC BY-NC-SA 4.0) | 83 | 13 beaches with a groyne, period = year (5), occasion = survey in the beach-year; y = limpets > 1 cm in ten 0.5 x 0.5 m quadrats (2.5 m2); sample_table; 4 means dropped; below floor (13 units) |
+| seys_2020_belgium_arenicola_count | repeated counts of a sign (lugworm casts), single taxon (Arenicola, genus) | same deposit | 101 | 14 beaches, every visit; y = casts on two 2 m strips at 10 and 30 m from the waterline, `obs_area_m2` effort (200 to 800, mostly 400); sample_table; below floor (14 units) |
+
+**Design.** The VLIZ field brochure and the 2014-2018 report give the protocols the EML lacks. Patella: ten quadrats
+on one groyne fixed at the first survey; the field sheet has a line per quadrat, but the deposit holds only the visit
+total (`<visit>_Schaalh_TOT_2.5m2`, area 2.5 m2 in the eMoF), so the quadrats are not occasions and the unit is the
+beach (its groyne is not identified beyond the beach point). The four non-integer values (2.375, 2.19, 3.39, 2.77) are
+all at Nieuwpoort, 2015; they are dropped (ruling) and listed in `notShipped`. Arenicola: the deposit names the genus
+only; the table keeps it at genus and the taxon remark says the lugworm here is mainly A. marina. y counts casts,
+not worms; the brochure allows a reduced strip when casts are very many, with the count scaled, and the deposit does
+not flag scaled values (largest 1,613 casts on 400 m2).
+
+**Push-net table.** Data unchanged (coreMd5 6962b8ca..., side-table md5s identical); only its `notShipped.other_methods`
+text changed to point at the two siblings, so the published table's metadata changed: a `releases/table_changes.csv` row
+is due at release.
+
 ## Batch 58 — 2026-11-12 (NEON follow-ups to Ben's rulings of 2026-11-13: metabarcoding, small-mammal rd species, queue; nine tables)
 
 Built in `~/eco-b58` (branch `batch-58-neon`, from main at 218fe3c), no agents.
