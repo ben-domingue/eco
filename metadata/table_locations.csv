@@ -88,7 +88,10 @@ cleavitt_2017_hbef_plamac_ms,43.9,-71.8,locality,8,,place name,"stated range, Hu
 cleavitt_2017_hbef_plaorb_ms,43.9,-71.8,locality,8,,place name,"stated range, Hubbard Brook EF"
 clipp_2024_monongahela_comm,38.7,-79.8,region,150,,place name,Monongahela National Forest
 clipp_2024_wvprivate_comm,39.1,-80.3,state,300,146,unit coordinates,decimalLatitude in __units
+collier_2012_brosnan_deer_dobs,33.1,-80.4,locality,15,,place name,"Brosnan Forest, Dorchester County, SC (geographicCoverage)"
+collier_2013_alice_dove_cjs,27.2,-98.1,locality,5,,place name,"Alice, Texas (coordinates given on the help page)"
 coulombe_1965_ballona_mouse_scr,34.0,-118.4,site,2,,place name,"Ballona Creek salt marsh, Los Angeles County (geographicCoverage)"
+coulson_1984_eider_cjs,,,none,,,none,colony not named in the package (Coulson 1984); no location shipped
 cove_2018_lowerkeys_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
 cove_2018_lowerkeys_exact_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
 cox_2018_qubs_treeswallow_cjs,44.6,-76.3,site,,,place name,Queen's University Biological Station
@@ -132,6 +135,7 @@ duboisgagnon_2021_quebec_chorusfrog_occ,45.4,-73.2,region,150,,place name,"Monte
 dutta_2024_panna_carnivore_occ,24.6,80.0,locality,50,,place name,Panna Tiger Reserve
 dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolitan area (no site coordinates deposited)
 dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
+edwards_1967_cottontail_cc,,,none,,,none,study site not stated in the package (Edwards & Eberhardt 1967)
 efford_1995_buller_infraskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
 efford_1995_buller_lineoskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
 efford_1998_orongorongo_possum_rd,-41.4,175.0,locality,5,,place name,"Orongorongo Valley study grid (NZMG grid of the sibling table, converted)"
@@ -206,6 +210,7 @@ hamer_2021_kooragang_amph_comm,-32.9,151.7,locality,10,,place name,Kooragang Isl
 hamer_2024_hungary_amph_comm,47.2,19.5,country,500,,place name,Hungary centroid
 hamm_2013_satyr_ds,42.3,-85.0,state,250,,place name,lower Michigan (site not located)
 hanslowe_2022_marianas_rat_occ,13.7,145.0,region,162,,bounding box,geographicCoverage.boundingBox
+harding_2010_aukelake_cutthroat_cjs,58.4,-134.6,locality,3,,place name,"Auke Lake, Juneau, Alaska (geographicCoverage)"
 hartley_2024_cpraealtus_occ,-36.5,148.3,region,250,,place name,Australian Alps
 hastings_2018_forrester_philopatry_ms,54.8,-133.5,locality,15,,place name,Forrester Island Complex rookery
 hastings_2018_seak_philopatry_ms,56.0,-134.5,region,400,,place name,southeastern Alaska rookeries (Forrester Island to Graves Rocks)
@@ -313,6 +318,7 @@ lombardi_2022_virginia_woodrat_occ,37.5,-80.0,region,300,,place name,western Vir
 ludwig_2026_lusatia_capercaillie_cjs,51.6,14.0,region,80,,place name,Lower Lusatia
 lyngdoh_2023_spiti_carniv_occ,32.2,78.0,region,100,,place name,"Spiti Valley (Chandratal, Kibber, Pin)"
 macario_2026_serido_sparrow_rd,-6.6,-37.2,site,,,place name,ESEC Serido
+mackenzie_2006_mahoenui_weta_occ,-38.6,175.0,region,20,,place name,"Mahoenui, King Country, NZ (the species' only natural population; package gives no place)"
 mackenzie_2021_stexas_mesocarniv_dynocc,26.8,-97.8,region,300,,place name,South Texas
 maihoff_2023_berchtesgaden_bees_count,47.6,12.9,locality,16,33,unit coordinates,unit_decimalLatitude in __units
 malachowski_2026_koloa_rd,22.2,-159.5,locality,5,,place name,Hanalei NWR
@@ -437,6 +443,7 @@ riecke_2018_tutakoke_brant_rd,61.2,-165.6,site,,,place name,"stated coords, Tuta
 rivera_2022_chicago_coyote_dielocc,41.9,-87.8,region,80,,place name,Chicago metropolitan region
 rivera_2022_makira_fosa_dielocc,-15.2,49.6,region,100,,place name,Makira Natural Park
 rivera_2022_rnp_fosa_dielocc,-21.2,47.4,locality,30,,place name,Ranomafana National Park
+rivest_2004_duchenier_vole_rd,48.1,-68.6,region,50,,place name,"Reserve Duchenier, Bas-Saint-Laurent, Quebec (approximate)"
 roberts_2019_sierrane_birds_exact_count,37.3,-119.4,state,439,184,unit coordinates,unit_decimalLatitude
 roberts_2019_sierranevada_birds_count,37.2,-119.3,state,441,32,unit coordinates,unit_decimalLatitude
 roberts_2025_arkansas_birds_count,35.1,-91.9,region,178,10,unit coordinates,unit_decimalLatitude
@@ -473,6 +480,7 @@ schaub_2012_valais_hoopoe_cjs,46.2,7.3,region,30,,place name,"Valais nestbox are
 schaub_2021_albvorland_woodchat_cjs,48.6,9.4,region,20,,place name,"Mittleres Albvorland, Goeppingen and Esslingen districts (geographicCoverage)"
 schleimer_2019_gsl_finwhale_cjs,50.0,-63.5,region,200,,place name,Mingan Islands / Jacques Cartier Passage
 schmelzle_2016_tidewatergoby_edna,40.8,-124.1,state,383,24,unit coordinates,unit_decimalLatitude
+schneider_1998_jewettlake_bluegill_cc,44.3,-85.4,state,300,,place name,"Jewett Lake, Michigan; lake not located, state centroid"
 schorr_2021_yampa_mylu_rd,40.4,-107.0,locality,50,,place name,centre of 2 named ranches near Steamboat/Hayden
 sepulveda_2019_streamgage_dreis_edna,43.5,-114.5,multi,1500,,place name,centre of streamgages in 6 western states
 sepulveda_2019_streamgage_fish_edna,43.9,-113.3,country,1449,9,unit coordinates,unit_latitude
@@ -492,6 +500,7 @@ sovie_2023_ichauway_wildlife_comm,31.2,-84.5,locality,20,,place name,Jones Cente
 stallings_2025_gulfreefs_count,27.7,-83.0,region,83,12,unit coordinates,unit_decimalLatitude in __units
 stallings_2025_gulfreefs_exact_count,27.7,-83.0,region,84,14,unit coordinates,unit_decimalLatitude in __units
 steinmetz_2025_maewong_tiger_rd,16.0,99.2,region,70,,place name,Mae Wong and Khlong Lan NPs
+stokes_1987_logan_bunting_cjs,41.7,-111.8,locality,10,,place name,"Logan, Utah (geographicCoverage)"
 strebel_2026_swiss_mhb_count,46.8,8.2,state,389,241,unit coordinates,unit_decimalLatitude
 strebel_2026_swiss_mhb_exact_count,46.8,8.2,state,388,267,unit coordinates,unit_decimalLatitude
 strebel_2026_swiss_mhb_total_count,46.8,8.2,state,389,241,unit coordinates,unit_decimalLatitude

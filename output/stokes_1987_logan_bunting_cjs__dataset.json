@@ -1,0 +1,64 @@
+{
+  "table": "stokes_1987_logan_bunting_cjs",
+  "title": "Annual capture histories of 1,681 lazuli buntings, Logan, Utah, 1973-1980",
+  "creator": "Stokes, Allen W. (data); Burnham, K. P.; Anderson, D. R.; White, G. C.; Brownie, C.; Pollock, K. H. (analysis); Baillargeon, S.; Rivest, L.-P. (distributed in the Rcapture R package)",
+  "pubDate": "1987",
+  "sourceURL": "https://cran.r-project.org/package=Rcapture",
+  "citation": "Baillargeon, S., & Rivest, L.-P. (2022). Rcapture: Loglinear models for capture-recapture experiments (Version 1.4-4) [R package; dataset bunting]. CRAN. https://CRAN.R-project.org/package=Rcapture",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-only",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Lazuli buntings (Passerina amoena) captured and banded at Logan, Utah, over eight years 1973-1980 in a study by Allen W. Stokes, analysed by Burnham et al. (1987) and Cormack (1993). The Rcapture package gives the frequencies of the 255 possible capture histories (198 unobserved); expanded here to 1,681 birds, one row per bird x year, y = 1 if caught.",
+  "samplingProtocol": "Annual trapping and banding at one site in Logan, Utah; the season and effort are not described in the package (its help page says the birds were wintering).",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; every year 1973-1980 is taken as a survey, as the frequency table spans all eight. Birds of unknown age have rows from 1973.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period = year (open population)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Logan, Cache County, Utah, USA (about 41.74 N, 111.83 W); no coordinates in the package",
+  "temporalCoverage": "1973/1980",
+  "coordinatesCoarsened": null,
+  "notes": "Frequency histories expanded to individuals: unit ids (B0001-B1681) are arbitrary and carry no identity beyond the history. The help page calls the buntings wintering in Logan; lazuli buntings breed in northern Utah, so the season is unverified. Ages, sexes and losses are not in the package.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 13448,
+    "n_units": 1681,
+    "n_taxa": 1,
+    "n_periods": 8,
+    "n_occasions": 1,
+    "n_surveys": 13448,
+    "y_values": "0,1",
+    "prop_zero": 0.847,
+    "n_traps": 1,
+    "n_zero": 11393,
+    "n_positive": 2055,
+    "n_units_detected": 1681,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "269bdcb61453ae17d9bf305dc1187f31",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year", "n_caught", "n_new"],
+      "md5": "6c8b08211ef54dcf4c4bcac09a765346"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "2ffedfa9ff3d981d50a128a9862d644e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}
