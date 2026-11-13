@@ -1,0 +1,60 @@
+{
+  "table": "royle_2004_ovenbird_removal",
+  "title": "Ovenbird removal counts in four time intervals at 70 point-count sites (Royle 2004)",
+  "creator": "Royle, J. Andrew (data; distributed in the unmarked R package)",
+  "pubDate": "2004",
+  "sourceURL": "https://cran.r-project.org/package=unmarked",
+  "citation": "Fiske, I., Chandler, R., Kellner, K., et al. (2026). unmarked: Models for data from unmarked animals (Version 1.5.2) [R package; dataset ovendata]. CRAN. https://CRAN.R-project.org/package=unmarked",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "Ovenbirds (Seiurus aurocapilla) counted at 70 point-count sites, each new bird recorded in the time interval in which it was first detected (four intervals; removal sampling), with two site covariates (ufc, trba). The example data of Royle (2004) for removal-sampling abundance models, as distributed in unmarked (ovendata). One row per site x interval.",
+  "samplingProtocol": "Point counts split into four time intervals, birds removed after first detection (removal design); interval lengths, dates and place are not in the package.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The site x interval matrix has no NA: every site was counted once in four intervals.",
+  "responseType": "multinomial_cell",
+  "multinomialType": "removal",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion (removal intervals of one count)",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Not stated in the package (site codes CAT...; Royle 2004); no coordinates",
+  "temporalCoverage": "not stated in the package (before 2004)",
+  "coordinatesCoarsened": null,
+  "notes": "unit_ufc and unit_trba as named in the package (understory foliage cover and tree basal area in unmarked's examples; units not stated). Site ids as in the package. Interval lengths are not in the package.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 280,
+    "n_units": 70,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 280,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.779,
+    "n_traps": 1,
+    "n_zero": 218,
+    "n_positive": 62,
+    "n_units_detected": 44,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_ufc", "unit_trba"],
+  "coreMd5": "bfe679124b30a3c7865eb7b84ec4e437",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0631cfa57221d3324a8154bf7e21681a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_misc_tables.R",
+  "buildDate": "2026-11-13"
+}

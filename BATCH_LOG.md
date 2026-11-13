@@ -2963,3 +2963,35 @@ window is a period (26 over the two years, `__periods` gives year and window sta
 no place or date in the package; their map rows are empty (cottontail) or at the species' only population (weta),
 with the basis stated. The species names 'rabbits' and 'red-back voles' are resolved by assumption, recorded in
 `taxonRemarks`.
+
+## Batch 64 — 2026-11-13 (R packages, continued: duiker CTDS from Dryad, multimark bobcats with partial identity, unmarked NAAMP and ovenbird removal; seven tables)
+
+Built in `~/eco-b64` (branch `batch-64-ds`, from main at 7893aa3 after #195), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| howe_2017_tai_duiker_ds | camera-trap distance sampling | Dryad doi:10.5061/dryad.b4c70 (CC0) | 231 | 21 cameras x 11 intervals, all daytime hours, 11,180 snapshot detections; Taï 2014; below the floor |
+| howe_2017_tai_duikerpeak_ds | camera-trap distance sampling | same | 231 | peak-activity hours (the paper's analysis; Distance::DuikerCameraTraps) |
+| mcclintock_2013_bobcat_cc | closed CR, partial identity (state) | multimark 2.1.7 `bobcat` (GPL-2) | 368 | 46 one-sided histories (23 left, 23 right) x 8 occasions |
+| augustine_2018_bobcat_scr | SCR, partial identity (state) | multimark `bobcatSCR` (from SPIM) | 235,620 | 42 histories (15 known both sides) x 30 cameras x 187 occasions; operation matrix |
+| naamp_2001_delaware_frog_calls | ordinal calling index, 2 species | unmarked 1.5.2 `frogs` (GPL >= 3) | 674 | 130 stops x up to 3 visits, spring peeper and upland chorus frog |
+| naamp_2007_massachusetts_peeper_calls | ordinal calling index, multi-year | unmarked `masspcru` | 3,212 | 280 stops, 2001-2007, up to 4 visits; 4 visits without an index dropped |
+| royle_2004_ovenbird_removal | removal multinomial | unmarked `ovendata` | 280 | 70 sites x 4 intervals; place and interval lengths not in the package |
+
+**Correction: the batch 62 bobcat hold.** Standard E2 already has a partial-identity form (`unit_identity` both /
+left / right; the side seen as a `state`), which batch 62 missed. Both bobcat sets are built under it; a
+`human_review.csv` row records the correction.
+
+**Duiker from the original deposit.** Distance::DuikerCameraTraps is the peak-hours file of a Dryad deposit (CC0)
+that also holds all daytime detections and the camera UTM positions; both files are shipped as siblings. The
+intervals are inferred from the deposited midpoints (1.5 ... 7.5, 9, 11, 13.5, 18 m fix (1,2] ... (7,8], (8,10],
+(10,12], (12,15], (15,21]); nothing is recorded within 1 m. UTM 29N is converted to latitude/longitude by an
+in-script Transverse Mercator inverse (no sf/proj here), checked against pyproj.
+
+**NAAMP stop ids.** unmarked stores Delaware's `route.stop` as a number, so stop 10 reads `210302.1`; ids are rebuilt
+as `route_stop` and every route asserted to have stops 1-10.
+
+**Held for rulings (human_review.csv):** (1) Distance amakihi and wren, mrds vireo/warbler: exact distances with
+several detections per survey; `detection_event` collides on the E3 key (open since batch 56) and binning would be
+an arbitrary threshold. (2) unmarked issj and the single-pass Distance/mrds sets: whether distance bands make a
+single visit eligible.

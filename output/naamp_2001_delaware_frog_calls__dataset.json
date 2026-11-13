@@ -1,0 +1,66 @@
+{
+  "table": "naamp_2001_delaware_frog_calls",
+  "title": "North American Amphibian Monitoring Program, Delaware 2001: calling indices of spring peeper and upland chorus frog at 130 stops on up to 3 visits",
+  "creator": "North American Amphibian Monitoring Program (USGS) and Delaware volunteers (data); Fiske, Ian; Chandler, Richard (distributed in the unmarked R package)",
+  "pubDate": "2001",
+  "sourceURL": "https://cran.r-project.org/package=unmarked",
+  "citation": "Fiske, I., Chandler, R., Kellner, K., et al. (2026). unmarked: Models for data from unmarked animals (Version 1.5.2) [R package; dataset frogs]. CRAN. https://CRAN.R-project.org/package=unmarked",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "Calling surveys of the North American Amphibian Monitoring Program (NAAMP) in Delaware in 2001: at each of 10 stops on 13 roadside routes, observers listened for 5 minutes after sunset on up to three visits through the season and scored each species' calling index (0 none, 1 individuals countable, 2 some overlap, 3 full chorus). The unmarked package keeps two species, the spring peeper (Pseudacris crucifer) and the upland chorus frog (P. feriarum). One row per stop x visit x species, with minutes after sunset, wind, sky and temperature.",
+  "samplingProtocol": "NAAMP roadside calling survey: 10 stops per route, 5-min listening at each stop after sunset, up to 3 visits per season; calling index 0-3 per species.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The stop x visit matrices have NA where a visit was not made (53 of 390 cells), identically for both species (asserted); every other cell is a survey with a row for both species.",
+  "responseType": "ordinal",
+  "stateCodes": {
+    "0": "not heard",
+    "1": "individuals can be counted; calls do not overlap",
+    "2": "calls of individuals distinguishable with some overlap",
+    "3": "full chorus; calls continuous and overlapping"
+  },
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single season (2001)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Delaware, USA: 13 NAAMP routes (cluster_id) of 10 stops; no coordinates in the package",
+  "temporalCoverage": "2001",
+  "coordinatesCoarsened": null,
+  "notes": "Stop ids are route_stop: the package stores route.stop as a number, so stop 10 appears as e.g. 210302.1 (asserted: every route then has stops 1-10); cluster_id = route. The package keeps two of the species NAAMP records; the NAAMP database (USGS) holds the full species list, other states and years, and stop locations. Visit dates are not in the package; obs_min_after_sunset as deposited (some values are negative). obs_wind and obs_sky are NAAMP codes.",
+  "notShipped": {
+    "pcru.bin_pfer.bin": "detection collapses of the calling indices (index > 0)",
+    "other_species": "the NAAMP survey records all calling anurans; the package keeps two"
+  },
+  "summary": {
+    "n_rows": 674,
+    "n_units": 130,
+    "n_taxa": 2,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 337,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.728,
+    "n_traps": 1,
+    "n_zero": 491,
+    "n_positive": 183,
+    "n_units_detected": 100,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "obs_min_after_sunset", "obs_wind", "obs_sky", "obs_temperature_c"],
+  "coreMd5": "c118d30017750d640f66304c48a809a5",
+  "sideTables": {
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "8cf60eaf9d8b3e6a92db6a11a68cb03f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_misc_tables.R",
+  "buildDate": "2026-11-13"
+}
