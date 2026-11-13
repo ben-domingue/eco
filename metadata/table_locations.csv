@@ -136,6 +136,8 @@ duboisgagnon_2021_quebec_chorusfrog_occ,45.4,-73.2,region,150,,place name,"Monte
 dutta_2024_panna_carnivore_occ,24.6,80.0,locality,50,,place name,Panna Tiger Reserve
 dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolitan area (no site coordinates deposited)
 dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
+edp_2018_footua_amph_count,41.3,-7.3,locality,34,7,unit coordinates,unit_decimalLatitude
+edp_2018_footua_amph_exact_count,41.3,-7.3,locality,33,30,unit coordinates,unit_decimalLatitude
 edwards_1967_cottontail_cc,,,none,,,none,study site not stated in the package (Edwards & Eberhardt 1967)
 efford_1995_buller_infraskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
 efford_1995_buller_lineoskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
@@ -201,6 +203,8 @@ green_2018_ncal_mesocarn_dynocc,41.0,-123.5,region,250,,place name,northwestern 
 gustafson_2024_seward_gyrfalcon_dynocc,65.3,-164.5,region,300,,place name,Seward Peninsula
 gustafson_2024_seward_prey_count,64.8,-165.0,region,150,,place name,southern Seward Peninsula road corridors from Nome
 guzy_2018_southcarolina_anuran_comm,34.9,-81.6,region,80,,place name,Broad and Pacolet Rivers
+haas_2025_sweden_coastal_exact_count,60.3,17.8,country,1303,198,unit coordinates,unit_decimalLatitude
+haas_2025_sweden_coastalbirds_count,60.4,17.8,country,1303,189,unit coordinates,unit_decimalLatitude
 haas_2025_sweden_waterbird_count,58.3,15.7,country,1084,3724,unit coordinates,unit_decimalLatitude
 haas_2025_sweden_waterbird_exact_count,58.3,15.7,country,1084,3724,unit coordinates,unit_decimalLatitude
 haas_2025_sweden_waterbirdse_exact_count,58.3,15.7,country,1300,1645,unit coordinates,unit_decimalLatitude
@@ -241,6 +245,7 @@ iknayan_2023_svalley_pollinator_occ,37.4,-122.1,locality,15,,place name,"Palo Al
 inbo_2026_flanders_abv_count,51.1,4.2,region,249,757,unit coordinates,unit_decimalLatitude
 inbo_2026_flanders_abv_exact_count,51.1,4.2,region,249,757,unit coordinates,unit_decimalLatitude
 inbo_2026_flanders_alconegg_count,51.3,5.0,region,70,5,unit coordinates,unit_decimalLatitude
+inbo_2026_flanders_amphchorus_count,51.1,4.5,region,233,16,unit coordinates,unit_decimalLatitude
 inbo_2026_flanders_batwinter_count,51.0,4.1,region,229,291,unit coordinates,unit_decimalLatitude
 inbo_2026_flanders_butterfly_count,51.1,4.3,region,216,70,unit coordinates,unit_decimalLatitude
 inbo_2026_flanders_crestednewt_count,51.1,4.4,region,238,50,unit coordinates,unit_decimalLatitude

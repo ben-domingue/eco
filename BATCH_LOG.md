@@ -3000,3 +3000,37 @@ single visit eligible.
 serves only the EML: the data entity (knb-lter-hbr.178.3) returns 403 from pasta ("Public Access is not authorized
 to execute readDataEntity") and from the LTER member node. The queue row is corrected; a direct build needs a
 browser download.
+
+## Batch 65 — 2026-11-13 (GBIF sampling-event rows from batch 45, round 3: Meetnetten chorus counts, Swedish coastal birds, EDP Foz Tua amphibians; five tables)
+
+Built in `~/eco-b65` (branch `batch-65-gbif3`, from main at 351ff9d), no agents, no Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| inbo_2026_flanders_amphchorus_count | repeated chorus counts, 3 target anurans | GBIF doi:10.15468/d4bu8j (CC0) | 806 | 121 ponds, 2016-2025; one target species per pond (`__survey_taxa`); centroids coarsened (source-flagged) |
+| haas_2025_sweden_coastalbirds_count | annual community counts | GBIF doi:10.15468/sg5spw (CC0) | 163,034 | 200 archipelago squares x 84 taxa, 2015-2024, one count per square-year; coarsened (5 VU taxa) |
+| haas_2025_sweden_coastal_exact_count | same, E7 sibling | same | 153,329 | 79 taxa at the published 5 km grid centres |
+| edp_2018_footua_amph_count | repeated dip-net counts, 12 target amphibians | GBIF doi:10.15468/uo5uyu (CC BY 4.0) | 3,744 | 30 plots, 8 seasons (autumn 2011 to spring 2017), 1-3 visits; coarsened (4 VU taxa); below the floor |
+| edp_2018_footua_amph_exact_count | same, E7 sibling | same | 2,496 | 8 taxa at the published plot coordinates |
+
+**Judgement call for Ben: Meetnetten rows within a visit.** 62 of 806 chorus-count visits hold several rows of the
+target species (up to 16, absent and present rows mixed) with nothing in the archive to tell them apart. INBO's
+export SQL (github.com/inbo/meetnetten-occurrences) emits one row per `FactAantal` record and comments out the
+activity column, so the rows are probably sub-locations or activity classes. They are summed into `y`, as in the
+fire-salamander table, and `obs_n_records` keeps the number of rows; if they are activity classes of the same
+animals the sum double-counts on those 62 visits.
+
+**Not shipped, with reasons in `notShipped`:** the Meetnetten pool-frog project (Pelophylax: an aggregate class
+alongside species-level classes, the synklepton under two names, 44 of 157 visits with no target row); the EDP
+2010-2011 plots (event and occurrence ids do not match, localities differ between visits of one point, no stated
+link to the 2011-2017 plots); Swedish mammal presence rows. Eider ducklings are summed into eider `y` under the
+repeated-rows ruling (counts split by life stage), with `obs_n_adult` and `obs_n_pulli` (NA where ducklings were
+not counted).
+
+**Looked at, left available:** Meetnetten larvae and metamorph counts (sweep sub-events within visits, life-stage
+rows, a protocol change; needs the sweep rule settled), Meetnetten pheromone traps for *Elater ferrugineus* (several
+unlabelled rows per trap visit, 15 visits of 2025 without rows, no dataset DOI yet), PINK odonata, the Taiwan
+butterfly census (event latitude and longitude swapped, nested events) — archives in the session scratchpad only.
+
+What strained the standard: nothing new. Swedish coastal birds is one count per square-year (`n_occasions = 1`,
+`n_periods = 10`), so `closure = none` and `occasionKind = none`.
