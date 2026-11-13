@@ -1,0 +1,68 @@
+{
+  "table": "seys_2020_belgium_arenicola_count",
+  "title": "SeaWatch-B: citizen counts of lugworm (Arenicola) casts on the low beach, 101 surveys at 14 Belgian beaches, 2014-2018",
+  "creator": "Seys, Jan; Pint, Silke; Vervaele, K.; Vanhaecke, P.; et al.; Flanders Marine Institute (VLIZ)",
+  "pubDate": "2020",
+  "doi": "10.14284/401",
+  "sourceURL": "https://doi.org/10.14284/401",
+  "citation": "Seys J, Pint S, Vervaele K, Vanhaecke P, Van Landschoot W, Saevels M, Goossens H, Berkers M, Balcaen R, Coppens S, Vanden Eede S, Fabrice A, Willaert M, Nelen L, Colpaert N, Quartier M, Verbeke D; Flanders Marine Institute (VLIZ) (2020). SeaWatch-B: citizens monitoring the Belgian North Sea from the beach (2014-2018). Marine Data Archive. https://doi.org/10.14284/401",
+  "intellectualRights": {
+    "spdx": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "abstract": "SeaWatch-B is a VLIZ citizen-science programme in which volunteers visit Belgian beaches about once a season at low tide. Just after low water the volunteer walks 100 m along a 2 m wide strip 10 m from the waterline and again 30 m from it, counting lugworm casts, and records the total and the area counted (normally 400 m2). y is the number of casts, a sign of the animal, not a count of worms. 101 surveys (every visit) at 14 beaches, June 2014 to June 2018. One row per survey; the unit is the beach, the period a calendar year, the occasion a survey within it; obs_area_m2 is the area counted.",
+  "samplingProtocol": "Lugworm casts counted just after low water on two 2 m wide strips, 100 m long, at 10 m and 30 m from the waterline; counts and areas summed (normally 400 m2); with very many casts a narrower or shorter strip may be counted (SeaWatch-B field brochure, VLIZ; Seys et al. 2019).",
+  "samplingProtocolCode": "sign_survey",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "Visits within a year are seasonal (mostly two to four per beach-year), so abundance changes across the occasions of a period.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Belgian North Sea coast: 14 beaches from Koksijde to Duinbergen (one point per beach)",
+  "temporalCoverage": "2014-06/2018-06",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "One point per beach as published; public beaches, no flagged taxon."
+  },
+  "notes": "Citizen-science counts of casts, not of worms: a worm can leave more than one cast between tides and bait digging disturbs the beach. Area counted varies (obs_area_m2: 200 m2 at 9 surveys, 300 at 1, 400 at 90, 800 at 1); the brochure allows a reduced strip when casts are very many and says the counts are then scaled, and the deposit does not say whether any value is a scaled count. The deposit identifies the taxon to genus (Arenicola). Same units (beach keys) as the push-net table seys_2020_belgium_seawatch_count.",
+  "effortColumn": "obs_area_m2",
+  "notShipped": {
+    "none": "nothing: every visit has one cast count and its area"
+  },
+  "summary": {
+    "n_rows": 101,
+    "n_units": 14,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 7,
+    "n_surveys": 101,
+    "y_values": "0-1613 (60 distinct)",
+    "prop_zero": 0.238,
+    "n_traps": 1,
+    "n_zero": 24,
+    "n_positive": 77,
+    "n_units_detected": 13,
+    "max_y": 1613
+  },
+  "sampleFloor": "below (14 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_beach", "unit_decimalLatitude", "unit_decimalLongitude", "obs_area_m2", "obs_air_temp_c"],
+  "coreMd5": "8c78317fbb8de34076bb2c00f5d9a3a8",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year"],
+      "md5": "5e28f1bdb99e0e2c081b0c6cd6f6f5c6"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "fffd2d148a84305c20bd2aff82b07b11"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/seys_2020_belgium_seawatch_count.R",
+  "buildDate": "2026-11-12"
+}
