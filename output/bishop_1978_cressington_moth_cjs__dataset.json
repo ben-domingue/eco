@@ -1,0 +1,65 @@
+{
+  "table": "bishop_1978_cressington_moth_cjs",
+  "title": "Daily capture histories of 689 non-melanic male Gonodontis (Odontopera) bidentata moths at pheromone traps, Cressington Park, England, 24 May-10 June 1970",
+  "creator": "Bishop, J. A.; Cook, L. M.; Muggleton, J. (data); Crosbie, S. F.; Barker, Richard J.; Efford, Murray G. (distributed in the openCR R package)",
+  "pubDate": "1978",
+  "sourceURL": "https://cran.r-project.org/package=openCR",
+  "citation": "Efford, M. G. (2026). openCR: Open population capture-recapture (Version 2.2.8) [R package; dataset gonodontisCH]. CRAN. https://CRAN.R-project.org/package=openCR",
+  "paperDOI": "10.1098/rstb.1978.0007",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Male scalloped hazel moths (Gonodontis, now Odontopera, bidentata) attracted to 8 cages of pheromone-producing females at Cressington Park, north-west England, were marked with date-specific marks and released daily for 17 days in 1970, in a study of the relative fitness of melanic and non-melanic morphs in industrial England. The data are the non-melanic males used by Crosbie (1979) and Link & Barker (2005), as distributed in openCR (gonodontisCH): one row per moth x day, y = 1 if caught.",
+  "samplingProtocol": "Eight pheromone traps (cages of virgin females surrounded by an enclosure males could enter but not leave), emptied daily; moths marked with a date-specific paint or pen mark under the wing and released.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort is in the data; the traps are taken as operated on all 17 days (help page). All day-17 captures are recaptures: unmarked moths may not have been recorded that day (help page), so day 17 is a survey of marked moths only.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period = day (open population, Jolly-Seber)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Cressington Park, Liverpool, England (about 53.36 N, 2.91 W); trap locations not published",
+  "temporalCoverage": "1970-05-24/1970-06-09",
+  "coordinatesCoarsened": null,
+  "notes": "Moths were not individually marked; each carries its history as a sequence of date marks. 689 histories, where Bishop et al. (1978) give 690 (help page). Unit ids are row numbers. Age is unknown: every moth has rows from day 1.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 11713,
+    "n_units": 689,
+    "n_taxa": 1,
+    "n_periods": 17,
+    "n_occasions": 1,
+    "n_surveys": 11713,
+    "y_values": "0,1",
+    "prop_zero": 0.923,
+    "n_traps": 1,
+    "n_zero": 10811,
+    "n_positive": 902,
+    "n_units_detected": 689,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date"],
+  "coreMd5": "846b3e8a455a259321a3467b28d44541",
+  "sideTables": {
+    "periods": {
+      "rows": 17,
+      "columns": ["period", "date", "n_caught", "n_new"],
+      "md5": "7aad3fd94840999cb01cf26f1a326400"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "5fa0c9a0db347bde4abf6e7ed504dc2f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

@@ -1,0 +1,70 @@
+{
+  "table": "royle_2009_nagarahole_tiger_scr",
+  "title": "Camera-trap spatial capture-recapture of 44 tigers at 120 stations over 48 occasions, Nagarahole, India",
+  "creator": "Karanth, K. Ullas; Wildlife Conservation Society (data); Royle, J. Andrew; Gopalaswamy, Arjun M.; Kumar, N. Samba; McClintock, Brett T. (distributed in the multimark R package)",
+  "pubDate": "2009",
+  "sourceURL": "https://cran.r-project.org/package=multimark",
+  "citation": "McClintock, B. T. (2025). multimark: Capture-mark-recapture analysis using multiple non-invasive marks (Version 2.1.7) [R package; dataset tiger]. CRAN. https://CRAN.R-project.org/package=multimark",
+  "paperDOI": "10.1890/08-1481.1",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-only",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Tigers (Panthera tigris) photographed by camera traps at 120 stations in Nagarahole, India, over 48 sampling occasions and identified by stripe patterns, the SPACECAP example data of Royle et al. (2009) and Gopalaswamy et al. (2012), as distributed in multimark (tiger), with each station's operation per occasion. One row per tiger x operating station-occasion (1,435 of 5,760), y = 1 if photographed.",
+  "samplingProtocol": "Paired camera traps at 120 stations, 48 sampling occasions; tigers identified individually from stripe patterns; stations operated on a subset of occasions (operation matrix).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The data give a station x occasion operation matrix (1 operating, 0 not); a station-occasion is surveyed iff 1 (1,435). Every detection falls on an operating station-occasion (asserted).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "single session of 48 occasions, treated as closed as in the source analyses",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Nagarahole (Rajiv Gandhi) National Park, Karnataka, India; the station array centroid is at about 12.1 N, 76.1 E (0.1 degree); station coordinates in __traps are centred on it",
+  "temporalCoverage": "survey year not stated in the package (Royle et al. 2009)",
+  "crs": "local metres centred on the array centroid (source km grid, consistent with UTM 43N, withheld)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "station coordinates centred on the array centroid by the processor (km x 1000 = metres; the source's grid positions withheld) because Panthera tigris is IUCN EN; the centroid is given at 0.1 degree in geographicCoverage. The multimark authors had already snapped stations to a regular grid (0.336 km2 cells)"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Enc.Mat columns are trap-major (asserted against the operation matrix).",
+  "notes": "The package's station positions were 'modified by projecting onto a regular rectangular grid' (help page), so inter-station distances are approximate. The study year is not in the package. gardner_2018_nagarahole_tiger_oscr is a different deposit from the same reserve (1991-2000); whether this survey overlaps it is not stated. Tiger ids are row numbers (TIG01-TIG44).",
+  "notShipped": {
+    "studyArea": "habitat grid of the state space (0.336 km2 cells): a model input, not detection data"
+  },
+  "summary": {
+    "n_rows": 63140,
+    "n_units": 44,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 48,
+    "n_surveys": 63140,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 120,
+    "n_zero": 63072,
+    "n_positive": 68,
+    "n_units_detected": 44,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion"],
+  "coreMd5": "4cf8143c113a42dd5bcd7389390217e4",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b5bae96b706a789e93a6496d4e9e774b"
+    },
+    "traps": {
+      "rows": 120,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "48dfe3d563b80c93049d680c9592ff5d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

@@ -1,0 +1,66 @@
+{
+  "table": "nichols_1984_patuxent_vole_rd",
+  "title": "Robust-design capture histories of 180 adult male meadow voles at Patuxent, Maryland: six monthly sessions of five nights, June-December 1981",
+  "creator": "Nichols, James D.; Pollock, Kenneth H.; Hines, James E. (data); Efford, Murray G. (distributed in the openCR R package)",
+  "pubDate": "1984",
+  "sourceURL": "https://cran.r-project.org/package=openCR",
+  "citation": "Efford, M. G. (2026). openCR: Open population capture-recapture (Version 2.2.8) [R package; dataset microtusRDCH]. CRAN. https://CRAN.R-project.org/package=openCR",
+  "paperDOI": "10.4098/AT.arch.84-35",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Adult (>= 22 g) male meadow voles (Microtus pennsylvanicus) live-trapped on a 10 x 10 grid at Patuxent Wildlife Research Center, Laurel, Maryland, on five consecutive nights each month from 27 June to 8 December 1981 (Pollock's robust design), ear-tagged and released; ten were not released. The full robust-design histories of Williams, Nichols & Conroy (2002, Table 19.1), as openCR's microtusRDCH: one row per vole x month x night. The adult females (primary-session level only) are nichols_1984_patuxent_femvole_cjs.",
+  "samplingProtocol": "100 live traps on a 10 x 10 grid (7.6 m), baited with corn, set in the evening and checked the next morning, five consecutive nights per month for six months.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No trap effort is in the data; every night of every primary session is taken as a survey (help page; 6 x 5 nights). A raccoon interfered with traps on nights 4 and 5 of the second session (help page), which stay surveys with lower capture probability.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (robust design: closed within a monthly session, open between)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "obs_removed",
+  "geographicCoverage": "Patuxent Wildlife Research Center, Laurel, Maryland, USA (about 39.05 N, 76.80 W); capture locations not published",
+  "temporalCoverage": "1981-06-27/1981-12-08",
+  "coordinatesCoarsened": null,
+  "notes": "Adults only (>= 22 g), as published. -1 in the source = not released: obs_removed = 1 on that capture, no later rows. Unit ids are row numbers (M001-M180). Every vole has rows from the first session (age unknown). Session start dates: true intervals 35, 28, 35, 28 and 34 days (help page; __periods).",
+  "notShipped": {
+    "microtusMCH_FCH_FMCH_CH": "primary-session collapses of the same histories (the females are shipped separately), and the JOLLY combined-sex version"
+  },
+  "summary": {
+    "n_rows": 5221,
+    "n_units": 180,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 5,
+    "n_surveys": 5221,
+    "y_values": "0,1",
+    "prop_zero": 0.803,
+    "n_traps": 1,
+    "n_zero": 4192,
+    "n_positive": 1029,
+    "n_units_detected": 180,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_removed"],
+  "coreMd5": "1571d36eb4a8f54ea71527787e8862af",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "month", "days_to_next"],
+      "md5": "3d72bb40eeb14bdb9b05440bfba0db0d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "fe7bd819c57a192bd0d0ee105d52d950"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

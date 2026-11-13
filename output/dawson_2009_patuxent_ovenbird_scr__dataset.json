@@ -1,0 +1,77 @@
+{
+  "table": "dawson_2009_patuxent_ovenbird_scr",
+  "title": "Mist-net spatial capture-recapture of 70 adult ovenbirds at 44 nets, Patuxent Research Refuge, Maryland, 9-10 days a year, 2005-2009",
+  "creator": "Dawson, Deanna K.; Efford, Murray G. (data; distributed in the secr R package)",
+  "pubDate": "2009",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset ovenCH]. CRAN. https://CRAN.R-project.org/package=secr",
+  "paperDOI": "10.1111/j.1365-2664.2009.01731.x",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Adult ovenbirds (Seiurus aurocapilla) mist-netted in deciduous forest at the Patuxent Research Refuge, Laurel, Maryland: 44 mist nets 30 m apart on the perimeter of a 600 x 100 m rectangle, operated about 9 hours on 9-10 non-consecutive days in late May and June of each year 2005-2009, without playback; birds banded and sexed. The data are secr's ovenCH (one capture per bird per day): one row per bird x net x day for every year from 2005, with sex; one bird was killed by a predator in a net in 2009.",
+  "samplingProtocol": "44 passive mist nets (12 m, 30 mm mesh) at 30 m spacing on a 600 x 100 m rectangle, about 9 h per day on 9-10 days per breeding season; birds banded, sexed by brood patch or cloacal protuberance, released at the net.",
+  "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Net usage is not deposited; every net is taken as open on every netting day of the main session of each year (9 days in 2005, 10 later), as secr assumes. Each bird has rows at all 44 nets on every day of every year from 2005 to 2009 (or to its death).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (closed within a breeding season, open between years)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "obs_removed",
+  "geographicCoverage": "Patuxent Research Refuge, Laurel, Maryland, USA (about 39.05 N, 76.80 W); net coordinates in __traps are local metres centred on the array",
+  "temporalCoverage": "2005/2009",
+  "crs": "local metres (as distributed)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "local array coordinates as distributed; Seiurus aurocapilla is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9: multi-session spatial capture-recapture with a trap key and __traps. ovenCH keeps one capture per bird per day (detector multi); repeat captures at another net on the same day are in ovenCHp, not shipped.",
+  "notes": "Birds are linked across years by band number (unit id), so the table supports open models; secr's own analyses treat years separately. Adults of unknown age: rows from 2005. Netting dates within each season are not in the package. Males tended to avoid nets after first capture within a season (Dawson & Efford 2009).",
+  "notShipped": {
+    "ovenCHp": "the same captures as proximity detectors (adds repeat same-day captures at other nets)",
+    "models_mask": "fitted secr models and habitat mask"
+  },
+  "summary": {
+    "n_rows": 150612,
+    "n_units": 70,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 10,
+    "n_surveys": 150612,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 44,
+    "n_zero": 150420,
+    "n_positive": 192,
+    "n_units_detected": 70,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "unit_sex", "obs_removed"],
+  "coreMd5": "e310a178dc3954bdc93c2cabaa9912ad",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_days", "n_birds"],
+      "md5": "068b3563b0dd73fec059311347c38b38"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "0631cfa57221d3324a8154bf7e21681a"
+    },
+    "traps": {
+      "rows": 44,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "316a0a77b9f206f988fd629e1f4c23fe"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

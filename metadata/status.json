@@ -1,19 +1,19 @@
 {
   "date": "2026-11-13",
-  "n_tables": 561,
-  "n_deposits": 375,
-  "n_rows": 414360449,
-  "n_units": 545632,
-  "n_taxa_rows": 38489,
-  "n_surveys": 25933969,
-  "n_families": 72,
+  "n_tables": 571,
+  "n_deposits": 378,
+  "n_rows": 417828282,
+  "n_units": 548115,
+  "n_taxa_rows": 38499,
+  "n_surveys": 29401802,
+  "n_families": 73,
   "families": {
     "Abundance": 2,
     "Capture-recapture": 2,
     "CJS": 12,
     "CJS / Jolly-Seber": 1,
     "CJS / multi-state capture-recapture": 2,
-    "CJS capture-recapture": 57,
+    "CJS capture-recapture": 58,
     "CJS capture-recapture with two-sided photo-ID": 1,
     "Closed-population capture-recapture": 3,
     "Community abundance": 16,
@@ -33,6 +33,7 @@
     "eDNA occupancy": 1,
     "False-positive dynamic occupancy": 1,
     "Jolly-Seber": 1,
+    "Jolly-Seber / CJS capture-recapture": 1,
     "Live-dead capture-recapture": 1,
     "Multi-event capture-recapture": 4,
     "Multi-scale / multi-method occupancy": 1,
@@ -72,37 +73,37 @@
     "Removal sampling": 1,
     "Repeated counts": 1,
     "Robust design": 10,
-    "Robust design capture-recapture": 15,
+    "Robust design capture-recapture": 17,
     "Robust design capture-recapture; spatial CJS": 1,
     "Single-season occupancy": 42,
     "Single-season occupancy / spatial count": 1,
     "Single-visit presence / absence": 1,
-    "Spatial capture-recapture": 34,
+    "Spatial capture-recapture": 40,
     "Spatial mark-resight": 1,
     "Two-species occupancy with misidentification": 1
   },
   "response_types": {
     "binomial_count": 24,
     "count": 137,
-    "detection": 325,
+    "detection": 335,
     "multinomial_cell": 17,
     "ordinal": 3,
     "state": 55
   },
   "taxon_groups": {
     "Amphibians": 50,
-    "Birds": 172,
+    "Birds": 173,
     "Fish": 32,
-    "Invertebrates": 68,
-    "Mammals": 190,
+    "Invertebrates": 69,
+    "Mammals": 196,
     "Multiple": 13,
     "Plants": 20,
-    "Reptiles": 16
+    "Reptiles": 18
   },
   "survey_evidence": {
     "deposited_matrix": 292,
-    "effort_table": 65,
-    "inferred": 40,
+    "effort_table": 66,
+    "inferred": 49,
     "row_presence": 49,
     "sample_table": 115
   },
@@ -110,9 +111,9 @@
   "n_with_coordinates": 172,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 561,
-  "n_irw_conforms": 561,
+  "n_valid": 571,
+  "n_irw_conforms": 571,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 561
+    "eco v1.1-draft (2026-11-03)": 571
   }
 }
