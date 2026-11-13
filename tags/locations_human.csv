@@ -342,3 +342,6 @@ jimenezfranco_2023_murcia_birds_binom,38.0,-1.5,region,150,"centre of the Region
 ziolkowski_2026_bbs_bcr15_exact_block,38.8,-120.3,state,636,"BCR 15 (Sierra Nevada) route start points; as ziolkowski_2026_bbs_bcr15_block"
 ziolkowski_2026_bbs_bcr15_exact_stop,38.9,-120.3,state,613,"BCR 15 (Sierra Nevada) route start points; as ziolkowski_2026_bbs_bcr15_stop"
 ziolkowski_2026_bbs_exact_count,42.0,-96.6,multi,7799,"route start points across the US and Canada; as ziolkowski_2026_bbs_count"
+neon_2026_aqplants_occ,39.2,-101.2,multi,7828,"24 NEON wadeable-stream sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_count,44.9,-98.8,multi,6055,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_exact_count,44.9,-98.8,multi,6055,"as neon_2026_zooplankton_count (E7 sibling, same lakes)"

@@ -335,6 +335,7 @@ muths_2020_blackrock_toad_rd,43.8,-110.2,locality,27,,bounding box,geographicCov
 nakashima_2024_kanagawa_nestpred_occ,35.3,139.6,locality,10,,place name,"Futagoyama region, south-eastern Kanagawa"
 nakashima_2024_yakumo_scavenger_occ,42.2,140.3,locality,15,,place name,"Yakumo Study Forest, Hokkaido"
 neateclegg_2018_cusuco_birds_count,15.5,-88.2,locality,20,,place name,Cusuco National Park
+neon_2026_aqplants_occ,39.2,-101.2,multi,7828,,place name,"24 NEON wadeable-stream sites across USA (mean of __units coordinates, 0.1 degree)"
 neon_2026_carabids_count,40.2,-101.2,multi,8111,535,unit coordinates,decimalLatitude in __units
 neon_2026_fish_exact_removal,39.4,-101.3,multi,7828,220,unit coordinates,decimalLatitude in __units
 neon_2026_fish_removal,39.4,-101.3,multi,7828,220,unit coordinates,decimalLatitude in __units
@@ -352,6 +353,8 @@ neon_2026_plants_occ,41.9,-104.2,multi,8113,135,unit coordinates,decimalLatitude
 neon_2026_sighis_rd,39.8,-98.6,multi,4500,,place name,13 NEON sites across USA
 neon_2026_smallmammals_count,41.0,-101.2,multi,8107,332,unit coordinates,decimalLatitude in __units
 neon_2026_ticks_count,40.8,-100.7,multi,8110,287,unit coordinates,decimalLatitude in __units
+neon_2026_zooplankton_count,44.9,-98.8,multi,6055,,place name,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_exact_count,44.9,-98.8,multi,6055,,place name,"as neon_2026_zooplankton_count (E7 sibling, same lakes)"
 neubauer_2021_bialowieza_marshtit_nmix,52.8,23.9,locality,20,,place name,Bialowieza National Park
 nichols_2025_hawaii_acanthophora_edna,24.4,-166.9,multi,2572,91,unit coordinates,unit_decimalLatitude
 nicolau_2021_porsanger_vole_ccr,70.0,25.0,region,100,,place name,stated coords (Porsanger)
