@@ -1,0 +1,82 @@
+{
+  "table": "molinarijobin_2012_alps_lynx_fpocc",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Eurasian lynx records per 10-km cell and winter in the Swiss and Italian Alps, confirmed and unconfirmed, 3 occasions a winter, 1994-2016",
+  "creator": "KORA Foundation (SCALP project); Progetto Lince Italia (Molinari-Jobin, Anja; Breitenmoser, Urs; Zimmermann, Fridolin) (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2012",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset EurasianLynx]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-809585-0.00007-7",
+  "abstract": "Lynx (Lynx lynx) observations in the Swiss and Italian Alps from the SCALP monitoring (KORA, Progetto Lince Italia), summarised per 10 x 10 km cell and per winter, 1994-2016, for three two-month occasions (Nov-Dec, Jan-Feb, Mar-Apr), and split into records confirmed by experts ('certain') and reports by the public not confirmed ('uncertain', possibly false positives). The data are the AHMbook package's EurasianLynx (Molinari-Jobin et al. 2012; AHM2 7.3.2): one row per cell x winter x occasion, y coding both record types.",
+  "samplingProtocol": "Opportunistic and structured lynx records (signs, sightings, kills, camera traps) collected by the national monitoring programmes and classified by verification status (SCALP criteria), summarised per 10-km cell and two-month occasion.",
+  "samplingProtocolCode": "sign_survey",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The package gives each cell-winter one 'certain' and one 'uncertain' record of three occasions, with NA where there are no data; the two are NA together (asserted). A row exists where they are not NA.",
+  "responseType": "state",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (closed within a winter)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "stateCodes": {
+    "0": "no lynx record",
+    "1": "uncertain (unconfirmed) record only",
+    "2": "certain (expert-confirmed) record only",
+    "3": "both certain and uncertain records"
+  },
+  "respRawCodes": {
+    "00": "certain 0, uncertain 0",
+    "01": "certain 0, uncertain 1",
+    "10": "certain 1, uncertain 0",
+    "11": "certain 1, uncertain 1"
+  },
+  "detectionCertainty": "y >= 2: a 'certain' (expert-confirmed) record; y = 1: only 'uncertain' records, which may be false positives",
+  "geographicCoverage": "The Alps of Switzerland and Italy, 942 cells of 10 x 10 km; cell coordinates in km (unit_x_km, unit_y_km; consistent with ETRS89-LAEA, EPSG:3035, by range, not stated by the source)",
+  "temporalCoverage": "1994/2016",
+  "crs": "km E and N of an unnamed origin; consistent with EPSG:3035 (ETRS89-LAEA) in km, inferred from the range",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "10-km cells as published; Lynx lynx is IUCN Least Concern globally"
+  },
+  "notes": "y combines the two deposited records per occasion: y = 2 x certain + uncertain, y_raw the pair of digits (certain then uncertain), as in ferguson_2015_macon_bawa_fpocc but with both streams kept. Year is the package's winter label (whether 1994 is winter 1993/94 or 1994/95 is not stated). The sampling is partly opportunistic.",
+  "notShipped": {
+    "none": "nothing: both record types are shipped"
+  },
+  "summary": {
+    "n_rows": 62172,
+    "n_units": 942,
+    "n_taxa": 1,
+    "n_periods": 23,
+    "n_occasions": 3,
+    "n_surveys": 62172,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.951,
+    "n_traps": 1,
+    "n_zero": 59117,
+    "n_positive": 3055,
+    "n_units_detected": 368,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "unit_x_km", "unit_y_km", "unit_country", "unit_forest_pct"],
+  "coreMd5": "84f113155238755b6a4a3dff2e4b6b02",
+  "sideTables": {
+    "periods": {
+      "rows": 23,
+      "columns": ["period", "year", "n_cells", "n_certain", "n_uncertain"],
+      "md5": "1df33ce4876536b9ce976da36556a769"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "18e66491bc1851c93efb8c9f4b51af3f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}

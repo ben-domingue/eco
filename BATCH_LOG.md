@@ -2860,3 +2860,40 @@ kept as surveyed, as in the book, and counted in `__periods`.
 `notShipped`.
 
 **Missed by the sweep.** `AHMbook::duskySalamanders` was not in #190's rows; added and built here.
+
+## Batch 61 — 2026-11-13 (R packages, continued: the remaining AHMbook datasets; seven tables)
+
+Built in `~/eco-b61` (branch `batch-61-ahmbook`, from main at 6c28129 after #192), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| rodenhouse_2019_hbef_warblers_count | community counts, multi-year | AHMbook 0.2.12 `HubbardBrook` (GPL; source EDI CC BY 4.0) | 221,416 | 13 species x 373 points x 3 counts, 1999-2018 (no counts 2003-2004); WGS84 points; overlaps doser_2022_hbef_trends_dynocc |
+| knaus_2018_swiss_atlasha_comm | community counts | AHMbook `SwissAtlasHa` | 510,432 | 78 passerines x 2,318 one-ha atlas quadrats x 2-3 surveys; English names mapped to scientific in the script |
+| kery_2016_flevoland_wagtail_ds | binned distance sampling, repeated visits | AHMbook `wagtail` | 5,466 | 235 points x up to 4 visits x 6 classes (0-300 m), Sovon 2011 |
+| chandler_2009_wmnf_cswa_removal | removal, repeated visits | AHMbook `cswa` | 384 | 43 points x 3 visits x 3 intervals, WMNF 2004; spot-map estimates not shipped (no point-to-patch key) |
+| molinarijobin_2012_alps_lynx_fpocc | false-positive dynamic occupancy (state) | AHMbook `EurasianLynx` | 62,172 | 942 10-km cells x 23 winters x 3 occasions; certain and uncertain records as a four-state y |
+| kery_2021_britain_willowwarbler_cjs | CJS | AHMbook `willowWarbler` | 74,752 | 10,551 birds at 193 BTO Constant Effort Sites 1986-1996; site operation inferred from captures |
+| kery_2021_swiss_mspwoodpecker_binom | binomial_count per quadrat-day | AHMbook `spottedWoodpecker` | 116,204 | 1,545 quadrats, 4,207 days 1990-2015; quadrats conditioned on detection |
+
+**Hubbard Brook licence and access.** The package copies the EDI Valleywide Bird Survey. Its EML (knb-lter-hbr.178.3)
+says CC BY 4.0; the EDI portal refuses scripted requests (the Valleywide queue row is blocked for that), but DataONE
+(`cn.dataone.org/cn/v2/object/<pasta url>`) serves the EML and, by the same route, the data objects. GPL (the
+package) is the stricter and governs; the citation carries the EDI attribution. The Valleywide row now notes the
+DataONE route: a direct build from EDI would add the species the package dropped.
+
+**Two designs placed by precedent.** Repeated visits with within-visit cells (wagtail distance classes, cswa removal
+intervals) use period = visit, occasion = cell, as `neon_2026_landbirds_ds` does. The lynx data's two record types
+(certain, uncertain) per occasion become one state per occasion (`2 x certain + uncertain`), extending
+`ferguson_2015_macon_bawa_fpocc`, which had only 0 / uncertain / certain because its certain detections implied
+uncertain ones; here they are independent streams, so "both" is its own state, and `y_raw` keeps the digits.
+
+**binomial_count with daily periods.** The woodpecker data are quadrat-day summaries over 26 seasons. `binomial_count`
+has no `occasion`, so period indexes the calendar day (4,207 dates) and `__periods` carries year and day; a seasonal
+model groups periods by year. This is legal under E2/E8 but unusual (a period per day); flagged in `closureNote`.
+
+**Coordinates with an unspecified CRS** (atlas, woodpecker, as for the squirrels in batch 60) ship as
+`unit_x_unspecified_crs` / `unit_y_unspecified_crs`, not as locations.
+
+**Willow warbler survey set (inferred).** CES operation is not in the package: a site-year counts as operated iff any
+willow warbler was caught there (963 of 2,123). A site that ran but caught no willow warbler loses that year; the
+BTO's CES coverage records would fix it.
