@@ -21,7 +21,7 @@
   "occasionKind": "time",
   "taxonInclusion": "target",
   "effortColumn": "obs_trawl_length_m",
-  "geographicCoverage": "Belgian North Sea coast: 14 beaches from Westende to Heist (one point per beach)",
+  "geographicCoverage": "Belgian North Sea coast: 14 beaches from Koksijde to Duinbergen (one point per beach)",
   "temporalCoverage": "2014-06/2018-06",
   "coordinatesCoarsened": {
     "value": false,
@@ -31,7 +31,7 @@
   "notShipped": {
     "partial_trawls": "3 trawls with partial field sheets (Blankenberge_57: 11 boxes, all absent; Koksijde_49 and Koksijde_53: one box each)",
     "trawl_missing_box": "Duinbergen_17: no row for the unidentified-jellyfish box, so the trawl is dropped for every taxon (shared-detector ruling)",
-    "other_methods": "the visit's other counts (Arenicola casts, Patella vulgata on groynes, washed-up jellyfish, strandline items): separate methods",
+    "other_methods": "the visit's washed-up jellyfish and strandline counts: separate methods (the Patella and Arenicola counts are the sibling tables seys_2020_belgium_patella_count and seys_2020_belgium_arenicola_count)",
     "individual_lengths": "4 individual length measurements",
     "visit_times": "low tide time and survey start/end times"
   },

@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
-# Table:  seys_2020_belgium_seawatch_count
+# Tables: seys_2020_belgium_seawatch_count (push-net trawl, community), seys_2020_belgium_patella_count (limpets in
+#         groyne quadrats) and seys_2020_belgium_arenicola_count (lugworm casts on the low beach); one script, one deposit.
 # Source: VLIZ IPT (eurobis) resource seawatch-b, Darwin Core Archive (EML pubDate 2020-11-05, version 1.3); GBIF dataset
 #         3b91f3e4-17da-4965-a8d5-4e8c9296477b, doi:10.14284/401; EurOBIS / EMODnet Biology IMIS dataset 6380 (found on
 #         EDITO, the European Digital Twin of the Ocean). Licence: the IMIS record says CC BY-NC-SA 4.0, the EML and GBIF
@@ -38,9 +39,27 @@
 #   obs_trawl_length_m, obs_trawl_duration_min (NA where not recorded), obs_air_temp_c (visit). unit coordinates as
 #   published (one point per beach, public beaches; no flagged taxon).
 # Not shipped: the three partial trawls; Duinbergen_17 (no row for one box, KKwaSpec: the net surveys every taxon at
-#   once, so the trawl is dropped for all, shared-detector ruling 2026-11-06); the other four methods of the visit (Arenicola cast counts, Patella quadrats,
-#   washed-up jellyfish and the strandline 'beach' counts: other methods, not this table); individual lengths (4 rows);
-#   low tide time and trawl start/end times.
+#   once, so the trawl is dropped for all, shared-detector ruling 2026-11-06); the washed-up jellyfish and strandline
+#   'beach' counts (other methods; wash-up, the E9 question held with ANEMOON); the Patella and Arenicola counts are the
+#   two tables built at the end of this script (ruling 2026-11-13); individual lengths (4 rows); low tide time and trawl
+#   start/end times.
+# Protocol of the two sibling tables (SeaWatch-B field brochure, VLIZ, 'SEAWA folder.pdf', and Seys et al. 2019 pp.
+#   10-11, 33): 'Schaalhorens op strandhoofd': on the groyne chosen at the first survey (kept on later visits unless
+#   sanded over), at low tide as far seaward as possible, ten 0.5 x 0.5 m quadrats placed haphazardly over crest, east
+#   and west flank; every Patella > 1 cm counted; sheet has one line per quadrat. 'Zeepieren': lugworm casts counted
+#   just after low water on a 2 m wide strip, 100 m long, at 10 m and again at 30 m from the waterline; both counts and
+#   areas summed ('.. zeepierhoopjes op .. m2 (normaliter: 400 m2)'); with very many casts a narrower or shorter strip may
+#   be counted and scaled.
+#   Deposit: one 'quadrat' event per Patella survey (87, no quadrat-level records) with a single occurrence
+#   <visit>_Schaalh_TOT_2.5m2 (Patella vulgata, the total over the ten quadrats, area 2.5 m2 in the eMoF); one sample
+#   event per Arenicola survey (101, every visit) with a single occurrence <visit>_PierAantal (Arenicola, genus) and the
+#   area counted (200, 300, 400 or 800 m2). 83 Patella values are integers; four (2.19, 2.375, 2.77, 3.39) are means.
+#   Mapping (both): unit = beach (the same 14 keys as the trawl table; the groyne is not identified beyond the beach
+#   point), period = calendar year, occasion = survey within the beach-year in date order, date = visit date,
+#   surveyEvidence = sample_table (the event core lists each survey). Quadrats are not occasions: the deposit has only
+#   the visit total, so y = limpets > 1 cm in the ten quadrats (2.5 m2). Arenicola: y = casts counted (a sign of the
+#   animal, not worms), effort obs_area_m2. Not shipped: the four Patella means (the count behind them is not
+#   recoverable), and the per-quadrat counts and photos (never deposited).
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 TABLE <- "seys_2020_belgium_seawatch_count"
 zip <- download_cached("https://ipt.vliz.be/eurobis/archive.do?r=seawatch-b", TABLE, "dwca.zip")
@@ -218,13 +237,13 @@ dataset <- list(
   samplingProtocolCode = "trawl", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
   closure = "open", closureNote = "Visits within a year are seasonal (one to seven per beach-year, mostly two to four), so abundance changes across the occasions of a period.",
   occasionKind = "time", taxonInclusion = "target", effortColumn = "obs_trawl_length_m",
-  geographicCoverage = "Belgian North Sea coast: 14 beaches from Westende to Heist (one point per beach)",
+  geographicCoverage = "Belgian North Sea coast: 14 beaches from Koksijde to Duinbergen (one point per beach)",
   temporalCoverage = "2014-06/2018-06",
   coordinatesCoarsened = list(value = FALSE, method = "One point per beach as published; public beaches, no flagged taxon."),
   notes = "Citizen-science counts. The field sheet's higher-rank boxes (unidentified flatfish, Scophthalmus turbot-or-brill, Pleuronectinae flounder-or-dab, Clupeidae herring-or-sprat, Scyphozoa, Portunidae, Palaemon, amphipods) are their own taxa, overlapping the named species; taxonRemarks gives the source wording. Pleurobrachia pileus '>1000' at one trawl ships as 1000 with obs_count_estimated = 1. Two Palaemon counts are recorded as '0 (abundant afterwards)' and ship as 0 with the text in y_raw. Trawl length (obs_trawl_length_m, 50 to 450 m, mostly 100) and duration vary; effort is not standardised.",
   notShipped = list(partial_trawls = "3 trawls with partial field sheets (Blankenberge_57: 11 boxes, all absent; Koksijde_49 and Koksijde_53: one box each)",
                     trawl_missing_box = "Duinbergen_17: no row for the unidentified-jellyfish box, so the trawl is dropped for every taxon (shared-detector ruling)",
-                    other_methods = "the visit's other counts (Arenicola casts, Patella vulgata on groynes, washed-up jellyfish, strandline items): separate methods",
+                    other_methods = "the visit's washed-up jellyfish and strandline counts: separate methods (the Patella and Arenicola counts are the sibling tables seys_2020_belgium_patella_count and seys_2020_belgium_arenicola_count)",
                     individual_lengths = "4 individual length measurements",
                     visit_times = "low tide time and survey start/end times"))
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = sprintf("data/%s.R", TABLE))
@@ -242,3 +261,130 @@ stage_tag_row(TABLE, ds, taxon_group = "Multiple", model_family = "N-mixture (mu
   sampling_protocol = "trawl", design = "Multi-season (5 years; seasonal visits per beach)",
   realm = "Marine", country = "BEL", coordinates = "As published",
   notes = "Citizen-science shore push-net counts with flatfish size classes.")
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Sibling tables (ruling 2026-11-13): Patella vulgata on groynes and Arenicola casts on the low beach, one count per visit
+CNT_T <- "Count (in assayed sample) of biological entity specified elsewhere"
+one_method <- function(suffix, n_ev, ev_type, occ_code, sci, area_type) {
+  e <- ev[endsWith(eventID, paste0("_", suffix))]
+  stopifnot(nrow(e) == n_ev, all(e$type == ev_type), all(e$parentEventID %in% vis$eventID), !anyDuplicated(e$parentEventID),
+            all(e$eventID == paste0(e$parentEventID, "_", suffix)),
+            all(e$eventDate == vis$eventDate[match(e$parentEventID, vis$eventID)]),
+            all(e$locationID == vis$locationID[match(e$parentEventID, vis$eventID)]))
+  x <- oc[eventID %in% e$eventID]
+  stopifnot(nrow(x) == n_ev, !anyDuplicated(x$eventID), all(x$scientificName == sci),
+            all(x$occurrenceID == paste0(e$parentEventID[match(x$eventID, e$eventID)], "_", occ_code)))
+  m <- mf[id %in% e$eventID]
+  stopifnot(setequal(unique(m$measurementType), c(CNT_T, area_type)), m[, .N, by = .(id, measurementType)][, all(N == 1L)],
+            nrow(m) == 2L * n_ev, all(m[measurementType == CNT_T, occurrenceID] %in% x$occurrenceID))
+  e[, `:=`(v = m[measurementType == CNT_T][match(e$eventID, id), measurementValue],
+           area = m[measurementType == area_type][match(e$eventID, id), measurementValue],
+           status = x$occurrenceStatus[match(e$eventID, x$eventID)])]
+  stopifnot(!anyNA(e$v), !anyNA(e$area), all(grepl("^\\d+(\\.\\d+)?$", e$area)), all(grepl("^\\d+(\\.\\d+)?$", e$v)))
+  e[, `:=`(unit = gsub("[^A-Za-z0-9]+", "_", tolower(locationID)), period = as.integer(substr(eventDate, 1, 4)) - 2013L,
+           vn = as.integer(sub(".*_(\\d+)$", "\\1", parentEventID)), obs_air_temp_c = as.numeric(at[parentEventID]))]
+  e[, `:=`(unit_decimalLatitude = as.numeric(vis$decimalLatitude[match(parentEventID, vis$eventID)]),
+           unit_decimalLongitude = as.numeric(vis$decimalLongitude[match(parentEventID, vis$eventID)]))]
+  e[]
+}
+sib_dataset <- function(title, abstract, protocol, code, notes, notShipped, units, extra = list()) c(list(
+  title = title,
+  creator = "Seys, Jan; Pint, Silke; Vervaele, K.; Vanhaecke, P.; et al.; Flanders Marine Institute (VLIZ)",
+  pubDate = "2020", doi = "10.14284/401", sourceURL = "https://doi.org/10.14284/401",
+  citation = dataset$citation, intellectualRights = dataset$intellectualRights,
+  abstract = abstract, samplingProtocol = protocol, samplingProtocolCode = code, surveyEvidence = "sample_table",
+  responseType = "count", unitKind = "site", closure = "open",
+  closureNote = "Visits within a year are seasonal (mostly two to four per beach-year), so abundance changes across the occasions of a period.",
+  occasionKind = "time", taxonInclusion = "single",
+  geographicCoverage = sprintf("Belgian North Sea coast: %d beaches from Koksijde to Duinbergen (one point per beach)", units),
+  temporalCoverage = "2014-06/2018-06",
+  coordinatesCoarsened = list(value = FALSE, method = "One point per beach as published; public beaches, no flagged taxon."),
+  notes = notes), extra, list(notShipped = notShipped))
+finish <- function(e) {
+  setorder(e, unit, eventDate, vn)
+  stopifnot(!anyDuplicated(e[, .(unit, eventDate)]))
+  e[, occasion := seq_len(.N), by = .(unit, period)]
+  e
+}
+
+## Patella vulgata: total of ten 0.5 x 0.5 m quadrats on one groyne per visit
+pa <- one_method("patella", 87L, "quadrat", "Schaalh_TOT_2.5m2", "Patella vulgata", "The area sampled of the shore for Patella vulgata sampling")
+MEANS <- c("2.19", "2.375", "2.77", "3.39")
+stopifnot(all(pa$area == "2.5"), setequal(pa[!grepl("^\\d+$", v), v], MEANS), sum(!grepl("^\\d+$", pa$v)) == 4L)
+pa_means <- pa[v %in% MEANS, paste0(parentEventID, " (", v, ")")]
+pa <- pa[!v %in% MEANS]
+pa[, y := as.integer(v)]
+stopifnot(all((pa$y > 0L) == (pa$status == "present")), nrow(pa) == 83L)
+pa <- finish(pa)
+TP <- "seys_2020_belgium_patella_count"
+long_p <- pa[, .(unit, taxon = "PATVUL", y, period, occasion, date = eventDate, unit_beach = locationID,
+                 unit_decimalLatitude, unit_decimalLongitude, obs_air_temp_c)]
+setorder(long_p, unit, period, occasion)
+stopifnot(nrow(long_p) == 83L, !anyNA(long_p$y))
+taxa_p <- make_taxa("PATVUL", "Patella vulgata", vernacularName = "common limpet",
+                    taxonRemarks = "Counted only above 1 cm shell length (protocol).")
+taxa_p[, taxon_iucnCategory := unname(mapply(function(k, s) if (is.na(k)) NA_character_ else iucn_category(k, s), taxonID, scientificName))]
+stopifnot(!any(taxa_p$taxon_iucnCategory %in% c("VU", "EN", "CR")))
+periods_p <- data.table(period = 1:5, year = 2014:2018)[period %in% long_p$period]
+np <- c(units = uniqueN(long_p$unit), surveys = nrow(long_p))
+dataset_p <- sib_dataset(
+  title = sprintf("SeaWatch-B: citizen counts of the common limpet Patella vulgata in ten quadrats on groynes, %d surveys at %d Belgian beaches, 2014-2018", np[["surveys"]], np[["units"]]),
+  abstract = sprintf("SeaWatch-B is a VLIZ citizen-science programme in which volunteers visit Belgian beaches about once a season at low tide. On beaches with groynes, the volunteer returns to the groyne chosen at the first survey and, as far seaward as possible, places ten 0.5 x 0.5 m quadrats haphazardly over its crest and flanks, counting every limpet over 1 cm. The deposit gives the total of the ten quadrats (2.5 m2) per visit, not the quadrat counts, so the quadrats are not occasions here. %d surveys at %d beaches, 2014 to 2018. One row per survey, y = limpets counted in 2.5 m2; the unit is the beach (its groyne), the period a calendar year, the occasion a survey within it.", np[["surveys"]], np[["units"]]),
+  protocol = "Ten 0.5 x 0.5 m quadrats placed haphazardly on one fixed groyne (crest, east and west flank) near the low-water line at low tide; all Patella vulgata > 1 cm counted; total over the ten quadrats (2.5 m2) deposited (SeaWatch-B field brochure, VLIZ; Seys et al. 2019).",
+  code = "quadrat_count",
+  notes = "Citizen-science counts. Only beaches with a groyne are surveyed (Seys et al. 2019: several beaches have none). The groyne is chosen at the first survey and kept unless it is sanded over; the deposit does not record a change of groyne. Sampled area is 2.5 m2 at every survey. Same units (beach keys) as the push-net table seys_2020_belgium_seawatch_count.",
+  notShipped = list(mean_values = sprintf("4 surveys whose deposited value is a mean, not a count (%s): the count is not recoverable, so the survey is dropped", paste(pa_means, collapse = ", ")),
+                    quadrat_counts = "per-quadrat counts and photos: recorded on the field sheet, not deposited"),
+  units = np[["units"]])
+ds_p <- write_table(long_p, TP, dataset_p, taxa = taxa_p, periods = periods_p, script = "data/seys_2020_belgium_seawatch_count.R")
+stage_dict_row(TP,
+  description = sprintf("SeaWatch-B citizen-science counts of the common limpet Patella vulgata in ten 0.5 x 0.5 m quadrats on a groyne, seasonal visits to %d Belgian beaches, 2014-2018.", np[["units"]]),
+  url = "https://doi.org/10.14284/401",
+  reference = "Seys J, et al.; Flanders Marine Institute (VLIZ) (2020). SeaWatch-B: citizens monitoring the Belgian North Sea from the beach (2014-2018). Marine Data Archive.",
+  doi_paper = "", doi_data = "10.14284/401", original_license = "CC BY-NC-SA 4.0 (IMIS); CC BY-NC 4.0 (EML, GBIF); stricter governs",
+  derived_license = "CC BY-NC-SA 4.0",
+  notes = "VLIZ IPT DwC-A (seawatch-b, 2020-11-05), GBIF 3b91f3e4-17da-4965-a8d5-4e8c9296477b; found via EDITO / EurOBIS (IMIS 6380). Patella component; 4 mean values dropped.",
+  source_via = "VLIZ IPT")
+stage_tag_row(TP, ds_p, taxon_group = "Invertebrates", model_family = "N-mixture (single-species, multi-season)",
+  sampling_protocol = "quadrat_count", design = "Multi-season (5 years; seasonal visits per beach)",
+  realm = "Marine", country = "BEL", coordinates = "As published",
+  notes = "Citizen-science limpet counts on groynes, total of ten quadrats per visit.")
+
+## Arenicola: casts on two 2 m strips (normally 2 x 100 m = 400 m2) per visit
+ar <- one_method("arenicula", 101L, "sample", "PierAantal", "Arenicola", "The area sampled of the shore for Arenicola sp. sandpiles")
+stopifnot(all(grepl("^\\d+$", ar$v)), setequal(ar$area, c("200", "300", "400", "800")), sum(ar$area == "400") == 90L)
+ar[, `:=`(y = as.integer(v), obs_area_m2 = as.integer(area))]
+stopifnot(all((ar$y > 0L) == (ar$status == "present")), nrow(ar) == nrow(vis), setequal(ar$parentEventID, vis$eventID))
+ar <- finish(ar)
+TA <- "seys_2020_belgium_arenicola_count"
+long_a <- ar[, .(unit, taxon = "ARENIC", y, period, occasion, date = eventDate, unit_beach = locationID,
+                 unit_decimalLatitude, unit_decimalLongitude, obs_area_m2, obs_air_temp_c)]
+setorder(long_a, unit, period, occasion)
+stopifnot(nrow(long_a) == 101L, !anyNA(long_a$y), uniqueN(long_a$unit) == 14L)
+taxa_a <- make_taxa("ARENIC", "Arenicola", vernacularName = "lugworms", taxonRank = "genus", lookupName = "Arenicola Lamarck, 1801",
+                    taxonRemarks = "y counts casts (the coiled 'toothpaste' sand heaps a lugworm leaves at its burrow), a sign of the animal, not worms. The deposit identifies to genus; the protocol's 'zeepier' is the lugworm, on Belgian beaches mainly Arenicola marina.")
+taxa_a[, taxon_iucnCategory := NA_character_]
+periods_a <- data.table(period = 1:5, year = 2014:2018)[period %in% long_a$period]
+na_ <- c(units = uniqueN(long_a$unit), surveys = nrow(long_a))
+dataset_a <- sib_dataset(
+  title = sprintf("SeaWatch-B: citizen counts of lugworm (Arenicola) casts on the low beach, %d surveys at %d Belgian beaches, 2014-2018", na_[["surveys"]], na_[["units"]]),
+  abstract = sprintf("SeaWatch-B is a VLIZ citizen-science programme in which volunteers visit Belgian beaches about once a season at low tide. Just after low water the volunteer walks 100 m along a 2 m wide strip 10 m from the waterline and again 30 m from it, counting lugworm casts, and records the total and the area counted (normally 400 m2). y is the number of casts, a sign of the animal, not a count of worms. %d surveys (every visit) at %d beaches, June 2014 to June 2018. One row per survey; the unit is the beach, the period a calendar year, the occasion a survey within it; obs_area_m2 is the area counted.", na_[["surveys"]], na_[["units"]]),
+  protocol = "Lugworm casts counted just after low water on two 2 m wide strips, 100 m long, at 10 m and 30 m from the waterline; counts and areas summed (normally 400 m2); with very many casts a narrower or shorter strip may be counted (SeaWatch-B field brochure, VLIZ; Seys et al. 2019).",
+  code = "sign_survey",
+  notes = sprintf("Citizen-science counts of casts, not of worms: a worm can leave more than one cast between tides and bait digging disturbs the beach. Area counted varies (obs_area_m2: 200 m2 at %d surveys, 300 at %d, 400 at %d, 800 at %d); the brochure allows a reduced strip when casts are very many and says the counts are then scaled, and the deposit does not say whether any value is a scaled count. The deposit identifies the taxon to genus (Arenicola). Same units (beach keys) as the push-net table seys_2020_belgium_seawatch_count.",
+                  sum(long_a$obs_area_m2 == 200L), sum(long_a$obs_area_m2 == 300L), sum(long_a$obs_area_m2 == 400L), sum(long_a$obs_area_m2 == 800L)),
+  notShipped = list(none = "nothing: every visit has one cast count and its area"),
+  units = na_[["units"]], extra = list(effortColumn = "obs_area_m2"))
+ds_a <- write_table(long_a, TA, dataset_a, taxa = taxa_a, periods = periods_a, script = "data/seys_2020_belgium_seawatch_count.R")
+stage_dict_row(TA,
+  description = sprintf("SeaWatch-B citizen-science counts of lugworm (Arenicola) casts, a sign of the worms, on two low-beach strips (normally 400 m2), seasonal visits to %d Belgian beaches, 2014-2018.", na_[["units"]]),
+  url = "https://doi.org/10.14284/401",
+  reference = "Seys J, et al.; Flanders Marine Institute (VLIZ) (2020). SeaWatch-B: citizens monitoring the Belgian North Sea from the beach (2014-2018). Marine Data Archive.",
+  doi_paper = "", doi_data = "10.14284/401", original_license = "CC BY-NC-SA 4.0 (IMIS); CC BY-NC 4.0 (EML, GBIF); stricter governs",
+  derived_license = "CC BY-NC-SA 4.0",
+  notes = "VLIZ IPT DwC-A (seawatch-b, 2020-11-05), GBIF 3b91f3e4-17da-4965-a8d5-4e8c9296477b; found via EDITO / EurOBIS (IMIS 6380). Arenicola component; y = casts, not worms.",
+  source_via = "VLIZ IPT")
+stage_tag_row(TA, ds_a, taxon_group = "Invertebrates", model_family = "N-mixture (single-species, multi-season)",
+  sampling_protocol = "sign_survey", design = "Multi-season (5 years; seasonal visits per beach)",
+  realm = "Marine", country = "BEL", coordinates = "As published",
+  notes = "Citizen-science lugworm cast counts (a sign, not individuals) with area counted as effort.")
