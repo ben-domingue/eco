@@ -1,0 +1,76 @@
+{
+  "table": "schaub_2005_egermany_stork_ld",
+  "sourceURL": "https://cran.r-project.org/package=IPMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "responseType": "state",
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "surveyEvidence": "inferred",
+  "coordinatesCoarsened": null,
+  "title": "Ringing, breeding resightings and dead recoveries of 691 white storks in eastern Germany, 1986-2001",
+  "creator": "Vogelwarte Hiddensee (data); Schaub, Michael; Kania, Wojciech; Köppen, Ulrich (distributed in the IPMbook R package)",
+  "pubDate": "2005",
+  "citation": "Schaub, M., Kéry, M., & Meredith, M. (2023). IPMbook: Functions and data for the book 'Integrated Population Models' (Version 0.1.5) [R package; dataset stork]. CRAN. https://CRAN.R-project.org/package=IPMbook",
+  "paperDOI": "10.1111/j.1365-2656.2005.00961.x",
+  "abstract": "White storks (Ciconia ciconia) ringed as chicks in eastern Germany and resighted as breeding adults in the study area, 1986-2001, from the Vogelwarte Hiddensee ringing scheme; 19 were recovered dead. The package keeps only birds resighted at least once when older than two years. The data are the IPMbook package's stork (IPM book section 4.5.4, a joint live-resighting and dead-recovery model; Schaub et al. 2005): one row per stork x year at risk, y = 0 not encountered, 1 ringed or resighted alive, 2 recovered dead.",
+  "samplingProtocol": "Chicks ringed in the nest; ringed adults read when breeding in the study area each year; dead ringed storks reported to the ringing centre.",
+  "samplingProtocolCode": "resighting",
+  "surveyEvidenceNote": "No effort is deposited. Ringing and resighting of breeders took place every year 1986-2001 and dead recoveries are reported continuously (help page); the book's code estimates a resighting probability for every year and fixes none at 0. Every year is a live occasion and a recovery interval.",
+  "closureNote": "open between years (Burnham live-dead: one live occasion per breeding season, dead recoveries by calendar year)",
+  "stateCodes": {
+    "0": "not encountered in year t (live 0, dead 0)",
+    "1": "ringed as a chick or resighted alive in year t (live 1, dead 0)",
+    "2": "recovered dead in calendar year t (live 0, dead 1)"
+  },
+  "respRawCodes": {
+    "00": "neither",
+    "10": "ringed or resighted alive",
+    "01": "recovered dead"
+  },
+  "geographicCoverage": "Eastern Germany (study area of the Vogelwarte Hiddensee ringing scheme; no coordinates in the package)",
+  "temporalCoverage": "1986/2001",
+  "designNote": "Live-dead (Burnham) capture-recapture with dead recoveries, as moe_2020_hunder_trout_ld. Each stork has rows from its ringing year (all ringed as chicks) to its recovery year or 2001; no rows after a recovery.",
+  "notes": "Selection: the package includes only storks resighted at least once when older than two years (help page), so every bird survived its first two years; survival estimates from these data are conditional on that. Recoveries are coded by calendar year; whether a recovery precedes or follows that year's breeding season is not given, so state 2 does not order the two within a year. No bird is both resighted and recovered in one year. unit_ring_year = the year of ringing. Unit ids are row numbers of the package's matrix.",
+  "notShipped": {
+    "none": "nothing: the matrix is shipped whole"
+  },
+  "summary": {
+    "n_rows": 5187,
+    "n_units": 691,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 1,
+    "n_surveys": 5187,
+    "y_values": "0,1,2",
+    "prop_zero": 0.71,
+    "n_traps": 1,
+    "n_zero": 3681,
+    "n_positive": 1506,
+    "n_units_detected": 691,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "unit_ring_year"],
+  "coreMd5": "f4df92c3503327addf79363766177882",
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "year", "n_ringed", "n_resighted", "n_recovered"],
+      "md5": "58e273669786d952721b298757c3b6ae"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "53e2fbe9890cdf6595c6a0dd751d3b93"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ipmbook_package_ms.R",
+  "buildDate": "2026-11-13"
+}

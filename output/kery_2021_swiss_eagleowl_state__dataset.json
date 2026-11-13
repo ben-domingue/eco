@@ -1,0 +1,71 @@
+{
+  "table": "kery_2021_swiss_eagleowl_state",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Multi-state observations of eagle owls (none, single bird, pair, breeding pair) at 274 Swiss territories, 2007-2016",
+  "creator": "Swiss Ornithological Institute (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2021",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset SwissEagleOwls]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-809585-0.00006-5",
+  "abstract": "Observations of Eurasian eagle-owls (Bubo bubo) in the 274 1-km2 quadrats in Switzerland where a territorial owl was detected at least once from 2007 to 2016, from more or less opportunistic surveys reported to the Swiss Ornithological Institute, each classed as not detected, single bird, pair without breeding evidence, or pair with confirmed breeding (the atlas criteria). Where a site-year had more than 20 observations, 20 were randomly selected. The data are the AHMbook package's SwissEagleOwls (AHM2 chapter 6), with quadrat covariates.",
+  "samplingProtocol": "More or less opportunistic visits to known territories, each reported as an observation with an atlas breeding-evidence state.",
+  "samplingProtocolCode": "visual_survey",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "Each observation row of the package is a survey, including the explicit non-detections (state 0). Where a site-year had more than 20 observations the source kept a random 20, so the survey set is a subsample there. occasion orders a site-year's observations by date (ties in deposited order).",
+  "responseType": "state",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (closed within a year)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "stateCodes": {
+    "0": "not detected",
+    "1": "single bird detected",
+    "2": "pair detected, no breeding evidence",
+    "3": "pair with confirmed breeding"
+  },
+  "geographicCoverage": "Switzerland, six regions (unit_region); 1-km2 quadrats, no coordinates in the package",
+  "temporalCoverage": "2007/2016",
+  "notes": "Only quadrats where a territorial eagle-owl was ever detected in 2007-2016 are included, and surveys are partly opportunistic (help page). The book aggregates states 2 and 3 into 'pair'; the four states are shipped as deposited. Several observations can share a date. unit_ covariates from the package's sites table (elevation of the quadrat centre, forest proportion, slope, road length).",
+  "notShipped": {
+    "none": "nothing: both data frames are shipped"
+  },
+  "summary": {
+    "n_rows": 5974,
+    "n_units": 274,
+    "n_taxa": 1,
+    "n_periods": 10,
+    "n_occasions": 20,
+    "n_surveys": 5974,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.404,
+    "n_traps": 1,
+    "n_zero": 2414,
+    "n_positive": 3560,
+    "n_units_detected": 263,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_region", "unit_elevation_m", "unit_forest_prop", "unit_slope_deg", "unit_road_length_m"],
+  "coreMd5": "7f16796d9a527228b8ff25be82bcefc8",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year", "n_sites", "n_obs"],
+      "md5": "e5382b5c0618f166ed625f6120c8c954"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "25a92ac6e8e11bc97b4ef8bb58ef9147"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}
