@@ -1,0 +1,78 @@
+{
+  "table": "haas_2025_sweden_coastalbirds_count",
+  "title": "Swedish coastal bird monitoring: breeding-season counts of 84 bird taxa on 200 archipelago squares, 2015-2024",
+  "creator": "Haas, Fredrik; Green, Martin; Jönsson, Annelie (Department of Biology, Lund University)",
+  "pubDate": "2025",
+  "doi": "10.15468/sg5spw",
+  "sourceURL": "https://doi.org/10.15468/sg5spw",
+  "citation": "Haas F, Green M, Jönsson A (2025). Swedish Bird Survey: Swedish coastal bird monitoring programme (Nationella kustfågelövervakningen). Version 1.8. Department of Biology, Lund University. Samplingevent dataset. https://doi.org/10.15468/sg5spw",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
+  },
+  "abstract": "The Swedish national coastal bird monitoring programme (the archipelago squares), started in 2015 and run by Lund University within the Swedish Bird Survey: 200 fixed 2 x 2 km squares along the Swedish coast, each with at least one island, are counted once in the breeding season, mainly from a boat circling every island at most 50 m off, with some predetermined islands walked. All birds are counted. One row per square-year and species, y the individuals counted; for common eider, ducklings are counted at most squares and added to the adults (both kept as obs_ columns).",
+  "samplingProtocol": "Breeding-season count of a fixed 2 x 2 km archipelago square, once a year (May-June): all islands scanned from a boat at most 50 m away, predetermined islands walked; all birds counted, eider ducklings counted where the surveyor chose to (Swedish Bird Survey, https://www.fageltaxering.lu.se/inventera#kust).",
+  "samplingProtocolCode": "area_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one count per square and year; period = year; the replication is across years (an annual index)",
+  "occasionKind": "none",
+  "taxonInclusion": "recorded",
+  "taxaWithheld": ["Haliaeetus albicilla"],
+  "geographicCoverage": "Swedish coast, 14 coastal counties (centres of the 5 x 5 km grid squares holding the survey squares)",
+  "temporalCoverage": "2015-05/2024-06",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": true,
+    "rule": "taxon",
+    "method": "coarsen_coords(): the published 5 km grid centres snapped to their 0.1-degree cell centre, because taxa IUCN-threatened in their native range are in the table (E7, ruling on the publisher 2026-11-06): Melanitta fusca (VU), Podiceps auritus (VU), Aythya ferina (VU), Clangula hyemalis (VU), Calidris falcinellus (VU). Uncertainty = the source's 3,500 m plus the cell half-diagonal. haas_2025_sweden_coastal_exact_count keeps the other taxa at the published centres."
+  },
+  "covariateNote": "obs_n_adult = adults counted (equals y except for eider ducklings); obs_n_pulli = eider ducklings counted (eider rows at counts where ducklings were counted; NA otherwise); obs_pulli_size_class = the source's duckling size class relative to adults, where given; obs_time = start/end time of the count as published; unit_span = whether the square boundary is the original or a redrawn one (source eMoF 'span'); unit_area_km2 = square area; observer = the source's pseudonymous recorder ids, several joined by '|'.",
+  "notes": "White-tailed eagle (Artdatabanken security class 4) is withheld by the publisher (no rows; its absence is not a zero). Razorbill is withheld on square I0002 (Stora Karlsö), which therefore has no razorbill rows (__survey_taxa). One count per square-year, so the replication is across years. Larus fuscus is reported by subspecies (fuscus and intermedius), never at species level. Names are the source's (Dyntaxa) spelling; vernacularName is Swedish.",
+  "notShipped": {
+    "mammals": "28 presence records of American mink, badger and red fox without a count (mammals are not surveyed)",
+    "euTaxonID": "EU Birds Directive species codes per occurrence (eMoF)",
+    "constants": "noObservations (false everywhere), locationType ('Square'), locationProtected ('yes')"
+  },
+  "summary": {
+    "n_rows": 163034,
+    "n_units": 200,
+    "n_taxa": 84,
+    "n_periods": 10,
+    "n_occasions": 1,
+    "n_surveys": 1941,
+    "y_values": "0-8582 (600 distinct)",
+    "prop_zero": 0.791,
+    "n_traps": 1,
+    "n_zero": 128993,
+    "n_positive": 34041,
+    "n_units_detected": 200,
+    "max_y": 8582
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "observer", "unit_county", "unit_area_km2", "unit_span", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_time", "obs_n_adult", "obs_n_pulli", "obs_pulli_size_class"],
+  "coreMd5": "275f068400eb3256dc359c09770d24eb",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year", "n_counts"],
+      "md5": "91681215134ba4120e7e6951e03045b0"
+    },
+    "survey_taxa": {
+      "rows": 16799,
+      "columns": ["taxon", "unit"],
+      "md5": "dd3efe3e1e58233d4d5b54390e164bd2"
+    },
+    "taxa": {
+      "rows": 84,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_dyntaxaID", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "dda7ec83d63b4cfd542c8d307a887814"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/haas_2025_sweden_coastalbirds_count.R",
+  "buildDate": "2026-11-13"
+}
