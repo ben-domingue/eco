@@ -20,6 +20,10 @@ project:
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
     - Rscript prerender.R
+  # One page per table under _site/tables/ (schema.org JSON-LD + EML), the A-Z
+  # index, and the table URLs appended to sitemap.xml (#13; landing/README.md).
+  post-render:
+    - Rscript landing/emit_landing_pages.R
   preview:
     port: 4300
 
@@ -59,6 +63,9 @@ website:
         menu:
           - href: data.qmd
             text: Browse the tables
+          # Written by the post-render step, not a .qmd (#13).
+          - href: tables/index.html
+            text: Table pages (A-Z)
           - href: data_notes.qmd
             text: Data notes
           - href: corrections.qmd

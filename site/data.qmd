@@ -65,7 +65,7 @@ protocols and licences; each name links to the table's full entry below.
 #| output: asis
 d[, dims := sprintf("%s × %s × %s × %s", n_units, n_taxa, n_periods, n_occasions)]
 d[, floor := ifelse(sample_floor == "meets", "meets", "below")]
-d[, name := sprintf("[`%s`](#%s)", table, table)]
+d[, name := sprintf("[`%s`](#%s)", table, table)]   # the card; each card links its table page (#13)
 out <- d[, .(Table = name, Family = model_family, Taxa = taxon_group,
              Protocol = sampling_protocol, `Units × taxa × periods × occasions` = dims,
              Rows = format(n_rows, big.mark = ","), Licence = licence, Floor = floor)]
@@ -88,6 +88,7 @@ for (i in seq_len(nrow(d))) {
   r <- d[i]
   cat(sprintf("\n### `%s` {#%s}\n\n", r$table, r$table))
   cat(sprintf("**%s**\n\n", r$title))
+  cat(sprintf("[Table page](tables/%s/){.eco-table-page}\n\n", r$table))   # #13
   # the deposit's citation first (#149): the table is someone's fieldwork
   cat(sprintf("Cite: %s\n\n", gsub("\\. (Paper|Data): ", ".\n\n\\1: ", r$citation)))
   cat(sprintf("%s\n\n", r$description))
