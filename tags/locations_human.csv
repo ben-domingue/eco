@@ -342,3 +342,6 @@ jimenezfranco_2023_murcia_birds_binom,38.0,-1.5,region,150,"centre of the Region
 ziolkowski_2026_bbs_bcr15_exact_block,38.8,-120.3,state,636,"BCR 15 (Sierra Nevada) route start points; as ziolkowski_2026_bbs_bcr15_block"
 ziolkowski_2026_bbs_bcr15_exact_stop,38.9,-120.3,state,613,"BCR 15 (Sierra Nevada) route start points; as ziolkowski_2026_bbs_bcr15_stop"
 ziolkowski_2026_bbs_exact_count,42.0,-96.6,multi,7799,"route start points across the US and Canada; as ziolkowski_2026_bbs_count"
+seys_2020_belgium_seawatch_count,51.2,2.9,region,50,"Belgian coast, 14 beaches Westende to Heist (mean of beach points, rounded)"
+faria_2026_azores_patella_count,38.6,-28.4,multi,520,"Azores: Flores, Graciosa, Pico, Sao Miguel (mean of location points)"
+faria_2026_azores_mpa_patella_count,37.8,-25.5,region,25,"south and north coast of Sao Miguel, Azores (mean of 4 location points)"
