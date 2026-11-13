@@ -435,8 +435,8 @@ schmelzle_2016_tidewatergoby_edna,40.8,-124.1,state,383,24,unit coordinates,unit
 schorr_2021_yampa_mylu_rd,40.4,-107.0,locality,50,,place name,centre of 2 named ranches near Steamboat/Hayden
 sepulveda_2019_streamgage_dreis_edna,43.5,-114.5,multi,1500,,place name,centre of streamgages in 6 western states
 sepulveda_2019_streamgage_fish_edna,43.9,-113.3,country,1449,9,unit coordinates,unit_latitude
-seys_2020_belgium_arenicola_count,51.2,2.9,region,50,,place name,"Belgian coast, 14 beaches Koksijde to Duinbergen (mean of beach points, rounded)"
-seys_2020_belgium_patella_count,51.2,2.9,region,50,,place name,"Belgian coast, 13 beaches Koksijde to Duinbergen (mean of beach points, rounded)"
+seys_2020_belgium_arenicola_count,51.2,2.9,region,51,14,unit coordinates,unit_decimalLatitude
+seys_2020_belgium_patella_count,51.2,2.9,region,51,13,unit coordinates,unit_decimalLatitude
 seys_2020_belgium_seawatch_count,51.2,2.9,region,51,14,unit coordinates,unit_decimalLatitude
 shah_2025_bardia_tiger_occ,28.4,81.7,region,120,,place name,Bardia and Banke NPs
 sharma_2021_spiti_snowleopard_scr,32.2,78.0,locality,40,,place name,"stated coords, Spiti Valley"
