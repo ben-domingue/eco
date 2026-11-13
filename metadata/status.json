@@ -1,11 +1,11 @@
 {
-  "date": "2026-11-11",
-  "n_tables": 520,
-  "n_deposits": 365,
-  "n_rows": 410066440,
-  "n_units": 496828,
-  "n_taxa_rows": 27388,
-  "n_surveys": 24053651,
+  "date": "2026-11-12",
+  "n_tables": 523,
+  "n_deposits": 368,
+  "n_rows": 410072750,
+  "n_units": 496886,
+  "n_taxa_rows": 27441,
+  "n_surveys": 24054766,
   "n_families": 67,
   "families": {
     "Abundance": 2,
@@ -53,7 +53,7 @@
     "Multi-state robust design capture-recapture": 1,
     "Multievent / multi-state robust design capture-recapture": 1,
     "Multinomial N-mixture": 2,
-    "N-mixture": 83,
+    "N-mixture": 86,
     "N-mixture / annual count index": 7,
     "N-mixture / occupancy": 1,
     "N-mixture / robust-design counts": 1,
@@ -78,7 +78,7 @@
   },
   "response_types": {
     "binomial_count": 23,
-    "count": 127,
+    "count": 130,
     "detection": 301,
     "multinomial_cell": 15,
     "ordinal": 3,
@@ -88,9 +88,9 @@
     "Amphibians": 49,
     "Birds": 159,
     "Fish": 32,
-    "Invertebrates": 57,
+    "Invertebrates": 59,
     "Mammals": 176,
-    "Multiple": 12,
+    "Multiple": 13,
     "Plants": 19,
     "Reptiles": 16
   },
@@ -99,15 +99,15 @@
     "effort_table": 65,
     "inferred": 29,
     "row_presence": 46,
-    "sample_table": 98
+    "sample_table": 101
   },
-  "n_below_floor": 78,
-  "n_with_coordinates": 159,
+  "n_below_floor": 80,
+  "n_with_coordinates": 162,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
   "n_valid": 520,
   "n_irw_conforms": 520,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 520
+    "eco v1.1-draft (2026-11-03)": 523
   }
 }
