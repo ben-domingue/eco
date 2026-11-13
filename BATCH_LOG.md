@@ -2689,3 +2689,35 @@ macroalgae sets are biomass and cover). Nothing new was queued or built from the
 decision column of `discovery/edito_eurobis_absent_2026-11-11.csv`.
 
 Strained the standard: nothing new.
+
+## Batch 56 — 2026-11-12 (NEON discovery pass: products not yet covered; three tables)
+
+Built in `~/eco-b56` (branch `batch-56-neon`, from main at 7f5c0ab), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_zooplankton_count | repeated counts, lake zooplankton, community | NEON DP1.20219.001 RELEASE-2026 (CC BY 4.0) | 53,217 | 7 lakes (unit), 204 bouts (period), ~3 samples a bout (occasion: buoy, two littoral); 208 taxa, per-lake pools; y = counted subsample, `obs_subsample_fraction` (ruling 21); coordinates coarsened (Hesperodiaptomus augustaensis VU, BARC and SUGG) |
+| neon_2026_zooplankton_exact_count | as above, E7 sibling | same | 53,034 | without H. augustaensis, coordinates as published |
+| neon_2026_aqplants_occ | multi-scale community occupancy, stream plants / bryophytes / lichens / macroalgae | NEON DP1.20072.001 RELEASE-2026 (CC BY 4.0) | 1,086,768 | 240 transects (unit) at 24 sites, 548 bouts (period), points along the transect as spatial occasions (up to 114); 153 taxa, per-site pools; unidentified plants pooled as Plantae, unidentified macroalgae as one functional group (no taxonID) |
+
+**Screen.** All 82 TOS/AOS products from the NEON products API; rows in `queue/candidates.csv` (source neon). Built: the
+two above. Rejected: aquatic plant clip harvest DP1.20066 (biomass of clips placed where plants grow; no taxon-level
+survey set), and one grouped row for products with no taxon detection or count (DNA barcodes, microbes, phenology,
+vegetation structure, biomass, riparian cover, chemistry). Held as questions for Ben: periphyton / phytoplankton
+DP1.20166 (fixed-count enumeration, several counting units per taxon), the four pathogen products (mosquito pools, ticks,
+rodent tick-borne and hantavirus: is pathogen-in-host a detection table, and for the rodents a multistate CR joined to
+DP1.10072?), metabarcoding DP1.20126 / 20221 (reads per OTU), and more small-mammal rd species (raising N_TABLES rewrites
+the four published rd tables' metadata).
+
+**Zooplankton.** Each sample is split by the laboratory into coarse and fine subsamples of known volume, and some
+taxa are counted in a larger share than the rest, so the fraction is per row: counted / adjCountPerBottle for a counted
+taxon, the largest share examined in any subsample for a taxon not found. adjCountPerBottle itself, corrected twice in
+the issue log, is not shipped. Two 2014 bouts have two samples per location (6 occasions).
+
+**Aquatic plants.** 3,031 taxon rows (22%, mostly macroalgae 2016-2021) carry no taxonID (morphospecies unresolved in
+the basic package): pooled with 'Unknown Algae' as one functional group. 340 points with more than one record in a
+bout (2014-2016) are dropped whole, since their taxon rows cannot be assigned to one record (the times differ by
+hours, or coincide); 510 points filed under the reach (CUPE, MAYF) have no transect. Lichens resolve to Fungi on GBIF.
+
+Strained the standard: whether a fixed-count laboratory enumeration (algae) is a count, and pathogen detections in
+hosts (E9 scope), both left as questions.

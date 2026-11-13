@@ -345,3 +345,6 @@ ziolkowski_2026_bbs_exact_count,42.0,-96.6,multi,7799,"route start points across
 seys_2020_belgium_seawatch_count,51.2,2.9,region,50,"Belgian coast, 14 beaches Westende to Heist (mean of beach points, rounded)"
 faria_2026_azores_patella_count,38.6,-28.4,multi,520,"Azores: Flores, Graciosa, Pico, Sao Miguel (mean of location points)"
 faria_2026_azores_mpa_patella_count,37.8,-25.5,region,25,"south and north coast of Sao Miguel, Azores (mean of 4 location points)"
+neon_2026_aqplants_occ,39.2,-101.2,multi,7828,"24 NEON wadeable-stream sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_count,44.9,-98.8,multi,6055,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_exact_count,44.9,-98.8,multi,6055,"as neon_2026_zooplankton_count (E7 sibling, same lakes)"

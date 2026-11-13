@@ -456,6 +456,8 @@ CSVs with `upload/red_up_eco.py`.
 | `szewczyk_2019_colorado_ants_binom.R` | pitfall binomial counts, multi-scale (site > trap pair), per-region lists, two tables (coarsened + `_exact`) | Dryad | CC0 |
 | `jimenezfranco_2019_murcia_birds_binom.R` | line-transect binomial counts, transects as spatial replicates of grid cells | Dryad | CC0 |
 | `jimenezfranco_2023_murcia_birds_binom.R` | line-transect binomial counts, modern resurvey (2012, 2017) of the same region, cells of 2 x 2 km | Dryad | CC0 |
+| `neon_2026_zooplankton_count.R` | lake zooplankton counts per tow / trap sample (about 3 samples per bout, 3 bouts a year), 208 taxa x 7 NEON lakes x 204 bouts, 2014-2024, sampler, volume as effort and the fraction counted (subsampleColumn); coarsened (Hesperodiaptomus augustaensis VU) plus `neon_2026_zooplankton_exact_count` | NEON DP1.20219.001 RELEASE-2026 (API token) | CC BY 4.0 |
+| `neon_2026_aqplants_occ.R` | aquatic plant, bryophyte, lichen and macroalgae presence at points along permanent transects (transect = unit, point = spatial occasion, bout = period), 153 taxa x 240 transects at 24 NEON wadeable-stream sites x 548 bouts, 2014-2024, per-site pools | NEON DP1.20072.001 RELEASE-2026 (API token) | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables
