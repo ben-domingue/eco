@@ -512,6 +512,17 @@ NA) and `y = 0` otherwise, with the Ct as deposited in `y_raw`. A sampling event
 field blank amplified ships as recorded, with `obs_blank_positive = 1` on its rows and
 0 on every other row.
 
+**Ruling (metabarcoding, 2026-11-13, ruled by Ben).** A metabarcoding result (sequence
+reads per taxon in a bulk or eDNA sample) is a detection response: `responseType =
+detection`, `y = 1` when the taxon has reads in the sample at or above the source's own
+reporting threshold and `y = 0` otherwise, with the read count as deposited in `y_raw`.
+The sample's sequencing depth (total reads) is an `obs_` column. The read count is never
+treated as abundance and never ships as `y`. The taxa surveyed for are stated honestly
+(the taxa the source assigns anywhere in the product, per site or per sequencing run,
+through `__survey_taxa`), and `surveyEvidence` says how a 0 arises. Several markers or
+primer sets, and PCR replicates, are handled explicitly, as separate occasions or as
+`obs_` columns, and the metadata says which.
+
 **Ruling (automated detections, 2026-11-06).** A detection an automated recogniser or
 classifier made, under a threshold the source states, is the source's call, as for eDNA:
 `y` as the source records it, with the score and the threshold as `obs_` columns when
@@ -720,4 +731,8 @@ shipped and why. Facts about the source are assertions, not comments.
   - E6: "*X* sp." and "*X* spp." codes of one higher taxon are one taxon; `taxonRemarks` lists both codes (20).
   - E10: optional `subsampleColumn` names the `obs_` column holding the identified fraction; the validator checks it names such a column with values in (0, 1] (21).
 - **v1.1-draft, private-land ruling (2026-11-06, #152).** E7: coordinates are coarsened to 0.1° when the source says the sites are on private or community land, or reached under a landowner or community agreement, unless it says the landowners consented to publication; only the units the source marks, when it marks them; no `_exact` sibling. `coordinatesCoarsened.rule` (`taxon`, `private_land`) records the trigger, and the validator checks that a `private_land` table has no coordinate finer than the 0.1° grid. First table: `clipp_2024_wvprivate_comm`.
+- **v1.1-draft, metabarcoding ruling (2026-11-13, Ben, batch 58, #10).** E9: metabarcoding
+  is a detection response: `y = 1` at or above the source's reporting threshold, the read
+  count in `y_raw`, sequencing depth an `obs_` column, the taxa surveyed for through
+  `__survey_taxa`, markers and PCR replicates as occasions or `obs_` columns.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
