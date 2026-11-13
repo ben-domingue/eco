@@ -2827,3 +2827,36 @@ before; adults of unknown age from the study's first year (E4.4).
 **Not built this batch, from the same sweep.** IPMbook `stork` (19 dead recoveries coded 2, and only birds resighted
 at least once after age 2: a live-dead table on the `moe_2020_hunder_trout_ld` form, with the selection stated) and
 `cormorant` (multistate), next batch.
+
+## Batch 60 — 2026-11-13 (R packages, continued: seven AHMbook tables, two IPMbook tables; nine tables)
+
+Built in `~/eco-b60` (branch `batch-60-ahmbook`, from main at 4a0f07a after #191), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| sutherland_2012_scotland_vole_dynocc | dynamic occupancy (latrine signs) | AHMbook 0.2.12 `waterVoles` (GPL >= 3) | 966 | 114 Scottish patches x 3 years x 3 surveys; possible false positives (help page); locality not named |
+| roth_2014_aargau_marbledwhite_dynocc | dynamic occupancy, rotating panel | AHMbook `SwissMarbledWhite` | 14,707 | 519 LANAG plots, each surveyed one year in five 1998-2010, 11 visits; 195 visit dates not recorded (kept, date NA) |
+| kery_2021_jura_peregrine_dynocc | dynamic occupancy, one aggregated record per year | AHMbook `FrenchPeregrines` | 10,468 | 284 cliffs 1964-2016; NA = not surveyed; sites conditioned on at least one detection |
+| kery_2016_jura_peregrine_ttd_occ | occupancy with time to detection | AHMbook `ttdPeregrine` | 46 | 38 cliffs, March 2015; per-bird rows collapsed to one row per search (obs_ttd, obs_ttd_censored, ruling 2026-11-06) |
+| kery_2021_swiss_eagleowl_state | multi-state occupancy | AHMbook `SwissEagleOwls` | 5,974 | 274 territories 2007-2016, 4 atlas states, opportunistic visits, at most 20 per site-year (random subsample by the source) |
+| zipkin_2014_maryland_dusky_count | stage-structured counts | AHMbook `duskySalamanders` | 588 | 21 stream locations x 7 years x Jun/Jul, juveniles and adults as stage taxa (price_2018 precedent); below the floor |
+| kery_2016_swiss_squirrel_occ | single-season occupancy | AHMbook `SwissSquirrels.txt` | 747 | 265 MHB quadrats 2007; coordinates in an unspecified CRS shipped as unit_ covariates, not locations |
+| schaub_2005_egermany_stork_ld | live-dead (Burnham) | IPMbook 0.1.5 `stork` | 5,187 | 691 storks ringed as chicks, 1986-2001, 19 dead recoveries; only birds resighted after age 2 |
+| mccrea_2010_kattegat_cormorant_ms | multistate CMR (age class x colony) | IPMbook `cormorant` | 88,067 | 12,659 birds, 3 colonies, 1991-2004; birds first seen as breeders (ringed before 1991) from 1991 |
+
+**Selection in the source.** Three package datasets select on the outcome: FrenchPeregrines and SwissEagleOwls
+include only sites where the species was ever detected, and stork only birds resighted after age two. Each table
+says so in `notes`; nothing in the standard flags it as a field. A `selection` field in `__dataset.json` (or a
+tag) would let users filter these; not settled here.
+
+**Survey evidence.** Water voles, marbled white, peregrines (annual), dusky salamanders and squirrels are
+`deposited_matrix` (NA or absent rows = not surveyed). Eagle owls and the ttd searches are `row_presence`. Stork and
+cormorant are `inferred`: the book's code (IPM_04.5.4, IPM_18) estimates a recapture probability for every year
+(cormorant: every colony-year) and fixes none at 0; six cormorant colony-years with no breeder resighting at all are
+kept as surveyed, as in the book, and counted in `__periods`.
+
+**Time to detection.** The package lists one row per bird seen (sex and time), several per search. Under the
+2026-11-06 ruling the table has one row per search with the first time any bird was seen; per-bird detail is in
+`notShipped`.
+
+**Missed by the sweep.** `AHMbook::duskySalamanders` was not in #190's rows; added and built here.

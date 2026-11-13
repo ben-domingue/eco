@@ -1,0 +1,65 @@
+{
+  "table": "kery_2021_jura_peregrine_dynocc",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Annual detection of peregrine pairs at 284 cliff territories in the French Jura, 1964-2016",
+  "creator": "Groupe Pèlerin Jura (Monneret, René-Jean; Ruffinoni, René; and colleagues) (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2021",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset FrenchPeregrines]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-809585-0.00004-1",
+  "abstract": "Peregrine falcon (Falco peregrinus) cliff territories in the French Jura (departments Ain, Doubs, Jura) monitored by the Groupe Pèlerin Jura from 1964 to 2016, through the species' pesticide-era decline and recovery. Many cliffs were visited several times a year, but only the yearly result survives: whether a pair was seen at least once. The data are the AHMbook package's FrenchPeregrines (AHM2 section 4.11): one row per cliff x year with a survey, y = 1 if a pair was detected.",
+  "samplingProtocol": "Cliff territories visited by volunteers, often several times per breeding season; the record is the yearly aggregate (pair detected at least once or not).",
+  "samplingProtocolCode": "territory_survey",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The package's site x year matrix codes 1 (pair detected), 0 (surveyed, no pair) and NA (no survey that year); a row exists where the cell is 0 or 1 (10,468 site-years).",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "period: one aggregated record per site and year; the number of visits behind it is not available",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "French Jura mountains: departments Ain, Doubs and Jura, France (no coordinates in the package)",
+  "temporalCoverage": "1964/2016",
+  "notes": "Only cliffs where a pair was detected at least once in 1964-2016 are included (help page): the site set is conditioned on detection. unit_cliff_height (low, medium, tall) and unit_department as in the package. Site ids are the package's site numbers.",
+  "notShipped": {
+    "none": "nothing: the data frame is shipped whole"
+  },
+  "summary": {
+    "n_rows": 10468,
+    "n_units": 284,
+    "n_taxa": 1,
+    "n_periods": 53,
+    "n_occasions": 1,
+    "n_surveys": 10468,
+    "y_values": "0,1",
+    "prop_zero": 0.441,
+    "n_traps": 1,
+    "n_zero": 4621,
+    "n_positive": 5847,
+    "n_units_detected": 284,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_department", "unit_cliff_height"],
+  "coreMd5": "efc9f6ce8283590f69a61ed1759fb7c4",
+  "sideTables": {
+    "periods": {
+      "rows": 53,
+      "columns": ["period", "year", "n_sites_surveyed", "n_sites_pair"],
+      "md5": "a07ff8175538e548fe90278fa3b0a141"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7a4a09dfa4528bd222051f968a3d75d7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}

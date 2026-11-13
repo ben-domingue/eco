@@ -254,6 +254,10 @@ kery_2008_willowtit_occ,46.8,8.2,country,300,,place name,Switzerland centroid (M
 kery_2010_crossbill_dynocc,46.8,8.2,country,300,,place name,Switzerland centroid (MHB)
 kery_2014_mhb_comm,46.8,8.2,country,350,,place name,Switzerland (national MHB grid)
 kery_2014_mhb_exact_comm,46.8,8.2,country,350,,place name,Switzerland (national MHB grid)
+kery_2016_jura_peregrine_ttd_occ,46.6,5.9,region,100,,place name,French Jura (geographicCoverage)
+kery_2016_swiss_squirrel_occ,46.8,8.2,country,200,,place name,"Switzerland, MHB quadrats (source coordinates have no stated CRS)"
+kery_2021_jura_peregrine_dynocc,46.6,5.9,region,100,,place name,"French Jura: Ain, Doubs, Jura departments (geographicCoverage)"
+kery_2021_swiss_eagleowl_state,46.8,8.2,country,200,,place name,"Switzerland, six regions (geographicCoverage)"
 khelifa_2021_seybouse_calexul_cjs,36.5,7.4,site,,,place name,stated coords (0.1 deg)
 killion_2023_idaho_mamm_comm,43.7,-114.4,region,55,,place name,centre of stated coord range
 king_2018_lakeerie_watersnake_cjs,41.6,-82.8,locality,25,,place name,western Lake Erie islands
@@ -315,6 +319,7 @@ martinezvillegas_2024_mammillaria_cjs,23.6,-102.5,country,2000,,place name,"Mexi
 martinezvillegas_2024_neobuxbaumia_cjs,23.6,-102.5,country,2000,,place name,"Mexico centroid, populations not located"
 mattioli_2018_arezzo_wolf_scr,43.5,11.9,region,80,,place name,Arezzo province
 mccaffery_2024_elwha_mammals_count,48.0,-123.6,locality,36,,bounding box,geographicCoverage.boundingBox
+mccrea_2010_kattegat_cormorant_ms,55.7,10.3,region,40,,place name,"three colonies in the south-western Kattegat, Denmark (geographicCoverage)"
 mcknight_2019_kittiwake_fledgling_ms,61.2,-146.6,site,,,place name,"stated coords, Shoup Bay"
 mcknight_2019_kittiwake_recruit_ms,61.2,-146.6,site,,,place name,"stated coords, Shoup Bay"
 mcnew_2025_sagegrouse_lek_count,,,none,,,none,no place stated (leks not located)
@@ -428,6 +433,7 @@ rooney_2025_snapshotusa_comm,39.2,-93.7,multi,7926,703,unit coordinates,decimalL
 rooney_2025_snapshotusa_exact_comm,38.6,-90.8,multi,7927,7474,unit coordinates,decimalLatitude in __units
 rose_2024_sjvalley_leglesslizard_occ,35.5,-119.8,region,146,89,unit coordinates,unit_decimalLatitude
 rota_2016_midatlantic_carniv_occ,37.2,-79.7,state,944,1906,unit coordinates,unit_decimalLatitude
+roth_2014_aargau_marbledwhite_dynocc,47.4,8.2,region,40,,place name,"Canton Aargau, Switzerland (geographicCoverage)"
 roth_2016_aargau_amph_count,47.4,8.2,region,60,,place name,Canton of Aargau
 rowe_2021_deschutes_ospfrog_rd,43.8,-121.5,locality,32,,bounding box,geographicCoverage.boundingBox
 roy_2022_labrador_waterfowl_dobs,53.5,-65.0,region,200,,place name,Labrador/Quebec boundary
@@ -444,6 +450,7 @@ saracco_2019_saipan_goldwhiteeye_cjs,15.2,145.8,locality,20,,place name,Saipan
 saracco_2019_saipan_kingfisher_cjs,15.2,145.8,locality,20,,place name,Saipan
 saracco_2019_saipan_myzomela_cjs,15.2,145.8,locality,20,,place name,Saipan
 schank_2015_tapir_occ,11.1,-84.0,locality,24,6,unit coordinates,unit_decimalLatitude
+schaub_2005_egermany_stork_ld,52.5,12.5,region,300,,place name,"eastern Germany, Vogelwarte Hiddensee ringing area (geographicCoverage)"
 schaub_2007_vex_horseshoebat_cjs,46.2,7.4,site,1,,place name,"St-Sylvie church, Vex, Valais (geographicCoverage)"
 schaub_2012_valais_hoopoe_cjs,46.2,7.3,region,30,,place name,"Valais nestbox area, upper Rhone valley (geographicCoverage)"
 schaub_2021_albvorland_woodchat_cjs,48.6,9.4,region,20,,place name,"Mittleres Albvorland, Goeppingen and Esslingen districts (geographicCoverage)"
@@ -473,6 +480,7 @@ strebel_2026_swiss_mhb_exact_count,46.8,8.2,state,388,267,unit coordinates,unit_
 strebel_2026_swiss_mhb_total_count,46.8,8.2,state,389,241,unit coordinates,unit_decimalLatitude
 strebel_2026_swiss_mhb_total_exact_count,46.8,8.2,state,388,267,unit coordinates,unit_decimalLatitude
 sullivan_2026_powdermill_count,40.1,-79.3,locality,5,96,unit coordinates,unit_lat
+sutherland_2012_scotland_vole_dynocc,57.0,-4.0,country,300,,place name,Scotland (help page names no locality; patch codes only)
 swanson_2018_iowa_amph_occ,43.3,-93.5,region,82,27,unit coordinates,unit_decimalLatitude
 swedberg_2023_springfish_occ,35.5,-95.7,multi,400,,place name,Arbuckle Uplift and Ozark Highlands Oklahoma
 sweeney_2026_ocracoke_plover_cjs,35.1,-76.0,site,,,place name,"stated coords, South Point Ocracoke"
@@ -541,6 +549,7 @@ ziolkowski_2026_bbs_bcr15_exact_stop,38.9,-120.3,state,613,34,unit coordinates,u
 ziolkowski_2026_bbs_bcr15_stop,38.9,-120.3,state,610,34,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_count,42.1,-96.8,multi,7803,5121,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_exact_count,42.0,-96.6,multi,7799,5548,unit coordinates,unit_decimalLatitude in __units
+zipkin_2014_maryland_dusky_count,39.0,-77.1,region,50,,place name,headwater streams in Maryland and the District of Columbia (geographicCoverage)
 zipkin_2017_oregon_barredowl_count,44.2,-123.7,region,97,,bounding box,geographicCoverage.boundingBox
 zipkin_2017_oregon_barredowl_dynocc,44.2,-123.7,region,97,,bounding box,geographicCoverage.boundingBox
 zuberogoitia_2021_basque_owls_count,43.1,-2.6,region,171,525,unit coordinates,unit_decimalLatitude
