@@ -1,0 +1,69 @@
+{
+  "table": "rodenhouse_2019_hbef_warblers_count",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Point counts of 13 warblers and vireos at 373 points of the Hubbard Brook Experimental Forest, 3 counts a year, 1999-2018",
+  "creator": "Rodenhouse, Nicholas L.; Sillett, T. Scott (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2019",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset HubbardBrook]. CRAN. https://CRAN.R-project.org/package=AHMbook. Original data: Rodenhouse, N. L. & Sillett, T. S. (2019). Valleywide Bird Survey, Hubbard Brook Experimental Forest, 1999-2016 (ongoing). Environmental Data Initiative. https://doi.org/10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217 (CC BY 4.0).",
+  "paperDOI": "10.6073/pasta/faca2b2cf2db9d415c39b695cc7fc217",
+  "abstract": "The Valleywide Bird Survey of the Hubbard Brook Experimental Forest, New Hampshire: three 10-minute point counts each spring at 373 points on a grid across the valley, 1999-2018. The AHMbook package's HubbardBrook copy gives, for 13 warblers and vireos, the number of individuals detected within 50 m per count, with count date and start time and point covariates (WGS84 coordinates, elevation, aspect, slope, forest type). One row per point x year x count x species.",
+  "samplingProtocol": "Three 10-min point counts per breeding season at each of 373 points, unlimited radius to 100 m; the package's counts are individuals within 50 m.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The count array has NA where no survey was carried out (help page), identically across species (asserted). It disagrees with the date array on 81 cells: 36 counts without a date (kept, obs_day_of_year NA) and 45 dates without counts (not surveys: nothing was recorded).",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (the three counts of a year)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Hubbard Brook Experimental Forest, New Hampshire, USA (43.9 N, 71.7 W); point coordinates as unit_decimalLatitude/Longitude (WGS84; 2 points without)",
+  "temporalCoverage": "1999/2018",
+  "crs": "EPSG:4326",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published: none of the 13 species is IUCN CR, EN or VU"
+  },
+  "notes": "Overlaps doser_2022_hbef_trends_dynocc (spOccupancy::hbefTrends: detection/non-detection of 12 species from the same survey, 2010-2018); both ship under the overlap ruling. The package covers 1999-2018 though the cited EDI version is titled 1999-2016; it has no counts at all in 2003 and 2004 (no rows, so periods 5 and 6 are absent) and one count per point in 2002 (__periods). taxon = AOU alpha code (MYWA = myrtle warbler, Setophaga coronata). Counts are within 50 m only. The 13 species are those the package keeps, not the survey's full list.",
+  "notShipped": {
+    "other_species": "the survey records all species; the package keeps 13 (the EDI source has the rest)"
+  },
+  "summary": {
+    "n_rows": 221416,
+    "n_units": 373,
+    "n_taxa": 13,
+    "n_periods": 18,
+    "n_occasions": 3,
+    "n_surveys": 17032,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.817,
+    "n_traps": 1,
+    "n_zero": 180837,
+    "n_positive": 40579,
+    "n_units_detected": 373,
+    "max_y": 6
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_decimalLatitude", "unit_decimalLongitude", "unit_elevation_m", "unit_aspect_deg", "unit_slope", "unit_forest_type", "obs_day_of_year", "obs_start_hour"],
+  "coreMd5": "0c37cdc0b13f7c4f38fe543aa42d2469",
+  "sideTables": {
+    "periods": {
+      "rows": 18,
+      "columns": ["period", "year", "n_points", "n_surveys"],
+      "md5": "06ebc30c5368292a66235e5f7a0d676a"
+    },
+    "taxa": {
+      "rows": 13,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_alpha_code"],
+      "md5": "ed95c70d40ef49a62cbcf07f07fd12e7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}

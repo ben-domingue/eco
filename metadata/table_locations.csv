@@ -79,6 +79,7 @@ chambert_2018_pigfrog_acoustic_count,31.0,-84.0,multi,1500,,place name,"south-ea
 chambert_2018_plethodon_fpocc,38.5,-78.5,region,100,,place name,Shenandoah National Park
 chambert_2018_treefrog_acoustic_count,31.0,-84.0,multi,1500,,place name,"south-eastern USA, no location given"
 chandler_2009_alfl_removal,42.4,-72.7,region,100,,place name,western Massachusetts
+chandler_2009_wmnf_cswa_removal,44.1,-71.3,region,50,,place name,White Mountain National Forest wildlife openings (geographicCoverage)
 chanex_2026_swissalps_amph_count,46.5,7.8,region,150,78,unit coordinates,unit_decimalLatitude
 chauvenet_2014_crundale_serotine_ms,51.2,1.0,site,,,place name,"Crundale, Kent"
 chauvenet_2014_hollingbury_serotine_ms,50.9,-0.1,site,,,place name,"Hollingbury, Brighton"
@@ -254,10 +255,13 @@ kery_2008_willowtit_occ,46.8,8.2,country,300,,place name,Switzerland centroid (M
 kery_2010_crossbill_dynocc,46.8,8.2,country,300,,place name,Switzerland centroid (MHB)
 kery_2014_mhb_comm,46.8,8.2,country,350,,place name,Switzerland (national MHB grid)
 kery_2014_mhb_exact_comm,46.8,8.2,country,350,,place name,Switzerland (national MHB grid)
+kery_2016_flevoland_wagtail_ds,52.5,5.6,region,40,,place name,"Flevoland, Netherlands (geographicCoverage)"
 kery_2016_jura_peregrine_ttd_occ,46.6,5.9,region,100,,place name,French Jura (geographicCoverage)
 kery_2016_swiss_squirrel_occ,46.8,8.2,country,200,,place name,"Switzerland, MHB quadrats (source coordinates have no stated CRS)"
+kery_2021_britain_willowwarbler_cjs,53.5,-2.0,country,500,,place name,"England, Wales and Scotland, 193 CES (geographicCoverage)"
 kery_2021_jura_peregrine_dynocc,46.6,5.9,region,100,,place name,"French Jura: Ain, Doubs, Jura departments (geographicCoverage)"
 kery_2021_swiss_eagleowl_state,46.8,8.2,country,200,,place name,"Switzerland, six regions (geographicCoverage)"
+kery_2021_swiss_mspwoodpecker_binom,47.3,8.0,country,150,,place name,"Switzerland, 1-km quadrats where the species occurs (source coordinates have no stated CRS)"
 khelifa_2021_seybouse_calexul_cjs,36.5,7.4,site,,,place name,stated coords (0.1 deg)
 killion_2023_idaho_mamm_comm,43.7,-114.4,region,55,,place name,centre of stated coord range
 king_2018_lakeerie_watersnake_cjs,41.6,-82.8,locality,25,,place name,western Lake Erie islands
@@ -267,6 +271,7 @@ klmn_2026_klamath_landbird_count,41.5,-122.3,state,378,1616,unit coordinates,uni
 klmn_2026_klamath_landbird_exact_count,41.5,-122.3,state,378,1616,unit coordinates,unit_decimalLatitude
 klymus_2023_niobrara_mussel_edna,42.7,-101.0,region,150,,place name,Niobrara National Scenic River (Valentine reach) and Agate Fossil Beds
 knape_2018_shoveler_count,58.5,15.5,state,550,,place name,"RT90 northings give 55.7-60.5 N; no eastings, placed mid southern Sweden"
+knaus_2018_swiss_atlasha_comm,46.8,8.2,country,200,,place name,"Switzerland, atlas 1-ha quadrats (source coordinates have no stated CRS)"
 koester_2023_aldabra_reeffish_count,-9.4,46.3,locality,49,,bounding box,geographicCoverage.boundingBox
 koester_2023_aldabra_reeffishext_count,-9.4,46.3,locality,49,,bounding box,geographicCoverage.boundingBox
 koetke_2024_jprf_moose_count,54.6,-124.4,locality,30,,place name,John Prince Research Forest
@@ -334,6 +339,7 @@ mills_2019_kibale_carnivore_comm,0.3,30.3,region,124,9,unit coordinates,unit_lat
 mizel_2018_alaska_sparrows_count,64.0,-150.0,state,1500,,place name,Alaska centroid
 moe_2020_hunder_trout_ld,61.2,10.4,locality,50,,place name,"stated coords, Hunderfossen"
 moinet_2024_nz_mouse_scr,-40.4,175.6,locality,10,,place name,"near Massey University, Palmerston North"
+molinarijobin_2012_alps_lynx_fpocc,46.3,8.5,region,250,,place name,"Swiss and Italian Alps, 942 10-km cells (geographicCoverage)"
 monterroso_2020_iberia_carniv_comm,40.5,-6.7,state,689,21,unit coordinates,unit_decimalLatitude
 morganti_2017_carmagnola_pallidswift_cjs,44.9,7.7,site,,,place name,Carmagnola colony
 morganti_2017_modena_commonswift_cjs,44.6,10.9,site,,,place name,Modena colony
@@ -426,6 +432,7 @@ roberts_2019_sierrane_birds_exact_count,37.3,-119.4,state,439,184,unit coordinat
 roberts_2019_sierranevada_birds_count,37.2,-119.3,state,441,32,unit coordinates,unit_decimalLatitude
 roberts_2025_arkansas_birds_count,35.1,-91.9,region,178,10,unit coordinates,unit_decimalLatitude
 roberts_2025_arkansas_birds_exact_count,35.1,-91.8,region,175,416,unit coordinates,unit_decimalLatitude
+rodenhouse_2019_hbef_warblers_count,43.9,-71.8,locality,9,371,unit coordinates,unit_decimalLatitude
 roder_2020_valais_ungulates_count,46.2,7.5,region,120,,place name,"Valais, Western Swiss Alps"
 roderiksen_2023_norway_tundra_carniv_occ,66.0,17.0,multi,1500,,place name,"Norway, alpine regions plus Varanger"
 rogers_2024_bighunting_sculpin_cjs,39.6,-77.5,site,1,1044,unit coordinates,obs_latitude

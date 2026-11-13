@@ -1,0 +1,66 @@
+{
+  "table": "kery_2016_flevoland_wagtail_ds",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Yellow Wagtail point counts in six 50-m distance classes on up to 4 visits to 235 grassland points, Flevoland, Netherlands, 2011",
+  "creator": "Sovon Dutch Centre for Field Ornithology (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2016",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset wagtail]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-801378-6.00009-6",
+  "abstract": "Sovon monitored grassland birds at 235 points in Flevoland, the Netherlands, between April and mid-July 2011, visiting each point up to four times and recording observations in 50-m distance classes out to 300 m. The data are the AHMbook package's wagtail (AHM1 section 9.5.3), for the Yellow Wagtail: one row per point x visit x distance class, y = observations in the class, with visit date and hour and the point's potato and grassland cover and landscape openness.",
+  "samplingProtocol": "Point counts with observations assigned to 50-m distance classes (0-300 m), up to four visits per point, April to mid-July 2011.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The count matrix has NA in all six classes of a visit that was not made (6, 9 and 14 points miss visits 2, 3 and 4; asserted). The package fills a date for those visits anyway, so the survey set is taken from the counts.",
+  "responseType": "multinomial_cell",
+  "distanceBreaks": [0, 50, 100, 150, 200, 250, 300],
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = distance class of one count; period = the visit (1-4) within the 2011 season, as in neon_2026_landbirds_ds",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Flevoland, Netherlands (no point coordinates in the package)",
+  "temporalCoverage": "2011-04/2011-07",
+  "coordinatesCoarsened": null,
+  "notes": "Birds beyond 300 m are not in the data. unit_landscape_closed: 0 open to 100 closed (help page). Period is the visit within one season: a single-season model pools periods. Point ids are row numbers.",
+  "notShipped": {
+    "rep": "the visit number as a character matrix (redundant with period)"
+  },
+  "summary": {
+    "n_rows": 5466,
+    "n_units": 235,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 6,
+    "n_surveys": 5466,
+    "y_values": "0,1,2,3,4",
+    "prop_zero": 0.86,
+    "n_traps": 1,
+    "n_zero": 4700,
+    "n_positive": 766,
+    "n_units_detected": 191,
+    "max_y": 4
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_potato_pct", "unit_grassland_pct", "unit_landscape_closed", "obs_hour"],
+  "coreMd5": "7d31c6e1e9da25f7ccb3b44337fa1bbb",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "visit"],
+      "md5": "2309a83b1edebbf9a69b42b070d37efd"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "c83b55802ce242a847aab212c339adde"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}
