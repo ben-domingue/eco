@@ -46,6 +46,7 @@ benoit_2018_costello_fish_count,45.6,-78.3,site,,,place name,"Costello Creek, Al
 betancur_2021_antioquia_birds_count,6.3,-75.0,locality,40,5,unit coordinates,unit_lat
 bhattacharya_2022_himachal_bear_occ,31.5,78.0,locality,50,,place name,Rupi Bhaba and Daranghati WLS
 bianchi_2021_furnas_carniv_occ,-20.2,-47.4,locality,30,,place name,"Furnas do Bom Jesus SP, Pedregulho"
+bishop_1978_cressington_moth_cjs,53.4,-2.9,locality,2,,place name,"Cressington Park, Liverpool (geographicCoverage)"
 bisht_2019_corbett_tiger_rd,29.6,78.8,locality,40,,place name,Corbett National Park
 bison_2024_montblanc_hare_dynocc,46.0,6.9,locality,19,46,unit coordinates,unit_decimalLatitude
 blount_2025_neturkiye_carniv_count,40.3,42.6,locality,44,149,unit coordinates,unit_decimalLatitude
@@ -108,6 +109,7 @@ curveirasantos_2026_phinda_serval_scr,-27.9,32.2,locality,20,,place name,stated 
 davis_2016_feralswine_removal,33.5,-98.0,multi,900,,place name,centre of Oklahoma and Texas
 davis_2019_kasungu_hyaena_scr,-13.1,33.1,locality,40,,place name,stated array centre
 davis_2019_kasungu_leopard_scr,-13.1,33.1,locality,40,,place name,stated array centre
+dawson_2009_patuxent_ovenbird_scr,39.0,-76.8,locality,5,,place name,"Patuxent Research Refuge, Laurel, MD"
 debusschere_2026_bpns_porpoise_occ,51.4,2.7,region,76,72,unit coordinates,unit_decimalLatitude
 deere_2017_safe_mamm_comm,4.7,117.6,locality,40,10,unit coordinates,unit_decimalLatitude
 deere_2017_safe_mamm_exact_comm,4.7,117.6,locality,39,115,unit coordinates,unit_decimalLatitude
@@ -130,7 +132,12 @@ duboisgagnon_2021_quebec_chorusfrog_occ,45.4,-73.2,region,150,,place name,"Monte
 dutta_2024_panna_carnivore_occ,24.6,80.0,locality,50,,place name,Panna Tiger Reserve
 dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolitan area (no site coordinates deposited)
 dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
+efford_1995_buller_infraskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
+efford_1995_buller_lineoskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
+efford_1998_orongorongo_possum_rd,-41.4,175.0,locality,5,,place name,"Orongorongo Valley study grid (NZMG grid of the sibling table, converted)"
+efford_2004_orongorongo_possum_scr,-41.4,175.0,locality,5,,place name,Orongorongo Valley; centroid of NZMG traps converted with pyproj
 efford_2005_waitarere_possum_scr,-40.5,175.2,site,5,,place name,"Waitarere peninsula, Manawatu, NZ (geographicCoverage; traps in NZ Map Grid)"
+ergon_2014_kielder_vole_scr,55.2,-2.5,locality,10,,place name,"clearcut in Kielder Forest, Northumberland (geographicCoverage)"
 evans_2021_maine_marten_dynocc,45.3,-69.2,state,450,,place name,Maine centroid
 fabritius_2015_merikarvia_fritillary_cjs,61.9,21.6,locality,10,,place name,stated cell centre
 fabritius_2015_siitama_fritillary_cjs,61.6,24.1,locality,10,,place name,stated cell centre
@@ -382,6 +389,8 @@ neon_2026_zooplankton_dna_exact_occ,44.9,-98.7,multi,6052,7,unit coordinates,dec
 neon_2026_zooplankton_dna_occ,47.5,-101.5,multi,6051,6,unit coordinates,decimalLatitude in __units
 neon_2026_zooplankton_exact_count,44.9,-98.7,multi,6052,7,unit coordinates,decimalLatitude in __units
 neubauer_2021_bialowieza_marshtit_nmix,52.8,23.9,locality,20,,place name,Bialowieza National Park
+nichols_1984_patuxent_femvole_cjs,39.0,-76.8,locality,5,,place name,"Patuxent Wildlife Research Center, Laurel, MD"
+nichols_1984_patuxent_vole_rd,39.0,-76.8,locality,5,,place name,"Patuxent Wildlife Research Center, Laurel, MD"
 nichols_2025_hawaii_acanthophora_edna,24.4,-166.9,multi,2572,91,unit coordinates,unit_decimalLatitude
 nicolau_2021_porsanger_vole_ccr,70.0,25.0,region,100,,place name,stated coords (Porsanger)
 nina_2026_norway_pollinator_count,62.3,10.8,country,1805,128,unit coordinates,unit_decimalLatitude in __units
@@ -444,6 +453,7 @@ roth_2014_aargau_marbledwhite_dynocc,47.4,8.2,region,40,,place name,"Canton Aarg
 roth_2016_aargau_amph_count,47.4,8.2,region,60,,place name,Canton of Aargau
 rowe_2021_deschutes_ospfrog_rd,43.8,-121.5,locality,32,,bounding box,geographicCoverage.boundingBox
 roy_2022_labrador_waterfowl_dobs,53.5,-65.0,region,200,,place name,Labrador/Quebec boundary
+royle_2009_nagarahole_tiger_scr,12.1,76.1,region,30,,place name,"Nagarahole NP; array centroid at 0.1 deg (E7, IUCN EN)"
 ruff_2025_piwo_state,44.5,-122.7,country,1282,3948,unit coordinates,unit_decimalLatitude
 ruiz_2021_oaxaca_wetbirds_count,15.8,-96.6,locality,10,,place name,stated coords
 ruppel_2025_richmond_pollinator_comm,37.6,-77.5,region,99,42,unit coordinates,unit_lat

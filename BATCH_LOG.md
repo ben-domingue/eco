@@ -2897,3 +2897,41 @@ model groups periods by year. This is legal under E2/E8 but unusual (a period pe
 **Willow warbler survey set (inferred).** CES operation is not in the package: a site-year counts as operated iff any
 willow warbler was caught there (963 of 2,123). A site that ran but caught no willow warbler loses that year; the
 BTO's CES coverage records would fix it.
+
+## Batch 62 — 2026-11-13 (R packages, continued: openCR, secr, multimark capture-recapture; one Dryad deposit; ten tables)
+
+Built in `~/eco-b62` (branch `batch-62-scr`, from main at 75eeae4 after #193), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| ergon_2014_kielder_vole_scr | robust-design SCR | Dryad doi:10.5061/dryad.r17n5 (CC0) | 504,768 | 158 adult field voles, 192 traps, 4 x 3-5 checks, Kielder 2000; 5 deaths in traps (obs_removed); same data as openCR::fieldvoleCH, built from the deposit instead |
+| bishop_1978_cressington_moth_cjs | JS / CJS, daily | openCR 2.2.8 `gonodontisCH` (GPL >= 2) | 11,713 | 689 moths x 17 days, 1970; non-spatial |
+| nichols_1984_patuxent_vole_rd | robust design | openCR `microtusRDCH` | 5,221 | 180 adult male meadow voles, 6 months x 5 nights, 1981; 10 not released |
+| nichols_1984_patuxent_femvole_cjs | CJS, monthly | openCR `microtusFCH` | 800 | 137 adult females, monthly collapse only in the source; 6 not released |
+| efford_1998_orongorongo_possum_rd | robust design, non-spatial | openCR `FebpossumCH` | 23,296 | 448 possums, February sessions 1980-1988 |
+| efford_2004_orongorongo_possum_scr | multi-session SCR | secr `OVpossumCH` | 1,466,427 | 309 possums, 167 traps, six 5-night sessions 1996-1997; NZMG |
+| dawson_2009_patuxent_ovenbird_scr | multi-session SCR (mist nets) | secr `ovenCH` | 150,612 | 70 ovenbirds, 44 nets, 2005-2009, linked across years |
+| efford_1995_buller_infraskink_scr | two-session SCR | secr `infraCH` | 892,584 | 322 skinks, 462 pitfalls; IUCN CR, coordinates centred |
+| efford_1995_buller_lineoskink_scr | two-session SCR | secr `lineoCH` | 349,272 | 126 skinks, same traps; IUCN EN, coordinates centred |
+| royle_2009_nagarahole_tiger_scr | SCR with operation matrix | multimark 2.1.7 `tiger` (GPL-2) | 63,140 | 44 tigers, 120 stations x 48 occasions (1,435 operating); IUCN EN, coordinates centred |
+
+**A package copy with a public original.** openCR's fieldvoleCH is a translation of the Dryad deposit of Ergon &
+Gardner (CC0), so the table is built from Dryad. The deposit is an R `dput` file; it is read by parsing it and
+evaluating the one expression in an environment holding only `structure`, `list`, `c` and `:`, which the script
+asserts are the only functions it calls (no `dget`).
+
+**E7 on package data.** GBIF's IUCN categories flag both skinks (Oligosoma infrapunctatum CR, O. lineoocellatum EN)
+and the tiger (EN). Their trap coordinates (NZ Map Grid metres; a km grid consistent with UTM 43N) are centred on the
+array centroid, the centroid given at 0.1 degree, as for the SCR tables of batches 5-50. The skink taxonomy has
+moved since 1995 (O. infrapunctatum has been split); the flag is applied to the names as published.
+
+**Held: multimark bobcats.** Left- and right-flank photographs are separate marks that cannot be matched unless both
+were seen at once, so the encounter histories are not individuals. Recorded in `human_review.csv`; the standard has
+no form for a unit that is a mark rather than an animal.
+
+**At-risk spans.** Unknown-age animals from the first session (E4.4); OV possums first caught in their first year
+from the first (February) session of that calendar year, when the year's independent juveniles enter (help page).
+Removals (-1 in capthists) are obs_removed with no later rows.
+
+**Tiger encounter matrix.** multimark's Enc.Mat column order is not documented in the help page; trap-major order
+puts every one of the 68 detections on an operating station-occasion and occasion-major does not (asserted).

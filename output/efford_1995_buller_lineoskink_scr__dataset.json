@@ -1,0 +1,74 @@
+{
+  "table": "efford_1995_buller_lineoskink_scr",
+  "title": "Pitfall spatial capture-recapture of 126 spotted skink (Oligosoma lineoocellatum) on two 231-trap grids at Lake Station, New Zealand, October and November 1995",
+  "creator": "Efford, Murray G.; Thomas, B. W.; Spencer, N. J. (data, unpublished; distributed in the secr R package)",
+  "pubDate": "1995",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset lineoCH]. CRAN. https://CRAN.R-project.org/package=secr",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Skinks were pitfall-trapped on two grids of 11 x 21 baited cans 5 m apart on a bracken hillside at Lake Station, Upper Buller Valley, South Island, New Zealand, in a study of habitat use and competition between Oligosoma lineoocellatum and Oligosoma infrapunctatum. Sessions 6 (17-20 October 1995) and 7 (14-17 November 1995) of the 1995-1996 study, 3 daily checks each; skinks toe-clipped and released. The data are secr's lineoCH, with snout-vent length and trap-site habitat. One row per skink x trap x day.",
+  "samplingProtocol": "Two grids of 11 x 21 pitfall traps (sunken cans baited with fruit in syrup) at 5 m, cleared daily for 3 days per session; skinks marked by toe clipping; captures with uncertain identity, and same-day recaptures at a different trap, dropped by the source.",
+  "samplingProtocolCode": "pitfall_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited; every pitfall is taken as open on all 3 days of both sessions, as secr assumes (the help page says some sessions of the wider study were incomplete, not these two). Each skink has rows at all 462 traps x 3 days x 2 sessions.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (closed within a 3-day session, open between the two)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Lake Station, Upper Buller Valley, South Island, New Zealand; the trap array centroid is at about 41.8 S, 172.7 E (0.1 degree); trap coordinates in __traps are centred on it",
+  "temporalCoverage": "1995-10-17/1995-11-17",
+  "crs": "local metres centred on the array centroid (NZ Map Grid positions withheld)",
+  "coordinatesCoarsened": {
+    "value": true,
+    "method": "trap coordinates centred on the array centroid by the processor (metres; exact NZ Map Grid positions withheld) because Oligosoma lineoocellatum is IUCN EN (GBIF's IUCN category) and Oligosoma infrapunctatum shares the array; the centroid is given at 0.1 degree in geographicCoverage"
+  },
+  "designNote": "Experimental list of E9: two-session spatial capture-recapture with a trap key and __traps; the two grids are trap_grid in __traps. One table per species (ruling #20); the sibling table holds the other species on the same traps.",
+  "notes": "unit_svl_first_mm = snout-vent length at the first session caught. Trap-site habitat in __traps (1-m radius plots; definitions on the help page; trap_habitat_class from fuzzy clustering). The third species, O. polychroma, was seldom caught and is not in the data. Unit ids are the source's. Sibling: efford_1995_buller_infraskink_scr.",
+  "notShipped": {
+    "trap_totals": "per-trap total captures of each species Apr 1995-Mar 1996 (INFRA, LINEO, POLY): summaries over sessions not in the data"
+  },
+  "summary": {
+    "n_rows": 349272,
+    "n_units": 126,
+    "n_taxa": 1,
+    "n_periods": 2,
+    "n_occasions": 3,
+    "n_surveys": 349272,
+    "y_values": "0,1",
+    "prop_zero": 0.999,
+    "n_traps": 462,
+    "n_zero": 349072,
+    "n_positive": 200,
+    "n_units_detected": 126,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "unit_svl_first_mm"],
+  "coreMd5": "fd039c0c731b302def1443377a5d6d1c",
+  "sideTables": {
+    "periods": {
+      "rows": 2,
+      "columns": ["period", "deposited_session", "dates", "n_caught"],
+      "md5": "84a8e12511345d3ad9dc96677f180644"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "b8a16a5bf2263b09672a31dea43d97cd"
+    },
+    "traps": {
+      "rows": 462,
+      "columns": ["trap", "x", "y", "n_occasions_used", "trap_grid", "trap_bare_pct", "trap_stones_pct", "trap_piles_pct", "trap_grasses_pct", "trap_forbs_pct", "trap_canopy_bracken_pct", "trap_bracken_height_cm", "trap_coriaria", "trap_leucopogon", "trap_sedges_rushes", "trap_rubus", "trap_solar_radiation", "trap_habitat_class", "trap_habitat_class2_prob"],
+      "md5": "d76f4d18ff998a26e3da25a7939c1085"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

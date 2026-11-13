@@ -1,0 +1,65 @@
+{
+  "table": "efford_1998_orongorongo_possum_rd",
+  "title": "Capture histories of 448 brushtail possums in February trapping sessions (4-10 nights) in the Orongorongo Valley, New Zealand, 1980-1988",
+  "creator": "Efford, Murray G. (data; distributed in the openCR R package)",
+  "pubDate": "1998",
+  "sourceURL": "https://cran.r-project.org/package=openCR",
+  "citation": "Efford, M. G. (2026). openCR: Open population capture-recapture (Version 2.2.8) [R package; dataset FebpossumCH]. CRAN. https://CRAN.R-project.org/package=openCR",
+  "paperDOI": "10.1046/j.1365-2656.1998.00222.x",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Brushtail possums (Trichosurus vulpecula), an introduced pest in New Zealand, live-trapped in the Orongorongo Valley near Wellington in the February session of each year 1980-1988 (4-10 nights), part of a capture-recapture study running since 1966: 448 animals independent of their mothers (175 females, 273 males). The data are openCR's FebpossumCH, used by Pledger, Pollock & Norris (2010): one row per possum x year x night, without capture locations.",
+  "samplingProtocol": "Live traps on the Orongorongo study grid, set for 4-10 consecutive nights each February; animals tagged and tattooed and released.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort is in the data; every night of each February session is taken as a survey (the session lengths are the capthist's occasions). Two detector columns without locations are pooled (never both 1 for one animal and night, asserted).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (closed within a February session, open between years)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Orongorongo Valley, Wellington, New Zealand (about 41.35 S, 174.97 E); capture locations not in the data",
+  "temporalCoverage": "1980-02/1988-02",
+  "coordinatesCoarsened": null,
+  "notes": "Age is not distinguished beyond independence from the mother: every possum has rows from 1980 (E4.4). Unit ids are the source's animal ids. Removals are not recorded. efford_2004_orongorongo_possum_scr is a later selection (1996-1997) from the same study, with trap locations.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 23296,
+    "n_units": 448,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 10,
+    "n_surveys": 23296,
+    "y_values": "0,1",
+    "prop_zero": 0.872,
+    "n_traps": 1,
+    "n_zero": 20323,
+    "n_positive": 2973,
+    "n_units_detected": 448,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_sex"],
+  "coreMd5": "23ff5d6026a713104030e9c3ae5083b1",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "month", "n_nights", "n_caught"],
+      "md5": "07bd7940028ac03d2f604a7a15cf1e3e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "501a1af1da592af46ec0f6288c85e913"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}
