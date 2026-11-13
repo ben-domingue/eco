@@ -1,0 +1,66 @@
+{
+  "table": "collier_2012_brosnan_deer_dobs",
+  "title": "Double-observer (thermal imager and spotlight) road-transect detections of 4,508 white-tailed deer, Brosnan Forest, South Carolina, August 2005-2009",
+  "creator": "Collier, Bret A.; Ditchkoff, Stephen S.; Ruth, Charles R.; Raglin, Joshua B. (data; distributed in the RMark R package)",
+  "pubDate": "2012",
+  "sourceURL": "https://cran.r-project.org/package=RMark",
+  "citation": "Laake, J. L. (2026). RMark: R code for Mark analysis (Version 3.1.0) [R package; dataset deer]. CRAN. https://CRAN.R-project.org/package=RMark",
+  "paperDOI": "10.1002/jwmg.444",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "White-tailed deer (Odocoileus virginianus) counted from a vehicle on 79 night road-transect surveys on Brosnan Forest, South Carolina, in August 2005-2009, by a thermal imager (primary observer) and an independent spotlight observer on the same side. Each deer seen is recorded as seen by the thermal imager only, the spotlight only, or both. One unit per detected deer with its three detection cells (y = 1 in its cell), as in tumursukh_2016_tost_argali_dobs; the survey is cluster_id. Collier et al. (2012) used it to show how many deer spotlight surveys miss.",
+  "samplingProtocol": "Night road transects driven with a thermal imager and a spotlight operated independently on the same side of the vehicle; 79 paired surveys over four management units, August 2005-2009.",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "Each row of the package is a deer seen by at least one observer; both observers surveyed it, so all three cells are defined. Deer missed by both are not in the data by design, and a survey with no deer seen would be absent.",
+  "responseType": "multinomial_cell",
+  "multinomialType": "double_observer",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "occasion = the three detection cells of one deer on one survey; deer are not matched between surveys",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Brosnan Forest, Dorchester County, South Carolina, USA (about 33.1 N, 80.4 W); no transect coordinates in the package",
+  "temporalCoverage": "2005-08/2009-08",
+  "coordinatesCoarsened": null,
+  "notes": "occasion 1 = thermal imager only (y_raw 10), 2 = spotlight only (01), 3 = both (11); sum y by occasion within a survey for the authors' cell counts. cluster_id = the paired survey (Group); unit_obs_cluster = the group of deer seen together (detections are not independent within a cluster); unit_mgmt_unit = management unit 1-4. MaxCount (per survey, for bootstrapping) is not shipped.",
+  "notShipped": {
+    "MaxCount": "maximum count per survey, used only for the authors' bootstrap"
+  },
+  "summary": {
+    "n_rows": 13524,
+    "n_units": 4508,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 3,
+    "n_surveys": 13524,
+    "y_values": "0,1",
+    "prop_zero": 0.667,
+    "n_traps": 1,
+    "n_zero": 9016,
+    "n_positive": 4508,
+    "n_units_detected": 4508,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "cluster_id", "unit_mgmt_unit", "unit_obs_cluster"],
+  "coreMd5": "8ac76d80bff5e8df911e87d7e29d2eac",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_surveys", "n_deer"],
+      "md5": "b0a9fe71f3a8e0bd695c91be9a2a8e26"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "ed0f56a2e7f17b9d983a25914b8f168e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

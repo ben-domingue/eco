@@ -1,0 +1,65 @@
+{
+  "table": "coulson_1984_eider_cjs",
+  "title": "Annual capture histories of 896 common eiders over six consecutive years of Coulson's 25-year study",
+  "creator": "Coulson, J. C. (data); Cormack, R. M. (analysis); Baillargeon, S.; Rivest, L.-P. (distributed in the Rcapture R package)",
+  "pubDate": "1984",
+  "sourceURL": "https://cran.r-project.org/package=Rcapture",
+  "citation": "Baillargeon, S., & Rivest, L.-P. (2022). Rcapture: Loglinear models for capture-recapture experiments (Version 1.4-4) [R package; dataset duck]. CRAN. https://CRAN.R-project.org/package=Rcapture",
+  "paperDOI": "10.1111/j.1474-919X.1984.tb02078.x",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-only",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Common eiders (Somateria mollissima) from J. C. Coulson's 25-year capture-recapture study of a breeding population, years 19 to 24, as extracted by Cormack (1989) and distributed in Rcapture (duck): 63 history patterns with frequencies (5 of them 0), expanded to 896 birds, one row per bird x year.",
+  "samplingProtocol": "Annual capture of breeding eiders (Coulson 1984); details are in the paper, not the package.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; each of the six years is taken as a survey. Birds have rows from the first of the six years (age unknown).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period = year (open population)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Coulson's eider study colony (not named in the package); no coordinates",
+  "temporalCoverage": "six consecutive years (years 19-24 of a 25-year study; calendar years not in the package)",
+  "coordinatesCoarsened": null,
+  "notes": "The six periods are years 19-24 of the study; their calendar years and the colony are not in the package (see Coulson 1984). Frequency histories expanded: unit ids are arbitrary. Common eider is IUCN Near Threatened; no coordinates exist to coarsen.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 5376,
+    "n_units": 896,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 1,
+    "n_surveys": 5376,
+    "y_values": "0,1",
+    "prop_zero": 0.701,
+    "n_traps": 1,
+    "n_zero": 3771,
+    "n_positive": 1605,
+    "n_units_detected": 896,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "ae34379875cd26b23719f11ea0b962a3",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "study_year", "n_caught"],
+      "md5": "4edc1b6e016ac8280135c150aa2408d4"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e8de3fed78ceec9a6a6b6a8449d10c8e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

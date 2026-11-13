@@ -1,0 +1,64 @@
+{
+  "table": "harding_2010_aukelake_cutthroat_cjs",
+  "title": "Annual capture histories of 1,684 cutthroat trout in Auke Lake, Alaska, 1998-2006",
+  "creator": "Harding, Roger D.; Hoover, C. L.; Marshall, R. P. (Alaska Department of Fish and Game) (data); Ogle, Derek H. (distributed in the FSA R package)",
+  "pubDate": "2010",
+  "sourceURL": "https://cran.r-project.org/package=FSA",
+  "citation": "Ogle, D. H., Doll, J. C., Wheeler, A. P., & Dinno, A. (2026). FSA: Simple fisheries stock assessment methods (Version 0.10.1) [R package; dataset CutthroatAL]. CRAN. https://CRAN.R-project.org/package=FSA",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Cutthroat trout (Oncorhynchus clarkii) marked and recaptured in Auke Lake, near Juneau, Southeast Alaska, in annual samples from 1998 to 2006, from Appendix A.3 of an Alaska Department of Fish and Game report on the population's abundance in 2005 and 2006 (Harding et al. 2010), as distributed in FSA (CutthroatAL). One row per fish x year, y = 1 if caught.",
+  "samplingProtocol": "Annual mark-recapture sampling of cutthroat trout in Auke Lake (ADF&G); gear and timing in the report, not the package.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; every year 1998-2006 had captures and is taken as a survey. Fish of unknown age have rows from 1998.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period = year (open population, Jolly-Seber)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Auke Lake, Juneau, Southeast Alaska, USA (about 58.38 N, 134.64 W); no coordinates in the package",
+  "temporalCoverage": "1998/2006",
+  "coordinatesCoarsened": null,
+  "notes": "Unit ids are the package's fish ids. Source: Harding, R. D., Hoover, C. L., & Marshall, R. P. (2010). Abundance of cutthroat trout in Auke Lake, Southeast Alaska, in 2005 and 2006. Alaska Department of Fish and Game, Fishery Data Series No. 10-82, Appendix A.3. Losses and tagging details are not in the package.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 15156,
+    "n_units": 1684,
+    "n_taxa": 1,
+    "n_periods": 9,
+    "n_occasions": 1,
+    "n_surveys": 15156,
+    "y_values": "0,1",
+    "prop_zero": 0.858,
+    "n_traps": 1,
+    "n_zero": 12997,
+    "n_positive": 2159,
+    "n_units_detected": 1684,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period"],
+  "coreMd5": "aaaaf604fcacd0e87b09ae5ff430e4b1",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "n_caught"],
+      "md5": "77f05fc56656e8a66a82e5bba41f4b04"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "270020e518e67dd7519ad1c6fea25cff"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

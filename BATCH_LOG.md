@@ -2935,3 +2935,31 @@ Removals (-1 in capthists) are obs_removed with no later rows.
 
 **Tiger encounter matrix.** multimark's Enc.Mat column order is not documented in the help page; trap-major order
 puts every one of the 68 detections on an operating station-occasion and occasion-major does not (asserted).
+
+## Batch 63 — 2026-11-13 (R packages, continued: Rcapture, RMark, FSA capture histories; nine tables)
+
+Built in `~/eco-b63` (branch `batch-63-cr`, from main at ed52b3c after #194), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| stokes_1987_logan_bunting_cjs | CJS, annual | Rcapture 1.4-4 `bunting` (GPL-2) | 13,448 | 1,681 lazuli buntings, Logan UT, 1973-1980; frequency histories expanded (198 of 255 patterns have frequency 0) |
+| coulson_1984_eider_cjs | CJS, annual | Rcapture `duck` | 5,376 | 896 eiders, years 19-24 of Coulson's study (calendar years and colony not in the package); IUCN NT, no coordinates |
+| rivest_2004_duchenier_vole_rd | robust design | Rcapture `rbvole` | 10,080 | 560 red-backed voles, Quebec, 6 x 3 days 1999-2000 |
+| collier_2013_alice_dove_cjs | Jolly-Seber, two-week windows | RMark 3.1.0 `wwdo.09`, `wwdo.10` (GPL >= 2) | 86,756 | 8,603 white-winged doves, Alice TX, 2009 and 2010; ids not linked across years; dummy E0 column dropped |
+| edwards_1967_cottontail_cc | closed captures | RMark `edwards.eberhardt` | 1,368 | 76 cottontails x 18 occasions (the MARK example); place and date not in the package |
+| collier_2012_brosnan_deer_dobs | double observer (multinomial_cell) | RMark `deer` | 13,524 | 4,508 deer on 79 thermal-imager/spotlight surveys, Brosnan Forest SC, 2005-2009 |
+| mackenzie_2006_mahoenui_weta_occ | single-season occupancy | RMark `weta` | 262 | 72 sites x up to 5 visits, browsing, observers (PRESENCE example) |
+| harding_2010_aukelake_cutthroat_cjs | Jolly-Seber, annual | FSA 0.10.1 `CutthroatAL` (GPL >= 2) | 15,156 | 1,684 trout, Auke Lake AK, 1998-2006 (ADF&G report) |
+| schneider_1998_jewettlake_bluegill_cc | closed captures (Petersen) | FSA `BluegillJL` | 554 | 277 bluegill > 6 in, Jewett Lake MI |
+
+**Not built from these packages:** Rcapture `hare`, RMark `salamander`, marked `sealions`: none has a place, date
+or traceable study in the package (teaching data); the queue rows say so.
+
+**Open population with sub-annual windows.** The dove histories are two-week windows within a season, analysed
+as open (Jolly-Seber). The validator refuses `closure = none` with several occasions in a period (E8), so each
+window is a period (26 over the two years, `__periods` gives year and window start) and there is no occasion.
+
+**Thin provenance, built anyway.** Edwards & Eberhardt's cottontails and the PRESENCE weta have a citable source but
+no place or date in the package; their map rows are empty (cottontail) or at the species' only population (weta),
+with the basis stated. The species names 'rabbits' and 'red-back voles' are resolved by assumption, recorded in
+`taxonRemarks`.

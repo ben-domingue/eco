@@ -1,0 +1,59 @@
+{
+  "table": "schneider_1998_jewettlake_bluegill_cc",
+  "title": "Two-sample mark-recapture histories of 277 bluegill longer than 6 inches, Jewett Lake, Michigan",
+  "creator": "Schneider, James C. (Michigan Department of Natural Resources) (data); Ogle, Derek H. (distributed in the FSA R package)",
+  "pubDate": "1998",
+  "sourceURL": "https://cran.r-project.org/package=FSA",
+  "citation": "Ogle, D. H., Doll, J. C., Wheeler, A. P., & Dinno, A. (2026). FSA: Simple fisheries stock assessment methods (Version 0.10.1) [R package; dataset BluegillJL]. CRAN. https://CRAN.R-project.org/package=FSA",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Bluegill (Lepomis macrochirus) longer than 6 inches marked in a first sample and checked in a second sample in Jewett Lake, Michigan: the Petersen example 8.1 of the Michigan DNR Manual of Fisheries Survey Methods II (Schneider 1998), as distributed in FSA (BluegillJL). One row per fish x sample.",
+  "samplingProtocol": "Two-sample (Petersen) mark-recapture of bluegill > 6 in; gear and dates in the manual, not the package.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; both samples are surveys.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "two samples, closed population (Petersen)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Jewett Lake, Michigan, USA; no coordinates in the package",
+  "temporalCoverage": "not stated in the package (before 1998)",
+  "coordinatesCoarsened": null,
+  "notes": "Only fish > 6 in are included (help page). Source: Schneider, J. C. (1998). Lake fish population estimates by mark-and-recapture methods. Chapter 8 in Manual of fisheries survey methods II, Michigan DNR Fisheries Special Report 25. Unit ids are row numbers.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 554,
+    "n_units": 277,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 2,
+    "n_surveys": 554,
+    "y_values": "0,1",
+    "prop_zero": 0.484,
+    "n_traps": 1,
+    "n_zero": 268,
+    "n_positive": 286,
+    "n_units_detected": 277,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion"],
+  "coreMd5": "f8a7ca7c901554243c198a8e45a061e7",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7743896cfcd85a649997c94b6c2134a8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}
