@@ -68,7 +68,7 @@ jobs:
       # (installed from this checkout's Rpkg/) and fit them with unmarked.
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly", "marked", "R2ucare"))'
+          Rscript -e 'install.packages(c("knitr", "rmarkdown", "jsonlite", "data.table", "unmarked", "AICcmodavg", "ggplot2", "plotly", "marked", "R2ucare", "xml2"))   # xml2: landing/emit_landing_pages.R (#13)'
           R CMD INSTALL Rpkg
 
       # prerender.R builds the eco_validate wheel the browser validator loads
