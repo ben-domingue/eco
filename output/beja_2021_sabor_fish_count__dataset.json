@@ -1,0 +1,68 @@
+{
+  "table": "beja_2021_sabor_fish_count",
+  "title": "LTER Baixo Sabor electrofishing: counts of 14 fish species in 75 stream reaches of the Sabor basin, Portugal, 2012-2020",
+  "creator": "Beja, Pedro; Motta-Ferreira, Mafalda; Filipe, Ana Filipa; and 19 co-authors (CIBIO, University of Porto)",
+  "pubDate": "2021",
+  "doi": "10.15468/pep8ma",
+  "sourceURL": "https://doi.org/10.15468/pep8ma",
+  "citation": "Beja P, Motta-Ferreira M, Filipe A F, Carona S, Henrique P, Severino R, Ivone S, Henrique S, Prata D, Lopes J, Guilherme J, Barradas J, Cereja R, Pace G, Rosa I, Pinto M, Agudelo W, Buzzo G, Sá F, Quaglietta L, Pereira N, Múrias T (2021): lter_sabor_ictiofauna_2012-20. CIBIO (Research Center in Biodiversity and Genetic Resources) Portugal. Dataset/Samplingevent. https://doi.org/10.15468/pep8ma",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "Fish community surveys of the Long Term Ecological Research site Baixo Sabor (northeast Portugal): 50 m reaches across the Sabor watershed and its main tributaries were electrofished once each summer, all reaches in 2012 and a fixed subset of them every year from 2013 to 2020. Fish were identified and released (exotics removed). One row per reach-year and species, y the individuals caught.",
+  "samplingProtocol": "Single-pass electrofishing of a 50 m stream reach for 15-25 minutes (longer in wider streams; INAG 2008 protocol), single anode at 350-750 V DC, one operator and one netter; all fish identified on site; once per summer (June-September).",
+  "samplingProtocolCode": "electrofishing",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one survey per reach and year; period = year; the replication is across years",
+  "occasionKind": "none",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Sabor river basin (Douro), Bragança district, northeast Portugal",
+  "temporalCoverage": "2012-06/2020-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Reach coordinates as published (5 m)."
+  },
+  "covariateNote": "unit_water_body = the stream or river of the reach.",
+  "notes": "Survey E72.9 lists Squalius carolitertii twice, both 0, and no S. alburnoides; the second row is read as the alburnoides zero (either reading gives 0 for both). All reaches were surveyed in 2012 and 28-30 of them each year from 2013. Species names are rebuilt from the source's genus and specificEpithet, because its scientificName strings run the authorship into the epithet. Reach M12 is published at one point in 2014 and at another 57 km away in 2015-2020; the 2014 survey is the unit M12_2014.",
+  "notShipped": {
+    "effort": "sampleSizeValue (50 m) and samplingEffort ('15 to 25 minutes-collector'), constant"
+  },
+  "summary": {
+    "n_rows": 4228,
+    "n_units": 75,
+    "n_taxa": 14,
+    "n_periods": 9,
+    "n_occasions": 1,
+    "n_surveys": 302,
+    "y_values": "0-295 (129 distinct)",
+    "prop_zero": 0.706,
+    "n_traps": 1,
+    "n_zero": 2987,
+    "n_positive": 1241,
+    "n_units_detected": 75,
+    "max_y": 295
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "unit_water_body", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters"],
+  "coreMd5": "053cb4764115710807bd81b4679304a0",
+  "sideTables": {
+    "periods": {
+      "rows": 9,
+      "columns": ["period", "year", "n_reaches"],
+      "md5": "85b1f199f36c14d81e6178b4ecea8ede"
+    },
+    "taxa": {
+      "rows": 14,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "28c7fadc6c20e8d1ea2684c08d0dbc47"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/beja_2021_sabor_fish_count.R",
+  "buildDate": "2026-11-13"
+}

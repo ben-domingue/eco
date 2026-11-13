@@ -472,6 +472,10 @@ CSVs with `upload/red_up_eco.py`.
 | `inbo_2026_flanders_amphchorus_count.R` | Meetnetten.be chorus counts of tree frog, common spadefoot and natterjack toad, 121 ponds, 2016-2025; one target species per pond (`__survey_taxa`) | GBIF (INBO IPT) | CC0 |
 | `haas_2025_sweden_coastalbirds_count.R` | Swedish coastal bird monitoring, 84 bird taxa on 200 archipelago squares, 2015-2024, one count per square-year; E7 `_exact` sibling | GBIF (Swedish IPT) | CC0 |
 | `edp_2018_footua_amph_count.R` | EDP Foz Tua dam amphibian dip-net counts, 12 species at 30 plots, spring/autumn 2011-2017; E7 `_exact` sibling | GBIF (GBIF Portugal IPT) | CC BY 4.0 |
+| `edp_2019_footua_winterbirds_count.R` | EDP Foz Tua winter point counts, 70 bird species at 128 points (matched across years by coordinates), 2011-2017 | GBIF (GBIF Portugal IPT) | CC BY 4.0 |
+| `beja_2021_sabor_fish_count.R` | LTER Baixo Sabor single-pass electrofishing, 14 fish species in 75 reaches, 2012-2020 | GBIF (GBIF Portugal IPT) | CC BY 4.0 |
+| `cortes_2023_sabor_fish_count.R` | EDP Baixo Sabor fish monitoring, 18 taxa at 69 stations, electrofishing plus reservoir netting (method as occasion), 2015-2020 | GBIF (GBIF Portugal IPT) | CC BY 4.0 |
+| `evju_2025_hvaler_herminium_count.R` | NINA musk-orchid ramet counts in 77 permanent plots, Hvaler, 2014-2025; coordinates coarsened | GBIF (NINA IPT) | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

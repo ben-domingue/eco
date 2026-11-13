@@ -1,12 +1,12 @@
 {
   "date": "2026-11-13",
-  "n_tables": 592,
-  "n_deposits": 385,
-  "n_rows": 418538831,
-  "n_units": 567663,
-  "n_taxa_rows": 38702,
-  "n_surveys": 29793917,
-  "n_families": 76,
+  "n_tables": 596,
+  "n_deposits": 389,
+  "n_rows": 418576177,
+  "n_units": 568012,
+  "n_taxa_rows": 38805,
+  "n_surveys": 29795573,
+  "n_families": 77,
   "families": {
     "Abundance": 2,
     "Camera-trap distance sampling": 2,
@@ -25,6 +25,7 @@
     "Community occupancy / N-mixture": 1,
     "Community occupancy or N-mixture": 2,
     "Cormack-Jolly-Seber": 12,
+    "Count model": 1,
     "Dead recovery": 2,
     "Dead recovery / live-dead capture-recapture": 1,
     "Distance sampling": 8,
@@ -61,7 +62,7 @@
     "Multinomial N-mixture": 2,
     "Multistate capture-recapture": 1,
     "N-mixture": 96,
-    "N-mixture / annual count index": 9,
+    "N-mixture / annual count index": 12,
     "N-mixture / occupancy": 1,
     "N-mixture / robust-design counts": 1,
     "N-mixture with dynamic occupancy": 1,
@@ -87,7 +88,7 @@
   },
   "response_types": {
     "binomial_count": 24,
-    "count": 142,
+    "count": 146,
     "detection": 343,
     "multinomial_cell": 21,
     "ordinal": 5,
@@ -95,12 +96,12 @@
   },
   "taxon_groups": {
     "Amphibians": 55,
-    "Birds": 179,
-    "Fish": 34,
+    "Birds": 180,
+    "Fish": 36,
     "Invertebrates": 70,
     "Mammals": 203,
     "Multiple": 13,
-    "Plants": 20,
+    "Plants": 21,
     "Reptiles": 18
   },
   "survey_evidence": {
@@ -108,15 +109,15 @@
     "effort_table": 67,
     "inferred": 57,
     "row_presence": 51,
-    "sample_table": 120
+    "sample_table": 124
   },
   "n_below_floor": 90,
-  "n_with_coordinates": 179,
+  "n_with_coordinates": 183,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 592,
-  "n_irw_conforms": 592,
+  "n_valid": 596,
+  "n_irw_conforms": 596,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 592
+    "eco v1.1-draft (2026-11-03)": 596
   }
 }
