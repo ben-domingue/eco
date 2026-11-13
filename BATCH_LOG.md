@@ -2995,3 +2995,8 @@ as `route_stop` and every route asserted to have stops 1-10.
 several detections per survey; `detection_event` collides on the E3 key (open since batch 56) and binning would be
 an arbitrary threshold. (2) unmarked issj and the single-pass Distance/mrds sets: whether distance bands make a
 single visit eligible.
+
+**Correction: Valleywide via DataONE (batch 61).** Batch 61 said DataONE serves the Valleywide data objects. It
+serves only the EML: the data entity (knb-lter-hbr.178.3) returns 403 from pasta ("Public Access is not authorized
+to execute readDataEntity") and from the LTER member node. The queue row is corrected; a direct build needs a
+browser download.
