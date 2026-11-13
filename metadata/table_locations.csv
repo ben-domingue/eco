@@ -346,8 +346,8 @@ neon_2026_landbirds_count,40.6,-101.6,multi,8113,652,unit coordinates,decimalLat
 neon_2026_landbirds_ds,40.6,-101.6,multi,8113,652,unit coordinates,decimalLatitude in __units
 neon_2026_landbirds_exact_count,40.6,-101.6,multi,8113,652,unit coordinates,decimalLatitude in __units
 neon_2026_macroinverts_count,39.3,-101.3,multi,7825,24,unit coordinates,decimalLatitude in __units
-neon_2026_macroinverts_dna_exact_occ,39.8,-99.5,multi,7828,,place name,"as neon_2026_macroinverts_dna_occ (E7 sibling, same sites)"
-neon_2026_macroinverts_dna_occ,39.8,-99.5,multi,7828,,place name,"34 NEON aquatic sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_macroinverts_dna_exact_occ,39.8,-99.5,multi,7846,34,unit coordinates,decimalLatitude in __units
+neon_2026_macroinverts_dna_occ,40.1,-100.0,multi,7845,33,unit coordinates,decimalLatitude in __units
 neon_2026_macroinverts_exact_count,39.3,-101.3,multi,7827,24,unit coordinates,decimalLatitude in __units
 neon_2026_micpen_rd,39.8,-98.6,multi,4500,,place name,16 NEON sites across USA
 neon_2026_mosquitoes_count,40.1,-101.9,multi,8113,518,unit coordinates,decimalLatitude in __units
@@ -363,8 +363,8 @@ neon_2026_sighis_rd,39.8,-98.6,multi,4500,,place name,13 NEON sites across USA
 neon_2026_smallmammals_count,41.0,-101.2,multi,8107,332,unit coordinates,decimalLatitude in __units
 neon_2026_ticks_count,40.8,-100.7,multi,8110,287,unit coordinates,decimalLatitude in __units
 neon_2026_zooplankton_count,47.5,-101.5,multi,6055,6,unit coordinates,decimalLatitude in __units
-neon_2026_zooplankton_dna_exact_occ,44.9,-98.8,multi,6055,,place name,"as neon_2026_zooplankton_dna_occ (E7 sibling, same lakes)"
-neon_2026_zooplankton_dna_occ,44.9,-98.8,multi,6055,,place name,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_dna_exact_occ,44.9,-98.7,multi,6052,7,unit coordinates,decimalLatitude in __units
+neon_2026_zooplankton_dna_occ,47.5,-101.5,multi,6051,6,unit coordinates,decimalLatitude in __units
 neon_2026_zooplankton_exact_count,44.9,-98.7,multi,6052,7,unit coordinates,decimalLatitude in __units
 neubauer_2021_bialowieza_marshtit_nmix,52.8,23.9,locality,20,,place name,Bialowieza National Park
 nichols_2025_hawaii_acanthophora_edna,24.4,-166.9,multi,2572,91,unit coordinates,unit_decimalLatitude

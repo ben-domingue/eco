@@ -4163,18 +4163,24 @@
   year = {2026}
 }","automated","2026-11-06","Token-gated NEON API (NEON_TOKEN); release pinned. Streams only; y = counted subsample with obs_subsample_fraction (subsampleColumn) and life-stage counts as obs_; per-site pool from detections (ruling 19)."
 "neon_2026_macroinverts_dna_exact_occ","NEON aquatic macroinvertebrate metabarcoding, RELEASE-2026: detection of 4,687 names (COI reads, two primer sets) per field sample at 34 NEON aquatic sites, 2018-2022 (without IUCN-threatened taxa; coordinates as published)","Detection (COI metabarcoding reads at or above NEON's reporting threshold) of 4,687 names per field sample x primer set at 34 NEON aquatic sites (benthic macroinvertebrate samples), 2018-2022 (one sequenced bout a year, three samples, two primer sets), with the read count in y_raw, sequencing depth and percent match as covariates, coordinates as published.","NEON (National Ecological Observatory Network)","2026","NEON (National Ecological Observatory Network). Macroinvertebrate metabarcoding (DP1.20126.001), RELEASE-2026. https://doi.org/10.48443/6n5z-z564","NEON (National Ecological Observatory Network). Macroinvertebrate metabarcoding (DP1.20126.001), RELEASE-2026. https://doi.org/10.48443/6n5z-z564. Dataset accessed from https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026 on 2026-11-12","","10.48443/6n5z-z564","https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026","NEON Data API, basic package","https://doi.org/10.48443/6n5z-z564","CC BY 4.0","CC-BY-4.0","CC-BY-4.0","https://creativecommons.org/licenses/by/4.0/","@misc{neon_2026_macroinverts_dna_exact_occ,
-  author = {NEON (National Ecological Observatory Network)},
-  title = {NEON aquatic macroinvertebrate metabarcoding, RELEASE-2026: detection of 4,687 names (COI reads, two primer sets) per field sample at 34 NEON aquatic sites, 2018-2022 (without IUCN-threatened taxa; coordinates as published)},
-  year = {2026},
-  howpublished = {\url{https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026}},
-  note = {Distributed as eco table neon_2026_macroinverts_dna_exact_occ; licence CC-BY-4.0}
+  doi = {10.48443/6N5Z-Z564},
+  url = {https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026},
+  author = {{National Ecological Observatory Network (NEON)}},
+  keywords = {taxonomy, community composition, species composition, population, aquatic, benthic, macroinvertebrates, invertebrates, sequencing, community, high-throughput, identification, DNA sequences, metabarcoding, polymerase chain reaction (PCR), material samples, archived samples, DNA metabarcoding, INV, biodiversity},
+  language = {en},
+  title = {Macroinvertebrate metabarcoding (DP1.20126.001)},
+  publisher = {National Ecological Observatory Network (NEON)},
+  year = {2026}
 }","automated","2026-11-12","Token-gated NEON API (NEON_TOKEN); release pinned. Metabarcoding ruling 2026-11-13: y = reads present, reads in y_raw, depth obs_; per-site name pool from detections."
 "neon_2026_macroinverts_dna_occ","NEON aquatic macroinvertebrate metabarcoding, RELEASE-2026: detection of 4,689 names (COI reads, two primer sets) per field sample at 34 NEON aquatic sites, 2018-2022","Detection (COI metabarcoding reads at or above NEON's reporting threshold) of 4,689 names per field sample x primer set at 34 NEON aquatic sites (benthic macroinvertebrate samples), 2018-2022 (one sequenced bout a year, three samples, two primer sets), with the read count in y_raw, sequencing depth and percent match as covariates, coordinates coarsened to 0.1 degree.","NEON (National Ecological Observatory Network)","2026","NEON (National Ecological Observatory Network). Macroinvertebrate metabarcoding (DP1.20126.001), RELEASE-2026. https://doi.org/10.48443/6n5z-z564","NEON (National Ecological Observatory Network). Macroinvertebrate metabarcoding (DP1.20126.001), RELEASE-2026. https://doi.org/10.48443/6n5z-z564. Dataset accessed from https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026 on 2026-11-12","","10.48443/6n5z-z564","https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026","NEON Data API, basic package","https://doi.org/10.48443/6n5z-z564","CC BY 4.0","CC-BY-4.0","CC-BY-4.0","https://creativecommons.org/licenses/by/4.0/","@misc{neon_2026_macroinverts_dna_occ,
-  author = {NEON (National Ecological Observatory Network)},
-  title = {NEON aquatic macroinvertebrate metabarcoding, RELEASE-2026: detection of 4,689 names (COI reads, two primer sets) per field sample at 34 NEON aquatic sites, 2018-2022},
-  year = {2026},
-  howpublished = {\url{https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026}},
-  note = {Distributed as eco table neon_2026_macroinverts_dna_occ; licence CC-BY-4.0}
+  doi = {10.48443/6N5Z-Z564},
+  url = {https://data.neonscience.org/data-products/DP1.20126.001/RELEASE-2026},
+  author = {{National Ecological Observatory Network (NEON)}},
+  keywords = {taxonomy, community composition, species composition, population, aquatic, benthic, macroinvertebrates, invertebrates, sequencing, community, high-throughput, identification, DNA sequences, metabarcoding, polymerase chain reaction (PCR), material samples, archived samples, DNA metabarcoding, INV, biodiversity},
+  language = {en},
+  title = {Macroinvertebrate metabarcoding (DP1.20126.001)},
+  publisher = {National Ecological Observatory Network (NEON)},
+  year = {2026}
 }","automated","2026-11-12","Token-gated NEON API (NEON_TOKEN); release pinned. Metabarcoding ruling 2026-11-13: y = reads present, reads in y_raw, depth obs_; per-site name pool from detections."
 "neon_2026_macroinverts_exact_count","NEON wadeable-stream benthic macroinvertebrates, RELEASE-2026: animals of 1228 taxa counted per sample, about eight samples per bout and three bouts a year at 24 NEON stream sites, 2014-2024 (without IUCN-threatened taxa; coordinates as published)","Animals of 1228 benthic macroinvertebrate taxa counted per sample (about eight samples per bout in the two dominant habitats, spring, summer and fall bouts) at 24 NEON wadeable-stream sites, 2014-2024, built from NEON's field, sorting and taxonomy-laboratory records (RELEASE-2026), with habitat, sampler, area sampled, the fraction counted and reach-centre coordinates as published.","NEON (National Ecological Observatory Network)","2026","NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. https://doi.org/10.48443/hp56-s582","NEON (National Ecological Observatory Network). Macroinvertebrate collection (DP1.20120.001), RELEASE-2026. https://doi.org/10.48443/hp56-s582. Dataset accessed from https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026 on 2026-11-06","","10.48443/hp56-s582","https://data.neonscience.org/data-products/DP1.20120.001/RELEASE-2026","NEON Data API, basic package","https://doi.org/10.48443/hp56-s582","CC BY 4.0","CC-BY-4.0","CC-BY-4.0","https://creativecommons.org/licenses/by/4.0/","@misc{neon_2026_macroinverts_exact_count,
   doi = {10.48443/HP56-S582},
@@ -4327,18 +4333,24 @@
   year = {2026}
 }","automated","2026-11-12","Token-gated NEON API (NEON_TOKEN); release pinned. y = counted subsample with obs_subsample_fraction (subsampleColumn); per-lake pool from detections (ruling 19)."
 "neon_2026_zooplankton_dna_exact_occ","NEON lake zooplankton metabarcoding, RELEASE-2026: detection of 491 names (COI reads, two primer sets) per field sample at 7 NEON lakes, 2018-2022 (without IUCN-threatened taxa; coordinates as published)","Detection (COI metabarcoding reads at or above NEON's reporting threshold) of 491 names per field sample x primer set at 7 NEON lakes (zooplankton samples), 2018-2022 (one sequenced bout a year, three samples, two primer sets), with the read count in y_raw, sequencing depth and percent match as covariates, coordinates as published.","NEON (National Ecological Observatory Network)","2026","NEON (National Ecological Observatory Network). Zooplankton metabarcoding (DP1.20221.001), RELEASE-2026. https://doi.org/10.48443/bgvz-a687","NEON (National Ecological Observatory Network). Zooplankton metabarcoding (DP1.20221.001), RELEASE-2026. https://doi.org/10.48443/bgvz-a687. Dataset accessed from https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026 on 2026-11-12","","10.48443/bgvz-a687","https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026","NEON Data API, basic package","https://doi.org/10.48443/bgvz-a687","CC BY 4.0","CC-BY-4.0","CC-BY-4.0","https://creativecommons.org/licenses/by/4.0/","@misc{neon_2026_zooplankton_dna_exact_occ,
-  author = {NEON (National Ecological Observatory Network)},
-  title = {NEON lake zooplankton metabarcoding, RELEASE-2026: detection of 491 names (COI reads, two primer sets) per field sample at 7 NEON lakes, 2018-2022 (without IUCN-threatened taxa; coordinates as published)},
-  year = {2026},
-  howpublished = {\url{https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026}},
-  note = {Distributed as eco table neon_2026_zooplankton_dna_exact_occ; licence CC-BY-4.0}
+  doi = {10.48443/BGVZ-A687},
+  url = {https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026},
+  author = {{National Ecological Observatory Network (NEON)}},
+  keywords = {taxonomy, community composition, species composition, population, aquatic, community, high-throughput, identification, zooplankton, crustaceans, DNA sequences, pelagic, lakes, metabarcoding, polymerase chain reaction (PCR), material samples, archived samples, DNA metabarcoding, ZOO, biodiversity},
+  language = {en},
+  title = {Zooplankton metabarcoding (DP1.20221.001)},
+  publisher = {National Ecological Observatory Network (NEON)},
+  year = {2026}
 }","automated","2026-11-12","Token-gated NEON API (NEON_TOKEN); release pinned. Metabarcoding ruling 2026-11-13: y = reads present, reads in y_raw, depth obs_; per-site name pool from detections."
 "neon_2026_zooplankton_dna_occ","NEON lake zooplankton metabarcoding, RELEASE-2026: detection of 492 names (COI reads, two primer sets) per field sample at 7 NEON lakes, 2018-2022","Detection (COI metabarcoding reads at or above NEON's reporting threshold) of 492 names per field sample x primer set at 7 NEON lakes (zooplankton samples), 2018-2022 (one sequenced bout a year, three samples, two primer sets), with the read count in y_raw, sequencing depth and percent match as covariates, coordinates coarsened to 0.1 degree.","NEON (National Ecological Observatory Network)","2026","NEON (National Ecological Observatory Network). Zooplankton metabarcoding (DP1.20221.001), RELEASE-2026. https://doi.org/10.48443/bgvz-a687","NEON (National Ecological Observatory Network). Zooplankton metabarcoding (DP1.20221.001), RELEASE-2026. https://doi.org/10.48443/bgvz-a687. Dataset accessed from https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026 on 2026-11-12","","10.48443/bgvz-a687","https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026","NEON Data API, basic package","https://doi.org/10.48443/bgvz-a687","CC BY 4.0","CC-BY-4.0","CC-BY-4.0","https://creativecommons.org/licenses/by/4.0/","@misc{neon_2026_zooplankton_dna_occ,
-  author = {NEON (National Ecological Observatory Network)},
-  title = {NEON lake zooplankton metabarcoding, RELEASE-2026: detection of 492 names (COI reads, two primer sets) per field sample at 7 NEON lakes, 2018-2022},
-  year = {2026},
-  howpublished = {\url{https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026}},
-  note = {Distributed as eco table neon_2026_zooplankton_dna_occ; licence CC-BY-4.0}
+  doi = {10.48443/BGVZ-A687},
+  url = {https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026},
+  author = {{National Ecological Observatory Network (NEON)}},
+  keywords = {taxonomy, community composition, species composition, population, aquatic, community, high-throughput, identification, zooplankton, crustaceans, DNA sequences, pelagic, lakes, metabarcoding, polymerase chain reaction (PCR), material samples, archived samples, DNA metabarcoding, ZOO, biodiversity},
+  language = {en},
+  title = {Zooplankton metabarcoding (DP1.20221.001)},
+  publisher = {National Ecological Observatory Network (NEON)},
+  year = {2026}
 }","automated","2026-11-12","Token-gated NEON API (NEON_TOKEN); release pinned. Metabarcoding ruling 2026-11-13: y = reads present, reads in y_raw, depth obs_; per-site name pool from detections."
 "neon_2026_zooplankton_exact_count","NEON lake zooplankton, RELEASE-2026: animals of 207 taxa counted per tow or trap sample, about three samples per bout and three bouts a year at 7 NEON lakes, 2014-2024 (without IUCN-threatened taxa; coordinates as published)","Animals of 207 zooplankton taxa counted per tow-net or Schindler-Patalas trap sample (about three samples per bout, spring, summer and fall bouts) at 7 NEON lakes, 2014-2024, built from NEON's field and taxonomy-laboratory records (RELEASE-2026), with sampler, volume sampled, the fraction counted and lake-centre coordinates as published (IUCN-threatened taxa left out).","NEON (National Ecological Observatory Network)","2026","NEON (National Ecological Observatory Network). Zooplankton collection (DP1.20219.001), RELEASE-2026. https://doi.org/10.48443/6p6g-d296","NEON (National Ecological Observatory Network). Zooplankton collection (DP1.20219.001), RELEASE-2026. https://doi.org/10.48443/6p6g-d296. Dataset accessed from https://data.neonscience.org/data-products/DP1.20219.001/RELEASE-2026 on 2026-11-12","","10.48443/6p6g-d296","https://data.neonscience.org/data-products/DP1.20219.001/RELEASE-2026","NEON Data API, basic package","https://doi.org/10.48443/6p6g-d296","CC BY 4.0","CC-BY-4.0","CC-BY-4.0","https://creativecommons.org/licenses/by/4.0/","@misc{neon_2026_zooplankton_exact_count,
   doi = {10.48443/6P6G-D296},
