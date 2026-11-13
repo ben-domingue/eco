@@ -3034,3 +3034,33 @@ butterfly census (event latitude and longitude swapped, nested events) — archi
 
 What strained the standard: nothing new. Swedish coastal birds is one count per square-year (`n_occasions = 1`,
 `n_periods = 10`), so `closure = none` and `occasionKind = none`.
+
+## Batch 66 — 2026-11-13 (GBIF sampling-event rows from batch 45, round 4: EDP Foz Tua and Baixo Sabor, LTER Sabor, NINA; four tables)
+
+Built in `~/eco-b66` (branch `batch-66-gbif4`, from main at 0249240 after #198), no agents, no Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| edp_2019_footua_winterbirds_count | winter point counts, 70 bird species | GBIF doi:10.15468/ix79tw (CC BY 4.0) | 24,360 | 128 points matched across years by coordinates (source ids renumbered between phases); 2011-2017; one count with mis-keyed species rows dropped |
+| beja_2021_sabor_fish_count | single-pass electrofishing, 14 species | GBIF doi:10.15468/pep8ma (CC BY 4.0) | 4,228 | 75 reaches (74 in 2012, about 30 a year after), 2012-2020; below the floor |
+| cortes_2023_sabor_fish_count | electrofishing plus reservoir netting, 18 taxa | GBIF doi:10.15468/ut55sa (CC BY 4.0) | 8,208 | 69 stations, 2015-2020; method as occasion at four reservoir stations; compensatory-measure controls flagged; below the floor |
+| evju_2025_hvaler_herminium_count | permanent-plot ramet counts, 1 threatened orchid | GBIF doi:10.15468/rt6t88 (CC BY 4.0) | 550 | 77 plots at 4 localities, 2014-2025 (no 2018); fertile/vegetative as obs_; coarsened (source monitors it as threatened); below the floor |
+
+No taxon in the three Portuguese tables is IUCN CR/EN/VU per GBIF, so none has an `_exact` sibling and their coordinates
+are as published. Data repairs, each asserted and recorded in `notes`: one Sabor LTER survey lists *Squalius
+carolitertii* twice (both 0) and no *S. alburnoides* (read as the alburnoides zero, the same either way); reach M12 (LTER)
+and station PIMA A2C (EDP) are each published at a second point tens of km away in one year, shipped as separate units
+(M12_2014, PIMA A2C_2020) rather than guessing which coordinates are right; misspellings corrected in `__taxa`
+(*Sander*, *Cobitis paludica*, *Actitis hypoleucos*, *Turdus iliacus*); *Achondrostoma gallaicum* is not on the GBIF
+backbone (no key); *Chloris chloris* needs its authorship for a strict GBIF match.
+
+**Held: EDP Baixo Sabor land birds (doi:10.15468/rzg9pc).** The published `occurrence.txt` has exactly 65,535 rows, the
+old Excel row limit, and stops at species beginning with C. The dataset is incomplete as published; a complete archive
+would need EDP or GBIF Portugal (outward contact, Ben's call). Row in `human_review.csv`.
+
+**Looked at, left available (queue notes):** EDP Foz Tua bat acoustics (three phases with different point ids and classes
+at species, genus, family and order rank), NINA *Dracocephalum ruyschiana* (several unlabelled target rows per plot
+visit), Karabash small mammals (daily snap-trap removal, but live-trap and mixed lines and irregular day sequences),
+Doñana lizards and the Taiwan New Year Bird Count (not opened).
+
+What strained the standard: nothing new.

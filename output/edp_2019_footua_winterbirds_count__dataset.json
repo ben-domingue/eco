@@ -1,0 +1,69 @@
+{
+  "table": "edp_2019_footua_winterbirds_count",
+  "title": "EDP Foz Tua winter bird point counts: 70 species at 128 points, lower Tua valley, Portugal, 2011-2017",
+  "creator": "Costa, Hugo; Salgueiro, Nuno; Santos, Joana; and 14 co-authors (EDP - Energias de Portugal; Bio3)",
+  "pubDate": "2019",
+  "doi": "10.15468/ix79tw",
+  "sourceURL": "https://doi.org/10.15468/ix79tw",
+  "citation": "Costa H, Salgueiro N, Santos J, Marques A T, Coelho H, Zina H, Ribeiro E, Pedroso R, Cardoso H, Quirós L, Paula J, Cabral J A, Travassos P, Santos R, Carvalho D, Gomes C, Múrias T (2019): EDP Foz Tua: Terrestrial Birds, Winter (point counts) - Ecological Monitoring Program [2011-2017]. v1. EDP - Energias de Portugal. Dataset/Samplingevent. https://doi.org/10.15468/ix79tw",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "Winter point counts of terrestrial birds for the monitoring programme of the Foz Tua hydroelectric dam (northeast Portugal), run for EDP: points in the main habitats within 5 km of the lower Tua valley (a smaller set in 2011-2012, a grid of 60 from 2013), counted for 5 minutes in January or February, once or occasionally twice a winter, through the dam's construction and the filling of the reservoir. One row per count and species, y the individuals seen or heard.",
+  "samplingProtocol": "Point count of 5 minutes in the early morning or late afternoon, January-February; all birds seen or heard within two 50 m bands recorded (bands not deposited); once or twice per winter (EDP Foz Tua Ecological Monitoring Program).",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = count within a winter (most point-winters have one); period = winter (calendar year); the replication is mainly across years",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "Lower Tua valley, Vila Real and Bragança districts, northeast Portugal",
+  "temporalCoverage": "2011-01/2017-01",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Point coordinates as published (5 m), rounded to 4 decimals to match points across years; no species is IUCN-threatened in its native range (GBIF IUCN records)."
+  },
+  "covariateNote": "unit_source_ids = the point codes the source used at this location over the years (renumbered between phases); obs_habitat = habitat recorded at the count; obs_time = start/end time as published; observer = the recorder's name as published.",
+  "notes": "Points are identified by their coordinates (4 decimals) because the source renumbers them between years (2011 C/A codes, 2012 combined codes, PPFT01-60 from 2013, shifted 'PPFT12/11' codes in 2017); the 2013 grid partly moved in 2015. In 2011-2012 some points were counted twice on one day, once per habitat: these are occasions 1 and 2. Two misspellings are corrected in __taxa (source spelling in taxonRemarks).",
+  "notShipped": {
+    "count BW5.1": "2011-01-25 at point C1: two species listed twice and two missing, so the rows cannot be assigned to species",
+    "effort": "sampleSizeValue and samplingEffort, constant (5 minutes)"
+  },
+  "summary": {
+    "n_rows": 24360,
+    "n_units": 128,
+    "n_taxa": 70,
+    "n_periods": 7,
+    "n_occasions": 2,
+    "n_surveys": 348,
+    "y_values": "0-50 (27 distinct)",
+    "prop_zero": 0.888,
+    "n_traps": 1,
+    "n_zero": 21623,
+    "n_positive": 2737,
+    "n_units_detected": 128,
+    "max_y": 50
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_source_ids", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_time", "obs_habitat"],
+  "coreMd5": "0c81957ae808060ed14a899b485ca034",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "year", "n_counts", "n_points"],
+      "md5": "b38069f7b92c1f7de842a19c354cf4c3"
+    },
+    "taxa": {
+      "rows": 70,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "9815d72b61e750b8e976dc670d00030b"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/edp_2019_footua_winterbirds_count.R",
+  "buildDate": "2026-11-13"
+}

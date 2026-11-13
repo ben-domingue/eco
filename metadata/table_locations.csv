@@ -30,6 +30,7 @@ bedson_2021_holmemoss_hare_cam_ds,53.5,-1.9,site,,,place name,Holme Moss (OS SE 
 bedson_2021_holmemoss_hare_therm_ds,53.5,-1.9,site,,,place name,Holme Moss (OS SE 40 39 area)
 bedson_2021_holmemoss_hare_vis_ds,53.5,-1.9,site,,,place name,Holme Moss (OS SE 40 39 area)
 bedwell_2020_sierranevada_edna_binom,37.5,-119.3,region,300,,place name,Sierra Nevada California
+beja_2021_sabor_fish_count,41.5,-6.8,region,98,74,unit coordinates,unit_decimalLatitude
 belder_2020_nsw_brthornbill_cjs,-35.4,147.5,region,70,8,unit coordinates,unit_decimalLatitude
 belder_2020_nsw_diamondfiretail_cjs,-35.6,147.3,region,86,3,unit coordinates,unit_decimalLatitude
 belder_2020_nsw_flamerobin_cjs,-35.5,147.4,region,71,10,unit coordinates,unit_decimalLatitude
@@ -91,6 +92,7 @@ clipp_2024_monongahela_comm,38.7,-79.8,region,150,,place name,Monongahela Nation
 clipp_2024_wvprivate_comm,39.1,-80.3,state,300,146,unit coordinates,decimalLatitude in __units
 collier_2012_brosnan_deer_dobs,33.1,-80.4,locality,15,,place name,"Brosnan Forest, Dorchester County, SC (geographicCoverage)"
 collier_2013_alice_dove_cjs,27.2,-98.1,locality,5,,place name,"Alice, Texas (coordinates given on the help page)"
+cortes_2023_sabor_fish_count,41.4,-6.8,region,80,68,unit coordinates,unit_decimalLatitude
 coulombe_1965_ballona_mouse_scr,34.0,-118.4,site,2,,place name,"Ballona Creek salt marsh, Los Angeles County (geographicCoverage)"
 coulson_1984_eider_cjs,,,none,,,none,colony not named in the package (Coulson 1984); no location shipped
 cove_2018_lowerkeys_dynocc,24.7,-81.4,locality,15,,place name,stated coords (Big Pine Key)
@@ -138,6 +140,7 @@ dwyer_2024_phoenix_bat_occ,33.5,-112.1,region,60,,place name,Phoenix metropolita
 dyck_2022_carpathians_carniv_occ,45.5,25.2,region,65,140,unit coordinates,unit_lat
 edp_2018_footua_amph_count,41.3,-7.3,locality,34,7,unit coordinates,unit_decimalLatitude
 edp_2018_footua_amph_exact_count,41.3,-7.3,locality,33,30,unit coordinates,unit_decimalLatitude
+edp_2019_footua_winterbirds_count,41.3,-7.3,locality,36,128,unit coordinates,unit_decimalLatitude
 edwards_1967_cottontail_cc,,,none,,,none,study site not stated in the package (Edwards & Eberhardt 1967)
 efford_1995_buller_infraskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
 efford_1995_buller_lineoskink_scr,-41.8,172.7,region,15,,place name,"Lake Station, Upper Buller Valley; array centroid at 0.1 deg (E7 flagged species)"
@@ -146,6 +149,7 @@ efford_2004_orongorongo_possum_scr,-41.4,175.0,locality,5,,place name,Orongorong
 efford_2005_waitarere_possum_scr,-40.5,175.2,site,5,,place name,"Waitarere peninsula, Manawatu, NZ (geographicCoverage; traps in NZ Map Grid)"
 ergon_2014_kielder_vole_scr,55.2,-2.5,locality,10,,place name,"clearcut in Kielder Forest, Northumberland (geographicCoverage)"
 evans_2021_maine_marten_dynocc,45.3,-69.2,state,450,,place name,Maine centroid
+evju_2025_hvaler_herminium_count,59.0,10.9,site,0,1,unit coordinates,unit_decimalLatitude
 fabritius_2015_merikarvia_fritillary_cjs,61.9,21.6,locality,10,,place name,stated cell centre
 fabritius_2015_siitama_fritillary_cjs,61.6,24.1,locality,10,,place name,stated cell centre
 fabritius_2015_sorila_fritillary_cjs,61.5,23.9,locality,10,,place name,stated cell centre
