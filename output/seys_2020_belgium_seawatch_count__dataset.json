@@ -21,7 +21,7 @@
   "occasionKind": "time",
   "taxonInclusion": "target",
   "effortColumn": "obs_trawl_length_m",
-  "geographicCoverage": "Belgian North Sea coast: 14 beaches from Westende to Heist (one point per beach)",
+  "geographicCoverage": "Belgian North Sea coast: 14 beaches from Koksijde to Duinbergen (one point per beach)",
   "temporalCoverage": "2014-06/2018-06",
   "coordinatesCoarsened": {
     "value": false,

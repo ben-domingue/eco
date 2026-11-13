@@ -237,7 +237,7 @@ dataset <- list(
   samplingProtocolCode = "trawl", surveyEvidence = "sample_table", responseType = "count", unitKind = "site",
   closure = "open", closureNote = "Visits within a year are seasonal (one to seven per beach-year, mostly two to four), so abundance changes across the occasions of a period.",
   occasionKind = "time", taxonInclusion = "target", effortColumn = "obs_trawl_length_m",
-  geographicCoverage = "Belgian North Sea coast: 14 beaches from Westende to Heist (one point per beach)",
+  geographicCoverage = "Belgian North Sea coast: 14 beaches from Koksijde to Duinbergen (one point per beach)",
   temporalCoverage = "2014-06/2018-06",
   coordinatesCoarsened = list(value = FALSE, method = "One point per beach as published; public beaches, no flagged taxon."),
   notes = "Citizen-science counts. The field sheet's higher-rank boxes (unidentified flatfish, Scophthalmus turbot-or-brill, Pleuronectinae flounder-or-dab, Clupeidae herring-or-sprat, Scyphozoa, Portunidae, Palaemon, amphipods) are their own taxa, overlapping the named species; taxonRemarks gives the source wording. Pleurobrachia pileus '>1000' at one trawl ships as 1000 with obs_count_estimated = 1. Two Palaemon counts are recorded as '0 (abundant afterwards)' and ship as 0 with the text in y_raw. Trawl length (obs_trawl_length_m, 50 to 450 m, mostly 100) and duration vary; effort is not standardised.",
