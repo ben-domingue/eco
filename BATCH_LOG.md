@@ -2721,3 +2721,48 @@ hours, or coincide); 510 points filed under the reach (CUPE, MAYF) have no trans
 
 Strained the standard: whether a fixed-count laboratory enumeration (algae) is a count, and pathogen detections in
 hosts (E9 scope), both left as questions.
+
+## Batch 58 — 2026-11-12 (NEON follow-ups to Ben's rulings of 2026-11-13: metabarcoding, small-mammal rd species, queue; nine tables)
+
+Built in `~/eco-b58` (branch `batch-58-neon`, from main at 218fe3c), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_macroinverts_dna_occ | community occupancy, COI metabarcoding of benthic macroinvertebrate samples | NEON DP1.20126.001 RELEASE-2026 (CC BY 4.0) | 284,122 | 34 sites (unit), 157 bouts (period, the sequenced midsummer bout, 2018-2022), sample x primer set (BE, F230) as occasion; 4,689 names (1,665 interim BIN / voucher names without taxonID), per-site pools; y = reads present, y_raw = reads, depth obs_; coordinates coarsened (Elimia bellacrenata CR at BLWA, Skistodiaptomus carolinensis VU at BLWA, TOMB) |
+| neon_2026_macroinverts_dna_exact_occ | as above, E7 sibling | same | 284,032 | without the two names, coordinates as published |
+| neon_2026_zooplankton_dna_occ | community occupancy, COI metabarcoding of lake zooplankton samples | NEON DP1.20221.001 RELEASE-2026 (CC BY 4.0) | 23,075 | 7 lakes, 35 bouts, 492 names; coordinates coarsened (S. carolinensis VU at BARC); below the sample floor |
+| neon_2026_zooplankton_dna_exact_occ | as above, E7 sibling | same | 23,045 | without S. carolinensis, coordinates as published |
+| neon_2026_myorut_rd, _myogap_rd, _napins_rd, _dipmer_rd, _pergos_rd | robust design CR, one species each | NEON DP1.10072.001 RELEASE-2026 | 158,426; 220,110; 190,911; 134,693; 175,946 | N_TABLES 4 to 9 (Ben 2026-11-13); the next five species by marked individuals, as the batch 56 screen listed |
+
+**Metabarcoding (ruling A).** New paragraph in `standard.md` E9 next to the eDNA ruling, and a changelog line. NEON's
+taxonomy table reports one row per extract x primer set x exact sequence variant the laboratory kept after DADA2
+denoising and filtering (smallest reported read count 8 at Jonah Ventures, 6 at Laragen): that is the reporting
+threshold, y = 1 where a name has any such variant. The taxonomy's replicate column is empty, so PCR replicates are
+not separable: occasions are sample x primer set (`occasionKind ["spatial", "method"]`), and the 2022 Laragen
+sequencing records under replicates 1 and 2 are asserted identical. Depth is the sequencing record on the run the
+taxonomy came from (`obs_reads_total`, `obs_reads_filtered`). Names are the laboratory's BLAST-consensus assignments at
+whatever identity it reported; many are implausible at species rank (a marine sipunculid in a Nebraska stream at
+77%), so `obs_max_pct_match` ships for users who want a stricter cut. Unassigned variants (a third of the rows) are
+in the depth only. Not surveys: the 2017 pilot (four PCR replicates sequenced, no taxonomy), one sequencing record
+NEON marks Fail (fewer than 3,000 reads) whose taxonomy was nonetheless published, and the failed ones with no taxonomy.
+
+**E7 and misassigned names.** Nine IUCN CR/EN/VU species names are assigned in the macroinvertebrate product, seven of
+them at sites far outside the species' range (an African damselfly in Florida, a Sri Lankan crab in Puerto Rico,
+Appalachian and Ozark groundwater amphipods in Kansas and Alaska): a related sequence, not the threatened species, so
+not a trigger under E7(b)'s native-range clause. The two in range (the Alabama snail Elimia bellacrenata at the Black
+Warrior River; the copepod Skistodiaptomus carolinensis in Alabama and Florida) trigger coarsening and the `_exact`
+siblings. The in-range call is asserted in the script, name by name.
+
+**Small mammals (ruling B).** `N_TABLES` 4 to 9, with an assertion of the nine codes. The four published rd tables'
+core and side tables are byte-identical to a rebuild at `N_TABLES = 4` from the same cache (md5 compared; the
+published `__dataset.json` files recorded no `coreMd5`, and that rebuild reproduced their metadata exactly apart from
+`coreMd5` and `buildDate`). Their metadata changes: the sibling list, "one of 9 species tables", and `notShipped`'s
+species list. No rd table carries coordinates, and no small-mammal species is IUCN CR/EN/VU (asserted in the count
+table), so nothing to coarsen.
+
+**Queue (ruling C).** Periphyton DP1.20166 rejected (count to a fixed total is relative abundance, not a count under
+E2); the four pathogen products rejected (out of scope for now).
+
+Strained the standard: whether an IUCN-listed name assigned by sequence similarity far outside its range is a
+detection of that species at all; handled under E7(b)'s native-range clause, but the names stay in the table as the
+laboratory assigned them.

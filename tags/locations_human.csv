@@ -348,3 +348,12 @@ faria_2026_azores_mpa_patella_count,37.8,-25.5,region,25,"south and north coast 
 neon_2026_aqplants_occ,39.2,-101.2,multi,7828,"24 NEON wadeable-stream sites across USA (mean of __units coordinates, 0.1 degree)"
 neon_2026_zooplankton_count,44.9,-98.8,multi,6055,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
 neon_2026_zooplankton_exact_count,44.9,-98.8,multi,6055,"as neon_2026_zooplankton_count (E7 sibling, same lakes)"
+neon_2026_myorut_rd,39.8,-98.6,multi,4500,4 NEON sites across USA
+neon_2026_myogap_rd,39.8,-98.6,multi,4500,10 NEON sites across USA
+neon_2026_napins_rd,39.8,-98.6,multi,4500,6 NEON sites across USA
+neon_2026_dipmer_rd,39.8,-98.6,multi,4500,2 NEON sites across USA
+neon_2026_pergos_rd,39.8,-98.6,multi,4500,7 NEON sites across USA
+neon_2026_macroinverts_dna_occ,39.8,-99.5,multi,7828,"34 NEON aquatic sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_macroinverts_dna_exact_occ,39.8,-99.5,multi,7828,"as neon_2026_macroinverts_dna_occ (E7 sibling, same sites)"
+neon_2026_zooplankton_dna_occ,44.9,-98.8,multi,6055,"7 NEON lake sites across USA (mean of __units coordinates, 0.1 degree)"
+neon_2026_zooplankton_dna_exact_occ,44.9,-98.8,multi,6055,"as neon_2026_zooplankton_dna_occ (E7 sibling, same lakes)"

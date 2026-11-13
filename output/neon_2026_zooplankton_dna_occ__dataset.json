@@ -1,0 +1,85 @@
+{
+  "table": "neon_2026_zooplankton_dna_occ",
+  "title": "NEON lake zooplankton metabarcoding, RELEASE-2026: detection of 492 names (COI reads, two primer sets) per field sample at 7 NEON lakes, 2018-2022",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/bgvz-a687",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Zooplankton metabarcoding (DP1.20221.001), RELEASE-2026. https://doi.org/10.48443/bgvz-a687. Dataset accessed from https://data.neonscience.org/data-products/DP1.20221.001/RELEASE-2026 on 2026-11-12",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's lake zooplankton metabarcoding: in the midsummer bout each year, three lake zooplankton samples (vertical tow net in water deeper than 4 m, Schindler-Patalas trap elsewhere) are taken on one day beside the morphological samples, homogenised, and their DNA extracted and amplified with two COI primer sets (BE and F230); the laboratory (Jonah Ventures to 2021, Laragen in 2022) sequences the amplicons, denoises them into exact sequence variants, and assigns each variant a name by BLAST consensus against a BOLD COI reference. y = 1 when a name has reads in a sample for a primer set (any variant the laboratory reported, NEON's reporting threshold), else 0; y_raw is the read count, which is not abundance. One occasion per sample x primer set; sequencing depth (obs_reads_total, obs_reads_filtered), the number of variants and the best percent match ride on each row. The names surveyed for at a site are every name assigned there in any sample (median 106 of 492; __survey_taxa). Coordinates are coarsened to the 0.1-degree cell because IUCN-threatened names are in the table; the _exact sibling has the other names at NEON's coordinates.",
+  "samplingProtocol": "Three zooplankton DNA samples per lake on one day in the midsummer bout, near the buoy and two littoral sensor sets (NEON AOS zooplankton protocol NEON.DOC.001194); bulk DNA extraction, PCR with the COI primer sets BE and F230, Illumina MiSeq sequencing, DADA2 exact sequence variants, BLAST consensus naming against BOLD (NEON user guide NEON_INV_ZOO_DNA_userGuide_vG and laboratory SOPs)",
+  "samplingProtocolCode": "eDNA",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "A survey is an extract x primer set with rows in zoo_metabarcodeTaxonomy (the laboratory's bioinformatics output for it), from a field sample in zoo_fieldData with samplingImpractical blank and a sequencing record NEON marks Pass. A 0 arises where such a survey reported no sequence variant assigned to a name of the site's pool. The pool is derived from detections (ruling 19; metabarcoding ruling of 2026-11-13): every name the laboratory assigned at the site in any sample by either primer set (__survey_taxa), not a list NEON deposited.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = field sample x primer set within one bout (samples taken on one day at the site; each primer set is a separate amplification and sequencing of the sample's extract); period = the sequenced (midsummer) bout, one a year per site, indexed globally by date",
+  "occasionKind": ["spatial", "method"],
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "7 NEON lakes in the United States (contiguous states, Alaska, Puerto Rico); coordinates of the most recent sample's named location in __units (WGS 84); latitude 29.6 to 68.7, longitude -149.6 to -82.0",
+  "temporalCoverage": "2018-07/2022-08",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": true,
+    "rule": "taxon",
+    "method": "coarsen_coords(): NEON's published coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because names IUCN CR/EN/VU in their native range are in the table (Skistodiaptomus carolinensis (VU, at BARC); E7, ruling on the publisher 2026-11-06). NEON site codes are kept. neon_2026_zooplankton_dna_exact_occ keeps the other names at published precision."
+  },
+  "covariateNote": "obs_genetic_sample_id = NEON geneticSampleID (the morphological sampleID + '.DNA': join to the morphological product of the same sample); obs_marker = COI primer set (BE or F230); obs_reads_total and obs_reads_filtered = the sample x primer set's reads (sampleTotalReadNumber) and reads after quality filtering (sampleFilteredReadNumber) on the sequencing run its taxonomy comes from: the sequencing depth; obs_n_variants = the name's reported sequence variants in the survey (0 where y = 0); obs_max_pct_match = the highest percentSequenceMatch among them (NA where y = 0 or not reported), to apply a stricter identity threshold than the laboratory's; obs_lab = laboratory; obs_low_extraction_efficiency = 1 where NEON's dataQF reads 'low extraction efficiency' (every 2022 Laragen sample: an extraction that favoured bacterial DNA), else 0; obs_sampler_type, obs_tows (tows or traps composited), obs_volume_l (litres sampled) of the field sample.",
+  "notes": "Metabarcoding ruling (Ben, 2026-11-13; standard E9): detection, reads in y_raw, depth as obs_ columns; the read count is not abundance. NEON's reporting threshold is the laboratory's: a variant is reported only after denoising and filtering (smallest reported read count Jonah Ventures 8, Laragen 6). Names are the laboratory's assignments at whatever identity it reported (obs_max_pct_match ships it): 187 species names, 144 interim names (BOLD BINs and voucher labels, species-rank, no taxonID), 153 at a higher rank. PCR replicates are not separable in the taxonomy table (reads are reported per extract x primer set), so they are not occasions; the 2022 sequencing records listed under replicates 1 and 2 are identical. Per-site pools (ruling 19): median 106 names (range 80-172). 3 extract(s) NEON marks extraction qaqc Fail are kept, since the laboratory reported taxonomy for them. The morphological counts of the companion samples are neon_2026_zooplankton_count. 7 sites: below the sample floor of 30 units.",
+  "notShipped": {
+    "unassigned sequence variants": "3,256 variant rows (1,216,045 reads) the laboratory did not name; their reads are in the depth columns, not in any row",
+    "samples not sequenced": "213 field DNA samples with no extract in the release (bouts 1 and 3 are archived at the NEON Biorepository, not sequenced)",
+    "surveys not used": "12 extract x primer sets of the 2017 pilot sequenced (four PCR replicates) with no taxonomy rows; 1 with no taxonomy rows after failed sequencing; 1 whose taxonomy comes from a sequencing record NEON marks Fail (fewer than 3,000 reads)",
+    "sequences and raw data": "taxonSequence (the variant's sequence), sequenceName, raw sequence files (expanded package links), the standard (mock community) samples, inv_metabarcodeTaxonList and inv_metabarcodeSummary",
+    "zeros outside the site pool": "a name never assigned at a site has no rows there (per-site pool)"
+  },
+  "summary": {
+    "n_rows": 23075,
+    "n_units": 7,
+    "n_taxa": 492,
+    "n_periods": 35,
+    "n_occasions": 6,
+    "n_surveys": 209,
+    "y_values": "0,1",
+    "prop_zero": 0.892,
+    "n_traps": 1,
+    "n_zero": 20594,
+    "n_positive": 2481,
+    "n_units_detected": 7,
+    "max_y": 1
+  },
+  "sampleFloor": "below (7 units < 30)",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "obs_marker", "obs_genetic_sample_id", "obs_reads_total", "obs_reads_filtered", "obs_lab", "obs_low_extraction_efficiency", "obs_sampler_type", "obs_tows", "obs_volume_l", "obs_n_variants", "obs_max_pct_match"],
+  "coreMd5": "3830d63610301cd588b04fe464c6cb14",
+  "sideTables": {
+    "periods": {
+      "rows": 35,
+      "columns": ["period", "eventID", "site", "year", "bout", "date"],
+      "md5": "3ff7cf8afbc4969eb9a6a32a8b155338"
+    },
+    "survey_taxa": {
+      "rows": 772,
+      "columns": ["unit", "taxon"],
+      "md5": "ff134176586813e9ed23b61cf1641581"
+    },
+    "taxa": {
+      "rows": 492,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_detections", "taxon_iucnCategory"],
+      "md5": "04ba0904af16ef9da9a373fb53b4b3ea"
+    },
+    "units": {
+      "rows": 7,
+      "columns": ["unit", "domain", "aquatic_site_type", "named_location", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "80769332b6637a3f4cc6a8eb6c11a4f4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_dna_occ.R",
+  "buildDate": "2026-11-12"
+}
