@@ -476,6 +476,7 @@ CSVs with `upload/red_up_eco.py`.
 | `beja_2021_sabor_fish_count.R` | LTER Baixo Sabor single-pass electrofishing, 14 fish species in 75 reaches, 2012-2020 | GBIF (GBIF Portugal IPT) | CC BY 4.0 |
 | `cortes_2023_sabor_fish_count.R` | EDP Baixo Sabor fish monitoring, 18 taxa at 69 stations, electrofishing plus reservoir netting (method as occasion), 2015-2020 | GBIF (GBIF Portugal IPT) | CC BY 4.0 |
 | `evju_2025_hvaler_herminium_count.R` | NINA musk-orchid ramet counts in 77 permanent plots, Hvaler, 2014-2025; coordinates coarsened | GBIF (NINA IPT) | CC BY 4.0 |
+| `merker_2021_coweeta_cawa_count.R` | Canada warbler counts in four 2.5-min intervals at 71 points near Coweeta, NC, 2014-2017 (Allee playback experiment; treatment held) | Zenodo (authors' permission) | CC BY 4.0 |
 
 Batch 2 (2026-11-01) was rebuilt against v1.0-draft and uploaded; batch 3 (2026-11-01) is the six round-trip
 textbook datasets routed through `data/` (issue #18), loaded from package data rather than a download; batch 4 (2026-11-01) adds five public-deposit tables; batch 5 (2026-11-01) adds the first SCR and distance-sampling tables; batch 6 (2026-11-01) the first eDNA multi-scale and double-observer tables, built once Ben supplied the two open-access papers in `../queue/papers/`; see `../BATCH_LOG.md`. `aux/` holds lookup tables

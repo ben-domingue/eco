@@ -409,3 +409,4 @@ augustine_2018_bobcat_scr,33.6,-117.8,region,30,"inferred from station km coordi
 naamp_2001_delaware_frog_calls,39.0,-75.5,state,100,"Delaware NAAMP routes (state centroid; stop locations not in the package)"
 naamp_2007_massachusetts_peeper_calls,42.3,-71.8,state,150,"Massachusetts NAAMP routes (state centroid; stop locations not in the package)"
 royle_2004_ovenbird_removal,,,none,,"place not stated in the package (Royle 2004)"
+merker_2021_coweeta_cawa_count,35.06,-83.43,locality,15,"Coweeta Hydrologic Laboratory, Macon County NC (paper; point coordinates not deposited)"

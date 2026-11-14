@@ -357,6 +357,7 @@ mcnew_2025_sagegrouse_lek_count,94,23,1,TRUE,"",sample_floor,TRUE,"",TRUE,below 
 mctigue_2023_nwarkansas_comm,46746,355,18,TRUE,"",survey_evidence,TRUE,"",TRUE,meets,inferred,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 mellado_2021_carollia_injury_ms,30197,1183,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 mellado_2021_carollia_tagloss_ms,43148,1598,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
+merker_2021_coweeta_cawa_count,1132,71,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; sample_floor
 merkes_2016_wabash_carp_edna,2444,611,2,TRUE,"","",TRUE,"",TRUE,meets,sample_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 messerman_2020_amb_annulatum_cjs,1320,60,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
 messerman_2020_amb_maculatum_cjs,1140,60,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor
