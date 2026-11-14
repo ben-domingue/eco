@@ -1,0 +1,68 @@
+{
+  "table": "calhoun_2023_hopland_mamm_dynocc",
+  "title": "Camera-trap detections of 9 mammal species at 36 stations on the UC Hopland Research and Extension Center, California, October-November 2016-2020, before and after the 2018 Mendocino Complex megafire",
+  "creator": "Calhoun, Kendall L.; Goldstein, Benjamin R.; Gaynor, Kaitlyn M.; McInturff, Alex; Solorio, Leonel; Brashares, Justin S.",
+  "pubDate": "2023",
+  "doi": "10.6078/D1W70R",
+  "sourceURL": "https://doi.org/10.6078/D1W70R",
+  "citation": "Calhoun, K. L., Goldstein, B. R., Gaynor, K. M., McInturff, A., Solorio, L., & Brashares, J. S. (2023). Mammalian resilience to megafire in western U.S. woodland savannas [Dataset]. Dryad. https://doi.org/10.6078/D1W70R",
+  "paperDOI": "10.1002/ecs2.4613",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Weekly detection histories of nine mammal species (black bear, bobcat, coyote, black-tailed deer, gray fox, western gray squirrel, black-tailed jackrabbit, raccoon, striped skunk) at a grid of 36 camera traps 750 m apart on the 5,300-acre UC Hopland Research and Extension Center, Mendocino County, California, over the October-November window of five years (2016-2020). The 2018 River Fire, part of the Mendocino Complex megafire, burned 25 of the 36 stations in July 2018, so the table spans two pre-fire and two post-fire years. Used to estimate the short-term effects of megafire on mammal occupancy and detection with single-species occupancy models.",
+  "samplingProtocol": "Motion-triggered trail cameras (Reconyx Hyperfire HC600) at the centroid of hexagonal grid cells (750 m spacing), placed at the most suitable location within 50 m of the centroid; photographs classified to species and aggregated into weekly detection / non-detection over October-November of each year (Calhoun et al. 2023).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "recorded",
+  "closureNote": "closure assumed within each year's eight-week October-November window; occupancy changes between years (dynamic)",
+  "geographicCoverage": "UC Hopland Research and Extension Center, Mendocino County, California, USA (about 39.00 N, 123.07 W); no station coordinates deposited",
+  "temporalCoverage": "2016-10-01/2020-11-27",
+  "coordinatesCoarsened": null,
+  "notes": "Camera-year rows of the deposit are combined into one unit per camera; the five camera-years with no operating week have no rows. burn3 'Unburned Post' (2018 rows) and 'Unburned_Post' (2019-2020) written as one level, Unburned_Post. Deer is Odocoileus hemionus columbianus in the paper, matched at species rank.",
+  "notShipped": {
+    "fac* dummies": "ten 0/1 recodings of burn, burn2 and burn3 (shipped as period_burn, period_burn2, period_burn3)",
+    "species_recordtable_OctNov_15min.csv": "raw independent records (15 min); Ground_Squirrel (34 records), Mountain_Lion (16), Pig (39) and Brush_Rabbit (1) have records but no deposited history, and the record table does not reproduce the deposited histories cell for cell (records in weeks set to NA, a few cells differ), so no history is derived for them",
+    "cam_op.csv": "camera operation dates; the deposited NA pattern is the authors' operation record",
+    "species_groups.csv rows without a history": "Ground_Squirrel, Mountain_Lion, Pig (size and diet groups of the nine shipped species are in __taxa)"
+  },
+  "summary": {
+    "n_rows": 12195,
+    "n_units": 36,
+    "n_taxa": 9,
+    "n_periods": 5,
+    "n_occasions": 8,
+    "n_surveys": 1355,
+    "y_values": "0,1",
+    "prop_zero": 0.81,
+    "n_traps": 1,
+    "n_zero": 9883,
+    "n_positive": 2312,
+    "n_units_detected": 36,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_veg_cover", "unit_veg_cover_broad", "unit_pasture", "unit_camera_direction", "unit_attractant", "unit_ruggedness", "unit_elevation_m", "unit_chaparral_100m", "unit_woodland_100m", "unit_grassland_100m", "period_burn", "period_burn2", "period_burn3", "period_canopy_100m", "period_detection_distance_m", "period_camera_height_cm", "period_severity_dnbr", "obs_week_start", "obs_week_end"],
+  "coreMd5": "e6d7298caef148d247fda256f71abe66",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year", "n_occasions", "first_week_start", "last_week_end", "fire", "n_cameras_operating"],
+      "md5": "68b6cb8c1eee3842e9fb196a77d9901f"
+    },
+    "taxa": {
+      "rows": 9,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_size_group", "taxon_diet_group", "taxon_iucnCategory"],
+      "md5": "95f19cc2cb83d407850b022f9968335c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/calhoun_2023_hopland_mamm_dynocc.R",
+  "buildDate": "2026-11-14"
+}

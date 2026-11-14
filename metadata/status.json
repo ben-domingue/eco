@@ -1,11 +1,11 @@
 {
-  "date": "2026-11-13",
-  "n_tables": 597,
-  "n_deposits": 390,
-  "n_rows": 418577309,
-  "n_units": 568083,
-  "n_taxa_rows": 38806,
-  "n_surveys": 29796705,
+  "date": "2026-11-14",
+  "n_tables": 600,
+  "n_deposits": 392,
+  "n_rows": 418605547,
+  "n_units": 568347,
+  "n_taxa_rows": 38819,
+  "n_surveys": 29812649,
   "n_families": 77,
   "families": {
     "Abundance": 2,
@@ -21,7 +21,7 @@
     "Community abundance": 16,
     "Community N-mixture": 5,
     "Community N-mixture / occupancy": 1,
-    "Community occupancy": 77,
+    "Community occupancy": 78,
     "Community occupancy / N-mixture": 1,
     "Community occupancy or N-mixture": 2,
     "Cormack-Jolly-Seber": 12,
@@ -31,7 +31,7 @@
     "Distance sampling": 8,
     "Double-observer": 3,
     "Dynamic co-occurrence occupancy": 1,
-    "Dynamic community occupancy": 9,
+    "Dynamic community occupancy": 10,
     "Dynamic occupancy": 37,
     "eDNA occupancy": 1,
     "False-positive dynamic occupancy": 1,
@@ -82,14 +82,14 @@
     "Single-season occupancy": 43,
     "Single-season occupancy / spatial count": 1,
     "Single-visit presence / absence": 1,
-    "Spatial capture-recapture": 41,
+    "Spatial capture-recapture": 42,
     "Spatial mark-resight": 1,
     "Two-species occupancy with misidentification": 1
   },
   "response_types": {
     "binomial_count": 24,
     "count": 147,
-    "detection": 343,
+    "detection": 346,
     "multinomial_cell": 21,
     "ordinal": 5,
     "state": 57
@@ -99,25 +99,25 @@
     "Birds": 181,
     "Fish": 36,
     "Invertebrates": 70,
-    "Mammals": 203,
+    "Mammals": 206,
     "Multiple": 13,
     "Plants": 21,
     "Reptiles": 18
   },
   "survey_evidence": {
-    "deposited_matrix": 298,
-    "effort_table": 67,
+    "deposited_matrix": 300,
+    "effort_table": 68,
     "inferred": 57,
     "row_presence": 51,
     "sample_table": 124
   },
   "n_below_floor": 90,
-  "n_with_coordinates": 183,
+  "n_with_coordinates": 184,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 597,
-  "n_irw_conforms": 597,
+  "n_valid": 600,
+  "n_irw_conforms": 600,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 597
+    "eco v1.1-draft (2026-11-03)": 600
   }
 }
