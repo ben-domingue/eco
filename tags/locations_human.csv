@@ -410,3 +410,6 @@ naamp_2001_delaware_frog_calls,39.0,-75.5,state,100,"Delaware NAAMP routes (stat
 naamp_2007_massachusetts_peeper_calls,42.3,-71.8,state,150,"Massachusetts NAAMP routes (state centroid; stop locations not in the package)"
 royle_2004_ovenbird_removal,,,none,,"place not stated in the package (Royle 2004)"
 merker_2021_coweeta_cawa_count,35.06,-83.43,locality,15,"Coweeta Hydrologic Laboratory, Macon County NC (paper; point coordinates not deposited)"
+calhoun_2023_hopland_mamm_dynocc,39.0,-123.07,locality,10,"UC Hopland Research and Extension Center, Mendocino County CA (deposit methods: 39 00 N, 123 04 W; station coordinates not deposited)"
+sheehy_2018_scotland_marten_scr,56.4,-4.1,region,200,"centre of the three regions (paper: Highlands 57.3 N 4.7 W, Central Scotland 56.1 N 4.4 W, Borders 55.7 N 3.2 W); feeder coordinates in __traps (EPSG:27700)"
+sheehy_2018_scotland_feeder_comm,55.9,-3.8,region,100,"between Central Scotland (56.1 N 4.4 W) and the Borders (55.7 N 3.2 W) (paper); feeder coordinates as unit_x/unit_y (EPSG:27700)"

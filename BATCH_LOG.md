@@ -3083,3 +3083,40 @@ published-table change.
 
 What strained the standard: nothing. A licence granted by email has no field of its own; it is recorded in the
 script header, `notes` and the dictionary's `original_license`.
+
+## Batch 68 — 2026-11-14 (discovery pass 2 Dryad rows, CC0: Hopland megafire cameras, Scottish pine martens and squirrels; three tables)
+
+Built in `~/eco-b68` (branch `batch-68`, from main at 47d9df8), no agents. Nine Dryad deposits downloaded anonymously
+(the DRYAD_TOKEN in the environment had expired: run with `DRYAD_TOKEN=`); about 20 Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| calhoun_2023_hopland_mamm_dynocc | dynamic community occupancy, camera traps, 9 mammals | Dryad doi:10.6078/D1W70R (CC0) | 12,195 | 36 cameras, October-November 2016-2020, 7-8 weekly occasions; 2018 megafire burned 25 stations; burn status and dNBR as `period_`; no coordinates deposited |
+| sheehy_2018_scotland_marten_scr | genetic SCR (hair), pine marten | Dryad doi:10.5061/dryad.478kp63 (CC0) | 13,862 | 42 martens, 222 feeders in three concurrent regional arrays (region = `cluster_id`, an individual at risk only in its own region), 4-5 visits Jan-Jun 2016; BNG in `__traps` |
+| sheehy_2018_scotland_feeder_comm | community occupancy, hair at feeders, red and grey squirrel and pine marten | same deposit | 2,181 | 186 feeders in Central Scotland and Borders, 4 visits; `obs_method` (camera also deployed); Highlands red-squirrel-only rows not shipped (shared-detector ruling) |
+
+Data repairs, each asserted and recorded in `notes`: Calhoun's burn3 has "Unburned Post" (2018) and "Unburned_Post"
+(2019-2020), written as one level. Sheehy: one marten encounter (ND1D, feeder 1DSQ02, visit 1) is at a feeder-visit
+the trap file marks unused while the squirrel file has it surveyed, so it is treated as used; two encounter rows give
+grid cell D for DD traps (trap file followed); the squirrel covariate `gs` is undocumented and is not the feeder's
+own share of grey detections, so it is not shipped. Calhoun's record table holds four more species (ground squirrel,
+mountain lion, pig, brush rabbit) without deposited histories; it does not reproduce the deposited histories cell for
+cell, so no history is derived for them (`notShipped`).
+
+**Not built: Echeverri et al. 2021 Costa Rica cultural-services birds (dryad.pzgmsbcj6).** The same 150 points,
+visit log and community file as `ke_2022_costarica_birds_nmix` for 2016-2018 (Ke covers 2016-2019): a subset, like
+Frishkoff 2019. The DOI check alone does not catch this; the landscape codes (NARA, ALTO, ...) did.
+
+**Held: Howe Ontario black bear SCR (dryad.7wm37pvtz)**, 100 study-area x year sessions, 4,906 bears, the largest
+SCR deposit seen. 145 bears are detected in more than one session (resampled areas, and some neighbouring areas);
+E4.4 does not say when two sessions are the same trapped area. Options in `human_review.csv`; Ben's ruling needed.
+
+**Looked at, left available (queue notes unchanged):** Farr 2017 Colorado conservation developments (dryad.pp0jp:
+covariates and Julian dates scaled and rounded, years not deposited, two species' histories empty in one file,
+private land per the deposit abstract so coordinates need coarsening); Piirainen Nordic bird monitoring
+(dryad.bzkh189br: about 5M rows of route-year counts 1975-2016, coordinates already coarsened by the authors,
+overlaps lindstrom_2025_sweden_summerpoints_count for Sweden); Rees Glenelg/Otway foxes and cats (dryad.msbcc2g4p:
+one detected-at-least-once value per station-year, no replication); Mirochnitchenko Nebraska point counts
+(dryad.bg79cnpbb: detections only, visit list inferable); Kays hunting/hiking eMammal (dryad.gv1dq: downloaded, not read).
+
+What strained the standard: the multi-area SCR above. Nothing else new.

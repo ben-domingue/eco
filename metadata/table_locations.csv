@@ -72,6 +72,7 @@ burgar_2018_alberta_fisher_count,53.4,-112.9,locality,45,,place name,Beaver Hill
 burgar_2018_alberta_fisher_scr,53.4,-112.9,locality,45,,place name,"stated range if UTM 12N, Beaver Hills"
 burgstahler_2026_wa_shrubsteppe_mamm_occ,47.0,-119.5,region,300,,place name,eastern Washington shrub-steppe
 byrom_2009_matakitaki_stoat_scr,-41.9,172.4,site,5,,place name,"Matakitaki Valley, South Island, NZ (geographicCoverage; trap grid local coordinates)"
+calhoun_2023_hopland_mamm_dynocc,39.0,-123.1,locality,10,,place name,"UC Hopland Research and Extension Center, Mendocino County CA (deposit methods: 39 00 N, 123 04 W; station coordinates not deposited)"
 carro_2023_donana_tracks_count,37.0,-6.5,locality,38,5,unit coordinates,unit_decimalLatitude
 carter_2021_louisiana_lamp_calls,31.1,-91.5,state,689,,bounding box,geographicCoverage.boundingBox
 cayuela_2020_bombina_cjs,46.6,2.4,country,900,,place name,France centroid
@@ -506,6 +507,8 @@ seys_2020_belgium_patella_count,51.2,2.9,region,51,13,unit coordinates,unit_deci
 seys_2020_belgium_seawatch_count,51.2,2.9,region,51,14,unit coordinates,unit_decimalLatitude
 shah_2025_bardia_tiger_occ,28.4,81.7,region,120,,place name,Bardia and Banke NPs
 sharma_2021_spiti_snowleopard_scr,32.2,78.0,locality,40,,place name,"stated coords, Spiti Valley"
+sheehy_2018_scotland_feeder_comm,55.9,-3.8,region,100,,place name,between Central Scotland (56.1 N 4.4 W) and the Borders (55.7 N 3.2 W) (paper); feeder coordinates as unit_x/unit_y (EPSG:27700)
+sheehy_2018_scotland_marten_scr,56.4,-4.1,region,200,,place name,"centre of the three regions (paper: Highlands 57.3 N 4.7 W, Central Scotland 56.1 N 4.4 W, Borders 55.7 N 3.2 W); feeder coordinates in __traps (EPSG:27700)"
 shyvers_2020_ppr_sagegrouse_rd,39.8,-108.3,region,80,,place name,"Parachute-Piceance-Roan, NW Colorado"
 silva_2018_scotland_badger_occ,57.3,-4.5,region,300,,place name,11 study areas across northern Scotland (no station coordinates)
 siren_2024_vtnh_moose_count,44.0,-72.0,state,350,,place name,Vermont and New Hampshire
