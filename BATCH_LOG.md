@@ -3064,3 +3064,22 @@ visit), Karabash small mammals (daily snap-trap removal, but live-trap and mixed
 Doñana lizards and the Taiwan New Year Bird Count (not opened).
 
 What strained the standard: nothing new.
+
+## Batch 67 — 2026-11-13 (author permission: Merker & Chandler Canada warbler Allee experiment; one table)
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| merker_2021_coweeta_cawa_count | repeated counts (four 2.5-min intervals of one count a year), 4 years | Zenodo doi:10.5281/zenodo.4238700 ("Other (Open)"; authors' written permission 2026-11-13, shipped CC BY 4.0) | 1,132 | 71 points, 2014-2017; PCCow038 not surveyed in 2014; scaled detection covariates as deposited; no coordinates deposited; below the IRW floor (animal data exempt) |
+
+Held since 2026-11-05 for unclear licence terms. Richard Chandler replied to the 2026-11-06 request: permission to
+redistribute "under whatever license you prefer", and the array order (sites x 2.5-min intervals x years). Point ids
+are the deposited `treat.mat` row names; years come from the paper. The JAGS model treats each interval as a binomial
+count of the year's N, so the table is `count` with occasion = interval, not removal.
+
+**Held: the playback treatment.** `treat.mat` flags 11 points in 2016 and 14 in 2017, where the paper reports 10 and 8
+playback sites, so it is not the per-year playback indicator the paper describes. Not shipped; follow-up question to
+the authors drafted. If it arrives before the eco_2 draft is released, add `treat` and rebuild; otherwise it is a
+published-table change.
+
+What strained the standard: nothing. A licence granted by email has no field of its own; it is recorded in the
+script header, `notes` and the dictionary's `original_license`.
