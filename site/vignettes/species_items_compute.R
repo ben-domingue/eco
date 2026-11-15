@@ -74,9 +74,19 @@ DET_TABLES <- "lebeuftaylor_2026_boreal_edges_aru_comm"
 SENS_MAX_Z <- 3
 max_rhat <- function(m) max(unlist(m$rhat[c("beta.comm", "tau.sq.beta", "alpha.comm", "tau.sq.alpha",
                                           "beta", "alpha", "lambda.lower.tri")]), na.rm = TRUE)
+# Draw-by-species-by-site arrays are large (about 0.6 GB each on 518 sites x 46
+# species) and the page needs none of them except site richness, so each fit is
+# slimmed as soon as it returns: z.samples becomes rich.samples (draws x site,
+# species present), and psi.samples and like.samples are dropped.
+slim <- function(m) {
+  if (!is.null(m$z.samples)) m$rich.samples <- apply(m$z.samples, c(1, 3), sum)
+  m[c("z.samples", "psi.samples", "like.samples")] <- NULL
+  gc()
+  m
+}
 run_mcmc <- function(fun, args) {
-  m <- do.call(fun, c(args, MCMC)); long <- FALSE
-  if (max_rhat(m) > 1.1) { m <- do.call(fun, c(args, MCMC_LONG)); long <- TRUE }
+  m <- slim(do.call(fun, c(args, MCMC))); long <- FALSE
+  if (max_rhat(m) > 1.1) { rm(m); gc(); m <- slim(do.call(fun, c(args, MCMC_LONG))); long <- TRUE }
   attr(m, "long") <- long
   m
 }
@@ -108,6 +118,7 @@ summ <- function(x) c(med = median(x), lo = unname(quantile(x, 0.025)), hi = unn
 fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
   timing <- list()
   d <- as.data.table(eco_fetch(tb))
+  d[, unit := as.character(unit)]   # some tables key sites by integer; the site summaries join on character
   tx <- as.data.table(eco_taxa(tb))
   a <- eco_to_array(d)                                  # site x visit x species, NA = not surveyed
   y <- aperm(a$y, c(3, 1, 2))                           # species x site x visit, as spOccupancy wants
@@ -162,7 +173,7 @@ fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
     ps <- plogis(B[, k]); pp <- plogis(A[, k])
     rowMeans(outer(ps, rep(1, length(J))) * (1 - outer(1 - pp, J, `^`)))
   })
-  rich <- apply(ms$z.samples, c(1, 3), sum)              # draws x site: species present
+  rich <- ms$rich.samples                                # draws x site: species present
   species <- data.table(taxon = sp, n_sites_detected = rowSums(ever), n_detections = apply(y, 1, sum, na.rm = TRUE),
                         naive_share = rowMeans(ever),
                         rasch_b = lme4::fixef(g)[[1]] + re_sp[sp, 1],
@@ -320,9 +331,20 @@ fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
 cand <- select_tables()
 print(cand[, .(table, n_units, n_taxa, picked, why)])
 picked <- cand[picked == TRUE]
-fits <- lapply(seq_len(nrow(picked)), function(i)
-  fit_table(picked$table[i], isTRUE(picked$survey_taxa[i]),
-            with_det = picked$table[i] %in% DET_TABLES))
+# Each table's fit is saved as soon as it finishes, in species_items_data/partial/
+# (not committed), and reused on a rerun, so a failure on one table does not lose
+# the others. Each table gets its own seed, so a reused fit and a fresh one agree.
+# Delete partial/ to refit everything.
+dir.create("species_items_data/partial", recursive = TRUE, showWarnings = FALSE)
+fits <- lapply(seq_len(nrow(picked)), function(i) {
+  tb <- picked$table[i]
+  pf <- file.path("species_items_data/partial", paste0(tb, ".rds"))
+  if (file.exists(pf)) return(readRDS(pf))
+  set.seed(2026)
+  f <- fit_table(tb, isTRUE(picked$survey_taxa[i]), with_det = tb %in% DET_TABLES)
+  saveRDS(f, pf)
+  f
+})
 names(fits) <- picked$table
 
 dir.create("species_items_data", showWarnings = FALSE)
