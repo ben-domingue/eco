@@ -172,3 +172,45 @@ fewer zero rows, are replaced by one national table:
   all ten sha256 match.
 - Milan reran the raw-file check on the national table at 5516d73 (#62): 0 differences and 0 false zeros over all 26
   parts, all 7,573,059 source run x taxon records present, sum of `y` 107,000,446 on both sides.
+
+## Split by BCR (2026-11-15, #72)
+
+Ben ruled on #72: the national count table is replaced by tables by BCR. Nobody used the national table, and at
+110,127,544 rows (about 9 GB as CSV, 18 GB on Redivis) it was too large to download whole; Redivis serves 100 MB
+anonymously and a login download of 18 GB is not a realistic first step for an analysis. The ruling is an exception to
+ruling #31 for size, written into standard E4 ("partitions ruling") with two new E10 fields:
+
+- A table that would be over 1 GB as CSV ships split by a regional stratum the source itself codes for every unit, one
+  table per value: here `BCR` of Routes.csv, 1 to 37. The threshold is a proposal for Ben (flagged in the PR); the
+  national BBS table is the only table in the corpus over it.
+- Each regional table is complete for its region: every run of the BCR's routes, and the taxa recorded in that BCR's runs
+  (the "region pool" of the measured grid above, 44 to 381 taxa), `taxonInclusion = recorded`, no `__survey_taxa`.
+- Each declares `partitionOf = "ziolkowski_2026_bbs"` and `partitionBy = "unit_bcr"` (in `__units`, one value per table).
+  The validator and the R twin check both; `metadata/01_metadata.R` carries them into `metadata.csv` as `partition_of`
+  and `partition_by`.
+- The national table and its `_exact` sibling are withdrawn (`releases/withdrawals.csv`, reason `duplicate`,
+  `tools/withdrawals/withdraw_bbs_national.py`): no data twice.
+- E7 per table: every BCR's pool holds at least one of the 40 IUCN CR/EN/VU taxa (asserted), so all 37 tables are
+  coarsened and all 37 have an `_exact` sibling, `ziolkowski_2026_bbs_bcr<N>_exact_count` (at most 37 characters). The
+  code keeps the other branch (a BCR with no flagged taxon ships once, at USGS's precision) for a future release.
+- Reassembly: `eco_stack("ziolkowski_2026_bbs")` in the R package fetches the 37 tables (or the `_exact` siblings with
+  `exact = TRUE`), optionally only some taxa, and stacks them with their side tables. `fill_zeros = TRUE` adds `y = 0`
+  for a taxon at the runs of a BCR where it was never recorded, and is allowed only because every table is
+  `taxonInclusion = recorded` with no `__survey_taxa` (the observer records every bird at every run). That is the
+  national table of 2026-11-04, row for row in the zero-filled form.
+
+The build reuses Milan's `build_count()` from PR #57 (b31b15b) with everything added since: `closure`/`closureNote`,
+`occasionKind`, `taxonInclusion`, exact GBIF matching and `taxonRemarks`, the non-breeder handling, the E7 coarsening
+with `_exact` siblings and `coordinatesCoarsened.rule`, and the ScienceBase download. Asserted against the national table:
+every one of the 144,146 runs is in exactly one BCR table; per taxon x period, the sum of `y` over the BCR tables equals
+the national breeding + non-breeder `SpeciesTotal`; the non-zero rows are exactly the 7,573,059 source run x taxon
+records; and BCR rows (42,067,219) plus the cross-region zeros left out (68,060,325) are the 110,127,544 national rows.
+
+| Tables | Rows | CSV size |
+|---|---|---|
+| 37 `bcr<N>_count` | 42,067,219 (616 to 3,302,915; median 974,025) | 3.42 GB (BCR 1 46 kB to BCR 28 269 MB; median 79 MB) |
+| 37 `bcr<N>_exact_count` | 40,838,571 (574 to 3,250,695) | 3.32 GB |
+| BCR 15 block, stop and their `_exact` siblings | unchanged | unchanged |
+
+13 of the 37 are over 100 MB as CSV, Redivis's anonymous cap (Redivis stored the national table at twice its CSV size, so
+more may need a login); every one fits in memory on a laptop. The block and stop pilots, their `_exact` siblings and every rule above "After review" are unchanged.
