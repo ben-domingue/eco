@@ -590,54 +590,54 @@ work_2026_ocala_odonates_comm,29.2,-81.7,locality,24,4,unit coordinates,unit_dec
 work_2026_ocala_odonates_exact_comm,29.2,-81.7,locality,25,16,unit coordinates,unit_decimalLatitude
 yadav_2022_rapti_gharial_count,27.6,84.4,locality,40,,place name,"Rapti River, Chitwan NP"
 zamuda_2022_yalemyers_mesopred_dynocc,41.9,-72.1,locality,20,,place name,"Yale Myers Forest, Eastford"
-ziolkowski_2026_bbs_bcr10_count,46.7,-114.7,country,2311,,place name,"BCR 10 route start points (0.1-degree cells, mean of 320 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr10_exact_count,46.7,-114.7,country,2311,,place name,"BCR 10 route start points (0.1-degree cells, mean of 320 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr11_count,49.1,-104.6,country,2067,,place name,"BCR 11 route start points (0.1-degree cells, mean of 342 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr11_exact_count,49.1,-104.6,country,2067,,place name,"BCR 11 route start points (0.1-degree cells, mean of 342 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr12_count,46.8,-84.1,country,2079,,place name,"BCR 12 route start points (0.1-degree cells, mean of 314 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr12_exact_count,46.8,-84.1,country,2079,,place name,"BCR 12 route start points (0.1-degree cells, mean of 314 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr13_count,43.7,-77.6,country,1877,,place name,"BCR 13 route start points (0.1-degree cells, mean of 191 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr13_exact_count,43.7,-77.6,country,1877,,place name,"BCR 13 route start points (0.1-degree cells, mean of 191 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr14_count,45.5,-68.7,country,1502,,place name,"BCR 14 route start points (0.1-degree cells, mean of 308 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr14_exact_count,45.5,-68.7,country,1502,,place name,"BCR 14 route start points (0.1-degree cells, mean of 308 routes); the uploader replaces this with the point read from Redivis"
+ziolkowski_2026_bbs_bcr10_count,46.7,-114.7,country,2311,291,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr10_exact_count,46.6,-114.6,country,2316,308,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr11_count,49.1,-104.6,country,2067,309,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr11_exact_count,49.0,-104.5,country,2070,328,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr12_count,46.8,-84.0,country,2079,295,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr12_exact_count,46.8,-84.1,country,2078,307,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr13_count,43.7,-77.6,country,1877,169,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr13_exact_count,43.7,-77.6,country,1870,178,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr14_count,45.4,-68.7,country,1502,274,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr14_exact_count,45.5,-68.7,country,1495,296,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr15_block,38.7,-120.2,state,640,38,unit coordinates,unit_decimalLatitude in __units
-ziolkowski_2026_bbs_bcr15_count,38.8,-120.3,state,640,,place name,"BCR 15 route start points (0.1-degree cells, mean of 40 routes); the uploader replaces this with the point read from Redivis"
+ziolkowski_2026_bbs_bcr15_count,38.7,-120.2,state,640,38,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr15_exact_block,38.8,-120.3,state,636,40,unit coordinates,unit_decimalLatitude in __units
-ziolkowski_2026_bbs_bcr15_exact_count,38.8,-120.3,state,640,,place name,"BCR 15 route start points (0.1-degree cells, mean of 40 routes); the uploader replaces this with the point read from Redivis"
+ziolkowski_2026_bbs_bcr15_exact_count,38.8,-120.3,state,636,40,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr15_exact_stop,38.9,-120.3,state,613,34,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr15_stop,38.9,-120.3,state,610,34,unit coordinates,unit_decimalLatitude in __units
-ziolkowski_2026_bbs_bcr16_count,38.1,-108.5,country,1323,,place name,"BCR 16 route start points (0.1-degree cells, mean of 245 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr16_exact_count,38.1,-108.5,country,1323,,place name,"BCR 16 route start points (0.1-degree cells, mean of 245 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr17_count,45.0,-104.6,country,1113,,place name,"BCR 17 route start points (0.1-degree cells, mean of 140 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr17_exact_count,45.0,-104.6,country,1113,,place name,"BCR 17 route start points (0.1-degree cells, mean of 140 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr18_count,37.6,-103.1,country,1363,,place name,"BCR 18 route start points (0.1-degree cells, mean of 137 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr18_exact_count,37.6,-103.1,country,1363,,place name,"BCR 18 route start points (0.1-degree cells, mean of 137 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr19_count,37.8,-99.2,country,1440,,place name,"BCR 19 route start points (0.1-degree cells, mean of 130 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr19_exact_count,37.8,-99.2,country,1440,,place name,"BCR 19 route start points (0.1-degree cells, mean of 130 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr1_count,51.9,-176.7,site,0,,place name,"BCR 1 route start points (0.1-degree cells, mean of 1 route); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr1_exact_count,51.9,-176.7,site,0,,place name,"BCR 1 route start points (0.1-degree cells, mean of 1 route); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr20_count,30.4,-98.7,state,364,,place name,"BCR 20 route start points (0.1-degree cells, mean of 21 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr20_exact_count,30.4,-98.7,state,364,,place name,"BCR 20 route start points (0.1-degree cells, mean of 21 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr21_count,32.1,-97.1,country,1004,,place name,"BCR 21 route start points (0.1-degree cells, mean of 74 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr21_exact_count,32.1,-97.1,country,1004,,place name,"BCR 21 route start points (0.1-degree cells, mean of 74 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr22_count,40.2,-90.3,country,1595,,place name,"BCR 22 route start points (0.1-degree cells, mean of 278 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr22_exact_count,40.2,-90.3,country,1595,,place name,"BCR 22 route start points (0.1-degree cells, mean of 278 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr23_count,43.4,-88.0,country,1244,,place name,"BCR 23 route start points (0.1-degree cells, mean of 161 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr23_exact_count,43.4,-88.0,country,1244,,place name,"BCR 23 route start points (0.1-degree cells, mean of 161 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr24_count,37.2,-88.7,country,1159,,place name,"BCR 24 route start points (0.1-degree cells, mean of 166 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr24_exact_count,37.2,-88.7,country,1159,,place name,"BCR 24 route start points (0.1-degree cells, mean of 166 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr25_count,32.8,-93.7,state,733,,place name,"BCR 25 route start points (0.1-degree cells, mean of 111 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr25_exact_count,32.8,-93.7,state,733,,place name,"BCR 25 route start points (0.1-degree cells, mean of 111 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr26_count,33.3,-90.8,state,911,,place name,"BCR 26 route start points (0.1-degree cells, mean of 74 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr26_exact_count,33.3,-90.8,state,911,,place name,"BCR 26 route start points (0.1-degree cells, mean of 74 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr27_count,32.7,-84.2,country,1684,,place name,"BCR 27 route start points (0.1-degree cells, mean of 348 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr27_exact_count,32.7,-84.2,country,1684,,place name,"BCR 27 route start points (0.1-degree cells, mean of 348 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr28_count,38.8,-80.2,country,1589,,place name,"BCR 28 route start points (0.1-degree cells, mean of 406 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr28_exact_count,38.8,-80.2,country,1589,,place name,"BCR 28 route start points (0.1-degree cells, mean of 406 routes); the uploader replaces this with the point read from Redivis"
-ziolkowski_2026_bbs_bcr29_count,36.5,-80.1,country,1410,,place name,"BCR 29 route start points (0.1-degree cells, mean of 172 routes); the uploader replaces this with the point read from Redivis"
+ziolkowski_2026_bbs_bcr16_count,38.1,-108.5,country,1323,222,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr16_exact_count,38.1,-108.5,country,1325,243,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr17_count,44.9,-104.6,country,1113,132,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr17_exact_count,45.0,-104.6,country,1117,139,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr18_count,37.5,-103.0,country,1363,132,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr18_exact_count,37.6,-103.1,country,1363,137,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr19_count,38.0,-99.2,country,1440,121,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr19_exact_count,37.8,-99.2,country,1442,130,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr1_count,51.9,-176.7,site,0,1,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr1_exact_count,51.8,-176.6,site,0,1,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr20_count,30.4,-98.8,state,364,20,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr20_exact_count,30.4,-98.7,state,358,21,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr21_count,32.2,-97.1,country,1004,66,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr21_exact_count,32.2,-97.1,country,1011,73,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr22_count,40.2,-90.4,country,1595,257,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr22_exact_count,40.2,-90.3,country,1602,276,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr23_count,43.4,-88.1,country,1244,141,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr23_exact_count,43.4,-88.1,country,1249,158,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr24_count,37.2,-88.7,country,1159,155,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr24_exact_count,37.2,-88.7,country,1162,164,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr25_count,32.9,-93.8,state,733,91,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr25_exact_count,32.8,-93.7,state,733,108,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr26_count,33.2,-90.8,state,911,65,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr26_exact_count,33.3,-90.8,state,905,74,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr27_count,32.8,-84.2,country,1684,318,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr27_exact_count,32.7,-84.2,country,1678,345,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr28_count,38.8,-80.2,country,1589,357,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr28_exact_count,38.8,-80.2,country,1587,400,unit coordinates,unit_decimalLatitude in __units
+ziolkowski_2026_bbs_bcr29_count,36.2,-80.3,country,1410,146,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr29_exact_count,36.5,-80.0,country,1407,170,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr2_count,61.1,-160.4,country,1498,23,unit coordinates,unit_decimalLatitude in __units
-ziolkowski_2026_bbs_bcr2_exact_count,61.3,-160.5,country,1498,,place name,"BCR 2 route start points (0.1-degree cells, mean of 24 routes); the uploader replaces this with the point read from Redivis"
+ziolkowski_2026_bbs_bcr2_exact_count,61.3,-160.4,country,1494,24,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr30_count,40.1,-74.2,state,918,140,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr30_exact_count,40.0,-74.3,state,919,161,unit coordinates,unit_decimalLatitude in __units
 ziolkowski_2026_bbs_bcr31_count,27.4,-81.4,state,635,72,unit coordinates,unit_decimalLatitude in __units
