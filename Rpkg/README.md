@@ -35,6 +35,7 @@ a character vector) a named list. `eco_to_unmarked()` maps over a list.
 | `eco_filter(model_family=, response_type=, taxon_group=, protocol=, min_units=, min_occasions=, multi_species=, sample_floor=, licence=)` | choose tables; `licence = "permissive"` keeps tables open to commercial use ([Using eco responsibly](https://ben-domingue.github.io/eco/use.html)) |
 | `eco_fetch(x)`; `eco_taxa()`, `eco_periods()`, `eco_units()`, `eco_traps()` | a table and its side tables |
 | `eco_info(table)` | one table, or the corpus totals |
+| `eco_stack(partition, taxa=, fill_zeros=, exact=)` | reassemble a deposit shipped as regional tables (`partition_of` in `eco_metadata()`, e.g. the Breeding Bird Survey by Bird Conservation Region), optionally with explicit zeros between regions |
 | `eco_to_array()`, `eco_to_unmarked()`, `eco_to_ch()` and their inverses `array_to_eco()`, `umf_to_eco()`, `mpois_to_eco()`, `ch_to_eco()` | reshape to and from the model packages' structures |
 | `eco_check(df)` | the R twin of the repository's validator, for a table you built |
 | `eco_to_irw(df)` | the IRW v1.0 view (`id`, `item`, `resp`, `cov_*`), for IRW tooling |
