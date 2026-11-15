@@ -47,7 +47,7 @@ suppressPackageStartupMessages({
   library(eco); library(data.table); library(lme4); library(mirt)
   library(unmarked); library(spOccupancy)
 })
-ECO_VERSION <- 12
+ECO_VERSION <- 26
 eco_set_version(ECO_VERSION)
 set.seed(2026)
 MCMC <- list(n.samples = 6000, n.burn = 2000, n.thin = 4, n.chains = 3)
@@ -84,7 +84,7 @@ run_mcmc <- function(fun, args) {
 # The rule. Site-unit community detection tables (unit_kind site, response
 # detection, more than one taxon), closed within a single season (closure
 # "closed", one period), replicate occasions in time (occasion_kind "time": not
-# spatial subsamples, observers or methods), at least 30 sites, 10 to 40 taxa,
+# spatial subsamples, observers or methods), at least 30 sites, at least 10 taxa,
 # fetchable anonymously, and a survey set that is not "inferred". `_exact`
 # siblings repeat a coarsened table and are dropped.
 select_tables <- function() {
@@ -95,7 +95,7 @@ select_tables <- function() {
   f[, why := fifelse(closure != "closed", paste("closure", closure),
              fifelse(n_periods != 1, sprintf("%d periods", n_periods),
              fifelse(occasion_kind != "time", paste("occasions index", occasion_kind),
-             fifelse(n_taxa < 10 | n_taxa > 40, sprintf("%d taxa", n_taxa),
+             fifelse(n_taxa < 10, sprintf("%d taxa", n_taxa),
              fifelse(needs_login %in% TRUE, "needs a Redivis login",
              fifelse(survey_evidence == "inferred", "survey set inferred",
              fifelse(grepl("_exact", table), "_exact sibling", "")))))))]

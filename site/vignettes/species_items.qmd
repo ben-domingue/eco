@@ -92,7 +92,9 @@ questions in place of species and test-takers in place of sites, is called a
 random-item response model [@deboeck2008].
 
 The ecological model adds the survey. Species $k$ at site $i$ is surveyed on
-$J_i$ visits, and a visit finds it only if it is there:
+$J_i$ visits. Write $y_{ijk} = 1$ if species $k$ was recorded on visit $j$ to
+site $i$ and $y_{ijk} = 0$ if it was not (the `y` column of an eco table). A
+visit finds the species only if it is there:
 
 $$
 y_{ijk} \mid z_{ik} \sim \text{Bernoulli}(z_{ik}\, p_k),
@@ -127,19 +129,18 @@ The tables are chosen from `eco_metadata()` by rule. The model needs a site
 unit, a 0/1 detection response, more than one taxon, replicate visits that can
 be treated as repeats of the same state (`closure` "closed", one season, and
 occasions that index time rather than observers, methods or sub-plots), enough
-sites to see a pattern ($\geq 30$) and a community size where pooling matters
-and a page can show every species (10 to 40). Tables that need a Redivis login
+sites to see a pattern ($\geq 30$) and enough species for pooling to matter ($\geq 10$). Tables that need a Redivis login
 and tables whose survey set was reconstructed by rule (`survey_evidence`
 "inferred") are left out.
 
 ```{r}
 #| label: rule
-eco_set_version(12)
+eco_set_version(26)
 cand <- as.data.table(eco_filter(unit_kind = "site", response_type = "detection",
                                  multi_species = TRUE, min_units = 30, min_occasions = 2))
 cand <- merge(cand, as.data.table(eco_list_tables())[, .(table, needs_login, survey_taxa)], by = "table")
 picked <- cand[closure == "closed" & n_periods == 1 & occasion_kind == "time" &
-                 n_taxa >= 10 & n_taxa <= 40 & !needs_login & survey_evidence != "inferred" &
+                 n_taxa >= 10 & !needs_login & survey_evidence != "inferred" &
                  !grepl("_exact", table)]
 picked[, .(table, n_units, n_taxa, n_occasions, survey_evidence, survey_taxa)]
 stopifnot(setequal(picked$table, names(cache$fits)))
@@ -774,7 +775,7 @@ in the eco repository. The spOccupancy and mirt fits were run on
 `r cache$date_run` (3 chains of `r cache$mcmc$n.samples` iterations, `r cache$mcmc$n.burn`
 burn-in, thinning `r cache$mcmc$n.thin`, rerun five times longer where any
 $\hat R$ exceeded 1.1); the model without detection and the single-species
-fits run live on this page. Data were read with `eco_set_version(12)`, so a
+fits run live on this page. Data were read with `eco_set_version(26)`, so a
 later release of the warehouse does not change the page.
 
 ```{r}
