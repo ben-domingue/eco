@@ -166,6 +166,18 @@ whatever release convention the authors' analysis used), or no longer
    rows only in that session and is not linked to any id of another session, and
    `closureNote` says so.
 
+**Ruling (independent sessions, #204, 2026-11-14).** Whether sessions are linked
+follows the authors. When the source treats its sessions as independent replicate
+populations (separate arrays or array-years, each analysed as its own closed
+population and combined as replicates), the unit is the individual within its
+session even where the source's ids are global: it is at risk only at that
+session's traps and has rows only there, the global id is kept as a `unit_` column,
+and `closureNote` says so and how many ids recur across sessions. When the source
+treats its sessions as repeated surveys of one population (primary periods of one
+study, open between them, whatever the model shares across sessions), the unit is
+the individual across sessions under the rule above. First table:
+`howe_2022_ontario_bear_scr` (100 array-years, `unit_bear_id`).
+
 **Ruling (#20, 2026-11-01).** Consequence 2 applies to `unitKind = site`. When the
 unit is an individual (`cjs`, `scr`, closed captures) the taxon is a property of the
 unit, so an individual's surveys can carry only its own taxon's rows. A deposit with
@@ -735,4 +747,5 @@ shipped and why. Facts about the source are assertions, not comments.
   is a detection response: `y = 1` at or above the source's reporting threshold, the read
   count in `y_raw`, sequencing depth an `obs_` column, the taxa surveyed for through
   `__survey_taxa`, markers and PCR replicates as occasions or `obs_` columns.
+- **v1.1-draft, independent-sessions ruling (2026-11-14, #204).** E4.4: whether sessions are linked follows the authors. Sessions the source treats as independent replicate populations give units scoped to the session even with global ids, the global id kept as a `unit_` column; sessions treated as repeated surveys of one population keep the individual across sessions. First table: `howe_2022_ontario_bear_scr`.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.
