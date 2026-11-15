@@ -31,7 +31,7 @@
   },
   "covariateNote": "obs_nonbreeder_count: the non-breeder count in this block; NA before 1999 where no non-breeder record exists, 0 from 1999 where none does. obs_block_stops: stops of the block up to K (1 to 10), 1997 on; NA before. Codes, from the release metadata: wind is Beaufort 0 to 8; sky is 0 clear or few clouds, 1 partly cloudy or variable, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers; obs_assistant is 1 if an assistant recorded the data; obs_quality_current is 1 if the run met all quality criteria (manual inspection before 1997, by rule from 1997); minutes are after midnight; wind or sky code 9 (no data) is NA.",
   "designNote": "Five blocks per run at most; occasion = block. Blocks past the last stop with evidence of sampling have no row.",
-  "components": ["ziolkowski_2026_bbs_exact_count", "ziolkowski_2026_bbs_bcr15_exact_stop", "ziolkowski_2026_bbs_bcr15_block"],
+  "components": ["ziolkowski_2026_bbs_bcr15_exact_count", "ziolkowski_2026_bbs_bcr15_exact_stop", "ziolkowski_2026_bbs_bcr15_block"],
   "notShipped": {
     "threatened": "Centrocercus urophasianus (VU), Cypseloides niger (VU), Gymnorhinus cyanocephalus (VU), Pica nuttalli (VU), Coccothraustes vespertinus (VU), Agelaius tricolor (EN): in ziolkowski_2026_bbs_bcr15_block only, with coarsened coordinates (E7 scope, 3)",
     "runs_outside_the_design": "none: all 1095 runs of BCR 15 are RPID 101 on a Detail 1 or 2 route and are in this table",
@@ -79,5 +79,5 @@
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ziolkowski_2026_bbs.R",
-  "buildDate": "2026-11-11"
+  "buildDate": "2026-11-15"
 }

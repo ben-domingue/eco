@@ -51,6 +51,9 @@ excluded <- c(
   swedberg_2023_springfish_occ       = "multi-scale (reach > site > survey) with two gears",
   whittington_2015_banff_tracks_comm = "multi-scale (cell > segment > repeat walk) with Markovian detection",
   ziolkowski_2026_bbs_count          = "18 GB, 110 M rows; too large for a per-species sweep (the BCR 15 pilots stand in for BBS)")
+# The national BBS table above was replaced by 37 tables by BCR (#72); they stay out of the sweep for the same reason.
+bbs_bcr <- sprintf("ziolkowski_2026_bbs_bcr%d_count", 1:37)
+excluded <- c(excluded, setNames(rep("Breeding Bird Survey route runs by BCR (#72): 37 tables, 42 M rows; too large for a per-species sweep (the BCR 15 pilots stand in for BBS)", 37), bbs_bcr))
 
 # Site-level tables whose y is a detection, or a count (or binomial count)
 # collapsed to one, with replicate occasions. Response types left out by the rule:

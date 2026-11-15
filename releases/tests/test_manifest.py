@@ -24,8 +24,8 @@ def test_shards_released_together_are_one_eco_version():
 
 
 def test_build_pairs_eco_meta_and_keeps_columns():
-    ev = manifest.core_events({"eco_redivis_version": [r("v1.0", "2026-11-01T00:00:00Z", 10)],
-                               "eco_2_redivis_version": []})
+    ev = manifest.core_events({c: [] for c in manifest.CORE_COLUMNS}      # every registered shard, as main() passes
+                              | {"eco_redivis_version": [r("v1.0", "2026-11-01T00:00:00Z", 10)]})
     rows = manifest.build(ev, [r("v1.0", "2026-11-01T01:00:00Z", 3)])
     assert rows[0]["eco_meta_redivis_version"] == "v1.0"
     assert rows[0]["eco_2_redivis_version"] == ""

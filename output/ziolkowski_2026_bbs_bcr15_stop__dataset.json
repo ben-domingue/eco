@@ -31,10 +31,10 @@
   },
   "covariateNote": "obs_nonbreeder_count: the recorded non-breeder count at the stop, 0 where none. obs_cars: the vehicle count at the stop where RecordedCar = 1 (the metadata: recorded at all sampled stops) or Car > 0, else NA, because the metadata makes no promise for a 0 there. obs_noise: 1 if excessive noise from sources other than passing vehicles (more than 45 seconds, interfering with hearing birds) was recorded at the stop, 0 if not, NA where the run has no VehicleData row. Codes, from the release metadata: wind is Beaufort 0 to 8; sky is 0 clear or few clouds, 1 partly cloudy or variable, 2 cloudy or overcast, 4 fog or smoke, 5 drizzle, 7 snow, 8 showers; obs_assistant is 1 if an assistant recorded the data; obs_quality_current is 1 if the run met all quality criteria (manual inspection before 1997, by rule from 1997); minutes are after midnight; wind or sky code 9 (no data) is NA.",
   "designNote": "One row per run, stop and taxon; occasion = stop. Stops past the last stop with evidence of sampling have no row.",
-  "components": ["ziolkowski_2026_bbs_count", "ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_exact_stop"],
+  "components": ["ziolkowski_2026_bbs_bcr15_count", "ziolkowski_2026_bbs_bcr15_block", "ziolkowski_2026_bbs_bcr15_exact_stop"],
   "notShipped": {
     "unit_route_name": "route names (place names; E7 scope, 4): in ziolkowski_2026_bbs_bcr15_exact_stop",
-    "runs_outside_the_design": "728 of the 1095 runs in BCR 15 are outside this table: 728 before 2009 and 0 from 2009 that are not RPID 101 on a Detail 1 or 2 route; they are in the national count table",
+    "runs_outside_the_design": "728 of the 1095 runs in BCR 15 are outside this table: 728 before 2009 and 0 from 2009 that are not RPID 101 on a Detail 1 or 2 route; they are in ziolkowski_2026_bbs_bcr15_count",
     "stops_after_last_stop_with_evidence": "111 stops of this table's runs, past K",
     "stop_rows_before_2009": "stop-level rows of BCR 15 before 2009 are in the deposit and not shipped, for size; the block table covers all years",
     "TotalSpp": "per-run count of breeding records; an assertion; not shipped",
@@ -79,5 +79,5 @@
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/ziolkowski_2026_bbs.R",
-  "buildDate": "2026-11-11"
+  "buildDate": "2026-11-15"
 }

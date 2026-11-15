@@ -824,6 +824,35 @@ def check_meta_conditional(t: Table):
                 out.append(_f("meta_conditional", "error",
                               f"subsampleColumn `{sc}` must hold the identified fraction, "
                               f"in (0, 1] or empty (E10)", t))
+    po, pb = d.get("partitionOf"), d.get("partitionBy")
+    if (po is None) != (pb is None):
+        out.append(_f("meta_conditional", "error",
+                      "partitionOf and partitionBy go together (E4 partitions ruling, E10)", t))
+    if po is not None:
+        if not (isinstance(po, str) and re.fullmatch(r"[a-z0-9_]+", po)):
+            out.append(_f("meta_conditional", "error",
+                          f"partitionOf must be one lower-case name, the deposit-level table name (E10); "
+                          f"found `{json.dumps(po)[:60]}`", t))
+        elif not t.name.startswith(po + "_"):
+            out.append(_f("meta_conditional", "error",
+                          f"a partition table's name begins with its partitionOf `{po}_` (E4 partitions "
+                          f"ruling)", t))
+    if pb is not None:
+        if not (isinstance(pb, str) and pb.startswith("unit_")):
+            out.append(_f("meta_conditional", "error",
+                          f"partitionBy must name one unit_ column (E10); found `{json.dumps(pb)[:60]}`", t))
+        else:
+            units = t.side.get("units")
+            col = (df[pb] if pb in df.columns
+                   else units[pb] if units is not None and pb in units.columns else None)
+            if col is None:
+                if pb not in df.columns and (units is not None or t.side_searched):
+                    out.append(_f("meta_conditional", "error",
+                                  f"partitionBy `{pb}` is not a column of the core or __units (E10)", t))
+            elif col.isna().any() or col.nunique() != 1:
+                out.append(_f("meta_conditional", "error",
+                              f"partitionBy `{pb}` must take one value in the table, the region it holds "
+                              f"(E4 partitions ruling); it has {col.nunique(dropna=False)}", t))
     tw = d.get("taxaWithheld")
     if tw is not None:
         if not (isinstance(tw, list) and all(isinstance(x, str) and x.strip() for x in tw)):

@@ -19,7 +19,9 @@
 # survey_evidence, sample_floor, has_effort, has_coordinates, coordinates_coarsened,
 # variables (pipe-joined column list), standard_version, build_date, script; from v1.1-draft also
 # closure, occasion_kind, taxon_inclusion, and components (the other core tables whose __dataset.json
-# names the same sourceURL, i.e. built from the same deposit; E10), pipe-joined.
+# names the same sourceURL, i.e. built from the same deposit; E10), pipe-joined; and partition_of and
+# partition_by (E4 partitions ruling, #72): the deposit-level name and the unit_ column of a regional
+# table of a deposit split for size, empty otherwise; the R package's eco_stack() reads them.
 suppressPackageStartupMessages({ library(data.table); library(jsonlite) })
 options(scipen = 999)
 root <- normalizePath(if (file.exists("standard.md")) "." else "..")
@@ -56,6 +58,7 @@ rows <- lapply(tables, function(t) {
     variables = paste(vars, collapse = "|"),
     closure = ds$closure %||% "", occasion_kind = paste(unlist(ds$occasionKind), collapse = " x "),
     taxon_inclusion = ds$taxonInclusion %||% "", source_url = ds$sourceURL %||% "",
+    partition_of = ds$partitionOf %||% "", partition_by = ds$partitionBy %||% "",
     standard_version = ds$standardVersion %||% "", build_date = ds$buildDate %||% "", script = ds$script %||% "")
 })
 meta <- rbindlist(rows)
@@ -63,5 +66,6 @@ meta <- rbindlist(rows)
 meta[, components := vapply(seq_len(.N), function(i)
   paste(setdiff(table[source_url == source_url[i] & source_url[i] != ""], table[i]), collapse = "|"), "")]
 meta[, source_url := NULL]
+setcolorder(meta, c(setdiff(names(meta), c("partition_of", "partition_by")), "partition_of", "partition_by"))
 fwrite(meta, file.path(root, "metadata", "metadata.csv"))
 cat(sprintf("01_metadata.R: %d tables -> metadata/metadata.csv\n", nrow(meta)))

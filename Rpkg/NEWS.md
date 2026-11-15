@@ -1,5 +1,12 @@
 # eco 0.1.0
 
+`eco_stack(partition, taxa = NULL, fill_zeros = FALSE, exact = FALSE)`
+reassembles a deposit shipped split by its regional strata (`partition_of` and
+`partition_by` in `eco_metadata()`; ben-domingue/eco#72): one table per region,
+the `_exact` siblings with `exact = TRUE`, side tables as attributes, and with
+`fill_zeros = TRUE` explicit zeros for taxa absent from a region, allowed only
+when every part is a `recorded` complete list with no `__survey_taxa`.
+
 `eco_filter()` gains `licence`: SPDX ids, or `"permissive"` (public domain, CC
 BY, ODC-By, UK OGL: commercial use allowed, attribution at most) or
 `"public-domain"`. Results carry a `licence` column (ben-domingue/eco#153).

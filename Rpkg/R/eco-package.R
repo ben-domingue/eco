@@ -41,7 +41,7 @@ NULL
 utils::globalVariables(c(
   ".", ".col", ".k", ".site", "N", "occasion", "period", "taxon", "unit", "y", "y_raw",
   "n_units", "n_occasions", "n_periods", "n_taxa", "model_family", "response_type",
-  "taxon_group", "sampling_protocol", "sample_floor"
+  "taxon_group", "sampling_protocol", "sample_floor", "filled"
 ))
 
 .eco_env <- new.env(parent = emptyenv())

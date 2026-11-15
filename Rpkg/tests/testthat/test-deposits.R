@@ -34,7 +34,7 @@ for (with_deposit in c(TRUE, FALSE)) {
     .eco_clear_session_cache()
     withr::defer({ .eco_env$pin <- NULL; .eco_clear_session_cache() })
     local_mocked_bindings(.eco_table_listing = dep_listing,
-                          .eco_core_tags = function() c(eco = "v1.1", eco_2 = "v1.0"),
+                          .eco_core_tags = function() c(eco = "v1.1", eco_2 = "v1.0", eco_3 = NA),
                           .eco_resolved_tag = function(dataset) "v1.0",
                           .eco_table_file = function(dataset, table, tag) biblio_csv(with_deposit))
     d <- eco_list_deposits()

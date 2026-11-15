@@ -224,9 +224,13 @@ needs_login = TRUE in eco_list_tables(). For them, once:
     install.packages(c("redivis", "arrow"))
     redivis::redivis$authenticate()    # opens a browser; or set REDIVIS_API_TOKEN
 
-Check needs_login before suggesting a table. The largest, the North American
-Breeding Bird Survey route counts, is over 100 million rows: subset after the
-fetch, and warn the researcher about memory.
+Check needs_login before suggesting a table. A deposit too large to download
+whole ships split by region (standard E4, partitions): the North American
+Breeding Bird Survey route counts are 37 tables, one per Bird Conservation
+Region (ziolkowski_2026_bbs_bcr1_count ... _bcr37_count, up to 3.3 million rows
+each). Fetch the regions needed; eco_stack("ziolkowski_2026_bbs", taxa = ...)
+reassembles them, and fill_zeros = TRUE adds each taxon's zeros in regions
+where it was never recorded. Warn the researcher about memory.
 
 Fetches are cached under tools::R_user_dir("eco", "cache"), per release.
 
