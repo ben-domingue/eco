@@ -421,6 +421,32 @@ def test_subsample_column():
     assert "meta_conditional" in checks_of(run(df3, good_meta(subsampleColumn="obs_prop_id")), "error")
 
 
+def test_partition_fields():
+    """E4 partitions ruling (#72, 2026-11-15): a regional table of a split deposit declares partitionOf and
+    partitionBy; the name begins with partitionOf, partitionBy is a unit_ column with one value in the table."""
+    units = pd.DataFrame({"unit": range(1, 41), "unit_region": [7] * 40})
+    ok = good_meta(partitionOf="smith_2020", partitionBy="unit_region")
+    assert "meta_conditional" not in checks_of(run(meta=ok, units=units))
+    df = good_frame(); df["unit_region"] = 7          # in the core instead of __units
+    assert "meta_conditional" not in checks_of(run(df, ok))
+    # one without the other
+    assert "meta_conditional" in checks_of(run(meta=good_meta(partitionOf="smith_2020"), units=units), "error")
+    assert "meta_conditional" in checks_of(run(meta=good_meta(partitionBy="unit_region"), units=units), "error")
+    # the name must begin with partitionOf
+    bad = good_meta(partitionOf="jones_2021", partitionBy="unit_region")
+    assert "meta_conditional" in checks_of(run(meta=bad, units=units), "error")
+    bad = good_meta(partitionOf="Smith 2020", partitionBy="unit_region")
+    assert "meta_conditional" in checks_of(run(meta=bad, units=units), "error")
+    # partitionBy: a unit_ column, present, one value
+    bad = good_meta(partitionOf="smith_2020", partitionBy="obs_wind")
+    assert "meta_conditional" in checks_of(run(meta=bad, units=units), "error")
+    assert "meta_conditional" in checks_of(run(meta=ok, units=units.drop(columns="unit_region")), "error")
+    two = units.assign(unit_region=[7] * 20 + [8] * 20)
+    assert "meta_conditional" in checks_of(run(meta=ok, units=two), "error")
+    gap = units.astype({"unit_region": "float"}); gap.loc[0, "unit_region"] = None
+    assert "meta_conditional" in checks_of(run(meta=ok, units=gap), "error")
+
+
 def test_survey_taxa():
     # unit 1-20 surveyed for AAA and BBB, units 21-40 for AAA only
     df = good_frame()

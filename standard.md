@@ -187,7 +187,8 @@ rejected.
 
 **Ruling (#31, 2026-11-03).** The site-unit surveys of one deposit under one protocol ×
 response type are one table: differences in which taxa were surveyed for, between
-regions, units or runs, are carried by `__survey_taxa`, not by splitting the table.
+regions, units or runs, are carried by `__survey_taxa`, not by splitting the table
+(the one exception is size: the partitions ruling below).
 Two methods (pitfall and emergence tent, aerial net and dipnet, eDNA and visual
 survey) are two protocols when each has its own survey set; when both methods are
 applied to the same unit at the same visit (a paired design), the deposit is one table
@@ -195,6 +196,40 @@ with `obs_method`, under the multi-method form of E9 (*Experimental*). The rulin
 taxon lists only, so it does not touch
 `unitKind = individual` tables, which split by taxon (ruling #20) and stay separate
 where the source deposited separate analysis sets or populations.
+
+**Ruling (partitions, #72, 2026-11-15; an exception to ruling #31 for size).** When the
+one table of a deposit × protocol × response type would be over 1 GB as CSV (as
+`write_table()` writes it, every part counted, in the form E7 ships under the table's
+own name), it ships split by a regional stratum the source itself defines and codes for
+every unit (a field of its site or route table, such as a Bird Conservation Region or a
+state), one table per value of that stratum. A download of that size needs a login on
+Redivis, which serves 100 MB anonymously, and a session that can hold it; a region is the
+unit most analyses of such a survey start from. The split is complete and lossless:
+
+1. Each regional table holds every survey of its region and is a table like any other:
+   its taxa follow E4.2 and `taxonInclusion` (E10) within the region, so a taxon never
+   recorded in a region has no rows there, and no `__survey_taxa` is needed for that.
+2. Each declares in `__dataset.json` `partitionOf`, the deposit-level name its table name
+   begins with, and `partitionBy`, the `unit_` column (in the core or `__units`) that
+   holds the stratum and takes one value in the table. Tables are named
+   `<partitionOf>_<stratum><value>_<type>` (`ziolkowski_2026_bbs_bcr15_count`).
+3. The whole table is not also shipped: no data twice. Every unit is in exactly one
+   regional table, and the script asserts that the regional tables reconcile with the
+   whole (every survey once, the detections identical).
+4. E7 applies to each regional table on its own: a region whose taxa include a flagged one
+   ships coarsened with an `_exact` sibling (E7 scope 3), which declares the same
+   `partitionOf` and `partitionBy`; a region with none ships once, at the source's
+   precision.
+5. The zeros of a taxon outside a region's pool are in no table. A reader may add them
+   when reassembling only where every regional table has `taxonInclusion = recorded`
+   and no `__survey_taxa`: the protocol then records every taxon at every survey, so a
+   taxon recorded elsewhere and not in a region was surveyed for and not detected there.
+   The R package's `eco_stack()` does so on request and refuses otherwise.
+
+A table over about five million rows and under the threshold stays one table, stored as
+period parts (ruling Q3). First case: the national Breeding Bird Survey count table
+(110,127,544 rows, about 9 GB as CSV, 18 GB on Redivis), shipped as 37 tables by Bird
+Conservation Region (`partitionOf = ziolkowski_2026_bbs`, `partitionBy = unit_bcr`).
 
 **Ruling (species pool from detections, 2026-11-06, ruling 19).** Where a protocol records
 every species present at each survey (a plant presence list) and names no target list,
@@ -570,11 +605,14 @@ publish, such as security-class species in a national scheme: a list of names, w
 core rows and no zeros), `crs`, `effortColumn`, `detectionCertainty` (when a
 second, certain detection method is carried; E9), `subsampleColumn` (when `y` counts an
 identified fraction of a sample, the name of the `obs_` column holding that fraction,
-in (0, 1], empty where nothing was subsampled; ruling 21, 2026-11-06). Recommended: `abstract`,
+in (0, 1], empty where nothing was subsampled; ruling 21, 2026-11-06), `partitionOf` and
+`partitionBy` (together, on each regional table of a deposit split for size: the
+deposit-level name the table name begins with, and the `unit_` column holding the
+source's regional stratum, one value in the table; E4 partitions ruling, #72). Recommended: `abstract`,
 `notShipped` (what was in the source and not shipped, with the reason). The
 pipeline adds `summary`, `sampleFloor`, `columns`, `standardVersion`, `script`,
 `buildDate`, and in the metadata table `components`: the other core tables built from
-the same deposit.
+the same deposit, and `partition_of` and `partition_by` from the two fields above.
 
 `closure` and `occasionKind` take the values in E8. `taxonInclusion` says which taxa are
 in the table:
@@ -662,7 +700,8 @@ as before (E4.4, ruling #30).
 **Naming.** `author_year_taxonOrPlace_type`, lower case, ≤ 40 characters; type
 suffixes `occ`, `count` / `nmix`, `cjs`, `dynocc`, `comm`, `removal`, `dobs`, `ds`, `scr`,
 `state`, `calls` and the like. One table per survey protocol × response type (E4,
-ruling #31); the precise sibling of a coarsened table puts `_exact` before the type
+ruling #31), except a table split for size by region, `<partitionOf>_<stratum><value>_<type>`
+(E4, partitions ruling); the precise sibling of a coarsened table puts `_exact` before the type
 suffix (E7).
 
 **Duplicates.** Search the dictionary by DOI before processing; a deposit mirrored on
@@ -748,4 +787,5 @@ shipped and why. Facts about the source are assertions, not comments.
   count in `y_raw`, sequencing depth an `obs_` column, the taxa surveyed for through
   `__survey_taxa`, markers and PCR replicates as occasions or `obs_` columns.
 - **v1.1-draft, independent-sessions ruling (2026-11-14, #204).** E4.4: whether sessions are linked follows the authors. Sessions the source treats as independent replicate populations give units scoped to the session even with global ids, the global id kept as a `unit_` column; sessions treated as repeated surveys of one population keep the individual across sessions. First table: `howe_2022_ontario_bear_scr`.
+- **v1.1-draft, partitions ruling (2026-11-15, Ben, #72).** E4: an exception to ruling #31 for size. A table that would be over 1 GB as CSV ships split by a regional stratum the source codes for every unit, one complete table per region with its own recorded-taxon pool, each declaring `partitionOf` and `partitionBy` (E10, checked by the validator); the whole table is not also shipped; E7 applies per regional table; zeros outside a region's pool may be added on reassembly (`eco_stack()`) only where every regional table is `taxonInclusion = recorded` with no `__survey_taxa`. First case: the national Breeding Bird Survey table, replaced by 37 tables by Bird Conservation Region (`ziolkowski_2026_bbs_bcr<N>_count`) and withdrawn.
 - **v0.3.1 (2026-11-01)** and earlier: see `standard_draft.md`.

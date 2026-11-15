@@ -448,6 +448,21 @@ check_dataset_meta <- function(dataset, long, units = NULL, part = FALSE) {
     else { v <- long[[sc]]
       if (!is.numeric(v) || any(!is.na(v) & !(v > 0 & v <= 1))) p <- c(p, sprintf("E10: subsampleColumn %s must hold a fraction in (0, 1] or NA", sc)) }
   }
+  # E4 partitions ruling (#72): a regional table of a split deposit names the deposit-level table and the unit_ column
+  # holding the source's regional stratum, which takes one value in the table
+  po <- dataset$partitionOf; pb <- dataset$partitionBy
+  if (is.null(po) != is.null(pb)) p <- c(p, "E10: partitionOf and partitionBy go together")
+  if (!is.null(po) && !(is.character(po) && length(po) == 1 && grepl("^[a-z0-9_]+$", po)))
+    p <- c(p, "E10: partitionOf must be one lower-case name, the deposit-level table name")
+  if (!is.null(pb)) {
+    if (!(is.character(pb) && length(pb) == 1 && startsWith(pb, "unit_")))
+      p <- c(p, "E10: partitionBy must name one unit_ column")
+    else {
+      v <- if (pb %in% names(long)) long[[pb]] else if (!is.null(units) && pb %in% names(units)) units[[pb]] else NULL
+      if (is.null(v)) p <- c(p, sprintf("E10: partitionBy %s is not a column of the core or __units", pb))
+      else if (anyNA(v) || length(unique(v)) != 1L) p <- c(p, sprintf("E10: partitionBy %s must take one value in the table (it has %d)", pb, length(unique(v))))
+    }
+  }
   tw <- dataset$taxaWithheld
   if (!is.null(tw)) {
     if (!is.character(tw) || !length(tw) || any(!nzchar(trimws(tw)))) p <- c(p, "E10: taxaWithheld must be a character vector of taxon names")
@@ -499,6 +514,8 @@ write_table <- function(long, name, dataset, taxa = NULL, periods = NULL, units 
                         survey_taxa = NULL, script = NULL) {
   stopifnot(nchar(name) <= 40, grepl("^[a-z0-9_]+$", name))
   mp <- check_dataset_meta(dataset, long, units)
+  if (!is.null(dataset$partitionOf) && !startsWith(name, paste0(dataset$partitionOf, "_")))
+    mp <- c(mp, sprintf("E10: a partition table's name begins with its partitionOf (%s_)", dataset$partitionOf))
   if (length(mp)) stop(sprintf("%s fails the metadata contract: %s", name, paste(mp, collapse = "; ")))
   long <- order_eco(long)
   v <- validate_eco(long, survey_taxa = survey_taxa, unit_kind = dataset$unitKind)
