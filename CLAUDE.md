@@ -33,7 +33,7 @@ Rscript metadata/fetch_bibtex.R              # after a batch: BibTeX for new DOI
 python3 tools/table_locations.py            # homepage map points; the uploader and pipeline stage 12 run it for you, check_coverage.py fails a table with no point
 metadata/run_pipeline.sh                     # metadata.csv, biblio.csv, tags.csv, status.json from output/*__dataset.json, dictionary/, tags/
 python3 metadata/upload_meta.py --dry-run    # ship those three to Redivis eco_meta (draft)
-python3 releases/manifest.py --check         # is releases/manifest.csv up to date with Redivis? (run after Ben publishes)
+python3 releases/manifest.py                 # after Ben publishes: append the eco version (incremental, seconds; --full rebuilds all)
 python3 upload/red_up_eco.py --dry-run       # what would ship, and to which shard; never publishes
 python3 upload/red_up_eco.py                 # the gate: validate, upload to the Redivis draft, write report rows (confirms first)
 cd site && quarto render                     # the website (GitHub Pages builds it on push)
