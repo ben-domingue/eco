@@ -413,3 +413,4 @@ merker_2021_coweeta_cawa_count,35.06,-83.43,locality,15,"Coweeta Hydrologic Labo
 calhoun_2023_hopland_mamm_dynocc,39.0,-123.07,locality,10,"UC Hopland Research and Extension Center, Mendocino County CA (deposit methods: 39 00 N, 123 04 W; station coordinates not deposited)"
 sheehy_2018_scotland_marten_scr,56.4,-4.1,region,200,"centre of the three regions (paper: Highlands 57.3 N 4.7 W, Central Scotland 56.1 N 4.4 W, Borders 55.7 N 3.2 W); feeder coordinates in __traps (EPSG:27700)"
 sheehy_2018_scotland_feeder_comm,55.9,-3.8,region,100,"between Central Scotland (56.1 N 4.4 W) and the Borders (55.7 N 3.2 W) (paper); feeder coordinates as unit_x/unit_y (EPSG:27700)"
+howe_2022_ontario_bear_scr,48.0,-84.0,region,1000,"centre of the sampled black bear range in Ontario (100 arrays across UTM zones 15-18, about 44-52 N, 72-96 W); corral coordinates in __traps (NAD83 UTM per zone)"

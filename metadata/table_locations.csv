@@ -239,6 +239,7 @@ hossack_2020_losttrail_toadmale_rd,48.2,-114.9,locality,16,,bounding box,geograp
 hostetter_2020_minnesota_lynx_dynocc,47.6,-91.5,region,250,,place name,"NE Minnesota, Superior NF"
 howe_2017_tai_duiker_ds,5.8,-7.3,locality,6,21,unit coordinates,unit_decimalLatitude
 howe_2017_tai_duikerpeak_ds,5.8,-7.3,locality,6,21,unit coordinates,unit_decimalLatitude
+howe_2022_ontario_bear_scr,48.0,-84.0,region,1000,,place name,"centre of the sampled black bear range in Ontario (100 arrays across UTM zones 15-18, about 44-52 N, 72-96 W); corral coordinates in __traps (NAD83 UTM per zone)"
 hunter_2025_georgia_pinesavanna_occ,32.4,-83.4,state,394,161,unit coordinates,unit_decimalLatitude
 husemann_2015_ch_greenbul_cjs,-3.5,38.3,locality,5,,place name,"Chawia fragment, Taita Hills"
 husemann_2015_fu_greenbul_cjs,-3.4,38.4,locality,5,,place name,"Fururu fragment, Taita Hills"

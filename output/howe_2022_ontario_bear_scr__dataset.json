@@ -1,0 +1,76 @@
+{
+  "table": "howe_2022_ontario_bear_scr",
+  "title": "Genetic spatial capture-recapture of American black bears at barbed-wire hair corrals on 100 study-area sessions across Ontario, Canada, 2017-2019 and 2022",
+  "creator": "Howe, Eric J.",
+  "pubDate": "2024",
+  "doi": "10.5061/dryad.7wm37pvtz",
+  "sourceURL": "https://doi.org/10.5061/dryad.7wm37pvtz",
+  "citation": "Howe, E. J. (2024). Spatially explicit genetic capture-recapture data from black bears in Ontario, Canada (Version 12) [Dataset]. Dryad. https://doi.org/10.5061/dryad.7wm37pvtz",
+  "paperDOI": "10.1002/eap.2638",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Black bear (Ursus americanus) hair snagged at baited barbed-wire corrals (about 40 per array, ~1.5 km apart along roads and trails) on 100 array x year sessions across Ontario's bear range, sampled over five (one session six, one seven) weekly occasions in spring and early summer of 2017, 2018, 2019 and 2022 by the Ontario Ministry of Natural Resources, and genotyped to individual and sex at 15 microsatellite loci. 4906 bear-sessions (4702 distinct bears) and 15555 detections. The wire height is meant to exclude cubs and yearlings. Collected to estimate local and regional bear density from spatially replicated, independently analysed SECR surveys.",
+  "samplingProtocol": "Baited barbed-wire hair corrals (single strand ~50 cm high) in curvilinear arrays of 27-46 corrals ~1.5 km apart near roads and trails; hair collected weekly over five consecutive weeks; samples of at least five hairs genotyped at 15 microsatellite loci and a sex marker and grouped into individuals with allelematch (Howe et al. 2022).",
+  "samplingProtocolCode": "hair_snag",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The trap files' usage columns (days per weekly occasion) give which corrals were operated each week; a file without them has every corral operated every occasion (README). Each bear has a row at every operated corral-week of its own session. Two detections at corral-weeks with 0 days of usage make those corral-weeks operated.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "Each session (an array in one year, cluster_id) is a closed population, as in the authors' array-specific SECR, and a bear is a unit within its session (ruling 2026-11-14): unit = <session>_<bear id>, at risk only at that session's corrals. The deposit's bear ids are global and 161 bears are detected in more than one session, mostly the same area resampled in a later year and 7 at two arrays in the same year; unit_bear_id links them, but the table does not treat them as one history.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "temporalCoverage": "2017/2022 (spring and early summer; no sampling 2020-2021)",
+  "geographicCoverage": "Ontario, Canada, black bear range about 44 to 52 N and 72 to 96 W (UTM zones 15-18); corral coordinates in __traps",
+  "crs": "NAD83 / UTM zones 15N-18N (EPSG:26915-26918), as deposited: __traps gives utm_zone and epsg per trap; x and y are comparable only within a zone",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "UTM metres as deposited: black bear IUCN Least Concern, no sensitivity or private-land statement in the source"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Multi-session: 100 independent arrays x years; period = year, cluster_id = session.",
+  "notes": "Bear BLBR000690 (700Rd, 2017) is recorded female in 8 detections and male in 1; unit_sex is NA. Three 2017 sessions (81Rd, LarderRaven, GardenLkRd) write bear ids with seven digits (BLBR0000212); they are kept as deposited, and 52 of them would equal a six-digit id of another session if the extra zero were dropped, which the source does not say to do. One detection row is duplicated in the deposit and counted once. obs_effort_days is the deposited days of operation per corral-week; it is NA in the 26 sessions whose trap files give no usage (constant effort, number of days not stated). Sessions (cluster_id, and the prefix of unit and trap) are keyed by the deposited caps file name without caps_ and .txt (e.g. Sowden_2018, CCGP2022_WMU32_2022), because two 2022 files repeat the first-year session name of their area (CCGP, ShirleyLakeRd). Resampled areas are not matched across years (OpeongoLine_2018 / Opeongo2022_WMU55A_2022). unit_wlz is the Wildlife Landscape Zone sampled.",
+  "notShipped": {
+    "density estimates": "SECR model outputs in the paper, not deposited"
+  },
+  "summary": {
+    "n_rows": 992088,
+    "n_units": 4906,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 7,
+    "n_surveys": 992088,
+    "y_values": "0,1",
+    "prop_zero": 0.984,
+    "n_traps": 4020,
+    "n_zero": 976533,
+    "n_positive": 15555,
+    "n_units_detected": 4906,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "cluster_id", "unit_sex", "unit_bear_id", "unit_forest_region", "unit_wlz", "obs_effort_days"],
+  "coreMd5": "ed74f40bd8d59d2473c6b99faa4f3ea1",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year", "n_sessions", "n_bears", "season"],
+      "md5": "40f34bd7ada0e87cd53231866eeed44e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "354b4d1e333443881f50883aa53381b1"
+    },
+    "traps": {
+      "rows": 4020,
+      "columns": ["trap", "x", "y", "utm_zone", "epsg", "session", "year", "n_occasions_used"],
+      "md5": "a2695982b7061176a3ca405df5d866d5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/howe_2022_ontario_bear_scr.R",
+  "buildDate": "2026-11-14"
+}

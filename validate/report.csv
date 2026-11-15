@@ -239,6 +239,7 @@ hossack_2020_losttrail_toadmale_rd,40864,1232,1,TRUE,"","",TRUE,"",TRUE,meets,de
 hostetter_2020_minnesota_lynx_dynocc,4399,431,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 howe_2017_tai_duiker_ds,231,21,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (21 units < 30),deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),resp_ordinal*; sample_floor
 howe_2017_tai_duikerpeak_ds,231,21,1,TRUE,"",sample_floor,TRUE,"",TRUE,below (21 units < 30),deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),resp_ordinal*; sample_floor
+howe_2022_ontario_bear_scr,992088,4906,1,TRUE,"","",TRUE,"",TRUE,meets,effort_table,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*; multi_scale*; resp_scale_nested_support
 hunter_2025_georgia_pinesavanna_occ,966,161,2,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),cov_prefix; imputed_values*
 husemann_2015_ch_greenbul_cjs,2161,264,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*
 husemann_2015_fu_greenbul_cjs,374,46,1,TRUE,"","",TRUE,"",TRUE,meets,deposited_matrix,eco v1.1-draft (2026-11-03),passes (conforms to v1.0),imputed_values*; sample_floor

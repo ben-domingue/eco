@@ -1,11 +1,11 @@
 {
   "date": "2026-11-14",
-  "n_tables": 600,
-  "n_deposits": 392,
-  "n_rows": 418605547,
-  "n_units": 568347,
-  "n_taxa_rows": 38819,
-  "n_surveys": 29812649,
+  "n_tables": 601,
+  "n_deposits": 393,
+  "n_rows": 419597635,
+  "n_units": 573253,
+  "n_taxa_rows": 38820,
+  "n_surveys": 30804737,
   "n_families": 77,
   "families": {
     "Abundance": 2,
@@ -82,14 +82,14 @@
     "Single-season occupancy": 43,
     "Single-season occupancy / spatial count": 1,
     "Single-visit presence / absence": 1,
-    "Spatial capture-recapture": 42,
+    "Spatial capture-recapture": 43,
     "Spatial mark-resight": 1,
     "Two-species occupancy with misidentification": 1
   },
   "response_types": {
     "binomial_count": 24,
     "count": 147,
-    "detection": 346,
+    "detection": 347,
     "multinomial_cell": 21,
     "ordinal": 5,
     "state": 57
@@ -99,14 +99,14 @@
     "Birds": 181,
     "Fish": 36,
     "Invertebrates": 70,
-    "Mammals": 206,
+    "Mammals": 207,
     "Multiple": 13,
     "Plants": 21,
     "Reptiles": 18
   },
   "survey_evidence": {
     "deposited_matrix": 300,
-    "effort_table": 68,
+    "effort_table": 69,
     "inferred": 57,
     "row_presence": 51,
     "sample_table": 124
@@ -115,9 +115,9 @@
   "n_with_coordinates": 184,
   "n_do_not_publish": 0,
   "n_human_tagged": 0,
-  "n_valid": 600,
-  "n_irw_conforms": 600,
+  "n_valid": 601,
+  "n_irw_conforms": 601,
   "standard_versions": {
-    "eco v1.1-draft (2026-11-03)": 600
+    "eco v1.1-draft (2026-11-03)": 601
   }
 }

@@ -3084,7 +3084,7 @@ published-table change.
 What strained the standard: nothing. A licence granted by email has no field of its own; it is recorded in the
 script header, `notes` and the dictionary's `original_license`.
 
-## Batch 68 — 2026-11-14 (discovery pass 2 Dryad rows, CC0: Hopland megafire cameras, Scottish pine martens and squirrels; three tables)
+## Batch 68 — 2026-11-14 (discovery pass 2 Dryad rows, CC0: Hopland megafire cameras, Scottish pine martens and squirrels, Ontario black bears; four tables)
 
 Built in `~/eco-b68` (branch `batch-68`, from main at 47d9df8), no agents. Nine Dryad deposits downloaded anonymously
 (the DRYAD_TOKEN in the environment had expired: run with `DRYAD_TOKEN=`); about 20 Dryad requests.
@@ -3094,6 +3094,7 @@ Built in `~/eco-b68` (branch `batch-68`, from main at 47d9df8), no agents. Nine 
 | calhoun_2023_hopland_mamm_dynocc | dynamic community occupancy, camera traps, 9 mammals | Dryad doi:10.6078/D1W70R (CC0) | 12,195 | 36 cameras, October-November 2016-2020, 7-8 weekly occasions; 2018 megafire burned 25 stations; burn status and dNBR as `period_`; no coordinates deposited |
 | sheehy_2018_scotland_marten_scr | genetic SCR (hair), pine marten | Dryad doi:10.5061/dryad.478kp63 (CC0) | 13,862 | 42 martens, 222 feeders in three concurrent regional arrays (region = `cluster_id`, an individual at risk only in its own region), 4-5 visits Jan-Jun 2016; BNG in `__traps` |
 | sheehy_2018_scotland_feeder_comm | community occupancy, hair at feeders, red and grey squirrel and pine marten | same deposit | 2,181 | 186 feeders in Central Scotland and Borders, 4 visits; `obs_method` (camera also deployed); Highlands red-squirrel-only rows not shipped (shared-detector ruling) |
+| howe_2022_ontario_bear_scr | genetic SCR (hair corrals), black bear, multi-session | Dryad doi:10.5061/dryad.7wm37pvtz (CC0, v12) | 992,088 | 100 array x year sessions 2017-2019 and 2022, 5-7 weekly occasions; unit = bear within session (ruling below), 4,906 bear-sessions of 4,702 ids; period = year, cluster_id = session; usage days as `obs_effort_days`; UTM zones 15-18 in `__traps` |
 
 Data repairs, each asserted and recorded in `notes`: Calhoun's burn3 has "Unburned Post" (2018) and "Unburned_Post"
 (2019-2020), written as one level. Sheehy: one marten encounter (ND1D, feeder 1DSQ02, visit 1) is at a feeder-visit
@@ -3107,9 +3108,17 @@ cell, so no history is derived for them (`notShipped`).
 visit log and community file as `ke_2022_costarica_birds_nmix` for 2016-2018 (Ke covers 2016-2019): a subset, like
 Frishkoff 2019. The DOI check alone does not catch this; the landscape codes (NARA, ALTO, ...) did.
 
-**Held: Howe Ontario black bear SCR (dryad.7wm37pvtz)**, 100 study-area x year sessions, 4,906 bears, the largest
-SCR deposit seen. 145 bears are detected in more than one session (resampled areas, and some neighbouring areas);
-E4.4 does not say when two sessions are the same trapped area. Options in `human_review.csv`; Ben's ruling needed.
+**Howe Ontario black bear SCR (dryad.7wm37pvtz): held, then built after Ben's ruling (2026-11-14, option (a)).**
+The deposit's bear ids are global and 161 ids are detected in more than one session (mostly the same area in a later
+year; 7 at two arrays in the same year, although the paper says no genotype was found on more than one array). Ruling:
+the unit is the bear within its session, at risk only at that session's corrals, as in the authors' array-specific
+SECR; the global id is kept as `unit_bear_id`. Data repairs, asserted: two 2022 caps files repeat their area's first-year
+session name (CCGP, ShirleyLakeRd), so sessions are keyed by the caps file stem; three 2017 files write seven-digit ids
+(BLBR0000212), kept as deposited (52 would collide with six-digit ids if the zero were dropped; not merged); two
+detections at corral-weeks with 0 usage days make those corral-weeks surveyed; one duplicate detection row; one bear
+recorded female 8 times and male once (`unit_sex` NA). The held row's counts (145 bears in several sessions, 29
+duplicates) came from an earlier rough parse and were wrong; the script's assertions are the record. The ruling is
+not yet in `standard.md` (E4.4 speaks only of ids valid within a session): issue to follow.
 
 **Looked at, left available (queue notes unchanged):** Farr 2017 Colorado conservation developments (dryad.pp0jp:
 covariates and Julian dates scaled and rounded, years not deposited, two species' histories empty in one file,
@@ -3119,4 +3128,4 @@ overlaps lindstrom_2025_sweden_summerpoints_count for Sweden); Rees Glenelg/Otwa
 one detected-at-least-once value per station-year, no replication); Mirochnitchenko Nebraska point counts
 (dryad.bg79cnpbb: detections only, visit list inferable); Kays hunting/hiking eMammal (dryad.gv1dq: downloaded, not read).
 
-What strained the standard: the multi-area SCR above. Nothing else new.
+What strained the standard: global ids across independent SCR sessions (Howe, above): ruled 2026-11-14, not yet written into E4.4.
