@@ -1,0 +1,72 @@
+{
+  "table": "sheehy_2018_scotland_marten_scr",
+  "title": "Genetic spatial capture-recapture of pine martens at 223 hair-sampling feeders in three regions of Scotland, January-June 2016: 42 individuals, 4-5 visits",
+  "abstract": "Pine marten (Martes martes) hair genotyped to individual and sex from glue strips in multi-species feeders at 222 sites (one further feeder never sampled) in 2 x 2 km grid cells in three regions of Scotland that differ in time since marten recolonisation: the Highlands (2 cells), Central Scotland (10) and the Scottish Borders (7). Visited four times between January and May 2016 at about four-week intervals, with a fifth visit in June in the Highlands. 42 martens (10 in BO, 22 in CS, 10 in HI), 390 detections. Used with spatial capture-recapture to estimate regional marten density and density-weighted connectivity, which were then related to red and grey squirrel occupancy (sibling table sheehy_2018_scotland_feeder_comm).",
+  "samplingProtocol": "Permanently deployed baited multi-species feeders (15 cm wooden boxes with a liftable lid carrying glue strips) about 325 m apart within 2 x 2 km grid cells; hair collected and strips replaced at each visit; marten hair genotyped at microsatellite loci to individual and sex (Sheehy et al. 2018).",
+  "samplingProtocolCode": "hair_snag",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The trap file's o1-o5 usage columns give which feeders were sampled on which visit; each individual has a row at every used feeder-visit of its own region (no individual was detected in two regions).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "one 2016 session per region, treated as closed over the January-June visits as in the authors' SCR; the three regions are separate arrays (cluster_id) and an individual has rows only at its own region's feeders",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Scotland, UK: Highlands (about 57.3 N, 4.7 W), Central Scotland (56.1 N, 4.4 W) and Scottish Borders (55.7 N, 3.2 W); feeder coordinates in __traps (EPSG:27700)",
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Three regional arrays sampled concurrently; region as cluster_id.",
+  "notes": "Feeder 1DSQ02 is marked unused on visit 1 in the trap file, but marten ND1D was genotyped there on that visit and the squirrel file has the visit surveyed; it is treated as used. Two encounter rows give grid cell D for traps DDSQ04 and DDSQ17, whose cell is DD; the trap file is followed. Occasion dates are not deposited (four visits January-May at about four-week intervals, a fifth in June in HI). The trap file labels Central Scotland LL; region is written CS as in the paper.",
+  "notShipped": {
+    "DENS, DWC": "pine marten density and density-weighted connectivity surfaces are SCR model outputs (not deposited)",
+    "squirrel detections": "shipped as sheehy_2018_scotland_feeder_comm"
+  },
+  "creator": "Sheehy, Emma; Sutherland, Chris; O'Reilly, Catherine; Lambin, Xavier",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.478kp63",
+  "sourceURL": "https://doi.org/10.5061/dryad.478kp63",
+  "citation": "Sheehy, E., Sutherland, C., O'Reilly, C., & Lambin, X. (2018). Data from: The enemy of my enemy is my friend: native pine marten recovery reverses the decline of the red squirrel by suppressing grey squirrel populations [Dataset]. Dryad. https://doi.org/10.5061/dryad.478kp63",
+  "paperDOI": "10.1098/rspb.2017.2603",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "temporalCoverage": "2016-01/2016-06",
+  "crs": "EPSG:27700",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "British National Grid metres as deposited: no taxon flagged (pine marten, red and grey squirrel IUCN Least Concern; no sensitivity statement in the source) and no private-land statement"
+  },
+  "summary": {
+    "n_rows": 13862,
+    "n_units": 42,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 13862,
+    "y_values": "0,1",
+    "prop_zero": 0.972,
+    "n_traps": 222,
+    "n_zero": 13472,
+    "n_positive": 390,
+    "n_units_detected": 42,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "cluster_id", "unit_sex"],
+  "coreMd5": "61ae1efdf827aed36d331841087b6e3c",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "f2cca1eca988e15860807b0e6cea27d3"
+    },
+    "traps": {
+      "rows": 222,
+      "columns": ["trap", "x", "y", "region", "grid_cell", "n_occasions_used"],
+      "md5": "368f95db407aedab584595c7fb7b8e1f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sheehy_2018_scotland_marten_scr.R",
+  "buildDate": "2026-11-14"
+}
