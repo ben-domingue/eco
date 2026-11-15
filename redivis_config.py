@@ -56,6 +56,7 @@ class Dataset:
 CORE_SHARDS: tuple[Dataset, ...] = (
     Dataset("eco", "4j5q"),
     Dataset("eco_2", "3fnj"),     # created by Ben 2026-11-05, with eco near 700 tables
+    Dataset("eco_3", "7j7b"),     # created by Ben 2026-11-15 for the 74 BBS BCR tables (#72); eco_2 keeps CORE_DEFAULT
 )
 
 #: The pipeline's own tables (metadata, biblio, tags). Not a shard.

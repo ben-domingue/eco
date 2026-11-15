@@ -37,7 +37,7 @@ with_cite_stubs <- function(code) {
   .eco_clear_session_cache()
   withr::defer({ .eco_env$pin <- NULL; .eco_clear_session_cache() })
   local_mocked_bindings(.eco_table_listing = cite_listing,
-                        .eco_core_tags = function() c(eco = "v1.1", eco_2 = NA),
+                        .eco_core_tags = function() c(eco = "v1.1", eco_2 = NA, eco_3 = NA),
                         .eco_resolved_tag = function(dataset) "v1.0",
                         .eco_table_file = function(dataset, table, tag) cite_biblio(),
                         eco_version = function() list(eco_version = 15L, released = "2026-11-06T00:00:00Z"))

@@ -11,7 +11,8 @@
 #: Core shards, oldest first.
 .eco_cores <- list(
   list(name = "eco", ref = "4j5q"),
-  list(name = "eco_2", ref = "3fnj")
+  list(name = "eco_2", ref = "3fnj"),
+  list(name = "eco_3", ref = "7j7b")
 )
 .eco_core <- .eco_cores[[1]]
 .eco_meta <- list(name = "eco_meta", ref = "241c")
