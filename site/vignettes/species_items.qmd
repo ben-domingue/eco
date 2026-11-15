@@ -7,7 +7,7 @@ description: |
   This page fits that model to a boreal bird table in eco twice, once ignoring
   imperfect detection and once with spOccupancy, and shows where the two
   disagree; a sparse camera-trap table shows what pooling species can and
-  cannot do.
+  cannot do, and nine more tables show which of those findings carry over.
 date: today
 bibliography: species_items.bib
 format:
@@ -51,7 +51,9 @@ is absent or that it was there and missed.
 This page builds the model up from the site-by-species table, fits it to one
 eco table first without and then with the detection layer, and shows what
 the detection layer changes. It then fits a second, much sparser table to show
-what treating species as draws from a community buys and what it cannot.
+what treating species as draws from a community buys and what it cannot, and
+finally fits every table the rule below picks, to see which of the findings
+from the first two hold up elsewhere.
 
 {{< include _caveat.qmd >}}
 
@@ -147,15 +149,17 @@ stopifnot(setequal(picked$table, names(cache$fits)))
 ```
 
 Of the `r nrow(cand)` multi-taxon site detection tables with at least 30 sites
-and two occasions, the rule keeps two. The others fall out on the number of
-seasons, the number of taxa (several community tables carry 50 to 240), or
-occasions that are spatial subsamples or methods. Neither table has a
+and two occasions, the rule keeps `r nrow(picked)`. Most of the others fall out
+because they span more than one season, or have fewer than 10 taxa; a few have
+occasions that are spatial subsamples or methods rather than repeat visits.
+`r if (!any(picked$survey_taxa %in% TRUE)) "None of the kept tables has" else "Not every kept table lacks"` a
 `__survey_taxa` side table, so every species was looked for on every visit and
 the zeros in the table are real non-detections; a table with one would have
 species-specific gaps, which `eco_to_array()` keeps as `NA` and which the
 model would have to respect.
 
-The two are very different communities, which is the point of fitting both:
+All `r nrow(picked)` are fit [at the end of the page](#eleven-tables). Two are
+followed in detail first, because they are very different communities:
 
 - `lebeuftaylor_2026_boreal_edges_aru_comm` [@lebeuftaylor2026]: 34 bird
   species recorded within 150 m of autonomous recording units at 564 locations
@@ -242,7 +246,7 @@ is not.
 The community occupancy model puts the species distribution on two
 parameters per species, occupancy $\psi_k$ and detection $p_k$, each drawn from
 its own community normal. It is fit with `spOccupancy::msPGOcc()`
-[@doser2022], a Gibbs sampler that takes about two minutes on this table. The
+[@doser2022], a Gibbs sampler that takes a few minutes on this table. The
 call, from the companion script
 [`species_items_compute.R`](https://github.com/ben-domingue/eco/blob/main/site/vignettes/species_items_compute.R),
 is
@@ -472,6 +476,8 @@ The species slopes from the quick fit to the `ever` table, the same model
 without detection, correlate with these loadings at `r fmt(r_lam)`. For the
 *direction* each species takes on the gradient, ignoring detection does little
 harm here; for *how common* each species is, it does the damage shown above.
+(On other tables the agreement is much weaker; see
+[below](#eleven-tables).)
 The reason is that detection which is the same everywhere for a species
 scales that species' row of the table down, which moves its intercept a lot
 and its pattern across sites less. Detection that changes along the gradient
@@ -486,8 +492,9 @@ the first morning of the season as on the last and at any hour. Birds do not
 work that way: song falls off as the breeding season ends, and the dawn chorus
 is not the mid-morning one. The boreal table carries the day of the season and
 the time of day of every recording, standardised, as `obs_day_z` and
-`obs_time_z`. Refitting both models with `det.formula = ~ obs_day_z + obs_time_z`
-asks whether that matters, with everything else held the same.
+`obs_time_z`. Refitting both models with `det.formula = ~ day_z + time_z` (the
+same two columns; `eco_to_array()` returns observation covariates without the
+`obs_` prefix) asks whether that matters, with everything else held the same.
 
 ```{r}
 #| label: det-load
@@ -521,8 +528,8 @@ vz <- unique(d[, .(unit, occasion, tz = obs_time_z)])
 tz_ss <- sum(vz$tz^2)
 tz_sq <- sort(vz$tz^2, decreasing = TRUE)
 tz_top1 <- 100 * tz_sq[1] / tz_ss; tz_top3 <- 100 * sum(tz_sq[1:3]) / tz_ss
-dz_top3 <- 100 * sum(sort(unique(d[, .(unit, occasion, dz = obs_day_z)])$dz^2,
-                          decreasing = TRUE)[1:3]) / sum(unique(d[, .(unit, occasion, dz = obs_day_z)])$dz^2)
+vd <- unique(d[, .(unit, occasion, dz = obs_day_z)])
+dz_top3 <- 100 * sum(sort(vd$dz^2, decreasing = TRUE)[1:3]) / sum(vd$dz^2)
 # the sensitivity fit: same model without the off-schedule visits
 sv <- fb$sens
 cred <- function(lo, hi) lo > 0 | hi < 0
@@ -535,19 +542,21 @@ sens_tab <- rbindlist(lapply(fb$det_covs, function(cv) {
 }))
 dt[, psi_s := plogis(mss_beta)]
 sr_psi <- cor(dt$psi_d, dt$psi_s)
+# the prose below says every credible slope stays credible and the fit needed no rerun
+stopifnot(all(sens_tab$still_credible == sens_tab$credible), !isTRUE(sv$long_chains))
 ```
 
-Both fits converged without needing longer chains (largest $\hat R$
+Both fits converged `r if (any(fb$conv[grepl("_det$", model), long_chains])) "after a rerun with longer chains" else "without needing longer chains"` (largest $\hat R$
 `r fmt(max(fb$conv[grepl("_det$", model), max_rhat]))`), in about
 `r fmt(sum(fb$conv[grepl("_det$", model), minutes]), 1)` minutes together.
 
-**At the level of the community, neither covariate matters.** The community
+**The community-average slopes are near zero.** The community
 slope on day of season is `r fmt(gt(cdet, "mu_day_z", "med"))`
 [`r fmt(gt(cdet, "mu_day_z", "lo"))`, `r fmt(gt(cdet, "mu_day_z", "hi"))`] and on
 time of day `r fmt(gt(cdet, "mu_time_z", "med"))`
 [`r fmt(gt(cdet, "mu_time_z", "lo"))`, `r fmt(gt(cdet, "mu_time_z", "hi"))`]:
-both intervals contain zero, so there is no direction the average bird in this
-community moves in.
+both intervals contain zero, so the average species in this community shows no
+clear direction.
 
 **Individual species are a different story.** Of the `r nrow(dt)` species,
 `r sum(dt$day_cred)` have a day-of-season slope whose 95% interval excludes
@@ -567,15 +576,14 @@ because of what the covariate is. `obs_time_z` is the authors' standardised
 *clock* time of each recording, on a linear scale: most visits sit in a narrow
 band, and a few off-schedule recordings sit far out in the upper tail. Leverage
 on a linear term goes as the square of the covariate, so those few visits carry
-most of it — the three most extreme of the `r nrow(vz)` visits hold
+much of it: the three most extreme of the `r nrow(vz)` visits hold
 `r sprintf("%.0f%%", tz_top3)` of the covariate's sum of squares, and the single
 most extreme holds `r sprintf("%.0f%%", tz_top1)`, against
 `r sprintf("%.0f%%", dz_top3)` for the top three of `obs_day_z`. A linear term
-also cannot know that clock time is circular, so a recording late at night and
-one shortly after midnight sit at opposite ends of the scale while being close
-together in the night. Rebuilding the covariate as something circular, or as
-time relative to sunrise, would need the raw times, and the deposit ships only
-the standardised values.
+in clock time also assumes that detection changes at the same rate through the
+whole morning. Rebuilding the covariate as time relative to sunrise, or with a
+curve, would need the raw times, and the deposit ships only the standardised
+values.
 
 **And almost none of it reaches the conclusions.** Occupancy estimates are
 nearly unchanged: the correlation between the two versions is
@@ -587,9 +595,9 @@ interval's width. The site loadings are steadier still, correlating at
 `r d_top$vernacularName`, from `r fmt(d_top$psi_i)` to `r fmt(d_top$psi_d)`, and
 the largest loading shift `r if (identical(d_top$taxon, l_top$taxon)) "to the same species" else paste("to the", l_top$vernacularName)`,
 from `r fmt(l_top$lf_lambda)` to `r fmt(l_top$lfd_lambda)`. That is the pattern: what
-moves is the species with little of its own data — the
+moves is the species with little of its own data (the
 `r d_top$vernacularName` was recorded at `r d_top$n_sites_detected` of
-`r fb$n_sites` locations — where the detections were too few to pin down
+`r fb$n_sites` locations), where the detections were too few to pin down
 occupancy and detection separately in the first place.
 
 ```{r}
@@ -615,7 +623,7 @@ plotly::ggplotly(g, tooltip = "text", width = 760, height = 410) |>
 `obs_time_z` sits in a few visits, the detection fit is worth
 repeating without them. The sensitivity fit sets `y` and both covariates to
 missing for every visit with a standardised time beyond
-$\pm`r sv$max_z`$ — `r sv$n_visits_dropped` of `r sv$n_visits_total` visits —
+$\pm`r sv$max_z`$ (`r sv$n_visits_dropped` of `r sv$n_visits_total` visits)
 and refits. spOccupancy will not take a location whose history is then entirely
 missing, so `r sv$n_sites_dropped` locations
 (`r paste(sv$sites_dropped, collapse = ", ")`) drop out with them, leaving
@@ -653,8 +661,8 @@ the community's median per-visit detection moves from
 still correlate at `r fmt(dr_p, 3)`, so the ordering of easy and hard species
 survives; it is the baseline that has shifted under them.
 
-The honest summary is that this table had the covariates to test the worry
-raised above, and the worry does not bite here. Detection really does depend on
+In short, this table had the covariates to test the worry raised above, and
+the worry does not bite here. Detection really does depend on
 when you listen, for `r sum(dt$day_cred | dt$time_cred)` of the `r nrow(dt)`
 species, and that survives dropping the off-schedule visits, but the effects
 point in enough different directions and are small enough that the occupancy
@@ -737,6 +745,110 @@ zero for every species but the anchor, white-tailed deer. With this little
 information per camera, the site side of the model is not estimable, and
 only the species side is.
 
+## Eleven tables {#eleven-tables}
+
+The two tables above were chosen as extremes. The rule picks
+`r nrow(picked)`, and the companion script fits the same models to all of
+them: the model without detection on `ever`, each species alone with
+`occu()`, `msPGOcc()`, and `lfMsPGOcc()` with one site factor, anchored the
+same way as on the boreal table.
+
+```{r}
+#| label: across
+across <- rbindlist(lapply(cache$fits, function(f) {
+  s <- as.data.table(f$species)
+  psi <- plogis(s$ms_beta)
+  data.table(table = f$table, sites = f$n_sites, species = f$n_species,
+             max_visits = f$max_visits,
+             median_p = plogis(f$comm_ms[param == "mu_p", med]),
+             shortfall = median((psi - s$naive_share) / psi),
+             seen_once = sum(s$n_sites_detected == 1),
+             boundary = sum(plogis(s$np_beta) > 0.99 | is.na(s$np_beta_se) | s$np_beta_se > 10),
+             site_vs_species = sqrt(f$rasch_var[["site"]] / f$rasch_var[["species"]]),
+             lf_rhat = f$conv[model == "lfMsPGOcc", max_rhat],
+             # the quick fit's slopes have an arbitrary sign: flip them so the anchor's is positive
+             lf_vs_ever = cor(s$lf_lambda, s$twopl_a * sign(s[taxon == f$anchor, twopl_a])))
+}))
+across[lf_rhat > 1.1, lf_vs_ever := NA]
+across[order(-shortfall)]
+```
+
+`shortfall` is, for the median species, how far the share of sites where it
+was ever detected falls below its estimated occupancy, as a fraction of that
+occupancy. `site_vs_species` is the ratio of the site to the species standard
+deviation in the model without detection. `lf_vs_ever` correlates the
+latent-factor loadings with the slopes from the quick fit to `ever`, and is
+left empty where the latent-factor fit did not converge.
+
+```{r}
+#| label: across-stats
+#| echo: false
+lo <- across[which.min(shortfall)]; hi <- across[which.max(shortfall)]
+short <- function(x) sub("_(comm|occ)$", "", x)
+lf_bad <- across[lf_rhat > 1.1][order(-lf_rhat)]
+lf_good <- across[lf_rhat <= 1.1]
+```
+
+**Ignoring detection understates how common species are, everywhere.** On
+every table the median species was recorded at fewer sites than it is
+estimated to occupy. How much fewer runs from `r sprintf("%.0f%%", 100 * lo$shortfall)`
+on `r short(lo$table)` to `r sprintf("%.0f%%", 100 * hi$shortfall)` on
+`r short(hi$table)`. It is largest where a species that is present is likely
+to be missed on every visit: low detection per visit, and not enough visits to
+make up for it. The boreal table, with
+`r sprintf("%.0f%%", 100 * across[table == "lebeuftaylor_2026_boreal_edges_aru_comm", shortfall])`,
+is on the mild side.
+
+```{r}
+#| label: fig-across
+#| fig-width: 9
+#| fig-height: 8
+#| fig-cap: "For each species on each table, the share of sites where it was ever detected against its occupancy under msPGOcc. The grey line is equality; distance below it is the occupied sites where the species was missed on every visit."
+pts <- rbindlist(lapply(cache$fits, function(f)
+  data.table(table = short(f$table), psi = plogis(f$species$ms_beta),
+             naive = f$species$naive_share)))
+ggplot(pts, aes(psi, naive)) +
+  geom_abline(slope = 1, intercept = 0, colour = "#c9ccc8") +
+  geom_point(colour = "#1e8a5a", alpha = 0.6, size = 1.3) +
+  facet_wrap(~ table, ncol = 3) +
+  coord_equal(xlim = c(0, 1), ylim = c(0, 1)) +
+  labs(x = "Occupancy, msPGOcc", y = "Share of sites where detected") +
+  theme(strip.text = element_text(size = 8))
+```
+
+**Pooling is doing real work on most tables.** Fitting each species alone runs
+to the boundary for `r sum(across$boundary)` of the `r sum(across$species)`
+species across the `r nrow(across)` tables, and `r sum(across$seen_once)` were
+detected at a single site. The community model gives every one of them a
+finite occupancy, which, as on the camera table, is mostly the community's
+answer for the species with the least data.
+
+**Species differ more than sites, on every table.** The site standard deviation
+in the model without detection is at most
+`r sprintf("%.0f%%", 100 * max(across$site_vs_species))` of the species standard
+deviation. Which species is asked about matters more than where, as on the
+boreal table.
+
+**The site factor is the fragile part.** The latent-factor fit converged on
+`r nrow(lf_good)` of the `r nrow(across)` tables. On
+`r paste(short(lf_bad$table), collapse = ", ")` it did not, even with longer
+chains (largest $\hat R$ `r paste(fmt(lf_bad$lf_rhat), collapse = ", ")`).
+An $\hat R$ far above 1 means the chains settled in different places, which
+points at the anchor: a species whose pattern in `ever` is mostly about how
+easy it is to detect does not fix the direction of the gradient. Choosing the
+anchor differently on those tables is left for later.
+
+**Ignoring detection does not reliably get the gradient right.** Where the
+latent-factor fit converged, the correlation between its loadings and the
+slopes from the fit to `ever` runs from `r fmt(min(lf_good$lf_vs_ever))`
+(`r short(lf_good[which.min(lf_vs_ever), table])`) to
+`r fmt(max(lf_good$lf_vs_ever))` (`r short(lf_good[which.max(lf_vs_ever), table])`).
+The boreal table is the best case, not the typical one: the claim above, that
+ignoring detection gets each species' direction on the gradient about right,
+holds on `r sum(lf_good$lf_vs_ever > 0.75)` of the `r nrow(lf_good)` tables
+(correlation above 0.75) and is much weaker on the other
+`r sum(lf_good$lf_vs_ever <= 0.75)`.
+
 ## What the correspondence buys, and where it stops
 
 - **It is exact on the latent state.** The occupancy part of the
@@ -760,8 +872,7 @@ only the species side is.
   covariates on $\psi$ explain $w_i$ instead of discovering it.
 
 The fits here are close to bare. Detection depends on the day of the season and
-the time of day on the boreal table and is intercept-only on the cameras, which
-carry no comparable per-visit covariate; beyond that there is no spatial
+the time of day on the boreal table and is intercept-only everywhere else; beyond that there is no spatial
 structure (the boreal locations come in transects of three, recorded in
 `cluster_id`, and neighbouring locations share birds), nothing explaining why
 species differ rather than how much (traits on $\beta_k$), and no prior other
