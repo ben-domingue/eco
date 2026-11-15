@@ -239,6 +239,12 @@ table to avoid them. Two methods are two tables.
   the header, and say that surveys with no detection of anything are absent.
 - Ids valid only within a session: make the unit `<session>_<id>` (or assert the
   source's ids are already unique across sessions) and say so in `closureNote`.
+- Global ids across sessions the authors treat as independent replicate populations
+  (separate arrays or array-years combined as replicates): the unit is still
+  `<session>_<id>`, the global id goes in a `unit_` column (`unit_bear_id`), and
+  `closureNote` gives how many ids recur across sessions (E4.4, #204). Sessions the
+  authors treat as one population surveyed repeatedly keep the individual across
+  sessions. Read the paper's methods to decide, not the file layout.
 - Within-visit intervals: `occasion` is the visit; `y` is the visit's detection or
   total, built from the intervals and asserted equal to any visit-level value the
   source gives; `obs_int1`, `obs_int2`, ... carry the intervals.
