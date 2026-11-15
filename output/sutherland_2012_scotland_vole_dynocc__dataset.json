@@ -1,0 +1,65 @@
+{
+  "table": "sutherland_2012_scotland_vole_dynocc",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Water vole latrine surveys of 114 habitat patches in Scotland, 3 surveys a year, 2009-2011",
+  "creator": "Sutherland, Chris; Lambin, Xavier; and colleagues (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2012",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset waterVoles]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1890/12-0172.1",
+  "abstract": "Habitat patches suitable for water voles (Arvicola amphibius) in Scotland were searched for latrines (territorial faecal deposits) up to three times a year from 2009 to 2011, as part of the metapopulation studies of Sutherland, Elston & Lambin. The data are the AHMbook package's waterVoles: one row per patch x year x survey, y = 1 where latrines were found. The help page notes that some detections may be false positives; the data are the model example for false-positive dynamic occupancy in AHM2 section 7.2.2.",
+  "samplingProtocol": "Each suitable habitat patch searched for water vole latrines up to three times per year; detection = latrines found.",
+  "samplingProtocolCode": "sign_survey",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The data frame has one row per surveyed patch-year with three surveys each (no NA); a patch-year absent from it was not surveyed and has no rows.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (closed within a year, dynamic between years)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Scotland, UK: five groups of habitat patches (codes cla, cro, led, lei, sgi); the help page names no locality and gives no coordinates",
+  "temporalCoverage": "2009/2011",
+  "notes": "unit_area_code is the three-letter prefix of the patch code (not expanded in the source). Possible false positives are not flagged per record. Survey dates are not in the package.",
+  "notShipped": {
+    "none": "nothing: the data frame is shipped whole"
+  },
+  "summary": {
+    "n_rows": 966,
+    "n_units": 114,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 3,
+    "n_surveys": 966,
+    "y_values": "0,1",
+    "prop_zero": 0.548,
+    "n_traps": 1,
+    "n_zero": 529,
+    "n_positive": 437,
+    "n_units_detected": 100,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_area_code"],
+  "coreMd5": "d0fd66b91c786a9ae9f73ec4666801c4",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "year", "n_patches_surveyed"],
+      "md5": "f733ee63301b6f0a199e8214bc2143cd"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "f8551315b2e12f42a1b7bddcec9cae10"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}

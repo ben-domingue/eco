@@ -1,0 +1,11 @@
+{
+  "name": "eco",
+  "short_name": "eco",
+  "icons": [
+    { "src": "logos/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "logos/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#1f3d2f",
+  "background_color": "#f4f7f5",
+  "display": "browser"
+}

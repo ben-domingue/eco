@@ -32,6 +32,12 @@ export quota and is cached like any other. Without a login \code{eco_fetch()}
 stops and says what to do; it never opens a browser itself.
 }
 
+\section{Citing}{
+
+The first fetch in a session prints a one-line reminder to cite the original
+deposits with \code{\link[=eco_cite]{eco_cite()}}; \code{options(eco.cite_reminder = FALSE)} silences it.
+}
+
 \examples{
 \donttest{
 d <- eco_fetch("schank_2015_tapir_occ")
@@ -40,5 +46,6 @@ both <- eco_fetch(eco_filter(taxon_group = "Mammals"))
 }
 }
 \seealso{
-\code{\link[=eco_taxa]{eco_taxa()}} for the side tables, \code{\link[=eco_to_unmarked]{eco_to_unmarked()}} to reshape.
+\code{\link[=eco_taxa]{eco_taxa()}} for the side tables, \code{\link[=eco_to_unmarked]{eco_to_unmarked()}} to reshape,
+\code{\link[=eco_cite]{eco_cite()}} to cite the sources.
 }

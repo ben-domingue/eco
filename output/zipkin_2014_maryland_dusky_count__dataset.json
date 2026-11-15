@@ -1,0 +1,65 @@
+{
+  "table": "zipkin_2014_maryland_dusky_count",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Counts of juvenile and adult northern dusky salamanders at 21 stream locations in Maryland and DC, June and July 2005-2011",
+  "creator": "Grant, Evan H. C. and colleagues (data); Zipkin, Elise F.; and co-authors; Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2014",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset duskySalamanders]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1890/13-1131.1",
+  "abstract": "Northern dusky salamanders (Desmognathus fuscus) were counted in June and July each year at 21 locations on 12 headwater streams in Maryland and the District of Columbia, USA: at each location an observer walked two 15-m stream-bed transects turning cover objects in the water and on the bank. Juveniles (< 35 mm snout-vent length) and adults were counted separately. The data are the AHMbook package's duskySalamanders (AHM2 section 2.9.2), used by Zipkin et al. (2014) for stage-structured N-mixture models.",
+  "samplingProtocol": "Two 15-m transects per location along the stream bed, cover objects turned within 2 m of the stream; counts by age class; surveys in June and July.",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The package's site x year x age x month array has no NA: every location was surveyed in both months of every year. Each survey has a row for both stage taxa.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (June and July of a year treated as closed, as in the source analysis)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "12 headwater streams in Maryland and the District of Columbia, USA (no coordinates in the package)",
+  "temporalCoverage": "2005/2011",
+  "notes": "taxon is species x stage (DESFUS_J juveniles, DESFUS_A adults; lifeStage and the size rule in __taxa), as in price_2018_mtr_salamanders_count. The array has 2005-2011; the help page text says 2005-2012. Most streams have two locations at least 100 m apart; which locations share a stream is not in the package.",
+  "notShipped": {
+    "none": "nothing: the array is shipped whole"
+  },
+  "summary": {
+    "n_rows": 588,
+    "n_units": 21,
+    "n_taxa": 2,
+    "n_periods": 7,
+    "n_occasions": 2,
+    "n_surveys": 294,
+    "y_values": "0-21 (19 distinct)",
+    "prop_zero": 0.631,
+    "n_traps": 1,
+    "n_zero": 371,
+    "n_positive": 217,
+    "n_units_detected": 15,
+    "max_y": 21
+  },
+  "sampleFloor": "below (21 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_month"],
+  "coreMd5": "de071d82c95bfb2d174090c62144dcb8",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "year"],
+      "md5": "c7a907c310cc82c66e61b9f3a0cc6e11"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "lifeStage", "taxon_stage_rule", "taxon_iucnCategory"],
+      "md5": "5609fcde33003a72dc4d6f67d2a20a88"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}

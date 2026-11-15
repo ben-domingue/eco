@@ -20,7 +20,9 @@ Read `CLAUDE.md` once per session.
    table.
 3. **Model outputs are not shipped** as `y` or as covariates; record them in
    `notShipped`.
-4. **Coordinates never finer than the source**; flagged taxa are coarsened.
+4. **Coordinates never finer than the source**; flagged taxa are coarsened, and so are
+   sites the source says are on private or community land (unless it says the
+   landowners consented); `coordinatesCoarsened$rule` records which (E7).
 5. **Assertions, not comments**, for every fact about the source the script relies on.
 6. **The gate is `eco-validate`.** A table that fails it does not ship, and the
    validator is not edited to make it pass. If a check is wrong, stop and say so.

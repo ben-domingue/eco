@@ -1,0 +1,86 @@
+{
+  "table": "neon_2026_zooplankton_count",
+  "title": "NEON lake zooplankton, RELEASE-2026: animals of 208 taxa counted per tow or trap sample, about three samples per bout and three bouts a year at 7 NEON lakes, 2014-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/6p6g-d296",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.20219.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Zooplankton collection (DP1.20219.001), RELEASE-2026. https://doi.org/10.48443/6p6g-d296. Dataset accessed from https://data.neonscience.org/data-products/DP1.20219.001/RELEASE-2026 on 2026-11-12",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's lake zooplankton survey: in spring, summer and fall bouts a sample is taken near the profiling buoy and at two littoral sensor sets, by vertical tow net where the water is deeper than 4 m and by Schindler-Patalas trap elsewhere, preserved and sent to a taxonomy laboratory, which counts and identifies the animals in coarse and fine subsamples of known volume. This table is the number of animals of each taxon counted in each sample; obs_subsample_fraction gives the share of the sample they were counted in, and the whole-bottle estimate is not shipped. The taxa surveyed for at a lake are the per-lake pool of taxa this table records there (median 91 of 208; __survey_taxa). Lake-centre coordinates are coarsened to the 0.1-degree cell because an IUCN-threatened copepod is in the table; neon_2026_zooplankton_exact_count has the other taxa at NEON's coordinates.",
+  "samplingProtocol": "Vertical tow net (water deeper than 4 m) or Schindler-Patalas trap (shallower), one composite sample near the profiling buoy and one at each of two littoral sensor sets, three bouts a year; samples preserved in ethanol, subsampled (coarse and fine fractions of known volume) and counted and identified by a taxonomy laboratory (NEON AOS zooplankton sampling protocol)",
+  "samplingProtocolCode": "plankton_net",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "zoo_fieldData lists every sample (with samplingImpractical where one was not taken); a survey is a sample with samplingImpractical blank and laboratory rows in zoo_taxonomyProcessed. The zeros rest on a per-lake species pool derived from detections (ruling 19): the taxa surveyed for at a lake are every taxon this table records at that lake in any sample (__survey_taxa), not a list NEON deposited.",
+  "responseType": "count",
+  "unitKind": "site",
+  "effortColumn": "obs_volume_l",
+  "subsampleColumn": "obs_subsample_fraction",
+  "closure": "closed",
+  "closureNote": "occasion = sample within one bout, taken on one day at the buoy and the littoral sensor sets (two per location in two 2014 bouts); period = bout (spring, summer, fall), indexed globally by date",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "7 NEON lake sites in Florida, Wisconsin, North Dakota and Alaska; lake-centre coordinates as published by NEON (WGS 84) in __units; latitude 29.7 to 68.6, longitude -149.6 to -82.0",
+  "temporalCoverage": "2014-07/2024-10",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": true,
+    "rule": "taxon",
+    "method": "coarsen_coords(): NEON's published lake-centre coordinates in __units snapped to their 0.1-degree cell centre, uncertainty the cell half-diagonal, elevation rounded to 100 m, because taxa IUCN CR/EN/VU in their native range are in the table (Hesperodiaptomus augustaensis (VU), recorded at BARC and SUGG, Florida; E7, ruling on the publisher 2026-11-06). NEON site codes are kept. neon_2026_zooplankton_exact_count keeps the other taxa at published precision."
+  },
+  "covariateNote": "obs_location = NEON sampling location (buoy.c0 / buoy.c1 near the buoy, littoral1-3 at the littoral sensor sets); obs_sampler_type = tow net or Schindler-Patalas; obs_tows = tows or traps composited into the sample; obs_volume_l = litres of lake water sampled (effort); obs_n_nauplii = nauplii among the animals counted (within y); obs_subsample_fraction (subsampleColumn) = for a counted taxon, its counted animals over NEON's adjCountPerBottle (the share of the bottle it was counted in), for a taxon not found, the largest share of the bottle examined in any subsample of the sample (zooSubsampleVolume / estConcentratedSampleVolume, capped at 1); it may vary across taxa within a sample (E5).",
+  "notes": "y = animals counted by the laboratory, summed over the coarse and fine subsamples and over nauplii and later stages (nauplii as obs_n_nauplii); NEON's whole-bottle estimate adjCountPerBottle, whose volumes the readme's issue log corrects for 2015-2023, is not shipped and does not enter y. Per-lake pools (ruling 19): median 91 taxa (range 68-110). Taxa: 114 species (subspecies rolled up) and 94 records identified only to a higher rank or to a species complex, each its own taxon (E6); 1 pairs of NEON 'sp.' and 'spp.' codes merged (ruling 20). Surveys: 615 samples in 204 bouts; 9 samples not taken (logistical); 2 samples dropped (a laboratory row marked damaged, affecting analysis). Other per-row sample conditions (damaged, affecting taxonomy or measurement) are kept. Seven lakes: below the sample floor of 30 units.",
+  "notShipped": {
+    "samples not used": "9 samples not taken (samplingImpractical logistical); 2 with a laboratory row marked damaged, affecting analysis",
+    "whole-bottle estimate": "adjCountPerBottle (the count scaled to the whole bottle; y and obs_subsample_fraction are shipped)",
+    "other fields": "body length and width summaries, zoo_perSample QC metrics, identification history, zoo_perVial and zoo_taxonomyRaw (expanded package)",
+    "zeros outside the lake pool": "a taxon never recorded at a lake has no rows there (per-lake pool, ruling 19)"
+  },
+  "summary": {
+    "n_rows": 53217,
+    "n_units": 7,
+    "n_taxa": 208,
+    "n_periods": 204,
+    "n_occasions": 6,
+    "n_surveys": 615,
+    "y_values": "0-2392 (349 distinct)",
+    "prop_zero": 0.858,
+    "n_traps": 1,
+    "n_zero": 45636,
+    "n_positive": 7581,
+    "n_units_detected": 7,
+    "max_y": 2392
+  },
+  "sampleFloor": "below (7 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "obs_location", "obs_sampler_type", "obs_tows", "obs_volume_l", "obs_n_nauplii", "obs_subsample_fraction"],
+  "coreMd5": "1532b87aa2ff3293d944c9a7a535ef4c",
+  "sideTables": {
+    "periods": {
+      "rows": 204,
+      "columns": ["period", "eventID", "site", "year", "bout", "date"],
+      "md5": "c96b9e38f578b56ed4433f571472822a"
+    },
+    "survey_taxa": {
+      "rows": 607,
+      "columns": ["unit", "taxon"],
+      "md5": "fc870ebb8e6d7994299e7c29bdfd1853"
+    },
+    "taxa": {
+      "rows": 208,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_n_counted", "taxon_iucnCategory"],
+      "md5": "e65c4ced752be3f1d6e2ff538ef41ee4"
+    },
+    "units": {
+      "rows": 7,
+      "columns": ["unit", "domain", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "7594f78013415ad727beacd8836d802e"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_zooplankton_count.R",
+  "buildDate": "2026-11-12"
+}

@@ -167,6 +167,12 @@ cat(sprintf("  %s rows: %d grids x %d bouts (%d grid-nights) x %d taxa, %s captu
 
 taxa <- make_taxa(species$taxonID, species$scientificName, taxon_n_captures = species$n_captures, taxon_n_sites = species$n_sites,
                   taxon_sites = site_pool[, paste(sort(siteID), collapse = ";"), by = taxonID][match(species$taxonID, taxonID), V1])
+# E7 (ruling on the publisher, 2026-11-06, which withdrew the agency exception): no taxon is IUCN CR/EN/VU, so the plot
+# centres ship as NEON publishes them. Podomys floridanus, recorded as VU when this table was first built, is NT in GBIF's
+# IUCN record (2026-11-12). The 17 keys iucn_category() cannot confirm by name (Tamias -> Neotamias, Myodes -> Clethrionomys,
+# Mustela frenata -> Neogale frenata, ...) are LC or NE under the assessed name (checked 2026-11-12).
+iucn <- iucn_category(taxa$taxonID, taxa$scientificName)
+stopifnot(!any(iucn %in% c("CR", "EN", "VU")), sum(is.na(iucn)) == 17L, iucn[taxa$scientificName == "Podomys floridanus"] == "NT")
 periods <- bouts[, .(period, eventID, site, year, bout_start, bout_end, n_nights, n_grids)]
 units <- plots[, .(unit = plotID, site = unit_site, domain = unit_domain, decimalLatitude = unit_decimalLatitude, decimalLongitude = unit_decimalLongitude,
                    coordinateUncertaintyInMeters = unit_coordinateUncertaintyInMeters, elevation = unit_elevation, nlcdClass = unit_nlcdClass,
@@ -191,7 +197,7 @@ dataset <- list(
   geographicCoverage = sprintf("%d NEON terrestrial sites in the contiguous United States and Alaska (no Hawaii or Puerto Rico); plot centres latitude %.2f to %.2f, longitude %.2f to %.2f, as published by NEON", uniqueN(long$cluster_id), min(plots$unit_decimalLatitude), max(plots$unit_decimalLatitude), min(plots$unit_decimalLongitude), max(plots$unit_decimalLongitude)),
   temporalCoverage = sprintf("%s/%s", min(nights$night_date), max(nights$night_date)),
   crs = "EPSG:4326 (WGS 84, as published)",
-  coordinatesCoarsened = list(value = FALSE, method = "As published by NEON: agency-published plot centres with coordinateUncertainty (the E7 agency exception). The Florida mouse Podomys floridanus (IUCN VU) is among the shipped taxa; NEON publishes these plot coordinates itself, and its own obfuscation of listed taxa (D01 state-listed species to higher rank, per the product issue log) is applied upstream"),
+  coordinatesCoarsened = list(value = FALSE, method = "As published by NEON (plot centres with coordinateUncertaintyInMeters in __units): no taxon in the table is IUCN CR, EN or VU (GBIF IUCN records, asserted; Podomys floridanus is NT), and NEON applies its own obfuscation of listed taxa upstream (D01 state-listed species reported at a higher rank, per the product issue log)."),
   covariateNote = "obs_grid_method is the grid's sampling method that bout (pathogen = 3 nights with blood/ear/hair samples, diversity = 1 night); grids changed method across years at some sites. unit_* are NEON's plot attributes; a few grids carry two published coordinates across the years (modal kept, n_published_coordinates in __units).",
   designNote = "Repeated counts within closed bouts (N-mixture per bout) and an open population across bouts (robust-design counts). The companion table neon_2026_smallmammals_rd carries the individual capture histories (same __periods).",
   components = list(sibling = "neon_2026_smallmammals_rd (same deposit, same bouts and __periods; individual robust-design histories)"),
@@ -216,5 +222,5 @@ stage_dict_row(TABLE,
   source_via = "NEON Data API (RELEASE-2026 basic package)")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "N-mixture / robust-design counts (community)",
   sampling_protocol = "live_trap", design = sprintf("Robust design (%d bouts x 1-3 trap-nights)", nrow(bouts)), realm = "Terrestrial",
-  country = "USA", coordinates = "As published (NEON plot centres, agency-published; Podomys floridanus VU among the taxa)",
+  country = "USA", coordinates = "As published (NEON plot centres; no IUCN CR/EN/VU taxon)",
   notes = "National scheme; national species pool (out-of-range zeros are structural); obs_traps_set effort; grids changed method (1 vs 3 nights) over time.", status = "tagged")

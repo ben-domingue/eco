@@ -78,6 +78,17 @@ when any coordinate column exists; otherwise leave it out. When set, it is
 `list(value = TRUE/FALSE, method = "...")`, never a bare string or logical: the
 validator and `metadata/01_metadata.R` read `$value`.
 
+Then ask a second question, whatever the taxa: does the source say the sites are on
+private land, community land, or land reached under a landowner or community
+agreement? If it does, and it does not say the landowners agreed to the locations
+being published, coarsen those coordinates the same way: only the units it marks,
+when it marks them (list them in `coordinatesCoarsened$units`), else all. Set
+`coordinatesCoarsened$rule` to `"private_land"` (`"taxon"` for a flagged taxon,
+`"taxon, private_land"` for both), and quote the source's statement in `method`. Go
+by the source's own statement about the data, never a guess about land tenure; a
+source that already withheld or displaced the coordinates for its landowners needs
+nothing more (standard E7, private-land ruling of 2026-11-06, #152).
+
 **Sample floor** is reported, not a gate: `write_table()` computes `sampleFloor` (30
 units and 2 occasions or periods). **Replication is a gate** (ruling 2026-11-06): a
 site-unit deposit with one visit per unit and one period (a single-visit community
@@ -228,6 +239,12 @@ table to avoid them. Two methods are two tables.
   the header, and say that surveys with no detection of anything are absent.
 - Ids valid only within a session: make the unit `<session>_<id>` (or assert the
   source's ids are already unique across sessions) and say so in `closureNote`.
+- Global ids across sessions the authors treat as independent replicate populations
+  (separate arrays or array-years combined as replicates): the unit is still
+  `<session>_<id>`, the global id goes in a `unit_` column (`unit_bear_id`), and
+  `closureNote` gives how many ids recur across sessions (E4.4, #204). Sessions the
+  authors treat as one population surveyed repeatedly keep the individual across
+  sessions. Read the paper's methods to decide, not the file layout.
 - Within-visit intervals: `occasion` is the visit; `y` is the visit's detection or
   total, built from the intervals and asserted equal to any visit-level value the
   source gives; `obs_int1`, `obs_int2`, ... carry the intervals.

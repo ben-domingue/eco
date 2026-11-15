@@ -1,0 +1,66 @@
+{
+  "table": "chandler_2009_wmnf_cswa_removal",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Chestnut-sided Warbler removal point counts (three time intervals) on 3 visits to 43 points in wildlife openings, White Mountain National Forest, 2004",
+  "creator": "Chandler, Richard B.; King, David I.; Chandler, Carol C. (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2009",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset cswa]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/j.foreco.2009.07.025",
+  "abstract": "Chestnut-sided Warblers (Setophaga pensylvanica) singing at 43 points in 38 wildlife openings of the White Mountain National Forest, New Hampshire, were counted on three 10-minute visits between late May and July 2004 (one point visited twice), each count split into the intervals 0-2, 2-5 and 5-10 min (removal design). The data are the AHMbook package's cswa (Chandler, King & Chandler 2009; Chandler, Royle & King 2011; AHM2 chapter 2): one row per point x visit x interval, with date, start time, observer and point vegetation.",
+  "samplingProtocol": "10-min point counts of singing birds, new birds assigned to the interval of first detection (0-2, 2-5, 5-10 min), three visits per point in 2004.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The count array has NA for the one missing visit (point 12, visit 1; also NA date, time and observer); every other point-visit is a survey with three interval cells.",
+  "responseType": "multinomial_cell",
+  "multinomialType": "removal",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = removal interval of one count; period = the visit (1-3) within the 2004 season",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Wildlife openings in the White Mountain National Forest, New Hampshire and Maine, USA (no point coordinates in the package)",
+  "temporalCoverage": "2004-05-27/2004-07-09",
+  "coordinatesCoarsened": null,
+  "notes": "Removal intervals: occasion 1 = (0,2], 2 = (2,5], 3 = (5,10] min. Point ids as in the package (patch name plus a letter where an opening had several points). unit_plot_area_ha: most count areas are 50-m radius, smaller where they overlapped adjacent forest. Dates from the package's days since 1970-01-01.",
+  "notShipped": {
+    "spotMaps": "spot-mapping territory estimates for the 38 patches: the package gives no key from points to patches (only patch area), so they cannot be joined; they are also derived estimates, not detections"
+  },
+  "summary": {
+    "n_rows": 384,
+    "n_units": 43,
+    "n_taxa": 1,
+    "n_periods": 3,
+    "n_occasions": 3,
+    "n_surveys": 384,
+    "y_values": "0,1,2",
+    "prop_zero": 0.833,
+    "n_traps": 1,
+    "n_zero": 320,
+    "n_positive": 64,
+    "n_units_detected": 27,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "observer", "unit_patch_area_ha", "unit_plot_area_ha", "unit_woody_height_m", "unit_woody_cover", "obs_start_hour"],
+  "coreMd5": "f2d4ad13734dbc226ec6d2733e5e03e8",
+  "sideTables": {
+    "periods": {
+      "rows": 3,
+      "columns": ["period", "visit"],
+      "md5": "fd7b40aaa71ba5dbe899b075c832b693"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e92ee0a56c8f3fc20cf5713ed1457c1a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}

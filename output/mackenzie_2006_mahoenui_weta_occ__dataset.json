@@ -1,0 +1,59 @@
+{
+  "table": "mackenzie_2006_mahoenui_weta_occ",
+  "title": "Mahoenui giant weta detection on up to 5 visits to 72 sites, with browsing and observer (MacKenzie et al. 2006 PRESENCE example)",
+  "creator": "MacKenzie, Darryl I.; Nichols, James D.; Royle, J. Andrew; Pollock, Kenneth H.; Bailey, Larissa L.; Hines, James E. (book example; distributed in the RMark R package)",
+  "pubDate": "2006",
+  "sourceURL": "https://cran.r-project.org/package=RMark",
+  "citation": "Laake, J. L. (2026). RMark: R code for Mark analysis (Version 3.1.0) [R package; dataset weta]. CRAN. https://CRAN.R-project.org/package=RMark",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Detection/non-detection of the Mahoenui giant weta (Deinacrida mahoenui), a New Zealand insect, on up to five visits to 72 sites, with whether the site was browsed (by goats) and the observer on each visit: the example data of MacKenzie et al. (2006, pp. 116-122) distributed with PRESENCE and RMark. One row per site x visit made.",
+  "samplingProtocol": "Repeated searches of sites for weta; visit-specific observers; browsing recorded per site (MacKenzie et al. 2006).",
+  "samplingProtocolCode": "visual_encounter",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The history marks visits not made with '.', identically in the observer columns (asserted); a row exists for each visit made (262 of 360).",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single season",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Mahoenui Giant Weta Scientific Reserve area, King Country, New Zealand (as the species' range implies; not stated in the package); no coordinates",
+  "temporalCoverage": "not stated in the package (MacKenzie et al. 2006)",
+  "coordinatesCoarsened": null,
+  "notes": "A textbook example with no place, date or field description in the package; the weta's only natural population is at Mahoenui. The help page's description line says 'salamanders' in error. Observer codes as deposited (obs1-obs3). Site ids are row numbers.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 262,
+    "n_units": 72,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 262,
+    "y_values": "0,1",
+    "prop_zero": 0.786,
+    "n_traps": 1,
+    "n_zero": 206,
+    "n_positive": 56,
+    "n_units_detected": 35,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "observer", "unit_browsed"],
+  "coreMd5": "9719ef33d71ed2ceb3faa7e6905dd3da",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "09d374671e8d35dc549918af1968984f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

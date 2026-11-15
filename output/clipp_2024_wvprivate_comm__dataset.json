@@ -12,7 +12,7 @@
     "url": "https://creativecommons.org/licenses/by-nc/4.0/",
     "note": "Zenodo record CC BY 4.0; every row of sequences.csv (Wildlife Insights export) carries licence CC-BY-NC, which governs"
   },
-  "abstract": "Game cameras deployed for about two months in summer 2022 at 146 sites on private land in Jackson-Mason, Barbour-Upshur and Hampshire counties, West Virginia, one of three camera datasets Clipp et al. (2024) combined to fit a two-species occupancy model with a continuous-time detection process for white-tailed deer and coyote. The Wildlife Insights sequence export lists every identified sequence, so this table carries all 47 taxa identified to species (wild and domestic mammals and birds) as daily detection/non-detection with the number of sequences, with camera coordinates as published.",
+  "abstract": "Game cameras deployed for about two months in summer 2022 at 146 sites on private land in Jackson-Mason, Barbour-Upshur and Hampshire counties, West Virginia, one of three camera datasets Clipp et al. (2024) combined to fit a two-species occupancy model with a continuous-time detection process for white-tailed deer and coyote. The Wildlife Insights sequence export lists every identified sequence, so this table carries all 47 taxa identified to species (wild and domestic mammals and birds) as daily detection/non-detection with the number of sequences, with camera coordinates coarsened to the 0.1 degree cell because the cameras are on private land.",
   "samplingProtocol": "Game cameras on private land, deployed 1.7-76 days (median 62) between 2022-04-23 and 2022-09-15; images grouped into sequences (photos within one minute of each other) and identified in Wildlife Insights. Occasion = calendar day of the deployment; effort = hours the camera operated within that day, from the deployment and retrieval timestamps.",
   "samplingProtocolCode": "camera_trap",
   "occasionLength": "1 day",
@@ -24,11 +24,12 @@
   "closureNote": "occasion (camera-days within one deployment of up to 76 days, the paper's closure assumption); no period",
   "occasionKind": "time",
   "taxonInclusion": "recorded",
-  "geographicCoverage": "Private land in Jackson, Mason, Barbour, Upshur and Hampshire counties, West Virginia, USA (camera coordinates as published)",
+  "geographicCoverage": "Private land in Jackson, Mason, Barbour, Upshur and Hampshire counties, West Virginia, USA (camera coordinates coarsened to 0.1 degree cells: private land, E7)",
   "temporalCoverage": "2022-04-23/2022-09-15",
   "coordinatesCoarsened": {
-    "value": false,
-    "method": "none: no taxon is flagged (no IUCN CR/EN/VU species; white-tailed deer and coyote are Least Concern); coordinates as deposited"
+    "value": true,
+    "rule": "private_land",
+    "method": "camera coordinates (5-6 decimals in the deposit) replaced by 0.1 degree cell centres (coarsen_coords) under the E7 private-land ruling of 2026-11-06: the deposit's deployment sheets and the paper place all 146 cameras on private land, and neither says the landowners agreed to the locations being published; no taxon is flagged (no IUCN CR/EN/VU)"
   },
   "notShipped": {
     "out_of_window": "265 sequences timestamped outside their deployment window: 199 with a wrong camera year (2017, 2021) at four cameras whose comments report clock faults, 66 at the deployment or retrieval boundary (61 by under an hour, 5 by 2-12 hours)",
@@ -56,7 +57,8 @@
     "max_y": 1
   },
   "sampleFloor": "meets",
-  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_detection_distance_m", "unit_camera_working_at_retrieval", "obs_camera_hours"],
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_detection_distance_m", "unit_camera_working_at_retrieval", "obs_camera_hours"],
+  "coreMd5": "22376ceb42030277f445ef6f6eee3dac",
   "sideTables": {
     "taxa": {
       "rows": 47,
@@ -65,12 +67,12 @@
     },
     "units": {
       "rows": 146,
-      "columns": ["unit", "cluster_id", "decimalLatitude", "decimalLongitude", "detection_distance_m", "camera_working_at_retrieval", "deployed", "retrieved", "camera_days", "modelled_in_paper"],
-      "md5": "cf7101d932f900f109c6661509e0af33"
+      "columns": ["unit", "cluster_id", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "detection_distance_m", "camera_working_at_retrieval", "deployed", "retrieved", "camera_days", "modelled_in_paper"],
+      "md5": "22a4c44aeff42c984193ac2b7e01135d"
     }
   },
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/clipp_2024_wvprivate_comm.R",
-  "buildDate": "2026-11-03"
+  "buildDate": "2026-11-06"
 }

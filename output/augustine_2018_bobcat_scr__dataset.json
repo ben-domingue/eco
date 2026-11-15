@@ -1,0 +1,75 @@
+{
+  "table": "augustine_2018_bobcat_scr",
+  "title": "Spatial capture-recapture of bobcats with partial identity: 42 histories at 30 single-camera stations over 187 occasions",
+  "creator": "Augustine, Ben C.; Royle, J. Andrew; Kelly, Marcella J.; Satter, Christopher B.; Alonso, Robert S.; Boydston, Erin E.; Crooks, Kevin R. (data; distributed via SPIM in the multimark R package)",
+  "pubDate": "2018",
+  "sourceURL": "https://cran.r-project.org/package=multimark",
+  "citation": "McClintock, B. T. (2025). multimark: Capture-mark-recapture analysis using multiple non-invasive marks (Version 2.1.7) [R package; dataset bobcatSCR]. CRAN. https://CRAN.R-project.org/package=multimark",
+  "paperDOI": "10.1214/17-AOAS1091",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-only",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Bobcats (Lynx rufus) photographed at 30 single-camera stations over 187 daily occasions and identified from flank pelage patterns, the example data of Augustine et al.'s spatial capture-recapture with partial identity (from R package SPIM, as distributed in multimark: bobcatSCR). Fifteen bobcats were captured for telemetry before the survey, so both of their flanks are known; for the other 27 histories only the side photographed is known, so a left and a right history may be one animal. One row per history x station x occasion, y = the side photographed.",
+  "samplingProtocol": "Single-camera stations operated over 187 occasions; bobcats identified from flank pelage patterns; 15 previously collared animals known from both sides.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "effort_table",
+  "surveyEvidenceNote": "The package gives a station x occasion operation matrix; every station operated on every occasion (asserted), so every history has rows at all 30 stations x 187 occasions.",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not photographed",
+    "1": "photographed, left flank",
+    "2": "photographed, right flank"
+  },
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "single closed session of 187 occasions",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Not stated in the package; the station coordinates (km) are consistent with UTM 11N around 33.6 N, 117.8 W (Orange County, California; inferred); __traps x, y in metres as distributed",
+  "temporalCoverage": "not stated in the package",
+  "crs": "km grid as distributed (consistent with UTM 11N; snapped by the multimark authors to 0.65 km cells), shipped in metres",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "station positions as distributed (already snapped to a 0.65 km grid by the multimark authors); Lynx rufus is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9 (SCR, trap key + __traps) with partial identity (E2): unit_identity = both for the 15 telemetry bobcats (4 of them photographed on both flanks), left or right for the rest.",
+  "notes": "Enc.Mat columns are trap-major (the first 187 columns are station 1; asserted against the operation matrix). Station positions were projected onto a regular grid by the multimark authors, so inter-station distances are approximate. Unit ids are row numbers (B01-B15 are the known animals). Source paper: Augustine, B. C., Royle, J. A., Kelly, M. J., et al., Spatial capture-recapture with partial identity: an application to camera traps (bioRxiv doi:10.1101/056804; published 2018 in the Annals of Applied Statistics).",
+  "notShipped": {
+    "studyArea": "habitat grid of the state space (a model input)"
+  },
+  "summary": {
+    "n_rows": 235620,
+    "n_units": 42,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 187,
+    "n_surveys": 235620,
+    "y_values": "0,1,2",
+    "prop_zero": 1,
+    "n_traps": 30,
+    "n_zero": 235530,
+    "n_positive": 90,
+    "n_units_detected": 42,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_identity"],
+  "coreMd5": "36857ca25eff8790b5df8cf36c89a968",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "9d40da1966bda0bd32947fe350a69c91"
+    },
+    "traps": {
+      "rows": 30,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "9e68a34078d34b75a0bdd4d0d3986797"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_misc_tables.R",
+  "buildDate": "2026-11-13"
+}

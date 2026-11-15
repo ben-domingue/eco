@@ -57,5 +57,9 @@ test_that("bibtex entries are produced", {
   skip_if_offline()
   bib <- eco_save_bibtex("schank_2015_tapir_occ")
   expect_match(bib, "^@", all = TRUE)
-  expect_match(bib, "schank_2015_tapir_occ")
+  expect_match(bib[1], "schank_2015_tapir_occ")
+  expect_match(bib[length(bib)], "^@misc\\{eco")
+  txt <- eco_cite("schank_2015_tapir_occ", eco = FALSE)
+  expect_length(txt, 1)                        # the reference restates the deposit: no second entry
+  expect_match(txt, "Schank")
 })

@@ -1,0 +1,75 @@
+{
+  "table": "mccrea_2010_kattegat_cormorant_ms",
+  "sourceURL": "https://cran.r-project.org/package=IPMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "responseType": "state",
+  "unitKind": "individual",
+  "closure": "none",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "surveyEvidence": "inferred",
+  "coordinatesCoarsened": null,
+  "title": "Multistate ringing and breeder resighting histories of 12,659 great cormorants at three Danish colonies, 1991-2004",
+  "creator": "Bregnballe, Thomas (data); McCrea, Rachel S.; Morgan, Byron J. T.; Gimenez, Olivier; and colleagues (distributed in the IPMbook R package)",
+  "pubDate": "2010",
+  "citation": "Schaub, M., Kéry, M., & Meredith, M. (2023). IPMbook: Functions and data for the book 'Integrated Population Models' (Version 0.1.5) [R package; dataset cormorant]. CRAN. https://CRAN.R-project.org/package=IPMbook",
+  "paperDOI": "10.1007/s13253-010-0027-5",
+  "abstract": "Great cormorant (Phalacrocorax carbo) nestlings were ringed with metal and coloured alphanumeric rings at three breeding colonies in the south-western Kattegat, Denmark (Vorsø, Mågeøerne, Stavns Fjord), and ringed birds were resighted as breeders at the colonies from towers, hides or the ground, 1991-2004. The data are the IPMbook package's cormorant multistate histories (IPM book chapter 18; McCrea et al. 2010): state 1-3 ringed as a nestling at colony V, M or S, 4-6 seen breeding at V, M or S, 0 not seen. Annual nest counts per colony are not shipped.",
+  "samplingProtocol": "Nestlings ringed (metal and coloured alphanumeric ring); breeding adults read by telescope at all three colonies each season.",
+  "samplingProtocolCode": "resighting",
+  "surveyEvidenceNote": "No effort is deposited. Ringing and resighting took place every year (help page); the book's code estimates a resighting probability for every colony and year and fixes none at 0, so every year is a survey of every colony. Six colony-years have no breeder resighting at all (breeders_seen_* = 0 in __periods); they are kept as surveyed, as in the book, though they may be years without effort at that colony.",
+  "closureNote": "open between years (multistate CMR, one occasion per breeding season)",
+  "stateCodes": {
+    "0": "not seen",
+    "1": "ringed as a nestling at Vorsø (V)",
+    "2": "ringed as a nestling at Mågeøerne (M)",
+    "3": "ringed as a nestling at Stavns Fjord (S)",
+    "4": "seen breeding at Vorsø (V)",
+    "5": "seen breeding at Mågeøerne (M)",
+    "6": "seen breeding at Stavns Fjord (S)"
+  },
+  "geographicCoverage": "Three breeding colonies in the south-western Kattegat, Denmark: Vorsø, Mågeøerne, Stavns Fjord (no coordinates in the package)",
+  "temporalCoverage": "1991/2004",
+  "designNote": "Multistate capture-recapture with states = age class x colony. Birds first recorded as nestlings have rows from their ringing year; birds first recorded as breeders were ringed as nestlings before 1991 and have rows from 1991 (E4.4).",
+  "notes": "unit_first_state is the bird's first recorded code (1-3: ringed in the study; 4-6: ringed before 1991, first seen breeding). Nestling codes occur only at ringing (asserted). Phalacrocorax carbo sinensis is the subspecies breeding in Denmark; the taxon is resolved at species rank. __periods gives per year the nestlings ringed and breeders seen at each colony. Unit ids are row numbers of the package's matrix.",
+  "notShipped": {
+    "count": "annual counts of occupied nests per colony: aggregates without unit-level data (E9)"
+  },
+  "summary": {
+    "n_rows": 88067,
+    "n_units": 12659,
+    "n_taxa": 1,
+    "n_periods": 14,
+    "n_occasions": 1,
+    "n_surveys": 88067,
+    "y_values": "0,1,2,3,4,5,6",
+    "prop_zero": 0.81,
+    "n_traps": 1,
+    "n_zero": 71365,
+    "n_positive": 16702,
+    "n_units_detected": 12659,
+    "max_y": 6
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_first_state"],
+  "coreMd5": "bc20b6893f4bd908810efe92c66285eb",
+  "sideTables": {
+    "periods": {
+      "rows": 14,
+      "columns": ["period", "year", "ringed_V", "ringed_M", "ringed_S", "breeders_seen_V", "breeders_seen_M", "breeders_seen_S"],
+      "md5": "80b62462ee3f95272b7a0b9527e1bdc8"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "51afce01f3902efa2b887e86eb6a0ca0"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ipmbook_package_ms.R",
+  "buildDate": "2026-11-13"
+}

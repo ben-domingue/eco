@@ -1,0 +1,66 @@
+{
+  "table": "mcclintock_2013_bobcat_cc",
+  "title": "Bilateral camera photo-identification histories of bobcats (46 left- or right-flank histories, 8 occasions)",
+  "creator": "McClintock, Brett T.; Conn, Paul B.; Alonso, Robert S.; Crooks, Kevin R. (data; distributed in the multimark R package)",
+  "pubDate": "2013",
+  "sourceURL": "https://cran.r-project.org/package=multimark",
+  "citation": "McClintock, B. T. (2025). multimark: Capture-mark-recapture analysis using multiple non-invasive marks (Version 2.1.7) [R package; dataset bobcat]. CRAN. https://CRAN.R-project.org/package=multimark",
+  "paperDOI": "10.1890/12-1613.1",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-only",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Bobcats (Lynx rufus) photographed at single-camera stations over 8 sampling occasions and identified from the pelage pattern of one flank. Because a single camera sees one side, left- and right-flank photographs of the same animal cannot be matched: the 46 histories (23 left, 23 right) are observed histories, and a left and a right history may belong to one bobcat. The example data of McClintock et al. (2013) for integrated bilateral photo-ID models, as distributed in multimark (bobcat). One row per history x occasion, y = the side photographed.",
+  "samplingProtocol": "Single-camera stations; bobcats identified from flank pelage patterns; 8 sampling occasions (details in McClintock et al. 2013).",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; every one of the 8 occasions is taken as a survey of every history.",
+  "responseType": "state",
+  "stateCodes": {
+    "0": "not photographed",
+    "1": "photographed, left flank",
+    "2": "photographed, right flank"
+  },
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "single closed session of 8 occasions",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Not stated in the package (McClintock et al. 2013); no coordinates",
+  "temporalCoverage": "not stated in the package (before 2013)",
+  "coordinatesCoarsened": null,
+  "designNote": "Partial identity (E2): each unit is an observed one-sided history; unit_identity = left or right (no bobcat was photographed on both sides). A left and a right unit may be the same animal; models for partial identity (multimark data.type 'never') reconcile them.",
+  "notes": "Unit ids are row numbers. augustine_2018_bobcat_scr is spatial bobcat data from the same research group; whether the animals overlap is not stated.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 368,
+    "n_units": 46,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 8,
+    "n_surveys": 368,
+    "y_values": "0,1,2",
+    "prop_zero": 0.812,
+    "n_traps": 1,
+    "n_zero": 299,
+    "n_positive": 69,
+    "n_units_detected": 46,
+    "max_y": 2
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_identity"],
+  "coreMd5": "7bd7ef7c9d4800d1b9e37cee3981d708",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "9d40da1966bda0bd32947fe350a69c91"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_misc_tables.R",
+  "buildDate": "2026-11-13"
+}

@@ -1,0 +1,63 @@
+{
+  "table": "knaus_2018_swiss_atlasha_comm",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Swiss Breeding Bird Atlas 2013-2016: counts of 78 passerines on 2 or 3 surveys of 2,318 one-hectare quadrats",
+  "creator": "Swiss Ornithological Institute (Knaus, Peter; Antoniazza, Sylvain; Wechsler, Samuel; Guélat, Jérôme; Kéry, Marc; Strebel, Nicolas; Sattler, Thomas) (data); distributed in the AHMbook R package",
+  "pubDate": "2018",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset SwissAtlasHa]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-809585-0.00008-9",
+  "abstract": "A 1-ha-scale subset of the Swiss Breeding Bird Atlas 2013-2016 (Knaus et al. 2018): replicate counts of 78 passerine species on 2,318 one-hectare quadrats, each surveyed three times in a breeding season (twice above the tree line). The data are the AHMbook package's SwissAtlasHa (AHM2 section 8.4.2): one row per quadrat x survey x species, with survey date and quadrat elevation, slope, aspect and forest cover. Quadrat coordinates are in a reference system the source intentionally does not specify and ship as covariates only.",
+  "samplingProtocol": "Atlas surveys of 1-ha quadrats, three visits in the breeding season (two above the tree line), all birds counted; the package keeps 78 passerines.",
+  "samplingProtocolCode": "area_count",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The count array has NA for the third survey of the 410 quadrats surveyed twice (nsurveys, asserted), identically across species and matching the date array; every other cell is a survey with a row for all 78 species.",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single season (one breeding season per quadrat, 2013-2016)",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Switzerland, 2,318 one-hectare atlas quadrats; coordinates in an unspecified reference system (unit_x_unspecified_crs, unit_y_unspecified_crs)",
+  "temporalCoverage": "2013/2016",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no locations shipped: the source's coordinates have an unspecified reference system and ship as covariates; none of the 78 species is IUCN CR, EN or VU"
+  },
+  "notes": "The package gives English names only; scientific names are mapped in the script (taxonomy as in the Swiss atlas: Curruca for the whitethroats, Acanthis flammea for redpoll s.l., Carduelis citrinella for citril finch) and resolved in __taxa. The year of each quadrat's survey is not in the package (2013-2016). obs_day_of_year: 1 = 1 January. The 78 species are those the package keeps: an atlas subset, not the full species list.",
+  "notShipped": {
+    "other_species": "non-passerines and passerines the package does not keep"
+  },
+  "summary": {
+    "n_rows": 510432,
+    "n_units": 2318,
+    "n_taxa": 78,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 6544,
+    "y_values": "0,1,2,3,4,5,6,9",
+    "prop_zero": 0.978,
+    "n_traps": 1,
+    "n_zero": 499092,
+    "n_positive": 11340,
+    "n_units_detected": 1996,
+    "max_y": 9
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_x_unspecified_crs", "unit_y_unspecified_crs", "unit_elevation_m", "unit_slope", "unit_northness", "unit_forest_prop", "obs_day_of_year"],
+  "coreMd5": "aceea3080a0764d22aa332c097e59228",
+  "sideTables": {
+    "taxa": {
+      "rows": 78,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "860a08c5d73c00d4b094fb36b7d005ea"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}

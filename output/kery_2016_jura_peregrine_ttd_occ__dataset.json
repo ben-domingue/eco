@@ -1,0 +1,61 @@
+{
+  "table": "kery_2016_jura_peregrine_ttd_occ",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Time-to-detection searches for peregrines at 38 breeding cliffs in the French Jura, 7-9 March 2015",
+  "creator": "Kéry, Marc; Royle, J. Andrew (data and distribution in the AHMbook R package)",
+  "pubDate": "2016",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset ttdPeregrine]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-801378-6.00010-2",
+  "abstract": "Between 7 and 9 March 2015, 38 peregrine falcon breeding cliffs in the French Jura were searched up to three times for 3 to 95 minutes, recording the time at which each bird was first seen and its sex. The data are the AHMbook package's ttdPeregrine (AHM1 section 10.12). One row per search: y = 1 if any peregrine was seen, obs_ttd the minutes to the first bird (the search length when none, censored).",
+  "samplingProtocol": "Timed searches of breeding cliffs by one observer, 3-95 minutes; the time to detection of each bird seen recorded.",
+  "samplingProtocolCode": "visual_survey",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "The package lists every search: one row per bird seen, or a single row with no time when none was. A search is a site x day x start time (asserted to share one length and end time).",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single season: three days in March 2015",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "French Jura mountains, France (no coordinates in the package)",
+  "temporalCoverage": "2015-03-07/2015-03-09",
+  "notes": "Time to detection per the 2026-11-06 ruling: obs_ttd in minutes from the search start, obs_ttd_censored = 1 where nothing was seen (obs_ttd = search length). obs_n_records = birds listed for the search (a bird may appear more than once; the package does not say). The sex of each bird is in the source but not per search here. Site ids are the package's SiteNumber; whether they match FrenchPeregrines sites is not stated. Two searches of one site on one day are two occasions.",
+  "notShipped": {
+    "sex_per_bird": "the sex and individual times of each bird after the first: per-record detail beyond the survey's time to first detection",
+    "Start.hour_End.hour_End.minute": "redundant with obs_start_min_after_0600 and obs_search_min"
+  },
+  "summary": {
+    "n_rows": 46,
+    "n_units": 38,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 46,
+    "y_values": "0,1",
+    "prop_zero": 0.283,
+    "n_traps": 1,
+    "n_zero": 13,
+    "n_positive": 33,
+    "n_units_detected": 28,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "date", "obs_ttd", "obs_ttd_censored", "obs_search_min", "obs_start_min_after_0600", "obs_n_records"],
+  "coreMd5": "5eb282148d8d0c941c3bdc0a99b669e0",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "7a4a09dfa4528bd222051f968a3d75d7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}

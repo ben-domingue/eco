@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 # Table:  barrueto_2023_nwt_grizzly_scr
+# WITHDRAWN 2026-11-06 (care_review, #150). Removed from the current release pending
+#   consultation with the originators; may be reinstated. Kept so it can be rebuilt; its
+#   tag status is do_not_publish, so the uploader refuses it. Why, and how to reinstate:
+#   notes/decisions/care_e7_screen_held.md and releases/withdrawals.csv.
 # Source: Dryad, doi:10.5061/dryad.p8cz8w9vz, version 228633 (version 3, published 2023-04-05), licence CC0 1.0
 #         as shown on the Dryad dataset page (asserted from the dataset JSON). Code: Zenodo doi:10.5281/zenodo.7792055
 #         (Grizzly_Density_Script.R; not used).
@@ -156,4 +160,5 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Spatial capture-recapture (multi-session, proximity detectors)",
   sampling_protocol = "hair_snag", design = "Multi-session (3 summers x 6 visits; 218 detectors)",
   realm = "Terrestrial", country = "CAN", coordinates = "Coarsened (trap coordinates centred on the detector array, local metres; species at risk in Canada)",
-  notes = "Experimental (E9): genetic hair-snag SCR; ids linked across years.")
+  notes = "Experimental (E9): genetic hair-snag SCR; ids linked across years.",
+  status = "tagged; do_not_publish: care_review (#150), withdrawn 2026-11-06")

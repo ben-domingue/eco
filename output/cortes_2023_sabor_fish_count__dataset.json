@@ -1,0 +1,68 @@
+{
+  "table": "cortes_2023_sabor_fish_count",
+  "title": "EDP Baixo Sabor fish monitoring: counts of 18 fish taxa at 69 stations by electrofishing and netting, Sabor basin, Portugal, 2015-2020",
+  "creator": "Cortes, Rui; Varandas, Simone; Jesus, Joaquim; and 7 co-authors (University of Trás-os-Montes e Alto Douro, for EDP - Energias de Portugal)",
+  "pubDate": "2023",
+  "doi": "10.15468/ut55sa",
+  "sourceURL": "https://doi.org/10.15468/ut55sa",
+  "citation": "Cortes R, Varandas S, Jesus J, Santos C, Lopes M, Pereira V, Bessa I, Assunção T, Albuquerque A, Sanches D (2023). EDP Baixo Sabor: Fishes – Ecological Monitoring and Complementary Measures Programs [2015-2020]. Version 1.0. EDP - Energias de Portugal. Samplingevent dataset. https://doi.org/10.15468/ut55sa",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "Fish monitoring of the Baixo Sabor hydroelectric dams (northeast Portugal) in their first years of operation, for EDP's Ecological Monitoring and Compensatory Measures programmes: stream stations electrofished once each spring-summer, including stations of four compensatory measures and their controls, and four reservoir stations sampled each year by electrofishing of the margins and by surface and deep gill netting. One row per station, year, method and taxon, y the individuals caught.",
+  "samplingProtocol": "Electrofishing with restitution at lotic stations (about 15 minutes, 3-4 people; duration per event in obs_duration_min) once a year in June-July; at four lentic reservoir stations also surface and deep netting (330 and 360 m2 of net, 3 people, about 14 hours) on the same visit (EDP Baixo Sabor PME and PMC).",
+  "samplingProtocolCode": "electrofishing",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = method within a year's visit (electrofishing; surface and deep netting at the four reservoir stations); period = year",
+  "occasionKind": "method",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Lower Sabor river basin and reservoirs (Douro), Bragança district, northeast Portugal",
+  "temporalCoverage": "2015-06/2020-07",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Station coordinates as published (5 m); no species is IUCN-threatened in its native range (GBIF IUCN records)."
+  },
+  "covariateNote": "obs_method = electric fishing, surface netting or deep netting; obs_duration_min = electrofishing minutes (NA where the source gives 0); obs_area_m2 = netted area; obs_effort = samplingEffort as published; obs_habitat = lotic or lentic at the event; unit_program = the programme and compensatory measure the station serves (source locationRemarks); unit_control = 1 for a PMC control station; unit_water_body = stream or reservoir.",
+  "notes": "Achondrostoma is a genus-level class as published. 'Sender lucioperca' and 'Cobitis paludicola' are corrected to Sander lucioperca and Cobitis paludica in __taxa (source spelling in taxonRemarks). Station PIMA A2C is published at a different point in 2020 (22 km away); that event is the unit PIMA A2C_2020. 34 electrofishing events give a duration of 0 minutes, shipped as NA.",
+  "notShipped": {
+    "zero durations": "sampleSizeValue 0 on 34 electrofishing events, read as not recorded (NA)"
+  },
+  "summary": {
+    "n_rows": 8208,
+    "n_units": 69,
+    "n_taxa": 18,
+    "n_periods": 6,
+    "n_occasions": 3,
+    "n_surveys": 456,
+    "y_values": "0-527 (149 distinct)",
+    "prop_zero": 0.807,
+    "n_traps": 1,
+    "n_zero": 6621,
+    "n_positive": 1587,
+    "n_units_detected": 53,
+    "max_y": 527
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_water_body", "unit_control", "unit_decimalLatitude", "unit_decimalLongitude", "unit_program", "unit_coordinateUncertaintyInMeters", "obs_method", "obs_duration_min", "obs_area_m2", "obs_effort", "obs_habitat"],
+  "coreMd5": "c82ef09dcd5e97b58a6f5861d2f392f5",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "year"],
+      "md5": "dc1ff5893b95b15c22987d98cc6cc43b"
+    },
+    "taxa": {
+      "rows": 18,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "39665e5314772ad2cfd2497181a86cf4"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cortes_2023_sabor_fish_count.R",
+  "buildDate": "2026-11-13"
+}

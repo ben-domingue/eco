@@ -1,0 +1,60 @@
+{
+  "table": "kery_2016_swiss_squirrel_occ",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Red squirrel detection on up to 3 surveys of 265 Swiss breeding bird survey (MHB) quadrats, 2007",
+  "creator": "Swiss Ornithological Institute (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2016",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset SwissSquirrels]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-801378-6.00010-2",
+  "abstract": "Fieldworkers of the Swiss breeding bird survey MHB also recorded Eurasian red squirrels (Sciurus vulgaris) on their three territory-mapping walks through each 1-km2 quadrat in 2007. The data are the AHMbook package's SwissSquirrels file (AHM1 section 10.9): 265 quadrats (all but two of the MHB sample), one row per quadrat x survey, y = 1 where a squirrel was recorded, with survey date and duration, quadrat elevation, route length and forest cover.",
+  "samplingProtocol": "Swiss MHB: a fixed route of several km walked three times in the breeding season (2007) through each 1-km2 quadrat; squirrels recorded alongside the bird territory mapping.",
+  "samplingProtocolCode": "line_transect",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "The file has a detection column for each of three surveys per quadrat; a missing value means the survey did not take place and has no row.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "single season (2007)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Switzerland, 265 MHB 1-km2 quadrats; quadrat coordinates are in a reference system the source intentionally leaves unspecified (unit_x_unspecified_crs, unit_y_unspecified_crs)",
+  "temporalCoverage": "2007",
+  "notes": "The package's coordinates are shipped as unit_ covariates, not as locations: the help page says their reference system is intentionally not specified, so they give relative positions only. Quadrat ids are row numbers of the file. obs_day_from_apr1: 1 = 1 April. Two of the 267 MHB quadrats are not in the source.",
+  "notShipped": {
+    "spec.name": "constant ('Squirrel')"
+  },
+  "summary": {
+    "n_rows": 747,
+    "n_units": 265,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 3,
+    "n_surveys": 747,
+    "y_values": "0,1",
+    "prop_zero": 0.74,
+    "n_traps": 1,
+    "n_zero": 553,
+    "n_positive": 194,
+    "n_units_detected": 116,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "unit_x_unspecified_crs", "unit_y_unspecified_crs", "unit_elevation_m", "unit_route_km", "unit_forest_pct", "obs_day_from_apr1", "obs_duration_min"],
+  "coreMd5": "d07665597e68606f0e36c953d1c1653c",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "99666467e9e673641e94581f26eaa5f6"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}

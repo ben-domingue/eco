@@ -1,0 +1,78 @@
+{
+  "table": "ergon_2014_kielder_vole_scr",
+  "title": "Robust-design spatial capture-recapture of 158 adult field voles on a 192-trap grid in Kielder Forest, England, June-August 2000",
+  "creator": "Ergon, Torbjørn; Gardner, Beth",
+  "pubDate": "2013",
+  "doi": "10.5061/dryad.r17n5",
+  "sourceURL": "https://doi.org/10.5061/dryad.r17n5",
+  "citation": "Ergon, T., & Gardner, B. (2013). Data from: Separating mortality and emigration: modelling space use, dispersal and survival with robust-design spatial capture-recapture data [Dataset]. Dryad. https://doi.org/10.5061/dryad.r17n5",
+  "paperDOI": "10.1111/2041-210X.12133",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Adult field voles (Microtus agrestis) live-trapped on a grid of 192 multi-catch traps at 7-m spacing in a clearcut in Kielder Forest, northern England, in four primary sessions 21-23 days apart between 10 June and 15 August 2000, with traps checked about every 12 hours (3, 5, 4 and 5 checks). The authors used the data to separate mortality from emigration with robust-design spatial capture-recapture. One row per vole x trap x check while at risk, with sex and the time of day of the check; five voles died in traps.",
+  "samplingProtocol": "Ugglan Special multi-catch live traps baited with barley and carrot on a 192-trap grid (7 m), checked at about 06:00 and 18:00; voles ear-tagged; four primary sessions in summer 2000.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap operation is not deposited. Every trap is taken as set at every check of every primary session (3, 5, 4, 5 checks, from the deposited time-of-day matrix), as the authors' RD-SCR model assumes. Each vole has rows at all 192 traps for every check from the first primary session to the end, or to the check at which it died.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (robust design: closed within a primary session, open between)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "obs_removed",
+  "geographicCoverage": "A clearcut in Kielder Forest, Northumberland, England (about 55.2 N, 2.6 W); trap coordinates in __traps are local grid metres",
+  "temporalCoverage": "2000-06-10/2000-08-15",
+  "crs": "local grid metres (as deposited)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "local grid coordinates as deposited; Microtus agrestis is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9: robust-design spatial capture-recapture with a trap key and __traps. Five voles that died in traps have obs_removed = 1 on that capture and no later rows.",
+  "notes": "Adults only, as deposited (118 females, 40 males; the paper's selection); captures of a vole before it was classed adult may not be in the deposit (Appendix S2 not read), so rows before an adult's first capture rest on E4.4's unknown-age rule. The same data are openCR::fieldvoleCH. obs_time_of_day from the deposit's tod (1 evening, 2 morning). Unit ids are the deposit's tag codes.",
+  "notShipped": {
+    "N": "counts derivable from the histories",
+    "dt": "interval lengths between primary sessions, shipped in __periods as interval_months_to_next"
+  },
+  "summary": {
+    "n_rows": 504768,
+    "n_units": 158,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 5,
+    "n_surveys": 504768,
+    "y_values": "0,1",
+    "prop_zero": 0.998,
+    "n_traps": 192,
+    "n_zero": 503677,
+    "n_positive": 1091,
+    "n_units_detected": 158,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "unit_sex", "obs_time_of_day", "obs_removed"],
+  "coreMd5": "6a7e5c147cdf20ddd15dcc2ee5111c25",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "n_checks", "interval_months_to_next", "n_caught"],
+      "md5": "8ca0a1a2803f5174477f19d4c8023cd4"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "cfa2c8eb4c8da802227898cb3a3e32cf"
+    },
+    "traps": {
+      "rows": 192,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "289b981e2789aa7834ac68e0329a4a02"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ergon_2014_kielder_vole_scr.R",
+  "buildDate": "2026-11-13"
+}

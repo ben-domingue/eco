@@ -1,0 +1,69 @@
+{
+  "table": "debusschere_2026_bpns_porpoise_occ",
+  "title": "Harbour porpoise detections per hour on 172 C-POD and F-POD deployments at 24 stations, Belgian part of the North Sea, 2014-2024",
+  "creator": "Debusschere, Elisabeth; Calonge, Arienne; Conings, Bram (Flanders Marine Institute, VLIZ)",
+  "pubDate": "2026",
+  "doi": "10.14284/639",
+  "sourceURL": "https://doi.org/10.14284/639",
+  "citation": "Debusschere E, Calonge A, Conings B (2026). LifeWatch observatory data: Permanent Cetacean passive acoustic sensor network in the Belgian Part of the North Sea. Version 1.10. Flanders Marine Institute (VLIZ). Samplingevent dataset. https://doi.org/10.14284/639",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Passive acoustic monitoring of harbour porpoise (Phocoena phocoena) in the LifeWatch cetacean network of VLIZ: C-POD and F-POD click loggers moored next to shipwrecks and other structures at 24 stations in the Belgian part of the North Sea, 2014-2024. Porpoise click trains are classified by the KERNO classifier and summarised per hour as detection-positive minutes out of minutes recorded. One row per deployment-hour with recording time: y = 1 if any minute in the hour had a porpoise detection, y_raw = detection-positive minutes, obs_recorded_min = minutes recorded, obs_total_clicks = all clicks logged. The unit is the deployment (172), and cluster_id is the station, so simultaneous deployments at a station (paired C-POD and F-POD, or overlap during a swap) are separate units.",
+  "samplingProtocol": "Continuous recording by moored C-POD or F-POD click loggers; clicks classified as narrow-band high-frequency porpoise click trains by the KERNO classifier (cpod.exe), summarised per hour as detection-positive minutes and minutes recorded.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "sample_table",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "period = calendar month, occasion = hour of the month (UTC); porpoise presence at a station changes within hours, so occupancy within a month is use, not a closed state. date and obs_hour_utc allow any regrouping (day, week, season).",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "effortColumn": "obs_recorded_min",
+  "geographicCoverage": "Belgian part of the North Sea (51.2-51.8 N, 2.4-3.1 E)",
+  "temporalCoverage": "2014-06/2024-12",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Phocoena phocoena is Least Concern (IUCN); offshore mooring positions kept as published (4 decimals)."
+  },
+  "notes": "Detections are the KERNO classifier's output as published (automated, not validated by hand). Recording time is under 60 minutes in some hours (deployment start and end, battery or memory end); use obs_recorded_min as effort. One F-POD deployment at ReefballsBelwind (D57130) is published 0.1 deg east of the station's other deployments. Licence: CC BY 4.0, confirmed by VLIZ (E. Debusschere, 2026-11-10) after earlier versions carried a not-for-profit accessRights note.",
+  "notShipped": {
+    "Number of filtered clicks": "clicks in classified porpoise trains per hour: a second measure of the same detection, not a covariate",
+    "device-type events": "01_CPOD / 02_FPOD parent events; their instrument is unit_device"
+  },
+  "summary": {
+    "n_rows": 449119,
+    "n_units": 172,
+    "n_taxa": 1,
+    "n_periods": 118,
+    "n_occasions": 744,
+    "n_surveys": 449119,
+    "y_values": "0,1",
+    "prop_zero": 0.646,
+    "n_traps": 1,
+    "n_zero": 290043,
+    "n_positive": 159076,
+    "n_units_detected": 172,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "y_raw", "period", "occasion", "date", "cluster_id", "unit_device", "unit_mooring", "unit_depth_m", "unit_decimalLatitude", "unit_decimalLongitude", "obs_hour_utc", "obs_recorded_min", "obs_total_clicks"],
+  "coreMd5": "5942333cc2316785fdb826ee3a3ef828",
+  "sideTables": {
+    "periods": {
+      "rows": 118,
+      "columns": ["period", "year", "month"],
+      "md5": "e9354471235827771fb57ee98d256d4f"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "42018a4d7c24508226e4c4149014c120"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/debusschere_2026_bpns_porpoise_occ.R",
+  "buildDate": "2026-11-11"
+}

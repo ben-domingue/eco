@@ -1,0 +1,65 @@
+{
+  "table": "collier_2013_alice_dove_cjs",
+  "title": "Biweekly capture histories of 8,603 white-winged doves banded in an urban breeding colony, Alice, Texas, 2009 and 2010",
+  "creator": "Collier, Bret A.; Kremer, S. R.; Mason, C. D.; Stone, J.; Calhoun, K. W.; Peterson, M. J. (data; distributed in the RMark R package)",
+  "pubDate": "2013",
+  "sourceURL": "https://cran.r-project.org/package=RMark",
+  "citation": "Laake, J. L. (2026). RMark: R code for Mark analysis (Version 3.1.0) [R package; dataset wwdo.09 and wwdo.10]. CRAN. https://CRAN.R-project.org/package=RMark",
+  "paperDOI": "10.3996/052012-JFWM-043",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "White-winged doves (Zenaida asiatica) captured continuously in baited walk-in traps and leg-banded in an urban breeding colony at Alice, Texas, from mid-February to mid-September 2009 (5,101 doves) and 2010 (3,502), aged as hatch-year or after-hatch-year. Captures are grouped into 13 roughly two-week windows starting 27 February (the last open-ended from 14 August). One row per dove x window of its year, y = 1 if captured; the authors' Jolly-Seber (POPAN) analysis estimated immigration and recruitment.",
+  "samplingProtocol": "Baited walk-in traps operated continuously February-September; doves leg-banded and aged; captures pooled into two-week windows.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; trapping was continuous (help page), so every two-week window of each year is a survey. The authors' leading all-zero column (E0, used to fix entry before trapping) is dropped (asserted all 0).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period = two-week window (13 per year, 2009 = 1-13, 2010 = 14-26; __periods has year and window start); open (Jolly-Seber). Band numbers are not in the package, so a dove's id is valid within its year only and it has rows in that year's windows only (E4.4)",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Alice, Jim Wells County, Texas, USA (27.25 N, 98.07 W, as given on the help page); trap locations not in the package",
+  "temporalCoverage": "2009-02-27/2010-09-15",
+  "coordinatesCoarsened": null,
+  "notes": "At-risk span: after-hatch-year doves from the first window of their year; hatch-year doves (hatched that season) from their marking window. The help page gives 3,106 AHY doves in 2010; the data have 3,016 (asserted). Window start dates in __periods. Unit ids are year_row.",
+  "notShipped": {
+    "E0": "the authors' dummy all-zero first column"
+  },
+  "summary": {
+    "n_rows": 86756,
+    "n_units": 8603,
+    "n_taxa": 1,
+    "n_periods": 26,
+    "n_occasions": 1,
+    "n_surveys": 86756,
+    "y_values": "0,1",
+    "prop_zero": 0.885,
+    "n_traps": 1,
+    "n_zero": 76769,
+    "n_positive": 9987,
+    "n_units_detected": 8603,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_age_first"],
+  "coreMd5": "e0dbf093bc859f3f3254d729a06a372d",
+  "sideTables": {
+    "periods": {
+      "rows": 26,
+      "columns": ["period", "year", "window", "window_start", "n_caught"],
+      "md5": "a2bcd9db2c04868fd846432349b6aabf"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "5a5896c9c0f7f848e9143c82382dbb82"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

@@ -1,0 +1,84 @@
+{
+  "table": "neon_2026_aqplants_occ",
+  "title": "NEON wadeable-stream aquatic plants and macroalgae, RELEASE-2026: presence of 153 taxa at points along 240 permanent transects, three bouts a year at 24 NEON stream sites, 2014-2024",
+  "creator": "NEON (National Ecological Observatory Network)",
+  "pubDate": "2026",
+  "doi": "10.48443/sgfd-xs73",
+  "sourceURL": "https://data.neonscience.org/data-products/DP1.20072.001/RELEASE-2026",
+  "citation": "NEON (National Ecological Observatory Network). Aquatic plant, bryophyte, lichen, and macroalgae point counts in wadeable streams (DP1.20072.001), RELEASE-2026. https://doi.org/10.48443/sgfd-xs73. Dataset accessed from https://data.neonscience.org/data-products/DP1.20072.001/RELEASE-2026 on 2026-11-12",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "NEON's point-transect survey of aquatic plants, bryophytes, lichens and macroalgae in wadeable streams: ten permanent transects cross the wetted channel of each reach, and in spring, summer and fall bouts a technician records at regular points along each transect which taxa are present, with habitat and substrate. This table is the presence of each taxon at each point (y = 1 listed, 0 not), the transect as the unit and the points as spatial replicates within a bout. The taxa surveyed for at a site are the per-site pool of taxa this table records there (median 9 of 153; __survey_taxa). Unidentified plants are one taxon (Plantae), unidentified macroalgae one functional group. Transect coordinates are as NEON publishes them.",
+  "samplingProtocol": "Point-transect survey: ten permanent transects across the wetted channel of a wadeable-stream reach, points at regular intervals along each, the taxa of aquatic plants, bryophytes, lichens and macroalgae present at each point recorded (with voucher identification), three bouts a year (NEON AOS aquatic plant, bryophyte, lichen and macroalgae sampling protocol, NEON.DOC.003039)",
+  "samplingProtocolCode": "point_intercept",
+  "surveyEvidence": "sample_table",
+  "surveyEvidenceNote": "apc_pointTransect lists every point visited (transects not sampled carry samplingImpractical); a survey is a point with samplingImpractical blank and targetTaxaPresent N (y = 0 for every taxon) or Y with apc_perTaxon rows. The zeros rest on a per-site species pool derived from detections (ruling 19): the taxa surveyed for at a transect are every taxon this table records at its site (__survey_taxa), not a list NEON deposited.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = point along the transect at one bout (spatial replicates, visited on one day; a bout spread over two days at a few sites); period = bout (spring, summer, fall), indexed globally by date",
+  "occasionKind": "spatial",
+  "taxonInclusion": "recorded",
+  "geographicCoverage": "24 NEON wadeable-stream sites in the continental USA, Alaska and Puerto Rico; transect coordinates as published by NEON (WGS 84) in __units; latitude 18.1 to 68.7, longitude -149.2 to -66.8",
+  "temporalCoverage": "2014-07/2024-11",
+  "crs": "EPSG:4326 (WGS 84), as published",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "As published by NEON (transect coordinates with coordinateUncertaintyInMeters in __units); no taxon in the table is IUCN CR, EN or VU (taxon_iucnCategory in __taxa)"
+  },
+  "covariateNote": "obs_point = NEON pointNumber along the transect; obs_distance_m = transectDistance (m); obs_habitat_type (riffle, run, pool, step pool) and obs_substrate (pebble, cobble, sand, ...) at the point. Site, domain, NEON namedLocation, coordinates, uncertainty and elevation per transect are in __units; unit_site in the core.",
+  "notes": "Per-site pools (ruling 19): median 9 taxa (range 1-25). Taxa: 110 species (varieties and subspecies rolled up) and 43 records identified only to genus, family or order, each its own taxon (E6); unidentified plants (NEON 'Unknown plant', 'Plantae sp.' and plant records with no taxonID) are Plantae, and unidentified macroalgae ('Unknown Algae' and 3031 macroalgae records with no taxonID, unresolved morphospecies) one functional group. Surveys: 103839 points; not used: 1028 transect or point rows not sampled, 361 points recorded U, 36 recorded Y with no taxon rows, 15 recorded N with taxon rows, 340 points with more than one record in one bout (2014-2016 legacy data; dropped, since the taxon rows cannot be assigned to one record). 22 taxon records with neither a taxonID nor a plant type are not shipped (their points stay surveys).",
+  "notShipped": {
+    "points not used": "1028 transect or point rows not sampled (samplingImpractical); 361 points with targetTaxaPresent U; 36 Y with no taxon rows; 15 N with taxon rows; 340 points with more than one record in one bout (taxon rows not assignable to one record)",
+    "untyped records": "22 apc_perTaxon rows with neither a taxonID nor an aquaticPlantType",
+    "reach points": "510 point rows (with 1 taxon rows) filed under the reach (CUPE, MAYF), not a transect, so with no unit",
+    "other fields": "growthForm, herbarium and voucher records, morphospecies resolution and identification history (expanded package)",
+    "zeros outside the site pool": "a taxon never recorded at a site has no rows there (per-site pool, ruling 19)"
+  },
+  "summary": {
+    "n_rows": 1086768,
+    "n_units": 240,
+    "n_taxa": 153,
+    "n_periods": 548,
+    "n_occasions": 114,
+    "n_surveys": 103839,
+    "y_values": "0,1",
+    "prop_zero": 0.988,
+    "n_traps": 1,
+    "n_zero": 1073346,
+    "n_positive": 13422,
+    "n_units_detected": 214,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_site", "obs_point", "obs_distance_m", "obs_habitat_type", "obs_substrate"],
+  "coreMd5": "225d2c9a836775a4ea4b92211af488c2",
+  "sideTables": {
+    "periods": {
+      "rows": 548,
+      "columns": ["period", "eventID", "site", "year", "bout", "date"],
+      "md5": "28485d3be016d660a3c73798eaff97dd"
+    },
+    "survey_taxa": {
+      "rows": 2505,
+      "columns": ["unit", "taxon"],
+      "md5": "e1182d22e272cd1452d5f17a8761a7f3"
+    },
+    "taxa": {
+      "rows": 153,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_type", "taxon_n_points", "taxon_iucnCategory"],
+      "md5": "6f5349ac6f6d18c76f7ec56bdb51e72c"
+    },
+    "units": {
+      "rows": 240,
+      "columns": ["unit", "site", "domain", "named_location", "decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters", "elevation_m"],
+      "md5": "81c847f59db09cb308ffc01702d38799"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/neon_2026_aqplants_occ.R",
+  "buildDate": "2026-11-12"
+}

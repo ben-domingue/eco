@@ -1,0 +1,66 @@
+{
+  "table": "merker_2021_coweeta_cawa_count",
+  "title": "Canada warbler counts in four 2.5-min intervals at 71 points near Coweeta, North Carolina, 2014 to 2017",
+  "creator": "Merker, Samuel; Chandler, Richard",
+  "pubDate": "2020",
+  "doi": "10.5281/zenodo.4238700",
+  "sourceURL": "https://doi.org/10.5281/zenodo.4238700",
+  "citation": "Merker, S., & Chandler, R. (2020). An experimental test of the Allee effects range limitation hypothesis (v1.1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.4238700",
+  "paperDOI": "10.1111/1365-2656.13389",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Point counts of Canada warbler (Cardellina canadensis) at its trailing-edge range boundary in the southern Appalachians: 71 points on a 500 m grid in Nantahala National Forest, in and around the Coweeta Hydrologic Laboratory, about 800 to 1,400 m elevation. One 10-minute count per point per breeding season, 2014 to 2017, recorded in four 2.5-minute intervals, with scaled wind, noise, time-of-day and date covariates and a PRISM climate principal component per point. The study added conspecific playback at some points in 2016 and 2017 to test for Allee effects; the treatment indicator is not in this table (see notes).",
+  "samplingProtocol": "10-minute point count by expert observers between 06:00 and 11:00 on days with little wind or rain, every individual seen or heard within 100 m recorded, split into four 2.5-minute intervals; one count per point per year.",
+  "samplingProtocolCode": "point_count",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the four intervals are consecutive parts of one 10-minute count; the authors fit each as a binomial count of the point's abundance for the year (dynamic N-mixture across years)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Nantahala National Forest at and around the Coweeta Hydrologic Laboratory, Macon County, North Carolina, USA",
+  "temporalCoverage": "2014/2017",
+  "covariateNote": "obs_* are the authors' scaled and centred values (wind, noise and time of day recorded on a 0-5 scale; Julian date), constant across a point-year's four intervals; the centring constants are not deposited. unit_climate_pc1 is PC1 of PRISM 1981-2010 temperature and precipitation normals (negative = cooler and wetter).",
+  "notShipped": {
+    "treatment": "treat.mat (0/1 point x year) flags 11 points in 2016 and 14 in 2017, where the paper reports conspecific playback at 10 sites in 2016 and 8 in 2017; held until the authors say what it encodes",
+    "model_output": "abundance, density and growth-rate estimates (not deposited)"
+  },
+  "notes": "The deposit has no year labels and no interval labels; Richard Chandler gave the array order (sites x 2.5-min intervals x years) by email on 2026-11-13, and the paper gives the years 2014-2017. Point PCCow038 was not surveyed in 2014. Licence: the Zenodo record says 'Other (Open)' with no text; the authors gave written permission (2026-11-13) to redistribute under a licence of eco's choice, and the table is CC BY 4.0.",
+  "summary": {
+    "n_rows": 1132,
+    "n_units": 71,
+    "n_taxa": 1,
+    "n_periods": 4,
+    "n_occasions": 4,
+    "n_surveys": 1132,
+    "y_values": "0,1,2,3,4,5",
+    "prop_zero": 0.86,
+    "n_traps": 1,
+    "n_zero": 974,
+    "n_positive": 158,
+    "n_units_detected": 19,
+    "max_y": 5
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "unit_climate_pc1", "obs_wind_scaled", "obs_noise_scaled", "obs_time_scaled", "obs_date_scaled"],
+  "coreMd5": "3f8a196e38e6d1661dd0b43e8a033cd0",
+  "sideTables": {
+    "periods": {
+      "rows": 4,
+      "columns": ["period", "year", "n_points_surveyed"],
+      "md5": "3c440e5c45d052df91ef40c1bd10382d"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName"],
+      "md5": "e60ce2c1f8e4ac75245c6cc24dd9b23a"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/merker_2021_coweeta_cawa_count.R",
+  "buildDate": "2026-11-13"
+}

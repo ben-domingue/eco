@@ -52,12 +52,18 @@
 #' head(d)
 #' both <- eco_fetch(eco_filter(taxon_group = "Mammals"))
 #' }
-#' @seealso [eco_taxa()] for the side tables, [eco_to_unmarked()] to reshape.
+#' @section Citing:
+#' The first fetch in a session prints a one-line reminder to cite the original
+#' deposits with [eco_cite()]; `options(eco.cite_reminder = FALSE)` silences it.
+#'
+#' @seealso [eco_taxa()] for the side tables, [eco_to_unmarked()] to reshape,
+#'   [eco_cite()] to cite the sources.
 #' @export
 eco_fetch <- function(x) {
   tables <- .eco_table_names(x)
-  if (length(tables) == 1) return(.eco_fetch_one(tables))
-  stats::setNames(lapply(tables, .eco_fetch_one), tables)
+  out <- if (length(tables) == 1) .eco_fetch_one(tables) else stats::setNames(lapply(tables, .eco_fetch_one), tables)
+  .eco_cite_reminder()
+  out
 }
 
 .eco_side <- function(table, suffix) {

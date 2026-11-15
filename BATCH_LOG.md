@@ -2455,3 +2455,677 @@ and said in notes. (2) A table replicated only within the visit still reads `sam
 since the floor counts occasions and periods; the floor's wording may want the replication ruling's exceptions.
 (3) Hastings: rows before a female's artificial natal release are zeros by construction (no female can be seen with a
 pup before her first pup); kept from the study's first year or birth (E4.4), as the kittiwake tables do.
+
+## Batch 48 — 2026-11-06 (two holds cleared by author replies: Olympic fisher, Sierra owl ARUs)
+
+Two agents in `~/eco-b48` (branch `batch-48`, from main at b2c2f21), one per deposit; records written after both finished.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| jenkins_2019_olympic_fisher_occ | occupancy (detection), hexagon x year x 14-day interval | USGS ScienceBase doi:10.5066/P9Q8SITV (US PD) | 787 | 144 hexagons, 4 years, 3 intervals; 56 detections in 30 of 263 hexagon-years (the paper's 263 PSUs); deposited_matrix |
+| barry_2025_sierra_owls_comm | acoustic ARU community occupancy (FLM, NPO), weekly, stacked years | Dryad doi:10.5061/dryad.c866t1gkt (CC0), author-corrected files | 20,764 | 517 ARUs in 265 cells (`cluster_id`), 4 years, 11 weeks; deposited_matrix |
+| barry_2025_sierra_gho_occ | acoustic ARU occupancy (GHO), cell level (two ARUs pooled), weekly | the same | 5,480 | 265 cells, 4 years, 11 weeks; deposited_matrix |
+
+**Fisher.** Held for a contact-prior-to-use clause; Ben emailed K. Jenkins and USGS FRESC, who replied 2026-11-06
+(public domain, free to modify, citation of the release appreciated). `y` pools three camera + hair-snare stations per
+hexagon (no station-level data deposited). Landscape covariates are `period_` because buffers were re-measured each
+year. The 36 expansion-area hexagons have no detection data. Not an E7 flag (IUCN LC; a US state listing is not a
+flag), so hexagon centres ship as published (NAD83 UTM 10N). The shapefile's attribute table is read with
+`foreign::read.dbf` (recommended package shipped with R), new to the data scripts.
+
+**Owls.** Held 2026-11-05 because the three species files disagreed. J. Barry replied 2026-11-06 with corrected files
+(recorder recovery-date typos at about a dozen sites; GHO is scored per cell, FLM/NPO per ARU; one 2018 barred-owl
+record fixed) and will update the public copy. Ben ruled to build from the corrected files, the author's clear intent.
+First table built from author-supplied files: they are cached in `.cache/author_supplied/barry_owls_2026-11-06/` (not
+in git), md5s asserted, and the script stops if the Dryad files change ("switch this script to the public files").
+Diff vs deposit: 38 detection cells, 32 ARUhours cells, 2 BOpresence cell-years, 1 NPO row added. The deposited files
+had 19 hours/NA contradictions (the hold note said 16). Fire and removal covariates were computed over species-specific
+home-range buffers (FLM 50 ha, NPO 300 ha, GHO 700 ha), so the community table ships each once per buffer
+(`_50ha`, `_300ha`). ARUhours is shipped as `obs_aruhours` as deposited; its values look like ln(hours) (max 4.43 =
+ln 84), said in notes.
+
+Strained the standard: E10 has no provenance field for author-supplied files; the statement is in `notes` and
+`notShipped$author_corrections`. Questions for the author: what FR11-FR23 are (not shipped), and whether ARUhours is
+ln(hours).
+
+## Batch 49 — 2026-11-11 (one hold cleared by an author reply: Tasmanian giant freshwater crayfish eDNA)
+
+Built in `~/eco-b49` (branch `batch-49`, from main at c71ce71), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| trujillo_2020_tasmania_crayfish_edna | eDNA multi-scale (stream > water sample > qPCR replicate) | Zenodo doi:10.5281/zenodo.4692079 (CC BY 4.0) + author-supplied sampling metadata | 144 | 6 streams (`cluster_id`), 4 samples each, 6 wells; 53 positive wells; deposited_matrix; below the sample floor (24 units) |
+
+**Crayfish.** Held 2026-11-02 because the sample names could not be tied to sites and field samples. A. Trujillo-Gonzalez
+replied 2026-11-11: CONCATENATED column A is site|replicate, one row per field sample collected, and he sent the
+project's sampling metadata (coordinates, dates, positive/negative site labels). His copy of the amplification workbook
+is identical to the deposit; the sampling metadata is author-supplied (`.cache/author_supplied/trujillo_crayfish/`,
+md5 asserted, not in git). Ben supplied the paper (doi:10.1002/edn3.204), which the script reads against.
+
+Found in the deposit: run sheet `2020-05-01_2` is a second copy of run `2020-04-30` (same run end time, all 96 wells
+identical), and CONCATENATED stacks it too, so a naive read counts each field well of that run twice (9 wells per sample
+instead of 6). Counted once, the per-site positives match the paper exactly (Lowries Creek 4/24, Minnow 3/24, none at
+the negative site). `y` is the authors' call (CT <= 55, which here equals any amplification); `y_raw` the CT.
+
+Field controls: only two were run. `FC SA` (Site A, the metadata's code) amplified in 2 of 6 wells and `FC NEG` in 1 of
+6; `FC NEG` is read as the negative site's (UBR) control, an inference from the label. `obs_blank_positive = 1` on both
+sites' rows; at the other four sites 0 means not tested (said in notes). Captive validation samples (lobster pond tanks,
+Huon trough) are not shipped. IUCN EN: coordinates coarsened, stream names withheld (E7.4).
+
+Open questions for the author (to go with Ben's reply): which four of the eight bottles per site were amplified (or
+were they pooled); whether `FC NEG` is the UBR field control; whether Site 1P and Site A really share coordinates (identical
+to 1e-6 degree in the metadata, probably a copy error; the same 0.1-degree cell either way). Strained the standard
+again: E10 has no provenance field for author-supplied files (as in batch 48); `obs_blank_positive` cannot say "blank not
+tested".
+
+## Batch 50 — 2026-11-11 (one hold cleared: VLIZ LifeWatch porpoise C-POD network)
+
+Built in `~/eco-cpod` (branch `cpod-vliz`, from main at e050336), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| debusschere_2026_bpns_porpoise_occ | passive acoustic detection, continuous (deployment x month x hour) | VLIZ IPT lifewatch_cpod v1.10, doi:10.14284/639 (CC BY 4.0) | 449,119 | 172 deployments (unit) at 24 stations (`cluster_id`), 2014-06 to 2024-12; y = any detection-positive minute in the hour, y_raw = DPM, `obs_recorded_min` effort; sample_table |
+
+**Licence.** Held since batch 42 because the event rows carried accessRights "not-for-profit use only" beside a CC BY 4.0
+EML. E. Debusschere (VLIZ) confirmed CC BY 4.0 on 2026-11-10; the IMIS record (5531) says CC BY 4.0, and IPT version 1.10
+(2026-11-06) has accessRights "CC BY 4.0" on every row (asserted). Built from the IPT archive without waiting for the GBIF
+re-harvest (Ben, 2026-11-11). Found via the EDITO / EMODnet Biology occurrence parquet (IMIS 5531 is there with its
+absences); the EDITO copy drops `eventDate` and the eMoF counts, so the IPT archive is the source.
+
+**Design.** Unit = deployment, not station: coordinates, depth, mooring and device (C-POD / F-POD) vary between
+deployments at a station, and 15,568 station-hours have two PODs recording at once (paired C-POD and F-POD, or overlap
+during a swap). Station is `cluster_id`. Period = calendar month, occasion = hour of the month, `closure = open`.
+One F-POD deployment at ReefballsBelwind (D57130) is published 0.1 deg east of the station's others, kept as published.
+"Number of filtered clicks" not shipped (a second measure of the detection); `obs_total_clicks` ships as a noise covariate.
+
+Strained the standard: nothing new. A station-level occupancy view needs aggregating units by `cluster_id`. The hour is the
+source's own summary unit (VLIZ publishes one event per hour), so nothing is discretised here; month only groups hours
+into periods (`date` and `obs_hour_utc` let users regroup).
+## Batch 51 — 2026-11-12 (two holds cleared: Colorado ants, Murcia forest birds)
+
+Built in `~/eco-b50` (branch `batch-50`; numbered 51 after the C-POD batch 50, PR #168, merged first), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| szewczyk_2019_colorado_ants_binom | binomial_count community, multi-scale (site > pitfall-trap pair) | Dryad doi:10.5061/dryad.rt679ng (CC0) + Ecography Appendix 1 | 45,706 | 551 trap pairs at 29 sites, 102 taxa on per-region lists (`__survey_taxa`); coarsened (Dorymyrmex insanus IUCN VU) |
+| szewczyk_2019_colorado_ants_exact_binom | same, E7.3 sibling | same | 45,432 | without D. insanus; site coordinates (0.01 deg) and elevations as published |
+| jimenezfranco_2019_murcia_birds_binom | binomial_count community, transects as spatial replicates of grid cells | Dryad doi:10.5061/dryad.8sf5v66 (CC0) + Ecol. Evol. Table S1 | 17,958 | 246 cells (AS2x2), 1-5 transects each, 73 species; no coordinates in source |
+
+**Colorado ants.** Held since 2026-11-05 as "San Juan species unnamed, no survey years". The species were named all
+along (`dimnames(y)` of the SJ array; the intake read only the numeric `tax` frame). C. McCain sent the Ecography
+appendices on 2026-11-11 (the publisher link is dead; her PDF is byte-identical to the 2019 Wayback copy of
+ecography.org's appendix). Table A1 gives every site's transect, year, elevation and coordinates; the deposit's two
+blocks of seven San Juan site codes match SJ-1 and SJ-2 by observed species and genus richness at all 14 sites (asserted).
+
+Found in the deposit: `FR-all_data_for_JAGS.rds` mislabels its last rows. It agrees with `FR-shared` species by
+species up to row 68; then FR-shared's SolenopsisMOLESTA .. TemnothoraxRUGATULUS are FR-all's rows 71, 73-76, and
+FR-shared's TemnothoraxTRICARINATUS is in no FR-all row. That species is detected at exactly four of the five Front
+Range sites where Table A1's richness exceeds FR-all's by one, so FR-shared is the correctly labelled file. The Front
+Range is FR-shared's 64 species plus FR-all's 10 FR-only species in rows 1-68; PolyergusMONTIVAGUS and StenammaDIECKI
+(FR-all rows 69, 70, 72 hold them and one unnamed species, order unrecoverable) are not shipped. Worth telling the
+authors. San Juan covariates (standardised) shipped; none were deposited for the Front Range (NA).
+GBIF: Temnothorax furunculus and T. obliquicanthus are on the backbone only as Leptothorax (lookupName).
+
+**Murcia birds.** Blocked since 2026-11-06 for want of Supporting Information Table S1, which Ben fetched 2026-11-11.
+All 73 six-letter codes map one-to-one: 68 by genus3 + epithet3, five by hand (Ccocor = Corvus corax, Corcor = Corvus
+corone, Emccir = Emberiza cirlus, Galsp. = Galerida cristata/theklae at genus rank, Lopcris = Lophophanes cristatus).
+The ravens are fixed by the authors' 2023 deposit (dryad.j9kd51chz), which has the same columns in the same order with
+Ccorax at column 11. The columns are not in Table S1 order, so mapping is by code. AS3x3 (same transects, coarser
+cells) not shipped. Chloris chloris needs a hinted GBIF match (grass-genus homonym).
+
+Still held: dryad.j9kd51chz (2023 Murcia resurvey): species now resolvable from the same key, but historical and modern
+cells are unnamed, so the two periods cannot be linked (two tables, or ask the authors).
+
+Infrastructure: the Dryad 401s on 2026-11-11 were an expired `DRYAD_TOKEN` (10 h), not the daily quota; run with
+`DRYAD_TOKEN=` for the anonymous version zip.
+
+## Batch 52 — 2026-11-12 (one hold cleared: Murcia forest birds, modern survey)
+
+Built in `~/eco-b52` (branch `batch-52`, from main after PR #169), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| jimenezfranco_2023_murcia_birds_binom | binomial_count community, transects as spatial replicates of 2 x 2 km cells | Dryad doi:10.5061/dryad.j9kd51chz (CC0) + Divers. Distrib. paper (Ben) | 9,869 | 139 cells, 198 transects (2012, 2017), 71 species; no coordinates in source |
+
+**Murcia modern survey.** Held because the historical and modern cells could not be linked. The paper (Methods 2.2, PDF
+supplied by Ben) settles it: the two periods used transects at different locations, so there is no panel to link. The
+historical file is the 2019 deposit's 377 transects regrouped into 226 cells (same 4,886 detections, asserted) and is not
+shipped; Ben chose the modern period only. The 73 codes shared with 2019 are named through the 2019 key (same column
+order); the four modern-only codes are named in the paper's text. Six species of the authors' 77-species list have no
+modern record and are not shipped (`taxonInclusion = recorded`). Which transects were walked in 2012 vs 2017 is not
+deposited, so there is no period column.
+
+## Batch 53 — 2026-11-11 (EDITO / EurOBIS discovery pass; one table)
+
+Built in `~/eco-edito` (branch `edito-marine`, from main at f714a49), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| azzurro_2022_med_climatefish_count | repeated counts, diver transects, fish community (15 target species) | VLIZ IPT climate-fish-abundance = SEANOE doi:10.17882/86784 (CC BY 4.0) | 47,130 | 183 location x depth layer units at 102 locations (`cluster_id`), period = month, occasion = transect (mostly 4); sample_table; coordinates coarsened (Epinephelus marginatus VU) |
+
+**Discovery.** The EDITO / EMODnet Biology occurrence parquet (71.3M rows, 2026-09-30) keeps `occurrenceStatus`: 13.7M
+absences in 207 IMIS datasets. Profiled each (events, taxa, sites, events per site, duplicate event x taxon rows) and
+looked it up in IMIS: `discovery/edito_eurobis_absent_2026-11-11.csv`, script `discovery/edito_eurobis_profile.py`.
+68 overlap the batch 45 GBIF sampling-event pass, 65 have one event per site, 54 eligible ones are untriaged.
+
+**Triaged and queued.** Shore Thing timed searches (held: are the three habitats occasions of one survey, with different
+species lists?); SeaWatch-B (available: one table per method, flatfish size classes summed within a trawl); Dutch shellfish
+monitoring (held: presence rows only, densities from subsampled hauls, zeros need the sampling handbook); three Azores
+limpet quadrat sets (blocked: publisher IPT ipt.gbif.pt 404); Plymouth towed video (rejected: single visit, percent cover).
+ANEMOON beach washup (in the queue since batch 45) opened and held: species x remains class (live, dead, shells, egg...),
+an E9 scope question.
+
+**Mistake caught.** I rebuilt the SHARK harbour porpoise table before noticing it is `nrm_2024_sweden_porpoise_occ` (batch
+42): the duplicate check matched IMIS DOIs, and IMIS has none for that dataset. Reverted before upload; nothing shipped.
+Duplicate checks for EurOBIS candidates must go through the GBIF DOI (the discovery CSV notes it).
+
+**ClimateFish.** IUCN lists the dusky grouper under Mycteroperca marginata, so `iucn_category()` returns NA for
+Epinephelus marginatus; set to VU by hand from the GBIF IUCN record. 457 transects are dated to the month only (`date` empty,
+the month is the period). Pempheris rhomboidea was never counted (all zeros: a target species not seen).
+
+Strained the standard: nothing new.
+
+## Batch 54 — 2026-11-11 (marine follow-ups from the EDITO pass, and two Hawaiian eDNA deposits; one table)
+
+Built in `~/eco-b54` (branch `batch-54-marine`, from main at 6dfb7f4), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| nichols_2025_hawaii_acanthophora_edna | eDNA multi-scale (reef site > water sample > qPCR well) | Dryad doi:10.5061/dryad.cfxpnvxjd (CC0) | 543 | 91 sites (`cluster_id`), 181 samples (unit), 3 wells; 114 amplified wells at 28 sites; y = Cq present (eDNA ruling), `obs_melt_peak_c` shipped; deposited_matrix |
+
+**Acanthophora.** The paper (doi:10.1002/aff2.70135) was not readable (Wiley 403), so the call is the 2026-11-06 eDNA
+ruling's default: a Cq is a detection. Every amplified well but one peaks at 79-80 C in the melt data; one peaks at 87 C
+(likely non-target); the peak ships as `obs_melt_peak_c`. Control wells (399) are listed in the metadata but their
+results are not deposited, so `obs_blank_positive` is not set. Visual sightings at 14 sites are `unit_visual_presence`
+(NA = not seen or not surveyed), declared in `detectionCertainty`.
+
+**Held.** Chondria tumulosa eDNA (sister deposit): no well-to-sample key; grouping wells by ID order is unsafe at up to 11 of 63
+sites. Mugil liza surf-zone counts: occurrenceStatus contradicts the count in 42 of 144 rows, in the SEANOE original too.
+Adriatic pair-trawl bycatch: counts summed over hauls by cell-year (E1). SeaWatch-B stays available with its mess noted.
+The three Azores limpet sets are still blocked (publisher IPT 404).
+
+Tooling: `DRYAD_TOKEN` in `~/.bashrc` now gets 401 from the Dryad API while anonymous requests succeed; ran
+`download_dryad()` with the variable unset (`env -u DRYAD_TOKEN`). The token needs renewing.
+
+Strained the standard: nothing new.
+
+## Batch 55 — 2026-11-12 (EDITO / EurOBIS marine pass finished: SeaWatch-B, Azores limpets, audit of the batch 45 overlap; three tables)
+
+Built in `~/eco-b55` (branch `batch-55-edito`, from main at 7f5c0ab), no agents, no Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| seys_2020_belgium_seawatch_count | repeated counts, citizen-science shore push-net, community (50 field-sheet taxa) | VLIZ IPT seawatch-b, doi:10.14284/401 (CC BY-NC-SA 4.0 per IMIS; EML/GBIF say CC BY-NC; stricter governs) | 4,750 | 14 beaches, period = year (5), occasion = trawl in the beach-year; flatfish size classes summed, kept as `obs_len_*`; sample_table; below floor (14 units) |
+| faria_2026_azores_patella_count | repeated counts, spatial replicates (quadrats), two limpets | GBIF Portugal IPT gusphd, doi:10.15468/h2vu7v (CC BY 4.0) | 1,080 | 36 location x shore-level units at 12 locations (`cluster_id`), 15 quadrats each, 2006 |
+| faria_2026_azores_mpa_patella_count | repeated counts, spatial replicates, one limpet, multi-season | GBIF Portugal IPT gusmpa, doi:10.15468/m2qvj8 (CC BY 4.0) | 480 | 8 sites at 4 locations (partial / full MPA), 6 campaigns (May, Sept 2006-2008), 10 quadrats; below floor (8 units) |
+
+**SeaWatch-B.** Only the push-net trawl is built. The visit's other methods (Arenicola cast counts per 400 m2, Patella
+vulgata per 2.5 m2 on groynes, washed-up jellyfish, strandline items) are not: Patella has four non-integer values (means)
+in 87, and the strandline and jellyfish counts are wash-up, the E9 question held with ANEMOON. Three trawls carry partial
+field sheets (dropped); Duinbergen_17 lacks one box (unidentified jellyfish), so under the shared-detector ruling the
+whole trawl is dropped. The sheet's 'either A or B' and higher-rank boxes (Scophthalmus turbot-or-brill, Pleuronectinae
+flounder-or-dab, Clupeidae herring-or-sprat, unidentified flatfish, Scyphozoa, Portunidae, Palaemon, amphipods) are taxa
+of their own that overlap the named species; Pleuronectinae has no GBIF backbone record (no taxonID). One '>1000'
+Pleurobrachia count ships as 1000 with `obs_count_estimated = 1`; two Palaemon cells read '0 (abundant afterwards)' and
+ship as 0 with the text in `y_raw`. Licence: IMIS BY-NC-SA vs EML BY-NC; BY-NC-SA governs and propagates.
+
+**Azores limpets.** ipt.gbif.pt served all three archives on 2026-11-12 (404 on 11-11). Both built sets deposit densities
+per m2 computed from counts in 0.0625 m2 quadrats; every value is a multiple of 16, so `y` = density / 16 (exact) and
+`y_raw` = the density. The 2006 survey's quadrat events point at the wrong parent event and say 'Graciosa' for every
+island; the eventID prefix, locality and coordinates agree, and the location events give the island. The third set
+(IMIS 9141, recruitment plates 2019-20) is held: its abundance is labelled per m2 from a 0.0154 m2 plate but the values
+are small integers that are not multiples of 1/0.0154, so count vs density is unclear (`queue/human_review.csv`).
+
+**Audit of the 68 rows 'seen in batch 45 GBIF pass'.** Each was matched to its GBIF dataset by exact title (two by search:
+8755 and 6590 have newer GBIF titles), then checked by GBIF key and DOI against every `__dataset.json`, `data/` script,
+the dictionary, the queue and `human_review.csv`. None is built. One has a queue row (Finnish POHJE, needs-look). Batch 45
+rejected 36 with a reason. The other 31 had no queue row: 23 plankton, benthos, meiofauna and report-digitised epibenthos
+density series (9 that batch 45 had already set aside as plankton series, 14 on re-read) join the deferred plankton /
+benthos family (no ruling); 8 were re-read and rejected or
+ineligible (CHALIST hauls are not revisited stations and list presences only; the Scotland-Morocco intertidal set
+deposits per-stratum means and cover; the Azores kelp set is compiled from ROV, cameras, diving and by-catch; the Israeli
+jellyfish reports are opportunistic; Agonus predation is a gut-content study; Calvi bryozoans are 6 events; two Azores
+macroalgae sets are biomass and cover). Nothing new was queued or built from the audit. The result for each row is in the
+decision column of `discovery/edito_eurobis_absent_2026-11-11.csv`.
+
+Strained the standard: nothing new.
+
+## Batch 56 — 2026-11-12 (NEON discovery pass: products not yet covered; three tables)
+
+Built in `~/eco-b56` (branch `batch-56-neon`, from main at 7f5c0ab), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_zooplankton_count | repeated counts, lake zooplankton, community | NEON DP1.20219.001 RELEASE-2026 (CC BY 4.0) | 53,217 | 7 lakes (unit), 204 bouts (period), ~3 samples a bout (occasion: buoy, two littoral); 208 taxa, per-lake pools; y = counted subsample, `obs_subsample_fraction` (ruling 21); coordinates coarsened (Hesperodiaptomus augustaensis VU, BARC and SUGG) |
+| neon_2026_zooplankton_exact_count | as above, E7 sibling | same | 53,034 | without H. augustaensis, coordinates as published |
+| neon_2026_aqplants_occ | multi-scale community occupancy, stream plants / bryophytes / lichens / macroalgae | NEON DP1.20072.001 RELEASE-2026 (CC BY 4.0) | 1,086,768 | 240 transects (unit) at 24 sites, 548 bouts (period), points along the transect as spatial occasions (up to 114); 153 taxa, per-site pools; unidentified plants pooled as Plantae, unidentified macroalgae as one functional group (no taxonID) |
+
+**Screen.** All 82 TOS/AOS products from the NEON products API; rows in `queue/candidates.csv` (source neon). Built: the
+two above. Rejected: aquatic plant clip harvest DP1.20066 (biomass of clips placed where plants grow; no taxon-level
+survey set), and one grouped row for products with no taxon detection or count (DNA barcodes, microbes, phenology,
+vegetation structure, biomass, riparian cover, chemistry). Held as questions for Ben: periphyton / phytoplankton
+DP1.20166 (fixed-count enumeration, several counting units per taxon), the four pathogen products (mosquito pools, ticks,
+rodent tick-borne and hantavirus: is pathogen-in-host a detection table, and for the rodents a multistate CR joined to
+DP1.10072?), metabarcoding DP1.20126 / 20221 (reads per OTU), and more small-mammal rd species (raising N_TABLES rewrites
+the four published rd tables' metadata).
+
+**Zooplankton.** Each sample is split by the laboratory into coarse and fine subsamples of known volume, and some
+taxa are counted in a larger share than the rest, so the fraction is per row: counted / adjCountPerBottle for a counted
+taxon, the largest share examined in any subsample for a taxon not found. adjCountPerBottle itself, corrected twice in
+the issue log, is not shipped. Two 2014 bouts have two samples per location (6 occasions).
+
+**Aquatic plants.** 3,031 taxon rows (22%, mostly macroalgae 2016-2021) carry no taxonID (morphospecies unresolved in
+the basic package): pooled with 'Unknown Algae' as one functional group. 340 points with more than one record in a
+bout (2014-2016) are dropped whole, since their taxon rows cannot be assigned to one record (the times differ by
+hours, or coincide); 510 points filed under the reach (CUPE, MAYF) have no transect. Lichens resolve to Fungi on GBIF.
+
+Strained the standard: whether a fixed-count laboratory enumeration (algae) is a count, and pathogen detections in
+hosts (E9 scope), both left as questions.
+
+## Batch 57 — 2026-11-12 (SeaWatch-B Patella and Arenicola, ruling 2026-11-13; two tables)
+
+Built in `~/eco-b57` (branch `batch-57-seawatch`, from main at 218fe3c), no agents, no Dryad requests. Both tables are
+built at the end of `data/seys_2020_belgium_seawatch_count.R`, so the `script` field of all three SeaWatch-B tables
+maps to it.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| seys_2020_belgium_patella_count | repeated counts, single taxon (Patella vulgata), quadrat total per visit | VLIZ IPT seawatch-b, doi:10.14284/401 (CC BY-NC-SA 4.0) | 83 | 13 beaches with a groyne, period = year (5), occasion = survey in the beach-year; y = limpets > 1 cm in ten 0.5 x 0.5 m quadrats (2.5 m2); sample_table; 4 means dropped; below floor (13 units) |
+| seys_2020_belgium_arenicola_count | repeated counts of a sign (lugworm casts), single taxon (Arenicola, genus) | same deposit | 101 | 14 beaches, every visit; y = casts on two 2 m strips at 10 and 30 m from the waterline, `obs_area_m2` effort (200 to 800, mostly 400); sample_table; below floor (14 units) |
+
+**Design.** The VLIZ field brochure and the 2014-2018 report give the protocols the EML lacks. Patella: ten quadrats
+on one groyne fixed at the first survey; the field sheet has a line per quadrat, but the deposit holds only the visit
+total (`<visit>_Schaalh_TOT_2.5m2`, area 2.5 m2 in the eMoF), so the quadrats are not occasions and the unit is the
+beach (its groyne is not identified beyond the beach point). The four non-integer values (2.375, 2.19, 3.39, 2.77) are
+all at Nieuwpoort, 2015; they are dropped (ruling) and listed in `notShipped`. Arenicola: the deposit names the genus
+only; the table keeps it at genus and the taxon remark says the lugworm here is mainly A. marina. y counts casts,
+not worms; the brochure allows a reduced strip when casts are very many, with the count scaled, and the deposit does
+not flag scaled values (largest 1,613 casts on 400 m2).
+
+**Push-net table.** Data unchanged (coreMd5 6962b8ca..., side-table md5s identical); only its `notShipped.other_methods`
+text changed to point at the two siblings, so the published table's metadata changed: a `releases/table_changes.csv` row
+is due at release.
+
+## Batch 58 — 2026-11-12 (NEON follow-ups to Ben's rulings of 2026-11-13: metabarcoding, small-mammal rd species, queue; nine tables)
+
+Built in `~/eco-b58` (branch `batch-58-neon`, from main at 218fe3c), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| neon_2026_macroinverts_dna_occ | community occupancy, COI metabarcoding of benthic macroinvertebrate samples | NEON DP1.20126.001 RELEASE-2026 (CC BY 4.0) | 284,122 | 34 sites (unit), 157 bouts (period, the sequenced midsummer bout, 2018-2022), sample x primer set (BE, F230) as occasion; 4,689 names (1,665 interim BIN / voucher names without taxonID), per-site pools; y = reads present, y_raw = reads, depth obs_; coordinates coarsened (Elimia bellacrenata CR at BLWA, Skistodiaptomus carolinensis VU at BLWA, TOMB) |
+| neon_2026_macroinverts_dna_exact_occ | as above, E7 sibling | same | 284,032 | without the two names, coordinates as published |
+| neon_2026_zooplankton_dna_occ | community occupancy, COI metabarcoding of lake zooplankton samples | NEON DP1.20221.001 RELEASE-2026 (CC BY 4.0) | 23,075 | 7 lakes, 35 bouts, 492 names; coordinates coarsened (S. carolinensis VU at BARC); below the sample floor |
+| neon_2026_zooplankton_dna_exact_occ | as above, E7 sibling | same | 23,045 | without S. carolinensis, coordinates as published |
+| neon_2026_myorut_rd, _myogap_rd, _napins_rd, _dipmer_rd, _pergos_rd | robust design CR, one species each | NEON DP1.10072.001 RELEASE-2026 | 158,426; 220,110; 190,911; 134,693; 175,946 | N_TABLES 4 to 9 (Ben 2026-11-13); the next five species by marked individuals, as the batch 56 screen listed |
+
+**Metabarcoding (ruling A).** New paragraph in `standard.md` E9 next to the eDNA ruling, and a changelog line. NEON's
+taxonomy table reports one row per extract x primer set x exact sequence variant the laboratory kept after DADA2
+denoising and filtering (smallest reported read count 8 at Jonah Ventures, 6 at Laragen): that is the reporting
+threshold, y = 1 where a name has any such variant. The taxonomy's replicate column is empty, so PCR replicates are
+not separable: occasions are sample x primer set (`occasionKind ["spatial", "method"]`), and the 2022 Laragen
+sequencing records under replicates 1 and 2 are asserted identical. Depth is the sequencing record on the run the
+taxonomy came from (`obs_reads_total`, `obs_reads_filtered`). Names are the laboratory's BLAST-consensus assignments at
+whatever identity it reported; many are implausible at species rank (a marine sipunculid in a Nebraska stream at
+77%), so `obs_max_pct_match` ships for users who want a stricter cut. Unassigned variants (a third of the rows) are
+in the depth only. Not surveys: the 2017 pilot (four PCR replicates sequenced, no taxonomy), one sequencing record
+NEON marks Fail (fewer than 3,000 reads) whose taxonomy was nonetheless published, and the failed ones with no taxonomy.
+
+**E7 and misassigned names.** Nine IUCN CR/EN/VU species names are assigned in the macroinvertebrate product, seven of
+them at sites far outside the species' range (an African damselfly in Florida, a Sri Lankan crab in Puerto Rico,
+Appalachian and Ozark groundwater amphipods in Kansas and Alaska): a related sequence, not the threatened species, so
+not a trigger under E7(b)'s native-range clause. The two in range (the Alabama snail Elimia bellacrenata at the Black
+Warrior River; the copepod Skistodiaptomus carolinensis in Alabama and Florida) trigger coarsening and the `_exact`
+siblings. The in-range call is asserted in the script, name by name.
+
+**Small mammals (ruling B).** `N_TABLES` 4 to 9, with an assertion of the nine codes. The four published rd tables'
+core and side tables are byte-identical to a rebuild at `N_TABLES = 4` from the same cache (md5 compared; the
+published `__dataset.json` files recorded no `coreMd5`, and that rebuild reproduced their metadata exactly apart from
+`coreMd5` and `buildDate`). Their metadata changes: the sibling list, "one of 9 species tables", and `notShipped`'s
+species list. No rd table carries coordinates, and no small-mammal species is IUCN CR/EN/VU (asserted in the count
+table), so nothing to coarsen.
+
+**Queue (ruling C).** Periphyton DP1.20166 rejected (count to a fixed total is relative abundance, not a count under
+E2); the four pathogen products rejected (out of scope for now).
+
+Strained the standard: whether an IUCN-listed name assigned by sequence similarity far outside its range is a
+detection of that species at all; handled under E7(b)'s native-range clause, but the names stay in the table as the
+laboratory assigned them.
+
+## Batch 59 — 2026-11-13 (datasets shipped in R packages: secr SCR and IPMbook CJS; eight tables)
+
+Built in `~/eco-b59` (branch `batch-59-rpkgs`, from main at 5e528b4, after the package sweep #190), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| efford_2005_waitarere_possum_scr | SCR, live traps (single-catch) | secr 5.5.1 `possumCH` (GPL >= 2) | 100,800 | 112 possums x 180 traps (5 hollow grids, grid in `__traps`) x 5 days, Waitarere NZ, April 2002; NZ Map Grid; 8 possibly previously tagged animals flagged `unit_prev_tagged` (help page) |
+| byrom_2009_matakitaki_stoat_scr | SCR, DNA hair tubes | secr `stoatCH` | 13,160 | 20 stoats x 94 tubes x 7 days, Matakitaki Valley NZ, Dec 2001; local grid coordinates; below the sample floor |
+| laufenberg_2013_smokies_blackbear_scr | SCR, DNA hair snags (proximity) | secr `blackbearCH` | 90,350 | 139 bears x 65 snags x 10 weeks, Great Smoky Mountains NP 2003; UTM 17N; sex |
+| reid_1978_colorado_deermouse_scr | SCR, live traps | secr `deermouse.ESG`, `deermouse.WSG` (CAPTURE examples) | 52,866 | 89 deer mice, two 99-trap grids (cluster_id) x 6 nights, Rio Blanco County CO, 1975; sex, age, weight (ESG only) |
+| coulombe_1965_ballona_mouse_scr | SCR, live traps | secr `housemouse` (CAPTURE examples) | 173,000 | 173 house mice x 100 traps x 10 half-days (`obs_half_day`), Ballona Creek CA, Dec 1962 |
+| schaub_2007_vex_horseshoebat_cjs | CJS | IPMbook 0.1.5 `bats` (GPL >= 3) | 4,922 | 574 greater horseshoe bats, Vex (Valais) 1989-2017; recapture sessions in 10 years only (book code), newborns marked in most others |
+| schaub_2012_valais_hoopoe_cjs | CJS | IPMbook `hoopoe` | 37,218 | 3,844 female hoopoes (3,374 ringed as nestlings), Valais nestboxes 2002-2017 |
+| schaub_2021_albvorland_woodchat_cjs | CJS | IPMbook `woodchat11` | 10,244 | 1,079 woodchat shrikes, Mittleres Albvorland 1964-1992; no resighting in 10 years (book code) |
+
+**Package data without the package.** secr does not install here (terra/sf need GDAL), so neither script loads a
+package: each downloads the pinned CRAN source tarball (current CRAN, then the Archive path once superseded) into the
+table's raw cache, asserts Version and License in DESCRIPTION, and loads `data/<name>.RData` / `.rda` with base R. A
+`capthist` is a base array (animal x occasion x detector) with `traps` and `covariates` attributes, so nothing of
+secr is needed to read it. Licence: the package's GPL, as for the earlier package tables (`derived_license` carries it).
+
+**Survey evidence (inferred, all eight).** The secr objects carry no `usage` attribute, which secr reads as every
+detector operated on every occasion; the help pages describe the same design, and the moinet/lazenby precedent
+applies. For bats and woodchat, the help pages say only that "in some years" there was no capture or resighting; the
+years come from the book's own chapter code (github.com/mikemeredith/IPM_code, IPM_13 `k`, IPM_11 `recap`, where p
+is fixed at 0), restated as constants and asserted against the histories (no recapture in exactly those years). In a
+year without recapture effort an animal has a row only in its own marking year: nestlings and newborns were still
+marked in most of those years. This is a partial survey (marking without recapture) that E4 does not name; the
+rule is stated in each `surveyEvidenceNote`.
+
+**At-risk span.** Nestlings and newborns from their marking year; a bat marked as a one-year-old from the year
+before; adults of unknown age from the study's first year (E4.4).
+
+**Not built this batch, from the same sweep.** IPMbook `stork` (19 dead recoveries coded 2, and only birds resighted
+at least once after age 2: a live-dead table on the `moe_2020_hunder_trout_ld` form, with the selection stated) and
+`cormorant` (multistate), next batch.
+
+## Batch 60 — 2026-11-13 (R packages, continued: seven AHMbook tables, two IPMbook tables; nine tables)
+
+Built in `~/eco-b60` (branch `batch-60-ahmbook`, from main at 4a0f07a after #191), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| sutherland_2012_scotland_vole_dynocc | dynamic occupancy (latrine signs) | AHMbook 0.2.12 `waterVoles` (GPL >= 3) | 966 | 114 Scottish patches x 3 years x 3 surveys; possible false positives (help page); locality not named |
+| roth_2014_aargau_marbledwhite_dynocc | dynamic occupancy, rotating panel | AHMbook `SwissMarbledWhite` | 14,707 | 519 LANAG plots, each surveyed one year in five 1998-2010, 11 visits; 195 visit dates not recorded (kept, date NA) |
+| kery_2021_jura_peregrine_dynocc | dynamic occupancy, one aggregated record per year | AHMbook `FrenchPeregrines` | 10,468 | 284 cliffs 1964-2016; NA = not surveyed; sites conditioned on at least one detection |
+| kery_2016_jura_peregrine_ttd_occ | occupancy with time to detection | AHMbook `ttdPeregrine` | 46 | 38 cliffs, March 2015; per-bird rows collapsed to one row per search (obs_ttd, obs_ttd_censored, ruling 2026-11-06) |
+| kery_2021_swiss_eagleowl_state | multi-state occupancy | AHMbook `SwissEagleOwls` | 5,974 | 274 territories 2007-2016, 4 atlas states, opportunistic visits, at most 20 per site-year (random subsample by the source) |
+| zipkin_2014_maryland_dusky_count | stage-structured counts | AHMbook `duskySalamanders` | 588 | 21 stream locations x 7 years x Jun/Jul, juveniles and adults as stage taxa (price_2018 precedent); below the floor |
+| kery_2016_swiss_squirrel_occ | single-season occupancy | AHMbook `SwissSquirrels.txt` | 747 | 265 MHB quadrats 2007; coordinates in an unspecified CRS shipped as unit_ covariates, not locations |
+| schaub_2005_egermany_stork_ld | live-dead (Burnham) | IPMbook 0.1.5 `stork` | 5,187 | 691 storks ringed as chicks, 1986-2001, 19 dead recoveries; only birds resighted after age 2 |
+| mccrea_2010_kattegat_cormorant_ms | multistate CMR (age class x colony) | IPMbook `cormorant` | 88,067 | 12,659 birds, 3 colonies, 1991-2004; birds first seen as breeders (ringed before 1991) from 1991 |
+
+**Selection in the source.** Three package datasets select on the outcome: FrenchPeregrines and SwissEagleOwls
+include only sites where the species was ever detected, and stork only birds resighted after age two. Each table
+says so in `notes`; nothing in the standard flags it as a field. A `selection` field in `__dataset.json` (or a
+tag) would let users filter these; not settled here.
+
+**Survey evidence.** Water voles, marbled white, peregrines (annual), dusky salamanders and squirrels are
+`deposited_matrix` (NA or absent rows = not surveyed). Eagle owls and the ttd searches are `row_presence`. Stork and
+cormorant are `inferred`: the book's code (IPM_04.5.4, IPM_18) estimates a recapture probability for every year
+(cormorant: every colony-year) and fixes none at 0; six cormorant colony-years with no breeder resighting at all are
+kept as surveyed, as in the book, and counted in `__periods`.
+
+**Time to detection.** The package lists one row per bird seen (sex and time), several per search. Under the
+2026-11-06 ruling the table has one row per search with the first time any bird was seen; per-bird detail is in
+`notShipped`.
+
+**Missed by the sweep.** `AHMbook::duskySalamanders` was not in #190's rows; added and built here.
+
+## Batch 61 — 2026-11-13 (R packages, continued: the remaining AHMbook datasets; seven tables)
+
+Built in `~/eco-b61` (branch `batch-61-ahmbook`, from main at 6c28129 after #192), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| rodenhouse_2019_hbef_warblers_count | community counts, multi-year | AHMbook 0.2.12 `HubbardBrook` (GPL; source EDI CC BY 4.0) | 221,416 | 13 species x 373 points x 3 counts, 1999-2018 (no counts 2003-2004); WGS84 points; overlaps doser_2022_hbef_trends_dynocc |
+| knaus_2018_swiss_atlasha_comm | community counts | AHMbook `SwissAtlasHa` | 510,432 | 78 passerines x 2,318 one-ha atlas quadrats x 2-3 surveys; English names mapped to scientific in the script |
+| kery_2016_flevoland_wagtail_ds | binned distance sampling, repeated visits | AHMbook `wagtail` | 5,466 | 235 points x up to 4 visits x 6 classes (0-300 m), Sovon 2011 |
+| chandler_2009_wmnf_cswa_removal | removal, repeated visits | AHMbook `cswa` | 384 | 43 points x 3 visits x 3 intervals, WMNF 2004; spot-map estimates not shipped (no point-to-patch key) |
+| molinarijobin_2012_alps_lynx_fpocc | false-positive dynamic occupancy (state) | AHMbook `EurasianLynx` | 62,172 | 942 10-km cells x 23 winters x 3 occasions; certain and uncertain records as a four-state y |
+| kery_2021_britain_willowwarbler_cjs | CJS | AHMbook `willowWarbler` | 74,752 | 10,551 birds at 193 BTO Constant Effort Sites 1986-1996; site operation inferred from captures |
+| kery_2021_swiss_mspwoodpecker_binom | binomial_count per quadrat-day | AHMbook `spottedWoodpecker` | 116,204 | 1,545 quadrats, 4,207 days 1990-2015; quadrats conditioned on detection |
+
+**Hubbard Brook licence and access.** The package copies the EDI Valleywide Bird Survey. Its EML (knb-lter-hbr.178.3)
+says CC BY 4.0; the EDI portal refuses scripted requests (the Valleywide queue row is blocked for that), but DataONE
+(`cn.dataone.org/cn/v2/object/<pasta url>`) serves the EML and, by the same route, the data objects. GPL (the
+package) is the stricter and governs; the citation carries the EDI attribution. The Valleywide row now notes the
+DataONE route: a direct build from EDI would add the species the package dropped.
+
+**Two designs placed by precedent.** Repeated visits with within-visit cells (wagtail distance classes, cswa removal
+intervals) use period = visit, occasion = cell, as `neon_2026_landbirds_ds` does. The lynx data's two record types
+(certain, uncertain) per occasion become one state per occasion (`2 x certain + uncertain`), extending
+`ferguson_2015_macon_bawa_fpocc`, which had only 0 / uncertain / certain because its certain detections implied
+uncertain ones; here they are independent streams, so "both" is its own state, and `y_raw` keeps the digits.
+
+**binomial_count with daily periods.** The woodpecker data are quadrat-day summaries over 26 seasons. `binomial_count`
+has no `occasion`, so period indexes the calendar day (4,207 dates) and `__periods` carries year and day; a seasonal
+model groups periods by year. This is legal under E2/E8 but unusual (a period per day); flagged in `closureNote`.
+
+**Coordinates with an unspecified CRS** (atlas, woodpecker, as for the squirrels in batch 60) ship as
+`unit_x_unspecified_crs` / `unit_y_unspecified_crs`, not as locations.
+
+**Willow warbler survey set (inferred).** CES operation is not in the package: a site-year counts as operated iff any
+willow warbler was caught there (963 of 2,123). A site that ran but caught no willow warbler loses that year; the
+BTO's CES coverage records would fix it.
+
+## Batch 62 — 2026-11-13 (R packages, continued: openCR, secr, multimark capture-recapture; one Dryad deposit; ten tables)
+
+Built in `~/eco-b62` (branch `batch-62-scr`, from main at 75eeae4 after #193), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| ergon_2014_kielder_vole_scr | robust-design SCR | Dryad doi:10.5061/dryad.r17n5 (CC0) | 504,768 | 158 adult field voles, 192 traps, 4 x 3-5 checks, Kielder 2000; 5 deaths in traps (obs_removed); same data as openCR::fieldvoleCH, built from the deposit instead |
+| bishop_1978_cressington_moth_cjs | JS / CJS, daily | openCR 2.2.8 `gonodontisCH` (GPL >= 2) | 11,713 | 689 moths x 17 days, 1970; non-spatial |
+| nichols_1984_patuxent_vole_rd | robust design | openCR `microtusRDCH` | 5,221 | 180 adult male meadow voles, 6 months x 5 nights, 1981; 10 not released |
+| nichols_1984_patuxent_femvole_cjs | CJS, monthly | openCR `microtusFCH` | 800 | 137 adult females, monthly collapse only in the source; 6 not released |
+| efford_1998_orongorongo_possum_rd | robust design, non-spatial | openCR `FebpossumCH` | 23,296 | 448 possums, February sessions 1980-1988 |
+| efford_2004_orongorongo_possum_scr | multi-session SCR | secr `OVpossumCH` | 1,466,427 | 309 possums, 167 traps, six 5-night sessions 1996-1997; NZMG |
+| dawson_2009_patuxent_ovenbird_scr | multi-session SCR (mist nets) | secr `ovenCH` | 150,612 | 70 ovenbirds, 44 nets, 2005-2009, linked across years |
+| efford_1995_buller_infraskink_scr | two-session SCR | secr `infraCH` | 892,584 | 322 skinks, 462 pitfalls; IUCN CR, coordinates centred |
+| efford_1995_buller_lineoskink_scr | two-session SCR | secr `lineoCH` | 349,272 | 126 skinks, same traps; IUCN EN, coordinates centred |
+| royle_2009_nagarahole_tiger_scr | SCR with operation matrix | multimark 2.1.7 `tiger` (GPL-2) | 63,140 | 44 tigers, 120 stations x 48 occasions (1,435 operating); IUCN EN, coordinates centred |
+
+**A package copy with a public original.** openCR's fieldvoleCH is a translation of the Dryad deposit of Ergon &
+Gardner (CC0), so the table is built from Dryad. The deposit is an R `dput` file; it is read by parsing it and
+evaluating the one expression in an environment holding only `structure`, `list`, `c` and `:`, which the script
+asserts are the only functions it calls (no `dget`).
+
+**E7 on package data.** GBIF's IUCN categories flag both skinks (Oligosoma infrapunctatum CR, O. lineoocellatum EN)
+and the tiger (EN). Their trap coordinates (NZ Map Grid metres; a km grid consistent with UTM 43N) are centred on the
+array centroid, the centroid given at 0.1 degree, as for the SCR tables of batches 5-50. The skink taxonomy has
+moved since 1995 (O. infrapunctatum has been split); the flag is applied to the names as published.
+
+**Held: multimark bobcats.** Left- and right-flank photographs are separate marks that cannot be matched unless both
+were seen at once, so the encounter histories are not individuals. Recorded in `human_review.csv`; the standard has
+no form for a unit that is a mark rather than an animal.
+
+**At-risk spans.** Unknown-age animals from the first session (E4.4); OV possums first caught in their first year
+from the first (February) session of that calendar year, when the year's independent juveniles enter (help page).
+Removals (-1 in capthists) are obs_removed with no later rows.
+
+**Tiger encounter matrix.** multimark's Enc.Mat column order is not documented in the help page; trap-major order
+puts every one of the 68 detections on an operating station-occasion and occasion-major does not (asserted).
+
+## Batch 63 — 2026-11-13 (R packages, continued: Rcapture, RMark, FSA capture histories; nine tables)
+
+Built in `~/eco-b63` (branch `batch-63-cr`, from main at ed52b3c after #194), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| stokes_1987_logan_bunting_cjs | CJS, annual | Rcapture 1.4-4 `bunting` (GPL-2) | 13,448 | 1,681 lazuli buntings, Logan UT, 1973-1980; frequency histories expanded (198 of 255 patterns have frequency 0) |
+| coulson_1984_eider_cjs | CJS, annual | Rcapture `duck` | 5,376 | 896 eiders, years 19-24 of Coulson's study (calendar years and colony not in the package); IUCN NT, no coordinates |
+| rivest_2004_duchenier_vole_rd | robust design | Rcapture `rbvole` | 10,080 | 560 red-backed voles, Quebec, 6 x 3 days 1999-2000 |
+| collier_2013_alice_dove_cjs | Jolly-Seber, two-week windows | RMark 3.1.0 `wwdo.09`, `wwdo.10` (GPL >= 2) | 86,756 | 8,603 white-winged doves, Alice TX, 2009 and 2010; ids not linked across years; dummy E0 column dropped |
+| edwards_1967_cottontail_cc | closed captures | RMark `edwards.eberhardt` | 1,368 | 76 cottontails x 18 occasions (the MARK example); place and date not in the package |
+| collier_2012_brosnan_deer_dobs | double observer (multinomial_cell) | RMark `deer` | 13,524 | 4,508 deer on 79 thermal-imager/spotlight surveys, Brosnan Forest SC, 2005-2009 |
+| mackenzie_2006_mahoenui_weta_occ | single-season occupancy | RMark `weta` | 262 | 72 sites x up to 5 visits, browsing, observers (PRESENCE example) |
+| harding_2010_aukelake_cutthroat_cjs | Jolly-Seber, annual | FSA 0.10.1 `CutthroatAL` (GPL >= 2) | 15,156 | 1,684 trout, Auke Lake AK, 1998-2006 (ADF&G report) |
+| schneider_1998_jewettlake_bluegill_cc | closed captures (Petersen) | FSA `BluegillJL` | 554 | 277 bluegill > 6 in, Jewett Lake MI |
+
+**Not built from these packages:** Rcapture `hare`, RMark `salamander`, marked `sealions`: none has a place, date
+or traceable study in the package (teaching data); the queue rows say so.
+
+**Open population with sub-annual windows.** The dove histories are two-week windows within a season, analysed
+as open (Jolly-Seber). The validator refuses `closure = none` with several occasions in a period (E8), so each
+window is a period (26 over the two years, `__periods` gives year and window start) and there is no occasion.
+
+**Thin provenance, built anyway.** Edwards & Eberhardt's cottontails and the PRESENCE weta have a citable source but
+no place or date in the package; their map rows are empty (cottontail) or at the species' only population (weta),
+with the basis stated. The species names 'rabbits' and 'red-back voles' are resolved by assumption, recorded in
+`taxonRemarks`.
+
+## Batch 64 — 2026-11-13 (R packages, continued: duiker CTDS from Dryad, multimark bobcats with partial identity, unmarked NAAMP and ovenbird removal; seven tables)
+
+Built in `~/eco-b64` (branch `batch-64-ds`, from main at 7893aa3 after #195), no agents.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| howe_2017_tai_duiker_ds | camera-trap distance sampling | Dryad doi:10.5061/dryad.b4c70 (CC0) | 231 | 21 cameras x 11 intervals, all daytime hours, 11,180 snapshot detections; Taï 2014; below the floor |
+| howe_2017_tai_duikerpeak_ds | camera-trap distance sampling | same | 231 | peak-activity hours (the paper's analysis; Distance::DuikerCameraTraps) |
+| mcclintock_2013_bobcat_cc | closed CR, partial identity (state) | multimark 2.1.7 `bobcat` (GPL-2) | 368 | 46 one-sided histories (23 left, 23 right) x 8 occasions |
+| augustine_2018_bobcat_scr | SCR, partial identity (state) | multimark `bobcatSCR` (from SPIM) | 235,620 | 42 histories (15 known both sides) x 30 cameras x 187 occasions; operation matrix |
+| naamp_2001_delaware_frog_calls | ordinal calling index, 2 species | unmarked 1.5.2 `frogs` (GPL >= 3) | 674 | 130 stops x up to 3 visits, spring peeper and upland chorus frog |
+| naamp_2007_massachusetts_peeper_calls | ordinal calling index, multi-year | unmarked `masspcru` | 3,212 | 280 stops, 2001-2007, up to 4 visits; 4 visits without an index dropped |
+| royle_2004_ovenbird_removal | removal multinomial | unmarked `ovendata` | 280 | 70 sites x 4 intervals; place and interval lengths not in the package |
+
+**Correction: the batch 62 bobcat hold.** Standard E2 already has a partial-identity form (`unit_identity` both /
+left / right; the side seen as a `state`), which batch 62 missed. Both bobcat sets are built under it; a
+`human_review.csv` row records the correction.
+
+**Duiker from the original deposit.** Distance::DuikerCameraTraps is the peak-hours file of a Dryad deposit (CC0)
+that also holds all daytime detections and the camera UTM positions; both files are shipped as siblings. The
+intervals are inferred from the deposited midpoints (1.5 ... 7.5, 9, 11, 13.5, 18 m fix (1,2] ... (7,8], (8,10],
+(10,12], (12,15], (15,21]); nothing is recorded within 1 m. UTM 29N is converted to latitude/longitude by an
+in-script Transverse Mercator inverse (no sf/proj here), checked against pyproj.
+
+**NAAMP stop ids.** unmarked stores Delaware's `route.stop` as a number, so stop 10 reads `210302.1`; ids are rebuilt
+as `route_stop` and every route asserted to have stops 1-10.
+
+**Held for rulings (human_review.csv):** (1) Distance amakihi and wren, mrds vireo/warbler: exact distances with
+several detections per survey; `detection_event` collides on the E3 key (open since batch 56) and binning would be
+an arbitrary threshold. (2) unmarked issj and the single-pass Distance/mrds sets: whether distance bands make a
+single visit eligible.
+
+**Correction: Valleywide via DataONE (batch 61).** Batch 61 said DataONE serves the Valleywide data objects. It
+serves only the EML: the data entity (knb-lter-hbr.178.3) returns 403 from pasta ("Public Access is not authorized
+to execute readDataEntity") and from the LTER member node. The queue row is corrected; a direct build needs a
+browser download.
+
+## Batch 65 — 2026-11-13 (GBIF sampling-event rows from batch 45, round 3: Meetnetten chorus counts, Swedish coastal birds, EDP Foz Tua amphibians; five tables)
+
+Built in `~/eco-b65` (branch `batch-65-gbif3`, from main at 351ff9d), no agents, no Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| inbo_2026_flanders_amphchorus_count | repeated chorus counts, 3 target anurans | GBIF doi:10.15468/d4bu8j (CC0) | 806 | 121 ponds, 2016-2025; one target species per pond (`__survey_taxa`); centroids coarsened (source-flagged) |
+| haas_2025_sweden_coastalbirds_count | annual community counts | GBIF doi:10.15468/sg5spw (CC0) | 163,034 | 200 archipelago squares x 84 taxa, 2015-2024, one count per square-year; coarsened (5 VU taxa) |
+| haas_2025_sweden_coastal_exact_count | same, E7 sibling | same | 153,329 | 79 taxa at the published 5 km grid centres |
+| edp_2018_footua_amph_count | repeated dip-net counts, 12 target amphibians | GBIF doi:10.15468/uo5uyu (CC BY 4.0) | 3,744 | 30 plots, 8 seasons (autumn 2011 to spring 2017), 1-3 visits; coarsened (4 VU taxa); below the floor |
+| edp_2018_footua_amph_exact_count | same, E7 sibling | same | 2,496 | 8 taxa at the published plot coordinates |
+
+**Judgement call for Ben: Meetnetten rows within a visit.** 62 of 806 chorus-count visits hold several rows of the
+target species (up to 16, absent and present rows mixed) with nothing in the archive to tell them apart. INBO's
+export SQL (github.com/inbo/meetnetten-occurrences) emits one row per `FactAantal` record and comments out the
+activity column, so the rows are probably sub-locations or activity classes. They are summed into `y`, as in the
+fire-salamander table, and `obs_n_records` keeps the number of rows; if they are activity classes of the same
+animals the sum double-counts on those 62 visits.
+
+**Not shipped, with reasons in `notShipped`:** the Meetnetten pool-frog project (Pelophylax: an aggregate class
+alongside species-level classes, the synklepton under two names, 44 of 157 visits with no target row); the EDP
+2010-2011 plots (event and occurrence ids do not match, localities differ between visits of one point, no stated
+link to the 2011-2017 plots); Swedish mammal presence rows. Eider ducklings are summed into eider `y` under the
+repeated-rows ruling (counts split by life stage), with `obs_n_adult` and `obs_n_pulli` (NA where ducklings were
+not counted).
+
+**Looked at, left available:** Meetnetten larvae and metamorph counts (sweep sub-events within visits, life-stage
+rows, a protocol change; needs the sweep rule settled), Meetnetten pheromone traps for *Elater ferrugineus* (several
+unlabelled rows per trap visit, 15 visits of 2025 without rows, no dataset DOI yet), PINK odonata, the Taiwan
+butterfly census (event latitude and longitude swapped, nested events) — archives in the session scratchpad only.
+
+What strained the standard: nothing new. Swedish coastal birds is one count per square-year (`n_occasions = 1`,
+`n_periods = 10`), so `closure = none` and `occasionKind = none`.
+
+## Batch 66 — 2026-11-13 (GBIF sampling-event rows from batch 45, round 4: EDP Foz Tua and Baixo Sabor, LTER Sabor, NINA; four tables)
+
+Built in `~/eco-b66` (branch `batch-66-gbif4`, from main at 0249240 after #198), no agents, no Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| edp_2019_footua_winterbirds_count | winter point counts, 70 bird species | GBIF doi:10.15468/ix79tw (CC BY 4.0) | 24,360 | 128 points matched across years by coordinates (source ids renumbered between phases); 2011-2017; one count with mis-keyed species rows dropped |
+| beja_2021_sabor_fish_count | single-pass electrofishing, 14 species | GBIF doi:10.15468/pep8ma (CC BY 4.0) | 4,228 | 75 reaches (74 in 2012, about 30 a year after), 2012-2020; below the floor |
+| cortes_2023_sabor_fish_count | electrofishing plus reservoir netting, 18 taxa | GBIF doi:10.15468/ut55sa (CC BY 4.0) | 8,208 | 69 stations, 2015-2020; method as occasion at four reservoir stations; compensatory-measure controls flagged; below the floor |
+| evju_2025_hvaler_herminium_count | permanent-plot ramet counts, 1 threatened orchid | GBIF doi:10.15468/rt6t88 (CC BY 4.0) | 550 | 77 plots at 4 localities, 2014-2025 (no 2018); fertile/vegetative as obs_; coarsened (source monitors it as threatened); below the floor |
+
+No taxon in the three Portuguese tables is IUCN CR/EN/VU per GBIF, so none has an `_exact` sibling and their coordinates
+are as published. Data repairs, each asserted and recorded in `notes`: one Sabor LTER survey lists *Squalius
+carolitertii* twice (both 0) and no *S. alburnoides* (read as the alburnoides zero, the same either way); reach M12 (LTER)
+and station PIMA A2C (EDP) are each published at a second point tens of km away in one year, shipped as separate units
+(M12_2014, PIMA A2C_2020) rather than guessing which coordinates are right; misspellings corrected in `__taxa`
+(*Sander*, *Cobitis paludica*, *Actitis hypoleucos*, *Turdus iliacus*); *Achondrostoma gallaicum* is not on the GBIF
+backbone (no key); *Chloris chloris* needs its authorship for a strict GBIF match.
+
+**Held: EDP Baixo Sabor land birds (doi:10.15468/rzg9pc).** The published `occurrence.txt` has exactly 65,535 rows, the
+old Excel row limit, and stops at species beginning with C. The dataset is incomplete as published; a complete archive
+would need EDP or GBIF Portugal (outward contact, Ben's call). Row in `human_review.csv`.
+
+**Looked at, left available (queue notes):** EDP Foz Tua bat acoustics (three phases with different point ids and classes
+at species, genus, family and order rank), NINA *Dracocephalum ruyschiana* (several unlabelled target rows per plot
+visit), Karabash small mammals (daily snap-trap removal, but live-trap and mixed lines and irregular day sequences),
+Doñana lizards and the Taiwan New Year Bird Count (not opened).
+
+What strained the standard: nothing new.
+
+## Batch 67 — 2026-11-13 (author permission: Merker & Chandler Canada warbler Allee experiment; one table)
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| merker_2021_coweeta_cawa_count | repeated counts (four 2.5-min intervals of one count a year), 4 years | Zenodo doi:10.5281/zenodo.4238700 ("Other (Open)"; authors' written permission 2026-11-13, shipped CC BY 4.0) | 1,132 | 71 points, 2014-2017; PCCow038 not surveyed in 2014; scaled detection covariates as deposited; no coordinates deposited; below the IRW floor (animal data exempt) |
+
+Held since 2026-11-05 for unclear licence terms. Richard Chandler replied to the 2026-11-06 request: permission to
+redistribute "under whatever license you prefer", and the array order (sites x 2.5-min intervals x years). Point ids
+are the deposited `treat.mat` row names; years come from the paper. The JAGS model treats each interval as a binomial
+count of the year's N, so the table is `count` with occasion = interval, not removal.
+
+**Held: the playback treatment.** `treat.mat` flags 11 points in 2016 and 14 in 2017, where the paper reports 10 and 8
+playback sites, so it is not the per-year playback indicator the paper describes. Not shipped; follow-up question to
+the authors drafted. If it arrives before the eco_2 draft is released, add `treat` and rebuild; otherwise it is a
+published-table change.
+
+What strained the standard: nothing. A licence granted by email has no field of its own; it is recorded in the
+script header, `notes` and the dictionary's `original_license`.
+
+## Batch 68 — 2026-11-14 (discovery pass 2 Dryad rows, CC0: Hopland megafire cameras, Scottish pine martens and squirrels, Ontario black bears; four tables)
+
+Built in `~/eco-b68` (branch `batch-68`, from main at 47d9df8), no agents. Nine Dryad deposits downloaded anonymously
+(the DRYAD_TOKEN in the environment had expired: run with `DRYAD_TOKEN=`); about 20 Dryad requests.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| calhoun_2023_hopland_mamm_dynocc | dynamic community occupancy, camera traps, 9 mammals | Dryad doi:10.6078/D1W70R (CC0) | 12,195 | 36 cameras, October-November 2016-2020, 7-8 weekly occasions; 2018 megafire burned 25 stations; burn status and dNBR as `period_`; no coordinates deposited |
+| sheehy_2018_scotland_marten_scr | genetic SCR (hair), pine marten | Dryad doi:10.5061/dryad.478kp63 (CC0) | 13,862 | 42 martens, 222 feeders in three concurrent regional arrays (region = `cluster_id`, an individual at risk only in its own region), 4-5 visits Jan-Jun 2016; BNG in `__traps` |
+| sheehy_2018_scotland_feeder_comm | community occupancy, hair at feeders, red and grey squirrel and pine marten | same deposit | 2,181 | 186 feeders in Central Scotland and Borders, 4 visits; `obs_method` (camera also deployed); Highlands red-squirrel-only rows not shipped (shared-detector ruling) |
+| howe_2022_ontario_bear_scr | genetic SCR (hair corrals), black bear, multi-session | Dryad doi:10.5061/dryad.7wm37pvtz (CC0, v12) | 992,088 | 100 array x year sessions 2017-2019 and 2022, 5-7 weekly occasions; unit = bear within session (ruling below), 4,906 bear-sessions of 4,702 ids; period = year, cluster_id = session; usage days as `obs_effort_days`; UTM zones 15-18 in `__traps` |
+
+Data repairs, each asserted and recorded in `notes`: Calhoun's burn3 has "Unburned Post" (2018) and "Unburned_Post"
+(2019-2020), written as one level. Sheehy: one marten encounter (ND1D, feeder 1DSQ02, visit 1) is at a feeder-visit
+the trap file marks unused while the squirrel file has it surveyed, so it is treated as used; two encounter rows give
+grid cell D for DD traps (trap file followed); the squirrel covariate `gs` is undocumented and is not the feeder's
+own share of grey detections, so it is not shipped. Calhoun's record table holds four more species (ground squirrel,
+mountain lion, pig, brush rabbit) without deposited histories; it does not reproduce the deposited histories cell for
+cell, so no history is derived for them (`notShipped`).
+
+**Not built: Echeverri et al. 2021 Costa Rica cultural-services birds (dryad.pzgmsbcj6).** The same 150 points,
+visit log and community file as `ke_2022_costarica_birds_nmix` for 2016-2018 (Ke covers 2016-2019): a subset, like
+Frishkoff 2019. The DOI check alone does not catch this; the landscape codes (NARA, ALTO, ...) did.
+
+**Howe Ontario black bear SCR (dryad.7wm37pvtz): held, then built after Ben's ruling (2026-11-14, option (a)).**
+The deposit's bear ids are global and 161 ids are detected in more than one session (mostly the same area in a later
+year; 7 at two arrays in the same year, although the paper says no genotype was found on more than one array). Ruling:
+the unit is the bear within its session, at risk only at that session's corrals, as in the authors' array-specific
+SECR; the global id is kept as `unit_bear_id`. Data repairs, asserted: two 2022 caps files repeat their area's first-year
+session name (CCGP, ShirleyLakeRd), so sessions are keyed by the caps file stem; three 2017 files write seven-digit ids
+(BLBR0000212), kept as deposited (52 would collide with six-digit ids if the zero were dropped; not merged); two
+detections at corral-weeks with 0 usage days make those corral-weeks surveyed; one duplicate detection row; one bear
+recorded female 8 times and male once (`unit_sex` NA). The held row's counts (145 bears in several sessions, 29
+duplicates) came from an earlier rough parse and were wrong; the script's assertions are the record. The ruling is
+not yet in `standard.md` (E4.4 speaks only of ids valid within a session): issue to follow.
+
+**Looked at, left available (queue notes unchanged):** Farr 2017 Colorado conservation developments (dryad.pp0jp:
+covariates and Julian dates scaled and rounded, years not deposited, two species' histories empty in one file,
+private land per the deposit abstract so coordinates need coarsening); Piirainen Nordic bird monitoring
+(dryad.bzkh189br: about 5M rows of route-year counts 1975-2016, coordinates already coarsened by the authors,
+overlaps lindstrom_2025_sweden_summerpoints_count for Sweden); Rees Glenelg/Otway foxes and cats (dryad.msbcc2g4p:
+one detected-at-least-once value per station-year, no replication); Mirochnitchenko Nebraska point counts
+(dryad.bg79cnpbb: detections only, visit list inferable); Kays hunting/hiking eMammal (dryad.gv1dq: downloaded, not read).
+
+What strained the standard: global ids across independent SCR sessions (Howe, above): ruled 2026-11-14, not yet written into E4.4.

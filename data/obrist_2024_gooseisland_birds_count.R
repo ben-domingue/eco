@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 # Table:  obrist_2024_gooseisland_birds_count
+# WITHDRAWN 2026-11-06 (care_review, #150). Removed from the current release pending
+#   consultation with the originators; may be reinstated. Kept so it can be rebuilt; its
+#   tag status is do_not_publish, so the uploader refuses it. Why, and how to reinstate:
+#   notes/decisions/care_e7_screen_held.md and releases/withdrawals.csv.
 # Source: Zenodo 10.5281/zenodo.11518182 (CC BY 4.0 as shown on the record), published 2024-06-07.
 #   Obrist, D., Field, R. & Reynolds, J. (2024). Avian Point Count Surveys from Yáláƛi (Goose
 #   Island) Archipelago, British Columbia, Canada in 2011. Zenodo.
@@ -206,4 +210,4 @@ stage_dict_row(TABLE,
 stage_tag_row(TABLE, ds, taxon_group = "Birds", model_family = "N-mixture (multi-species)",
   sampling_protocol = "point_count", design = "Single-season (3 surveys)", realm = "Terrestrial", country = "CAN",
   coordinates = "As published", notes = "Island archipelago, four habitat types; 2011 resurvey of Guiguet's 1948 observations.",
-  status = "tagged")
+  status = "tagged; do_not_publish: care_review (#150), withdrawn 2026-11-06")

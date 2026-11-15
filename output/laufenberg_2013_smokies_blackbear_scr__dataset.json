@@ -1,0 +1,71 @@
+{
+  "table": "laufenberg_2013_smokies_blackbear_scr",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Hair-snag DNA spatial capture-recapture of 139 black bears at 65 snags over 10 weekly occasions, Great Smoky Mountains National Park, 2003",
+  "creator": "Laufenberg, Jared S.; van Manen, Frank T.; Clark, Joseph D. (distributed in the secr R package)",
+  "pubDate": "2013",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset blackbearCH]. CRAN. https://CRAN.R-project.org/package=secr",
+  "paperDOI": "10.1002/jwmg.534",
+  "abstract": "American black bears (Ursus americanus) were sampled with 65 baited barbed-wire hair snags about 1 km apart, mostly near trails, in the Tennessee sector of Great Smoky Mountains National Park from 9 June to 15 August 2003. Snags were visited weekly (10 occasions); hair was genotyped to individual and sex. 282 detections of 139 bears (81 females, 58 males). The data are the secr package's blackbearCH: one row per bear x snag x week.",
+  "samplingProtocol": "65 baited hair snags (barbed-wire enclosures, bakery bait, raspberry scent lure) about 1 km apart, visited weekly for 10 weeks, 9 June-15 August 2003; hair genotyped to individual and sex (Settlage et al. 2008; Laufenberg et al. 2013).",
+  "samplingProtocolCode": "hair_snag",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Snag usage is not deposited (no usage attribute in blackbearCH). Every snag is taken as operated on all 10 weekly occasions, as the help page describes ('operated for 10 weeks at 65 sites') and secr assumes. Every bear has rows at all 65 snags x 10 weeks.",
+  "closureNote": "single session of 10 weekly occasions, treated as closed as in the source analyses",
+  "geographicCoverage": "Tennessee sector of Great Smoky Mountains National Park, USA (about 35.6 N, 83.6 W); snag coordinates in __traps (UTM metres)",
+  "temporalCoverage": "2003-06-09/2003-08-15",
+  "crs": "UTM zone 17N metres by the coordinate range (datum not stated in the help page)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published: Ursus americanus is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps. Binary proximity detectors (a bear can be detected at several snags in one week).",
+  "notes": "The help page notes that female 15 apparently moved 17 km between occasions 1 and 3, and that unforested land outside the park on the north-west boundary is not bear habitat. Genotyping of a subset was described by Settlage et al. (2008, doi:10.2193/2006-297); sex and further samples were added later (Laufenberg et al. 2013).",
+  "notShipped": {
+    "blackbear.0_blackbear.h2bk": "fitted secr models (model outputs)",
+    "GSM": "park boundary polygon, not detection data"
+  },
+  "summary": {
+    "n_rows": 90350,
+    "n_units": 139,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 10,
+    "n_surveys": 90350,
+    "y_values": "0,1",
+    "prop_zero": 0.997,
+    "n_traps": 65,
+    "n_zero": 90068,
+    "n_positive": 282,
+    "n_units_detected": 139,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_sex"],
+  "coreMd5": "e29477b75acf9d3002771bef969cb9fd",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "354b4d1e333443881f50883aa53381b1"
+    },
+    "traps": {
+      "rows": 65,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "b7237b0106e5b63f324a5f289da135f8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/secr_package_scr.R",
+  "buildDate": "2026-11-13"
+}

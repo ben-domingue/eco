@@ -1,0 +1,69 @@
+{
+  "table": "kery_2021_swiss_mspwoodpecker_binom",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Middle Spotted Woodpecker on volunteer checklists per 1-km2 quadrat and day in Switzerland, 20 February-31 July, 1990-2015",
+  "creator": "Swiss Ornithological Institute (data, courtesy of Nicolas Strebel); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2021",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset spottedWoodpecker]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-809585-0.00004-1",
+  "abstract": "Checklists submitted by volunteers to the Swiss Ornithological Institute, summarised per 1-km2 quadrat and day between 20 February and 31 July (days 51-212) of 1990-2015: the number of checklists and the number on which a Middle Spotted Woodpecker (Leiopicus medius) was recorded. 144,517 checklists on 116,204 quadrat-days from the 1,545 quadrats where the species was ever recorded since 1985. The data are the AHMbook package's spottedWoodpecker (AHM2 section 4.11.2): one row per quadrat-day, y = checklists with the species out of obs_trials.",
+  "samplingProtocol": "Volunteer bird checklists (complete lists of species seen on a trip) summarised by the source to quadrat and day.",
+  "samplingProtocolCode": "visual_survey",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "Each row of the package is a quadrat-day with at least one checklist; a quadrat-day without one is absent and not surveyed.",
+  "responseType": "binomial_count",
+  "effortColumn": "obs_trials",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "period = calendar day (index over the 4,207 dates with a checklist anywhere; __periods gives year and day); a seasonal or annual model groups periods by __periods$year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Switzerland, 1,545 1-km2 quadrats; coordinates in an unspecified reference system (unit_x_unspecified_crs, unit_y_unspecified_crs)",
+  "temporalCoverage": "1990/2015",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "no locations shipped: the source's coordinates have an unspecified reference system and ship as covariates"
+  },
+  "notes": "Selection: only quadrats where the species was recorded at least once since 1985 are included (help page). Checklists are opportunistic: obs_trials varies widely and checklist completeness is not recorded. The help page's 26 years run 1990-2015.",
+  "notShipped": {
+    "none": "nothing: the data frame is shipped whole"
+  },
+  "summary": {
+    "n_rows": 116204,
+    "n_units": 1545,
+    "n_taxa": 1,
+    "n_periods": 4207,
+    "n_occasions": 1,
+    "n_surveys": 116204,
+    "y_values": "0,1,2,3,5",
+    "prop_zero": 0.949,
+    "n_traps": 1,
+    "n_zero": 110266,
+    "n_positive": 5938,
+    "n_units_detected": 1344,
+    "max_y": 5
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "unit_x_unspecified_crs", "unit_y_unspecified_crs", "obs_trials"],
+  "coreMd5": "15b5d661d00ef3c461422adcdb50688d",
+  "sideTables": {
+    "periods": {
+      "rows": 4207,
+      "columns": ["period", "year", "day_of_year", "date"],
+      "md5": "23ea9796c1e6d372e82274cf9de15783"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "f6834877bbe0390e63922177a2008dfb"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}

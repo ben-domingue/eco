@@ -1,0 +1,66 @@
+{
+  "table": "schaub_2012_valais_hoopoe_cjs",
+  "sourceURL": "https://cran.r-project.org/package=IPMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "surveyEvidence": "inferred",
+  "coordinatesCoarsened": null,
+  "title": "Capture-recapture histories of 3,844 female hoopoes from a nestbox population in the Valais, Switzerland, 2002-2017",
+  "creator": "Swiss Ornithological Institute; University of Bern, Division of Conservation Biology (data); Schaub, Michael; Arlettaz, Raphaël (distributed in the IPMbook R package)",
+  "pubDate": "2012",
+  "citation": "Schaub, M., Kéry, M., & Meredith, M. (2023). IPMbook: Functions and data for the book 'Integrated Population Models' (Version 0.1.5) [R package; dataset hoopoe]. CRAN. https://CRAN.R-project.org/package=IPMbook",
+  "paperDOI": "10.1007/s00442-011-2070-5",
+  "abstract": "Hoopoes (Upupa epops) breeding in nestboxes in the Valais, Swiss Alps, 2002-2017: nestlings were ringed and breeding adults captured at the boxes every year. The data are the IPMbook package's hoopoe capture histories of 3,844 female birds (3,374 first marked as nestlings, 470 as adults); the package's pair counts and reproduction records are not shipped. Analysed by Schaub et al. (2012) and in Schaub & Kéry (2022, chapter 14).",
+  "samplingProtocol": "Nestboxes checked regularly through each breeding season; nestlings ringed and breeding females captured; one occasion per year.",
+  "samplingProtocolCode": "nest_box",
+  "surveyEvidenceNote": "No effort table is in the package; nestlings were ringed and breeders captured in every year 2002-2017 (help page), and every year after the first has recaptures (asserted). Every year is a survey; each female has a row in every year of its at-risk span.",
+  "geographicCoverage": "Upper Rhône valley, Valais, Switzerland (about 46.2 N, 7.3 E); no coordinates in the package",
+  "temporalCoverage": "2002/2017",
+  "designNote": "CJS with years as periods. At-risk span: nestlings from the marking year, adults from 2002 (E4.4).",
+  "notes": "Females only, as in the package; how nestlings were sexed is not stated in the help page. unit_age_first_capture as deposited: 1 nestling, 2 at least one year old. Unit ids are row numbers of the package's ch matrix.",
+  "notShipped": {
+    "count_reproAgg_reproInd": "annual pair counts and reproduction: aggregates or non-detection data (fledgling counts per female)"
+  },
+  "summary": {
+    "n_rows": 37218,
+    "n_units": 3844,
+    "n_taxa": 1,
+    "n_periods": 16,
+    "n_occasions": 1,
+    "n_surveys": 37218,
+    "y_values": "0,1",
+    "prop_zero": 0.88,
+    "n_traps": 1,
+    "n_zero": 32766,
+    "n_positive": 4452,
+    "n_units_detected": 3844,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "unit_age_first_capture"],
+  "coreMd5": "a34bae4d188fab3ebb270f94d5670601",
+  "sideTables": {
+    "periods": {
+      "rows": 16,
+      "columns": ["period", "year", "recapture_survey", "n_marked", "n_recaptured"],
+      "md5": "a67d0609cb16fc89b17dd69000677fa2"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "a0342b726ec91259f0e9648784fe0033"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ipmbook_package_cjs.R",
+  "buildDate": "2026-11-13"
+}

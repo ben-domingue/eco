@@ -1,0 +1,71 @@
+{
+  "table": "naamp_2007_massachusetts_peeper_calls",
+  "title": "North American Amphibian Monitoring Program, Massachusetts 2001-2007: spring peeper calling index at 280 stops, up to 4 visits a year",
+  "creator": "North American Amphibian Monitoring Program (USGS) and Massachusetts volunteers (data); Fiske, Ian; Chandler, Richard (distributed in the unmarked R package)",
+  "pubDate": "2007",
+  "sourceURL": "https://cran.r-project.org/package=unmarked",
+  "citation": "Fiske, I., Chandler, R., Kellner, K., et al. (2026). unmarked: Models for data from unmarked animals (Version 1.5.2) [R package; dataset masspcru]. CRAN. https://CRAN.R-project.org/package=unmarked",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "abstract": "NAAMP roadside calling surveys in Massachusetts, 2001-2007: spring peeper (Pseudacris crucifer) calling index (0-3) at 280 stops, up to four visits per stop and year, with date, minutes after sunset and temperature, in the raw long format the unmarked package uses for its formatting examples. One row per stop visit.",
+  "samplingProtocol": "NAAMP roadside calling survey: stops on routes, 5-min listening after sunset, several visits per season; calling index 0-3.",
+  "samplingProtocolCode": "acoustic",
+  "surveyEvidence": "row_presence",
+  "surveyEvidenceNote": "Each row of the long-format data is a stop visit; occasion orders a stop's visits within a year by date.",
+  "responseType": "ordinal",
+  "stateCodes": {
+    "0": "not heard",
+    "1": "individuals can be counted; calls do not overlap",
+    "2": "calls of individuals distinguishable with some overlap",
+    "3": "full chorus; calls continuous and overlapping"
+  },
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (closed within a year's calling season)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Massachusetts, USA: NAAMP routes (cluster_id) and stops; no coordinates in the package",
+  "temporalCoverage": "2001/2007",
+  "coordinatesCoarsened": null,
+  "notes": "Stop ids as in the package (route_stop); cluster_id = route. Temperature is missing for 108 visits. Only the spring peeper is in the package; the NAAMP database holds the other species and stop locations.",
+  "notShipped": {
+    "other_species": "the survey records all calling anurans; the package keeps the spring peeper",
+    "missing_index": "4 visits with no calling index recorded (Pcru NA) are dropped: y is never NA (E4); occasion numbers the remaining visits in date order"
+  },
+  "summary": {
+    "n_rows": 3212,
+    "n_units": 280,
+    "n_taxa": 1,
+    "n_periods": 7,
+    "n_occasions": 4,
+    "n_surveys": 3212,
+    "y_values": "0,1,2,3",
+    "prop_zero": 0.509,
+    "n_traps": 1,
+    "n_zero": 1634,
+    "n_positive": 1578,
+    "n_units_detected": 240,
+    "max_y": 3
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "obs_min_after_sunset", "obs_temperature_c"],
+  "coreMd5": "664aa9cb235824c68f1cea2177919546",
+  "sideTables": {
+    "periods": {
+      "rows": 7,
+      "columns": ["period", "year", "n_stops", "n_visits"],
+      "md5": "1bcb92b30e8715effb9f94a1af3e3528"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "1f19de8be7f9b91cecb4d4d7ac6eaed5"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_misc_tables.R",
+  "buildDate": "2026-11-13"
+}

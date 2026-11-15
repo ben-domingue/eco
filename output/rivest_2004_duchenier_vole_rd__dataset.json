@@ -1,0 +1,65 @@
+{
+  "table": "rivest_2004_duchenier_vole_rd",
+  "title": "Robust-design capture histories of 560 red-backed voles, Duchénier conservation area, Quebec: three days in May, July and August of 1999 and 2000",
+  "creator": "Etcheverry, P. and colleagues (data); Rivest, Louis-Paul; Daigle, Gaétan (analysis); Baillargeon, S.; Rivest, L.-P. (distributed in the Rcapture R package)",
+  "pubDate": "2004",
+  "sourceURL": "https://cran.r-project.org/package=Rcapture",
+  "citation": "Baillargeon, S., & Rivest, L.-P. (2022). Rcapture: Loglinear models for capture-recapture experiments (Version 1.4-4) [R package; dataset rbvole]. CRAN. https://CRAN.R-project.org/package=Rcapture",
+  "paperDOI": "10.1111/j.0006-341X.2004.00157.x",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-only",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Red-backed voles live-trapped on three consecutive days in May, July and August of 1999 and 2000 in the Duchénier conservation area, south-eastern Quebec (Etcheverry et al.), analysed with loglinear robust-design models by Rivest & Daigle (2004). Rcapture's rbvole gives 66 history patterns with frequencies, expanded to 560 voles: one row per vole x primary period x day.",
+  "samplingProtocol": "Live trapping on three consecutive days in each of six primary periods (May, July, August 1999 and 2000).",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; every day of every primary period is taken as a survey. Voles of unknown age have rows from May 1999.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (robust design: closed within the three days, open between)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Réserve Duchénier, Bas-Saint-Laurent, south-eastern Quebec, Canada; no coordinates in the package",
+  "temporalCoverage": "1999-05/2000-08",
+  "coordinatesCoarsened": null,
+  "notes": "Frequency histories expanded: unit ids arbitrary. The package says 'red-back voles' without a scientific name; Myodes gapperi is assumed (the red-backed vole of the area). Losses on capture are not coded.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 10080,
+    "n_units": 560,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 3,
+    "n_surveys": 10080,
+    "y_values": "0,1",
+    "prop_zero": 0.918,
+    "n_traps": 1,
+    "n_zero": 9255,
+    "n_positive": 825,
+    "n_units_detected": 560,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion"],
+  "coreMd5": "a6903210130b089a0c1a8e5895566353",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "month"],
+      "md5": "3e5ca27d1130b7419dc1c74184117d33"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "8ca80789fb4e61470795ada74fcac50f"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

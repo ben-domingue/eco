@@ -32,13 +32,13 @@ a character vector) a named list. `eco_to_unmarked()` maps over a list.
 | | |
 |---|---|
 | `eco_list_tables()`, `eco_metadata()`, `eco_biblio()`, `eco_tags()`, `eco_tag_options()` | the corpus and its descriptions, from the `eco_meta` dataset |
-| `eco_filter(model_family=, response_type=, taxon_group=, protocol=, min_units=, min_occasions=, multi_species=, sample_floor=)` | choose tables |
+| `eco_filter(model_family=, response_type=, taxon_group=, protocol=, min_units=, min_occasions=, multi_species=, sample_floor=, licence=)` | choose tables; `licence = "permissive"` keeps tables open to commercial use ([Using eco responsibly](https://ben-domingue.github.io/eco/use.html)) |
 | `eco_fetch(x)`; `eco_taxa()`, `eco_periods()`, `eco_units()`, `eco_traps()` | a table and its side tables |
 | `eco_info(table)` | one table, or the corpus totals |
 | `eco_to_array()`, `eco_to_unmarked()`, `eco_to_ch()` and their inverses `array_to_eco()`, `umf_to_eco()`, `mpois_to_eco()`, `ch_to_eco()` | reshape to and from the model packages' structures |
 | `eco_check(df)` | the R twin of the repository's validator, for a table you built |
 | `eco_to_irw(df)` | the IRW v1.0 view (`id`, `item`, `resp`, `cov_*`), for IRW tooling |
-| `eco_save_bibtex(tables, file)` | cite the sources |
+| `eco_cite(tables, format, file)` | cite the original deposits and papers (one entry per deposit), and eco; `eco_save_bibtex(tables, file)` is the BibTeX shortcut |
 | `eco_version()`, `eco_set_version(n)`, `eco_reset_version()`, `eco_manifest()` | pin a release |
 | `eco_cache_dir()`, `eco_cache_info()`, `eco_clear_cache()` | the disk cache |
 

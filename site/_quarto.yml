@@ -8,10 +8,22 @@ project:
     - map.js
     - llms.txt
     - wheels/**/*.whl     # the browser validator's wheel, built by prerender.R (#8)
+    # Logo kit (logos/README.md). The app icons are named only in
+    # site.webmanifest and the other variants by no page, so resource discovery
+    # would not copy them. logos/reference/ (test renders, build scripts) is
+    # deliberately left out.
+    - logos/*.svg
+    - logos/*.png
+    - logos/*.ico
+    - site.webmanifest
   # Writes data/site_stats.json from the pipeline's staging files so the
   # homepage counts cannot disagree with the tables (untracked, see ../.gitignore).
   pre-render:
     - Rscript prerender.R
+  # One page per table under _site/tables/ (schema.org JSON-LD + EML), the A-Z
+  # index, and the table URLs appended to sitemap.xml (#13; landing/README.md).
+  post-render:
+    - Rscript landing/emit_landing_pages.R
   preview:
     port: 4300
 
@@ -27,14 +39,33 @@ website:
   repo-url: https://github.com/ben-domingue/eco
   repo-actions: [issue]
   description: "Ecological detection data in one format: occupancy surveys, repeated counts and capture histories from public deposits, validated and versioned."
+  favicon: logos/favicon.ico
+  # Social-sharing cards. Absolute URL: a relative one resolves against each
+  # page, so pages in vignettes/ would point at vignettes/logos/.
+  open-graph:
+    image: https://ben-domingue.github.io/eco/logos/og-image.png
+    image-width: 1200
+    image-height: 630
+  twitter-card:
+    card-style: summary_large_image
+    image: https://ben-domingue.github.io/eco/logos/og-image.png
+    image-width: 1200
+    image-height: 630
   navbar:
-    title: "eco"
+    # The dark lockup carries the name, so the text title is hidden; logo-alt
+    # keeps it for screen readers. Sized in custom.scss (.navbar-logo).
+    title: false
+    logo: logos/eco-lockup-dark.svg
+    logo-alt: "eco"
     search: true
     left:
       - text: Data
         menu:
           - href: data.qmd
             text: Browse the tables
+          # Written by the post-render step, not a .qmd (#13).
+          - href: tables/index.html
+            text: Table pages (A-Z)
           - href: data_notes.qmd
             text: Data notes
           - href: corrections.qmd
@@ -47,6 +78,10 @@ website:
             text: Vignettes
           - href: agents.qmd
             text: Using an AI assistant
+          - href: use.qmd
+            text: Using eco responsibly
+          - href: coarsening.qmd
+            text: Coordinate coarsening
       - text: The format
         menu:
           - href: standard.qmd
@@ -78,6 +113,8 @@ format:
     toc-depth: 3
     code-fold: true
     link-external-newwindow: true
+    # Favicon PNGs, touch icon and manifest beyond the one website.favicon emits.
+    include-in-header: logos/_head.html
 
 execute:
   echo: false

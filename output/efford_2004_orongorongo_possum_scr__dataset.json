@@ -1,0 +1,76 @@
+{
+  "table": "efford_2004_orongorongo_possum_scr",
+  "title": "Spatial capture-recapture of 309 brushtail possums on a 167-trap grid in the Orongorongo Valley, New Zealand: six 5-night sessions, 1996-1997",
+  "creator": "Efford, Murray G.; Cowan, P. E. (data; distributed in the secr R package)",
+  "pubDate": "2004",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset OVpossumCH]. CRAN. https://CRAN.R-project.org/package=secr",
+  "paperDOI": "10.1046/j.1365-2656.1998.00222.x",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Brushtail possums (Trichosurus vulpecula) live-trapped on a grid of 167 single-catch cage traps at 30-m spacing (about 14 ha) in mixed broadleaf and beech forest of the Orongorongo Valley near Wellington, New Zealand, for five nights in February, June and September of 1996 and 1997, a time of high and declining density; part of the study running since 1966. The data are secr's OVpossumCH: one row per possum x trap x night, with sex and age class at first capture.",
+  "samplingProtocol": "167 cage traps on the ground at 30 m spacing, set for 5 consecutive nights three times a year; animals tagged and tattooed and released at the trap.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited; every trap is taken as set on all 5 nights of each session, as secr assumes. Each possum has rows at all 167 traps x 5 nights for every session from its start to the end of 1997 or its removal.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "period (closed within a 5-night session, open between)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "obs_removed",
+  "geographicCoverage": "Orongorongo Valley, Wellington, New Zealand (about 41.35 S, 174.97 E); trap coordinates in __traps (NZ Map Grid metres)",
+  "temporalCoverage": "1996-02/1997-09",
+  "crs": "EPSG:27200 (New Zealand Map Grid), as stated on the help page",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published: Trichosurus vulpecula is IUCN Least Concern and an introduced pest in New Zealand"
+  },
+  "designNote": "Experimental list of E9: multi-session spatial capture-recapture with a trap key and __traps. Single-catch traps.",
+  "notes": "At-risk span: possums of age class 1 (first year) at first capture have rows from the first session of that calendar year (the year's newly independent juveniles enter at the February trapping, help page); older possums from February 1996. -1 = removed (obs_removed = 1, no later rows). Unit ids are the source's animal ids. efford_1998_orongorongo_possum_rd is an earlier selection (February 1980-1988) from the same study.",
+  "notShipped": {
+    "OVforest_leftbank": "habitat map and riverbank line in the package's extdata: not detection data"
+  },
+  "summary": {
+    "n_rows": 1466427,
+    "n_units": 309,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 5,
+    "n_surveys": 1466427,
+    "y_values": "0,1",
+    "prop_zero": 0.998,
+    "n_traps": 167,
+    "n_zero": 1464025,
+    "n_positive": 2402,
+    "n_units_detected": 309,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "period", "occasion", "unit_sex", "unit_ageclass_first", "obs_removed"],
+  "coreMd5": "25911dfdcf8ecb38310dfa16e2da69ec",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "deposited_session", "month", "n_caught"],
+      "md5": "fe7e3426cd2450063c27f632e84c6007"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "501a1af1da592af46ec0f6288c85e913"
+    },
+    "traps": {
+      "rows": 167,
+      "columns": ["trap", "x", "y", "n_occasions_used"],
+      "md5": "1789d19b4f644fbef54d882f676122a8"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

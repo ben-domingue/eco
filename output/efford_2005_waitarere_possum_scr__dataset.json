@@ -1,0 +1,71 @@
+{
+  "table": "efford_2005_waitarere_possum_scr",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Live-trapping spatial capture-recapture of 112 brushtail possums on five 36-trap hollow grids at Waitarere, New Zealand, April 2002 (5 days)",
+  "creator": "Efford, Murray G.; Warburton, Bruce; Coleman, Morgan C.; Barker, Richard J. (data: Landcare Research; distributed in the secr R package)",
+  "pubDate": "2005",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset possumCH]. CRAN. https://CRAN.R-project.org/package=secr",
+  "paperDOI": "10.2193/0091-7648(2005)33[731:AFTOTM]2.0.CO;2",
+  "abstract": "Brushtail possums (Trichosurus vulpecula), an introduced pest in New Zealand, were cage-trapped, tagged and released daily for five days in April 2002 in a Pinus radiata plantation on coastal dunes at Waitarere, North Island. 180 traps were set in five 'hollow grids' of 36 (20 m apart around a 180 m square) placed at random in a 300-ha peninsula; the possums were later removed to obtain an independent density (2.26 / ha). The data are the secr package's possumCH: one row per possum x trap x day, y = 1 where it was caught. Eight histories may belong to animals tagged earlier (tag loss), flagged in unit_prev_tagged.",
+  "samplingProtocol": "Cage traps in five hollow grids of 36 at 20 m spacing, checked and animals tagged and released daily for 5 days (April 2002); one animal per trap per day.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited (no usage attribute in possumCH). Every one of the 180 traps is taken as set on all 5 days, as the help page describes and secr assumes. Every possum has rows at all 180 traps x 5 days.",
+  "closureNote": "single session; the 5 days treated as closed, as in the source analyses",
+  "geographicCoverage": "Waitarere, Manawatu, North Island, New Zealand (about 40.55 S, 175.20 E); trap coordinates in __traps (NZ Map Grid metres)",
+  "temporalCoverage": "2002-04",
+  "crs": "EPSG:27200 (New Zealand Map Grid), by the coordinate range; the help page does not name it",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published: Trichosurus vulpecula is IUCN Least Concern and an introduced pest in New Zealand"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps (grid G1-G5 as a trap column). Detector type 'single' (one animal per trap per day; asserted).",
+  "notes": "Per the secr help page, 5 histories are animals that had lost a previous tag and 3 more may be, flagged unit_prev_tagged = 1; the published analyses treated them as new animals. One female caught twice on one day had one record discarded by the source. Day dates within April 2002 are not given.",
+  "notShipped": {
+    "possum.model.0_possum.model.Ds": "fitted secr models (model outputs)",
+    "possummask_possumarea_possumremovalarea": "habitat mask and polygons, not detection data"
+  },
+  "summary": {
+    "n_rows": 100800,
+    "n_units": 112,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 5,
+    "n_surveys": 100800,
+    "y_values": "0,1",
+    "prop_zero": 0.997,
+    "n_traps": 180,
+    "n_zero": 100495,
+    "n_positive": 305,
+    "n_units_detected": 112,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "unit_prev_tagged"],
+  "coreMd5": "1ccf5626ea968d69966173c523cfd2fd",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "501a1af1da592af46ec0f6288c85e913"
+    },
+    "traps": {
+      "rows": 180,
+      "columns": ["trap", "x", "y", "grid", "n_occasions_used"],
+      "md5": "b34e3f92b8e9ef519b4d6fc7001b6df2"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/secr_package_scr.R",
+  "buildDate": "2026-11-13"
+}

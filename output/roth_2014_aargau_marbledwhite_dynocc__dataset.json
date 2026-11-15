@@ -1,0 +1,65 @@
+{
+  "table": "roth_2014_aargau_marbledwhite_dynocc",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "coordinatesCoarsened": null,
+  "title": "Marbled White detection on 11 visits at 519 plots of the Aargau Biodiversity Monitoring Program, Switzerland, 1998-2010",
+  "creator": "Kanton Aargau, Abteilung Landschaft und Gewässer (LANAG monitoring; courtesy I. Flöss); Roth, Tobias; Strebel, Nicolas; Amrhein, Valentin (distributed in the AHMbook R package)",
+  "pubDate": "2014",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset SwissMarbledWhite]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1890/13-1830.1",
+  "abstract": "Butterfly surveys of the Aargau Biodiversity Monitoring Program (LANAG), canton Aargau, Switzerland: each of 519 plots was surveyed in one year out of every five from 1998 to 2010, with 11 visits through the flight season. The data are the AHMbook package's SwissMarbledWhite: one row per plot x year x visit, y = 1 where the Marbled White (Melanargia galathea) was recorded, with the visit date. Used by Roth et al. (2014) to estimate phenological trends with site-occupancy models, and in AHM2 section 4.13.",
+  "samplingProtocol": "Butterfly transect counts on monitoring plots, 11 visits per survey year (field methods in Roth et al. 2014, Appendix C, figshare 3559965); collapsed by the source to detection/non-detection of the Marbled White per visit.",
+  "samplingProtocolCode": "transect_count",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "One row per surveyed plot-year with 11 visits, none NA; a plot-year absent from the frame (each plot is surveyed one year in five) was not surveyed. 195 visits have no recorded date but a recorded result; they are kept with obs_day_from_apr1 NA.",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "period (closed within a year)",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Canton Aargau, Switzerland (no plot coordinates in the package)",
+  "temporalCoverage": "1998/2010",
+  "notes": "obs_day_from_apr1 is the package's Julian date (1 = 1 April), NA where not recorded (the AHM2 code imputes these; not done here). Plot ids are the package's site numbers. Each plot has rows in about every fifth year only.",
+  "notShipped": {
+    "none": "nothing: the data frame is shipped whole"
+  },
+  "summary": {
+    "n_rows": 14707,
+    "n_units": 519,
+    "n_taxa": 1,
+    "n_periods": 13,
+    "n_occasions": 11,
+    "n_surveys": 14707,
+    "y_values": "0,1",
+    "prop_zero": 0.957,
+    "n_traps": 1,
+    "n_zero": 14075,
+    "n_positive": 632,
+    "n_units_detected": 174,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "obs_day_from_apr1"],
+  "coreMd5": "648e4d56c6c434ff2e8e73503c6213a8",
+  "sideTables": {
+    "periods": {
+      "rows": 13,
+      "columns": ["period", "year", "n_plots_surveyed"],
+      "md5": "24ec978dc8e70cdf6595b63be0d9c78e"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "bb3f0a8789c1b0f8da25da895de1da72"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables.R",
+  "buildDate": "2026-11-13"
+}

@@ -1,0 +1,68 @@
+{
+  "table": "seys_2020_belgium_patella_count",
+  "title": "SeaWatch-B: citizen counts of the common limpet Patella vulgata in ten quadrats on groynes, 83 surveys at 13 Belgian beaches, 2014-2018",
+  "creator": "Seys, Jan; Pint, Silke; Vervaele, K.; Vanhaecke, P.; et al.; Flanders Marine Institute (VLIZ)",
+  "pubDate": "2020",
+  "doi": "10.14284/401",
+  "sourceURL": "https://doi.org/10.14284/401",
+  "citation": "Seys J, Pint S, Vervaele K, Vanhaecke P, Van Landschoot W, Saevels M, Goossens H, Berkers M, Balcaen R, Coppens S, Vanden Eede S, Fabrice A, Willaert M, Nelen L, Colpaert N, Quartier M, Verbeke D; Flanders Marine Institute (VLIZ) (2020). SeaWatch-B: citizens monitoring the Belgian North Sea from the beach (2014-2018). Marine Data Archive. https://doi.org/10.14284/401",
+  "intellectualRights": {
+    "spdx": "CC-BY-NC-SA-4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  },
+  "abstract": "SeaWatch-B is a VLIZ citizen-science programme in which volunteers visit Belgian beaches about once a season at low tide. On beaches with groynes, the volunteer returns to the groyne chosen at the first survey and, as far seaward as possible, places ten 0.5 x 0.5 m quadrats haphazardly over its crest and flanks, counting every limpet over 1 cm. The deposit gives the total of the ten quadrats (2.5 m2) per visit, not the quadrat counts, so the quadrats are not occasions here. 83 surveys at 13 beaches, 2014 to 2018. One row per survey, y = limpets counted in 2.5 m2; the unit is the beach (its groyne), the period a calendar year, the occasion a survey within it.",
+  "samplingProtocol": "Ten 0.5 x 0.5 m quadrats placed haphazardly on one fixed groyne (crest, east and west flank) near the low-water line at low tide; all Patella vulgata > 1 cm counted; total over the ten quadrats (2.5 m2) deposited (SeaWatch-B field brochure, VLIZ; Seys et al. 2019).",
+  "samplingProtocolCode": "quadrat_count",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "open",
+  "closureNote": "Visits within a year are seasonal (mostly two to four per beach-year), so abundance changes across the occasions of a period.",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Belgian North Sea coast: 13 beaches from Koksijde to Duinbergen (one point per beach)",
+  "temporalCoverage": "2014-06/2018-06",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "One point per beach as published; public beaches, no flagged taxon."
+  },
+  "notes": "Citizen-science counts. Only beaches with a groyne are surveyed (Seys et al. 2019: several beaches have none). The groyne is chosen at the first survey and kept unless it is sanded over; the deposit does not record a change of groyne. Sampled area is 2.5 m2 at every survey. Same units (beach keys) as the push-net table seys_2020_belgium_seawatch_count.",
+  "notShipped": {
+    "mean_values": "4 surveys whose deposited value is a mean, not a count (Nieuwpoort_7 (2.375), Nieuwpoort_10 (2.19), Nieuwpoort_14 (3.39), Nieuwpoort_28 (2.77)): the count is not recoverable, so the survey is dropped",
+    "quadrat_counts": "per-quadrat counts and photos: recorded on the field sheet, not deposited"
+  },
+  "summary": {
+    "n_rows": 83,
+    "n_units": 13,
+    "n_taxa": 1,
+    "n_periods": 5,
+    "n_occasions": 7,
+    "n_surveys": 83,
+    "y_values": "0-139 (34 distinct)",
+    "prop_zero": 0.325,
+    "n_traps": 1,
+    "n_zero": 27,
+    "n_positive": 56,
+    "n_units_detected": 13,
+    "max_y": 139
+  },
+  "sampleFloor": "below (13 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_beach", "unit_decimalLatitude", "unit_decimalLongitude", "obs_air_temp_c"],
+  "coreMd5": "f2204cd88db8cacce73ee44664e17180",
+  "sideTables": {
+    "periods": {
+      "rows": 5,
+      "columns": ["period", "year"],
+      "md5": "5e28f1bdb99e0e2c081b0c6cd6f6f5c6"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "5cb5bda412f6d1f9fdc912ea90a1b089"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/seys_2020_belgium_seawatch_count.R",
+  "buildDate": "2026-11-12"
+}

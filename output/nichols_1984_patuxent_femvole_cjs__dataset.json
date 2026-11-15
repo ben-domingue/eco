@@ -1,0 +1,66 @@
+{
+  "table": "nichols_1984_patuxent_femvole_cjs",
+  "title": "Monthly capture histories of 137 adult female meadow voles at Patuxent, Maryland, June-December 1981",
+  "creator": "Nichols, James D.; Pollock, Kenneth H.; Hines, James E. (data); Efford, Murray G. (distributed in the openCR R package)",
+  "pubDate": "1984",
+  "sourceURL": "https://cran.r-project.org/package=openCR",
+  "citation": "Efford, M. G. (2026). openCR: Open population capture-recapture (Version 2.2.8) [R package; dataset microtusFCH]. CRAN. https://CRAN.R-project.org/package=openCR",
+  "paperDOI": "10.4098/AT.arch.84-35",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Adult (>= 22 g) female meadow voles (Microtus pennsylvanicus) from the Patuxent robust-design study of 1981 (five nights a month for six months), collapsed by the source to whether each vole was caught in each monthly session (Williams, Nichols & Conroy 2002, Table 17.5; openCR's microtusFCH). Six were not released. The adult males, with nightly histories, are nichols_1984_patuxent_vole_rd.",
+  "samplingProtocol": "As nichols_1984_patuxent_vole_rd (10 x 10 live-trap grid, five nights per month); the source keeps only the monthly result.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort is in the data; every monthly session is taken as a survey (help page).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period = monthly session, collapsed by the source",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "lossesOnCapture": "obs_removed",
+  "geographicCoverage": "Patuxent Wildlife Research Center, Laurel, Maryland, USA (about 39.05 N, 76.80 W); capture locations not published",
+  "temporalCoverage": "1981-06-27/1981-12-08",
+  "coordinatesCoarsened": null,
+  "notes": "Adults only. -1 = not released: obs_removed = 1, no later rows. Unit ids are row numbers (F001-F137); the nightly histories of the females are not in the source.",
+  "notShipped": {
+    "none": "the males' collapsed histories repeat nichols_1984_patuxent_vole_rd"
+  },
+  "summary": {
+    "n_rows": 800,
+    "n_units": 137,
+    "n_taxa": 1,
+    "n_periods": 6,
+    "n_occasions": 1,
+    "n_surveys": 800,
+    "y_values": "0,1",
+    "prop_zero": 0.589,
+    "n_traps": 1,
+    "n_zero": 471,
+    "n_positive": 329,
+    "n_units_detected": 137,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "obs_removed"],
+  "coreMd5": "857bd96cf521d358c349d0d00f26666a",
+  "sideTables": {
+    "periods": {
+      "rows": 6,
+      "columns": ["period", "month"],
+      "md5": "37ad38e75cbb5b027bd029fe7d21dd08"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "fe7bd819c57a192bd0d0ee105d52d950"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/cr_package_tables.R",
+  "buildDate": "2026-11-13"
+}

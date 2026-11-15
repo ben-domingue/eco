@@ -1,0 +1,74 @@
+{
+  "table": "inbo_2026_flanders_amphchorus_count",
+  "title": "Meetnetten.be chorus counts of three priority anurans at 121 ponds, Flanders, Belgium, 2016-2025",
+  "creator": "Piesschaert, Frederik; Speybroeck, Jeroen; Brosens, Dimitri; Westra, Toon; Desmet, Peter; Ledegen, Hannes; Van de Poel, Sander; Pollet, Marc (Research Institute for Nature and Forest, INBO)",
+  "pubDate": "2026",
+  "doi": "10.15468/d4bu8j",
+  "sourceURL": "https://doi.org/10.15468/d4bu8j",
+  "citation": "Piesschaert F, Speybroeck J, Brosens D, Westra T, Desmet P, Ledegen H, Van de Poel S, Pollet M (2026). Meetnetten.be - Chorus counts for Amphibia in Flanders, Belgium. Version 1.27. Research Institute for Nature and Forest (INBO). Samplingevent dataset. https://doi.org/10.15468/d4bu8j",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Repeated counts of calling males of three priority anurans at fixed ponds in Flanders, from the Meetnetten.be monitoring networks run by INBO and Natuurpunt Studie with specialised volunteers: European tree frog (Hyla arborea), common spadefoot (Pelobates fuscus) and natterjack toad (Epidalea calamita). Each pond belongs to the network of one species (__survey_taxa) and is visited at least twice in the breeding season; one row per visit with the number of calling males of that species.",
+  "samplingProtocol": "Chorus count: the number of calling males of the target species is counted at the breeding pond, at least twice a year (Meetnetten.be protocols for tree frog, common spadefoot and natterjack toad; obs_protocol gives the source's protocol label).",
+  "samplingProtocolCode": "call_survey",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = visit within a breeding season; period = calendar year; the protocol repeats counts within a season for N-mixture estimation",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Flanders, Belgium (INBO 1, 5 and 10 km UTM centroids, coarsened to 0.1-degree cell centres)",
+  "temporalCoverage": "2016/2025",
+  "coordinatesCoarsened": {
+    "value": true,
+    "rule": "taxon",
+    "method": "coarsen_coords(): the UTM-square centroids INBO publishes (1, 5 or 10 km; uncertainty 707, 3536 or 7071 m) snapped to their 0.1-degree cell centre, because the source flags the species as sensitive and generalises their locations (E7); uncertainty = the source's plus the cell half-diagonal."
+  },
+  "notes": "Each pond is in one species' network (__survey_taxa). obs_protocol is the source's protocol label per visit (spadefoot visits move from the generic 'amphibia choir count' to the network's own 'Knoflookpad - Roepkoren' protocol between 2018 and 2022). Tree frog 2016-2025, spadefoot 2017-2025, natterjack 2018 only. 62 visits hold several rows of the target species, absent and present rows mixed, with no field telling them apart; they are summed into y and obs_n_records gives the number of rows. The source's occurrenceRemarks 'casual observation' is on every row, absences included, and is not a record type.",
+  "notShipped": {
+    "Poelkikker project": "157 visits at 49 ponds 2021-2024 for the pool frog: the Pelophylax records mix a lessonae/esculentus aggregate with species-level classes and name the synklepton twice, and 44 visits have no row for P. lessonae, so the taxa surveyed for at a visit cannot be recovered",
+    "incidental records": "non-target amphibians recorded as present (no survey for them)"
+  },
+  "summary": {
+    "n_rows": 806,
+    "n_units": 121,
+    "n_taxa": 3,
+    "n_periods": 10,
+    "n_occasions": 8,
+    "n_surveys": 806,
+    "y_values": "0-435 (65 distinct)",
+    "prop_zero": 0.275,
+    "n_traps": 1,
+    "n_zero": 222,
+    "n_positive": 584,
+    "n_units_detected": 107,
+    "max_y": 435
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_records", "obs_protocol"],
+  "coreMd5": "a8fcb4133e65eb382d2768567828621f",
+  "sideTables": {
+    "periods": {
+      "rows": 10,
+      "columns": ["period", "year"],
+      "md5": "99fe8dd37eddce8f48511776efa7f028"
+    },
+    "survey_taxa": {
+      "rows": 121,
+      "columns": ["taxon", "unit"],
+      "md5": "721f45609cbc598cd4f00f9e489e4b8a"
+    },
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "3ba2093c211a4818300fb3f1f759e196"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/inbo_2026_flanders_amphchorus_count.R",
+  "buildDate": "2026-11-13"
+}

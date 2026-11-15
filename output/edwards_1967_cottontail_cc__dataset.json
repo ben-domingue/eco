@@ -1,0 +1,60 @@
+{
+  "table": "edwards_1967_cottontail_cc",
+  "title": "Live-trapping histories of 76 cottontail rabbits over 18 occasions (Edwards & Eberhardt 1967)",
+  "creator": "Edwards, W. R.; Eberhardt, L. L. (data); Laake, Jeff L. (distributed in the RMark R package)",
+  "pubDate": "1967",
+  "sourceURL": "https://cran.r-project.org/package=RMark",
+  "citation": "Laake, J. L. (2026). RMark: R code for Mark analysis (Version 3.1.0) [R package; dataset edwards.eberhardt]. CRAN. https://CRAN.R-project.org/package=RMark",
+  "paperDOI": "10.2307/3798362",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "abstract": "Capture histories of 76 cottontail rabbits live-trapped on 18 occasions, from Edwards & Eberhardt's (1967) study of estimating cottontail abundance from live-trapping data, the closed-population example distributed with program MARK and RMark. One row per rabbit x occasion.",
+  "samplingProtocol": "Live trapping on 18 occasions (Edwards & Eberhardt 1967); trap layout and dates are not in the package.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "No effort in the package; every one of the 18 occasions is taken as a survey.",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "closureNote": "single closed session of 18 occasions",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Not stated in the package (see Edwards & Eberhardt 1967); no coordinates",
+  "temporalCoverage": "before 1967 (dates not in the package)",
+  "coordinatesCoarsened": null,
+  "notes": "The MARK teaching example of the closed-population models (Closed, Huggins and their mixtures). Species assumed Sylvilagus floridanus (the package says 'rabbits'). Unit ids are row numbers.",
+  "notShipped": {
+    "none": "nothing"
+  },
+  "summary": {
+    "n_rows": 1368,
+    "n_units": 76,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 18,
+    "n_surveys": 1368,
+    "y_values": "0,1",
+    "prop_zero": 0.896,
+    "n_traps": 1,
+    "n_zero": 1226,
+    "n_positive": 142,
+    "n_units_detected": 76,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion"],
+  "coreMd5": "238ea290e58f4389189396aae4403c55",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxonRemarks"],
+      "md5": "d275f507c2d6007d0cb9a39feebfa854"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/rpkg_cr_tables.R",
+  "buildDate": "2026-11-13"
+}

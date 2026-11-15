@@ -1,0 +1,69 @@
+{
+  "table": "azzurro_2022_med_climatefish_count",
+  "title": "ClimateFish: visual-census counts of 15 coastal fish species on 3142 transects at 183 locations x depth layers, Mediterranean Sea, 2009-2021",
+  "creator": "Azzurro, Ernesto; Ballerini, Tosca; Antoniadou, Chryssanthi; et al. (ClimateFish network)",
+  "pubDate": "2022",
+  "doi": "10.17882/86784",
+  "sourceURL": "https://doi.org/10.17882/86784",
+  "paperDOI": "10.3389/fmars.2022.910887",
+  "citation": "Azzurro E, Ballerini T, Antoniadou C, et al. (2022). ClimateFish: Abundance of selected coastal fish species as candidate indicators of climate change in the Mediterranean Sea. SEANOE. https://doi.org/10.17882/86784",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "ClimateFish collaborative monitoring of 15 coastal fish species chosen as candidate indicators of climate change in the Mediterranean (7 native, 8 non-indigenous, among them Siganus luridus, S. rivulatus and Pterois miles). Divers count every target species on four consecutive five-minute transects (about 50 x 5 m) per location and depth layer (0-3, 5-10, 11-20, 21-30 m). 3142 transects at 102 locations in 8 countries, 2009-2021. One row per transect and species, y = individuals counted; the unit is a location x depth layer, the period a calendar month, the occasion a transect within it.",
+  "samplingProtocol": "Simplified underwater visual census: at each location and depth layer a diver swims four consecutive replicate transects of five minutes at about 10 m/min (about 50 x 5 m), counting all individuals of 15 target species (Azzurro et al. 2022, after Garrabou et al. 2019).",
+  "samplingProtocolCode": "visual_census",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "Replicate transects are swum consecutively on one dive in most unit-months; a few unit-months combine transects from different days of the month (date shows which), and 457 transects are dated to the month only.",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Mediterranean Sea: Malta, Italy, Croatia, Spain, France, Greece, Tunisia, Cyprus (coordinates coarsened to 0.1 degree)",
+  "temporalCoverage": "2009-09/2021-09",
+  "coordinatesCoarsened": {
+    "value": true,
+    "rule": "taxon",
+    "method": "Location coordinates (5 decimals) coarsened to the 0.1 degree cell centre with coarsen_coords(): Epinephelus marginatus (dusky grouper) is IUCN VU and native to the Mediterranean."
+  },
+  "notes": "Counts of target species only (taxonInclusion = target). Most unit-months have four transects; 57 have eight (two divers or two sets) and a few fewer than four. obs_team is the contributing institution (20). Non-indigenous status of each species is taxon_mediterranean_status in the taxa side table (from the paper).",
+  "notShipped": {
+    "exact_coordinates": "coarsened to 0.1 degree (Epinephelus marginatus, IUCN VU)"
+  },
+  "summary": {
+    "n_rows": 47130,
+    "n_units": 183,
+    "n_taxa": 15,
+    "n_periods": 54,
+    "n_occasions": 26,
+    "n_surveys": 3142,
+    "y_values": "0-420 (111 distinct)",
+    "prop_zero": 0.768,
+    "n_traps": 1,
+    "n_zero": 36181,
+    "n_positive": 10949,
+    "n_units_detected": 183,
+    "max_y": 420
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_depth_min_m", "unit_depth_max_m", "unit_country", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_team"],
+  "coreMd5": "e1180ff8a0eebce7361e7f2ab142f31e",
+  "sideTables": {
+    "periods": {
+      "rows": 54,
+      "columns": ["period", "year", "month"],
+      "md5": "20f8bd7557e4af285e75b93db70298cb"
+    },
+    "taxa": {
+      "rows": 15,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory", "taxon_mediterranean_status"],
+      "md5": "eafd58ecd82ab4dc68f53a924c48dbb7"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/azzurro_2022_med_climatefish_count.R",
+  "buildDate": "2026-11-11"
+}

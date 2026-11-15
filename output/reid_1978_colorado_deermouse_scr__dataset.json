@@ -1,0 +1,69 @@
+{
+  "table": "reid_1978_colorado_deermouse_scr",
+  "sourceURL": "https://cran.r-project.org/package=secr",
+  "intellectualRights": {
+    "spdx": "GPL-2.0-or-later",
+    "url": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
+  },
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "closed",
+  "occasionKind": "time",
+  "taxonInclusion": "single",
+  "title": "Live-trapping spatial capture-recapture of 89 deer mice on two 99-trap grids over 6 nights, Rio Blanco County, Colorado, summer 1975",
+  "creator": "Reid, V. H. (data); Otis, David L.; Burnham, Kenneth P.; White, Gary C.; Anderson, David R. (distributed with program CAPTURE and in the secr R package)",
+  "pubDate": "1978",
+  "citation": "Efford, M. G. (2026). secr: Spatially explicit capture-recapture models (Version 5.5.1) [R package; dataset deermouse.ESG and deermouse.WSG]. CRAN. https://CRAN.R-project.org/package=secr",
+  "abstract": "V. H. Reid live-trapped deer mice (Peromyscus maniculatus) for 6 consecutive nights at two sites in Rio Blanco County, Colorado, in summer 1975: East Stuart Gulch (sagebrush, gambel oak and serviceberry with pinyon-juniper uplands) and Wet Swizer Gulch (August 1975). Each site had a 9 x 11 grid of Sherman traps 15.2 m apart. The data were published by Otis et al. (1978) and distributed with program CAPTURE; they are the secr package's deermouse.ESG and deermouse.WSG. One row per mouse x trap of its site x night; site is cluster_id.",
+  "samplingProtocol": "9 x 11 grid of Sherman live traps at 50 ft (15.2 m) spacing at each of two sites, 6 consecutive nights; captures recorded by grid column and row.",
+  "samplingProtocolCode": "live_trap",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "Trap usage is not deposited (no usage attribute). Every one of the 99 traps of a site is taken as set on all 6 nights, as the help page describes and secr assumes. Each mouse has rows at its own site's 99 traps x 6 nights.",
+  "closureNote": "one closed session per site (6 nights); the two sites are separate populations (cluster_id)",
+  "geographicCoverage": "East Stuart Gulch and Wet Swizer Gulch, Rio Blanco County, Colorado, USA (about 39.9 N, 108.2 W); trap coordinates in __traps are grid metres per site",
+  "temporalCoverage": "1975-06/1975-08",
+  "crs": "local grid metres per site (as distributed)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "kept as published (local grid coordinates); Peromyscus maniculatus is IUCN Least Concern"
+  },
+  "designNote": "Experimental list of E9: spatial capture-recapture with a trap key and __traps; site is cluster_id and prefixes unit and trap ids. Sherman traps hold one animal, but the data have 1 double capture at ESG and 8 at WSG, so the source stores them as 'multi' detectors.",
+  "notes": "Covariates as in the capthists: ESG sex, age (y, sa, a) and weight (g); WSG sex and age (j, y, sa, a), no weight (unit_weight NA). The aging criteria are not recorded. The help page notes that Otis et al. described morning clearances while the CAPTURE file tags every record 'pm', and that WSG was trapped twice daily, yet the data have 6 occasions per site; the exact month at ESG is not stated. Huggins (1991) reused ESG omitting two histories.",
+  "notShipped": {
+    "none": "nothing: both capthists are shipped"
+  },
+  "summary": {
+    "n_rows": 52866,
+    "n_units": 89,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 6,
+    "n_surveys": 52866,
+    "y_values": "0,1",
+    "prop_zero": 0.994,
+    "n_traps": 198,
+    "n_zero": 52575,
+    "n_positive": 291,
+    "n_units_detected": 89,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "trap", "occasion", "cluster_id", "unit_sex", "unit_age", "unit_weight"],
+  "coreMd5": "d8d39205177e1f9d800402895a9c61d4",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "cf05a64c6ab8e3713dfa6c2fcef87968"
+    },
+    "traps": {
+      "rows": 198,
+      "columns": ["trap", "x", "y", "site", "n_occasions_used"],
+      "md5": "1544a223183a569e4e494f1c76ce2c89"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/secr_package_scr.R",
+  "buildDate": "2026-11-13"
+}

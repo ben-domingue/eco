@@ -1,0 +1,70 @@
+{
+  "table": "edp_2018_footua_amph_exact_count",
+  "title": "EDP Foz Tua amphibian monitoring: dip-net counts of 8 species at 30 plots, lower Tua valley, Portugal, 2011-2017 (taxa that are not IUCN-threatened; coordinates as published)",
+  "creator": "Costa, Hugo; Salgueiro, Nuno; Marques, Ana Teresa; and 20 co-authors (EDP - Energias de Portugal; Bio3)",
+  "pubDate": "2018",
+  "doi": "10.15468/uo5uyu",
+  "sourceURL": "https://doi.org/10.15468/uo5uyu",
+  "citation": "Costa H, Salgueiro N, Marques A T, Coelho H, Gonçalves R, Brás L, Monteiro B, Ferreira C, Paula J, Oliveira J, Puga J, Silva M, Neves T, Pereira F, Magalhães J, Romão F, Rosa L, Sousa D, Pereira P, Cabral J A, Vale-Gonçalves H M, Barros P, Múrias T (2018): EDP Foz Tua: Amphibians - Ecological Monitoring Program [2010-2017]. v1. EDP - Energias de Portugal. Dataset/Samplingevent. https://doi.org/10.15468/uo5uyu",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "Amphibian monitoring for the Foz Tua hydroelectric dam (northeast Portugal), run for EDP: plots in tanks, ponds, streams and rivers within 5 km of the lower Tua valley, at a gradient of distance from the future reservoir, plus the Ferradosa stream as a control outside the valley, sampled by dip-netting for adults and larvae once or twice each autumn (2011-2012) and spring (2012-2017), through the dam's construction and the filling of the reservoir (2016-2017). One row per visit and target species, y the individuals recorded.",
+  "samplingProtocol": "Dip-netting of the plot's water body (tank, pond, stream or river) for adult and larval amphibians, about 30 minutes per visit (the source's sampleSizeValue; samplingEffort is given as '2 observer-minutes'), all individuals of the 12 target species recorded; once or twice per season (EDP Foz Tua Ecological Monitoring Program).",
+  "samplingProtocolCode": "dip_net",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion = visit within a season (spring April-June, autumn October-November); period = season in time order; 1-3 visits per plot-season",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Lower Tua valley and Ferradosa stream, Vila Real and Bragança districts, northeast Portugal",
+  "temporalCoverage": "2011-10/2017-05",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "Plot coordinates as published (5 m). The IUCN-threatened taxa are not in this table (E7 scope, 3): Pelobates cultripes (VU), Rana iberica (VU), Salamandra salamandra (VU), Triturus marmoratus (VU); edp_2018_footua_amph_count has them, with coordinates coarsened."
+  },
+  "covariateNote": "obs_life_stage = the source's lifeStage on a present row (adult, larvae, or 'adults, larvae'), NA on a zero; obs_habitat = surrounding habitat as recorded at the visit; obs_water_type = stream, river, tank or pond as recorded at the visit; obs_time = start/end time as published; unit_water_body = the river or stream (the source's locationID); __periods gives year, season and phase (construction to 2015, reservoir filled 2016-2017).",
+  "notes": "The source gives samplingEffort '2 observer-minutes' and sampleSizeValue 30 on every visit; read as about 30 minutes by two observers. Names follow the source except two misspellings, corrected in __taxa (the source spelling is in taxonRemarks).",
+  "notShipped": {
+    "IUCN-threatened taxa": "Pelobates cultripes (VU), Rana iberica (VU), Salamandra salamandra (VU), Triturus marmoratus (VU): in edp_2018_footua_amph_count only, with coarsened coordinates (E7 scope, 3)",
+    "2010-2011 plots": "24 events at 13 points with PA/QC/Q ids, autumn 2010 to spring 2011: 8 occurrence event ids absent from the event core, 5 core events holding only a duplicated Alytes cisternasii row, localities that differ between visits of one point, and no stated link to the PAFT plots",
+    "effort": "samplingEffort and sampleSizeValue, constant on every visit (see notes)"
+  },
+  "summary": {
+    "n_rows": 2496,
+    "n_units": 30,
+    "n_taxa": 8,
+    "n_periods": 8,
+    "n_occasions": 3,
+    "n_surveys": 312,
+    "y_values": "0-500 (32 distinct)",
+    "prop_zero": 0.897,
+    "n_traps": 1,
+    "n_zero": 2239,
+    "n_positive": 257,
+    "n_units_detected": 30,
+    "max_y": 500
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_water_body", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_life_stage", "obs_time", "obs_habitat", "obs_water_type"],
+  "coreMd5": "22c24dcab413b7e45f4ec91ca94d344e",
+  "sideTables": {
+    "periods": {
+      "rows": 8,
+      "columns": ["period", "year", "season", "phase"],
+      "md5": "9b705ef06fc2ef9792e37983dbb1db6a"
+    },
+    "taxa": {
+      "rows": 8,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "9e0683bf71e8a722ea663a1ace327fec"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/edp_2018_footua_amph_count.R",
+  "buildDate": "2026-11-13"
+}

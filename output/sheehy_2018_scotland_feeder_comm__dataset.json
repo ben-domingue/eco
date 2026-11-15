@@ -1,0 +1,67 @@
+{
+  "table": "sheehy_2018_scotland_feeder_comm",
+  "title": "Red squirrel, grey squirrel and pine marten hair detections at 186 multi-species feeders in Central Scotland and the Scottish Borders, four visits January-May 2016",
+  "abstract": "Detection / non-detection of red squirrel (Sciurus vulgaris), introduced grey squirrel (Sciurus carolinensis) and pine marten (Martes martes) from hair on glue strips in baited multi-species feeders at 186 sites in 17 2 x 2 km grid cells in Central Scotland (10 cells) and the Scottish Borders (7), visited four times between January and May 2016. With proportion forest cover and proportion broadleaved cover within 100 m, and whether a camera was also deployed at the feeder on the visit. Collected to test whether the recovering native pine marten reverses the outcome of competition between red and grey squirrels.",
+  "samplingProtocol": "Permanently deployed baited multi-species feeders about 325 m apart within 2 x 2 km grid cells, visited about every four weeks; hair on the glue strips identified to species under a microscope; trail cameras rotated among a subset of feeders (obs_method = both on those visits) (Sheehy et al. 2018).",
+  "samplingProtocolCode": "hair_snag",
+  "surveyEvidence": "deposited_matrix",
+  "responseType": "detection",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "the authors assume closure over the January-May visits",
+  "occasionKind": "time",
+  "taxonInclusion": "target",
+  "geographicCoverage": "Central Scotland (about 56.1 N, 4.4 W) and the Scottish Borders (55.7 N, 3.2 W), UK; feeder coordinates as unit_x / unit_y (EPSG:27700)",
+  "notes": "The Dryad file named for grey squirrels (S12) holds all three species for the CS and BO feeders; the red squirrel file (S11) repeats the red rows (identical) and adds the Highlands. obs_method is the paper's METHOD: hair = feeder only, both = feeder and camera. The deposit lists 187 CS and BO feeders; one (all four visits NA) was never surveyed and has no rows.",
+  "notShipped": {
+    "Highlands red squirrel rows": "36 HI feeders x 5 visits of red squirrel only (S11): the deposit has no grey squirrel or marten rows for HI, and the feeder detects all three at once, so by the shared-detector ruling (2026-11-06) those surveys have no rows",
+    "gs": "the paper's GS covariate for red squirrel occupancy (a grey squirrel measure, 0-1); how it was built is given neither in the deposit nor in the paper, and it is not the feeder's own share of grey detections, so it is not shipped without a definition",
+    "S11 coordinates": "the same points to 0.0001 m; the trap file's whole metres are used",
+    "marten individual identities": "shipped as sheehy_2018_scotland_marten_scr"
+  },
+  "creator": "Sheehy, Emma; Sutherland, Chris; O'Reilly, Catherine; Lambin, Xavier",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.478kp63",
+  "sourceURL": "https://doi.org/10.5061/dryad.478kp63",
+  "citation": "Sheehy, E., Sutherland, C., O'Reilly, C., & Lambin, X. (2018). Data from: The enemy of my enemy is my friend: native pine marten recovery reverses the decline of the red squirrel by suppressing grey squirrel populations [Dataset]. Dryad. https://doi.org/10.5061/dryad.478kp63",
+  "paperDOI": "10.1098/rspb.2017.2603",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "temporalCoverage": "2016-01/2016-06",
+  "crs": "EPSG:27700",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "British National Grid metres as deposited: no taxon flagged (pine marten, red and grey squirrel IUCN Least Concern; no sensitivity statement in the source) and no private-land statement"
+  },
+  "summary": {
+    "n_rows": 2181,
+    "n_units": 186,
+    "n_taxa": 3,
+    "n_periods": 1,
+    "n_occasions": 4,
+    "n_surveys": 727,
+    "y_values": "0,1",
+    "prop_zero": 0.742,
+    "n_traps": 1,
+    "n_zero": 1619,
+    "n_positive": 562,
+    "n_units_detected": 153,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "occasion", "cluster_id", "unit_region", "unit_cover_prop", "unit_broadleaf_prop", "unit_x", "unit_y", "obs_method"],
+  "coreMd5": "871d927c7998913eff01a4866af9ddc1",
+  "sideTables": {
+    "taxa": {
+      "rows": 3,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "5c0aaf2bdf5642faff3c960823cb7670"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/sheehy_2018_scotland_marten_scr.R",
+  "buildDate": "2026-11-14"
+}

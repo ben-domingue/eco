@@ -1,0 +1,70 @@
+{
+  "table": "howe_2017_tai_duiker_ds",
+  "title": "Camera-trap distance sampling of Maxwell's duikers at 21 cameras in Taï National Park, Côte d'Ivoire, 2014: daytime",
+  "creator": "Howe, Eric J.; Buckland, Stephen T.; Després-Einspenner, Marie-Lyne; Kühl, Hjalmar S.",
+  "pubDate": "2018",
+  "doi": "10.5061/dryad.b4c70",
+  "sourceURL": "https://doi.org/10.5061/dryad.b4c70",
+  "citation": "Howe, E. J., Buckland, S. T., Després-Einspenner, M.-L., & Kühl, H. S. (2018). Data from: Distance sampling with camera traps [Dataset]. Dryad. https://doi.org/10.5061/dryad.b4c70",
+  "paperDOI": "10.1111/2041-210X.12790",
+  "intellectualRights": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "abstract": "Maxwell's duikers (Philantomba maxwellii) filmed by 21 camera traps in Taï National Park, Côte d'Ivoire, in 2014, for the first application of point-transect distance sampling to camera traps (Howe et al. 2017). At each 2-second snapshot a filmed duiker was assigned to a distance interval from the camera (11 intervals from 1 to 21 m). This table covers all daytime hours: one row per camera x distance interval, y = snapshot detections in the interval over the deployment, with the camera's temporal effort (2-s steps) and position.",
+  "samplingProtocol": "Camera traps (42-degree field of view) recording video; duikers in view at 2-second snapshot moments assigned to distance intervals from reference markers; effort = number of 2-s steps operated during the hours analysed.",
+  "samplingProtocolCode": "camera_trap",
+  "surveyEvidence": "deposited_matrix",
+  "surveyEvidenceNote": "Every camera appears in the file; a camera with no detection in the hours covered has a single row with no distance (1 here). Each camera has a row in every distance interval (0 where nothing was recorded).",
+  "responseType": "multinomial_cell",
+  "distanceBreaks": [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 21],
+  "snapshotInterval": "2 s",
+  "fieldOfViewDegrees": 42,
+  "effortColumn": "unit_effort_steps",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "occasion (distance intervals of one camera deployment)",
+  "occasionKind": "cell",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Taï National Park, south-western Côte d'Ivoire (about 5.82 N, 7.27 W); camera positions as unit_decimalLatitude/Longitude",
+  "temporalCoverage": "2014",
+  "crs": "EPSG:4326, converted from the deposit's UTM 29N metres (EPSG:32629)",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "camera positions as published (UTM metres, converted); Philantomba maxwellii is IUCN Least Concern"
+  },
+  "notes": "Distance intervals inferred from the deposited midpoints (help page: 'recorded distances are the midpoints of the intervals'): (1,2], ..., (7,8], (8,10], (10,12], (12,15], (15,21] m; nothing is recorded within 1 m. y counts snapshot detections (a duiker seen at several 2-s steps counts at each), as in the paper's camera-trap distance sampling. Area 40.37 km2 and the field-of-view multiplier 42/360 are constants of the deposit. Sibling: howe_2017_tai_duikerpeak_ds (peak-activity hours only, the paper's main analysis).",
+  "notShipped": {
+    "VideoStartTimes_FullDays.txt": "video start times, not linked to detections",
+    "Area_multiplier": "constants of the deposit (in notes)"
+  },
+  "summary": {
+    "n_rows": 231,
+    "n_units": 21,
+    "n_taxa": 1,
+    "n_periods": 1,
+    "n_occasions": 11,
+    "n_surveys": 231,
+    "y_values": "0-524 (90 distinct)",
+    "prop_zero": 0.203,
+    "n_traps": 1,
+    "n_zero": 47,
+    "n_positive": 184,
+    "n_units_detected": 20,
+    "max_y": 524
+  },
+  "sampleFloor": "below (21 units < 30)",
+  "columns": ["unit", "taxon", "y", "y_raw", "occasion", "unit_effort_steps", "unit_decimalLatitude", "unit_decimalLongitude"],
+  "coreMd5": "2dbfb28e5f0643a3f65c910fb3736445",
+  "sideTables": {
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "39a9b2f70ea04f266e951dcf22d51d7c"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/howe_2017_tai_duiker_ds.R",
+  "buildDate": "2026-11-13"
+}

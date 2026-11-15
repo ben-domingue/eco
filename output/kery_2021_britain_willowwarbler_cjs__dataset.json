@@ -1,0 +1,69 @@
+{
+  "table": "kery_2021_britain_willowwarbler_cjs",
+  "sourceURL": "https://cran.r-project.org/package=AHMbook",
+  "intellectualRights": {
+    "spdx": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  },
+  "title": "Annual capture histories of 10,551 willow warblers at 193 British Constant Effort ringing Sites, 1986-1996",
+  "creator": "British Trust for Ornithology, Constant Effort Sites scheme (data); Kéry, Marc; Royle, J. Andrew (distributed in the AHMbook R package)",
+  "pubDate": "2021",
+  "citation": "Kéry, M., Royle, J. A., & Meredith, M. (2026). AHMbook: Functions and data for the book 'Applied Hierarchical Modeling in Ecology' Vols 1 and 2 (Version 0.2.12) [R package; dataset willowWarbler]. CRAN. https://CRAN.R-project.org/package=AHMbook",
+  "paperDOI": "10.1016/B978-0-12-809585-0.00003-X",
+  "abstract": "Willow warblers (Phylloscopus trochilus) mist-netted at 193 Constant Effort Sites of the British Trust for Ornithology in England, Wales and Scotland, 1986-1996, before the species' decline in southern Britain. The data are the AHMbook package's willowWarbler (AHM2 section 3.4): one capture history per bird with its site. One row per bird x year in which its site operated (inferred), y = 1 if the bird was caught.",
+  "samplingProtocol": "Constant Effort Sites: standardised mist-netting with the same nets at the same places on a fixed number of visits each breeding season; one occasion per year.",
+  "samplingProtocolCode": "mist_net",
+  "surveyEvidence": "inferred",
+  "surveyEvidenceNote": "CES operation is not in the package. A site is taken as operated in a year iff at least one willow warbler was caught there that year (963 of 2,123 site-years); a year in which a site operated but caught no willow warbler is therefore missing. Each bird has a row in every operated year of its site, from 1986 (age not given: at risk from the study's start, E4.4).",
+  "responseType": "detection",
+  "unitKind": "individual",
+  "closure": "none",
+  "closureNote": "period",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "England, Wales and Scotland: 193 Constant Effort Sites, approximate British National Grid easting and northing as unit_ces_easting/northing",
+  "temporalCoverage": "1986/1996",
+  "crs": "British National Grid (EPSG:27700), approximate site positions as given",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "site positions approximate (5-km precision) as published; Phylloscopus trochilus is IUCN Least Concern"
+  },
+  "notes": "cluster_id = Constant Effort Site; each bird belongs to one site. Ages and sexes are not in the package, so juveniles are treated as of unknown age (rows from 1986); users wanting first-capture conditioning drop rows before a bird's first capture. The package's 5-km cell grid and 25-km blocks of Britain (with growing degree days) are prediction covariates, not shipped.",
+  "notShipped": {
+    "cells_blocks": "5-km cells and 25-km blocks covering Britain with growing degree days: prediction grid, not survey data"
+  },
+  "summary": {
+    "n_rows": 74752,
+    "n_units": 10551,
+    "n_taxa": 1,
+    "n_periods": 11,
+    "n_occasions": 1,
+    "n_surveys": 74752,
+    "y_values": "0,1",
+    "prop_zero": 0.833,
+    "n_traps": 1,
+    "n_zero": 62232,
+    "n_positive": 12520,
+    "n_units_detected": 10551,
+    "max_y": 1
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "cluster_id", "unit_ces_easting", "unit_ces_northing"],
+  "coreMd5": "f92b857d97813082f722bfaaee1612db",
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "year", "n_ces_operated", "n_birds_caught"],
+      "md5": "9a0e3d2782f5d52c25ba12ccffb56e05"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_iucnCategory"],
+      "md5": "e5d0f662f665c5b9aa30012aaeaef36d"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/ahmbook_package_tables2.R",
+  "buildDate": "2026-11-13"
+}

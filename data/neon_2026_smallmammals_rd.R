@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# Tables: neon_2026_<gen><spe>_rd for the four species with the most marked individuals (ruling #20:
+# Tables: neon_2026_<gen><spe>_rd for the nine species with the most marked individuals (ruling #20:
 #         an individual-unit deposit with several species ships one table per taxon); all written by
 #         this script, which shares its download with neon_2026_smallmammals_count.
 # Source: NEON (National Ecological Observatory Network), data product DP1.10072.001 "Small mammal
@@ -47,7 +47,7 @@
 #   mam_identificationHistory.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 SCRIPT <- "data/neon_2026_smallmammals_rd.R"           # one script, one table per species (ruling #20)
-N_TABLES <- 4L                                          # the four species with the most marked individuals; the rest in notShipped
+N_TABLES <- 9L                                          # the nine species with the most marked individuals (4 until batch 58, raised by Ben 2026-11-13); the rest in notShipped
 CACHE_TABLE <- "neon_2026_smallmammals_count"            # one download serves both tables
 PRODUCT <- "DP1.10072.001"; RELEASE <- "RELEASE-2026"; DOI <- "https://doi.org/10.48443/a83h-tb34"
 SITES <- NULL
@@ -142,6 +142,7 @@ cat(sprintf("  %s marked individuals (%d with two or more species labels, %d cau
 sp_rank <- ind[, .(n_individuals = .N), by = .(taxonID = taxon)]
 sp_rank <- merge(sp_rank, marked[, .(scientificName = scientificName[1]), by = taxonID], by = "taxonID")[order(-n_individuals)]
 ship_taxa <- sp_rank[seq_len(min(N_TABLES, .N)), taxonID]
+stopifnot(identical(ship_taxa, c("PEMA", "PELE", "SIHI", "MIPE", "MYRU", "MYGA", "NAIN", "DIME", "PEGO")))   # ranking checked against the 2026-11-13 ruling
 ind <- ind[taxon %in% ship_taxa]                          # histories are built only for shipped species
 
 # --- histories: home-grid nights from the grid's first bout on (E4.4: wild-caught, unknown age) ----

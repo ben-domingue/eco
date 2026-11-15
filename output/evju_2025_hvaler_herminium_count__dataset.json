@@ -1,0 +1,71 @@
+{
+  "table": "evju_2025_hvaler_herminium_count",
+  "title": "NINA monitoring of the musk orchid Herminium monorchis: ramet counts in 77 permanent plots at 4 localities, Hvaler, Norway, 2014-2025",
+  "creator": "Evju, Marianne (Norwegian Institute for Nature Research, NINA)",
+  "pubDate": "2025",
+  "doi": "10.15468/rt6t88",
+  "sourceURL": "https://doi.org/10.15468/rt6t88",
+  "citation": "Evju M (2025). Monitoring of Herminium monorchis. Version 1.3. Norwegian Institute for Nature Research. Samplingevent dataset. https://doi.org/10.15468/rt6t88",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+  },
+  "abstract": "Annual counts of fertile and vegetative ramets of the musk orchid Herminium monorchis in permanent 0.5 x 0.5 m plots at its Norwegian localities on Hvaler (Østfold), from NINA's monitoring of the effects of conservation actions on threatened species. Plots were placed around randomly drawn marked plants in 2014 and along transects from 2021, and a fourth locality was added in 2020. One row per plot-year, y the ramets counted.",
+  "samplingProtocol": "Count of fertile and vegetative ramets with aboveground biomass in a permanently marked 0.5 x 0.5 m plot at peak growing season (late June-July), annually except 2018; in some dense plots the ramets were counted in a smaller marked square (obs_count_area_m2) (Kravdal et al. 2016; Evju et al. 2022).",
+  "samplingProtocolCode": "botanical_survey",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "none",
+  "closureNote": "one count per plot and year; period = year",
+  "occasionKind": "none",
+  "taxonInclusion": "single",
+  "geographicCoverage": "Hvaler, Østfold (Viken), southeast Norway: Filletassen, Skipstadsand, Skjellvik, Teneskjær (plot coordinates coarsened to 0.1-degree cell centres)",
+  "temporalCoverage": "2014/2025",
+  "coordinatesCoarsened": {
+    "value": true,
+    "rule": "taxon",
+    "method": "coarsen_coords(): plot coordinates (1-5 m) snapped to their 0.1-degree cell centre, because the source monitors the species as threatened in Norway (NINA programme 'Monitoring of effects of conservation actions on threatened species and habitats'; E7, source-flagged); uncertainty = the source's plus the cell half-diagonal."
+  },
+  "covariateNote": "cluster_id = locality; obs_n_fertile and obs_n_vegetative = ramets by stage from the source's lifeStage text (NA where the parts do not add up to the total); obs_count_area_m2 = area in which ramets were counted (0.25 m2 unless the source names a smaller square).",
+  "notes": "No counts in 2018. 2 present rows carry fertile/vegetative parts that do not add up to the count; y keeps the count and the parts are NA there. The Teneskjær counts of 2025 are not in the archive (events without occurrences).",
+  "notShipped": {
+    "Teneskjær 2025": "15 plot events with no occurrence row (the count is not in the archive)",
+    "other red-listed plants": "percent cover of 11 other species in some plots (cover, not counts, and not recorded in every plot)",
+    "vegetation structure": "cover and height of vegetation layers per plot (measurementorfacts)"
+  },
+  "summary": {
+    "n_rows": 550,
+    "n_units": 77,
+    "n_taxa": 1,
+    "n_periods": 11,
+    "n_occasions": 1,
+    "n_surveys": 550,
+    "y_values": "0-175 (81 distinct)",
+    "prop_zero": 0.34,
+    "n_traps": 1,
+    "n_zero": 187,
+    "n_positive": 363,
+    "n_units_detected": 51,
+    "max_y": 175
+  },
+  "sampleFloor": "meets",
+  "columns": ["unit", "taxon", "y", "period", "date", "cluster_id", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "obs_n_fertile", "obs_n_vegetative", "obs_count_area_m2"],
+  "coreMd5": "8ee6ae3a6455054835f49915b2e485b2",
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "year"],
+      "md5": "d0e118312b5ab6b2d20ea1051f359526"
+    },
+    "taxa": {
+      "rows": 1,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxon_family", "taxon_iucnCategory"],
+      "md5": "9bb7cd709817aa6a3accaa6212e223eb"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/evju_2025_hvaler_herminium_count.R",
+  "buildDate": "2026-11-13"
+}

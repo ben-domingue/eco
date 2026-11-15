@@ -29,7 +29,7 @@
   "crs": "EPSG:4326 (WGS 84, as published)",
   "coordinatesCoarsened": {
     "value": false,
-    "method": "As published by NEON: agency-published plot centres with coordinateUncertainty (the E7 agency exception). The Florida mouse Podomys floridanus (IUCN VU) is among the shipped taxa; NEON publishes these plot coordinates itself, and its own obfuscation of listed taxa (D01 state-listed species to higher rank, per the product issue log) is applied upstream"
+    "method": "As published by NEON (plot centres with coordinateUncertaintyInMeters in __units): no taxon in the table is IUCN CR, EN or VU (GBIF IUCN records, asserted; Podomys floridanus is NT), and NEON applies its own obfuscation of listed taxa upstream (D01 state-listed species reported at a higher rank, per the product issue log)."
   },
   "covariateNote": "obs_grid_method is the grid's sampling method that bout (pathogen = 3 nights with blood/ear/hair samples, diversity = 1 night); grids changed method across years at some sites. unit_* are NEON's plot attributes; a few grids carry two published coordinates across the years (modal kept, n_published_coordinates in __units).",
   "designNote": "Repeated counts within closed bouts (N-mixture per bout) and an open population across bouts (robust-design counts). The companion table neon_2026_smallmammals_rd carries the individual capture histories (same __periods).",
@@ -63,6 +63,7 @@
   },
   "sampleFloor": "meets",
   "columns": ["unit", "taxon", "y", "period", "occasion", "date", "cluster_id", "unit_site", "unit_domain", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "unit_elevation", "unit_nlcdClass", "unit_plotType", "obs_traps_set", "obs_grid_method"],
+  "coreMd5": "5ca6fe35a0eba9488ad4b29c3a2888e0",
   "sideTables": {
     "periods": {
       "rows": 1612,
@@ -83,5 +84,5 @@
   "standardVersion": "eco v1.1-draft (2026-11-03)",
   "builtBy": "data/ script, see `script`",
   "script": "data/neon_2026_smallmammals_count.R",
-  "buildDate": "2026-11-03"
+  "buildDate": "2026-11-11"
 }

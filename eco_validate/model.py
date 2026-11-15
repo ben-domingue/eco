@@ -57,6 +57,7 @@ CLAUSES = {
     "side_key_na":          "E6",
     "coordinates_declared": "E7",
     "coordinates_sensitive": "E7",
+    "coordinates_private_land": "E7",
     "crs_declared":         "E7",
     "date_iso":             "E8",
     "index_integer":        "E8",
