@@ -51,11 +51,18 @@
 #   unit_name = the shapefile's place name.
 # Coordinates: Pekania pennanti is IUCN Least Concern; the data release does not call the taxon or
 #   its locations sensitive, and cites no national red list (the species is state-endangered in
-#   Washington, which is not one of E7's flags), so it is not flagged and the hexagon centres ship
-#   as the source published them (24-km2 hexagons, centres ~4.6 km apart from their edges).
+#   Washington, which is not one of E7's flags), so the taxon is not flagged. But the primary
+#   shapefile's landowner fields (Landownr_1-3) mark 58 of the 143 hexagons as partly private
+#   ("Pvt", 55) or tribal ("Makah", "Elwha", "QUIN" = Quinault, 6) land, and the metadata names
+#   no landowner consent to publication; so under the E7 private-land ruling (2026-11-06, #152)
+#   those hexagons' centres are snapped to the centre of their 10 km UTM cell (E7 scope 1,
+#   uncertainty 7,071 m) and listed in coordinatesCoarsened.units. The other hexagons (federal,
+#   state, county land) ship as published. Found by the CARE / private-land screen rerun of
+#   2026-11-15; the table was first published (batch 48) with all centres as published.
 # Not shipped: the expansion-area hexagons (no detection data deposited), the shapefile's all-zero
 #   Occupancy field, the hexagon polygons themselves, the 2016 "2016_i" record of hexagon 309
-#   (not in the detection spreadsheet), landowner codes, field notes and selection flags.
+#   (not in the detection spreadsheet), landowner codes (used only to choose the coarsened hexagons), field notes and
+#   selection flags.
 for (p in c("lib/eco_common.R", "../lib/eco_common.R")) if (file.exists(p)) { source(p); break }
 suppressPackageStartupMessages(library(readxl))
 TABLE <- "jenkins_2019_olympic_fisher_occ"
@@ -104,12 +111,23 @@ x <- merge(x, sf[flag == paste0(Year, "_O"), .(Hex, Year, lead)], by = c("Hex", 
 x <- merge(x, hp[, .(Hex = Hex_ID, unit_x = X_Coord, unit_y = Y_Coord, unit_name = Name)], by = "Hex", all.x = TRUE)
 stopifnot(nrow(x) == 263, sum(is.na(x$unit_x)) == 3, identical(is.na(x$lead), is.na(x$unit_x)))
 
+# E7 private-land ruling: hexagons the source marks as partly on private or tribal land
+own <- hp[, .(Hex = Hex_ID, o = paste(Landownr_1, Landownr_2, Landownr_3))]
+stopifnot(all(unlist(strsplit(own$o, " ")) %in% c("NA", "DNR", "NPS", "USFS", "USFWS", "County", "Pvt", "Elwha", "Makah", "QUIN")),
+          sum(grepl("Pvt", own$o)) == 55, sum(grepl("Elwha|Makah|QUIN", own$o)) == 6)
+PRIV <- own[grepl("Pvt|Elwha|Makah|QUIN", o), Hex]
+stopifnot(length(PRIV) == 58)
+x[, unit_coordinateUncertaintyInMeters := NA_integer_]
+x[Hex %in% PRIV, `:=`(unit_x = floor(unit_x / 10000) * 10000 + 5000, unit_y = floor(unit_y / 10000) * 10000 + 5000,
+                      unit_coordinateUncertaintyInMeters = 7071L)]
+PRIV_UNITS <- sort(unique(x[Hex %in% PRIV, sprintf("H%03d", as.integer(Hex))]))
+
 long <- rbindlist(lapply(1:3, function(k) x[!is.na(get(paste0("V", k))), .(
   unit = sprintf("H%03d", as.integer(Hex)), taxon = "PEPE", y = as.integer(get(paste0("V", k))),
   period = as.integer(Year) - 2012L, occasion = k,
   date = format(as.IDate(sprintf("%d-01-01", as.integer(Year))) + as.integer(get(paste0("date_V", k))) - 1L),
   obs_date_doy = as.integer(get(paste0("date_V", k))), obs_bait_functional = get(paste0("b_V", k)),
-  unit_x, unit_y, unit_name,
+  unit_x, unit_y, unit_coordinateUncertaintyInMeters, unit_name,
   period_rep = as.integer(rep), period_lead = lead,
   period_pct_fed_nonwilderness = fnw, period_pct_fed_wilderness = fw, period_pct_other_ownership = other,
   period_pct_small_tree = small_tree, period_pct_medium_tree = med_tree, period_pct_large_tree = large_tree,
@@ -138,11 +156,12 @@ dataset <- list(
   geographicCoverage = list(description = "Primary study area of the Olympic Peninsula, Washington, USA (Olympic National Park, Olympic National Forest and surrounding state, tribal and private land)",
                             boundingBox = list(west = -124.7607, east = -122.5854, south = 47.0701, north = 48.4292)),
   temporalCoverage = "2013-05/2016-11",
-  coordinatesCoarsened = list(value = FALSE, method = "Hexagon centres (NAD83 UTM 10N) as published in the source shapefile; Pekania pennanti is IUCN Least Concern and the source flags no sensitivity, so not coarsened (state-endangered in Washington, not an E7 flag). Hexagons 199 and 564 have no centre in the source."),
+  coordinatesCoarsened = list(value = TRUE, rule = "private_land", units = as.list(PRIV_UNITS),
+    method = sprintf("E7 private-land ruling (2026-11-06): the source shapefile's landowner fields (Landownr_1-3) mark %d sampled hexagons as partly on private ('Pvt') or tribal (Makah, Elwha, Quinault) land, with no statement of landowner consent; their centres are snapped to the centre of the 10 km UTM cell (floor(x / 10000) * 10000 + 5000, NAD83 UTM 10N; unit_coordinateUncertaintyInMeters 7071, E7 scope 1). The other hexagon centres (federal, state and county land) are as published. Pekania pennanti is IUCN Least Concern and the source flags no sensitivity (state-endangered in Washington, not an E7 flag). Hexagons 199 and 564 have no centre in the source.", length(PRIV_UNITS))),
   notShipped = list(expansion_hexagons = "Hexes_expansion.zip: 36 expansion-area hexagons sampled 2014-2016; no detection data deposited for them",
                     occupancy_field = "the shapefiles' Occupancy field (all 0; not a measurement)",
                     incidental_2016 = "hexagon 309 flagged '2016_i' in the shapefile; no detection row in the spreadsheet",
-                    shapefile_attributes = "hexagon polygons, landowner codes, selection flags and field notes"),
+                    shapefile_attributes = "hexagon polygons, landowner codes (used only to select the hexagons coarsened under E7), selection flags and field notes"),
   notes = "y pools the three stations of a hexagon (no station-level detections deposited). Landscape covariates are measured in the combined 1,262-m station buffers each year and vary slightly between a hexagon's years, so they are period_ columns. The data release's acknowledgement request: cite the release and acknowledge USGS and the National Park Service (Olympic National Park) as originators.")
 ds <- write_table(long, TABLE, dataset, taxa = taxa, periods = periods, script = "data/jenkins_2019_olympic_fisher_occ.R")
 stage_dict_row(TABLE,
@@ -155,5 +174,5 @@ stage_dict_row(TABLE,
   notes = "Contact-prior-to-use request satisfied: Ben Domingue emailed Kurt Jenkins and fresc_outreach@usgs.gov 2026-11-06; USGS FRESC replied 2026-11-06 that the data are public domain and free to modify, citing the release with its link appreciated. Expansion-area hexagons not in the detection spreadsheet.",
   source_via = "USGS ScienceBase")
 stage_tag_row(TABLE, ds, taxon_group = "Mammals", model_family = "Single-season occupancy (annual, hexagons revisited across years)", sampling_protocol = "camera_trap",
-  design = "Multi-season (1-3 years per hexagon x 3 14-day intervals)", realm = "Terrestrial", country = "USA", coordinates = "As published",
+  design = "Multi-season (1-3 years per hexagon x 3 14-day intervals)", realm = "Terrestrial", country = "USA", coordinates = "Coarsened (10 km UTM cell) (57 of 144 hexagons, those on private or tribal land, E7 private-land ruling)",
   notes = "Reintroduced population (2008-2010 translocation); camera plus hair-snare stations, three per hexagon, pooled.")
