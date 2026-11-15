@@ -26,8 +26,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ledger import LEDGER, record  # noqa: E402
 
-DATASET = "eco"
-TARGETS = ["ziolkowski_2026_bbs_count", "ziolkowski_2026_bbs_exact_count"]
+#: Each national table and the shard that holds it: the _exact sibling was added on 2026-11-12, after eco was full.
+TARGETS = {"ziolkowski_2026_bbs_count": "eco", "ziolkowski_2026_bbs_exact_count": "eco_2"}
 NOTE = ("replaced by the 37 per-BCR tables ziolkowski_2026_bbs_bcr<N>_count (and their _exact siblings) "
         "under the partitions exception to ruling #31 (standard E4, #72)")
 
@@ -38,11 +38,11 @@ def main() -> int:
     from red_up.auth import authenticate
     from red_up.push import open_draft
     authenticate()
-    draft = open_draft("datapages", DATASET)
-    names = sorted(t.name for t in draft.list_tables())
     with LEDGER.open(encoding="utf-8") as fh:
         in_ledger = {r["table"] for r in csv.DictReader(fh)}
-    for old in TARGETS:
+    for old, dataset in TARGETS.items():
+        draft = open_draft("datapages", dataset)
+        names = sorted(t.name for t in draft.list_tables())
         targets = [n for n in names if n == old or n.startswith(old + "__")]
         rows = {}
         for n in targets:
@@ -50,13 +50,13 @@ def main() -> int:
                 rows[n] = draft.table(n).get().properties.get("numRows", "")
             except Exception:
                 rows[n] = ""
-        print(f"{'APPLY' if apply else 'DRY RUN'} {old}: {', '.join(targets) or 'not in draft'}")
+        print(f"{'APPLY' if apply else 'DRY RUN'} {dataset}.{old}: {', '.join(targets) or 'not in draft'}")
         if apply and targets:
             for n in targets:
                 draft.table(n).delete()
             new = [n for n in targets if n not in in_ledger]
             if new:
-                record(new, dataset=DATASET, reason="duplicate", refs="#72, #31", note=NOTE, script=__file__, rows=rows)
+                record(new, dataset=dataset, reason="duplicate", refs="#72, #31", note=NOTE, script=__file__, rows=rows)
     return 0
 
 
