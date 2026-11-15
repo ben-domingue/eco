@@ -13,15 +13,22 @@ was. Modelled on irw's `red_up/manifest.py` (irw#1705), without the shards and
 without the overwritten-date detection, which does not apply to a dataset
 created after Redivis' 2026-07 migration.
 
-    python3 releases/manifest.py              # refresh: append anything new
-    python3 releases/manifest.py --check      # CI: is the file up to date? exit 1 if not
+    python3 releases/manifest.py              # refresh: append anything new (incremental)
+    python3 releases/manifest.py --check      # is the file up to date? exit 1 if not (incremental)
+    python3 releases/manifest.py --full       # rebuild the whole history from Redivis (slow; an audit)
     python3 releases/manifest.py --show 1     # print one eco version
 
 Exit codes: 0 ok - 1 stale or would renumber - 2 bad input. Reads Redivis
 anonymously (the datasets are public); nothing here writes to Redivis.
 
-**Version numbers are never reused.** A normal run recomputes the history and
-refuses if the rows already on disk would change. The `note` column is the one
+**Incremental by default (2026-11-15).** The rows on disk are trusted: a run
+lists each dataset's versions (one cheap call per dataset), checks that the
+last row's tags are what Redivis says was live then, and counts tables only
+for releases after it, so its cost does not grow with the history. `--full`
+recomputes every row, listing the tables of every version of every shard.
+
+**Version numbers are never reused.** A run refuses if the rows already on
+disk would change (`--full`: any row; incremental: the last row's tags). The `note` column is the one
 hand-edited field and is preserved across runs.
 """
 from __future__ import annotations
@@ -49,8 +56,12 @@ def _iso(epoch_ms) -> str:
     return dt.datetime.fromtimestamp(epoch_ms / 1000, dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def released_versions(d: "rc.Dataset") -> list[dict]:
-    """[{tag, released_at, n_tables}] for every released version, oldest first."""
+def released_versions(d: "rc.Dataset", count_after: str | None = "") -> list[dict]:
+    """[{tag, released_at, n_tables}] for every released version, oldest first.
+
+    Listing a version's tables is the slow part, so `n_tables` is counted only
+    for versions released after `count_after` (the default "" counts all);
+    None counts none, and an uncounted version has `n_tables` None."""
     import redivis
     import warnings
     warnings.filterwarnings("ignore", message="No reference id")
@@ -63,28 +74,36 @@ def released_versions(d: "rc.Dataset") -> list[dict]:
         p = v.properties
         if not p.get("releasedAt"):
             continue
-        tag = p["tag"]
-        try:
-            n = len(redivis.organization(OWNER).dataset(f"{name}:{tag.replace('.', '_')}").list_tables())
-        except Exception:
-            n = ""
-        out.append({"tag": tag, "released_at": _iso(p["releasedAt"]), "n_tables": n})
+        tag, ts = p["tag"], _iso(p["releasedAt"])
+        n = count_tables(d, tag) if count_after is not None and ts > count_after else None
+        out.append({"tag": tag, "released_at": ts, "n_tables": n})
     return sorted(out, key=lambda r: r["released_at"])
+
+
+def count_tables(d: "rc.Dataset", tag: str):
+    """Tables in one released version of `d`, or "" when Redivis does not answer."""
+    import redivis
+    try:
+        return len(redivis.organization(OWNER).dataset(f"{d.qualified}:{tag.replace('.', '_')}").list_tables())
+    except Exception:
+        return ""
 
 
 def _dt(ts: str) -> dt.datetime:
     return dt.datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ")
 
 
-def core_events(shards: dict[str, list[dict]]) -> list[dict]:
+def core_events(shards: dict[str, list[dict]], live: dict[str, dict | None] | None = None) -> list[dict]:
     """Merge the core shards' releases into eco versions: [{released_at, tags, n_tables}].
 
     Releases are taken in time order; one within SAME_RELEASE of the first
     release of the current group joins it. `tags` holds every shard's live tag
-    after the group ({column: tag or ""}); `n_tables` sums the live versions."""
+    after the group ({column: tag or ""}); `n_tables` sums the live versions.
+    `live` seeds what was live before the first of these releases (incremental
+    runs: the last row's versions)."""
     flat = sorted(((r["released_at"], col, r) for col, rs in shards.items() for r in rs),
                   key=lambda x: x[0])
-    live = {col: None for col in shards}
+    live = {col: (live or {}).get(col) for col in shards}
     events: list[dict] = []
     start = None
     for ts, col, r in flat:
@@ -98,7 +117,7 @@ def core_events(shards: dict[str, list[dict]]) -> list[dict]:
     return events
 
 
-def build(core: list[dict], meta: list[dict]) -> list[dict]:
+def build(core: list[dict], meta: list[dict], first: int = 1) -> list[dict]:
     # An eco version's metadata is the last eco_meta release before the *next* eco
     # release (the metadata pipeline runs after the tables ship, so eco_meta for
     # version i is released after eco version i). The latest eco version takes the
@@ -112,6 +131,7 @@ def build(core: list[dict], meta: list[dict]) -> list[dict]:
     rows = []
     for i, c in enumerate(core, 1):
         until = _before(core[i]["released_at"]) if i < len(core) else "9999"
+        i += first - 1
         live_meta = [m for m in meta if m["released_at"] < until]
         rows.append({"eco_version": str(i), "date": c["released_at"], **c["tags"],
                      rc.META.manifest_column: live_meta[-1]["tag"] if live_meta else "",
@@ -146,9 +166,42 @@ def diverges(existing: list[dict], fresh: list[dict]) -> str | None:
     return None
 
 
+def incremental(existing: list[dict]) -> tuple[list[dict], str | None]:
+    """The manifest from the rows on disk plus what Redivis released after the last one.
+
+    Rows before the last are taken as written. The last row's tags are checked
+    against Redivis' version list (no table listing), its eco_meta column is
+    refreshed, and only the releases after it, plus each shard version live
+    then, have their tables counted."""
+    last = existing[-1]
+    cut = (_dt(last["date"]) + SAME_RELEASE).strftime("%Y-%m-%dT%H:%M:%SZ")
+    shards = {d.manifest_column: released_versions(d, count_after=cut) for d in rc.CORE_SHARDS}
+    by_col = {d.manifest_column: d for d in rc.CORE_SHARDS}
+    seed = {}
+    for col, vs in shards.items():
+        before = [v for v in vs if v["released_at"] <= cut]
+        tag = before[-1]["tag"] if before else ""
+        if tag != last[col]:
+            return [], (f"eco version {last['eco_version']}: {col} on disk is {last[col]!r}, Redivis says {tag!r} "
+                        "was live then; run --full to see the whole history")
+        seed[col] = before[-1] if before else None
+    newer = {col: [v for v in vs if v["released_at"] > cut] for col, vs in shards.items()}
+    if any(newer.values()):
+        for col, v in seed.items():      # a shard not re-released still counts toward n_tables
+            if v is not None:
+                v["n_tables"] = count_tables(by_col[col], v["tag"])
+    head = {"released_at": last["date"], "tags": {c: last[c] for c in CORE_COLUMNS}, "n_tables": last["n_tables"]}
+    events = [head] + core_events(newer, live=seed)
+    rows = build(events, released_versions(rc.META, count_after=None), first=int(last["eco_version"]))
+    rows[0] = {**last, rc.META.manifest_column: rows[0][rc.META.manifest_column]}
+    return existing[:-1] + rows, None
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--check", action="store_true", help="exit 1 if the file is stale; write nothing")
+    ap.add_argument("--full", action="store_true",
+                    help="recompute every row from Redivis (lists the tables of every version: slow)")
     ap.add_argument("--show", type=int, metavar="N", help="print eco version N and exit")
     args = ap.parse_args(argv)
 
@@ -159,9 +212,12 @@ def main(argv=None) -> int:
                 print("\n".join(f"{k}: {r[k]}" for k in COLUMNS)); return 0
         print(f"no eco version {args.show} in {MANIFEST}", file=sys.stderr); return 2
 
-    fresh = build(core_events({d.manifest_column: released_versions(d) for d in rc.CORE_SHARDS}),
-                  released_versions(rc.META))
-    why = diverges(existing, fresh)
+    if args.full or not existing:
+        fresh = build(core_events({d.manifest_column: released_versions(d) for d in rc.CORE_SHARDS}),
+                      released_versions(rc.META, count_after=None))
+        why = diverges(existing, fresh)
+    else:
+        fresh, why = incremental(existing)
     if why:
         print(f"manifest: refusing to renumber -- {why}", file=sys.stderr); return 1
     for e, f in zip(existing, fresh):
