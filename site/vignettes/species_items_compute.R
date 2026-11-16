@@ -72,6 +72,15 @@ DET_TABLES <- "lebeuftaylor_2026_boreal_edges_aru_comm"
 # from the sensitivity fit and counted; the comparison is on the species
 # parameters, which are community-level, not per site.
 SENS_MAX_Z <- 3
+# Species traits (part 2, #14). eco_traits() joins AVONET body mass onto a table's
+# __taxa by scientific name; it returns mass and nothing else, so mass is the only
+# trait here. Diet would be AVONET's Trophic.Niche, which eco_traits() does not
+# select, and on this table it barely varies (most of the species are invertivores),
+# so it is left out rather than worked around. The regressions are the two-step
+# kind: fit the occupancy model, then ask what mass explains about the per-species
+# estimates it produced. Traits are not in the model itself, which would need the
+# community mean to be a function of mass (spOccupancy cannot do it).
+TRAIT_TABLES <- "lebeuftaylor_2026_boreal_edges_aru_comm"
 max_rhat <- function(m) max(unlist(m$rhat[c("beta.comm", "tau.sq.beta", "alpha.comm", "tau.sq.alpha",
                                           "beta", "alpha", "lambda.lower.tri")]), na.rm = TRUE)
 # Draw-by-species-by-site arrays are large (about 0.6 GB each on 518 sites x 46
@@ -115,7 +124,7 @@ select_tables <- function() {
 
 summ <- function(x) c(med = median(x), lo = unname(quantile(x, 0.025)), hi = unname(quantile(x, 0.975)))
 
-fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
+fit_table <- function(tb, has_survey_taxa, with_det = FALSE, with_traits = FALSE) {
   timing <- list()
   d <- as.data.table(eco_fetch(tb))
   d[, unit := as.character(unit)]   # some tables key sites by integer; the site summaries join on character
@@ -302,6 +311,63 @@ fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
                  long_chains = attr(ms_s, "long"), minutes = timing$ms_sens / 60)
   }
 
+  # ---- species traits on the fitted estimates (part 2, #14) --------------------
+  traits <- NULL; trait_reg <- NULL
+  if (with_traits) {
+    stopifnot(!is.null(ms_d), !is.null(lf_d))                 # regress the det-covariate fits
+    tr <- as.data.table(eco_traits(tx, group = "birds"))
+    stopifnot(nrow(tr) == nrow(tx), !anyDuplicated(tr$taxon), "body_mass_g" %in% names(tr))
+    species <- merge(species, tr[, .(taxon, body_mass_g, trait_name, trait_match)],
+                     by = "taxon", sort = FALSE)
+    allt <- eco_traits(group = "birds")                       # for the version and citation only
+    traits <- list(source = "AVONET", version = unique(allt$source_version)[1],
+                   citation = unname(attr(allt, "citations")[["AVONET"]]),
+                   n_taxa = nrow(species), n_matched = sum(!is.na(species$body_mass_g)),
+                   match_counts = c(table(species$trait_match)),
+                   unmatched = species$taxon[is.na(species$body_mass_g)],
+                   renamed = species[trait_match != "exact", .(taxon, scientificName, trait_name, trait_match)],
+                   mass_min = min(species$body_mass_g, na.rm = TRUE),
+                   mass_max = max(species$body_mass_g, na.rm = TRUE))
+
+    # Method of composition. Regressing the posterior medians would ignore how
+    # uncertain each species' estimate is; regressing every draw and taking the
+    # spread of the OLS slopes would ignore that there are only as many points as
+    # species, and would give a zero-width interval if the estimates were exact.
+    # So for each draw: fit the OLS, then draw the slope from that fit's own
+    # posterior, b_hat + SE * t_(n-2), which is the posterior under the usual flat
+    # prior. Both are kept so the section can show what the sampling term adds.
+    lx <- log10(species$body_mass_g)
+    stopifnot(!anyNA(lx), length(lx) == nrow(species))
+    X <- cbind(1, lx); n <- nrow(X); dfree <- n - 2
+    XtXi <- solve(crossprod(X)); vslope <- XtXi[2, 2]
+    comp <- function(M) {                                     # M: draws x species, already aligned
+      stopifnot(ncol(M) == n)
+      B <- M %*% X %*% XtXi                                   # draws x 2, OLS coefficients
+      R <- M - B %*% t(X)
+      se <- sqrt(rowSums(R^2) / dfree * vslope)
+      list(est_only = B[, 2], full = B[, 2] + se * rt(nrow(B), dfree),
+           r2 = summary(stats::lm(apply(M, 2, median) ~ lx))$r.squared)
+    }
+    # plain matrices: the samples are coda mcmc objects, whose [ dispatches oddly
+    Bm <- as.matrix(ms_d$beta.samples); Am <- as.matrix(ms_d$alpha.samples)
+    La <- as.matrix(lf_d$lambda.samples); colnames(La) <- o
+    ic <- paste0("(Intercept)-", species$taxon)
+    stopifnot(all(ic %in% colnames(Bm)), all(ic %in% colnames(Am)),
+              all(species$taxon %in% colnames(La)))
+    qs <- list(occupancy = Bm[, ic, drop = FALSE],
+               detection = Am[, ic, drop = FALSE],
+               loading   = La[, species$taxon, drop = FALSE])
+    trait_reg <- rbindlist(lapply(names(qs), function(q) {
+      r <- comp(qs[[q]])
+      data.table(quantity = q, n_species = n,
+                 slope = median(r$full), lo = quantile(r$full, 0.025), hi = quantile(r$full, 0.975),
+                 lo_est_only = quantile(r$est_only, 0.025), hi_est_only = quantile(r$est_only, 0.975),
+                 r2_medians = r$r2)
+    }))
+    trait_reg[, `:=`(credible = lo > 0 | hi < 0,
+                     width_ratio = (hi - lo) / (hi_est_only - lo_est_only))]
+  }
+
   conv <- data.table(model = c("msPGOcc", "lfMsPGOcc"), long_chains = c(attr(ms, "long"), attr(lf, "long")),
                      max_rhat = c(max_rhat(ms), max_rhat(lf)),
                      min_ess = c(min(unlist(ms$ESS[c("beta", "alpha")])),
@@ -323,7 +389,8 @@ fit_table <- function(tb, has_survey_taxa, with_det = FALSE) {
               tb, length(sites), length(sp), timing$naive_rasch, timing$naive_2pl, timing$nopool, anchor))
   print(conv)
   list(table = tb, species = species, site = site, comm_ms = comm_ms, comm_det = comm_det,
-       det_covs = if (with_det) DET_COVS else NULL, sens = sens, conv = conv,
+       det_covs = if (with_det) DET_COVS else NULL, sens = sens,
+       traits = traits, trait_reg = trait_reg, conv = conv,
        rasch_var = setNames(vc$vcov, vc$grp), anchor = anchor, timing = timing,
        n_sites = length(sites), n_species = length(sp), max_visits = dim(y)[3])
 }
@@ -341,7 +408,8 @@ fits <- lapply(seq_len(nrow(picked)), function(i) {
   pf <- file.path("species_items_data/partial", paste0(tb, ".rds"))
   if (file.exists(pf)) return(readRDS(pf))
   set.seed(2026)
-  f <- fit_table(tb, isTRUE(picked$survey_taxa[i]), with_det = tb %in% DET_TABLES)
+  f <- fit_table(tb, isTRUE(picked$survey_taxa[i]), with_det = tb %in% DET_TABLES,
+                 with_traits = tb %in% TRAIT_TABLES)
   saveRDS(f, pf)
   f
 })

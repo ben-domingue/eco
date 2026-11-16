@@ -671,6 +671,147 @@ table, not a general one: it holds because most locations were recorded
 `r names(sort(table(fb$site$visits), decreasing = TRUE))[1]` times within a
 single season, so there was never much variation in day or time to exploit.
 
+## What body mass explains
+
+Every fit so far says that species differ, in how much of the landscape they
+occupy, how easily they are heard, and which end of the habitat gradient they
+sit on, and the community distribution says how widely they differ. None of them
+says why any particular species sits where it does. A trait can.
+
+`eco_traits()` fetches body mass from AVONET [@tobias2022] and joins it onto a
+table's `__taxa` by scientific name, trying the deposit's own name first, then
+GBIF's accepted name, then the binomial.
+
+```{r}
+#| label: traits-load
+tr <- fb$traits
+tr$match_counts
+tr$renamed
+```
+
+```{r}
+#| label: traits-stats
+#| echo: false
+treg <- copy(fb$trait_reg)
+occ_r <- treg[quantity == "occupancy"]; det_r <- treg[quantity == "detection"]
+lam_r <- treg[quantity == "loading"]
+# the prose below says every species matched, that occupancy is the only credible
+# slope, that the composed intervals are the wider ones, and that detection would
+# have looked credible on the estimation-only interval alone
+stopifnot(tr$n_matched == tr$n_taxa, length(tr$unmatched) == 0,
+          occ_r$credible, !det_r$credible, !lam_r$credible,
+          all(treg$width_ratio > 1), det_r$hi_est_only < 0)
+```
+
+`r if (tr$n_matched == tr$n_taxa) sprintf("All %d species matched", tr$n_taxa) else sprintf("%d of the %d species matched", tr$n_matched, tr$n_taxa)`,
+`r tr$match_counts[["exact"]]` on the name the deposit gives and
+`r tr$match_counts[["accepted_name"]]` on GBIF's accepted name: the
+`r dt[taxon == tr$renamed$taxon[1], vernacularName]`, which the deposit calls
+*`r tr$renamed$scientificName[1]`* and AVONET still files under
+*`r tr$renamed$trait_name[1]`*. Mass runs from `r fmt(tr$mass_min, 1)` g to
+`r fmt(tr$mass_max, 1)` g, a `r fmt(tr$mass_max / tr$mass_min, 0)`-fold spread,
+so there is something to regress on. Body mass is the only trait here:
+`eco_traits()` returns nothing else, and the obvious second choice, diet, hardly
+varies across this community, because most of these species are invertivores, so
+a diet term would be estimating a mean for categories holding only a few species.
+
+### Regressing the estimates on mass
+
+This is the two-step kind of trait analysis: fit the occupancy model, then ask
+what mass explains about the per-species numbers it produced. The three
+quantities are each species' occupancy and detection from the detection-covariate
+`msPGOcc` fit and its loading from `lfMsPGOcc`, regressed on $\log_{10}$ body
+mass.
+
+Two kinds of uncertainty have to reach the answer, and it is easy to carry only
+one. Regressing the posterior medians would ignore how uncertain each species'
+own estimate is, and some of these species were detected at a handful of
+locations. Regressing every posterior draw and taking the spread of the
+resulting slopes would ignore the other kind: there are only
+`r occ_r$n_species` species, so even if every estimate were exact the slope
+through them would still be uncertain, and that recipe would report an interval
+of zero width. The fits below use the **method of composition**: for each
+posterior draw the ordinary least-squares line is fitted, and then a slope is
+drawn from *that* fit's own posterior,
+$\hat b + \mathrm{SE}\cdot t_{`r occ_r$n_species - 2`}$, which is the posterior
+under the usual flat prior. The two sources compose instead of one being
+dropped.
+
+The table gives that interval in `lower` and `upper`. Beside it,
+`lower_estimation_only` and `upper_estimation_only` are the narrower interval
+carrying estimation uncertainty alone, the spread of the per-draw slopes before
+the sampling term is added, which is the quantity that would shrink to nothing
+if every species' estimate were exact. $R^2$ is from a plain least-squares fit
+to the posterior medians, as the descriptive share of the spread that mass
+accounts for.
+
+```{r}
+#| label: traits-reg
+treg[, .(quantity, slope, lower = lo, upper = hi, R2 = r2_medians,
+         lower_estimation_only = lo_est_only, upper_estimation_only = hi_est_only)]
+```
+
+```{r}
+#| label: fig-traits
+#| fig-width: 8.5
+#| fig-height: 3.6
+#| fig-cap: "Each species' occupancy and detection (logit scale, from the detection-covariate community fit) and its site loading, against body mass on a log scale. Lines are least squares through the posterior medians. Hover for the species."
+qlab <- c(occupancy = "Occupancy", detection = "Detection", loading = "Site loading")
+tp <- rbind(
+  dt[, .(quantity = qlab[["occupancy"]], v = msd_beta, body_mass_g, vernacularName, taxon)],
+  dt[, .(quantity = qlab[["detection"]], v = msd_alpha, body_mass_g, vernacularName, taxon)],
+  dt[, .(quantity = qlab[["loading"]],   v = lfd_lambda, body_mass_g, vernacularName, taxon)])
+tp[, quantity := factor(quantity, levels = unname(qlab))]
+tp[, label := sprintf("%s (%s)\n%.1f g\n%s %.2f", vernacularName, taxon, body_mass_g, quantity, v)]
+g <- ggplot(tp, aes(body_mass_g, v, text = label)) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = "#c9ccc8", linewidth = 0.5) +
+  geom_point(colour = "#1e8a5a", size = 2, alpha = 0.85) +
+  scale_x_log10() +
+  facet_wrap(~ quantity, scales = "free_y") +
+  labs(x = "Body mass (g, log scale)", y = NULL)
+plotly::ggplotly(g, tooltip = "text", width = 820, height = 360) |>
+  plotly::config(displayModeBar = FALSE)
+```
+
+**Only the occupancy slope is credible.** A tenfold increase in body mass
+goes with `r fmt(occ_r$slope)` more on the logit scale for occupancy
+[`r fmt(occ_r$lo)`, `r fmt(occ_r$hi)`], an interval clear of zero: the bigger
+birds in this community are on more of these locations. It is a real pattern but
+a loose one, accounting for `r sprintf("%.0f%%", 100 * occ_r$r2_medians)` of the
+spread in occupancy across species, so mass is a tendency and not a substitute
+for the species' own data.
+
+Neither of the other two slopes is credible. Detection slopes down with mass
+(`r fmt(det_r$slope)` [`r fmt(det_r$lo)`, `r fmt(det_r$hi)`]) but the interval
+contains zero, and mass accounts for
+`r sprintf("%.0f%%", 100 * det_r$r2_medians)` of the spread. For the loading on
+the habitat gradient there is no sign that it tracks body size at all: the slope
+is `r fmt(lam_r$slope)` [`r fmt(lam_r$lo)`, `r fmt(lam_r$hi)`] and mass accounts
+for `r sprintf("%.1f%%", 100 * lam_r$r2_medians)` of the spread. That interval is
+wide enough that it is an absence of evidence rather than evidence of absence,
+but it is consistent with reading the gradient as habitat: it runs from conifer
+to deciduous regrowth, and there is no reason a bird's weight should say which
+side it prefers.
+
+**The second kind of uncertainty is doing real work here.** Had the slopes come
+from the posterior draws alone, the intervals would have been
+`r fmt(occ_r$width_ratio, 1)`, `r fmt(det_r$width_ratio, 1)` and
+`r fmt(lam_r$width_ratio, 1)` times narrower for occupancy, detection and the
+loading. For detection that is the difference between a conclusion and none: the
+estimation-only interval,
+[`r fmt(det_r$lo_est_only)`, `r fmt(det_r$hi_est_only)`], excludes zero and
+would have been reported as heavier birds being credibly harder to hear, which
+the composed interval does not support. `r occ_r$n_species` species is not many
+to fit a line through, and the composed interval says so.
+
+Two limits worth stating. The traits are outside the model: mass explains the
+estimates after the fact but never feeds back, so it does not inform how much a
+thinly observed species is pulled toward the community. Putting it inside would
+make the community mean a function of mass, which `spOccupancy` does not offer
+and which `NIMBLE` or `Stan` would. And the loading's scale is fixed by setting
+the `r dt[taxon == fb$anchor, vernacularName]`'s loading to 1, so the direction
+and the relative sizes of those slopes mean something while their units do not.
+
 ## A sparse community: the Monongahela cameras
 
 The camera table is the other extreme. Most species were photographed at a
@@ -867,16 +1008,20 @@ holds on `r sum(lf_good$lf_vs_ever > 0.75)` of the `r nrow(lf_good)` tables
   ranks species partly by how detectable they are. A site score from the same
   fit is partly a record of effort.
 - **The rest of the model carries over.** More than one latent variable is
-  `n.factors > 1`. Species traits on $\beta_k$ (body mass, diet; see
-  `eco_traits()`) explain why species differ instead of only how much. Site
-  covariates on $\psi$ explain $w_i$ instead of discovering it.
+  `n.factors > 1`. Species traits explain why species differ instead of only how
+  much: body mass from `eco_traits()` accounts for part of the spread in
+  occupancy above, though as a second step rather than on $\beta_k$ inside the
+  model, where it would also shape the shrinkage. Site covariates on $\psi$
+  explain $w_i$ instead of discovering it.
 
 The fits here are close to bare. Detection depends on the day of the season and
 the time of day on the boreal table and is intercept-only everywhere else; beyond that there is no spatial
 structure (the boreal locations come in transects of three, recorded in
-`cluster_id`, and neighbouring locations share birds), nothing explaining why
-species differ rather than how much (traits on $\beta_k$), and no prior other
-than the default. Each is a line in the spOccupancy call.
+`cluster_id`, and neighbouring locations share birds), no trait inside the model
+on $\beta_k$ (body mass enters afterwards, under
+[what body mass explains](#what-body-mass-explains), not as part of the
+community distribution), and no prior other than the default. Each is a line in
+the spOccupancy call.
 
 ## Reproducibility
 
@@ -887,7 +1032,9 @@ in the eco repository. The spOccupancy and mirt fits were run on
 burn-in, thinning `r cache$mcmc$n.thin`, rerun five times longer where any
 $\hat R$ exceeded 1.1); the model without detection and the single-species
 fits run live on this page. Data were read with `eco_set_version(26)`, so a
-later release of the warehouse does not change the page.
+later release of the warehouse does not change the page. Body mass came from
+`eco_traits()`, which fetches `r fb$traits$source` `r fb$traits$version` at use
+time and stores nothing in eco: `r fb$traits$citation`
 
 ```{r}
 #| label: versions
