@@ -1,0 +1,68 @@
+{
+  "table": "faria_2026_azores_plates_count",
+  "title": "Recruitment of the limpet Patella candei and the barnacle Chthamalus stellatus on monthly settlement plates at 4 rocky-shore locations, São Miguel (Azores), 2019-2020",
+  "creator": "Faria, João",
+  "pubDate": "2026",
+  "doi": "10.15468/h3sywy",
+  "sourceURL": "https://doi.org/10.15468/h3sywy",
+  "citation": "Faria J (2026). Recruitment dynamics and seasonal variability of Patella candei and Chthamalus stellatus on rocky intertidal shores of São Miguel Island (Azores, NE Atlantic). Universidade dos Açores. Samplingevent dataset. https://doi.org/10.15468/h3sywy",
+  "intellectualRights": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "abstract": "Natural-basalt settlement plates (7 x 7 x 2 cm), up to 15 per location, screwed to the mid-intertidal rock at four locations around São Miguel and retrieved and replaced monthly from March 2019 to January 2020; recruits of the limpet Patella candei (recorded as Patella gomesii; shell under 0.5 cm) and the barnacle Chthamalus stellatus counted under a stereomicroscope. One row per plate and species, y = recruits counted; the unit is a location, the period a retrieval month, the occasion a plate.",
+  "samplingProtocol": "Settlement plates of natural basalt (7 x 7 x 2 cm) screwed onto mid-intertidal rock, left to colonise for about a month (20-51 days), then retrieved, replaced, and examined under a stereomicroscope; recruits of both species counted per plate (Faria 2026, EML).",
+  "samplingProtocolCode": "settlement_plate",
+  "surveyEvidence": "sample_table",
+  "responseType": "count",
+  "unitKind": "site",
+  "closure": "closed",
+  "closureNote": "The plates of a location-month are spatial replicates exposed over the same interval and retrieved together; the recruit supply changes between months.",
+  "occasionKind": "spatial",
+  "taxonInclusion": "target",
+  "geographicCoverage": "São Miguel, Azores, Portugal: Caloura, Cruzeiro (Lagoa), Forno da Cal (Ponta Delgada), Ribeira das Taínhas; one point per location, 50 m uncertainty",
+  "temporalCoverage": "2019-03/2020-01",
+  "coordinatesCoarsened": {
+    "value": false,
+    "method": "One point per location as published (50 m); no flagged taxon."
+  },
+  "notes": "The deposit labels the values individuals per m2 'calculated from raw counts on a 0.0154 m2 plate', but they are raw counts per plate: the author, João Faria, confirmed this by email to Ben Domingue on 2026-11-17 (0.0154 m2 is the plate's whole surface, face, sides and bottom). y is the deposited value. He also gave the plate-site key (Cruzeiro is at Lagoa, Forno da Cal at Ponta Delgada; the deposit's March 2019 Forno da Cal event says Lagoa) and said some details of the deposit would be corrected. Missing plate numbers within a location-month are plates not retrieved (no row). date is the retrieval date; period_deployDays the days those plates were out.",
+  "notShipped": {
+    "sampling_area": "0.0154 m2 per plate, constant; the per-event total is 0.0154 x the plates retrieved",
+    "sampling_instrument": "'7x7x2 cm settlement plate', constant"
+  },
+  "summary": {
+    "n_rows": 1078,
+    "n_units": 4,
+    "n_taxa": 2,
+    "n_periods": 11,
+    "n_occasions": 15,
+    "n_surveys": 539,
+    "y_values": "0-234 (85 distinct)",
+    "prop_zero": 0.504,
+    "n_traps": 1,
+    "n_zero": 543,
+    "n_positive": 535,
+    "n_units_detected": 4,
+    "max_y": 234
+  },
+  "sampleFloor": "below (4 units < 30)",
+  "columns": ["unit", "taxon", "y", "period", "occasion", "date", "unit_locality", "unit_sourceSiteCode", "unit_decimalLatitude", "unit_decimalLongitude", "unit_coordinateUncertaintyInMeters", "period_deployDays"],
+  "coreMd5": "9035c7ca78c0abaac04c9fd11de36f24",
+  "sideTables": {
+    "periods": {
+      "rows": 11,
+      "columns": ["period", "month", "retrieval_start", "retrieval_end"],
+      "md5": "711bd8d24983c08cd47301166345de4c"
+    },
+    "taxa": {
+      "rows": 2,
+      "columns": ["taxon", "scientificName", "vernacularName", "taxonRank", "taxonID", "gbifMatchType", "gbifAcceptedName", "taxonRemarks", "taxon_iucnCategory"],
+      "md5": "bf3eecac053ffbee69886ef735545a68"
+    }
+  },
+  "standardVersion": "eco v1.1-draft (2026-11-03)",
+  "builtBy": "data/ script, see `script`",
+  "script": "data/faria_2026_azores_plates_count.R",
+  "buildDate": "2026-11-20"
+}
