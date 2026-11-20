@@ -462,6 +462,11 @@ since the null model has nothing to fit or cannot separate $\psi$ from $p$.
 ```{r}
 #| label: corpus-load
 corpus <- readRDS("occupancy_data/occupancy_corpus.rds")
+# Tables withdrawn since the sweep (releases/withdrawals.csv) are dropped from
+# the cache: obrist_2024_gooseisland_birds_count, pending CARE review (#150).
+withdrawn <- "obrist_2024_gooseisland_birds_count"
+corpus$fits <- corpus$fits[!corpus$fits$table %in% withdrawn, ]
+corpus$corpus_tables <- corpus$corpus_tables[!corpus$corpus_tables$table %in% withdrawn, ]
 fits <- corpus$fits
 fits$correction <- fits$psi - fits$naive
 fits$boundary <- !fits$converged | fits$psi > 0.995 | fits$psi < 0.005 | fits$p < 0.005
@@ -492,8 +497,7 @@ tb <- function(t, col) by_tab[table == t][[col]]
 mhb_reject <- ok[table == "kery_2014_mhb_comm" & !is.na(gof_p), mean(reject)]
 wt_chat <- f[table == "kery_2008_willowtit_occ", c_hat]
 top <- ok[correction >= q_corr[2]]; top_n <- nrow(top)
-top3_n <- top[table %in% c("bradferlawrence_2025_ukwood_beetle_comm", "maihoff_2023_berchtesgaden_bees_count",
-                           "obrist_2024_gooseisland_birds_count"), .N]
+top2_n <- top[table %in% c("bradferlawrence_2025_ukwood_beetle_comm", "maihoff_2023_berchtesgaden_bees_count"), .N]
 medp <- function(t) median(ok[table == t, p])
 n_rule <- nrow(ct); n_held <- sum(ct$status == "skipped"); n_excl <- sum(ct$status == "excluded")
 n_eff_tab <- ct[status == "fit" & effort == "mapped", .N]
@@ -537,11 +541,10 @@ standard's sample floor. Among the well-behaved fits the median correction
 $\hat\psi - \text{naive}$ is `r fmt(med_corr)`, with the middle 80% of species
 between `r fmt(q_corr[1])` and `r fmt(q_corr[2])`. That upper decile is
 species with $\hat p$ just above the boundary rule, and
-`r top3_n` of its `r top_n` fits come from three tables: the UK woodland
-beetle pitfalls, the Berchtesgaden wild bees and the Goose Island bird counts,
-where the median $\hat p$ is `r fmt(medp("bradferlawrence_2025_ukwood_beetle_comm"))`,
-`r fmt(medp("maihoff_2023_berchtesgaden_bees_count"))` and
-`r fmt(medp("obrist_2024_gooseisland_birds_count"))`. Those fits are
+`r top2_n` of its `r top_n` fits come from two tables: the UK woodland
+beetle pitfalls and the Berchtesgaden wild bees, where the median $\hat p$ is
+`r fmt(medp("bradferlawrence_2025_ukwood_beetle_comm"))` and
+`r fmt(medp("maihoff_2023_berchtesgaden_bees_count"))`. Those fits are
 technically interior and substantively the same failure as the boundary
 ones.
 
