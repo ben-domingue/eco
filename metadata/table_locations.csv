@@ -157,6 +157,7 @@ fabritius_2015_sorila_fritillary_cjs,61.5,23.9,locality,10,,place name,stated ce
 fancourt_2019_aus_catdingo_occ,-25.3,134.0,country,4000,,place name,"Australia centroid, sites not located"
 faria_2026_azores_mpa_patella_count,37.8,-25.5,locality,25,4,unit coordinates,unit_decimalLatitude
 faria_2026_azores_patella_count,38.7,-28.3,state,537,12,unit coordinates,unit_decimalLatitude
+faria_2026_azores_plates_count,37.7,-25.5,locality,20,4,unit coordinates,unit_decimalLatitude
 faveyts_2026_zwin_butterfly_count,51.4,3.3,site,0,12,unit coordinates,unit_decimalLatitude
 feldman_2023_quebec_wetland_comm,51.0,-74.0,state,450,,place name,"latitude range stated (49.1-52.8 N); no longitude deposited, placed mid-Quebec"
 feldman_2023_quebec_wetland_exact_comm,51.0,-74.0,state,450,,place name,"latitude range stated (49.1-52.8 N); no longitude deposited, placed mid-Quebec"

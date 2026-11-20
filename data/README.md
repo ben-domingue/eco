@@ -453,6 +453,7 @@ CSVs with `upload/red_up_eco.py`.
 | `seys_2020_belgium_seawatch_count.R` | repeated counts, citizen-science shore push-net, 50 fish / crab / shrimp / jellyfish taxa at 14 Belgian beaches, seasonal visits 2014-2018; also builds `seys_2020_belgium_patella_count` (limpets, ten groyne quadrats per visit, 13 beaches) and `seys_2020_belgium_arenicola_count` (lugworm casts on the low beach, 14 beaches) | VLIZ IPT (SeaWatch-B) | CC BY-NC-SA 4.0 |
 | `faria_2026_azores_patella_count.R` | repeated counts, spatial replicates (15 quadrats per location x shore level), two Azorean limpets, 2006 | GBIF Portugal IPT | CC BY 4.0 |
 | `faria_2026_azores_mpa_patella_count.R` | repeated counts, spatial replicates (10 quadrats per site x campaign), Patella candei in partial and full MPAs, São Miguel 2006-2008 | GBIF Portugal IPT | CC BY 4.0 |
+| `faria_2026_azores_plates_count.R` | repeated counts, spatial replicates (up to 15 settlement plates per location x month), limpet and barnacle recruits, São Miguel 2019-2020 | GBIF Portugal IPT | CC BY 4.0 |
 | `szewczyk_2019_colorado_ants_binom.R` | pitfall binomial counts, multi-scale (site > trap pair), per-region lists, two tables (coarsened + `_exact`) | Dryad | CC0 |
 | `jimenezfranco_2019_murcia_birds_binom.R` | line-transect binomial counts, transects as spatial replicates of grid cells | Dryad | CC0 |
 | `jimenezfranco_2023_murcia_birds_binom.R` | line-transect binomial counts, modern resurvey (2012, 2017) of the same region, cells of 2 x 2 km | Dryad | CC0 |

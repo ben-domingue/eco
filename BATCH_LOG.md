@@ -3129,3 +3129,19 @@ one detected-at-least-once value per station-year, no replication); Mirochnitche
 (dryad.bg79cnpbb: detections only, visit list inferable); Kays hunting/hiking eMammal (dryad.gv1dq: downloaded, not read).
 
 What strained the standard: global ids across independent SCR sessions (Howe, above): ruled 2026-11-14, not yet written into E4.4.
+
+## Batch 69 — 2026-11-20 (author reply: Faria Azores recruitment plates, IMIS 9141; one table)
+
+Built in `~/eco-b69` (branch `batch-69-azores-plates`, from main at b74fd66), no agents. Held since batch 55; built on
+Ben's go-ahead after the author's reply.
+
+| Table | Family | Source | Rows | Notes |
+|---|---|---|---|---|
+| faria_2026_azores_plates_count | repeated counts, spatial replicates, 2 taxa (Patella candei recruits, Chthamalus stellatus recruits) | GBIF Portugal IPT doi:10.15468/h3sywy (CC BY 4.0) | 1,078 | 4 locations x 11 monthly retrievals (2019-03 to 2020-01), up to 15 plates each (539 plates); unit = location, period = month, occasion = plate; `date` = retrieval date, `period_deployDays` |
+
+The deposit labels the values individuals per m2 from a 0.0154 m2 plate; João Faria confirmed by email (2026-11-17)
+that they are raw counts per plate (0.0154 m2 is the whole surface of the 7 x 7 x 2 cm stone), so `y` is the value as
+deposited, with no `y_raw`. He gave the plate-site key (Cruzeiro = Lagoa, Forno da Cal = Ponta Delgada); the March 2019
+Forno da Cal event says Lagoa, a publisher slip (asserted, author's key used). He also said some details of the deposit
+will be corrected; GBIF still lists the 2026-09-24 version, and a changed re-download fails the script's assertions.
+Validator: conforms; `sample_floor` warning (4 units).
